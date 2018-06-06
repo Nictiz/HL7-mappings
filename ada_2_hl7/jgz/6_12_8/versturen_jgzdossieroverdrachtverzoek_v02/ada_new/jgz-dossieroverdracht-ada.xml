@@ -1,0 +1,24 @@
+<ada xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../ada/core/ada.xsd">
+    <project prefix="jgz-dossieroverdracht-" language="nl-NL" versionDate="2016-03-01T12:23:06">
+        <release baseUri="http://decor.nictiz.nl/decor/services/RetrieveTransaction"/>
+    </project>
+    <applications>
+        <application version="1">
+            <views>
+                <view id="1" type="crud" target="xforms" transactionId="2.16.840.1.113883.2.4.3.11.60.100.4.20" transactionEffectiveDate="2013-07-09T12:00:00" addComments="true">
+                    <name>jgz-dossieroverdracht Formulier</name>
+                    <concepts include="all"/>
+                </view>
+                <view id="2" type="index" target="xforms" transactionId="2.16.840.1.113883.2.4.3.11.60.100.4.20" transactionEffectiveDate="2013-07-09T12:00:00" addComments="true">
+                    <name>jgz-dossieroverdracht Index</name>
+                    <indexOf ref="1"/>
+                    <concepts include="only">
+                    </concepts>
+                    <controls>
+                        <button type="xml"/>
+                    </controls>
+                </view>
+            </views>
+        </application>
+    </applications>
+</ada>

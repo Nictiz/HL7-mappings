@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_vvv.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="urn:hl7-org:v3"
+           xmlns:cda="urn:hl7-org:v3"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:hl7="urn:hl7-org:v3"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd"
+           classCode="CLUSTER"
+           moodCode="EVN">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9130"/>
+   <code code="104"
+         displayName="Voorstel verstrekkingsverzoek"
+         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4"
+         codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget xmlns:nf="http://www.nictiz.nl/functions">
+      <patientRole>
+         <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+         <patient>
+            <name>
+               <given qualifier="BR">Antje</given>
+               <family qualifier="BR">Aalders</family>
+            </name>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Female"/>
+            <birthTime value="19500101"/>
+            <multipleBirthInd xmlns="urn:hl7-org:sdtc" value="false"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <substanceAdministration xmlns:nf="http://www.nictiz.nl/functions"
+                               classCode="SBADM"
+                               moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9148"/>
+         <id root="1.2.3.999.77.5.3.2" extension="medbeh_VMA_001_MA01"/>
+         <code code="16076005"
+               displayName="Medicatieafspraak"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">eenmaal daags 1 flesje</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <width value="2" unit="wk"/>
+         </effectiveTime>
+         <routeCode nullFlavor="OTH">
+            <originalText>9</originalText>
+         </routeCode>
+         <consumable>
+            <manufacturedProduct classCode="MANU">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code nullFlavor="OTH">
+                     <originalText>13659847</originalText>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+            <time value="20170809083500"/>
+            <assignedAuthor>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+               <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+               <code nullFlavor="OTH">
+                  <originalText>huisarts</originalText>
+               </code>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="IN">DR</given>
+                     <family qualifier="BR">Jansen</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id root="1.2.3.4" extension="987654521"/>
+                  <name>Ziekenhuis zus en zo</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9068"/>
+               <code code="2"
+                     displayName="Reden medicatieafspraak"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+               <value xsi:type="CE"
+                      code="266709005"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="Medication commenced (finding)"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9177"/>
+               <code code="11"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
+                     displayName="Aanvullende informatie Medicatieafspraak"/>
+               <value xsi:type="CD"
+                      code="4"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
+                      displayName="Medische noodzaak"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="1.2.3.999.77.5.3.1" extension="medbeh_VMA_001"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <supply xmlns:nf="http://www.nictiz.nl/functions"
+              classCode="SPLY"
+              moodCode="PRP">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9131"/>
+         <repeatNumber value="2"/>
+         <quantity value="14" unit="1">
+            <translation value="14"
+                         code="211"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         displayName="Eenheid"/>
+         </quantity>
+         <expectedUseTime>
+            <low value="20170811080000"/>
+            <width value="2" unit="wk"/>
+         </expectedUseTime>
+         <product>
+            <manufacturedProduct classCode="MANU">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9163"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <name>Ketoconazol crème met 20% vaseline en 0,1% triam acet</name>
+                  <pharm:formCode nullFlavor="OTH">
+                     <originalText>creme</originalText>
+                  </pharm:formCode>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ" value="3" unit="mg">
+                           <translation value="3"
+                                        code="229"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        displayName="Milligram"/>
+                        </numerator>
+                        <denominator xsi:type="PQ" value="1" unit="g">
+                           <translation value="1"
+                                        code="215"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        displayName="Gram"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+                        <pharm:code nullFlavor="OTH">
+                           <originalText>264105</originalText>
+                        </pharm:code>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id root="1.2.3.4" extension="987654321"/>
+                  <name>Apotheek de Gulle Gaper</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <author>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+            <time value="20170810091500"/>
+            <assignedAuthor>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+               <code nullFlavor="OTH">
+                  <originalText>apotheker</originalText>
+               </code>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Joost</given>
+                     <prefix qualifier="VV">den</prefix>
+                     <family qualifier="BR">Draaijer</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id root="1.2.3.4" extension="987654321"/>
+                  <name>Apotheek de GulleGaper</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="1.2.3.999.77.5.3.1" extension="medbeh_VMA_001"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
+   </component>
+</organizer>

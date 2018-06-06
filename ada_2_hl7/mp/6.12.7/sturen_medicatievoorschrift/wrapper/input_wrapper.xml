@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transmission_wrapper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="input_wrapper.xsd">
+    <schematron_href value="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medvoors.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"/>
+    <schema_location value="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/PORX_IN932000NL.xsd"/>
+    <!-- vaste waarde voor Voorschrift -->
+    <root_xml_element value="PORX_IN932000NL"/>
+    <!-- assign proper OID and generate unique id -->
+    <id value="2BGeneratedID" root="1.2.3.999"/>
+    <!-- generate date/time of message creation -->
+    <creation_time value="2017-08-17T18:47:34"/>
+    <!-- vaste waarde voor Voorschrift -->
+    <interaction_id value="PORX_IN932000NL"/>
+    <!-- vaste waarde voor Voorschrift -->
+    <accept_ack_code value="AL"/>
+    <!-- in te vullen waarde voor patiënt BSN -->
+    <attention_line_bsn value="012345672"/>
+    <receiver>
+        <!-- in te vullen gegeevens ontvanger -->
+        <id value="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.6.6"/>
+        <name value="AIS van openbare apotheek De Gulle Gaper"/>
+    </receiver>
+    <sender>
+        <!-- afhankelijk van zendende instelling/softwareapplicatie -->
+        <id value="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.6.6"/>
+        <name value="EVS van ziekenhuis Medisch Centrum Oost"/>
+    </sender>
+    <controlact_wrapper>
+        <author_or_performer>
+            <assigned_person>
+                <id value="123456789" root="2.16.528.1.1007.3.1"/>
+                <id value="12345678" root="2.16.840.1.113883.2.4.6.1"/>
+                <!-- Zorgverlenertype -->
+                <code value="01.015" code="01.046" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                <name value="Peter van den Broek"/>
+                <organization>
+                    <!-- eigen OID -->
+                    <id value="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.3.11.21"/>
+                    <!-- URA -->
+                    <id value="13265478" root="2.16.528.1.1007.3.3"/>
+                    <code value="V4" code="V4" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Ziekenhuis"/>
+                    <name value="Ziekenhuis X"/>
+                    <address>
+                        <city value="Lutjebroek"/>
+                    </address>
+                </organization>
+            </assigned_person>
+        </author_or_performer>
+        <overseer>
+            <assigned_person>
+                <id value="123456798" root="2.16.528.1.1007.3.1"/>
+                <id value="12365487" root="2.16.840.1.113883.2.4.6.1"/>
+                <!-- Zorgverlenertype -->
+                <code value="01.015" code="01.046" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                <name value="Peter van den Broek"/>
+                <organization>
+                    <!-- eigen OID -->
+                    <id value="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.3.11.21"/>
+                    <!-- URA -->
+                    <id value="12346548" root="2.16.528.1.1007.3.3"/>
+                    <code value="V4" code="V4" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Ziekenhuis"/>
+                    <name value="Ziekenhuis X"/>
+                    <address>
+                        <city value="Lutjebroek"/>
+                    </address>
+                </organization>
+            </assigned_person>
+        </overseer>  
+        <!-- Hier komt de echte Payload van het Voorschrift -->
+    </controlact_wrapper>
+</transmission_wrapper>
