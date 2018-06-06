@@ -80,7 +80,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="author_or_performer" type="assigned_person"/>
+  <xs:element name="author_or_performer" >
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="assigned_device" minOccurs="0"/>
+        <xs:element ref="assigned_person" minOccurs="0"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="overseer" type="assigned_person"/>
   <xs:element name="registration_wrapper">
     <xs:complexType>
@@ -118,6 +125,14 @@
       <xs:element ref="assigned_person" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:element name="assigned_device">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="id"/>
+        <xs:element ref="organization" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="assigned_person">
     <xs:complexType>
       <xs:sequence>

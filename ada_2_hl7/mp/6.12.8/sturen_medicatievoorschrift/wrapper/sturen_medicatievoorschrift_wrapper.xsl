@@ -6,6 +6,7 @@
     <xsl:param name="input_xml_wrapper" select="'input_wrapper.xml'"/>
     <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
     <xsl:variable name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
+    <!-- fixed values for 6.12 vooraankondiging -->
     <xsl:include href="../payload/sturen_medicatievoorschrift_9_to_612.xsl"/>
 
     <!-- template MakeWrapper can be called from outside this template, if needed -->
@@ -47,9 +48,7 @@
                 </xsl:for-each>
                 <versionCode code="NICTIZEd2005-Okt"/>
                 <xsl:for-each select="./interaction_id">
-                    <interactionId root="2.16.840.1.113883.1.6">
-                        <xsl:attribute name="extension" select="./@value"/>
-                    </interactionId>
+                    <interactionId extension="{./@value}" root="2.16.840.1.113883.1.6"/>
                 </xsl:for-each>
                 <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
                 <processingCode code="P"/>
@@ -75,6 +74,28 @@
                 </xsl:for-each>
                 <xsl:for-each select="./controlact_wrapper">
                     <ControlActProcess classCode="CACT" moodCode="EVN">
+                        <xsl:for-each select="./author_or_performer/assigned_device">
+                            <authorOrPerformer typeCode="AUT">
+                                <participant>
+                                    <AssignedDevice>
+                                        <xsl:for-each select="./id">
+                                            <xsl:call-template name="makeId"/>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="./organization">
+                                        <Organization>
+                                            <xsl:for-each select="./id">
+                                                <xsl:call-template name="makeId"/>
+                                            </xsl:for-each>
+                                            <xsl:for-each select="./name">
+                                                <name>
+                                                    <xsl:value-of select="./@value"/>
+                                                </name>
+                                            </xsl:for-each>
+                                        </Organization>
+                                        </xsl:for-each></AssignedDevice>
+                                </participant>
+                            </authorOrPerformer>
+                        </xsl:for-each>
                         <xsl:for-each select="./author_or_performer/assigned_person">
                             <authorOrPerformer typeCode="AUT">
                                 <participant>
@@ -141,10 +162,7 @@
     <xsl:template name="makeDevice">
         <device classCode="DEV" determinerCode="INSTANCE">
             <xsl:for-each select="./id">
-                <id>
-                    <xsl:attribute name="extension" select="./@value"/>
-                    <xsl:attribute name="root" select="./@root"/>
-                </id>
+                <id extension="{./@value}" root="{./@root}"/>                
             </xsl:for-each>
             <xsl:for-each select="./name">
                 <name>
@@ -154,16 +172,9 @@
         </device>
     </xsl:template>
     <xsl:template name="makeId">
-        <id>
-            <xsl:attribute name="extension" select="./@value"/>
-            <xsl:attribute name="root" select="./@root"/>
-        </id>
+        <id extension="{./@value}" root="{./@root}"/>        
     </xsl:template>
     <xsl:template name="makeWrapperCode">
-        <code>
-            <xsl:attribute name="code" select="./@code"/>
-            <xsl:attribute name="codeSystem" select="./@codeSystem"/>
-            <xsl:attribute name="displayName" select="./@displayName"/>
-        </code>
+        <code code="{./@code}" codeSystem="{./@codeSystem}" displayName="{./@displayName}"/>        
     </xsl:template>
 </xsl:stylesheet>
