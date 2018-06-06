@@ -4,21 +4,23 @@
     <xsl:include href="../../../mp_include.xsl"/>
     <!-- Dit is een conversie van MP 9.0.6 naar ADA 9.0 voorschrift bericht -->
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
-    <xsl:variable name="xsd-ada" select="document('../ada_schemas/sturen_medicatievoorschrift.xsd')"/>
+    
+    <xsl:param name="xsd-ada" select="document('../ada_schemas/sturen_medicatievoorschrift.xsd')"/>
     <xsl:variable name="mbh-complexType" select="$xsd-ada//xs:schema/xs:complexType[@name = 'sturen_medicatievoorschrift_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
     <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
 
-    <xsl:template match="/">
+<!-- if this xslt is used stand alone the template below could be used. -->
+<!--    <xsl:template match="/">
         <xsl:variable name="patient-recordTarget" select="//hl7:recordTarget/hl7:patientRole"/>
         <xsl:call-template name="Voorschrift-90-ADA">
             <xsl:with-param name="patient" select="$patient-recordTarget"/>
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
         </xsl:call-template>
-    </xsl:template>
+    </xsl:template>-->
 
     <xsl:template name="Voorschrift-90-ADA">
         <xsl:param name="patient"/>
-        <xsl:param name="xsd-mbh"/>
+        <xsl:param name="xsd-mbh" select="$xsd-mbh"/>
         <xsl:comment>Generated from HL7v3 voorschrift 9.0.x xml with id <xsl:value-of select="'TODO'"/>.</xsl:comment>
         <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
             <meta status="new" created-by="generated" last-update-by="generated">
