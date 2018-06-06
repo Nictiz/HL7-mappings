@@ -19,7 +19,7 @@
     </xsl:template>-->
 
     <xsl:template name="Voorschrift-90-ADA">
-        <xsl:param name="patient"/>
+        <xsl:param name="patient" select="//hl7:recordTarget/hl7:patientRole"/>
         <xsl:param name="xsd-mbh" select="$xsd-mbh"/>
         <xsl:comment>Generated from HL7v3 voorschrift 9.0.x xml with id <xsl:value-of select="'TODO'"/>.</xsl:comment>
         <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">

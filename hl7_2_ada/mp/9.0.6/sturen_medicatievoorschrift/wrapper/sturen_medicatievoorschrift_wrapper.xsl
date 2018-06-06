@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
+<xsl:stylesheet xmlns="" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" exclude-result-prefixes="#all">
+    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- the param can be called from outside this stylesheet, if no value is provided it defaults to whatever is set in 'select' -->
-    <xsl:param name="input_xml_payload" select="'../hl7_instance/CDA_MP90_Voorschrift_01c_MA_2VV_1dd1st.xml'"/>
-    <xsl:param name="output_xml_wrapper" select="'output_wrapper.xml'"/>
-    <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
+    <xsl:param name="output_xml_wrapper" select="'../wrapper/output_wrapper'"/>
     <xsl:include href="../payload/sturen_medicatievoorschrift_906_to_ADA.xsl"/>
 
-    <!-- template MakeWrapper can be called from outside this template, if needed -->
+    <!-- template MakeWrapper can be called from outside this template, if needed to explicitly supply the input.xml filename -->
     <xsl:template name="MakeWrapper">
+        <xsl:param name="input_xml_payload" select="'../hl7_instance/CDA_MP90_Voorschrift_01c_MA_2VV_1dd1st.xml'"/>
+        <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
         <xsl:call-template name="Wrappers">
             <xsl:with-param name="payload_xml" select="$input_xml_payload_doc"/>
         </xsl:call-template>
@@ -16,156 +16,133 @@
 
     <xsl:template match="/">
         <xsl:call-template name="Wrappers">
-            <xsl:with-param name="payload_xml" select="$input_xml_payload_doc"/>
+            <xsl:with-param name="payload_xml" select="."/>
         </xsl:call-template>
     </xsl:template>
 
+    <!-- template Wrapper that does all the work and does a call to payload conversion as well-->
     <xsl:template name="Wrappers">
-        <xsl:param name="payload_xml" select="$input_xml_payload_doc"/>
-        
-        <!-- 1 wrapper output xml -->
-        <xsl:result-document href="{$output_xml_wrapper}" indent="yes">
-            <test></test>
-        </xsl:result-document>
-        
-<!--        <xsl:for-each select="$transmission_wrapper">
-            <!-\- schematron processing instruction -\->
-            <xsl:for-each select="./schematron_href">
-                <xsl:processing-instruction name="xml-model">href="<xsl:value-of select="./@value"/>" type="<xsl:value-of select="./@type"/>" schematypens="<xsl:value-of select="./@schematypens"/>" phase="<xsl:value-of select="./@phase"/>"</xsl:processing-instruction>
-            </xsl:for-each>
-            <xsl:element name="{./root_xml_element/@value}">
-                <xsl:namespace name="hl7" select="'urn:hl7-org:v3'"/>
-                <xsl:namespace name="xs" select="'http://www.w3.org/2001/XMLSchema'"/>
-                <xsl:for-each select="./schema_location">
-                    <xsl:attribute name="xsi:schemaLocation" select="./@value"/>
-                </xsl:for-each>
-                <xsl:for-each select="./id">
-                    <xsl:call-template name="makeId"/>
-                </xsl:for-each>
-                <xsl:for-each select="./creation_time">
-                    <creationTime>
-                        <xsl:call-template name="makeTSValueAttr"/>
-                    </creationTime>
-                </xsl:for-each>
-                <versionCode code="NICTIZEd2005-Okt"/>
-                <xsl:for-each select="./interaction_id">
-                    <interactionId root="2.16.840.1.113883.1.6">
-                        <xsl:attribute name="extension" select="./@value"/>
-                    </interactionId>
-                </xsl:for-each>
-                <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
-                <processingCode code="P"/>
-                <processingModeCode code="T"/>
-                <xsl:for-each select="./accept_ack_code">
-                    <acceptAckCode code="{./@value}"/>
-                </xsl:for-each>
-                <xsl:for-each select="./attention_line_bsn">
-                    <attentionLine>
-                        <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
-                        <value xsi:type="II" extension="{./@value}" root="2.16.840.1.113883.2.4.6.3"/>
-                    </attentionLine>
-                </xsl:for-each>
-                <xsl:for-each select="./receiver">
-                    <receiver typeCode="RCV">
-                        <xsl:call-template name="makeDevice"/>
-                    </receiver>
-                </xsl:for-each>
-                <xsl:for-each select="./sender">
-                    <sender typeCode="SND">
-                        <xsl:call-template name="makeDevice"/>
-                    </sender>
-                </xsl:for-each>
-                <xsl:for-each select="./controlact_wrapper">
-                    <ControlActProcess classCode="CACT" moodCode="EVN">
-                        <xsl:for-each select="./author_or_performer/assigned_person">
-                            <authorOrPerformer typeCode="AUT">
-                                <participant>
-                                    <xsl:call-template name="makeAssignedPerson"/>
-                                </participant>
-                            </authorOrPerformer>
-                        </xsl:for-each>
-                        <xsl:for-each select="./overseer/assigned_person">
-                            <overseer typeCode="RESP">
-                                <xsl:call-template name="makeAssignedPerson"/>
-                            </overseer>
-                        </xsl:for-each>
-                        <!-\- call this template with the appropriate input file -\->
-                        <xsl:call-template name="Make_Voorschrift_612">
-                            <xsl:with-param name="voorschrift" select="$payload_xml//sturen_medicatievoorschrift"/>
-                        </xsl:call-template>
-                    </ControlActProcess>
-                </xsl:for-each>
-            </xsl:element>
+        <xsl:param name="payload_xml" select="."/>
+        <xsl:param name="hl7_root" select="//hl7:*[not(ancestor::hl7:*)]"/>
+        <xsl:variable name="wrapper_root" select="$hl7_root[hl7:profileId[@root = '2.16.840.1.113883.2.4.3.11.1'][@extension = '810']]"/>
+        <xsl:for-each select="$wrapper_root">
+            <xsl:variable name="interaction-id" select="local-name(.)"/>
+            <!-- wrapper output xml -->
+            <xsl:result-document exclude-result-prefixes="#all" href="{concat($output_xml_wrapper, '_', ./position(), '.xml')}" indent="yes">
+                <transmission_wrapper xmlns="" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="output_wrapper.xsd">
+                    <root_xml_element value="{$interaction-id}"/>
+                    <xsl:for-each select="hl7:id">
+                        <id value="{./@extension}" root="{./@root}"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="./hl7:creationTime">
+                        <creation_time value="{nf:formatHL72XMLDate(./@value, nf:determine_date_precision(./@value))}"/>
+                    </xsl:for-each>
+                    <interaction_id value="{$interaction-id}"/>
+                    <xsl:for-each select="./hl7:acceptAckCode">
+                        <accept_ack_code value="{./@code}"/>
+                    </xsl:for-each>
+                    <!-- No attention line in this interaction -->
+                    <!--                    <xsl:for-each select="">
+                        <attention_line_bsn value="012345672"/>
+                    </xsl:for-each> -->
+                    <xsl:for-each select="./hl7:receiver/hl7:device">
+                        <receiver>
+                            <xsl:call-template name="make-device"/>
+                        </receiver>
+                    </xsl:for-each>
+                    <xsl:for-each select="./hl7:sender/hl7:device">
+                        <sender>
+                            <xsl:call-template name="make-device"/>
+                        </sender>
+                    </xsl:for-each>
+                    <xsl:for-each select="./hl7:ControlActProcess">
+                        <controlact_wrapper>
+                            <xsl:for-each select="./hl7:authorOrPerformer">
+                                <author_or_performer>
+                                    <xsl:for-each select="./hl7:participant">
+                                        <xsl:for-each select="./hl7:AssignedDevice">
+                                            <assigned_device>
+                                                <xsl:for-each select="./hl7:id">
+                                                    <id value="{./@extension}" root="{./@root}"/>
+                                                </xsl:for-each>
+                                                <xsl:for-each select="hl7:Organization">
+                                                    <organization>
+                                                        <xsl:for-each select="./hl7:id">
+                                                            <id value="{./@extension}" root="{./@root}"/>
+                                                        </xsl:for-each>
+                                                        <xsl:for-each select="./hl7:name">
+                                                            <name value="{./text()}"/>
+                                                        </xsl:for-each>
+                                                    </organization>
+                                                </xsl:for-each>
+                                            </assigned_device>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="./hl7:AssignedPerson">
+                                            <xsl:call-template name="make-assigned-person"/>
+                                        </xsl:for-each>
+                                    </xsl:for-each>
+                                </author_or_performer>
+                            </xsl:for-each>
+                            <xsl:for-each select="./hl7:overseer">
+                                <overseer>
+                                    <xsl:for-each select="./hl7:AssignedPerson">
+                                        <xsl:call-template name="make-assigned-person"/>
+                                    </xsl:for-each>
+                                </overseer>
+                            </xsl:for-each>
+                            <!-- Hier komt de echte Payload van het Voorschrift -->
+                        </controlact_wrapper>
+                    </xsl:for-each>
+                </transmission_wrapper>
+
+            </xsl:result-document>
         </xsl:for-each>
--->    </xsl:template>
+        <!-- payload conversion -->
+        <xsl:call-template name="Voorschrift-90-ADA">
+            <xsl:with-param name="patient" select="//hl7:recordTarget/hl7:patientRole"/>
+        </xsl:call-template>
+    </xsl:template>
+    
     <!-- Helper templates -->
-    <xsl:template name="makeAssignedPerson">
-        <AssignedPerson>
-            <xsl:for-each select="./id">
-                <xsl:call-template name="makeId"/>
+    <!-- assigned_person -->
+    <xsl:template name="make-assigned-person">
+        <assigned_person>
+            <xsl:for-each select="./hl7:id">
+                <id value="{./@extension}" root="{./@root}"/>
             </xsl:for-each>
-            <xsl:for-each select="./code">
-                <xsl:call-template name="makeWrapperCode"/>
+            <xsl:for-each select="./hl7:code">
+                <code value="{./@code}" code="{./@code}" codeSystem="{./@codeSystem}" displayName="{./@displayName}"/>
             </xsl:for-each>
-            <xsl:for-each select="./name">
-                <assignedPrincipalChoiceList>
-                    <assignedPerson>
-                        <name>
-                            <xsl:value-of select="./@value"/>
-                        </name>
-                    </assignedPerson>
-                </assignedPrincipalChoiceList>
+            <xsl:for-each select="./hl7:assignedPrincipalChoiceList/hl7:assignedPerson/hl7:name">
+                <name value="{./text()}"/>
             </xsl:for-each>
-            <xsl:for-each select="./organization">
-                <Organization>
-                    <xsl:for-each select="./id">
-                        <xsl:call-template name="makeId"/>
+            <xsl:for-each select="./hl7:Organization">
+                <organization>
+                    <xsl:for-each select="./hl7:id">
+                        <id value="{./@extension}" root="{./@root}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="./code">
-                        <xsl:call-template name="makeWrapperCode"/>
+                    <xsl:for-each select="./hl7:code">
+                        <code value="{./@code}" code="{./@code}" codeSystem="{./@codeSystem}" displayName="{./@displayName}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="./name">
-                        <name>
-                            <xsl:value-of select="./@value"/>
-                        </name>
+                    <xsl:for-each select="./hl7:name">
+                        <name value="{./text()}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="address/city">
-                        <addr>
-                            <city>
-                                <xsl:value-of select="./@value"/>
-                            </city>
-                        </addr>
+                    <xsl:for-each select="./hl7:addr/hl7:city">
+                        <address>
+                            <city value="{./text()}"/>
+                        </address>
                     </xsl:for-each>
-                </Organization>
+                </organization>
             </xsl:for-each>
-        </AssignedPerson>
+        </assigned_person>
     </xsl:template>
-    <xsl:template name="makeDevice">
-        <device classCode="DEV" determinerCode="INSTANCE">
-            <xsl:for-each select="./id">
-                <id>
-                    <xsl:attribute name="extension" select="./@value"/>
-                    <xsl:attribute name="root" select="./@root"/>
-                </id>
-            </xsl:for-each>
-            <xsl:for-each select="./name">
-                <name>
-                    <xsl:value-of select="./@value"/>
-                </name>
-            </xsl:for-each>
-        </device>
-    </xsl:template>
-    <xsl:template name="makeId">
-        <id>
-            <xsl:attribute name="extension" select="./@value"/>
-            <xsl:attribute name="root" select="./@root"/>
-        </id>
-    </xsl:template>
-    <xsl:template name="makeWrapperCode">
-        <code>
-            <xsl:attribute name="code" select="./@code"/>
-            <xsl:attribute name="codeSystem" select="./@codeSystem"/>
-            <xsl:attribute name="displayName" select="./@displayName"/>
-        </code>
+    <!-- device -->
+    <xsl:template name="make-device">
+        <xsl:for-each select="./hl7:id">
+            <id value="{./@extension}" root="{./@root}"/>
+        </xsl:for-each>
+        <xsl:for-each select="./hl7:name">
+            <name value="{./text()}"/>
+        </xsl:for-each>        
     </xsl:template>
 </xsl:stylesheet>
