@@ -5,7 +5,7 @@
     <xsl:param name="input_xml_payload" select="'../ada_instance/8ac56799-00d0-4bfc-98ad-0d6addedc5d3.xml'"/>
     <xsl:param name="input_xml_wrapper" select="'input_wrapper.xml'"/>
     <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
-    <xsl:param name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
+    <xsl:variable name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
     <xsl:include href="../payload/sturen_medicatievoorschrift_9_to_612.xsl"/>
 
     <!-- template MakeWrapper can be called from outside this template, if needed -->
