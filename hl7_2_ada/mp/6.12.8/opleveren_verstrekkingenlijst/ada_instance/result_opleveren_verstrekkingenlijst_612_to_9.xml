@@ -6,12 +6,12 @@
         xmlns:hl7="urn:hl7-org:v3"
         xmlns:hl7nl="urn:hl7-nl:v3"
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xsi:noNamespaceSchemaLocation="../../../../projects/mp-mp9/schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2018-05-23T21:11:38.13+02:00"
-         last-update-date="2018-05-23T21:11:38.13+02:00"/>
+         creation-date="2018-06-07T20:58:26.3+02:00"
+         last-update-date="2018-06-07T20:58:26.3+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp9"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -57,11 +57,11 @@
             <identificatie value="MedBehConverted_876a9d87yfasu8076879sdafy9h"
                            root="2.16.528.1.1007.3.3.1234567.3"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
-            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132"><!--start-datum is: 2.0180101E7-->
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132"><!--Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start--><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. Same root, extension string preconcatenated.-->
                <identificatie root="2.16.528.1.1007.3.3.1234567.3"
                               value="TAConverted_876a9d87yfasu8076879sdafy9h"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20134"/>
-               <!--afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
                <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133"
                               value="2005-06-16"/>
                <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22097">
@@ -84,24 +84,15 @@
                                    codeSystemName="G-Standaard Artikel"/>
                   </product>
                </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22098">
-                  <omschrijving value="volgens pilschema 2 milliliter per dag en vervolgens iets anders"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22619"/>
-                  <omschrijving value="volgens pilschema 2 milliliter per dag en vervolgens iets anders"
+                  <omschrijving value="op 5 juni 2018, om 12:00 u, eenmalig gebruiken; gedurende 300 dagen, 1 maal per dag 4 ml"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22619"/>
                   <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22620"
                                   code="NI"
                                   codeSystem="2.16.840.1.113883.5.1008"
                                   displayName="geen informatie"/>
-                  <herhaalperiode_cyclisch_schema value="28"
-                                                  unit="d"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22622"/>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623">
-                     <volgnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22624"/>
-                  </doseerinstructie>
-                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623">
-                     <volgnummer value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22624"/>
-                  </doseerinstructie>
+                  <!--Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information. No structured output for 'doseerinstructie'.-->
                </gebruiksinstructie>
                <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22394">
                   <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22395"

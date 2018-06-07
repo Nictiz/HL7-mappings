@@ -67,315 +67,257 @@
       </xsl:for-each>
    </xsl:template>
    <xsl:template name="mp9-gebruiksinstructie-from-mp612">
-      <xsl:param name="hl7-comp" select="."/>
+      <xsl:param name="effectiveTimes-eenmalig"/>
+      <xsl:param name="hl7-current-comp" select="."/>
+      <xsl:param name="mar-sorted"/>
       <xsl:param name="xsd-ada"/>
       <xsl:param name="xsd-comp"/>
+      <!-- gebruiksinstructie -->
       <xsl:variable name="xsd-gebruiksinstructie-complexType" select="$xsd-comp//xs:element[@name = 'gebruiksinstructie']/@type"/>
       <xsl:variable name="xsd-gebruiksinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-gebruiksinstructie-complexType]"/>
-      <xsl:for-each select="$hl7-comp">
-         <!-- mar = hl7:medicationAdministrationRequest -->
-         <xsl:variable name="mar" select="./hl7:product/hl7:dispensedMedication/hl7:therapeuticAgentOf/hl7:medicationAdministrationRequest"/>
-         <gebruiksinstructie conceptId="{$xsd-gebruiksinstructie/xs:attribute[@name='conceptId']/@fixed}">
-            <!-- omschrijving -->
-            <!-- TODO: dit is nog niet goed, hier moeten we nog iets slims doen met ontdubbelen en concateneren -->
-            <xsl:for-each select="$mar/hl7:text">
-               <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'omschrijving']/@type"/>
-               <omschrijving value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+      <gebruiksinstructie conceptId="{$xsd-gebruiksinstructie/xs:attribute[@name='conceptId']/@fixed}">
+         <!-- omschrijving -->
+         <xsl:variable name="omschrijving">
+            <!-- alleen unieke teksten: filter identieke teksten weg -->
+            <xsl:for-each select="distinct-values($mar-sorted/hl7:text/text())">
+               <xsl:if test="position() > 1">; </xsl:if>
+               <xsl:value-of select="."/>
             </xsl:for-each>
-            <!-- toedieningsweg -->
-            <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'toedieningsweg']/@type"/>
-            <toedieningsweg conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-               <xsl:choose>
-                  <xsl:when test="$mar/hl7:routeCode">
-                     <xsl:call-template name="mp9-code-attribs">
-                        <!-- moeten allemaal dezelfde toedieningsweg hebben voor 1 verstrekking, we nemen de eerste -->
-                        <xsl:with-param name="current-hl7-code" select="($mar/hl7:routeCode)[1]"/>
-                     </xsl:call-template>
-                  </xsl:when>
-                  <xsl:otherwise>
-                     <!-- Niet aanwezig in 6.12 -->
-                     <xsl:attribute name="code" select="'NI'"/>
-                     <xsl:attribute name="codeSystem" select="'2.16.840.1.113883.5.1008'"/>
-                     <xsl:attribute name="displayName" select="'geen informatie'"/>
-                  </xsl:otherwise>
-               </xsl:choose>
-            </toedieningsweg>
-            <!-- aanvullende_instructie -->
-            <xsl:for-each select="./hl7:support2/hl7:medicationAdministrationInstruction/hl7:code">
-               <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'aanvullende_instructie']/@type"/>
-               <aanvullende_instructie conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+         </xsl:variable>
+         <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'omschrijving']/@type"/>
+         <omschrijving value="{$omschrijving}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+         <!-- toedieningsweg -->
+         <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'toedieningsweg']/@type"/>
+         <toedieningsweg conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+            <xsl:choose>
+               <xsl:when test="$mar-sorted/hl7:routeCode">
                   <xsl:call-template name="mp9-code-attribs">
-                     <xsl:with-param name="current-hl7-code" select="."/>
+                     <!-- moeten allemaal dezelfde toedieningsweg hebben voor 1 verstrekking, we nemen de eerste -->
+                     <xsl:with-param name="current-hl7-code" select="($mar-sorted/hl7:routeCode)[1]"/>
                   </xsl:call-template>
-               </aanvullende_instructie>
+               </xsl:when>
+               <xsl:otherwise>
+                  <!-- Niet aanwezig in input 6.12 xml -->
+                  <xsl:attribute name="code" select="'NI'"/>
+                  <xsl:attribute name="codeSystem" select="'2.16.840.1.113883.5.1008'"/>
+                  <xsl:attribute name="displayName" select="'geen informatie'"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </toedieningsweg>
+         <!-- aanvullende_instructie -->
+         <!-- TODO: ontdubbelen, staat in 6.12 bij iedere MAR en in 9 op een hoger niveau -->
+         <xsl:for-each select="$mar-sorted/hl7:support2/hl7:medicationAdministrationInstruction/hl7:code">
+            <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'aanvullende_instructie']/@type"/>
+            <aanvullende_instructie conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+               <xsl:call-template name="mp9-code-attribs">
+                  <xsl:with-param name="current-hl7-code" select="."/>
+               </xsl:call-template>
+            </aanvullende_instructie>
+         </xsl:for-each>
+         <!-- herhaalperiode_cyclisch_schema -->
+         <xsl:variable name="hl7-herhaal-periode" select="$mar-sorted/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:phase[hl7:width]]/hl7:period"/>
+         <!-- er mag er maar eentje zijn, als er toch meerdere zijn dan geen gestructureerde informatie in de output -->
+         <xsl:variable name="hl7-herhaal-periode-string">
+            <xsl:for-each select="$hl7-herhaal-periode">
+               <item>
+                  <xsl:value-of select="concat(./@value, ./@unit)"/>
+               </item>
             </xsl:for-each>
-            <!-- TODO invullen voor 6.12!!!! onderstaand is een kopie van de mp9 versie. -->
-            <xsl:variable name="hl7-doseerinstructie" select="$mar"/>
-            <!-- herhaalperiode_cyclisch_schema -->
-            <!-- er mag er maar eentje zijn -->
-            <xsl:for-each select="$hl7-doseerinstructie/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:phase[hl7:width]]/hl7:period">
-               <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'herhaalperiode_cyclisch_schema']/@type"/>
-               <herhaalperiode_cyclisch_schema value="{./@value}" unit="{./@unit}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-            </xsl:for-each>
-            <!-- doseerinstructie -->
-            <xsl:for-each select="$hl7-doseerinstructie">
-               <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
-               <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
-               <doseerinstructie conceptId="{$xsd-doseerinstructie/xs:attribute[@name='conceptId']/@fixed}">
-                  <!-- volgnummer -->
-                  <!-- tel het aantal therapeuticAgentOf's met een IVL_TS/low die lager is dan de huidige IVL_TS low en tel daar 1 bij op. -->
-                  <!-- als de huidige therapeuticAgentOf géén IVL_TS/low heeft, dan begint -ie zo vroeg mogelijk en is het sequenceNumber 1 -->
-                  <xsl:variable name="volgnummer">
-                     <xsl:choose>
-                        <xsl:when test="not(.//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:low)">1</xsl:when>
-                        <xsl:otherwise>
-                           <!-- count the amount of therapeuticAgentOf's earlier then this one -->
-                           <xsl:variable name="all-MARs" select="./../../hl7:therapeuticAgentOf/hl7:medicationAdministrationRequest"/>
-                           <xsl:variable name="all_IVL-TS-low" select="$all-MARs//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:low"/>
-                           <xsl:variable name="current-IVL-TS-low" select=".//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:low"/>
-                           <xsl:value-of select="count($all_IVL-TS-low[@value &lt; $current-IVL-TS-low/@value]) + 1"/>
-                        </xsl:otherwise>
-                     </xsl:choose>
-                  </xsl:variable>
-                  <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'volgnummer']/@type"/>
-                  <volgnummer value="{$volgnummer}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"> </volgnummer>
-                  <!-- doseerduur -->
-                  <xsl:choose>
-                     <!-- doseerduur in Cyclisch doseerschema. -->
-                     <xsl:when test="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
-                        <xsl:for-each select="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
-                           <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'doseerduur']/@type"/>
-                           <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                        </xsl:for-each>
-                     </xsl:when>
-                     <!-- overige gevallen -->
-                     <xsl:otherwise>
-                        <xsl:for-each select="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:width">
-                           <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'doseerduur']/@type"/>
-                           <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                        </xsl:for-each>
-                     </xsl:otherwise>
-                  </xsl:choose>
-                  <!-- dosering -->
-                  <xsl:for-each select="./hl7:substanceAdministration">
-                     <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
-                     <xsl:variable name="xsd-dosering" select="$xsd-ada//xs:complexType[@name = $xsd-dosering-complexType]"/>
-                     <dosering conceptId="{$xsd-dosering/xs:attribute[@name='conceptId']/@fixed}">
-                        <!-- keerdosis -->
-                        <xsl:for-each select="./hl7:doseQuantity">
-                           <xsl:variable name="xsd-keerdosis-complexType" select="$xsd-dosering//xs:element[@name = 'keerdosis']/@type"/>
-                           <xsl:variable name="xsd-keerdosis" select="$xsd-ada//xs:complexType[@name = $xsd-keerdosis-complexType]"/>
-                           <keerdosis conceptId="{$xsd-keerdosis/xs:attribute[@name='conceptId']/@fixed}">
-                              <xsl:variable name="xsd-aantal-complexType" select="$xsd-keerdosis//xs:element[@name = 'aantal']/@type"/>
-                              <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
-                              <aantal conceptId="{$xsd-aantal/xs:attribute[@name='conceptId']/@fixed}">
-                                 <xsl:for-each select="./hl7:low/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'min']/@type"/>
-                                    <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+         </xsl:variable>
+         <xsl:variable name="aantal_distinct_cyclisch" select="count(distinct-values($hl7-herhaal-periode-string/item))"/>
+         <xsl:variable name="aantal_mar" select="count($mar-sorted)"/>
+         <xsl:variable name="aantal_cyclisch" select="count($hl7-herhaal-periode-string/item)"/>
+         <xsl:choose>
+            <xsl:when test="$aantal_distinct_cyclisch = 0 or ($aantal_distinct_cyclisch = 1 and $aantal_cyclisch = $aantal_mar)">
+               <xsl:for-each select="$hl7-herhaal-periode[1]">
+                  <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'herhaalperiode_cyclisch_schema']/@type"/>
+                  <herhaalperiode_cyclisch_schema value="{./@value}" unit="{./@unit}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+               </xsl:for-each>
+               <!-- doseerinstructie -->
+               <xsl:choose>
+                  <xsl:when test="count($effectiveTimes-eenmalig) &lt; 2">
+                     <xsl:for-each select="$mar-sorted">
+                        <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
+                        <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
+                        <doseerinstructie conceptId="{$xsd-doseerinstructie/xs:attribute[@name='conceptId']/@fixed}">
+                           <!-- volgnummer -->
+                           <xsl:variable name="volgnummer" select="position()"/>
+                           <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'volgnummer']/@type"/>
+                           <volgnummer value="{$volgnummer}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"> </volgnummer>
+                           <!-- doseerduur -->
+                           <xsl:choose>
+                              <!-- doseerduur in Cyclisch doseerschema. -->
+                              <xsl:when test="$aantal_distinct_cyclisch = 1">
+                                 <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:phase[hl7:width]][hl7:period]]/hl7:comp/hl7:phase/hl7:width">
+                                    <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'doseerduur']/@type"/>
+                                    <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
                                  </xsl:for-each>
-                                 <xsl:for-each select="./hl7:center/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
-                                    <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                              </xsl:when>
+                              <!-- overige gevallen -->
+                              <xsl:otherwise>
+                                 <xsl:for-each select=".//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:width">
+                                    <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'doseerduur']/@type"/>
+                                    <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
                                  </xsl:for-each>
-                                 <xsl:for-each select="./hl7:high/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'max']/@type"/>
-                                    <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                 </xsl:for-each>
-                              </aantal>
-                              <xsl:for-each select="(./*/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2'])[1]">
-                                 <xsl:variable name="xsd-complexType" select="$xsd-keerdosis//xs:element[@name = 'eenheid']/@type"/>
-                                 <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                                    <xsl:call-template name="mp9-code-attribs">
-                                       <xsl:with-param name="current-hl7-code" select="."/>
-                                    </xsl:call-template>
-                                 </eenheid>
-                              </xsl:for-each>
-                           </keerdosis>
-                        </xsl:for-each>
-                        <!-- toedieningsschema -->
-                        <!-- er moet een PIVL_TS zijn om een toedieningsschema te maken -->
-                        <xsl:if test=".//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')]">
-                           <xsl:variable name="xsd-toedieningsschema-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsschema']/@type"/>
-                           <xsl:variable name="xsd-toedieningsschema" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningsschema-complexType]"/>
-                           <toedieningsschema conceptId="{$xsd-toedieningsschema/xs:attribute[@name='conceptId']/@fixed}">
-                              <!-- eenvoudig doseerschema met alleen één frequentie -->
-                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][@isFlexible = 'true'][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
-                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
-                                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                    <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
-                                 </xsl:call-template>
-                              </xsl:for-each>
-                              <!-- Eenvoudig doseerschema met alleen één interval.-->
-                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][(@isFlexible = 'false' or not(@isFlexible))][not(@alignment)][hl7nl:frequency]">
-                                 <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'interval']/@type"/>
-                                 <xsl:variable name="interval-value" select="format-number(number(./hl7nl:frequency/hl7nl:denominator/@value) div number(./hl7nl:frequency/hl7nl:numerator/@value), '0.####')"/>
-                                 <interval value="{$interval-value}" unit="{nf:convertTime_UCUM2ADA_unit(./hl7nl:frequency/hl7nl:denominator/@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                              </xsl:for-each>
-                              <!-- Eenvoudig doseerschema met één vast tijdstip. -->
-                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:phase[not(hl7nl:width)]]">
-                                 <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'toedientijd']/@type"/>
-                                 <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./hl7nl:phase/hl7nl:low/@value), nf:determine_date_precision(./hl7nl:phase/hl7nl:low/@value))}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                              </xsl:for-each>
-                              <!-- Doseerschema met toedieningsduur. -->
-                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)][hl7nl:phase[hl7nl:width]]">
-                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
-                                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                    <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
-                                 </xsl:call-template>
-                                 <xsl:for-each select="hl7nl:phase/hl7nl:low">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'toedientijd']/@type"/>
-                                    <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                 </xsl:for-each>
-                              </xsl:for-each>
-                              <!--Doseerschema met meer dan één vast tijdstip.-->
-                              <xsl:for-each select="./hl7:effectiveTime[hl7:comp[not(@alignment)][hl7nl:period][hl7nl:phase[not(hl7nl:width)]]][not(hl7:comp/@alignment)][not(hl7:comp[not(hl7nl:period)])][not(hl7:comp[not(hl7nl:phase[not(hl7nl:width)])])]/hl7:comp">
-                                 <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'toedientijd']/@type"/>
-                                 <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./hl7nl:phase/hl7nl:low/@value), nf:determine_date_precision(./hl7nl:phase/hl7nl:low/@value))}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                              </xsl:for-each>
-                              <!-- Cyclisch doseerschema. -->
-                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
-                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
-                                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                    <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
-                                 </xsl:call-template>
-                              </xsl:for-each>
-                              <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
-                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:count]/hl7nl:count">
-                                 <xsl:variable name="xsd-frequentie-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'frequentie']/@type"/>
-                                 <xsl:variable name="xsd-frequentie" select="$xsd-ada//xs:complexType[@name = $xsd-frequentie-complexType]"/>
-                                 <frequentie conceptId="{$xsd-frequentie/xs:attribute[@name='conceptId']/@fixed}">
-                                    <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
+                              </xsl:otherwise>
+                           </xsl:choose>
+                           <!-- dosering, in 6.12 kan er maar één zijn -->
+                           <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
+                           <xsl:variable name="xsd-dosering" select="$xsd-ada//xs:complexType[@name = $xsd-dosering-complexType]"/>
+                           <dosering conceptId="{$xsd-dosering/xs:attribute[@name='conceptId']/@fixed}">
+                              <!-- keerdosis -->
+                              <xsl:for-each select="./hl7:doseQuantity">
+                                 <xsl:variable name="xsd-keerdosis-complexType" select="$xsd-dosering//xs:element[@name = 'keerdosis']/@type"/>
+                                 <xsl:variable name="xsd-keerdosis" select="$xsd-ada//xs:complexType[@name = $xsd-keerdosis-complexType]"/>
+                                 <keerdosis conceptId="{$xsd-keerdosis/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:variable name="xsd-aantal-complexType" select="$xsd-keerdosis//xs:element[@name = 'aantal']/@type"/>
                                     <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
                                     <aantal conceptId="{$xsd-aantal/xs:attribute[@name='conceptId']/@fixed}">
-                                       <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
-                                       <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                    </aantal>
-                                 </frequentie>
-                              </xsl:for-each>
-                              <!-- Doseerschema één keer per week op één weekdag. -->
-                              <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']">
-                                 <xsl:for-each select="./hl7nl:period">
-                                    <xsl:variable name="xsd-frequentie-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'frequentie']/@type"/>
-                                    <xsl:variable name="xsd-frequentie" select="$xsd-ada//xs:complexType[@name = $xsd-frequentie-complexType]"/>
-                                    <frequentie conceptId="{$xsd-frequentie/xs:attribute[@name='conceptId']/@fixed}">
-                                       <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
-                                       <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
-                                       <aantal conceptId="{$xsd-aantal/xs:attribute[@name='conceptId']/@fixed}">
+                                       <xsl:for-each select="./hl7:low/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
+                                          <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'min']/@type"/>
+                                          <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                       </xsl:for-each>
+                                       <xsl:for-each select="./hl7:center/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
                                           <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
-                                          <!-- altijd 1, 1 keer per week of 1 keer per 2 weken et cetera -->
-                                          <vaste_waarde value="1" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                       </aantal>
-                                       <xsl:variable name="xsd-complexType" select="$xsd-frequentie//xs:element[@name = 'tijdseenheid']/@type"/>
-                                       <tijdseenheid value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                    </frequentie>
-                                 </xsl:for-each>
-                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123_only_phase_low">
-                                    <xsl:with-param name="current_IVL" select="."/>
-                                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                    <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
-                                 </xsl:call-template>
+                                          <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                       </xsl:for-each>
+                                       <xsl:for-each select="./hl7:high/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
+                                          <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'max']/@type"/>
+                                          <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                       </xsl:for-each>
+                                    </aantal>
+                                    <xsl:for-each select="(./*/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2'])[1]">
+                                       <xsl:variable name="xsd-complexType" select="$xsd-keerdosis//xs:element[@name = 'eenheid']/@type"/>
+                                       <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                          <xsl:call-template name="mp9-code-attribs">
+                                             <xsl:with-param name="current-hl7-code" select="."/>
+                                          </xsl:call-template>
+                                       </eenheid>
+                                    </xsl:for-each>
+                                 </keerdosis>
                               </xsl:for-each>
-                              <!-- Complexer doseerschema met weekdag(en). -->
-                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'DW']">
-                                 <xsl:for-each select="./hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3') and @isFlexible = 'true' and hl7nl:frequency]">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
-                                       <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                       <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
-                                    </xsl:call-template>
-                                 </xsl:for-each>
-                                 <xsl:for-each select="./hl7:comp[@alignment = 'DW']">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123_only_phase_low">
-                                       <xsl:with-param name="current_IVL" select="."/>
-                                       <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                       <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
-                                    </xsl:call-template>
-                                 </xsl:for-each>
+                              <!-- toedieningsschema -->
+                              <!-- er moet een PIVL_TS of een TS (eenmalig gebruik) zijn om een toedieningsschema te maken -->
+                              <xsl:variable name="hl7-pivl" select=".//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]"/>
+                              <xsl:if test="$effectiveTimes-eenmalig or $hl7-pivl">
+                                 <xsl:variable name="xsd-toedieningsschema-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsschema']/@type"/>
+                                 <xsl:variable name="xsd-toedieningsschema" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningsschema-complexType]"/>
+                                 <toedieningsschema conceptId="{$xsd-toedieningsschema/xs:attribute[@name='conceptId']/@fixed}">
+                                    <!-- Er is wél een doseerschema bekend, maar geen gebruiksperiode. - eenvoudig doseerschema met alleen één PIVL_TS -->
+                                    <xsl:for-each select="$hl7-pivl[local-name() = 'effectiveTime']">
+                                       <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9020_20150305134139_toedieningsschema">
+                                          <xsl:with-param name="PIVL_TS" select="."/>
+                                          <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                                          <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
+                                       </xsl:call-template>
+                                    </xsl:for-each>
+                                    <!-- Datum (tijd) van eenmalig gebruik.  -->
+                                    <xsl:choose>
+                                       <xsl:when test="count($effectiveTimes-eenmalig) = 1">
+                                          <xsl:comment>in eenmalig gebruik frequentie</xsl:comment>
+                                          <xsl:variable name="xsd-frequentie-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'frequentie']/@type"/>
+                                          <xsl:variable name="xsd-frequentie" select="$xsd-ada//xs:complexType[@name = $xsd-frequentie-complexType]"/>
+                                          <frequentie conceptId="{$xsd-frequentie/xs:attribute[@name='conceptId']/@fixed}">
+                                             <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
+                                             <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
+                                             <aantal conceptId="{$xsd-aantal/xs:attribute[@name='conceptId']/@fixed}">
+                                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
+                                                <vaste_waarde value="1" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                             </aantal>
+                                          </frequentie>
+                                       </xsl:when>
+                                       <xsl:when test="count($effectiveTimes-eenmalig) = 0">
+                                          <!-- do nothing -->
+                                       </xsl:when>
+                                       <xsl:otherwise>
+                                          <xsl:comment>Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information. No structured output for 'doseerinstructie'.</xsl:comment>
+                                       </xsl:otherwise>
+                                    </xsl:choose>
+                                 </toedieningsschema>
+                              </xsl:if>
+                              <xsl:for-each select="./hl7:precondition/hl7:criterion/hl7:code">
+                                 <xsl:variable name="xsd-zo_nodig-complexType" select="$xsd-dosering//xs:element[@name = 'zo_nodig']/@type"/>
+                                 <xsl:variable name="xsd-zo_nodig" select="$xsd-ada//xs:complexType[@name = $xsd-zo_nodig-complexType]"/>
+                                 <zo_nodig conceptId="{$xsd-zo_nodig/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:variable name="xsd-criterium-complexType" select="$xsd-zo_nodig//xs:element[@name = 'criterium']/@type"/>
+                                    <xsl:variable name="xsd-criterium" select="$xsd-ada//xs:complexType[@name = $xsd-criterium-complexType]"/>
+                                    <criterium conceptId="{$xsd-criterium/xs:attribute[@name='conceptId']/@fixed}">
+                                       <xsl:variable name="xsd-complexType" select="$xsd-criterium//xs:element[@name = 'code']/@type"/>
+                                       <code conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                          <xsl:call-template name="mp9-code-attribs">
+                                             <xsl:with-param name="current-hl7-code" select="."/>
+                                          </xsl:call-template>
+                                       </code>
+                                       <!-- no use case for omschrijving, omschrijving is in code/@originalText -->
+                                       <!--  <omschrijving value="zo nodig criterium omschrijving in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23270"/>-->
+                                    </criterium>
+                                 </zo_nodig>
                               </xsl:for-each>
-                              <!-- Doseerschema met één dagdeel -->
-                              <xsl:for-each select="./hl7:effectiveTime[@alignment = 'HD']">
-                                 <xsl:call-template name="mp9-dagdeel">
-                                    <xsl:with-param name="PIVL_TS-HD" select="."/>
-                                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                    <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
-                                 </xsl:call-template>
+                              <xsl:for-each select="./hl7:rateQuantity">
+                                 <xsl:variable name="xsd-toedieningssnelheid-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningssnelheid']/@type"/>
+                                 <xsl:variable name="xsd-toedieningssnelheid" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningssnelheid-complexType]"/>
+                                 <toedieningssnelheid conceptId="{$xsd-toedieningssnelheid/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:variable name="xsd-waarde-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'waarde']/@type"/>
+                                    <xsl:variable name="xsd-waarde" select="$xsd-ada//xs:complexType[@name = $xsd-waarde-complexType]"/>
+                                    <waarde conceptId="{$xsd-waarde/xs:attribute[@name='conceptId']/@fixed}">
+                                       <xsl:for-each select="./hl7:low">
+                                          <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'min']/@type"/>
+                                          <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                       </xsl:for-each>
+                                       <xsl:for-each select="./hl7:center">
+                                          <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'vaste_waarde']/@type"/>
+                                          <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                       </xsl:for-each>
+                                       <xsl:for-each select="./hl7:high">
+                                          <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'max']/@type"/>
+                                          <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                       </xsl:for-each>
+                                    </waarde>
+                                    <xsl:variable name="ucum-eenheid" select="substring-before((./*/@unit)[1], '/')"/>
+                                    <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'eenheid']/@type"/>
+                                    <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                       <xsl:call-template name="UCUM2GstdBasiseenheid">
+                                          <xsl:with-param name="UCUM" select="$ucum-eenheid"/>
+                                       </xsl:call-template>
+                                    </eenheid>
+                                    <xsl:variable name="ucum-tijdseenheid" select="substring-after((./*/@unit)[1], '/')"/>
+                                    <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'tijdseenheid']/@type"/>
+                                    <tijdseenheid unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                 </toedieningssnelheid>
                               </xsl:for-each>
-                              <!-- Complexer doseerschema met meer dan één dagdeel. -->
-                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'HD']/hl7:comp">
-                                 <xsl:call-template name="mp9-weekdag">
-                                    <xsl:with-param name="hl7-phase-low" select="."/>
-                                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                                    <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
-                                 </xsl:call-template>
+                              <!-- Doseerschema met toedieningsduur. -->
+                              <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
+                                 <xsl:variable name="xsd-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsduur']/@type"/>
+                                 <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282"/>
                               </xsl:for-each>
-                           </toedieningsschema>
-                        </xsl:if>
-                        <xsl:for-each select="./hl7:precondition/hl7:criterion/hl7:code">
-                           <xsl:variable name="xsd-zo_nodig-complexType" select="$xsd-dosering//xs:element[@name = 'zo_nodig']/@type"/>
-                           <xsl:variable name="xsd-zo_nodig" select="$xsd-ada//xs:complexType[@name = $xsd-zo_nodig-complexType]"/>
-                           <zo_nodig conceptId="{$xsd-zo_nodig/xs:attribute[@name='conceptId']/@fixed}">
-                              <xsl:variable name="xsd-criterium-complexType" select="$xsd-zo_nodig//xs:element[@name = 'criterium']/@type"/>
-                              <xsl:variable name="xsd-criterium" select="$xsd-ada//xs:complexType[@name = $xsd-criterium-complexType]"/>
-                              <criterium conceptId="{$xsd-criterium/xs:attribute[@name='conceptId']/@fixed}">
-                                 <xsl:variable name="xsd-complexType" select="$xsd-criterium//xs:element[@name = 'code']/@type"/>
-                                 <code conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                                    <xsl:call-template name="mp9-code-attribs">
-                                       <xsl:with-param name="current-hl7-code" select="."/>
-                                    </xsl:call-template>
-                                 </code>
-                                 <!-- no use case for omschrijving, omschrijving is in code/@originalText -->
-                                 <!--  <omschrijving value="zo nodig criterium omschrijving in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23270"/>-->
-                              </criterium>
-                           </zo_nodig>
-                        </xsl:for-each>
-                        <xsl:for-each select="./hl7:rateQuantity">
-                           <xsl:variable name="xsd-toedieningssnelheid-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningssnelheid']/@type"/>
-                           <xsl:variable name="xsd-toedieningssnelheid" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningssnelheid-complexType]"/>
-                           <toedieningssnelheid conceptId="{$xsd-toedieningssnelheid/xs:attribute[@name='conceptId']/@fixed}">
-                              <xsl:variable name="xsd-waarde-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'waarde']/@type"/>
-                              <xsl:variable name="xsd-waarde" select="$xsd-ada//xs:complexType[@name = $xsd-waarde-complexType]"/>
-                              <waarde conceptId="{$xsd-waarde/xs:attribute[@name='conceptId']/@fixed}">
-                                 <xsl:for-each select="./hl7:low">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'min']/@type"/>
-                                    <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                 </xsl:for-each>
-                                 <xsl:for-each select="./hl7:center">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'vaste_waarde']/@type"/>
-                                    <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                 </xsl:for-each>
-                                 <xsl:for-each select="./hl7:high">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'max']/@type"/>
-                                    <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                 </xsl:for-each>
-                              </waarde>
-                              <xsl:variable name="ucum-eenheid" select="substring-before((./*/@unit)[1], '/')"/>
-                              <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'eenheid']/@type"/>
-                              <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                                 <xsl:call-template name="UCUM2GstdBasiseenheid">
-                                    <xsl:with-param name="UCUM" select="$ucum-eenheid"/>
-                                 </xsl:call-template>
-                              </eenheid>
-                              <xsl:variable name="ucum-tijdseenheid" select="substring-after((./*/@unit)[1], '/')"/>
-                              <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'tijdseenheid']/@type"/>
-                              <tijdseenheid unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                           </toedieningssnelheid>
-                        </xsl:for-each>
-                        <!-- Doseerschema met toedieningsduur. -->
-                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
-                           <xsl:variable name="xsd-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsduur']/@type"/>
-                           <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282"/>
-                        </xsl:for-each>
-                        <!-- Doseerschema één keer per week op één weekdag met toedieningsduur -->
-                        <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']/hl7nl:phase/hl7nl:width">
-                           <xsl:variable name="xsd-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsduur']/@type"/>
-                           <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282"/>
+                              <!-- Doseerschema één keer per week op één weekdag met toedieningsduur -->
+                              <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']/hl7nl:phase/hl7nl:width">
+                                 <xsl:variable name="xsd-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsduur']/@type"/>
+                                 <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282"/>
 
-                        </xsl:for-each>
-                     </dosering>
-                  </xsl:for-each>
-               </doseerinstructie>
-            </xsl:for-each>
-         </gebruiksinstructie>
-      </xsl:for-each>
+                              </xsl:for-each>
+                           </dosering>
+                        </doseerinstructie>
+                     </xsl:for-each>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:comment>Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information. No structured output for 'doseerinstructie'.</xsl:comment>
+                  </xsl:otherwise>
+               </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:choose>
+                  <xsl:when test="$aantal_distinct_cyclisch > 1">
+                     <xsl:comment>Found more than one 'herhaalperiode_cyclisch_schema' in input. Cannot convert this and the corresponding doseerinstructie(s) into structured output. Please refer to textual description.</xsl:comment>
+                  </xsl:when>
+                  <xsl:when test="not($aantal_cyclisch = $aantal_mar)">
+                     <xsl:comment>Found a combination of cyclic and non-cyclic dosing schedules.  Cannot convert this and the corresponding doseerinstructie(s) into structured output.Please refer to textual description.</xsl:comment>
+                  </xsl:when>
+                  <xsl:otherwise><xsl:value-of select="."/>Unexpected error. Cannot convert doseerinstructie(s) into structured output.</xsl:otherwise>
+               </xsl:choose>
+            </xsl:otherwise>
+         </xsl:choose>
+      </gebruiksinstructie>
    </xsl:template>
    <xsl:template name="mp9-gebruiksinstructie-from-mp9">
       <xsl:param name="hl7-comp" select="."/>
@@ -838,193 +780,150 @@
    </xsl:template>
    <xsl:template name="mp9-toedieningsafspraak-from-mp612">
       <xsl:param name="current-dispense-event"/>
-      <xsl:param name="IVL_TS"/>
       <xsl:param name="xsd-ada"/>
       <xsl:param name="xsd-mbh"/>
       <xsl:variable name="xsd-toedieningsafspraak-complexType" select="$xsd-mbh//xs:element[@name = 'toedieningsafspraak']/@type"/>
       <xsl:variable name="xsd-toedieningsafspraak" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningsafspraak-complexType]"/>
+      <!-- let's sort the available hl7:medicationAdministrationRequest's in chronological order -->
+      <!-- mar = medicationAdministrationRequest  -->
+      <!-- TODO: calculate 'empty' periods and make elements in between -->
+      <!-- TODO: overlapping periods are not supported the same way in MP 9 - should not output structured information in that case -->
+      <xsl:variable name="mar-sorted" as="element(hl7:medicationAdministrationRequest)*">
+         <xsl:for-each select="./hl7:product/hl7:dispensedMedication/hl7:therapeuticAgentOf/hl7:medicationAdministrationRequest">
+            <xsl:sort data-type="number" select="nf:appendDate2DateTime((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:low/@value)"/>
+            <!-- tested this with xsl:sequence, but the later use of for-each to iterate through the variable $mar does not respect the sorted order, 
+                  but takes the input order from the input xml -->
+            <!-- the xslt2 perform-sort function has the same result (probably for same reason, since it uses sequence as well) -->
+            <!-- so we are useing copy-of here to preserve order, even though it is known to perform worse -->
+            <xsl:copy-of select="."/>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:variable name="IVL_TS" select="$mar-sorted//(hl7:effectiveTime | hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]"/>
+
       <!-- toedieningsafspraak -->
-      <toedieningsafspraak conceptId="{$xsd-toedieningsafspraak/xs:attribute[@name='conceptId']/@fixed}">
-         <!-- gebruiksperiode-start -->
-         <!-- gebruiksperiode-eind -->
-         <xsl:if test="$IVL_TS/hl7:low[@value]">
+      <xsl:for-each select="$current-dispense-event">
+         <toedieningsafspraak conceptId="{$xsd-toedieningsafspraak/xs:attribute[@name='conceptId']/@fixed}">
             <!-- gebruiksperiode-start -->
-            <!-- TODO: er kunnen er meer dan 1 zijn in 6.12 - neem de laagste low als gebruiksperiode startdatum -->
-            <!-- en denk ook nog aan intelligentie voor width en high!!! -->
-            <xsl:variable name="start-datums">
-               <xsl:for-each select="$IVL_TS/hl7:low[@value]">
-                  <xsl:value-of select="nf:appendDate2DateTime(./@value)"/>
+            <!-- in 6.12 kun je alleen een conclusie trekken over gebruiksperiode-start, als álle MARs een IVL_TS/low/@value hebben -->
+            <xsl:if test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:low/@value)])">
+               <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de laagste low als gebruiksperiode startdatum -->
+               <!-- omdat $mar gesorteerd is, is dat de eerste $IVL_TS -->
+               <!-- TODO ook nog intelligentie voor width-->
+               <xsl:call-template name="mp9-gebruiksperiode-start">
+                  <xsl:with-param name="inputValue" select="$IVL_TS[1]/hl7:low/@value"/>
+                  <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                  <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
+               </xsl:call-template>
+            </xsl:if>
+            <!-- gebruiksperiode-start bij eenmalig gebruik-->
+            <xsl:variable name="effectiveTimes-eenmalig" select="$mar-sorted/hl7:effectiveTime[not(@xsi:type) or (local-name-from-QName(resolve-QName(@xsi:type, .)) = 'TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]"/>
+            <xsl:choose>
+               <xsl:when test="count($effectiveTimes-eenmalig) = 1">
+                  <xsl:comment>gebruiksperiode-start bij eenmalig gebruik</xsl:comment>
+                  <xsl:call-template name="mp9-gebruiksperiode-start">
+                     <xsl:with-param name="inputValue" select="$effectiveTimes-eenmalig/@value"/>
+                     <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                     <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
+                  </xsl:call-template>
+               </xsl:when>
+               <xsl:when test="count($effectiveTimes-eenmalig) = 0">
+                  <!-- do nothing -->
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:comment>Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
+               </xsl:otherwise>
+            </xsl:choose>
+            <!-- gebruiksperiode-eind -->
+            <!-- in 6.12 kun je alleen een conclusie trekken over gebruiksperiode-eind, als álle MARs een IVL_TS/high/@value hebben -->
+            <xsl:if test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:high/@value)])">
+               <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de hoogste high als gebruiksperiode einddatum -->
+               <xsl:variable name="eind-datums" as="element()*">
+                  <xsl:for-each select="$IVL_TS/hl7:high[@value]">
+                     <xsl:sort data-type="number" select="nf:appendDate2DateTime(./@value)"/>
+                     <xsl:sequence select="."/>
+                  </xsl:for-each>
+               </xsl:variable>
+               <xsl:call-template name="mp9-gebruiksperiode-eind">
+                  <xsl:with-param name="inputValue" select="$eind-datums[last()]/@value"/>
+                  <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                  <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
+               </xsl:call-template>
+            </xsl:if>
+            <!-- identificatie -->
+            <xsl:comment>The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. Same root, extension string preconcatenated.</xsl:comment>
+            <xsl:for-each select="./hl7:id[@extension]">
+               <identificatie root="{./@root}" value="{concat('TAConverted_', ./@extension)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20134"/>
+            </xsl:for-each>
+            <!-- er is geen afspraakdatum in een 6.12 verstrekkingenbericht -->
+            <!-- benaderen met verstrekkingsdatum -->
+            <xsl:comment>Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)</xsl:comment>
+            <!-- afspraakdatum -->
+            <xsl:for-each select="./hl7:effectiveTime[@value]">
+               <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133">
+                  <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, nf:determine_date_precision(./@value))"/>
+               </afspraakdatum>
+            </xsl:for-each>
+            <!-- gebruiksperiode -->
+            <!-- moet berekend worden als er meer dan 1 MAR is  TODO -->
+            <!-- nu alleen output bij 1 MAR -->
+            <xsl:if test="$current-dispense-event[count(//hl7:medicationAdministrationRequest) = 1]">
+               <xsl:for-each select="$IVL_TS/hl7:width[@value]">
+                  <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22660"/>
                </xsl:for-each>
-            </xsl:variable>
-            <xsl:comment>start-datums is: <xsl:value-of select="$start-datums"/></xsl:comment>
-            <xsl:call-template name="mp9-gebruiksperiode-start">
-<!--               <xsl:with-param name="inputValue" select="format-number((min($start-datums),)"/>
--->               <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-               <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
-            </xsl:call-template>
-         </xsl:if>
-         <!-- gebruiksperiode-eind -->
-         <xsl:for-each select="$IVL_TS/hl7:high[@value]">
-            <xsl:call-template name="mp9-gebruiksperiode-eind">
-               <xsl:with-param name="inputValue" select="./@value"/>
+            </xsl:if>
+            <!-- geannuleerd indicator en stoptype wordt niet ondersteund in 6.12, geen output hiervoor-->
+            <!--<geannuleerd_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23034" value="UNK"/>
+             <stoptype value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22498" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Onderbreking"/>-->
+            <!-- verstrekker -->
+            <xsl:for-each select="./hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
+               <xsl:variable name="verstrekker-complexType" select="$xsd-toedieningsafspraak//xs:element[@name = 'verstrekker']/@type"/>
+               <xsl:variable name="xsd-verstrekker" select="$xsd-ada//xs:complexType[@name = $verstrekker-complexType]"/>
+               <verstrekker conceptId="{$xsd-verstrekker/xs:attribute[@name='conceptId']/@fixed}">
+                  <!-- zorgaanbieder -->
+                  <xsl:variable name="zorgaanbieder-complexType" select="$xsd-verstrekker//xs:element[@name = 'zorgaanbieder']/@type"/>
+                  <xsl:variable name="xsd-zorgaanbieder" select="$xsd-ada//xs:complexType[@name = $zorgaanbieder-complexType]"/>
+                  <zorgaanbieder conceptId="{$xsd-zorgaanbieder/xs:attribute[@name='conceptId']/@fixed}">
+                     <xsl:call-template name="mp9-zorgaanbieder">
+                        <xsl:with-param name="hl7-current-organization" select="."/>
+                        <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                        <xsl:with-param name="xsd-parent-of-zorgaanbieder" select="$xsd-zorgaanbieder"/>
+                     </xsl:call-template>
+                  </zorgaanbieder>
+               </verstrekker>
+            </xsl:for-each>
+            <!-- reden afspraak wordt niet ondersteund in 6.12 -->
+            <!--         <reden_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22499" value="reden afspraak TA"/>-->
+            <!-- geneesmiddel_bij_toedieningsafspraak  -->
+            <xsl:for-each select=".//hl7:product/hl7:dispensedMedication/hl7:MedicationKind">
+               <xsl:variable name="geneesmiddel_bij_toedieningsafspraak-complexType" select="$xsd-toedieningsafspraak//xs:element[@name = 'geneesmiddel_bij_toedieningsafspraak']/@type"/>
+               <xsl:variable name="xsd-geneesmiddel_bij_toedieningsafspraak" select="$xsd-ada//xs:complexType[@name = $geneesmiddel_bij_toedieningsafspraak-complexType]"/>
+               <geneesmiddel_bij_toedieningsafspraak conceptId="{$xsd-geneesmiddel_bij_toedieningsafspraak/xs:attribute[@name='conceptId']/@fixed}">
+                  <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.106_20130521000000">
+                     <xsl:with-param name="product-hl7" select="."/>
+                     <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                     <xsl:with-param name="xsd-geneesmiddel" select="$xsd-geneesmiddel_bij_toedieningsafspraak"/>
+                  </xsl:call-template>
+               </geneesmiddel_bij_toedieningsafspraak>
+            </xsl:for-each>
+
+            <xsl:comment>mp9-gebruiksinstructie-from-mp612</xsl:comment>
+            <xsl:call-template name="mp9-gebruiksinstructie-from-mp612">
+               <xsl:with-param name="effectiveTimes-eenmalig" select="$effectiveTimes-eenmalig"/>
+               <xsl:with-param name="hl7-current-comp" select="."/>
+               <xsl:with-param name="mar-sorted" select="$mar-sorted"/>
                <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
             </xsl:call-template>
-         </xsl:for-each>
-         <!-- identificatie -->
-         <xsl:for-each select="$current-dispense-event/hl7:id[@extension]">
-            <identificatie root="{./@root}" value="{concat('TAConverted_', ./@extension)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20134"/>
-         </xsl:for-each>
-         <!-- er is geen afspraakdatum in een 6.12 verstrekkingenbericht -->
-         <!-- benaderen met verstrekkingsdatum -->
-         <xsl:comment>afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)</xsl:comment>
-         <!-- afspraakdatum -->
-         <xsl:for-each select="$current-dispense-event/hl7:effectiveTime[@value]">
-            <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133">
-               <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, nf:determine_date_precision(./@value))"/>
-            </afspraakdatum>
-         </xsl:for-each>
-         <!-- gebruiksperiode -->
-         <xsl:for-each select="$IVL_TS/hl7:width[@value]">
-            <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22660"/>
-         </xsl:for-each>
-         <!-- geannuleerd indicator en stoptype wordt niet ondersteund in 6.12 -->
-         <!--<geannuleerd_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23034" value="UNK"/>
-         <stoptype value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22498" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Onderbreking"/>-->
-         <!-- verstrekker -->
-         <xsl:for-each select="$current-dispense-event/hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
-            <xsl:variable name="verstrekker-complexType" select="$xsd-toedieningsafspraak//xs:element[@name = 'verstrekker']/@type"/>
-            <xsl:variable name="xsd-verstrekker" select="$xsd-ada//xs:complexType[@name = $verstrekker-complexType]"/>
-            <verstrekker conceptId="{$xsd-verstrekker/xs:attribute[@name='conceptId']/@fixed}">
-               <!-- zorgaanbieder -->
-               <xsl:variable name="zorgaanbieder-complexType" select="$xsd-verstrekker//xs:element[@name = 'zorgaanbieder']/@type"/>
-               <xsl:variable name="xsd-zorgaanbieder" select="$xsd-ada//xs:complexType[@name = $zorgaanbieder-complexType]"/>
-               <zorgaanbieder conceptId="{$xsd-zorgaanbieder/xs:attribute[@name='conceptId']/@fixed}">
-                  <xsl:call-template name="mp9-zorgaanbieder">
-                     <xsl:with-param name="hl7-current-organization" select="."/>
-                     <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                     <xsl:with-param name="xsd-parent-of-zorgaanbieder" select="$xsd-zorgaanbieder"/>
-                  </xsl:call-template>
-               </zorgaanbieder>
-            </verstrekker>
-         </xsl:for-each>
-         <!-- reden afspraak wordt niet ondersteund in 6.12 -->
-         <!--         <reden_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22499" value="reden afspraak TA"/>-->
-         <!-- geneesmiddel_bij_toedieningsafspraak  -->
-         <xsl:for-each select=".//hl7:product/hl7:dispensedMedication/hl7:MedicationKind">
-            <xsl:variable name="geneesmiddel_bij_toedieningsafspraak-complexType" select="$xsd-toedieningsafspraak//xs:element[@name = 'geneesmiddel_bij_toedieningsafspraak']/@type"/>
-            <xsl:variable name="xsd-geneesmiddel_bij_toedieningsafspraak" select="$xsd-ada//xs:complexType[@name = $geneesmiddel_bij_toedieningsafspraak-complexType]"/>
-            <geneesmiddel_bij_toedieningsafspraak conceptId="{$xsd-geneesmiddel_bij_toedieningsafspraak/xs:attribute[@name='conceptId']/@fixed}">
-               <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.106_20130521000000">
-                  <xsl:with-param name="product-hl7" select="."/>
-                  <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                  <xsl:with-param name="xsd-geneesmiddel" select="$xsd-geneesmiddel_bij_toedieningsafspraak"/>
-               </xsl:call-template>
-            </geneesmiddel_bij_toedieningsafspraak>
-         </xsl:for-each>
-         <!-- gebruiksinstructie -->
-         <xsl:call-template name="mp9-gebruiksinstructie-from-mp612">
-            <xsl:with-param name="hl7-comp" select="."/>
-            <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-            <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
-         </xsl:call-template>
-         <!--         <xsl:for-each select=".//hl7:therapeuticAgentOf/hl7:medicationAdministrationRequest">
-            <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22098">
-               <!-\- omschrijving -\->
-               <xsl:for-each select="./hl7:text">
-                  <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22619">
-                     <xsl:attribute name="value" select="./text()"/>
-                  </omschrijving>
-               </xsl:for-each>
-               <!-\- toedieningsweg -\->
-               <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22620">
-                  <xsl:choose>
-                     <xsl:when test="./hl7:routeCode">
-                        <xsl:call-template name="mp9-code-attribs">
-                           <xsl:with-param name="current-hl7-code" select="./hl7:routeCode"/>
-                        </xsl:call-template>
-                     </xsl:when>
-                     <xsl:otherwise>
-                        <!-\- Niet aanwezig in 6.12 -\->
-                        <xsl:attribute name="code" select="'NI'"/>
-                        <xsl:attribute name="codeSystem" select="'2.16.840.1.113883.5.1008'"/>
-                        <xsl:attribute name="displayName" select="'geen informatie'"/>
-                     </xsl:otherwise>
-                  </xsl:choose>
-               </toedieningsweg>
-               <!-\- aanvullende_instructie -\->
-               <xsl:for-each select="./hl7:support2/hl7:medicationAdministrationInstruction/hl7:code">
-                  <aanvullende_instructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22621">
-                     <xsl:call-template name="mp9-code-attribs">
-                        <xsl:with-param name="current-hl7-code" select="."/>
-                     </xsl:call-template>
-                  </aanvullende_instructie>
-               </xsl:for-each>
-               <!-\- herhaalperiode_cyclisch_schema -\->
-               <herhaalperiode_cyclisch_schema unit="d" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22622" value="4"/>
-               <!-\-doseerinstructie -\->
-               <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623">
-                  <volgnummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22624" value="1"/>
-                  <doseerduur unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22625" value="5"/>
-                  <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626">
-                     <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22627">
-                        <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22628">
-                           <min conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22698" value="1"/>
-                           <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22699" value="2"/>
-                           <max conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22700" value="4"/>
-                        </aantal>
-                        <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22629" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="milliliter" code="203"/>
-                     </keerdosis>
-                     <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631">
-                        <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22632">
-                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22633">
-                              <min conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22701" value="4"/>
-                              <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22702" value="5"/>
-                              <max conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22703" value="6"/>
-                           </aantal>
-                           <tijdseenheid unit="minuut" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22634" value="10"/>
-                        </frequentie>
-                        <interval unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22635" value="1"/>
-                        <toedientijd conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22636" value="2018-04-06T05:00:00"/>
-                        <weekdag value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22637" code="307147007" codeSystem="2.16.840.1.113883.6.96" displayName="dinsdag"/>
-                        <dagdeel value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22638" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
-                     </toedieningsschema>
-                     <zo_nodig conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22639">
-                        <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22640">
-                           <code value="11" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22641" code="1387" codeSystem="2.16.840.1.113883.2.4.4.5" displayName="bij hoest"/>
-                           <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22642" value="zo nodig omschrijving"/>
-                        </criterium>
-                        <maximale_dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22643">
-                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22644" value="60"/>
-                           <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22645" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" code="203" displayName="milliliter"/>
-                           <tijdseenheid unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22646" value="1"/>
-                        </maximale_dosering>
-                     </zo_nodig>
-                     <toedieningssnelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22648">
-                        <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22649">
-                           <min conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22650" value="7"/>
-                           <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22651" value="8"/>
-                           <max conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22652" value="9"/>
-                        </waarde>
-                        <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22653" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="milliliter" code="203"/>
-                        <tijdseenheid unit="minuut" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22654" value="2"/>
-                     </toedieningssnelheid>
-                     <toedieningsduur unit="minuut" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23142" value="10"/>
-                  </dosering>
-               </doseerinstructie>
-            </gebruiksinstructie>
-         </xsl:for-each>
--->
-         <!-- 6.12 kent geen aanvullende informatie en toelichting in vrije tekst -->
-         <!--<aanvullende_informatie value="16" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23284" code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053" displayName="Melding lareb"/>
+            <!-- 6.12 kent geen aanvullende informatie en toelichting in vrije tekst -->
+            <!--<aanvullende_informatie value="16" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23284" code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053" displayName="Melding lareb"/>
          <toelichting conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22275" value="toelichting bij TA"/>-->
-         <!-- MP 6.1x heeft wel een relatie naar het voorschrift (medicatieafspraak + verstrekkingsverzoek) maar geen relatie naar de bouwsteen medicatieafspraak. -->
-         <!-- verplicht in MP 9 dus een nullFlavor -->
-         <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22394">
-            <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22395" value="NI" root="'2.16.840.1.113883.5.1008'"/>
-         </relatie_naar_medicatieafspraak>
-      </toedieningsafspraak>
-
+            <!-- MP 6.1x heeft wel een relatie naar het voorschrift (medicatieafspraak + verstrekkingsverzoek) maar geen relatie naar de bouwsteen medicatieafspraak. -->
+            <!-- 1..1 R in MP 9 dus een nullFlavor -->
+            <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22394">
+               <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22395" value="NI" root="'2.16.840.1.113883.5.1008'"/>
+            </relatie_naar_medicatieafspraak>
+         </toedieningsafspraak>
+      </xsl:for-each>
    </xsl:template>
    <xsl:template name="mp9-verstrekking-from-mp612">
       <xsl:param name="current-hl7-verstrekking" select="."/>
@@ -1131,25 +1030,27 @@
       <xsl:param name="xsd-parent-of-zorgaanbieder"/>
       <xsl:variable name="zorgaanbieder2-complexType" select="$xsd-parent-of-zorgaanbieder//xs:element[@name = 'zorgaanbieder']/@type"/>
       <xsl:variable name="xsd-zorgaanbieder2" select="$xsd-ada//xs:complexType[@name = $zorgaanbieder2-complexType]"/>
-      <zorgaanbieder conceptId="{$xsd-zorgaanbieder2/xs:attribute[@name='conceptId']/@fixed}">
-         <xsl:for-each select="./hl7:id">
-            <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'zorgaanbieder_identificatie_nummer']/@type"/>
-            <zorgaanbieder_identificatie_nummer value="{./@extension}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-         </xsl:for-each>
-         <!-- organisatienaam has 1..1 R in MP 9 ADA transactions, but is not always present in HL7 input messages.  -->
-         <!-- fill with nullFlavor if necessary -->
-         <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'organisatie_naam']/@type"/>
-         <organisatie_naam conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-            <xsl:choose>
-               <xsl:when test="./hl7:name">
-                  <xsl:attribute name="value" select="./hl7:name/text()"/>
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:attribute name="nullFlavor">NI</xsl:attribute>
-               </xsl:otherwise>
-            </xsl:choose>
-         </organisatie_naam>
-      </zorgaanbieder>
+      <xsl:for-each select="$hl7-current-organization">
+         <zorgaanbieder conceptId="{$xsd-zorgaanbieder2/xs:attribute[@name='conceptId']/@fixed}">
+            <xsl:for-each select="./hl7:id">
+               <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'zorgaanbieder_identificatie_nummer']/@type"/>
+               <zorgaanbieder_identificatie_nummer value="{./@extension}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+            </xsl:for-each>
+            <!-- organisatienaam has 1..1 R in MP 9 ADA transactions, but is not always present in HL7 input messages.  -->
+            <!-- fill with nullFlavor if necessary -->
+            <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'organisatie_naam']/@type"/>
+            <organisatie_naam conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+               <xsl:choose>
+                  <xsl:when test="./hl7:name">
+                     <xsl:attribute name="value" select="./hl7:name/text()"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                  </xsl:otherwise>
+               </xsl:choose>
+            </organisatie_naam>
+         </zorgaanbieder>
+      </xsl:for-each>
    </xsl:template>
    <!-- Medication Kind 6.12 to ADA 9 -->
    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.106_20130521000000">
@@ -1253,10 +1154,8 @@
             <xsl:variable name="identificatie-complexType" select="$xsd-mbh//xs:element[@name = 'identificatie']/@type"/>
             <identificatie value="{concat('MedBehConverted_', ./@extension)}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$identificatie-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
          </xsl:for-each>
-         <xsl:variable name="IVL_TS-gebruiksperiode" select="$current-dispense-event//hl7:medicationAdministrationRequest//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]"/>
          <xsl:call-template name="mp9-toedieningsafspraak-from-mp612">
             <xsl:with-param name="current-dispense-event" select="$current-dispense-event"/>
-            <xsl:with-param name="IVL_TS" select="$IVL_TS-gebruiksperiode"/>
             <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
          </xsl:call-template>
@@ -1299,6 +1198,68 @@
             </meerling_indicator>
          </xsl:for-each>
       </patient>
+   </xsl:template>
+   <!-- Frequency -->
+   <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9020_20150305134139_toedieningsschema">
+      <xsl:param name="PIVL_TS"/>
+      <xsl:param name="xsd-ada"/>
+      <xsl:param name="xsd-toedieningsschema"/>
+      <!-- we are converting to toedieningsschema, cyclisch schema should be ignored here -->
+      <xsl:for-each select="$PIVL_TS[not(hl7:phase/hl7width)]">
+         <xsl:for-each select="./hl7:period">
+            <xsl:variable name="vaste_frequentie_one_decimal">
+               <xsl:choose>
+                  <xsl:when test="./@value &lt; 1">
+                     <xsl:value-of select="format-number(1 div ./@value, '#.0')"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:value-of select="xs:float(1.0)"/>
+                  </xsl:otherwise>
+               </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="tijdseenheid">
+               <xsl:choose>
+                  <xsl:when test="./@value &lt; 1">
+                     <xsl:value-of select="xs:int(1)"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:value-of select="./@value"/>
+                  </xsl:otherwise>
+               </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="vaste_frequentie_decimal" select="$vaste_frequentie_one_decimal - floor($vaste_frequentie_one_decimal)"/>
+            <!-- only output the structured frequentie if the one decimal rounded to 0 -->
+            <xsl:choose>
+               <xsl:when test="$vaste_frequentie_decimal = 0">
+                  <xsl:variable name="xsd-frequentie-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'frequentie']/@type"/>
+                  <xsl:variable name="xsd-frequentie" select="$xsd-ada//xs:complexType[@name = $xsd-frequentie-complexType]"/>
+                  <frequentie conceptId="{$xsd-frequentie/xs:attribute[@name='conceptId']/@fixed}">
+                     <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
+                     <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
+                     <aantal conceptId="{$xsd-aantal/xs:attribute[@name='conceptId']/@fixed}">
+                        <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
+                        <vaste_waarde value="{round($vaste_frequentie_one_decimal)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                     </aantal>
+                     <xsl:variable name="xsd-complexType" select="$xsd-frequentie//xs:element[@name = 'tijdseenheid']/@type"/>
+                     <tijdseenheid value="{$tijdseenheid}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                  </frequentie>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:comment>The period cannot be properly converted to a frequency integer. Period = <xsl:value-of select="./@value"/> <xsl:value-of select="./@unit"/> resulting in frequency/aantal rounded to one decimal of: <xsl:value-of select="$vaste_frequentie_one_decimal"/></xsl:comment>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:for-each>
+         <!-- interval is not supported in MP 6.12 - no output -->
+         <xsl:for-each select="./hl7:phase/hl7:center">
+            <!-- toedientijd -->
+            <xsl:variable name="xsd-toedientijd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'toedientijd']/@type"/>
+            <xsl:variable name="xsd-toedientijd" select="$xsd-ada//xs:complexType[@name = $xsd-toedientijd-complexType]"/>
+            <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value),nf:determine_date_precision(./@value))}" conceptId="{$xsd-toedientijd/xs:attribute[@name='conceptId']/@fixed}"/>
+         </xsl:for-each>
+         <!-- weekdag is not supported in MP 6.12 - no output -->
+         <!-- dagdeel is not supported in MP 6.12 - no output -->
+      </xsl:for-each>
+
    </xsl:template>
    <!-- MP 9.0 CDA Author Participation -->
    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20160615212337">

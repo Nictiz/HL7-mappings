@@ -144,7 +144,6 @@
 						</responsibleParty>
 					</medicationDispenseEvent>
 				</component>
-
 				<component>
 					<medicationDispenseEvent>
 						<id extension="0123456702" root="2.16.528.1.1007.3.3.1234567.3"/>
@@ -188,11 +187,12 @@
 											<comp xsi:type="IVL_TS">
 												<low value="20180502"/>
 												<width value="21" unit="d"/>
-												<!-\-												<high value="201805232359"/>-\->
+												<!-\-    										<high value="201805232359"/>-\->
 											</comp>
 											<comp xsi:type="PIVL_TS">
 												<period value="0.3333" unit="d"/>
-											</comp></effectiveTime>
+											</comp>
+										</effectiveTime>
 										<doseQuantity>
 											<center value="1">
 												<translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
@@ -201,7 +201,7 @@
 										</doseQuantity>
 										<support2>
 											<medicationAdministrationInstruction>
-												<code code="334455" codeSystem="1.2.3.999" displayName="pas op met alcohol"/>
+												<code code="1131" codeSystem="2.16.840.1.113883.2.4.4.5" displayName="gebruik volgens schema"/>
 											</medicationAdministrationInstruction>
 										</support2>
 									</medicationAdministrationRequest>
@@ -1547,7 +1547,8 @@
 						</responsibleParty>
 					</medicationDispenseEvent>
 				</component>
-				<component>
+				-->
+			<!--	<component>
 					<medicationDispenseEvent>
 						<id extension="alksdjf7asd8fyasdjfasdoiduh4664" root="2.16.528.1.1007.3.3.1234567.3"/>
 						<statusCode code="completed"/>
@@ -1585,12 +1586,42 @@
 										<text mediaType="text/plain">volgens pilschema 2 milliliter per dag</text>
 										<statusCode code="active"/>
 										<effectiveTime xsi:type="SXPR_TS">
+											<comp xsi:type="IVL_TS">
+												<low value="20180607"/>
+												<width value="450" unit="d"/>
+											</comp><comp xsi:type="PIVL_TS">
+												<period value="1" unit="d"/>
+											</comp>
+											<comp xsi:type="PIVL_TS" operator="A">
+												<phase>
+													<width value="7" unit="d"/>
+												</phase>
+												<period value="28" unit="d"/>
+											</comp>
+										</effectiveTime>
+										<doseQuantity>
+											<center value="2" unit="ml">
+												<translation value="2" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+												<translation value="2" code="56" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="milliliter"/>
+											</center>
+										</doseQuantity>
+									</medicationAdministrationRequest>
+								</therapeuticAgentOf>
+								<therapeuticAgentOf>
+									<medicationAdministrationRequest>
+										<text mediaType="text/plain">volgens pilschema 2 milliliter per dag</text>
+										<statusCode code="active"/>
+										<effectiveTime xsi:type="SXPR_TS">
+											<comp xsi:type="IVL_TS">
+												<low value="20180614"/>
+												<width value="443" unit="d"/>
+											</comp>
 											<comp xsi:type="PIVL_TS">
 												<period value="1" unit="d"/>
 											</comp>
 											<comp xsi:type="PIVL_TS" operator="A">
 												<phase>
-													<width value="21" unit="d"/>
+													<width value="14" unit="d"/>
 												</phase>
 												<period value="28" unit="d"/>
 											</comp>
@@ -1615,8 +1646,95 @@
 							</assignedCareProvider>
 						</responsibleParty>
 					</medicationDispenseEvent>
-				</component>			
+				</component>
 -->
+			<!--	<component>
+					<medicationDispenseEvent>
+						<id extension="876a9d87yfasu8076879sdafy9h" root="2.16.528.1.1007.3.3.1234567.3"/>
+						<statusCode code="completed"/>
+						<effectiveTime value="20050616"/>
+						<quantity value="1">
+							<translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+						</quantity>
+						<performer>
+							<assignedPerson>
+								<id nullFlavor="MSK"/>
+							</assignedPerson>
+						</performer>
+						<product>
+							<dispensedMedication>
+								<MedicationKind>
+									<code code="13966383" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="FLUIMUCIL INHVLST 100MG/ML AMPUL 4ML">
+										<translation code="888567" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+										<translation code="38539" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+									</code>
+								</MedicationKind>
+								<directTargetOf typeCode="DIR">
+									<prescription>
+										<id nullFlavor="UNK"/>
+										<statusCode nullFlavor="UNK"/>
+										<author>
+											<time nullFlavor="UNK"/>
+											<AssignedPerson>
+												<id extension="01008316" root="2.16.840.1.113883.2.4.6.1"/>
+											</AssignedPerson>
+										</author>
+									</prescription>
+								</directTargetOf>
+									<therapeuticAgentOf>
+									<medicationAdministrationRequest>
+										<text mediaType="text/plain">gedurende 300 dagen, 1 maal per dag 4 ml</text>
+										<statusCode code="active"/>
+											<effectiveTime xsi:type="PIVL_TS">
+												<phase>
+													<center value="201806051200"/>
+												</phase>
+												<period value="2" unit="d"/>
+											</effectiveTime>
+										<doseQuantity>
+											<high value="2" unit="ml">
+												<translation value="2" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+												<translation value="2" code="56" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="milliliter"/>
+											</high>
+										</doseQuantity>
+									</medicationAdministrationRequest>
+								</therapeuticAgentOf>
+								<therapeuticAgentOf>
+									<medicationAdministrationRequest>
+										<text mediaType="text/plain">gedurende 300 dagen, 1 maal per dag 4 ml</text>
+										<statusCode code="active"/>
+										<effectiveTime xsi:type="SXPR_TS">
+											<comp xsi:type="IVL_TS">
+												<low value="20250501"/>
+												<width value="302" unit="d"/>
+												<!-\-												<high value="20250603"/>-\->
+											</comp>
+											<comp xsi:type="PIVL_TS">
+												<period value="2" unit="d"/>
+											</comp>
+										</effectiveTime>
+										<doseQuantity>
+											<low value="4" unit="ml">
+												<translation value="4" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+												<translation value="4" code="56" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="milliliter"/>
+											</low>
+										</doseQuantity>
+									</medicationAdministrationRequest>
+								</therapeuticAgentOf>
+							</dispensedMedication>
+						</product>
+						<responsibleParty>
+							<assignedCareProvider>
+								<id extension="012345679" root="2.16.528.1.1007.3.1"/>
+								<code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+								<representedOrganization>
+									<id extension="01234567" root="2.16.528.1.1007.3.3"/>
+								</representedOrganization>
+							</assignedCareProvider>
+						</responsibleParty>
+					</medicationDispenseEvent>
+				</component>
+			-->	
 				<component>
 					<medicationDispenseEvent>
 						<id extension="876a9d87yfasu8076879sdafy9h" root="2.16.528.1.1007.3.3.1234567.3"/>
@@ -1652,48 +1770,27 @@
 								</directTargetOf>
 								<therapeuticAgentOf>
 									<medicationAdministrationRequest>
-										<text mediaType="text/plain">volgens pilschema 2 milliliter per dag en vervolgens iets anders</text>
+										<text mediaType="text/plain">op 5 juni 2018, om 12:00 u, eenmalig gebruiken</text>
 										<statusCode code="active"/>
-										<effectiveTime xsi:type="SXPR_TS">
-											<comp xsi:type="IVL_TS">
-												<low value="20180101"/>
-											</comp>
-											<comp xsi:type="PIVL_TS">
-												<period value="1" unit="d"/>
-											</comp>
-											<comp xsi:type="PIVL_TS" operator="A">
-												<phase>
-													<width value="21" unit="d"/>
-												</phase>
-												<period value="28" unit="d"/>
-											</comp>
-										</effectiveTime>
+										<effectiveTime value="201806051200"/>
 										<doseQuantity>
-											<center value="2" unit="ml">
+											<high value="2" unit="ml">
 												<translation value="2" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
 												<translation value="2" code="56" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="milliliter"/>
-											</center>
+											</high>
 										</doseQuantity>
 									</medicationAdministrationRequest>
 								</therapeuticAgentOf>
 								<therapeuticAgentOf>
 									<medicationAdministrationRequest>
-										
-										<text mediaType="text/plain">volgens pilschema 2 milliliter per dag en vervolgens iets anders</text>
+										<text mediaType="text/plain">gedurende 300 dagen, 1 maal per dag 4 ml</text>
 										<statusCode code="active"/>
-										<effectiveTime xsi:type="SXPR_TS">
-											<comp xsi:type="IVL_TS">
-												<low value="20180501"/>
-											</comp>
-											<comp xsi:type="PIVL_TS">
-												<period value="1" unit="d"/>
-											</comp>											
-										</effectiveTime>
+										<effectiveTime value="201808051200"/>
 										<doseQuantity>
-											<center value="2" unit="ml">
-												<translation value="2" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
-												<translation value="2" code="56" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="milliliter"/>
-											</center>
+											<low value="4" unit="ml">
+												<translation value="4" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+												<translation value="4" code="56" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="milliliter"/>
+											</low>
 										</doseQuantity>
 									</medicationAdministrationRequest>
 								</therapeuticAgentOf>
@@ -1709,7 +1806,7 @@
 							</assignedCareProvider>
 						</responsibleParty>
 					</medicationDispenseEvent>
-				</component>			
+				</component>
 				
 			</MedicationDispenseList>
 		</subject>

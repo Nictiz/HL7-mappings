@@ -35,8 +35,8 @@
 
     <xsl:function name="nf:appendDate2DateTime">
         <!-- appends a HL7 date with zeros so that an XML dateTime can be created or dates can be compared -->
-        <xsl:param name="inputDate" as="xs:string"/>
-        <xsl:value-of select="substring(concat($inputDate, '0000000000'), 1, 14)"/>
+        <xsl:param name="inputDate" as="xs:string?"/>
+        <xsl:value-of select="substring(concat($inputDate, '00000000000000'), 1, 14)"/>
     </xsl:function>
 
     <xsl:function name="nf:appendDate2DateOrTime">
