@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 voorschrift 9.0.x xml with id TODO.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:nf="http://www.nictiz.nl/functions"
+        xmlns:sdtc="urn:hl7-org:sdtc"
+        xmlns:pharm="urn:ihe:pharm:medication"
+        xmlns:hl7="urn:hl7-org:v3"
+        xmlns:hl7nl="urn:hl7-nl:v3"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2018-06-06T16:37:38.009+02:00"
+         last-update-date="2018-06-06T16:37:38.009+02:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp9"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_voorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95"
+                                   transactionEffectiveDate="2015-12-01T10:32:15"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="testbericht ADA conversie"
+                                   id="cd1badfb-2076-4c6f-b08e-bddbc7972340"/>
+   </data>
+</adaxml>
+<!--Input HL7 xml below-->
+                       <!--<PORX_IN932000NL xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/PORX_IN932000NL.xsd">
+   <id extension="2BGeneratedID" root="1.2.3.999"/>
+   <creationTime value="20170817184734"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId root="2.16.840.1.113883.1.6" extension="PORX_IN932000NL"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <attentionLine>
+      <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1"/>
+      <value xsi:type="II"
+             extension="012345672"
+             root="2.16.840.1.113883.2.4.6.3"/>
+   </attentionLine>
+   <receiver typeCode="RCV">
+      <device classCode="DEV" determinerCode="INSTANCE">
+         <id extension="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.6.6"/>
+         <name/>
+      </device>
+   </receiver>
+   <sender typeCode="SND">
+      <device classCode="DEV" determinerCode="INSTANCE">
+         <id extension="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.6.6"/>
+         <name/>
+      </device>
+   </sender>
+   <ControlActProcess classCode="CACT" moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedPerson>
+               <id extension="123456789" root="2.16.528.1.1007.3.1"/>
+               <id extension="12345678" root="2.16.840.1.113883.2.4.6.1"/>
+               <code code="01.046"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Huisarts"/>
+               <assignedPrincipalChoiceList>
+                  <assignedPerson>
+                     <name/>
+                  </assignedPerson>
+               </assignedPrincipalChoiceList>
+               <Organization>
+                  <id extension="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.3.11.21"/>
+                  <id extension="13265478" root="2.16.528.1.1007.3.3"/>
+                  <code code="V4"
+                        codeSystem="2.16.840.1.113883.2.4.15.1060"
+                        displayName="Ziekenhuis"/>
+                  <name/>
+                  <addr>
+                     <city/>
+                  </addr>
+               </Organization>
+            </AssignedPerson>
+         </participant>
+      </authorOrPerformer>
+      <overseer typeCode="RESP">
+         <AssignedPerson>
+            <id extension="123456798" root="2.16.528.1.1007.3.1"/>
+            <id extension="12365487" root="2.16.840.1.113883.2.4.6.1"/>
+            <code code="01.046"
+                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                  displayName="Huisarts"/>
+            <assignedPrincipalChoiceList>
+               <assignedPerson>
+                  <name/>
+               </assignedPerson>
+            </assignedPrincipalChoiceList>
+            <Organization>
+               <id extension="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.3.11.21"/>
+               <id extension="12346548" root="2.16.528.1.1007.3.3"/>
+               <code code="V4"
+                     codeSystem="2.16.840.1.113883.2.4.15.1060"
+                     displayName="Ziekenhuis"/>
+               <name/>
+               <addr>
+                  <city/>
+               </addr>
+            </Organization>
+         </AssignedPerson>
+      </overseer>
+      <subject xmlns:nf="http://www.nictiz.nl/functions"
+               xmlns:pharm="urn:ihe:pharm:medication"
+               xmlns:hl7nl="urn:hl7-nl:v3">
+         <prescription classCode="SBADM" moodCode="RQO">
+            <id extension="ABC123_VV1" root="1.2.3.999"/>
+            <statusCode code="active"/>
+            <subject typeCode="SBJ">
+               <Patient>
+                  <id extension="122547892" root="2.16.840.1.113883.2.4.6.3"/>
+                  <statusCode code="active"/>
+                  <Person>
+                     <name>
+                        <given qualifier="BR"/>
+                        <given qualifier="IN"/>
+                        <given qualifier="CL"/>
+                        <prefix qualifier="VV"/>
+                        <family qualifier="BR"/>
+                     </name>
+                     <administrativeGenderCode code="UN"
+                                               codeSystem="2.16.840.1.113883.5.1"
+                                               displayName="Ongedifferentieerd"/>
+                     <birthTime value="19870313"/>
+                     <multipleBirthInd value="true"/>
+                  </Person>
+               </Patient>
+            </subject>
+            <author typeCode="AUT">
+               <time value="20180327000000"/>
+               <AssignedPerson classCode="ASSIGNED">
+                  <id extension="234234999" root="2.16.528.1.1007.3.1"/>
+                  <code code="3434"
+                        codeSystem="2.16.840.1.113883.2.4.15.111"
+                        displayName="dokter"/>
+                  <assignee>
+                     <assigneePerson classCode="PSN" determinerCode="INSTANCE">
+                        <name>
+                           <given qualifier="BR"/>
+                           <prefix qualifier="VV"/>
+                           <family qualifier="BR"/>
+                        </name>
+                     </assigneePerson>
+                  </assignee>
+                  <Organization classCode="ORG" determinerCode="INSTANCE">
+                     <id extension="32234234" root="1.2.3.999"/>
+                     <name/>
+                  </Organization>
+               </AssignedPerson>
+            </author>
+            <directTarget typeCode="DIR">
+               <prescribedMedication>
+                  <MedicationKind classCode="MMAT" determinerCode="KIND">
+                     <code code="2341234324"
+                           codeSystem="2.16.840.1.113883.2.4.4.7"
+                           displayName="roze pil dus"/>
+                  </MedicationKind>
+                  <productOf>
+                     <medicationDispenseRequest>
+                        <id extension="ABC123_VV1" root="1.2.3.999"/>
+                        <statusCode nullFlavor="NA"/>
+                        <repeatNumber value="1"/>
+                        <quantity value="28" unit="1">
+                           <translation value="28"
+                                        code="245"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        displayName="stuk"/>
+                        </quantity>
+                        <performer typeCode="PRF">
+                           <assignedPerson>
+                              <representedOrganization>
+                                 <id extension="1123" root="1.2.3.999"/>
+                                 <name/>
+                              </representedOrganization>
+                           </assignedPerson>
+                        </performer>
+                     </medicationDispenseRequest>
+                  </productOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                        <text/>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20180327000000"/>
+                              <width value="14" unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS" operator="A">
+                              <period value="0.3333" unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="oraal"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"/>
+                        <doseQuantity>
+                           <low value="1" unit="1">
+                              <translation value="1"
+                                           code="245"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           displayName="stuk"/>
+                           </low>
+                           <high value="2" unit="1">
+                              <translation value="2"
+                                           code="245"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           displayName="stuk"/>
+                           </high>
+                        </doseQuantity>
+                        <precondition>
+                           <observationEventCriterion>
+                              <code code="1137"
+                                    codeSystem="2.16.840.1.113883.2.4.4.5"
+                                    displayName="zo nodig"/>
+                           </observationEventCriterion>
+                        </precondition>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+                  <therapeuticAgentOf>
+                     <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                        <text/>
+                        <statusCode code="active"/>
+                        <effectiveTime xsi:type="SXPR_TS">
+                           <comp xsi:type="IVL_TS">
+                              <low value="20180327000000"/>
+                              <width value="14" unit="d"/>
+                           </comp>
+                           <comp xsi:type="PIVL_TS" operator="A">
+                              <period value="0.25" unit="d"/>
+                           </comp>
+                        </effectiveTime>
+                        <routeCode code="oraal"
+                                   codeSystem="2.16.840.1.113883.2.4.4.9"
+                                   displayName="oraal"/>
+                        <doseQuantity>
+                           <low value="1" unit="1">
+                              <translation value="1"
+                                           code="245"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           displayName="stuk"/>
+                           </low>
+                           <high value="2" unit="1">
+                              <translation value="2"
+                                           code="245"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           displayName="stuk"/>
+                           </high>
+                        </doseQuantity>
+                        <precondition>
+                           <observationEventCriterion>
+                              <code code="1137"
+                                    codeSystem="2.16.840.1.113883.2.4.4.5"
+                                    displayName="zo nodig"/>
+                           </observationEventCriterion>
+                        </precondition>
+                     </medicationAdministrationRequest>
+                  </therapeuticAgentOf>
+               </prescribedMedication>
+            </directTarget>
+            <reason typeCode="RSON">
+               <diagnosisEvent>
+                  <code code="DX" codeSystem="2.16.840.1.113883.5.4"/>
+                  <value xsi:type="CE"
+                         code="ziek"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="heel erg ziek"/>
+               </diagnosisEvent>
+            </reason>
+         </prescription>
+      </subject>
+   </ControlActProcess>
+</PORX_IN932000NL>-->
