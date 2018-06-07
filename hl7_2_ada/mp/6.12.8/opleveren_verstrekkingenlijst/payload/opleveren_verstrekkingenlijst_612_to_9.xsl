@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-    <xsl:include href="../../mp_include.xsl"/>
+    <xsl:include href="../../../mp_include.xsl"/>
     <!-- Dit is een conversie van MP 6.12 naar ADA 9.0 voorschrift bericht -->
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:variable name="xsd-ada" select="document('file:/C:/SVN/art_decor/trunk/ada-data/projects/mp-mp9/schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
@@ -24,7 +24,7 @@
         <xsl:param name="patient"/>
 
         <xsl:comment>Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) <xsl:value-of select="concat('root: ', /hl7:QURX_IN990113NL/hl7:id/@root , ' and extension: ', /hl7:QURX_IN990113NL/hl7:id/@extension)"/>.</xsl:comment>
-        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../projects/mp-mp9/schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
             <meta status="new" created-by="generated" last-update-by="generated">
                 <xsl:attribute name="creation-date" select="current-dateTime()"/>
                 <xsl:attribute name="last-update-date" select="current-dateTime()"/>
