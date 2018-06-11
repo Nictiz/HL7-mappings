@@ -5,19 +5,12 @@
     <xsl:param name="input_xml_payload" select="'../ada_instance/999.2 Test_NL.xml'"/>
     <xsl:param name="input_xml_wrapper" select="'input_wrapper.xml'"/>
     <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
-    <xsl:param name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
+    <xsl:variable name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
     <xsl:include href="../payload/REPC_EX004014NL_Kernset_2_2_4.xsl"/>
 
-    <xsl:template name="MakeWrapper">
-        <xsl:call-template name="Wrappers">
-            <xsl:with-param name="transmission_wrapper" select="$input_xml_wrapper_doc//transmission_wrapper"/>
-            <xsl:with-param name="payload_xml" select="$input_xml_payload_doc"/>
-        </xsl:call-template>
-    </xsl:template>
-    
     <xsl:template match="/">
         <xsl:call-template name="Wrappers">
-            <xsl:with-param name="transmission_wrapper" select="//transmission_wrapper"/>
+            <xsl:with-param name="transmission_wrapper" select="$input_xml_wrapper_doc//transmission_wrapper"/>
             <xsl:with-param name="payload_xml" select="$input_xml_payload_doc"/>
         </xsl:call-template>
     </xsl:template>
