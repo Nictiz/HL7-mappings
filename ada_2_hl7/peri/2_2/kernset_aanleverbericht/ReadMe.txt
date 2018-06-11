@@ -15,7 +15,7 @@ The folder "kernset_aanleverbericht/wrapper contains the stylesheet that does th
 The folder "kernset_aanleverbericht/payload" contains the stylesheet that does the conversion for the payload: "REPC_EX004014NL_Kernset_2_2_4.xsl"
 This xslt uses the "../../../peri20_include.xsl" and ../../../../hl7/hl7_include.xsl which is meant to be reused by other/different transactions (such as 'acute overdracht' or 'Kernset 2.3').
 
-The folder 'ada_instance' contains two sample ada instance files. They are in no way functionally valid (i.e. the situation can probably not be validated in real life). The subfolder result contains the result of the conversion for these two sample files.
+The folder 'ada_instance' contains two sample ada instance files. They are in no way functionally valid (i.e. the situation can probably not be validated in real life). The subfolder result contains the result of the conversion.
 
 The ADA user front-end for Kernset 2.2 can be found here: 
 https://decor.nictiz.nl/art-decor/ada-data/projects/kernset/views/kernset_aanleverbericht_index.xhtml
