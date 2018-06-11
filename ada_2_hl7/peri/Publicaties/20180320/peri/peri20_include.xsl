@@ -355,7 +355,7 @@
 
     <!-- SEO gewenst -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900234_20140611000000">
-        <xsl:for-each select="seo_gewenstq | seo_gewenstq">
+        <xsl:for-each select="seo_gewenstq">
             <act xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="INT">
                 <code code="SEODesired" codeSystem="2.16.840.1.113883.2.4.4.13"/>
             </act>
@@ -364,7 +364,7 @@
 
     <!-- Direct GUO gewenst -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900235_20140611000000">
-        <xsl:for-each select="direct_guo_gewenstq | direct_guo_gewenstq | direct_guo_gewenstq | direct_guo_gewenstq | direct_guo_gewenstq">
+        <xsl:for-each select="direct_guo_gewenstq">
             <act xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="INT">
                 <code code="InstantGUODesired" codeSystem="2.16.840.1.113883.2.4.4.13"/>
             </act>
@@ -423,7 +423,9 @@
         <!-- Tijdstip actief meepersen -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="PRN530401" codeSystem="2.16.840.1.113883.2.4.3.22.1.1" displayName="Tijdstip actief meepersen"/>
-            <xsl:call-template name="makeTSValue"/>
+            <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="xsiType">TS</xsl:with-param>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900261_20130320000000">
@@ -1868,7 +1870,9 @@
         <!--A terme datum (definitive)-->
         <observation classCode="OBS" moodCode="EVN">
             <code code="EDDDef" codeSystem="2.16.840.1.113883.2.4.4.13"/>
-            <xsl:call-template name="makeTSValue"/>
+            <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="xsiType">TS</xsl:with-param>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     <!-- Reden Verzending Counseling Bericht -->
@@ -2893,9 +2897,10 @@
             </xsl:for-each>
             <!-- Kindspecifieke kraamzorggegevens -->
             <xsl:variable name="var_rangnummer_kind" select="./demografische_gegevens/rangnummer_kind/@value"/>
-            <xsl:for-each select="../../postnatale_fase/kindspecifieke_kraamzorggegevens[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep">
+            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens|kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep">
+                <xsl:comment>Item: 70010 - Voeding kind</xsl:comment>
                 <outboundRelationship typeCode="COMP" contextConductionInd="true">
-                    <!-- Item: 70010 - Voeding kind, krijgt zowel borst- als kunstvoeding  -->
+                    <!-- Item: 70010 - Voeding kind -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900724_20141113122151"/>
                 </outboundRelationship>
             </xsl:for-each>
@@ -6146,6 +6151,7 @@
             <!-- Item(s) :: tijdstip_actief_meepersen-->
             <xsl:call-template name="makeTS.DATE.MINValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
+            <xsl:with-param name="xsiType">TS</xsl:with-param>
             </xsl:call-template>
         </observation>
     </xsl:template>
