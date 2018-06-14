@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
 <xsl:stylesheet xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
    <xsl:include href="../hl7/hl7_include.xsl"/>
@@ -1069,20 +1082,33 @@
       </xsl:choose>
    </xsl:template>
    <xsl:template name="mp9-ingredient-eenheid">
-      <xsl:param name="hl7-num-or-denom" select="."/>
+      <xsl:param name="hl7-num-or-denom" select="." as="element()?"/>
+      <!-- @unit is leeg als de waarde een nullFlavor is, wat vooral legaal is bij nullFlavor QS - aanvullen tot -->
       <xsl:choose>
-         <xsl:when test="./hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
-            <xsl:for-each select="./hl7:translation">
-               <xsl:attribute name="code" select="./@code"/>
-               <xsl:attribute name="codeSystem" select="./@codeSystem"/>
-               <xsl:attribute name="displayName" select="./@displayName"/>
+         <xsl:when test="$hl7-num-or-denom[@unit]">
+            <xsl:for-each select="$hl7-num-or-denom[@unit]">
+               <xsl:choose>
+                  <xsl:when test="./hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
+                     <xsl:for-each select="./hl7:translation">
+                        <xsl:attribute name="code" select="./@code"/>
+                        <xsl:attribute name="codeSystem" select="./@codeSystem"/>
+                        <xsl:attribute name="displayName" select="./@displayName"/>
+                     </xsl:for-each>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <!-- translate UCUM unit to Gstd -->
+                     <xsl:call-template name="UCUM2GstdBasiseenheid">
+                        <xsl:with-param name="UCUM" select="./@unit"/>
+                     </xsl:call-template>
+                  </xsl:otherwise>
+               </xsl:choose>
             </xsl:for-each>
          </xsl:when>
          <xsl:otherwise>
-            <!-- translate UCUM unit to Gstd -->
-            <xsl:call-template name="UCUM2GstdBasiseenheid">
-               <xsl:with-param name="UCUM" select="./@unit"/>
-            </xsl:call-template>
+            <!-- there is no unit -->
+            <xsl:attribute name="code">NI</xsl:attribute>
+            <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1008</xsl:attribute>
+            <xsl:attribute name="displayName">geen informatie</xsl:attribute>            
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
@@ -1092,6 +1118,9 @@
       <xsl:choose>
          <xsl:when test="$gstd-translation">
             <xsl:attribute name="value" select="$gstd-translation/@value"/>
+         </xsl:when>
+         <xsl:when test="./@nullFlavor">
+            <xsl:attribute name="nullFlavor" select="./@nullFlavor"/>
          </xsl:when>
          <xsl:otherwise>
             <xsl:attribute name="value" select="./@value"/>
@@ -1103,17 +1132,20 @@
       <xsl:param name="xsd-ada"/>
       <xsl:param name="xsd-hoeveelheid"/>
       <xsl:variable name="xsd-complexType" select="$xsd-hoeveelheid//xs:element[@name = 'waarde']/@type"/>
-      <waarde conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-         <xsl:call-template name="mp9-ingredient-waarde">
-            <xsl:with-param name="hl7-num-or-denom" select="$hl7-num-or-denom"/>
-         </xsl:call-template>
-      </waarde>
-      <xsl:variable name="xsd-complexType" select="$xsd-hoeveelheid//xs:element[@name = 'eenheid']/@type"/>
-      <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-         <xsl:call-template name="mp9-ingredient-eenheid">
-            <xsl:with-param name="hl7-num-or-denom" select="$hl7-num-or-denom"/>
-         </xsl:call-template>
-      </eenheid>
+      <xsl:for-each select="$hl7-num-or-denom">
+         <waarde conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+            <xsl:call-template name="mp9-ingredient-waarde">
+               <xsl:with-param name="hl7-num-or-denom" select="$hl7-num-or-denom"/>
+            </xsl:call-template>
+         </waarde>
+         <xsl:variable name="xsd-complexType" select="$xsd-hoeveelheid//xs:element[@name = 'eenheid']/@type"/>
+         <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+            <xsl:call-template name="mp9-ingredient-eenheid">
+               <xsl:with-param name="hl7-num-or-denom" select="$hl7-num-or-denom"/>
+            </xsl:call-template>
+         </eenheid>
+
+      </xsl:for-each>
    </xsl:template>
    <xsl:template name="mp9-keerdosis">
       <xsl:param name="hl7-doseQuantity"/>
@@ -1335,7 +1367,7 @@
             <!-- gebruiksperiode -->
             <!-- moet berekend worden als er meer dan 1 MAR is  TODO -->
             <!-- nu alleen output bij 1 MAR -->
-            <xsl:if test="$current-dispense-event[count(//hl7:medicationAdministrationRequest) = 1]">
+            <xsl:if test="$current-dispense-event[count(.//hl7:medicationAdministrationRequest) = 1]">
                <xsl:for-each select="$IVL_TS/hl7:width[@value]">
                   <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22660"/>
                </xsl:for-each>
@@ -1452,7 +1484,7 @@
             <xsl:variable name="tijdseenheid">
                <xsl:choose>
                   <xsl:when test="./@value &lt; 1">
-                     <xsl:value-of select="xs:int(1)"/>
+                     <xsl:value-of select="xs:integer(1)"/>
                   </xsl:when>
                   <xsl:otherwise>
                      <xsl:value-of select="./@value"/>
@@ -1713,7 +1745,7 @@
                         <xsl:variable name="xsd-sterkte" select="$xsd-ada//xs:complexType[@name = $xsd-sterkte-complexType]"/>
                         <sterkte conceptId="{$xsd-sterkte/xs:attribute[@name='conceptId']/@fixed}">
                            <!-- hoeveelheid_ingredient -->
-                           <xsl:for-each select="./hl7:numerator[.//@value]">
+                           <xsl:for-each select="./hl7:numerator[.//@value] | ./hl7:numerator[@nullFlavor]">
                               <xsl:variable name="xsd-hoeveelheid_ingredient-complexType" select="$xsd-sterkte//xs:element[@name = 'hoeveelheid_ingredient']/@type"/>
                               <xsl:variable name="xsd-hoeveelheid_ingredient" select="$xsd-ada//xs:complexType[@name = $xsd-hoeveelheid_ingredient-complexType]"/>
                               <hoeveelheid_ingredient conceptId="{$xsd-hoeveelheid_ingredient/xs:attribute[@name='conceptId']/@fixed}">
@@ -1833,7 +1865,7 @@
             <xsl:variable name="tijdseenheid">
                <xsl:choose>
                   <xsl:when test="./@value &lt; 1">
-                     <xsl:value-of select="xs:int(1)"/>
+                     <xsl:value-of select="xs:integer(1)"/>
                   </xsl:when>
                   <xsl:otherwise>
                      <xsl:value-of select="./@value"/>
@@ -2553,7 +2585,7 @@
       <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
 
       <xsl:choose>
-         <xsl:when test="$GstdBasiseenheid_code castable as xs:int">
+         <xsl:when test="$GstdBasiseenheid_code castable as xs:integer">
             <xsl:choose>
                <xsl:when test="$GstdBasiseenheid_code = '205'">cm</xsl:when>
                <xsl:when test="$GstdBasiseenheid_code = '208'">1</xsl:when>
@@ -2578,7 +2610,7 @@
          <xsl:otherwise>
             <!-- geen integer meegekregen --> G-standaard code is not an integer. Not supported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
       </xsl:choose>
-      <xsl:if test="$GstdBasiseenheid_code castable as xs:int"> </xsl:if>
+      <xsl:if test="$GstdBasiseenheid_code castable as xs:integer"> </xsl:if>
    </xsl:function>
    <xsl:function name="nf:convertUnit_UCUM2ADA" as="xs:string">
       <xsl:param name="UCUMunit" as="xs:string"/>
