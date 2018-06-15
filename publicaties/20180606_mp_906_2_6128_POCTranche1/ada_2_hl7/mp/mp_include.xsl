@@ -111,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
 
       <xsl:choose>
-         <xsl:when test="$GstdBasiseenheid_code castable as xs:int">
+         <xsl:when test="$GstdBasiseenheid_code castable as xs:integer">
             <xsl:choose>
                <xsl:when test="$GstdBasiseenheid_code = '205'">cm</xsl:when>
                <xsl:when test="$GstdBasiseenheid_code = '208'">1</xsl:when>
@@ -136,7 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          <xsl:otherwise>
             <!-- geen integer meegekregen --> G-standaard code is not an integer. Not supported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
       </xsl:choose>
-      <xsl:if test="$GstdBasiseenheid_code castable as xs:int"> </xsl:if>
+      <xsl:if test="$GstdBasiseenheid_code castable as xs:integer"> </xsl:if>
    </xsl:function>
    <xsl:function name="nf:convertUnit_ADA2UCUM" as="xs:string">
       <xsl:param name="ADAunit" as="xs:string"/>
@@ -226,16 +226,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="toedieningsschema" select="./toedieningsschema"/>
             
             <!-- support for variable frequency: 1 to 2 times a day -->
-            <xsl:variable name="frequentie_in_first_MAR" as="xs:int?">
+            <xsl:variable name="frequentie_in_first_MAR" as="xs:integer?">
                <xsl:choose>
-                  <xsl:when test="$toedieningsschema/frequentie/aantal/min[@value castable as xs:int]">
-                     <xsl:value-of select="xs:int($toedieningsschema/frequentie/aantal/min/@value)"/>
+                  <xsl:when test="$toedieningsschema/frequentie/aantal/min[@value castable as xs:integer]">
+                     <xsl:value-of select="xs:integer($toedieningsschema/frequentie/aantal/min/@value)"/>
                   </xsl:when>
-                  <xsl:when test="$toedieningsschema/frequentie/aantal/vaste_waarde[@value castable as xs:int]">
-                     <xsl:value-of select="xs:int($toedieningsschema/frequentie/aantal/vaste_waarde/@value)"/>
+                  <xsl:when test="$toedieningsschema/frequentie/aantal/vaste_waarde[@value castable as xs:integer]">
+                     <xsl:value-of select="xs:integer($toedieningsschema/frequentie/aantal/vaste_waarde/@value)"/>
                   </xsl:when>
-                  <xsl:when test="not($toedieningsschema/frequentie/aantal/min[@value]) and $toedieningsschema/frequentie/aantal/max[@value castable as xs:int]">
-                     <xsl:value-of select="xs:int($toedieningsschema/frequentie/aantal/max/@value)"/>
+                  <xsl:when test="not($toedieningsschema/frequentie/aantal/min[@value]) and $toedieningsschema/frequentie/aantal/max[@value castable as xs:integer]">
+                     <xsl:value-of select="xs:integer($toedieningsschema/frequentie/aantal/max/@value)"/>
                   </xsl:when>
                </xsl:choose>
             </xsl:variable>
@@ -249,11 +249,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <xsl:with-param name="zonodig" select="$zonodig_in_first_MAR"/>
             </xsl:call-template>
             <!-- the zo nodig frequency (max frequency minus min frequency with 'as needed' precondition -->
-            <xsl:if test="$toedieningsschema/frequentie/aantal/min[@value castable as xs:int] and $toedieningsschema/frequentie/aantal/max[@value castable as xs:int]">
+            <xsl:if test="$toedieningsschema/frequentie/aantal/min[@value castable as xs:integer] and $toedieningsschema/frequentie/aantal/max[@value castable as xs:integer]">
                <xsl:call-template name="makeTherapeuticAgentOf_4_template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
                   <xsl:with-param name="medicatieafspraak" select="$medicatieafspraak"/>
                   <xsl:with-param name="dosering" select="."/>
-                  <xsl:with-param name="frequentie_value" select="xs:int($toedieningsschema/frequentie/aantal/max/@value - $toedieningsschema/frequentie/aantal/min/@value)"/>
+                  <xsl:with-param name="frequentie_value" select="xs:integer($toedieningsschema/frequentie/aantal/max/@value - $toedieningsschema/frequentie/aantal/min/@value)"/>
                   <xsl:with-param name="zonodig" select="true()"/>
                </xsl:call-template>
             </xsl:if>
@@ -263,7 +263,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
    <xsl:template name="makeTherapeuticAgentOf_4_template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
       <xsl:param name="medicatieafspraak" as="element()?"/>
-      <xsl:param name="frequentie_value" as="xs:int?"/>
+      <xsl:param name="frequentie_value" as="xs:integer?"/>
       <xsl:param name="zonodig" as="xs:boolean?"/>
       <xsl:param name="dosering" select="."/>
 
@@ -526,7 +526,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
    <!-- Helping template for toedieningsschema in comp elements -->
    <xsl:template name="schema_in_comps">
       <xsl:param name="dosering" select="."/>
-      <xsl:param name="frequentie_value" as="xs:int?"/>
+      <xsl:param name="frequentie_value" as="xs:integer?"/>
       <xsl:param name="herhaalperiode" select="./../../herhaalperiode_cyclisch_schema"/>
       <xsl:param name="medicatieafspraak" select="./../../.."/>
       <xsl:param name="toedieningsschema" select="$dosering/toedieningsschema"/>
@@ -634,9 +634,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
          </xsl:for-each>
          <statusCode nullFlavor="NA"/>
          <xsl:for-each select="aantal_herhalingen">
-            <xsl:if test="@value castable as xs:int">
+            <xsl:if test="@value castable as xs:integer">
                <repeatNumber>
-                  <xsl:attribute name="value" select="xs:int(./@value) + 1"/>
+                  <xsl:attribute name="value" select="xs:integer(./@value) + 1"/>
                </repeatNumber>
             </xsl:if>
          </xsl:for-each>
@@ -1051,7 +1051,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
       <xsl:param name="operator">I</xsl:param>
       <xsl:param name="toedieningsschema"/>
       <xsl:param name="toedientijd" as="xs:dateTime?"/>
-      <xsl:param name="vaste_frequentie" as="xs:int?"/>
+      <xsl:param name="vaste_frequentie" as="xs:integer?"/>
       <xsl:param name="vaste_freq_tijd"/>
 
       <xsl:attribute name="operator" select="$operator"/>
@@ -1070,7 +1070,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
          <xsl:variable name="value">
             <xsl:choose>
                <xsl:when test="$vaste_frequentie and $vaste_freq_tijd[@value]">
-                  <xsl:value-of select="format-number(xs:int($vaste_freq_tijd/@value) div $vaste_frequentie, '0.####')"/>
+                  <xsl:value-of select="format-number(xs:integer($vaste_freq_tijd/@value) div $vaste_frequentie, '0.####')"/>
                </xsl:when>
                <xsl:when test="$interval[@value]">
                   <xsl:value-of select="$interval/@value"/>
@@ -1101,7 +1101,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <!-- default is '1', maar als de frequentie/tijdseenheid is ingevuld nemen we die -->
             <xsl:choose>
                <xsl:when test="$vaste_freq_tijd[@value]">
-                  <xsl:value-of select="format-number(xs:int($vaste_freq_tijd/@value), '0.####')"/>
+                  <xsl:value-of select="format-number(xs:integer($vaste_freq_tijd/@value), '0.####')"/>
                </xsl:when>
                <xsl:otherwise>1</xsl:otherwise>
             </xsl:choose>
@@ -1906,7 +1906,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <!-- aantal herhalingen -->
             <xsl:for-each select="./aantal_herhalingen[@value]">
                <repeatNumber>
-                  <xsl:attribute name="value" select="xs:int(./@value) + 1"/>
+                  <xsl:attribute name="value" select="xs:integer(./@value) + 1"/>
                </repeatNumber>
             </xsl:for-each>
 
@@ -2354,7 +2354,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
          <!-- aantal herhalingen -->
          <xsl:for-each select="./aantal_herhalingen[@value]">
             <repeatNumber>
-               <xsl:attribute name="value" select="xs:int(./@value) + 1"/>
+               <xsl:attribute name="value" select="xs:integer(./@value) + 1"/>
             </repeatNumber>
          </xsl:for-each>
 
@@ -3122,7 +3122,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
       </xsl:choose>
       <hl7nl:period unit="wk">
          <xsl:choose>
-            <xsl:when test="$aantalPerWeek castable as xs:int">
+            <xsl:when test="$aantalPerWeek castable as xs:integer">
                <xsl:attribute name="value" select="$aantalPerWeek"/>
             </xsl:when>
             <xsl:otherwise>
@@ -3147,7 +3147,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
       </hl7nl:phase>
       <hl7nl:period>
          <xsl:choose>
-            <xsl:when test="$frequentieTijdseenheid/@value castable as xs:int">
+            <xsl:when test="$frequentieTijdseenheid/@value castable as xs:integer">
                <xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
                <xsl:attribute name="unit" select="$frequentieTijdseenheid/@unit"/>
             </xsl:when>
@@ -3175,7 +3175,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
       </hl7nl:phase>
       <hl7nl:period>
          <xsl:choose>
-            <xsl:when test="$frequentieTijdseenheid/@value castable as xs:int">
+            <xsl:when test="$frequentieTijdseenheid/@value castable as xs:integer">
                <xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
                <xsl:attribute name="unit" select="$frequentieTijdseenheid/@unit"/>
             </xsl:when>
@@ -3203,7 +3203,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
       </hl7nl:phase>
       <hl7nl:period>
          <xsl:choose>
-            <xsl:when test="$frequentieTijdseenheid/@value castable as xs:int">
+            <xsl:when test="$frequentieTijdseenheid/@value castable as xs:integer">
                <xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
                <xsl:attribute name="unit" select="$frequentieTijdseenheid/@unit"/>
             </xsl:when>
@@ -3231,7 +3231,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
       </hl7nl:phase>
       <hl7nl:period>
          <xsl:choose>
-            <xsl:when test="$frequentieTijdseenheid/@value castable as xs:int">
+            <xsl:when test="$frequentieTijdseenheid/@value castable as xs:integer">
                <xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
                <xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM($frequentieTijdseenheid/@unit)"/>
             </xsl:when>
@@ -4136,7 +4136,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <!-- aantal herhalingen -->
             <xsl:for-each select="./aantal_herhalingen[@value]">
                <repeatNumber>
-                  <xsl:attribute name="value" select="xs:int(./@value) + 1"/>
+                  <xsl:attribute name="value" select="xs:integer(./@value) + 1"/>
                </repeatNumber>
             </xsl:for-each>
             
