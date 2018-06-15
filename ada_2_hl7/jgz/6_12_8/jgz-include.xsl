@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="20">
-    <include href="../../hl7/hl7_include.xsl"/>
+    <include href="../../hl7/2_hl7_hl7_include.xsl"/>
     
     <!-- TransmissionWrapper Initiating -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.100_20140715000000">

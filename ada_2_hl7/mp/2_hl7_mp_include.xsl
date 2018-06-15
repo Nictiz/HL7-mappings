@@ -13,9 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-   <xsl:include href="../hl7/hl7_include.xsl"/>
-   <xsl:include href="../zib1bbr/zib1bbr_include.xsl"/>
-   <xsl:include href="../naw/naw_include.xsl"/>
+   <xsl:include href="../hl7/2_hl7_hl7_include.xsl"/>
+   <xsl:include href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
+   <xsl:include href="../naw/2_hl7_naw_include.xsl"/>
    <xsl:variable name="ada-unit-seconde" select="('seconde', 's', 'sec', 'second')"/>
    <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
    <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>
