@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
-    <xsl:include href="../../../mp_include.xsl"/>
+    <xsl:include href="../../../2_fhir_mp_include.xsl"/>
     <xd:doc>
         <xd:desc>XSLT doesn't have a function for UUID. It will generate an id based on the first element in the input. If you appreciate a UUID or other id, please supply here.</xd:desc>
     </xd:doc>
