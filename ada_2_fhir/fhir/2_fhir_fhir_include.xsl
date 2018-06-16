@@ -166,6 +166,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="in"/>
+        <xd:param name="waarde"/>
+        <xd:param name="eenheid"/>
     </xd:doc>
     <xsl:template name="hoeveelheid-complex-to-Quantity" as="element()*">
         <xsl:param name="waarde" as="element()?"/>

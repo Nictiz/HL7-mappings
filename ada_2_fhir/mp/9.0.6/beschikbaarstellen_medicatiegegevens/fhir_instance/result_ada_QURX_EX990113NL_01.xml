@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"><!-- TODO Check Bundle elements -->
+   <id value="d3e2"/>
+   <type value="searchset"/>
+   <total value="2"/>
+   <entry>
+      <fullUrl value="TAConverted_0123456702--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense xmlns:f="http://hl7.org/fhir"
+                             xmlns:local="urn:fhir:stu3:functions"
+                             xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+                             xmlns:nf="http://www.nictiz.nl/functions"
+                             xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="2018-01-28"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-ReasonForDispense">
+               <valueString value="substitutie"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-05-02"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="21"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"/>
+                     <code value="13"/>
+                     <display value="Pen controle/omruil"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+                  <value value="MedBehConverted_0123456702"/>
+               </valueIdentifier>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                     <code value="1"/>
+                     <display value="Tijdelijk onderbreken"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="TAConverted_0123456702"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14565277"/>
+                  <display value="ORS POEDER SACHET 5,4G SAN"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <!-- Possibly not to be included for MedMij related interactions, because patient should be known in infra-context -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van 't Son"/>
+            </subject>
+            <supportingInformation>
+               <identifier>
+                  <system value="urn:oid:'2.16.840.1.113883.5.1008'"/>
+                  <value value="NI"/>
+               </identifier>
+            </supportingInformation>
+            <!-- Responsible dispensing pharmacy -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="test naam TA"/>
+               </actor>
+            </performer>
+            <!--Toelichting-->
+            <note>
+               <text value="toelichting in vrije tekst"/>
+            </note>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
+               <text value="gedurende 21 dagen, 3 maal per dag 1 zakje"/>
+               <!--TODO: gebruiksinstructie/aanvullende_instructie should be defined one level higher, not per dosageInstruction-->
+               <additionalInstruction>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1131"/>
+                     <display value="gebruik volgens schema"/>
+                  </coding>
+               </additionalInstruction>
+               <timing>
+                  <repeat><!--doseerduur-->
+                     <boundsDuration>
+                        <value value="3"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </boundsDuration>
+                     <!--toedieningsduur-->
+                     <duration value="2"/>
+                     <durationUnit value="min"/>
+                     <!--interval-->
+                     <period value="2"/>
+                     <periodUnit value="h"/>
+                     <dayOfWeek value="tue"/>
+                     <!--toedientijd-->
+                     <timeOfDay value="12:12:34"/>
+                     <!--toedientijd-->
+                     <timeOfDay value="18:45:59"/>
+                     <!--dagdeel-->
+                     <when value="AFT"/>
+                     <!--dagdeel-->
+                     <when value="EVE"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+                  <text value="zo nodig omschrijving uit xml element omschrijving"/>
+               </asNeededCodeableConcept>
+               <route>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                     <valueCode value="NI"/>
+                  </extension>
+               </route>
+               <doseRange>
+                  <high>
+                     <value value="6"/>
+                     <unit value="Stuk"/>
+                     <system value="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </high>
+               </doseRange>
+               <maxDosePerPeriod>
+                  <numerator>
+                     <value value="3"/>
+                     <unit value="Stuk"/>
+                     <system value="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </numerator>
+                  <denominator>
+                     <value value="3"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="h"/>
+                  </denominator>
+               </maxDosePerPeriod>
+               <rateRange>
+                  <low>
+                     <value value="3"/>
+                     <unit value="Stuk"/>
+                     <system value="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </low>
+                  <high>
+                     <value value="8"/>
+                     <unit value="Stuk"/>
+                     <system value="2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </high>
+               </rateRange>
+               <rateQuantity>
+                  <value value="2"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="min"/>
+               </rateQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456702--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense xmlns:f="http://hl7.org/fhir"
+                             xmlns:local="urn:fhir:stu3:functions"
+                             xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+                             xmlns:nf="http://www.nictiz.nl/functions"
+                             xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+            </meta>
+            <contained>
+               <Location>
+                  <id value="d3e242"/>
+                  <description value="bij de planten zetten graag"/>
+               </Location>
+            </contained>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-DistributionForm">
+               <valueCodeableConcept>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                     <valueCode value="NI"/>
+                  </extension>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
+               <valueDateTime value="2005-01-28"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"/>
+                     <code value="2"/>
+                     <display value="Recall"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+                  <value value="MedBehConverted_0123456702"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456702"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="Dispensing medication (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14565277"/>
+                  <display value="ORS POEDER SACHET 5,4G SAN"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <!-- Possibly not to be included for MedMij related interactions, because patient should be known in infra-context -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van 't Son"/>
+            </subject>
+            <!-- Responsible dispensing pharmacy -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="test naam MVE"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:1.2.3.999"/>
+                  <value value="akld9828749"/>
+               </identifier>
+            </authorizingPrescription>
+            <quantity>
+               <value value="60"/>
+               <unit value="Stuk"/>
+               <system value="2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </quantity>
+            <daysSupply>
+               <value value="20"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </daysSupply>
+            <whenHandedOver value="2005-01-31"/>
+            <destination>
+               <reference value="#d3e242"/>
+               <display value="bij de planten zetten graag"/>
+            </destination>
+            <note>
+               <text value="toelichting bij verstrekking"/>
+            </note>
+         </MedicationDispense>
+      </resource>
+   </entry>
+</Bundle>

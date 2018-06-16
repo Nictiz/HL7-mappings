@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:ul></xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
+    <xsl:output method="xml" indent="yes"  exclude-result-prefixes="#all"/>
     <xsl:include href="../../../2_fhir_mp_include.xsl"/>
     <xd:doc>
         <xd:desc>XSLT doesn't have a function for UUID. It will generate an id based on the first element in the input. If you appreciate a UUID or other id, please supply here.</xd:desc>
@@ -47,15 +47,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="mbh"/>
         
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-        <Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+        <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
             <xsl:comment> TODO Check Bundle elements </xsl:comment>
             <id value="{$bundle-id}"/>
             <type value="searchset"/>
             <xsl:variable name="entries" as="element(f:entry)*">
-                <!-- original lines stolen from AHE -->
-                <!--<xsl:apply-templates select="hl7:ControlActProcess"/>
-                <xsl:apply-templates select="." mode="doOperationOutcome"/>-->
-                <!-- ada version -->
+                <!-- toedieningsafspraak -->
                 <xsl:for-each select="$mbh/toedieningsafspraak">
                     <entry xmlns="http://hl7.org/fhir">
                         <fullUrl value="{./identificatie[1]/string-join((@value,@root),'--')}"/>
@@ -66,6 +63,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </resource>
                     </entry>
+                </xsl:for-each>
+                    <!-- TODO medicatie in eigen resource bij magistralen, is nu contained opgenomen bij TA -->
                     <!--<xsl:if test="$medication/hl7:code[1][@nullFlavor]">
                 <entry>
                     <fullUrl value="{generate-id($medication)}"/>
@@ -74,7 +73,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </resource>
                 </entry>
             </xsl:if>-->
+                <xsl:for-each select="$mbh/verstrekking">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{./identificatie[1]/string-join((@value,@root),'--')}"/>
+                        <resource>
+                            <xsl:call-template name="zib-Dispense-2.0">
+                                <xsl:with-param name="patient" select="$patient"/>
+                                <xsl:with-param name="verstrekking" select="."/>
+                            </xsl:call-template>
+                        </resource>
+                    </entry>
                 </xsl:for-each>
+                
                 
             </xsl:variable>
             <total value="{count($entries)}"/>

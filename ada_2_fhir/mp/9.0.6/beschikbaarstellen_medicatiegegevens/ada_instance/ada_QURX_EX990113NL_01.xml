@@ -233,7 +233,7 @@
                   <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20209">
                      <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20210">
                         <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20211"/>
-                        <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20212" value="test naam"/>
+                        <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20212" value="test naam TA"/>
                      </zorgaanbieder>
                   </zorgaanbieder>
                </verstrekker>
@@ -295,8 +295,8 @@
                         </zo_nodig>
                         <toedieningssnelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22648">
                            <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22649">
-<!--                              <vaste_waarde value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22651"/>-->
-                            <min value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22650"/>
+                              <!--                              <vaste_waarde value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22651"/>-->
+                              <min value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22650"/>
                               <max value="8" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22652"/>
 
                            </waarde>
@@ -317,12 +317,14 @@
             </toedieningsafspraak>
             <verstrekking conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20270">
                <identificatie root="2.16.528.1.1007.3.3.1234567.3" value="0123456702" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20271"/>
-               <datum nullFlavor="NI" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20272"/>
+<!--               <datum nullFlavor="NI" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20272"/>-->
+               <datum value="2005-01-31" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20272"/>
                <aanschrijfdatum value="2005-01-28" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"/>
+               
                <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20858">
                   <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19791">
                      <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19792"/>
-                     <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19793" value="test naam"/>
+                     <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19793" value="test naam MVE"/>
                   </zorgaanbieder>
                </verstrekker>
                <verstrekte_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20923">
@@ -335,6 +337,14 @@
                   </product>
                </verstrekt_geneesmiddel>
                <verbruiksduur value="20" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20924"/>
+               <afleverlocatie value="bij de planten zetten graag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20925"/>
+               <!--               <distributievorm code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8" displayName="Geïndividualiseerd distributiesysteem" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20927"/>-->
+               <distributievorm code="NI" codeSystem="2.16.840.1.113883.5.1008" displayName="geen informatie" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20927"/>
+               <aanvullende_informatie code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052" displayName="Recall" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23285"/>
+               <toelichting value="toelichting bij verstrekking" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22276"/>
+               <relatie_naar_verstrekkingsverzoek>
+                  <identificatie root="1.2.3.999" value="akld9828749" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22397"/>
+               </relatie_naar_verstrekkingsverzoek>
             </verstrekking>
          </medicamenteuze_behandeling>
          <!--         <medicamenteuze_behandeling xmlns:sdtc="urn:hl7-org:sdtc"
