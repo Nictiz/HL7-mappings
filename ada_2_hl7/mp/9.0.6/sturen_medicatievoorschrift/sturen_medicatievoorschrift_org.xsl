@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Generates a HL7 message based on ADA input -->
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!--<xsl:include href="../../../hl7/hl7_include.xsl"/>-->
-    <xsl:include href="../../mp_include.xsl"/>
+    <xsl:include href="../../2_hl7_mp_include.xsl"/>
     <!--   <xsl:include href="../../../zib1bbr/zib1bbr_include.xsl"/>
     <xsl:include href="../../../naw/naw_include.xsl"/> -->
     <xsl:template match="/">
