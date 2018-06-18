@@ -23,7 +23,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-ReasonForDispense">
                <valueString value="substitutie"/>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-PeriodOfUse">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
                   <start value="2018-05-02"/>
                </valuePeriod>
@@ -86,12 +86,6 @@
                </identifier>
                <display value="J.J. le Noble van 't Son"/>
             </subject>
-            <supportingInformation>
-               <identifier>
-                  <system value="urn:oid:'2.16.840.1.113883.5.1008'"/>
-                  <value value="NI"/>
-               </identifier>
-            </supportingInformation>
             <!-- Responsible dispensing pharmacy -->
             <performer>
                <actor>
@@ -131,15 +125,10 @@
                      <!--interval-->
                      <period value="2"/>
                      <periodUnit value="h"/>
-                     <dayOfWeek value="tue"/>
                      <!--toedientijd-->
                      <timeOfDay value="12:12:34"/>
                      <!--toedientijd-->
                      <timeOfDay value="18:45:59"/>
-                     <!--dagdeel-->
-                     <when value="AFT"/>
-                     <!--dagdeel-->
-                     <when value="EVE"/>
                   </repeat>
                </timing>
                <asNeededCodeableConcept>
@@ -176,25 +165,6 @@
                      <code value="h"/>
                   </denominator>
                </maxDosePerPeriod>
-               <rateRange>
-                  <low>
-                     <value value="3"/>
-                     <unit value="Stuk"/>
-                     <system value="2.16.840.1.113883.2.4.4.1.900.2"/>
-                     <code value="245"/>
-                  </low>
-                  <high>
-                     <value value="8"/>
-                     <unit value="Stuk"/>
-                     <system value="2.16.840.1.113883.2.4.4.1.900.2"/>
-                     <code value="245"/>
-                  </high>
-               </rateRange>
-               <rateQuantity>
-                  <value value="2"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="min"/>
-               </rateQuantity>
             </dosageInstruction>
          </MedicationDispense>
       </resource>
@@ -212,7 +182,7 @@
             </meta>
             <contained>
                <Location>
-                  <id value="d3e242"/>
+                  <id value="d3e223"/>
                   <description value="bij de planten zetten graag"/>
                </Location>
             </contained>
@@ -297,7 +267,7 @@
             </daysSupply>
             <whenHandedOver value="2005-01-31"/>
             <destination>
-               <reference value="#d3e242"/>
+               <reference value="#d3e223"/>
                <display value="bij de planten zetten graag"/>
             </destination>
             <note>

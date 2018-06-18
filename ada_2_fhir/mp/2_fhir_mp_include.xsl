@@ -136,7 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- gebruiksperiode_start -->
             <!-- gebruiksperiode_eind -->
             <xsl:for-each select=".[gebruiksperiode_start | gebruiksperiode_eind]">
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-PeriodOfUse">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                   <valuePeriod>
                      <xsl:for-each select="./gebruiksperiode_start">
                         <start value="{./@value}"/>
@@ -242,7 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
             <!-- relatie naar medicatieafspraak -->
-            <xsl:for-each select="relatie_naar_medicatieafspraak/identificatie">
+            <xsl:for-each select="relatie_naar_medicatieafspraak/identificatie[not(@root=$oidNullFlavor)]">
                <supportingInformation>
                   <identifier>
                      <xsl:call-template name="id-to-Identifier">
