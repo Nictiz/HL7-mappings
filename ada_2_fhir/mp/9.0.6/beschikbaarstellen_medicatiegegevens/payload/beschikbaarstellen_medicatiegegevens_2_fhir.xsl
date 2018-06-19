@@ -52,6 +52,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <id value="{$bundle-id}"/>
             <type value="searchset"/>
             <xsl:variable name="entries" as="element(f:entry)*">
+               <!-- medicatieafspraak -->
+                <xsl:for-each select="$mbh/medicatieafspraak">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{./identificatie[1]/string-join((@value,@root),'--')}"/>
+                        <resource>
+                            <xsl:call-template name="zib-MedicationAgreement-2.0">
+                                <xsl:with-param name="patient" select="$patient"/>
+                                <xsl:with-param name="medicatieafspraak" select="."/>
+                            </xsl:call-template>
+                        </resource>
+                    </entry>
+                </xsl:for-each>
                 <!-- toedieningsafspraak -->
                 <xsl:for-each select="$mbh/toedieningsafspraak">
                     <entry xmlns="http://hl7.org/fhir">
