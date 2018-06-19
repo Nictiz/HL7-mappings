@@ -1108,7 +1108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- there is no unit -->
             <xsl:attribute name="code">NI</xsl:attribute>
             <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1008</xsl:attribute>
-            <xsl:attribute name="displayName">geen informatie</xsl:attribute>            
+            <xsl:attribute name="displayName">geen informatie</xsl:attribute>
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
@@ -1287,8 +1287,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       <xsl:variable name="xsd-toedieningsafspraak" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningsafspraak-complexType]"/>
       <!-- let's sort the available hl7:medicationAdministrationRequest's in chronological order -->
       <!-- mar = medicationAdministrationRequest  -->
-      <!-- TODO: calculate 'empty' periods and make elements in between -->
-      <!-- TODO: overlapping periods are not supported the same way in MP 9 - should not output structured information in that case -->
       <xsl:variable name="mar-sorted" as="element(hl7:medicationAdministrationRequest)*">
          <xsl:for-each select="./hl7:product/hl7:dispensedMedication/hl7:therapeuticAgentOf/hl7:medicationAdministrationRequest">
             <xsl:sort data-type="number" select="nf:appendDate2DateTime((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:low/@value)"/>
@@ -1309,7 +1307,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:low/@value)])">
                <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de laagste low als gebruiksperiode startdatum -->
                <!-- omdat $mar gesorteerd is, is dat de eerste $IVL_TS -->
-               <!-- TODO ook nog intelligentie voor width-->
                <xsl:call-template name="mp9-gebruiksperiode-start">
                   <xsl:with-param name="inputValue" select="$IVL_TS[1]/hl7:low/@value"/>
                   <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
@@ -1335,21 +1332,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                </xsl:otherwise>
             </xsl:choose>
             <!-- gebruiksperiode-eind -->
-            <!-- in 6.12 kun je alleen een conclusie trekken over gebruiksperiode-eind, als álle MARs een IVL_TS/high/@value hebben -->
-            <xsl:if test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:high/@value)])">
-               <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de hoogste high als gebruiksperiode einddatum -->
-               <xsl:variable name="eind-datums" as="element()*">
-                  <xsl:for-each select="$IVL_TS/hl7:high[@value]">
-                     <xsl:sort data-type="number" select="nf:appendDate2DateTime(./@value)"/>
-                     <xsl:sequence select="."/>
-                  </xsl:for-each>
-               </xsl:variable>
-               <xsl:call-template name="mp9-gebruiksperiode-eind">
-                  <xsl:with-param name="inputValue" select="$eind-datums[last()]/@value"/>
-                  <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                  <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
-               </xsl:call-template>
-            </xsl:if>
+            <!-- in 6.12 kun je een conclusie trekken over gebruiksperiode-eind, als álle MARs een IVL_TS/high/@value hebben óf allemaal een start en een width-->
+            <!--  zonder startdatum 'zweven' de periodes en kun je geen uitspraak doen over totale gebruiksduur-->
+            <!--  zonder width is de gebruiksperiode tot nader order en wordt deze niet opgenomen-->
+            <xsl:choose>
+               <!-- alle MARs IVL_TS/high/@value-->
+               <xsl:when test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:high/@value)])">
+                  <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de hoogste high als gebruiksperiode einddatum -->
+                  <xsl:variable name="eind-datums" as="element()*">
+                     <xsl:for-each select="$IVL_TS/hl7:high[@value]">
+                        <xsl:sort data-type="number" select="nf:appendDate2DateTime(./@value)"/>
+                        <xsl:sequence select="."/>
+                     </xsl:for-each>
+                  </xsl:variable>
+                  <xsl:call-template name="mp9-gebruiksperiode-eind">
+                     <xsl:with-param name="inputValue" select="$eind-datums[last()]/@value"/>
+                     <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                     <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
+                  </xsl:call-template>
+               </xsl:when>
+               <!-- alle MAR's een low én een width -->
+               <xsl:when test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/(hl7:low/@value and hl7:width[@unit = 'd']/@value))])">
+                  <!-- alle mar's hebben een low en een width. periode uitrekenen -->
+                  <xsl:comment>alle mar's hebben een low en een width. periode uitrekenen</xsl:comment>
+                  <xsl:variable name="hl7-first-start-datum" select="$IVL_TS[1]/hl7:low/@value"/>
+                  <xsl:variable name="hl7-last-start-datum" select="$IVL_TS[last()]/hl7:low/@value"/>
+                  <!-- width is altijd in dagen in 6.12 -->
+                  <xsl:variable name="hl7-last-width-in-days" select="$IVL_TS[last()]/hl7:width/@value"/>
+                  <xsl:variable name="xml-first-start-datum" select="nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-first-start-datum), 'SECONDEN')"/>
+                  <xsl:variable name="xml-last-start-datum" as="xs:dateTime" select="nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-last-start-datum), 'SECONDEN')"/>
+                  <xsl:variable name="xml-last-gebruik-datum" select="xs:dateTime($xml-last-start-datum + xs:dayTimeDuration(concat('P', $hl7-last-width-in-days, 'D')))"/>
+                   <xsl:call-template name="mp9-gebruiksperiode-eind">
+                     <xsl:with-param name="inputValue" select="nf:format2HL7Date(xs:string($xml-last-gebruik-datum),'seconds')"/>
+                     <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                     <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
+                  </xsl:call-template>
+               </xsl:when>
+            </xsl:choose>
             <!-- identificatie -->
             <xsl:comment>The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. Same root, extension string preconcatenated.</xsl:comment>
             <xsl:for-each select="./hl7:id[@extension]">
@@ -1365,13 +1384,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                </afspraakdatum>
             </xsl:for-each>
             <!-- gebruiksperiode -->
-            <!-- moet berekend worden als er meer dan 1 MAR is  TODO -->
-            <!-- nu alleen output bij 1 MAR -->
+            <!-- alleengebruiksperiode output bij 1 MAR die een width heeft, bij meerder MAR's berekenen we indien mogelijk de einddatum -->
             <xsl:if test="$current-dispense-event[count(.//hl7:medicationAdministrationRequest) = 1]">
                <xsl:for-each select="$IVL_TS/hl7:width[@value]">
                   <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22660"/>
                </xsl:for-each>
             </xsl:if>
+
+
+
+
             <!-- geannuleerd indicator en stoptype wordt niet ondersteund in 6.12, geen output hiervoor-->
             <!--<geannuleerd_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23034" value="UNK"/>
              <stoptype value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22498" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Onderbreking"/>-->
@@ -1794,6 +1816,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          <!-- mbh id is not known in 6.12. We have to make something up -->
          <xsl:for-each select="$current-dispense-event/hl7:id[@extension]">
             <xsl:variable name="identificatie-complexType" select="$xsd-mbh//xs:element[@name = 'identificatie']/@type"/>
+            <xsl:comment>MBH id generated from 6.12 dispense identifier</xsl:comment>
             <identificatie value="{concat('MedBehConverted_', ./@extension)}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$identificatie-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
          </xsl:for-each>
          <xsl:call-template name="mp9-toedieningsafspraak-from-mp612">
@@ -2660,6 +2683,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                xs:integer((xs:date($date) - xs:date('1901-01-06'))
                div xs:dayTimeDuration('P1D')) mod 7
             "/>
+   </xsl:function>
+   
+   
+   <xsl:function name="nf:format2HL7Date" as="xs:string?">
+      <xsl:param name="dateTime"/>
+      <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
+      <xsl:param name="precision"/>
+      <xsl:variable name="picture" as="xs:string?">
+         <xsl:choose>
+            <xsl:when test="upper-case($precision)=('MINUTE','MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
+            <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
+         </xsl:choose>
+      </xsl:variable>    
+      <xsl:choose>
+         <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
+            <xsl:value-of select="format-dateTime(xs:dateTime($dateTime), $picture)"/>
+         </xsl:when>
+         <xsl:when test="normalize-space($dateTime) castable as xs:date">
+            <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001][M01][D01]')"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:value-of select="$dateTime"/>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:function>
    <!-- copy an element with all of it's contents in comments -->
    <xsl:template name="copyElementInComment">
