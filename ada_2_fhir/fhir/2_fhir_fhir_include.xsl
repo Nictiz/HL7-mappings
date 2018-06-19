@@ -165,7 +165,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xd:doc>
         <xd:desc/>
-        <xd:param name="in"/>
         <xd:param name="waarde"/>
         <xd:param name="eenheid"/>
     </xd:doc>
@@ -190,7 +189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <unit value="{.}"/>
                     </xsl:for-each>
                     <xsl:for-each select="./@codeSystem">
-                        <system value="{.}"/>
+                        <system value="{local:getUri(.)}"/>
                     </xsl:for-each>
                     <code value="{$eenheid/@code}"/>
                 </xsl:for-each>
