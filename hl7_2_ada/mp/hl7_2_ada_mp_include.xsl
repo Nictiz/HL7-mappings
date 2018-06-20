@@ -1606,6 +1606,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.816_20130521000000">
       <xsl:variable name="current-patient" select="."/>
       <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
+         <!-- todo: support for unstructured name -->
          <xsl:for-each select="$current-patient/hl7:Person/hl7:name">
             <xsl:call-template name="mp9-naamgegevens">
                <xsl:with-param name="current-hl7-name" select="."/>
@@ -1979,7 +1980,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       <xsl:param name="xsd-mbh"/>
       <xsl:variable name="ma-complexType" select="$xsd-mbh//xs:element[@name = 'medicatieafspraak']/@type"/>
       <xsl:variable name="xsd-ma" select="$xsd-ada//xs:complexType[@name = $ma-complexType]"/>
-      <!-- medicatieafspraak -->
+      <!-- medicatieafspraak, zonder stoptype -->
+      <!-- in 6.12 worden stoptypes niet begrepen -->
       <xsl:for-each select="$ma_hl7_90">
          <medicatieafspraak conceptId="{$xsd-ma/xs:attribute[@name='conceptId']/@fixed}">
             <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[@xsi:type = 'IVL_TS']"/>

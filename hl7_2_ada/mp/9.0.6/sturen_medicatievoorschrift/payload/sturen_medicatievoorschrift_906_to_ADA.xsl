@@ -23,13 +23,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
 
 <!-- if this xslt is used stand alone the template below could be used. -->
-<!--    <xsl:template match="/">
+    <xsl:template match="/">
         <xsl:variable name="patient-recordTarget" select="//hl7:recordTarget/hl7:patientRole"/>
         <xsl:call-template name="Voorschrift-90-ADA">
             <xsl:with-param name="patient" select="$patient-recordTarget"/>
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
         </xsl:call-template>
-    </xsl:template>-->
+    </xsl:template>
 
     <xsl:template name="Voorschrift-90-ADA">
         <xsl:param name="patient" select="//hl7:recordTarget/hl7:patientRole"/>
