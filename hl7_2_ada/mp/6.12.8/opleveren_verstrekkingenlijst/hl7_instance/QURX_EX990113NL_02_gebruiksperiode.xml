@@ -140,7 +140,7 @@
                               <statusCode nullFlavor="UNK"/>
                            </prescription>
                         </directTargetOf>
-                        <therapeuticAgentOf>
+             <!--           <therapeuticAgentOf>
                            <medicationAdministrationRequest>
                               <text mediaType="text/plain">gebruik volgens schema</text>
                               <statusCode code="active"/>
@@ -170,6 +170,7 @@
                               </support2>
                            </medicationAdministrationRequest>
                         </therapeuticAgentOf>
+            -->            
                         <therapeuticAgentOf>
                            <medicationAdministrationRequest>
                               <text mediaType="text/plain">gebruik volgens schema</text>
@@ -178,6 +179,12 @@
                                  <low value="20170614"/>
                                  <width value="100" unit="d"/>
                               </effectiveTime>
+                              <maxDoseQuantity>
+                                 <numerator xsi:type="PQ" value="4">
+                                    <translation value="4" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Stuk"/>
+                                 </numerator>
+                                 <denominator xsi:type="PQ" value="7" unit="d"/>
+                              </maxDoseQuantity>
                               <support2>
                                  <medicationAdministrationInstruction>
                                     <code code="1131" codeSystem="2.16.840.1.113883.2.4.4.5" displayName="gebruik volgens schema"/>

@@ -5,8 +5,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2018-06-20T11:21:21.155+02:00"
-         last-update-date="2018-06-20T11:21:21.155+02:00"/>
+         creation-date="2018-06-20T13:13:31.627+02:00"
+         last-update-date="2018-06-20T13:13:31.627+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp9"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -63,7 +63,7 @@
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
             <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132">
                <gebruiksperiode_start value="2017-06-14" conceptId="1.2.3.4.5.12345.20132.1"/>
-               <gebruiksperiode_eind value="2018-11-15T00:00:00" conceptId="1.2.3.4.5.12345.20132.2"/>
+               <gebruiksperiode_eind value="2017-09-22T00:00:00" conceptId="1.2.3.4.5.12345.20132.2"/>
                <!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. Same root, extension string preconcatenated.-->
                <identificatie root="2.16.528.1.1007.3.3.1234567.3"
                               value="TAConverted_mag07"
@@ -71,6 +71,9 @@
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
                <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133"
                               value="2016-03-03"/>
+               <gebruiksperiode value="100"
+                                unit="dag"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22660"/>
                <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22097">
                   <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20209">
                      <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20210">
@@ -198,6 +201,22 @@
                                           codeSystem="2.16.840.1.113883.2.4.4.5"
                                           displayName="gebruik volgens schema"/>
                   <!--Non-supported (complex) dosing scheduled encountered in 6.12. No structured output, please refer to textual description.-->
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626">
+                        <zo_nodig conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22639">
+                           <maximale_dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22643">
+                              <aantal value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22644"/>
+                              <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22645"
+                                       code="245"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       displayName="Stuk"/>
+                              <tijdseenheid value="7"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22646"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
                </gebruiksinstructie>
                <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22394">
                   <identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22395"
