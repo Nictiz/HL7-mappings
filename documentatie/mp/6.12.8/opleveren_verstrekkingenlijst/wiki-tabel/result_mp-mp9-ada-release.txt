@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{| class="wikitable" 
+| style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;"  colspan="3" | MP-6.12 Verstrekking || style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;" | Conversie beschrijving (mapping)  || style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;" colspan="4" | MP-9 dataset (zib)
+|-style="background-color: #1F497D;; color: white; text-align:left;" 
+|style="width:30px;"| Type 
+|style="width:150px;"| Concept 
+|style="width:40px;"| Card 
+|style="width:200;"| 
+|style="width:30px;"| Type 
+|style="width:150;"| Concept 
+|style="width:40px;"| # 
+|style="width:40px;"| Card 
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||//subject/ Patient
+||1..1
+||Bij medicatieverstrekkingenlijst staat de patiënt in: // ControlActProcess/ subject/ MedicationDispenseList/ subject/ Patient 
+Bij medicatieverstrekkingen (los) staat de patiënt in iedere verstrekking: // ControlActProcess/ subject/ MedicationDispenseEvent/ product/ dispensedMedication/ directTargetOf/ prescription/ subject/ Patient 
+Medicatieverstrekkingen (los) is een verouderde specificatie en vanaf 6.12.3 uitgefaseerd.
+|| [[Bestand: Zib.png| 20px]]|| Patient|| 19798 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|||subject/ Patient/ Person/ name
+||0..*
+||De naam van de patiënt kan in versie 6.1x zowel in (gestructureerde) stukken als in (ongestructureerde) tekst worden meegegeven.
+Het type van dit element kan dus zowel een 'groep' zijn, als een 'string'.
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;Naamgegevens || 19799 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||subject/ Patient/ Person/ name / text()
+||0..*
+||De ongestructureerde naam van de patiënt
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Ongestructureerde naam || 1 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||subject/ Patient/ Person/ name/ given zonder een qualifier attribuut of met een qualifier attribuut dat de string 'BR' bevat.
+||0..*
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Voornamen || 19800 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||subject/ Patient/ Person/ name/ given[@qualifier='IN']
+|| - || - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Initialen || 19801 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||subject/ Patient/ Person/ name/ given[@qualifier='CL']
+||0..*
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Roepnaam || 19802 || 0 .. 1
+|-
+||| - || - ||Het HL7-datatype voor PN (person name) bevat de namen in de volgorde van gewenste aanspreking. De opties van dit concept kunnen daarom afgeleid worden uit de volgorde waarin de eigen geslachtsnaam (met qualifier BR - Birth Record) en die van de partner (met qualifier SP - SPouse) worden aangetroffen in het bericht.
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Naamgebruik || 19803 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|||-
+||-
+||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Geslachtsnaam || 19804 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||prefix[qualifier='VV'] behorende bij eigen achternaam
+||0..*
+||-
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Voorvoegsels || 19805 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||subject/ Patient/ Person/ name/ family[@qualifier='BR' or not(@qualifier)]
+|| - || - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Achternaam || 19806 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|||-
+||-
+||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;GeslachtsnaamPartner || 19807 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||prefix[qualifier='VV'] behorende bij achternaam van de partner
+|| - || - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;VoorvoegselsPartner || 19808 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||subject/ Patient/ Person/ name/ family[@qualifier='SP']
+||0..*
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AchternaamPartner || 19809 || 0 .. 1
+|-
+|[[Bestand: II.png| 16px]] ||subject/ Patient/ id
+||1..*
+|| - 
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;PatientIdentificatienummer || 19829 || 0 .. *
+|-
+|[[Bestand: TS.png| 16px]] ||subject/ Patient/ Person/ birthTime
+||0..1
+||Precisie: alleen datum (dus geen tijd).
+
+| date || &#160;&#160;&#160;Geboortedatum || 19830 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||subject/ Patient/ Person/ administrativeGenderCode
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;Geslacht || 19831 || 1 .. 1
+|-
+|[[Bestand: BL.png| 16px]] ||subject/ Patient/ Person/ multipleBirthInd
+||0..1
+|| - 
+| [[Bestand: BL.png| 16px]]  || &#160;&#160;&#160;MeerlingIndicator || 19832 || 0 .. 1
+|}
+
+{| class="wikitable" 
+| style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;"  colspan="3" | MP-6.12 Verstrekking || style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;" | Conversie beschrijving (mapping)  || style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;" colspan="4" | MP-9 dataset (zib)
+|-style="background-color: #1F497D;; color: white; text-align:left;" 
+|style="width:30px;"| Type 
+|style="width:150px;"| Concept 
+|style="width:40px;"| Card 
+|style="width:200;"| 
+|style="width:30px;"| Type 
+|style="width:150;"| Concept 
+|style="width:40px;"| # 
+|style="width:40px;"| Card 
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|||-
+||-
+||-
+|| [[Bestand: Zib.png| 20px]]|| Medicamenteuze behandeling|| 22092 || 0 .. *
+|-
+|||-
+||-
+||-
+
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;Identificatie || 22093 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||medicationDispenseEvent/ therapeuticAgentOf/ medicationAdministrationRequest 
+||0..*
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;Toedieningsafspraak || 20132 || 0 .. *
+|-
+|[[Bestand: TS.png| 16px]] ||// therapeuticAgentOf/ medicationAdministrationRequest// *[@xsi:type='IVL_TS']/ low 
+||0..*
+||Gebruik de laagste low mits alle MAR's een low hebben. Anders niet mappen: bij een zwevend interval kan de startdatum niet bepaald worden.
+
+| [[Bestand: TS.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Gebruiksperiode start || 1 || 0 .. 1
+|-
+||| - || - || - 
+| [[Bestand: TS.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Gebruiksperiode eind || 2 || 0 .. 1
+|-
+|||-
+||-
+||-
+
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Identificatie || 20134 || 1 .. 1
+|-
+||| - || - ||Aanname in MP versie 6.12 is dat de verstrekking de aanschrijfdatum bevat. De afspraakdatum van de toedieningsafspraak is niet aanwezig in het bericht.
+
+| [[Bestand: TS.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Afspraakdatum || 20133 || 1 .. 1
+|-
+|[[Bestand: TS.png| 16px]] ||// therapeuticAgentOf/ medicationAdministrationRequest// *[@xsi:type='IVL_TS']/ low (de laagste low gevonden) 
+||0..1
+|| - 
+| duration || &#160;&#160;&#160;&#160;&#160;&#160;Gebruiksperiode || 22660 || 0 .. 1
+|-
+|||-
+||-
+||Bestaat niet in MP 6.12, dit veld niet gebruiken bij vertaling naar ZIB
+
+| [[Bestand: BL.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Geannuleerd Indicator || 23034 || 0 .. 1
+|-
+|||-
+||-
+||Bestaat niet in MP 6.12, dit veld niet gebruiken bij vertaling naar ZIB 
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Stoptype || 22498 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||-
+||1..1
+||Gebruik dezelfde verstrekker als die bij het concept verstrekking / verstrekker
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Verstrekker || 22097 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+||| - || - ||Gebruik dezelfde verstrekker als die bij het concept verstrekking / verstrekker 
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Zorgaanbieder || 20209 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+||| - || - ||Zie verstrekking / verstrekker
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Zorgaanbieder || 20210 || 1 .. 1
+|-
+||| - || - ||Zie verstrekking / verstrekker 
+
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ZorgaanbiederIdentificatieNummer || 20211 || 1 .. *
+|-
+||| - || - ||Zie verstrekking / verstrekker 
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;OrganisatieNaam || 20212 || 1 .. 1
+|-
+|||-
+||-
+||-
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Reden afspraak || 22499 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||//product/ dispensedMedication
+||-
+||In MP6.1x is het geneesmiddel bij de toedieningsafspraak altijd hetzelfde als het geneesmiddel horende bij de verstrekking.
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Geneesmiddel bij toedieningsafspraak || 20237 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||//product/ dispensedMedication/ MedicationKind 
+||-
+||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Product || 20238 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||code[not(@nullFlavor)] 
+||0..1
+||Ofwel gecodeerd ofwel niet gecodeerd - met @nullFlavor - is aanwezig). Let op, @displayName is een verplicht attribuut 
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ProductCode || 22289 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|||-
+||0..1
+||Alleen van toepassing voor niet gecodeerde medicatie of medicatie met verschillende (gecodeerde) ingrediënten
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ProductSpecificatie || 22290 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||code[@nullFlavor='OTH']/ originalText 
+||0..1
+||Als er geen gecodeerde medicatie is 
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ProductNaam || 22291 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||desc
+||0..1
+||-
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Omschrijving || 19787 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||formCode
+||0..1
+||-
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FarmaceutischeVorm || 22293 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||activeIngredient of otherIngredient 
+||0..*
+||De ZIB maakt geen onderscheid tussen werkzame en hulpstoffen. 
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Ingredient || 22294 || 1 .. *
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||quantity
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Sterkte || 22295 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||activeIngredient of otherIngredient/ quantity/ numerator 
+||1..1
+||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Hoeveelheid ingrediënt || 22296 || 0 .. 1
+|-
+|REAL ||indien aanwezig: activeIngredient of otherIngredient/ quantity/ numerator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value anders: activeIngredient of otherIngredient/ quantity/ numerator/ @value 
+||1..1
+||activeIngredient of otherIngredient/ quantity/ numerator/  bevat UCUM eenheid.  
+De ZIB vraagt de waarde behorende bij de eenheid in G-Standaard bestand 902 Thesaurus 2, vandaar dat de genoemde translation gebruikt moet worden. 
+
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Waarde || 22964 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] || indien aanwezig: activeIngredient of otherIngredient/ quantity/ numerator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit  anders: activeIngredient of otherIngredient/ quantity/ numerator/ @unit 
+||1..1
+||activeIngredient of otherIngredient/ quantity/ numerator/ @unit bevat UCUM eenheid. 
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2. 
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard. 
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Eenheid || 22965 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||activeIngredient of otherIngredient/ quantity/ denominator 
+||1..1
+||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Hoeveelheid product || 22297 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||indien aanwezig: activeIngredient of otherIngredient/ quantity/ denominator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value  anders: activeIngredient of otherIngredient/ quantity/ numerator/ @value
+||1..1
+||activeIngredient of otherIngredient/ quantity/ denominator/ @unit bevat UCUM eenheid. 
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2. 
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard. 
+
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Waarde || 22966 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||indien aanwezig: activeIngredient of otherIngredient/ quantity/ denominator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit  anders: activeIngredient of otherIngredient/ quantity/ numerator/ @unit
+||1..1
+||activeIngredient of otherIngredient/ quantity/ denominator/ @unit bevat UCUM eenheid. 
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2. 
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard. 
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Eenheid || 22967 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||activeIngredient of otherIngredient/ activeIngredientMaterialKind of ingredientMaterialKind/ code
+||1..1
+||@displayName is verplicht bij gecodeerde ingrediënten (code[@code]) Bij niet gecodeerde ingrediënten is er nullFlavor OTH en staat de beschrijving in code[@nullFlavor]/ originalText
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IngredientCode || 22298 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||// therapeuticAgentOf/ medicationAdministrationRequest
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Gebruiksinstructie || 22098 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||// therapeuticAgentOf/ medicationAdministrationRequest/ text
+||1..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Omschrijving || 22619 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||// therapeuticAgentOf/ medicationAdministrationRequest/ routeCode
+||0..1
+||ISSUE: verplicht in ZIB maar niet in MP 6.12. Indien niet aanwezig, kan de toedieningsweg gevonden worden via de G-standaard.
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Toedieningsweg || 22620 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||// therapeuticAgentOf/ medicationAdministrationRequest/ support2/ medicationAdministrationInstruction/ code
+||0..*
+||Cardinality: support2 is het herhalende element). 
+Algemeen: Kan gecodeerd of ongecodeerd (code[nullFlavor='OTH']/ originalText) in het bericht zitten.
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Aanvullende instructie || 22621 || 0 .. *
+|-
+|[[Bestand: PQ.png| 16px]] ||./ / *[@xsi:type='PIVL_TS'][phase/ width]/ period
+||0..1
+|| - 
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Herhaalperiode cyclisch schema || 22622 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|||-
+|| - ||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Doseerinstructie || 22623 || 0 .. *
+|-
+||| - || - ||Moet in 6.10/ 6.12 achterhaald worden door therapeuticAgentOf/ medicationAdministrationRequest/ effectiveTime[@xsi:type='IVL_TS']/ low in chronologische volgorde te zetten
+
+| [[Bestand: INT.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Volgnummer || 22624 || 0 .. 1
+|-
+|[[Bestand: PQ.png| 16px]] ||./ / *[@xsi:type='IVL_TS']/ width (of het verschil tussen high en low)
+||0..1
+||-
+
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Doseerduur || 22625 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||// therapeuticAgentOf/ medicationAdministrationRequest
+||0..*
+||Cardinality: therapeuticAgentOf kan herhalen
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Dosering || 22626 || 0 .. *
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||// therapeuticAgentOf/ medicationAdministrationRequest/ doseQuantity/
+||0..1
+||Er staat UCUM in de doseQuantity / (low | center | high) met een verplichte vertaling (translation element) naar G-standaard eenheden tabel (codeSystem OID 2.16.840.1.113883.2.4.4.1.900.2)
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Keerdosis || 22627 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|||-
+|| - ||Er is onderscheid tussen een keerdosis met een vaste waarde (bijvoorbeeld: 1 stuk per dag) en een variabele keerdosis met een min en een max (bijvoorbeeld 1 à 2 stuks per dag). Het één sluit het ander uit. Een vaste dosering mag dus nooit tegelijkertijd ingevuld worden met een variabele dosering. Bij variabele dosering is het wel toegestaan om alleen de min of alleen de max in te vullen.
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Aantal || 22628 || 1 .. 1
+|-
+|REAL ||low/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value
+||0..1
+||Zie bij Keerdosis en bij Aantal
+
+| REAL  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;min || 22698 || 0 .. 1
+|-
+|REAL ||center/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value of 
+/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value
+||0..1
+||Er is een vaste dosering.
+In oudere versies van de standaard kon dit op twee manieren meegegeven worden. Hoewel de tweede manier wordt ontmoedigd, is het verstandig om als ontvangende partij met beide varianten rekening te houden:
+&lt;syntaxhighlight lang="xml"&gt;
+&lt;doseQuantity&gt;
+    &lt;center value="1" unit="1"&gt;
+        &lt;translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/&gt;
+    &lt;/center&gt;
+&lt;/doseQuantity&gt;
+
+&lt;doseQuantity value="1" unit="1"&gt;
+    &lt;translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/&gt;
+&lt;/doseQuantity&gt;
+&lt;/syntaxhighlight&gt;
+
+| REAL  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;vaste waarde || 22699 || 0 .. 1
+|-
+|REAL ||high/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value
+|| - || - 
+| REAL  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;max || 22700 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||(*)/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit
+||1..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Eenheid || 22629 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|||-
+|| - ||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Toedieningsschema || 22631 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||//*/ [not(therapeuticAgentOf/ medicationAdministrationRequest/ precondition)]/ therapeuticAgentOf/ medicationAdministrationRequest/ / *[@xsi:type='PIVL_TS']
+||0..*
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Frequentie || 22632 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+||| - || - ||Er is onderscheid tussen een frequentie met een vaste waarde (bijvoorbeeld: 1 maal per dag) en een variabele frequentie met een min en een max (bijvoorbeeld 1 à 2 maal per dag).
+Versie 6.1x drukt een variabele frequentie uit door:
+* één medicationAdministrationRequest met de vaste frequentie (1 maal per dag) en
+* een tweede medicationAdministrationRequest met de 'zo nodig' frequentie (1 maal per dag zo nodig)
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Aantal || 22633 || 0 .. 1
+|-
+|REAL ||//*/[therapeuticAgentOf/ medicationAdministrationRequest/ precondition]therapeuticAgentOf/ medicationAdministrationRequest/ [not(precondition)]/ / *[@xsi:type='PIVL_TS'][not(phase/ width)]/ period/ @value
+|| - ||Zie bij aantal
+
+| [[Bestand: INT.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;min || 22701 || 0 .. 1
+|-
+|REAL ||//*/ [not(therapeuticAgentOf/ medicationAdministrationRequest/ precondition)]/ therapeuticAgentOf/ medicationAdministrationRequest/ / *[@xsi:type='PIVL_TS']/.[not(phase/width)]/period / @value
+|| - ||Er is een vaste tijdsfrequentie (met andere woorden: er bestaat geen 6.12 medicationAdministrationRequest met een zo nodig)
+
+| [[Bestand: INT.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;vaste waarde || 22702 || 0 .. 1
+|-
+|REAL ||//*/[therapeuticAgentOf/ medicationAdministrationRequest/ precondition]therapeuticAgentOf/ medicationAdministrationRequest/ [not(precondition)]/ / *[@xsi:type='PIVL_TS'][not(phase/ width)]/ period/ @value en tel hierbij op de waarde bij min
+|| - ||het gaat hier om de frequentie bij de zo nodig instructie + de vaste frequentie
+
+| [[Bestand: INT.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;max || 22703 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity / denominator
+|| - || - 
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Tijdseenheid || 22634 || 0 .. 1
+|-
+||| - || - ||Dit is hetzelfde als frequentie/vaste waarde (in de 6.1x standaard was er geen onderscheid tussen frequentie en interval). 
+Kan daarom niet echt gekoppeld worden aan het concept 'interval' in de zorginformatiebouwsteen.
+
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Interval || 22635 || 0 .. 1
+|-
+|[[Bestand: TS.png| 16px]] ||//*/therapeuticAgentOf/ medicationAdministrationRequest// *[@xsi:type='PIVL_TS']/ phase/ center /@value
+|| - || - 
+| [[Bestand: TS.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Toedientijd || 22636 || 0 .. *
+|-
+||| - || - ||Niet ondersteund op gestructureerde manier in 6.1x, kan alleen overkomen via vrije tekst.
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Weekdag || 22637 || 0 .. *
+|-
+||| - || - ||Niet ondersteund op gestructureerde manier in 6.1x, kan alleen overkomen via vrije tekst.
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Dagdeel || 22638 || 0 .. *
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||//therapeuticAgentOf/ medicationAdministrationRequest/
+|| - || - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Zo nodig || 22639 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||//therapeuticAgentOf/ medicationAdministrationRequest/ precondition
+||0..*
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Criterium || 22640 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||//therapeuticAgentOf/ medicationAdministrationRequest/ precondition / code[not(@nullFlavor)]
+|| - || - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Code || 22641 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||//therapeuticAgentOf/ medicationAdministrationRequest/ precondition / code[@code]/ @displayName  
+of  
+//therapeuticAgentOf/ medicationAdministrationRequest/ precondition / codecode[@nullFlavor]/ originalText 
+|| - || - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Omschrijving || 22642 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity 
+|| - || - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Maximale dosering || 22643 || 0 .. 1
+|-
+|REAL ||//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity / numerator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2'] / @value
+|| - || - 
+| REAL  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Aantal || 22644 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit
+||1..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Eenheid || 22645 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity / denominator
+|| - || - 
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Tijdseenheid || 22646 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+||| - || - ||Niet gedefinieerd in MP 6.1x (het HL7 schema staat wel toe het mee te geven in rateQuantity, maar dit is geen onderdeel van de NL standaard).
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Toedieningssnelheid || 22648 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+||| - || - || - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Waarde || 22649 || 0 .. 1
+|-
+||| - || - || - 
+| REAL  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;min || 22650 || 0 .. 1
+|-
+||| - || - || - 
+| REAL  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;vaste waarde || 22651 || 0 .. 1
+|-
+||| - || - || - 
+| REAL  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;max || 22652 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit
+||1..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Eenheid || 22653 || 0 .. 1
+|-
+||| - || - || - 
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Tijdseenheid || 22654 || 0 .. 1
+|-
+||| - || - ||-
+
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Toedieningsduur || 23142 || 0 .. 1
+|-
+||| - || - || - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Aanvullende informatie || 23284 || 0 .. *
+|-
+||| - || - ||Niet aanwezig in 6.1x
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Toelichting || 22275 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+||| - || - ||MP 6.1x heeft wel een relatie naar het voorschrift (medicatieafspraak + verstrekkingsverzoek) maar geen relatie naar de bouwsteen medicatieafspraak.
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Relatie naar medicatieafspraak || 22394 || 1 .. 1
+|-
+||| - || - ||-
+
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Identificatie || 22395 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||medicationDispenseEvent 
+||0..*
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;Verstrekking || 20270 || 0 .. *
+|-
+|[[Bestand: II.png| 16px]] ||medicationDispenseEvent/ id 
+|| - || - 
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Identificatie || 20271 || 1 .. 1
+|-
+|||- 
+|| - ||Aangenomen wordt dat in MP 6.1x de 'echte' verstrekkingsdatum niet beschikbaar is, in plaats daarvan is wel de aanschrijfdatum bekend.
+
+| [[Bestand: TS.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Datum || 20272 || 1 .. 1
+|-
+|[[Bestand: TS.png| 16px]] ||medicationDispenseEvent/ effectiveTime 
+||1..1
+||Aangenomen wordt dat in MP versie 6.1x eigenlijk altijd de aanschrijfdatum wordt uitgewisseld.
+
+| [[Bestand: TS.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Aanschrijfdatum || 22500 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||medicationDispenseEvent/ responsibleParty 
+||1..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Verstrekker || 20858 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||medicationDispenseEvent/ responsibleParty/ assignedCareProvider/ representedOrganization
+||1..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Zorgaanbieder || 19791 || 1 .. 1
+|-
+|[[Bestand: II.png| 16px]] ||medicationDispenseEvent/ responsibleParty/ assignedCareProvider/ representedOrganization/ id
+||1..1
+||In versie 6.1x bevat deze altijd de URA identificatie
+
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ZorgaanbiederIdentificatieNummer || 19792 || 1 .. *
+|-
+|[[Bestand: ST.png| 16px]] ||medicationDispenseEvent/ responsibleParty/ assignedCareProvider/ representedOrganization/ name
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;OrganisatieNaam || 19793 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: PQ.png| 16px]] ||medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2'] 
+||1..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Verstrekte hoeveelheid || 20923 || 1 .. 1
+|-
+|REAL ||medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value 
+||1..1
+|| - 
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Aantal || 22601 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit
+||1..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Eenheid || 22602 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||medicationDispenseEvent/product/dispensedMedication 
+||1..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Verstrekt geneesmiddel || 22259 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||MedicationKind
+||1..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Product || 22260 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||code[not(@nullFlavor)]
+||0..1
+||Ofwel gecodeerd ofwel niet gecodeerd - met @nullFlavor - is aanwezig). Let op, @displayName is een verplicht attribuut
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ProductCode || 22679 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|||-
+||0..1
+||Alleen van toepassing voor niet gecodeerde medicatie of medicatie met verschillende (gecodeerde) ingrediënten
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ProductSpecificatie || 22680 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||code[@nullFlavor='OTH']/ originalText
+||0..1
+||Als er geen gecodeerde medicatie is.
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ProductNaam || 22681 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||desc
+||0..1
+||-
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Omschrijving || 19788 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||formCode
+||0..1
+||-
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FarmaceutischeVorm || 22682 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||activeIngredient of otherIngredient
+||0..*
+||De ZIB maakt geen onderscheid tussen werkzame en hulpstoffen.
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Ingredient || 22683 || 0 .. *
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||quantity
+||0..1
+||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Sterkte || 22684 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||activeIngredient of otherIngredient/ quantity/ numerator
+||1..1
+||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Hoeveelheid ingrediënt || 22685 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||indien aanwezig: activeIngredient of otherIngredient/ quantity/ denominator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value  anders: activeIngredient of otherIngredient/ quantity/ numerator/ @value
+||1..1
+||activeIngredient of otherIngredient/ quantity/ denominator/ @unit bevat UCUM eenheid.
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2.
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard.
+                                                
+
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Waarde || 22686 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit
+||1..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Eenheid || 22687 || 1 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+|[[Bestand: Container.png| 20px]] ||activeIngredient of otherIngredient/ quantity/ denominator
+||1..1
+||-
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Hoeveelheid product || 22688 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||indien aanwezig: activeIngredient of otherIngredient/ quantity/ denominator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value  anders: activeIngredient of otherIngredient/ quantity/ numerator/ @value
+||1..1
+||activeIngredient of otherIngredient/ quantity/ denominator/ @unit bevat UCUM eenheid. 
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2. 
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard. 
+
+| [[Bestand: PQ.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Waarde || 22689 || 1 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit
+||1..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Eenheid || 22690 || 1 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||activeIngredient of otherIngredient/ activeIngredientMaterialKind of ingredientMaterialKind/ code
+||1..1
+||@displayName is verplicht bij gecodeerde ingrediënten (code[@code]) 
+Bij niet gecodeerde ingrediënten is er nullFlavor OTH en staat de beschrijving in code[@nullFlavor]/ originalText
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;IngredientCode || 22691 || 0 .. 1
+|-
+|[[Bestand: PQ.png| 16px]] ||medicationDispenseEvent/expectedUseTime/width 
+||0..1
+|| - 
+| duration || &#160;&#160;&#160;&#160;&#160;&#160;Verbruiksduur || 20924 || 0 .. 1
+|-
+|[[Bestand: Container.png| 20px]] ||medicationDispenseEvent/ destination/ serviceDeliveryLocation 
+|| - ||concateneer de gegevens in dit element in één string 
+
+| text || &#160;&#160;&#160;&#160;&#160;&#160;Afleverlocatie || 20925 || 0 .. 1
+|-
+||| - || - ||Bestaat niet in MP 6.1x
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Distributievorm || 20927 || 0 .. 1
+|-
+||| - || - || - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Aanvullende informatie || 23285 || 0 .. *
+|-
+||| - || - ||Bestaat niet in MP 6.1x
+
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Toelichting || 22276 || 0 .. 1
+|-style="vertical-align:top; background-color: #E8D7BE; "
+||| - || - ||MP 6.1x heeft wel een relatie naar het totale voorschrift (Medicatieafspraak + Verstrekkingsverzoek), maar niet naar een los verstrekkingsverzoek.
+
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Relatie naar verstrekkingsverzoek || 22396 || 0 .. 1
+|-
+||| - || - ||-
+
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Identificatie || 22397 || 1 .. 1
+|}

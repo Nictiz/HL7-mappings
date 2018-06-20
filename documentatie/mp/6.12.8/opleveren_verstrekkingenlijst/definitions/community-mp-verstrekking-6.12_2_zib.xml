@@ -1,0 +1,841 @@
+<community name="mp-verstrekking-6.12_2_zib" projectId="2.16.840.1.113883.2.4.3.11.60.20" displayName="Medicatieproces Verstrekkingen 6.12 to ZIB">
+    <desc language="nl-NL">Medicatieproces Verstrekkingen 6.12 to Zorginformatiebouwsteen</desc>
+    <access>
+        <author username="guest" rights="r"/>
+        <author username="arianne" rights="rw"/>
+        <author username="alexander" rights="rw"/>
+    </access>
+    <prototype>
+        <data type="mapType" label="Type" datatype="enum">
+            <desc language="nl-NL">Datatype</desc>
+            <desc language="en-US">Data type</desc>
+            <enumValue>boolean</enumValue>
+            <enumValue>blob</enumValue>
+            <enumValue>count</enumValue>
+            <enumValue>code</enumValue>
+            <enumValue>datetime</enumValue>
+            <enumValue>decimal</enumValue>
+            <enumValue>group</enumValue>
+            <enumValue>identifier</enumValue>
+            <enumValue>quantity</enumValue>
+            <enumValue>string</enumValue>
+        </data>
+        <data type="mapConcept" label="Concept" datatype="text">
+            <desc language="nl-NL">Mapping naar  concept</desc>
+            <desc language="en-US">Mapping to concept</desc>
+        </data>
+        <data type="mapCard" label="Card" datatype="text">
+            <desc language="nl-NL">Kardinaliteit / verplichting</desc>
+            <desc language="en-US">Cardinality / conformance</desc>
+        </data>
+        <data type="mapDescription" label="Description" datatype="text">
+            <desc language="nl-NL">Omschrijving met uitleg over de mapping</desc>
+            <desc language="en-US">Description containing further explanation about mapping</desc>
+        </data>
+        <data type="xpath" label="XPath" datatype="text">
+            <desc language="nl-NL">XPath expressie naar XML waarde. Neem op 'complex' als de mapping niet in één xpath expressie is te vatten</desc>
+            <desc language="en-US">XPath expression to XML value. Enter 'complex' when the mapping cannot be expressed in one xpath expression</desc>
+        </data>
+    </prototype>
+    <associations>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20210" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">Zie&#160;verstrekking / verstrekker</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22395" flexibility="2016-03-01T14:56:02"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20270" flexibility="2015-11-25T14:46:52"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">medicationDispenseEvent </data>
+            <data type="mapCard">0..*</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22394" flexibility="2016-03-01T14:55:01"/>
+            <data type="mapDescription">MP 6.1x heeft wel een relatie naar het voorschrift (medicatieafspraak + verstrekkingsverzoek) maar geen relatie naar de bouwsteen medicatieafspraak.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22275" flexibility="2016-03-01T11:54:55"/>
+            <data type="mapDescription">Niet aanwezig in 6.1x</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20209" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">Gebruik dezelfde verstrekker als die bij het concept verstrekking / verstrekker </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20181" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20176" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20175" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20173" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">De zorgverlener die de toedieningsafspraak maakt is niet bekend in MP 6.1x.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22397" flexibility="2016-03-01T14:58:06"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22396" flexibility="2016-03-01T14:57:22"/>
+            <data type="mapDescription">MP 6.1x heeft wel een relatie naar het totale voorschrift (Medicatieafspraak + Verstrekkingsverzoek), maar niet naar een los verstrekkingsverzoek.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500" flexibility="2016-04-07T10:23:48"/>
+            <data type="mapType">datetime</data>
+            <data type="mapConcept">medicationDispenseEvent/ effectiveTime </data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">Aangenomen wordt dat in MP versie 6.1x eigenlijk altijd de aanschrijfdatum wordt uitgewisseld.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20272" flexibility="2015-11-25T14:55:47"/>
+            <data type="mapConcept">- </data>
+            <data type="mapDescription">Aangenomen wordt dat in MP 6.1x de 'echte' verstrekkingsdatum niet beschikbaar is, in plaats daarvan is wel de aanschrijfdatum bekend.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20271" flexibility="2015-11-25T14:54:34"/>
+            <data type="mapType">identifier</data>
+            <data type="mapConcept">medicationDispenseEvent/ id </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22276" flexibility="2016-03-01T11:59:42"/>
+            <data type="mapDescription">Bestaat niet in MP 6.1x</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20927" flexibility="2015-11-25T16:23:57"/>
+            <data type="mapDescription">Bestaat niet in MP 6.1x</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20925" flexibility="2015-11-25T16:22:47"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">medicationDispenseEvent/ destination/ serviceDeliveryLocation </data>
+            <data type="mapDescription">concateneer de gegevens in dit element in één string </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20924" flexibility="2015-11-25T16:10:27"/>
+            <data type="mapType">quantity</data>
+            <data type="mapConcept">medicationDispenseEvent/expectedUseTime/width </data>
+            <data type="mapCard">0..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22259" flexibility="2016-02-17T10:09:54"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">medicationDispenseEvent/product/dispensedMedication </data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20923" flexibility="2015-11-25T16:06:05"/>
+            <data type="mapType">quantity</data>
+            <data type="mapConcept">medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2'] </data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22601" flexibility="2016-06-02T09:43:02"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value </data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20858" flexibility="2015-11-25T15:57:46"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">medicationDispenseEvent/ responsibleParty </data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22298" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">activeIngredient of otherIngredient/ activeIngredientMaterialKind of ingredientMaterialKind/ code</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">@displayName is verplicht bij gecodeerde ingrediënten (code[@code]) Bij niet gecodeerde ingrediënten is er nullFlavor OTH en staat de beschrijving in code[@nullFlavor]/ originalText</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22967" flexibility="2016-06-12T15:26:27"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">indien aanwezig: activeIngredient of otherIngredient/ quantity/ denominator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit <br/> anders: activeIngredient of otherIngredient/ quantity/ numerator/ @unit</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">activeIngredient of otherIngredient/ quantity/ denominator/ @unit bevat UCUM eenheid. 
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2. 
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard. </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22966" flexibility="2016-06-12T15:26:27"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">indien aanwezig: activeIngredient of otherIngredient/ quantity/ denominator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value <br/> anders: activeIngredient of otherIngredient/ quantity/ numerator/ @value</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">activeIngredient of otherIngredient/ quantity/ denominator/ @unit bevat UCUM eenheid. 
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2. 
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard. </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22297" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">activeIngredient of otherIngredient/ quantity/ denominator </data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22965" flexibility="2016-06-12T15:26:27"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept"> indien aanwezig: activeIngredient of otherIngredient/ quantity/ numerator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit&#160; anders: activeIngredient of otherIngredient/ quantity/ numerator/ @unit </data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">activeIngredient of otherIngredient/ quantity/ numerator/ @unit bevat UCUM eenheid. 
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2.&#160;
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard. </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22964" flexibility="2016-06-12T15:26:27"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">indien aanwezig: activeIngredient of otherIngredient/ quantity/ numerator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value anders: activeIngredient of otherIngredient/ quantity/ numerator/ @value </data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">activeIngredient of otherIngredient/ quantity/ numerator/ &#160;bevat UCUM eenheid.&#160; 
+De ZIB vraagt de waarde behorende bij de eenheid in G-Standaard bestand 902 Thesaurus 2, vandaar dat de genoemde translation gebruikt moet worden.&#160;</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22296" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">activeIngredient of otherIngredient/ quantity/ numerator </data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22295" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">quantity</data>
+            <data type="mapCard">0..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22294" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">activeIngredient of otherIngredient </data>
+            <data type="mapCard">0..*</data>
+            <data type="mapDescription">De ZIB maakt geen onderscheid tussen werkzame en hulpstoffen. </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22293" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">formCode</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19787" flexibility="2016-06-20T15:25:43"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">desc</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22291" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">code[@nullFlavor='OTH']/ originalText </data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Als er geen gecodeerde medicatie is </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22290" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Alleen van toepassing voor niet gecodeerde medicatie of medicatie met verschillende (gecodeerde) ingrediënten</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22289" flexibility="2016-03-01T14:02:14"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">code[not(@nullFlavor)] </data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Ofwel gecodeerd ofwel niet gecodeerd - met @nullFlavor - is aanwezig). Let op, @displayName is een verplicht attribuut </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20238" flexibility="2015-11-25T13:29:48"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">//product/ dispensedMedication/&#160;MedicationKind </data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20237" flexibility="2015-11-25T13:29:25"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">//product/ dispensedMedication</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">In MP6.1x is het geneesmiddel bij de toedieningsafspraak altijd hetzelfde als het geneesmiddel horende bij de verstrekking.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22499" flexibility="2016-04-07T10:06:40"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22097" flexibility="2016-02-08T12:02:38"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">Gebruik dezelfde verstrekker als die bij het concept verstrekking / verstrekker</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22498" flexibility="2016-04-07T10:03:30"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">Bestaat niet in MP 6.12, dit veld niet gebruiken bij vertaling naar ZIB </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23034" flexibility="2016-07-11T13:28:51"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">Bestaat niet in MP 6.12, dit veld niet gebruiken bij vertaling naar ZIB</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22662" flexibility="2016-06-11T21:30:24"/>
+            <data type="mapType">datetime</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest// *[@xsi:type='IVL_TS']/ end (de hoogste end gevonden) </data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22661" flexibility="2016-06-11T21:30:24"/>
+            <data type="mapType">quantity</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest// *[@xsi:type='IVL_TS']/ width (opgeteld) </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22660" flexibility="2016-06-11T21:30:24"/>
+            <data type="mapType">datetime</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest// *[@xsi:type='IVL_TS']/ low (de laagste low gevonden) </data>
+            <data type="mapCard">0..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133" flexibility="2015-11-25T13:20:13"/>
+            <data type="mapDescription">Aanname in MP versie 6.12 is dat de verstrekking de aanschrijfdatum bevat. De afspraakdatum van de toedieningsafspraak is niet aanwezig in het bericht.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20134" flexibility="2015-11-25T13:21:46"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132" flexibility="2015-11-25T13:13:38"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">medicationDispenseEvent/&#160;therapeuticAgentOf/ medicationAdministrationRequest </data>
+            <data type="mapCard">0..*</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093" flexibility="2016-02-02T12:09:38"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092" flexibility="2016-02-02T11:16:21"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19807" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">boolean</data>
+            <data type="mapConcept">subject/ Patient/ Person/ multipleBirthInd</data>
+            <data type="mapCard">0..1</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/multipleBirthInd/@value</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">subject/ Patient/ Person/ administrativeGenderCode</data>
+            <data type="mapCard">0..1</data>
+            <data type="xpath">//complex</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">datetime</data>
+            <data type="mapConcept">subject/ Patient/ Person/ birthTime</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Precisie: alleen datum (dus geen tijd).</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/hl7:birthTime/@value</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">identifier</data>
+            <data type="mapConcept">subject/ Patient/ id</data>
+            <data type="mapCard">1..*</data>
+            <data type="xpath">//complex</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19808" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">prefix[qualifier='VV'] behorende bij achternaam van de partner</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/hl7:name/hl7:family[@qualifier = 'SP']/preceding-sibling::*[1][@qualifier = 'VV'][name() = 'prefix']</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19809" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">subject/ Patient/ Person/ name/ family[@qualifier='SP']</data>
+            <data type="mapCard">0..*</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/hl7:name/hl7:family[@qualifier = 'SP']</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">subject/ Patient/ Person/ name/ family[@qualifier='BR' or not(@qualifier)]</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/hl7:name/hl7:family[not(@qualifier) or @qualifier = 'BR']</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19805" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">prefix[qualifier='VV'] behorende bij eigen achternaam</data>
+            <data type="mapCard">0..*</data>
+            <data type="mapDescription">-</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/hl7:name/hl7:family[not(@qualifier) or @qualifier = 'BR']/preceding-sibling::*[1][@qualifier = 'VV'][name() = 'prefix']</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapDescription">Het HL7-datatype voor PN (person name) bevat de namen in de volgorde van gewenste aanspreking. De opties van dit concept kunnen daarom afgeleid worden uit de volgorde waarin de eigen geslachtsnaam (met qualifier BR - Birth Record) en die van de partner (met qualifier SP - SPouse) worden aangetroffen in het bericht.</data>
+            <data type="xpath">//complex</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19802" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">subject/ Patient/ Person/ name/ given[@qualifier='CL']</data>
+            <data type="mapCard">0..*</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/hl7:name/hl7:given[@qualifier = 'CL']</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">subject/ Patient/ Person/ name/ given[@qualifier='IN']</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/hl7:name/hl7:given[@qualifier = 'IN']</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">subject/ Patient/ Person/ name/ given zonder een qualifier attribuut of met een qualifier attribuut dat de string 'BR' bevat.</data>
+            <data type="mapCard">0..*</data>
+            <data type="xpath">//hl7:subject/hl7:Patient/hl7:Person/hl7:name/hl7:given[not(@qualifier) or contains(@qualifier, 'BR')]</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799" flexibility="2015-11-24T08:34:49"/>
+            <data type="mapConcept">subject/ Patient/ Person/ name</data>
+            <data type="mapCard">0..*</data>
+            <data type="mapDescription">De naam van de patiënt kan in versie 6.1x zowel in (gestructureerde) stukken als in (ongestructureerde) tekst worden meegegeven.
+Het type van dit element kan dus zowel een 'groep' zijn, als een 'string'.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798" flexibility="2015-11-24T08:34:06"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">//subject/ Patient</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">Bij medicatieverstrekkingenlijst staat de patiënt in: // ControlActProcess/ subject/ MedicationDispenseList/ subject/ Patient 
+Bij medicatieverstrekkingen (los) staat de patiënt in iedere verstrekking: // ControlActProcess/ subject/ MedicationDispenseEvent/ product/ dispensedMedication/ directTargetOf/ prescription/ subject/ Patient 
+Medicatieverstrekkingen (los) is een verouderde specificatie en vanaf 6.12.3 uitgefaseerd.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20183" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20182" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20179" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20178" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20177" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20212" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">Zie verstrekking / verstrekker </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19793" flexibility="2016-06-13T15:02:20"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">medicationDispenseEvent/ responsibleParty/ assignedCareProvider/ representedOrganization/ name</data>
+            <data type="mapCard">0..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20211" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">Zie verstrekking / verstrekker </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19792" flexibility="2016-06-13T15:02:20"/>
+            <data type="mapType">identifier</data>
+            <data type="mapConcept">medicationDispenseEvent/ responsibleParty/ assignedCareProvider/ representedOrganization/ id</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">In versie 6.1x bevat deze altijd de URA identificatie</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19791" flexibility="2016-06-13T15:00:16"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">medicationDispenseEvent/ responsibleParty/ assignedCareProvider/ representedOrganization</data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22629" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">(*)/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit</data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22645" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit</data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22653" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit</data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22602" flexibility="2016-06-02T09:44:50"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit</data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22687" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit</data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22690" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">medicationDispenseEvent/ quantity / translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @unit</data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20187" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20174" flexibility="2015-11-25T13:28:44"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23142" flexibility="2016-11-09T16:56:05"/>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22648" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapDescription">Niet gedefinieerd in MP 6.1x (het HL7 schema staat wel toe het mee te geven in rateQuantity, maar dit is geen onderdeel van de NL standaard).</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22634" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity / denominator</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22646" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity / denominator</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22644" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity / numerator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2'] / @value</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22643" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity&#160;</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22642" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ precondition / code[@code]/ @displayName&#160; 
+of&#160; 
+//therapeuticAgentOf/ medicationAdministrationRequest/ precondition / codecode[@nullFlavor]/ originalText </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22641" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ precondition / code[not(@nullFlavor)]</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22639" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22640" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ precondition</data>
+            <data type="mapCard">0..*</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22638" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapDescription">Niet ondersteund op gestructureerde manier in 6.1x, kan alleen overkomen via vrije tekst.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22637" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapDescription">Niet ondersteund op gestructureerde manier in 6.1x, kan alleen overkomen via vrije tekst.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22636" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">datetime</data>
+            <data type="mapConcept">//*/therapeuticAgentOf/ medicationAdministrationRequest// *[@xsi:type='PIVL_TS']/ phase/ center /@value</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22635" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapDescription">Dit is hetzelfde als frequentie/vaste waarde (in de 6.1x standaard was er geen onderscheid tussen frequentie en interval). 
+Kan daarom niet echt gekoppeld worden aan het concept 'interval' in de zorginformatiebouwsteen.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22700" flexibility="2016-06-21T00:54:25"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">high/&#160;translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22703" flexibility="2016-06-21T00:54:25"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">//*/[therapeuticAgentOf/ medicationAdministrationRequest/ precondition]therapeuticAgentOf/ medicationAdministrationRequest/ [not(precondition)]/ / *[@xsi:type='PIVL_TS'][not(phase/ width)]/ period/ @value en tel hierbij op de waarde bij min</data>
+            <data type="mapDescription">het gaat hier om de frequentie bij de zo nodig instructie + de vaste frequentie</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22698" flexibility="2016-06-21T00:53:14"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">low/&#160;translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Zie bij Keerdosis en bij Aantal</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22701" flexibility="2016-06-21T00:53:14"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">//*/[therapeuticAgentOf/ medicationAdministrationRequest/ precondition]therapeuticAgentOf/ medicationAdministrationRequest/ [not(precondition)]/ / *[@xsi:type='PIVL_TS'][not(phase/ width)]/ period/ @value</data>
+            <data type="mapDescription">Zie bij aantal</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22699" flexibility="2016-06-21T00:53:56"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">center/&#160;translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value of <br/>
+/&#160;translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Er is een vaste dosering.<br/>
+In oudere versies van de standaard kon dit op twee manieren meegegeven worden. Hoewel de tweede manier wordt ontmoedigd, is het verstandig om als ontvangende partij met beide varianten rekening te houden:<br/>
+&lt;syntaxhighlight lang="xml"&gt;
+&lt;doseQuantity&gt;
+&#160; &#160; &lt;center value="1" unit="1"&gt;
+&#160; &#160; &#160; &#160; &lt;translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/&gt;
+&#160; &#160; &lt;/center&gt;
+&lt;/doseQuantity&gt;
+
+&lt;doseQuantity value="1" unit="1"&gt;
+&#160; &#160; &lt;translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/&gt;
+&lt;/doseQuantity&gt;
+&lt;/syntaxhighlight&gt;</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22702" flexibility="2016-06-21T00:53:56"/>
+            <data type="mapType">decimal</data>
+            <data type="mapConcept">//*/ [not(therapeuticAgentOf/ medicationAdministrationRequest/ precondition)]/ therapeuticAgentOf/ medicationAdministrationRequest/ / *[@xsi:type='PIVL_TS']/.[not(phase/width)]/period / @value</data>
+            <data type="mapDescription">Er is een vaste tijdsfrequentie (met andere woorden: er bestaat geen 6.12 medicationAdministrationRequest met een zo nodig)</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22633" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapDescription">Er is onderscheid tussen een frequentie met een vaste waarde (bijvoorbeeld: 1 maal per dag) en een variabele frequentie met een min en een max (bijvoorbeeld 1 à 2 maal per dag).
+Versie 6.1x drukt een variabele frequentie uit door:<br/>
+* één medicationAdministrationRequest&#160;met de vaste frequentie (1 maal per dag) en<br/>
+* een tweede medicationAdministrationRequest met de 'zo nodig' frequentie (1 maal per dag zo nodig)</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22632" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">//*/ [not(therapeuticAgentOf/ medicationAdministrationRequest/ precondition)]/ therapeuticAgentOf/ medicationAdministrationRequest/ / *[@xsi:type='PIVL_TS']</data>
+            <data type="mapCard">0..*</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapConcept">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22628" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapConcept">-</data>
+            <data type="mapDescription">Er is onderscheid tussen een keerdosis met een vaste waarde (bijvoorbeeld: 1 stuk per dag) en een variabele keerdosis met een min en een max (bijvoorbeeld 1 à 2 stuks per dag). Het één sluit het ander uit. Een vaste dosering mag dus nooit tegelijkertijd ingevuld worden met een variabele dosering. Bij variabele dosering is het wel toegestaan om alleen de min of alleen de max in te vullen.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22627" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest/ doseQuantity/</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Er staat UCUM in de doseQuantity / (low | center | high) met een verplichte vertaling (translation element) naar G-standaard eenheden tabel (codeSystem OID 2.16.840.1.113883.2.4.4.1.900.2)</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest</data>
+            <data type="mapCard">0..*</data>
+            <data type="mapDescription">Cardinality: therapeuticAgentOf kan herhalen</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22625" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">quantity</data>
+            <data type="mapConcept">./ / *[@xsi:type='IVL_TS']/ width (of het verschil tussen high en low)</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22624" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapDescription">Moet in 6.10/ 6.12 achterhaald worden door therapeuticAgentOf/ medicationAdministrationRequest/ effectiveTime[@xsi:type='IVL_TS']/ low in chronologische volgorde te zetten</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapConcept">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22622" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">quantity</data>
+            <data type="mapConcept">./ / *[@xsi:type='PIVL_TS'][phase/ width]/ period</data>
+            <data type="mapCard">0..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22621" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest/ support2/ medicationAdministrationInstruction/ code</data>
+            <data type="mapCard">0..*</data>
+            <data type="mapDescription">Cardinality: support2 is het herhalende element).<br/> 
+Algemeen: Kan gecodeerd of ongecodeerd (code[nullFlavor='OTH']/ originalText) in het bericht zitten.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22620" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest/ routeCode</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">ISSUE: verplicht in ZIB maar niet in MP 6.12. Indien niet aanwezig, kan de toedieningsweg gevonden worden via de G-standaard.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22619" flexibility="2016-06-02T10:23:24"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest/ text</data>
+            <data type="mapCard">1..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22098" flexibility="2016-02-09T14:51:43"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">// therapeuticAgentOf/ medicationAdministrationRequest</data>
+            <data type="mapCard">0..1</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22691" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">activeIngredient of otherIngredient/ activeIngredientMaterialKind of ingredientMaterialKind/ code</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">@displayName is verplicht bij gecodeerde ingrediënten (code[@code])<br/> 
+Bij niet gecodeerde ingrediënten is er nullFlavor OTH en staat de beschrijving in code[@nullFlavor]/ originalText</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22688" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">activeIngredient of otherIngredient/ quantity/ denominator</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22686" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">indien aanwezig: activeIngredient of otherIngredient/ quantity/ denominator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value <br/> anders: activeIngredient of otherIngredient/ quantity/ numerator/ @value</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">activeIngredient of otherIngredient/ quantity/ denominator/ @unit bevat UCUM eenheid.<br/>
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2.<br/>
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard.<br/>
+            </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22689" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">indien aanwezig: activeIngredient of otherIngredient/ quantity/ denominator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/ @value <br/> anders: activeIngredient of otherIngredient/ quantity/ numerator/ @value</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">activeIngredient of otherIngredient/ quantity/ denominator/ @unit bevat UCUM eenheid.<br/> 
+De ZIB vraagt eenheid in G-Standaard bestand 902 Thesaurus 2.<br/> 
+TODO: conversie van meest gebruikte UCUM eenheden naar G-standaard. </data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22685" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">activeIngredient of otherIngredient/ quantity/ numerator</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22684" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">quantity</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22683" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">activeIngredient of otherIngredient</data>
+            <data type="mapCard">0..*</data>
+            <data type="mapDescription">De ZIB maakt geen onderscheid tussen werkzame en hulpstoffen.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22682" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">formCode</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19788" flexibility="2016-06-20T15:26:03"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">desc</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22681" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">string</data>
+            <data type="mapConcept">code[@nullFlavor='OTH']/ originalText</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Als er geen gecodeerde medicatie is.</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22680" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Alleen van toepassing voor niet gecodeerde medicatie of medicatie met verschillende (gecodeerde) ingrediënten</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22679" flexibility="2016-06-12T15:46:37"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">code[not(@nullFlavor)]</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">Ofwel gecodeerd ofwel niet gecodeerd - met @nullFlavor - is aanwezig). Let op, @displayName is een verplicht attribuut</data>
+        </association>
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22260" flexibility="2016-02-17T10:12:24"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">MedicationKind</data>
+            <data type="mapCard">1..1</data>
+        </association>
+    </associations>
+</community>
