@@ -23,6 +23,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada-unit-week" select="('week', 'wk')"/>
     <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month')"/>
     <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year')"/>
+
+    <xsl:variable name="ada-unit-kilo" select="('kilo', 'kg', 'kilogram')"/>
+    <xsl:variable name="ada-unit-gram" select="('gram', 'g', 'gr')"/>
+    <xsl:variable name="ada-unit-cm" select="('centimeter', 'cm')"/>
+    <xsl:variable name="ada-unit-m" select="('meter', 'm')"/>
+    
     <xsl:variable name="oidNullFlavor">2.16.840.1.113883.5.1008</xsl:variable>
 
     <xsl:variable name="oidAGB">2.16.840.1.113883.2.4.6.1</xsl:variable>
@@ -335,6 +341,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="concat('onbekende tijdseenheid: ', $ADAtime)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="ADAunit"/>
+    </xd:doc>
+    <xsl:function name="nf:convert_ADA_unit2UCUM_FHIR" as="xs:string?">
+        <xsl:param name="ADAunit" as="xs:string?"/>
+        <xsl:if test="$ADAunit">
+            <xsl:choose>
+                <xsl:when test="$ADAunit = $ada-unit-gram">g</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="concat('onbekende tijdseenheid: ', $ADAunit)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>

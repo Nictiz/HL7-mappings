@@ -471,6 +471,111 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    </xsl:template>
    <xd:doc>
       <xd:desc/>
+      <xd:param name="lengte"/>
+      <xd:param name="lengte-id"/>
+      <xd:param name="patient"/>
+   </xd:doc>
+   <xsl:template name="zib-BodyHeight-2.0">
+      <xsl:param name="lengte"/>
+      <xsl:param name="lengte-id"/>
+      <xsl:param name="patient"/>
+      <xsl:for-each select="$lengte">
+         <Observation>
+            <id value="{$lengte-id}"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
+            </meta>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://hl7.org/fhir/observation-category"/>
+                  <code value="vital-signs"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="8302-2"/>
+                  <display value="lichaamslengte"/>
+               </coding>
+            </code>
+            <!-- patient reference -->
+            <xsl:call-template name="patient-subject-reference">
+               <xsl:with-param name="patient" select="$patient"/>
+            </xsl:call-template>
+            <xsl:for-each select="$lengte/lengte_datum_tijd">
+               <effectiveDateTime value="{./@value}"/>
+            </xsl:for-each>
+            <xsl:for-each select="$lengte/lengte_waarde">
+               <valueQuantity>
+                  <!-- ada has cm or m, FHIR only allows cm -->
+                  <xsl:choose>
+                     <xsl:when test="./@unit='m'">
+                        <value value="{xs:double(./@value)*100}"/>
+                        <unit value="cm"/>
+                        <code value="cm"/>                        
+                     </xsl:when>
+                     <xsl:otherwise>    
+                        <value value="{./@value}"/>
+                        <unit value="{./@unit}"/>
+                        <code value="{nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/> 
+                     </xsl:otherwise>
+                  </xsl:choose>
+                   </valueQuantity>
+            </xsl:for-each>            
+         </Observation>
+      </xsl:for-each>      
+   </xsl:template>
+   <xd:doc>
+      <xd:desc/>
+      <xd:param name="gewicht"/>
+      <xd:param name="gewicht-id"/>
+      <xd:param name="patient"/>
+   </xd:doc>
+   <xsl:template name="zib-BodyWeight-2.0">
+      <xsl:param name="gewicht" as="element()?"/>
+      <xsl:param name="gewicht-id" as="xs:string?"/>
+      <xsl:param name="patient" as="element()?"/>
+      <xsl:for-each select="$gewicht">
+         <Observation>
+            <id value="{$gewicht-id}"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
+            </meta>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://hl7.org/fhir/observation-category"/>
+                  <code value="vital-signs"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="29463-7"/>
+                  <display value="lichaamsgewicht"/>
+               </coding>
+            </code>
+            <!-- patient reference -->
+            <xsl:call-template name="patient-subject-reference">
+               <xsl:with-param name="patient" select="$patient"/>
+            </xsl:call-template>
+            <xsl:for-each select="$gewicht/gewicht_datum_tijd">
+               <effectiveDateTime value="{./@value}"/>
+            </xsl:for-each>
+            <xsl:for-each select="$gewicht/gewicht_waarde">
+               <valueQuantity>
+                  <value value="{./@value}"/>
+                  <unit value="{./@unit}"/>
+                  <code value="{nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
+               </valueQuantity>
+            </xsl:for-each>
+
+         </Observation>
+      </xsl:for-each>
+   </xsl:template>
+   <xd:doc>
+      <xd:desc/>
       <xd:param name="patient"/>
       <xd:param name="verstrekking"/>
    </xd:doc>
@@ -647,6 +752,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   </xsl:call-template>
                </contained>
             </xsl:for-each>
+            <!-- lengte in contained resource -->
+            <xsl:variable name="lengte" select="./lichaamslengte"/>
+            <xsl:variable name="lengte-id" select="generate-id($lengte)"/>
+            <xsl:for-each select="$lengte[.//@value]">
+               <contained>
+                  <xsl:call-template name="zib-BodyHeight-2.0">
+                     <xsl:with-param name="lengte" select="."/>
+                     <xsl:with-param name="lengte-id" select="$lengte-id"/>
+                     <xsl:with-param name="patient" select="$patient"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each>
+            <!-- gewicht in contained resource -->
+            <xsl:variable name="gewicht" select="./lichaamsgewicht"/>
+            <xsl:variable name="gewicht-id" select="generate-id($gewicht)"/>
+            <xsl:for-each select="$gewicht[.//@value]">
+               <contained>
+                  <xsl:call-template name="zib-BodyWeight-2.0">
+                     <xsl:with-param name="gewicht" select="."/>
+                     <xsl:with-param name="gewicht-id" select="$gewicht-id"/>
+                     <xsl:with-param name="patient" select="$patient"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each>
             <!-- gebruiksperiode_start /eind -->
             <xsl:for-each select=".[gebruiksperiode_start | gebruiksperiode_eind]">
                <xsl:call-template name="zib-Medication-Period-Of-Use-2.0">
@@ -735,11 +864,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
             <!-- aanvullende informatie -->
             <!-- lichaamslengte -->
-            <!-- lichaamsgewicht -->
-            <xsl:for-each select="./lichaamsgewicht/gewicht_waarde">
+            <xsl:for-each select="./lichaamslengte[.//@value]">
                <supportingInformation>
-                  <reference value="#ff"/>
-                  <display value="123 cm"/>
+                  <reference value="#{$gewicht-id}"/>
+                  <display value="{concat('Lengte. ',./lengte_waarde/@value, ' ', ./lengte_waarde/@unit,'. Gemeten: ', format-dateTime(./lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]'))}"/>
+               </supportingInformation>
+            </xsl:for-each>
+            
+            <!-- lichaamsgewicht -->
+            <xsl:for-each select="./lichaamsgewicht[.//@value]">
+               <supportingInformation>
+                  <reference value="#{$lengte-id}"/>
+                  <display value="{concat('Gewicht. ',./gewicht_waarde/@value, ' ', ./gewicht_waarde/@unit,'. Gemeten: ', format-dateTime(./gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]'))}"/>
                </supportingInformation>
             </xsl:for-each>
             <!-- afspraakdatum -->
@@ -763,6 +899,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
             <!-- reden afspraak -->
             <xsl:for-each select="./reden_afspraak">
+               <xsl:comment>reden afspraak</xsl:comment>
                <!-- TODO reasonCode -->
                <!--<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-ReasonForDispense">
                   <valueString value="{./@value}"/>
@@ -921,6 +1058,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          </MedicationRequest>
       </xsl:for-each>
    </xsl:template>
+
    <xd:doc>
       <xd:desc/>
       <xd:param name="additionalInfo"/>

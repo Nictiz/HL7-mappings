@@ -13,6 +13,80 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
+            <contained>
+               <Observation>
+                  <id value="d3e144"/>
+                  <meta>
+                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
+                  </meta>
+                  <status value="final"/>
+                  <category>
+                     <coding>
+                        <system value="http://hl7.org/fhir/observation-category"/>
+                        <code value="vital-signs"/>
+                     </coding>
+                  </category>
+                  <code>
+                     <coding>
+                        <system value="http://loinc.org"/>
+                        <code value="8302-2"/>
+                        <display value="lichaamslengte"/>
+                     </coding>
+                  </code>
+                  <!-- Patient -->
+                  <!-- Possibly not to be included for MedMij related interactions, because patient should be known in infra-context -->
+                  <subject>
+                     <identifier>
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value value="32456487"/>
+                     </identifier>
+                     <display value="Antje de Vries"/>
+                  </subject>
+                  <effectiveDateTime value="2018-05-29T12:34:56"/>
+                  <valueQuantity>
+                     <value value="167"/>
+                     <unit value="cm"/>
+                     <code value="cm"/>
+                  </valueQuantity>
+               </Observation>
+            </contained>
+            <contained>
+               <Observation>
+                  <id value="d3e151"/>
+                  <meta>
+                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
+                  </meta>
+                  <status value="final"/>
+                  <category>
+                     <coding>
+                        <system value="http://hl7.org/fhir/observation-category"/>
+                        <code value="vital-signs"/>
+                     </coding>
+                  </category>
+                  <code>
+                     <coding>
+                        <system value="http://loinc.org"/>
+                        <code value="29463-7"/>
+                        <display value="lichaamsgewicht"/>
+                     </coding>
+                  </code>
+                  <!-- Patient -->
+                  <!-- Possibly not to be included for MedMij related interactions, because patient should be known in infra-context -->
+                  <subject>
+                     <identifier>
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value value="32456487"/>
+                     </identifier>
+                     <display value="Antje de Vries"/>
+                  </subject>
+                  <effectiveDateTime value="2018-06-19T00:24:56"/>
+                  <valueQuantity>
+                     <value value="45"/>
+                     <unit value="kg"/>
+                     <code value="kg"/>
+                  </valueQuantity>
+               </Observation>
+            </contained>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
                   <value value="1"/>
@@ -53,11 +127,16 @@
                <display value="Antje de Vries"/>
             </subject>
             <supportingInformation>
-               <reference value="#ff"/>
-               <display value="123 cm"/>
+               <reference value="#d3e151"/>
+               <display value="Lengte. 1.67 m. Gemeten: 29 MAY, 2018 12:34"/>
+            </supportingInformation>
+            <supportingInformation>
+               <reference value="#d3e144"/>
+               <display value="Gewicht. 45 kg. Gemeten: 19 JUN, 2018 00:24"/>
             </supportingInformation>
             <authoredOn value="2016-09-01T09:10:58"/>
             <!-- Responsible dispensing pharmacy -->
+            <!--reden afspraak-->
             <!--Toelichting-->
             <dosageInstruction><!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
                <text value="Gedurende 1 week, tweemaal daags 1 tablet"/>
@@ -79,7 +158,8 @@
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value=""/>
+                     <code value="9"/>
+                     <display value="ORAAL"/>
                   </coding>
                </route>
                <doseQuantity>
