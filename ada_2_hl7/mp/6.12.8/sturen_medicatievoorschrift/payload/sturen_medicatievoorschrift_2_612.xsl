@@ -51,7 +51,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="patient" select="$patient"/>
                     <xsl:with-param name="verstrekkingsverzoek" select="."/>
                     <!-- NOTE! There can be more than one MA in MP9!-->
-                    <xsl:with-param name="medicatieafspraak" select="./../medicatieafspraak"/>
+                    <!-- but only consider MA's that are not stop-MA's and not cancelled MA's
+                        , since stop- and cancelled MA's are not understood in 6.12 -->
+                    <xsl:with-param name="medicatieafspraak" select="./../medicatieafspraak[not(stoptype/@code)][not(geannuleerd_indicator/@value)]"/>
                 </xsl:call-template>
             </subject>
         </xsl:for-each>
