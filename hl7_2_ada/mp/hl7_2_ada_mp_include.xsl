@@ -1353,17 +1353,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                </xsl:when>
                <!-- alle MAR's een low én een width -->
                <xsl:when test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/(hl7:low/@value and hl7:width[@unit = 'd']/@value))])">
-                  <!-- alle mar's hebben een low en een width. periode uitrekenen -->
-                  <xsl:comment>alle mar's hebben een low en een width. periode uitrekenen</xsl:comment>
-                  <xsl:variable name="hl7-first-start-datum" select="$IVL_TS[1]/hl7:low/@value"/>
-                  <xsl:variable name="hl7-last-start-datum" select="$IVL_TS[last()]/hl7:low/@value"/>
-                  <!-- width is altijd in dagen in 6.12 -->
-                  <xsl:variable name="hl7-last-width-in-days" select="$IVL_TS[last()]/hl7:width/@value"/>
-                  <xsl:variable name="xml-first-start-datum" select="nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-first-start-datum), 'SECONDEN')"/>
-                  <xsl:variable name="xml-last-start-datum" as="xs:dateTime" select="nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-last-start-datum), 'SECONDEN')"/>
-                  <xsl:variable name="xml-last-gebruik-datum" select="xs:dateTime($xml-last-start-datum + xs:dayTimeDuration(concat('P', $hl7-last-width-in-days, 'D')))"/>
-                   <xsl:call-template name="mp9-gebruiksperiode-eind">
-                     <xsl:with-param name="inputValue" select="nf:format2HL7Date(xs:string($xml-last-gebruik-datum),'seconds')"/>
+                  <!-- alle mar's hebben een low en een width. einddatums uitrekenen -->
+                  <xsl:variable name="einddatums" as="element()*">
+                     <xsl:for-each select="$IVL_TS">
+                        <xsl:variable name="hl7-start-datum" select="./hl7:low/@value"/>
+                        <!-- width is altijd in dagen in 6.12 -->
+                        <xsl:variable name="hl7-width-in-days" select="./hl7:width/@value"/>
+                        <xsl:variable name="xml-start-datum" as="xs:dateTime" select="nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-start-datum), 'SECONDEN')"/>
+                        <xsl:variable name="xml-eind-datum" select="xs:dateTime($xml-start-datum + xs:dayTimeDuration(concat('P', $hl7-width-in-days, 'D')))"/>
+                        <xml-eind-datum value="{$xml-eind-datum}"/>
+                     </xsl:for-each>
+                  </xsl:variable>
+                  <xsl:variable name="einddatums-sorted" as="xs:dateTime*">
+                     <xsl:for-each select="$einddatums/@value">
+                        <xsl:sort data-type="text" select="."/>
+                        <xsl:copy-of select="."/>
+                     </xsl:for-each>
+                  </xsl:variable>
+                  <xsl:call-template name="mp9-gebruiksperiode-eind">
+                     <xsl:with-param name="inputValue" select="nf:format2HL7Date(xs:string($einddatums-sorted[last()]), 'seconds')"/>
                      <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                      <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
                   </xsl:call-template>
@@ -1384,7 +1392,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                </afspraakdatum>
             </xsl:for-each>
             <!-- gebruiksperiode -->
-            <!-- alleengebruiksperiode output bij 1 MAR die een width heeft, bij meerder MAR's berekenen we indien mogelijk de einddatum -->
+            <!-- alleen gebruiksperiode output bij 1 MAR die een width heeft, en bij meerder MAR's berekenen we indien mogelijk de einddatum -->
             <xsl:if test="$current-dispense-event[count(.//hl7:medicationAdministrationRequest) = 1]">
                <xsl:for-each select="$IVL_TS/hl7:width[@value]">
                   <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22660"/>
@@ -2684,18 +2692,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                div xs:dayTimeDuration('P1D')) mod 7
             "/>
    </xsl:function>
-   
-   
+
+
    <xsl:function name="nf:format2HL7Date" as="xs:string?">
       <xsl:param name="dateTime"/>
       <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
       <xsl:param name="precision"/>
       <xsl:variable name="picture" as="xs:string?">
          <xsl:choose>
-            <xsl:when test="upper-case($precision)=('MINUTE','MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
+            <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
             <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
          </xsl:choose>
-      </xsl:variable>    
+      </xsl:variable>
       <xsl:choose>
          <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
             <xsl:value-of select="format-dateTime(xs:dateTime($dateTime), $picture)"/>
