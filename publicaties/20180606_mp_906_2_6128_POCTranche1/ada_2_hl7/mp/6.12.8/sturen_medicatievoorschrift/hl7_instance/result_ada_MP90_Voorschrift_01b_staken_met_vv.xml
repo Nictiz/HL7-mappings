@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medvoors.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "testbericht ADA conversie" and id: "cd1badfb-2076-4c6f-b08e-bddbc7972340".-->
+<subject xmlns:nf="http://www.nictiz.nl/functions"
+         xmlns:pharm="urn:ihe:pharm:medication"
+         xmlns="urn:hl7-org:v3"
+         xmlns:hl7="urn:hl7-org:v3"
+         xmlns:hl7nl="urn:hl7-nl:v3"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <prescription classCode="SBADM" moodCode="RQO">
+      <id extension="ABC123_VV1" root="1.2.3.999"/>
+      <statusCode code="active"/>
+      <subject typeCode="SBJ">
+         <Patient>
+            <id extension="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+            <statusCode code="active"/>
+            <Person>
+               <name>
+                  <given qualifier="BR">Joris</given>
+                  <given qualifier="IN">J.</given>
+                  <family qualifier="BR">Hansman</family>
+               </name>
+               <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+               <birthTime value="19840512"/>
+               <multipleBirthInd value="false"/>
+            </Person>
+         </Patient>
+      </subject>
+      <author typeCode="AUT">
+         <time value="20180327000000"/>
+         <AssignedPerson classCode="ASSIGNED">
+            <id extension="234234999" root="2.16.528.1.1007.3.1"/>
+            <code code="3434"
+                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                  displayName="dokter"/>
+            <assignee>
+               <assigneePerson classCode="PSN" determinerCode="INSTANCE">
+                  <name>
+                     <given qualifier="BR">asdf adsf </given>
+                     <prefix qualifier="VV">vd </prefix>
+                     <family qualifier="BR">asdf sadf aa sdf</family>
+                  </name>
+               </assigneePerson>
+            </assignee>
+            <!--The message template (9043) incorrectly defines representedOrganization, however the xsd only accepts Organization-->
+            <!--Closed warnings schematron messages for this element should be ignored.-->
+            <Organization classCode="ORG" determinerCode="INSTANCE">
+               <id extension="32234234" root="1.2.3.999"/>
+               <name>zorginstelling ABC</name>
+            </Organization>
+         </AssignedPerson>
+      </author>
+      <directTarget typeCode="DIR">
+         <prescribedMedication>
+            <MedicationKind classCode="MMAT" determinerCode="KIND">
+               <code code="2341234324"
+                     codeSystem="2.16.840.1.113883.2.4.4.7"
+                     displayName="roze pil dus"/>
+            </MedicationKind>
+            <productOf>
+               <medicationDispenseRequest>
+                  <id extension="ABC123_VV1" root="1.2.3.999"/>
+                  <statusCode nullFlavor="NA"/>
+                  <repeatNumber value="1"/>
+                  <quantity value="28" unit="1">
+                     <translation value="28"
+                                  code="245"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  displayName="stuk"/>
+                  </quantity>
+                  <performer typeCode="PRF">
+                     <assignedPerson>
+                        <representedOrganization>
+                           <id extension="1123" root="1.2.3.999"/>
+                           <name>apotheek je weet wel</name>
+                        </representedOrganization>
+                     </assignedPerson>
+                  </performer>
+               </medicationDispenseRequest>
+            </productOf>
+         </prescribedMedication>
+      </directTarget>
+   </prescription>
+</subject>
+<!--Input ada xml below-->
+                       <!--<sturen_medicatievoorschrift xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                             xmlns:nf="http://www.nictiz.nl/functions"
+                             xmlns:sdtc="urn:hl7-org:sdtc"
+                             xmlns:pharm="urn:ihe:pharm:medication"
+                             xmlns:hl7="urn:hl7-org:v3"
+                             xmlns:hl7nl="urn:hl7-nl:v3"
+                             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                             app="mp-mp9"
+                             shortName="sturen_medicatievoorschrift"
+                             formName="sturen_voorschrift"
+                             transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95"
+                             transactionEffectiveDate="2015-12-01T10:32:15"
+                             versionDate=""
+                             prefix="mp-"
+                             language="nl-NL"
+                             title="testbericht ADA conversie"
+                             id="cd1badfb-2076-4c6f-b08e-bddbc7972340">
+   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
+      <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
+         <voornamen value="Joris" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
+         <initialen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801" value="J."/>
+         <naamgebruik value="1"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"
+                      code="NL1"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                      displayName="Eigen geslachtsnaam"/>
+         <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804">
+            <achternaam value="Hansman"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
+         </geslachtsnaam>
+      </naamgegevens>
+      <patient_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"
+                                   root="2.16.840.1.113883.2.4.6.3"
+                                   value="012345672"/>
+      <geboortedatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830"
+                     value="1984-05-12"/>
+      <geslacht value="2"
+                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831"
+                code="M"
+                codeSystem="2.16.840.1.113883.5.1"
+                displayName="Man"/>
+      <meerling_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832" value="false"/>
+   </patient>
+   <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
+      <identificatie value="MBH_VS_01b_ST"
+                     root="1.2.3.999"
+                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+      <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
+         <gebruiksperiode_eind value="2016-06-30T00:00:00" conceptId="1.2.3.4.5.12345.9580.2"/>
+         <identificatie value="MBH_VS_01b_ST#MA_01"
+                        root="1.2.3.999"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
+         <afspraakdatum value="2016-06-13T08:00:00"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
+         <geannuleerd_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23033"/>
+         <stoptype conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19954"
+                   code="2"
+                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                   displayName="Definitief staken"/>
+         <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
+            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
+               <zorgverlener_identificatie_nummer value="006797896"
+                                                  root="2.16.528.1.1007.3.1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"/>
+               <zorgverlener_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837">
+                  <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838">
+                     <initialen value="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19840"/>
+                     <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843">
+                        <voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19844"/>
+                        <achternaam value="Beek" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845"/>
+                     </geslachtsnaam>
+                  </naamgegevens>
+               </zorgverlener_naam>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"
+                            code="01.016"
+                            codeSystem="2.16.840.1.113883.2.4.15.111"
+                            displayName="Internist"
+                            codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19872">
+                     <zorgaanbieder_identificatie_nummer value="URAnummer"
+                                                         root="1.2.3.4"
+                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19873"/>
+                     <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19874"
+                                       value="Ziekenhuis zus en zo"/>
+                  </zorgaanbieder>
+               </zorgaanbieder>
+            </zorgverlener>
+         </voorschrijver>
+         <reden_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094"
+                         code="5"
+                         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
+                         displayName="Geen of onvoldoende effect"
+                         codeSystemName="Medicatieafspraak reden"/>
+         <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925">
+            <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603">
+               <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
+                             code="13659847"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             displayName="NUTRIDRINK AARDBEI NR16642"
+                             codeSystemName="G-Standaard Artikel"/>
+            </product>
+         </afgesproken_geneesmiddel>
+         <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
+            <omschrijving value="Vanaf 30 juni gebruik staken."
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"/>
+            <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
+                            code="9"
+                            codeSystem="2.16.840.1.113883.2.4.4.9"
+                            displayName="oraal"
+                            codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+         </gebruiksinstructie>
+      </medicatieafspraak>
+      <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963">
+         <identificatie value="ABC123_VV1"
+                        root="1.2.3.999"
+                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
+         <datum value="2018-03-27T00:00:00"
+                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"/>
+         <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
+            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
+               <zorgverlener_identificatie_nummer value="234234999"
+                                                  root="2.16.528.1.1007.3.1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
+               <zorgverlener_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
+                  <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
+                     <voornamen value="asdf adsf "
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
+                     <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130">
+                        <voorvoegsels value="vd " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22131"/>
+                        <achternaam value="asdf sadf aa sdf"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
+                     </geslachtsnaam>
+                  </naamgegevens>
+               </zorgverlener_naam>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
+                            code="3434"
+                            codeSystem="2.16.840.1.113883.2.4.15.111"
+                            displayName="dokter"/>
+               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22159">
+                     <zorgaanbieder_identificatie_nummer value="32234234"
+                                                         root="1.2.3.999"
+                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
+                     <organisatie_naam value="zorginstelling ABC"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
+                  </zorgaanbieder>
+               </zorgaanbieder>
+            </zorgverlener>
+         </auteur>
+         <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964">
+            <aantal value="28" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
+            <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
+                     code="245"
+                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                     displayName="stuk"/>
+         </te_verstrekken_hoeveelheid>
+         <aantal_herhalingen value="0" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22120"/>
+         <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
+            <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
+               <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
+                             code="2341234324"
+                             displayName="roze pil dus"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"/>
+            </product>
+         </te_verstrekken_geneesmiddel>
+         <verbruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20062">
+            <duur value="14"
+                  unit="dag"
+                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20065"/>
+         </verbruiksperiode>
+         <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
+               <zorgaanbieder_identificatie_nummer value="1123"
+                                                   root="1.2.3.999"
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
+               <organisatie_naam value="apotheek je weet wel"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
+            </zorgaanbieder>
+         </beoogd_verstrekker>
+         <aanvullende_wensen value="2"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22759"
+                             code="2"
+                             codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"
+                             displayName="Niet in GDS"/>
+         <toelichting value="vrije tekst toelichting"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22274"/>
+         <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286">
+            <identificatie value="ABC123MA1"
+                           root="1.2.3.999"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
+         </relatie_naar_medicatieafspraak>
+      </verstrekkingsverzoek>
+   </medicamenteuze_behandeling>
+</sturen_medicatievoorschrift>-->

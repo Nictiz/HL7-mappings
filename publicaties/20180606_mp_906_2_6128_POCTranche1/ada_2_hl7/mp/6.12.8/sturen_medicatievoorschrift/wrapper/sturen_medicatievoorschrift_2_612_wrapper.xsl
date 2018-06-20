@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="input_xml_wrapper" select="'input_wrapper.xml'"/>
     <xsl:variable name="input_xml_payload_doc" select="document($input_xml_payload)"/>
     <xsl:variable name="input_xml_wrapper_doc" select="document($input_xml_wrapper)"/>
-    <xsl:include href="../payload/sturen_medicatievoorschrift_9_to_612.xsl"/>
+    <xsl:include href="../payload/sturen_medicatievoorschrift_2_612.xsl"/>
 
     <!-- template MakeWrapper can be called from outside this template, if needed -->
     <xsl:template name="MakeWrapper">
@@ -174,7 +174,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="makeDevice">
         <device classCode="DEV" determinerCode="INSTANCE">
             <xsl:for-each select="./id">
-                <id extension="{./@value}" root="{./@root}"/>
+                <id extension="{./@value}" root="{./@root}"/>                
             </xsl:for-each>
             <xsl:for-each select="./name">
                 <name>
@@ -184,9 +184,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </device>
     </xsl:template>
     <xsl:template name="makeId">
-        <id extension="{./@value}" root="{./@root}"/>
+        <id extension="{./@value}" root="{./@root}"/>        
     </xsl:template>
     <xsl:template name="makeWrapperCode">
-        <code code="{./@code}" codeSystem="{./@codeSystem}" displayName="{./@displayName}"/>
+        <code code="{./@code}" codeSystem="{./@codeSystem}" displayName="{./@displayName}"/>        
     </xsl:template>
 </xsl:stylesheet>

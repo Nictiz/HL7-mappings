@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-    <xsl:include href="../../../mp_include.xsl"/>
+    <xsl:include href="../../../hl7_2_ada_mp_include.xsl"/>
     <!-- Dit is een conversie van MP 9.0.6 naar ADA 9.0 voorschrift bericht -->
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     
@@ -23,13 +23,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
 
 <!-- if this xslt is used stand alone the template below could be used. -->
-<!--    <xsl:template match="/">
+    <xsl:template match="/">
         <xsl:variable name="patient-recordTarget" select="//hl7:recordTarget/hl7:patientRole"/>
         <xsl:call-template name="Voorschrift-90-ADA">
             <xsl:with-param name="patient" select="$patient-recordTarget"/>
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
         </xsl:call-template>
-    </xsl:template>-->
+    </xsl:template>
 
     <xsl:template name="Voorschrift-90-ADA">
         <xsl:param name="patient" select="//hl7:recordTarget/hl7:patientRole"/>
