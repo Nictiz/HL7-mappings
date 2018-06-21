@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
-    <xsl:output method="xml" encoding="UTF-8"/>
+    <xsl:output method="text" encoding="UTF-16"/>
 
     <!--<xsl:param name="communityName" select="'kz-voorschrift_2.10.3_zib'"/>
     <xsl:param name="otherStandard" select="'Ketenzorg 2.10.3 Voorschrift'"/>
@@ -29,8 +29,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="ada-view-shortname">uitwisselen_medicatiegegevens</xsl:param>
     <xsl:param name="otherStandard">MP-6.12 Verstrekking</xsl:param>
     <xsl:param name="otherStandardURL">https://www.nictiz.nl/Paginas/Informatiestandaard-medicatieveiligheid.aspx</xsl:param>
-    <xsl:param name="dataset-name">MP-9 dataset (zib)</xsl:param>
+    <xsl:param name="dataset-name">MP-9 dataset (beschikbaarstellen medicatiegegevens: patiënt, TA, VS)</xsl:param>
     <xsl:param name="concept-2b-omitted" as="xs:string*">
+        <xsl:value-of select="'patient'"/>
         <xsl:value-of select="'medicatieafspraak'"/>
         <xsl:value-of select="'verstrekkingsverzoek'"/>
         <xsl:value-of select="'medicatie_gebruik'"/>
@@ -43,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:variable name="concept" select="ada/applications//view[implementation/@shortName = $ada-view-shortname]/dataset/concept"/>
-        <xsl:for-each select="$concept">
+        <xsl:for-each select="$concept[not(@shortName=$concept-2b-omitted)]">
             <xsl:choose>
                 <xsl:when test="$mapDirection = 'other2zib'">
                     <xsl:call-template name="makeTableOther2ZIB">
