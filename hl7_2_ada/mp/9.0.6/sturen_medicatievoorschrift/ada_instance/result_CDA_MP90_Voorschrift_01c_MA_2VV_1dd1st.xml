@@ -11,8 +11,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2018-06-06T15:28:41.607+02:00"
-         last-update-date="2018-06-06T15:28:41.607+02:00"/>
+         creation-date="2018-06-21T17:15:28.447+02:00"
+         last-update-date="2018-06-21T17:15:28.447+02:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp9"
                                    shortName="sturen_medicatievoorschrift"
@@ -209,6 +209,9 @@
                                  unit="week"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23247"/>
                      <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250"/>
+                        </keerdosis>
                         <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
                            <dagdeel code="2546009"
                                     displayName="'s nachts"
@@ -230,16 +233,6 @@
                                     originalText="gasd ld asdlkjlja sd jdlj"/>
                            </criterium>
                         </zo_nodig>
-                        <toedieningssnelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23275">
-                           <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23276">
-                              <vaste_waarde value="0.5" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23278"/>
-                           </waarde>
-                           <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23280"
-                                    code="233"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    displayName="milliliter"/>
-                           <tijdseenheid unit="minuut" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23281"/>
-                        </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
@@ -716,9 +709,12 @@
                                  <hl7nl:high value="1970010118"/>
                               </hl7nl:phase>
                            </effectiveTime>
-                           <rateQuantity>
-                              <center value="0.5" unit="ml/min"/>
-                           </rateQuantity>
+                           <doseQuantity value="1" unit="1">
+                              <translation value="1"
+                                           code="245"
+                                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                           displayName="stuk"/>
+                           </doseQuantity>
                            <consumable xsi:nil="true"/>
                            <precondition>
                               <criterion classCode="OBS">

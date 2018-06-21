@@ -79,7 +79,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    </xsl:template>
    <xsl:template name="mp9-doseerinstructie-from-mp612-cyclisch">
       <xsl:param name="current-hl7-mar"/>
-      <xsl:param name="current-volgnr" select="1"/>
       <xsl:param name="hl7-pivl"/>
       <xsl:param name="xsd-ada"/>
       <xsl:param name="xsd-gebruiksinstructie"/>
@@ -107,9 +106,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
                <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
                <doseerinstructie conceptId="{$xsd-doseerinstructie/xs:attribute[@name='conceptId']/@fixed}">
-                  <xsl:variable name="volgnummer" select="$current-volgnr"/>
-                  <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'volgnummer']/@type"/>
-                  <volgnummer value="{$volgnummer}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"> </volgnummer>
+                  <!-- volgnummer niet opnemen, is altijd 1 voor deze conversie -->
                   <!-- doseerduur cyclisch schema -->
                   <xsl:for-each select="./hl7:phase/hl7:width">
                      <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'doseerduur']/@type"/>
@@ -137,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                      </toedieningsschema>
                      <!-- zo nodig -->
-                     <xsl:if test="./hl7:precondition/hl7:observationEventCriterion/hl7:code |./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity">
+                     <xsl:if test="./hl7:precondition/hl7:observationEventCriterion/hl7:code | ./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity">
                         <xsl:call-template name="mp9-zonodig">
                            <xsl:with-param name="max-dose" select="./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity"/>
                            <xsl:with-param name="zonodig-code" select="./hl7:precondition/hl7:observationEventCriterion/hl7:code"/>
@@ -173,10 +170,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
          <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
          <doseerinstructie conceptId="{$xsd-doseerinstructie/xs:attribute[@name='conceptId']/@fixed}">
-            <!-- volgnummer -->
-            <xsl:variable name="volgnummer" select="position()"/>
-            <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'volgnummer']/@type"/>
-            <volgnummer value="{$volgnummer}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"> </volgnummer>
+            <!-- volgnummer niet opnemen, is altijd 1 voor deze conversie -->
             <!-- dosering, in 6.12 kan er maar één zijn per mar dus per doseerinstructie -->
             <!-- in MP 9 mag dosering weer herhalen binnen een doseerinstructie, maar dit kan niet met 6.12 -->
             <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
@@ -216,10 +210,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
          <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
          <doseerinstructie conceptId="{$xsd-doseerinstructie/xs:attribute[@name='conceptId']/@fixed}">
-            <!-- volgnummer -->
-            <xsl:variable name="volgnummer" select="position()"/>
-            <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'volgnummer']/@type"/>
-            <volgnummer value="{$volgnummer}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"> </volgnummer>
+            <!-- volgnummer niet opnemen, is altijd 1 voor deze conversie -->
             <!-- dosering, in 6.12 kan er maar één zijn per mar dus per doseerinstructie -->
             <!-- in MP 9 mag dosering weer herhalen binnen een doseerinstructie, maar dit kan niet met 6.12 -->
             <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
@@ -278,7 +269,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                      </xsl:choose>
                   </xsl:for-each>
                </toedieningsschema>
-               <xsl:if test="./hl7:precondition/hl7:observationEventCriterion/hl7:code |./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity">
+               <xsl:if test="./hl7:precondition/hl7:observationEventCriterion/hl7:code | ./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity">
                   <xsl:call-template name="mp9-zonodig">
                      <xsl:with-param name="max-dose" select="./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity"/>
                      <xsl:with-param name="zonodig-code" select="./hl7:precondition/hl7:observationEventCriterion/hl7:code"/>
@@ -318,10 +309,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
          <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
          <doseerinstructie conceptId="{$xsd-doseerinstructie/xs:attribute[@name='conceptId']/@fixed}">
-            <!-- volgnummer -->
-            <xsl:variable name="volgnummer" select="position()"/>
-            <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'volgnummer']/@type"/>
-            <volgnummer value="{$volgnummer}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"> </volgnummer>
+            <!-- volgnummer niet opnemen, is altijd 1 voor deze conversie -->
             <!-- dosering, in 6.12 kan er maar één zijn per mar dus per doseerinstructie -->
             <!-- in MP 9 mag dosering weer herhalen binnen een doseerinstructie, maar dit kan niet met 6.12 -->
             <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
@@ -343,9 +331,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   </xsl:call-template>
                </toedieningsschema>
                <!-- eventueel een zo nodig criterium -->
-               <xsl:if test="./hl7:precondition/hl7:observationEventCriterion/hl7:code |./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity">
+               <xsl:if test="./hl7:precondition/hl7:observationEventCriterion/hl7:code | ./hl7:maxDoseQuantity">
                   <xsl:call-template name="mp9-zonodig">
-                     <xsl:with-param name="max-dose" select="./ancestor::hl7:medicationAdministrationRequest/hl7:maxDoseQuantity"/>
+                     <xsl:with-param name="max-dose" select="./hl7:maxDoseQuantity"/>
                      <xsl:with-param name="zonodig-code" select="./hl7:precondition/hl7:observationEventCriterion/hl7:code"/>
                      <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                      <xsl:with-param name="xsd-dosering" select="$xsd-dosering"/>
@@ -449,7 +437,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                </xsl:call-template>
             </xsl:when>
             <!-- frequentie, in 1 mar in 1 PIVL_TS (zonder phase) -->
-            <xsl:when test="count($mar-sorted) = 1 and not($hl7-pivl[hl7:phase]) and count($hl7-pivl[not(hl7:phase)]) = 1">
+            <xsl:when test="count($mar-sorted) = 1 and not($hl7-pivl[hl7:phase]) and (count($hl7-pivl[not(hl7:phase)]) = 1 or not($hl7-pivl))">
                <xsl:call-template name="mp9-doseerinstructie-from-mp612-freq">
                   <xsl:with-param name="hl7-pivl" select="$hl7-pivl"/>
                   <xsl:with-param name="current-hl7-mar" select="$mar-sorted"/>
@@ -487,7 +475,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <!-- de rest (nog) niet gestructureerd opleveren -->
                <xsl:comment>Non-supported (complex) dosing scheduled encountered in 6.12. No structured output, please refer to textual description.</xsl:comment>
                <!-- maar wel de maximale dosering, indien aanwezig in 1 MAR-->
-               <xsl:if test="count($mar-sorted) = 1 and $mar-sorted/hl7:maxDoseQuantity[.//@value]">                  
+               <xsl:if test="count($mar-sorted) = 1 and $mar-sorted/hl7:maxDoseQuantity[.//@value]">
                   <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
                   <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
                   <doseerinstructie conceptId="{$xsd-doseerinstructie/xs:attribute[@name='conceptId']/@fixed}">
@@ -502,7 +490,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                      </dosering>
                   </doseerinstructie>
                </xsl:if>
-               
+
             </xsl:otherwise>
          </xsl:choose>
       </gebruiksinstructie>
@@ -896,36 +884,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       <xsl:param name="xsd-dosering"/>
       <xsl:comment>mp9-keerdosis</xsl:comment>
       <!-- keerdosis -->
-      <xsl:for-each select="$hl7-doseQuantity">
-         <xsl:variable name="xsd-keerdosis-complexType" select="$xsd-dosering//xs:element[@name = 'keerdosis']/@type"/>
-         <xsl:variable name="xsd-keerdosis" select="$xsd-ada//xs:complexType[@name = $xsd-keerdosis-complexType]"/>
-         <keerdosis conceptId="{$xsd-keerdosis/xs:attribute[@name='conceptId']/@fixed}">
-            <xsl:variable name="xsd-aantal-complexType" select="$xsd-keerdosis//xs:element[@name = 'aantal']/@type"/>
-            <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
-            <aantal conceptId="{$xsd-aantal/xs:attribute[@name='conceptId']/@fixed}">
-               <xsl:for-each select="./hl7:low/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
-                  <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'min']/@type"/>
-                  <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+      <!-- only output if all units are the same -->
+      <xsl:if test="count(distinct-values($hl7-doseQuantity//hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']/@code)) = 1">
+         <xsl:for-each select="$hl7-doseQuantity">
+            <xsl:variable name="xsd-keerdosis-complexType" select="$xsd-dosering//xs:element[@name = 'keerdosis']/@type"/>
+            <xsl:variable name="xsd-keerdosis" select="$xsd-ada//xs:complexType[@name = $xsd-keerdosis-complexType]"/>
+            <keerdosis conceptId="{$xsd-keerdosis/xs:attribute[@name='conceptId']/@fixed}">
+               <xsl:variable name="xsd-aantal-complexType" select="$xsd-keerdosis//xs:element[@name = 'aantal']/@type"/>
+               <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
+               <aantal conceptId="{$xsd-aantal/xs:attribute[@name='conceptId']/@fixed}">
+                  <xsl:for-each select="./hl7:low/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
+                     <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'min']/@type"/>
+                     <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                  </xsl:for-each>
+                  <xsl:for-each select="./hl7:center/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2'] | ./hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
+                     <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
+                     <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                  </xsl:for-each>
+                  <xsl:for-each select="./hl7:high/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
+                     <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'max']/@type"/>
+                     <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                  </xsl:for-each>
+               </aantal>
+                <xsl:for-each select="(.//hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2'])[1]">
+                  <xsl:variable name="xsd-complexType" select="$xsd-keerdosis//xs:element[@name = 'eenheid']/@type"/>
+                  <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                     <xsl:call-template name="mp9-code-attribs">
+                        <xsl:with-param name="current-hl7-code" select="."/>
+                     </xsl:call-template>
+                  </eenheid>
                </xsl:for-each>
-               <xsl:for-each select="./hl7:center/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
-                  <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
-                  <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-               </xsl:for-each>
-               <xsl:for-each select="./hl7:high/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2']">
-                  <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'max']/@type"/>
-                  <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-               </xsl:for-each>
-            </aantal>
-            <xsl:for-each select="(./*/hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2'])[1]">
-               <xsl:variable name="xsd-complexType" select="$xsd-keerdosis//xs:element[@name = 'eenheid']/@type"/>
-               <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                  <xsl:call-template name="mp9-code-attribs">
-                     <xsl:with-param name="current-hl7-code" select="."/>
-                  </xsl:call-template>
-               </eenheid>
-            </xsl:for-each>
-         </keerdosis>
-      </xsl:for-each>
+            </keerdosis>
+         </xsl:for-each>
+      </xsl:if>
    </xsl:template>
    <xsl:template name="mp9-naamgebruik">
       <xsl:param name="hl7-name"/>
@@ -1333,6 +1324,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   </eenheid>
                </verstrekte_hoeveelheid>
             </xsl:for-each>
+            <!-- verstrekt_geneesmiddel -->
             <xsl:variable name="xsd-verstrekt_geneesmiddel-complexType" select="$xsd-verstrekking//xs:element[@name = 'verstrekt_geneesmiddel']/@type"/>
             <xsl:variable name="xsd-verstrekt_geneesmiddel" select="$xsd-ada//xs:complexType[@name = $xsd-verstrekt_geneesmiddel-complexType]"/>
             <xsl:for-each select=".//hl7:product/hl7:dispensedMedication/hl7:MedicationKind">
@@ -1344,11 +1336,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   </xsl:call-template>
                </verstrekt_geneesmiddel>
             </xsl:for-each>
+            <!-- verbruiksduur -->
             <xsl:for-each select="./hl7:expectedUseTime/hl7:width">
                <xsl:variable name="xsd-complexType" select="$xsd-verstrekking//xs:element[@name = 'verbruiksduur']/@type"/>
                <verbruiksduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
             </xsl:for-each>
-            <!-- afleverlocatie, distributievorm, aanvullende_informatie, toelichting, relatie_naar_verstrekkingsverzoek 
+            <!-- afleverlocatie -->
+            <!-- not defined in mp 6.12 verstrekking, no output -->
+            <!-- TODO, mag wel volgens schema, kan wel output maken -->
+            
+            <!-- distributievorm, aanvullende_informatie, toelichting, relatie_naar_verstrekkingsverzoek 
                not in mp 6.12 verstrekking, no output -->
          </verstrekking>
       </xsl:for-each>
@@ -1456,7 +1453,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   </xsl:for-each>
                </maximale_dosering>
             </xsl:for-each>
-         </zo_nodig>        
+         </zo_nodig>
       </xsl:if>
    </xsl:template>
    <xsl:template name="mp9-zorgaanbieder">
