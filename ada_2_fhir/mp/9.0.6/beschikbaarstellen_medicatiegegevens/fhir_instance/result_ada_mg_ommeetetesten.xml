@@ -15,7 +15,7 @@
             </meta>
             <contained>
                <Observation>
-                  <id value="d3e144"/>
+                  <id value="d3e146"/>
                   <meta>
                      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
                   </meta>
@@ -52,7 +52,7 @@
             </contained>
             <contained>
                <Observation>
-                  <id value="d3e151"/>
+                  <id value="d3e153"/>
                   <meta>
                      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
                   </meta>
@@ -86,6 +86,51 @@
                      <code value="kg"/>
                   </valueQuantity>
                </Observation>
+            </contained>
+            <!--voorschrijver-->
+            <contained><!-- zorgverlener -->
+               <Practitioner>
+                  <id value="d3e60"/>
+                  <!--zorgverlener_identificatie_nummer-->
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="006797896"/>
+                  </identifier>
+                  <!--naamgegevens-->
+                  <name>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                        <valueString value="van"/>
+                     </extension>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                        <valueString value="Beek"/>
+                     </extension>
+                     <given value="Johan">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                           <valueCode value="BR"/>
+                        </extension>
+                     </given>
+                     <given value="J.">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                           <valueCode value="IN"/>
+                        </extension>
+                     </given>
+                  </name>
+               </Practitioner>
+            </contained>
+            <!--voorschrijver / zorgaanbieder-->
+            <contained>
+               <Organization>
+                  <id value="d3e85"/>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="00765332"/>
+                  </identifier>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                     <value value="01028432"/>
+                  </identifier>
+                  <name value="Huisartspraktijk Van Beek"/>
+               </Organization>
             </contained>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
@@ -126,17 +171,36 @@
                </identifier>
                <display value="Antje de Vries"/>
             </subject>
+            <!--lichaamslengte-->
             <supportingInformation>
-               <reference value="#d3e151"/>
+               <reference value="#d3e153"/>
                <display value="Lengte. 1.67 m. Gemeten: 29 MAY, 2018 12:34"/>
             </supportingInformation>
+            <!--lichaamsgewicht-->
             <supportingInformation>
-               <reference value="#d3e144"/>
+               <reference value="#d3e146"/>
                <display value="Gewicht. 45 kg. Gemeten: 19 JUN, 2018 00:24"/>
             </supportingInformation>
             <authoredOn value="2016-09-01T09:10:58"/>
-            <!-- Responsible dispensing pharmacy -->
+            <requester>
+               <agent>
+                  <reference value="d3e60"/>
+                  <display value="Johan J. van Beek Huisartspraktijk Van Beek"/>
+               </agent>
+               <onBehalfOf>
+                  <reference value="d3e85"/>
+                  <display value="Huisartspraktijk Van Beek"/>
+               </onBehalfOf>
+            </requester>
             <!--reden afspraak-->
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="266709005"/>
+                  <display value="Starten medicamenteuze behandeling"/>
+               </coding>
+            </reasonCode>
+            <!-- Responsible dispensing pharmacy -->
             <!--Toelichting-->
             <dosageInstruction><!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
                <text value="Gedurende 1 week, tweemaal daags 1 tablet"/>

@@ -30,6 +30,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       </extension>
    </xsl:template>
    <xd:doc>
+      <xd:desc/>
+      <xd:param name="ada-zorgaanbieder"/>
+      <xd:param name="organization-id"/>
+   </xd:doc>
+   <xsl:template name="nl-core-organization-2.0">
+      <xsl:param name="ada-zorgaanbieder"/>
+      <xsl:param name="organization-id"/>
+      <xsl:for-each select="$ada-zorgaanbieder">
+         <Organization>
+            <id value="{$organization-id}"/>
+            <xsl:for-each select="./zorgaanbieder_identificatie_nummer">
+               <identifier>
+                  <xsl:call-template name="id-to-Identifier">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </identifier>
+            </xsl:for-each>
+            <!-- todo organisatietype / afdelingspecialisme -->
+            <xsl:for-each select="./organisatie_naam">
+               <name value="{./@value}"/>
+            </xsl:for-each>
+         </Organization>
+      </xsl:for-each>
+   </xsl:template>
+   <xd:doc>
       <xd:desc>Helper template for patient as subject reference</xd:desc>
       <xd:param name="patient"/>
    </xd:doc>
@@ -93,6 +118,122 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                </actor>
             </xsl:for-each>
          </performer>
+      </xsl:for-each>
+
+   </xsl:template>
+   <xd:doc>
+      <xd:desc/>
+      <xd:param name="ada-naamgegevens"/>
+      <xd:param name="unstructured-name"/>
+   </xd:doc>
+   <xsl:template name="nl-core-humanname" as="element()*">
+      <xsl:param name="ada-naamgegevens" as="element()*"/>
+      <xsl:param name="unstructured-name" as="xs:string?"/>
+      <xsl:for-each select="$ada-naamgegevens[.//@value]">
+         <name>
+            <xsl:for-each select="./naamgebruik[@code]">
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="{./@code}"/>
+               </extension>
+            </xsl:for-each>
+            <!-- unstructured-name, not supported in zib datamodel, may be customized per transaction, therefore parameterized in this template -->
+            <xsl:for-each select="$unstructured-name">
+               <text>
+                  <xsl:value-of select="."/>
+               </text>
+            </xsl:for-each>
+            <xsl:for-each select="./geslachtsnaam/voorvoegsels[@value]">
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                  <valueString value="{normalize-space(./@value)}"/>
+               </extension>
+            </xsl:for-each>
+            <xsl:for-each select="./geslachtsnaam/achternaam[@value]">
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                  <valueString value="{normalize-space(./@value)}"/>
+               </extension>
+            </xsl:for-each>
+            <xsl:for-each select="./geslachtsnaam_partner/voorvoegsels[@value]">
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                  <valueString value="{normalize-space(./@value)}"/>
+               </extension>
+            </xsl:for-each>
+            <xsl:for-each select="./geslachtsnaam_partner/achternaam[@value]">
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                  <valueString value="{normalize-space(./@value)}"/>
+               </extension>
+            </xsl:for-each>
+            <xsl:for-each select="./voornamen">
+               <given value="{normalize-space(./@value)}">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </xsl:for-each>
+            <xsl:for-each select="./initialen">
+               <given value="{normalize-space(./@value)}">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </xsl:for-each>
+            <xsl:for-each select="./roepnaam">
+               <given value="{normalize-space(./@value)}">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </xsl:for-each>
+            <xsl:for-each select="prefix[not(tokenize(@qualifier, '\s') = 'VV')]">
+               <prefix value="{.}"/>
+            </xsl:for-each>
+            <xsl:for-each select="suffix">
+               <suffix value="{.}"/>
+            </xsl:for-each>
+            <xsl:if test="validTime">
+               <period>
+                  <!-- <xsl:call-template name="IVL_TS-to-Period">
+                     <xsl:with-param name="in" select="validTime"/>
+                  </xsl:call-template>
+            -->
+               </period>
+            </xsl:if>
+         </name>
+      </xsl:for-each>
+   </xsl:template>
+
+   <xd:doc>
+      <xd:desc/>
+      <xd:param name="ada-zorgverlener">The practitioner in ada format</xd:param>
+      <xd:param name="practioner-id">The FHIR resource id.</xd:param>
+      <xd:param name="patient"/>
+   </xd:doc>
+   <xsl:template name="nl-core-practitioner-2.0">
+      <xsl:param name="ada-zorgverlener" as="element()?"/>
+      <xsl:param name="practioner-id" as="xs:string?"/>
+      <xsl:param name="patient"/>
+      <!-- zorgverlener -->
+      <xsl:comment> zorgverlener </xsl:comment>
+      <xsl:for-each select="$ada-zorgverlener">
+         <Practitioner>
+            <id value="{$practioner-id}"/>
+            <!-- zorgverlener_identificatie_nummer -->
+            <xsl:for-each select="./zorgverlener_identificatie_nummer">
+               <xsl:comment>zorgverlener_identificatie_nummer</xsl:comment>
+               <identifier>
+                  <xsl:call-template name="id-to-Identifier">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </identifier>
+            </xsl:for-each>
+            <!-- naamgegevens -->
+            <xsl:for-each select="./zorgverlener_naam/naamgegevens">
+               <xsl:comment>naamgegevens</xsl:comment>
+               <xsl:call-template name="nl-core-humanname">
+                  <xsl:with-param name="ada-naamgegevens" select="."/>
+               </xsl:call-template>
+            </xsl:for-each>
+            <!-- TODO specialisme -->
+         </Practitioner>
       </xsl:for-each>
 
    </xsl:template>
@@ -510,21 +651,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <valueQuantity>
                   <!-- ada has cm or m, FHIR only allows cm -->
                   <xsl:choose>
-                     <xsl:when test="./@unit='m'">
+                     <xsl:when test="./@unit = 'm'">
                         <value value="{xs:double(./@value)*100}"/>
                         <unit value="cm"/>
-                        <code value="cm"/>                        
+                        <code value="cm"/>
                      </xsl:when>
-                     <xsl:otherwise>    
+                     <xsl:otherwise>
                         <value value="{./@value}"/>
                         <unit value="{./@unit}"/>
-                        <code value="{nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/> 
+                        <code value="{nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
                      </xsl:otherwise>
                   </xsl:choose>
-                   </valueQuantity>
-            </xsl:for-each>            
+               </valueQuantity>
+            </xsl:for-each>
          </Observation>
-      </xsl:for-each>      
+      </xsl:for-each>
    </xsl:template>
    <xd:doc>
       <xd:desc/>
@@ -776,6 +917,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   </xsl:call-template>
                </contained>
             </xsl:for-each>
+            <!-- aanvullende informatie in contained resource ??? of in extension, staat nu twee keer gemapt in het profiel... TODO-->
+            <!-- voorschrijver in contained resource -->
+            <xsl:variable name="voorschrijver" select="./voorschrijver/zorgverlener"/>
+            <xsl:variable name="voorschrijver-id" select="generate-id($voorschrijver)"/>
+            <xsl:for-each select="$voorschrijver[.//@value]">
+               <xsl:comment>voorschrijver</xsl:comment>
+               <contained>
+                  <xsl:call-template name="nl-core-practitioner-2.0">
+                     <xsl:with-param name="ada-zorgverlener" select="."/>
+                     <xsl:with-param name="practioner-id" select="$voorschrijver-id"/>
+                     <xsl:with-param name="patient" select="$patient"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each>
+            <!-- voorschrijver/zorgaanbieder in contained resource -->
+            <xsl:variable name="voorschrijver-za" select="$voorschrijver/zorgaanbieder/zorgaanbieder"/>
+            <xsl:variable name="voorschrijver-za-id" select="generate-id($voorschrijver-za)"/>
+            <xsl:for-each select="$voorschrijver-za[.//@value]">
+               <xsl:comment>voorschrijver / zorgaanbieder</xsl:comment>
+               <contained>
+                  <xsl:call-template name="nl-core-organization-2.0">
+                     <xsl:with-param name="ada-zorgaanbieder" select="."/>
+                     <xsl:with-param name="organization-id" select="$voorschrijver-za-id"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each>
+
             <!-- gebruiksperiode_start /eind -->
             <xsl:for-each select=".[gebruiksperiode_start | gebruiksperiode_eind]">
                <xsl:call-template name="zib-Medication-Period-Of-Use-2.0">
@@ -841,6 +1009,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   <display value="Prescription (procedure)"/>
                </coding>
             </category>
+            <!-- geneesmiddel -->
             <xsl:for-each select="$product/product_code">
                <xsl:choose>
                   <xsl:when test=".[@codeSystem = $oidNullFlavor]">
@@ -862,17 +1031,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="patient-subject-reference">
                <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
-            <!-- aanvullende informatie -->
+            <!-- aanvullende informatie ??? TODO, zie bij contained resource en extension...-->
             <!-- lichaamslengte -->
             <xsl:for-each select="./lichaamslengte[.//@value]">
+               <xsl:comment>lichaamslengte</xsl:comment>
                <supportingInformation>
                   <reference value="#{$gewicht-id}"/>
                   <display value="{concat('Lengte. ',./lengte_waarde/@value, ' ', ./lengte_waarde/@unit,'. Gemeten: ', format-dateTime(./lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]'))}"/>
                </supportingInformation>
             </xsl:for-each>
-            
             <!-- lichaamsgewicht -->
             <xsl:for-each select="./lichaamsgewicht[.//@value]">
+               <xsl:comment>lichaamsgewicht</xsl:comment>
                <supportingInformation>
                   <reference value="#{$lengte-id}"/>
                   <display value="{concat('Gewicht. ',./gewicht_waarde/@value, ' ', ./gewicht_waarde/@unit,'. Gemeten: ', format-dateTime(./gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]'))}"/>
@@ -882,7 +1052,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="./afspraakdatum[@value]">
                <authoredOn value="{./@value}"/>
             </xsl:for-each>
-
+            <!-- voorschrijver -->
+            <xsl:for-each select="./voorschrijver">
+               <requester>
+                  <xsl:for-each select="./zorgverlener">
+                     <agent>
+                        <reference value="{$voorschrijver-id}"/>
+                        <display value="{normalize-space(string-join(.//(naamgegevens|organisatie_naam)//@value, ' '))}"/>
+                     </agent>
+                     <xsl:for-each select="./zorgaanbieder/zorgaanbieder">
+                        <onBehalfOf>
+                           <reference value="{$voorschrijver-za-id}"/>
+                           <display value="{./organisatie_naam/@value}"/>
+                        </onBehalfOf>
+                     </xsl:for-each>
+                  </xsl:for-each>
+               </requester>
+            </xsl:for-each>
+            <!-- reden afspraak -->
+            <xsl:for-each select="./reden_afspraak">
+               <xsl:comment>reden afspraak</xsl:comment>
+               <reasonCode>
+                  <xsl:call-template name="code-to-CodeableConcept">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </reasonCode>
+            </xsl:for-each>
+            <!-- reden van voorschrijven -->
+            <!-- TODO 20180622 - hier verder -->
             <!-- relatie naar medicatieafspraak -->
             <xsl:for-each select="relatie_naar_medicatieafspraak/identificatie[not(@root = $oidNullFlavor)]">
                <supportingInformation>
@@ -897,14 +1094,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="verstrekker-performer">
                <xsl:with-param name="verstrekker" select="./verstrekker"/>
             </xsl:call-template>
-            <!-- reden afspraak -->
-            <xsl:for-each select="./reden_afspraak">
-               <xsl:comment>reden afspraak</xsl:comment>
-               <!-- TODO reasonCode -->
-               <!--<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-ReasonForDispense">
-                  <valueString value="{./@value}"/>
-               </extension>-->
-            </xsl:for-each>
             <!-- toelichting -->
             <xsl:comment>Toelichting</xsl:comment>
             <xsl:for-each select="./toelichting[@value]">
