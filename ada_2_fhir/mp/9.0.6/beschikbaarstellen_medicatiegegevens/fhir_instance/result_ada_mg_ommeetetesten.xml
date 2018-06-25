@@ -13,9 +13,10 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
+            <!--lichaamslengte-->
             <contained>
                <Observation>
-                  <id value="d3e146"/>
+                  <id value="d3e154"/>
                   <meta>
                      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
                   </meta>
@@ -50,9 +51,10 @@
                   </valueQuantity>
                </Observation>
             </contained>
+            <!--lichaamsgewicht-->
             <contained>
                <Observation>
-                  <id value="d3e153"/>
+                  <id value="d3e161"/>
                   <meta>
                      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
                   </meta>
@@ -132,6 +134,27 @@
                   <name value="Huisartspraktijk Van Beek"/>
                </Organization>
             </contained>
+            <!--reden van voorschrijven-->
+            <contained>
+               <Condition>
+                  <clinicalStatus value="active"/>
+                  <code>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                        <valueCode value="OTH"/>
+                     </extension>
+                     <text value="Buikpijn"/>
+                  </code>
+                  <!-- Patient -->
+                  <!-- Possibly not to be included for MedMij related interactions, because patient should be known in infra-context -->
+                  <subject>
+                     <identifier>
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value value="32456487"/>
+                     </identifier>
+                     <display value="Antje de Vries"/>
+                  </subject>
+               </Condition>
+            </contained>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
                   <value value="1"/>
@@ -148,13 +171,14 @@
                <value value="medbeh_VMA_001_MA01"/>
             </identifier>
             <intent value="order"/>
-            <category>
+            <category><!--medicatieafspraak-->
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="16076005"/>
                   <display value="Prescription (procedure)"/>
                </coding>
             </category>
+            <!--geneesmiddel-->
             <medicationCodeableConcept>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
@@ -173,15 +197,17 @@
             </subject>
             <!--lichaamslengte-->
             <supportingInformation>
-               <reference value="#d3e153"/>
+               <reference value="#d3e161"/>
                <display value="Lengte. 1.67 m. Gemeten: 29 MAY, 2018 12:34"/>
             </supportingInformation>
             <!--lichaamsgewicht-->
             <supportingInformation>
-               <reference value="#d3e146"/>
+               <reference value="#d3e154"/>
                <display value="Gewicht. 45 kg. Gemeten: 19 JUN, 2018 00:24"/>
             </supportingInformation>
+            <!--afspraakdatum-->
             <authoredOn value="2016-09-01T09:10:58"/>
+            <!--voorschrijver-->
             <requester>
                <agent>
                   <reference value="d3e60"/>
@@ -200,8 +226,16 @@
                   <display value="Starten medicamenteuze behandeling"/>
                </coding>
             </reasonCode>
+            <!--reden van voorschrijven-->
+            <reasonReference>
+               <reference value="d3e102"/>
+               <display value="overig Buikpijn"/>
+            </reasonReference>
+            <!--toelichting-->
+            <note>
+               <text value="dflkj lkasdj ;ljdas fjsdl;kj ;ldsaf"/>
+            </note>
             <!-- Responsible dispensing pharmacy -->
-            <!--Toelichting-->
             <dosageInstruction><!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
                <text value="Gedurende 1 week, tweemaal daags 1 tablet"/>
                <!--TODO: gebruiksinstructie/aanvullende_instructie should be defined one level higher, not per dosageInstruction-->

@@ -886,6 +886,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="product-id" select="generate-id($product)"/>
             <!-- 'magistraal' geneesmiddel in een contained resource -->
             <xsl:for-each select="$product[product_code/@codeSystem = $oidNullFlavor]">
+               <xsl:comment>'magistraal' geneesmiddel</xsl:comment>
                <contained>
                   <xsl:call-template name="zib-Product">
                      <xsl:with-param name="product" select="."/>
@@ -897,6 +898,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="lengte" select="./lichaamslengte"/>
             <xsl:variable name="lengte-id" select="generate-id($lengte)"/>
             <xsl:for-each select="$lengte[.//@value]">
+               <xsl:comment>lichaamslengte</xsl:comment>
                <contained>
                   <xsl:call-template name="zib-BodyHeight-2.0">
                      <xsl:with-param name="lengte" select="."/>
@@ -909,6 +911,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="gewicht" select="./lichaamsgewicht"/>
             <xsl:variable name="gewicht-id" select="generate-id($gewicht)"/>
             <xsl:for-each select="$gewicht[.//@value]">
+               <xsl:comment>lichaamsgewicht</xsl:comment>
                <contained>
                   <xsl:call-template name="zib-BodyWeight-2.0">
                      <xsl:with-param name="gewicht" select="."/>
@@ -943,7 +946,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   </xsl:call-template>
                </contained>
             </xsl:for-each>
-
+            <!-- reden van voorschrijven in contained resource -->
+            <xsl:variable name="reden-voorschrijven" select="./reden_van_voorschrijven/probleem"/>
+            <xsl:variable name="reden-voorschrijven-id" select="generate-id($reden-voorschrijven)"/>
+            <xsl:for-each select="$reden-voorschrijven[.//@code]">
+               <xsl:comment>reden van voorschrijven</xsl:comment>
+               <contained>
+                  <xsl:call-template name="zib-problem-2.0">
+                     <xsl:with-param name="ada-probleem" select="."/>
+                     <xsl:with-param name="condition-id" select="$reden-voorschrijven-id"/>
+                     <xsl:with-param name="patient" select="$patient"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each>
             <!-- gebruiksperiode_start /eind -->
             <xsl:for-each select=".[gebruiksperiode_start | gebruiksperiode_eind]">
                <xsl:call-template name="zib-Medication-Period-Of-Use-2.0">
@@ -1001,8 +1016,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <status value="entered-in-error"/>
             </xsl:for-each>
             <intent value="order"/>
-            <!-- type bouwsteen, hier een toedieningsafspraak -->
+            <!-- type bouwsteen, hier een medicatieafspraak -->
             <category>
+               <xsl:comment>medicatieafspraak</xsl:comment>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="16076005"/>
@@ -1011,6 +1027,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </category>
             <!-- geneesmiddel -->
             <xsl:for-each select="$product/product_code">
+               <xsl:comment>geneesmiddel</xsl:comment>
                <xsl:choose>
                   <xsl:when test=".[@codeSystem = $oidNullFlavor]">
                      <medicationReference>
@@ -1050,10 +1067,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <!-- afspraakdatum -->
             <xsl:for-each select="./afspraakdatum[@value]">
+               <xsl:comment>afspraakdatum</xsl:comment>
                <authoredOn value="{./@value}"/>
             </xsl:for-each>
             <!-- voorschrijver -->
             <xsl:for-each select="./voorschrijver">
+               <xsl:comment>voorschrijver</xsl:comment>
                <requester>
                   <xsl:for-each select="./zorgverlener">
                      <agent>
@@ -1079,6 +1098,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                </reasonCode>
             </xsl:for-each>
             <!-- reden van voorschrijven -->
+            <xsl:for-each select="./reden_van_voorschrijven/probleem">
+               <xsl:comment>reden van voorschrijven</xsl:comment>
+               <reasonReference>
+                  <reference value="{$reden-voorschrijven-id}"/>
+                  <display value="{normalize-space(string-join(.//(@displayName|@originalText), ' '))}"/>
+               </reasonReference>
+            </xsl:for-each>
+            <!-- toelichting -->
+            <xsl:for-each select="./toelichting[@value]">
+               <xsl:comment>toelichting</xsl:comment>
+               <note>
+                  <text value="{./@value}"/>
+               </note>
+            </xsl:for-each>
+            
             <!-- TODO 20180622 - hier verder -->
             <!-- relatie naar medicatieafspraak -->
             <xsl:for-each select="relatie_naar_medicatieafspraak/identificatie[not(@root = $oidNullFlavor)]">
@@ -1095,13 +1129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <xsl:with-param name="verstrekker" select="./verstrekker"/>
             </xsl:call-template>
             <!-- toelichting -->
-            <xsl:comment>Toelichting</xsl:comment>
-            <xsl:for-each select="./toelichting[@value]">
-               <note>
-                  <text value="{./@value}"/>
-               </note>
-            </xsl:for-each>
-
+            
             <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering">
                <dosageInstruction>
                   <xsl:for-each select="./../volgnummer[@value]">
@@ -1345,6 +1373,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                </xsl:call-template>
             </valueDuration>
          </extension>
+      </xsl:for-each>
+   </xsl:template>
+   <xd:doc>
+      <xd:desc/>
+      <xd:param name="ada-probleem"/>
+      <xd:param name="condition-id"/>
+      <xd:param name="patient"/>
+   </xd:doc>
+   <xsl:template name="zib-problem-2.0">
+      <xsl:param name="ada-probleem"/>
+      <xsl:param name="condition-id"/>
+      <xsl:param name="patient"/>
+      <xsl:for-each select="$ada-probleem">
+         <Condition>
+            <!-- probleem status -->
+            <xsl:choose>
+               <xsl:when test="./probleem_status[@code]">
+                  <clinicalStatus>
+                     <xsl:attribute name="value">
+                        <xsl:choose>
+                           <xsl:when test="./@code = '73425007'">inactive</xsl:when>
+                           <xsl:when test="./@code = '55561003'">active</xsl:when>
+                           <xsl:otherwise>active</xsl:otherwise>
+                        </xsl:choose>
+                     </xsl:attribute>
+                  </clinicalStatus>
+               </xsl:when>
+               <xsl:otherwise>
+                  <!-- 1..1, so let's assume active if  -->
+                  <clinicalStatus value="active"/>
+               </xsl:otherwise>
+            </xsl:choose>
+            <!-- probleem naam -->
+            <xsl:for-each select="./probleem_naam[@code]">
+               <code>
+                  <xsl:call-template name="code-to-CodeableConcept">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </code>
+            </xsl:for-each>
+            <xsl:call-template name="patient-subject-reference">
+               <xsl:with-param name="patient" select="$patient"/>
+            </xsl:call-template>
+         </Condition>
       </xsl:for-each>
    </xsl:template>
    <xd:doc>
