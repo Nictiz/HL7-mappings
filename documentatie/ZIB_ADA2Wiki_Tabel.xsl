@@ -31,11 +31,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="otherStandardURL">https://www.nictiz.nl/Paginas/Informatiestandaard-medicatieveiligheid.aspx</xsl:param>
     <xsl:param name="dataset-name">MP-9 dataset (beschikbaarstellen medicatiegegevens: patiënt, TA, VS)</xsl:param>
     <xsl:param name="concept-2b-omitted" as="xs:string*">
-        <xsl:value-of select="'patient'"/>
         <xsl:value-of select="'medicatieafspraak'"/>
         <xsl:value-of select="'verstrekkingsverzoek'"/>
         <xsl:value-of select="'medicatie_gebruik'"/>
         <xsl:value-of select="'medicatietoediening'"/>
+    </xsl:param>
+    <xsl:param name="concept-zib" as="xs:string*">
+        <xsl:value-of select="'patient'"/>
+        <xsl:value-of select="'toedieningsafspraak'"/>
+        <xsl:value-of select="'verstrekking'"/>        
     </xsl:param>
     <xsl:param name="mapDirection">other2zib</xsl:param>
 
@@ -79,10 +83,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 || Concept 
 |style="width:40px;"| Card 
 || </xsl:text>
-        <!-- Eerste rij, van de titel van de ZIB -->
+        <!-- Eerste rij, van de titel van een bovenste data-element -->
         <xsl:text>
 |-style="vertical-align:top; background-color: #E3E3E3; " 
-|[[Bestand: Zib.png| 20px]] || </xsl:text>
+|</xsl:text>
+        <xsl:choose>
+            <xsl:when test="$concept/@shortName=$concept-zib"><xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text></xsl:when>
+            <xsl:otherwise><xsl:text>[[Bestand: Container.png| 20px]] </xsl:text></xsl:otherwise>
+        </xsl:choose>
+        <xsl:text>|| </xsl:text>
         <xsl:value-of select="$concept/name"/>
         <xsl:text> || </xsl:text>
         <xsl:value-of select="$concept/@minimumMultiplicity"/>
@@ -122,9 +131,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 |style="width:30px;"| Type 
 |style="width:150px;"| Concept 
 |style="width:40px;"| Card 
-|style="width:200;"| 
+|style="width:200px;"| 
 |style="width:30px;"| Type 
-|style="width:150;"| Concept 
+|style="width:150px;"| Concept 
 |style="width:40px;"| # 
 |style="width:40px;"| Card </xsl:text>
         <!-- Eerste rij, van de titel van het root dataset concept -->
@@ -135,7 +144,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="addOtherStandard">
             <xsl:with-param name="concept" select="$concept"/>
         </xsl:call-template>
-        <xsl:text>|| [[Bestand: Zib.png| 20px]]</xsl:text>
+        <xsl:text>|| </xsl:text>
+        <xsl:choose>
+            <xsl:when test="$concept/@shortName=$concept-zib"><xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text></xsl:when>
+            <xsl:otherwise><xsl:text>[[Bestand: Container.png| 20px]] </xsl:text></xsl:otherwise>
+        </xsl:choose>
         <xsl:text>|| </xsl:text>
         <xsl:value-of select="$concept/name"/>
         <xsl:text>|| </xsl:text>
@@ -251,7 +264,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 |-</xsl:text>
         <!-- style informatie voor groep in ZIB -->
         <xsl:if test="$concept/@type = 'group'">
-            <xsl:text>style="vertical-align:top; background-color: #E8D7BE; "</xsl:text>
+            <xsl:text>style="vertical-align:top; background-color: #E3E3E3; "</xsl:text>
         </xsl:if>
         <xsl:text>
 |</xsl:text>
@@ -270,8 +283,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <!-- group -->
-                <xsl:call-template name="addType">
-                    <xsl:with-param name="type" select="$concept/@type"/>
+                <xsl:variable name="type">
+                    <xsl:choose>
+                        <xsl:when test="$concept/@shortName=$concept-zib">zib</xsl:when>
+                        <xsl:otherwise><xsl:value-of select="$concept/@type"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:call-template name="addType">                    
+                    <xsl:with-param name="type" select="$type"/>
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
@@ -377,8 +396,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$type = 'count'">
                 <xsl:text>[[Bestand: INT.png| 16px]] </xsl:text>
             </xsl:when>
+            <xsl:when test="$type = 'date'">
+                <xsl:text>[[Bestand: TS.png| 16px]] </xsl:text>
+            </xsl:when>
             <xsl:when test="$type = 'datetime'">
                 <xsl:text>[[Bestand: TS.png| 16px]] </xsl:text>
+            </xsl:when>
+            <xsl:when test="$type = 'duration'">
+                <xsl:text>[[Bestand: PQ.png| 16px]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'decimal'">
                 <xsl:text>REAL </xsl:text>
@@ -394,6 +419,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$type = 'string'">
                 <xsl:text>[[Bestand: ST.png| 16px]] </xsl:text>
+            </xsl:when>
+            <xsl:when test="$type = 'text'">
+                <xsl:text>[[Bestand: ST.png| 16px]] </xsl:text>
+            </xsl:when>
+            <xsl:when test="$type = 'zib'">
+                <xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text>
             </xsl:when>
             <xsl:otherwise>
                 <!-- an unknown type -->
