@@ -1418,6 +1418,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          <xsl:variable name="xsd-zo_nodig-complexType" select="$xsd-dosering//xs:element[@name = 'zo_nodig']/@type"/>
          <xsl:variable name="xsd-zo_nodig" select="$xsd-ada//xs:complexType[@name = $xsd-zo_nodig-complexType]"/>
          <zo_nodig conceptId="{$xsd-zo_nodig/xs:attribute[@name='conceptId']/@fixed}">
+            <!-- TODO, in 6.12 kan de zonodig-code meer dan 1 keer voorkomen, in MP-9 mag criterium maar één keer -->
+            <!-- TODO, het 'oude lijstje' mappen naar het nieuwe lijstje voor zover mogelijk -->
             <xsl:for-each select="$zonodig-code">
                <xsl:variable name="xsd-criterium-complexType" select="$xsd-zo_nodig//xs:element[@name = 'criterium']/@type"/>
                <xsl:variable name="xsd-criterium" select="$xsd-ada//xs:complexType[@name = $xsd-criterium-complexType]"/>
