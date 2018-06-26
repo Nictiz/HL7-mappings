@@ -7,159 +7,17 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="medbeh_VMA_001_MA01"/>
+      <fullUrl value="medbeh_VMA_001_MA02"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
-            <!--lichaamslengte-->
-            <contained>
-               <Observation>
-                  <id value="d3e154"/>
-                  <meta>
-                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
-                  </meta>
-                  <status value="final"/>
-                  <category>
-                     <coding>
-                        <system value="http://hl7.org/fhir/observation-category"/>
-                        <code value="vital-signs"/>
-                     </coding>
-                  </category>
-                  <code>
-                     <coding>
-                        <system value="http://loinc.org"/>
-                        <code value="8302-2"/>
-                        <display value="lichaamslengte"/>
-                     </coding>
-                  </code>
-                  <!-- Patient -->
-                  <!-- Possibly not to be included for MedMij related interactions, because patient should be known in infra-context -->
-                  <subject>
-                     <identifier>
-                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                        <value value="32456487"/>
-                     </identifier>
-                     <display value="Antje de Vries"/>
-                  </subject>
-                  <effectiveDateTime value="2018-05-29T12:34:56"/>
-                  <valueQuantity>
-                     <value value="167"/>
-                     <unit value="cm"/>
-                     <code value="cm"/>
-                  </valueQuantity>
-               </Observation>
-            </contained>
-            <!--lichaamsgewicht-->
-            <contained>
-               <Observation>
-                  <id value="d3e161"/>
-                  <meta>
-                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
-                  </meta>
-                  <status value="final"/>
-                  <category>
-                     <coding>
-                        <system value="http://hl7.org/fhir/observation-category"/>
-                        <code value="vital-signs"/>
-                     </coding>
-                  </category>
-                  <code>
-                     <coding>
-                        <system value="http://loinc.org"/>
-                        <code value="29463-7"/>
-                        <display value="lichaamsgewicht"/>
-                     </coding>
-                  </code>
-                  <!-- Patient -->
-                  <!-- Possibly not to be included for MedMij related interactions, because patient should be known in infra-context -->
-                  <subject>
-                     <identifier>
-                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                        <value value="32456487"/>
-                     </identifier>
-                     <display value="Antje de Vries"/>
-                  </subject>
-                  <effectiveDateTime value="2018-06-19T00:24:56"/>
-                  <valueQuantity>
-                     <value value="45"/>
-                     <unit value="kg"/>
-                     <code value="kg"/>
-                  </valueQuantity>
-               </Observation>
-            </contained>
-            <!--voorschrijver-->
-            <contained><!-- zorgverlener -->
-               <Practitioner>
-                  <id value="d3e60"/>
-                  <!--zorgverlener_identificatie_nummer-->
-                  <identifier>
-                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-                     <value value="006797896"/>
-                  </identifier>
-                  <!--naamgegevens-->
-                  <name>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                        <valueString value="van"/>
-                     </extension>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                        <valueString value="Beek"/>
-                     </extension>
-                     <given value="Johan">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                           <valueCode value="BR"/>
-                        </extension>
-                     </given>
-                     <given value="J.">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                           <valueCode value="IN"/>
-                        </extension>
-                     </given>
-                  </name>
-               </Practitioner>
-            </contained>
-            <!--voorschrijver / zorgaanbieder-->
-            <contained>
-               <Organization>
-                  <id value="d3e85"/>
-                  <identifier>
-                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-                     <value value="00765332"/>
-                  </identifier>
-                  <identifier>
-                     <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
-                     <value value="01028432"/>
-                  </identifier>
-                  <name value="Huisartspraktijk Van Beek"/>
-               </Organization>
-            </contained>
-            <!--reden van voorschrijven-->
-            <contained>
-               <Condition>
-                  <clinicalStatus value="active"/>
-                  <code>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                        <valueCode value="OTH"/>
-                     </extension>
-                     <text value="Buikpijn"/>
-                  </code>
-                  <!-- Patient -->
-                  <!-- Possibly not to be included for MedMij related interactions, because patient should be known in infra-context -->
-                  <subject>
-                     <identifier>
-                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                        <value value="32456487"/>
-                     </identifier>
-                     <display value="Antje de Vries"/>
-                  </subject>
-               </Condition>
-            </contained>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
-                  <value value="1"/>
+                  <value value="10"/>
                   <system value="http://unitsofmeasure.org"/>
-                  <code value="wk"/>
+                  <code value="d"/>
                </valueDuration>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -168,7 +26,7 @@
                </valueIdentifier>
             </extension>
             <identifier>
-               <value value="medbeh_VMA_001_MA01"/>
+               <value value="medbeh_VMA_001_MA02"/>
             </identifier>
             <intent value="order"/>
             <category><!--medicatieafspraak-->
@@ -181,9 +39,8 @@
             <!--geneesmiddel-->
             <medicationCodeableConcept>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
-                  <code value="14565277"/>
-                  <display value="ORS POEDER SACHET 5,4G SAN"/>
+                  <system value="urn:oid:"/>
+                  <code value=""/>
                </coding>
             </medicationCodeableConcept>
             <!-- Patient -->
@@ -195,59 +52,46 @@
                </identifier>
                <display value="Antje de Vries"/>
             </subject>
-            <!--lichaamslengte-->
-            <supportingInformation>
-               <reference value="#d3e161"/>
-               <display value="Lengte. 1.67 m. Gemeten: 29 MAY, 2018 12:34"/>
-            </supportingInformation>
-            <!--lichaamsgewicht-->
-            <supportingInformation>
-               <reference value="#d3e154"/>
-               <display value="Gewicht. 45 kg. Gemeten: 19 JUN, 2018 00:24"/>
-            </supportingInformation>
             <!--afspraakdatum-->
-            <authoredOn value="2016-09-01T09:10:58"/>
+            <authoredOn value="2016-09-02T14:30:23"/>
             <!--voorschrijver-->
             <requester>
                <agent>
                   <reference value="d3e60"/>
-                  <display value="Johan J. van Beek Huisartspraktijk Van Beek"/>
+                  <display value=""/>
                </agent>
                <onBehalfOf>
                   <reference value="d3e85"/>
-                  <display value="Huisartspraktijk Van Beek"/>
+                  <display value=""/>
                </onBehalfOf>
             </requester>
             <!--reden afspraak-->
             <reasonCode>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="266709005"/>
-                  <display value="Starten medicamenteuze behandeling"/>
+                  <code value="438833006"/>
+                  <display value="Contra-indicatie"/>
                </coding>
             </reasonCode>
-            <!--reden van voorschrijven-->
-            <reasonReference>
-               <reference value="d3e102"/>
-               <display value="overig Buikpijn"/>
-            </reasonReference>
             <!--toelichting-->
             <note>
-               <text value="dflkj lkasdj ;ljdas fjsdl;kj ;ldsaf"/>
+               <text value="Patiënt gebruikt Verapamil, contra-indicatie voor het origineel voorgeschreven Klacid."/>
             </note>
             <!-- Responsible dispensing pharmacy -->
-            <dosageInstruction><!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
-               <text value="Gedurende 1 week, tweemaal daags 1 tablet"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
+               <text value="Gedurende 10 dagen, eerste dag 2 tabletten en vervolgens 1x daags 1 tablet"/>
                <!--TODO: gebruiksinstructie/aanvullende_instructie should be defined one level higher, not per dosageInstruction-->
                <timing>
                   <repeat><!--doseerduur-->
                      <boundsDuration>
                         <value value="1"/>
                         <system value="http://unitsofmeasure.org"/>
-                        <code value="wk"/>
+                        <code value="d"/>
                      </boundsDuration>
                      <!--toedieningsduur-->
-                     <frequency value="2"/>
+                     <frequency value="1"/>
                      <!--frequentie/tijdseenheid-->
                      <period value="1"/>
                      <periodUnit value="d"/>
@@ -256,8 +100,36 @@
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="ORAAL"/>
+                     <code value=""/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="2"/>
+               </doseQuantity>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
+               <text value="Gedurende 10 dagen, eerste dag 2 tabletten en vervolgens 1x daags 1 tablet"/>
+               <!--TODO: gebruiksinstructie/aanvullende_instructie should be defined one level higher, not per dosageInstruction-->
+               <timing>
+                  <repeat><!--doseerduur-->
+                     <boundsDuration>
+                        <value value="9"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <!--toedieningsduur-->
+                     <frequency value="1"/>
+                     <!--frequentie/tijdseenheid-->
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value=""/>
                   </coding>
                </route>
                <doseQuantity>
