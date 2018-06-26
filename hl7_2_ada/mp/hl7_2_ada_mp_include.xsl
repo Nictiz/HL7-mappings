@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         else
                            'unsupported_nullFlavor'"/>
             <xsl:for-each select="./hl7:originalText">
-               <xsl:attribute name="originalText" select="./text()"/>
+               <xsl:attribute name="originalText" select="."/>
             </xsl:for-each>
          </xsl:when>
       </xsl:choose>
@@ -906,7 +906,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                      <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
                   </xsl:for-each>
                </aantal>
-                <xsl:for-each select="(.//hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2'])[1]">
+               <xsl:for-each select="(.//hl7:translation[@codeSystem = '2.16.840.1.113883.2.4.4.1.900.2'])[1]">
                   <xsl:variable name="xsd-complexType" select="$xsd-keerdosis//xs:element[@name = 'eenheid']/@type"/>
                   <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
                      <xsl:call-template name="mp9-code-attribs">
@@ -1342,9 +1342,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <verbruiksduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
             </xsl:for-each>
             <!-- afleverlocatie -->
-            <!-- not defined in mp 6.12 verstrekking, no output -->
-            <!-- TODO, mag wel volgens schema, kan wel output maken -->
-            
+            <xsl:for-each select="./hl7:destination/hl7:serviceDeliveryLocation">
+               <xsl:comment>afleverlocatie</xsl:comment>
+               <xsl:variable name="xsd-complexType" select="$xsd-verstrekking//xs:element[@name = 'afleverlocatie']/@type"/>
+               <afleverlocatie value="{normalize-space(.)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+            </xsl:for-each>
             <!-- distributievorm, aanvullende_informatie, toelichting, relatie_naar_verstrekkingsverzoek 
                not in mp 6.12 verstrekking, no output -->
          </verstrekking>
@@ -1411,31 +1413,68 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    </xsl:template>
    <xsl:template name="mp9-zonodig">
       <xsl:param name="max-dose" as="element()?"/>
-      <xsl:param name="zonodig-code" as="element()?"/>
+      <xsl:param name="zonodig-code" as="element()*"/>
       <xsl:param name="xsd-ada"/>
       <xsl:param name="xsd-dosering"/>
       <xsl:if test="$zonodig-code | $max-dose">
          <xsl:variable name="xsd-zo_nodig-complexType" select="$xsd-dosering//xs:element[@name = 'zo_nodig']/@type"/>
          <xsl:variable name="xsd-zo_nodig" select="$xsd-ada//xs:complexType[@name = $xsd-zo_nodig-complexType]"/>
          <zo_nodig conceptId="{$xsd-zo_nodig/xs:attribute[@name='conceptId']/@fixed}">
-            <!-- TODO, in 6.12 kan de zonodig-code meer dan 1 keer voorkomen, in MP-9 mag criterium maar één keer -->
-            <!-- TODO, het 'oude lijstje' mappen naar het nieuwe lijstje voor zover mogelijk -->
-            <xsl:for-each select="$zonodig-code">
+            <!-- criterium -->               
+            <!-- in 6.12 kan de zonodig-code meer dan 1 keer voorkomen, in MP-9 mag criterium maar één keer -->
+            <xsl:if test="count($zonodig-code) > 0">               
                <xsl:variable name="xsd-criterium-complexType" select="$xsd-zo_nodig//xs:element[@name = 'criterium']/@type"/>
                <xsl:variable name="xsd-criterium" select="$xsd-ada//xs:complexType[@name = $xsd-criterium-complexType]"/>
                <criterium conceptId="{$xsd-criterium/xs:attribute[@name='conceptId']/@fixed}">
                   <xsl:variable name="xsd-complexType" select="$xsd-criterium//xs:element[@name = 'code']/@type"/>
                   <code conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                     <xsl:call-template name="mp9-code-attribs">
-                        <xsl:with-param name="current-hl7-code" select="."/>
-                     </xsl:call-template>
+                     <xsl:choose>
+                        <xsl:when test="count($zonodig-code) = 1">
+                           <xsl:call-template name="mp9-code-attribs">
+                              <xsl:with-param name="current-hl7-code" select="$zonodig-code"/>
+                           </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                           <!-- meer dan één preconditie, we moeten concateneren met een nullFlavor OTH -->
+                           <xsl:attribute name="code">OTH</xsl:attribute>
+                           <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1008</xsl:attribute>
+                           <xsl:attribute name="displayName">overig</xsl:attribute>
+                           <xsl:variable name="concat_originalText">
+                              <xsl:for-each select="$zonodig-code">
+                                 <xsl:choose>
+                                    <xsl:when test="./@nullFlavor">
+                                       <xsl:value-of select="'nullFlavor: '"/>
+                                       <xsl:value-of select="if (./@nullFlavor = 'OTH') then
+                                          'overig'
+                                          else
+                                          if (./@nullFlavor = 'UNK') then
+                                          'onbekend'
+                                          else
+                                          if (./@nullFlavor = 'NI') then
+                                          'geen informatie'
+                                          else
+                                          'unsupported_nullFlavor'"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                       <xsl:value-of select="concat('Code: ', ./@code, ', displayName: ', ./@displayName, '. ')"/>
+                                    </xsl:otherwise>                                  
+                                 </xsl:choose>                                 
+                                 <xsl:for-each select="./hl7:originalText">
+                                    <xsl:value-of select="concat(', originalText: ', ., '. ')"/>
+                                 </xsl:for-each>
+                              </xsl:for-each>
+                           </xsl:variable>
+                           <xsl:attribute name="originalText" select="normalize-space($concat_originalText)"/>
+                        </xsl:otherwise>
+                     </xsl:choose>
                   </code>
                   <!-- no use case for omschrijving, omschrijving is in code/@originalText -->
                   <!--  <omschrijving value="zo nodig criterium omschrijving in vrije tekst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23270"/>-->
                </criterium>
-            </xsl:for-each>
-            <!-- TODO max dose -->
+            </xsl:if>
+            <!-- maximale_dosering  -->
             <xsl:for-each select="$max-dose[.//@value]">
+               <xsl:comment>maximale dosering</xsl:comment>
                <xsl:variable name="xsd-maximale_dosering-complexType" select="$xsd-zo_nodig//xs:element[@name = 'maximale_dosering']/@type"/>
                <xsl:variable name="xsd-maximale_dosering" select="$xsd-ada//xs:complexType[@name = $xsd-maximale_dosering-complexType]"/>
                <maximale_dosering conceptId="{$xsd-maximale_dosering/xs:attribute[@name='conceptId']/@fixed}">
@@ -1605,29 +1644,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.816_20130521000000">
       <xsl:variable name="current-patient" select="."/>
       <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
-         <!-- todo: support for unstructured name -->
-         <xsl:for-each select="$current-patient/hl7:Person/hl7:name">
+         <!-- gestructureerde naam in subelementen -->
+          <xsl:for-each select="$current-patient/hl7:Person/hl7:name[*]">
             <xsl:call-template name="mp9-naamgegevens">
                <xsl:with-param name="current-hl7-name" select="."/>
             </xsl:call-template>
          </xsl:for-each>
+         <!-- ongestructureerde_naam -->         
+         <xsl:for-each select="$current-patient/hl7:Person/hl7:name[not(*)]">
+            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
+               <ongestructureerde_naam value="{.}" conceptId="1.2.3.4.5.12345.19799.1"/>
+            </naamgegevens>
+         </xsl:for-each>
+         <!-- patient_identificatienummer -->
          <xsl:for-each select="$current-patient/hl7:id">
             <patient_identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829">
                <xsl:attribute name="root" select="./@root"/>
                <xsl:attribute name="value" select="./@extension"/>
             </patient_identificatienummer>
          </xsl:for-each>
+         <!-- geboortedatum -->  
          <xsl:for-each select="$current-patient/hl7:Person/hl7:birthTime[@value]">
             <geboortedatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830">
                <xsl:variable name="precision" select="nf:determine_date_precision(./@value)"/>
                <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, $precision)"/>
             </geboortedatum>
          </xsl:for-each>
+         <!-- geslacht -->
          <xsl:for-each select="$current-patient/hl7:Person/hl7:administrativeGenderCode">
             <xsl:call-template name="mp9-geslacht">
                <xsl:with-param name="current-administrativeGenderCode" select="."/>
             </xsl:call-template>
          </xsl:for-each>
+         <!-- meerlingindicator -->
          <xsl:for-each select="$current-patient/hl7:Person/hl7:multipleBirthInd[@value]">
             <meerling_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832">
                <xsl:attribute name="value" select="./@value"/>
