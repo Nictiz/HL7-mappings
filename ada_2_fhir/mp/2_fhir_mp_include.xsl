@@ -121,6 +121,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       </xsl:for-each>
 
    </xsl:template>
+
+   <xd:doc>
+      <xd:desc/>
+      <xd:param name="zorgverlener"/>
+      <xd:param name="zorgverlener-id"/>
+      <xd:param name="zorgverlener-za-id"/>
+   </xd:doc>
+   <xsl:template name="zorgverlener-requester">
+      <xsl:param name="zorgverlener"/>
+      <xsl:param name="zorgverlener-id"/>
+      <xsl:param name="zorgverlener-za-id"/>
+      <requester>
+         <xsl:for-each select="$zorgverlener">
+            <agent>
+               <reference value="#{$zorgverlener-id}"/>
+               <display value="{normalize-space(string-join(.//(naamgegevens|organisatie_naam)//@value, ' '))}"/>
+            </agent>
+            <xsl:for-each select="./zorgaanbieder/zorgaanbieder">
+               <onBehalfOf>
+                  <reference value="#{$zorgverlener-za-id}"/>
+                  <display value="{./organisatie_naam/@value}"/>
+               </onBehalfOf>
+            </xsl:for-each>
+         </xsl:for-each>
+      </requester>
+   </xsl:template>
    <xd:doc>
       <xd:desc/>
       <xd:param name="ada-naamgegevens"/>
@@ -383,145 +409,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering">
-               <dosageInstruction>
-                  <xsl:for-each select="./../volgnummer[@value]">
-                     <sequence value="{./@value}"/>
-                  </xsl:for-each>
-                  <xsl:comment>TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction</xsl:comment>
-                  <xsl:for-each select="./../../omschrijving[@value]">
-                     <text value="{./@value}"/>
-                  </xsl:for-each>
-                  <xsl:comment>TODO: gebruiksinstructie/aanvullende_instructie should be defined one level higher, not per dosageInstruction</xsl:comment>
-                  <xsl:for-each select="./../../aanvullende_instructie[@code]">
-                     <additionalInstruction>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                           <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                     </additionalInstruction>
-                  </xsl:for-each>
-                  <xsl:for-each select="./toedieningsschema">
-                     <xsl:call-template name="zib-Administration-Schedule-2.0">
-                        <xsl:with-param name="toedieningsschema" select="."/>
-                     </xsl:call-template>
-                  </xsl:for-each>
-                  <xsl:for-each select="zo_nodig/criterium/code">
-                     <asNeededCodeableConcept>
-                        <xsl:variable name="in" select="."/>
-                        <!-- roep hier niet het standaard template aan omdat criterium/omschrijving ook nog omschrijving zou kunnen bevatten... -->
-                        <xsl:choose>
-                           <xsl:when test="$in[@codeSystem = $oidNullFlavor]">
-                              <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                                 <valueCode value="{$in/@code}"/>
-                              </extension>
-                           </xsl:when>
-                           <xsl:when test="$in[not(@codeSystem = $oidNullFlavor)]">
-                              <coding>
-                                 <system value="{local:getUri($in/@codeSystem)}"/>
-                                 <code value="{$in/@code}"/>
-                                 <xsl:if test="$in/@displayName">
-                                    <display value="{$in/@displayName}"/>
-                                 </xsl:if>
-                                 <!--<userSelected value="true"/>-->
-                              </coding>
-                              <!-- ADA heeft nog geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
-                              <xsl:for-each select="$in/translation">
-                                 <coding>
-                                    <system value="{local:getUri(@codeSystem)}"/>
-                                    <code value="{@code}"/>
-                                    <xsl:if test="@displayName">
-                                       <display value="{@displayName}"/>
-                                    </xsl:if>
-                                 </coding>
-                              </xsl:for-each>
-                           </xsl:when>
-                        </xsl:choose>
-                        <xsl:choose>
-                           <xsl:when test="./../omschrijving[@value]">
-                              <text value="{./../omschrijving/@value}"/>
-                           </xsl:when>
-                           <xsl:when test="$in[@originalText]">
-                              <text value="{$in/@originalText}"/>
-                           </xsl:when>
-                        </xsl:choose>
-                     </asNeededCodeableConcept>
-                  </xsl:for-each>
-                  <xsl:for-each select="./../../toedieningsweg">
-                     <route>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                           <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                     </route>
-                  </xsl:for-each>
-                  <xsl:for-each select="./keerdosis/aantal[vaste_waarde]">
-                     <doseQuantity>
-                        <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                           <xsl:with-param name="eenheid" select="./../eenheid"/>
-                           <xsl:with-param name="waarde" select="./vaste_waarde"/>
-                        </xsl:call-template>
-                     </doseQuantity>
-                  </xsl:for-each>
-                  <xsl:for-each select="./keerdosis/aantal[min | max]">
-                     <doseRange>
-                        <xsl:call-template name="minmax-to-Range">
-                           <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                     </doseRange>
-                  </xsl:for-each>
-                  <!-- maximale_dosering -->
-                  <xsl:for-each select="./zo_nodig/maximale_dosering[.//*[@value]]">
-                     <maxDosePerPeriod>
-                        <xsl:call-template name="quotient-to-Ratio">
-                           <xsl:with-param name="denominator" select="./tijdseenheid"/>
-                           <xsl:with-param name="numerator-aantal" select="./aantal"/>
-                           <xsl:with-param name="numerator-eenheid" select="./eenheid"/>
-                        </xsl:call-template>
-                     </maxDosePerPeriod>
-                  </xsl:for-each>
-                  <!-- TODO check of ik deze goed converteer vanuit 6.12
-                  <xsl:if test="doseCheckQuantity">
-                     <xsl:comment> TODO: doseCheckQuantity </xsl:comment>
-                  </xsl:if>
-                  <xsl:if test="maxDoseQuantity">
-                     <maxDosePerAdministration>
-                        <xsl:call-template name="RTO_QTY_QTY-to-Ratio">
-                           <xsl:with-param name="in" select="maxDoseQuantity"/>
-                        </xsl:call-template>
-                     </maxDosePerAdministration>
-                  </xsl:if>
-               -->
-                  <xsl:for-each select="./toedieningssnelheid[.//*[@value]]">
-                     <xsl:for-each select=".[waarde/vaste_waarde]">
-                        <rateRatio>
-                           <xsl:call-template name="quotient-to-Ratio">
-                              <xsl:with-param name="denominator" select="./tijdseenheid"/>
-                              <xsl:with-param name="numerator-aantal" select="./waarde/vaste_waarde"/>
-                              <xsl:with-param name="numerator-eenheid" select="./eenheid"/>
-                           </xsl:call-template>
-                        </rateRatio>
-                     </xsl:for-each>
-                     <xsl:for-each select=".[waarde/(min | max)]">
-                        <rateRange>
-                           <xsl:call-template name="minmax-to-Range">
-                              <xsl:with-param name="in" select="./waarde"/>
-                           </xsl:call-template>
-                        </rateRange>
-                        <rateQuantity>
-                           <xsl:call-template name="hoeveelheid-to-Duration">
-                              <xsl:with-param name="in" select="./tijdseenheid"/>
-                           </xsl:call-template>
-                        </rateQuantity>
-                     </xsl:for-each>
-
-                  </xsl:for-each>
-                  <!--<xsl:if test="rateQuantity">
-                     <rateRatio>
-                        <xsl:call-template name="RTO_QTY_QTY-to-Ratio">
-                           <xsl:with-param name="in" select="rateQuantity"/>
-                        </xsl:call-template>
-                     </rateRatio>
-                  </xsl:if>
-               -->
-               </dosageInstruction>
+               <xsl:call-template name="zib-InstructionsForUse-2.0">
+                  <xsl:with-param name="ada-dosering" select="."/>
+               </xsl:call-template>
             </xsl:for-each>
 
          </MedicationDispense>
@@ -868,6 +758,378 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       </xsl:for-each>
    </xsl:template>
    <xd:doc>
+      <xd:desc/>
+      <xd:param name="patient"/>
+      <xd:param name="verstrekkingsverzoek"/>
+   </xd:doc>
+   <xsl:template name="zib-DispenseRequest-2.0">
+      <xsl:param name="patient" as="element()?"/>
+      <xsl:param name="verstrekkingsverzoek" as="element()?"/>
+
+      <xsl:for-each select="$verstrekkingsverzoek">
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <!-- 'magistraal' geneesmiddel in een contained resource -->
+            <xsl:variable name="product" select="./te_verstrekken_geneesmiddel/product"/>
+            <xsl:variable name="product-id" select="generate-id($product)"/>
+            <xsl:for-each select="$product[product_code/@codeSystem = $oidNullFlavor]">
+               <contained>
+                  <xsl:call-template name="zib-Product">
+                     <xsl:with-param name="product" select="."/>
+                     <xsl:with-param name="product-id" select="$product-id"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each>
+            <!-- auteur/zorgverlener in contained resource -->
+            <xsl:variable name="auteur" select="./auteur/zorgverlener"/>
+            <xsl:variable name="auteur-id" select="generate-id($auteur)"/>
+            <xsl:for-each select="$auteur[.//@value]">
+               <contained>
+                  <xsl:call-template name="nl-core-practitioner-2.0">
+                     <xsl:with-param name="ada-zorgverlener" select="."/>
+                     <xsl:with-param name="practioner-id" select="$auteur-id"/>
+                     <xsl:with-param name="patient" select="$patient"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each>
+            <!-- auteur/zorgaanbieder in contained resource -->
+            <xsl:variable name="auteur-za" select="$auteur/zorgaanbieder/zorgaanbieder"/>
+            <xsl:variable name="auteur-za-id" select="generate-id($auteur-za)"/>
+            <xsl:for-each select="$auteur-za[.//@value]">
+               <contained>
+                  <xsl:call-template name="nl-core-organization-2.0">
+                     <xsl:with-param name="ada-zorgaanbieder" select="."/>
+                     <xsl:with-param name="organization-id" select="$auteur-za-id"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each>
+            <!-- beoogd verstrekker in contained resource -->
+            <xsl:variable name="beoogd_verstrekker-za" select="./beoogd_verstrekker/zorgaanbieder"/>
+            <xsl:variable name="beoogd_verstrekker-za-id" select="generate-id($beoogd_verstrekker-za)"/>
+            <xsl:for-each select="$beoogd_verstrekker-za[.//@value]">
+               <contained>
+                  <xsl:call-template name="nl-core-organization-2.0">
+                     <xsl:with-param name="ada-zorgaanbieder" select="."/>
+                     <xsl:with-param name="organization-id" select="$beoogd_verstrekker-za-id"/>
+                  </xsl:call-template>
+               </contained>
+            </xsl:for-each><!-- afleverlocatie in een contained resource -->
+            <xsl:variable name="afleverlocatie-id" select="generate-id(./afleverlocatie)"/>
+            <!-- aanvullende_wensen in extensie -->
+            <xsl:for-each select="aanvullende_wensen">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+                  <valueCodeableConcept>
+                     <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                     </xsl:call-template>
+                  </valueCodeableConcept>
+               </extension>
+            </xsl:for-each>
+            <!-- relatie naar medicatieafspraak -->
+            <xsl:for-each select="relatie_naar_medicatieafspraak/identificatie[not(@root = $oidNullFlavor)]">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+                  <valueReference>
+                     <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                           <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                     </identifier>
+                     <display>
+                        <xsl:attribute name="value">Relatie naar medicatieafspraak, id = <xsl:value-of select="concat('codesysteem: ', ./@root, ', waarde: ', ./@value)"/></xsl:attribute>
+                     </display>
+                  </valueReference>
+               </extension>
+            </xsl:for-each>
+            <!-- relatie naar medicamenteuze behandeling -->
+            <xsl:for-each select="./../identificatie">
+               <xsl:call-template name="mbh-id-2-reference">
+                  <xsl:with-param name="in" select="."/>
+               </xsl:call-template>
+            </xsl:for-each>
+            <!-- Verstrekkingsverzoek id -->
+            <xsl:for-each select="./identificatie">
+               <identifier>
+                  <xsl:call-template name="id-to-Identifier">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </identifier>
+            </xsl:for-each>
+            <intent value="order"/>
+            <!-- type bouwsteen, hier een medicatieverstrekking -->
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+            </category>
+            <!-- geneesmiddel -->
+            <xsl:for-each select="$product/product_code[@code]">
+               <xsl:choose>
+                  <xsl:when test=".[@codeSystem = $oidNullFlavor]">
+                     <medicationReference>
+                        <reference value="#{$product-id}"/>
+                        <display value="{./@originalText}"/>
+                     </medicationReference>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <medicationCodeableConcept>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                           <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                     </medicationCodeableConcept>
+                  </xsl:otherwise>
+               </xsl:choose>
+            </xsl:for-each>
+            <!-- patiënt -->
+            <xsl:call-template name="patient-subject-reference">
+               <xsl:with-param name="patient" select="$patient"/>
+            </xsl:call-template>
+            <!-- verstrekkingsverzoek datum -->
+            <xsl:for-each select="./datum[@value]">
+               <authoredOn value="{./@value}"/>
+            </xsl:for-each>
+            <!-- auteur -->
+            <xsl:call-template name="zorgverlener-requester">
+               <xsl:with-param name="zorgverlener" select="$auteur"/>
+               <xsl:with-param name="zorgverlener-id" select="$auteur-id"/>
+               <xsl:with-param name="zorgverlener-za-id" select="$auteur-za-id"/>
+            </xsl:call-template>
+            <!-- toelichting -->
+            <xsl:for-each select="./toelichting[@value]">
+               <note>
+                  <text value="{./@value}"/>
+               </note>
+            </xsl:for-each>
+            <!-- verstrekkingsverzoek zelf -->
+            <dispenseRequest>
+               <!-- afleverlocatie -->
+               <xsl:for-each select="./afleverlocatie[@value]">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
+                     <valueString value="{./@value}"/>
+                  </extension>
+               </xsl:for-each>
+               <!-- verbruiksperiode start/eind -->
+               <xsl:for-each select="./verbruiksperiode[(ingangsdatum|einddatum)/@value]">
+                  <validityPeriod>
+                     <start value="{./ingangsdatum/@value}"/>
+                     <end value="{./einddatum/@value}"/>
+                  </validityPeriod>
+               </xsl:for-each>
+               <!-- aantal_herhalingen -->
+               <xsl:for-each select="./aantal_herhalingen[@value]">
+                  <numberOfRepeatsAllowed value="{./@value}"/>
+               </xsl:for-each>
+               <!-- te_verstrekken_hoeveelheid -->
+               <xsl:for-each select="./te_verstrekken_hoeveelheid[.//@value]">
+                  <quantity>
+                     <xsl:call-template name="hoeveelheid-complex-to-Quantity">
+                        <xsl:with-param name="waarde" select="./aantal"/>
+                        <xsl:with-param name="eenheid" select="./eenheid"/>
+                     </xsl:call-template>
+                  </quantity>
+               </xsl:for-each>
+               <!-- verbruiksperiode -->
+               <xsl:for-each select="./verbruiksperiode/duur[@value]">
+                  <expectedSupplyDuration>
+                     <xsl:call-template name="hoeveelheid-to-Duration">
+                        <xsl:with-param name="in" select="."/>
+                     </xsl:call-template>
+                  </expectedSupplyDuration>
+               </xsl:for-each>
+               <!--  -->
+               <!-- beoogd verstrekker -->
+               <xsl:for-each select="./beoogd_verstrekker">
+                  <performer>
+                     <!-- in dataset toedieningsafspraak staat zorgaanbieder (onnodig) een keer extra genest -->
+                     <xsl:for-each select="./zorgaanbieder">
+                        <reference value="#{$beoogd_verstrekker-za-id}"/>
+                        <display value="{./organisatie_naam/@value}"/>
+                     </xsl:for-each>
+                  </performer>
+               </xsl:for-each>               
+            </dispenseRequest>
+            <xsl:for-each select="./verstrekte_hoeveelheid[.//*[@value]]">
+               <quantity>
+                  <xsl:call-template name="hoeveelheid-complex-to-Quantity">
+                     <xsl:with-param name="eenheid" select="./eenheid"/>
+                     <xsl:with-param name="waarde" select="./aantal"/>
+                  </xsl:call-template>
+               </quantity>
+            </xsl:for-each>
+            <xsl:for-each select="./verbruiksduur[@value]">
+               <daysSupply>
+                  <xsl:call-template name="hoeveelheid-to-Duration">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </daysSupply>
+            </xsl:for-each>       
+         </MedicationRequest>
+      </xsl:for-each>
+   </xsl:template>
+
+   <xd:doc>
+      <xd:desc/>
+      <xd:param name="ada-dosering">dosering element</xd:param>
+   </xd:doc>
+   <xsl:template name="zib-InstructionsForUse-2.0">
+      <xsl:param name="ada-dosering"/>
+
+      <xsl:for-each select="$ada-dosering">
+         <dosageInstruction>
+            <xsl:for-each select="./../volgnummer[@value]">
+               <sequence value="{./@value}"/>
+            </xsl:for-each>
+            <!-- gebruiksinstructie/omschrijving  -->
+            <xsl:for-each select="./../../omschrijving[@value]">
+               <text value="{./@value}"/>
+            </xsl:for-each>
+            <!-- gebruiksinstructie/aanvullende_instructie  -->
+            <xsl:for-each select="./../../aanvullende_instructie[@code]">
+               <additionalInstruction>
+                  <xsl:call-template name="code-to-CodeableConcept">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </additionalInstruction>
+            </xsl:for-each>
+            <!-- dosering/toedieningsschema -->
+            <xsl:for-each select="./toedieningsschema">
+               <xsl:call-template name="zib-Administration-Schedule-2.0">
+                  <xsl:with-param name="toedieningsschema" select="."/>
+               </xsl:call-template>
+            </xsl:for-each>
+            <!-- dosering/zo_nodig/criterium/code -->
+            <xsl:for-each select="zo_nodig/criterium/code">
+               <asNeededCodeableConcept>
+                  <xsl:variable name="in" select="."/>
+                  <!-- roep hier niet het standaard template aan omdat criterium/omschrijving ook nog omschrijving zou kunnen bevatten... -->
+                  <xsl:choose>
+                     <xsl:when test="$in[@codeSystem = $oidNullFlavor]">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                           <valueCode value="{$in/@code}"/>
+                        </extension>
+                     </xsl:when>
+                     <xsl:when test="$in[not(@codeSystem = $oidNullFlavor)]">
+                        <coding>
+                           <system value="{local:getUri($in/@codeSystem)}"/>
+                           <code value="{$in/@code}"/>
+                           <xsl:if test="$in/@displayName">
+                              <display value="{$in/@displayName}"/>
+                           </xsl:if>
+                           <!--<userSelected value="true"/>-->
+                        </coding>
+                        <!-- ADA heeft nog geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
+                        <xsl:for-each select="$in/translation">
+                           <coding>
+                              <system value="{local:getUri(@codeSystem)}"/>
+                              <code value="{@code}"/>
+                              <xsl:if test="@displayName">
+                                 <display value="{@displayName}"/>
+                              </xsl:if>
+                           </coding>
+                        </xsl:for-each>
+                     </xsl:when>
+                  </xsl:choose>
+                  <xsl:choose>
+                     <xsl:when test="./../omschrijving[@value]">
+                        <text value="{./../omschrijving/@value}"/>
+                     </xsl:when>
+                     <xsl:when test="$in[@originalText]">
+                        <text value="{$in/@originalText}"/>
+                     </xsl:when>
+                  </xsl:choose>
+               </asNeededCodeableConcept>
+            </xsl:for-each>
+            <!-- gebruiksinstructie/toedieningsweg -->
+            <xsl:for-each select="./../../toedieningsweg">
+               <route>
+                  <xsl:call-template name="code-to-CodeableConcept">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </route>
+            </xsl:for-each>
+            <!-- dosering/keerdosis/aantal -->
+            <xsl:for-each select="./keerdosis/aantal[vaste_waarde]">
+               <doseQuantity>
+                  <xsl:call-template name="hoeveelheid-complex-to-Quantity">
+                     <xsl:with-param name="eenheid" select="./../eenheid"/>
+                     <xsl:with-param name="waarde" select="./vaste_waarde"/>
+                  </xsl:call-template>
+               </doseQuantity>
+            </xsl:for-each>
+            <xsl:for-each select="./keerdosis/aantal[min | max]">
+               <doseRange>
+                  <xsl:call-template name="minmax-to-Range">
+                     <xsl:with-param name="in" select="."/>
+                  </xsl:call-template>
+               </doseRange>
+            </xsl:for-each>
+            <!-- maximale_dosering -->
+            <xsl:for-each select="./zo_nodig/maximale_dosering[.//*[@value]]">
+               <maxDosePerPeriod>
+                  <xsl:call-template name="quotient-to-Ratio">
+                     <xsl:with-param name="denominator" select="./tijdseenheid"/>
+                     <xsl:with-param name="numerator-aantal" select="./aantal"/>
+                     <xsl:with-param name="numerator-eenheid" select="./eenheid"/>
+                  </xsl:call-template>
+               </maxDosePerPeriod>
+            </xsl:for-each>
+            <xsl:for-each select="./toedieningssnelheid[.//*[@value]]">
+               <xsl:for-each select=".[waarde/vaste_waarde]">
+                  <rateRatio>
+                     <xsl:call-template name="quotient-to-Ratio">
+                        <xsl:with-param name="denominator" select="./tijdseenheid"/>
+                        <xsl:with-param name="numerator-aantal" select="./waarde/vaste_waarde"/>
+                        <xsl:with-param name="numerator-eenheid" select="./eenheid"/>
+                     </xsl:call-template>
+                  </rateRatio>
+               </xsl:for-each>
+               <xsl:for-each select=".[waarde/(min | max)]">
+                  <rateRange>
+                     <xsl:call-template name="minmax-to-Range">
+                        <xsl:with-param name="in" select="./waarde"/>
+                     </xsl:call-template>
+                  </rateRange>
+                  <rateQuantity>
+                     <xsl:call-template name="hoeveelheid-to-Duration">
+                        <xsl:with-param name="in" select="./tijdseenheid"/>
+                     </xsl:call-template>
+                  </rateQuantity>
+               </xsl:for-each>
+
+            </xsl:for-each>
+            <!--<xsl:if test="rateQuantity">
+                     <rateRatio>
+                        <xsl:call-template name="RTO_QTY_QTY-to-Ratio">
+                           <xsl:with-param name="in" select="rateQuantity"/>
+                        </xsl:call-template>
+                     </rateRatio>
+                  </xsl:if>
+               -->
+         </dosageInstruction>
+      </xsl:for-each>
+   </xsl:template>
+
+   <xd:doc>
+      <xd:desc/>
+      <xd:param name="additionalInfo"/>
+   </xd:doc>
+   <xsl:template name="zib-Medication-AdditionalInformation">
+      <xsl:param name="additionalInfo" as="element()?"/>
+      <!-- aanvullende_informatie -->
+      <xsl:for-each select="$additionalInfo">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+            <valueCodeableConcept>
+               <xsl:call-template name="code-to-CodeableConcept">
+                  <xsl:with-param name="in" select="."/>
+               </xsl:call-template>
+            </valueCodeableConcept>
+         </extension>
+      </xsl:for-each>
+   </xsl:template>
+   <xd:doc>
       <xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-AdministrationAgreement/ </xd:desc>
       <xd:param name="patient"/>
       <xd:param name="medicatieafspraak"/>
@@ -920,7 +1182,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   </xsl:call-template>
                </contained>
             </xsl:for-each>
-            <!-- aanvullende informatie in contained resource ??? of in extension, staat nu twee keer gemapt in het profiel... TODO-->
             <!-- voorschrijver in contained resource -->
             <xsl:variable name="voorschrijver" select="./voorschrijver/zorgverlener"/>
             <xsl:variable name="voorschrijver-id" select="generate-id($voorschrijver)"/>
@@ -1048,7 +1309,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="patient-subject-reference">
                <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
-            <!-- aanvullende informatie ??? TODO, zie bij contained resource en extension...-->
             <!-- lichaamslengte -->
             <xsl:for-each select="./lichaamslengte[.//@value]">
                <xsl:comment>lichaamslengte</xsl:comment>
@@ -1065,6 +1325,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   <display value="{concat('Gewicht. ',./gewicht_waarde/@value, ' ', ./gewicht_waarde/@unit,'. Gemeten: ', format-dateTime(./gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]'))}"/>
                </supportingInformation>
             </xsl:for-each>
+            <!-- TODO  -->
+            <!-- relatie naar medicatieafspraak of gebruik -->
+            <xsl:for-each select="relatie_naar_afspraak_of_gebruik/(identificatie | identificatie_23288 | identificatie_23289)">
+               <supportingInformation>
+                  <identifier>
+                     <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="."/>
+                     </xsl:call-template>
+                  </identifier>
+                  <display>
+                     <xsl:attribute name="value">
+                        <xsl:choose>
+                           <xsl:when test="./name() = 'identificatie'">relatie naar medicatieafspraak</xsl:when>
+                           <xsl:when test="./name() = 'identificatie_23288'">relatie naar toedieningsafspraak</xsl:when>
+                           <xsl:when test="./name() = 'identificatie_23289'">relatie naar medicatiegebruik</xsl:when>
+                        </xsl:choose>
+                     </xsl:attribute>
+                  </display>
+               </supportingInformation>
+            </xsl:for-each>
             <!-- afspraakdatum -->
             <xsl:for-each select="./afspraakdatum[@value]">
                <xsl:comment>afspraakdatum</xsl:comment>
@@ -1072,21 +1352,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <!-- voorschrijver -->
             <xsl:for-each select="./voorschrijver">
-               <xsl:comment>voorschrijver</xsl:comment>
-               <requester>
-                  <xsl:for-each select="./zorgverlener">
-                     <agent>
-                        <reference value="{$voorschrijver-id}"/>
-                        <display value="{normalize-space(string-join(.//(naamgegevens|organisatie_naam)//@value, ' '))}"/>
-                     </agent>
-                     <xsl:for-each select="./zorgaanbieder/zorgaanbieder">
-                        <onBehalfOf>
-                           <reference value="{$voorschrijver-za-id}"/>
-                           <display value="{./organisatie_naam/@value}"/>
-                        </onBehalfOf>
-                     </xsl:for-each>
-                  </xsl:for-each>
-               </requester>
+               <xsl:call-template name="zorgverlener-requester">
+                  <xsl:with-param name="zorgverlener" select="$voorschrijver"/>
+                  <xsl:with-param name="zorgverlener-id" select="$voorschrijver-id"/>
+                  <xsl:with-param name="zorgverlener-za-id" select="$voorschrijver-za-id"/>
+               </xsl:call-template>
             </xsl:for-each>
             <!-- reden afspraak -->
             <xsl:for-each select="./reden_afspraak">
@@ -1112,187 +1382,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   <text value="{./@value}"/>
                </note>
             </xsl:for-each>
-            
-            <!-- TODO 20180622 - hier verder -->
-            <!-- relatie naar medicatieafspraak -->
-            <xsl:for-each select="relatie_naar_medicatieafspraak/identificatie[not(@root = $oidNullFlavor)]">
-               <supportingInformation>
-                  <identifier>
-                     <xsl:call-template name="id-to-Identifier">
-                        <xsl:with-param name="in" select="."/>
-                     </xsl:call-template>
-                  </identifier>
-               </supportingInformation>
+            <!-- gebruiksinstructie/doseerinstructie/dosering -->
+            <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering">
+               <xsl:call-template name="zib-InstructionsForUse-2.0">
+                  <xsl:with-param name="ada-dosering" select="."/>
+               </xsl:call-template>
             </xsl:for-each>
             <!-- verstrekker -->
             <xsl:call-template name="verstrekker-performer">
                <xsl:with-param name="verstrekker" select="./verstrekker"/>
             </xsl:call-template>
             <!-- toelichting -->
-            
-            <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering">
-               <dosageInstruction>
-                  <xsl:for-each select="./../volgnummer[@value]">
-                     <sequence value="{./@value}"/>
-                  </xsl:for-each>
-                  <xsl:comment>TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction</xsl:comment>
-                  <xsl:for-each select="./../../omschrijving[@value]">
-                     <text value="{./@value}"/>
-                  </xsl:for-each>
-                  <xsl:comment>TODO: gebruiksinstructie/aanvullende_instructie should be defined one level higher, not per dosageInstruction</xsl:comment>
-                  <xsl:for-each select="./../../aanvullende_instructie[@code]">
-                     <additionalInstruction>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                           <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                     </additionalInstruction>
-                  </xsl:for-each>
-                  <xsl:for-each select="./toedieningsschema">
-                     <xsl:call-template name="zib-Administration-Schedule-2.0">
-                        <xsl:with-param name="toedieningsschema" select="."/>
-                     </xsl:call-template>
-                  </xsl:for-each>
-                  <xsl:for-each select="zo_nodig/criterium/code">
-                     <asNeededCodeableConcept>
-                        <xsl:variable name="in" select="."/>
-                        <!-- roep hier niet het standaard template aan omdat criterium/omschrijving ook nog omschrijving zou kunnen bevatten... -->
-                        <xsl:choose>
-                           <xsl:when test="$in[@codeSystem = $oidNullFlavor]">
-                              <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                                 <valueCode value="{$in/@code}"/>
-                              </extension>
-                           </xsl:when>
-                           <xsl:when test="$in[not(@codeSystem = $oidNullFlavor)]">
-                              <coding>
-                                 <system value="{local:getUri($in/@codeSystem)}"/>
-                                 <code value="{$in/@code}"/>
-                                 <xsl:if test="$in/@displayName">
-                                    <display value="{$in/@displayName}"/>
-                                 </xsl:if>
-                                 <!--<userSelected value="true"/>-->
-                              </coding>
-                              <!-- ADA heeft nog geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
-                              <xsl:for-each select="$in/translation">
-                                 <coding>
-                                    <system value="{local:getUri(@codeSystem)}"/>
-                                    <code value="{@code}"/>
-                                    <xsl:if test="@displayName">
-                                       <display value="{@displayName}"/>
-                                    </xsl:if>
-                                 </coding>
-                              </xsl:for-each>
-                           </xsl:when>
-                        </xsl:choose>
-                        <xsl:choose>
-                           <xsl:when test="./../omschrijving[@value]">
-                              <text value="{./../omschrijving/@value}"/>
-                           </xsl:when>
-                           <xsl:when test="$in[@originalText]">
-                              <text value="{$in/@originalText}"/>
-                           </xsl:when>
-                        </xsl:choose>
-                     </asNeededCodeableConcept>
-                  </xsl:for-each>
-                  <xsl:for-each select="./../../toedieningsweg">
-                     <route>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                           <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                     </route>
-                  </xsl:for-each>
-                  <xsl:for-each select="./keerdosis/aantal[vaste_waarde]">
-                     <doseQuantity>
-                        <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                           <xsl:with-param name="eenheid" select="./../eenheid"/>
-                           <xsl:with-param name="waarde" select="./vaste_waarde"/>
-                        </xsl:call-template>
-                     </doseQuantity>
-                  </xsl:for-each>
-                  <xsl:for-each select="./keerdosis/aantal[min | max]">
-                     <doseRange>
-                        <xsl:call-template name="minmax-to-Range">
-                           <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                     </doseRange>
-                  </xsl:for-each>
-                  <!-- maximale_dosering -->
-                  <xsl:for-each select="./zo_nodig/maximale_dosering[.//*[@value]]">
-                     <maxDosePerPeriod>
-                        <xsl:call-template name="quotient-to-Ratio">
-                           <xsl:with-param name="denominator" select="./tijdseenheid"/>
-                           <xsl:with-param name="numerator-aantal" select="./aantal"/>
-                           <xsl:with-param name="numerator-eenheid" select="./eenheid"/>
-                        </xsl:call-template>
-                     </maxDosePerPeriod>
-                  </xsl:for-each>
-                  <!-- TODO check of ik deze goed converteer vanuit 6.12
-                  <xsl:if test="doseCheckQuantity">
-                     <xsl:comment> TODO: doseCheckQuantity </xsl:comment>
-                  </xsl:if>
-                  <xsl:if test="maxDoseQuantity">
-                     <maxDosePerAdministration>
-                        <xsl:call-template name="RTO_QTY_QTY-to-Ratio">
-                           <xsl:with-param name="in" select="maxDoseQuantity"/>
-                        </xsl:call-template>
-                     </maxDosePerAdministration>
-                  </xsl:if>
-               -->
-                  <xsl:for-each select="./toedieningssnelheid[.//*[@value]]">
-                     <xsl:for-each select=".[waarde/vaste_waarde]">
-                        <rateRatio>
-                           <xsl:call-template name="quotient-to-Ratio">
-                              <xsl:with-param name="denominator" select="./tijdseenheid"/>
-                              <xsl:with-param name="numerator-aantal" select="./waarde/vaste_waarde"/>
-                              <xsl:with-param name="numerator-eenheid" select="./eenheid"/>
-                           </xsl:call-template>
-                        </rateRatio>
-                     </xsl:for-each>
-                     <xsl:for-each select=".[waarde/(min | max)]">
-                        <rateRange>
-                           <xsl:call-template name="minmax-to-Range">
-                              <xsl:with-param name="in" select="./waarde"/>
-                           </xsl:call-template>
-                        </rateRange>
-                        <rateQuantity>
-                           <xsl:call-template name="hoeveelheid-to-Duration">
-                              <xsl:with-param name="in" select="./tijdseenheid"/>
-                           </xsl:call-template>
-                        </rateQuantity>
-                     </xsl:for-each>
 
-                  </xsl:for-each>
-                  <!--<xsl:if test="rateQuantity">
-                     <rateRatio>
-                        <xsl:call-template name="RTO_QTY_QTY-to-Ratio">
-                           <xsl:with-param name="in" select="rateQuantity"/>
-                        </xsl:call-template>
-                     </rateRatio>
-                  </xsl:if>
-               -->
-               </dosageInstruction>
-            </xsl:for-each>
 
          </MedicationRequest>
       </xsl:for-each>
    </xsl:template>
 
-   <xd:doc>
-      <xd:desc/>
-      <xd:param name="additionalInfo"/>
-   </xd:doc>
-   <xsl:template name="zib-Medication-AdditionalInformation">
-      <xsl:param name="additionalInfo" as="element()?"/>
-      <!-- aanvullende_informatie -->
-      <xsl:for-each select="$additionalInfo">
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
-            <valueCodeableConcept>
-               <xsl:call-template name="code-to-CodeableConcept">
-                  <xsl:with-param name="in" select="."/>
-               </xsl:call-template>
-            </valueCodeableConcept>
-         </extension>
-      </xsl:for-each>
-   </xsl:template>
    <xd:doc>
       <xd:desc/>
       <xd:param name="copyIndicator"/>

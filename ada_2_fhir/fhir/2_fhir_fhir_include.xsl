@@ -131,14 +131,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="unit-UCUM" select="$in/nf:convertTime_ADA_unit2UCUM_FHIR(@unit)"/>
         <xsl:choose>
             <xsl:when test="$in[@value]">
-                <value value="{$in/@value}" xmlns="http://hl7.org/fhir"/>
+                <value value="{$in/@value}"/>
                 <xsl:if test="$unit-UCUM">
-                    <system value="{local:getUri($oidUCUM)}" xmlns="http://hl7.org/fhir"/>
-                    <code value="{$unit-UCUM}" xmlns="http://hl7.org/fhir"/>
+                    <unit value="{$in/@unit}"/>
+                    <system value="{local:getUri($oidUCUM)}"/>
+                    <code value="{$unit-UCUM}"/>
                 </xsl:if>
             </xsl:when>
             <xsl:when test="$in[@nullFlavor]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor" xmlns="http://hl7.org/fhir">
+                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
@@ -265,14 +266,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$in/min[@nullFlavor]">
-                <low xmlns="http://hl7.org/fhir">
+                <low>
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                         <valueCode value="{$in/min/@nullFlavor}"/>
                     </extension>
                 </low>
             </xsl:when>
             <xsl:when test="$in/min[@value]">
-                <low xmlns="http://hl7.org/fhir">
+                <low>
                     <xsl:call-template name="hoeveelheid-complex-to-Quantity">
                         <xsl:with-param name="eenheid" select="$in/../eenheid"/>
                         <xsl:with-param name="waarde" select="$in/min"/>
@@ -282,14 +283,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
         <xsl:choose>
             <xsl:when test="$in/max[@nullFlavor]">
-                <high xmlns="http://hl7.org/fhir">
+                <high>
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                         <valueCode value="{$in/max/@nullFlavor}"/>
                     </extension>
                 </high>
             </xsl:when>
             <xsl:when test="$in/max[@value]">
-                <high xmlns="http://hl7.org/fhir">
+                <high>
                     <xsl:call-template name="hoeveelheid-complex-to-Quantity">
                         <xsl:with-param name="eenheid" select="$in/../eenheid"/>
                         <xsl:with-param name="waarde" select="$in/max"/>

@@ -7,18 +7,73 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="medbeh_VMA_001_MA02"/>
+      <fullUrl value="medbeh_VMA_001_MA01_VV01"/>
       <resource>
          <MedicationRequest>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-               <valueDuration>
-                  <value value="10"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="d"/>
-               </valueDuration>
+            <contained><!-- zorgverlener -->
+               <Practitioner>
+                  <id value="d3e60"/>
+                  <!--zorgverlener_identificatie_nummer-->
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="006797896"/>
+                  </identifier>
+                  <!--naamgegevens-->
+                  <name>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                        <valueString value="van"/>
+                     </extension>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                        <valueString value="Beek"/>
+                     </extension>
+                     <given value="J.">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                           <valueCode value="IN"/>
+                        </extension>
+                     </given>
+                  </name>
+               </Practitioner>
+            </contained>
+            <contained>
+               <Organization>
+                  <id value="d3e83"/>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="00765332"/>
+                  </identifier>
+                  <name value="Huisartspraktijk Van Beek"/>
+               </Organization>
+            </contained>
+            <contained>
+               <Organization>
+                  <id value="d3e122"/>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="22343221"/>
+                  </identifier>
+                  <name value="Apotheek Boomsma"/>
+               </Organization>
+            </contained>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:1.2.3.999"/>
+                     <code value="4"/>
+                     <display value="aanvullende wensen todo"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:1.2.3.999"/>
+                     <value value="MA#2452"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = codesysteem: 1.2.3.999, waarde: MA#2452"/>
+               </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
@@ -26,21 +81,21 @@
                </valueIdentifier>
             </extension>
             <identifier>
-               <value value="medbeh_VMA_001_MA02"/>
+               <value value="medbeh_VMA_001_MA01_VV01"/>
             </identifier>
             <intent value="order"/>
-            <category><!--medicatieafspraak-->
+            <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
                </coding>
             </category>
-            <!--geneesmiddel-->
             <medicationCodeableConcept>
                <coding>
-                  <system value="urn:oid:"/>
-                  <code value=""/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="123323"/>
+                  <display value="AMLODIPINE TABLET 10MG"/>
                </coding>
             </medicationCodeableConcept>
             <!-- Patient -->
@@ -52,90 +107,46 @@
                </identifier>
                <display value="Antje de Vries"/>
             </subject>
-            <!--afspraakdatum-->
-            <authoredOn value="2016-09-02T14:30:23"/>
-            <!--voorschrijver-->
+            <authoredOn value="2016-09-02T09:11:00"/>
             <requester>
                <agent>
-                  <reference value="d3e60"/>
-                  <display value=""/>
+                  <reference value="#d3e60"/>
+                  <display value="J. van Beek Huisartspraktijk Van Beek"/>
                </agent>
                <onBehalfOf>
-                  <reference value="d3e85"/>
-                  <display value=""/>
+                  <reference value="#d3e83"/>
+                  <display value="Huisartspraktijk Van Beek"/>
                </onBehalfOf>
             </requester>
-            <!--reden afspraak-->
-            <reasonCode>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="438833006"/>
-                  <display value="Contra-indicatie"/>
-               </coding>
-            </reasonCode>
-            <!--toelichting-->
             <note>
-               <text value="Patiënt gebruikt Verapamil, contra-indicatie voor het origineel voorgeschreven Klacid."/>
+               <text value="toelichtin bij het vv"/>
             </note>
-            <!-- Responsible dispensing pharmacy -->
-            <dosageInstruction>
-               <sequence value="1"/>
-               <!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
-               <text value="Gedurende 10 dagen, eerste dag 2 tabletten en vervolgens 1x daags 1 tablet"/>
-               <!--TODO: gebruiksinstructie/aanvullende_instructie should be defined one level higher, not per dosageInstruction-->
-               <timing>
-                  <repeat><!--doseerduur-->
-                     <boundsDuration>
-                        <value value="1"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <!--toedieningsduur-->
-                     <frequency value="1"/>
-                     <!--frequentie/tijdseenheid-->
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value=""/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="2"/>
-               </doseQuantity>
-            </dosageInstruction>
-            <dosageInstruction>
-               <sequence value="2"/>
-               <!--TODO: gebruiksinstructie/omschrijving should be defined one level higher, not per dosageInstruction-->
-               <text value="Gedurende 10 dagen, eerste dag 2 tabletten en vervolgens 1x daags 1 tablet"/>
-               <!--TODO: gebruiksinstructie/aanvullende_instructie should be defined one level higher, not per dosageInstruction-->
-               <timing>
-                  <repeat><!--doseerduur-->
-                     <boundsDuration>
-                        <value value="9"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </boundsDuration>
-                     <!--toedieningsduur-->
-                     <frequency value="1"/>
-                     <!--frequentie/tijdseenheid-->
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value=""/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-               </doseQuantity>
-            </dosageInstruction>
+            <dispenseRequest>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
+                  <valueString value="in de bloempot stoppen"/>
+               </extension>
+               <validityPeriod>
+                  <start value="2017-03-06T08:00:00"/>
+                  <end value="2018-03-06T08:00:00"/>
+               </validityPeriod>
+               <numberOfRepeatsAllowed value="1"/>
+               <quantity>
+                  <value value="90"/>
+                  <unit value="Stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </quantity>
+               <expectedSupplyDuration>
+                  <value value="3"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </expectedSupplyDuration>
+               <performer>
+                  <reference value="#d3e122"/>
+                  <display value="Apotheek Boomsma"/>
+               </performer>
+            </dispenseRequest>
          </MedicationRequest>
       </resource>
    </entry>
