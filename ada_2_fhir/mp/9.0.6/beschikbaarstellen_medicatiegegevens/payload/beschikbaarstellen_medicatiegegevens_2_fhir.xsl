@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </resource>
                     </entry>
                 </xsl:for-each>
-                <!-- TODO medicatie in eigen resource bij magistralen, is nu contained opgenomen bij TA -->
+                <!-- TODO medicatie in eigen resource bij magistralen, is nu contained opgenomen bij MA/TA -->
                 <!--<xsl:if test="$medication/hl7:code[1][@nullFlavor]">
                 <entry>
                     <fullUrl value="{generate-id($medication)}"/>
@@ -111,11 +111,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </resource>
                     </entry>
                 </xsl:for-each>
-
+                <xsl:for-each select="$mbh/medicatie_gebruik">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{./identificatie[1]/string-join((@value,@root),'--')}"/>
+                        <resource>
+                            <xsl:call-template name="zib-MedicationUse-2.0">
+                                <xsl:with-param name="patient" select="$patient"/>
+                                <xsl:with-param name="medicatiegebruik" select="."/>
+                            </xsl:call-template>
+                        </resource>
+                    </entry>
+                </xsl:for-each>
+                
 
             </xsl:variable>
             <total value="{count($entries)}"/>
             <xsl:copy-of select="$entries"/>
         </Bundle>
     </xsl:template>
+    
 </xsl:stylesheet>
