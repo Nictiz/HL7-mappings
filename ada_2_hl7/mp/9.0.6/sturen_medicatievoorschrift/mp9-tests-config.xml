@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tests>
-    <transactie name="sturen_voorschrift">
+	<!-- POC Tranche 1
+		<transactie name="sturen_voorschrift">
         <output-dir value="file:/C:/SVN/art_decor/branches/mp-qual-20180426T140905/test_xslt"/>
         <test name="T1.1.1 MA + VV, Kortdurende medicatie (POC Tranche 1)">
             <pattern-id value="mp9-poc-t111-mavv-kortdurend"/>
@@ -94,4 +95,149 @@
             <ada-instance-filename value="POC/Tranche-1/POC-T132c-snachtszonodig-ADA-e1e64ef7-a6a3-45a2-b2a1-b80107feb2dd.xml"/>            
         </test>
     </transactie>
+   -->
+	<!-- POC test dag 4 juli 2018 -->
+	<transactie name="sturen_voorschrift">
+		<output-dir value="file:/C:/SVN/art_decor/branches/mp-qual-20180426T140905/test_xslt"/>
+		<test name="POC PROMEDICO T1.1.2 MA met VV : doorlopende medicatie">
+			<pattern-id value="pattern_10ca185a-004d-4aea-b5d7-e2e27558f8dd"/>
+			<data-string-medication-code value="data(('76333'))"/>
+			<data-int-medication-code value="data((76333))"/>
+			<medication-name value="HYDROCHLOORTHIAZIDE"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/10ca185a-004d-4aea-b5d7-e2e27558f8dd.xml"/>
+		</test>
+		<test name="POC OMNIHIS T1.3.3 Wijzigen dosering en sterkte: in 1 bericht">
+			<pattern-id value="pattern_15df083d-39ce-4920-bd1b-2df0e2abfbb8"/>
+			<data-string-medication-code value="data(('2429047','57614'))"/>
+			<data-int-medication-code value="data((2429047,57614))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/15df083d-39ce-4920-bd1b-2df0e2abfbb8.xml"/>
+		</test>
+		<test name="POC OMNIHIS T1.2.1b MA zonder VV: staken en nieuwe MA zonder VV">
+			<pattern-id value="pattern_23882d48-26bd-49da-88a2-804ad88c55e6"/>
+			<data-string-medication-code value="data(('8079'))"/>
+			<data-int-medication-code value="data((8079))"/>
+			<medication-name value="DICLOFENAC"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/23882d48-26bd-49da-88a2-804ad88c55e6.xml"/>
+		</test>
+		<test name="POC NEXUS T1.2.1a MA zonder VV: nieuwe MA zonder VV">
+			<pattern-id value="pattern_26f092ad-8845-44ea-82e6-e9c7db210b23"/>
+			<data-string-medication-code value="data(('8079'))"/>
+			<data-int-medication-code value="data((8079))"/>
+			<medication-name value="DICLOFENAC"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/26f092ad-8845-44ea-82e6-e9c7db210b23.xml"/>
+		</test>
+		<test name="POC FARMEDVISIE T1.1.3 MA met VV: zo nodig medicatie">
+			<pattern-id value="pattern_2de68402-2317-4e52-a3d0-0a95f5676bd1"/>
+			<data-string-medication-code value="data(('50520'))"/>
+			<data-int-medication-code value="data((50520))"/>
+			<medication-name value="RIZATRIPTAN"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/2de68402-2317-4e52-a3d0-0a95f5676bd1.xml"/>
+		</test>
+		<test name="POC FARMEDVISIE T1.3.1 Wijzigen dosering en sterkte: ma met 2 doseerinstructies en vv">
+			<pattern-id value="pattern_3b938ebb-4cc5-4f50-979f-574e8d23d131"/>
+			<data-string-medication-code value="data(('57614'))"/>
+			<data-int-medication-code value="data((57614))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/3b938ebb-4cc5-4f50-979f-574e8d23d131.xml"/>
+		</test>
+		<test name="POC OMNIHIS T1.1.4 MA met VV: zo nodig medicatie start in toekomst">
+			<pattern-id value="pattern_4ac6bba0-da1a-4cd3-b9e0-f442d40157b7"/>
+			<data-string-medication-code value="data(('5274'))"/>
+			<data-int-medication-code value="data((5274))"/>
+			<medication-name value="FLUCLOXACILLINE"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/4ac6bba0-da1a-4cd3-b9e0-f442d40157b7.xml"/>
+		</test>
+		<test name="POC OMNIHIS T1.3.2 Wijzigen dosering en sterkte: in 1 bericht">
+			<pattern-id value="pattern_4bc2843f-ccb5-462e-a9d1-ef07d3411d70"/>
+			<data-string-medication-code value="data(('57614','2429047','2264757','68209'))"/>
+			<data-int-medication-code value="data((57614,2429047,2264757,68209))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/4bc2843f-ccb5-462e-a9d1-ef07d3411d70.xml"/>
+		</test>
+		<test name="POC FARMEDVISIE T1.3.3 Wijzigen dosering en sterkte: in 1 bericht">
+			<pattern-id value="pattern_4fb8c782-0fb7-4d70-9e57-281e7f7f2db5"/>
+			<data-string-medication-code value="data(('2429047','57614'))"/>
+			<data-int-medication-code value="data((2429047,57614))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/4fb8c782-0fb7-4d70-9e57-281e7f7f2db5.xml"/>
+		</test>
+		<test name="POC FARMEDVISIE T1.3.2 Wijzigen dosering en sterkte: in 1 bericht">
+			<pattern-id value="pattern_6064f243-ab7d-4a6b-bae2-99c8d55c2f57"/>
+			<data-string-medication-code value="data(('57614','2429047','2264757','68209'))"/>
+			<data-int-medication-code value="data((57614,2429047,2264757,68209))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/6064f243-ab7d-4a6b-bae2-99c8d55c2f57.xml"/>
+		</test>
+		<test name="POC FARMEDVISIE T1.2.1b MA zonder VV: staken en nieuwe MA zonder VV">
+			<pattern-id value="pattern_7e1a448d-9965-4b99-9b2c-acc17bc07ec1"/>
+			<data-string-medication-code value="data(('8079'))"/>
+			<data-int-medication-code value="data((8079))"/>
+			<medication-name value="DICLOFENAC"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/7e1a448d-9965-4b99-9b2c-acc17bc07ec1.xml"/>
+		</test>
+		<test name="POC OMNIHIS T1.2.1a MA zonder VV: nieuwe MA met VV">
+			<pattern-id value="pattern_98470183-d44e-474e-8463-3862e9972ed5"/>
+			<data-string-medication-code value="data(('8079'))"/>
+			<data-int-medication-code value="data((8079))"/>
+			<medication-name value="DICLOFENAC"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/98470183-d44e-474e-8463-3862e9972ed5.xml"/>
+		</test>
+		<test name="POC PROMEDICO T1.2.1b MA zonder VV: staken en nieuwe MA zonder VV">
+			<pattern-id value="pattern_9ef17fe0-9776-42fd-bb7c-c9170f04489c"/>
+			<data-string-medication-code value="data(('8079'))"/>
+			<data-int-medication-code value="data((8079))"/>
+			<medication-name value="DICLOFENAC"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/9ef17fe0-9776-42fd-bb7c-c9170f04489c.xml"/>
+		</test>
+		<test name="POC NEXUS T1.2.1b MA zonder VV: staken en nieuwe MA zonder VV">
+			<pattern-id value="pattern_a248e4aa-a506-43f0-a0e6-7f5f03f0afa0"/>
+			<data-string-medication-code value="data(('8079'))"/>
+			<data-int-medication-code value="data((8079))"/>
+			<medication-name value="DICLOFENAC"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/a248e4aa-a506-43f0-a0e6-7f5f03f0afa0.xml"/>
+		</test>
+		<test name="POC PROMEDICO T1.3.2 Wijzigen dosering en sterkte: in 1 bericht">
+			<pattern-id value="pattern_aa55985a-8059-401b-a1c3-99ccc18631ad"/>
+			<data-string-medication-code value="data(('57614','2429047','2264757','68209'))"/>
+			<data-int-medication-code value="data((57614,2429047,2264757,68209))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/aa55985a-8059-401b-a1c3-99ccc18631ad.xml"/>
+		</test>
+		<test name="POC OMNIHIS T1.3.1 Wijzigen dosering en sterkte: ma met 2 doseerinstructies en vv">
+			<pattern-id value="pattern_b8c652d5-4fc9-45d6-8b8f-f74c21607af3"/>
+			<data-string-medication-code value="data(('57614'))"/>
+			<data-int-medication-code value="data((57614))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/b8c652d5-4fc9-45d6-8b8f-f74c21607af3.xml"/>
+		</test>
+		<test name="POC PROMEDICO T1.3.3 Wijzigen dosering en sterkte: in 1 bericht">
+			<pattern-id value="pattern_c24002b6-ad7b-4aad-8c45-ec85371ee59a"/>
+			<data-string-medication-code value="data(('2429047','57614'))"/>
+			<data-int-medication-code value="data((2429047,57614))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/c24002b6-ad7b-4aad-8c45-ec85371ee59a.xml"/>
+		</test>
+		<test name="POC PROMEDICO T1.3.1 Wijzigen dosering en sterkte: ma met 2 doseerinstructies en vv">
+			<pattern-id value="pattern_d066bb94-094f-4fc9-b9b7-2b961164ef92"/>
+			<data-string-medication-code value="data(('57614'))"/>
+			<data-int-medication-code value="data((57614))"/>
+			<medication-name value="OXYCODON"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/d066bb94-094f-4fc9-b9b7-2b961164ef92.xml"/>
+		</test>
+		<test name="POC FARMEDVISIE T1.2.1a MA zonder VV: nieuwe MA met VV">
+			<pattern-id value="pattern_dd8f67fa-6fec-4b88-90bf-cdeff153b1eb"/>
+			<data-string-medication-code value="data(('8079'))"/>
+			<data-int-medication-code value="data((8079))"/>
+			<medication-name value="DICLOFENAC"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/dd8f67fa-6fec-4b88-90bf-cdeff153b1eb.xml"/>
+		</test>
+		<test name="POC PROMEDICO T1.2.1a MA zonder VV: nieuwe MA met VV">
+			<pattern-id value="pattern_ed4985c5-36d1-473b-a71c-5a559be84839"/>
+			<data-string-medication-code value="data(('8079'))"/>
+			<data-int-medication-code value="data((8079))"/>
+			<medication-name value="DICLOFENAC"/>
+			<ada-instance-filename value="POC/20180704_POC_dag/ada_instance/ed4985c5-36d1-473b-a71c-5a559be84839.xml"/>
+		</test>
+	</transactie>
 </tests>

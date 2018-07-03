@@ -15,7 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <xsl:strip-space elements="*"/>
-    <xsl:include href="../../mp_include.xsl"/>
+    <xsl:include href="../../2_hl7_mp_include.xsl"/>
 
     <xsl:template name="make-schematron">
         <xsl:param name="pattern-id"/>
@@ -37,9 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <let name="medCodeNr">
                     <xsl:attribute name="value" select="$data-int-medication-code"/>
                 </let>
-                <let name="naam">
-                    <xsl:attribute name="value" select="concat('''', $medication-name, '''')"/>
-                </let>
+                <let name="naam" value="'{$medication-name}'"/>
                 <xsl:apply-templates select="doc($ada-instance-filename)//patient"/>
                 <xsl:for-each select="doc($ada-instance-filename)//data">
                     <xsl:call-template name="data">
@@ -444,11 +442,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="all_mas"/>
         <!-- determine the correct context -->
         <xsl:variable name="base-context" select="'//hl7:substanceAdministration[hl7:templateId/@root = ''2.16.840.1.113883.2.4.3.11.60.20.77.10.9216''][hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*[@code = $medCodeNr]]'"/>
-        <xsl:variable name="current-stoptype" select="$current_ma/stoptype[@code]"/>
-        <xsl:variable name="append-stoptype" select="'hl7:entryRelationship/hl7:observation/hl7:code[@code=''1''][@codeSystem=''2.16.840.1.113883.2.4.3.11.60.20.77.5.2'']'"/>
+    	<xsl:variable name="append-stoptype" select="'hl7:entryRelationship/hl7:observation/hl7:code[@code=''1''][@codeSystem=''2.16.840.1.113883.2.4.3.11.60.20.77.5.2'']'"/>
         <xsl:variable name="current-vaste-keerdosis" select="$current_ma//keerdosis/aantal/vaste_waarde[@value]"/>
         <xsl:variable name="append-vaste-keerdosis" select="concat('hl7:entryRelationship/hl7:substanceAdministration[hl7:templateId/@root=''2.16.840.1.113883.2.4.3.11.60.20.77.10.9149''][hl7:doseQuantity/hl7:center[@value= ''', $current-vaste-keerdosis[1]/@value, ''']]')"/>
-        <xsl:variable name="append-2-context">
+    	<xsl:variable name="current-stoptype" select="$current_ma/stoptype"/>
+    	<xsl:variable name="append-2-context">
             <xsl:choose>
                 <!-- is er één MA ? dan hoeven we niets toe te voegen-->
                 <xsl:when test="count($all_mas) = 1"/>
