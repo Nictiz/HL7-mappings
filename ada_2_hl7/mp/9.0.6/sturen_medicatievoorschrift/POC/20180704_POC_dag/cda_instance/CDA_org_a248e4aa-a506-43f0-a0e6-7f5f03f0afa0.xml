@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="file:/C:/SVN/art_decor/branches/mp-qual-20180426T140905/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
-<!--Generated from ada instance with title: "POC FARMEDVISIE T1.3.3 Wijzigen dosering en sterkte: in 1 bericht" and id: "4fb8c782-0fb7-4d70-9e57-281e7f7f2db5".-->
+<!--Generated from ada instance with title: "POC NEXUS T1.2.1b MA zonder VV: staken en nieuwe MA zonder VV" and id: "a248e4aa-a506-43f0-a0e6-7f5f03f0afa0".-->
 <ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xmlns:sdtc="urn:hl7-org:sdtc"
                   xmlns="urn:hl7-org:v3"
@@ -19,20 +19,20 @@
          codeSystem="2.16.840.1.113883.6.96"
          codeSystemName="SNOMED CT"
          displayName="Medication section (record artifact)"/>
-   <title>Voorschrift K. XXX-LEV-TEST-B op 23 juni 2016</title>
+   <title>Voorschrift G. XXX-GBZ-Smoketest-C op 23 juni 2016</title>
    <effectiveTime value="20160623141518"/>
    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
    <languageCode code="nl-NL"/>
    <recordTarget xmlns:nf="http://www.nictiz.nl/functions">
       <patientRole>
-         <id extension="999990123" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999990068" root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">K.</given>
-               <family qualifier="BR">XXX-LEV-TEST-B</family>
+               <given qualifier="IN">G.</given>
+               <family qualifier="BR">XXX-GBZ-Smoketest-C</family>
             </name>
             <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
-            <birthTime value="19500203"/>
+            <birthTime value="19500702"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -78,24 +78,24 @@
                                            classCode="SBADM"
                                            moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
-                     <id extension="POC_T132F_WDS_MBH1_MA1S" root="1.2.3.999"/>
+                     <id extension="POC_T121N_MA_MBH1_MA1S" root="1.2.3.999"/>
                      <code code="16076005"
                            displayName="Medicatieafspraak"
                            codeSystem="2.16.840.1.113883.6.96"
                            codeSystemName="SNOMED CT"/>
-                     <text mediaType="text/plain">Vanaf 4 juli 2018, staken gebruik</text>
+                     <text mediaType="text/plain">Per direct gedurende 4 weken 3 maal daags 1 tablet</text>
                      <effectiveTime xsi:type="IVL_TS">
-                        <low value="20180627000000"/>
+                        <low value="20180613000000"/>
                         <high value="20180704000000"/>
                      </effectiveTime>
-                     <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="oraal"/>
+                     <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="Oraal"/>
                      <consumable>
                         <manufacturedProduct classCode="MANU">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
                            <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                              <code code="2429047"
-                                    codeSystem="2.16.840.1.113883.2.4.4.7"
-                                    displayName="OXYCODON HCL ACTAVIS RETARD TABLET MGA 20MG"/>
+                              <code code="8079"
+                                    codeSystem="2.16.840.1.113883.2.4.4.10"
+                                    displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
                            </manufacturedMaterial>
                         </manufacturedProduct>
                      </consumable>
@@ -141,8 +141,8 @@
                               </hl7nl:frequency>
                            </effectiveTime>
                            <doseQuantity>
-                              <center value="2" unit="1">
-                                 <translation value="2"
+                              <center value="1" unit="1">
+                                 <translation value="1"
                                               code="245"
                                               codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                               displayName="stuk"/>
@@ -154,7 +154,7 @@
                      <entryRelationship typeCode="REFR">
                         <substanceAdministration classCode="SBADM" moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-                           <id extension="POC_T132F_WDS_MBH1_MA1" root="1.2.3.999"/>
+                           <id extension="POC_T121N_MA_MBH1_MA1" root="1.2.3.999"/>
                            <code code="16076005"
                                  codeSystem="2.16.840.1.113883.6.96"
                                  codeSystemName="SNOMED CT"
@@ -165,7 +165,7 @@
                      <entryRelationship typeCode="COMP" inversionInd="true">
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-                           <id root="1.2.3.999" extension="POC_T132F_WDS_MBH1"/>
+                           <id root="1.2.3.999" extension="POC_T121N_MA_MBH1"/>
                            <code code="1"
                                  displayName="Medicamenteuze behandeling"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -178,29 +178,29 @@
                                            classCode="SBADM"
                                            moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
-                     <id extension="POC_T133F_WDS_MBH1_MA1" root="1.2.3.999"/>
+                     <id extension="POC_T121N_MA_MBH1_MA2" root="1.2.3.999"/>
                      <code code="16076005"
                            displayName="Medicatieafspraak"
                            codeSystem="2.16.840.1.113883.6.96"
                            codeSystemName="SNOMED CT"/>
-                     <text mediaType="text/plain">Vanaf 4 juli 2018, tot nader order, 4x daags 1 tablet</text>
+                     <text mediaType="text/plain">Per direct gedurende 3 weken 2 maal daags 1 tablet</text>
                      <effectiveTime xsi:type="IVL_TS">
                         <low value="20180704000000"/>
-                        <high nullFlavor="NI"/>
+                        <width value="3" unit="wk"/>
                      </effectiveTime>
-                     <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="oraal"/>
+                     <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="Oraal"/>
                      <consumable>
                         <manufacturedProduct classCode="MANU">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
                            <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                              <code code="57614"
+                              <code code="8079"
                                     codeSystem="2.16.840.1.113883.2.4.4.10"
-                                    displayName="OXYCODON TABLET MGA 10MG"/>
+                                    displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
                            </manufacturedMaterial>
                         </manufacturedProduct>
                      </consumable>
                      <author>
-                        <time value="20180704094700"/>
+                        <time value="20180704000000"/>
                         <assignedAuthor>
                            <id extension="123456789" root="2.16.528.1.1007.3.1"/>
                            <code code="01.015"
@@ -225,9 +225,9 @@
                                  displayName="Reden medicatieafspraak"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
                            <value xsi:type="CE"
-                                  code="7"
+                                  code="12"
                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
-                                  displayName="(Mogelijke) bijwerking"/>
+                                  displayName="Wens patiënt"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
@@ -236,7 +236,7 @@
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
                            <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
                               <hl7nl:frequency>
-                                 <hl7nl:numerator xsi:type="hl7nl:INT" value="4"/>
+                                 <hl7nl:numerator xsi:type="hl7nl:INT" value="3"/>
                                  <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
                               </hl7nl:frequency>
                            </effectiveTime>
@@ -254,7 +254,7 @@
                      <entryRelationship typeCode="REFR">
                         <substanceAdministration classCode="SBADM" moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-                           <id extension="POC_T132F_WDS_MBH1_MA1" root="1.2.3.999"/>
+                           <id extension="POC_T121N_MA_MBH1_MA1" root="1.2.3.999"/>
                            <code code="16076005"
                                  codeSystem="2.16.840.1.113883.6.96"
                                  codeSystemName="SNOMED CT"
@@ -265,89 +265,13 @@
                      <entryRelationship typeCode="COMP" inversionInd="true">
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-                           <id root="1.2.3.999" extension="POC_T133F_WDS_MBH1"/>
+                           <id root="1.2.3.999" extension="POC_T121N_MA_MBH1"/>
                            <code code="1"
                                  displayName="Medicamenteuze behandeling"
                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
                         </procedure>
                      </entryRelationship>
                   </substanceAdministration>
-               </entry>
-               <entry>
-                  <supply xmlns:nf="http://www.nictiz.nl/functions"
-                          classCode="SPLY"
-                          moodCode="RQO">
-                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9231"/>
-                     <id extension="POC_T133F_WDS_MBH1_VV1" root="1.2.3.999"/>
-                     <code codeSystemName="SNOMED CT"
-                           displayName="Verstrekkingsverzoek"
-                           code="52711000146108"
-                           codeSystem="2.16.840.1.113883.6.96"/>
-                     <quantity value="60" unit="1">
-                        <translation value="60"
-                                     code="245"
-                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                     displayName="stuk"/>
-                     </quantity>
-                     <product>
-                        <manufacturedProduct classCode="MANU">
-                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
-                           <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                              <code code="57614"
-                                    codeSystem="2.16.840.1.113883.2.4.4.10"
-                                    displayName="OXYCODON TABLET MGA 10MG"/>
-                           </manufacturedMaterial>
-                        </manufacturedProduct>
-                     </product>
-                     <performer>
-                        <assignedEntity>
-                           <id nullFlavor="NI"/>
-                           <representedOrganization>
-                              <id extension="11111111" root="2.16.528.1.1007.3.3"/>
-                              <name>Apotheker Zelf Verzonnen</name>
-                           </representedOrganization>
-                        </assignedEntity>
-                     </performer>
-                     <author>
-                        <time value="20180704000000"/>
-                        <assignedAuthor>
-                           <id extension="123456789" root="2.16.528.1.1007.3.1"/>
-                           <code code="01.015"
-                                 codeSystem="2.16.840.1.113883.2.4.15.111"
-                                 displayName="Huisarts"/>
-                           <assignedPerson>
-                              <name>
-                                 <given qualifier="BR">zelf gekozen voornaam</given>
-                                 <family qualifier="BR">zelf gekozen achternaam</family>
-                              </name>
-                           </assignedPerson>
-                           <representedOrganization>
-                              <id extension="12345678" root="2.16.528.1.1007.3.3"/>
-                              <name>Huisartsenpraktijk Zelf Gekozen</name>
-                           </representedOrganization>
-                        </assignedAuthor>
-                     </author>
-                     <entryRelationship typeCode="REFR">
-                        <substanceAdministration classCode="SBADM" moodCode="RQO">
-                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-                           <id extension="POC_T133F_WDS_MBH1_MA1" root="1.2.3.999"/>
-                           <code code="16076005"
-                                 codeSystem="2.16.840.1.113883.6.96"
-                                 codeSystemName="SNOMED CT"
-                                 displayName="Medicatieafspraak"/>
-                           <consumable xsi:nil="true"/>
-                        </substanceAdministration>
-                     </entryRelationship>
-                     <entryRelationship typeCode="COMP" inversionInd="true">
-                        <procedure classCode="PROC" moodCode="EVN">
-                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-                           <id root="1.2.3.999" extension="POC_T133F_WDS_MBH1"/>
-                           <code code="1"
-                                 displayName="Medicamenteuze behandeling"
-                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                        </procedure>
-                     </entryRelationship>
-                  </supply>
                </entry>
             </section>
          </component>
@@ -363,20 +287,25 @@
                              versionDate=""
                              prefix="mp-"
                              language="nl-NL"
-                             title="POC FARMEDVISIE T1.3.3 Wijzigen dosering en sterkte: in 1 bericht"
-                             id="4fb8c782-0fb7-4d70-9e57-281e7f7f2db5">
+                             title="POC NEXUS T1.2.1b MA zonder VV: staken en nieuwe MA zonder VV"
+                             id="a248e4aa-a506-43f0-a0e6-7f5f03f0afa0">
    <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
       <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
-         <initialen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801" value="K."/>
+         <initialen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801" value="G."/>
+         <naamgebruik value="1"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19803"
+                      code="NL1"
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                      displayName="Eigen geslachtsnaam"/>
          <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804">
             <achternaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"
-                        value="XXX-LEV-TEST-B"/>
+                        value="XXX-GBZ-Smoketest-C"/>
          </geslachtsnaam>
       </naamgegevens>
-      <patient_identificatienummer value="999990123"
+      <patient_identificatienummer value="999990068"
                                    root="2.16.840.1.113883.2.4.6.3"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"/>
-      <geboortedatum value="1950-02-03"
+      <geboortedatum value="1950-07-02"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830"/>
       <geslacht value="2"
                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831"
@@ -385,13 +314,13 @@
                 displayName="Man"/>
    </patient>
    <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-      <identificatie value="POC_T132F_WDS_MBH1"
+      <identificatie value="POC_T121N_MA_MBH1"
                      root="1.2.3.999"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
       <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
-         <gebruiksperiode_start value="2018-06-27T00:00:00" conceptId="1.2.3.4.5.12345.9580.1"/>
+         <gebruiksperiode_start value="2018-06-13T00:00:00" conceptId="1.2.3.4.5.12345.9580.1"/>
          <gebruiksperiode_eind value="2018-07-04T00:00:00" conceptId="1.2.3.4.5.12345.9580.2"/>
-         <identificatie value="POC_T132F_WDS_MBH1_MA1S"
+         <identificatie value="POC_T121N_MA_MBH1_MA1S"
                         root="1.2.3.999"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
          <afspraakdatum value="2018-07-04T00:00:00"
@@ -402,9 +331,11 @@
                    codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
                    displayName="Staking"/>
          <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238">
-            <identificatie value="POC_T132F_WDS_MBH1_MA1"
+            <identificatie value="POC_T121N_MA_MBH1_MA1"
                            root="1.2.3.999"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
+            <identificatie_23288 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23288"/>
+            <identificatie_23289 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23289"/>
          </relatie_naar_afspraak_of_gebruik>
          <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
@@ -439,23 +370,23 @@
          <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925">
             <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603">
                <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
-                             code="2429047"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             displayName="OXYCODON HCL ACTAVIS RETARD TABLET MGA 20MG"/>
+                             code="8079"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
             </product>
          </afgesproken_geneesmiddel>
          <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
             <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
-                          value="Vanaf 4 juli 2018, staken gebruik"/>
+                          value="Per direct gedurende 4 weken 3 maal daags 1 tablet"/>
             <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
                             codeSystem="2.16.840.1.113883.2.4.4.9"
                             code="9"
-                            displayName="oraal"/>
+                            displayName="Oraal"/>
             <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245">
                <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248">
                   <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249">
                      <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250">
-                        <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252" value="2"/>
+                        <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252" value="1"/>
                      </aantal>
                      <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254"
                               codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -476,22 +407,22 @@
             </doseerinstructie>
          </gebruiksinstructie>
       </medicatieafspraak>
-   </medicamenteuze_behandeling>
-   <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
-      <identificatie value="POC_T133F_WDS_MBH1"
-                     root="1.2.3.999"
-                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
       <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.9580">
          <gebruiksperiode_start value="2018-07-04T00:00:00" conceptId="1.2.3.4.5.12345.9580.1"/>
-         <identificatie value="POC_T133F_WDS_MBH1_MA1"
+         <identificatie value="POC_T121N_MA_MBH1_MA2"
                         root="1.2.3.999"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
-         <afspraakdatum value="2018-07-04T09:47:00"
+         <afspraakdatum value="2018-07-04T00:00:00"
                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
+         <gebruiksperiode value="3"
+                          unit="week"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19936"/>
          <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238">
-            <identificatie value="POC_T132F_WDS_MBH1_MA1"
+            <identificatie value="POC_T121N_MA_MBH1_MA1"
                            root="1.2.3.999"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
+            <identificatie_23288 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23288"/>
+            <identificatie_23289 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23289"/>
          </relatie_naar_afspraak_of_gebruik>
          <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
@@ -523,116 +454,50 @@
                </zorgaanbieder>
             </zorgverlener>
          </voorschrijver>
-         <reden_afspraak value="7"
+         <reden_afspraak value="12"
                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094"
-                         code="7"
+                         code="12"
                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
-                         displayName="(Mogelijke) bijwerking"/>
+                         displayName="Wens patiënt"/>
          <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925">
             <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603">
                <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"
-                             code="57614"
+                             code="8079"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="OXYCODON TABLET MGA 10MG"/>
+                             displayName="DICLOFENAC-NATRIUM TABLET MSR 50MG"/>
             </product>
          </afgesproken_geneesmiddel>
          <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
-            <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"
-                          value="Vanaf 4 juli 2018, tot nader order, 4x daags 1 tablet"/>
+            <omschrijving value="Per direct gedurende 3 weken 2 maal daags 1 tablet"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23241"/>
             <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23242"
-                            codeSystem="2.16.840.1.113883.2.4.4.9"
                             code="9"
-                            displayName="oraal"/>
+                            codeSystem="2.16.840.1.113883.2.4.4.9"
+                            displayName="Oraal"/>
             <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23245">
                <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23248">
                   <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23249">
                      <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23250">
-                        <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252" value="1"/>
+                        <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23252"/>
                      </aantal>
                      <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23254"
-                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                               code="245"
+                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                               displayName="stuk"/>
                   </keerdosis>
                   <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
                      <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257">
                         <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
-                           <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260" value="4"/>
+                           <vaste_waarde value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
                         </aantal>
-                        <tijdseenheid unit="dag"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"
-                                      value="1"/>
+                        <tijdseenheid value="1"
+                                      unit="dag"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
                      </frequentie>
                   </toedieningsschema>
                </dosering>
             </doseerinstructie>
          </gebruiksinstructie>
       </medicatieafspraak>
-      <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19963">
-         <identificatie value="POC_T133F_WDS_MBH1_VV1"
-                        root="1.2.3.999"
-                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22003"/>
-         <datum value="2018-07-04T00:00:00"
-                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"/>
-         <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
-            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
-               <zorgverlener_identificatie_nummer value="123456789"
-                                                  root="2.16.528.1.1007.3.1"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
-               <zorgverlener_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
-                  <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
-                     <voornamen value="zelf gekozen voornaam"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
-                     <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22130">
-                        <achternaam value="zelf gekozen achternaam"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
-                     </geslachtsnaam>
-                  </naamgegevens>
-               </zorgverlener_naam>
-               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"
-                            code="01.015"
-                            codeSystem="2.16.840.1.113883.2.4.15.111"
-                            displayName="Huisarts"/>
-               <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22159">
-                     <zorgaanbieder_identificatie_nummer value="12345678"
-                                                         root="2.16.528.1.1007.3.3"
-                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
-                     <organisatie_naam value="Huisartsenpraktijk Zelf Gekozen"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
-                  </zorgaanbieder>
-               </zorgaanbieder>
-            </zorgverlener>
-         </auteur>
-         <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19964">
-            <aantal value="60" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22599"/>
-            <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22600"
-                     code="245"
-                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                     displayName="stuk"/>
-         </te_verstrekken_hoeveelheid>
-         <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
-            <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
-               <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"
-                             code="57614"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             displayName="OXYCODON TABLET MGA 10MG"/>
-            </product>
-         </te_verstrekken_geneesmiddel>
-         <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
-            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
-               <zorgaanbieder_identificatie_nummer value="11111111"
-                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"
-                                                   root="2.16.528.1.1007.3.3"/>
-               <organisatie_naam value="Apotheker Zelf Verzonnen"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
-            </zorgaanbieder>
-         </beoogd_verstrekker>
-         <relatie_naar_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23286">
-            <identificatie value="POC_T133F_WDS_MBH1_MA1"
-                           root="1.2.3.999"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23287"/>
-         </relatie_naar_medicatieafspraak>
-      </verstrekkingsverzoek>
    </medicamenteuze_behandeling>
 </sturen_medicatievoorschrift>-->

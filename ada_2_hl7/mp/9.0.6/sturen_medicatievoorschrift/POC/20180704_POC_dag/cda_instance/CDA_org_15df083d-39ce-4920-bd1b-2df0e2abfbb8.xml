@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="file:/C:/SVN/art_decor/branches/mp-qual-20180426T140905/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
 <!--Generated from ada instance with title: "POC OMNIHIS T1.3.3 Wijzigen dosering en sterkte: in 1 bericht" and id: "15df083d-39ce-4920-bd1b-2df0e2abfbb8".-->
-<?xml-model href="../../../../../../../../../../branches/mp-qual-20180426T140905/test_xslt/mp9-poc-t133-omnihis.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../../branches/mp-qual-20180426T140905/schemas_codeGen_flat/CDANL_extended.xsd" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:pharm="urn:ihe:pharm:medication">
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:sdtc="urn:hl7-org:sdtc"
+                  xmlns="urn:hl7-org:v3"
+                  xmlns:cda="urn:hl7-org:v3"
+                  xmlns:hl7nl="urn:hl7-nl:v3"
+                  xmlns:pharm="urn:ihe:pharm:medication"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xsi:schemaLocation="urn:hl7-org:v3 ../schemas/CDANL_extended.xsd">
    <realmCode code="NL"/>
    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9219"/>
-   <id extension="someUniqueID" root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9217.1.2.3.999"/>
-   <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medication section (record artifact)"/>
+   <id extension="someUniqueID"
+       root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9217.1.2.3.999"/>
+   <code code="52981000146104"
+         codeSystem="2.16.840.1.113883.6.96"
+         codeSystemName="SNOMED CT"
+         displayName="Medication section (record artifact)"/>
    <title>Voorschrift O. XXX-Incident-B op 23 juni 2016</title>
    <effectiveTime value="20160623141518"/>
    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
@@ -27,13 +38,14 @@
    </recordTarget>
    <author>
       <time value="20160613080000"/>
-      <assignedAuthor>
-         <!--identificatie-->
+      <assignedAuthor><!--identificatie-->
          <id extension="006797896" root="2.16.528.1.1007.3.1"/>
          <!--specialisme-->
-         <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
-         <assignedPerson>
-            <!--Naam-->
+         <code code="01.016"
+               displayName="Internist"
+               codeSystem="2.16.840.1.113883.2.4.15.111"
+               codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+         <assignedPerson><!--Naam-->
             <name>
                <given qualifier="IN">J.</given>
                <prefix qualifier="VV">van </prefix>
@@ -41,8 +53,7 @@
             </name>
          </assignedPerson>
          <!--Zorgaanbieder-->
-         <representedOrganization>
-            <!--Zorgaanbieder identificatie-->
+         <representedOrganization><!--Zorgaanbieder identificatie-->
             <id root="1.2.3.4" extension="URAnummer"/>
             <name>Ziekenhuis zus en zo</name>
          </representedOrganization>
@@ -63,10 +74,15 @@
             <section>
                <text>Medicatiegegevens.</text>
                <entry>
-                  <substanceAdministration xmlns:nf="http://www.nictiz.nl/functions" classCode="SBADM" moodCode="RQO">
+                  <substanceAdministration xmlns:nf="http://www.nictiz.nl/functions"
+                                           classCode="SBADM"
+                                           moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
                      <id extension="POC_T132O_WDS_MBH1_MA1S" root="1.2.3.999"/>
-                     <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                     <code code="16076005"
+                           displayName="Medicatieafspraak"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                      <text mediaType="text/plain">Vanaf 4 juli 2018, staken gebruik</text>
                      <effectiveTime xsi:type="IVL_TS">
                         <low value="20180627000000"/>
@@ -77,7 +93,9 @@
                         <manufacturedProduct classCode="MANU">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
                            <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                              <code code="2429047" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="OXYCODON HCL ACTAVIS RETARD TABLET MGA 20MG"/>
+                              <code code="2429047"
+                                    codeSystem="2.16.840.1.113883.2.4.4.7"
+                                    displayName="OXYCODON HCL ACTAVIS RETARD TABLET MGA 20MG"/>
                            </manufacturedMaterial>
                         </manufacturedProduct>
                      </consumable>
@@ -85,7 +103,9 @@
                         <time value="20180704000000"/>
                         <assignedAuthor>
                            <id extension="123456789" root="2.16.528.1.1007.3.1"/>
-                           <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                           <code code="01.015"
+                                 codeSystem="2.16.840.1.113883.2.4.15.111"
+                                 displayName="Huisarts"/>
                            <assignedPerson>
                               <name>
                                  <given qualifier="BR">zelf gekozen voornaam</given>
@@ -101,8 +121,13 @@
                      <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9067"/>
-                           <code code="1" displayName="Stoptype" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
-                           <value xsi:type="CE" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" code="2" displayName="Staking"/>
+                           <code code="1"
+                                 displayName="Stoptype"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+                           <value xsi:type="CE"
+                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                                  code="2"
+                                  displayName="Staking"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
@@ -117,7 +142,10 @@
                            </effectiveTime>
                            <doseQuantity>
                               <center value="2" unit="1">
-                                 <translation value="2" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                 <translation value="2"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
                               </center>
                            </doseQuantity>
                            <consumable xsi:nil="true"/>
@@ -127,7 +155,10 @@
                         <substanceAdministration classCode="SBADM" moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
                            <id extension="POC_T132O_WDS_MBH1_MA1" root="1.2.3.999"/>
-                           <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                           <code code="16076005"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"
+                                 displayName="Medicatieafspraak"/>
                            <consumable xsi:nil="true"/>
                         </substanceAdministration>
                      </entryRelationship>
@@ -135,16 +166,23 @@
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                            <id root="1.2.3.999" extension="POC_T132O_WDS_MBH1"/>
-                           <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                           <code code="1"
+                                 displayName="Medicamenteuze behandeling"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
                         </procedure>
                      </entryRelationship>
                   </substanceAdministration>
                </entry>
                <entry>
-                  <substanceAdministration xmlns:nf="http://www.nictiz.nl/functions" classCode="SBADM" moodCode="RQO">
+                  <substanceAdministration xmlns:nf="http://www.nictiz.nl/functions"
+                                           classCode="SBADM"
+                                           moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
                      <id extension="POC_T133O_WDS_MBH1_MA1" root="1.2.3.999"/>
-                     <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                     <code code="16076005"
+                           displayName="Medicatieafspraak"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
                      <text mediaType="text/plain">Vanaf 4 juli 2018, tot nader order, 4x daags 1 tablet</text>
                      <effectiveTime xsi:type="IVL_TS">
                         <low value="20180704000000"/>
@@ -155,7 +193,9 @@
                         <manufacturedProduct classCode="MANU">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
                            <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                              <code code="57614" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="OXYCODON TABLET MGA 10MG"/>
+                              <code code="57614"
+                                    codeSystem="2.16.840.1.113883.2.4.4.10"
+                                    displayName="OXYCODON TABLET MGA 10MG"/>
                            </manufacturedMaterial>
                         </manufacturedProduct>
                      </consumable>
@@ -163,7 +203,9 @@
                         <time value="20180704094700"/>
                         <assignedAuthor>
                            <id extension="123456789" root="2.16.528.1.1007.3.1"/>
-                           <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                           <code code="01.015"
+                                 codeSystem="2.16.840.1.113883.2.4.15.111"
+                                 displayName="Huisarts"/>
                            <assignedPerson>
                               <name>
                                  <given qualifier="BR">zelf gekozen voornaam</given>
@@ -179,8 +221,13 @@
                      <entryRelationship typeCode="RSON">
                         <observation classCode="OBS" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9068"/>
-                           <code code="2" displayName="Reden medicatieafspraak" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
-                           <value xsi:type="CE" code="7" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="(Mogelijke) bijwerking"/>
+                           <code code="2"
+                                 displayName="Reden medicatieafspraak"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+                           <value xsi:type="CE"
+                                  code="7"
+                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
+                                  displayName="(Mogelijke) bijwerking"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="COMP">
@@ -195,7 +242,10 @@
                            </effectiveTime>
                            <doseQuantity>
                               <center value="1" unit="1">
-                                 <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                                 <translation value="1"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
                               </center>
                            </doseQuantity>
                            <consumable xsi:nil="true"/>
@@ -205,7 +255,10 @@
                         <substanceAdministration classCode="SBADM" moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
                            <id extension="POC_T132O_WDS_MBH1_MA1" root="1.2.3.999"/>
-                           <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                           <code code="16076005"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"
+                                 displayName="Medicatieafspraak"/>
                            <consumable xsi:nil="true"/>
                         </substanceAdministration>
                      </entryRelationship>
@@ -213,24 +266,36 @@
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                            <id root="1.2.3.999" extension="POC_T133O_WDS_MBH1"/>
-                           <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                           <code code="1"
+                                 displayName="Medicamenteuze behandeling"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
                         </procedure>
                      </entryRelationship>
                   </substanceAdministration>
                </entry>
                <entry>
-                  <supply xmlns:nf="http://www.nictiz.nl/functions" classCode="SPLY" moodCode="RQO">
+                  <supply xmlns:nf="http://www.nictiz.nl/functions"
+                          classCode="SPLY"
+                          moodCode="RQO">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9231"/>
                      <id extension="POC_T133O_WDS_MBH1_VV1" root="1.2.3.999"/>
-                     <code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="2.16.840.1.113883.6.96"/>
+                     <code codeSystemName="SNOMED CT"
+                           displayName="Verstrekkingsverzoek"
+                           code="52711000146108"
+                           codeSystem="2.16.840.1.113883.6.96"/>
                      <quantity value="60" unit="1">
-                        <translation value="60" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                        <translation value="60"
+                                     code="245"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                     displayName="stuk"/>
                      </quantity>
                      <product>
                         <manufacturedProduct classCode="MANU">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
                            <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                              <code code="57614" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="OXYCODON TABLET MGA 10MG"/>
+                              <code code="57614"
+                                    codeSystem="2.16.840.1.113883.2.4.4.10"
+                                    displayName="OXYCODON TABLET MGA 10MG"/>
                            </manufacturedMaterial>
                         </manufacturedProduct>
                      </product>
@@ -247,7 +312,9 @@
                         <time value="20180704000000"/>
                         <assignedAuthor>
                            <id extension="123456789" root="2.16.528.1.1007.3.1"/>
-                           <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                           <code code="01.015"
+                                 codeSystem="2.16.840.1.113883.2.4.15.111"
+                                 displayName="Huisarts"/>
                            <assignedPerson>
                               <name>
                                  <given qualifier="BR">zelf gekozen voornaam</given>
@@ -264,7 +331,10 @@
                         <substanceAdministration classCode="SBADM" moodCode="RQO">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
                            <id extension="POC_T133O_WDS_MBH1_MA1" root="1.2.3.999"/>
-                           <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                           <code code="16076005"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"
+                                 displayName="Medicatieafspraak"/>
                            <consumable xsi:nil="true"/>
                         </substanceAdministration>
                      </entryRelationship>
@@ -272,7 +342,9 @@
                         <procedure classCode="PROC" moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                            <id root="1.2.3.999" extension="POC_T133O_WDS_MBH1"/>
-                           <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                           <code code="1"
+                                 displayName="Medicamenteuze behandeling"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
                         </procedure>
                      </entryRelationship>
                   </supply>
