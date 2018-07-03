@@ -217,6 +217,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   <xsl:value-of select="."/>
                </text>
             </xsl:for-each>
+            <xsl:if test="(geslachtsnaam|geslachtsnaam_partner)[.//@value]">
+               <family>
             <xsl:for-each select="./geslachtsnaam/voorvoegsels[@value]">
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
                   <valueString value="{normalize-space(./@value)}"/>
@@ -237,6 +239,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                   <valueString value="{normalize-space(./@value)}"/>
                </extension>
             </xsl:for-each>
+               </family>
+            </xsl:if>
             <xsl:for-each select="./voornamen">
                <given value="{normalize-space(./@value)}">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
