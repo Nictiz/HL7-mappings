@@ -2354,7 +2354,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 
 		<supply classCode="SPLY" moodCode="PRP">
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9131"/>
-			<code codeSystemName="Medicatieproces acts" displayName="Verstrekkingsverzoek" code="3" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+			<code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="2.16.840.1.113883.6.96"/>
 			<!-- aantal herhalingen -->
 			<xsl:for-each select="./aantal_herhalingen[@value]">
 				<repeatNumber>
@@ -2363,14 +2363,14 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- Te verstrekken hoeveelheid -->
-			<xsl:for-each select="./te_verstrekken_hoeveelheid">
+			<xsl:for-each select="./te_verstrekken_hoeveelheid[.//(@value|@code)]">
 				<quantity>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9165_20170118000000"/>
 				</quantity>
 			</xsl:for-each>
 
 			<!-- verbruiksperiode -->
-			<xsl:for-each select="./verbruiksperiode">
+			<xsl:for-each select="./verbruiksperiode[.//(@value|@code)]">
 				<expectedUseTime>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
 						<xsl:with-param name="low" select="./ingangsdatum"/>
@@ -2381,7 +2381,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- Te verstrekken geneesmiddel -->
-			<xsl:for-each select="./te_verstrekken_geneesmiddel/product">
+			<xsl:for-each select="./te_verstrekken_geneesmiddel/product[.//(@value|@code)]">
 				<product>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9163_20161113135119">
 						<xsl:with-param name="product" select="."/>
@@ -2390,7 +2390,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- beoogd verstrekker -->
-			<xsl:for-each select="./beoogd_verstrekker/zorgaanbieder">
+			<xsl:for-each select="./beoogd_verstrekker/zorgaanbieder[.//(@value|@code)]">
 				<performer>
 					<assignedEntity>
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9088_20160621133312"/>
@@ -2399,12 +2399,12 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
-			<xsl:for-each select="//voorstelgegevens/auteur[.//(@value | @code)]">
+			<xsl:if test="./../../(auteur[.//(@value | @code)] | voorsteldatum[.//(@value | @code)])">
 				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20170818144258">
-					<xsl:with-param name="ada-auteur" select="."/>
-					<xsl:with-param name="authorTime" select="../voorstel_datum"/>
+					<xsl:with-param name="ada-auteur" select="./../../auteur"/>
+					<xsl:with-param name="authorTime" select="./../../voorstel_datum"/>
 				</xsl:call-template>
-			</xsl:for-each>
+			</xsl:if>
 
 			<!-- afleverlocatie -->
 			<xsl:for-each select="./afleverlocatie">
