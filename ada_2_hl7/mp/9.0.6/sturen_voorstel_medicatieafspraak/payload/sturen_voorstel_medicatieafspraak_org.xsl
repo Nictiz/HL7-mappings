@@ -14,14 +14,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
-    <!--<xsl:include href="../../../hl7/hl7_include.xsl"/>-->
-    <xsl:include href="../../mp_include.xsl"/>
-    <!--    <xsl:include href="../../../zib1bbr/zib1bbr_include.xsl"/>
-    <xsl:include href="../../../naw/naw_include.xsl"/>-->
+    <xsl:include href="../../../2_hl7_mp_include.xsl"/>
     <xsl:template match="/">
         <xsl:call-template name="VoorstelMedicatieafspraak_90">
             <xsl:with-param name="patient" select="//sturen_voorstel_medicatieafspraak/patient"/>
-            <xsl:with-param name="mbh" select="//sturen_voorstel_medicatieafspraak/medicamenteuze_behandeling"/>
+            <xsl:with-param name="mbh" select="//sturen_voorstel_medicatieafspraak//medicamenteuze_behandeling"/>
         </xsl:call-template>
     </xsl:template>
     <xsl:template name="VoorstelMedicatieafspraak_90">

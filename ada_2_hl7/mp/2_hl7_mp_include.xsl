@@ -1871,7 +1871,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
 				<xsl:call-template name="makeCode">
 					<xsl:with-param name="originalText" select="./@originalText"/>
-				</xsl:call-template>				
+				</xsl:call-template>
 			</act>
 		</xsl:for-each>
 	</xsl:template>
@@ -2399,8 +2399,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
-			<xsl:for-each select="//voorstelgegevens/auteur">
+			<xsl:for-each select="//voorstelgegevens/auteur[.//(@value | @code)]">
 				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20170818144258">
+					<xsl:with-param name="ada-auteur" select="."/>
 					<xsl:with-param name="authorTime" select="../voorstel_datum"/>
 				</xsl:call-template>
 			</xsl:for-each>
@@ -2769,23 +2770,19 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9153_20160726162345">
 		<xsl:param name="vma"/>
 		<!-- MP CDA Voorstel Medicatieafspraak -->
-
 		<xsl:for-each select="$vma">
 			<substanceAdministration classCode="SBADM" moodCode="PRP">
 				<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9153"/>
-
 				<!-- Geen id bij voorstel MA: dit is een vluchtig ding waar toch niet naar verwezen mag worden. -->
-
 				<code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-				<xsl:for-each select="./gebruiksinstructie/omschrijving">
+				<xsl:for-each select="./gebruiksinstructie/omschrijving[.//(@value | @code)]">
 					<text mediaType="text/plain">
 						<xsl:value-of select="./@value"/>
 					</text>
 				</xsl:for-each>
-
 				<!-- Gebruiksperiode -->
 				<!-- TODO: Tijdelijke fix (9.04) waarbij aparte velden in ADA form staan voor effectiveTime\low en -\high -->
-				<xsl:if test="./gebruiksperiode or ./gebruiksperiode_start or ./gebruiksperiode_eind">
+				<xsl:if test="./gebruiksperiode[.//(@value | @code)] or ./gebruiksperiode_start[.//(@value | @code)] or ./gebruiksperiode_eind[.//(@value | @code)]">
 					<effectiveTime xsi:type="IVL_TS">
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
 							<xsl:with-param name="low" select="./gebruiksperiode_start"/>
@@ -2794,13 +2791,13 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 						</xsl:call-template>
 					</effectiveTime>
 				</xsl:if>
-				<xsl:for-each select="./gebruiksinstructie/toedieningsweg">
+				<xsl:for-each select="./gebruiksinstructie/toedieningsweg[.//(@value | @code)]">
 					<routeCode>
 						<xsl:call-template name="makeCodeAttribs"/>
 					</routeCode>
 				</xsl:for-each>
 
-				<xsl:for-each select="./afgesproken_geneesmiddel/product">
+				<xsl:for-each select="./afgesproken_geneesmiddel/product[.//(@value | @code)]">
 					<consumable>
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9163_20161113135119">
 							<xsl:with-param name="product" select="."/>
@@ -2809,11 +2806,12 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				</xsl:for-each>
 
 				<!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
-				<xsl:for-each select="//voorstelgegevens/auteur">
+				<xsl:if test="./../../(auteur[.//(@value | @code)] | voorsteldatum[.//(@value | @code)])">
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20170818144258">
-						<xsl:with-param name="authorTime" select="../voorstel_datum"/>
+						<xsl:with-param name="ada-auteur" select="./../../auteur"/>
+						<xsl:with-param name="authorTime" select="./../../voorstel_datum"/>
 					</xsl:call-template>
-				</xsl:for-each>
+				</xsl:if>
 
 				<!-- Toelichting op het voorstel (er is ook een toelichting bij de MA) -->
 				<xsl:for-each select="//voorstelgegevens/toelichting">
@@ -3811,30 +3809,29 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		</xsl:for-each>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20170818144258">
+		<xsl:param name="ada-auteur" as="element()*" select="."/>
 		<xsl:param name="authorTime"/>
 		<!--MP CDA author zorgverlener of patient-->
 
 		<author>
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9187"/>
-
 			<!-- Voorstel- of Registratiedatum -->
 			<xsl:for-each select="$authorTime">
 				<time>
 					<xsl:call-template name="makeTSValueAttr"/>
 				</time>
 			</xsl:for-each>
-
-			<xsl:for-each select="./auteur_is_zorgverlener/zorgverlener">
+			<!-- auteur -->
+			<xsl:for-each select="$ada-auteur/auteur_is_zorgverlener/zorgverlener[.//(@value|@code)]">
 				<assignedAuthor>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20160710152506"/>
 				</assignedAuthor>
 			</xsl:for-each>
-			<xsl:if test="./auteur_is_patient/@value = 'true'">
+			<xsl:if test="$ada-auteur/auteur_is_patient/@value = 'true'">
 				<assignedAuthor>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9188_20170825000000"/>
 				</assignedAuthor>
 			</xsl:if>
-
 		</author>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9188_20170825000000">
@@ -3901,8 +3898,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
-			<xsl:for-each select="./auteur">
+			<xsl:for-each select="./auteur[.//(@value | @code)]">
 				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20170818144258">
+					<xsl:with-param name="ada-auteur" select="."/>
 					<xsl:with-param name="authorTime" select="../registratiedatum"/>
 				</xsl:call-template>
 			</xsl:for-each>
@@ -4339,6 +4337,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
 		<xsl:for-each select="./auteur[.//(@value | @code)]">
 			<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20170818144258">
+				<xsl:with-param name="ada-auteur" select="."/>
 				<xsl:with-param name="authorTime" select="../registratiedatum"/>
 			</xsl:call-template>
 		</xsl:for-each>
