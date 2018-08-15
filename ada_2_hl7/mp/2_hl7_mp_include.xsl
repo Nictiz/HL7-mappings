@@ -1864,15 +1864,16 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		</procedure>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818">
+		<xsl:param name="ada-aanvullende-instructie" as="element()*"/>
 		<!-- MP CDA Aanvullende gebruiksinstructie -->
-		<act classCode="ACT" moodCode="RQO">
-			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
-			<!--<xsl:call-template name="makeCode"/>-->
-			<!-- Dus voor nu maar hard coderen -->
-			<code>
-				<xsl:call-template name="makeNullflavorWithToelichting"/>
-			</code>
-		</act>
+		<xsl:for-each select="$ada-aanvullende-instructie">
+			<act classCode="ACT" moodCode="RQO">
+				<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
+				<xsl:call-template name="makeCode">
+					<xsl:with-param name="originalText" select="./@originalText"/>
+				</xsl:call-template>				
+			</act>
+		</xsl:for-each>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9086_20160621122009">
 		<xsl:param name="identificatieElement"/>
@@ -2687,7 +2688,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 
 				<xsl:for-each select="./gebruiksinstructie/aanvullende_instructie">
 					<entryRelationship typeCode="SPRT">
-						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818"/>
+						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818">
+							<xsl:with-param name="ada-aanvullende-instructie" select="."/>
+						</xsl:call-template>
 					</entryRelationship>
 				</xsl:for-each>
 
@@ -3620,7 +3623,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 			<xsl:for-each select="./gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
 				<entryRelationship typeCode="SPRT">
-					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818"/>
+					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818">
+						<xsl:with-param name="ada-aanvullende-instructie" select="."/>
+					</xsl:call-template>
 				</entryRelationship>
 			</xsl:for-each>
 			<xsl:for-each select="./lichaamslengte[.//(@value | @code)]">
@@ -3956,9 +3961,11 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- Aanvullende Instructie. -->
-			<xsl:for-each select="./gebruiksinstructie/aanvullende_instructie">
+			<xsl:for-each select="./gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
 				<entryRelationship typeCode="SPRT">
-					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818"/>
+					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818">
+						<xsl:with-param name="ada-aanvullende-instructie" select="."/>
+					</xsl:call-template>
 				</entryRelationship>
 			</xsl:for-each>
 
@@ -4202,9 +4209,11 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				</entryRelationship>
 			</xsl:for-each>
 			<!-- aanvullende_instructie -->
-			<xsl:for-each select="./gebruiksinstructie/aanvullende_instructie">
+			<xsl:for-each select="./gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
 				<entryRelationship typeCode="SPRT">
-					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818"/>
+					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818">
+						<xsl:with-param name="ada-aanvullende-instructie" select="."/>
+					</xsl:call-template>
 				</entryRelationship>
 			</xsl:for-each>
 			<!-- aanvullende informatie -->
@@ -4390,7 +4399,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<!-- Aanvullende Instructie. -->
 		<xsl:for-each select="./gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
 			<entryRelationship typeCode="SPRT">
-				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818"/>
+				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818">
+					<xsl:with-param name="ada-aanvullende-instructie" select="."/>
+				</xsl:call-template>
 			</entryRelationship>
 		</xsl:for-each>
 

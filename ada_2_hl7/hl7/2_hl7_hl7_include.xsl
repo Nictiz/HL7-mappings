@@ -180,9 +180,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="makeCode">
         <xsl:param name="originalText"/>
         <code>
-            <xsl:call-template name="makeCodeAttribs">
-                <xsl:with-param name="originalText" select="$originalText"/>
-            </xsl:call-template>
+        	<xsl:choose>
+        		<xsl:when test="$originalText instance of element()">
+        			<xsl:call-template name="makeCodeAttribs">
+        				<xsl:with-param name="originalText" select="$originalText"/>
+        			</xsl:call-template>
+        		</xsl:when>
+        		<xsl:otherwise>
+        			<xsl:call-template name="makeCodeAttribs">
+        				<xsl:with-param name="strOriginalText" select="$originalText"/>
+        			</xsl:call-template>
+        		</xsl:otherwise>
+        	</xsl:choose>        	
         </code>
     </xsl:template>
 
@@ -433,7 +442,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xsl:template name="makeNullflavorWithToelichting">
-        <xsl:attribute name="nullFlavor" select="'OTH'"/>
+        <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
         <xsl:call-template name="makeoriginalText">
             <xsl:with-param name="originalText" select="."/>
         </xsl:call-template>

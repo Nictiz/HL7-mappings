@@ -29,9 +29,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
-        <!-- name person NL - generic -->
+	<!-- name person NL - generic -->
+	    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
         <xsl:param name="naamgegevens"/>
         
         <xsl:for-each select="$naamgegevens">
@@ -52,9 +51,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <xsl:choose>
-                <xsl:when test="./naamgebruik/@code = 'NL1'">
-                    <!-- Eigen geslachtsnaam -->
-                    <xsl:for-each select="./geslachtsnaam/voorvoegsels">
+            	<!-- Eigen geslachtsnaam -->
+            	<xsl:when test="./naamgebruik/@code = 'NL1'">
+                     <xsl:for-each select="./geslachtsnaam/voorvoegsels">
                         <prefix qualifier="VV">
                             <xsl:value-of select="./@value"/>
                         </prefix>
@@ -65,8 +64,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </family>
                     </xsl:for-each>
                 </xsl:when>
-                <xsl:when test="./naamgebruik/@code = 'NL2'">
-                    <!-- 	Geslachtsnaam partner -->
+            	<!-- 	Geslachtsnaam partner -->
+            	<xsl:when test="./naamgebruik/@code = 'NL2'">
                     <xsl:for-each select="./geslachtsnaam_partner/voorvoegsels_partner">
                         <prefix qualifier="VV">
                             <xsl:value-of select="./@value"/>
@@ -78,8 +77,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </family>
                     </xsl:for-each>
                 </xsl:when>
-                <xsl:when test="./naamgebruik/@code = 'NL3'">
-                    <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
+            	<!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
+            	<xsl:when test="./naamgebruik/@code = 'NL3'">
                     <xsl:for-each select="./geslachtsnaam_partner/voorvoegsels_partner">
                         <prefix qualifier="VV">
                             <xsl:value-of select="./@value"/>
@@ -101,8 +100,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </family>
                     </xsl:for-each>
                 </xsl:when>
-                <xsl:when test="./naamgebruik/@code = 'NL4'">
-                    <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
+            	<!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
+            	<xsl:when test="./naamgebruik/@code = 'NL4'">
                     <xsl:for-each select="./geslachtsnaam/voorvoegsels">
                         <prefix qualifier="VV">
                             <xsl:value-of select="./@value"/>
