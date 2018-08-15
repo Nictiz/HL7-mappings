@@ -1,4 +1,4 @@
-This is a preliminary version of converting beschikbaarstellen_medicatieoverzicht from a relatively simple dataset xml format to a HL7 CareProvision message. It is based on publication 9.0.6.
+This is a preliminary version of converting beschikbaarstellen_medicatieoverzicht from a relatively simple dataset xml format to a HL7v3 message/CDA. It is based on publication 9.0.6.
 
 The 'simple dataset xml format' is based on ADA format, more information about ADA can be found here:
 https://www.art-decor.org/mediawiki/index.php/ADA_Walkthrough 
