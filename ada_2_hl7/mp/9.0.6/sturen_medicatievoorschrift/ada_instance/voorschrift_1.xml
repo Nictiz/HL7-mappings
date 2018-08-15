@@ -1,7 +1,7 @@
-<adaxml>
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
     <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2016-04-11T16:18:26.724+02:00" last-update-date="2017-06-06T10:34:44.775+02:00"/>
     <data>
-        <sturen_voorschrift app="mp-voorschrift" shortName="sturen_voorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-voorschrift-app-" language="nl-NL" title="Test van Arianne 1" id="voorschrift_1">
+        <sturen_medicatievoorschrift app="mp-voorschrift" shortName="sturen_voorschrift" formName="sturen_voorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95" transactionEffectiveDate="2015-12-01T10:32:15" versionDate="" prefix="mp-voorschrift-app-" language="nl-NL" title="Test van Arianne 1" id="voorschrift_1">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
                     <voornamen value="Joris" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
@@ -10,10 +10,10 @@
                         <achternaam value="Hansman" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19806"/>
                     </geslachtsnaam>
                 </naamgegevens>
-                <patientidentificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"/>
+                <patient_identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829"/>
                 <geboortedatum value="1984-05-12" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830"/>
                 <geslacht value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Male"/>
-                <meerlingindicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832"/>
+                <meerling_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832"/>
             </patient>
             <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092">
                 <identificatie value="#MB_01a" root="1.2.3.999.77.5.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
@@ -22,30 +22,30 @@
                     <afspraakdatum value="2016-06-23T16:54:23" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
                     <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
                         <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19835">
-                            <zorgverleneridentificatienummer value="012345678" root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"/>
-                            <zorgverlenernaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837">
+                            <zorgverlener_identificatie_nummer value="012345678" root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19836"/>
+                            <zorgverlener_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19837">
                                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19838">
                                     <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19843">
                                         <achternaam value="Jansen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19845"/>
                                     </geslachtsnaam>
                                 </naamgegevens>
-                            </zorgverlenernaam>
+                            </zorgverlener_naam>
                             <specialisme value="Internist" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19849"/>
                             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19871">
                                 <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19872">
-                                    <zorgaanbiederidentificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19873"/>
-                                    <organisatienaam value="Ziekenhuis zus en zo" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19874"/>
+                                    <zorgaanbieder_identificatie_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19873"/>
+                                    <organisatie_naam value="Ziekenhuis zus en zo" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19874"/>
                                 </zorgaanbieder>
                             </zorgaanbieder>
                         </zorgverlener>
                     </voorschrijver>
                     <reden_afspraak value="Starten medicamenteuze behandeling" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094"/>
                     <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19925">
-                        <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19926">
-                            <productcode value="22222" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19927"/>
-                            <productspecificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19928">
-                                <productnaam value="Aspirine" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19929"/>
-                                <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19785"/>
+                        <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22603">
+                            <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22604"/>
+                            <product_specificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22605">
+                                <product_naam value="Aspirine" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22606"/>
+                                <omschrijving value="Aspririne in omschrijving" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19785"/>
                                 <ingredient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22609">
                                     <sterkte conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22610">
                                         <hoeveelheid_ingredient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22611">
@@ -57,9 +57,9 @@
                                             <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22616"/>
                                         </hoeveelheid_product>
                                     </sterkte>
-                                    <ingredientcode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22617"/>
+                                    <ingredient_code conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22617"/>
                                 </ingredient>
-                            </productspecificatie>
+                            </product_specificatie>
                         </product>
                     </afgesproken_geneesmiddel>
                     <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23240">
@@ -83,10 +83,10 @@
                                     <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23257">
                                         <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23258">
                                             <min conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23259"/>
-                                            <vaste_waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
+                                            <vaste_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23260"/>
                                             <max conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23261"/>
                                         </aantal>
-                                        <tijdseenheid value="minuut" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
+                                        <tijdseenheid value="1" unit="minuut" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23262"/>
                                     </frequentie>
                                     <interval conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23263"/>
                                     <toedientijd conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23264"/>
@@ -99,9 +99,9 @@
                                         <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23270"/>
                                     </criterium>
                                     <maximale_dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23271">
-                                        <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23272"/>
-                                        <eenheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23273"/>
-                                        <tijdseenheid value="minuut" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23274"/>
+                                        <aantal value="8" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23272"/>
+                                    	<eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2" code="245" displayName="stuk" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23273"/>
+                                    	<tijdseenheid value="1" unit="minuut" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23274"/>
                                     </maximale_dosering>
                                 </zo_nodig>
                                 <toedieningssnelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23275">
@@ -123,8 +123,8 @@
                     <datum value="2016-04-11T15:53:00" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20060"/>
                     <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22121">
                         <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22122">
-                            <zorgverleneridentificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
-                            <zorgverlenernaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
+                            <zorgverlener_identificatie_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22123"/>
+                            <zorgverlener_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22124">
                                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22125">
                                     <voornamen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22126"/>
                                     <initialen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22127"/>
@@ -133,11 +133,12 @@
                                         <achternaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22132"/>
                                     </geslachtsnaam>
                                 </naamgegevens>
-                            </zorgverlenernaam>
+                            </zorgverlener_naam>
+                        	<specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22136"/>
                             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22158">
                                 <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22159">
-                                    <zorgaanbiederidentificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
-                                    <organisatienaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
+                                    <zorgaanbieder_identificatie_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22160"/>
+                                    <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22161"/>
                                 </zorgaanbieder>
                             </zorgaanbieder>
                         </zorgverlener>
@@ -148,21 +149,21 @@
                     </te_verstrekken_hoeveelheid>
                     <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22249">
                         <product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22250">
-                            <productcode value="333333" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22279"/>
-                            <productspecificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22280">
-                                <productnaam value="TeVullen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22281"/>
+                            <product_code value="333333" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22666"/>
+                            <product_specificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22667">
+                                <product_naam value="TeVullen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22668"/>
                                 <omschrijving conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19786"/>
-                            </productspecificatie>
+                            </product_specificatie>
                         </product>
                     </te_verstrekken_geneesmiddel>
-                    <beoogdverstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
+                    <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19966">
                         <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20034">
-                            <zorgaanbiederidentificatienummer value="3456" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
-                            <organisatienaam value="TeVullen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
+                            <zorgaanbieder_identificatie_nummer value="3456" root="1.2.3.999" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20035"/>
+                            <organisatie_naam value="TeVullen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20036"/>
                         </zorgaanbieder>
-                    </beoogdverstrekker>
+                    </beoogd_verstrekker>
                 </verstrekkingsverzoek>
             </medicamenteuze_behandeling>
-        </sturen_voorschrift>
+        </sturen_medicatievoorschrift>
     </data>
 </adaxml>
