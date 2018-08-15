@@ -56,6 +56,85 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 	<xd:doc>
 		<xd:desc/>
+		<xd:param name="ada-zorgverlener">The practitioner in ada format</xd:param>
+		<xd:param name="practitioner-id">The FHIR resource id.</xd:param>
+		<xd:param name="patient"/>
+	</xd:doc>
+	<xsl:template name="nl-core-practitioner-2.0">
+		<xsl:param name="ada-zorgverlener" as="element()?"/>
+		<xsl:param name="practitioner-id" as="xs:string?"/>
+		<xsl:param name="patient"/>
+		<!-- zorgverlener -->
+		<xsl:for-each select="$ada-zorgverlener">
+			<Practitioner>
+				<id value="{$practitioner-id}"/>
+				<!-- zorgverlener_identificatie_nummer -->
+				<xsl:for-each select="./zorgverlener_identificatie_nummer">
+					<xsl:comment>zorgverlener_identificatie_nummer</xsl:comment>
+					<identifier>
+						<xsl:call-template name="id-to-Identifier">
+							<xsl:with-param name="in" select="."/>
+						</xsl:call-template>
+					</identifier>
+				</xsl:for-each>
+				<!-- naamgegevens -->
+				<xsl:for-each select="./zorgverlener_naam/naamgegevens">
+					<xsl:call-template name="nl-core-humanname">
+						<xsl:with-param name="ada-naamgegevens" select="."/>
+					</xsl:call-template>
+				</xsl:for-each>
+			</Practitioner>
+		</xsl:for-each>
+
+	</xsl:template>
+	<xd:doc>
+		<xd:desc/>
+		<xd:param name="ada-voorschrijver"/>
+		<xd:param name="practitionerrole-id"/>
+		<xd:param name="patient"/>
+		<xd:param name="practitioner-id"/>
+		<xd:param name="organization-id"/>
+	</xd:doc>
+	<xsl:template name="nl-core-practitionerrole-2.0">
+		<xsl:param name="ada-voorschrijver"/>
+		<xsl:param name="practitionerrole-id"/>
+		<xsl:param name="practitioner-id"/>
+		<xsl:param name="organization-id"/>
+		<xsl:param name="patient"/>
+		<xsl:for-each select="$ada-voorschrijver">
+			<PractitionerRole>
+				<id value="{$practitionerrole-id}"/>
+				<xsl:for-each select="./zorgverlener[.//@value]">
+					<practitioner>
+						<reference value="#{$practitioner-id}"/>
+						<display value="{normalize-space(string-join(.//naamgegevens[1]//*[not(name()='naamgebruik')]/@value,' '))}"/>
+					</practitioner>
+				</xsl:for-each>
+				<xsl:for-each select="./zorgverlener/zorgaanbieder[.//@value]">
+					<organization>
+						<reference value="#{$organization-id}"/>
+						<display value="{normalize-space(.//organisatie_naam[1]/@value)}"/>
+					</organization>
+				</xsl:for-each>
+				<xsl:for-each select="./zorgverlener/zorgverlener_rol">
+					<code>
+						<xsl:call-template name="code-to-CodeableConcept">
+							<xsl:with-param name="in" select="."/>
+						</xsl:call-template>
+					</code>
+				</xsl:for-each>
+				<xsl:for-each select="./zorgverlener/specialisme">
+					<specialty>
+						<xsl:call-template name="code-to-CodeableConcept">
+							<xsl:with-param name="in" select="."/>
+						</xsl:call-template>
+					</specialty>
+				</xsl:for-each>
+			</PractitionerRole>
+		</xsl:for-each>
+	</xsl:template>
+	<xd:doc>
+		<xd:desc/>
 		<xd:param name="ada-persoon"/>
 		<xd:param name="persoon-id"/>
 		<xd:param name="patient"/>
@@ -197,6 +276,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 	<xd:doc>
 		<xd:desc/>
+		<xd:param name="voorschrijver"/>
+		<xd:param name="voorschrijver-id"/>
+		<xd:param name="voorschrijver-zvl-id"/>
+	</xd:doc>
+	<xsl:template name="zorgverlener-requester-ext">
+		<xsl:param name="voorschrijver"/>
+		<xsl:param name="voorschrijver-id"/>
+		<xsl:param name="voorschrijver-zvl-id"/>
+		<requester>
+			<xsl:for-each select="$voorschrijver[.//(@value | @code)]">
+				<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+					<valueReference>
+						<reference value="#{$voorschrijver-id}"/>
+						<display value="{normalize-space(string-join((.//naamgegevens[1]//*[not(name()='naamgebruik')]|.//organisatie_naam|.//specialisme)/(@value|@displayName),' '))}"/>
+					</valueReference>
+				</extension>
+				<xsl:for-each select="./zorgverlener[.//(@value | @code)]">
+					<agent>
+						<reference value="#{$voorschrijver-zvl-id}"/>
+						<display value="{normalize-space(string-join(.//naamgegevens[1]//*[not(name()='naamgebruik')]/@value,' '))}"/>
+					</agent>
+				</xsl:for-each>
+			</xsl:for-each>
+
+		</requester>
+	</xsl:template>
+	<xd:doc>
+		<xd:desc/>
 		<xd:param name="ada-naamgegevens"/>
 		<xd:param name="unstructured-name"/>
 	</xd:doc>
@@ -304,40 +411,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 
 	<xd:doc>
-		<xd:desc/>
-		<xd:param name="ada-zorgverlener">The practitioner in ada format</xd:param>
-		<xd:param name="practioner-id">The FHIR resource id.</xd:param>
-		<xd:param name="patient"/>
-	</xd:doc>
-	<xsl:template name="nl-core-practitioner-2.0">
-		<xsl:param name="ada-zorgverlener" as="element()?"/>
-		<xsl:param name="practioner-id" as="xs:string?"/>
-		<xsl:param name="patient"/>
-		<!-- zorgverlener -->
-		<xsl:for-each select="$ada-zorgverlener">
-			<Practitioner>
-				<id value="{$practioner-id}"/>
-				<!-- zorgverlener_identificatie_nummer -->
-				<xsl:for-each select="./zorgverlener_identificatie_nummer">
-					<xsl:comment>zorgverlener_identificatie_nummer</xsl:comment>
-					<identifier>
-						<xsl:call-template name="id-to-Identifier">
-							<xsl:with-param name="in" select="."/>
-						</xsl:call-template>
-					</identifier>
-				</xsl:for-each>
-				<!-- naamgegevens -->
-				<xsl:for-each select="./zorgverlener_naam/naamgegevens">
-					<xsl:call-template name="nl-core-humanname">
-						<xsl:with-param name="ada-naamgegevens" select="."/>
-					</xsl:call-template>
-				</xsl:for-each>
-				<!-- TODO specialisme -->
-			</Practitioner>
-		</xsl:for-each>
-
-	</xsl:template>
-	<xd:doc>
 		<xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-AdministrationAgreement/ </xd:desc>
 		<xd:param name="patient"/>
 		<xd:param name="toedieningsafspraak"/>
@@ -371,7 +444,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:for-each>
 				<!-- reden afspraak -->
 				<xsl:for-each select="./reden_afspraak">
-					<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-ReasonForDispense">
+					<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AgreementReason">
 						<valueString value="{./@value}"/>
 					</extension>
 				</xsl:for-each>
@@ -460,20 +533,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<xsl:call-template name="patient-subject-reference">
 					<xsl:with-param name="patient" select="$patient"/>
 				</xsl:call-template>
+				<!-- verstrekker -->
+				<xsl:call-template name="verstrekker-performer">
+					<xsl:with-param name="verstrekker" select="./verstrekker"/>
+				</xsl:call-template>
 				<!-- relatie naar medicatieafspraak -->
 				<xsl:for-each select="relatie_naar_medicatieafspraak/identificatie[not(@root = $oidNullFlavor)]">
-					<supportingInformation>
+					<authorizingPrescription>
 						<identifier>
 							<xsl:call-template name="id-to-Identifier">
 								<xsl:with-param name="in" select="."/>
 							</xsl:call-template>
 						</identifier>
-					</supportingInformation>
+						<display>
+							<xsl:attribute name="value">relatie naar medicatieafspraak: <xsl:value-of select="./@value"/> -- <xsl:value-of select="./@root"/></xsl:attribute>
+						</display>
+					</authorizingPrescription>
 				</xsl:for-each>
-				<!-- verstrekker -->
-				<xsl:call-template name="verstrekker-performer">
-					<xsl:with-param name="verstrekker" select="./verstrekker"/>
-				</xsl:call-template>
 				<!-- toelichting -->
 				<xsl:comment>Toelichting</xsl:comment>
 				<xsl:for-each select="./toelichting[@value]">
@@ -710,10 +786,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<!-- afleverlocatie in een contained resource -->
 				<xsl:for-each select="./afleverlocatie[@value]">
 					<contained>
-						<Location>
-							<id value="{$afleverlocatie-id}"/>
-							<description value="{./@value}"/>
-						</Location>
+						<xsl:call-template name="zib-Dispense-Location-2.0">
+							<xsl:with-param name="afleverlocatie-id" select="$afleverlocatie-id"/>
+						</xsl:call-template>
 					</contained>
 				</xsl:for-each>
 				<!-- distributievorm -->
@@ -818,6 +893,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<xsl:for-each select="./datum[@value]">
 					<whenHandedOver value="{./@value}"/>
 				</xsl:for-each>
+				<!-- afleverlocatie -->
 				<xsl:for-each select="./afleverlocatie">
 					<destination>
 						<reference value="#{$afleverlocatie-id}"/>
@@ -832,6 +908,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 			</MedicationDispense>
 		</xsl:for-each>
+	</xsl:template>
+	<xd:doc>
+		<xd:desc/>
+		<xd:param name="afleverlocatie-id"/>
+	</xd:doc>
+	<xsl:template name="zib-Dispense-Location-2.0">
+		<xsl:param name="afleverlocatie-id"/>
+		<Location>
+			<id value="{$afleverlocatie-id}"/>
+			<name value="{./@value}"/>
+		</Location>
 	</xsl:template>
 	<xd:doc>
 		<xd:desc/>
@@ -865,7 +952,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<contained>
 						<xsl:call-template name="nl-core-practitioner-2.0">
 							<xsl:with-param name="ada-zorgverlener" select="."/>
-							<xsl:with-param name="practioner-id" select="$auteur-id"/>
+							<xsl:with-param name="practitioner-id" select="$auteur-id"/>
 							<xsl:with-param name="patient" select="$patient"/>
 						</xsl:call-template>
 					</contained>
@@ -894,6 +981,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:for-each>
 				<!-- afleverlocatie in een contained resource -->
 				<xsl:variable name="afleverlocatie-id" select="generate-id(./afleverlocatie)"/>
+				<xsl:for-each select="./afleverlocatie[@value]">
+					<contained>
+						<xsl:call-template name="zib-Dispense-Location-2.0">
+							<xsl:with-param name="afleverlocatie-id" select="$afleverlocatie-id"/>
+						</xsl:call-template>
+					</contained>
+				</xsl:for-each>
 				<!-- aanvullende_wensen in extensie -->
 				<xsl:for-each select="aanvullende_wensen">
 					<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
@@ -914,7 +1008,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								</xsl:call-template>
 							</identifier>
 							<display>
-								<xsl:attribute name="value">Relatie naar medicatieafspraak, id = <xsl:value-of select="./string-join((@value, @root), '--')"/></xsl:attribute>
+								<xsl:attribute name="value">Relatie naar medicatieafspraak, id = <xsl:value-of select="./string-join((@value, @root), ' -- ')"/></xsl:attribute>
 							</display>
 						</valueReference>
 					</extension>
@@ -985,7 +1079,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<!-- afleverlocatie -->
 					<xsl:for-each select="./afleverlocatie[@value]">
 						<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
-							<valueString value="{./@value}"/>
+							<valueReference>
+								<reference value="#{$afleverlocatie-id}"/>
+								<display value="{./@value}"/>
+							</valueReference>
 						</extension>
 					</xsl:for-each>
 					<!-- verbruiksperiode start/eind -->
@@ -1256,21 +1353,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</xsl:call-template>
 					</contained>
 				</xsl:for-each>
-				<!-- voorschrijver in contained resource -->
-				<xsl:variable name="voorschrijver" select="./voorschrijver/zorgverlener"/>
-				<xsl:variable name="voorschrijver-id" select="generate-id($voorschrijver)"/>
-				<xsl:for-each select="$voorschrijver[.//@value]">
+				<!-- voorschrijver in contained resources: role, practitioner, organization -->
+				<xsl:variable name="voorschrijver" select="./voorschrijver"/>
+				<!-- voorschrijver/zorgverlener in contained resource practitioner -->
+				<xsl:variable name="voorschrijver-zvl" select="./voorschrijver/zorgverlener"/>
+				<xsl:variable name="voorschrijver-zvl-id" select="generate-id($voorschrijver-zvl)"/>
+				<xsl:for-each select="$voorschrijver-zvl[.//@value]">
 					<xsl:comment>voorschrijver</xsl:comment>
 					<contained>
 						<xsl:call-template name="nl-core-practitioner-2.0">
 							<xsl:with-param name="ada-zorgverlener" select="."/>
-							<xsl:with-param name="practioner-id" select="$voorschrijver-id"/>
+							<xsl:with-param name="practitioner-id" select="$voorschrijver-zvl-id"/>
 							<xsl:with-param name="patient" select="$patient"/>
 						</xsl:call-template>
 					</contained>
 				</xsl:for-each>
-				<!-- voorschrijver/zorgaanbieder in contained resource -->
-				<xsl:variable name="voorschrijver-za" select="$voorschrijver/zorgaanbieder/zorgaanbieder"/>
+				<!-- voorschrijver/zorgaanbieder in contained resource organization -->
+				<xsl:variable name="voorschrijver-za" select="$voorschrijver-zvl/zorgaanbieder/zorgaanbieder"/>
 				<xsl:variable name="voorschrijver-za-id" select="generate-id($voorschrijver-za)"/>
 				<xsl:for-each select="$voorschrijver-za[.//@value]">
 					<xsl:comment>voorschrijver / zorgaanbieder</xsl:comment>
@@ -1278,6 +1377,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<xsl:call-template name="nl-core-organization-2.0">
 							<xsl:with-param name="ada-zorgaanbieder" select="."/>
 							<xsl:with-param name="organization-id" select="$voorschrijver-za-id"/>
+						</xsl:call-template>
+					</contained>
+				</xsl:for-each>
+				<!-- specialiteit/rol voorschrijver in contained resource practitionerRole, deze verwijst ook naar practitioner en organization -->
+				<xsl:variable name="voorschrijver-id" select="generate-id($voorschrijver)"/>
+				<xsl:for-each select="$voorschrijver[.//@value]">
+					<contained>
+						<xsl:call-template name="nl-core-practitionerrole-2.0">
+							<xsl:with-param name="ada-voorschrijver" select="."/>
+							<xsl:with-param name="practitionerrole-id" select="$voorschrijver-id"/>
+							<xsl:with-param name="practitioner-id" select="$voorschrijver-zvl-id"/>
+							<xsl:with-param name="organization-id" select="$voorschrijver-za-id"/>
+							<xsl:with-param name="patient" select="$patient"/>
 						</xsl:call-template>
 					</contained>
 				</xsl:for-each>
@@ -1332,6 +1444,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<xsl:with-param name="repeat-period" select="."/>
 					</xsl:call-template>
 				</xsl:for-each>
+				<!-- TODO  -->
+				<!-- relatie naar medicatieafspraak of gebruik -->
+				<xsl:for-each select="relatie_naar_afspraak_of_gebruik/(identificatie | identificatie_23288 | identificatie_23289)">
+					<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+						<valueReference>
+							<identifier>
+								<xsl:call-template name="id-to-Identifier">
+									<xsl:with-param name="in" select="."/>
+								</xsl:call-template>
+							</identifier>
+							<display>
+								<xsl:attribute name="value">
+									<xsl:choose>
+										<xsl:when test="./name() = 'identificatie'">relatie naar medicatieafspraak: </xsl:when>
+										<xsl:when test="./name() = 'identificatie_23288'">relatie naar toedieningsafspraak: </xsl:when>
+										<xsl:when test="./name() = 'identificatie_23289'">relatie naar medicatiegebruik: </xsl:when>
+									</xsl:choose>
+									<xsl:value-of select="./@value"/> -- <xsl:value-of select="./@root"/>
+								</xsl:attribute>
+							</display>
+						</valueReference>
+					</extension>
+				</xsl:for-each>
 				<!-- stoptype -->
 				<xsl:for-each select="stoptype">
 					<xsl:call-template name="zib-Medication-StopType">
@@ -1353,7 +1488,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<intent value="order"/>
 				<!-- type bouwsteen, hier een medicatieafspraak -->
 				<category>
-					<xsl:comment>medicatieafspraak</xsl:comment>
 					<coding>
 						<system value="http://snomed.info/sct"/>
 						<code value="16076005"/>
@@ -1399,26 +1533,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<display value="{concat('Gewicht. ',./gewicht_waarde/@value, ' ', ./gewicht_waarde/@unit,'. Gemeten: ', format-dateTime(./gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]'))}"/>
 					</supportingInformation>
 				</xsl:for-each>
-				<!-- TODO  -->
-				<!-- relatie naar medicatieafspraak of gebruik -->
-				<xsl:for-each select="relatie_naar_afspraak_of_gebruik/(identificatie | identificatie_23288 | identificatie_23289)">
-					<supportingInformation>
-						<identifier>
-							<xsl:call-template name="id-to-Identifier">
-								<xsl:with-param name="in" select="."/>
-							</xsl:call-template>
-						</identifier>
-						<display>
-							<xsl:attribute name="value">
-								<xsl:choose>
-									<xsl:when test="./name() = 'identificatie'">relatie naar medicatieafspraak</xsl:when>
-									<xsl:when test="./name() = 'identificatie_23288'">relatie naar toedieningsafspraak</xsl:when>
-									<xsl:when test="./name() = 'identificatie_23289'">relatie naar medicatiegebruik</xsl:when>
-								</xsl:choose>
-							</xsl:attribute>
-						</display>
-					</supportingInformation>
-				</xsl:for-each>
 				<!-- afspraakdatum -->
 				<xsl:for-each select="./afspraakdatum[@value]">
 					<xsl:comment>afspraakdatum</xsl:comment>
@@ -1426,10 +1540,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:for-each>
 				<!-- voorschrijver -->
 				<xsl:for-each select="./voorschrijver">
-					<xsl:call-template name="zorgverlener-requester">
-						<xsl:with-param name="zorgverlener" select="$voorschrijver"/>
-						<xsl:with-param name="zorgverlener-id" select="$voorschrijver-id"/>
-						<xsl:with-param name="zorgverlener-za-id" select="$voorschrijver-za-id"/>
+					<xsl:call-template name="zorgverlener-requester-ext">
+						<xsl:with-param name="voorschrijver" select="$voorschrijver"/>
+						<xsl:with-param name="voorschrijver-id" select="$voorschrijver-id"/>
+						<xsl:with-param name="voorschrijver-zvl-id" select="$voorschrijver-zvl-id"/>
 					</xsl:call-template>
 				</xsl:for-each>
 				<!-- reden afspraak -->
@@ -1576,7 +1690,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<contained>
 						<xsl:call-template name="nl-core-practitioner-2.0">
 							<xsl:with-param name="ada-zorgverlener" select="."/>
-							<xsl:with-param name="practioner-id" select="$voorschrijver-id"/>
+							<xsl:with-param name="practitioner-id" select="$voorschrijver-id"/>
 							<xsl:with-param name="patient" select="$patient"/>
 						</xsl:call-template>
 					</contained>
@@ -1594,15 +1708,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</contained>
 				</xsl:for-each>
 				<!-- auteur-zorgverlener in contained resource -->
-				<xsl:variable name="auteur-zorgverlener" select="./auteur/auteur_is_zorgverlener/zorgverlener"/>
+				<xsl:variable name="auteur-is-zorgverlener" select="./auteur/auteur_is_zorgverlener"/>
+				<xsl:variable name="auteur-is-zorgverlener-id" select="generate-id($auteur-is-zorgverlener)"/>
+				<xsl:variable name="auteur-zorgverlener" select="$auteur-is-zorgverlener/zorgverlener"/>
 				<xsl:variable name="auteur-zorgverlener-id" select="generate-id($auteur-zorgverlener)"/>
+				<xsl:variable name="auteur-zorgaanbieder" select="$auteur-zorgverlener/zorgaanbieder/zorgaanbieder"/>
+				<xsl:variable name="auteur-zorgaanbieder-id" select="generate-id($auteur-zorgaanbieder)"/>
+				<xsl:for-each select="$auteur-is-zorgverlener[.//@value]">
+					<contained>
+						<xsl:call-template name="nl-core-practitionerrole-2.0">
+							<xsl:with-param name="ada-voorschrijver" select="$auteur-is-zorgverlener"/>
+							<xsl:with-param name="organization-id" select="$auteur-zorgaanbieder-id"/>
+							<xsl:with-param name="patient" select="$patient"/>
+							<xsl:with-param name="practitioner-id" select="$auteur-zorgverlener-id"/>
+							<xsl:with-param name="practitionerrole-id" select="$auteur-is-zorgverlener-id"/>
+						</xsl:call-template>
+					</contained>
+				</xsl:for-each>
 				<xsl:for-each select="$auteur-zorgverlener[.//@value]">
-					<xsl:comment>auteur-zorgverlener</xsl:comment>
 					<contained>
 						<xsl:call-template name="nl-core-practitioner-2.0">
 							<xsl:with-param name="ada-zorgverlener" select="."/>
-							<xsl:with-param name="practioner-id" select="$auteur-zorgverlener-id"/>
 							<xsl:with-param name="patient" select="$patient"/>
+							<xsl:with-param name="practitioner-id" select="$auteur-zorgverlener-id"/>
 						</xsl:call-template>
 					</contained>
 				</xsl:for-each>
@@ -1638,7 +1766,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<xsl:call-template name="nl-core-practitioner-2.0">
 							<xsl:with-param name="ada-zorgverlener" select="."/>
 							<xsl:with-param name="patient" select="$patient"/>
-							<xsl:with-param name="practioner-id" select="$informant-zorgverlener-id"/>
+							<xsl:with-param name="practitioner-id" select="$informant-zorgverlener-id"/>
 						</xsl:call-template>
 					</contained>
 				</xsl:for-each>
@@ -1648,7 +1776,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
 						<valueBoolean value="{./@value}"/>
 					</extension>
-
 				</xsl:for-each>
 				<!-- voorschrijver in extension -->
 				<xsl:for-each select="$voorschrijver">
@@ -1667,13 +1794,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</extension>
 				</xsl:for-each>
 				<!-- auteur -->
-				<!-- TODO specialisme en organisatie, nu aanname gedaan met onbehalfof voor organisatie -->
 				<xsl:for-each select="./auteur[.//@value]">
 					<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
 						<xsl:choose>
 							<xsl:when test="./auteur_is_zorgverlener[.//@value]">
-								<valueReference id="#{$auteur-zorgverlener-id}">
-									<display value="{normalize-space(string-join(./auteur_is_zorgverlener//*[not(ancestor-or-self::zorgaanbieder)]/@value, ' '))}"/>
+								<valueReference id="#{$auteur-is-zorgverlener-id}">
+									<display value="{normalize-space(string-join(./auteur_is_zorgverlener//*/(@value|@displayName), ' '))}"/>
 								</valueReference>
 							</xsl:when>
 							<xsl:when test="./auteur_is_patient[@value = 'true']">
@@ -1684,14 +1810,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								</valueReference>
 							</xsl:when>
 						</xsl:choose>
-					</extension>
-				</xsl:for-each>
-				<!-- auteur - zorgaanbieder -->
-				<xsl:for-each select="$auteur-zorgverlener-za[.//@value]">
-					<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author-Onbehalfof">
-						<valueReference id="#{$auteur-zorgverlener-za-id}">
-							<display value="{normalize-space(string-join(.//@value, ' '))}"/>
-						</valueReference>
 					</extension>
 				</xsl:for-each>
 				<!-- relatie naar medicamenteuze behandeling -->
@@ -1713,13 +1831,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<xsl:with-param name="repeat-period" select="."/>
 					</xsl:call-template>
 				</xsl:for-each>
-
-				<!--      <!-\- stoptype -\->
-            <xsl:for-each select="stoptype">
-               <xsl:call-template name="zib-Medication-StopType">
-                  <xsl:with-param name="stopType" select="."/>
-               </xsl:call-template>
-            </xsl:for-each>-->
 				<!-- medicatiegebruik id -->
 				<xsl:for-each select="./identificatie">
 					<identifier>
@@ -1728,7 +1839,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</xsl:call-template>
 					</identifier>
 				</xsl:for-each>
-				<status value="active"/>
+				<!-- stoptype mapt bij medicatiegebruik op status -->
+				<xsl:choose>
+					<xsl:when test="./stoptype/@code = '1'">
+						<status value="stopped"/>
+					</xsl:when>
+					<xsl:when test="./stoptype/@code = '2'">
+						<status value="onhold"/>
+					</xsl:when>
+					<xsl:when test="./stoptype/@code">
+						<status value="unknown-stoptype"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<status value="active"/>
+					</xsl:otherwise>
+				</xsl:choose>
+
 				<!-- type bouwsteen, hier medicatiegebruik -->
 				<category>
 					<coding>

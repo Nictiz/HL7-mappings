@@ -29,7 +29,8 @@
 					<gebruiksperiode value="10" unit="dag" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19936"/>
 					<relatie_naar_afspraak_of_gebruik>
 						<identificatie root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" value="MA#1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
-						<identificatie_23288 root="1.2.3.999" value="TA#1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23288"/>
+						<!--<identificatie_23288 root="1.2.3.999" value="TA#1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23288"/>
+						-->
 						<identificatie_23289 root="1.2.3.999" value="GB#1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23289"/>
 					</relatie_naar_afspraak_of_gebruik>
 					<voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.1030">
@@ -181,6 +182,7 @@
 							</zorgaanbieder>
 						</zorgaanbieder>
 					</verstrekker>
+					<reden_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22499" value="reden ta in tekst"/>
 					<geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20237">
 						<product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20238">
 							<product_code code="19844" codeSystem="12.3.999" displayName="19844 DOXYCYCLINE TABLET 100MG" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22289"/>
@@ -335,7 +337,7 @@
 						</zorgverlener>
 					</voorschrijver>
 					<informant conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22424">
-						<!--  <persoon conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22425">
+						  <persoon conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22425">
                             <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22761">
                                 <initialen value="B." conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22763"/>
                                 <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22766">
@@ -344,7 +346,7 @@
                                 </geslachtsnaam>
                             </naamgegevens>
                             <rol_of_functie value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22426" code="407542009" codeSystem="2.16.840.1.113883.6.96" displayName="Informal carer (person)"/>
-                        </persoon>-->
+                        </persoon>
 						<!--                        <informant_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22452"/>-->
 						<informant_is_zorgverlener>
 							<zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22784">
@@ -362,29 +364,31 @@
 						</informant_is_zorgverlener>
 					</informant>
 					<auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22471">
-						<auteur_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22472"/>
-						<!--<auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22473">
-                            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22900">
-                                <zorgverlener_identificatie_nummer value="006797896" root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22901"/>
-                                <zorgverlener_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22902">
-                                    <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22903">
-                                        <initialen value="J." conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22905"/>
-                                        <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22908">
-                                            <voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22909"/>
-                                            <achternaam value="Beek" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22910"/>
-                                        </geslachtsnaam>
-                                    </naamgegevens>
-                                </zorgverlener_naam>
-                                <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22914" code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
-                                <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22936">
-                                    <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22937">
-                                        <zorgaanbieder_identificatie_nummer value="00765332" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22938"/>
-                                        <zorgaanbieder_identificatie_nummer value="01028432" root="2.16.840.1.113883.2.4.6.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22938"/>
-                                        <organisatie_naam value="Huisartspraktijk Van Beek" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22939"/>
-                                    </zorgaanbieder>
-                                </zorgaanbieder>
-                            </zorgverlener>
-                        </auteur_is_zorgverlener>-->
+						<!--						<auteur_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22472"/>
+-->
+						<auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22473">
+							<zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22900">
+								<zorgverlener_identificatie_nummer value="006797896" root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22901"/>
+								<zorgverlener_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22902">
+									<naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22903">
+										<initialen value="P." conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22905"/>
+										<geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22908">
+											<voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22909"/>
+											<achternaam value="Dalen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22910"/>
+										</geslachtsnaam>
+									</naamgegevens>
+								</zorgverlener_naam>
+								<specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22914" code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+								<zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22936">
+									<zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22937">
+										<zorgaanbieder_identificatie_nummer value="00765332" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22938"/>
+										<zorgaanbieder_identificatie_nummer value="01028432" root="2.16.840.1.113883.2.4.6.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22938"/>
+										<organisatie_naam value="Huisartspraktijk Van Dalen" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22939"/>
+									</zorgaanbieder>
+								</zorgaanbieder>
+							</zorgverlener>
+						</auteur_is_zorgverlener>
+						<!---->
 					</auteur>
 					<reden_gebruik value="asddf" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22491"/>
 					<reden_wijzigen_of_stoppen_gebruik code="438833006" codeSystem="2.16.840.1.113883.6.96" displayName="Contra-indicatie" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22493"/>

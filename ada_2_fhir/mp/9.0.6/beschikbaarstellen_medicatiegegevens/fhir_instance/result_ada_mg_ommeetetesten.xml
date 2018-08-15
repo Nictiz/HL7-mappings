@@ -129,6 +129,26 @@
                   <name value="Huisartspraktijk Van Beek"/>
                </Organization>
             </contained>
+            <contained>
+               <PractitionerRole>
+                  <id value="d3e65"/>
+                  <practitioner>
+                     <reference value="#d3e67"/>
+                     <display value="Johan J. van Beek"/>
+                  </practitioner>
+                  <organization>
+                     <reference value="#d3e92"/>
+                     <display value="Huisartspraktijk Van Beek"/>
+                  </organization>
+                  <specialty>
+                     <coding>
+                        <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                        <code value="01.015"/>
+                        <display value="Huisarts"/>
+                     </coding>
+                  </specialty>
+               </PractitionerRole>
+            </contained>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
                   <value value="10"/>
@@ -152,12 +172,30 @@
                   <value value="medbeh_VMA_001"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MA#1"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MA#1 -- 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:1.2.3.999"/>
+                     <value value="GB#1"/>
+                  </identifier>
+                  <display value="relatie naar medicatiegebruik: GB#1 -- 1.2.3.999"/>
+               </valueReference>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="medbeh_VMA_001_MA02"/>
             </identifier>
             <intent value="order"/>
-            <category><!--medicatieafspraak-->
+            <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="16076005"/>
@@ -189,38 +227,19 @@
                <reference value="#d3e188"/>
                <display value="Gewicht. 23 kg. Gemeten: "/>
             </supportingInformation>
-            <supportingInformation>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MA#1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </supportingInformation>
-            <supportingInformation>
-               <identifier>
-                  <system value="urn:oid:1.2.3.999"/>
-                  <value value="TA#1"/>
-               </identifier>
-               <display value="relatie naar toedieningsafspraak"/>
-            </supportingInformation>
-            <supportingInformation>
-               <identifier>
-                  <system value="urn:oid:1.2.3.999"/>
-                  <value value="GB#1"/>
-               </identifier>
-               <display value="relatie naar medicatiegebruik"/>
-            </supportingInformation>
             <!--afspraakdatum-->
             <authoredOn value="2016-09-02T14:30:23"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="#d3e65"/>
+                     <display value="Johan J. van Beek Huisarts Huisartspraktijk Van Beek"/>
+                  </valueReference>
+               </extension>
                <agent>
                   <reference value="#d3e67"/>
                   <display value="Johan J. van Beek"/>
                </agent>
-               <onBehalfOf>
-                  <reference value="#d3e92"/>
-                  <display value="Huisartspraktijk Van Beek"/>
-               </onBehalfOf>
             </requester>
             <!--reden afspraak-->
             <reasonCode>
@@ -298,7 +317,6 @@
                   <code value="245"/>
                </doseQuantity>
             </dosageInstruction>
-            <!-- Responsible dispensing pharmacy -->
          </MedicationRequest>
       </resource>
    </entry>
@@ -353,6 +371,12 @@
                   </identifier>
                   <name value="Apotheek Boomsma"/>
                </Organization>
+            </contained>
+            <contained>
+               <Location>
+                  <id value="d3e282"/>
+                  <name value="in de bloempot stoppen"/>
+               </Location>
             </contained>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
                <valueCodeableConcept>
@@ -420,7 +444,10 @@
             </note>
             <dispenseRequest>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
-                  <valueString value="in de bloempot stoppen"/>
+                  <valueReference>
+                     <reference value="#d3e282"/>
+                     <display value="in de bloempot stoppen"/>
+                  </valueReference>
                </extension>
                <validityPeriod>
                   <start value="2017-03-06T08:00:00"/>
@@ -456,6 +483,9 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
                <valueDateTime value="2016-09-02T15:12:34"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AgreementReason">
+               <valueString value="reden ta in tekst"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
                <valueDuration>
@@ -496,21 +526,22 @@
                </identifier>
                <display value="Antje de Vries"/>
             </subject>
-            <supportingInformation>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="medbeh_VMA_001_MA02"/>
-               </identifier>
-            </supportingInformation>
-            <!-- Responsible dispensing pharmacy -->
             <performer>
                <actor>
                   <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.999.1"/>
                      <value value="13265456"/>
                   </identifier>
                   <display value="Apotheek Lutjebroek"/>
                </actor>
             </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="medbeh_VMA_001_MA02"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: medbeh_VMA_001_MA02 -- 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
             <!--Toelichting-->
             <dosageInstruction>
                <sequence value="1"/>
@@ -582,8 +613,8 @@
             </meta>
             <contained>
                <Location>
-                  <id value="d3e444"/>
-                  <description value="bij de planten zetten graag"/>
+                  <id value="d3e446"/>
+                  <name value="bij de planten zetten graag"/>
                </Location>
             </contained>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-DistributionForm">
@@ -636,7 +667,6 @@
                </identifier>
                <display value="Antje de Vries"/>
             </subject>
-            <!-- Responsible dispensing pharmacy -->
             <performer>
                <actor>
                   <identifier>
@@ -666,7 +696,7 @@
             </daysSupply>
             <whenHandedOver value="2005-01-31"/>
             <destination>
-               <reference value="#d3e444"/>
+               <reference value="#d3e446"/>
                <display value="bij de planten zetten graag"/>
             </destination>
             <note>
@@ -685,7 +715,7 @@
             <!--voorschrijver-->
             <contained>
                <Practitioner>
-                  <id value="d3e544"/>
+                  <id value="d3e546"/>
                   <!--zorgverlener_identificatie_nummer-->
                   <identifier>
                      <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
@@ -711,7 +741,7 @@
             <!--voorschrijver / zorgaanbieder-->
             <contained>
                <Organization>
-                  <id value="d3e567"/>
+                  <id value="d3e569"/>
                   <identifier>
                      <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                      <value value="00765332"/>
@@ -724,8 +754,104 @@
                </Organization>
             </contained>
             <contained>
+               <PractitionerRole>
+                  <id value="d3e630"/>
+                  <practitioner>
+                     <reference value="#d3e632"/>
+                     <display value="P. van Dalen"/>
+                  </practitioner>
+                  <organization>
+                     <reference value="#d3e655"/>
+                     <display value="Huisartspraktijk Van Dalen"/>
+                  </organization>
+                  <specialty>
+                     <coding>
+                        <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                        <code value="01.015"/>
+                        <display value="Huisarts"/>
+                     </coding>
+                  </specialty>
+               </PractitionerRole>
+            </contained>
+            <contained>
                <Practitioner>
-                  <id value="d3e587"/>
+                  <id value="d3e632"/>
+                  <!--zorgverlener_identificatie_nummer-->
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="006797896"/>
+                  </identifier>
+                  <name>
+                     <family value="van Dalen">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                           <valueString value="van"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                           <valueString value="Dalen"/>
+                        </extension>
+                     </family>
+                     <given value="P.">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                           <valueCode value="IN"/>
+                        </extension>
+                     </given>
+                  </name>
+               </Practitioner>
+            </contained>
+            <!--auteur-zorgverlener / zorgaanbieder-->
+            <contained>
+               <Organization>
+                  <id value="d3e655"/>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="00765332"/>
+                  </identifier>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                     <value value="01028432"/>
+                  </identifier>
+                  <name value="Huisartspraktijk Van Dalen"/>
+               </Organization>
+            </contained>
+            <contained>
+               <RelatedPerson>
+                  <id value="d3e583"/>
+                  <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="407542009"/>
+                           <display value="Informal carer (person)"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <patient>
+                     <identifier>
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value value="32456487"/>
+                     </identifier>
+                     <display value="Antje de Vries"/>
+                  </patient>
+                  <name>
+                     <family value="van XXX_Boerka">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                           <valueString value="van"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                           <valueString value="XXX_Boerka"/>
+                        </extension>
+                     </family>
+                     <given value="B.">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                           <valueCode value="IN"/>
+                        </extension>
+                     </given>
+                  </name>
+               </RelatedPerson>
+            </contained>
+            <contained>
+               <Practitioner>
+                  <id value="d3e604"/>
                   <!--zorgverlener_identificatie_nummer-->
                   <identifier>
                      <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
@@ -752,22 +878,18 @@
                <valueBoolean value="true"/>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/medicationstatement-Prescriber">
-               <valueReference id="#d3e544">
+               <valueReference id="#d3e546">
                   <display value="J. van Beek"/>
                </valueReference>
             </extension>
             <extension url="http://hl7.org/fhir/StructureDefinition/medicationstatement-Onbehalfof">
-               <valueReference id="#d3e567">
+               <valueReference id="#d3e569">
                   <display value="Huisartspraktijk Van Beek"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <identifier>
-                     <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                     <value value="32456487"/>
-                  </identifier>
-                  <display value="Antje de Vries"/>
+               <valueReference id="#d3e630">
+                  <display value="006797896 P. van Dalen Huisarts 00765332 01028432 Huisartspraktijk Van Dalen"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -780,7 +902,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
                <value value="POC_UC01_1_MBH01_GB01"/>
             </identifier>
-            <status value="active"/>
+            <status value="stopped"/>
             <category>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -812,8 +934,8 @@
                   <valueCode value="ASKU"/>
                </extension>
             </dateAsserted>
-            <informationSource id="#d3e587">
-               <display value="J. van Beek"/>
+            <informationSource id="#d3e583">
+               <display value="B. van XXX_Boerka"/>
             </informationSource>
             <subject>
                <identifier>
