@@ -13,9 +13,11 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 	<xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-	<!--    <xsl:include href="utils.xsl"/>-->
+	<xsl:include href="../../util/uuid.xsl"/>
+	<xsl:include href="../../util/datetime.xsl"/>
+	
 	<xsl:variable name="ada-unit-seconde" select="('seconde', 's', 'sec', 'second')"/>
 	<xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
 	<xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>
@@ -33,6 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 	<xsl:variable name="oidAGB">2.16.840.1.113883.2.4.6.1</xsl:variable>
 	<xsl:variable name="oidAGBSpecialismen">2.16.840.1.113883.2.4.6.7</xsl:variable>
+	<xsl:variable name="oidBIGregister">2.16.528.1.1007.5.1</xsl:variable>
 	<xsl:variable name="oidBurgerservicenummer">2.16.840.1.113883.2.4.6.3</xsl:variable>
 	<xsl:variable name="oidGStandaardGPK">2.16.840.1.113883.2.4.4.1</xsl:variable>
 	<xsl:variable name="oidGStandaardHPK">2.16.840.1.113883.2.4.4.7</xsl:variable>
@@ -87,6 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<map oid="{$oidUZISystems}" uri="http://fhir.nl/fhir/NamingSystem/uzi-nr-sys" displayName="UZI Systemen"/>
 		<map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
 	</xsl:variable>
+	<xsl:variable name="UUIDpattern" select="'^[A-Fa-f\d]{8}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{12}$'"/>
 	<xd:doc>
 		<xd:desc/>
 		<xd:param name="in"/>
@@ -381,4 +385,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:function>
+	<xd:doc>
+		<xd:desc>
+			Returns a UUID with urn:uuid: preconcatenated
+		</xd:desc>
+	</xd:doc>
+	<xsl:function name="nf:get-fhir-uuid" as="xs:string*">
+		<xsl:value-of select="concat('urn:uuid:', uuid:get-uuid())"/>
+	</xsl:function>
+	<xd:doc>
+		<xd:desc/>
+		<xd:param name="ada-identificatie"/>
+	</xd:doc>
+	<xsl:function name="nf:getUriFromAdaId" as="xs:string">
+		<xsl:param name="ada-identificatie" as="element()?"/>
+		<xsl:choose>
+			<xsl:when test="$ada-identificatie[@root][matches(@value, '^\d+$')]">
+				<xsl:value-of select="concat('urn:oid:', $ada-identificatie/string-join((@root, @value),'.'))"/>
+			</xsl:when>
+			<xsl:when test="$ada-identificatie[matches(@extension, $UUIDpattern)]">
+				<xsl:value-of select="concat('urn:uuid:', $ada-identificatie/@value)"/>
+			</xsl:when>
+			<xsl:when test="$ada-identificatie[matches(@root, $UUIDpattern)]">
+				<xsl:value-of select="concat('urn:uuid:', $ada-identificatie/@root)"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="nf:get-fhir-uuid()"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:function>
+	
 </xsl:stylesheet>
