@@ -3,7 +3,7 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	exclude-result-prefixes="xs"
 	version="2.0">
-	<xsl:function name="nf:add-CET-timezone" as="xs:dateTime">
+	<xsl:function name="nf:set-CET-timezone" as="xs:dateTime">
 		<xsl:param name="dateTimeIn" as="xs:dateTime?"/>
 		<!-- Since 1996 DST starts last sunday of March 02:00 and ends last sunday of October at 03:00/02:00 (clock is set backwards) -->
 		<!-- There is one hour in october (from 02 - 03) for which we can't be sure if no timezone is provided in the input
@@ -26,8 +26,7 @@
 		</xsl:function>
 	
 	<xsl:function name="functx:day-of-week" as="xs:integer?">
-		<xsl:param name="date" as="xs:anyAtomicType?"/>
-		
+		<xsl:param name="date" as="xs:anyAtomicType?"/>		
 		<xsl:sequence select="
 			if (empty($date))
 			then
