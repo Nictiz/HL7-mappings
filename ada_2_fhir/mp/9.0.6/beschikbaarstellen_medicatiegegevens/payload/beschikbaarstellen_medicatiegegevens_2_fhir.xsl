@@ -25,7 +25,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xd:p>
 		</xd:desc>
 	</xd:doc>
-	<xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+	<xsl:output method="xml" indent="yes"/>
+	<xsl:strip-space elements="*"/>
 	<xsl:include href="../../../2_fhir_mp_include.xsl"/>
 	<xd:doc>
 		<xd:desc>XSLT doesn't have a function for UUID. It will generate an id based on the first element in the input. If you appreciate a UUID or other id, please supply here.</xd:desc>
@@ -40,48 +41,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="/">
 		<xsl:call-template name="Medicatiegegevens_90">
-			<xsl:with-param name="ada-patient" select="//beschikbaarstellen_medicatiegegevens/patient"/>
 			<xsl:with-param name="mbh" select="//beschikbaarstellen_medicatiegegevens/medicamenteuze_behandeling"/>
 		</xsl:call-template>
 	</xsl:template>
 	<xd:doc>
 		<xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
-		<xd:param name="ada-patient">ada patient</xd:param>
 		<xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
 	</xd:doc>
 	<xsl:template name="Medicatiegegevens_90">
-		<xsl:param name="ada-patient"/>
 		<xsl:param name="mbh"/>
 		<xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
 		<Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
 			<type value="searchset"/>
 			<xsl:variable name="entries" as="element(f:entry)*">
-				<!-- common entries (patient, practitioners, organizations, practitionerroles, locaties -->
+				<!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
 				<xsl:copy-of select="$commonEntries"/>
 				<!-- medicatieafspraak -->
 				<xsl:for-each select="$mbh/medicatieafspraak">
 					<xsl:call-template name="zib-MedicationAgreement-2.0">
-						<xsl:with-param name="patient" select="$ada-patient"/>
-						<xsl:with-param name="patient-fullUrl" select="$patient-entry/f:fullUrl/@value"/>
 						<xsl:with-param name="medicatieafspraak" select="."/>
 					</xsl:call-template>
 				</xsl:for-each>
 				<!-- verstrekkingsverzoek -->
 				<xsl:for-each select="$mbh/verstrekkingsverzoek">
 					<xsl:call-template name="zib-DispenseRequest-2.0">
-						<xsl:with-param name="patient" select="$ada-patient"/>
-						<xsl:with-param name="patient-fullUrl" select="$patient-entry/f:fullUrl/@value"/>
 						<xsl:with-param name="verstrekkingsverzoek" select="."/>
 					</xsl:call-template>
 				</xsl:for-each>
 				<!-- toedieningsafspraak -->
 				<xsl:for-each select="$mbh/toedieningsafspraak">
 					<entry xmlns="http://hl7.org/fhir">
-						<fullUrl value="{./identificatie[1]/string-join((@value,@root),'--')}"/>
+						<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
 						<resource>
 							<xsl:call-template name="zib-AdministrationAgreement-2.0">
-								<xsl:with-param name="patient" select="$ada-patient"/>
-								<xsl:with-param name="patient-fullUrl" select="$patient-entry/f:fullUrl/@value"/>
 								<xsl:with-param name="toedieningsafspraak" select="."/>
 							</xsl:call-template>
 						</resource>
@@ -89,10 +81,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:for-each>
 				<xsl:for-each select="$mbh/verstrekking">
 					<entry xmlns="http://hl7.org/fhir">
-						<fullUrl value="{./identificatie[1]/string-join((@value,@root),'--')}"/>
+						<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
 						<resource>
 							<xsl:call-template name="zib-Dispense-2.0">
-								<xsl:with-param name="patient" select="$ada-patient"/>
 								<xsl:with-param name="verstrekking" select="."/>
 							</xsl:call-template>
 						</resource>
@@ -100,10 +91,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:for-each>
 				<xsl:for-each select="$mbh/medicatie_gebruik">
 					<entry xmlns="http://hl7.org/fhir">
-						<fullUrl value="{./identificatie[1]/string-join((@value,@root),'--')}"/>
+						<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
 						<resource>
 							<xsl:call-template name="zib-MedicationUse-2.0">
-								<xsl:with-param name="patient" select="$ada-patient"/>
 								<xsl:with-param name="medicatiegebruik" select="."/>
 							</xsl:call-template>
 						</resource>
