@@ -90,14 +90,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</entry>
 				</xsl:for-each>
 				<xsl:for-each select="$mbh/medicatie_gebruik">
-					<entry xmlns="http://hl7.org/fhir">
-						<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
-						<resource>
-							<xsl:call-template name="zib-MedicationUse-2.0">
-								<xsl:with-param name="medicatiegebruik" select="."/>
-							</xsl:call-template>
-						</resource>
-					</entry>
+					<xsl:call-template name="zib-MedicationUse-2.0">
+						<xsl:with-param name="medicatiegebruik" select="."/>
+					</xsl:call-template>
 				</xsl:for-each>
 			</xsl:variable>
 			<total value="{count($entries)}"/>
