@@ -443,30 +443,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 	<xd:doc>
 		<xd:desc/>
-		</xd:doc>
+	</xd:doc>
 	<xsl:template name="nl-core-relatedperson-2.0" match="persoon" mode="doRelatedPerson">
-			<RelatedPerson>
-				<meta>
-					<profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
-				</meta>
-				<xsl:for-each select="./rol_of_functie">
-					<extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
-						<valueCodeableConcept>
-							<xsl:call-template name="code-to-CodeableConcept">
-								<xsl:with-param name="in" select="."/>
-							</xsl:call-template>
-						</valueCodeableConcept>
-					</extension>
-				</xsl:for-each>
-				<patient>
-					<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
-				</patient>
-				<xsl:for-each select="./naamgegevens">
-					<xsl:call-template name="nl-core-humanname">
-						<xsl:with-param name="ada-naamgegevens" select="."/>
-					</xsl:call-template>
-				</xsl:for-each>
-			</RelatedPerson>
+		<RelatedPerson>
+			<meta>
+				<profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+			</meta>
+			<xsl:for-each select="./rol_of_functie">
+				<extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+					<valueCodeableConcept>
+						<xsl:call-template name="code-to-CodeableConcept">
+							<xsl:with-param name="in" select="."/>
+						</xsl:call-template>
+					</valueCodeableConcept>
+				</extension>
+			</xsl:for-each>
+			<patient>
+				<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
+			</patient>
+			<xsl:for-each select="./naamgegevens">
+				<xsl:call-template name="nl-core-humanname">
+					<xsl:with-param name="ada-naamgegevens" select="."/>
+				</xsl:call-template>
+			</xsl:for-each>
+		</RelatedPerson>
 	</xsl:template>
 	<xd:doc>
 		<xd:desc/>
@@ -1559,10 +1559,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</xsl:for-each>
 						<!-- voorschrijver in extension -->
 						<xsl:for-each select="./voorschrijver/zorgverlener[.//(@value | @code)]">
-							<extension url="http://hl7.org/fhir/StructureDefinition/medicationstatement-Prescriber">
-								<valueReference>
-									<xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
-								</valueReference>
+							<extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+								<extension url="agent">
+									<valueReference>
+										<xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
+									</valueReference>
+								</extension>
 							</extension>
 						</xsl:for-each>
 						<!-- auteur -->
@@ -1615,7 +1617,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								<status value="stopped"/>
 							</xsl:when>
 							<xsl:when test="./stoptype/@code = '2'">
-								<status value="onhold"/>
+								<status value="on-hold"/>
 							</xsl:when>
 							<xsl:when test="./stoptype/@code">
 								<status value="unknown-stoptype"/>
@@ -1674,7 +1676,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 										<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
 									</xsl:when>
 									<xsl:when test="./informant_is_zorgverlener[.//@value]">
-										<xsl:apply-templates select="./zorgverlener" mode="doPractitionerRoleReference"/>
+										<xsl:apply-templates select="./informant_is_zorgverlener/zorgverlener" mode="doPractitionerRoleReference"/>
 									</xsl:when>
 								</xsl:choose>
 							</informationSource>
@@ -1949,16 +1951,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:function>
 
 	<xd:doc>
-		<xd:desc>Takes input string. If it is a dateTime, a CET timezone will be set. If not, the input string is returned.</xd:desc>
+		<xd:desc>Takes input string. If it is a dateTime, it checks if it has a timezone. If it is a dateTime without timezone a CET timezone will be set. 
+			In all other cases, the input string is returned.</xd:desc>
 		<xd:param name="valueIn">The input string to be handled.</xd:param>
 	</xd:doc>
 	<xsl:function name="nf:ada-2-dateTimeCET" as="xs:string?">
 		<xsl:param name="valueIn" as="xs:string?"/>
 		<xsl:value-of select="
-				if ($valueIn castable as xs:dateTime) then
-					nf:set-CET-timezone(xs:dateTime($valueIn))
+				if (not($valueIn castable as xs:dateTime)) then
+					$valueIn
 				else
-					$valueIn"/>
+					if (timezone-from-dateTime(xs:dateTime($valueIn))) then
+						$valueIn
+					else
+						nf:set-CET-timezone(xs:dateTime($valueIn))
+				"/>
 	</xsl:function>
 	<xd:doc>
 		<xd:desc/>
