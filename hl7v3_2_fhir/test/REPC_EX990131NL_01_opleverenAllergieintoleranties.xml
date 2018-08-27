@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model href="../schematron/kz-vzvz-opleverenAllergieIntoleranties.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<REPC_IN990131NL xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN990131NL.xsd">
+    <id extension="3190bcf8-2aae-4025-bc4c-f1b98af64072" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+    <creationTime value="20150909102654"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="REPC_IN990131NL" root="2.16.840.1.113883.1.6"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="NE"/>
+    <acknowledgement typeCode="AA">
+        <targetMessage>
+            <id extension="5177164e-c203-4608-90c9-0efc3cc92e13" root="2.16.528.1.1007.3.3.1234567.1"/>
+        </targetMessage>
+    </acknowledgement>
+    <receiver>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.6.6" extension="1"/>
+        </device>
+    </receiver>
+    <sender>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id extension="23434323" root="2.16.840.1.113883.2.4.6.6"/>
+        </device>
+    </sender>
+    
+    <ControlActProcess moodCode="EVN">
+        <!-- control act wrapper -->
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedDevice>
+                    <id extension="012345655" root="2.16.528.1.1007.3.2"/>
+                    <id extension="23434323" root="2.16.840.1.113883.2.4.6.6"/>
+                    <Organization>
+                        <id extension="02234567" root="2.16.528.1.1007.3.3"/>
+                        <name>Bester</name>
+                    </Organization>
+                </AssignedDevice>
+            </participant>
+        </authorOrPerformer>
+        <subject>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.75"/>
+                <code code="48765-2" displayName="Allergies and/or adverse reactions" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                <statusCode code="completed"/>
+                <recordTarget typeCode="RCT" contextControlCode="OP">
+                    <patientRole>
+                        <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+                        <patient>
+                            <name>
+                                <given>Joris</given>
+                                <family>Hansman</family>
+                            </name>
+                            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                        </patient>
+                    </patientRole>
+                </recordTarget>
+                <component typeCode="COMP" contextControlCode="OP">
+                    <act classCode="ACT" moodCode="EVN">
+                        <!--Allergie/Intolerantie-->
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.215"/>
+                        <id extension="ai6547382f.3786" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                        <code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+                        <statusCode code="active"/>
+                        <effectiveTime>
+                            <low value="20150304"/>
+                        </effectiveTime>
+                        <entryRelationship typeCode="SUBJ">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.216"/>
+                                <id extension="66935281-de15-4033-9be4-a4127812dd95" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                                <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                                <statusCode code="completed"/>
+                                <effectiveTime>
+                                    <low value="20150304"/>
+                                </effectiveTime>
+                                <value xsi:type="CD" code="419199007" codeSystem="2.16.840.1.113883.6.96" displayName="Allergy to substance"/>
+                                <participant typeCode="CSM">
+                                    <participantRole classCode="MANU">
+                                        <playingEntity classCode="MMAT">
+                                            <code nullFlavor="OTH">
+                                                <originalText>Amoxicilline, opmerking: via neuroloog</originalText>
+                                            </code>
+                                        </playingEntity>
+                                    </participantRole>
+                                </participant>
+                            </observation>
+                        </entryRelationship>
+                    </act>
+                </component>
+            </organizer>
+        </subject>
+        <queryAck>
+            <queryId extension="6ab06c81-aafe-4675-8a7f-29990576ffab" root="2.16.840.1.113883.2.4.6.6.1.2"/>
+            <queryResponseCode code="OK"/>
+            <resultTotalQuantity value="1"/>
+            <resultCurrentQuantity value="1"/>
+            <resultRemainingQuantity value="0"/>
+        </queryAck>
+    </ControlActProcess>
+    
+</REPC_IN990131NL>

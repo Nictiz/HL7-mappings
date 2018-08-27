@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model href="../schematron/kz-vzvz-opleverenContactMomenten.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<PRPA_IN900350NL xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/PRPA_IN900350NL.xsd">
+    <!-- PRPA_IN900350NL :: opleverenContactMomenten -->
+    <!-- transmission wrapper -->
+    <id extension="476537456783465" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+    <creationTime value="20140704155619"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="PRPA_IN900350NL" root="2.16.840.1.113883.1.6"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="NE"/>
+    <acknowledgement typeCode="AA">
+        <targetMessage>
+            <id extension="56725463763546" root="2.16.528.1.1007.3.3.1234567.1"/>
+        </targetMessage>
+    </acknowledgement>
+    <receiver>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.6.6" extension="1"/>
+        </device>
+    </receiver>
+    <sender>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id extension="23434323" root="2.16.840.1.113883.2.4.6.6"/>
+        </device>
+    </sender>
+    <ControlActProcess moodCode="EVN">
+        <!-- control act wrapper -->
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedDevice>
+                    <id extension="012345655" root="2.16.528.1.1007.3.2"/>
+                    <id extension="23434323" root="2.16.840.1.113883.2.4.6.6"/>
+                    <Organization>
+                        <id extension="02234567" root="2.16.528.1.1007.3.3"/>
+                        <name>Bester</name>
+                    </Organization>
+                </AssignedDevice>
+            </participant>
+        </authorOrPerformer>
+        <subject>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.70"/>
+                <code code="46240-8" displayName="History of hospitalizations+History of outpatient visits" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                <statusCode code="completed"/>
+                <recordTarget typeCode="RCT" contextControlCode="OP">
+                    <patientRole>
+                        <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+                        <patient>
+                            <name>
+                                <given>Joris</given>
+                                <family>Hansman</family>
+                            </name>
+                            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                        </patient>
+                    </patientRole>
+                </recordTarget>
+                <component typeCode="COMP" contextControlCode="OP">
+                    <encounter classCode="ENC" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                        <id root="2.16.528.1.1007.3.3.1111.1" extension="04311212"/>
+                        <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                        <effectiveTime>
+                            <low value="201405031930"/>
+                            <high value="201405081938"/>
+                        </effectiveTime>
+                        <performer typeCode="PRF">
+                            <assignedEntity>
+                                <id root="2.16.528.1.1007.3.1" extension="000002222"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <assignedPerson>
+                                    <name>
+                                        <given>Koos</given>
+                                        <family qualifier="BR">Jansma</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization>
+                                    <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+                                    <name>Gezondheidscentrum Amby</name>
+                                </representedOrganization>
+                            </assignedEntity>
+                        </performer>
+                    </encounter>
+                </component>
+                <component typeCode="COMP" contextControlCode="OP">
+                    <encounter classCode="ENC" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                        <id root="2.16.528.1.1007.3.3.1111.1" extension="04311973"/>
+                        <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                        <effectiveTime>
+                            <low value="201406031024"/>
+                            <high value="201406081122"/>
+                        </effectiveTime>
+                        <performer typeCode="PRF">
+                            <assignedEntity>
+                                <id root="2.16.528.1.1007.3.1" extension="000002222"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                <assignedPerson>
+                                    <name>
+                                        <given>Koos</given>
+                                        <family qualifier="BR">Jansma</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization>
+                                    <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+                                    <name>Gezondheidscentrum Amby</name>
+                                </representedOrganization>
+                            </assignedEntity>
+                        </performer>
+                    </encounter>
+                </component>
+            </organizer>
+        </subject>
+        <queryAck>
+            <queryId extension="65473876987" root="2.16.840.1.113883.2.4.6.6.1.2"/>
+            <queryResponseCode code="OK"/>
+            <resultTotalQuantity value="1"/>
+            <resultCurrentQuantity value="1"/>
+            <resultRemainingQuantity value="0"/>
+        </queryAck>
+    </ControlActProcess>
+</PRPA_IN900350NL>

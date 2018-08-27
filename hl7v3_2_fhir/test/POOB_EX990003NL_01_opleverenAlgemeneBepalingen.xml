@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model href="../schematron/kz-vzvz-opleverenAlgemeneBepalingen.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<POOB_IN990003NL xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/POOB_IN990003NL.xsd">
+    <!-- POOB_IN990003NL :: opleverenAlgemeneBepalingen -->
+    <!-- transmission wrapper -->
+    <id extension="75857894375683496" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+    <creationTime value="20140704155620"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="POOB_IN990003NL" root="2.16.840.1.113883.1.6"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="NE"/>
+    <acknowledgement typeCode="AA">
+        <targetMessage>
+            <id extension="1467584763475387" root="2.16.528.1.1007.3.3.1234567.1"/>
+        </targetMessage>
+    </acknowledgement>
+    <receiver>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id root="2.16.840.1.113883.2.4.6.6" extension="1"/>
+        </device>
+    </receiver>
+    <sender>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id extension="23434323" root="2.16.840.1.113883.2.4.6.6"/>
+        </device>
+    </sender>
+    <ControlActProcess moodCode="EVN">
+        <!-- control act wrapper -->
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedDevice>
+                    <id extension="012345655" root="2.16.528.1.1007.3.2"/>
+                    <id extension="23434323" root="2.16.840.1.113883.2.4.6.6"/>
+                    <Organization>
+                        <id extension="02234567" root="2.16.528.1.1007.3.3"/>
+                        <name>Bester</name>
+                    </Organization>
+                </AssignedDevice>
+            </participant>
+        </authorOrPerformer>
+        <subject>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.76"/>
+                <code code="27899-4" displayName="Diagnostic studies.non lab" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                <statusCode code="completed"/>
+                <recordTarget typeCode="RCT" contextControlCode="OP">
+                    <patientRole>
+                        <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+                        <patient>
+                            <name>
+                                <given>Joris</given>
+                                <family>Hansman</family>
+                            </name>
+                            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                        </patient>
+                    </patientRole>
+                </recordTarget>
+                <component typeCode="COMP" contextControlCode="OP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                        <id extension="0076895252" root="2.16.528.1.1007.3.3.1234567.1.1"/>
+                        <code code="560" displayName="lengte patiënt" codeSystem="2.16.840.1.113883.2.4.4.30.45" codeSystemName="NHG Diagnostische Bepalingen" codeSystemVersion="20"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20140430"/>
+                        <value xsi:type="PQ" value="187" unit="cm"/>
+                        <interpretationCode code="L" displayName="Low" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation"/>
+                        <participant typeCode="RESP">
+                            <time value="201401031241"/>
+                            <participantRole classCode="ASSIGNED">
+                                <id extension="006797896" root="2.16.528.1.1007.3.1"/>
+                            </participantRole>
+                        </participant>
+                        <entryRelationship typeCode="REFR">
+                            <encounter classCode="ENC" moodCode="EVN">
+                                <id root="2.16.528.1.1007.3.3.1111.1" extension="04311212"/>
+                            </encounter>
+                        </entryRelationship>
+                    </observation>
+                </component>
+                <component typeCode="COMP" contextControlCode="OP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
+                        <id extension="8076895256" root="2.16.528.1.1007.3.3.1234567.1.1"/>
+                        <code code="357" codeSystem="2.16.840.1.113883.2.4.4.30.45" displayName="gewicht patiënt" codeSystemName="NHG Diagnostische Bepalingen" codeSystemVersion="20"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20140430"/>
+                        <value xsi:type="PQ" value="86" unit="kg"/>
+                    </observation>
+                </component>
+            </organizer>
+        </subject>
+        <queryAck>
+            <queryId extension="7600616768" root="2.16.528.1.1007.3.3.600862"/>
+            <queryResponseCode code="OK"/>
+            <resultTotalQuantity value="1"/>
+            <resultCurrentQuantity value="1"/>
+            <resultRemainingQuantity value="0"/>
+        </queryAck>
+    </ControlActProcess>
+</POOB_IN990003NL>

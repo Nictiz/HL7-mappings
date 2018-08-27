@@ -1,0 +1,2004 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"><!-- TODO Check Bundle elements -->
+   <id value="d2e4"/>
+   <type value="searchset"/>
+   <total value="22"/>
+   <entry>
+      <fullUrl value="mag01--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <contained>
+               <Medication>
+                  <id value="d2e165"/>
+                  <meta>
+                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                  </meta>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
+                     <valueString value="Titel: Hydrocortison zetpil 100 mg Regel: Hydrocort micronisatum 100 mg Regel: Witepsol H15 past 1,99 gr"/>
+                  </extension>
+                  <code>
+                     <text value="Hydrocortison zetpil 100 mg"/>
+                  </code>
+                  <ingredient>
+                     <itemCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                           <code value="252247"/>
+                           <display value="HYDROCORTISONUM MICRONISAT"/>
+                        </coding>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                           <code value="28126"/>
+                           <display value="HYDROCORTISON"/>
+                        </coding>
+                     </itemCodeableConcept>
+                     <isActive value="true"/>
+                     <amount>
+                        <numerator>
+                           <value value="10"/>
+                           <system value="http://unitsofmeasure.org"/>
+                           <code value="mg"/>
+                        </numerator>
+                        <denominator>
+                           <value value="1"/>
+                        </denominator>
+                     </amount>
+                  </ingredient>
+                  <ingredient>
+                     <itemCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                           <code value="265144"/>
+                           <display value="WITEPSOL H15 PAST"/>
+                        </coding>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                           <code value="79707"/>
+                           <display value="VET VAST"/>
+                        </coding>
+                     </itemCodeableConcept>
+                     <amount>
+                        <numerator>
+                           <value value="1.99"/>
+                           <system value="http://unitsofmeasure.org"/>
+                           <code value="g"/>
+                        </numerator>
+                        <denominator>
+                           <value value="1"/>
+                        </denominator>
+                     </amount>
+                  </ingredient>
+               </Medication>
+            </contained>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="mag01"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="#d2e165"/>
+               <display value="Hydrocortison zetpil 100 mg"/>
+            </medicationReference>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="1"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2016-03-03"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="gebruik volgens schema"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1131"/>
+                     <display value="gebruik volgens schema"/>
+                  </coding>
+               </additionalInstruction>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456702--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="20"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456702"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14565277"/>
+                  <display value="ORS POEDER SACHET 5,4G SAN"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1417762"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="60"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="gedurende 21 dagen, 3 maal per dag 1 zakje"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="21"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="zakje"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456703--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="15"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456703"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14294060"/>
+                  <display value="ALPRAZOLAM CF TABLET 0,25MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1167871"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="82309"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="60"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="2 maal per dag 1 tot 2 tabletten"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="14"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseRange>
+                  <low>
+                     <value value="1"/>
+                     <unit value="tablet"/>
+                  </low>
+                  <high>
+                     <value value="2"/>
+                     <unit value="tablet"/>
+                  </high>
+               </doseRange>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456704--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="1"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456704"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14165635"/>
+                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1110837"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="103039"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="120"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 tot 2 maal per dag 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="tablet"/>
+               </doseQuantity>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <text value="1 tot 2 maal per dag 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="tablet"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456705--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="182"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456705"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14760371"/>
+                  <display value="CLARITINE TABLET 10MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="619094"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="73563"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="15"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 maal per jaar 2 tabletten"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="a"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="2"/>
+                  <unit value="tablet"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456706--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456706"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14145480"/>
+                  <display value="LUMINEUSE CLAIRE NH"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1099280"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="60"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 tot 2 maal per week zonodig"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <text value="1 tot 2 maal per week zonodig"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456707--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="60"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456707"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14765233"/>
+                  <display value="IBUPROFEN PCH TABLET 200MG CLICKER"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="719374"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="50997"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="60"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 maal per dag een kwart tablet"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="0.25"/>
+                  <unit value="tablet"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456708--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456708"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="12128198"/>
+                  <display value="KENACORT A 40 INJECTIESUSPENSIE 40MG/ML FLACON 5ML"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="219584"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="120219"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="10"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="per week 15 milliliter"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="15"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="ml"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456709--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="24"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456709"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14311836"/>
+                  <display value="METFORMINE HCL CF TABLET  850MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1037137"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="15865"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="20"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 tot 3 maal per week 2 tabletten"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="2"/>
+                  <unit value="tablet"/>
+               </doseQuantity>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <text value="1 tot 3 maal per week 2 tabletten"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="0.5"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <doseQuantity>
+                  <value value="2"/>
+                  <unit value="tablet"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456710--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456710"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14571013"/>
+                  <display value="METHOTREXAAT PCH TABLET  2,5MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1421778"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="42609"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="30"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 maal per week 6 tabletten"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="6"/>
+                  <unit value="tablet"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456711--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="1"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456711"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="13244728"/>
+                  <display value="XPRAEP SIROOP 2MG/ML"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="101079"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="10960"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="500"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 maal per dag 10 milliliter"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="10"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="ml"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456712--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456712"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="13906550"/>
+                  <display value="TRUSOPT OOGDRUPPELS 20MG/ML FLACON 5ML"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="850144"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="95575"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="10"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="2 maal per dag 1 druppel"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="0.5"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="1"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="[drp]"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456713--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456713"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14750406"/>
+                  <display value="SPIRIVA INHALPDR 18MCG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1476866"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="115371"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="30"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="gedurende 21 dagen, elke 2 dagen 1 inhalatie"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="21"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="2"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="inhalatie"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456715--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456715"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14910667"/>
+                  <display value="SEVREDOL TABLET OMHULD 10MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1010964"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="98221"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="15"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 tot 3 maal per dag 1 tot 2 tabletten"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseRange>
+                  <low>
+                     <value value="1"/>
+                     <unit value="tablet"/>
+                  </low>
+                  <high>
+                     <value value="2"/>
+                     <unit value="tablet"/>
+                  </high>
+               </doseRange>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <text value="1 tot 3 maal per dag 1 tot 2 tabletten"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="0.5"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <doseRange>
+                  <low>
+                     <value value="1"/>
+                     <unit value="tablet"/>
+                  </low>
+                  <high>
+                     <value value="2"/>
+                     <unit value="tablet"/>
+                  </high>
+               </doseRange>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456716--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456716"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="13659847"/>
+                  <display value="NUTRIDRINK AARDBEI NR16642"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="710695"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="1000"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="3 maal per dag 1 eetlepel (= 15ml)"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="0.3333"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="15"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="ml"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456717--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456717"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="13650203"/>
+                  <display value="RESONIUM A POEDER"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="15261"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="121363"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="10"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="g"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="2 maal per dag 5 gram"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="0.5"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="5"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="g"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456718--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456718"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14039303"/>
+                  <display value="SEREVENT DISKUS INHPDR 50MCG 60DO"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1029746"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="87424"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="10"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="2 maal per dag 1 inhalatie"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="0.5"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="inhalatie"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456719--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456719"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="13878948"/>
+                  <display value="DUROGESIC 75 MATRIXPLEISTER 12,6MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="836974"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="122041"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="2"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-06-29"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 maal per 3 dagen 1 pleister"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="3"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="pleister"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456720--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456720"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="13715119"/>
+                  <display value="ABSORIN ONDERLEGGER 60X90CM 120G FLUFF 60920"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="753696"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="10"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-01-28"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="zonodig"/>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456721--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="14"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456721"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="13878956"/>
+                  <display value="DUROGESIC 100 MATRIXPLEISTER 16,8MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="836982"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="122033"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="5"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-06-16"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 maal per 3 dagen 1 pleister"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="3"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="pleister"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456724--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456724"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14815982"/>
+                  <display value="INSULATARD PENFILL INJ 100IE/ML PATR 3ML"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="709085"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="111325"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="1"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-06-16"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="3 maal per dag 16 IE"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="0.3333"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="16"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="[iU]"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="0123456725--2.16.528.1.1007.3.3.1234567.3"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+               <value value="0123456725"/>
+            </identifier>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+            </category>
+            <medicationCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="13966383"/>
+                  <display value="FLUIMUCIL INHVLST 100MG/ML AMPUL 4ML"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="888567"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="38539"/>
+               </coding>
+            </medicationCodeableConcept>
+            <!-- Patient -->
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="012345672"/>
+               </identifier>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <!-- Responsible dispensing person (pharmacist and pharmacy) -->
+            <performer>
+               <actor>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                     <value value="012345679"/>
+                  </identifier>
+               </actor>
+               <onBehalfOf>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                     <value value="01234567"/>
+                  </identifier>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </onBehalfOf>
+            </performer>
+            <quantity>
+               <value value="1"/>
+               <unit value="Stuk"/>
+            </quantity>
+            <whenPrepared value="2005-06-16"/>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="4 maal per dag 2 milliliter"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="0.25"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="2"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="ml"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+</Bundle>
