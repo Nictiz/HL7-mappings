@@ -34,6 +34,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:for-each>
 		</xsl:if>
 	</xsl:template>
+	<xsl:template name="makeHoeveelheidContent">
+		<xsl:param name="hoeveelheid-ada"/>
+		<xsl:for-each select="$hoeveelheid-ada">
+			<xsl:variable name="value" select="./waarde/@value"/>
+			<xsl:attribute name="value" select="$value"/>
+			<xsl:choose>
+				<xsl:when test="./eenheid/@codeSystem = $oidGStandaardBST902THES2">
+					<!-- should be true from 9.0.6 onwards -->
+					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000_2">
+						<xsl:with-param name="Gstd_unit" select="./eenheid"/>
+						<xsl:with-param name="Gstd_value" select="$value"/>
+					</xsl:call-template>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- legacy old ADA formats -->
+					<xsl:variable name="UCUMunit" select="
+							if (./eenheid/@unit) then
+								nf:convertUnit_ADA2UCUM(./eenheid/@unit)
+							else
+								(if (./eenheid/@value) then
+									nf:convertUnit_ADA2UCUM(./eenheid/@value)
+								else
+									(if (./eenheid/@displayName) then
+										nf:convertUnit_ADA2UCUM(./eenheid/@displayName)
+									else
+										''))"/>
+					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000">
+						<xsl:with-param name="UCUMvalue" select="$value"/>
+						<xsl:with-param name="UCUMunit" select="$UCUMunit"/>
+					</xsl:call-template>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:for-each>
+	</xsl:template>
 	<xsl:template name="makeTimePQValueAttribs">
 		<!-- Variant van makePQValueAttribs waarbij de unit een tijdseenheid is, en die moet nog geconverteerd worden. -->
 		<xsl:attribute name="value" select="./@value"/>
@@ -456,7 +490,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 					</xsl:call-template>
 				</xsl:for-each>
 				<!-- Item(s) :: keerdosis-->
-				<xsl:for-each select="$dosering/keerdosis">
+				<xsl:for-each select="$dosering/keerdosis[.//(@value | @code)]">
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20150724151109"/>
 				</xsl:for-each>
 				<!-- <doseCheckQuantity><!-\- MP 9 kent geen elementen in de dataset die mappen op doseCheckQuantity -\-> </doseCheckQuantity>-->
@@ -1176,11 +1210,11 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 	</xsl:template>
 	<!--Quantity unit and translation(s) based on Gstd input-->
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000_2">
-		<xsl:param name="Gstd_value"/>
-		<xsl:param name="Gstd_unit"/>
+		<xsl:param name="Gstd_value" as="xs:string?"/>
+		<xsl:param name="Gstd_unit" as="element()?"/>
 
 		<xsl:choose>
-			<xsl:when test="$Gstd_unit instance of element() and $Gstd_unit/@code">
+			<xsl:when test="$Gstd_unit/@code">
 				<xsl:attribute name="unit" select="nf:convertGstdBasiseenheid2UCUM($Gstd_unit/@code)"/>
 			</xsl:when>
 			<xsl:otherwise>
@@ -1303,62 +1337,30 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 	<!--MP CDA Dosering-->
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840">
 		<doseQuantity>
-			<xsl:choose>
-				<xsl:when test="./aantal/vaste_waarde/@value">
-					<center>
-						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
-							<xsl:with-param name="Gstd_value" select="./aantal/vaste_waarde/@value"/>
-							<xsl:with-param name="Gstd_unit" select="./eenheid"/>
-						</xsl:call-template>
-					</center>
-				</xsl:when>
-				<xsl:when test="./aantal/min/@value or ./aantal/max/@value">
-					<xsl:for-each select="./aantal/min">
-						<!-- min komt 0 of 1 keer voor -->
-						<low>
-							<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000">
-								<xsl:with-param name="UCUMvalue" select="./@value"/>
-								<!-- TODO: tijdelijke fix in 9.04 waarbij de eenheid soms in @unit zit en soms in @value  -->
-								<!--<xsl:with-param name="UCUMunit"
-                        select="nf:convertUnit_ADA2UCUM(./eenheid/@value)"/>-->
-								<xsl:with-param name="UCUMunit" select="
-										if (../../eenheid/@unit) then
-											nf:convertUnit_ADA2UCUM(../../eenheid/@unit)
-										else
-											(if (../../eenheid/@value) then
-												nf:convertUnit_ADA2UCUM(../../eenheid/@value)
-											else
-												(if (../../eenheid/@displayName) then
-													nf:convertUnit_ADA2UCUM(../../eenheid/@displayName)
-												else
-													''))"/>
-							</xsl:call-template>
-						</low>
-					</xsl:for-each>
-					<xsl:for-each select="./aantal/max">
-						<!-- max komt 0 of 1 keer voor -->
-						<high>
-							<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000">
-								<xsl:with-param name="UCUMvalue" select="./@value"/>
-								<!-- TODO: tijdelijke fix in 9.04 waarbij de eenheid soms in @unit zit en soms in @value  -->
-								<!--<xsl:with-param name="UCUMunit"
-                        select="nf:convertUnit_ADA2UCUM(./eenheid/@value)"/>-->
-								<xsl:with-param name="UCUMunit" select="
-										if (../../eenheid/@unit) then
-											nf:convertUnit_ADA2UCUM(../../eenheid/@unit)
-										else
-											(if (../../eenheid/@value) then
-												nf:convertUnit_ADA2UCUM(../../eenheid/@value)
-											else
-												(if (../../eenheid/@displayName) then
-													nf:convertUnit_ADA2UCUM(../../eenheid/@displayName)
-												else
-													''))"/>
-							</xsl:call-template>
-						</high>
-					</xsl:for-each>
-				</xsl:when>
-			</xsl:choose>
+			<xsl:for-each select="./aantal/vaste_waarde[.//(@value | @code)]">
+				<center>
+					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
+						<xsl:with-param name="Gstd_value" select="./@value"/>
+						<xsl:with-param name="Gstd_unit" select="./../../eenheid"/>
+					</xsl:call-template>
+				</center>
+			</xsl:for-each>
+			<xsl:for-each select="./aantal/min[.//(@value | @code)]">
+				<low>
+					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
+						<xsl:with-param name="Gstd_value" select="./@value"/>
+						<xsl:with-param name="Gstd_unit" select="./../../eenheid"/>
+					</xsl:call-template>
+				</low>
+			</xsl:for-each>
+			<xsl:for-each select="./aantal/max[.//(@value | @code)]">
+				<high>
+					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
+						<xsl:with-param name="Gstd_value" select="./@value"/>
+						<xsl:with-param name="Gstd_unit" select="./../../eenheid"/>
+					</xsl:call-template>
+				</high>
+			</xsl:for-each>
 		</doseQuantity>
 	</xsl:template>
 	<!-- Afleverlocatie -->
@@ -1444,39 +1446,37 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				<manufacturedProduct classCode="MANU">
 					<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
 					<manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-						<xsl:choose>
-							<!-- Als productCode voorkomt, wordt productSpecificatie genegeerd. -->
-							<xsl:when test="./product_code[.//(@value | @code)]">
-								<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9109_20160701133311">
-									<xsl:with-param name="productCode" select="./product_code"/>
-								</xsl:call-template>
-							</xsl:when>
-							<xsl:when test="./product_specificatie[.//(@value | @code)]">
-								<!-- magistrale medicatie -->
-								<xsl:for-each select="./product_specificatie/product_naam[@value]">
-									<name>
-										<xsl:value-of select="./@value"/>
-									</name>
-								</xsl:for-each>
-								<xsl:for-each select="./product_specificatie/omschrijving[@value]">
-									<pharm:desc>
-										<xsl:value-of select="./@value"/>
-									</pharm:desc>
-								</xsl:for-each>
-								<xsl:for-each select="./product_specificatie/farmaceutische_vorm[.//(@value | @code)]">
-									<pharm:formCode>
-										<xsl:call-template name="makeCodeAttribs">
-											<xsl:with-param name="originalText" select="."/>
-										</xsl:call-template>
-									</pharm:formCode>
-								</xsl:for-each>
-								<xsl:for-each select="./product_specificatie/ingredient[.//(@value | @code)]">
-									<pharm:ingredient classCode="INGR">
-										<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9106_20160626164013"/>
-									</pharm:ingredient>
-								</xsl:for-each>
-							</xsl:when>
-						</xsl:choose>
+						<!-- Als productCode voorkomt, wordt productSpecificatie genegeerd. -->
+						<xsl:if test="./product_code[.//(@value | @code)]">
+							<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9109_20160701133311">
+								<xsl:with-param name="productCode" select="./product_code"/>
+							</xsl:call-template>
+						</xsl:if>
+						<xsl:if test="./product_specificatie[.//(@value | @code)]">
+							<!-- magistrale medicatie -->
+							<xsl:for-each select="./product_specificatie/product_naam[@value]">
+								<name>
+									<xsl:value-of select="./@value"/>
+								</name>
+							</xsl:for-each>
+							<xsl:for-each select="./product_specificatie/omschrijving[@value]">
+								<pharm:desc>
+									<xsl:value-of select="./@value"/>
+								</pharm:desc>
+							</xsl:for-each>
+							<xsl:for-each select="./product_specificatie/farmaceutische_vorm[.//(@value | @code)]">
+								<pharm:formCode>
+									<xsl:call-template name="makeCodeAttribs">
+										<xsl:with-param name="originalText" select="."/>
+									</xsl:call-template>
+								</pharm:formCode>
+							</xsl:for-each>
+							<xsl:for-each select="./product_specificatie/ingredient[.//(@value | @code)]">
+								<pharm:ingredient classCode="INGR">
+									<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9106_20160626164013"/>
+								</pharm:ingredient>
+							</xsl:for-each>
+						</xsl:if>
 					</manufacturedMaterial>
 				</manufacturedProduct>
 			</xsl:for-each>
@@ -1486,45 +1486,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<!--MP Ingredient quantity-->
 		<xsl:for-each select="./hoeveelheid_ingredient">
 			<numerator xsi:type="PQ">
-				<xsl:variable name="UCUMvalue" select="./waarde/@value"/>
-				<!-- TODO pub 9.04 patch waarbij eenheden in verschillende attributen kunnen zitten -->
-				<xsl:variable name="UCUMunit" select="
-						if (./eenheid/@unit) then
-							nf:convertUnit_ADA2UCUM(./eenheid/@unit)
-						else
-							(if (./eenheid/@value) then
-								nf:convertUnit_ADA2UCUM(./eenheid/@value)
-							else
-								(if (./eenheid/@displayName) then
-									nf:convertUnit_ADA2UCUM(./eenheid/@displayName)
-								else
-									''))"/>
-				<xsl:attribute name="value" select="$UCUMvalue"/>
-				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000">
-					<xsl:with-param name="UCUMvalue" select="$UCUMvalue"/>
-					<xsl:with-param name="UCUMunit" select="$UCUMunit"/>
+				<xsl:call-template name="makeHoeveelheidContent">
+					<xsl:with-param name="hoeveelheid-ada" select="."/>
 				</xsl:call-template>
 			</numerator>
 		</xsl:for-each>
 		<xsl:for-each select="./hoeveelheid_product">
 			<denominator xsi:type="PQ">
-				<xsl:variable name="UCUMvalue" select="./waarde/@value"/>
-				<!-- TODO pub 9.04 patch waarbij eenheden in verschillende attributen kunnen zitten -->
-				<xsl:variable name="UCUMunit" select="
-						if (./eenheid/@unit) then
-							nf:convertUnit_ADA2UCUM(./eenheid/@unit)
-						else
-							(if (./eenheid/@value) then
-								nf:convertUnit_ADA2UCUM(./eenheid/@value)
-							else
-								(if (./eenheid/@displayName) then
-									nf:convertUnit_ADA2UCUM(./eenheid/@displayName)
-								else
-									''))"/>
-				<xsl:attribute name="value" select="$UCUMvalue"/>
-				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000">
-					<xsl:with-param name="UCUMvalue" select="$UCUMvalue"/>
-					<xsl:with-param name="UCUMunit" select="$UCUMunit"/>
+				<xsl:call-template name="makeHoeveelheidContent">
+					<xsl:with-param name="hoeveelheid-ada" select="."/>
 				</xsl:call-template>
 			</denominator>
 		</xsl:for-each>
@@ -2062,20 +2032,20 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			<supply classCode="SPLY" moodCode="EVN">
 				<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9094"/>
 				<!-- identificatie -->
-				<xsl:for-each select="./identificatie">
+				<xsl:for-each select="./identificatie[./@value]">
 					<xsl:call-template name="makeIIid"/>
 				</xsl:for-each>
 
 				<code codeSystemName="Medicatieproces acts" displayName="Verstrekking" code="373784005" codeSystem="2.16.840.1.113883.6.96"/>
 
 				<!-- (uitreik-)datum   (Aanschrijfdatum zit in EntityRelation) -->
-				<xsl:for-each select="./datum">
+				<xsl:for-each select="./datum[./@value]">
 					<effectiveTime>
 						<xsl:call-template name="makeTSValueAttr"/>
 					</effectiveTime>
 				</xsl:for-each>
 
-				<xsl:for-each select="./verstrekte_hoeveelheid">
+				<xsl:for-each select="./verstrekte_hoeveelheid[./@value]">
 					<quantity>
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9165_20170118000000"/>
 					</quantity>
@@ -2363,14 +2333,14 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- Te verstrekken hoeveelheid -->
-			<xsl:for-each select="./te_verstrekken_hoeveelheid[.//(@value|@code)]">
+			<xsl:for-each select="./te_verstrekken_hoeveelheid[.//(@value | @code)]">
 				<quantity>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9165_20170118000000"/>
 				</quantity>
 			</xsl:for-each>
 
 			<!-- verbruiksperiode -->
-			<xsl:for-each select="./verbruiksperiode[.//(@value|@code)]">
+			<xsl:for-each select="./verbruiksperiode[.//(@value | @code)]">
 				<expectedUseTime>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
 						<xsl:with-param name="low" select="./ingangsdatum"/>
@@ -2381,7 +2351,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- Te verstrekken geneesmiddel -->
-			<xsl:for-each select="./te_verstrekken_geneesmiddel/product[.//(@value|@code)]">
+			<xsl:for-each select="./te_verstrekken_geneesmiddel/product[.//(@value | @code)]">
 				<product>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9163_20161113135119">
 						<xsl:with-param name="product" select="."/>
@@ -2390,7 +2360,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</xsl:for-each>
 
 			<!-- beoogd verstrekker -->
-			<xsl:for-each select="./beoogd_verstrekker/zorgaanbieder[.//(@value|@code)]">
+			<xsl:for-each select="./beoogd_verstrekker/zorgaanbieder[.//(@value | @code)]">
 				<performer>
 					<assignedEntity>
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9088_20160621133312"/>
@@ -3153,7 +3123,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			<xsl:choose>
 				<xsl:when test="$frequentieTijdseenheid/@value castable as xs:integer">
 					<xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
-					<xsl:attribute name="unit" select="$frequentieTijdseenheid/@unit"/>
+					<xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM($frequentieTijdseenheid/@unit)"/>
 				</xsl:when>
 				<xsl:otherwise>
 					<!-- assume once a day -->
@@ -3181,7 +3151,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			<xsl:choose>
 				<xsl:when test="$frequentieTijdseenheid/@value castable as xs:integer">
 					<xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
-					<xsl:attribute name="unit" select="$frequentieTijdseenheid/@unit"/>
+					<xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM($frequentieTijdseenheid/@unit)"/>
 				</xsl:when>
 				<xsl:otherwise>
 					<!-- assume once a day -->
@@ -3209,7 +3179,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			<xsl:choose>
 				<xsl:when test="$frequentieTijdseenheid/@value castable as xs:integer">
 					<xsl:attribute name="value" select="$frequentieTijdseenheid/@value"/>
-					<xsl:attribute name="unit" select="$frequentieTijdseenheid/@unit"/>
+					<xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM($frequentieTijdseenheid/@unit)"/>
 				</xsl:when>
 				<xsl:otherwise>
 					<!-- assume once a day -->
@@ -3320,53 +3290,46 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		</hl7nl:frequency>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9163_20161113135119">
-		<xsl:param name="product"/>
+		<xsl:param name="product" as="element()?"/>
 		<!--MP CDA Medication Information (Proposal)-->
 
-		<xsl:if test="$product[1] instance of element()">
-			<xsl:for-each select="$product">
-				<manufacturedProduct classCode="MANU">
-					<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9163"/>
-					<manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-						<xsl:choose>
-							<xsl:when test="./product_code">
-								<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9109_20160701133311">
-									<xsl:with-param name="productCode" select="./product_code"/>
-								</xsl:call-template>
-							</xsl:when>
-							<xsl:when test="./product_specificatie">
-								<!-- magistrale medicatie -->
-								<xsl:for-each select="./product_specificatie/product_naam">
-									<name>
-										<xsl:value-of select="./@value"/>
-									</name>
-								</xsl:for-each>
-								<xsl:for-each select="./product_specificatie/omschrijving">
-									<!-- TODO: bij VVV moet je toch alleen <name> kunnen opgeven? -->
-									<!--<xsl:if test="@value ne ''">-->
-									<pharm:desc>
-										<xsl:value-of select="./@value"/>
-									</pharm:desc>
-									<!--</xsl:if>-->
-								</xsl:for-each>
-								<xsl:for-each select="./product_specificatie/farmaceutische_vorm">
-									<pharm:formCode>
-										<xsl:call-template name="makeCodeAttribs">
-											<xsl:with-param name="originalText" select="."/>
-										</xsl:call-template>
-									</pharm:formCode>
-								</xsl:for-each>
-								<xsl:for-each select="./product_specificatie/ingredient">
-									<pharm:ingredient classCode="INGR">
-										<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9106_20160626164013"/>
-									</pharm:ingredient>
-								</xsl:for-each>
-							</xsl:when>
-						</xsl:choose>
-					</manufacturedMaterial>
-				</manufacturedProduct>
-			</xsl:for-each>
-		</xsl:if>
+		<xsl:for-each select="$product">
+			<manufacturedProduct classCode="MANU">
+				<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9163"/>
+				<manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+						<xsl:for-each select="./product_code[./@code]">
+							<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9109_20160701133311">
+								<xsl:with-param name="productCode" select="."/>
+							</xsl:call-template>
+						</xsl:for-each>
+						<xsl:for-each select="./product_specificatie[.//(@value|@code)]">
+							<!-- magistrale medicatie -->
+							<xsl:for-each select="./product_naam">
+								<name>
+									<xsl:value-of select="./@value"/>
+								</name>
+							</xsl:for-each>
+							<xsl:for-each select="./omschrijving">
+								<pharm:desc>
+									<xsl:value-of select="./@value"/>
+								</pharm:desc>
+							</xsl:for-each>
+							<xsl:for-each select="./farmaceutische_vorm">
+								<pharm:formCode>
+									<xsl:call-template name="makeCodeAttribs">
+										<xsl:with-param name="originalText" select="."/>
+									</xsl:call-template>
+								</pharm:formCode>
+							</xsl:for-each>
+							<xsl:for-each select="./ingredient">
+								<pharm:ingredient classCode="INGR">
+									<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9106_20160626164013"/>
+								</pharm:ingredient>
+							</xsl:for-each>
+						</xsl:for-each>
+				</manufacturedMaterial>
+			</manufacturedProduct>
+		</xsl:for-each>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000">
 		<!--DoseQuantity and translation(s)-->
@@ -3380,8 +3343,8 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 	</xsl:template>
 	<!--DoseQuantity and translation(s)obv Gstd input-->
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
-		<xsl:param name="Gstd_value"/>
-		<xsl:param name="Gstd_unit"/>
+		<xsl:param name="Gstd_value" as="xs:string?"/>
+		<xsl:param name="Gstd_unit" as="element()?"/>
 
 		<xsl:attribute name="value" select="$Gstd_value"/>
 		<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000_2">
@@ -3392,22 +3355,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9165_20170118000000">
 		<!-- te verstrekken hoeveelheid -->
 		<xsl:attribute name="value" select="./aantal/@value"/>
-		<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000">
-			<xsl:with-param name="UCUMvalue" select="./aantal/@value"/>
-			<!-- TODO: tijdelijke fix in 9.04 waarbij de eenheid soms in @unit zit en soms in @value en/of @displayName -->
-			<!--<xsl:with-param name="UCUMunit"
-                        select="nf:convertUnit_ADA2UCUM(./eenheid/@value)"/>-->
-			<xsl:with-param name="UCUMunit" select="
-					if (./eenheid/@unit) then
-						nf:convertUnit_ADA2UCUM(./eenheid/@unit)
-					else
-						(if (./eenheid/@value) then
-							nf:convertUnit_ADA2UCUM(./eenheid/@value)
-						else
-							(if (./eenheid/@displayName) then
-								nf:convertUnit_ADA2UCUM(./eenheid/@displayName)
-							else
-								''))"/>
+		<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000_2">
+			<xsl:with-param name="Gstd_unit" select="./eenheid"/>
+			<xsl:with-param name="Gstd_value" select="./aantal/@value"/>
 		</xsl:call-template>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9166_20170516000000">
@@ -3822,7 +3772,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				</time>
 			</xsl:for-each>
 			<!-- auteur -->
-			<xsl:for-each select="$ada-auteur/auteur_is_zorgverlener/zorgverlener[.//(@value|@code)]">
+			<xsl:for-each select="$ada-auteur/auteur_is_zorgverlener/zorgverlener[.//(@value | @code)]">
 				<assignedAuthor>
 					<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20160710152506"/>
 				</assignedAuthor>
@@ -4307,10 +4257,6 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			</text>
 		</xsl:for-each>
 		<!-- Gebruiksperiode -->
-		<!--<xsl:if test="$isInGebruik"> -->
-		<!-- EffectiveTime mag niet voorkomen als gebruiksindicator = false
-                 Deze eis gaat vervallen, en er is sowieso geen reden om dit in de conversie af te dwingen. -->
-		<!-- TODO: Tijdelijke fix (9.04) waarbij aparte velden in ADA form staan voor effectiveTime\low en -\high -->
 		<xsl:if test="./gebruiksperiode[.//(@value | @code)] or ./gebruiksperiode_start[.//(@value | @code)] or ./gebruiksperiode_eind[.//(@value | @code)]">
 			<effectiveTime xsi:type="IVL_TS">
 				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
@@ -4320,7 +4266,6 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				</xsl:call-template>
 			</effectiveTime>
 		</xsl:if>
-		<!--</xsl:if>-->
 		<xsl:for-each select="./gebruiksinstructie/toedieningsweg[.//(@value | @code)]">
 			<routeCode>
 				<xsl:call-template name="makeCodeAttribs"/>
