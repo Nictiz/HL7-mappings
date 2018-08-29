@@ -15,12 +15,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 	<xsl:output method="xml" indent="yes"/>
 	<xsl:strip-space elements="*"/>
-	
+
 
 	<xsl:include href="../fhir/2_fhir_fhir_include.xsl"/>
-	<xsl:variable name="patient-ada" select="//beschikbaarstellen_medicatiegegevens/patient"/>
+	<xsl:variable name="patient-ada" select="/adaxml/data/*/patient"/>
 	<xsl:variable name="patient-entry" as="element(f:entry)?">
-		<!-- Patient, there should be only one in the input doc -->
+		<!-- Patient, there may be only one in the input doc -->
 		<xsl:for-each select="$patient-ada">
 			<!-- For privacy reasons always use UUID as fullUrl for patient -->
 			<xsl:variable name="patient-fullUrl" select="nf:get-fhir-uuid()"/>
@@ -84,7 +84,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:variable>
 	<xsl:variable name="products" as="element()*">
 		<!-- Magistrale producten (niet-gecodeerd op hoogste niveau -->
-		<xsl:for-each-group select="//product[product_code/@codeSystem = $oidNullFlavor]" group-by="nf:getGroupingKeyDefault(.)">
+		<xsl:for-each-group select="//product[product_code/@codeSystem = $oidNullFlavor] | //product[not(product_code/@code)]" group-by="nf:getGroupingKeyDefault(.)">
 			<uniek-product xmlns="">
 				<group-key xmlns="">
 					<xsl:value-of select="current-grouping-key()"/>
@@ -313,20 +313,57 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<meta>
 					<profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
 				</meta>
-				<xsl:for-each select="./zorgaanbieder_identificatie_nummer">
+				<xsl:for-each select="./zorgaanbieder_identificatie_nummer[@value]">
 					<identifier>
 						<xsl:call-template name="id-to-Identifier">
 							<xsl:with-param name="in" select="."/>
 						</xsl:call-template>
 					</identifier>
 				</xsl:for-each>
-				<!-- todo organisatietype / afdelingspecialisme -->
-				<xsl:for-each select="./organisatie_naam">
+				<!-- todo organisatietype / afdelingspecialisme, is not part of an MP transaction up until now -->
+				<xsl:for-each select="./organisatie_naam[.//(@value | @code)]">
 					<name value="{./@value}"/>
 				</xsl:for-each>
+				<xsl:for-each select="./telefoon_email/contactgegevens[.//(@value | @code)]">
+					<xsl:for-each select="./telefoonnummers[.//(@value | @code)]">
+						<telecom>
+							<system value="phone"/>
+							<value value="{./telefoonnummer/@value}"/>
+							<!-- todo telecomtype, is not part of an MP transaction up until now -->
+							<use>
+								<xsl:attribute name="value">
+									<xsl:choose>
+										<xsl:when test="./nummer_soort/@code = 'WP'">work</xsl:when>
+										<xsl:when test="./nummer_soort/@code = 'HP'">home</xsl:when>
+										<xsl:when test="./nummer_soort/@code = 'TMP'">temp</xsl:when>
+										<xsl:otherwise>unsupported nummer_soort/@code: '<xsl:value-of select="./nummer_soort/@code"/>'.</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
+							</use>
+						</telecom>
+					</xsl:for-each>
+					<xsl:for-each select="./email_adressen[.//(@value | @code)]">
+						<telecom>
+							<system value="email"/>
+							<value value="{./email_adres/@value}"/>
+							<!-- todo telecomtype, is not part of an MP transaction up until now -->
+							<use>
+								<xsl:attribute name="value">
+									<xsl:choose>
+										<xsl:when test="./email_soort/@code = 'WP'">work</xsl:when>
+										<xsl:when test="./email_soort/@code = 'HP'">home</xsl:when>
+										<xsl:otherwise>unsupported nummer_soort/@code: '<xsl:value-of select="./nummer_soort/@code"/>'.</xsl:otherwise>
+									</xsl:choose>
+								</xsl:attribute>
+							</use>
+						</telecom>
+					</xsl:for-each>
+				</xsl:for-each>
+				<xsl:apply-templates select="./adres/adresgegevens" mode="doAddress"/>
 			</Organization>
 		</xsl:for-each>
 	</xsl:template>
+
 
 	<xd:doc>
 		<xd:desc/>
@@ -573,6 +610,55 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</agent>
 			</requester>
 		</xsl:for-each>
+	</xsl:template>
+	<xd:doc>
+		<xd:desc/>
+	</xd:doc>
+	<xsl:template name="nl-core-address-2.0" match="adresgegevens" mode="doAddress">
+		<xsl:for-each select=".[.//(@value | @code)]">
+			<address>
+				<line>
+					<xsl:for-each select="./straat/@value">
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+							<valueString value="{.}"/>
+						</extension>
+					</xsl:for-each>
+					<xsl:for-each select="./huisnummer/@value">
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+							<valueString value="{.}"/>
+						</extension>
+					</xsl:for-each>
+					<xsl:for-each select="./huisnummerletter/@value | ./huisnummertoevoeging/@value">
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+							<valueString value="{.}"/>
+						</extension>
+					</xsl:for-each>
+					<xsl:for-each select="./additionele_informatie/@value">
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+							<valueString value="{.}"/>
+						</extension>
+					</xsl:for-each>
+					<xsl:for-each select="./aanduiding_bij_nummer/@value">
+						<extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+							<valueString value="{.}"/>
+						</extension>
+					</xsl:for-each>
+				</line>
+				<xsl:for-each select="./woonplaats/@value">
+					<city value="{.}"/>
+				</xsl:for-each>
+				<xsl:for-each select="./gemeente/@value">
+					<district value="{.}"/>
+				</xsl:for-each>
+				<xsl:for-each select="./postcode/@value">
+					<postalCode value="{.}"/>
+				</xsl:for-each>
+				<xsl:for-each select="./land/@value">
+					<country value="{.}"/>
+				</xsl:for-each>
+			</address>
+		</xsl:for-each>
+
 	</xsl:template>
 	<xd:doc>
 		<xd:desc/>
@@ -1989,10 +2075,81 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 	<xd:doc>
 		<xd:desc/>
+		<xd:param name="documentgegevens"/>
+	</xd:doc>
+	<xsl:template name="medicatieoverzicht-9.0.6">
+		<xsl:param name="documentgegevens" select="."/>
+		<xsl:for-each select="$documentgegevens">
+			<entry>
+				<fullUrl value="{nf:get-fhir-uuid()}"/>
+				<resource>
+					<List>
+						<xsl:if test="verificatie_patient[.//(@value|@code)] | verificatie_zorgverlener[.//(@value|@code)]">
+							<extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
+								<xsl:for-each select="./verificatie_patient/geverifieerd_met_patientq/@value">
+									<extension url="VerificationPatient">
+										<valueBoolean value="{.}"/>
+									</extension>
+								</xsl:for-each>
+								<xsl:for-each select="./verificatie_patient/verificatie_datum/@value">
+									<extension url="VerificationPatientDate">
+										<valueDateTime value="{nf:ada-2-dateTimeCET(.)}"/>
+									</extension>
+								</xsl:for-each>
+								<xsl:for-each select="./verificatie_zorgverlener/geverifieerd_met_zorgverlenerq/@value">
+									<extension url="VerificationHealthProfessional">
+										<valueBoolean value="{.}"/>
+									</extension>
+								</xsl:for-each>
+								<xsl:for-each select="./verificatie_zorgverlener/verificatie_datum/@value">
+									<extension url="VerificationHealthProfessionalDate">
+										<valueDateTime value="{nf:ada-2-dateTimeCET(.)}"/>
+									</extension>
+								</xsl:for-each>
+							</extension>
+						</xsl:if>
+						<status value="current"/>
+						<mode value="snapshot"/>
+						<code>
+							<coding>
+								<system value="http://snomed.info/sct"/>
+								<code value="11181000146103"/>
+								<display value="Actual medication overview (record artifact)"/>
+							</coding>
+							<text value="Medicatieoverzicht"/>
+						</code>
+						<subject>
+							<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
+						</subject>
+						<date value="{nf:ada-2-dateTimeCET(./document_datum/@value)}"/>
+						<xsl:for-each select="./auteur">
+							<xsl:for-each select="./auteur_is_zorgaanbieder/zorgaanbieder[.//(@value | @code)]">
+								<source>
+									<extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
+										<valueReference>
+											<xsl:apply-templates select="." mode="doOrganizationReference"/>
+										</valueReference>
+									</extension>
+								</source>
+							</xsl:for-each>
+							<xsl:for-each select="./auteur_is_patient[@value = 'true']">
+								<source>
+									<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
+								</source>
+							</xsl:for-each>
+						</xsl:for-each>
+					</List>
+				</resource>
+			</entry>
+		</xsl:for-each>
+
+	</xsl:template>
+	<xd:doc>
+		<xd:desc/>
 	</xd:doc>
 	<xsl:template name="medication-referenceOrCodeableConcept" match="product" mode="doMedicationReferenceOrCodeableConcept">
 		<xsl:choose>
-			<xsl:when test="./product_code[@codeSystem = $oidNullFlavor]">
+			<xsl:when test="./product_code[@codeSystem = $oidNullFlavor] or not(./product_code[@code])">
 				<medicationReference>
 					<reference value="{nf:getFullUrl('PRODUCT', nf:getGroupingKeyDefault(.))}"/>
 					<display value="{./product_specificatie/product_naam/@value}"/>
