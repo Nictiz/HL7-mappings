@@ -9,7 +9,7 @@
    <type value="searchset"/>
    <total value="5"/>
    <entry>
-      <fullUrl value="urn:uuid:642317C7-AB8D-11E8-1002-09173F13E4C5"/>
+      <fullUrl value="urn:uuid:706A6147-ABCF-11E8-1835-09173F13E4C5"/>
       <resource>
          <Patient>
             <meta>
@@ -44,7 +44,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:642317E4-AB8D-11E8-1002-09173F13E4C5"/>
+      <fullUrl value="urn:uuid:706A6164-ABCF-11E8-1835-09173F13E4C5"/>
       <resource>
          <Organization>
             <meta>
@@ -77,7 +77,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:642317E6-AB8D-11E8-1002-09173F13E4C5"/>
+      <fullUrl value="urn:uuid:706A6166-ABCF-11E8-1835-09173F13E4C5"/>
       <resource>
          <Medication>
             <meta>
@@ -90,51 +90,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:642317E8-AB8D-11E8-1002-09173F13E4C5"/>
-      <resource>
-         <List>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
-               <extension url="VerificationPatient">
-                  <valueBoolean value="false"/>
-               </extension>
-               <extension url="VerificationPatientDate">
-                  <valueDateTime value="2018-08-01T12:34:00+02:00"/>
-               </extension>
-               <extension url="VerificationHealthProfessional">
-                  <valueBoolean value="false"/>
-               </extension>
-               <extension url="VerificationHealthProfessionalDate">
-                  <valueDateTime value="2018-08-01"/>
-               </extension>
-            </extension>
-            <status value="current"/>
-            <mode value="snapshot"/>
-            <code>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="11181000146103"/>
-                  <display value="Actual medication overview (record artifact)"/>
-               </coding>
-               <text value="Medicatieoverzicht"/>
-            </code>
-            <subject>
-               <reference value="urn:uuid:642317C7-AB8D-11E8-1002-09173F13E4C5"/>
-               <display value="I. XXX_Jangi"/>
-            </subject>
-            <date value="2018-08-16"/>
-            <source>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
-                  <valueReference>
-                     <reference value="urn:uuid:642317E4-AB8D-11E8-1002-09173F13E4C5"/>
-                     <display value="Apotheek de Gulle Gaper"/>
-                  </valueReference>
-               </extension>
-            </source>
-         </List>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:642317EA-AB8D-11E8-1002-09173F13E4C5"/>
+      <fullUrl value="urn:uuid:706A6168-ABCF-11E8-1835-09173F13E4C5"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -142,7 +98,7 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:642317C7-AB8D-11E8-1002-09173F13E4C5"/>
+                  <reference value="urn:uuid:706A6147-ABCF-11E8-1835-09173F13E4C5"/>
                   <display value="I. XXX_Jangi"/>
                </valueReference>
             </extension>
@@ -168,7 +124,7 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:642317E6-AB8D-11E8-1002-09173F13E4C5"/>
+               <reference value="urn:uuid:706A6166-ABCF-11E8-1835-09173F13E4C5"/>
                <display value="Ibuprofen"/>
             </medicationReference>
             <effectivePeriod>
@@ -184,7 +140,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-16T10:57:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:642317C7-AB8D-11E8-1002-09173F13E4C5"/>
+               <reference value="urn:uuid:706A6147-ABCF-11E8-1835-09173F13E4C5"/>
                <display value="I. XXX_Jangi"/>
             </subject>
             <taken value="y"/>
@@ -225,6 +181,50 @@
                </doseQuantity>
             </dosage>
          </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:706A6169-ABCF-11E8-1835-09173F13E4C5"/>
+      <resource>
+         <List>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
+               <extension url="VerificationPatient">
+                  <valueBoolean value="false"/>
+               </extension>
+               <extension url="VerificationHealthProfessional">
+                  <valueBoolean value="false"/>
+               </extension>
+            </extension>
+            <status value="current"/>
+            <mode value="snapshot"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="11181000146103"/>
+                  <display value="Actual medication overview (record artifact)"/>
+               </coding>
+               <text value="Medicatieoverzicht"/>
+            </code>
+            <subject>
+               <reference value="urn:uuid:706A6147-ABCF-11E8-1835-09173F13E4C5"/>
+               <display value="I. XXX_Jangi"/>
+            </subject>
+            <date value="2018-08-16"/>
+            <source>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
+                  <valueReference>
+                     <reference value="urn:uuid:706A6164-ABCF-11E8-1835-09173F13E4C5"/>
+                     <display value="Apotheek de Gulle Gaper"/>
+                  </valueReference>
+               </extension>
+            </source>
+            <entry>
+               <item>
+                  <reference value="urn:uuid:706A6168-ABCF-11E8-1835-09173F13E4C5"/>
+                  <display value="bbb"/>
+               </item>
+            </entry>
+         </List>
       </resource>
    </entry>
 </Bundle>

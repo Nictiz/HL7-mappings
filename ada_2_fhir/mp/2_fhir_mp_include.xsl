@@ -1528,7 +1528,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</resource>
 				</entry>
 			</xsl:for-each>
-			<!-- entry for MedicationRequest, needs the references to the independant resources... -->
+			<!-- entry for MedicationRequest -->
 			<entry xmlns="http://hl7.org/fhir">
 				<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
 				<resource>
@@ -2076,15 +2076,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc/>
 		<xd:param name="documentgegevens"/>
+		<xd:param name="entries"/>
 	</xd:doc>
 	<xsl:template name="medicatieoverzicht-9.0.6">
-		<xsl:param name="documentgegevens" select="."/>
+		<xsl:param name="documentgegevens" select="." as="element()?"/>
+		<xsl:param name="entries" as="element(f:entry)*"/>
 		<xsl:for-each select="$documentgegevens">
 			<entry>
 				<fullUrl value="{nf:get-fhir-uuid()}"/>
 				<resource>
 					<List>
-						<xsl:if test="verificatie_patient[.//(@value|@code)] | verificatie_zorgverlener[.//(@value|@code)]">
+						<xsl:if test="verificatie_patient[.//(@value | @code)] | verificatie_zorgverlener[.//(@value | @code)]">
 							<extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
 								<xsl:for-each select="./verificatie_patient/geverifieerd_met_patientq/@value">
 									<extension url="VerificationPatient">
@@ -2137,6 +2139,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 									<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
 								</source>
 							</xsl:for-each>
+						</xsl:for-each>
+						<!-- the entries with references to medicatieafspraak/toedieningsafspraak/medicatiegebruik -->
+						<!-- MA's -->
+						<xsl:for-each select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'http://snomed.info/sct'][f:code/@value = '16076005']]">
+							<entry>
+								<item>
+									<reference value="{./fullUrl/@value}"/>
+									<display value="bbb"/>
+								</item>
+							</entry>
+						</xsl:for-each>
+						<!-- TA's -->
+						<!-- TODO -->
+						<!-- MGB's -->
+						<xsl:for-each select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3'][f:code/@value = '6']]">
+							<entry>
+								<item>
+									<reference value="{./f:fullUrl/@value}"/>
+									<display value="bbb"/>
+								</item>
+							</entry>
 						</xsl:for-each>
 					</List>
 				</resource>

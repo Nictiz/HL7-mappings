@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
 	</xd:doc>
 	<xsl:template name="medicatieoverzicht_90">
-		<xsl:param name="mbh"/>
+		<xsl:param name="mbh" as="element()*"/>
 		<xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
 		<Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
 			<meta>
@@ -56,53 +56,57 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:variable name="entries" as="element(f:entry)*">
 				<!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
 				<xsl:copy-of select="$commonEntries"/>
-				<!-- documentgegevens -->
-				<xsl:for-each select="$mbh/../documentgegevens">
-					<xsl:call-template name="medicatieoverzicht-9.0.6">
-						<xsl:with-param name="documentgegevens" select="."/>
-					</xsl:call-template>
+				<xsl:for-each select="$mbh">
+					<!-- medicatieafspraken -->
+					<xsl:for-each select="./medicatieafspraak">
+						<xsl:call-template name="zib-MedicationAgreement-2.0">
+							<xsl:with-param name="medicatieafspraak" select="."/>
+						</xsl:call-template>
 					</xsl:for-each>
-				<!-- medicatieafspraak -->
-				<xsl:for-each select="$mbh/medicatieafspraak">
-					<xsl:call-template name="zib-MedicationAgreement-2.0">
-						<xsl:with-param name="medicatieafspraak" select="."/>
-					</xsl:call-template>
-				</xsl:for-each>
-				<!-- verstrekkingsverzoek -->
-				<xsl:for-each select="$mbh/verstrekkingsverzoek">
-					<xsl:call-template name="zib-DispenseRequest-2.0">
-						<xsl:with-param name="verstrekkingsverzoek" select="."/>
-					</xsl:call-template>
-				</xsl:for-each>
-				<!-- toedieningsafspraak -->
-				<xsl:for-each select="$mbh/toedieningsafspraak">
-					<entry xmlns="http://hl7.org/fhir">
-						<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
-						<resource>
-							<xsl:call-template name="zib-AdministrationAgreement-2.0">
-								<xsl:with-param name="toedieningsafspraak" select="."/>
-							</xsl:call-template>
-						</resource>
-					</entry>
-				</xsl:for-each>
-				<xsl:for-each select="$mbh/verstrekking">
-					<entry xmlns="http://hl7.org/fhir">
-						<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
-						<resource>
-							<xsl:call-template name="zib-Dispense-2.0">
-								<xsl:with-param name="verstrekking" select="."/>
-							</xsl:call-template>
-						</resource>
-					</entry>
-				</xsl:for-each>
-				<xsl:for-each select="$mbh/medicatie_gebruik">
-					<xsl:call-template name="zib-MedicationUse-2.0">
-						<xsl:with-param name="medicatiegebruik" select="."/>
-					</xsl:call-template>
+					<!-- verstrekkingsverzoeken -->
+					<xsl:for-each select="./verstrekkingsverzoek">
+						<xsl:call-template name="zib-DispenseRequest-2.0">
+							<xsl:with-param name="verstrekkingsverzoek" select="."/>
+						</xsl:call-template>
+					</xsl:for-each>
+					<!-- toedieningsafspraken -->
+					<xsl:for-each select="./toedieningsafspraak">
+						<entry>
+							<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
+							<resource>
+								<xsl:call-template name="zib-AdministrationAgreement-2.0">
+									<xsl:with-param name="toedieningsafspraak" select="."/>
+								</xsl:call-template>
+							</resource>
+						</entry>
+					</xsl:for-each>
+					<xsl:for-each select="./verstrekking">
+						<entry>
+							<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
+							<resource>
+								<xsl:call-template name="zib-Dispense-2.0">
+									<xsl:with-param name="verstrekking" select="."/>
+								</xsl:call-template>
+							</resource>
+						</entry>
+					</xsl:for-each>
+					<xsl:for-each select="./medicatie_gebruik">
+						<xsl:call-template name="zib-MedicationUse-2.0">
+							<xsl:with-param name="medicatiegebruik" select="."/>
+						</xsl:call-template>
+					</xsl:for-each>
 				</xsl:for-each>
 			</xsl:variable>
-			<total value="{count($entries)}"/>
+			<!-- one extra: the List entry for medicatieoverzicht  -->
+			<total value="{count($entries) + 1}"/>
 			<xsl:copy-of select="$entries"/>
+			<!-- documentgegevens in List entry -->
+			<xsl:for-each select="$mbh/../documentgegevens">
+				<xsl:call-template name="medicatieoverzicht-9.0.6">
+					<xsl:with-param name="documentgegevens" select="."/>
+					<xsl:with-param name="entries" select="$entries"/>
+				</xsl:call-template>
+			</xsl:for-each>
 		</Bundle>
 	</xsl:template>
 
