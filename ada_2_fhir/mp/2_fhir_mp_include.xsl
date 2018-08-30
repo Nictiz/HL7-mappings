@@ -231,6 +231,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<code value="16076005"/>
 						<display value="Prescription (procedure)"/>
 					</coding>
+					<text value="Medicatieafspraak"/>
 				</category>
 				<!-- geneesmiddel -->
 				<xsl:apply-templates select="./afgesproken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
@@ -827,6 +828,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<code value="52711000146108"/>
 						<display value="Request to dispense medication to patient (situation)"/>
 					</coding>
+					<text value="Toedieningsafspraak"/>
 				</category>
 				<!-- geneesmiddel -->
 				<xsl:apply-templates select="./te_verstrekken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
@@ -985,6 +987,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<code value="422037009"/>
 						<display value="Provider medication administration instructions (procedure)"/>
 					</coding>
+					<text value="Toedieningsafspraak"/>
 				</category>
 				<!-- geneesmiddel -->
 				<xsl:apply-templates select="./geneesmiddel_bij_toedieningsafspraak/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
@@ -1247,6 +1250,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<code value="373784005"/>
 						<display value="Dispensing medication (procedure)"/>
 					</coding>
+					<text value="Medicatieverstrekking"/>
 				</category>
 				<!-- geneesmiddel -->
 				<xsl:apply-templates select="./verstrekt_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
@@ -1721,6 +1725,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								<code value="6"/>
 								<display value="Medicatiegebruik"/>
 							</coding>
+							<text value="Medicatiegebruik"/>
 						</category>
 						<!-- geneesmiddel -->
 						<xsl:apply-templates select="./gebruiks_product/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
@@ -2086,6 +2091,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<fullUrl value="{nf:get-fhir-uuid()}"/>
 				<resource>
 					<List>
+						<meta>
+							<profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
+						</meta>						
 						<xsl:if test="verificatie_patient[.//(@value | @code)] | verificatie_zorgverlener[.//(@value | @code)]">
 							<extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
 								<xsl:for-each select="./verificatie_patient/geverifieerd_met_patientq/@value">
@@ -2142,31 +2150,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</xsl:for-each>
 						<!-- the entries with references to medicatieafspraak/toedieningsafspraak/medicatiegebruik -->
 						<!-- MA's -->
-						<xsl:for-each select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'http://snomed.info/sct'][f:code/@value = '16076005']]">
-							<entry>
-								<item>
-									<reference value="{./fullUrl/@value}"/>
-									<display value="bbb"/>
-								</item>
-							</entry>
-						</xsl:for-each>
+						<xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'http://snomed.info/sct'][f:code/@value = '16076005']]" mode="doMOListReference"/>
 						<!-- TA's -->
-						<!-- TODO -->
+						<xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'http://snomed.info/sct'][f:code/@value = '422037009']]" mode="doMOListReference"/>
 						<!-- MGB's -->
-						<xsl:for-each select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3'][f:code/@value = '6']]">
-							<entry>
-								<item>
-									<reference value="{./f:fullUrl/@value}"/>
-									<display value="bbb"/>
-								</item>
-							</entry>
-						</xsl:for-each>
+						<xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3'][f:code/@value = '6']]" mode="doMOListReference"/>
 					</List>
 				</resource>
 			</entry>
 		</xsl:for-each>
-
 	</xsl:template>
+
+	<xd:doc>
+		<xd:desc>Make an entry with a reference to another entry as is used in the List resource in Bundle for Medicatieoverzicht (medication overview)</xd:desc>
+	</xd:doc>
+	<xsl:template name="medicatieoverzicht-list-reference" match="f:entry" mode="doMOListReference">
+		<entry>
+			<item>
+				<reference value="{./f:fullUrl/@value}"/>
+				<display value="{f:resource/*/f:category/f:text/@value} identifier: value='{f:resource/*/f:identifier[1]/f:value/@value}', system='{f:resource/*/f:identifier[1]/f:system/@value}'"/>
+			</item>
+		</entry>
+	</xsl:template>
+
 	<xd:doc>
 		<xd:desc/>
 	</xd:doc>
