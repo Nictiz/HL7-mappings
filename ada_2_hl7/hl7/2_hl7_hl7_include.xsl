@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
 	<xsl:variable name="oidAGB">2.16.840.1.113883.2.4.6.1</xsl:variable>
 	<xsl:variable name="oidAGBSpecialismen">2.16.840.1.113883.2.4.6.7</xsl:variable>
@@ -278,7 +278,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="originalText" as="element()*"/>
 		<xsl:if test="$originalText">
 			<originalText>
-				<xsl:value-of select="normalize-space(string-join($originalText/(@value|@displayName), ' '))"/>
+				<xsl:value-of select="normalize-space(string-join($originalText/(@value | @displayName), ' '))"/>
 			</originalText>
 		</xsl:if>
 	</xsl:template>
@@ -641,4 +641,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
+
+	<xsl:function name="nf:convertAdaNlPostcode" as="xs:string?">
+		<xsl:param name="ada-postcode-value" as="xs:string?"/>
+		<xsl:variable name="postcode-uc" select="normalize-space(upper-case($ada-postcode-value))"/>
+
+		<xsl:choose>
+			<xsl:when test="string-length($postcode-uc) = 6 and matches(($postcode-uc), '\d{4}[A-Z]{2}')">
+				<xsl:value-of select="concat(substring($postcode-uc, 1, 4), ' ', substring($postcode-uc, 5, 2))"/>
+			</xsl:when>
+			<xsl:when test="string-length($postcode-uc) = 7 and matches(($postcode-uc), '\d{4}\s{1}[A-Z]{2}')">
+				<xsl:value-of select="$postcode-uc"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$ada-postcode-value"/>
+			</xsl:otherwise>
+		</xsl:choose>
+
+	</xsl:function>
+
 </xsl:stylesheet>

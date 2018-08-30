@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
-    <!--<xsl:include href="../hl7/hl7_include.xsl"/>-->
+<!--    <xsl:include href="../hl7/2_hl7_hl7_include.xsl"/>-->
     
     <!-- addEnding checks baseString if it ends in endString, and if not adds it at the end. -->
     <xsl:function name="nf:addEnding">
@@ -166,7 +166,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <additionalLocator><xsl:value-of select="./@code"/></additionalLocator>
             </xsl:for-each>
             <xsl:for-each select="./postcode">
-                <postalCode><xsl:value-of select="./@value"/></postalCode>
+                <postalCode><xsl:value-of select="nf:convertAdaNlPostcode(./@value)"/></postalCode>
             </xsl:for-each>
             <xsl:for-each select="./gemeente">
                 <county><xsl:value-of select="./@value"/></county>
