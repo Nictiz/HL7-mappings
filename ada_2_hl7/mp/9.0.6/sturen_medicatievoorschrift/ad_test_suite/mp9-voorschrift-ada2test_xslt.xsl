@@ -15,7 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <xsl:strip-space elements="*"/>
-    <xsl:include href="../../2_hl7_mp_include.xsl"/>
+    <xsl:include href="../../../2_hl7_mp_include.xsl"/>
 
     <xsl:template name="make-schematron">
         <xsl:param name="pattern-id"/>

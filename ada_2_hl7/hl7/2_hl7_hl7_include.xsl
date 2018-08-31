@@ -37,6 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:variable name="oidNHGTabel25BCodesNumeriek">2.16.840.1.113883.2.4.4.5</xsl:variable>
 	<xsl:variable name="oidNHGTabel45DiagnBepal">2.16.840.1.113883.2.4.4.30.45</xsl:variable>
 	<xsl:variable name="oidNHGTabel56Profylaxe">2.16.840.1.113883.2.4.4.30.56</xsl:variable>
+	<xsl:variable name="oidNullFlavor">2.16.840.1.113883.5.1008</xsl:variable>
 	<xsl:variable name="oidUCUM">2.16.840.1.113883.6.8</xsl:variable>
 	<xsl:variable name="oidURAOrganizations">2.16.528.1.1007.3.3</xsl:variable>
 	<xsl:variable name="oidUZIPersons">2.16.528.1.1007.3.1</xsl:variable>
@@ -79,7 +80,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 
 	<xsl:template name="makeBLAttribute">
-		<xsl:param name="inputValue"/>
+		<xsl:param name="inputValue" as="xs:string?"/>
+		<xsl:param name="inputNullFlavor" as="xs:string?"/>
 		<xsl:choose>
 			<xsl:when test="$inputValue castable as xs:boolean">
 				<xsl:attribute name="value" select="$inputValue"/>
@@ -90,7 +92,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:when test="lower-case($inputValue) = ('nee', 'no', 'nein', 'non', 'no')">
 				<xsl:attribute name="value" select="false()"/>
 			</xsl:when>
-			<xsl:when test="string-length($inputValue) = 0">
+			<xsl:when test="string-length($inputNullFlavor) gt 0">
+				<xsl:attribute name="nullFlavor" select="$inputNullFlavor"/>
+			</xsl:when>
+			<xsl:when test="string-length($inputValue) = 0 and string-length($inputNullFlavor)=0">
 				<!-- Do nothing -->
 			</xsl:when>
 			<xsl:otherwise>
@@ -103,13 +108,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template name="makeBLValue">
 		<xsl:param name="xsiType">BL</xsl:param>
 		<xsl:param name="elemName">value</xsl:param>
-		<xsl:variable name="inputValue" select="@value"/>
+		<xsl:variable name="inputValue" select="./@value" as="xs:string?"/>
+		<xsl:variable name="inputNullFlavor" select="./@nullFlavor" as="xs:string?"/>
 		<xsl:element name="{$elemName}">
 			<xsl:if test="string-length($xsiType) gt 0">
 				<xsl:attribute name="xsi:type" select="$xsiType"/>
 			</xsl:if>
 			<xsl:call-template name="makeBLAttribute">
 				<xsl:with-param name="inputValue" select="$inputValue"/>
+				<xsl:with-param name="inputNullFlavor" select="$inputNullFlavor"/>
 			</xsl:call-template>
 		</xsl:element>
 	</xsl:template>
@@ -227,6 +234,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template name="makeCodeAttribs">
 		<xsl:param name="code" as="xs:string?" select="./@code"/>
 		<xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
+		<xsl:param name="codeSystemName" as="xs:string?" select="./@codeSystemName"/>		
 		<xsl:param name="displayName" as="xs:string?" select="./@displayName"/>
 		<xsl:param name="originalText"/>
 		<xsl:param name="strOriginalText" as="xs:string?"/>
@@ -248,6 +256,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:if>
 				<xsl:if test="string-length($displayName) gt 0">
 					<xsl:attribute name="displayName" select="$displayName"/>
+				</xsl:if>
+				<xsl:if test="string-length($codeSystemName) gt 0">
+					<xsl:attribute name="codeSystemName" select="$codeSystemName"/>
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
