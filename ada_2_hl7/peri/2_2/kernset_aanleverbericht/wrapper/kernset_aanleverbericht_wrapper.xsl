@@ -43,12 +43,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="xsi:schemaLocation" select="./@value"/>
                 </xsl:for-each>
                 <xsl:for-each select="./id">
-                    <xsl:call-template name="makeId"/>
+                    <!-- An id can be provided in input_wrapper.xml, or generated here when the 'generate_id' instruction is set in id/@extension. 
+                        id/@root must be provided in the input wrapper. 
+                        The generated id is current datetime (milliseconds) + BSN. -->
+                <xsl:choose>
+                        <xsl:when test="@value='generate_id'">
+                            <id extension="{concat(translate(substring(xs:string(current-dateTime()), 1, 19), 'T:.-', ''), $input_xml_payload_doc//burgerservicenummer/@value/string())}" root="{@root}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="makeId"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>
                 <xsl:for-each select="./creation_time">
-                    <creationTime>
-                        <xsl:call-template name="makeTSValueAttr"/>
-                    </creationTime>
+                    <!-- A creation time can be provided in input_wrapper.xml, or generated here when the 'generate_time' instruction is set in creationTime/@value -->
+                    <xsl:choose>
+                        <xsl:when test="@value='generate_time'">
+                            <creationTime value="{translate(substring(xs:string(current-dateTime()), 1, 19), 'T:.-', '')}"/>
+                        </xsl:when>
+                    <xsl:otherwise>
+                            <creationTime>
+                                <xsl:call-template name="makeTSValueAttr"/>
+                            </creationTime>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>
                 <versionCode code="NICTIZEd2005-Okt"/>
                 <xsl:for-each select="./interaction_id">

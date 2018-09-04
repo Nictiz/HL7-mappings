@@ -4604,6 +4604,549 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
 
+    <!-- Reg. Event Act Kernset Geboortezorg, subset screening -->
+    <!--    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901065_20170928152927">
+        <xsl:for-each select="verwijsdetails">
+            <registrationProcess xmlns="urn:hl7-org:v3" classCode="REG" moodCode="">
+                <id/>
+                <code code="900000" codeSystem="2.16.840.1.113883.2.4.15.4"/>
+                <statusCode code="active"/>
+                <effectiveTime>
+                    <low/>
+                </effectiveTime>
+                <subject2 typeCode="SUBJ" contextConductionInd="false">
+                    <xsl:for-each select="zorgverlening | zwangerschap">
+                        <CareProvisionEvent classCode="PCPR" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.6.10.90.75"/>
+                            <id/>
+                            <subject typeCode="SBJ">
+                                <xsl:for-each select="vrouw">
+                                    <patient classCode="PAT">
+                                        <!-\- Item(s) :: burgerservicenummer burgerservicenummer-\->
+                                        <xsl:for-each select="burgerservicenummer">
+                                            <xsl:call-template name="makeII.NL.BSNValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="adres">
+                                            <addr>
+                                                <!-\- Item(s) :: postcode postcode postcode-\->
+                                                <xsl:for-each select="postcode">
+                                                    <xsl:call-template name="makeSTValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">postalCode</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                            </addr>
+                                        </xsl:for-each>
+                                        <statusCode code="active"/>
+                                        <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                                            <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                                            <xsl:for-each select="geboortedatum">
+                                                <xsl:call-template name="makeTSValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </patientPerson>
+                                    </patient>
+                                </xsl:for-each>
+                            </subject>
+                            <xsl:for-each select="zorgverlenerzorginstelling">
+                                <verifier typeCode="LA">
+                                    <assignedPerson classCode="ASSIGNED">
+                                        <xsl:for-each select="zorginstelling">
+                                            <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                                <!-\- Item(s) :: ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid-\->
+                                                <xsl:for-each select="ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid">
+                                                    <xsl:call-template name="makeIIValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">id</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                                <!-\- Item(s) :: zorginstelling_agbid zorgaanbieder_identificatie_nummer zorgaanbieder_agbid zorgaanbieder_identificatie_nummer zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid-\->
+                                                <xsl:for-each select="zorginstelling_agbid | zorgaanbieder_identificatie_nummer | zorgaanbieder_agbid | zorgaanbieder_identificatie_nummer | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid">
+                                                    <xsl:call-template name="makeII.NL.AGBValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">id</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                            </representedOrganization>
+                                        </xsl:for-each>
+                                    </assignedPerson>
+                                </verifier>
+                            </xsl:for-each>
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Graviditeit -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20161206105610"/>
+                            </pertinentInformation3>
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: A terme datum (definitive) -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
+                            </pertinentInformation3>
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Wijze einde zwangerschap -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900876_20161206094326"/>
+                            </pertinentInformation3>
+                            <pertinentInformation3>
+                                <!-\- Template :: Bevalling Kernset, subset screening -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901067_20161215000000"/>
+                            </pertinentInformation3>
+                        </CareProvisionEvent>
+                    </xsl:for-each>
+                </subject2>
+            </registrationProcess>
+        </xsl:for-each>
+    </xsl:template>
+-->
+    <!-- Reg. Event Act Kernset Geboortezorg, subset screening -->
+    <!--    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901065_20161215000000">
+        <registrationProcess xmlns="urn:hl7-org:v3" classCode="REG" moodCode="">
+            <id/>
+            <code code="900000" codeSystem="2.16.840.1.113883.2.4.15.4"/>
+            <statusCode code="active"/>
+            <effectiveTime>
+                <low/>
+            </effectiveTime>
+            <subject2 typeCode="SUBJ" contextConductionInd="false">
+                <CareProvisionEvent classCode="PCPR" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.6.10.90.75"/>
+                    <id/>
+                    <subject typeCode="SBJ">
+                        <xsl:for-each select="vrouw">
+                            <patient classCode="PAT">
+                                <!-\- Item(s) :: burgerservicenummer burgerservicenummer-\->
+                                <xsl:for-each select="burgerservicenummer | burgerservicenummer">
+                                    <xsl:call-template name="makeII.NL.BSNValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">id</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <xsl:for-each select="adres | adres | adres">
+                                    <addr>
+                                        <!-\- Item(s) :: postcode postcode postcode-\->
+                                        <xsl:for-each select="postcode | postcode | postcode">
+                                            <xsl:call-template name="makeSTValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">postalCode</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </addr>
+                                </xsl:for-each>
+                                <statusCode code="active"/>
+                                <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                                    <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                                    <xsl:for-each select="geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum">
+                                        <xsl:call-template name="makeTSValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </patientPerson>
+                            </patient>
+                        </xsl:for-each>
+                    </subject>
+                    <verifier typeCode="LA">
+                        <assignedPerson classCode="ASSIGNED">
+                            <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                <!-\- Item(s) :: ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid-\->
+                                <xsl:for-each select="ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid">
+                                    <xsl:call-template name="makeIIValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">id</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </representedOrganization>
+                        </assignedPerson>
+                    </verifier>
+                    <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                        <!-\- Template :: Graviditeit -\->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20161206105610"/>
+                    </pertinentInformation3>
+                    <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                        <!-\- Template :: A terme datum (definitive) -\->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
+                    </pertinentInformation3>
+                    <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                        <!-\- Template :: Wijze einde zwangerschap -\->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900876_20161206094326"/>
+                    </pertinentInformation3>
+                    <pertinentInformation3>
+                        <!-\- Template :: Bevalling Kernset, subset screening -\->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901067_20161215000000"/>
+                    </pertinentInformation3>
+                </CareProvisionEvent>
+            </subject2>
+        </registrationProcess>
+    </xsl:template>
+-->
+    <!-- ControlAct Kernset Geboortezorg, subset screening -->
+    <!--   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901066_20170928153656">
+        <xsl:attribute name="moodCode">EVN</xsl:attribute>
+        <effectiveTime xmlns="urn:hl7-org:v3"/>
+        <subject xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
+            <xsl:for-each select="verwijsdetails">
+                <registrationProcess classCode="REG" moodCode="">
+                    <id/>
+                    <code code="900000" codeSystem="2.16.840.1.113883.2.4.15.4"/>
+                    <statusCode code="active"/>
+                    <effectiveTime>
+                        <low/>
+                    </effectiveTime>
+                    <subject2 typeCode="SUBJ" contextConductionInd="false">
+                        <xsl:for-each select="zorgverlening | zwangerschap">
+                            <CareProvisionEvent classCode="PCPR" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.6.10.90.75"/>
+                                <id/>
+                                <subject typeCode="SBJ">
+                                    <xsl:for-each select="vrouw">
+                                        <patient classCode="PAT">
+                                            <!-\- Item(s) :: burgerservicenummer burgerservicenummer-\->
+                                            <xsl:for-each select="burgerservicenummer | burgerservicenummer">
+                                                <xsl:call-template name="makeII.NL.BSNValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                            <xsl:for-each select="adres | adres | adres">
+                                                <addr>
+                                                    <!-\- Item(s) :: postcode postcode postcode-\->
+                                                    <xsl:for-each select="postcode | postcode | postcode">
+                                                        <xsl:call-template name="makeSTValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">postalCode</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                </addr>
+                                            </xsl:for-each>
+                                            <statusCode code="active"/>
+                                            <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                                                <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                                                <xsl:for-each select="geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum">
+                                                    <xsl:call-template name="makeTSValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                            </patientPerson>
+                                        </patient>
+                                    </xsl:for-each>
+                                </subject>
+                                <xsl:for-each select="zorgverlenerzorginstelling">
+                                    <verifier typeCode="LA">
+                                        <assignedPerson classCode="ASSIGNED">
+                                            <xsl:for-each select="zorginstelling">
+                                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                                    <!-\- Item(s) :: ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid-\->
+                                                    <xsl:for-each select="ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid">
+                                                        <xsl:call-template name="makeIIValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                    <!-\- Item(s) :: zorginstelling_agbid zorgaanbieder_identificatie_nummer zorgaanbieder_agbid zorgaanbieder_identificatie_nummer zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid-\->
+                                                    <xsl:for-each select="zorginstelling_agbid | zorgaanbieder_identificatie_nummer | zorgaanbieder_agbid | zorgaanbieder_identificatie_nummer | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid">
+                                                        <xsl:call-template name="makeII.NL.AGBValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                </representedOrganization>
+                                            </xsl:for-each>
+                                        </assignedPerson>
+                                    </verifier>
+                                </xsl:for-each>
+                                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                    <!-\- Template :: Graviditeit -\->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20161206105610"/>
+                                </pertinentInformation3>
+                                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                    <!-\- Template :: A terme datum (definitive) -\->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
+                                </pertinentInformation3>
+                                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                    <!-\- Template :: Wijze einde zwangerschap -\->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900876_20161206094326"/>
+                                </pertinentInformation3>
+                                <pertinentInformation3>
+                                    <!-\- Template :: Bevalling Kernset, subset screening -\->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901067_20161215000000"/>
+                                </pertinentInformation3>
+                            </CareProvisionEvent>
+                        </xsl:for-each>
+                    </subject2>
+                </registrationProcess>
+            </xsl:for-each>
+        </subject>
+    </xsl:template>
+-->
+    <!-- ControlAct Kernset Geboortezorg, subset screening -->
+    <!--   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901066_20161215000000">
+        <xsl:attribute name="moodCode">EVN</xsl:attribute>
+        <effectiveTime xmlns="urn:hl7-org:v3"/>
+        <subject xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
+            <registrationProcess classCode="REG" moodCode="">
+                <id/>
+                <code code="900000" codeSystem="2.16.840.1.113883.2.4.15.4"/>
+                <statusCode code="active"/>
+                <effectiveTime>
+                    <low/>
+                </effectiveTime>
+                <subject2 typeCode="SUBJ" contextConductionInd="false">
+                    <CareProvisionEvent classCode="PCPR" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.75"/>
+                        <id/>
+                        <subject typeCode="SBJ">
+                            <xsl:for-each select="vrouw">
+                                <patient classCode="PAT">
+                                    <!-\- Item(s) :: burgerservicenummer burgerservicenummer-\->
+                                    <xsl:for-each select="burgerservicenummer | burgerservicenummer">
+                                        <xsl:call-template name="makeII.NL.BSNValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="adres | adres | adres">
+                                        <addr>
+                                            <!-\- Item(s) :: postcode postcode postcode-\->
+                                            <xsl:for-each select="postcode | postcode | postcode">
+                                                <xsl:call-template name="makeSTValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">postalCode</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </addr>
+                                    </xsl:for-each>
+                                    <statusCode code="active"/>
+                                    <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                                        <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                                        <xsl:for-each select="geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum">
+                                            <xsl:call-template name="makeTSValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </patientPerson>
+                                </patient>
+                            </xsl:for-each>
+                        </subject>
+                        <verifier typeCode="LA">
+                            <assignedPerson classCode="ASSIGNED">
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <!-\- Item(s) :: ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid-\->
+                                    <xsl:for-each select="ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid">
+                                        <xsl:call-template name="makeIIValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </representedOrganization>
+                            </assignedPerson>
+                        </verifier>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Graviditeit -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20161206105610"/>
+                        </pertinentInformation3>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: A terme datum (definitive) -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
+                        </pertinentInformation3>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Wijze einde zwangerschap -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900876_20161206094326"/>
+                        </pertinentInformation3>
+                        <pertinentInformation3>
+                            <!-\- Template :: Bevalling Kernset, subset screening -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901067_20161215000000"/>
+                        </pertinentInformation3>
+                    </CareProvisionEvent>
+                </subject2>
+            </registrationProcess>
+        </subject>
+    </xsl:template>
+-->
+    <!-- Bevalling Kernset, subset screening -->
+    <!--   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901067_20161215000000">
+        <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.900988"/>
+            <code code="236973005" codeSystem="2.16.840.1.113883.6.96"/>
+            <xsl:for-each select="baring | demografische_gegevens | perinatale_sterfte_groep | kindspecifieke_uitkomstgegevens | lichamelijk_onderzoek_kind | uitkomst_per_kind">
+                <component typeCode="COMP" contextConductionInd="false">
+                    <!-\- Template :: Baring Kernset, subset screening -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901068_20161215000000"/>
+                </component>
+            </xsl:for-each>
+        </organizer>
+    </xsl:template>
+-->
+    <!-- Baring Kernset, subset screening -->
+    <!--   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901068_20161215000000">
+        <xsl:for-each select="baring | demografische_gegevens | perinatale_sterfte_groep | kindspecifieke_uitkomstgegevens | lichamelijk_onderzoek_kind">
+            <procedure classCode="PROC" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.6.10.90.900989"/>
+                <id nullFlavor="NI"/>
+                <code code="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3"/>
+                <subject typeCode="SBJ">
+                    <personalRelationship classCode="PRS">
+                        <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"/>
+                        <xsl:for-each select="identificaties_kind | identificaties_kind">
+                            <relationshipHolder classCode="PSN" determinerCode="INSTANCE">
+                                <!-\- Item(s) :: bsn_kind bsn_kind-\->
+                                <xsl:for-each select="bsn_kind | bsn_kind">
+                                    <xsl:call-template name="makeII.NL.BSNValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">id</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                                <xsl:for-each select="geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum">
+                                    <xsl:call-template name="makeTS.DATE.MINValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <!-\- Item(s) :: perinatale_sterfteq perinatale_sterfteq perinatale_sterfteq perinatale_sterfteq perinatale_sterfteq perinatale_sterfteq perinatale_sterfteq perinatale_sterfteq-\->
+                                <xsl:for-each select="perinatale_sterfteq | perinatale_sterfteq | perinatale_sterfteq | perinatale_sterfteq | perinatale_sterfteq | perinatale_sterfteq | perinatale_sterfteq | perinatale_sterfteq">
+                                    <xsl:call-template name="makeBLValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">deceasedInd</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <!-\- Item(s) :: datum_perinatale_sterfte datum_perinatale_sterfte datum_perinatale_sterfte datum_perinatale_sterfte datumtijd_vaststelling_perinatale_sterfte datumtijd_vaststelling_perinatale_sterfte-\->
+                                <xsl:for-each select="datum_perinatale_sterfte | datum_perinatale_sterfte | datum_perinatale_sterfte | datum_perinatale_sterfte | datumtijd_vaststelling_perinatale_sterfte | datumtijd_vaststelling_perinatale_sterfte">
+                                    <xsl:call-template name="makeTS.DATE.MINValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">deceasedTime</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </relationshipHolder>
+                        </xsl:for-each>
+                    </personalRelationship>
+                </subject>
+                <xsl:for-each select="supervisor_groep | supervisor_groep">
+                    <responsibleParty typeCode="RESP">
+                        <assignedEntity classCode="ASSIGNED">
+                            <!-\- Item(s) :: rol_supervisor rol_supervisor-\->
+                            <xsl:for-each select="rol_supervisor | rol_supervisor">
+                                <xsl:call-template name="makeCEValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">code</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </assignedEntity>
+                    </responsibleParty>
+                </xsl:for-each>
+                <xsl:for-each select="aanpakker_kind_groep | aanpakker_kind_groep">
+                    <performer typeCode="PRF">
+                        <responsibleParty classCode="ASSIGNED">
+                            <!-\- Item(s) :: rol_aanpakker_kind rol_aanpakker_kind-\->
+                            <xsl:for-each select="rol_aanpakker_kind | rol_aanpakker_kind">
+                                <xsl:call-template name="makeCEValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">code</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <agentPerson nullFlavor="NI"/>
+                        </responsibleParty>
+                    </performer>
+                </xsl:for-each>
+                <location typeCode="ELOC">
+                    <xsl:for-each select="ziekenhuis_baring | ziekenhuis_baring">
+                        <healthCareFacility classCode="DSDLOC">
+                            <!-\- Item(s) :: ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid-\->
+                            <xsl:for-each select="ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid">
+                                <xsl:call-template name="makeIIValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-\- Item(s) :: werkelijke_plaats_baring_type_locatie werkelijke_plaats_baring_type_locatie-\->
+                            <xsl:for-each select="werkelijke_plaats_baring_type_locatie | werkelijke_plaats_baring_type_locatie">
+                                <xsl:call-template name="makeCEValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">code</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </healthCareFacility>
+                    </xsl:for-each>
+                </location>
+                <outboundRelationship typeCode="COMP">
+                    <!-\- Template :: Geslacht (medische observatie) -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20161206133653"/>
+                </outboundRelationship>
+                <outboundRelationship typeCode="COMP">
+                    <!-\- Template :: Rangnummer kind -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900400_20161206133754"/>
+                </outboundRelationship>
+                <outboundRelationship typeCode="COMP">
+                    <!-\- Template :: Geboortegewicht -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20161206135217"/>
+                </outboundRelationship>
+                <xsl:for-each select="congenitale_afwijkingenq | specificatie_congenitale_afwijking_groep | congenitale_afwijkingen_groep">
+                    <outboundRelationship typeCode="COMP">
+                        <!-\- Template :: Congenitale afwijkingen NoUnc -\->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+                <xsl:for-each select="chromosomale_afwijkingenq | specificatie_chromosomale_afwijking_groep | specificatie_chromosomale_afwijking_groep">
+                    <outboundRelationship typeCode="COMP">
+                        <!-\- Template :: Chromosomale afwijkingen NoUnc -\->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901016_20161206135419"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+                <xsl:for-each select="problematiek_kindq">
+                    <outboundRelationship typeCode="COMP">
+                        <!-\- Template :: Problematiek kind -\->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901019_20161206135430"/>
+                    </outboundRelationship>
+                </xsl:for-each>
+                <outboundRelationship typeCode="COMP">
+                    <!-\- Template :: Fase perinatale sterfte -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900433_20161206135827"/>
+                </outboundRelationship>
+            </procedure>
+        </xsl:for-each>
+    </xsl:template>
+-->
+    <!-- Vrouw (Kernset,subset screening) -->
+    <!--   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901069_20161216090012">
+        <subject xmlns="urn:hl7-org:v3" typeCode="SBJ">
+            <xsl:for-each select="vrouw">
+                <patient classCode="PAT">
+                    <!-\- Item(s) :: burgerservicenummer burgerservicenummer-\->
+                    <xsl:for-each select="burgerservicenummer | burgerservicenummer">
+                        <xsl:call-template name="makeII.NL.BSNValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="adres | adres | adres">
+                        <addr>
+                            <!-\- Item(s) :: postcode postcode postcode-\->
+                            <xsl:for-each select="postcode | postcode | postcode">
+                                <xsl:call-template name="makeSTValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">postalCode</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </addr>
+                    </xsl:for-each>
+                    <statusCode code="active"/>
+                    <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                        <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                        <xsl:for-each select="geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum">
+                            <xsl:call-template name="makeTSValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </patientPerson>
+                </patient>
+            </xsl:for-each>
+        </subject>
+    </xsl:template>
+-->
     <!-- Zorginstelling Identificatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901070_20161216000000"/>
 
@@ -4653,6 +5196,199 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </performer>
     </xsl:template>
 
+    <!-- Reg. Event Peri Combinatietest -->
+    <!--   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901075_20161216141448">
+        <registrationProcess xmlns="urn:hl7-org:v3" classCode="REG" moodCode="">
+            <code code="900000" codeSystem="2.16.840.1.113883.2.4.15.4"/>
+            <statusCode code="active"/>
+            <effectiveTime>
+                <low/>
+            </effectiveTime>
+            <subject2>
+                <xsl:for-each select="algemene_anamnese | prenatale_controle | counseling_prenatale_screening_en_prenatale_diagnostiek | zwangerschap">
+                    <CareProvisionEvent classCode="PCPR" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.85"/>
+                        <statusCode code="active"/>
+                        <xsl:for-each select="vrouw">
+                            <subject typeCode="SBJ">
+                                <patient classCode="PAT">
+                                    <!-\- Item(s) :: burgerservicenummer burgerservicenummer burgerservicenummer burgerservicenummer burgerservicenummer-\->
+                                    <xsl:for-each select="burgerservicenummer | burgerservicenummer | burgerservicenummer | burgerservicenummer | burgerservicenummer">
+                                        <xsl:call-template name="makeII.NL.BSNValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="adres | adres | adres | adres | adres">
+                                        <addr use="">
+                                            <!-\- Item(s) :: postcode-\->
+                                            <xsl:for-each select="postcode">
+                                                <xsl:call-template name="makeSTValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">postalCode</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </addr>
+                                    </xsl:for-each>
+                                    <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                                        <!-\- Item(s) :: voornamen achternaam naamgegevens voorvoegsel achternaam voornamen naamgegevens achternaam-\->
+                                        <xsl:for-each select="voornamen | voorvoegsel | achternaam | voornamen | achternaam">
+                                            <xsl:call-template name="makePNValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">name</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                                        <xsl:for-each select="geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum">
+                                            <xsl:call-template name="makeTSValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <!-\- Item(s) :: etniciteit etniciteit etniciteit etniciteit etniciteit etniciteit-\->
+                                        <xsl:for-each select="etniciteit | etniciteit | etniciteit | etniciteit | etniciteit | etniciteit">
+                                            <xsl:call-template name="makeCEValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">ethnicGroupCode</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </patientPerson>
+                                </patient>
+                            </subject>
+                        </xsl:for-each>
+                        <xsl:for-each select="zorgverlenerzorginstelling">
+                            <performer typeCode="PPRF">
+                                <xsl:for-each select="zorgverlener">
+                                    <responsibleParty classCode="ASSIGNED">
+                                        <xsl:if test="'TODO-X-Include in choice'">
+                                            <!-\- Item(s) :: zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer zorgverlener_uzinummer-\->
+                                            <xsl:for-each select="zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer | zorgverlener_uzinummer">
+                                                <xsl:call-template name="makeII.NL.UZIValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                        <xsl:if test="'TODO-X-Include in choice'">
+                                            <!-\- Item(s) :: zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid zorgverlener_agbid-\->
+                                            <xsl:for-each select="zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid | zorgverlener_agbid">
+                                                <xsl:call-template name="makeII.NL.AGBValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                        <xsl:if test="'TODO-X-Include in choice'">
+                                            <!-\- Item(s) :: zorgverlener_lvr1id zorgverlener_lvr1id zorgverlener_lvr1id zorgverlener_lvr1id zorgverlener_lvr1id zorgverlener_lvr1id zorgverlener_lvr1id-\->
+                                            <xsl:for-each select="zorgverlener_lvr1id | zorgverlener_lvr1id | zorgverlener_lvr1id | zorgverlener_lvr1id | zorgverlener_lvr1id | zorgverlener_lvr1id | zorgverlener_lvr1id">
+                                                <xsl:call-template name="makeIIValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                        <xsl:for-each select="naam_zorgverlener | naam_zorgverlener | naam_zorgverlener | naam_zorgverlener | naam_zorgverlener | naam_zorgverlener | naam_zorgverlener">
+                                            <agentPerson>
+                                                <!-\- Template :: Naam zorgverlener -\->
+                                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900006_20091001000000"/>
+                                            </agentPerson>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="zorginstelling">
+                                            <representedOrganization>
+                                                <id/>
+                                                <!-\- Item(s) :: zorgaanbieder_identificatie_nummer zorginstelling_oid-\->
+                                                <xsl:for-each select="zorgaanbieder_identificatie_nummer | zorginstelling_oid">
+                                                    <xsl:call-template name="makeIIValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">id</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                                <xsl:if test="'TODO-X-Include in choice'">
+                                                    <!-\- Item(s) :: zorginstelling_agbid zorgaanbieder_identificatie_nummer zorgaanbieder_agbid zorgaanbieder_identificatie_nummer zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid-\->
+                                                    <xsl:for-each select="zorginstelling_agbid | zorgaanbieder_identificatie_nummer | zorgaanbieder_agbid | zorgaanbieder_identificatie_nummer | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid">
+                                                        <xsl:call-template name="makeII.NL.AGBValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                </xsl:if>
+                                                <xsl:if test="'TODO-X-Include in choice'">
+                                                    <!-\- Item(s) :: zorginstelling_ura zorgaanbieder_identificatie_nummer zorgaanbieder_ura zorgaanbieder_identificatie_nummer zorginstelling_ura zorgaanbieder_ura zorginstelling_ura zorgaanbieder_ura-\->
+                                                    <xsl:for-each select="zorginstelling_ura | zorgaanbieder_identificatie_nummer | zorgaanbieder_ura | zorgaanbieder_identificatie_nummer | zorginstelling_ura | zorgaanbieder_ura | zorginstelling_ura | zorgaanbieder_ura">
+                                                        <xsl:call-template name="makeII.NL.URAValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                </xsl:if>
+                                                <xsl:if test="'TODO-X-Include in choice'">
+                                                    <!-\- Item(s) :: ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid-\->
+                                                    <xsl:for-each select="ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid">
+                                                        <xsl:call-template name="makeIIValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                </xsl:if>
+                                                <!-\- Item(s) :: naam_zorgaanbieder naam_zorgaanbieder naam_zorgaanbieder naam_zorginstelling naam_zorginstelling naam_zorginstelling-\->
+                                                <xsl:for-each select="naam_zorgaanbieder | naam_zorgaanbieder | naam_zorgaanbieder | naam_zorginstelling | naam_zorginstelling | naam_zorginstelling">
+                                                    <xsl:call-template name="makeONValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">name</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                            </representedOrganization>
+                                        </xsl:for-each>
+                                    </responsibleParty>
+                                </xsl:for-each>
+                            </performer>
+                        </xsl:for-each>
+                        <xsl:for-each select="anamnese | anamnese">
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Anamnese Combinatietest -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901079_20161216000000"/>
+                            </pertinentInformation3>
+                        </xsl:for-each>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Body Height -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900570_20161205183214"/>
+                        </pertinentInformation3>
+                        <xsl:for-each select="obstetrische_anamnese_gegroepeerd_per_voorgaande_zwangerschap">
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Obstetrische anamnese Combinatietest -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901081_20161216000000"/>
+                            </pertinentInformation3>
+                        </xsl:for-each>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Graviditeit -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20161206105610"/>
+                        </pertinentInformation3>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: A terme datum (definitive) -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
+                        </pertinentInformation3>
+                        <xsl:for-each select="soort_subfertiliteitsbehandeling_groep">
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Subfertiliteitsbehandeling combinatietest -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901083_20161216163019"/>
+                            </pertinentInformation3>
+                        </xsl:for-each>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Trisomy in History (y/n) -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900860_20120626000000"/>
+                        </pertinentInformation3>
+                        <xsl:for-each select="prenatale_controle">
+                            <pertinentInformation3 contextConductionInd="true">
+                                <!-\- Template :: Prenatale controle Combinatietest -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901088_20161219000000"/>
+                            </pertinentInformation3>
+                        </xsl:for-each>
+                    </CareProvisionEvent>
+                </xsl:for-each>
+            </subject2>
+        </registrationProcess>
+    </xsl:template>
+-->
     <!-- ControlAct Peri Combinatietest -->
     <!--    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901076_20161216143227">
         <xsl:attribute name="moodCode">EVN</xsl:attribute>
@@ -8265,6 +9001,303 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </procedure>
     </xsl:template>
 
+    <!-- Registration Event ACT Peri Counseling -->
+    <!--   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901036_20161216095457">
+        <registrationProcess xmlns="urn:hl7-org:v3" classCode="REG" moodCode="">
+            <id/>
+            <code code="900000" codeSystem="2.16.840.1.113883.2.4.15.4"/>
+            <statusCode code="active"/>
+            <effectiveTime>
+                <low/>
+            </effectiveTime>
+            <subject2>
+                <xsl:for-each select="zwangerschap | counseling_prenatale_screening_en_prenatale_diagnostiek">
+                    <CareProvisionEvent classCode="PCPR" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.80"/>
+                        <statusCode code="active"/>
+                        <xsl:for-each select="vrouw">
+                            <subject typeCode="SBJ">
+                                <patient classCode="PAT">
+                                    <!-\- Item(s) :: burgerservicenummer burgerservicenummer burgerservicenummer burgerservicenummer burgerservicenummer-\->
+                                    <xsl:for-each select="burgerservicenummer | burgerservicenummer | burgerservicenummer | burgerservicenummer | burgerservicenummer">
+                                        <xsl:call-template name="makeII.NL.BSNValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="adres | adres | adres | adres | adres">
+                                        <addr use="">
+                                            <!-\- Item(s) :: postcode-\->
+                                            <xsl:for-each select="postcode">
+                                                <xsl:call-template name="makeSTValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">postalCode</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </addr>
+                                    </xsl:for-each>
+                                    <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                                        <!-\- Item(s) :: voornamen achternaam naamgegevens voorvoegsel achternaam voornamen naamgegevens achternaam-\->
+                                        <xsl:for-each select="voornamen | voorvoegsel | achternaam | voornamen | achternaam">
+                                            <xsl:call-template name="makePNValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">name</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                                        <xsl:for-each select="geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum">
+                                            <xsl:call-template name="makeTSValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <!-\- Item(s) :: etniciteit etniciteit etniciteit etniciteit etniciteit etniciteit-\->
+                                        <xsl:for-each select="etniciteit | etniciteit | etniciteit | etniciteit | etniciteit | etniciteit">
+                                            <xsl:call-template name="makeCEValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">ethnicGroupCode</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </patientPerson>
+                                </patient>
+                            </subject>
+                        </xsl:for-each>
+                        <verifier typeCode="LA">
+                            <assignedPerson classCode="ASSIGNED">
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <!-\- Item(s) :: zorgaanbieder_identificatie_nummer zorginstelling_oid-\->
+                                    <xsl:for-each select="zorgaanbieder_identificatie_nummer | zorginstelling_oid">
+                                        <xsl:call-template name="makeIIValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">id</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                    <xsl:if test="'TODO-X-Include in choice'">
+                                        <!-\- Item(s) :: ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid-\->
+                                        <xsl:for-each select="ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid">
+                                            <xsl:call-template name="makeIIValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </xsl:if>
+                                    <xsl:if test="'TODO-X-Include in choice'">
+                                        <!-\- Item(s) :: zorginstelling_ura zorgaanbieder_identificatie_nummer zorgaanbieder_ura zorgaanbieder_identificatie_nummer zorginstelling_ura zorgaanbieder_ura zorginstelling_ura zorgaanbieder_ura-\->
+                                        <xsl:for-each select="zorginstelling_ura | zorgaanbieder_identificatie_nummer | zorgaanbieder_ura | zorgaanbieder_identificatie_nummer | zorginstelling_ura | zorgaanbieder_ura | zorginstelling_ura | zorgaanbieder_ura">
+                                            <xsl:call-template name="makeII.NL.URAValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </xsl:if>
+                                    <xsl:if test="'TODO-X-Include in choice'">
+                                        <!-\- Item(s) :: zorginstelling_agbid zorgaanbieder_identificatie_nummer zorgaanbieder_agbid zorgaanbieder_identificatie_nummer zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid-\->
+                                        <xsl:for-each select="zorginstelling_agbid | zorgaanbieder_identificatie_nummer | zorgaanbieder_agbid | zorgaanbieder_identificatie_nummer | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid">
+                                            <xsl:call-template name="makeII.NL.AGBValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </xsl:if>
+                                    <!-\- Item(s) :: naam_zorgaanbieder naam_zorgaanbieder naam_zorgaanbieder naam_zorginstelling naam_zorginstelling naam_zorginstelling-\->
+                                    <xsl:for-each select="naam_zorgaanbieder | naam_zorgaanbieder | naam_zorgaanbieder | naam_zorginstelling | naam_zorginstelling | naam_zorginstelling">
+                                        <xsl:call-template name="makeONValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">name</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </representedOrganization>
+                            </assignedPerson>
+                        </verifier>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Reden Verzending Counseling Bericht -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900934_20140414000000"/>
+                        </pertinentInformation3>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Graviditeit -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20161206105610"/>
+                        </pertinentInformation3>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: A terme datum (definitive) -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
+                        </pertinentInformation3>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Prenatale screening aangekaart -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900184_20140612000000"/>
+                        </pertinentInformation3>
+                        <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                            <!-\- Template :: Counseling prenatale gewenst -\->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900187_20110128000000"/>
+                        </pertinentInformation3>
+                        <xsl:for-each select="counseling_combinatietest">
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Counseling prenatale screening combinatietest -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900932_20161216115420"/>
+                            </pertinentInformation3>
+                        </xsl:for-each>
+                        <xsl:for-each select="counseling_seo | counseling_seo">
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Counseling prenatale screening SEO -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900933_20161216115807"/>
+                            </pertinentInformation3>
+                        </xsl:for-each>
+                    </CareProvisionEvent>
+                </xsl:for-each>
+            </subject2>
+        </registrationProcess>
+    </xsl:template>
+ -->
+    <!-- Registration Event ACT Peri Counseling -->
+    <!-- ControlAct Peri Counseling -->
+    <!--   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901037_20161216095739">
+        <xsl:attribute name="moodCode">EVN</xsl:attribute>
+        <effectiveTime xmlns="urn:hl7-org:v3"/>
+        <subject xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
+            <registrationProcess classCode="REG" moodCode="">
+                <id/>
+                <code code="900000" codeSystem="2.16.840.1.113883.2.4.15.4"/>
+                <statusCode code="active"/>
+                <effectiveTime>
+                    <low/>
+                </effectiveTime>
+                <subject2>
+                    <xsl:for-each select="zwangerschap | counseling_prenatale_screening_en_prenatale_diagnostiek">
+                        <CareProvisionEvent classCode="PCPR" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.6.10.90.80"/>
+                            <statusCode code="active"/>
+                            <xsl:for-each select="vrouw">
+                                <subject typeCode="SBJ">
+                                    <patient classCode="PAT">
+                                        <!-\- Item(s) :: burgerservicenummer burgerservicenummer burgerservicenummer burgerservicenummer burgerservicenummer-\->
+                                        <xsl:for-each select="burgerservicenummer | burgerservicenummer | burgerservicenummer | burgerservicenummer | burgerservicenummer">
+                                            <xsl:call-template name="makeII.NL.BSNValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="adres | adres | adres | adres | adres">
+                                            <addr use="">
+                                                <!-\- Item(s) :: postcode-\->
+                                                <xsl:for-each select="postcode">
+                                                    <xsl:call-template name="makeSTValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">postalCode</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                            </addr>
+                                        </xsl:for-each>
+                                        <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                                            <!-\- Item(s) :: voornamen achternaam naamgegevens voorvoegsel achternaam voornamen naamgegevens achternaam-\->
+                                            <xsl:for-each select="voornamen | voorvoegsel | achternaam | voornamen | achternaam">
+                                                <xsl:call-template name="makePNValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">name</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                            <!-\- Item(s) :: geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum geboortedatum-\->
+                                            <xsl:for-each select="geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum | geboortedatum">
+                                                <xsl:call-template name="makeTSValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">birthTime</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                            <!-\- Item(s) :: etniciteit etniciteit etniciteit etniciteit etniciteit etniciteit-\->
+                                            <xsl:for-each select="etniciteit | etniciteit | etniciteit | etniciteit | etniciteit | etniciteit">
+                                                <xsl:call-template name="makeCEValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">ethnicGroupCode</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </patientPerson>
+                                    </patient>
+                                </subject>
+                            </xsl:for-each>
+                            <verifier typeCode="LA">
+                                <assignedPerson classCode="ASSIGNED">
+                                    <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                        <!-\- Item(s) :: zorgaanbieder_identificatie_nummer zorginstelling_oid-\->
+                                        <xsl:for-each select="zorgaanbieder_identificatie_nummer | zorginstelling_oid">
+                                            <xsl:call-template name="makeIIValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:if test="'TODO-X-Include in choice'">
+                                            <!-\- Item(s) :: ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer ziekenhuisnummer_lvrid zorgaanbieder_identificatie_nummer zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid zorginstelling_lvrid-\->
+                                            <xsl:for-each select="ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | ziekenhuisnummer_lvrid | zorgaanbieder_identificatie_nummer | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid | zorginstelling_lvrid">
+                                                <xsl:call-template name="makeIIValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                        <xsl:if test="'TODO-X-Include in choice'">
+                                            <!-\- Item(s) :: zorginstelling_ura zorgaanbieder_identificatie_nummer zorgaanbieder_ura zorgaanbieder_identificatie_nummer zorginstelling_ura zorgaanbieder_ura zorginstelling_ura zorgaanbieder_ura-\->
+                                            <xsl:for-each select="zorginstelling_ura | zorgaanbieder_identificatie_nummer | zorgaanbieder_ura | zorgaanbieder_identificatie_nummer | zorginstelling_ura | zorgaanbieder_ura | zorginstelling_ura | zorgaanbieder_ura">
+                                                <xsl:call-template name="makeII.NL.URAValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                        <xsl:if test="'TODO-X-Include in choice'">
+                                            <!-\- Item(s) :: zorginstelling_agbid zorgaanbieder_identificatie_nummer zorgaanbieder_agbid zorgaanbieder_identificatie_nummer zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorginstelling_agbid zorgaanbieder_agbid-\->
+                                            <xsl:for-each select="zorginstelling_agbid | zorgaanbieder_identificatie_nummer | zorgaanbieder_agbid | zorgaanbieder_identificatie_nummer | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorginstelling_agbid | zorgaanbieder_agbid">
+                                                <xsl:call-template name="makeII.NL.AGBValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                        </xsl:if>
+                                        <!-\- Item(s) :: naam_zorgaanbieder naam_zorgaanbieder naam_zorgaanbieder naam_zorginstelling naam_zorginstelling naam_zorginstelling-\->
+                                        <xsl:for-each select="naam_zorgaanbieder | naam_zorgaanbieder | naam_zorgaanbieder | naam_zorginstelling | naam_zorginstelling | naam_zorginstelling">
+                                            <xsl:call-template name="makeONValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">name</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </representedOrganization>
+                                </assignedPerson>
+                            </verifier>
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Reden Verzending Counseling Bericht -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900934_20140414000000"/>
+                            </pertinentInformation3>
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Graviditeit -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20161206105610"/>
+                            </pertinentInformation3>
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: A terme datum (definitive) -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900928_20161206110006"/>
+                            </pertinentInformation3>
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Prenatale screening aangekaart -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900184_20140612000000"/>
+                            </pertinentInformation3>
+                            <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                <!-\- Template :: Counseling prenatale gewenst -\->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900187_20110128000000"/>
+                            </pertinentInformation3>
+                            <xsl:for-each select="counseling_combinatietest">
+                                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                    <!-\- Template :: Counseling prenatale screening combinatietest -\->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900932_20161216115420"/>
+                                </pertinentInformation3>
+                            </xsl:for-each>
+                            <xsl:for-each select="counseling_seo | counseling_seo">
+                                <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                                    <!-\- Template :: Counseling prenatale screening SEO -\->
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900933_20161216115807"/>
+                                </pertinentInformation3>
+                            </xsl:for-each>
+                        </CareProvisionEvent>
+                    </xsl:for-each>
+                </subject2>
+            </registrationProcess>
+        </subject>
+    </xsl:template>
+  -->
     <!-- Assigned Person [peri] -->
     <xsl:template name="observation">
         <xsl:param name="observation_effectiveTime" select="'default'"/>
