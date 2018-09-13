@@ -21,12 +21,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			else
 				false()"/>
 	<xsl:include href="../fhir/2_fhir_fhir_include.xsl"/>
+	<xsl:variable name="gstd-coderingen">
+		<code rootoid="{$oidGStandaardGPK}"/>
+		<code rootoid="{$oidGStandaardHPK}"/>
+		<code rootoid="{$oidGStandaardPRK}"/>
+		<code rootoid="{$oidGStandaardZInummer}"/>
+	</xsl:variable>
 	<xsl:variable name="patient-ada" select="/adaxml/data/*/patient"/>
 	<xsl:variable name="patient-entry" as="element(f:entry)?">
 		<!-- Patient, there may be only one in the input doc -->
 		<xsl:for-each select="$patient-ada">
 			<!-- For privacy reasons always use UUID as fullUrl for patient -->
-			<xsl:variable name="patient-fullUrl" select="nf:get-fhir-uuid()"/>
+			<xsl:variable name="patient-fullUrl" select="nf:get-fhir-uuid(.)"/>
 			<entry>
 				<fullUrl value="{$patient-fullUrl}"/>
 				<resource>
@@ -97,21 +103,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:for-each-group>
 	</xsl:variable>
 	<xsl:variable name="products" as="element()*">
-		<!-- Magistrale producten (niet-gecodeerd op hoogste niveau -->
-		<xsl:for-each-group select="//product[product_code/@codeSystem = $oidNullFlavor] | //product[not(product_code/@code)]" group-by="nf:getGroupingKeyDefault(.)">
+		<xsl:for-each-group select="//product" group-by="nf:getGroupingKeyDefault(.)">
 			<uniek-product xmlns="">
 				<group-key xmlns="">
 					<xsl:value-of select="current-grouping-key()"/>
 				</group-key>
 				<xsl:for-each select="current-group()[1]">
 					<entry xmlns="http://hl7.org/fhir">
-						<fullUrl value="{nf:get-fhir-uuid()}"/>
+						<fullUrl value="{nf:get-fhir-uuid(.)}"/>
 						<resource>
 							<xsl:choose>
 								<xsl:when test="$referById">
-									<xsl:apply-templates select="." mode="doMedication">
-										<xsl:with-param name="medication-id" select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
-									</xsl:apply-templates>
+									<xsl:variable name="fhir-resource-id">
+										<xsl:choose>
+											<xsl:when test="./product_code[(@code)][not(@codeSystem = $oidNullFlavor)]">
+												<xsl:value-of select="nf:removeSpecialCharacters(string-join(./product_code/(@code | @codeSystem), '-'))"/>
+											</xsl:when>
+											<xsl:when test="./product_specificatie/product_naam/@value">
+												<xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
+											</xsl:when>
+											<xsl:otherwise>
+												<!-- should not happen, but let's fall back on the grouping-key() -->
+												<xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
+											</xsl:otherwise>
+										</xsl:choose>
+									</xsl:variable>
+									<xsl:call-template name="zib-Product">
+										<xsl:with-param name="medication-id" select="$fhir-resource-id"/>
+									</xsl:call-template>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:apply-templates select="." mode="doMedication"/>
@@ -132,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</group-key>
 				<xsl:for-each select="current-group()[1]">
 					<entry xmlns="http://hl7.org/fhir">
-						<fullUrl value="{nf:get-fhir-uuid()}"/>
+						<fullUrl value="{nf:get-fhir-uuid(.)}"/>
 						<resource>
 							<xsl:choose>
 								<xsl:when test="$referById">
@@ -153,29 +172,122 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</unieke-locatie>
 		</xsl:for-each-group>
 	</xsl:variable>
+	<xsl:variable name="body-observations" as="element()*">
+		<!-- Locaties -->
+		<xsl:for-each-group select="//(lichaamsgewicht | lichaamslengte)" group-by="nf:getGroupingKeyDefault(.)">
+			<unieke-observatie xmlns="">
+				<group-key xmlns="">
+					<xsl:value-of select="current-grouping-key()"/>
+				</group-key>
+				<xsl:for-each select="current-group()[1]">
+					<entry xmlns="http://hl7.org/fhir">
+						<fullUrl value="{nf:get-fhir-uuid(.)}"/>
+						<resource>
+							<xsl:apply-templates select="." mode="doBodyObservation">
+								<xsl:with-param name="observation-id" select="
+										if ($referById) then
+											concat('gewicht', $patient-entry//f:Patient/f:id/@value, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit))))))
+										else
+											()"/>
+							</xsl:apply-templates>
+						</resource>
+					</entry>
+				</xsl:for-each>
+			</unieke-observatie>
+		</xsl:for-each-group>
+	</xsl:variable>
+	<xsl:variable name="prescribe-reasons" as="element()*">
+		<!-- redenen -->
+		<xsl:for-each-group select="//reden_van_voorschrijven/probleem[.//@code]" group-by="nf:getGroupingKeyDefault(.)">
+			<unieke-reden xmlns="">
+				<group-key xmlns="">
+					<xsl:value-of select="current-grouping-key()"/>
+				</group-key>
+				<xsl:for-each select="current-group()[1]">
+					<entry xmlns="http://hl7.org/fhir">
+						<fullUrl value="{nf:get-fhir-uuid(.)}"/>
+						<resource>
+							<xsl:apply-templates select="." mode="doConditionForProbleem">
+								<xsl:with-param name="condition-id" select="
+										if ($referById) then
+											concat('redenvanvoorschrijven', $patient-entry//f:Patient/f:id/@value, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code))))))
+										else
+											()"/>
+							</xsl:apply-templates>
+						</resource>
+					</entry>
+				</xsl:for-each>
+			</unieke-reden>
+		</xsl:for-each-group>
+	</xsl:variable>
+
+	<xsl:variable name="bouwstenen" as="element(f:entry)*">
+		<!-- medicatieafspraken -->
+		<xsl:for-each select="//medicatieafspraak">
+			<xsl:call-template name="zib-MedicationAgreement-2.0">
+				<xsl:with-param name="medicatieafspraak" select="."/>
+			</xsl:call-template>
+		</xsl:for-each>
+		<!-- verstrekkingsverzoeken -->
+		<xsl:for-each select="//verstrekkingsverzoek">
+			<xsl:call-template name="zib-DispenseRequest-2.0">
+				<xsl:with-param name="verstrekkingsverzoek" select="."/>
+			</xsl:call-template>
+		</xsl:for-each>
+		<!-- toedieningsafspraken -->
+		<xsl:for-each select="//toedieningsafspraak">
+			<entry xmlns="http://hl7.org/fhir">
+				<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
+				<resource>
+					<xsl:call-template name="zib-AdministrationAgreement-2.0">
+						<xsl:with-param name="toedieningsafspraak" select="."/>
+						<xsl:with-param name="medicationdispense-id" select="
+								if ($referById) then
+									nf:removeSpecialCharacters(./identificatie/@value)
+								else
+									()"/>
+					</xsl:call-template>
+				</resource>
+			</entry>
+		</xsl:for-each>
+		<!-- verstrekkingen -->
+		<xsl:for-each select="//verstrekking">
+			<entry xmlns="http://hl7.org/fhir">
+				<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
+				<resource>
+					<xsl:call-template name="zib-Dispense-2.0">
+						<xsl:with-param name="verstrekking" select="."/>
+						<xsl:with-param name="medicationdispense-id" select="
+								if ($referById) then
+									nf:removeSpecialCharacters(./identificatie/@value)
+								else
+									()"/>
+					</xsl:call-template>
+				</resource>
+			</entry>
+		</xsl:for-each>
+		<!-- medicatie_gebruik -->
+		<xsl:for-each select="//medicatie_gebruik">
+			<xsl:call-template name="zib-MedicationUse-2.0">
+				<xsl:with-param name="medicatiegebruik" select="."/>
+				<xsl:with-param name="medicationstatement-id" select="
+						if ($referById) then
+							nf:removeSpecialCharacters(./identificatie/@value)
+						else
+							()"/>
+			</xsl:call-template>
+		</xsl:for-each>
+	</xsl:variable>
 
 	<xd:doc>
 		<xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-AdministrationAgreement/ </xd:desc>
 		<xd:param name="medicatieafspraak"/>
 		<xd:param name="medicationrequest-id"/>
-		<xd:param name="lengte"/>
-		<xd:param name="gewicht"/>
-		<xd:param name="reden-voorschrijven"/>
-		<xd:param name="lengte-reference"/>
-		<xd:param name="gewicht-reference"/>
-		<xd:param name="reden-voorschrijven-reference"/>
-	</xd:doc>
+		</xd:doc>
 	<xsl:template name="MA-in-MedicationRequest-2.0">
 		<xsl:param name="medicatieafspraak" as="element()?"/>
 		<xsl:param name="medicationrequest-id" as="xs:string?"/>
-		<xsl:param name="lengte" as="element()?"/>
-		<xsl:param name="lengte-reference" as="xs:string?"/>
-		<xsl:param name="gewicht" as="element()?"/>
-		<xsl:param name="gewicht-reference" as="xs:string?"/>
-		<xsl:param name="reden-voorschrijven" as="element()?"/>
-		<xsl:param name="reden-voorschrijven-reference" as="xs:string?"/>
-
-		<xsl:for-each select="$medicatieafspraak">
+			<xsl:for-each select="$medicatieafspraak">
 			<MedicationRequest xsl:exclude-result-prefixes="#all">
 				<xsl:for-each select="$medicationrequest-id">
 					<id value="{$medicationrequest-id}"/>
@@ -272,7 +384,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<text value="Medicatieafspraak"/>
 				</category>
 				<!-- geneesmiddel -->
-				<xsl:apply-templates select="./afgesproken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
+				<xsl:apply-templates select="./afgesproken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReference"/>
 				<!-- patiënt -->
 				<subject>
 					<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
@@ -280,15 +392,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<!-- lichaamslengte -->
 				<xsl:for-each select="./lichaamslengte[.//@value]">
 					<supportingInformation>
-						<reference value="{$lengte-reference}"/>
-						<display value="{concat('Lengte: ', ./lengte_waarde/@value, ' ', ./lengte_waarde/@unit,'. Datum/tijd gemeten: ', format-dateTime(./lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]'))}"/>
+						<reference value="{nf:getFullUrlOrId('LENGTE', nf:getGroupingKeyDefault(.))}"/>
+						<xsl:variable name="datum-string" select="
+								if (./lengte_datum_tijd/@value) then
+									format-dateTime(./lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
+								else
+									'onbekend'"/>
+						<display value="{concat('Lengte: ', ./lengte_waarde/@value, ' ', ./lengte_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
 					</supportingInformation>
 				</xsl:for-each>
 				<!-- lichaamsgewicht -->
 				<xsl:for-each select="./lichaamsgewicht[.//@value]">
 					<supportingInformation>
-						<reference value="{$gewicht-reference}"/>
-						<display value="{concat('Gewicht: ',./gewicht_waarde/@value, ' ', ./gewicht_waarde/@unit,'. Datum/tijd gemeten: ', format-dateTime(./gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]'))}"/>
+						<reference value="{nf:getFullUrlOrId('GEWICHT', nf:getGroupingKeyDefault(.))}"/>
+						<xsl:variable name="datum-string" select="
+								if (./gewicht_datum_tijd/@value) then
+									format-dateTime(./gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
+								else
+									'onbekend'"/>
+						<display value="{concat('Gewicht: ',./gewicht_waarde/@value, ' ', ./gewicht_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
 					</supportingInformation>
 				</xsl:for-each>
 				<!-- afspraakdatum -->
@@ -306,9 +428,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</reasonCode>
 				</xsl:for-each>
 				<!-- reden van voorschrijven -->
-				<xsl:for-each select="./reden_van_voorschrijven/probleem">
+				<xsl:for-each select="./reden_van_voorschrijven/probleem[.//@code]">
 					<reasonReference>
-						<reference value="{$reden-voorschrijven-reference}"/>
+						<reference value="{nf:getFullUrlOrId('REDENVOORSCHRIJVEN', nf:getGroupingKeyDefault(.))}"/>
 						<display value="{normalize-space(string-join(.//(@displayName|@originalText), ' '))}"/>
 					</reasonReference>
 				</xsl:for-each>
@@ -916,7 +1038,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<text value="Toedieningsafspraak"/>
 				</category>
 				<!-- geneesmiddel -->
-				<xsl:apply-templates select="./te_verstrekken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
+				<xsl:apply-templates select="./te_verstrekken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReference"/>
 				<!-- patiënt -->
 				<subject>
 					<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
@@ -1080,7 +1202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<text value="Toedieningsafspraak"/>
 				</category>
 				<!-- geneesmiddel -->
-				<xsl:apply-templates select="./geneesmiddel_bij_toedieningsafspraak/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
+				<xsl:apply-templates select="./geneesmiddel_bij_toedieningsafspraak/product[.//(@value | @code)]" mode="doMedicationReference"/>
 				<!-- patiënt -->
 				<subject>
 					<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
@@ -1197,7 +1319,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc/>
 		<xd:param name="observation-id"/>
 	</xd:doc>
-	<xsl:template name="zib-BodyHeight-2.0" match="lichaamslengte" mode="doBodyHeightObservation">
+	<xsl:template name="zib-BodyHeight-2.0" match="lichaamslengte" mode="doBodyObservation">
 		<xsl:param name="observation-id" as="xs:string?"/>
 		<Observation>
 			<xsl:for-each select="$observation-id">
@@ -1250,7 +1372,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc/>
 		<xd:param name="observation-id"/>
 	</xd:doc>
-	<xsl:template name="zib-BodyWeight-2.0" match="lichaamsgewicht" mode="doBodyWeightObservation">
+	<xsl:template name="zib-BodyWeight-2.0" match="lichaamsgewicht" mode="doBodyObservation">
 		<xsl:param name="observation-id" as="xs:string?"/>
 		<Observation>
 			<xsl:for-each select="$observation-id">
@@ -1291,8 +1413,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 	<xd:doc>
 		<xd:desc/>
-		<xd:param name="patient"/>
 		<xd:param name="verstrekking"/>
+		<xd:param name="medicationdispense-id"/>
 	</xd:doc>
 	<xsl:template name="zib-Dispense-2.0">
 		<xsl:param name="verstrekking" as="element()?"/>
@@ -1356,7 +1478,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<text value="Medicatieverstrekking"/>
 				</category>
 				<!-- geneesmiddel -->
-				<xsl:apply-templates select="./verstrekt_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
+				<xsl:apply-templates select="./verstrekt_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReference"/>
 				<!-- patiënt -->
 				<subject>
 					<xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
@@ -1442,7 +1564,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<xsl:with-param name="verstrekkingsverzoek" select="."/>
 						<xsl:with-param name="medicationrequest-id" select="
 								if ($referById) then
-									./identificatie/@value
+									nf:removeSpecialCharacters(./identificatie/@value)
 								else
 									()"/>
 					</xsl:call-template>
@@ -1612,66 +1734,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template name="zib-MedicationAgreement-2.0">
 		<xsl:param name="medicatieafspraak" as="element()?"/>
 		<xsl:for-each select="$medicatieafspraak">
-			<!-- lengte in eigen resource -->
-			<xsl:variable name="lengte" select="./lichaamslengte"/>
-			<xsl:variable name="lengte-fullUrl" select="nf:get-fhir-uuid()"/>
-			<xsl:for-each select="$lengte[.//@value]">
-				<entry xmlns="http://hl7.org/fhir">
-					<fullUrl value="{$lengte-fullUrl}"/>
-					<resource>
-						<xsl:choose>
-							<xsl:when test="$referById">
-								<xsl:call-template name="zib-BodyHeight-2.0">
-									<xsl:with-param name="observation-id" select="concat('lengte', $patient-entry//f:Patient/f:id/@value, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit))))))"/>
-								</xsl:call-template>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:apply-templates select="." mode="doBodyHeightObservation"/>
-							</xsl:otherwise>
-						</xsl:choose>
-					</resource>
-				</entry>
-			</xsl:for-each>
-			<!-- gewicht in eigen resource -->
-			<xsl:variable name="gewicht" select="./lichaamsgewicht"/>
-			<xsl:variable name="gewicht-fullUrl" select="nf:get-fhir-uuid()"/>
-			<xsl:for-each select="$gewicht[.//@value]">
-				<entry xmlns="http://hl7.org/fhir">
-					<fullUrl value="{$gewicht-fullUrl}"/>
-					<resource>
-						<xsl:choose>
-							<xsl:when test="$referById">
-								<xsl:call-template name="zib-BodyWeight-2.0">
-									<xsl:with-param name="observation-id" select="concat('gewicht', $patient-entry//f:Patient/f:id/@value, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit))))))"/>
-								</xsl:call-template>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:apply-templates select="." mode="doBodyWeightObservation"/>
-							</xsl:otherwise>
-						</xsl:choose>
-					</resource>
-				</entry>
-			</xsl:for-each>
-			<!-- reden van voorschrijven in eigen resource -->
-			<xsl:variable name="reden-voorschrijven" select="./reden_van_voorschrijven/probleem"/>
-			<xsl:variable name="reden-voorschrijven-fullUrl" select="nf:get-fhir-uuid()"/>
-			<xsl:for-each select="$reden-voorschrijven[.//@code]">
-				<entry xmlns="http://hl7.org/fhir">
-					<fullUrl value="{$reden-voorschrijven-fullUrl}"/>
-					<resource>
-						<xsl:choose>
-							<xsl:when test="$referById">
-								<xsl:call-template name="zib-problem-2.0">
-									<xsl:with-param name="condition-id" select="concat('redenvanvoorschrijven', $patient-entry//f:Patient/f:id/@value, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code))))))"/>
-								</xsl:call-template>
-							</xsl:when>
-							<xsl:otherwise>
-								<xsl:apply-templates select="." mode="doConditionForProbleem"/>
-							</xsl:otherwise>
-						</xsl:choose>
-					</resource>
-				</entry>
-			</xsl:for-each>
 			<!-- entry for MedicationRequest -->
 			<entry xmlns="http://hl7.org/fhir">
 				<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
@@ -1680,16 +1742,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<xsl:with-param name="medicatieafspraak" select="."/>
 						<xsl:with-param name="medicationrequest-id" select="
 								if ($referById) then
-									(./identificatie/@value)
+									nf:removeSpecialCharacters(./identificatie/@value)
 								else
 									()"/>
-						<xsl:with-param name="lengte" select="$lengte"/>
-						<xsl:with-param name="lengte-reference" select="$lengte-fullUrl"/>
-						<xsl:with-param name="gewicht" select="$gewicht"/>
-						<xsl:with-param name="gewicht-reference" select="$gewicht-fullUrl"/>
-						<xsl:with-param name="reden-voorschrijven" select="$reden-voorschrijven"/>
-						<xsl:with-param name="reden-voorschrijven-reference" select="$reden-voorschrijven-fullUrl"/>
-					</xsl:call-template>
+						</xsl:call-template>
 				</resource>
 			</entry>
 		</xsl:for-each>
@@ -1772,7 +1828,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="medicationstatement-id" as="xs:string?"/>
 		<xsl:for-each select="$medicatiegebruik">
 			<!-- informant / persoon in eigen resource -->
-			<xsl:variable name="informant-persoon-fullUrl" select="nf:get-fhir-uuid()"/>
+			<xsl:variable name="informant-persoon-fullUrl" select="nf:get-fhir-uuid(.)"/>
 			<xsl:for-each select="./informant/persoon[.//@value]">
 				<entry>
 					<fullUrl value="{$informant-persoon-fullUrl}"/>
@@ -1780,7 +1836,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<xsl:call-template name="nl-core-relatedperson-2.0">
 							<xsl:with-param name="relatedperson-id" select="
 									if ($referById) then
-										upper-case(nf:removeSpecialCharacters(string-join(.//(@value|@displayName))))
+										upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName))))
 									else
 										()"/>
 						</xsl:call-template>
@@ -1884,7 +1940,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<text value="Medicatiegebruik"/>
 						</category>
 						<!-- geneesmiddel -->
-						<xsl:apply-templates select="./gebruiks_product/product[.//(@value | @code)]" mode="doMedicationReferenceOrCodeableConcept"/>
+						<xsl:apply-templates select="./gebruiks_product/product[.//(@value | @code)]" mode="doMedicationReference"/>
 						<!-- gebruiksperiode -->
 						<xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind | gebruiksperiode)[@value]]">
 							<effectivePeriod>
@@ -2076,11 +2132,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<valueString value="{replace(string-join(./@value,''),'(^\s+)|(\s+$)','')}"/>
 				</extension>
 			</xsl:for-each>
-			<xsl:for-each select="./product_specificatie/product_naam[@value]">
-				<code>
-					<text value="{./@value}"/>
-				</code>
-			</xsl:for-each>
+			<xsl:choose>
+				<xsl:when test="./product_code[not(@codeSystem = $oidNullFlavor)]">
+					<code>
+						<xsl:call-template name="code-to-CodeableConcept">
+							<xsl:with-param name="in" select="./product_code"/>
+						</xsl:call-template>
+					</code>
+				</xsl:when>
+				<xsl:when test="./product_specificatie/product_naam[@value]">
+					<code>
+						<text value="{./product_specificatie/product_naam/@value}"/>
+					</code>
+				</xsl:when>
+			</xsl:choose>
 			<xsl:for-each select="./product_specificatie/farmaceutische_vorm[@code]">
 				<form>
 					<xsl:call-template name="code-to-CodeableConcept">
@@ -2158,21 +2223,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 		<xsl:variable name="var" select="
 				if (normalize-space(upper-case($resourceType)) = 'ORGANIZATION') then
-					($organizations)
+					$organizations
 				else
 					(if (normalize-space(upper-case($resourceType)) = 'PRACTITIONER') then
-						($practitioners)
+						$practitioners
 					else
 						(if (normalize-space(upper-case($resourceType)) = 'PRACTITIONERROLE') then
-							($practitionerRoles)
+							$practitionerRoles
 						else
 							(if (normalize-space(upper-case($resourceType)) = 'PRODUCT') then
-								($products)
+								$products
 							else
 								(if (normalize-space(upper-case($resourceType)) = 'LOCATION') then
-									($locations)
+									$locations
 								else
-									()))))"/>
+									(if (normalize-space(upper-case($resourceType)) = ('GEWICHT', 'LENGTE', 'BODYOBSERVATION', 'BODY-OBSERVATION')) then
+										$body-observations
+									else
+										(if (normalize-space(upper-case($resourceType)) = 'REDENVOORSCHRIJVEN') then
+											$prescribe-reasons
+										else
+											()))))))"/>
 
 
 		<xsl:choose>
@@ -2262,7 +2333,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
 		<xsl:param name="in" as="xs:string?"/>
-		<xsl:value-of select="replace($in, '[^a-zA-Z0-9\._]', '')"/>
+		<xsl:value-of select="replace(translate($in, '_.', '--'), '[^a-zA-Z0-9-]', '')"/>
 	</xsl:function>
 	<xd:doc>
 		<xd:desc/>
@@ -2274,9 +2345,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="entries" as="element(f:entry)*"/>
 		<xsl:for-each select="$documentgegevens">
 			<entry>
-				<fullUrl value="{nf:get-fhir-uuid()}"/>
+				<fullUrl value="{nf:get-fhir-uuid(.)}"/>
 				<resource>
 					<List>
+						<xsl:if test="$referById">
+							<id value="{generate-id(.)}"/>
+						</xsl:if>
 						<meta>
 							<profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
 						</meta>
@@ -2335,10 +2409,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							</xsl:for-each>
 						</xsl:for-each>
 						<!-- the entries with references to medicatieafspraak/toedieningsafspraak/medicatiegebruik -->
-						<!-- MA's -->
-						<xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'http://snomed.info/sct'][f:code/@value = '16076005']]" mode="doMOListReference"/>
-						<!-- TA's -->
-						<xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'http://snomed.info/sct'][f:code/@value = '422037009']]" mode="doMOListReference"/>
+						<!-- MA's en TA's -->
+						<xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'http://snomed.info/sct'][f:code/@value = ('16076005', '422037009')]]" mode="doMOListReference"/>
 						<!-- MGB's -->
 						<xsl:apply-templates select="$entries[f:resource/*/f:category/f:coding[f:system/@value = 'urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3'][f:code/@value = '6']]" mode="doMOListReference"/>
 					</List>
@@ -2353,8 +2425,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template name="medicatieoverzicht-list-reference" match="f:entry" mode="doMOListReference">
 		<entry>
 			<item>
-				<reference value="{./f:fullUrl/@value}"/>
-				<display value="{f:resource/*/f:category/f:text/@value} identifier: value='{f:resource/*/f:identifier[1]/f:value/@value}', system='{f:resource/*/f:identifier[1]/f:system/@value}'"/>
+				<reference>
+					<xsl:attribute name="value">
+						<xsl:choose>
+							<xsl:when test="$referById">
+								<xsl:value-of select="concat(./f:resource/*[f:id]/local-name(), '/', ./f:resource/*/f:id/@value)"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="./f:fullUrl/@value"/>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:attribute>
+				</reference>
+				<display value="{./f:resource/*/f:category/f:text/@value} identifier: value='{./f:resource/*/f:identifier[1]/f:value/@value}', system='{./f:resource/*/f:identifier[1]/f:system/@value}'"/>
 			</item>
 		</entry>
 	</xsl:template>
@@ -2362,23 +2445,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc/>
 	</xd:doc>
-	<xsl:template name="medication-referenceOrCodeableConcept" match="product" mode="doMedicationReferenceOrCodeableConcept">
-		<xsl:choose>
-			<xsl:when test="./product_code[@codeSystem = $oidNullFlavor] or not(./product_code[@code])">
-				<medicationReference>
-					<reference value="{nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.))}"/>
-					<display value="{./product_specificatie/product_naam/@value}"/>
-				</medicationReference>
-			</xsl:when>
-			<xsl:otherwise>
-				<medicationCodeableConcept>
-					<xsl:call-template name="code-to-CodeableConcept">
-						<xsl:with-param name="in" select="./product_code"/>
-					</xsl:call-template>
-				</medicationCodeableConcept>
-			</xsl:otherwise>
-		</xsl:choose>
-
+	<xsl:template name="medication-reference" match="product" mode="doMedicationReference">
+		<medicationReference>
+			<reference value="{nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.))}"/>
+			<display value="{if (./product_code/@displayName) then ./product_code/@displayName else ./product_specificatie/product_naam/@value}"/>
+		</medicationReference>
 	</xsl:template>
 
 	<xd:doc>
@@ -2389,7 +2460,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="uuid" as="xs:boolean"/>
 		<xsl:variable name="ada-id" select="
 				if ($uuid) then
-					(nf:get-fhir-uuid())
+					(nf:get-fhir-uuid(.))
 				else
 					(nf:getUriFromAdaId(nf:ada-za-id(./zorgaanbieder_identificatie_nummer)))"/>
 		<entry>
@@ -2431,9 +2502,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="uuid" as="xs:boolean"/>
 		<xsl:variable name="ada-id" select="
 				if ($uuid) then
-					(nf:get-fhir-uuid())
+					nf:get-fhir-uuid(.)
 				else
-					(nf:getUriFromAdaId(nf:ada-zvl-id(./zorgverlener_identificatie_nummer)))"/>
+					if (./zorgverlener_identificatie_nummer) then
+						nf:getUriFromAdaId(nf:ada-zvl-id(./zorgverlener_identificatie_nummer))
+					else
+						nf:get-fhir-uuid(.)"/>
 		<entry>
 			<fullUrl value="{$ada-id}"/>
 			<resource>
@@ -2460,11 +2534,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template name="practitionerRole-entry" match="zorgverlener" mode="doPractitionerRoleEntry">
 		<entry>
-			<fullUrl value="{nf:get-fhir-uuid()}"/>
+			<fullUrl value="{nf:get-fhir-uuid(.)}"/>
 			<resource>
 				<xsl:choose>
 					<xsl:when test="$referById">
-						<xsl:variable name="fhir-resource-id" select="(upper-case(nf:removeSpecialCharacters(string-join(.//@value))))"/>
+						<xsl:variable name="fhir-resource-id" select="generate-id(.)"/>
 						<xsl:call-template name="nl-core-practitionerrole-2.0">
 							<xsl:with-param name="ada-zorgverlener" select="."/>
 							<xsl:with-param name="practitionerrole-id" select="$fhir-resource-id"/>

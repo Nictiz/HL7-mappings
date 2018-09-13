@@ -38,8 +38,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:variable name="oidBIGregister">2.16.528.1.1007.5.1</xsl:variable>
 	<xsl:variable name="oidBurgerservicenummer">2.16.840.1.113883.2.4.6.3</xsl:variable>
 	<xsl:variable name="oidGStandaardGPK">2.16.840.1.113883.2.4.4.1</xsl:variable>
-	<xsl:variable name="oidGStandaardHPK">2.16.840.1.113883.2.4.4.7</xsl:variable>
 	<xsl:variable name="oidGStandaardPRK">2.16.840.1.113883.2.4.4.10</xsl:variable>
+	<xsl:variable name="oidGStandaardHPK">2.16.840.1.113883.2.4.4.7</xsl:variable>
+	<xsl:variable name="oidGStandaardZInummer">2.16.840.1.113883.2.4.4.8</xsl:variable>
 	<xsl:variable name="oidGStandaardTH007Toedieningswegen">2.16.840.1.113883.2.4.4.9</xsl:variable>
 	<xsl:variable name="oidGStandaardBST361">2.16.840.1.113883.2.4.4.1.361</xsl:variable>
 	<xsl:variable name="oidGStandaardBST902THES2">2.16.840.1.113883.2.4.4.1.900.2</xsl:variable>
@@ -391,14 +392,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xd:desc>
 	</xd:doc>
 	<xsl:function name="nf:get-fhir-uuid" as="xs:string*">
-		<xsl:value-of select="concat('urn:uuid:', uuid:get-uuid())"/>
+		<xsl:param name="in" as="element()"/>
+		<xsl:value-of select="concat('urn:uuid:', uuid:get-uuid($in))"/>
 	</xsl:function>
 	<xd:doc>
 		<xd:desc/>
 		<xd:param name="ada-identificatie"/>
 	</xd:doc>
 	<xsl:function name="nf:getUriFromAdaId" as="xs:string">
-		<xsl:param name="ada-identificatie" as="element()?"/>
+		<xsl:param name="ada-identificatie" as="element()"/>
 		<xsl:choose>
 			<xsl:when test="$ada-identificatie[@root][matches(@value, '^\d+$')]">
 				<xsl:value-of select="concat('urn:oid:', $ada-identificatie/string-join((@root, @value),'.'))"/>
@@ -410,7 +412,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<xsl:value-of select="concat('urn:uuid:', $ada-identificatie/@root)"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="nf:get-fhir-uuid()"/>
+				<xsl:value-of select="nf:get-fhir-uuid($ada-identificatie)"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:function>

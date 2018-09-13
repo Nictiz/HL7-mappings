@@ -30,31 +30,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:include href="../../../2_fhir_mp_include.xsl"/>
 	<xsl:param name="referByIdOverride" as="xs:boolean" select="true()"/>
 	<xsl:variable name="usecase">mp9</xsl:variable>
+
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-		<xsl:copy-of select="$patient-entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
+		<xsl:copy-of select="$patient-entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry"/>
 	</xsl:variable>
+
 	<xd:doc>
-		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
+		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
 	</xd:doc>
 	<xsl:template match="/">
-		<xsl:call-template name="Medicatiegegevens_90_resources">
-			<xsl:with-param name="mbh" select="//beschikbaarstellen_medicatiegegevens/medicamenteuze_behandeling"/>
+		<xsl:call-template name="medicatieoverzicht_90_resources">
+			<xsl:with-param name="mbh" select="//beschikbaarstellen_medicatieoverzicht/medicamenteuze_behandeling"/>
 		</xsl:call-template>
 	</xsl:template>
 	<xd:doc>
 		<xd:desc>Build the individual FHIR resources.</xd:desc>
 		<xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
 	</xd:doc>
-	<xsl:template name="Medicatiegegevens_90_resources">
+	<xsl:template name="medicatieoverzicht_90_resources">
 		<xsl:param name="mbh"/>
-	
+
 		<xsl:variable name="entries" as="element(f:entry)*">
-			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
+			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, bouwstenen -->
 			<xsl:copy-of select="$commonEntries"/>
 			<xsl:copy-of select="$bouwstenen"/>
 		</xsl:variable>
 
-		<xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>		
+		<xsl:variable name="medicatieoverzicht-list" as="element(f:entry)*">
+			<xsl:for-each select="$mbh/../documentgegevens">
+				<xsl:call-template name="medicatieoverzicht-9.0.6">
+					<xsl:with-param name="documentgegevens" select="."/>
+					<xsl:with-param name="entries" select="$entries"/>
+				</xsl:call-template>
+			</xsl:for-each>
+		</xsl:variable>
+
+		<xsl:apply-templates select="($entries | $medicatieoverzicht-list/f:entry)/f:resource/*" mode="doResourceInResultdoc"/>
 	</xsl:template>
 
 	<xd:doc>
