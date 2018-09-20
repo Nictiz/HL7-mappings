@@ -4,7 +4,7 @@
 	exclude-result-prefixes="xs"
 	version="2.0">
 	<xsl:function name="nf:set-CET-timezone" as="xs:dateTime">
-		<xsl:param name="dateTimeIn" as="xs:dateTime?"/>
+		<xsl:param name="dateTimeIn" as="xs:dateTime"/>
 		<!-- Since 1996 DST starts last sunday of March 02:00 and ends last sunday of October at 03:00/02:00 (clock is set backwards) -->
 		<!-- There is one hour in october (from 02 - 03) for which we can't be sure if no timezone is provided in the input
 			, we default to standard time (+01:00), the correct time will be represented if a timezone was in the input

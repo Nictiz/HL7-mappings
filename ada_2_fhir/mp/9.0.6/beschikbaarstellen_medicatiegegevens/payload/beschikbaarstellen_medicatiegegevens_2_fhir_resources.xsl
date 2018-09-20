@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc scope="stylesheet">
 		<xd:desc>
 			<xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-			<xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/NictizSTU3/zib-AdministrationAgreement">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAdministrationAgreement</xd:a>. The HL7 V3 interaction contains both logistical information and therapeutic information.</xd:p>
+			<xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR instances, based on agreed profiles.</xd:p>
 			<xd:p>
 				<xd:b>History:</xd:b>
 				<xd:ul>
@@ -28,7 +28,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:output method="xml" indent="yes"/>
 	<xsl:strip-space elements="*"/>
 	<xsl:include href="../../../2_fhir_mp_include.xsl"/>
+	<!-- parameter to determine whether to refer bij resource/id -->
+	<!-- should be false when there is no FHIR server available to retrieve the resources -->
 	<xsl:param name="referByIdOverride" as="xs:boolean" select="true()"/>
+	
 	<xsl:variable name="usecase">mp9</xsl:variable>
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
 		<xsl:copy-of select="$patient-entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
@@ -47,14 +50,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template name="Medicatiegegevens_90_resources">
 		<xsl:param name="mbh"/>
-	
+
 		<xsl:variable name="entries" as="element(f:entry)*">
 			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
 			<xsl:copy-of select="$commonEntries"/>
 			<xsl:copy-of select="$bouwstenen"/>
 		</xsl:variable>
 
-		<xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>		
+		<xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
 	</xsl:template>
 
 	<xd:doc>
