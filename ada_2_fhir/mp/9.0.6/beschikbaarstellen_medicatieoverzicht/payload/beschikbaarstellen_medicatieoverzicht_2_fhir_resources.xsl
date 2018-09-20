@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:variable>
 
 		<xsl:variable name="medicatieoverzicht-list" as="element(f:entry)*">
-			<xsl:for-each select="$mbh/../documentgegevens">
+			<xsl:for-each select="$mbh[1]/../documentgegevens">
 				<xsl:call-template name="medicatieoverzicht-9.0.6">
 					<xsl:with-param name="documentgegevens" select="."/>
 					<xsl:with-param name="entries" select="$entries"/>
@@ -65,11 +65,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:for-each>
 		</xsl:variable>
 
-		<xsl:apply-templates select="($entries | $medicatieoverzicht-list/f:entry)/f:resource/*" mode="doResourceInResultdoc"/>
+		<xsl:apply-templates select="($entries | $medicatieoverzicht-list)/f:resource/*" mode="doResourceInResultdoc"/>
+		<!-- also create a Bundle that can be returned as answer to a medication overview query -->
+		<xsl:call-template name="create-mo-bundle">
+			<xsl:with-param name="entries" select="($entries | $medicatieoverzicht-list)"/>
+		</xsl:call-template>
 	</xsl:template>
 
 	<xd:doc>
 		<xd:desc/>
+		<xd:param name="entries"/>
+	</xd:doc>
+	<xsl:template name="create-mo-bundle">
+		<xsl:param name="entries" select="."/>
+		<xsl:result-document href="./{$usecase}-Bundle-{$entries/f:resource/f:List/f:id/@value}.xml">
+			<Bundle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd" xmlns="http://hl7.org/fhir">
+				<meta>
+					<profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
+				</meta>
+				<type value="searchset"/>
+				<xsl:for-each select="$entries">
+					<entry>
+						<xsl:copy-of select="./f:resource"/>
+					</entry>
+				</xsl:for-each>
+			</Bundle>
+		</xsl:result-document>
+	</xsl:template>
+
+	<xd:doc>
+		<xd:desc>Creates xml document for a FHIR resource</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:resource/*" mode="doResourceInResultdoc">
 		<xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>

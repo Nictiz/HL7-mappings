@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
 	<xsl:include href="../../util/uuid.xsl"/>
 	<xsl:include href="../../util/datetime.xsl"/>
-	
+
 	<xsl:variable name="ada-unit-seconde" select="('seconde', 's', 'sec', 'second')"/>
 	<xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
 	<xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>
@@ -390,20 +390,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>
 			Returns a UUID with urn:uuid: preconcatenated
 		</xd:desc>
+		<xd:param name="in"/>
 	</xd:doc>
 	<xsl:function name="nf:get-fhir-uuid" as="xs:string*">
-		<xsl:param name="in" as="element()"/>
-		<xsl:value-of select="concat('urn:uuid:', uuid:get-uuid($in))"/>
+		<xsl:param name="in" as="element()?"/>
+		<xsl:if test="$in">
+			<xsl:value-of select="concat('urn:uuid:', uuid:get-uuid($in))"/>
+		</xsl:if>
 	</xsl:function>
 	<xd:doc>
 		<xd:desc/>
 		<xd:param name="ada-identificatie"/>
 	</xd:doc>
-	<xsl:function name="nf:getUriFromAdaId" as="xs:string">
-		<xsl:param name="ada-identificatie" as="element()"/>
+	<xsl:function name="nf:getUriFromAdaId" as="xs:string?">
+		<xsl:param name="ada-identificatie" as="element()?"/>
 		<xsl:choose>
 			<xsl:when test="$ada-identificatie[@root][matches(@value, '^\d+$')]">
-				<xsl:value-of select="concat('urn:oid:', $ada-identificatie/string-join((@root, @value),'.'))"/>
+				<xsl:value-of select="concat('urn:oid:', $ada-identificatie/string-join((@root, @value), '.'))"/>
 			</xsl:when>
 			<xsl:when test="$ada-identificatie[matches(@extension, $UUIDpattern)]">
 				<xsl:value-of select="concat('urn:uuid:', $ada-identificatie/@value)"/>
@@ -416,5 +419,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:function>
-	
+
 </xsl:stylesheet>

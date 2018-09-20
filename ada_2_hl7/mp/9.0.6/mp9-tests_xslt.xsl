@@ -5,12 +5,12 @@
 	<xsl:include href="beschikbaarstellen_medicatiegegevens/ad_test_suite/mp9-medicatiegegevens-ada2test_xslt.xsl"/>
 	
 	<xsl:template match="/">
-		<!-- currently only support for sturen-voorschrift, but the predicate should not be necessary -->
+		<!-- currently only support for xxx, but the predicate should not be necessary -->
 		<xsl:for-each select=".//transactie[@name = 'uitwisselen_medicatiegegevens']/test">
 			<xsl:variable name="output-filename" select="concat(./../output-dir/@value, '/', ./pattern-id/@value, '.sch')"/>
 			<xsl:result-document href="{$output-filename}" indent="yes">
 				<xsl:call-template name="make-schematron">
-					<xsl:with-param name="ada-instance-filename" select="./ada-instance-filename/@value"/>
+					<xsl:with-param name="ada-instance-filename" select="concat('file:///C:/SVN/art_decor/trunk/ada-data/mappings/ada_2_hl7/mp/9.0.6/beschikbaarstellen_medicatiegegevens/kwalificatie/medicatieafspraak/ada_instance/' ,./ada-instance-filename/@value)"/>
 					<xsl:with-param name="data-int-medication-code" select="./data-int-medication-code/@value"/>
 					<xsl:with-param name="data-string-medication-code" select="./data-string-medication-code/@value"/>
 					<xsl:with-param name="medication-name" select="./medication-name/@value"/>

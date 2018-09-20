@@ -589,12 +589,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<!-- zorgverlener -->
 		<xsl:for-each select="$ada-zorgverlener">
 			<Practitioner>
-				<meta>
-					<profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
-				</meta>
 				<xsl:for-each select="$practitioner-id">
 					<id value="{$practitioner-id}"/>
 				</xsl:for-each>
+				<meta>
+					<profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+				</meta>
 				<!-- zorgverlener_identificatie_nummer -->
 				<xsl:for-each select="./zorgverlener_identificatie_nummer">
 					<identifier>
@@ -2534,7 +2534,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template name="practitionerRole-entry" match="zorgverlener" mode="doPractitionerRoleEntry">
 		<entry>
-			<fullUrl value="{nf:get-fhir-uuid(.)}"/>
+			<!-- input the node above this node, otherwise the fullUrl will be identical to that of Practioner.... -->
+			<fullUrl value="{nf:get-fhir-uuid(./..)}"/>
 			<resource>
 				<xsl:choose>
 					<xsl:when test="$referById">

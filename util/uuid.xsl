@@ -1,6 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:math="http://exslt.org/math" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:uuid="http://www.uuid.org" version="2.0">
 	<xsl:output method="xml" encoding="UTF-8"/>
-	<xsl:variable name="macAddress">28-F1-0E-48-1D-92</xsl:variable>
+	<!-- pass the appropriate macAddress -->
+	<xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
 	<!-- Functions in the uuid: namespace are used to calculate a UUID The method used is a derived timestamp method, which 
 		is explained here: http://www.famkruithof.net/guid-uuid-timebased.html and here: http://www.ietf.org/rfc/rfc4122.txt -->
 	<!-- Returns the UUID -->
