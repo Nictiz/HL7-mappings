@@ -23,6 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="data-int-medication-code"/>
 		<xsl:param name="medication-name"/>
 		<xsl:param name="ada-instance-filename"/>
+		<xsl:param name="checkpatient" as="xs:boolean" select="true()"/>
 		<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sch="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
 			<ns uri="urn:hl7-org:v3" prefix="hl7"/>
 			<ns uri="urn:hl7-nl:v3" prefix="hl7nl"/>
@@ -38,7 +39,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<xsl:attribute name="value" select="$data-int-medication-code"/>
 				</let>
 				<let name="naam" value="{$medication-name}"/>
-				<xsl:apply-templates select="doc($ada-instance-filename)//patient"/>
+				<xsl:if test="$checkpatient">
+					<xsl:apply-templates select="doc($ada-instance-filename)//patient"/>
+				</xsl:if>
 				<xsl:for-each select="doc($ada-instance-filename)//data">
 					<xsl:call-template name="data">
 						<xsl:with-param name="data-int-medication-code" select="$data-int-medication-code"/>
@@ -51,6 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template name="data">
 		<xsl:param name="data-int-medication-code"/>
 		<xsl:variable name="all-mas" select=".//medicatieafspraak"/>
+		<xsl:variable name="all-gbs" select=".//medicatie_gebruik"/>
 		<xsl:variable name="all-vvs" select=".//verstrekkingsverzoek"/>
 		<!-- check the number of expected components -->
 		<rule context="/">
@@ -61,8 +65,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<let name="aantal-mas">
 				<xsl:attribute name="value" select="count(.//medicatieafspraak)"/>
 			</let>
-			<let name="hl7-aantal-mas" value="count(.//hl7:substanceAdministration[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'][hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*[@code = $medCodeNr]])"/>
-			<assert test="$aantal-mas = $hl7-aantal-mas">Het aantal verwachte medicatieafspraken in dit bericht is: <value-of select="$aantal-mas"/>. Aangetroffen zijn <value-of select="$hl7-aantal-mas"/> medicatieafspra(a)k(en) voor medicatie coderingen: <value-of select="$medCodeNr"/>.</assert>
+			<let name="hl7-aantal-mas" value="count(.//hl7:substanceAdministration[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'])"/>
+			<assert test="$aantal-mas = $hl7-aantal-mas">Het aantal verwachte medicatieafspraken in dit bericht is: <value-of select="$aantal-mas"/>. Aangetroffen zijn <value-of select="$hl7-aantal-mas"/> medicatieafspra(a)k(en).</assert>
+			<let name="aantal-mas-pc">
+				<xsl:attribute name="value" select="count(.//medicatieafspraak[.//product[product_code/@code]])"/>
+			</let>
+			<let name="hl7-aantal-mas-pc" value="count(.//hl7:substanceAdministration[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'][hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*[@code = $medCodeNr]])"/>
+			<assert test="$aantal-mas-pc = $hl7-aantal-mas-pc">Het aantal verwachte medicatieafspraken met medicatie code in dit bericht is: <value-of select="$aantal-mas-pc"/>. Aangetroffen zijn <value-of select="$hl7-aantal-mas-pc"/> medicatieafspra(a)k(en) voor medicatie coderingen: <value-of select="$medCodeNr"/>.</assert>
+			<xsl:comment>Aantal medicatiegebruik</xsl:comment>
+			<let name="aantal-gbs">
+				<xsl:attribute name="value" select="count(.//medicatie_gebruik)"/>
+			</let>
+			<let name="hl7-aantal-gbs" value="count(.//hl7:substanceAdministration[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9224'])"/>
+			<assert test="$aantal-gbs = $hl7-aantal-gbs">Het aantal verwachte componenten medicatiegebruik in dit bericht is: <value-of select="$aantal-gbs"/>. Aangetroffen zijn <value-of select="$hl7-aantal-gbs"/> component(en) medicatiegebruik.</assert>
+			<let name="aantal-gbs-pc">
+				<xsl:attribute name="value" select="count(.//medicatie_gebruik[.//product[product_code/@code]])"/>
+			</let>
+			<let name="hl7-aantal-gbs-pc" value="count(.//hl7:substanceAdministration[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9224'][hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*[@code = $medCodeNr]])"/>
+			<assert test="$aantal-gbs-pc = $hl7-aantal-gbs-pc">Het aantal verwachte componenten medicatiegebruik met een medicatie code in dit bericht is: <value-of select="$aantal-gbs-pc"/>. Aangetroffen zijn <value-of select="$hl7-aantal-gbs-pc"/> component(en) medicatiegebruik voor medicatie coderingen: <value-of select="$medCodeNr"/>.</assert>
 			<xsl:comment>Aantal verstrekkingsverzoeken</xsl:comment>
 			<let name="aantal-vvs">
 				<xsl:attribute name="value" select="count(.//verstrekkingsverzoek)"/>
@@ -76,6 +96,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<assert>
 					<xsl:attribute name="test" select="concat('count(', $context, ')=1')"/>
 					<xsl:value-of select="concat('Er is precies 1 medicatieafspraak verwacht', ' die voldoet aan de volgende xpath: ', $context, '. Daarbij geldt $medCodeNr = ', $data-int-medication-code)"/>
+				</assert>
+			</xsl:for-each>
+			<xsl:for-each select="$all-gbs">
+				<xsl:variable name="current-gb" select="."/>
+				<!-- call function to determine context -->
+				<xsl:variable name="context" select="nf:ma-context($current-gb, $all-gbs)"/>
+				<assert>
+					<xsl:attribute name="test" select="concat('count(', $context, ')=1')"/>
+					<xsl:value-of select="concat('Er is precies 1 medicatiegebruik verwacht', ' die voldoet aan de volgende xpath: ', $context, '. Daarbij geldt $medCodeNr = ', $data-int-medication-code)"/>
 				</assert>
 			</xsl:for-each>
 			<xsl:for-each select="$all-vvs">
@@ -120,7 +149,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:element name="rule">
 			<xsl:attribute name="context" select="$context-ma"/>
 			<let name="displayName" value="(./hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*[@code = $medCodeNr]/@displayName)[1]"/>
-			<assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="warning" test="contains(upper-case($displayName), upper-case('{$naam}'))"><xsl:value-of disable-output-escaping="yes" select="concat('Verwacht is dat de naam (displayName) ', $naam, ' bevat. Gevonden: ''&lt;value-of select=&quot;$displayName&quot;/&gt;''.')"/></assert>
+			<assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="warning" test="contains(upper-case($displayName), upper-case('{$naam}'))">
+				<xsl:value-of disable-output-escaping="yes" select="concat('Verwacht is dat de naam (displayName) ', $naam, ' bevat. Gevonden: ''&lt;value-of select=&quot;$displayName&quot;/&gt;''.')"/>
+			</assert>
 			<xsl:comment>De waarden in voor 'normale' voorschriften: hoeveelheid, codes, dosering, dosering frequentie
              medicatieafspraak 2 maal daags 1 stuk, oraal, start T voor 5 dagen</xsl:comment>
 			<xsl:comment>Aantal doseerinstructies</xsl:comment>
@@ -441,24 +472,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="current_ma"/>
 		<xsl:param name="all_mas"/>
 		<xsl:variable name="current_medCode" select="$current_ma/*/product/product_code/@code" as="xs:string*"/>
-		<xsl:variable name="all-mas-4-basecontext" select="$all_mas[*/product/product_code/@code=$current_medCode]"/>
+		<xsl:variable name="current_medName" select="$current_ma/*/product/product_specificatie/product_naam/@value"/>
+
+		<xsl:variable name="all-mas-4-basecontext">
+			<xsl:choose>
+				<xsl:when test="$current_medCode">
+					<xsl:value-of select="$all_mas[*/product/product_code/@code = $current_medCode]"/>
+				</xsl:when>
+				<xsl:when test="not($current_medCode) and count($all_mas[not(*/product/product_code/@code)]) = 1">
+					<xsl:value-of select="$all_mas[not(*/product/product_code/@code)]"/>
+				</xsl:when>
+				<xsl:when test="$current_medName">
+					<xsl:value-of select="$all_mas[*/product/product_specificatie/product_naam/@value = $current_medName]"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<!-- should not happen -->
+					<xsl:value-of select="()"/>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
 		<!-- determine the correct context -->
-		<xsl:variable name="base-context" select="concat('//hl7:substanceAdministration[hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*/@code = ', $current_medCode,']')"/>
+		<!-- TODO hier verder 20180921 1642 base-context aanpassen voor 'magistralen' -->
+			
+		<xsl:variable name="base-context" select="concat('//hl7:substanceAdministration[hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*/@code = ', $current_medCode, ']')"/>
 		<xsl:variable name="append-stoptype" select="'hl7:entryRelationship/hl7:observation/hl7:code[@code=''1''][@codeSystem=''2.16.840.1.113883.2.4.3.11.60.20.77.5.2'']'"/>
 		<xsl:variable name="current-vaste-keerdosis" select="$current_ma//keerdosis/aantal/vaste_waarde[@value]"/>
 		<xsl:variable name="append-vaste-keerdosis" select="concat('hl7:entryRelationship/hl7:substanceAdministration[hl7:templateId/@root=''2.16.840.1.113883.2.4.3.11.60.20.77.10.9149''][hl7:doseQuantity/hl7:center[@value= ''', $current-vaste-keerdosis[1]/@value, ''']]')"/>
 		<xsl:variable name="current-vaste-frequentie" select="$current_ma//frequentie/aantal/vaste_waarde[@value]"/>
 		<xsl:variable name="append-vaste-frequentie" select="concat('hl7:entryRelationship/hl7:substanceAdministration[hl7:templateId/@root=''2.16.840.1.113883.2.4.3.11.60.20.77.10.9149''][hl7:effectiveTime/hl7nl:frequency/hl7nl:numerator[@value= ''', $current-vaste-frequentie[1]/@value, ''']]')"/>
 		<xsl:variable name="current-stoptype" select="$current_ma/stoptype"/>
+		<xsl:variable name="append-stoptype" select="'hl7:entryRelationship/hl7:observation[hl7:code[@code=''1''][@codeSystem=''2.16.840.1.113883.2.4.3.11.60.20.77.5.2'']]'"/>
+		<xsl:variable name="current-reden-afspraak" select="$current_ma/reden_afspraak"/>
+		<xsl:variable name="append-reden-afspraak" select="'hl7:entryRelationship/hl7:observation[hl7:code[@code=''2''][@codeSystem=''2.16.840.1.113883.2.4.3.11.60.20.77.5.2'']]'"/>
 		<xsl:variable name="append-2-context">
 			<xsl:choose>
 				<!-- is er één MA met de base context? dan hoeven we niets toe te voegen-->
-					<xsl:when test="count($all-mas-4-basecontext) = 1"/>
+				<xsl:when test="count($all-mas-4-basecontext) = 1"/>
 				<!-- aanwezigheid stoptype uniek? -->
 				<xsl:when test="$current-stoptype/@code and count($all-mas-4-basecontext[stoptype/@code]) = 1">
 					<xsl:value-of select="concat('[', $append-stoptype, ']')"/>
 				</xsl:when>
-				<!-- affwezigheid stoptype uniek? -->
+				<!-- afwezigheid stoptype uniek? -->
 				<xsl:when test="not($current-stoptype/@code) and count($all-mas-4-basecontext[not(stoptype/@code)]) = 1">
 					<xsl:value-of select="concat('[not(', $append-stoptype, ')]')"/>
 				</xsl:when>
@@ -478,6 +532,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<xsl:when test="count($all-mas-4-basecontext[.//frequentie/aantal/vaste_waarde/@value = $current-vaste-frequentie/@value]) = 1">
 					<xsl:value-of select="concat('[', $append-vaste-frequentie, ']')"/>
 				</xsl:when>
+				<!-- afwezigheid reden afspraak uniek? -->
+				<xsl:when test="not($current-reden-afspraak/@code) and count($all-mas-4-basecontext[not(current-afspraak/@code)]) = 1">
+					<xsl:value-of select="concat('[not(', $append-reden-afspraak, ')]')"/>
+				</xsl:when>
+				<!-- afwezigheid reden afspraak in combinatie met afwezigheid stoptype uniek? -->
+				<xsl:when test="not($current-reden-afspraak/@code) and not($current_ma/stoptype/@code) and count($all-mas-4-basecontext[not(stoptype/@code)][not(reden_afspraak/@code)]) = 1">
+					<xsl:value-of select="concat('[not(', $append-reden-afspraak, ')]', '[not(', $append-stoptype, ')]')"/>
+				</xsl:when>
+				<!-- reden afspraak uniek? -->
+				<xsl:when test="exists($current-reden-afspraak/@code) and count($all-mas-4-basecontext[(current-afspraak/@code) = $current-reden-afspraak/@code]) = 1">
+					<xsl:value-of select="concat('[not(', $append-reden-afspraak, ')]')"/>
+				</xsl:when>
+
 				<xsl:otherwise>['ERROR: could not determine appropriate context for the MA with id <xsl:value-of select="$current_ma/identificatie/@value"/>']</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
