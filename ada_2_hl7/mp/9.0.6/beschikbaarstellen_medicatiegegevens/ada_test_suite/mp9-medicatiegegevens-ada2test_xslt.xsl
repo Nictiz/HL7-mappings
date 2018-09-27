@@ -16,7 +16,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
 	<xsl:strip-space elements="*"/>
 	<xsl:include href="../../../2_hl7_mp_include.xsl"/>
-
+	
+	<!-- variables for template ids -->
+	<!-- Note that there is also a MA template 9185, but that is only used for proposal messages, which is not supported yet -->
+<!--	<xsl:variable name="ma_templateId" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9148', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9202', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>-->
+	<xsl:variable name="ma_templateId" as="xs:string" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>
+	<xsl:variable name="ta_templateId" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9152', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9205', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9223'"/>
+<!--	<xsl:variable name="gb_templateId" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9154', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9190', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9209', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9224'"/>-->
+	<xsl:variable name="gb_templateId" as="xs:string" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9224'"/>
+	<xsl:variable name="mbh_templateId" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9084'"/>
+	
 	<xsl:template name="make-schematron">
 		<xsl:param name="pattern-id"/>
 		<xsl:param name="data-string-medication-code"/>
@@ -92,19 +101,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:for-each select="$all-mas">
 				<xsl:variable name="current-ma" select="."/>
 				<!-- call function to determine context -->
-				<xsl:variable name="context" select="nf:ma-context($current-ma, $all-mas)"/>
+				<xsl:variable name="context" select="nf:bouwsteen-context($current-ma, $all-mas, $ma_templateId)"/>
 				<assert>
 					<xsl:attribute name="test" select="concat('count(', $context, ')=1')"/>
-					<xsl:value-of select="concat('Er is precies 1 medicatieafspraak verwacht', ' die voldoet aan de volgende xpath: ', $context, '. Daarbij geldt $medCodeNr = ', $data-int-medication-code)"/>
+					<xsl:value-of select="concat('Er is precies 1 medicatieafspraak verwacht', ' die voldoet aan de volgende xpath: ', $context, '.')"/>
 				</assert>
 			</xsl:for-each>
 			<xsl:for-each select="$all-gbs">
 				<xsl:variable name="current-gb" select="."/>
 				<!-- call function to determine context -->
-				<xsl:variable name="context" select="nf:ma-context($current-gb, $all-gbs)"/>
+				<xsl:variable name="context" select="nf:bouwsteen-context($current-gb, $all-gbs, $gb_templateId)"/>
 				<assert>
 					<xsl:attribute name="test" select="concat('count(', $context, ')=1')"/>
-					<xsl:value-of select="concat('Er is precies 1 medicatiegebruik verwacht', ' die voldoet aan de volgende xpath: ', $context, '. Daarbij geldt $medCodeNr = ', $data-int-medication-code)"/>
+					<xsl:value-of select="concat('Er is precies 1 medicatiegebruik verwacht', ' die voldoet aan de volgende xpath: ', $context, '.')"/>
 				</assert>
 			</xsl:for-each>
 			<xsl:for-each select="$all-vvs">
@@ -113,13 +122,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<xsl:variable name="context" select="nf:vv-context($current-vv, $all-vvs)"/>
 				<assert>
 					<xsl:attribute name="test" select="concat('count(', $context, ')=1')"/>
-					<xsl:value-of select="concat('Er is precies 1 verstrekkingsverzoek verwacht', ' die voldoet aan de volgende xpath: ', $context, '. Daarbij geldt $medCodeNr = ', $data-int-medication-code)"/>
+					<xsl:value-of select="concat('Er is precies 1 verstrekkingsverzoek verwacht', ' die voldoet aan de volgende xpath: ', $context, '.')"/>
 				</assert>
 			</xsl:for-each>
 		</rule>
 		<xsl:for-each select="$all-mas">
 			<xsl:variable name="current-ma" select="."/>
-			<xsl:variable name="context" select="nf:ma-context($current-ma, $all-mas)"/>
+			<xsl:variable name="context" select="nf:bouwsteen-context($current-ma, $all-mas, $ma_templateId)"/>
 			<xsl:call-template name="medicatieafspraak">
 				<xsl:with-param name="context-ma" select="$context"/>
 				<xsl:with-param name="data-int-medication-code" select="$data-int-medication-code"/>
@@ -468,84 +477,90 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 		<xsl:value-of select="concat($base-append-context, $append-2-context)"/>
 	</xsl:function>
-	<xsl:function name="nf:ma-context">
-		<xsl:param name="current_ma"/>
-		<xsl:param name="all_mas"/>
-		<xsl:variable name="current_medCode" select="$current_ma/*/product/product_code/@code" as="xs:string*"/>
-		<xsl:variable name="current_medName" select="$current_ma/*/product/product_specificatie/product_naam/@value"/>
+	<xsl:function name="nf:bouwsteen-context" as="xs:string?">
+		<xsl:param name="current_bouwsteen"/>
+		<xsl:param name="all_bouwstenen"/>
+		<xsl:param name="bouwsteen_templateId" as="xs:string+"/>
+		<xsl:variable name="current_medCode" select="$current_bouwsteen/*/product/product_code/@code" as="xs:string*"/>
+		<xsl:variable name="current_medName" select="$current_bouwsteen/*/product/product_specificatie/product_naam/@value"/>
 
-		<xsl:variable name="all-mas-4-basecontext">
+		<xsl:variable name="all-bouwstenen-4-basecontext">
 			<xsl:choose>
 				<xsl:when test="$current_medCode">
-					<xsl:value-of select="$all_mas[*/product/product_code/@code = $current_medCode]"/>
+					<xsl:sequence  select="$all_bouwstenen[*/product/product_code/@code = $current_medCode]"/>
 				</xsl:when>
-				<xsl:when test="not($current_medCode) and count($all_mas[not(*/product/product_code/@code)]) = 1">
-					<xsl:value-of select="$all_mas[not(*/product/product_code/@code)]"/>
+				<xsl:when test="not($current_medCode) and count($all_bouwstenen[not(*/product/product_code/@code)]) = 1">
+					<xsl:sequence select="$all_bouwstenen[not(*/product/product_code/@code)]"/>
 				</xsl:when>
 				<xsl:when test="$current_medName">
-					<xsl:value-of select="$all_mas[*/product/product_specificatie/product_naam/@value = $current_medName]"/>
+					<xsl:sequence select="$all_bouwstenen[*/product/product_specificatie/product_naam/@value = $current_medName]"/>
 				</xsl:when>
-				<xsl:otherwise>
-					<!-- should not happen -->
-					<xsl:value-of select="()"/>
-				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
-		<!-- determine the correct context -->
-		<!-- TODO hier verder 20180921 1642 base-context aanpassen voor 'magistralen' -->
-			
-		<xsl:variable name="base-context" select="concat('//hl7:substanceAdministration[hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*/@code = ', $current_medCode, ']')"/>
+		<xsl:variable name="base-context">
+			<xsl:choose>
+				<xsl:when test="$current_medCode">
+					<xsl:sequence select="concat('//hl7:substanceAdministration[hl7:templateId/@root=''', $bouwsteen_templateId,'''][hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial//*/@code = ''', string-join($current_medCode, ''','''), ''']')"/>
+				</xsl:when>
+				<xsl:when test="not($current_medCode) and count($all_bouwstenen[not(*/product/product_code/@code)]) = 1">
+					<xsl:value-of select="concat('//hl7:substanceAdministration[hl7:templateId/@root=''', $bouwsteen_templateId,'''][not(hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial/hl7:code/@code)]')"/>
+				</xsl:when>
+				<xsl:when test="$current_medName">
+					<xsl:value-of select="concat('//hl7:substanceAdministration[hl7:templateId/@root=''', $bouwsteen_templateId,'''][hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial/name/text() = ', $current_medName, ']')"/>
+					</xsl:when>
+			</xsl:choose>
+		</xsl:variable>
 		<xsl:variable name="append-stoptype" select="'hl7:entryRelationship/hl7:observation/hl7:code[@code=''1''][@codeSystem=''2.16.840.1.113883.2.4.3.11.60.20.77.5.2'']'"/>
-		<xsl:variable name="current-vaste-keerdosis" select="$current_ma//keerdosis/aantal/vaste_waarde[@value]"/>
+		<xsl:variable name="current-vaste-keerdosis" select="$current_bouwsteen//keerdosis/aantal/vaste_waarde[@value]"/>
 		<xsl:variable name="append-vaste-keerdosis" select="concat('hl7:entryRelationship/hl7:substanceAdministration[hl7:templateId/@root=''2.16.840.1.113883.2.4.3.11.60.20.77.10.9149''][hl7:doseQuantity/hl7:center[@value= ''', $current-vaste-keerdosis[1]/@value, ''']]')"/>
-		<xsl:variable name="current-vaste-frequentie" select="$current_ma//frequentie/aantal/vaste_waarde[@value]"/>
+		<xsl:variable name="current-vaste-frequentie" select="$current_bouwsteen//frequentie/aantal/vaste_waarde[@value]"/>
 		<xsl:variable name="append-vaste-frequentie" select="concat('hl7:entryRelationship/hl7:substanceAdministration[hl7:templateId/@root=''2.16.840.1.113883.2.4.3.11.60.20.77.10.9149''][hl7:effectiveTime/hl7nl:frequency/hl7nl:numerator[@value= ''', $current-vaste-frequentie[1]/@value, ''']]')"/>
-		<xsl:variable name="current-stoptype" select="$current_ma/stoptype"/>
+		<xsl:variable name="current-stoptype" select="$current_bouwsteen/stoptype"/>
 		<xsl:variable name="append-stoptype" select="'hl7:entryRelationship/hl7:observation[hl7:code[@code=''1''][@codeSystem=''2.16.840.1.113883.2.4.3.11.60.20.77.5.2'']]'"/>
-		<xsl:variable name="current-reden-afspraak" select="$current_ma/reden_afspraak"/>
+		<xsl:variable name="current-reden-afspraak" select="$current_bouwsteen/reden_afspraak"/>
 		<xsl:variable name="append-reden-afspraak" select="'hl7:entryRelationship/hl7:observation[hl7:code[@code=''2''][@codeSystem=''2.16.840.1.113883.2.4.3.11.60.20.77.5.2'']]'"/>
 		<xsl:variable name="append-2-context">
 			<xsl:choose>
 				<!-- is er één MA met de base context? dan hoeven we niets toe te voegen-->
-				<xsl:when test="count($all-mas-4-basecontext) = 1"/>
+				<xsl:when test="count($all-bouwstenen-4-basecontext/*) = 1"/>
 				<!-- aanwezigheid stoptype uniek? -->
-				<xsl:when test="$current-stoptype/@code and count($all-mas-4-basecontext[stoptype/@code]) = 1">
+				<xsl:when test="$current-stoptype/@code and count($all-bouwstenen-4-basecontext/*[stoptype/@code]) = 1">
 					<xsl:value-of select="concat('[', $append-stoptype, ']')"/>
 				</xsl:when>
 				<!-- afwezigheid stoptype uniek? -->
-				<xsl:when test="not($current-stoptype/@code) and count($all-mas-4-basecontext[not(stoptype/@code)]) = 1">
+				<xsl:when test="not($current-stoptype/@code) and count($all-bouwstenen-4-basecontext/*[not(stoptype/@code)]) = 1">
 					<xsl:value-of select="concat('[not(', $append-stoptype, ')]')"/>
 				</xsl:when>
 				<!-- is het stoptype uniek? -->
-				<xsl:when test="exists($current-stoptype/@code) and count($all-mas-4-basecontext[stoptype/@code = $current-stoptype/@code]) = 1">
+				<xsl:when test="exists($current-stoptype/@code) and count($all-bouwstenen-4-basecontext/*[stoptype/@code = $current-stoptype/@code]) = 1">
 					<xsl:value-of select="concat('[', $append-stoptype, '/hl7:value/@code = ''', $current-stoptype/@code, ''']')"/>
 				</xsl:when>
 				<!-- is de vaste keerdosis uniek? -->
-				<xsl:when test="count($all-mas-4-basecontext[.//keerdosis/aantal/vaste_waarde/@value = $current-vaste-keerdosis/@value]) = 1">
+				<xsl:when test="count($all-bouwstenen-4-basecontext/*[.//keerdosis/aantal/vaste_waarde/@value = $current-vaste-keerdosis/@value]) = 1">
 					<xsl:value-of select="concat('[', $append-vaste-keerdosis, ']')"/>
 				</xsl:when>
 				<!-- afwezigheid stoptype in combinatie met vaste keerdosis? -->
-				<xsl:when test="not($current_ma/stoptype/@code) and count($all-mas-4-basecontext[not(stoptype/@code)][.//keerdosis/aantal/vaste_waarde[@value = $current-vaste-keerdosis/@value]]) = 1">
+				<xsl:when test="not($current_bouwsteen/stoptype/@code) and count($all-bouwstenen-4-basecontext/*[not(stoptype/@code)][.//keerdosis/aantal/vaste_waarde[@value = $current-vaste-keerdosis/@value]]) = 1">
 					<xsl:value-of select="concat('[not(', $append-stoptype, ')]', '[', $append-vaste-keerdosis, ']')"/>
 				</xsl:when>
 				<!-- frequentie uniek? -->
-				<xsl:when test="count($all-mas-4-basecontext[.//frequentie/aantal/vaste_waarde/@value = $current-vaste-frequentie/@value]) = 1">
+				<xsl:when test="count($all-bouwstenen-4-basecontext/*[.//frequentie/aantal/vaste_waarde/@value = $current-vaste-frequentie/@value]) = 1">
 					<xsl:value-of select="concat('[', $append-vaste-frequentie, ']')"/>
 				</xsl:when>
 				<!-- afwezigheid reden afspraak uniek? -->
-				<xsl:when test="not($current-reden-afspraak/@code) and count($all-mas-4-basecontext[not(current-afspraak/@code)]) = 1">
+				<xsl:when test="not($current-reden-afspraak/@code) and count($all-bouwstenen-4-basecontext/*[not(current-afspraak/@code)]) = 1">
 					<xsl:value-of select="concat('[not(', $append-reden-afspraak, ')]')"/>
 				</xsl:when>
 				<!-- afwezigheid reden afspraak in combinatie met afwezigheid stoptype uniek? -->
-				<xsl:when test="not($current-reden-afspraak/@code) and not($current_ma/stoptype/@code) and count($all-mas-4-basecontext[not(stoptype/@code)][not(reden_afspraak/@code)]) = 1">
+				<xsl:when test="not($current-reden-afspraak/@code) and not($current_bouwsteen/stoptype/@code) and count($all-bouwstenen-4-basecontext/*[not(stoptype/@code)][not(reden_afspraak/@code)]) = 1">
 					<xsl:value-of select="concat('[not(', $append-reden-afspraak, ')]', '[not(', $append-stoptype, ')]')"/>
 				</xsl:when>
 				<!-- reden afspraak uniek? -->
-				<xsl:when test="exists($current-reden-afspraak/@code) and count($all-mas-4-basecontext[(current-afspraak/@code) = $current-reden-afspraak/@code]) = 1">
+				<xsl:when test="exists($current-reden-afspraak/@code) and count($all-bouwstenen-4-basecontext/*[(current-afspraak/@code) = $current-reden-afspraak/@code]) = 1">
 					<xsl:value-of select="concat('[not(', $append-reden-afspraak, ')]')"/>
 				</xsl:when>
 
-				<xsl:otherwise>['ERROR: could not determine appropriate context for the MA with id <xsl:value-of select="$current_ma/identificatie/@value"/>']</xsl:otherwise>
+				<xsl:otherwise>['ERROR: could not determine appropriate context for the MA with id <xsl:value-of select="$current_bouwsteen/identificatie/@value"/>']</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:value-of select="concat($base-context, $append-2-context)"/>

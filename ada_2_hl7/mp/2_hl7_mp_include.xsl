@@ -24,6 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month')"/>
 	<xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year')"/>
 
+	
 	<xsl:template name="makeEffectiveTime">
 		<xsl:param name="effectiveTime"/>
 		<xsl:if test="$effectiveTime[1] instance of element()">
