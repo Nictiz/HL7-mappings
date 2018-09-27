@@ -56,9 +56,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:variable>
 	<xsl:variable name="practitioners" as="element()*">
 		<!-- Zorgverleners in Practitioners -->
-		<xsl:for-each-group select="//zorgverlener" group-by="string-join(./zorgverlener_identificatie_nummer/@value | ./zorgverlener_identificatie_nummer/@root)">
+		<xsl:for-each-group select="//zorgverlener" group-by="concat(nf:ada-zvl-id(./zorgverlener_identificatie_nummer)/@root, nf:ada-zvl-id(./zorgverlener_identificatie_nummer)/@value)">
 			<xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
-				<!-- uuid als fullUrl genereren vanaf de tweede groep -->
+				<!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
 				<xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
 				<unieke-zorgverlener xmlns="">
 					<group-key xmlns="">
@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:variable>
 	<xsl:variable name="organizations" as="element()*">
 		<!-- Zorgaanbieders -->
-		<xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)]" group-by="string-join(nf:ada-za-id(./zorgaanbieder_identificatie_nummer)/(@value | @root))">
+		<xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)]" group-by="concat(nf:ada-za-id(./zorgaanbieder_identificatie_nummer)/@root, nf:ada-za-id(./zorgaanbieder_identificatie_nummer)/@value)">
 			<xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
 				<xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
 				<unieke-zorgaanbieder xmlns="">
@@ -283,11 +283,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-AdministrationAgreement/ </xd:desc>
 		<xd:param name="medicatieafspraak"/>
 		<xd:param name="medicationrequest-id"/>
-		</xd:doc>
+	</xd:doc>
 	<xsl:template name="MA-in-MedicationRequest-2.0">
 		<xsl:param name="medicatieafspraak" as="element()?"/>
 		<xsl:param name="medicationrequest-id" as="xs:string?"/>
-			<xsl:for-each select="$medicatieafspraak">
+		<xsl:for-each select="$medicatieafspraak">
 			<MedicationRequest xsl:exclude-result-prefixes="#all">
 				<xsl:for-each select="$medicationrequest-id">
 					<id value="{$medicationrequest-id}"/>
@@ -1745,7 +1745,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 									nf:removeSpecialCharacters(./identificatie/@value)
 								else
 									()"/>
-						</xsl:call-template>
+					</xsl:call-template>
 				</resource>
 			</entry>
 		</xsl:for-each>
@@ -2263,7 +2263,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:function name="nf:getGroupingKeyDefault" as="xs:string?">
 		<xsl:param name="in" as="element()?"/>
-		<xsl:value-of select="normalize-space(upper-case(string-join($in//(@value | @root | @code | @codeSystem | @nullFlavor))))"/>
+		<xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value), string-join($in//@root), string-join($in//@code), string-join($in//@codeSystem), string-join($in//@nullFlavor))))"/>
 	</xsl:function>
 
 	<xd:doc>
@@ -2272,7 +2272,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:function name="nf:getGroupingKeyPractitioner" as="xs:string?">
 		<xsl:param name="zorgverlener" as="element()?"/>
-		<xsl:value-of select="normalize-space(upper-case(string-join($zorgverlener/(zorgverlener_identificatie_nummer | zorgverlener_naam | adres | telefoon_email)/(.//@value | .//@root | .//@code | .//@codeSystem | .//@nullFlavor))))"/>
+		<xsl:value-of select="concat(nf:getGroupingKeyDefault($zorgverlener/zorgverlener_identificatie_nummer), nf:getGroupingKeyDefault($zorgverlener/zorgverlener_naam), nf:getGroupingKeyDefault($zorgverlener/adres), nf:getGroupingKeyDefault($zorgverlener/telefoon_email))"/>
 	</xsl:function>
 
 	<xd:doc>
@@ -2468,8 +2468,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<resource>
 				<xsl:choose>
 					<xsl:when test="$referById">
-						<xsl:variable name="fhir-resource-id" select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value))))"/>
-						<xsl:call-template name="nl-core-organization-2.0">
+						<xsl:variable name="fhir-resource-id">
+							<xsl:choose>
+								<xsl:when test="$uuid">
+									<xsl:value-of select="generate-id(.)"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value))))"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable><xsl:call-template name="nl-core-organization-2.0">
 							<xsl:with-param name="ada-zorgaanbieder" select="."/>
 							<xsl:with-param name="organization-id" select="$fhir-resource-id"/>
 						</xsl:call-template>
@@ -2513,7 +2521,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<resource>
 				<xsl:choose>
 					<xsl:when test="$referById">
-						<xsl:variable name="fhir-resource-id" select="(upper-case(nf:removeSpecialCharacters(string-join(.//*[not(ancestor-or-self::zorgaanbieder)]/@value))))"/>
+						<xsl:variable name="fhir-resource-id">
+							<xsl:choose>
+								<xsl:when test="$uuid">
+									<xsl:value-of select="generate-id(.)"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(.//*[not(ancestor-or-self::zorgaanbieder)]/@value))))"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
 						<xsl:call-template name="nl-core-practitioner-2.0">
 							<xsl:with-param name="ada-zorgverlener" select="."/>
 							<xsl:with-param name="practitioner-id" select="$fhir-resource-id"/>
@@ -2534,12 +2551,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template name="practitionerRole-entry" match="zorgverlener" mode="doPractitionerRoleEntry">
 		<entry>
-			<!-- input the node above this node, otherwise the fullUrl will be identical to that of Practioner.... -->
+			<!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
 			<fullUrl value="{nf:get-fhir-uuid(./..)}"/>
 			<resource>
 				<xsl:choose>
 					<xsl:when test="$referById">
-						<xsl:variable name="fhir-resource-id" select="generate-id(.)"/>
+						<xsl:variable name="fhir-resource-id" select="generate-id(./..)"/>
 						<xsl:call-template name="nl-core-practitionerrole-2.0">
 							<xsl:with-param name="ada-zorgverlener" select="."/>
 							<xsl:with-param name="practitionerrole-id" select="$fhir-resource-id"/>
