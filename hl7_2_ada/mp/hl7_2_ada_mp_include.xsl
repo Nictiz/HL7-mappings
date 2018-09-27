@@ -1970,7 +1970,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       </product>
    </xsl:template>
 
-   <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123_only_phase_low">
+	<!-- Medicatieafspraak MP 9.0.6 -->
+	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9148_20160725130413">
+		<xsl:param name="ma_hl7_905" select="."/>
+		<xsl:param name="xsd-ada"/>
+		<xsl:param name="xsd-mbh"/>
+		<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9201_20180419121646">
+			<xsl:with-param name="ma_hl7_90" select="$ma_hl7_905"/>
+			<xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+			<xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
+		</xsl:call-template>
+	</xsl:template>
+	
+	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123_only_phase_low">
       <xsl:param name="current_IVL" select="."/>
       <xsl:param name="xsd-ada"/>
       <xsl:param name="xsd-toedieningsschema"/>
@@ -2028,8 +2040,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
       <xsl:param name="xsd-mbh"/>
       <xsl:variable name="ma-complexType" select="$xsd-mbh//xs:element[@name = 'medicatieafspraak']/@type"/>
       <xsl:variable name="xsd-ma" select="$xsd-ada//xs:complexType[@name = $ma-complexType]"/>
-      <!-- medicatieafspraak, zonder stoptype -->
-      <!-- in 6.12 worden stoptypes niet begrepen -->
       <xsl:for-each select="$ma_hl7_90">
          <medicatieafspraak conceptId="{$xsd-ma/xs:attribute[@name='conceptId']/@fixed}">
             <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[@xsi:type = 'IVL_TS']"/>
@@ -2163,7 +2173,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          </medicatieafspraak>
       </xsl:for-each>
    </xsl:template>
-   <!-- Medicatieafspraak MP 9.0 -->
+		<!-- Medicatieafspraak MP 9.0.6 -->
    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9216_20180423130413">
       <xsl:param name="ma_hl7_90" select="."/>
       <xsl:param name="xsd-ada"/>
