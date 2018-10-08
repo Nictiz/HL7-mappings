@@ -33,7 +33,7 @@
 		<xsl:choose>
 			<xsl:when test="$do-ada-files">
 				<xsl:for-each-group select="$ada-files/adaxml/data/*" group-by="./patient/patient_identificatienummer[@root = '2.16.840.1.113883.2.4.6.3']/@value">
-					<xsl:apply-templates select="current-group()"/>
+					<xsl:apply-templates select="current-group()[1]"/>
 				</xsl:for-each-group>
 			</xsl:when>
 			<xsl:otherwise>

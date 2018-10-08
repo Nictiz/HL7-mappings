@@ -16,7 +16,7 @@
 	<xsl:include href="date-functions.xsl"/>
 	<xsl:param name="adaReleaseFile" select="document('../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
 	<xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>
-	
+
 	<!-- donkerblauw -->
 	<xsl:variable name="tabelkop-achtergrond-kleur">#1F497D;</xsl:variable>
 	<xsl:variable name="tabelkop-font-kleur">white</xsl:variable>
@@ -26,23 +26,7 @@
 
 	<xsl:variable name="oid-nullFlavor">2.16.840.1.113883.5.1008</xsl:variable>
 	<xsl:variable name="oid-BSN">2.16.840.1.113883.2.4.6.3</xsl:variable>
-	
-	<xsl:variable name="tabel" as="element()">
-		<tabellen xmlns="">
-			<!-- Een tabel per top-level group -->
-			<xsl:for-each select="adaxml/data/*/*">
-				<xsl:if test="nf:get-concept-type(.) eq 'group'">
-					<tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
-						<!-- een tabelrij (gegevenselement of groep) per onderliggend dataset concept -->
-						<xsl:apply-templates select="./*" mode="maak-tabel-rij"/>
-					</tabel>
-				</xsl:if>
-			</xsl:for-each>
-		</tabellen>
-	</xsl:variable>	
-	<xsl:variable name="aantal-kolommen-tabel" select="max($tabel//*[not(*)]/count(ancestor-or-self::*))"/>
-	<xsl:variable name="patient" select="adaxml/data//*[local-name() = 'patient']"/>
-	<xsl:variable name="patient-achternaam" select="$patient/naamgegevens/geslachtsnaam/achternaam/@value"/>
+
 	
 	<xd:doc>
 		<xd:desc/>
@@ -52,16 +36,31 @@
 {{IssueBox|Deze pagina is nog in bewerking}}
 [[Bestand:Nictiz_logo_PO_rechts_rgb.png |link=https://www.nictiz.nl/|rechts|Naar nictiz.nl]]
 
-=Addenda voor inhoudelijke gegevens=</xsl:text>		
-				<xsl:apply-templates select="adaxml/data/*"/>
+=Addenda voor inhoudelijke gegevens=</xsl:text>
+		<xsl:apply-templates select="adaxml/data/*"/>
 	</xsl:template>
 
 	<xd:doc>
 		<xd:desc/>
 	</xd:doc>
 	<xsl:template match="adaxml/data/*">
+		<xsl:variable name="patient" select=".//*[local-name() = 'patient']"/>
+		<xsl:variable name="patient-achternaam" select="$patient/naamgegevens/geslachtsnaam/achternaam/@value"/>
+		<xsl:variable name="tabel" as="element()">
+			<tabellen xmlns="">
+				<!-- Een tabel per top-level group -->
+				<xsl:for-each select="./*">
+					<xsl:if test="nf:get-concept-type(.) eq 'group'">
+						<tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
+							<!-- een tabelrij (gegevenselement of groep) per onderliggend dataset concept -->
+							<xsl:apply-templates select="./*" mode="maak-tabel-rij"/>
+						</tabel>
+					</xsl:if>
+				</xsl:for-each>
+			</tabellen>
+		</xsl:variable>
 		<xsl:variable name="transactie-shortname" select="./@shortName"/>
-			<xsl:for-each select="$tabel/tabel">
+		<xsl:for-each select="$tabel/tabel">
 			<xsl:text>
 ==</xsl:text>
 			<xsl:value-of select="./@title"/>
@@ -81,11 +80,15 @@
 	</xd:doc>
 	<xsl:template match="tabel">
 		<xsl:param name="current-table" select="."/>
+		<xsl:variable name="tabel-diepte" select="max($current-table//*[not(*)]/count(ancestor-or-self::*))"/>		
 		<xsl:for-each select="$current-table">
 			<xsl:call-template name="startWikiTable">
+				<xsl:with-param name="tabel-diepte" select="$tabel-diepte"/>
 				<xsl:with-param name="title" select="./@title"/>
 			</xsl:call-template>
-			<xsl:apply-templates select="./*" mode="doWikiRow"/>
+			<xsl:apply-templates select="./*" mode="doWikiRow">
+				<xsl:with-param name="tabel-diepte" select="$tabel-diepte"/>
+			</xsl:apply-templates>
 			<!-- end wiki table -->
 			<xsl:text>
 |}</xsl:text>
@@ -94,8 +97,10 @@
 
 	<xd:doc>
 		<xd:desc/>
+		<xd:param name="tabel-diepte"/>
 	</xd:doc>
-	<xsl:template match="gegevenselement" mode="doWikiRow">
+	<xsl:template name="gegevenselement" match="gegevenselement" mode="doWikiRow">
+		<xsl:param name="tabel-diepte"/>
 		<xsl:variable name="waarde" select="./@waarde" as="xs:string?"/>
 		<xsl:variable name="level" select="./@level" as="xs:int?"/>
 		<xsl:variable name="element-naam" select="./@naam" as="xs:string?"/>
@@ -104,10 +109,10 @@
 		<xsl:value-of select="$element-achtergrond-kleur"/>
 		<xsl:text>;"</xsl:text>
 		<xsl:choose>
-			<xsl:when test="$level lt $aantal-kolommen-tabel - 1">
+			<xsl:when test="$level lt $tabel-diepte - 1">
 				<xsl:text>
 |colspan="</xsl:text>
-				<xsl:value-of select="$aantal-kolommen-tabel - $level"/>
+				<xsl:value-of select="$tabel-diepte - $level"/>
 				<xsl:text>"|</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>
@@ -125,8 +130,10 @@
 
 	<xd:doc>
 		<xd:desc/>
+		<xd:param name="tabel-diepte"/>
 	</xd:doc>
 	<xsl:template match="groep" mode="doWikiRow">
+		<xsl:param name="tabel-diepte"/>
 		<xsl:variable name="element-naam" select="./@naam"/>
 		<xsl:variable name="level" select="./@level" as="xs:int"/>
 		<xsl:text>
@@ -134,7 +141,7 @@
 		<xsl:value-of select="$element-achtergrond-kleur"/>
 		<xsl:text>;"  
 |colspan="</xsl:text>
-		<xsl:value-of select="$aantal-kolommen-tabel - ($level - 1)"/>
+		<xsl:value-of select="$tabel-diepte - ($level - 1)"/>
 		<xsl:text>"|</xsl:text>
 		<xsl:value-of select="$element-naam"/>
 		<xsl:text>
@@ -148,15 +155,18 @@
 		<!-- nu de elementen/groepen in deze groep -->
 		<xsl:apply-templates select="./*" mode="doWikiRow">
 			<xsl:with-param name="level" select="$level"/>
+			<xsl:with-param name="tabel-diepte" select="$tabel-diepte"/>
 		</xsl:apply-templates>
 	</xsl:template>
 
 	<xd:doc>
 		<xd:desc/>
 		<xd:param name="title"/>
+		<xd:param name="tabel-diepte"/>
 	</xd:doc>
 	<xsl:template name="startWikiTable">
 		<xsl:param name="title" select="nf:element-name(.)"/>
+		<xsl:param name="tabel-diepte"/>
 		<xsl:text>
 {| class="wikitable" width="85%"
 |style="background-color: </xsl:text>
@@ -164,7 +174,7 @@
 		<xsl:text>; color: </xsl:text>
 		<xsl:value-of select="$tabelkop-font-kleur"/>
 		<xsl:text>; font-weight: bold; text-align:center;"  colspan="</xsl:text>
-		<xsl:value-of select="$aantal-kolommen-tabel"/>
+		<xsl:value-of select="$tabel-diepte"/>
 		<xsl:text>" | </xsl:text>
 		<xsl:value-of select="$title"/>
 		<xsl:text>
@@ -174,7 +184,7 @@
 		<xsl:value-of select="$tabelkop-font-kleur"/>
 		<xsl:text>; text-align:left;" 
 |colspan="</xsl:text>
-		<xsl:value-of select="$aantal-kolommen-tabel - 1"/>
+		<xsl:value-of select="$tabel-diepte - 1"/>
 		<xsl:text>" width="25%"| Gegevenselement
 || Waarde
 </xsl:text>
@@ -188,7 +198,7 @@
 		<xsl:param name="level" select="xs:int(1)" as="xs:int"/>
 		<xsl:variable name="concept-type" select="nf:get-concept-type(.)"/>
 		<xsl:variable name="value-domain" select="nf:get-concept-value-domain(.)"/>
-		
+
 		<xsl:choose>
 			<xsl:when test="$concept-type eq 'group'">
 				<groep xmlns="" level="{$level}" naam="{nf:element-name(.)}">
@@ -225,42 +235,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	<xd:doc>
-		<xd:desc/>
-		<xd:param name="level"/>
-		<xd:param name="element-naam"/>
-		<xd:param name="waarde"/>
-		<xd:param name="eenheid"/>
-	</xd:doc>
-	<xsl:template name="element" match="*" mode="doElement">
-		<xsl:param name="level" select="xs:int(1)" as="xs:int"/>
-		<xsl:param name="element-naam" select="nf:element-name(.)"/>
-		<xsl:param name="waarde" select="./@value"/>
-		<xsl:param name="eenheid" select="./@unit"/>
-		<xsl:text>
-|-style="vertical-align:top; background-color: </xsl:text>
-		<xsl:value-of select="$element-achtergrond-kleur"/>
-		<xsl:text>;"</xsl:text>
-		<xsl:choose>
-			<xsl:when test="$level lt $aantal-kolommen-tabel - 1">
-				<xsl:text>
-|colspan="</xsl:text>
-				<xsl:value-of select="$aantal-kolommen-tabel - $level"/>
-				<xsl:text>"|</xsl:text>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:text>
-||</xsl:text>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:value-of select="$element-naam"/>
-		<xsl:text>
-|style="background-color: </xsl:text>
-		<xsl:value-of select="$elementwaarde-achtergrond-kleur"/>
-		<xsl:text>;"|</xsl:text>
-		<xsl:value-of select="nf:element-waarde($waarde, $eenheid)"/>
-	</xsl:template>
-
+	
 	<xd:doc>
 		<xd:desc/>
 		<xd:param name="current-element"/>
@@ -343,7 +318,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:function>
-<xd:doc>
+	<xd:doc>
 		<xd:desc/>
 		<xd:param name="code-in"/>
 	</xd:doc>
