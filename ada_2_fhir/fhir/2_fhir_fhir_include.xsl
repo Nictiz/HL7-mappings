@@ -116,6 +116,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<coding>
 					<system value="{local:getUri($in/@codeSystem)}"/>
 					<code value="{$in/@code}"/>
+				    <xsl:if test="$in/@displayName">
+				        <display value="{$in/@displayName}"/>
+				    </xsl:if>
 					<!--<userSelected value="true"/>-->
 				</coding>
 				<xsl:if test="$in/@displayName">
@@ -427,5 +430,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:function>
-
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="dateTime"/>
+        <xd:param name="precision"/>
+    </xd:doc>
+    <xsl:template name="format2FHIRDate">
+        <xsl:param name="dateTime"/>
+        <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
+        <xsl:param name="precision">second</xsl:param>
+        <xsl:variable name="picture" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D')">[Y0001]-[M01]-[D01]</xsl:when>
+                <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001]-[M01]-[D01]T[H01]:[m01]:00</xsl:when>
+                <xsl:otherwise>[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
+                <xsl:value-of select="format-dateTime(xs:dateTime($dateTime), $picture)"/>
+            </xsl:when>
+            <xsl:when test="normalize-space($dateTime) castable as xs:date">
+                <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001]-[M01]-[D01]')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="newDateTime" select="replace(concat(normalize-space($dateTime),'00000000000000'), '^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})', '$1-$2-$3T$4:$5:$6')"/>
+                <xsl:variable name="newDate" select="replace(normalize-space($dateTime), '^(\d{4})(\d{2})(\d{2})', '$1-$2-$3')"/>
+                <xsl:choose>
+                    <xsl:when test="$newDateTime castable as xs:dateTime">
+                        <xsl:value-of select="format-dateTime(xs:dateTime($newDateTime), $picture)"/>
+                    </xsl:when>
+                    <xsl:when test="$newDate castable as xs:date">
+                        <xsl:value-of select="format-date(xs:date($newDateTime), $picture)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$dateTime"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 </xsl:stylesheet>
