@@ -121,9 +121,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				    </xsl:if>
 					<!--<userSelected value="true"/>-->
 				</coding>
-				<xsl:if test="$in/@displayName">
+				<!--<xsl:if test="$in/@displayName">
 					<text value="{$in/@displayName}"/>
-				</xsl:if>
+				</xsl:if>-->
 				<!-- ADA heeft nog geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
 				<xsl:for-each select="$in/translation">
 					<coding>
