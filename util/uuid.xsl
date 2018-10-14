@@ -4,11 +4,11 @@
 	<xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
 	<!-- Functions in the uuid: namespace are used to calculate a UUID The method used is a derived timestamp method, which 
 		is explained here: http://www.famkruithof.net/guid-uuid-timebased.html and here: http://www.ietf.org/rfc/rfc4122.txt -->
-	<!-- Returns the UUID -->
+    <!-- Returns the UUID in lower-case (http://hl7.org/fhir/datatypes.html#uri)  -->
 	<xsl:function name="uuid:get-uuid" as="xs:string*">
 		<xsl:param name="node"/>
 		<xsl:variable name="ts" select="uuid:ts-to-hex(uuid:generate-timestamp($node))"/>
-		<xsl:value-of separator="-" select="substring($ts, 8, 8), substring($ts, 4, 4), string-join((uuid:get-uuid-version(), substring($ts, 1, 3)), ''), uuid:generate-clock-id(), uuid:get-network-node()"/>
+	    <xsl:value-of separator="-" select="lower-case(substring($ts, 8, 8)), lower-case(substring($ts, 4, 4)), lower-case(string-join((uuid:get-uuid-version(), substring($ts, 1, 3)), '')), lower-case(uuid:generate-clock-id()), lower-case(uuid:get-network-node())"/>
 	</xsl:function>
 	<!-- internal aux. fu with saxon, this creates a more-unique result with generate-id then when just using a variable containing 
 		a node -->
