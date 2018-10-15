@@ -1398,6 +1398,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <criticality>
                         <xsl:attribute name="value">
                             <xsl:choose>
+                                <!-- Low Risk - only in Ketenzorg -->
+                                <xsl:when test="@code = '62482003' and @codeSystem = '2.16.840.1.113883.6.96'">low</xsl:when>
+                                <!-- High Risk - only in Ketenzorg -->
+                                <xsl:when test="@code = '75540009' and @codeSystem = '2.16.840.1.113883.6.96'">high</xsl:when>
+                                <!-- Unable to Assess Risk - only in Ketenzorg -->
+                                <xsl:when test="@code = 'ASKU' and @codeSystem = '2.16.840.1.113883.5.1008'">unable-to-assess</xsl:when>
+                                
                                 <!--Mild	255604002	SNOMED CT	2.16.840.1.113883.6.96	Licht-->
                                 <xsl:when test="@code = '255604002' and @codeSystem = '2.16.840.1.113883.6.96'">low</xsl:when>
                                 <!--Moderate	6736007	SNOMED CT	2.16.840.1.113883.6.96	Matig-->
