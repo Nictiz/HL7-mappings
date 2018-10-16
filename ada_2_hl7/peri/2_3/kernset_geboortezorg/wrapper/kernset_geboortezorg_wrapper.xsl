@@ -61,11 +61,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <versionCode code="NICTIZEd2005-Okt"/>
                 <xsl:for-each select="./interaction_id">
-                    <interactionId root="2.16.840.1.113883.1.6">
+                    <interactionId root="{$oidHL7InteractionID}">
                         <xsl:attribute name="extension" select="./@value"/>
                     </interactionId>
                 </xsl:for-each>
-                <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+                <profileId root="{$oidAORTAProfileID}" extension="810"/>
                 <processingCode code="P"/>
                 <processingModeCode code="T"/>
                 <xsl:for-each select="./accept_ack_code">

@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="Wrappers">
         <xsl:param name="payload_xml" select="."/>
         <xsl:param name="hl7_root" select="//hl7:*[not(ancestor::hl7:*)]"/>
-        <xsl:variable name="wrapper_root" select="$hl7_root[hl7:profileId[@root = '2.16.840.1.113883.2.4.3.11.1'][@extension = '810']]"/>
+        <xsl:variable name="wrapper_root" select="$hl7_root[hl7:profileId[@root = $oidAORTAProfileID][@extension = '810']]"/>
         <xsl:for-each select="$wrapper_root">
             <xsl:variable name="interaction-id" select="local-name(.)"/>
             <!-- wrapper output xml -->

@@ -27,9 +27,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidReactionObservation">2.16.840.1.113883.2.4.3.11.60.66.10.217</xsl:variable>
     <xsl:variable name="oidSeverityObservation">2.16.840.1.113883.2.4.3.11.60.66.10.219</xsl:variable>
     <xsl:variable name="oidRouteOfExposureObservation">2.16.840.1.113883.2.4.3.11.60.66.10.220</xsl:variable>
-    <xsl:variable name="oidUZIPersons">2.16.528.1.1007.3.1</xsl:variable>
-    <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
-    <xsl:variable name="oidURA">2.16.528.1.1007.3.3</xsl:variable>
     
     <!-- if this xslt is used stand alone the template below could be used. -->
     <xsl:template match="/">
@@ -243,8 +240,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </data>
         </adaxml>
         <xsl:comment>Input HL7 xml below</xsl:comment>
-        <!--<xsl:call-template name="copyElementInComment">
+        <xsl:call-template name="copyElementInComment">
             <xsl:with-param name="element" select="./*"/>
-        </xsl:call-template>-->
+        </xsl:call-template>
     </xsl:template>
 </xsl:stylesheet>

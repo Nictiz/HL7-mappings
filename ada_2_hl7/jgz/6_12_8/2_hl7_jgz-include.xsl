@@ -7,26 +7,26 @@
         <id root="messageIdRoot" extension="messageIdExt" xmlns="urn:hl7-org:v3"/>
         <creationTime xmlns="urn:hl7-org:v3"/>
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
-        <interactionId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.1.6"/>
-        <profileId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+        <interactionId xmlns="urn:hl7-org:v3" root="{$oidHL7InteractionID}"/>
+        <profileId xmlns="urn:hl7-org:v3" root="{$oidAORTAProfileID}" extension="810"/>
         <processingCode xmlns="urn:hl7-org:v3" code="P"/>
         <processingModeCode xmlns="urn:hl7-org:v3" code="T"/>
         <acceptAckCode xmlns="urn:hl7-org:v3"/>
         <receiver xmlns="urn:hl7-org:v3" typeCode="RCV">
             <device>
-                <id root="2.16.840.1.113883.2.4.6.6" extension="receiverId"/>
+                <id root="{$oidAORTAApplicatieID}" extension="receiverId"/>
             </device>
         </receiver>
         <sender xmlns="urn:hl7-org:v3" typeCode="SND">
             <device>
-                <id root="2.16.840.1.113883.2.4.6.6" extension="senderId"/>
+                <id root="{$oidAORTAApplicatieID}" extension="senderId"/>
             </device>
         </sender>
     </xsl:template>
     
     <!-- AORTA Application ID -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1008_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.2.4.6.6" extension=""/>
+        <id xmlns="urn:hl7-org:v3" root="{$oidAORTAApplicatieID}" extension=""/>
     </xsl:template>
     
     <!-- Generic Transmission Checks -->
@@ -34,22 +34,22 @@
     
     <!-- UZI-nummer systemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1010_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="2.16.528.1.1007.3.2" extension=""/>
+        <id xmlns="urn:hl7-org:v3" root="{$oidUZISystems}" extension=""/>
     </xsl:template>
     
     <!-- UZI-register abonneenummer (URA) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1011_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="2.16.528.1.1007.3.3" extension=""/>
+        <id xmlns="urn:hl7-org:v3" root="{$oidURAOrganizations}" extension=""/>
     </xsl:template>
     
     <!-- SBV-Z systemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1018_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="2.16.528.1.1007.4" extension=""/>
+        <id xmlns="urn:hl7-org:v3" root="{$oidSBVZSystems}" extension=""/>
     </xsl:template>
     
     <!-- SBV-Z Organization ID -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1019_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="2.16.528.1.1007" extension="4"/>
+        <id xmlns="urn:hl7-org:v3" root="{$oidSBVZOrganization}" extension="4"/>
     </xsl:template>
     
     <!-- Generic ControlActProcess Checks -->
@@ -68,7 +68,7 @@
     <!-- TransmissionWrapper Device -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.110_20140715000000">
         <device xmlns="urn:hl7-org:v3">
-            <id root="2.16.840.1.113883.2.4.6.6" extension=""/>
+            <id root="{$oidAORTAApplicatieID}" extension=""/>
         </device>
     </xsl:template>
     
@@ -85,10 +85,10 @@
         <Organization xmlns="urn:hl7-org:v3">
             <xsl:choose>
                 <xsl:when test="ura">
-                    <id root="2.16.528.1.1007.3.3"/>
+                    <id root="{$oidURAOrganizations}"/>
                 </xsl:when>
                 <xsl:when test="sbv-z">
-                    <id root="2.16.528.1.1007" extension="4"/>
+                    <id root="{$oidSBVZOrganization}" extension="4"/>
                 </xsl:when>
                 <xsl:when test="gbo">
                     <id root="2.16.840.1.113883.2.4.3.11.25"/>
@@ -194,8 +194,8 @@
         <id xmlns="urn:hl7-org:v3"/>
         <creationTime xmlns="urn:hl7-org:v3"/>
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
-        <interactionId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.1.6"/>
-        <profileId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+        <interactionId xmlns="urn:hl7-org:v3" root="{$oidHL7InteractionID}"/>
+        <profileId xmlns="urn:hl7-org:v3" root="{$oidAORTAProfileID}" extension="810"/>
         <processingCode xmlns="urn:hl7-org:v3" code="P"/>
         <processingModeCode xmlns="urn:hl7-org:v3" code="T"/>
         <acceptAckCode xmlns="urn:hl7-org:v3"/>
@@ -205,7 +205,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.1_20120801000000">
         <receiver xmlns="urn:hl7-org:v3" typeCode="RCV">
             <device>
-                <id root="2.16.840.1.113883.2.4.6.6"/>
+                <id root="{$oidAORTAApplicatieID}"/>
                 <name/>
             </device>
         </receiver>
@@ -215,7 +215,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.2_20120801000000">
         <receiver xmlns="urn:hl7-org:v3" typeCode="RCV">
             <device>
-                <id root="2.16.840.1.113883.2.4.6.6"/>
+                <id root="{$oidAORTAApplicatieID}"/>
                 <name/>
             </device>
         </receiver>
@@ -225,7 +225,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.3_20120801000000">
         <sender xmlns="urn:hl7-org:v3" typeCode="SND">
             <device>
-                <id root="2.16.840.1.113883.2.4.6.6"/>
+                <id root="{$oidAORTAApplicatieID}"/>
                 <name/>
             </device>
         </sender>
@@ -235,7 +235,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.4_20120801000000">
         <sender xmlns="urn:hl7-org:v3" typeCode="SND">
             <device>
-                <id root="2.16.840.1.113883.2.4.6.6"/>
+                <id root="{$oidAORTAApplicatieID}"/>
                 <name/>
             </device>
         </sender>
@@ -245,7 +245,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.5_20120801000000">
         <sender xmlns="urn:hl7-org:v3" typeCode="SND">
             <device>
-                <id root="2.16.840.1.113883.2.4.6.6"/>
+                <id root="{$oidAORTAApplicatieID}"/>
                 <name/>
             </device>
         </sender>
@@ -1430,7 +1430,7 @@
                         <time nullFlavor="UNK"/>
                         <assignedEntity classCode="ASSIGNED">
                             <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                            <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+                            <id root="{$oidURAOrganizations}" extension="00001111"/>
                         </assignedEntity>
                     </author>
                 </careStatus>
@@ -1445,7 +1445,7 @@
                         <time nullFlavor="UNK"/>
                         <assignedEntity classCode="ASSIGNED">
                             <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                            <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+                            <id root="{$oidURAOrganizations}" extension="00001111"/>
                         </assignedEntity>
                     </author>
                 </careStatus>
@@ -5015,8 +5015,8 @@
         <id xmlns="urn:hl7-org:v3"/>
         <creationTime xmlns="urn:hl7-org:v3"/>
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
-        <interactionId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.1.6"/>
-        <profileId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+        <interactionId xmlns="urn:hl7-org:v3" root="{$oidHL7InteractionID}"/>
+        <profileId xmlns="urn:hl7-org:v3" root="{$oidAORTAProfileID}" extension="810"/>
         <processingCode xmlns="urn:hl7-org:v3" code="P"/>
         <processingModeCode xmlns="urn:hl7-org:v3" code="T"/>
         <acceptAckCode xmlns="urn:hl7-org:v3" code="NE"/>
@@ -5036,7 +5036,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.105_20120801000000">
         <attentionLine xmlns="urn:hl7-org:v3">
             <keyWordText>Patient.id</keyWordText>
-            <value xsi:type="II.NL.BSN" root="2.16.840.1.113883.2.4.6.3"/>
+            <value xsi:type="II.NL.BSN" root="{$oidBurgerservicenummer}"/>
         </attentionLine>
     </xsl:template>
     
@@ -5047,9 +5047,9 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+                        <id root="{$oidUZISystems}" extension="091287345"/>
                         <Organization>
-                            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
                         </Organization>
                     </AssignedDevice>
@@ -5069,9 +5069,9 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+                        <id root="{$oidUZISystems}" extension="091287345"/>
                         <Organization>
-                            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
                         </Organization>
                     </AssignedDevice>
@@ -9707,9 +9707,9 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+                        <id root="{$oidUZISystems}" extension="091287345"/>
                         <Organization>
-                            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
                         </Organization>
                     </AssignedDevice>
@@ -11529,9 +11529,9 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+                        <id root="{$oidUZISystems}" extension="091287345"/>
                         <Organization>
-                            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
                         </Organization>
                     </AssignedDevice>
@@ -11595,9 +11595,9 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+                        <id root="{$oidUZISystems}" extension="091287345"/>
                         <Organization>
-                            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
                         </Organization>
                     </AssignedDevice>
@@ -11617,9 +11617,9 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+                        <id root="{$oidUZISystems}" extension="091287345"/>
                         <Organization>
-                            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
                         </Organization>
                     </AssignedDevice>
@@ -11783,9 +11783,9 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+                        <id root="{$oidUZISystems}" extension="091287345"/>
                         <Organization>
-                            <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
                         </Organization>
                     </AssignedDevice>
@@ -12041,12 +12041,12 @@
             </attentionLine>
             <receiver typeCode="RCV">
                 <device>
-                    <id root="2.16.840.1.113883.2.4.6.6" extension=""/>
+                    <id root="{$oidAORTAApplicatieID}" extension=""/>
                 </device>
             </receiver>
             <sender typeCode="SND">
                 <device>
-                    <id root="2.16.840.1.113883.2.4.6.6" extension=""/>
+                    <id root="{$oidAORTAApplicatieID}" extension=""/>
                 </device>
             </sender>
             <ControlActProcess moodCode="EVN">
@@ -12287,9 +12287,9 @@
         <authorOrPerformer xmlns="urn:hl7-org:v3" typeCode="AUT">
             <participant>
                 <AssignedDevice>
-                    <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+                    <id root="{$oidUZISystems}" extension="091287345"/>
                     <Organization>
-                        <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                        <id extension="00001111" root="{$oidURAOrganizations}"/>
                         <name>GGD Groningen</name>
                     </Organization>
                 </AssignedDevice>
@@ -12302,12 +12302,12 @@
         <authorOrPerformer xmlns="urn:hl7-org:v3" typeCode="AUT">
             <participant>
                 <AssignedPerson>
-                    <id root="2.16.528.1.1007.3.1"/>
+                    <id root="{$oidUZIPersons}"/>
                     <code/>
                     <telecom/>
                     <name/>
                     <Organization>
-                        <id root="2.16.528.1.1007.3.3"/>
+                        <id root="{$oidURAOrganizations}"/>
                         <code/>
                         <telecom/>
                         <name/>
@@ -12322,7 +12322,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.200.3_20120801000000">
         <overseer xmlns="urn:hl7-org:v3" typeCode="RESP">
             <AssignedPerson>
-                <id root="2.16.528.1.1007.3.1"/>
+                <id root="{$oidUZIPersons}"/>
                 <code/>
                 <assignedPrincipalChoiceList>
                     <assignedPerson>
@@ -12352,7 +12352,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.201.2_20121001000000">
         <overseer xmlns="urn:hl7-org:v3" typeCode="RESP">
             <assignedEntity>
-                <id root="2.16.528.1.1007.3.1"/>
+                <id root="{$oidUZIPersons}"/>
                 <code/>
                 <assignedPrincipalChoiceList>
                     <assignedPerson>

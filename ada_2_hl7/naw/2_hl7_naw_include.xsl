@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-\- addEnding checks baseString if it ends in endString, and if not adds it at the end. -\->
     <xsl:function name="nf:addEnding">
         <xsl:param name="baseString"/>
-        <xsl:param name="endString"/>        
+        <xsl:param name="endString"/>
         
         <xsl:choose>
             <xsl:when test="substring($baseString, string-length($baseString)-string-length($endString)+1, string-length($endString)) eq $endString">
@@ -29,8 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="concat($baseString, $endString)"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:function>
--->
+    </xsl:function>-->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
         <!-- name person NL - generic -->
         <xsl:param name="naamgegevens"/>

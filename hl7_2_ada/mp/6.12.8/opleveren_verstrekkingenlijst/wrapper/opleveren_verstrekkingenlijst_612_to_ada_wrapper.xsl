@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- the param can be called from outside this stylesheet, if no value is provided it defaults to whatever is set in 'select' -->
     <xsl:param name="output_xml_wrapper" select="'../wrapper/output_wrapper'"/>
-    <xsl:include href="../payload/sturen_medicatievoorschrift_906_to_ADA.xsl"/>
+    <xsl:include href="../payload/opleveren_verstrekkingenlijst_612_to_ada.xsl"/>
 
     <!-- template MakeWrapper can be called from outside this template, if needed to explicitly supply the input.xml filename -->
     <xsl:template name="MakeWrapper">
@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="Wrappers">
         <xsl:param name="payload_xml" select="."/>
         <xsl:param name="hl7_root" select="//hl7:*[not(ancestor::hl7:*)]"/>
-        <xsl:variable name="wrapper_root" select="$hl7_root[hl7:profileId[@root = '2.16.840.1.113883.2.4.3.11.1'][@extension = '810']]"/>
+        <xsl:variable name="wrapper_root" select="$hl7_root[hl7:profileId[@root = $oidAORTAProfileID][@extension = '810']]"/>
         <xsl:for-each select="$wrapper_root">
             <xsl:variable name="interaction-id" select="local-name(.)"/>
             <!-- wrapper output xml -->
@@ -111,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:result-document>
         </xsl:for-each>
         <!-- payload conversion -->
-        <xsl:call-template name="Voorschrift-90-ADA">
+        <xsl:call-template name="Verstrekking_612">
             <xsl:with-param name="patient" select="//hl7:recordTarget/hl7:patientRole"/>
         </xsl:call-template>
     </xsl:template>

@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900149_20130320000000">
         <!-- Allergieen -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="106190000" codeSystem="2.16.840.1.113883.6.96" displayName="Allergie"/>
+            <code code="106190000" codeSystem="{$oidSNOMEDCT}" displayName="Allergie"/>
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="originalText" select="../allergie_overig_toelichting"/>
             </xsl:call-template>
@@ -181,21 +181,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900158_20111206000000">
         <!-- Bloedtransfusie -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="161664006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloedtransfusie"/>
+            <code code="161664006" codeSystem="{$oidSNOMEDCT}" displayName="Bloedtransfusie"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900158_20150130125418">
         <!-- Bloedtransfusie -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="116859006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloedtransfusie"/>
+            <code code="116859006" codeSystem="{$oidSNOMEDCT}" displayName="Bloedtransfusie"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900159_20111206000000">
         <!-- BMI -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="39156-5" codeSystem="2.16.840.1.113883.6.1" displayName="BMI"/>
+            <code code="39156-5" codeSystem="{$oidLOINC}" displayName="BMI"/>
             <value xsi:type="PQ">
                 <xsl:attribute name="value" select="./@value"/>
                 <xsl:attribute name="unit" select="'kg/m2'"/>
@@ -244,7 +244,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900186_20111206000000">
         <!-- Infectieparameter HBsAg -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="165806002" codeSystem="2.16.840.1.113883.6.96" displayName="Afwijkende infectieparameters HBsAg"/>
+            <code code="165806002" codeSystem="{$oidSNOMEDCT}" displayName="Afwijkende infectieparameters HBsAg"/>
             <value xsi:type="BL" value="false"/>
         </observation>
     </xsl:template>
@@ -272,7 +272,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900197_20130320000000">
         <!-- Tijdstip begin actieve ontsluiting -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="249120008" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip begin actieve ontsluiting"/>
+            <code code="249120008" codeSystem="{$oidSNOMEDCT}" displayName="Tijdstip begin actieve ontsluiting"/>
             <effectiveTime>
                 <xsl:call-template name="makeTSValueAttr"/>
             </effectiveTime>
@@ -281,7 +281,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900198_20130320000000">
         <!-- Tijdstip breken vliezen -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="289251005" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="289251005" codeSystem="{$oidSNOMEDCT}"/>
             <effectiveTime>
                 <xsl:call-template name="makeTSValueAttr"/>
             </effectiveTime>
@@ -290,7 +290,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900198_20141104011243">
         <!-- Tijdstip breken vliezen -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="289251005" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip breken vliezen"/>
+            <code code="289251005" codeSystem="{$oidSNOMEDCT}" displayName="Tijdstip breken vliezen"/>
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="xsiType">TS</xsl:with-param>
             </xsl:call-template>
@@ -299,14 +299,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900199_20091001000000">
         <!-- Kleur en consistentie vruchtwater -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="38386-9" codeSystem="2.16.840.1.113883.6.1" displayName="Kleur en consistentie vruchtwater"/>
+            <code code="38386-9" codeSystem="{$oidLOINC}" displayName="Kleur en consistentie vruchtwater"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900200_20120808000000">
         <!-- Zwangerschapsduur -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="412726003" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="412726003" codeSystem="{$oidSNOMEDCT}"/>
             <!-- moet in dagen in bericht -->
             <value xsi:type="PQ" unit="d">
                 <xsl:attribute name="value" select="./@value"/>
@@ -401,7 +401,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20130320000000">
         <!-- Zwangerschapsduur op datum onderzoek -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="445872007" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschapsduur"/>
+            <code code="445872007" codeSystem="{$oidSNOMEDCT}" displayName="Zwangerschapsduur"/>
             <value xsi:type="PQ" unit="d">
                 <xsl:attribute name="value" select="./@value"/>
             </value>
@@ -411,7 +411,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900236_20161206114409">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900236"/>
-            <code code="445872007" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschapsduur"/>
+            <code code="445872007" codeSystem="{$oidSNOMEDCT}" displayName="Zwangerschapsduur"/>
             <!-- Item(s) :: zwangerschapsduur zwangerschapsduur_op_datum_onderzoek-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -422,7 +422,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Geslacht (medische observatie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20091001000000">
         <observation classCode="OBS" moodCode="EVN">
-            <code code="46098-0" codeSystem="2.16.840.1.113883.6.1" displayName="Geslacht (medische observatie)"/>
+            <code code="46098-0" codeSystem="{$oidLOINC}" displayName="Geslacht (medische observatie)"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
@@ -444,7 +444,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900261_20130320000000">
         <!-- Tijdstip actief meepersen -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="249160009" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip actief meepersen"/>
+            <code code="249160009" codeSystem="{$oidSNOMEDCT}" displayName="Tijdstip actief meepersen"/>
             <effectiveTime>
                 <xsl:call-template name="makeTSValueAttr"/>
             </effectiveTime>
@@ -460,7 +460,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900262_20141107181807">
         <!-- 	Conditie perineum postpartum -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="364297003" codeSystem="2.16.840.1.113883.6.96" displayName="Conditie perineum postpartum"/>
+            <code code="364297003" codeSystem="{$oidSNOMEDCT}" displayName="Conditie perineum postpartum"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
@@ -489,7 +489,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Sectio caesarea -->
         <procedure classCode="PROC" moodCode="EVN">
             <id nullFlavor="NI"/>
-            <code code="11466000" codeSystem="2.16.840.1.113883.6.96" displayName="Sectio Caesarea"/>
+            <code code="11466000" codeSystem="{$oidSNOMEDCT}" displayName="Sectio Caesarea"/>
             <xsl:for-each select="./beslismoment_sectio_caesarea">
                 <outboundRelationship typeCode="FLFS">
                     <!-- Beslismoment sectio caesarea -->
@@ -531,7 +531,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900294_20091001000000">
         <!-- Apgarscore na 5 min -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="9274-2" codeSystem="2.16.840.1.113883.6.1" displayName="Apgarscore na 5 min."/>
+            <code code="9274-2" codeSystem="{$oidLOINC}" displayName="Apgarscore na 5 min."/>
             <xsl:call-template name="makeINTValue"/>
         </observation>
     </xsl:template>
@@ -575,14 +575,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900403_20111206000000">
         <!--Placenta Compleet-->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="364343000" codeSystem="2.16.840.1.113883.6.96" displayName="Compleetheid placenta"/>
+            <code code="364343000" codeSystem="{$oidSNOMEDCT}" displayName="Compleetheid placenta"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20110128000000">
         <!-- Geboortegewicht -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+            <code code="8339-4" codeSystem="{$oidLOINC}"/>
             <value xsi:type="PQ" unit="g">
                 <xsl:attribute name="value" select="./@value"/>
             </value>
@@ -623,7 +623,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900506_20111206000000">
         <!-- Biparital Diameter Percentile -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="X_BPD_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BPD Percentiel"/>
+            <code code="X_BPD_PRCTL" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="BPD Percentiel"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -632,7 +632,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900510_20111206000000">
         <!-- Head Circumference Percentile  -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="X_HC_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HC Percentiel"/>
+            <code code="X_HC_PRCTL" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="HC Percentiel"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -641,7 +641,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900513_20111206000000">
         <!--  Abdominal Circumference Percentile  -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="X_AC_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Abdominal circumference^Fetus Percentile"/>
+            <code code="X_AC_PRCTL" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Abdominal circumference^Fetus Percentile"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -650,7 +650,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900515_20111206000000">
         <!-- Femur Length Percentile -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="X_FL_PRCTL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Fetal Femur diaphysis [Length]^Fetus Percentile"/>
+            <code code="X_FL_PRCTL" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Fetal Femur diaphysis [Length]^Fetus Percentile"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -687,7 +687,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900533_20110128000000">
         <!-- HC -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="11984-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="HC (Head circumference)"/>
+            <code code="11984-2" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="HC (Head circumference)"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -696,7 +696,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900535_20110128000000">
         <!-- Abdominal Circumference -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="11979-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="AC (Abdominal circumference)"/>
+            <code code="11979-2" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="AC (Abdominal circumference)"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -705,7 +705,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900536_20110128000000">
         <!-- Femur Length -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="11963-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Fetal Femur diaphysis [Length] US"/>
+            <code code="11963-6" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Fetal Femur diaphysis [Length] US"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -714,7 +714,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900570_20110128000000">
         <!--  Body Height -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="3137-7" codeSystem="2.16.840.1.113883.6.1" displayName="Body height"/>
+            <code code="3137-7" codeSystem="{$oidLOINC}" displayName="Body height"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -723,7 +723,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900571_20110128000000">
         <!--  Body Weight  -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="3141-9" codeSystem="2.16.840.1.113883.6.1" displayName="Gewicht (gemeten)"/>
+            <code code="3141-9" codeSystem="{$oidLOINC}" displayName="Gewicht (gemeten)"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -742,7 +742,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900612_20111206000000">
         <!-- Actuele bloeddruk -->
         <organizer classCode="CONTAINER" moodCode="EVN">
-            <code code="75367002" codeSystem="2.16.840.1.113883.6.96" displayName="Bloeddruk"/>
+            <code code="75367002" codeSystem="{$oidSNOMEDCT}" displayName="Bloeddruk"/>
             <component typeCode="COMP">
                 <xsl:for-each select="./actuele_bloeddruk_systolisch">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900661_20111206000000"/>
@@ -805,7 +805,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900620_20141024000000">
         <act classCode="PCPR" moodCode="RQO" negationInd="false">
-            <code code="308292007" codeSystem="2.16.840.1.113883.6.96" displayName="Transfer of care (procedure)"/>
+            <code code="308292007" codeSystem="{$oidSNOMEDCT}" displayName="Transfer of care (procedure)"/>
             <xsl:for-each select="./datum_van_overdracht">
                 <effectiveTime>
                     <xsl:call-template name="makeTSValueAttr"/>
@@ -966,7 +966,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900654_20120503000000">
         <observation classCode="OBS" moodCode="EVN">
-            <code code="129019007" codeSystem="2.16.840.1.113883.6.96" displayName="Actuele medicatie"/>
+            <code code="129019007" codeSystem="{$oidSNOMEDCT}" displayName="Actuele medicatie"/>
             <xsl:for-each select="./actueel_medicatiegebruikq">
                 <xsl:call-template name="makeBLValue"/>
             </xsl:for-each>
@@ -1001,14 +1001,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900657_20111206000000">
         <!-- MRSA besmetting aangetoond? -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="266096002" codeSystem="2.16.840.1.113883.6.96" displayName="MRSA besmetting"/>
+            <code code="266096002" codeSystem="{$oidSNOMEDCT}" displayName="MRSA besmetting"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900661_20111206000000">
         <!-- Actuele bloeddruk systolisch -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="271649006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloeddruk systolisch"/>
+            <code code="271649006" codeSystem="{$oidSNOMEDCT}" displayName="Bloeddruk systolisch"/>
             <value xsi:type="PQ">
                 <xsl:attribute name="value" select="./@value"/>
                 <xsl:attribute name="unit" select="'mm[Hg]'"/>
@@ -1018,7 +1018,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900662_20111206000000">
         <!-- Actuele bloeddruk diastolisch -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="271650006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloeddruk diastolisch"/>
+            <code code="271650006" codeSystem="{$oidSNOMEDCT}" displayName="Bloeddruk diastolisch"/>
             <value xsi:type="PQ">
                 <xsl:attribute name="value" select="./@value"/>
                 <xsl:attribute name="unit" select="'mm[Hg]'"/>
@@ -1028,7 +1028,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900663_20111206000000">
         <!-- Bloedgroep -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="883-9" codeSystem="2.16.840.1.113883.6.1" displayName="Bloedgroep"/>
+            <code code="883-9" codeSystem="{$oidLOINC}" displayName="Bloedgroep"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
@@ -1058,7 +1058,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                             <!-- Verplicht in template om één van URA/AGB/LVR mee te geven-->
                             <!-- TODO: vullen met eigen / juiste ID -->
-                            <id root="2.16.528.1.1007.3.3" extension="00023444"/>
+                            <id root="{$oidURAOrganizations}" extension="00023444"/>
                             <xsl:for-each select="./zorginstelling_oid">
                                 <!-- TODO: juiste root aanvullen -->
                                 <id root="1.2.3.4.5">
@@ -1080,14 +1080,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900669_20130314000000">
         <!-- Rhesus D Factor -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="978-7" codeSystem="2.16.840.1.113883.6.1" displayName="Rhesus D Factor"/>
+            <code code="978-7" codeSystem="{$oidLOINC}" displayName="Rhesus D Factor"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900683_20130314000000">
         <!-- Rhesus c Factor -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="948-0" codeSystem="2.16.840.1.113883.6.1" displayName="C Ag [Presence] on Red Blood Cells"/>
+            <code code="948-0" codeSystem="{$oidLOINC}" displayName="C Ag [Presence] on Red Blood Cells"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
@@ -1161,7 +1161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Item: 70010 - Voeding kind, krijgt zowel borst- als kunstvoeding  -->
         <supply classCode="DIET" moodCode="EVN">
             <id nullFlavor="NI"/>
-            <code code="230126006" codeSystem="2.16.840.1.113883.6.96" displayName="Voeding kind"/>
+            <code code="230126006" codeSystem="{$oidSNOMEDCT}" displayName="Voeding kind"/>
             <xsl:for-each select="./voeding_kind_datum">
                 <effectiveTime>
                     <xsl:call-template name="makeTSValueAttr"/>
@@ -1185,7 +1185,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- 
                              obstetrische anamnese van deze voorgaande zwangerschap
                          -->
-            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese voorgaande zwangerschap"/>
+            <code code="248983002" codeSystem="{$oidSNOMEDCT}" displayName="Obstetrische anamnese voorgaande zwangerschap"/>
             <!-- Identificatie (nummer) van deze voorgaande zwangerschap -->
             <xsl:for-each select="./identificatie_van_de_zwangerschap">
                 <component typeCode="COMP" contextConductionInd="true">
@@ -1209,7 +1209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <component typeCode="COMP" contextConductionInd="true">
                     <procedure classCode="PROC" moodCode="EVN">
                         <id nullFlavor="NI"/>
-                        <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+                        <code code="236973005" codeSystem="{$oidSNOMEDCT}" displayName="Bevalling"/>
                         <!-- deze voorgaande partus: Hoeveelheid bloedverlies -->
                         <xsl:for-each select="./hoeveelheid_bloedverlies">
                             <inboundRelationship typeCode="COMP">
@@ -1275,7 +1275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900728_20111206000000">
         <!-- Identificatie van de zwangerschap -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="X_PREGNBR" codeSystem="2.16.840.1.113883.6.1" displayName="Identificatie van de zwangerschap"/>
+            <code code="X_PREGNBR" codeSystem="{$oidLOINC}" displayName="Identificatie van de zwangerschap"/>
             <xsl:call-template name="makeINTValue"/>
         </observation>
     </xsl:template>
@@ -1333,7 +1333,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900821_20110128000000">
         <!-- BPD -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="11820-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="BPD"/>
+            <code code="11820-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="BPD"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -1355,20 +1355,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20130314000000">
         <!-- Type partus -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="289258004" codeSystem="2.16.840.1.113883.6.96" displayName="Type partus"/>
+            <code code="289258004" codeSystem="{$oidSNOMEDCT}" displayName="Type partus"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20141029000000">
         <!-- Type partus -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="364336006" codeSystem="2.16.840.1.113883.6.96" displayName="Type partus"/>
+            <code code="364336006" codeSystem="{$oidSNOMEDCT}" displayName="Type partus"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900862_20130314000000">
         <organizer classCode="CONTAINER" moodCode="EVN">
-            <code code="12130-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Study observation.general^Fetus"/>
+            <code code="12130-1" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Study observation.general^Fetus"/>
             <!-- Datum van onderzoek = datum van bepaling zwangerschapsduur -->
             <xsl:for-each select="../datum_onderzoek">
                 <effectiveTime>
@@ -1619,7 +1619,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900898_20130320000000">
         <!-- Ontsluitingsduur -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="169821004" codeSystem="2.16.840.1.113883.6.96" displayName="Ontsluitingsduur"/>
+            <code code="169821004" codeSystem="{$oidSNOMEDCT}" displayName="Ontsluitingsduur"/>
             <value xsi:type="PQ" unit="h">
                 <xsl:attribute name="value" select="./@value"/>
             </value>
@@ -1628,7 +1628,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900899_20130320000000">
         <!-- Uitdrijvingsduur -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="169822006" codeSystem="2.16.840.1.113883.6.96" displayName="Uitdrijvingsduur"/>
+            <code code="169822006" codeSystem="{$oidSNOMEDCT}" displayName="Uitdrijvingsduur"/>
             <value xsi:type="PQ" unit="min">
                 <xsl:attribute name="value" select="./@value"/>
             </value>
@@ -1637,7 +1637,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900900_20130320000000">
         <!-- Hoeveelheid bloedverlies -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="364332008" codeSystem="2.16.840.1.113883.6.96" displayName="Hoeveelheid bloedverlies"/>
+            <code code="364332008" codeSystem="{$oidSNOMEDCT}" displayName="Hoeveelheid bloedverlies"/>
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="unit" select="@unit"/>
             </xsl:call-template>
@@ -1696,7 +1696,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900902_20131108000000">
         <!--Percentiel geboortegewicht-->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="301334000" codeSystem="2.16.840.1.113883.6.96" displayName="Percentiel van het geboortegewicht"/>
+            <code code="301334000" codeSystem="{$oidSNOMEDCT}" displayName="Percentiel van het geboortegewicht"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
@@ -1727,7 +1727,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900909_20130320000000">
         <!-- Congenitale afwijkingen (JN) -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="66091009" codeSystem="2.16.840.1.113883.6.96" displayName="Congenital disease (disorder)"/>
+            <code code="66091009" codeSystem="{$oidSNOMEDCT}" displayName="Congenital disease (disorder)"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -1752,7 +1752,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900918_20130320000000">
         <!--Intra-uteriene vruchtdood-->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="59291004" codeSystem="2.16.840.1.113883.6.96" displayName="Intra-uteriene vruchtdood"/>
+            <code code="59291004" codeSystem="{$oidSNOMEDCT}" displayName="Intra-uteriene vruchtdood"/>
             <xsl:if test="./intrauteriene_vruchtdoodq/@value = 'true'">
                 <xsl:for-each select="waarschijnlijkheid_intrauteriene_vruchtdood">
                     <uncertaintyCode>
@@ -1769,7 +1769,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="maternale_onderzoeken"/>
         <!-- Maternaal onderzoek -->
         <organizer classCode="CONTAINER" moodCode="EVN">
-            <code code="12131-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Patiënt onderzoek"/>
+            <code code="12131-9" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Patiënt onderzoek"/>
             <!-- Hb zwangere - alleen de meest actuele, dus mag maximaal één keer voorkomen -->
             <xsl:for-each select="$maternale_onderzoeken/hb">
                 <component typeCode="COMP" contextConductionInd="true">
@@ -1791,7 +1791,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900920_20130729000000">
         <!-- MtrnlHb  -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="59260-0" codeSystem="2.16.840.1.113883.6.1" displayName="Hb"/>
+            <code code="59260-0" codeSystem="{$oidLOINC}" displayName="Hb"/>
             <!-- Datum van onderzoek = datum van bepaling zwangerschapsduur -->
             <xsl:for-each select="../../datum_onderzoek">
                 <effectiveTime>
@@ -1812,7 +1812,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900921_20130729000000">
         <!-- MtrnlRhDFoetus -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="X_RHFETBM" codeSystem="2.16.840.1.113883.6.1"/>
+            <code code="X_RHFETBM" codeSystem="{$oidLOINC}"/>
             <!-- Datum van onderzoek = datum van bepaling zwangerschapsduur -->
             <xsl:for-each select="../../datum_onderzoek">
                 <effectiveTime>
@@ -1833,7 +1833,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <component typeCode="COMP" contextConductionInd="true">
             <procedure classCode="PROC" moodCode="EVN" negationInd="false">
                 <id nullFlavor="NI"/>
-                <code code="51597003" codeSystem="2.16.840.1.113883.6.96" displayName="Manual palpation of vagina (procedure)"/>
+                <code code="51597003" codeSystem="{$oidSNOMEDCT}" displayName="Manual palpation of vagina (procedure)"/>
                 <!-- Datum van onderzoek = datum van bepaling zwangerschapsduur -->
                 <xsl:for-each select="../../datum_onderzoek">
                     <effectiveTime>
@@ -1851,7 +1851,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./portio">
                     <inboundRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
-                            <code code="249021005" codeSystem="2.16.840.1.113883.6.96" displayName="Portio"/>
+                            <code code="249021005" codeSystem="{$oidSNOMEDCT}" displayName="Portio"/>
                             <xsl:call-template name="makeCEValue"/>
                         </observation>
                     </inboundRelationship>
@@ -1860,7 +1860,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./ontsluiting">
                     <inboundRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
-                            <code code="289761004" codeSystem="2.16.840.1.113883.6.96" displayName="Ontsluiting"/>
+                            <code code="289761004" codeSystem="{$oidSNOMEDCT}" displayName="Ontsluiting"/>
                             <xsl:call-template name="makeCEValue"/>
                         </observation>
                     </inboundRelationship>
@@ -1869,7 +1869,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./vliezen">
                     <inboundRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
-                            <code code="112074005" codeSystem="2.16.840.1.113883.6.96" displayName="Vliezen"/>
+                            <code code="112074005" codeSystem="{$oidSNOMEDCT}" displayName="Vliezen"/>
                             <xsl:call-template name="makeCEValue"/>
                         </observation>
                     </inboundRelationship>
@@ -1878,7 +1878,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./indaling_hodge">
                     <inboundRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
-                            <code code="364611006" codeSystem="2.16.840.1.113883.6.96" displayName="Indaling"/>
+                            <code code="364611006" codeSystem="{$oidSNOMEDCT}" displayName="Indaling"/>
                             <xsl:call-template name="makeCEValue"/>
                         </observation>
                     </inboundRelationship>
@@ -1887,7 +1887,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./aard_van_het_voorliggend_deel">
                     <inboundRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
-                            <code code="364612004" codeSystem="2.16.840.1.113883.6.96" displayName="Aard van het voorliggend deel"/>
+                            <code code="364612004" codeSystem="{$oidSNOMEDCT}" displayName="Aard van het voorliggend deel"/>
                             <xsl:call-template name="makeCEValue"/>
                         </observation>
                     </inboundRelationship>
@@ -1896,7 +1896,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./stand">
                     <inboundRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
-                            <code code="163520002" codeSystem="2.16.840.1.113883.6.96" displayName="Stand"/>
+                            <code code="163520002" codeSystem="{$oidSNOMEDCT}" displayName="Stand"/>
                             <xsl:call-template name="makeCEValue"/>
                         </observation>
                     </inboundRelationship>
@@ -1929,7 +1929,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20140415000000">
         <!-- Diabetes mellitus -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="73211009" codeSystem="2.16.840.1.113883.6.96" displayName="Diabetes mellitus"/>
+            <code code="73211009" codeSystem="{$oidSNOMEDCT}" displayName="Diabetes mellitus"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -2079,7 +2079,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20161202125822">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900954"/>
-            <code code="310789003" codeSystem="2.16.840.1.113883.6.96" displayName="Gynaecologische aandoening"/>
+            <code code="310789003" codeSystem="{$oidSNOMEDCT}" displayName="Gynaecologische aandoening"/>
             <!-- Item(s) :: gynaecologische_aandoening-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2127,7 +2127,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--Algemene anamnese PRN-->
         <organizer classCode="CONTAINER" moodCode="EVN">
             <!-- Item: 80904 - Algemene anamnese -->
-            <code code="312850006" codeSystem="2.16.840.1.113883.6.96" displayName="History of - disorder"/>
+            <code code="312850006" codeSystem="{$oidSNOMEDCT}" displayName="History of - disorder"/>
             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900944_20141024000000"/>
             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900945_20141024000000"/>
             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900946_20141024000000"/>
@@ -2174,7 +2174,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900963_20141027000000">
         <!--Anamnese PRN-->
         <organizer classCode="CONTAINER" moodCode="EVN">
-            <code code="417662000" codeSystem="2.16.840.1.113883.6.96" displayName="Past history of clinical finding"/>
+            <code code="417662000" codeSystem="{$oidSNOMEDCT}" displayName="Past history of clinical finding"/>
             <xsl:for-each select="./onder_behandeling_geweestq">
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20141027000000"/>
@@ -2202,7 +2202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900966_20141028000000">
         <!--Obstetrische anamnese voorgaande zwangerschap Kernsetbericht PRN-->
         <organizer classCode="CONTAINER" moodCode="EVN">
-            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese voorgaande zwangerschap"/>
+            <code code="248983002" codeSystem="{$oidSNOMEDCT}" displayName="Obstetrische anamnese voorgaande zwangerschap"/>
             <!-- Wijze einde zwangerschap -->
             <xsl:for-each select="./wijze_einde_zwangerschap">
                 <component typeCode="COMP" contextConductionInd="true">
@@ -2219,7 +2219,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="./diagnose">
                 <component typeCode="COMP" contextConductionInd="true">
                     <organizer classCode="CONTAINER" moodCode="EVN">
-                        <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                        <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Diagnosis"/>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900954_20141024000000"/>
                         <!-- Bloedverlies? -->
                         <xsl:for-each select="./bloedverliesq">
@@ -2289,7 +2289,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <component typeCode="COMP" contextConductionInd="true">
                     <procedure classCode="PROC" moodCode="EVN">
                         <id nullFlavor="NI"/>
-                        <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Delivery procedure (procedure)"/>
+                        <code code="236973005" codeSystem="{$oidSNOMEDCT}" displayName="Delivery procedure (procedure)"/>
                         <xsl:for-each select="./placenta/geboorte_placenta">
                             <outboundRelationship typeCode="COMP">
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20091001000000"/>
@@ -2315,7 +2315,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20141028000000">
         <!-- Bloedverlies? -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="131148009" codeSystem="2.16.840.1.113883.6.96" displayName="Bloedverlies"/>
+            <code code="131148009" codeSystem="{$oidSNOMEDCT}" displayName="Bloedverlies"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -2323,7 +2323,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900967_20161202142446">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900967"/>
-            <code code="131148009" codeSystem="2.16.840.1.113883.6.96" displayName="Bloedverlies"/>
+            <code code="131148009" codeSystem="{$oidSNOMEDCT}" displayName="Bloedverlies"/>
             <!-- Item(s) :: bloedverliesq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2333,7 +2333,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20141028000000">
         <!-- Cervixinsufficiëntie -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="17382005" codeSystem="2.16.840.1.113883.6.96" displayName="Cervixinsufficiëntie"/>
+            <code code="17382005" codeSystem="{$oidSNOMEDCT}" displayName="Cervixinsufficiëntie"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -2341,7 +2341,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900968_20161202144215">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900968"/>
-            <code code="17382005" codeSystem="2.16.840.1.113883.6.96" displayName="Cervixinsufficiëntie"/>
+            <code code="17382005" codeSystem="{$oidSNOMEDCT}" displayName="Cervixinsufficiëntie"/>
             <!-- Item(s) ::  cervixinsufficientieq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2351,7 +2351,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20141028000000">
         <!-- Hyperemesis gravidarum -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="14094001" codeSystem="2.16.840.1.113883.6.96" displayName="Hyperemesis gravidarum"/>
+            <code code="14094001" codeSystem="{$oidSNOMEDCT}" displayName="Hyperemesis gravidarum"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -2359,7 +2359,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900969_20161202144436">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900969"/>
-            <code code="14094001" codeSystem="2.16.840.1.113883.6.96" displayName="Hyperemesis gravidarum"/>
+            <code code="14094001" codeSystem="{$oidSNOMEDCT}" displayName="Hyperemesis gravidarum"/>
             <!-- Item(s) :: hyperemesis_gravidarumq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2369,7 +2369,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20141028000000">
         <!-- Zwangerschapscholestase -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="235888006" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschapscholestase"/>
+            <code code="235888006" codeSystem="{$oidSNOMEDCT}" displayName="Zwangerschapscholestase"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -2377,7 +2377,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900971_20161202144715">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900971"/>
-            <code code="235888006" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschapscholestase"/>
+            <code code="235888006" codeSystem="{$oidSNOMEDCT}" displayName="Zwangerschapscholestase"/>
             <!-- Item(s) :: zwangerschapscholestaseq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2423,7 +2423,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20141028000000">
         <!-- Abruptio placentae -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="415105001" codeSystem="2.16.840.1.113883.6.96" displayName="Abruptio placentae"/>
+            <code code="415105001" codeSystem="{$oidSNOMEDCT}" displayName="Abruptio placentae"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -2431,7 +2431,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900974_20161202145207">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900974"/>
-            <code code="415105001" codeSystem="2.16.840.1.113883.6.96" displayName="Abruptio placentae"/>
+            <code code="415105001" codeSystem="{$oidSNOMEDCT}" displayName="Abruptio placentae"/>
             <!-- Item(s) :: abruptio_placentaeq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2452,7 +2452,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900975_20161202144326">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900975"/>
-            <code code="40733004" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="40733004" codeSystem="{$oidSNOMEDCT}"/>
             <!-- Item(s) :: infectie -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2476,7 +2476,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900976_20161202144857">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900976"/>
-            <code code="276604007" codeSystem="2.16.840.1.113883.6.96" displayName="Afwijkende groei foetus"/>
+            <code code="276604007" codeSystem="{$oidSNOMEDCT}" displayName="Afwijkende groei foetus"/>
             <!-- Item(s) :: afwijkende_groei_foetus -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2497,7 +2497,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202144622">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900977"/>
-            <code code="38341003" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="38341003" codeSystem="{$oidSNOMEDCT}"/>
             <!-- Item(s) :: hypertensieve_aandoening -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2508,7 +2508,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900977_20161202145706">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900977"/>
-            <code code="38341003" codeSystem="2.16.840.1.113883.6.96" displayName="Hypertensieve aandoening"/>
+            <code code="38341003" codeSystem="{$oidSNOMEDCT}" displayName="Hypertensieve aandoening"/>
             <!-- Item(s) :: hypertensieve_aandoening -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2518,7 +2518,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20141028000000">
         <!-- Diabetes gravidarum met insuline -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="46894009" codeSystem="2.16.840.1.113883.6.96" displayName="Diabetes gravidarum met insuline"/>
+            <code code="46894009" codeSystem="{$oidSNOMEDCT}" displayName="Diabetes gravidarum met insuline"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -2526,7 +2526,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900978_20161202144812">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900978"/>
-            <code code="46894009" codeSystem="2.16.840.1.113883.6.96" displayName="Diabetes gravidarum met insuline"/>
+            <code code="46894009" codeSystem="{$oidSNOMEDCT}" displayName="Diabetes gravidarum met insuline"/>
             <!-- Item(s) :: diabetes_gravidarum_met_insulineq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -2587,13 +2587,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--Chromosomale afwijkingen (ja nee)-->
         <observation classCode="OBS" moodCode="EVN" displayName="Chromosomale afwijking">
             <xsl:call-template name="makeNegationAttr"/>
-            <code code="74345006" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="74345006" codeSystem="{$oidSNOMEDCT}"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900983_20141029155150">
         <!-- Postnatale fase -->
         <organizer classCode="CONTAINER" moodCode="EVN">
-            <code code="133906008" codeSystem="2.16.840.1.113883.6.96" displayName="Postpartum care (regime/therapy)"/>
+            <code code="133906008" codeSystem="{$oidSNOMEDCT}" displayName="Postpartum care (regime/therapy)"/>
             <!-- Diagnose postpartum -->
             <!-- Pathologie vrouw -->
             <xsl:for-each select="./diagnose_postpartum">
@@ -2616,7 +2616,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900985_20141103113239">
         <!-- Maternaal onderzoek PRN -->
         <organizer classCode="CONTAINER" moodCode="EVN">
-            <code code="12131-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Study observation.general^Patient"/>
+            <code code="12131-9" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Study observation.general^Patient"/>
             <xsl:for-each select="./maternale_onderzoeksgegevens/urine_bloed_en_aanvullende_onderzoeken/psie">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Laboratorium uitslagen - PSIE -->
@@ -2671,7 +2671,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900988_20141103235309">
         <!--Bevalling PRN Kernset-->
         <organizer classCode="CONTAINER" moodCode="EVN">
-            <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Delivery procedure"/>
+            <code code="236973005" codeSystem="{$oidSNOMEDCT}" displayName="Delivery procedure"/>
             <!-- Item: 20500 - Partusnummer -->
             <xsl:for-each select="./partusnummer">
                 <component typeCode="COMP" contextConductionInd="true">
@@ -2683,7 +2683,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <component typeCode="COMP" contextConductionInd="true">
                     <organizer classCode="CONTAINER" moodCode="EVN">
                         <id nullFlavor="NI"/>
-                        <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                        <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Diagnosis"/>
                         <!-- PPROM? -->
                         <xsl:for-each select="./ppromq">
                             <component typeCode="COMP" contextConductionInd="true">
@@ -2989,7 +2989,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN">
             <xsl:attribute name="negationInd" select="./pijnbestrijdingq/@value = 'false'"/>
             <id nullFlavor="NI"/>
-            <code code="278414003" codeSystem="2.16.840.1.113883.6.96" displayName="Pijnbestrijding"/>
+            <code code="278414003" codeSystem="{$oidSNOMEDCT}" displayName="Pijnbestrijding"/>
             <xsl:for-each select="./pijnbestrijding/methode/methode">
                 <methodCode>
                     <xsl:call-template name="makeCodeAttribs"/>
@@ -3017,7 +3017,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <procedure classCode="PROC" moodCode="EVN">
                                         <id nullFlavor="NI"/>
                                         <!-- Item 82095 - Toediening -->
-                                        <code code="416118004" codeSystem="2.16.840.1.113883.6.96" displayName="Toediening"/>
+                                        <code code="416118004" codeSystem="{$oidSNOMEDCT}" displayName="Toediening"/>
                                         <methodCode>
                                             <xsl:call-template name="makeCodeAttribs"/>
                                         </methodCode>
@@ -3035,7 +3035,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr"/>
             <id nullFlavor="NI"/>
-            <code code="72641008" codeSystem="2.16.840.1.113883.6.96" displayName="Sedatie"/>
+            <code code="72641008" codeSystem="{$oidSNOMEDCT}" displayName="Sedatie"/>
         </procedure>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900998_20141106000000">
@@ -3049,7 +3049,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Vaginale kunstverlossing -->
         <procedure classCode="PROC" moodCode="EVN" negationInd="false">
             <id nullFlavor="NI"/>
-            <code code="3311000146109" codeSystem="2.16.840.1.113883.6.96" displayName="Vaginale kunstverlossing"/>
+            <code code="3311000146109" codeSystem="{$oidSNOMEDCT}" displayName="Vaginale kunstverlossing"/>
             <xsl:for-each select="./vaginale_kunstverlossing">
                 <methodCode>
                     <xsl:call-template name="makeCodeAttribs"/>
@@ -3077,7 +3077,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901001_20141106000000">
         <!--Alcoholgebruik-->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="228309001" codeSystem="2.16.840.1.113883.6.96" displayName="Alcoholgebruik"/>
+            <code code="228309001" codeSystem="{$oidSNOMEDCT}" displayName="Alcoholgebruik"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
@@ -3092,7 +3092,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--Prenatale controle-->
         <procedure classCode="PROC" moodCode="EVN">
             <id nullFlavor="NI"/>
-            <code code="18114009" codeSystem="2.16.840.1.113883.6.96" displayName="Prenatale controle"/>
+            <code code="18114009" codeSystem="{$oidSNOMEDCT}" displayName="Prenatale controle"/>
             <xsl:for-each select="./datum_controle">
                 <effectiveTime>
                     <xsl:call-template name="makeTSValueAttr"/>
@@ -3141,7 +3141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901003"/>
             <id nullFlavor="NI"/>
-            <code code="18114009" codeSystem="2.16.840.1.113883.6.96" displayName="Prenatale controle"/>
+            <code code="18114009" codeSystem="{$oidSNOMEDCT}" displayName="Prenatale controle"/>
             <!-- Item(s) :: datum_controle-->
             <xsl:for-each select="datum_controle">
                 <effectiveTime>
@@ -3190,7 +3190,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Diagnose deze zwangerschap -->
         <organizer classCode="CONTAINER" moodCode="EVN">
             <id nullFlavor="NI"/>
-            <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+            <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Diagnosis"/>
             <xsl:for-each select="./datum">
                 <effectiveTime>
                     <xsl:call-template name="makeTSValueAttr"/>
@@ -3288,7 +3288,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901006_20141106000000">
         <!--  Intra-uteriene behandeling -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="265631002" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="265631002" codeSystem="{$oidSNOMEDCT}"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
@@ -3296,7 +3296,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901006_20161206110631">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901006"/>
-            <code code="265631002" codeSystem="2.16.840.1.113883.6.96" displayName="Intra-uteriene behandeling"/>
+            <code code="265631002" codeSystem="{$oidSNOMEDCT}" displayName="Intra-uteriene behandeling"/>
             <!-- Item(s) :: intrauteriene_behandeling -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -3307,49 +3307,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901007_20141107000000">
         <!--PPROM?-->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="312974005" codeSystem="2.16.840.1.113883.6.96" displayName="PPROM"/>
+            <code code="312974005" codeSystem="{$oidSNOMEDCT}" displayName="PPROM"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901008_20141107000000">
         <!-- PROM? -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="44223004" codeSystem="2.16.840.1.113883.6.96" displayName="PROM"/>
+            <code code="44223004" codeSystem="{$oidSNOMEDCT}" displayName="PROM"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901009_20141107000000">
         <!-- 	Koorts? -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="386661006" codeSystem="2.16.840.1.113883.6.96" displayName="Koorts"/>
+            <code code="386661006" codeSystem="{$oidSNOMEDCT}" displayName="Koorts"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901010_20141107000000">
         <!-- Niet vorderende ontsluiting? -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="237320005" codeSystem="2.16.840.1.113883.6.96" displayName="Niet vorderende ontsluiting"/>
+            <code code="237320005" codeSystem="{$oidSNOMEDCT}" displayName="Niet vorderende ontsluiting"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901011_20141107000000">
         <!-- Niet vorderende uitdrijving? -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="249166003" codeSystem="2.16.840.1.113883.6.96" displayName="Niet vorderende uitdrijving"/>
+            <code code="249166003" codeSystem="{$oidSNOMEDCT}" displayName="Niet vorderende uitdrijving"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901012_20141107000000">
         <!-- Verdenking foetale nood? -->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="609415007:246090004=12867002" codeSystem="2.16.840.1.113883.6.96" displayName="Verdenking foetale nood"/>
+            <code code="609415007:246090004=12867002" codeSystem="{$oidSNOMEDCT}" displayName="Verdenking foetale nood"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901013_20141107000000">
         <!-- Vastzittende placenta?-->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="109894007" codeSystem="2.16.840.1.113883.6.96" displayName="Vastzittende placenta"/>
+            <code code="109894007" codeSystem="{$oidSNOMEDCT}" displayName="Vastzittende placenta"/>
             <xsl:call-template name="makeBLValue"/>
         </observation>
     </xsl:template>
@@ -3358,7 +3358,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr"/>
             <!-- TEDOEN nullFlavor is ook mogelijk: nog bijbouwen -->
-            <code code="443341004" codeSystem="2.16.840.1.113883.6.96" displayName="Congenitale afwijking"/>
+            <code code="443341004" codeSystem="{$oidSNOMEDCT}" displayName="Congenitale afwijking"/>
         </observation>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901016_20141107134958">
@@ -3460,7 +3460,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901023_20141113000000">
         <!--Leven voelen-->
         <observation classCode="OBS" moodCode="EVN">
-            <code code="364618000" codeSystem="2.16.840.1.113883.6.96" displayName="Leven voelen"/>
+            <code code="364618000" codeSystem="{$oidSNOMEDCT}" displayName="Leven voelen"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
@@ -3496,7 +3496,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <Organization xmlns="urn:hl7-org:v3">
             <xsl:choose>
                 <xsl:when test="'TODO-X-Include in choice'">
-                    <id root="2.16.528.1.1007.3.3"/>
+                    <id root="{$oidURAOrganizations}"/>
                 </xsl:when>
                 <xsl:when test="'TODO-X-Include in choice'">
                     <id root="2.16.528.1.1007" extension="4"/>
@@ -3556,10 +3556,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <Organization xmlns="urn:hl7-org:v3">
             <xsl:choose>
                 <xsl:when test="'TODO-X-Include in choice'">
-                    <id root="2.16.528.1.1007.3.3"/>
+                    <id root="{$oidURAOrganizations}"/>
                 </xsl:when>
                 <xsl:when test="'TODO-X-Include in choice'">
-                    <id root="2.16.528.1.1007" extension="4"/>
+                    <id root="{$oidSBVZOrganization}" extension="4"/>
                 </xsl:when>
                 <xsl:when test="'TODO-X-Include in choice'">
                     <id root="2.16.840.1.113883.2.4.3.11.25"/>
@@ -3604,7 +3604,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901046_20161201151537">
         <act xmlns="urn:hl7-org:v3" classCode="ACT" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901046"/>
-            <code code="3457005" codeSystem="2.16.840.1.113883.6.96" displayName="Verwijsdetails"/>
+            <code code="3457005" codeSystem="{$oidSNOMEDCT}" displayName="Verwijsdetails"/>
             <!-- Item(s) :: datum_verwijzing-->
             <xsl:for-each select="datum_verwijzing">
                 <xsl:call-template name="makeTSValue">
@@ -3664,7 +3664,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901048_20161202111820">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901048"/>
-            <code code="312850006" codeSystem="2.16.840.1.113883.6.96" displayName="Algemene anamnese"/>
+            <code code="312850006" codeSystem="{$oidSNOMEDCT}" displayName="Algemene anamnese"/>
             <xsl:for-each select="autoimmuun_aandoening">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Auto-immuun aandoening -->
@@ -3785,7 +3785,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Reden verwijzing (obstetrische anamnese) 2.3.2-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901049_20161202135842">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
-            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese"/>
+            <code code="248983002" codeSystem="{$oidSNOMEDCT}" displayName="Obstetrische anamnese"/>
             <xsl:for-each select="gynaecologische_aandoening">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Gynaecologische aandoening -->
@@ -3911,7 +3911,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Reden verwijzing (deze zwangerschap) 2.3.3 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901051_20161202153846">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
-            <code code="364320009" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschap"/>
+            <code code="364320009" codeSystem="{$oidSNOMEDCT}" displayName="Zwangerschap"/>
             <xsl:for-each select="gynaecologische_aandoening">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Gynaecologische aandoening -->
@@ -4014,7 +4014,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901052_20161202154625">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901052"/>
-            <code code="270500004" codeSystem="2.16.840.1.113883.6.96" displayName="Navelstrengprolaps"/>
+            <code code="270500004" codeSystem="{$oidSNOMEDCT}" displayName="Navelstrengprolaps"/>
             <!-- Item(s) :: navelstrengprolapsq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -4025,7 +4025,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901053_20161202154917">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901053"/>
-            <code code="80002007" codeSystem="2.16.840.1.113883.6.96" displayName="Liggingsafwijking"/>
+            <code code="80002007" codeSystem="{$oidSNOMEDCT}" displayName="Liggingsafwijking"/>
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="xsiType">CE</xsl:with-param>
@@ -4036,7 +4036,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901054_20161202165703">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901054"/>
-            <code code="47821001" codeSystem="2.16.840.1.113883.6.96" displayName="Fluxus Postpartum"/>
+            <code code="47821001" codeSystem="{$oidSNOMEDCT}" displayName="Fluxus Postpartum"/>
             <!-- Item(s) :: fluxus_postpartumq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -4059,7 +4059,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901099_20180223113239">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901099"/>
-            <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+            <code code="236973005" codeSystem="{$oidSNOMEDCT}" displayName="Bevalling"/>
             <xsl:for-each select="ppromq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: PPROM? -->
@@ -4129,7 +4129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- TODO id... ! -->
             <!--<id root="" extension=""/>
                 -->
-            <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+            <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Bevalling"/>
             <xsl:for-each select="ppromq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: PPROM? -->
@@ -4197,7 +4197,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901057_20161202180528">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901057"/>
-            <code code="364297003" codeSystem="2.16.840.1.113883.6.96" displayName="Conditie Perineum Postpartum"/>
+            <code code="364297003" codeSystem="{$oidSNOMEDCT}" displayName="Conditie Perineum Postpartum"/>
             <!-- Item(s) :: conditie_perineum_postpartum-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -4208,7 +4208,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901101_20180226150516">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901101"/>
-            <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+            <code code="236973005" codeSystem="{$oidSNOMEDCT}" displayName="Bevalling"/>
             <xsl:for-each select="partusnummer">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Partusnummer -->
@@ -4504,7 +4504,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901104_20180228111743">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901104"/>
-            <code code="364297003" codeSystem="2.16.840.1.113883.6.96" displayName="Conditie Perineum Postpartum"/>
+            <code code="364297003" codeSystem="{$oidSNOMEDCT}" displayName="Conditie Perineum Postpartum"/>
             <!-- Item(s) :: conditie_perineum_postpartum-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -4997,12 +4997,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="anamnese | anamnese">
             <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900963"/>
-                <code code="417662000" codeSystem="2.16.840.1.113883.6.96" displayName="Anamnese"/>
+                <code code="417662000" codeSystem="{$oidSNOMEDCT}" displayName="Anamnese"/>
                 <component typeCode="COMP">
                     <xsl:for-each select="algemene_anamnese">
                         <organizer classCode="CONTAINER" moodCode="EVN">
                             <templateId root="2.16.840.1.113883.2.4.6.10.90.900959"/>
-                            <code code="312850006" codeSystem="2.16.840.1.113883.6.96" displayName="Algemene anamnese"/>
+                            <code code="312850006" codeSystem="{$oidSNOMEDCT}" displayName="Algemene anamnese"/>
                             <component typeCode="COMP" contextConductionInd="true">
                                 <!-\- Template :: Diabetes Mellitus (y/n) -\->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20161202132728"/>
@@ -5019,7 +5019,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="algemene_anamnese">
             <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900959"/>
-                <code code="312850006" codeSystem="2.16.840.1.113883.6.96" displayName="Algemene anamnese"/>
+                <code code="312850006" codeSystem="{$oidSNOMEDCT}" displayName="Algemene anamnese"/>
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-\- Template :: Diabetes Mellitus (y/n) -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20161202132728"/>
@@ -5033,12 +5033,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="obstetrische_anamnese_gegroepeerd_per_voorgaande_zwangerschap">
             <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900966"/>
-                <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese"/>
+                <code code="248983002" codeSystem="{$oidSNOMEDCT}" displayName="Obstetrische anamnese"/>
                 <component typeCode="COMP" contextConductionInd="true">
                     <xsl:for-each select="eerdere_bevalling">
                         <procedure classCode="PROC" moodCode="EVN">
                             <id root="" extension=""/>
-                            <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Eerdere bevalling"/>
+                            <code code="236973005" codeSystem="{$oidSNOMEDCT}" displayName="Eerdere bevalling"/>
                             <xsl:for-each select="vorige_uitkomst_per_kind | vorige_baring | kindspecifieke_gegevens_vorige_uitkomsten">
                                 <outboundRelationship typeCode="COMP">
                                     <!-\- Template :: Vorige uitkomst per kind Combinatietest -\->
@@ -5144,7 +5144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901085"/>
             <id nullFlavor="NI"/>
-            <code code="177037000" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="177037000" codeSystem="{$oidSNOMEDCT}"/>
             <!-- Item(s) :: eicelextractiedatum-->
             <xsl:for-each select="eicelextractiedatum">
                 <xsl:call-template name="makeTSValue">
@@ -5160,7 +5160,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN" negationInd="{cryo_embryoq/(@code, @value)[1]}">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901086"/>
             <id nullFlavor="NI"/>
-            <code code="236894009" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="236894009" codeSystem="{$oidSNOMEDCT}"/>
         </procedure>
     </xsl:template>
 
@@ -5169,7 +5169,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901087"/>
             <id nullFlavor="NI"/>
-            <code code="75456002" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="75456002" codeSystem="{$oidSNOMEDCT}"/>
             <!-- Item(s) :: embryotransferdatum-->
             <xsl:for-each select="embryotransferdatum">
                 <xsl:call-template name="makeTSValue">
@@ -5186,7 +5186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <procedure classCode="PROC" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901003"/>
                 <id root="" extension=""/>
-                <code code="18114009" codeSystem="2.16.840.1.113883.6.96" displayName="Prenatale controle"/>
+                <code code="18114009" codeSystem="{$oidSNOMEDCT}" displayName="Prenatale controle"/>
                 <!-- Item(s) :: datum_controle-->
                 <xsl:for-each select="datum_controle">
                     <xsl:call-template name="makeTS.DATE.MINValue">
@@ -5254,7 +5254,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900158_20161202132925">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900158"/>
-            <code code="116859006" codeSystem="2.16.840.1.113883.6.96" displayName="Bloedtransfusie"/>
+            <code code="116859006" codeSystem="{$oidSNOMEDCT}" displayName="Bloedtransfusie"/>
             <!-- Item(s) ::  bloedtransfusieq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5266,7 +5266,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr"/>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900171"/>
-            <code code="312457003" codeSystem="2.16.840.1.113883.6.96" displayName="Irregulaire antistoffen"/>
+            <code code="312457003" codeSystem="{$oidSNOMEDCT}" displayName="Irregulaire antistoffen"/>
             <!-- Item(s) :: welke_irregulaire_antistoffen_vrouw_aanwezig-->
             <xsl:for-each select="welke_irregulaire_antistoffen_vrouw_aanwezig">
                 <xsl:call-template name="makeCEValue">
@@ -5326,7 +5326,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <procedure classCode="PROC" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900174"/>
                 <id nullFlavor="NI"/>
-                <code code="61285001" codeSystem="2.16.840.1.113883.6.96"/>
+                <code code="61285001" codeSystem="{$oidSNOMEDCT}"/>
             </procedure>
         </xsl:for-each>
     </xsl:template>
@@ -5336,7 +5336,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900175"/>
             <id nullFlavor="NI"/>
-            <code code="63487001" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="63487001" codeSystem="{$oidSNOMEDCT}"/>
             <!-- Item(s) :: geassisteerde_conceptie geassisteerde_conceptie geassisteerde_conceptie geassisteerde_conceptie geassisteerde_conceptie-->
             <xsl:for-each select="geassisteerde_conceptie | geassisteerde_conceptie | geassisteerde_conceptie | geassisteerde_conceptie | geassisteerde_conceptie">
                 <xsl:call-template name="makeCEValue">
@@ -5353,7 +5353,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <procedure classCode="PROC" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900180"/>
                 <id nullFlavor="NI"/>
-                <code code="176843009" codeSystem="2.16.840.1.113883.6.96"/>
+                <code code="176843009" codeSystem="{$oidSNOMEDCT}"/>
                 <outboundRelationship typeCode="PERT">
                     <!-- Template :: Geboortedatum eiceldonatrice -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900931_20161219121501"/>
@@ -5380,7 +5380,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900197_20161206130607">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900197"/>
-            <code code="249120008" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip begin actieve ontsluiting"/>
+            <code code="249120008" codeSystem="{$oidSNOMEDCT}" displayName="Tijdstip begin actieve ontsluiting"/>
             <!-- Item(s) :: tijdstip_begin_actieve_ontsluiting tijdstip_begin_actieve_ontsluiting-->
             <xsl:call-template name="makeTS.DATE.MINValue">
                 <xsl:with-param name="xsiType" select="''"/>
@@ -5394,7 +5394,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900198_20161206133840">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900198"/>
-            <code code="289251005" codeSystem="2.16.840.1.113883.6.96" displayName="Tijdstip breken vliezen"/>
+            <code code="289251005" codeSystem="{$oidSNOMEDCT}" displayName="Tijdstip breken vliezen"/>
             <!-- Item(s) :: tijdstip_breken_vliezen-->
             <xsl:call-template name="makeTS.DATE.MINValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5405,7 +5405,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900199_20161206133935">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900199"/>
-            <code code="38386-9" codeSystem="2.16.840.1.113883.6.1" displayName="Kleur en consistentie vruchtwater"/>
+            <code code="38386-9" codeSystem="{$oidLOINC}" displayName="Kleur en consistentie vruchtwater"/>
             <!-- Item(s) :: kleur_en_consistentie_vruchtwater-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5438,7 +5438,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900255_20161206133653">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900255"/>
-            <code code="46098-0" codeSystem="2.16.840.1.113883.6.1" displayName="Geslacht"/>
+            <code code="46098-0" codeSystem="{$oidLOINC}" displayName="Geslacht"/>
             <!-- Item(s) :: geslacht_medische_observatie-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5461,7 +5461,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900262_20161206131005">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900262"/>
-            <code code="364297003" codeSystem="2.16.840.1.113883.6.96" displayName="Conditie perineum postpartum"/>
+            <code code="364297003" codeSystem="{$oidSNOMEDCT}" displayName="Conditie perineum postpartum"/>
             <!-- Item(s) :: conditie_perineum_postpartum-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5508,7 +5508,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="sectio_caesarea_group">
             <procedure classCode="PROC" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900277"/>
-                <code code="11466000" codeSystem="2.16.840.1.113883.6.96" displayName="Sectio Caesarea"/>
+                <code code="11466000" codeSystem="{$oidSNOMEDCT}" displayName="Sectio Caesarea"/>
                 <outboundRelationship typeCode="FLFS">
                     <!-- Template :: Beslismoment sectio caesarea -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900278_20161215134825"/>
@@ -5554,7 +5554,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900294_20161206103247">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900294"/>
-            <code code="9274-2" codeSystem="2.16.840.1.113883.6.1" displayName="Apgarscore na 5 min."/>
+            <code code="9274-2" codeSystem="{$oidLOINC}" displayName="Apgarscore na 5 min."/>
             <!-- Item(s) :: apgarscore_na_5_min -->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5610,7 +5610,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20161206135217">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900425"/>
-            <code code="8339-4" codeSystem="2.16.840.1.113883.6.1" displayName="Geboortegewicht"/>
+            <code code="8339-4" codeSystem="{$oidLOINC}" displayName="Geboortegewicht"/>
             <!-- Item(s) :: geboortegewicht -->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5633,7 +5633,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900570_20161205183214">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900570"/>
-            <code code="3137-7" codeSystem="2.16.840.1.113883.6.1"/>
+            <code code="3137-7" codeSystem="{$oidLOINC}"/>
             <!-- Item(s) :: lengte_gemeten-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5645,7 +5645,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900571_20161206115006">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900571"/>
-            <code code="3141-9" codeSystem="2.16.840.1.113883.6.1" displayName="Gewicht"/>
+            <code code="3141-9" codeSystem="{$oidLOINC}" displayName="Gewicht"/>
             <!-- Item(s) :: gewicht_gemeten-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5690,7 +5690,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Rhesus c Factor -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900683_20160721130438">
         <observation classCode="OBS" moodCode="EVN">
-            <code code="1159-3" codeSystem="2.16.840.1.113883.6.1" displayName="Rhesus c Factor" codeSystemName=""/>
+            <code code="1159-3" codeSystem="{$oidLOINC}" displayName="Rhesus c Factor" codeSystemName=""/>
             <effectiveTime/>
             <!-- Item(s) :: rhesus_c_factor rhesus_c_factor rhesus_c_factor rhesus_c_factor-->
             <xsl:for-each select="rhesus_c_factor | rhesus_c_factor | rhesus_c_factor | rhesus_c_factor">
@@ -5772,7 +5772,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <supply xmlns="urn:hl7-org:v3" classCode="DIET" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900724"/>
             <id nullFlavor="NI"/>
-            <code code="230126006" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="230126006" codeSystem="{$oidSNOMEDCT}"/>
             <xsl:for-each select="voeding_kind_datum">
                 <xsl:call-template name="makeTSValue">
                     <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
@@ -5818,7 +5818,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20161206134639">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900861"/>
-            <code code="364336006" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="364336006" codeSystem="{$oidSNOMEDCT}"/>
             <!-- Item(s) :: type_partus type_partus-->
             <xsl:for-each select="type_partus">
                 <xsl:call-template name="makeCEValue">
@@ -5831,7 +5831,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900861_20161206102913">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900861"/>
-            <code code="364336006" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="364336006" codeSystem="{$oidSNOMEDCT}"/>
             <!-- Item(s) :: type_partus -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5872,7 +5872,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900900_20161206102207">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900900"/>
-            <code code="364332008" codeSystem="2.16.840.1.113883.6.96" displayName="Hoeveelheid bloedverlies"/>
+            <code code="364332008" codeSystem="{$oidSNOMEDCT}" displayName="Hoeveelheid bloedverlies"/>
             <!-- Item(s) ::  hoeveelheid_bloedverlies hoeveelheid_bloedverlies_tot_acute_overdracht-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5886,7 +5886,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900902_20161206103023">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900902"/>
-            <code code="301334000" codeSystem="2.16.840.1.113883.6.96" displayName="Percentiel geboortegewicht"/>
+            <code code="301334000" codeSystem="{$oidSNOMEDCT}" displayName="Percentiel geboortegewicht"/>
             <!-- Item(s) :: percentiel_van_het_geboortegewicht-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -5897,7 +5897,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900918_20161202160924">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900918"/>
-            <code code="59291004" codeSystem="2.16.840.1.113883.6.96" displayName="Intra-uteriene vruchtdood"/>
+            <code code="59291004" codeSystem="{$oidSNOMEDCT}" displayName="Intra-uteriene vruchtdood"/>
             <uncertaintyCode code="U" codeSystem="2.16.840.1.113883.5.1053"/>
             <!-- Item(s) :: vermoeden_intrauteriene_vruchtdoodq -->
             <xsl:call-template name="makeBLValue">
@@ -6207,7 +6207,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900936_20161202132728">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900936"/>
-            <code code="73211009" codeSystem="2.16.840.1.113883.6.96" displayName="Diabetes Mellitus (y/n)"/>
+            <code code="73211009" codeSystem="{$oidSNOMEDCT}" displayName="Diabetes Mellitus (y/n)"/>
             <!-- Item(s) :: diabetes_mellitusq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6229,7 +6229,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900944_20161202113937">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900944"/>
-            <code code="85828009" codeSystem="2.16.840.1.113883.6.96" displayName="Auto-immuun aandoening"/>
+            <code code="85828009" codeSystem="{$oidSNOMEDCT}" displayName="Auto-immuun aandoening"/>
             <!-- Item(s) :: autoimmuun_aandoening -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6240,7 +6240,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900945_20161202114347">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900945"/>
-            <code code="49601007" codeSystem="2.16.840.1.113883.6.96" displayName="Cardiovasculaire aandoening"/>
+            <code code="49601007" codeSystem="{$oidSNOMEDCT}" displayName="Cardiovasculaire aandoening"/>
             <!-- Item(s) :: cardiovasculaire_aandoening -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6251,7 +6251,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900946_20161202114612">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900946"/>
-            <code code="42030000" codeSystem="2.16.840.1.113883.6.96" displayName="Urogenitale aandoening"/>
+            <code code="42030000" codeSystem="{$oidSNOMEDCT}" displayName="Urogenitale aandoening"/>
             <!-- Item(s) :: urogenitale_aandoening-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6262,7 +6262,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900947_20161202115136">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900947"/>
-            <code code="14304000" codeSystem="2.16.840.1.113883.6.96" displayName="Schildklier aandoening"/>
+            <code code="14304000" codeSystem="{$oidSNOMEDCT}" displayName="Schildklier aandoening"/>
             <!-- Item(s) :: schildklier_aandoening-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6273,7 +6273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900948_20161202114951">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900948"/>
-            <code code="363346000" codeSystem="2.16.840.1.113883.6.96" displayName="Oncologische aandoening"/>
+            <code code="363346000" codeSystem="{$oidSNOMEDCT}" displayName="Oncologische aandoening"/>
             <!-- Item(s) :: oncologische_aandoening-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6284,7 +6284,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900949_20161202115419">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900949"/>
-            <code code="118940003" codeSystem="2.16.840.1.113883.6.96" displayName="Neurologische aandoening"/>
+            <code code="118940003" codeSystem="{$oidSNOMEDCT}" displayName="Neurologische aandoening"/>
             <!-- Item(s) :: neurologische_aandoening-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6295,7 +6295,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900950_20161202115613">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900950"/>
-            <code code="40733004" codeSystem="2.16.840.1.113883.6.96" displayName="Infectieziekte"/>
+            <code code="40733004" codeSystem="{$oidSNOMEDCT}" displayName="Infectieziekte"/>
             <!-- Item(s) :: infectieziekte -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6307,7 +6307,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900951_20161202115814">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900951"/>
-            <code code="53619000" codeSystem="2.16.840.1.113883.6.96" displayName="MDL aandoening"/>
+            <code code="53619000" codeSystem="{$oidSNOMEDCT}" displayName="MDL aandoening"/>
             <!-- Item(s) ::  mdl_aandoening-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6318,7 +6318,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900952_20161202115941">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900952"/>
-            <code code="271737000" codeSystem="2.16.840.1.113883.6.96" displayName="Anemie"/>
+            <code code="271737000" codeSystem="{$oidSNOMEDCT}" displayName="Anemie"/>
             <!-- Item(s) :: anemie-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6329,7 +6329,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900953_20161202120109">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900953"/>
-            <code code="50043002" codeSystem="2.16.840.1.113883.6.96" displayName="Longaandoening"/>
+            <code code="50043002" codeSystem="{$oidSNOMEDCT}" displayName="Longaandoening"/>
             <!-- Item(s) ::  longaandoening-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6342,7 +6342,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900955_20161202123811">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900955"/>
-            <code code="928000" codeSystem="2.16.840.1.113883.6.96" displayName="Orthopedische afwijking"/>
+            <code code="928000" codeSystem="{$oidSNOMEDCT}" displayName="Orthopedische afwijking"/>
             <!-- Item(s) ::  orthopedische_afwijking-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6353,7 +6353,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900956_20161202124735">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900956"/>
-            <code code="387713003" codeSystem="2.16.840.1.113883.6.96" displayName="Type operatie"/>
+            <code code="387713003" codeSystem="{$oidSNOMEDCT}" displayName="Type operatie"/>
             <!-- Item(s) :: type_operatie -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6364,7 +6364,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900957_20161202124918">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900957"/>
-            <code code="64779008" codeSystem="2.16.840.1.113883.6.96" displayName="Type stollingsprobleem"/>
+            <code code="64779008" codeSystem="{$oidSNOMEDCT}" displayName="Type stollingsprobleem"/>
             <!-- Item(s) :: type_stollingsprobleem -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -6386,7 +6386,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900959"/>
-            <code code="312850006" codeSystem="2.16.840.1.113883.6.96" displayName="Algemene anamnese"/>
+            <code code="312850006" codeSystem="{$oidSNOMEDCT}" displayName="Algemene anamnese"/>
             <xsl:for-each select="autoimmuun_aandoening">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Auto-immuun aandoening -->
@@ -6517,7 +6517,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900963_20161205180216">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900963"/>
-            <code code="417662000" codeSystem="2.16.840.1.113883.6.96" displayName="Anamnese"/>
+            <code code="417662000" codeSystem="{$oidSNOMEDCT}" displayName="Anamnese"/>
             <xsl:for-each select="onder_behandeling_geweestq">
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20161215115649"/>
@@ -6547,7 +6547,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900966_20161205184122">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900966"/>
-            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese"/>
+            <code code="248983002" codeSystem="{$oidSNOMEDCT}" displayName="Obstetrische anamnese"/>
             <xsl:for-each select="wijze_einde_zwangerschap">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Wijze einde zwangerschap -->
@@ -6563,7 +6563,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="diagnose">
                 <component typeCode="COMP" contextConductionInd="true">
                     <organizer classCode="CONTAINER" moodCode="EVN">
-                        <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnose"/>
+                        <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Diagnose"/>
                         <xsl:for-each select="gynaecologische_aandoening">
                             <component typeCode="COMP" contextConductionInd="true">
                                 <!-- Template :: Gynaecologische aandoening -->
@@ -6649,7 +6649,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <component typeCode="COMP" contextConductionInd="true">
                     <procedure classCode="PROC" moodCode="EVN">
                         <id nullFlavor="NI"/>
-                        <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+                        <code code="236973005" codeSystem="{$oidSNOMEDCT}" displayName="Bevalling"/>
                         <xsl:for-each select="placenta/geboorte_placenta">
                             <outboundRelationship typeCode="COMP">
                                 <!-- Template :: Geboorte placenta -->
@@ -6678,7 +6678,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901091_20180220155029">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901091"/>
-            <code code="59291004" codeSystem="2.16.840.1.113883.6.96" displayName="Intrauteriene vruchtdood"/>
+            <code code="59291004" codeSystem="{$oidSNOMEDCT}" displayName="Intrauteriene vruchtdood"/>
             <uncertaintyCode code="U" codeSystem="2.16.840.1.113883.5.1053"/>
             <!-- Item(s) :: vermoeden_intrauteriene_vruchtdoodq-->
             <xsl:for-each select="./vermoeden_intrauteriene_vruchtdoodq">
@@ -6702,7 +6702,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901092_20180220162421">
         <organizer classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901092"/>
-            <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+            <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Diagnosis"/>
             <xsl:for-each select="./datum">
                 <effectiveTime>
                     <xsl:call-template name="makeTSValueAttr"/>
@@ -6819,7 +6819,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901095_20180221112313">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901095"/>
-            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese"/>
+            <code code="248983002" codeSystem="{$oidSNOMEDCT}" displayName="Obstetrische anamnese"/>
             <xsl:for-each select="wijze_einde_zwangerschap">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Wijze einde zwangerschap -->
@@ -6835,7 +6835,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="diagnose">
                 <component typeCode="COMP" contextConductionInd="true">
                     <organizer classCode="CONTAINER" moodCode="EVN">
-                        <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnose"/>
+                        <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Diagnose"/>
                         <xsl:for-each select="gynaecologische_aandoening">
                             <component typeCode="COMP" contextConductionInd="true">
                                 <!-- Template :: Gynaecologische aandoening -->
@@ -6921,7 +6921,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <component typeCode="COMP" contextConductionInd="true">
                     <procedure classCode="PROC" moodCode="EVN">
                         <id nullFlavor="NI"/>
-                        <code code="236973005" codeSystem="2.16.840.1.113883.6.96" displayName="Bevalling"/>
+                        <code code="236973005" codeSystem="{$oidSNOMEDCT}" displayName="Bevalling"/>
                         <xsl:for-each select="placenta/geboorte_placenta">
                             <outboundRelationship typeCode="COMP">
                                 <!-- Template :: Geboorte placenta -->
@@ -7009,7 +7009,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
-            <code code="364336006" codeSystem="2.16.840.1.113883.6.96" displayName="Type partus"/>
+            <code code="364336006" codeSystem="{$oidSNOMEDCT}" displayName="Type partus"/>
             <!-- Item(s) :: type_partus -->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7077,7 +7077,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr"/>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900981"/>
-            <code code="74345006" codeSystem="2.16.840.1.113883.6.96" displayName="Chromosomale afwijking"/>
+            <code code="74345006" codeSystem="{$oidSNOMEDCT}" displayName="Chromosomale afwijking"/>
         </observation>
     </xsl:template>
     <!-- Chromosomale afwijkingen (ja nee) -->
@@ -7085,7 +7085,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900983_20161202180940">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900983"/>
-            <code code="133906008" codeSystem="2.16.840.1.113883.6.96" displayName="Postnatale fase"/>
+            <code code="133906008" codeSystem="{$oidSNOMEDCT}" displayName="Postnatale fase"/>
             <!-- item diagnoseinterventie_postpartum of postnatale_fase (van reden verwijzing) -->
             <xsl:for-each select="diagnoseinterventie_postpartum[pathologie_vrouw]">
                 <component typeCode="COMP" contextConductionInd="true">
@@ -7099,7 +7099,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900984_20161202194808">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900984"/>
-            <code code="362973001" codeSystem="2.16.840.1.113883.6.96" displayName="Pathologie vrouw"/>
+            <code code="362973001" codeSystem="{$oidSNOMEDCT}" displayName="Pathologie vrouw"/>
             <!-- Item(s) :: datum-->
             <xsl:for-each select="datum">
                 <xsl:call-template name="makeTS.DATE.MINValue">
@@ -7120,7 +7120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="maternale_onderzoeksgegevens">
             <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900985"/>
-                <code code="12131-9" codeSystem="2.16.840.1.113883.6.1" displayName="Medisch onderzoek"/>
+                <code code="12131-9" codeSystem="{$oidLOINC}" displayName="Medisch onderzoek"/>
                 <xsl:for-each select="urine_bloed_en_aanvullende_onderzoeken/psie">
                     <component typeCode="COMP" contextConductionInd="true">
                         <!-- Template :: PsiePRN -->
@@ -7150,7 +7150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="bevalling">
             <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.900988"/>
-                <code code="236973005" codeSystem="2.16.840.1.113883.6.96"/>
+                <code code="236973005" codeSystem="{$oidSNOMEDCT}"/>
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Partusnummer -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900357_20161206125654"/>
@@ -7448,7 +7448,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900995"/>
             <id nullFlavor="NI"/>
-            <code code="278414003" codeSystem="2.16.840.1.113883.6.96" displayName="Pijnbestrijding"/>
+            <code code="278414003" codeSystem="{$oidSNOMEDCT}" displayName="Pijnbestrijding"/>
             <!-- Item(s) :: methode-->
             <xsl:for-each select="../pijnbestrijding/methode/methode">
                 <xsl:call-template name="makeCEValue">
@@ -7478,7 +7478,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <outboundRelationship typeCode="COMP">
                                 <procedure classCode="PROC" moodCode="EVN">
                                     <id nullFlavor="NI"/>
-                                    <code code="416118004" codeSystem="2.16.840.1.113883.6.96" displayName="Toediening"/>
+                                    <code code="416118004" codeSystem="{$oidSNOMEDCT}" displayName="Toediening"/>
                                     <!-- Item(s) :: toediening-->
                                     <xsl:call-template name="makeCEValue">
                                         <xsl:with-param name="xsiType" select="''"/>
@@ -7501,7 +7501,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900996"/>
             <id nullFlavor="NI"/>
-            <code code="72641008" codeSystem="2.16.840.1.113883.6.96" displayName="Sedatie"/>
+            <code code="72641008" codeSystem="{$oidSNOMEDCT}" displayName="Sedatie"/>
         </procedure>
     </xsl:template>
     <!-- Sedatie Ja/Nee -->
@@ -7522,7 +7522,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900999"/>
             <id nullFlavor="NI"/>
-            <code code="3311000146109" codeSystem="2.16.840.1.113883.6.96" displayName="Vaginale kunstverlossing"/>
+            <code code="3311000146109" codeSystem="{$oidSNOMEDCT}" displayName="Vaginale kunstverlossing"/>
             <!-- Item(s) :: vaginale_kunstverlossing-->
             <xsl:for-each select="vaginale_kunstverlossing">
                 <xsl:call-template name="makeCEValue">
@@ -7556,7 +7556,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901001_20161206114803">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901001"/>
-            <code code="228309001" codeSystem="2.16.840.1.113883.6.96" displayName="Alcoholgebruik"/>
+            <code code="228309001" codeSystem="{$oidSNOMEDCT}" displayName="Alcoholgebruik"/>
             <!-- Item(s) :: alcoholgebruik-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7583,7 +7583,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901004"/>
                 <id root="" extension=""/>
-                <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="TODO"/>
+                <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="TODO"/>
                 <!-- Item(s) :: datum datum-->
                 <xsl:for-each select="datum | datum">
                     <xsl:call-template name="makeTS.DATE.MINValue">
@@ -7672,7 +7672,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901007_20161202173503">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901007"/>
-            <code code="312974005" codeSystem="2.16.840.1.113883.6.96" displayName="PPROM"/>
+            <code code="312974005" codeSystem="{$oidSNOMEDCT}" displayName="PPROM"/>
             <!-- Item(s) :: ppromq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7683,7 +7683,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901008_20161202173654">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901008"/>
-            <code code="44223004" codeSystem="2.16.840.1.113883.6.96" displayName="PROM"/>
+            <code code="44223004" codeSystem="{$oidSNOMEDCT}" displayName="PROM"/>
             <!-- Item(s) :: promq promq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7694,7 +7694,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901009_20161202173856">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901009"/>
-            <code code="386661006" codeSystem="2.16.840.1.113883.6.96" displayName="Koorts"/>
+            <code code="386661006" codeSystem="{$oidSNOMEDCT}" displayName="Koorts"/>
             <!-- Item(s) :: koortsq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7706,7 +7706,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901010_20161202174017">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901010"/>
-            <code code="237320005" codeSystem="2.16.840.1.113883.6.96" displayName="Niet vorderende ontsluiting"/>
+            <code code="237320005" codeSystem="{$oidSNOMEDCT}" displayName="Niet vorderende ontsluiting"/>
             <!-- Item(s) :: niet_vorderende_ontsluitingq niet_vorderende_ontsluitingq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7717,7 +7717,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901011_20161202174122">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901011"/>
-            <code code="249166003" codeSystem="2.16.840.1.113883.6.96" displayName="Niet vorderende uitdrijving"/>
+            <code code="249166003" codeSystem="{$oidSNOMEDCT}" displayName="Niet vorderende uitdrijving"/>
             <!-- Item(s) :: niet_vorderende_uitdrijvingq niet_vorderende_uitdrijvingq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7728,7 +7728,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901012_20161202174235">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901012"/>
-            <code code="609415007:246090004=12867002" codeSystem="2.16.840.1.113883.6.96" displayName="Verdenking foetale nood"/>
+            <code code="609415007:246090004=12867002" codeSystem="{$oidSNOMEDCT}" displayName="Verdenking foetale nood"/>
             <!-- Item(s) :: verdenking_foetale_noodq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7740,7 +7740,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901013_20161202174410">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901013"/>
-            <code code="109894007" codeSystem="2.16.840.1.113883.6.96" displayName="Vastzittende placenta"/>
+            <code code="109894007" codeSystem="{$oidSNOMEDCT}" displayName="Vastzittende placenta"/>
             <!-- Item(s) :: vastzittende_placentaq vastzittende_placentaq-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7752,7 +7752,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901014"/>
             <id nullFlavor="NI"/>
-            <code code="439401001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnose"/>
+            <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Diagnose"/>
             <xsl:for-each select="./ppromq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: PPROM? -->
@@ -7814,7 +7814,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr"/>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901015"/>
-            <code code="443341004" codeSystem="2.16.840.1.113883.6.96" displayName="Congenitale afwijking"/>
+            <code code="443341004" codeSystem="{$oidSNOMEDCT}" displayName="Congenitale afwijking"/>
         </observation>
     </xsl:template>
     <!-- Chromosomale afwijkingen NoUnc -->
@@ -7826,7 +7826,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="inputValue" select="$chr_afw_question/@value"/>
             </xsl:call-template>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901016"/>
-            <code code="74345006" codeSystem="2.16.840.1.113883.6.96" displayName="Chromosomale afwijking"/>
+            <code code="74345006" codeSystem="{$oidSNOMEDCT}" displayName="Chromosomale afwijking"/>
             <!-- Item(s) :: specificatie_chromosomale_afwijking-->
             <xsl:for-each select="$chr_afw_observation">
                 <xsl:call-template name="makeCEValue">
@@ -7844,7 +7844,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="inputValue" select="$cong_afw_question/@value"/>
             </xsl:call-template>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901017"/>
-            <code code="443341004" codeSystem="2.16.840.1.113883.6.96" displayName="Congenitale afwijking"/>
+            <code code="443341004" codeSystem="{$oidSNOMEDCT}" displayName="Congenitale afwijking"/>
             <!-- Item(s) :: specificatie_congenitale_afwijking-->
             <xsl:for-each select="$cong_afw_observation">
                 <xsl:call-template name="makeCEValue">
@@ -7925,7 +7925,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901023_20161206114616">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901023"/>
-            <code code="364618000" codeSystem="2.16.840.1.113883.6.96" displayName="Leven voelen"/>
+            <code code="364618000" codeSystem="{$oidSNOMEDCT}" displayName="Leven voelen"/>
             <!-- Item(s) :: leven_voelen-->
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7936,7 +7936,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901024_20161202133114">
         <observation classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901024"/>
-            <code code="82545002" codeSystem="2.16.840.1.113883.6.96" displayName="Transfusiereactie"/>
+            <code code="82545002" codeSystem="{$oidSNOMEDCT}" displayName="Transfusiereactie"/>
             <!-- Item(s) :: transfusiereactieq -->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -7956,7 +7956,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901096_20180221152713">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901096"/>
-            <code code="248983002" codeSystem="2.16.840.1.113883.6.96" displayName="Obstetrische anamnese"/>
+            <code code="248983002" codeSystem="{$oidSNOMEDCT}" displayName="Obstetrische anamnese"/>
             <xsl:for-each select="gynaecologische_aandoening">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Gynaecologische aandoening -->
@@ -8080,7 +8080,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901098_20180221154619">
         <act xmlns="urn:hl7-org:v3" classCode="ACT" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901098"/>
-            <code code="3457005" codeSystem="2.16.840.1.113883.6.96" displayName="Verwijsdetails"/>
+            <code code="3457005" codeSystem="{$oidSNOMEDCT}" displayName="Verwijsdetails"/>
             <!-- Item(s) :: datum_verwijzing-->
             <xsl:for-each select="datum_verwijzing">
                 <xsl:call-template name="makeTSValue">
@@ -8128,7 +8128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901100_20180223140936">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901100"/>
-            <code code="364320009" codeSystem="2.16.840.1.113883.6.96" displayName="Zwangerschap"/>
+            <code code="364320009" codeSystem="{$oidSNOMEDCT}" displayName="Zwangerschap"/>
             <xsl:for-each select="gynaecologische_aandoening">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Gynaecologische aandoening -->
@@ -8243,7 +8243,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <procedure classCode="PROC" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901106"/>
             <id nullFlavor="NI"/>
-            <code code="11466000" codeSystem="2.16.840.1.113883.6.96" displayName="Sectio caesarea"/>
+            <code code="11466000" codeSystem="{$oidSNOMEDCT}" displayName="Sectio caesarea"/>
             <xsl:for-each select="./beslismoment_sectio_caesarea">
                 <outboundRelationship typeCode="FLFS">
                     <!-- Template :: Beslismoment sectio caesarea -->

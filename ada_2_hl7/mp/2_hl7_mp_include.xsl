@@ -16,14 +16,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:include href="../hl7/2_hl7_hl7_include.xsl"/>
 	<xsl:include href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
 	<xsl:include href="../naw/2_hl7_naw_include.xsl"/>
-	<xsl:variable name="ada-unit-seconde" select="('seconde', 's', 'sec', 'second')"/>
-	<xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
-	<xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>
-	<xsl:variable name="ada-unit-day" select="('dag', 'd', 'day')"/>
-	<xsl:variable name="ada-unit-week" select="('week', 'wk')"/>
-	<xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month')"/>
-	<xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year')"/>
-
 	
 	<xsl:template name="makeEffectiveTime">
 		<xsl:param name="effectiveTime"/>
@@ -96,49 +88,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="UCUMunit"/>
 		<xsl:choose>
 			<xsl:when test="$UCUMunit eq 'ug'">
-				<translation value="{$UCUMvalue}" code="252" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Microgram"/>
+			    <translation value="{$UCUMvalue}" code="252" codeSystem="{$oidGStandaardBST902THES2}" displayName="Microgram"/>
 			</xsl:when>
 			<xsl:when test="$UCUMunit eq 'mg'">
-				<translation value="{$UCUMvalue}" code="229" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milligram"/>
+				<translation value="{$UCUMvalue}" code="229" codeSystem="{$oidGStandaardBST902THES2}" displayName="Milligram"/>
 			</xsl:when>
 			<xsl:when test="$UCUMunit eq 'g'">
-				<translation value="{$UCUMvalue}" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+				<translation value="{$UCUMvalue}" code="215" codeSystem="{$oidGStandaardBST902THES2}" displayName="Gram"/>
 			</xsl:when>
 			<xsl:when test="$UCUMunit eq 'ul'">
-				<translation value="{$UCUMvalue}" code="254" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Microliter"/>
+				<translation value="{$UCUMvalue}" code="254" codeSystem="{$oidGStandaardBST902THES2}" displayName="Microliter"/>
 			</xsl:when>
 			<xsl:when test="$UCUMunit eq 'ml'">
-				<translation value="{$UCUMvalue}" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+				<translation value="{$UCUMvalue}" code="233" codeSystem="{$oidGStandaardBST902THES2}" displayName="Milliliter"/>
 			</xsl:when>
 			<xsl:when test="$UCUMunit eq 'l'">
-				<translation value="{$UCUMvalue}" code="222" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Liter"/>
+				<translation value="{$UCUMvalue}" code="222" codeSystem="{$oidGStandaardBST902THES2}" displayName="Liter"/>
 			</xsl:when>
 			<xsl:when test="$UCUMunit eq '[drp]'">
-				<translation value="{$UCUMvalue}" code="303" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Druppel"/>
+				<translation value="{$UCUMvalue}" code="303" codeSystem="{$oidGStandaardBST902THES2}" displayName="Druppel"/>
 			</xsl:when>
 			<!--
             Tablespoons en teaspoons zijn geschrapt uit de lijst units omdat ze niet nauwkeurig zijn. 
          <xsl:when test="$UCUMunit eq '[tsp_us]'">
-            <translation value="{$UCUMvalue * 5}" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+            <translation value="{$UCUMvalue * 5}" code="233" codeSystem="{$oidGStandaardBST902THES2}" displayName="Milliliter"/>
          </xsl:when>
          <xsl:when test="$UCUMunit eq '[tbs_us]'">
-            <translation value="{$UCUMvalue * 15}" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/> 
+            <translation value="{$UCUMvalue * 15}" code="233" codeSystem="{$oidGStandaardBST902THES2}" displayName="Milliliter"/> 
          </xsl:when>
          -->
 			<xsl:when test="$UCUMunit eq '[iU]'">
-				<translation value="{$UCUMvalue}" code="217" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Internat.eenh."/>
+				<translation value="{$UCUMvalue}" code="217" codeSystem="{$oidGStandaardBST902THES2}" displayName="Internat.eenh."/>
 			</xsl:when>
 			<xsl:when test="($UCUMunit eq '1')">
-				<translation value="{$UCUMvalue}" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+				<translation value="{$UCUMvalue}" code="245" codeSystem="{$oidGStandaardBST902THES2}" displayName="stuk"/>
 			</xsl:when>
 			<xsl:when test="(lower-case($UCUMunit) eq 'eenheid')">
-				<translation value="{$UCUMvalue}" code="211" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Eenheid"/>
+				<translation value="{$UCUMvalue}" code="211" codeSystem="{$oidGStandaardBST902THES2}" displayName="Eenheid"/>
 			</xsl:when>
 			<xsl:when test="(lower-case($UCUMunit) eq 'dosis')">
-				<translation value="{$UCUMvalue}" code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="dosis"/>
+				<translation value="{$UCUMvalue}" code="208" codeSystem="{$oidGStandaardBST902THES2}" displayName="dosis"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<translation value="{$UCUMvalue}" code="0" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="niet ondersteunde UCUM eenheid: {$UCUMunit}"/>
+				<translation value="{$UCUMvalue}" code="0" codeSystem="{$oidGStandaardBST902THES2}" displayName="niet ondersteunde UCUM eenheid: {$UCUMunit}"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -192,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="ADAtime" as="xs:string?"/>
 		<xsl:if test="$ADAtime">
 			<xsl:choose>
-				<xsl:when test="$ADAtime = $ada-unit-seconde">s</xsl:when>
+				<xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
 				<xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
 				<xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
 				<xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
@@ -504,7 +496,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				<xsl:for-each select="$dosering/../../aanvullende_instructie">
 					<xsl:variable name="code">
 						<xsl:choose>
-							<xsl:when test="./@codeSystem = '2.16.840.1.113883.2.4.4.5'">
+						    <xsl:when test="./@codeSystem = $oidNHGTabel25BCodesNumeriek">
 								<xsl:value-of select="./@code"/>
 							</xsl:when>
 							<xsl:otherwise>OTH</xsl:otherwise>
@@ -512,14 +504,18 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 					</xsl:variable>
 					<xsl:variable name="codeSystem">
 						<xsl:choose>
-							<xsl:when test="./@codeSystem = '2.16.840.1.113883.2.4.4.5'">2.16.840.1.113883.2.4.4.5</xsl:when>
-							<xsl:otherwise>2.16.840.1.113883.5.1008</xsl:otherwise>
+						    <xsl:when test="./@codeSystem = $oidNHGTabel25BCodesNumeriek">
+						        <xsl:value-of select="$oidNHGTabel25BCodesNumeriek"/>
+						    </xsl:when>
+							<xsl:otherwise>
+							    <xsl:value-of select="$oidHL7NullFlavor"/>
+							</xsl:otherwise>
 						</xsl:choose>
 					</xsl:variable>
 					<!-- TODO de plek van originalText moet nog verbeterd, dit gaat niet goed werken -->
 					<xsl:variable name="strOriginalText">
 						<xsl:choose>
-							<xsl:when test="./@codeSystem = '2.16.840.1.113883.2.4.4.5'"><!-- leeg --></xsl:when>
+						    <xsl:when test="./@codeSystem = $oidNHGTabel25BCodesNumeriek"><!-- leeg --></xsl:when>
 							<xsl:otherwise>
 								<xsl:value-of select="./@displayName"/>
 							</xsl:otherwise>
@@ -549,7 +545,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				<xsl:if test="$zonodig and not($dosering/zo_nodig/criterium/code[@code = '1137'])">
 					<precondition>
 						<observationEventCriterion>
-							<code code="1137" codeSystem="2.16.840.1.113883.2.4.4.5" displayName="zo nodig"/>
+						    <code code="1137" codeSystem="{$oidNHGTabel25BCodesNumeriek}" displayName="zo nodig"/>
 						</observationEventCriterion>
 					</precondition>
 				</xsl:if>
@@ -768,13 +764,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 						<xsl:when test="./@codeSystem">
 							<xsl:value-of select="./@codeSystem"/>
 						</xsl:when>
-						<xsl:otherwise>2.16.840.1.113883.5.1008</xsl:otherwise>
+						<xsl:otherwise>
+						    <xsl:value-of select="$oidHL7NullFlavor"/>
+						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:variable>
 				<!-- TODO de plek van originalText moet nog verbeterd, dit gaat waarschijnlijk niet goed werken -->
 				<xsl:variable name="strOriginalText">
 					<xsl:choose>
-						<xsl:when test="$codeSystem = '2.16.840.1.113883.5.1008'">
+						<xsl:when test="$codeSystem = $oidHL7NullFlavor">
 							<xsl:value-of select="./@displayName"/>
 						</xsl:when>
 						<xsl:otherwise><!-- leeg --></xsl:otherwise>
@@ -782,7 +780,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				</xsl:variable>
 				<reason typeCode="RSON">
 					<diagnosisEvent>
-						<code code="DX" codeSystem="2.16.840.1.113883.5.4"/>
+						<code code="DX" codeSystem="{$oidHL7ActCode}"/>
 						<xsl:call-template name="makeCEValue">
 							<xsl:with-param name="code" select="./@code"/>
 							<xsl:with-param name="codeSystem" select="$codeSystem"/>
@@ -1232,7 +1230,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				</xsl:when>
 				<xsl:otherwise>
 					<!-- should not happen -->
-					<xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.4.1.900.2</xsl:attribute>
+					<xsl:attribute name="codeSystem">
+					    <xsl:value-of select="$oidGStandaardBST902THES2"/>
+					</xsl:attribute>
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:attribute name="displayName" select="$Gstd_unit/@displayName"/>
@@ -1258,7 +1258,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<xsl:attribute name="classCode">ASSIGNED</xsl:attribute>
 		<xsl:for-each select="zorgverlener_identificatie_nummer">
 			<xsl:choose>
-				<xsl:when test="(@root = '2.16.528.1.1007.3.1') or (@root = '2.16.840.1.113883.2.4.6.1')">
+				<xsl:when test="(@root = $oidUZIPersons) or (@root = $oidAGB)">
 					<xsl:call-template name="makeIIValue">
 						<xsl:with-param name="elemName">id</xsl:with-param>
 						<xsl:with-param name="root" select="@root"/>
@@ -1433,7 +1433,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<!-- Toelichting -->
 		<act classCode="ACT" moodCode="EVN">
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
-			<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Toelichting"/>
+			<code code="48767-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Toelichting"/>
 			<text mediaType="text/plain">
 				<xsl:value-of select="./@value"/>
 			</text>
@@ -1856,7 +1856,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 					<xsl:call-template name="makeIIid"/>
 				</xsl:for-each>
 			</xsl:if>
-			<code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+			<code code="16076005" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
 			<consumable xsi:nil="true"/>
 		</substanceAdministration>
 	</xsl:template>
@@ -2037,7 +2037,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 					<xsl:call-template name="makeIIid"/>
 				</xsl:for-each>
 
-				<code codeSystemName="Medicatieproces acts" displayName="Verstrekking" code="373784005" codeSystem="2.16.840.1.113883.6.96"/>
+				<code codeSystemName="Medicatieproces acts" displayName="Verstrekking" code="373784005" codeSystem="{$oidSNOMEDCT}"/>
 
 				<!-- (uitreik-)datum   (Aanschrijfdatum zit in EntityRelation) -->
 				<xsl:for-each select="./datum[./@value]">
@@ -2161,7 +2161,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 					<xsl:call-template name="makeIIid"/>
 				</xsl:for-each>
 			</xsl:if>
-			<code displayName="Toedieningsafspraak" code="422037009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+			<code displayName="Toedieningsafspraak" code="422037009" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
 			<consumable xsi:nil="true"/>
 		</substanceAdministration>
 	</xsl:template>
@@ -2175,7 +2175,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 					<xsl:call-template name="makeIIid"/>
 				</xsl:for-each>
 			</xsl:if>
-			<code code="373784005" displayName="Verstrekking" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+			<code code="373784005" displayName="Verstrekking" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
 		</supply>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9106_20160626164013">
@@ -2298,7 +2298,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<xsl:param name="PQvalue"/>
 		<observation classCode="OBS" moodCode="EVN">
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9122"/>
-			<code code="8302-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Lengte"/>
+			<code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Lengte"/>
 			<xsl:call-template name="makeEffectiveTime">
 				<xsl:with-param name="effectiveTime" select="$effectiveTime"/>
 			</xsl:call-template>
@@ -2315,7 +2315,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<xsl:param name="PQvalue"/>
 		<observation classCode="OBS" moodCode="EVN">
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9123"/>
-			<code code="3142-7" codeSystem="2.16.840.1.113883.6.1" displayName="Body Weight"/>
+			<code code="3142-7" codeSystem="{$oidLOINC}" displayName="Body Weight"/>
 			<xsl:call-template name="makeEffectiveTime">
 				<xsl:with-param name="effectiveTime" select="$effectiveTime"/>
 			</xsl:call-template>
@@ -2333,7 +2333,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 
 		<supply classCode="SPLY" moodCode="PRP">
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9131"/>
-			<code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="2.16.840.1.113883.6.96"/>
+			<code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="{$oidSNOMEDCT}"/>
 			<!-- aantal herhalingen -->
 			<xsl:for-each select="./aantal_herhalingen[@value]">
 				<repeatNumber>
@@ -2593,7 +2593,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				<xsl:for-each select="./identificatie[.//(@value|@code|@nullFlavor)]">
 					<xsl:call-template name="makeIIid"/>
 				</xsl:for-each>
-				<code code="422037009" displayName="Toedieningsafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+				<code code="422037009" displayName="Toedieningsafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
 				<xsl:for-each select="./gebruiksinstructie/omschrijving">
 					<text mediaType="text/plain">
 						<xsl:value-of select="./@value"/>
@@ -2728,8 +2728,8 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 				<xsl:if test="not(./relatie_naar_medicatieafspraak)">
 					<substanceAdministration classCode="SBADM" moodCode="RQO">
 						<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-						<id extension="NI" root="2.16.840.1.113883.5.1008"/>
-						<code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+						<id extension="NI" root="{$oidHL7NullFlavor}"/>
+						<code code="16076005" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
 						<consumable xsi:nil="true"/>
 					</substanceAdministration>
 				</xsl:if>
@@ -2753,7 +2753,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			<substanceAdministration classCode="SBADM" moodCode="PRP">
 				<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9153"/>
 				<!-- Geen id bij voorstel MA: dit is een vluchtig ding waar toch niet naar verwezen mag worden. -->
-				<code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+				<code code="16076005" displayName="Medicatieafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
 				<xsl:for-each select="./gebruiksinstructie/omschrijving[.//(@value | @code)]">
 					<text mediaType="text/plain">
 						<xsl:value-of select="./@value"/>
@@ -2887,7 +2887,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
          <xsl:for-each select="./informant/persoon">
             <informant>
                <relatedEntity classCode="AGNT">
-                  <code code="407542009" codeSystem="2.16.840.1.113883.6.96"
+                  <code code="407542009" codeSystem="{$oidSNOMEDCT}"
                      displayName="Informal carer (person)"/>
                   <relatedPerson classCode="PSN" determinerCode="INSTANCE">
                      <xsl:call-template
@@ -3373,7 +3373,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<!--MP MA Voorschrijver-->
 		<substanceAdministration classCode="SBADM" moodCode="EVN">
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9166"/>
-			<code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED Clinical Terms" displayName="Medicatieafspraak"/>
+			<code code="16076005" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED Clinical Terms" displayName="Medicatieafspraak"/>
 			<consumable xsi:nil="true"/>
 			<author>
 				<time nullFlavor="NI"/>
@@ -3687,7 +3687,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<!-- Identiek aan 9069, met een ander templateId omdat er bij voorstellen 2 toelichtingen zijn. -->
 		<act classCode="ACT" moodCode="EVN">
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9183"/>
-			<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Toelichting"/>
+			<code code="48767-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Toelichting"/>
 			<text mediaType="text/plain">
 				<xsl:value-of select="./@value"/>
 			</text>
@@ -3698,7 +3698,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<xsl:for-each select="./identificatie[.//(@value | @code)]">
 			<xsl:call-template name="makeIIid"/>
 		</xsl:for-each>
-		<code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+		<code code="16076005" displayName="Medicatieafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
 		<xsl:for-each select="./gebruiksinstructie/omschrijving[.//(@value | @code)]">
 			<text mediaType="text/plain">
 				<xsl:value-of select="./@value"/>
@@ -3797,7 +3797,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<xsl:for-each select="//patient/patient_identificatienummer">
 			<xsl:call-template name="makeIIid"/>
 		</xsl:for-each>
-		<code code="ONESELF" displayName="Self" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7 Role code"/>
+		<code code="ONESELF" displayName="Self" codeSystem="{$oidHL7RoleCode}" codeSystemName="HL7 Role code"/>
 	</xsl:template>
 	<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9189_20171026161543">
 		<!-- Gebruikindicator -->
@@ -3879,7 +3879,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			<xsl:for-each select="./informant/persoon">
 				<informant>
 					<relatedEntity classCode="AGNT">
-						<code code="407542009" codeSystem="2.16.840.1.113883.6.96" displayName="Informal carer (person)"/>
+						<code code="407542009" codeSystem="{$oidSNOMEDCT}" displayName="Informal carer (person)"/>
 						<relatedPerson classCode="PSN" determinerCode="INSTANCE">
 							<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
 								<xsl:with-param name="naamgegevens" select="./naamgegevens"/>
@@ -4098,7 +4098,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			<xsl:for-each select="./identificatie">
 				<xsl:call-template name="makeIIid"/>
 			</xsl:for-each>
-			<code code="422037009" displayName="Toedieningsafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+			<code code="422037009" displayName="Toedieningsafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
 			<xsl:for-each select="./gebruiksinstructie/omschrijving">
 				<text mediaType="text/plain">
 					<xsl:value-of select="./@value"/>
@@ -4227,8 +4227,8 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 			<xsl:if test="not(./relatie_naar_medicatieafspraak)">
 				<substanceAdministration classCode="SBADM" moodCode="RQO">
 					<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
-					<id extension="NI" root="2.16.840.1.113883.5.1008"/>
-					<code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+					<id extension="NI" root="{$oidHL7NullFlavor}"/>
+					<code code="16076005" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
 					<consumable xsi:nil="true"/>
 				</substanceAdministration>
 			</xsl:if>
@@ -4311,7 +4311,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 		<xsl:for-each select="./informant/persoon[.//(@value | @code)]">
 			<informant>
 				<relatedEntity classCode="AGNT">
-					<code code="407542009" codeSystem="2.16.840.1.113883.6.96" displayName="Informal carer (person)"/>
+					<code code="407542009" codeSystem="{$oidSNOMEDCT}" displayName="Informal carer (person)"/>
 					<relatedPerson classCode="PSN" determinerCode="INSTANCE">
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
 							<xsl:with-param name="naamgegevens" select="./naamgegevens"/>
@@ -4526,7 +4526,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 					<xsl:call-template name="makeIIid"/>
 				</xsl:for-each>
 
-				<code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="2.16.840.1.113883.6.96"/>
+				<code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="{$oidSNOMEDCT}"/>
 
 				<!-- aantal herhalingen -->
 				<xsl:for-each select="./aantal_herhalingen[@value]">

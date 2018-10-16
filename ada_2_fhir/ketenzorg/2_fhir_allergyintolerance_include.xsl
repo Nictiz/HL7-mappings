@@ -651,13 +651,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:attribute name="value">
                                     <xsl:choose>
                                         <!--Propensity to adverse reactions to food    418471000    SNOMED CT    2.16.840.1.113883.6.96    Voeding-->
-                                        <xsl:when test="@code = '418471000' and @codeSystem = '2.16.840.1.113883.6.96'">food</xsl:when>
+                                        <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">food</xsl:when>
                                         <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
-                                        <xsl:when test="@code = '419511003' and @codeSystem = '2.16.840.1.113883.6.96'">medication</xsl:when>
+                                        <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">medication</xsl:when>
                                         <!--Environmental allergy    426232007    SNOMED CT    2.16.840.1.113883.6.96    Omgeving-->
-                                        <xsl:when test="@code = '426232007' and @codeSystem = '2.16.840.1.113883.6.96'">environment</xsl:when>
+                                        <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">environment</xsl:when>
                                         <!--Allergy to substance    419199007    SNOMED CT    2.16.840.1.113883.6.96    Stof of product-->
-                                        <xsl:when test="@code = '419199007' and @codeSystem = '2.16.840.1.113883.6.96'">biologic</xsl:when>
+                                        <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">biologic</xsl:when>
                                         <xsl:when test="@nullFlavor = 'OTH'"/>
                                         <xsl:otherwise>
                                             <xsl:message>Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:message>
@@ -684,7 +684,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                                     <valueCodeableConcept>
                                         <coding>
-                                            <system value="{local:getUri('2.16.840.1.113883.5.1008')}"/>
+                                            <system value="{local:getUri($oidHL7NullFlavor)}"/>
                                             <code value="{@nullFlavor}"/>
                                         </coding>
                                     </valueCodeableConcept>
@@ -700,13 +700,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:attribute name="value">
                             <xsl:choose>
                                 <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
-                                <xsl:when test="@code = '255604002' and @codeSystem = '2.16.840.1.113883.6.96'">low</xsl:when>
+                                <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">low</xsl:when>
                                 <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
-                                <xsl:when test="@code = '6736007' and @codeSystem = '2.16.840.1.113883.6.96'">high</xsl:when>
+                                <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
                                 <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
-                                <xsl:when test="@code = '24484000' and @codeSystem = '2.16.840.1.113883.6.96'">high</xsl:when>
+                                <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
                                 <!--Fatal    399166001    SNOMED CT    2.16.840.1.113883.6.96    Fataal-->
-                                <xsl:when test="@code = '399166001' and @codeSystem = '2.16.840.1.113883.6.96'">high</xsl:when>
+                                <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
                                 <xsl:otherwise>
                                     <xsl:message>Unsupported AllergyIntolerance criticality code "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
                                 </xsl:otherwise>
@@ -850,11 +850,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:attribute name="value">
                                     <xsl:choose>
                                         <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
-                                        <xsl:when test="@code = '255604002' and @codeSystem = '2.16.840.1.113883.6.96'">mild</xsl:when>
+                                        <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">mild</xsl:when>
                                         <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
-                                        <xsl:when test="@code = '6736007' and @codeSystem = '2.16.840.1.113883.6.96'">moderate</xsl:when>
+                                        <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">moderate</xsl:when>
                                         <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
-                                        <xsl:when test="@code = '24484000' and @codeSystem = '2.16.840.1.113883.6.96'">severe</xsl:when>
+                                        <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">severe</xsl:when>
                                         <xsl:otherwise>
                                             <xsl:message>Unsupported AllergyIntolerance reaction severity "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
                                         </xsl:otherwise>

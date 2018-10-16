@@ -15,14 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
    <xsl:include href="../hl7/hl7_2_ada_hl7_include.xsl"/>
-   <xsl:variable name="ada-unit-seconde" select="('seconde', 's', 'sec', 'second')"/>
-   <xsl:variable name="ada-unit-minute" select="('minuut', 'min', 'minute')"/>
-   <xsl:variable name="ada-unit-hour" select="('uur', 'h', 'hour')"/>
-   <xsl:variable name="ada-unit-day" select="('dag', 'd', 'day')"/>
-   <xsl:variable name="ada-unit-week" select="('week', 'wk')"/>
-   <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month')"/>
-   <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year')"/>
-    
+   
     <xsl:template name="handleII">
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="elmName" as="xs:string" required="yes"/>
@@ -55,7 +48,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$theCode">
                         <xsl:value-of select="@codeSystem"/>
                     </xsl:when>
-                    <xsl:otherwise>2.16.840.1.113883.5.1008</xsl:otherwise>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$oidHL7NullFlavor"/>
+                    </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
             <xsl:variable name="out" as="element()">
@@ -91,10 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <xsl:element name="{$elmName}">
-                <xsl:if test="@value">
-                    <xsl:variable name="precision" select="nf:determine_date_precision(@value)"/>
-                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(@value, $precision)"/>
-                </xsl:if>
+                <xsl:copy-of select="@value"/>
                 <xsl:copy-of select="@nullFlavor"/>
             </xsl:element>
         </xsl:for-each>
@@ -244,7 +236,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:element name="{$elmNameUsage}">
                                     <xsl:attribute name="localId">5</xsl:attribute>
                                     <xsl:attribute name="code">UNK</xsl:attribute>
-                                    <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1008</xsl:attribute>
+                                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
                                     <xsl:attribute name="displayName">Unknown</xsl:attribute>
                                 </xsl:element>
                             </xsl:otherwise>
@@ -443,7 +435,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$elmAddressType}">
                                 <xsl:attribute name="localId">1</xsl:attribute>
                                 <xsl:attribute name="code">PST</xsl:attribute>
-                                <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Postal Addres</xsl:attribute>
                             </xsl:element>
                         </xsl:when>
@@ -451,7 +443,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$elmAddressType}">
                                 <xsl:attribute name="localId">1</xsl:attribute>
                                 <xsl:attribute name="code">HP</xsl:attribute>
-                                <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Primary Home</xsl:attribute>
                             </xsl:element>
                         </xsl:when>
@@ -459,7 +451,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$elmAddressType}">
                                 <xsl:attribute name="localId">1</xsl:attribute>
                                 <xsl:attribute name="code">PHYS</xsl:attribute>
-                                <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Visit Address</xsl:attribute>
                             </xsl:element>
                         </xsl:when>
@@ -467,7 +459,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$elmAddressType}">
                                 <xsl:attribute name="localId">1</xsl:attribute>
                                 <xsl:attribute name="code">TMP</xsl:attribute>
-                                <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Tempory Address</xsl:attribute>
                             </xsl:element>
                         </xsl:when>
@@ -475,7 +467,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$elmAddressType}">
                                 <xsl:attribute name="localId">1</xsl:attribute>
                                 <xsl:attribute name="code">WP</xsl:attribute>
-                                <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Work Place</xsl:attribute>
                             </xsl:element>
                         </xsl:when>
@@ -483,7 +475,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$elmAddressType}">
                                 <xsl:attribute name="localId">1</xsl:attribute>
                                 <xsl:attribute name="code">HV</xsl:attribute>
-                                <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Vacation Home</xsl:attribute>
                             </xsl:element>
                         </xsl:when>
@@ -668,7 +660,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="localId">3</xsl:attribute>
                                             <xsl:attribute name="code">MC</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Mobiele telefoon</xsl:attribute>
                                         </xsl:element>
                                     </xsl:when>
@@ -676,7 +668,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="localId">4</xsl:attribute>
                                             <xsl:attribute name="code">PG</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Pager</xsl:attribute>
                                         </xsl:element>
                                     </xsl:when>
@@ -688,7 +680,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="localId">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
                                         </xsl:element>
                                     </xsl:when>
@@ -696,7 +688,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="localId">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Temporary Address</xsl:attribute>
                                         </xsl:element>
                                     </xsl:when>
@@ -704,7 +696,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="localId">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Work place</xsl:attribute>
                                         </xsl:element>
                                     </xsl:when>
@@ -733,7 +725,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="localId">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
                                         </xsl:element>
                                     </xsl:when>
@@ -741,7 +733,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="localId">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.5.1119</xsl:attribute>
+                                            <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Work place</xsl:attribute>
                                         </xsl:element>
                                     </xsl:when>
@@ -860,8 +852,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elementName" as="xs:string?"/>
         <xsl:param name="language">en-US</xsl:param>
         <xsl:param name="typeCode" as="attribute()?"/>
-        <xsl:variable name="oidParticipationType">2.16.840.1.113883.5.90</xsl:variable>
-        <xsl:variable name="oidNullFlavor">2.16.840.1.113883.5.1008</xsl:variable>
         
         <!-- Element name -->
         <xsl:variable name="elmHealthProfessional">
@@ -920,49 +910,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$typeCode = 'RESP'">
                     <xsl:element name="{$elmHealthProfessionalRole}">
                         <xsl:attribute name="code" select="$typeCode"/>
-                        <xsl:attribute name="codeSystem" select="$oidParticipationType"/>
+                        <xsl:attribute name="codeSystem" select="$oidHL7ParticipationType"/>
                         <xsl:attribute name="displayName">Responsible Party</xsl:attribute>
                     </xsl:element>
                 </xsl:when>
                 <xsl:when test="$typeCode = 'REF'">
                     <xsl:element name="{$elmHealthProfessionalRole}">
                         <xsl:attribute name="code" select="$typeCode"/>
-                        <xsl:attribute name="codeSystem" select="$oidParticipationType"/>
+                        <xsl:attribute name="codeSystem" select="$oidHL7ParticipationType"/>
                         <xsl:attribute name="displayName">Referrer</xsl:attribute>
                     </xsl:element>
                 </xsl:when>
                 <xsl:when test="$typeCode = 'PRF'">
                     <xsl:element name="{$elmHealthProfessionalRole}">
                         <xsl:attribute name="code" select="$typeCode"/>
-                        <xsl:attribute name="codeSystem" select="$oidParticipationType"/>
+                        <xsl:attribute name="codeSystem" select="$oidHL7ParticipationType"/>
                         <xsl:attribute name="displayName">Performer</xsl:attribute>
                     </xsl:element>
                 </xsl:when>
                 <xsl:when test="$typeCode = 'SPRF'">
                     <xsl:element name="{$elmHealthProfessionalRole}">
                         <xsl:attribute name="code" select="$typeCode"/>
-                        <xsl:attribute name="codeSystem" select="$oidParticipationType"/>
+                        <xsl:attribute name="codeSystem" select="$oidHL7ParticipationType"/>
                         <xsl:attribute name="displayName">Secondary Performer</xsl:attribute>
                     </xsl:element>
                 </xsl:when>
                 <xsl:when test="$typeCode = 'CON'">
                     <xsl:element name="{$elmHealthProfessionalRole}">
                         <xsl:attribute name="code" select="$typeCode"/>
-                        <xsl:attribute name="codeSystem" select="$oidParticipationType"/>
+                        <xsl:attribute name="codeSystem" select="$oidHL7ParticipationType"/>
                         <xsl:attribute name="displayName">Consultant</xsl:attribute>
                     </xsl:element>
                 </xsl:when>
                 <xsl:when test="$typeCode = 'ATND'">
                     <xsl:element name="{$elmHealthProfessionalRole}">
                         <xsl:attribute name="code" select="$typeCode"/>
-                        <xsl:attribute name="codeSystem" select="$oidParticipationType"/>
+                        <xsl:attribute name="codeSystem" select="$oidHL7ParticipationType"/>
                         <xsl:attribute name="displayName">Attender</xsl:attribute>
                     </xsl:element>
                 </xsl:when>
                 <xsl:when test="$typeCode">
                     <xsl:element name="{$elmHealthProfessionalRole}">
                         <xsl:attribute name="code">OTH</xsl:attribute>
-                        <xsl:attribute name="codeSystem" select="$oidNullFlavor"/>
+                        <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
                         <xsl:attribute name="displayName">Other</xsl:attribute>
                         <xsl:attribute name="originalText" select="$typeCode"/>
                     </xsl:element>
@@ -1039,193 +1029,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
-   <xsl:template name="make_UCUM2Gstandard_translation">
-      <!-- Produceert een regel met de <translation> van a UCUM unit naar de G-standaard -->
-      <xsl:param name="UCUMvalue"/>
-      <xsl:param name="UCUMunit"/>
-      <xsl:choose>
-         <xsl:when test="$UCUMunit eq 'ug'">
-            <translation value="{$UCUMvalue}" code="252" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Microgram"/>
-         </xsl:when>
-         <xsl:when test="$UCUMunit eq 'mg'">
-            <translation value="{$UCUMvalue}" code="229" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milligram"/>
-         </xsl:when>
-         <xsl:when test="$UCUMunit eq 'g'">
-            <translation value="{$UCUMvalue}" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
-         </xsl:when>
-         <xsl:when test="$UCUMunit eq 'ul'">
-            <translation value="{$UCUMvalue}" code="254" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Microliter"/>
-         </xsl:when>
-         <xsl:when test="$UCUMunit eq 'ml'">
-            <translation value="{$UCUMvalue}" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
-         </xsl:when>
-         <xsl:when test="$UCUMunit eq 'l'">
-            <translation value="{$UCUMvalue}" code="222" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Liter"/>
-         </xsl:when>
-         <xsl:when test="$UCUMunit eq '[drp]'">
-            <translation value="{$UCUMvalue}" code="303" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Druppel"/>
-         </xsl:when>
-         <!--
-            Tablespoons en teaspoons zijn geschrapt uit de lijst units omdat ze niet nauwkeurig zijn. 
-         <xsl:when test="$UCUMunit eq '[tsp_us]'">
-            <translation value="{$UCUMvalue * 5}" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
-         </xsl:when>
-         <xsl:when test="$UCUMunit eq '[tbs_us]'">
-            <translation value="{$UCUMvalue * 15}" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/> 
-         </xsl:when>
-         -->
-         <xsl:when test="$UCUMunit eq '[iU]'">
-            <translation value="{$UCUMvalue}" code="217" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Internat.eenh."/>
-         </xsl:when>
-         <xsl:when test="($UCUMunit eq '1')">
-            <translation value="{$UCUMvalue}" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
-         </xsl:when>
-         <xsl:when test="(lower-case($UCUMunit) eq 'eenheid')">
-            <translation value="{$UCUMvalue}" code="211" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Eenheid"/>
-         </xsl:when>
-         <xsl:when test="(lower-case($UCUMunit) eq 'dosis')">
-            <translation value="{$UCUMvalue}" code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="dosis"/>
-         </xsl:when>
-         <xsl:otherwise>
-            <translation value="{$UCUMvalue}" code="0" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="niet ondersteunde UCUM eenheid: {$UCUMunit}"/>
-         </xsl:otherwise>
-      </xsl:choose>
-   </xsl:template>
-   <xsl:template name="UCUM2GstdBasiseenheid">
-      <xsl:param name="UCUM"/>
-
-      <xsl:variable name="gstd-code">
-         <xsl:choose>
-            <xsl:when test="string-length($UCUM) > 0">
-               <xsl:choose>
-                  <xsl:when test="$UCUM = 'cm'">205</xsl:when>
-                  <xsl:when test="$UCUM = 'g'">215</xsl:when>
-                  <xsl:when test="$UCUM = '[iU]'">217</xsl:when>
-                  <xsl:when test="$UCUM = 'kg'">219</xsl:when>
-                  <xsl:when test="$UCUM = 'l'">222</xsl:when>
-                  <xsl:when test="$UCUM = 'mg'">229</xsl:when>
-                  <xsl:when test="$UCUM = 'ml'">233</xsl:when>
-                  <xsl:when test="$UCUM = 'mm'">234</xsl:when>
-                  <xsl:when test="$UCUM = '1'">245</xsl:when>
-                  <xsl:when test="$UCUM = 'ug'">252</xsl:when>
-                  <xsl:when test="$UCUM = 'ul'">254</xsl:when>
-                  <xsl:when test="$UCUM = '[drp]'">303</xsl:when>
-                  <xsl:otherwise>Not supported UCUM eenheid, cannot convert to G-standaard basiseenheid: <xsl:value-of select="$UCUM"/></xsl:otherwise>
-               </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-               <!-- geen waarde meegekregen --> UCUM is an empty string. Not supported to convert to G-standaard basiseenheid. </xsl:otherwise>
-         </xsl:choose>
-      </xsl:variable>
-      <xsl:variable name="gstd-displayname">
-         <xsl:choose>
-            <xsl:when test="string-length($UCUM) > 0">
-               <xsl:choose>
-                  <xsl:when test="$UCUM = 'cm'">centimeter</xsl:when>
-                  <xsl:when test="$UCUM = 'g'">gram</xsl:when>
-                  <xsl:when test="$UCUM = '[iU]'">internationale eenheid</xsl:when>
-                  <xsl:when test="$UCUM = 'kg'">kilogram</xsl:when>
-                  <xsl:when test="$UCUM = 'l'">liter</xsl:when>
-                  <xsl:when test="$UCUM = 'mg'">milligram</xsl:when>
-                  <xsl:when test="$UCUM = 'ml'">milliliter</xsl:when>
-                  <xsl:when test="$UCUM = 'mm'">millimeter</xsl:when>
-                  <xsl:when test="$UCUM = '1'">stuk</xsl:when>
-                  <xsl:when test="$UCUM = 'ug'">microgram</xsl:when>
-                  <xsl:when test="$UCUM = 'ul'">microliter</xsl:when>
-                  <xsl:when test="$UCUM = '[drp]'">druppel</xsl:when>
-                  <xsl:otherwise>Not supported UCUM eenheid, cannot convert to G-standaard basiseenheid: <xsl:value-of select="$UCUM"/></xsl:otherwise>
-               </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-               <!-- geen waarde meegekregen --> UCUM is an empty string. Not supported to convert to G-standaard basiseenheid. </xsl:otherwise>
-         </xsl:choose>
-      </xsl:variable>
-      <xsl:attribute name="code" select="$gstd-code"/>
-      <xsl:attribute name="codeSystem" select="'2.16.840.1.113883.2.4.4.1.900.2'"/>
-      <xsl:attribute name="displayName" select="$gstd-displayname"/>
-   </xsl:template>
-   <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string">
-      <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
-
-      <xsl:choose>
-         <xsl:when test="$GstdBasiseenheid_code castable as xs:integer">
-            <xsl:choose>
-               <xsl:when test="$GstdBasiseenheid_code = '205'">cm</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '208'">1</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '211'">1</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '215'">g</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '217'">[iU]</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '219'">kg</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '222'">l</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '229'">mg</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '233'">ml</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '234'">mm</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '245'">1</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '252'">ug</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '254'">ul</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '303'">[drp]</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '345'">1</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '490'">1</xsl:when>
-               <xsl:when test="$GstdBasiseenheid_code = '500'">1</xsl:when>
-               <xsl:otherwise>Not supported G-standaard basiseenheid: <xsl:value-of select="$GstdBasiseenheid_code"/></xsl:otherwise>
-            </xsl:choose>
-         </xsl:when>
-         <xsl:otherwise>
-            <!-- geen integer meegekregen --> G-standaard code is not an integer. Not supported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
-      </xsl:choose>
-      <xsl:if test="$GstdBasiseenheid_code castable as xs:integer"> </xsl:if>
-   </xsl:function>
-   <xsl:function name="nf:convertUnit_UCUM2ADA" as="xs:string">
-      <xsl:param name="UCUMunit" as="xs:string"/>
-      <xsl:choose>
-         <xsl:when test="lower-case($UCUMunit) eq 'g'">g</xsl:when>
-         <xsl:when test="lower-case($UCUMunit) eq 'kg'">kg</xsl:when>
-         <xsl:when test="lower-case($UCUMunit) eq 'cm'">cm</xsl:when>
-         <xsl:when test="lower-case($UCUMunit) eq 'm'">m</xsl:when>
-         <xsl:otherwise>
-            <xsl:value-of select="$UCUMunit"/>
-         </xsl:otherwise>
-      </xsl:choose>
-   </xsl:function>
-   <xsl:function name="nf:convertTime_UCUM2ADA_unit" as="xs:string?">
-      <xsl:param name="UCUM-time" as="xs:string?"/>
-      <xsl:if test="$UCUM-time">
-         <xsl:choose>
-            <xsl:when test="$UCUM-time = 's'">seconde</xsl:when>
-            <xsl:when test="$UCUM-time = 'min'">minuut</xsl:when>
-            <xsl:when test="$UCUM-time = 'h'">uur</xsl:when>
-            <xsl:when test="$UCUM-time = 'd'">dag</xsl:when>
-            <xsl:when test="$UCUM-time = 'wk'">week</xsl:when>
-            <xsl:when test="$UCUM-time = 'mo'">maand</xsl:when>
-            <xsl:when test="$UCUM-time = 'a'">jaar</xsl:when>
-            <xsl:otherwise>
-               <xsl:value-of select="concat('onbekende tijdseenheid: ', $UCUM-time)"/>
-            </xsl:otherwise>
-         </xsl:choose>
-      </xsl:if>
-   </xsl:function>
-   <xsl:function name="nf:determine_date_precision">
-      <xsl:param name="input-hl7-date"/>
-      <xsl:choose>
-         <xsl:when test="string-length($input-hl7-date) &lt;= 8">day</xsl:when>
-         <xsl:when test="string-length($input-hl7-date) > 8">second</xsl:when>
-         <xsl:otherwise>not_supported</xsl:otherwise>
-      </xsl:choose>
-   </xsl:function>
-   <xsl:function name="nf:day-of-week" as="xs:integer?">
-      <!-- courtesy to http://www.xsltfunctions.com/xsl/functx_day-of-week.html -->
-      <xsl:param name="date" as="xs:anyAtomicType?"/>
-      <xsl:sequence select="
-            if (empty($date))
-            then
-               ()
-            else
-               xs:integer((xs:date($date) - xs:date('1901-01-06'))
-               div xs:dayTimeDuration('P1D')) mod 7
-            "/>
-   </xsl:function>
-
-
+   
+    <xsl:function name="nf:determine_date_precision">
+        <xsl:param name="input-hl7-date"/>
+        <xsl:choose>
+            <xsl:when test="string-length($input-hl7-date) &lt;= 8">day</xsl:when>
+            <xsl:when test="string-length($input-hl7-date) > 8">second</xsl:when>
+            <xsl:otherwise>not_supported</xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+   
    <xsl:function name="nf:format2HL7Date" as="xs:string?">
       <xsl:param name="dateTime"/>
       <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->

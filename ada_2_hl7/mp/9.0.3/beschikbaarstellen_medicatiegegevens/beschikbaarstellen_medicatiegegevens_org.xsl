@@ -2,9 +2,9 @@
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
     <!--<xsl:include href="../../../hl7/hl7_include.xsl"/>-->
-    <xsl:include href="../mp_include.xsl"/>
-    <xsl:include href="../../../zib1bbr/zib1bbr_include.xsl"/>
-    <xsl:include href="../../../naw/naw_include.xsl"/>
+    <xsl:include href="../../2_hl7_mp_include.xsl"/>
+    <xsl:include href="../../../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
+    <xsl:include href="../../../naw/2_hl7_naw_include.xsl"/>
     <xsl:template match="/">
         <xsl:call-template name="Medicatiegegevens_90">
             <xsl:with-param name="patient" select="//beschikbaarstellen_medicatiegegevens/patient"/>
@@ -23,8 +23,7 @@
             <statusCode nullFlavor="NI"/>
             <!-- Patient -->
             <xsl:for-each select="$patient">
-                <xsl:call-template
-                    name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9119_20160710204856">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9119_20160710204856">
                     <xsl:with-param name="patient" select="."/>
                 </xsl:call-template>
                 <!-- Vanaf volgende publicatie het ZIB template gaan gebruiken: -->

@@ -390,7 +390,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template match="*[hl7:id[@root = $oidURAOrganizations]]" mode="doOrganization">
-        <xsl:variable name="uriOrganization" select="local:getUriFromId(hl7:id[1])"/>
+        <xsl:variable name="uriOrganization" select="local:getUriFromId(hl7:id[1], ())"/>
         <xsl:variable name="nameOrganization" select="hl7:name" as="element()*"/>
         <xsl:variable name="telOrganization" select="hl7:telecom[starts-with(@value, 'tel:') or matches(@value, '^\d')]" as="element()*"/>
         <xsl:variable name="emailOrganization" select="hl7:telecom[starts-with(@value, 'mailto:') or contains(@value, '@')]" as="element()*"/>
@@ -517,8 +517,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="episodeOfCareRef" select="hl7:entryRelationship/hl7:act/hl7:id/concat(@root, @extension)" as="xs:string"/>
         <xsl:variable name="episodeofCare" select="$theInput/key('keyComponentElementId', $episodeOfCareRef)" as="element(hl7:act)?"/>
         
-        <xsl:variable name="uriEpisodeOfCare" select="local:getUriFromId(hl7:entryRelationship/hl7:act/hl7:id[1])"/>
-        <xsl:variable name="uriFlag" select="local:getUriFromId(hl7:id[1])"/>
+        <xsl:variable name="uriEpisodeOfCare" select="local:getUriFromId(hl7:entryRelationship/hl7:act/hl7:id[1], ())"/>
+        <xsl:variable name="uriFlag" select="local:getUriFromId(hl7:id[1], ())"/>
         
         <xsl:variable name="alertName" select="(string-join($episodeofCare/hl7:text/normalize-space(), ' ')[not(. = '')], 'Onbekend')[1]"/>
         

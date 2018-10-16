@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:copy-of select="hl7:code"/>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <hl7:code code="INTERR" codeSystem="2.16.840.1.113883.5.1100" displayName="Internal system error"/>
+                                        <hl7:code code="INTERR" codeSystem="{$oidHL7AcknowledgementDetailCode}" displayName="Internal system error"/>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:variable>

@@ -107,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- Is er sprake van 'overdracht aan'? -->
                             <act classCode="PCPR" moodCode="RQO">
                                 <xsl:call-template name="makeNegationAttr"/>
-                                <code code="308292007" codeSystem="2.16.840.1.113883.6.96" displayName="Transfer of care (procedure)"/>
+                                <code code="308292007" codeSystem="{$oidSNOMEDCT}" displayName="Transfer of care (procedure)"/>
                             </act>
                         </pertinentInformation3>
                     </xsl:for-each>

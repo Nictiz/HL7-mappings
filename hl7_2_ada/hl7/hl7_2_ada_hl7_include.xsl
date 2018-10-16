@@ -14,6 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:include href="../../util/constants.xsl"/>
 
     <xsl:function name="nf:formatHL72XMLDate">
         <xsl:param name="dateTime" as="xs:string"/>
@@ -193,7 +194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
             <xsl:choose>
-                <xsl:when test="@codeSystem = '2.16.840.1.113883.5.1008'">
+                <xsl:when test="@codeSystem = $oidHL7NullFlavor">
                     <!-- NullFlavor -->
                     <xsl:attribute name="nullFlavor" select="@code"/>
                 </xsl:when>
@@ -224,7 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="string-length($code) = 0 and (string-length($value) gt 0 or string-length($strOriginalText) gt 0)">
                 <xsl:attribute name="nullFlavor" select="'OTH'"/>
             </xsl:when>
-            <xsl:when test="$codeSystem = '2.16.840.1.113883.5.1008'">
+            <xsl:when test="$codeSystem = $oidHL7NullFlavor">
                 <!-- NullFlavor -->
                 <xsl:attribute name="nullFlavor" select="$code"/>
             </xsl:when>
@@ -362,7 +363,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName">value</xsl:param>
         <xsl:call-template name="makeIIValue">
             <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="'2.16.840.1.113883.2.4.6.1'"/>
+            <xsl:with-param name="root" select="$oidAGB"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -371,7 +372,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName">value</xsl:param>
         <xsl:call-template name="makeIIValue">
             <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="'2.16.528.1.1007.5.1'"/>
+            <xsl:with-param name="root" select="$oidBIGregister"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -381,7 +382,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="makeIIValue">
             <xsl:with-param name="xsiType" select="$xsiType"/>
             <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="'2.16.840.1.113883.2.4.6.3'"/>
+            <xsl:with-param name="root" select="$oidBurgerservicenummer"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -390,7 +391,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName">value</xsl:param>
         <xsl:call-template name="makeIIValue">
             <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="'2.16.528.1.1007.3.3'"/>
+            <xsl:with-param name="root" select="$oidURAOrganizations"/>
         </xsl:call-template>
     </xsl:template>
 
@@ -399,7 +400,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName">value</xsl:param>
         <xsl:call-template name="makeIIValue">
             <xsl:with-param name="elemName" select="$elemName"/>
-            <xsl:with-param name="root" select="'2.16.528.1.1007.3.1'"/>
+            <xsl:with-param name="root" select="$oidUZIPersons"/>
         </xsl:call-template>
     </xsl:template>
 

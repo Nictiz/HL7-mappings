@@ -6,7 +6,7 @@
     version="2.0">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
     <!--<xsl:include href="../../../hl7/hl7_include.xsl"/>-->
-    <xsl:include href="../mp_include.xsl"/>
+    <xsl:include href="../2_hl7_mp_include.xsl"/>
     <xsl:include href="../../../zib1bbr/zib1bbr_include.xsl"/>
     <xsl:include href="../../../naw/naw_include.xsl"/>
     <xsl:template match="/">

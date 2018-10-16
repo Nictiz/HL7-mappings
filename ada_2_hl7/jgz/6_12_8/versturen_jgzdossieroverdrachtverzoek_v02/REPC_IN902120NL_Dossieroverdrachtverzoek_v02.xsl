@@ -67,12 +67,12 @@
             </attentionLine>
             <receiver>
                 <device>
-                    <id extension="{{$receiverId}}" root="2.16.840.1.113883.2.4.6.6"/>
+                    <id extension="{{$receiverId}}" root="{$oidAORTAApplicatieID}"/>
                 </device>
             </receiver>
             <sender>
                 <device>
-                    <id extension="{{$applicationId}}" root="2.16.840.1.113883.2.4.6.6"/>
+                    <id extension="{{$applicationId}}" root="{$oidAORTAApplicatieID}"/>
                 </device>
             </sender>
             <ControlActProcess classCode="CACT" moodCode="EVN">
@@ -81,7 +81,7 @@
                         <AssignedDevice>
                             <id root="2.16.528.1.1007.3.2" extension="091287345"/>
                             <Organization>
-                                <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                                <id extension="00001111" root="{$oidURAOrganizations}"/>
                                 <name>GGD Groningen</name>
                             </Organization>
                         </AssignedDevice>
@@ -97,7 +97,7 @@
                                 <time value="{$gREQUESTDATE}"/>
                                 <assignedEntity classCode="ASSIGNED">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                                    <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+                                    <id root="{$oidURAOrganizations}" extension="00001111"/>
                                 </assignedEntity>
                             </author>
                             <sequelTo>
@@ -1922,7 +1922,7 @@
                                                 <time nullFlavor="UNK"/>
                                                 <assignedEntity classCode="ASSIGNED">
                                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                                                    <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+                                                    <id root="{$oidURAOrganizations}" extension="00001111"/>
                                                 </assignedEntity>
                                             </author>
                                         </careStatus>
@@ -1937,7 +1937,7 @@
                                                 <time nullFlavor="UNK"/>
                                                 <assignedEntity classCode="ASSIGNED">
                                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                                                    <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+                                                    <id root="{$oidURAOrganizations}" extension="00001111"/>
                                                 </assignedEntity>
                                             </author>
                                         </careStatus>

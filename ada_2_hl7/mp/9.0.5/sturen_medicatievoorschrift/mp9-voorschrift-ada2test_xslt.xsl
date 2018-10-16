@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <xsl:strip-space elements="*"/>
-    <xsl:include href="../../mp_include.xsl"/>
+    <xsl:include href="../../2_hl7_mp_include.xsl"/>
 
     <xsl:template name="make-schematron">
         <xsl:param name="pattern-id"/>
@@ -255,8 +255,8 @@
                 <let name="doseQuantity" value="./hl7:doseQuantity/hl7:center"/>
                 <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="count($doseQuantity[@value=$dosering][(($dosering-eenheid='1' and (not(exists($doseQuantity/@unit)) or $doseQuantity/@unit='1'))or @unit=$dosering-eenheid)]) >= 1"
                     >Bij <value-of select="$naam"/> moet er (bij xml element <value-of select="$doseQuantity/parent::node()/local-name()"/>/<value-of select="$doseQuantity/local-name()"/>) minimaal één value van '<value-of select="$dosering"/>' met unit '<value-of select="$dosering-eenheid"/>' zijn. Gevonden: '<value-of select="$doseQuantity/@value"/>' met unit '<value-of select="$doseQuantity/@unit"/>'.</assert>
-                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="count($doseQuantity/hl7:translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2'][@value=$dosering and @code=$dosering-vertaling-code]) >= 1"
-                    >Bij <value-of select="$naam"/> moet er bij (bij xml element <value-of select="$doseQuantity/parent::node()/local-name()"/>/<value-of select="$doseQuantity/local-name()"/>) die waarde <value-of select="$dosering"/> met unit <value-of select="$dosering-eenheid"/> heeft, minimaal één doseringsvertaling met waarde <value-of select="$dosering"/> en code <value-of select="$dosering-vertaling-code"/> zijn (gevonden: waarde '<value-of select="$doseQuantity/hl7:translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value"/>' met code '<value-of select="$doseQuantity/hl7:translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@code"/>')</assert>
+                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="count($doseQuantity/hl7:translation[@codeSystem=$oidGStandaardBST902THES2][@value=$dosering and @code=$dosering-vertaling-code]) >= 1"
+                    >Bij <value-of select="$naam"/> moet er bij (bij xml element <value-of select="$doseQuantity/parent::node()/local-name()"/>/<value-of select="$doseQuantity/local-name()"/>) die waarde <value-of select="$dosering"/> met unit <value-of select="$dosering-eenheid"/> heeft, minimaal één doseringsvertaling met waarde <value-of select="$dosering"/> en code <value-of select="$dosering-vertaling-code"/> zijn (gevonden: waarde '<value-of select="$doseQuantity/hl7:translation[@codeSystem=$oidGStandaardBST902THES2]/@value"/>' met code '<value-of select="$doseQuantity/hl7:translation[@codeSystem=$oidGStandaardBST902THES2]/@code"/>')</assert>
                 </xsl:for-each>
 
             <xsl:for-each select="$current-dosering/toedieningsschema[not(dagdeel[@code])]/frequentie[.//@value]">
@@ -317,7 +317,7 @@
                     <xsl:attribute name="value" select="nf:concat2string(./@codeSystem)"/>
                 </let>
                 <xsl:choose>
-                    <xsl:when test="./@codeSystem = '2.16.840.1.113883.5.1008'">
+                    <xsl:when test="./@codeSystem = $oidHL7NullFlavor">
                         <assert role="error" test="$precondition-code/(@nullFlavor = $preconditie-code)">Preconditie nullFlavor van <value-of select="$naam"/> moet <value-of select="$preconditie-code"/> zijn (gevonden: '<value-of select="$precondition-code/@nullFlavor"/>'.</assert>
                         <let name="originalText">
                             <xsl:attribute name="value" select="nf:concat2string(./@originalText)"/>
@@ -361,8 +361,8 @@
                 <assert  xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="number($quantity/@value) = $hoeveelheid">De te verstrekken hoeveelheid <value-of select="$naam"/> moet <value-of select="$hoeveelheid"/> zijn. Gevonden: '<value-of select="$quantity/@value"/>'.</assert>
                 <assert  xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="($hoeveelheid-eenheid = '1' and (not(exists($quantity/@unit)) or $quantity/@unit='1')) or $quantity/@unit = $hoeveelheid-eenheid"
                     >De te verstrekken hoeveelheid <value-of select="$naam"/> moet eenheid <value-of select="$hoeveelheid-eenheid"/> hebben. Gevonden: '<value-of select="$quantity/@unit"/>'.</assert>
-                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="$quantity/hl7:translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@code=$hoeveelheid-vertaling-code">Vertaling van de te verstrekken hoeveelheid van <value-of select="$naam"/> moet code <value-of select="$hoeveelheid-vertaling-code"/> zijn. Gevonden: '<value-of select="$quantity/hl7:translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@code"/>'.</assert>                <include href="include/hoeveelheid-vertaling-value.sch"/>
-                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="number($quantity/hl7:translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value)=$hoeveelheid-vertaling-value">Vertaling van de te verstrekken hoeveelheid van <value-of select="$naam"/> moet waarde <value-of select="$hoeveelheid-vertaling-value"/> zijn. Gevonden: '<value-of select="$quantity/hl7:translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2']/@value"/>'.</assert>            </xsl:for-each>
+                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="$quantity/hl7:translation[@codeSystem=$oidGStandaardBST902THES2]/@code=$hoeveelheid-vertaling-code">Vertaling van de te verstrekken hoeveelheid van <value-of select="$naam"/> moet code <value-of select="$hoeveelheid-vertaling-code"/> zijn. Gevonden: '<value-of select="$quantity/hl7:translation[@codeSystem=$oidGStandaardBST902THES2]/@code"/>'.</assert>                <include href="include/hoeveelheid-vertaling-value.sch"/>
+                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="error" test="number($quantity/hl7:translation[@codeSystem=$oidGStandaardBST902THES2]/@value)=$hoeveelheid-vertaling-value">Vertaling van de te verstrekken hoeveelheid van <value-of select="$naam"/> moet waarde <value-of select="$hoeveelheid-vertaling-value"/> zijn. Gevonden: '<value-of select="$quantity/hl7:translation[@codeSystem=$oidGStandaardBST902THES2]/@value"/>'.</assert>            </xsl:for-each>
             <xsl:comment>Geneesmiddel displayName</xsl:comment>
             <let name="displayName" value="($hl7-verstrekkingsverzoek/hl7:product/hl7:manufacturedProduct/hl7:manufacturedMaterial//*[@code = $medCodeNr]/@displayName)[1]"/>
             <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron" role="warning" test="contains(upper-case($displayName), upper-case($naam))">Verwacht is dat de naam (displayName) '<value-of select="$naam"/>' bevat. Gevonden: '<value-of select="$displayName"/>'.</assert>

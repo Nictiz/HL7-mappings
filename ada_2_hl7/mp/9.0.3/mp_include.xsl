@@ -47,53 +47,53 @@
       <xsl:choose>
          <xsl:when test="$UCUMunit eq 'ug'">
             <translation value="{$UCUMvalue}" code="252"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Microgram"/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Microgram"/>
          </xsl:when>
          <xsl:when test="$UCUMunit eq 'mg'">
             <translation value="{$UCUMvalue}" code="229"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milligram"/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Milligram"/>
          </xsl:when>
          <xsl:when test="$UCUMunit eq 'g'">
             <translation value="{$UCUMvalue}" code="215"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Gram"/>
          </xsl:when>
          <xsl:when test="$UCUMunit eq 'ul'">
             <translation value="{$UCUMvalue}" code="254"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Microliter"/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Microliter"/>
          </xsl:when>
          <xsl:when test="$UCUMunit eq 'ml'">
             <translation value="{$UCUMvalue}" code="233"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Milliliter"/>
          </xsl:when>
          <xsl:when test="$UCUMunit eq 'l'">
             <translation value="{$UCUMvalue}" code="222"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Liter"/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Liter"/>
          </xsl:when>
          <xsl:when test="$UCUMunit eq '[drp]'">
             <translation value="{$UCUMvalue}" code="303"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Druppel"/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Druppel"/>
          </xsl:when>
          <!--
             Tablespoons en teaspoons zijn geschrapt uit de lijst UCUM units omdat ze niet nauwkeurig naar SI eenheden om te zetten zijn. 
          <xsl:when test="$UCUMunit eq '[tsp_us]'">
-            <translation value="{$UCUMvalue * 5}" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/>
+            <translation value="{$UCUMvalue * 5}" code="233" codeSystem="{$oidGStandaardBST902THES2}" displayName="Milliliter"/>
          </xsl:when>
          <xsl:when test="$UCUMunit eq '[tbs_us]'">
-            <translation value="{$UCUMvalue * 15}" code="233" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Milliliter"/> 
+            <translation value="{$UCUMvalue * 15}" code="233" codeSystem="{$oidGStandaardBST902THES2}" displayName="Milliliter"/> 
          </xsl:when>
          -->
          <xsl:when test="$UCUMunit eq '[iU]'">
             <translation value="{$UCUMvalue}" code="217"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Internat.eenh."/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Internat.eenh."/>
          </xsl:when>
          <!-- De officiele UCOM unit is 1, maar via het formulier zou evt. ook eenheid, stuk of dosis binnen kunnen komen -->
          <xsl:when
             test="($UCUMunit eq '1') or ($UCUMunit eq 'eenheid') or ($UCUMunit eq 'stuk') or ($UCUMunit eq 'dosis')">
             <translation value="{$UCUMvalue}" code="211"
-               codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Eenheid"/>
+               codeSystem="{$oidGStandaardBST902THES2}" displayName="Eenheid"/>
          </xsl:when>
          <xsl:otherwise>
-            <translation value="{$UCUMvalue}" code="0" codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+            <translation value="{$UCUMvalue}" code="0" codeSystem="{$oidGStandaardBST902THES2}"
                displayName="niet ondersteunde UCUM eenheid: {$UCUMunit}"/>
          </xsl:otherwise>
       </xsl:choose>
@@ -272,7 +272,7 @@
       <!-- Toelichting -->
       <act classCode="ACT" moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
-         <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+         <code code="48767-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC"
             displayName="Toelichting"/>
          <text mediaType="text/plain">
             <xsl:value-of select="./@value"/>
@@ -713,7 +713,7 @@
                </xsl:call-template>
             </xsl:for-each>
          </xsl:if>
-         <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"
+         <code code="16076005" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"
             displayName="Medicatieafspraak"/>
          <consumable xsi:nil="true"/>
       </substanceAdministration>
@@ -910,7 +910,7 @@
             </xsl:for-each>
 
             <code codeSystemName="Medicatieproces acts" displayName="Verstrekking" code="373784005"
-               codeSystem="2.16.840.1.113883.6.96"/>
+               codeSystem="{$oidSNOMEDCT}"/>
 
             <!-- (uitreik-)datum   (Aanschrijfdatum zit in EntityRelation) -->
             <xsl:for-each select="./datum">
@@ -1047,7 +1047,7 @@
             </xsl:for-each>
          </xsl:if>
          <code displayName="Toedieningsafspraak" code="422037009"
-            codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
          <consumable xsi:nil="true"/>
       </substanceAdministration>
    </xsl:template>
@@ -1063,7 +1063,7 @@
                </xsl:call-template>
             </xsl:for-each>
          </xsl:if>
-         <code code="373784005" displayName="Verstrekking" codeSystem="2.16.840.1.113883.6.96"
+         <code code="373784005" displayName="Verstrekking" codeSystem="{$oidSNOMEDCT}"
             codeSystemName="SNOMED CT"/>
       </supply>
    </xsl:template>
@@ -1246,7 +1246,7 @@
       <xsl:param name="PQvalue"/>
       <observation classCode="OBS" moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9122"/>
-         <code code="8302-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+         <code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="LOINC"
             displayName="Lengte"/>
          <xsl:call-template name="makeEffectiveTime">
             <xsl:with-param name="effectiveTime" select="$effectiveTime"/>
@@ -1264,7 +1264,7 @@
       <xsl:param name="PQvalue"/>
       <observation classCode="OBS" moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9123"/>
-         <code code="3142-7" codeSystem="2.16.840.1.113883.6.1" displayName="Body Weight"/>
+         <code code="3142-7" codeSystem="{$oidLOINC}" displayName="Body Weight"/>
          <xsl:call-template name="makeEffectiveTime">
             <xsl:with-param name="effectiveTime" select="$effectiveTime"/>
          </xsl:call-template>
@@ -1399,7 +1399,7 @@
                </xsl:call-template>
             </xsl:for-each>
             <code code="16076005" displayName="Medicatieafspraak"
-               codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+               codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
             <xsl:for-each select="./gebruiksinstructie/omschrijving">
                <text mediaType="text/plain">
                   <xsl:value-of select="./@value"/>
@@ -1565,7 +1565,7 @@
                </xsl:call-template>
             </xsl:for-each>
             <code code="422037009" displayName="Toedieningsafspraak"
-               codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+               codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
             <xsl:for-each select="./gebruiksinstructie/omschrijving">
                <text mediaType="text/plain">
                   <xsl:value-of select="./@value"/>
@@ -1704,7 +1704,7 @@
             <!-- Geen id bij voorstel MA: dit is een vluchtig ding waar toch niet naar verwezen mag worden. -->
             
             <code code="16076005" displayName="Medicatieafspraak"
-               codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+               codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
             <xsl:for-each select="./gebruiksinstructie/omschrijving">
                <text mediaType="text/plain">
                   <xsl:value-of select="./@value"/>
@@ -1849,7 +1849,7 @@
          <xsl:for-each select="./informant/persoon">
             <informant>
                <relatedEntity classCode="AGNT">
-                  <code code="407542009" codeSystem="2.16.840.1.113883.6.96"
+                  <code code="407542009" codeSystem="{$oidSNOMEDCT}"
                      displayName="Informal carer (person)"/>
                   <relatedPerson classCode="PSN" determinerCode="INSTANCE">
                      <xsl:call-template
@@ -2364,7 +2364,7 @@
       <!--MP MA Voorschrijver-->
       <substanceAdministration classCode="SBADM" moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9166"/>
-         <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="--TODO--"
+         <code code="16076005" codeSystem="{$oidSNOMEDCT}" codeSystemName="--TODO--"
             displayName="--TODO--"/>
          <consumable xsi:nil="true"/>
          <author>
