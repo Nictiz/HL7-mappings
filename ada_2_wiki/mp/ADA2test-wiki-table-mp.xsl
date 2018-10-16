@@ -14,6 +14,7 @@
 	</xd:doc>
 	<xsl:output method="text" encoding="UTF-16"/>
 	<xsl:import href="./../wiki/ADA2test-wiki-table.xsl"/>
+	<xsl:import href="./mp-functions.xsl"/>
 	<!-- override ada release file and transaction to be handled -->
 	<xsl:param name="adaReleaseFile" select="document('../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
 	<xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>
@@ -145,138 +146,8 @@
 											<xsl:value-of select="./volgnummer/@value"/>
 										</xsl:if>
 									</xsl:variable>
-									<xsl:variable name="doseerduur" select="./doseerduur"/>
-									<xsl:variable name="doseerduur-string" as="xs:string*">
-										<xsl:choose>
-											<xsl:when test="$amount-doseerinstructies gt 1">
-												<xsl:choose>
-													<xsl:when test="./volgnummer/@value = 1">eerst</xsl:when>
-													<xsl:otherwise>dan</xsl:otherwise>
-												</xsl:choose>
-											</xsl:when>
-										</xsl:choose>
-										<xsl:if test="./doseerduur[@value]">
-											<xsl:value-of select="concat('gedurende ', ./doseerduur/@value, ' ', nf:unit-string(./doseerduur/@value, ./doseerduur/@unit))"/>
-										</xsl:if>
-									</xsl:variable>
-
-									<!-- todo: dosering kan herhalen voor use case 's ochtends 1 stuk, 's avonds 2 stuks... -->
-									<xsl:variable name="zo-nodig" as="xs:string*">
-										<xsl:value-of select="./dosering/zo_nodig/criterium/code/@displayName"/>
-									</xsl:variable>
-									<xsl:variable name="frequentie" select="./dosering/toedieningsschema/frequentie[.//(@value | @code)]"/>
-									<xsl:variable name="frequentie-string" as="xs:string*">
-										<xsl:choose>
-											<!-- vaste waarde -->
-											<xsl:when test="$frequentie/aantal/vaste_waarde[@value]">
-												<xsl:value-of select="$frequentie/aantal/vaste_waarde/@value"/>
-											</xsl:when>
-											<!-- min/max -->
-											<xsl:when test="$frequentie/aantal/min | max[@value]">
-												<xsl:if test="$frequentie/aantal/min/@value and not($frequentie/aantal/max/@value)">minimaal </xsl:if>
-												<xsl:if test="$frequentie/aantal/max/@value and not($frequentie/aantal/min/@value)">maximaal </xsl:if>
-												<xsl:if test="$frequentie/aantal/min/@value">
-													<xsl:value-of select="$frequentie/aantal/min/@value"/>
-												</xsl:if>
-												<xsl:if test="$frequentie/aantal/min/@value and $frequentie/aantal/max/@value"> à </xsl:if>
-												<xsl:if test="$frequentie/aantal/max/@value">
-													<xsl:value-of select="$frequentie/aantal/max/@value"/>
-												</xsl:if>
-											</xsl:when>
-										</xsl:choose>
-										<xsl:if test="$frequentie">
-											<xsl:value-of select="concat('maal per ', $frequentie/tijdseenheid/@unit)"/>
-										</xsl:if>
-									</xsl:variable>
-									<xsl:variable name="interval" select="./dosering/toedieningsschema/interval[(@value | @unit)]"/>
-									<xsl:variable name="interval-string" as="xs:string?">
-										<xsl:if test="$interval">
-											<xsl:value-of select="concat('exact iedere ', $interval/@value, ' ', $interval/@unit)"/>
-										</xsl:if>
-									</xsl:variable>
-									<xsl:variable name="toedientijd" select="./dosering/toedieningsschema/toedientijd[@value]"/>
-									<xsl:variable name="toedientijd-string" as="xs:string*">
-										<xsl:if test="$toedientijd">
-											<xsl:if test="not($frequentie)">elke dag</xsl:if>
-											<xsl:value-of select="'om'"/>
-											<xsl:value-of select="string-join($toedientijd[position() lt last()]/nf:datetime-2-timestring(@value), ', ')"/>
-											<xsl:if test="count($toedientijd) gt 1">
-												<xsl:value-of select="concat(' en ', $toedientijd[last()]/nf:datetime-2-timestring(@value))"/>
-											</xsl:if>
-										</xsl:if>
-									</xsl:variable>
-									<xsl:variable name="toedieningssnelheid" select="./dosering/toedieningssnelheid[.//(@value | @code)]"/>
-									<xsl:variable name="toedieningssnelheid-string" as="xs:string*">
-										<xsl:choose>
-											<!-- vaste waarde -->
-											<xsl:when test="$toedieningssnelheid/waarde/vaste_waarde[@value]">
-												<xsl:value-of select="$toedieningssnelheid/waarde/vaste_waarde/@value"/>
-											</xsl:when>
-											<!-- min/max -->
-											<xsl:when test="$toedieningssnelheid/waarde/min | max[@value]">
-												<xsl:if test="$toedieningssnelheid/waarde/min/@value and not($toedieningssnelheid/waarde/max/@value)">minimaal </xsl:if>
-												<xsl:if test="$toedieningssnelheid/waarde/max/@value and not($toedieningssnelheid/waarde/min/@value)">maximaal </xsl:if>
-												<xsl:if test="$toedieningssnelheid/waarde/min/@value">
-													<xsl:value-of select="$toedieningssnelheid/waarde/min/@value"/>
-												</xsl:if>
-												<xsl:if test="$toedieningssnelheid/waarde/min/@value and $toedieningssnelheid/waarde/max/@value"> à </xsl:if>
-												<xsl:if test="$toedieningssnelheid/waarde/max/@value">
-													<xsl:value-of select="$toedieningssnelheid/waarde/max/@value"/>
-												</xsl:if>
-											</xsl:when>
-										</xsl:choose>
-										<xsl:if test="$toedieningssnelheid">
-											<xsl:value-of select="
-													concat(nf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', if ($toedieningssnelheid/tijdseenheid/@value ne '1') then
-														concat($toedieningssnelheid/tijdseenheid/@value, ' ')
-													else
-														'', $toedieningssnelheid/tijdseenheid/@unit)"/>
-										</xsl:if>
-									</xsl:variable>
-									<xsl:variable name="toedieningsduur" select="./dosering/toedieningsduur[(@value | @unit)]"/>
-									<xsl:variable name="toedieningsduur-string" as="xs:string?">
-										<xsl:if test="$toedieningsduur">
-											<xsl:value-of select="concat('gedurende ', $toedieningsduur/@value, ' ', nf:unit-string($toedieningsduur/@value, $toedieningsduur/@unit))"/>
-										</xsl:if>
-									</xsl:variable>
-									<xsl:variable name="weekdag" select="./dosering/toedieningsschema/weekdag[.//(@value | @code)]"/>
-									<xsl:variable name="weekdag-string" as="xs:string*">
-										<xsl:if test="$weekdag">op </xsl:if>
-										<xsl:value-of select="string-join($weekdag[position() lt last()]/@displayName, ', ')"/>
-										<xsl:if test="count($weekdag) gt 1">en </xsl:if>
-										<xsl:value-of select="$weekdag[last()]/@displayName"/>
-
-									</xsl:variable>
-									<xsl:variable name="keerdosis" select="./dosering/keerdosis"/>
-									<xsl:variable name="keerdosis-string" as="xs:string*">
-										<xsl:choose>
-											<!-- vaste waarde -->
-											<xsl:when test="$keerdosis/aantal/vaste_waarde[@value]">
-												<xsl:value-of select="$keerdosis/aantal/vaste_waarde/@value"/>
-											</xsl:when>
-											<!-- min/max -->
-											<xsl:when test="$keerdosis/aantal/min | max[@value]">
-												<xsl:if test="$keerdosis/aantal/min/@value and not($keerdosis/aantal/max/@value)">minimaal</xsl:if>
-												<xsl:if test="$keerdosis/aantal/max/@value and not($keerdosis/aantal/min/@value)">maximaal</xsl:if>
-												<xsl:if test="$keerdosis/aantal/min/@value">
-													<xsl:value-of select="$keerdosis/aantal/min/@value"/>
-												</xsl:if>
-												<xsl:if test="$keerdosis/aantal/min/@value and $keerdosis/aantal/max/@value"> à </xsl:if>
-												<xsl:if test="$keerdosis/aantal/max/@value">
-													<xsl:value-of select="$keerdosis/aantal/max/@value"/>
-												</xsl:if>
-											</xsl:when>
-										</xsl:choose>
-										<xsl:variable name="max-aantal" select="max($keerdosis/aantal/(min | vaste_waarde | max)/@value)"/>
-										<xsl:value-of select="nf:unit-string($max-aantal, $keerdosis/eenheid/@displayName)"/>
-									</xsl:variable>
-									<xsl:variable name="dagdeel" select="./dosering/toedieningsschema/dagdeel[.//(@value | @code)]"/>
-									<xsl:variable name="dagdeel-string" as="xs:string*">
-										<xsl:value-of select="string-join($dagdeel[position() lt last()]/@displayName, ', ')"/>
-										<xsl:if test="count($dagdeel) gt 1">en </xsl:if>
-										<xsl:value-of select="$dagdeel[last()]/@displayName"/>
-									</xsl:variable>
-									<gegevenselement xmlns="" level="{$level}" naam="{$element-name}" waarde="{normalize-space(concat(string-join($doseerduur-string, ' '), string-join($zo-nodig, ' '), ' ', string-join($weekdag-string, ' '), ' ', string-join($frequentie-string, ' '), $interval-string, ' ', string-join($toedientijd-string, ' '), ' ', string-join($toedieningssnelheid-string, ' '), ' ', string-join($keerdosis-string, ' '), ' ', string-join($dagdeel-string, ' '), ' ', $toedieningsduur-string))}"/>
+									
+									<gegevenselement xmlns="" level="{$level}" naam="{$element-name}" waarde="{nf:dosering-string(., $amount-doseerinstructies)}"/>
 								</xsl:for-each>
 								<!-- herhaalperiode cyclisch schema -->
 								<xsl:apply-templates select="./herhaalperiode_cyclisch_schema" mode="maak-tabel-rij">
@@ -462,16 +333,6 @@
 						<xsl:apply-templates select="./(product_naam | omschrijving | farmaceutische_vorm | ingredient)[.//(@value | @code)]" mode="maak-tabel-rij">
 							<xsl:with-param name="level" select="$level"/>
 						</xsl:apply-templates>
-						<!--
-						<xsl:for-each select="./ingredient">
-							<groep xmlns="" level="{$level}" naam="{nf:element-name(.)}">
-								<xsl:variable name="level" select="xs:int($level + 1)"/>
-								<xsl:apply-templates select="./(ingredient_code)[.//(@value | @code)]" mode="maak-tabel-rij">
-									<xsl:with-param name="level" select="$level"/>
-								</xsl:apply-templates>
-							
-							</groep>
-						</xsl:for-each>-->
 					</groep>
 				</xsl:for-each>
 			</xsl:when>

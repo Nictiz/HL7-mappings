@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xsl:strip-space elements="*"/>
-	
+
 	<xd:doc>
-		<xd:desc></xd:desc>
+		<xd:desc/>
+		<xd:param name="in"/>
+	</xd:doc>
+	<xsl:function name="nf:datetime-2-timestring" as="xs:string?">
+		<xsl:param name="in" as="xs:string?"/>
+
+		<xsl:choose>
+			<xsl:when test="$in castable as xs:dateTime">
+				<xsl:value-of select="substring(substring-after($in, 'T'), 1, 5)"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="$in"/>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:function>
+
+	<xd:doc>
+		<xd:desc/>
 		<xd:param name="xs-datetime"/>
 	</xd:doc>
 	<xsl:function name="nf:getTime" as="xs:time?">
@@ -20,7 +37,11 @@
 	</xd:doc>
 	<xsl:function name="nf:formatDate" as="xs:string?">
 		<xsl:param name="inputDate" as="xs:string?"/>
-		<xsl:variable name="date" select="if ($inputDate) then xs:date(substring($inputDate, 1, 10)) else ()"/>
+		<xsl:variable name="date" select="
+				if ($inputDate) then
+					xs:date(substring($inputDate, 1, 10))
+				else
+					()"/>
 		<xsl:if test="$date castable as xs:date">
 			<xsl:value-of select="replace(format-date(xs:date($date), '[D] [Mn,*-3] [Y]'), 'maa', 'mrt')"/>
 		</xsl:if>
@@ -44,6 +65,6 @@
 				</xsl:when>
 			</xsl:choose>
 		</xsl:if>
-	</xsl:function>	
-	
+	</xsl:function>
+
 </xsl:stylesheet>

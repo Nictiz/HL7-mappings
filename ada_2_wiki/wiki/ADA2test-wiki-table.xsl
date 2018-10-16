@@ -14,6 +14,7 @@
 	</xd:doc>
 	<xsl:output method="text" encoding="UTF-16"/>
 	<xsl:include href="date-functions.xsl"/>
+	<xsl:import href="wiki-functions.xsl"/>
 	<xsl:param name="adaReleaseFile" select="document('../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
 	<xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>
 
@@ -27,7 +28,7 @@
 	<xsl:variable name="oid-nullFlavor">2.16.840.1.113883.5.1008</xsl:variable>
 	<xsl:variable name="oid-BSN">2.16.840.1.113883.2.4.6.3</xsl:variable>
 
-	
+
 	<xd:doc>
 		<xd:desc/>
 	</xd:doc>
@@ -80,7 +81,7 @@
 	</xd:doc>
 	<xsl:template match="tabel">
 		<xsl:param name="current-table" select="."/>
-		<xsl:variable name="tabel-diepte" select="max($current-table//*[not(*)]/count(ancestor-or-self::*))"/>		
+		<xsl:variable name="tabel-diepte" select="max($current-table//*[not(*)]/count(ancestor-or-self::*))"/>
 		<xsl:for-each select="$current-table">
 			<xsl:call-template name="startWikiTable">
 				<xsl:with-param name="tabel-diepte" select="$tabel-diepte"/>
@@ -235,7 +236,7 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	
+
 	<xd:doc>
 		<xd:desc/>
 		<xd:param name="current-element"/>
@@ -255,69 +256,8 @@
 		<xsl:value-of select="concat(upper-case(substring($in, 1, 1)), substring($in, 2))"/>
 	</xsl:function>
 
-	<xd:doc>
-		<xd:desc/>
-		<xd:param name="value"/>
-		<xd:param name="unit-in"/>
-	</xd:doc>
-	<xsl:function name="nf:unit-string" as="xs:string?">
-		<xsl:param name="value" as="xs:double?"/>
-		<xsl:param name="unit-in" as="xs:string?"/>
 
-		<xsl:variable name="unit" select="normalize-space(lower-case($unit-in))"/>
 
-		<xsl:choose>
-			<!-- same string for singular and plural -->
-			<xsl:when test="$unit = ('milliliter', 'ml')">ml</xsl:when>
-			<xsl:when test="$unit = ('internationale eenheid', '[iU]')">internationale eenheid</xsl:when>
-			<xsl:when test="$unit = ('uur', 'h')">uur</xsl:when>
-			<!-- return singular form -->
-			<xsl:when test="$value gt 0 and $value lt 2">
-				<xsl:choose>
-					<xsl:when test="$unit = ('dag', 'd')">dag</xsl:when>
-					<xsl:when test="$unit = ('week', 'wk')">week</xsl:when>
-					<xsl:when test="$unit = ('jaar', 'a')">jaar</xsl:when>
-					<xsl:when test="$unit = ('stuk', '1')">stuk</xsl:when>
-					<xsl:when test="$unit = ('dosis')">dosis</xsl:when>
-					<xsl:when test="$unit = ('druppel', '[drp]')">druppel</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="$unit"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:when>
-			<xsl:otherwise>
-				<!-- return plural form -->
-				<xsl:choose>
-					<xsl:when test="$unit = ('dag', 'd')">dagen</xsl:when>
-					<xsl:when test="$unit = ('week', 'wk')">weken</xsl:when>
-					<xsl:when test="$unit = ('jaar', 'a')">jaren</xsl:when>
-					<xsl:when test="$unit = ('stuk', '1')">stuks</xsl:when>
-					<xsl:when test="$unit = ('dosis')">doses</xsl:when>
-					<xsl:when test="$unit = ('druppel', '[drp]')">druppels</xsl:when>
-					<xsl:otherwise>
-						<xsl:value-of select="$unit"/>
-					</xsl:otherwise>
-				</xsl:choose>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:function>
-
-	<xd:doc>
-		<xd:desc/>
-		<xd:param name="in"/>
-	</xd:doc>
-	<xsl:function name="nf:datetime-2-timestring" as="xs:string?">
-		<xsl:param name="in" as="xs:string?"/>
-
-		<xsl:choose>
-			<xsl:when test="$in castable as xs:dateTime">
-				<xsl:value-of select="substring(substring-after($in, 'T'), 1, 5)"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="$in"/>
-			</xsl:otherwise>
-		</xsl:choose>
-	</xsl:function>
 	<xd:doc>
 		<xd:desc/>
 		<xd:param name="code-in"/>
