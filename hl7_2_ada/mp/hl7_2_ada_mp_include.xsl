@@ -12,8 +12,8 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-   <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+   <xsl:output method="xml" indent="yes"/>
    <xsl:include href="../hl7/hl7_2_ada_hl7_include.xsl"/>
    
    <xsl:template name="mp9-code-attribs">
@@ -948,9 +948,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </ongestructureerde_naam>
          </xsl:for-each>
          <!-- voornamen -->
-         <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]]">
+          <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]][string-length(string-join(text())) gt 0]">
             <xsl:variable name="voornamen_concatted">
-               <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][string-length(text()) gt 0]">
+                <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][string-length(string-join(text())) gt 0]">
                   <xsl:value-of select="concat(./text(), ' ')"/>
                </xsl:for-each>
             </xsl:variable>
@@ -972,9 +972,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <initialen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801" value="{$initialen_concatted}"/>
          </xsl:for-each>
-         <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'CL')]][string-length(text()) gt 0]">
+          <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'CL')]][string-length(string-join(text())) gt 0]">
             <xsl:variable name="roepnamen_concatted">
-               <xsl:for-each select="./hl7:given[contains(@qualifier, 'CL')]">
+                <xsl:for-each select="./hl7:given[contains(@qualifier, 'CL')][string-length(string-join(text())) gt 0]">
                   <xsl:value-of select="concat(./text(), ' ')"/>
                </xsl:for-each>
             </xsl:variable>
@@ -983,9 +983,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          <xsl:call-template name="mp9-naamgebruik">
             <xsl:with-param name="hl7-name" select="$current-hl7-name"/>
          </xsl:call-template>
-         <xsl:for-each select="$current-hl7-name/hl7:family[@qualifier = 'BR' or not(@qualifier)][string-length(text()) gt 0]">
+          <xsl:for-each select="$current-hl7-name/hl7:family[@qualifier = 'BR' or not(@qualifier)][string-length(string-join(text())) gt 0]">
             <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804">
-               <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1][string-length(text()) gt 0]">
+                <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1][string-length(string-join(text())) gt 0]">
                   <voorvoegsels conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19805">
                      <xsl:attribute name="value" select="./text()"/>
                   </voorvoegsels>
@@ -997,7 +997,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          </xsl:for-each>
          <xsl:for-each select="$current-hl7-name/hl7:family[@qualifier = 'SP'][string-length(text()) gt 0]">
             <geslachtsnaam_partner conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19807">
-               <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1][string-length(text()) gt 0]">
+                <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1][string-length(string-join(text())) gt 0]">
                   <voorvoegsels_partner value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19808">
                      <xsl:attribute name="value" select="./text()"/>
                   </voorvoegsels_partner>
