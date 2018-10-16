@@ -1596,7 +1596,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</additionalInstruction>
 		</xsl:for-each>
 		<!-- dosering/toedieningsschema -->
-		<xsl:for-each select="./toedieningsschema">
+	    <xsl:for-each select="./toedieningsschema[@code|@value]">
 			<xsl:call-template name="zib-Administration-Schedule-2.0">
 				<xsl:with-param name="toedieningsschema" select="."/>
 			</xsl:call-template>
