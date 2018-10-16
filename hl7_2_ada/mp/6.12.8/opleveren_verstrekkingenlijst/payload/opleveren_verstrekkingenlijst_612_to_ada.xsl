@@ -29,20 +29,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- alleen conversie naar 9 vooraankondiging als er ook een verstrekkingenlijst is -->
             <xsl:call-template name="Verstrekking_612">
                 <xsl:with-param name="dispense-events" select="$verstrekkingslijst-612/hl7:component/hl7:medicationDispenseEvent"/>
-                <xsl:with-param name="dispense-list" select="$verstrekkingslijst-612"/>
-                <xsl:with-param name="patient" select="$verstrekkingslijst-612/hl7:subject/hl7:Patient"/>
+                <xsl:with-param name="patient" select="$verstrekkingslijst-612[1]/hl7:subject/hl7:Patient"/>
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
         <xd:param name="dispense-events"/>
-        <xd:param name="dispense-list"/>
         <xd:param name="patient"/>
     </xd:doc>
     <xsl:template name="Verstrekking_612">
         <xsl:param name="dispense-events"/>
-        <xsl:param name="dispense-list"/>
         <xsl:param name="patient"/>
 
         <xsl:comment>Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) <xsl:value-of select="concat('root: ', /hl7:QURX_IN990113NL/hl7:id/@root, ' and extension: ', /hl7:QURX_IN990113NL/hl7:id/@extension)"/>.</xsl:comment>
@@ -53,8 +50,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </meta>
             <data>
                 <beschikbaarstellen_medicatiegegevens app="mp-mp9" shortName="beschikbaarstellen_medicatiegegevens" formName="uitwisselen_medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" prefix="mp-" language="nl-NL">
-                    <xsl:attribute name="title">TODO</xsl:attribute>
-                    <xsl:attribute name="id">TODO</xsl:attribute>
+                    <xsl:attribute name="title">Generated from HL7v3 verstrekkingenlijst 6.12 xml</xsl:attribute>
+                    <xsl:attribute name="id">DUMMY</xsl:attribute>
                     <xsl:for-each select="$patient">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.816_20130521000000"/>
                     </xsl:for-each>
@@ -68,9 +65,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </beschikbaarstellen_medicatiegegevens>
             </data>
         </adaxml>
-        <xsl:comment>Input HL7 xml below</xsl:comment>
+<!--        <xsl:comment>Input HL7 xml below</xsl:comment>
         <xsl:call-template name="copyElementInComment">
             <xsl:with-param name="element" select="$dispense-list"/>
         </xsl:call-template>
+-->    
     </xsl:template>
 </xsl:stylesheet>
