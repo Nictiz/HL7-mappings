@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    exclude-result-prefixes="xs xd"
-    version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="xs xd" version="2.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
@@ -18,12 +14,12 @@
     <xsl:variable name="ada-unit-week" select="('week', 'wk')"/>
     <xsl:variable name="ada-unit-month" select="('maand', 'mo', 'month')"/>
     <xsl:variable name="ada-unit-year" select="('jaar', 'a', 'year')"/>
-    
+
     <xsl:variable name="ada-unit-kilo" select="('kilo', 'kg', 'kilogram')"/>
     <xsl:variable name="ada-unit-gram" select="('gram', 'g', 'gr')"/>
     <xsl:variable name="ada-unit-cm" select="('centimeter', 'cm')"/>
     <xsl:variable name="ada-unit-m" select="('meter', 'm')"/>
-    
+
     <xsl:variable name="oidAGB">2.16.840.1.113883.2.4.6.1</xsl:variable>
     <xsl:variable name="oidAGBSpecialismen">2.16.840.1.113883.2.4.6.7</xsl:variable>
     <xsl:variable name="oidAORTAApplicatieID">2.16.840.1.113883.2.4.6.6</xsl:variable>
@@ -67,7 +63,28 @@
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
     <xsl:variable name="oidSNOMEDCT">2.16.840.1.113883.6.96</xsl:variable>
-    
+
+    <xsl:variable name="hl7NullFlavorMap" as="element()+">
+        <!-- bron: https://www.hl7.nl/wiki/index.php/Vocabulaire.NullFlavor -->
+        <map hl7NullFlavor="NI" displayName="geen informatie"/>
+        <map hl7NullFlavor="INV" displayName="ongeldig"/>
+        <map hl7NullFlavor="DER" displayName="afgeleid"/>
+        <!-- er staat 'anders' in de bron, maar 'overig' is een logischere vertaling van other bij valuesets... -->
+        <map hl7NullFlavor="OTH" displayName="overig"/>
+        <map hl7NullFlavor="NINF" displayName="negatief oneindig"/>
+        <map hl7NullFlavor="PINF" displayName="positief oneindig"/>
+        <map hl7NullFlavor="UNC" displayName="niet-gecodeerd"/>
+        <map hl7NullFlavor="MSK" displayName="gemaskeerd"/>
+        <map hl7NullFlavor="NA" displayName="niet van toepassing"/>
+        <map hl7NullFlavor="UNK" displayName="onbekend"/>
+        <map hl7NullFlavor="ASKU" displayName="gevraagd maar onbekend"/>
+        <map hl7NullFlavor="NAV" displayName="tijdelijk niet beschikbaar"/>
+        <map hl7NullFlavor="NASK" displayName="niet gevraagd"/>
+        <!-- QS wordt gebruikt bij magistrale bereidingen: ingrediënten voor geneesmiddelen, betekent dan eigenlijk 'aanvullen tot' -->
+        <map hl7NullFlavor="QS" displayName="voldoende hoeveelheid"/>
+        <map hl7NullFlavor="TRC" displayName="spoor"/>
+    </xsl:variable>
+
     <xsl:variable name="oidMap" as="element()+">
         <map oid="{$oidAGB}" uri="http://fhir.nl/fhir/NamingSystem/agb-z" displayName="AGB-Z"/>
         <map oid="{$oidBurgerservicenummer}" uri="http://fhir.nl/fhir/NamingSystem/bsn" displayName="BSN"/>
@@ -106,8 +123,8 @@
         <map oid="{$oidUZISystems}" uri="http://fhir.nl/fhir/NamingSystem/uzi-nr-sys" displayName="UZI Systemen"/>
         <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
     </xsl:variable>
-    
+
     <xsl:variable name="OIDpattern" select="'^[0-2](\.(0|[1-9]\d*))*$'"/>
     <xsl:variable name="UUIDpattern" select="'^[A-Fa-f\d]{8}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{4}-[A-Fa-f\d]{12}$'"/>
-    
+
 </xsl:stylesheet>
