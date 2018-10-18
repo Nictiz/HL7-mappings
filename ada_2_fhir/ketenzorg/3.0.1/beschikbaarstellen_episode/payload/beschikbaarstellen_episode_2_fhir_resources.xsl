@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc scope="stylesheet">
 		<xd:desc>
 			<xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-		    <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA BundleOfAllergyIntolerance-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/NictizSTU3/zib-AllergyIntolerance">http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance</xd:a>.</xd:p>
+		    <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA AllergyIntolerance-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/NictizSTU3/zib-AllergyIntolerance">http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance</xd:a>.</xd:p>
 			<xd:p>
 				<xd:b>History:</xd:b>
 				<xd:ul>
@@ -30,35 +30,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:include href="../../../2_fhir_ketenzorg_include.xsl"/>
 	<!-- parameter to determine whether to refer bij resource/id -->
 	<!-- should be false when there is no FHIR server available to retrieve the resources -->
-	<xsl:param name="referByIdOverride" as="xs:boolean" select="false()"/>
-		
+	<xsl:param name="referByIdOverride" as="xs:boolean" select="true()"/>
+	
+	<xsl:variable name="usecase">allergyintolerance</xsl:variable>
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-		<xsl:copy-of select="$patient-entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
+		<xsl:copy-of select="$patient-entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
 	</xsl:variable>
-
 	<xd:doc>
 		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen allergyintolerance".</xd:desc>
 	</xd:doc>
 	<xsl:template match="/">
-	    <xsl:call-template name="BundleOfAllergyIntolerance"/>
+	    <xsl:call-template name="BundleOfEpisodes"/>
 	</xsl:template>
 	<xd:doc>
-		<xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
+		<xd:desc>Build the individual FHIR resources.</xd:desc>
 	</xd:doc>
-    <xsl:template name="BundleOfAllergyIntolerance">
-		<xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-		<Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-			<type value="searchset"/>
-			<xsl:variable name="entries" as="element(f:entry)*">
-				<!-- common entries (patient, practitioners, organizations, practitionerroles) -->
-				<xsl:copy-of select="$commonEntries"/>
-				<xsl:copy-of select="$bouwstenen"/>
-			</xsl:variable>
-			<total value="{count($entries)}"/>
-			<xsl:copy-of select="$entries"/>
-		</Bundle>
+    <xsl:template name="BundleOfEpisodes">
+		<xsl:variable name="entries" as="element(f:entry)*">
+			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
+			<xsl:copy-of select="$commonEntries"/>
+			<xsl:copy-of select="$bouwstenen"/>
+		</xsl:variable>
+
+		<xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
 	</xsl:template>
 
-
+	<xd:doc>
+		<xd:desc/>
+	</xd:doc>
+	<xsl:template match="f:resource/*" mode="doResourceInResultdoc">
+		<xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, '/')[last()]"/>
+		<xsl:result-document href="../fhir_instance/{$usecase}-{$zib-name}-{f:id/@value}.xml">
+			<xsl:copy-of select="."/>
+		</xsl:result-document>
+	</xsl:template>
 
 </xsl:stylesheet>

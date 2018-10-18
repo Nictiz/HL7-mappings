@@ -16,6 +16,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
    <xsl:include href="../hl7/hl7_2_ada_hl7_include.xsl"/>
    
+    <xsl:variable name="oidOrganizerAllergyIntolerance">2.16.840.1.113883.2.4.3.11.60.66.10.20</xsl:variable>
+    <xsl:variable name="oidOrganizerEpisode">2.16.840.1.113883.2.4.3.11.60.66.10.16</xsl:variable>
+    
+    <xsl:variable name="oidAllergyIntoleranceAct">2.16.840.1.113883.2.4.3.11.60.66.10.215</xsl:variable>
+    <xsl:variable name="oidAllergyIntoleranceObservation">2.16.840.1.113883.2.4.3.11.60.66.10.216</xsl:variable>
+    
+    <xsl:variable name="oidEpisodeAct">2.16.840.1.113883.2.4.3.11.60.66.10.212</xsl:variable>
+    <xsl:variable name="oidEpisodeProblem">2.16.840.1.113883.2.4.3.11.60.66.10.213</xsl:variable>
+    
+    <xsl:variable name="oidCriticalityObservation">2.16.840.1.113883.2.4.3.11.60.66.10.218</xsl:variable>
+    <xsl:variable name="oidNoteObservation">2.16.840.1.113883.2.4.3.11.60.66.10.221</xsl:variable>
+    <xsl:variable name="oidReactionObservation">2.16.840.1.113883.2.4.3.11.60.66.10.217</xsl:variable>
+    <xsl:variable name="oidSeverityObservation">2.16.840.1.113883.2.4.3.11.60.66.10.219</xsl:variable>
+    <xsl:variable name="oidRouteOfExposureObservation">2.16.840.1.113883.2.4.3.11.60.66.10.220</xsl:variable>
+    
     <xsl:template name="handleII">
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="elmName" as="xs:string" required="yes"/>
@@ -35,6 +50,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         If input @code | @codeSystem matches, copy the other attributes from this element. Expected at minimum @code, @codeSystem, @displayName, others optional
     -->
+    <!-- CS has no codeSystem has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
+        CS also has no displayName. The code, e.g. active or completed, normally reflects the displayName too so copy code to displayName
+    -->
+    <xsl:template name="handleCS">
+        <xsl:param name="in" as="element()*"/>
+        <xsl:param name="codeSystem" as="xs:string" required="yes"/>
+        <xsl:param name="elmName" as="xs:string" required="yes"/>
+        <xsl:param name="codeMap" as="element()*"/>
+        
+        <xsl:variable name="rewrite" as="element()*">
+            <xsl:for-each select="$in">
+                <xsl:element name="{name(.)}">
+                    <xsl:copy-of select="@*"/>
+                    <xsl:if test="not(@codeSystem)">
+                        <xsl:attribute name="codeSystem" select="$codeSystem"/>
+                    </xsl:if>
+                    <xsl:if test="not(@displayName)">
+                        <xsl:attribute name="displayName" select="@code"/>
+                    </xsl:if>
+                    <xsl:copy-of select="node()"/>
+                </xsl:element>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:call-template name="handleCV">
+            <xsl:with-param name="in" select="$rewrite"/>
+            <xsl:with-param name="elmName" select="$elmName"/>
+            <xsl:with-param name="codeMap" select="$codeMap"/>
+        </xsl:call-template>
+    </xsl:template>
     <xsl:template name="handleCV">
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="elmName" as="xs:string" required="yes"/>
@@ -55,11 +99,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <xsl:variable name="out" as="element()">
                 <xsl:choose>
-                    <xsl:when test="$codeMap[@inCode = $theCode][@codeSystem = $theCodeSystem]">
-                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@codeSystem = $theCodeSystem]"/>
+                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
+                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
                     </xsl:when>
-                    <xsl:when test="$codeMap[@inCode = $theCode][@codeSystem = $theCodeSystem]">
-                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@codeSystem = $theCodeSystem]"/>
+                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
+                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:copy-of select="."/>
@@ -118,7 +162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
-    <!-- Copy name parts as faithful as possible. Calculate name usage code. Submit unstructured name in last_name -->
+    <!-- Copy name parts as faithful as possible to HCIM 2017 nl.zorg.part.NameInformation. Calculate name usage code. Submit unstructured name in last_name -->
     <xsl:template name="handleENtoNameInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">en-US</xsl:param>
@@ -345,7 +389,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-    <!-- Copy address parts as faithful as possible. Calculate address code. Submit unstructured address in street
+    <!-- Copy address parts as faithful as possible to HCIM 2017 nl.zorg.part.AddressInformation. Calculate address code. Submit unstructured address in street
         Note: copies @code and @codeSystem for city, county and country too...
     -->
     <xsl:template name="handleADtoAddressInformation">
@@ -574,7 +618,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-    <!-- Copy contact parts as faithful as possible. Calculate contact type code. -->
+    <!-- Copy contact parts as faithful as possible to HCIM 2017 nl.zorg.part.ContactInformation. Calculate contact type code. -->
     <xsl:template name="handleTELtoContactInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">en-US</xsl:param>
@@ -815,10 +859,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="in" select="$in/hl7:patient/hl7:addr"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
-            <xsl:call-template name="handleTELtoContactInformation">
+            <!--<xsl:call-template name="handleTELtoContactInformation">
                 <xsl:with-param name="in" select="$in/hl7:patient/hl7:telecom"/>
                 <xsl:with-param name="language" select="$language"/>
-            </xsl:call-template>
+            </xsl:call-template>-->
             <xsl:call-template name="handleII">
                 <xsl:with-param name="in" select="$in/hl7:id"/>
                 <xsl:with-param name="elmName" select="$elmPatientIdentificationNumber"/>
@@ -835,18 +879,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="in" select="$in/hl7:patient/*:multipleBirthInd"/>
                 <xsl:with-param name="elmName" select="$elmMultipleBirthInd"/>
             </xsl:call-template>
-            <xsl:call-template name="handleBL">
+            <!--<xsl:call-template name="handleBL">
                 <xsl:with-param name="in" select="$in/hl7:patient/*:deceasedInd"/>
                 <xsl:with-param name="elmName" select="$elmDeceasedInd"/>
             </xsl:call-template>
             <xsl:call-template name="handleTS">
                 <xsl:with-param name="in" select="$in/hl7:patient/*:deceasedTime"/>
                 <xsl:with-param name="elmName" select="$elmDeceasedDate"/>
-            </xsl:call-template>
+            </xsl:call-template>-->
         </xsl:element>
     </xsl:template>
     
-    <!-- KEZO Author (Body) -->
+    <!-- Ketenzorg KEZO Author (Body) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
         <xsl:param name="in" select="."/>
         <xsl:param name="elementName" as="xs:string?"/>
@@ -960,7 +1004,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:element>
     </xsl:template>
-    
+    <!-- Ketenzorg PART CDA Organization -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000">
         <xsl:param name="in" select="."/>
         <xsl:param name="elementName" as="xs:string?"/>
@@ -1017,19 +1061,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-   <!-- helper stuff -->
-   <xsl:template name="chooseOperatorAttrib">
-      <xsl:param name="operator"/>
-      <xsl:choose>
-         <xsl:when test="$operator = 'A' or $operator = 'I'">
-            <xsl:attribute name="operator" select="$operator"/>
-         </xsl:when>
-         <xsl:otherwise>
-            <!-- geen attribuut opnemen -->
-         </xsl:otherwise>
-      </xsl:choose>
-   </xsl:template>
-   
     <xsl:function name="nf:determine_date_precision">
         <xsl:param name="input-hl7-date"/>
         <xsl:choose>
@@ -1039,46 +1070,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
    
-   <xsl:function name="nf:format2HL7Date" as="xs:string?">
-      <xsl:param name="dateTime"/>
-      <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
-      <xsl:param name="precision"/>
-      <xsl:variable name="picture" as="xs:string?">
-         <xsl:choose>
-            <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
-            <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
-         </xsl:choose>
-      </xsl:variable>
-      <xsl:choose>
-         <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
-            <xsl:value-of select="format-dateTime(xs:dateTime($dateTime), $picture)"/>
-         </xsl:when>
-         <xsl:when test="normalize-space($dateTime) castable as xs:date">
-            <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001][M01][D01]')"/>
-         </xsl:when>
-         <xsl:otherwise>
-            <xsl:value-of select="$dateTime"/>
-         </xsl:otherwise>
-      </xsl:choose>
-   </xsl:function>
-   <!-- copy an element with all of it's contents in comments -->
-   <xsl:template name="copyElementInComment">
-      <xsl:param name="element"/>
-      <xsl:text disable-output-escaping="yes">
+    <xsl:function name="nf:format2HL7Date" as="xs:string?">
+        <xsl:param name="dateTime"/>
+        <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
+        <xsl:param name="precision"/>
+        <xsl:variable name="picture" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
+                <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
+                <xsl:value-of select="format-dateTime(xs:dateTime($dateTime), $picture)"/>
+            </xsl:when>
+            <xsl:when test="normalize-space($dateTime) castable as xs:date">
+                <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001][M01][D01]')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$dateTime"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    <!-- copy an element with all of it's contents in comments -->
+    <xsl:template name="copyElementInComment">
+        <xsl:param name="element"/>
+        <xsl:text disable-output-escaping="yes">
                        &lt;!--</xsl:text>
-      <xsl:for-each select="$element">
-         <xsl:call-template name="copyWithoutComments"/>
-      </xsl:for-each>
-      <xsl:text disable-output-escaping="yes">--&gt;
-</xsl:text>
-   </xsl:template>
-   <!-- copy without comments -->
-   <xsl:template name="copyWithoutComments">
-      <xsl:copy>
-         <xsl:for-each select="@* | *">
+        <xsl:for-each select="$element">
             <xsl:call-template name="copyWithoutComments"/>
-         </xsl:for-each>
-      </xsl:copy>
-   </xsl:template>
+        </xsl:for-each>
+        <xsl:text disable-output-escaping="yes">--&gt;
+</xsl:text>
+    </xsl:template>
+    <!-- copy without comments -->
+    <xsl:template name="copyWithoutComments">
+        <xsl:copy>
+            <xsl:for-each select="@* | *">
+                <xsl:call-template name="copyWithoutComments"/>
+            </xsl:for-each>
+        </xsl:copy>
+    </xsl:template>
 
 </xsl:stylesheet>

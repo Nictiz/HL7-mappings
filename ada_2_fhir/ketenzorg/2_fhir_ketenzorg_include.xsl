@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:param>
     <xsl:include href="../fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:variable name="patient-ada" select="/adaxml/data/*/patient"/>
+    <xsl:variable name="patient-ada" select="/adaxml/data/*/bundle/subject/patient"/>
     <xsl:variable name="patient-entry" as="element(f:entry)?">
         <!-- Patient, there may be only one in the input doc -->
         <xsl:for-each select="$patient-ada">
@@ -105,10 +105,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="locations" as="element()*"/>
     <xsl:variable name="body-observations" as="element()*"/>
     <xsl:variable name="prescribe-reasons" as="element()*"/>
+    <xsl:variable name="conditions" as="element()*">
+        <xsl:for-each-group select="//problem" group-by="nf:getGroupingKeyDefault(.)">
+            <unieke-condition xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <xsl:apply-templates select="current-group()[1]" mode="doConditionEntry"/>
+            </unieke-condition>
+        </xsl:for-each-group>
+    </xsl:variable>
     
     <xsl:variable name="bouwstenen" as="element(f:entry)*">
-        <!-- toedieningsafspraken -->
-        <xsl:for-each select="//allergy_intolerance">
+        <!-- AllergieIntoleranties, voor nu alleen de medicatie overgevoeligheden -->
+        <xsl:for-each select="//allergy_intolerance[@code = '419511003'][@codeSystem = $oidSNOMEDCT]">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
                 <resource>
@@ -119,8 +129,191 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each>
+        <!-- Episodes -->
+        <xsl:for-each select="//episode">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:getUriFromAdaId(identifier)}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-episodeofcare-2.0">
+                        <xsl:with-param name="episodeofcare" select="."/>
+                        <xsl:with-param name="episodeofcare-id" select="nf:removeSpecialCharacters(identifier/@value)"/>
+                        <xsl:with-param name="custodian" select="../bundle/custodian"/>
+                        <xsl:with-param name="author" select="../bundle/author"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
     </xsl:variable>
-
+    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="episodeofcare"/>
+        <xd:param name="episodeofcare-id"/>
+        <xd:param name="custodian"/>
+        <xd:param name="author"/>
+    </xd:doc>
+    <xsl:template name="nl-core-episodeofcare-2.0">
+        <xsl:param name="episodeofcare" as="element()?"/>
+        <xsl:param name="episodeofcare-id" as="xs:string?"/>
+        <xsl:param name="custodian" as="element()*"/>
+        <xsl:param name="author" as="element()*"/>
+        <xsl:for-each select="$episodeofcare">
+            <EpisodeOfCare xmlns="http://hl7.org/fhir">
+                <id value="{$episodeofcare-id}"/>
+                <meta>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+                </meta>
+                <!--<text>
+                    <status value="additional"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml">Maagpijn</div>
+                </text>-->
+                <!--<extension url="http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-DateFirstEncounter">
+                    <valueDateTime value="${CURRENTDATETIME, d, -90}"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-DateLastEncounter">
+                    <valueDateTime value="${CURRENTDATETIME, d, -90}"/>
+                </extension>-->
+                <xsl:for-each select="episode_title[@value]">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title">
+                        <valueString value="{@value}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="status[@code]">
+                    <status>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="@code = 'active'">active</xsl:when>
+                                <xsl:when test="'completed'">finished</xsl:when>
+                                <xsl:when test="'obsolete'">resolved</xsl:when>
+                                <xsl:when test="'nullified'">entered-in-error</xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:message>Unsupported EpisodeOfCare status code "<xsl:value-of select="@code"/>"</xsl:message>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="{local:getUri(@codeSystem)}"/>
+                                    <code value="{@code}"/>
+                                    <xsl:if test="@displayName">
+                                        <display value="{@displayName}"/>
+                                    </xsl:if>
+                                </coding>
+                            </valueCodeableConcept>
+                        </extension>
+                    </status>
+                </xsl:for-each>
+                <type>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="64572001"/>
+                        <display value="Condition"/>
+                    </coding>
+                </type>
+                <xsl:for-each select="problem">
+                    <diagnosis>
+                        <condition>
+                            <xsl:apply-templates select="." mode="doConditionReference"/>
+                        </condition>
+                    </diagnosis>
+                </xsl:for-each>
+                <xsl:for-each select="(ancestor-or-self::*//subject//patient[patient_identification_number])[1]">
+                    <patient>
+                        <xsl:apply-templates select="." mode="doPatientReference"/>
+                    </patient>
+                </xsl:for-each>
+                <xsl:for-each select="$custodian/healthcare_provider">
+                    <managingOrganization>
+                        <xsl:apply-templates select="." mode="doOrganizationReference"/>
+                    </managingOrganization>
+                </xsl:for-each>
+                <xsl:for-each select="$author/health_professional">
+                    <careManager>
+                        <xsl:apply-templates select="." mode="doPractitionerReference"/>
+                    </careManager>
+                </xsl:for-each>
+            </EpisodeOfCare>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:param name="ada-problem"/>
+        <xd:param name="condition-id"/>
+    </xd:doc>
+    <xsl:template name="zib-problem-2.0">
+        <xsl:param name="ada-problem" as="element()?"/>
+        <xsl:param name="condition-id" as="xs:string?"/>
+        <xsl:for-each select="$ada-problem">
+            <Condition xmlns="http://hl7.org/fhir">
+                <xsl:if test="not(empty($condition-id))">
+                    <id value="{$condition-id}"/>
+                </xsl:if>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+                </meta>
+                <xsl:choose>
+                    <xsl:when test="problem_end_date[@value | @nullFlavor[. = 'UNK']]">
+                        <clinicalStatus value="inactive"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <clinicalStatus value="active"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <category>
+                    <coding>
+                        <system value="{local:getUri($oidSNOMEDCT)}"/>
+                        <code value="282291009"/>
+                        <display value="Diagnosis"/>
+                    </coding>
+                </category>
+                <xsl:for-each select="problem_name">
+                    <xsl:choose>
+                        <xsl:when test="@nullFlavor">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <valueCode value="{@nullFlavor}"/>
+                            </extension>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <code>
+                                <coding>
+                                    <system value="{local:getUri(local:getUri(@codeSystem))}"/>
+                                    <code value="{@code}"/>
+                                    <xsl:if test="@displayName">
+                                        <display value="{@displayName}"/>
+                                    </xsl:if>
+                                </coding>
+                            </code>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+                <xsl:for-each select="($ada-problem/ancestor-or-self::*//subject//patient[patient_identification_number])[1]">
+                    <subject>
+                        <xsl:apply-templates select="." mode="doPatientReference"/>
+                    </subject>
+                </xsl:for-each>
+                <xsl:if test="problem_start_date | problem_end_date">
+                    <onsetPeriod>
+                        <xsl:if test="problem_start_date[@value]">
+                            <start value="{problem_start_date/@value}"/>
+                        </xsl:if>
+                        <xsl:if test="problem_end_date[@value]">
+                            <end value="{problem_end_date/@value}"/>
+                        </xsl:if>
+                    </onsetPeriod>
+                </xsl:if>
+                <xsl:if test="problem_end_date[@value]">
+                    <abatementDateTime value="{problem_end_date/@value}"/>
+                </xsl:if>
+                <xsl:for-each select="(ancestor-or-self::*//author//health_professional[health_professional_identification_number])[1]">
+                    <asserter>
+                        <xsl:apply-templates select="." mode="doPractitioner"/>
+                    </asserter>
+                </xsl:for-each>
+            </Condition>
+        </xsl:for-each>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc/>
         <xd:param name="ada-zorgaanbieder"/>
@@ -303,26 +496,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 <xsl:for-each select=".[.//@value]">
                     <practitioner>
-                        <xsl:choose>
-                            <xsl:when test="$referById = true()">
-                                <xsl:apply-templates select="." mode="doPractitionerReference"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:apply-templates select="." mode="doPractitionerReference"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:apply-templates select="." mode="doPractitionerReference"/>
                     </practitioner>
                 </xsl:for-each>
                 <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)][.//@value] | .//healthcare_provider[not(healthcare_provider)][.//@value]">
                     <organization>
-                        <xsl:choose>
-                            <xsl:when test="$referById = true()">
-                                <xsl:apply-templates select="." mode="doOrganizationReference"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:apply-templates select="." mode="doOrganizationReference"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:apply-templates select="." mode="doOrganizationReference"/>
                     </organization>
                 </xsl:for-each>
                 <xsl:for-each select="zorgverlener_rol | health_professional_role">
@@ -399,34 +578,121 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template name="patient-reference" match="patient" mode="doPatientReference">
+        <xsl:variable name="identifier" select="patient_identificatie_nummer[@value] | patient_identification_number[@value]"/>
+        <!--<xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>-->
         <xsl:choose>
             <xsl:when test="$referById = true()">
-                <reference value="Patient/{$patient-entry//f:Patient/f:id/@value}"/>
+                <reference value="{nf:getFullUrlOrId('Patient',nf:getGroupingKeyDefault(.))}"/>
+            </xsl:when>
+            <xsl:when test="$patient-entry">
+                <reference value="{($patient-entry//*:fullUrl/@value)[1]}"/>
+            </xsl:when>
+            <xsl:when test="$identifier[@root]">
+                <identifier>
+                    <system value="{local:getUri(($identifier/@root)[1])}"/>
+                    <value value="{($identifier/@value)[1]}"/>
+                </identifier>
             </xsl:when>
             <xsl:otherwise>
-                <reference value="{$patient-entry/f:fullUrl/@value}"/>
+                <reference value="{($identifier/@value)[1]}"/>
             </xsl:otherwise>
         </xsl:choose>
-        <xsl:for-each select="naamgegevens[1][.//@value] | name_information[1][.//@value]">
-            <display value="{normalize-space(string-join(.//*[not(name()='naamgebruik')]/@value,' '))}"/>
-        </xsl:for-each>
+        
+        <xsl:if test="naamgegevens[.//@value] | name_information[.//@value]">
+            <display value="{normalize-space(string-join(.//naamgegevens[1]//*[[not(name()='naamgebruik')]]/@value | name_information[1]//*[not(name()='name_usage')]/@value, ' '))}"/>
+        </xsl:if>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template name="practitioner-reference" match="zorgverlener | health_professional" mode="doPractitionerReference">
-        <reference value="{nf:getFullUrlOrId('Practitioner',nf:getGroupingKeyPractitioner(.))}"/>
-        <xsl:for-each select=".//naamgegevens[.//@value] | .//name_information[.//@value]">
-            <display value="{normalize-space(string-join(.//@value, ' '))}"/>
-        </xsl:for-each>
+        <xsl:variable name="identifier" select="zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPractitioner(.)"/>
+        <xsl:choose>
+            <xsl:when test="$referById = true()">
+                <reference value="{nf:getFullUrlOrId('Practitioner',nf:getGroupingKeyPractitioner(.))}"/>
+            </xsl:when>
+            <xsl:when test="$practitioners[group-key = $theGroupKey]">
+                <reference value="{($practitioners[group-key = $theGroupKey]/*:entry//*:fullUrl/@value)[1]}"/>
+            </xsl:when>
+            <xsl:when test="$identifier[@root]">
+                <identifier>
+                    <system value="{local:getUri(($identifier/@root)[1])}"/>
+                    <value value="{($identifier/@value)[1]}"/>
+                </identifier>
+            </xsl:when>
+            <xsl:otherwise>
+                <reference value="{($identifier/@value)[1]}"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        <xsl:if test="naamgegevens[.//@value] | name_information[.//@value]">
+            <display value="{normalize-space(string-join(.//naamgegevens[1]//@value | name_information[1]//@value, ' '))}"/>
+        </xsl:if>
     </xsl:template>
     
     <xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template name="practitioner-role-reference" match="zorgverlener | health_professional" mode="doPractitionerRoleReference">
-        <reference value="{nf:getFullUrlOrId('PRACTITIONERROLE', nf:getGroupingKeyDefault(.))}"/>
-        <display value="{normalize-space(concat(string-join((.//naamgegevens[1]//*[not(self::naamgebruik)]/@value | .//name_information[1]//*[not(self::name_usage)]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName | .//organization_name/@value | .//specialism/@displayName,' || ')))}"/>
+        <xsl:variable name="identifier" select="zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:choose>
+            <xsl:when test="$referById = true()">
+                <reference value="{nf:getFullUrlOrId('PRACTITIONERROLE', nf:getGroupingKeyDefault(.))}"/>
+            </xsl:when>
+            <xsl:when test="$practitioners[group-key = $theGroupKey]">
+                <reference value="{($practitionerRoles[group-key = $theGroupKey]/*:entry//*:fullUrl/@value)[1]}"/>
+            </xsl:when>
+            <xsl:when test="$identifier[@root]">
+                <identifier>
+                    <system value="{local:getUri(($identifier/@root)[1])}"/>
+                    <value value="{($identifier/@value)[1]}"/>
+                </identifier>
+            </xsl:when>
+            <xsl:otherwise>
+                <reference value="{($identifier/@value)[1]}"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        <xsl:if test="naamgegevens[.//@value] | name_information[.//@value]">
+            <display value="{normalize-space(string-join(.//naamgegevens[1]//@value | name_information[1]//@value, ' '))}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template name="condition-reference" match="probleem | problem" mode="doConditionReference">
+        <xsl:variable name="identifier" select="zibroot/identificatienummer[@value] | hcimroot/identification_number[@value]"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:choose>
+            <xsl:when test="$referById = true()">
+                <reference value="{nf:getFullUrlOrId('Condition',nf:getGroupingKeyPractitioner(.))}"/>
+            </xsl:when>
+            <xsl:when test="$conditions[group-key = $theGroupKey]">
+                <reference value="{($conditions[group-key = $theGroupKey]/*:entry//*:fullUrl/@value)[1]}"/>
+            </xsl:when>
+            <xsl:when test="$identifier[@root]">
+                <identifier>
+                    <system value="{local:getUri(($identifier/@root)[1])}"/>
+                    <value value="{($identifier/@value)[1]}"/>
+                </identifier>
+            </xsl:when>
+            <xsl:otherwise>
+                <reference value="{($identifier/@value)[1]}"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        <xsl:choose>
+            <xsl:when test="problem_name[@code]">
+                <display value="{normalize-space(string-join((problem_name[1]/@code, problem_name[1]/@displayName), ' '))}"/>
+            </xsl:when>
+            <xsl:when test="probleem_naam[@code]">
+                <display value="{normalize-space(string-join((probleem_naam[1]/@code | problem_naam[1]/@displayName), ' '))}"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     
     <xd:doc>
@@ -576,7 +842,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-AdministrationAgreement/ </xd:desc>
+        <xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/zib-AllergyIntolerance/ </xd:desc>
         <xd:param name="allergyintolerance"/>
         <xd:param name="allergyintolerance-id"/>
     </xd:doc>
@@ -689,6 +955,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </coding>
                                     </valueCodeableConcept>
                                 </extension>
+                                <xsl:if test="@originalText">
+                                    <text value="{@originalText}"/>
+                                </xsl:if>
                             </xsl:when>
                         </xsl:choose>
                     </category>
@@ -730,19 +999,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </code>
                 </xsl:for-each>
                 <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
-                <xsl:for-each select="(ancestor-or-self::*//subject//patient/patient_identification_number)[1]">
+                <xsl:for-each select="(ancestor-or-self::*//subject//patient[patient_identification_number])[1]">
                     <patient>
-                        <xsl:choose>
-                            <xsl:when test=".[@value][@root]">
-                                <identifier>
-                                    <system value="{local:getUri(@root)}"/>
-                                    <value value="{@value}"/>
-                                </identifier>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <reference value="{@value}"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:apply-templates select="." mode="doPatientReference"/>
                     </patient>
                 </xsl:for-each>
                 <!--TS    NL-CM:0.0.14    DatumTijd    0..1-->
@@ -767,19 +1026,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </assertedDate>
                 </xsl:if>
                 <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
-                <xsl:for-each select="(ancestor-or-self::*//author//health_professional/health_professional_identification_number)[1]">
+                <xsl:for-each select="(ancestor-or-self::*//author//health_professional[health_professional_identification_number])[1]">
                     <recorder>
-                        <xsl:choose>
-                            <xsl:when test=".[@value][@root]">
-                                <identifier>
-                                    <system value="{local:getUri(@root)}"/>
-                                    <value value="{@value}"/>
-                                </identifier>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <reference value="{@value}"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:apply-templates select="." mode="doPractitioner"/>
                     </recorder>
                 </xsl:for-each>
                 <!-- >     NL-CM:0.0.2        Informatiebron via nl.zorg.part.basiselementen -->
@@ -923,9 +1172,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$normalizedResourceType = 'REDENVOORSCHRIJVEN'">
                     <xsl:copy-of select="$prescribe-reasons"/>
                 </xsl:when>
+                <xsl:when test="$normalizedResourceType = 'CONDITION'">
+                    <xsl:copy-of select="$conditions"/>
+                </xsl:when>
             </xsl:choose>
         </xsl:variable>
-        
         
         <xsl:choose>
             <xsl:when test="$referById = true()">
@@ -1053,10 +1304,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template name="organization-reference" match="zorgaanbieder | healthcare_provider" mode="doOrganizationReference">
-        <reference value="{nf:getFullUrlOrId('ORGANIZATION',nf:getGroupingKeyDefault(.))}"/>
-        <xsl:for-each select="organisatie_naam[@value] | organization_name[@value]">
-            <display value="{./@value}"/>
-        </xsl:for-each>
+        <xsl:variable name="identifier" select="zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:choose>
+            <xsl:when test="$referById = true()">
+                <reference value="{nf:getFullUrlOrId('ORGANIZATION',nf:getGroupingKeyDefault(.))}"/>
+            </xsl:when>
+            <xsl:when test="$organizations[./group-key = $theGroupKey]">
+                <reference value="{($organizations[group-key = $theGroupKey]/*:entry//*:fullUrl/@value)[1]}"/>
+            </xsl:when>
+            <xsl:when test="$identifier[@root]">
+                <identifier>
+                    <system value="{local:getUri(($identifier/@root)[1])}"/>
+                    <value value="{($identifier/@value)[1]}"/>
+                </identifier>
+            </xsl:when>
+            <xsl:otherwise>
+                <reference value="{($identifier/@value)[1]}"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        <xsl:if test="organisatie_naam[.//@value] | organization_name[.//@value]">
+            <display value="{normalize-space(string-join(.//organisatie_naam[1]//@value | organization_name[1]//@value, ' '))}"/>
+        </xsl:if>
     </xsl:template>
     
     <xd:doc>
@@ -1130,6 +1400,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </entry>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template name="condition-entry" match="probleem | problem" mode="doConditionEntry">
+        <entry>
+            <!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
+            <fullUrl value="{nf:get-fhir-uuid(./..)}"/>
+            <resource>
+                <xsl:choose>
+                    <xsl:when test="$referById">
+                        <xsl:variable name="fhir-resource-id" select="generate-id(./..)"/>
+                        <xsl:call-template name="zib-problem-2.0">
+                            <xsl:with-param name="ada-problem" select="."/>
+                            <xsl:with-param name="condition-id" select="$fhir-resource-id"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="zib-problem-2.0">
+                            <xsl:with-param name="ada-problem" select="."/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </resource>
+        </entry>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc/>
         <xd:param name="in"/>

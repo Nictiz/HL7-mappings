@@ -11,9 +11,9 @@ The xsd of the ada format is included in the folder "ada_schemas".
 A complete empty xml instance in the ada format is included in the folder "ada_new".
 
 The folder "beschikbaarstellen_allergieintolerantie/payload" contains the stylesheet that does the conversion for the payload: "beschikbaarstellen_allergyintolerance_2_ada.xsl"
-This xslt uses the "../../../hl7_2_ada_allergyintolerance_include.xsl", which in turn uses ../hl7/hl7_2_ada_hl7_include.xsl which are meant to be reused by other/different transactions in (2_fhir_allergyintolerance_include.xsl) or also outside (../hl7/hl7_2_ada_hl7_include.xsl) of AllergyIntolerance scope.
+This xslt uses the "../../../hl7_2_ada_ketenzorg_include.xsl", which in turn uses ../hl7/hl7_2_ada_hl7_include.xsl which are meant to be reused by other/different transactions in (2_fhir_ketenzorg_include.xsl) or also outside (../hl7/hl7_2_ada_hl7_include.xsl) of AllergyIntolerance scope.
 
 The folder 'hl7v3_instance' contains sample HL7 V3 instance files. They are in no way functionally valid (i.e. the situation can probably not be validated in real life). The folder 'ada_instance' contains the result of the conversion.
 
 The ADA user front-end for AllergyIntolerance interactions can be found here: 
-https://decor.nictiz.nl/art-decor/ada-data/projects/zib2017/views/health_and_care_information_models_hcim_2017_index.xhtml
+https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml

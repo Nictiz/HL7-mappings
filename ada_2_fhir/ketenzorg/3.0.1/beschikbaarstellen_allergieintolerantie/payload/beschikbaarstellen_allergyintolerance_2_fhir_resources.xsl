@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc scope="stylesheet">
 		<xd:desc>
 			<xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-		    <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA AllergyIntolerance-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/NictizSTU3/zib-AllergyIntolerance">http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance</xd:a>.</xd:p>
+		    <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA BundleOfAllergyIntolerance-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/NictizSTU3/zib-AllergyIntolerance">http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance</xd:a>.</xd:p>
 			<xd:p>
 				<xd:b>History:</xd:b>
 				<xd:ul>
@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
 	<xsl:strip-space elements="*"/>
-	<xsl:include href="../../../2_fhir_allergyintolerance_include.xsl"/>
+	<xsl:include href="../../../2_fhir_ketenzorg_include.xsl"/>
 	<!-- parameter to determine whether to refer bij resource/id -->
 	<!-- should be false when there is no FHIR server available to retrieve the resources -->
 	<xsl:param name="referByIdOverride" as="xs:boolean" select="true()"/>
@@ -40,12 +40,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen allergyintolerance".</xd:desc>
 	</xd:doc>
 	<xsl:template match="/">
-		<xsl:call-template name="Ketenzorg_3.0.1"/>
+		<xsl:call-template name="BundleOfAllergyIntolerance"/>
 	</xsl:template>
 	<xd:doc>
 		<xd:desc>Build the individual FHIR resources.</xd:desc>
 	</xd:doc>
-    <xsl:template name="Ketenzorg_3.0.1">
+    <xsl:template name="BundleOfAllergyIntolerance">
 		<xsl:variable name="entries" as="element(f:entry)*">
 			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
 			<xsl:copy-of select="$commonEntries"/>
