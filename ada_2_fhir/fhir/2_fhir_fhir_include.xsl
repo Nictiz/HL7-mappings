@@ -349,6 +349,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="ada-code"/>
+    </xd:doc>
+    <xsl:function name="nf:getUriFromAdaCode" as="xs:string?">
+        <xsl:param name="ada-code" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$ada-code[@codeSystem][matches(@code, '^\d+$')]">
+                <xsl:value-of select="concat('urn:oid:', $ada-code/string-join((@codeSystem, @code), '.'))"/>
+            </xsl:when>           
+            <xsl:otherwise>
+                <xsl:value-of select="nf:get-fhir-uuid($ada-code)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     <xd:doc>
         <xd:desc/>
         <xd:param name="dateTime"/>
