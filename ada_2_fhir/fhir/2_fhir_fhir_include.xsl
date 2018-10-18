@@ -311,8 +311,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$oidMap[@oid = $oid][@uri]">
                 <xsl:value-of select="$oidMap[@oid = $oid]/@uri"/>
             </xsl:when>
-            <xsl:otherwise>
+            <xsl:when test="matches($oid, $OIDpattern)">
                 <xsl:value-of select="concat('urn:oid:', $oid)"/>
+            </xsl:when>
+            <xsl:when test="matches($oid, $UUIDpattern)">
+                <xsl:value-of select="concat('urn:uuid:', $oid)"/>
+            </xsl:when>
+            <xsl:when test="matches($oid, '^https?:')">
+                <xsl:value-of select="$oid"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$oid"/>
+                <xsl:message>WARNING: local:getUri() expects an OID, but got "<xsl:value-of select="$oid"/>"</xsl:message>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -335,8 +345,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getUriFromAdaId" as="xs:string?">
         <xsl:param name="ada-identificatie" as="element()?"/>
         <xsl:choose>
-            <xsl:when test="$ada-identificatie[@root][matches(@value, '^\d+$')]">
-                <xsl:value-of select="concat('urn:oid:', $ada-identificatie/string-join((@root, @value), '.'))"/>
+            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
+                <!-- No leading zeroes -->
+                <xsl:value-of select="concat('urn:oid:', $ada-identificatie/string-join((@root, replace(@value, '^0+', '')), '.'))"/>
             </xsl:when>
             <xsl:when test="$ada-identificatie[matches(@extension, $UUIDpattern)]">
                 <xsl:value-of select="concat('urn:uuid:', $ada-identificatie/@value)"/>
@@ -357,9 +368,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getUriFromAdaCode" as="xs:string?">
         <xsl:param name="ada-code" as="element()?"/>
         <xsl:choose>
-            <xsl:when test="$ada-code[@codeSystem][matches(@code, '^\d+$')]">
-                <xsl:value-of select="concat('urn:oid:', $ada-code/string-join((@codeSystem, @code), '.'))"/>
-            </xsl:when>           
+            <xsl:when test="$ada-code[matches(@codeSystem, $OIDpattern)][matches(@code, '^\d+$')]">
+                <!-- No leading zeroes -->
+                <xsl:value-of select="concat('urn:oid:', $ada-code/string-join((@codeSystem, replace(@code, '^0+', '')), '.'))"/>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="nf:get-fhir-uuid($ada-code)"/>
             </xsl:otherwise>
