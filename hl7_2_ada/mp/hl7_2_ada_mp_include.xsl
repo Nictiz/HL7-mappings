@@ -2059,14 +2059,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$ma_hl7_90">
             <medicatieafspraak conceptId="{$xsd-ma/xs:attribute[@name='conceptId']/@fixed}">
                 <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[@xsi:type = 'IVL_TS']"/>
-                <xsl:for-each select="$IVL_TS/hl7:low">
+                <xsl:for-each select="$IVL_TS/hl7:low[@value]">
                     <xsl:call-template name="mp9-gebruiksperiode-start">
                         <xsl:with-param name="inputValue" select="./@value"/>
                         <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                         <xsl:with-param name="xsd-comp" select="$xsd-ma"/>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="$IVL_TS/hl7:high">
+                <xsl:for-each select="$IVL_TS/hl7:high[@value]">
                     <xsl:call-template name="mp9-gebruiksperiode-eind">
                         <xsl:with-param name="inputValue" select="./@value"/>
                         <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
