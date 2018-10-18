@@ -26,8 +26,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:variable name="mbh-complexType" select="$xsd-ada//xs:schema/xs:complexType[@name = 'beschikbaarstellen_medicatiegegevens_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
 	<xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
 
-	<!-- if this xslt is used stand alone the template below could be used. -->
-	<xsl:template match="/">
+	
+    <xd:doc>
+        <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
+    </xd:doc>
+    <xsl:template match="/">
 		<xsl:variable name="patient-recordTarget" select="//hl7:recordTarget/hl7:patientRole"/>
 		<xsl:call-template name="Voorschrift-90-ADA">
 			<xsl:with-param name="patient" select="$patient-recordTarget"/>
@@ -35,7 +38,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template name="Voorschrift-90-ADA">
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="patient"/>
+        <xd:param name="xsd-mbh"/>
+    </xd:doc>
+    <xsl:template name="Voorschrift-90-ADA">
 		<xsl:param name="patient" select="//hl7:recordTarget/hl7:patientRole"/>
 		<xsl:param name="xsd-mbh" select="$xsd-mbh"/>
 		<xsl:comment>Generated from HL7v3 xml with id <xsl:value-of select="'TODO'"/>.</xsl:comment>
@@ -72,9 +80,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</beschikbaarstellen_medicatiegegevens>
 			</data>
 		</adaxml>
-		<xsl:comment>Input HL7 xml below</xsl:comment>
+		<!--<xsl:comment>Input HL7 xml below</xsl:comment>
 		<xsl:call-template name="copyElementInComment">
 			<xsl:with-param name="element" select="./*"/>
-		</xsl:call-template>
+		</xsl:call-template>-->
 	</xsl:template>
 </xsl:stylesheet>
