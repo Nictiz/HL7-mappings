@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model href="../schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" phase="#ALL" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9221"/>
+   <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+         <patient>
+            <name>
+               <given>Joris</given>
+               <family>Hansman</family>
+            </name>
+            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+            <birthTime value="19840512"/>
+            <!-- meerlingindicator -->
+            <multipleBirthInd xmlns="urn:hl7-org:sdtc" value="false"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <!-- Medicatieafspraak -->
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
+         <!-- identificatie -->
+         <id extension="#MB_03j#MA_02" root="1.2.3.999.77.5.3.2"/>
+         <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+         <!-- mp-9581 Omschrijving -->
+         <text mediaType="text/plain">Vanaf 15 juli 2017, Gedurende 4 dagen, 2 keer per dag insmeren</text>
+         <!-- Gebruiksperiode -->
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20170715"/>
+            <width value="4" unit="d"/>
+         </effectiveTime>
+         <!-- 19941 Toedieningsweg -->
+         <routeCode code="53" displayName="CUTAAN" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+         <!-- Afgesproken geneesmiddel -->
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <name>Ketoconazol crème met 20% vaseline en 0,1% triam acet</name>
+                  <pharm:desc>Titel: Ketoconazol crème met 20% vaseline en 0,1% triam acet Regel: Vaselinum album 120 gr Regel: Triamcinolon acet c am or trit 1=10 6 gr Regel: Ketoconazol crème 20mg/g 474 gr </pharm:desc>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ" value="6" unit="g">
+                           <translation value="6" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </numerator>
+                        <denominator xsi:type="PQ" value="600" unit="g">
+                           <translation value="600" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+                        <pharm:code code="264105" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="TRIAMCINOLONI ACETONIDUM C AM OR TRIT 1=10 MICRON">
+                           <translation code="35416" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="TRIAMCINOLONACETONIDE 100MG/G"/>
+                        </pharm:code>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ" value="474" unit="g">
+                           <translation value="474" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </numerator>
+                        <denominator xsi:type="PQ" value="600" unit="g">
+                           <translation value="600" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+                        <pharm:code code="1131508" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="KETOCONAZOL JC CREME 20MG/G">
+                           <originalText/>
+                           <translation code="54828" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="KETOCONAZOL CREME  20MG/G"/>
+                        </pharm:code>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ" value="120" unit="g">
+                           <translation value="120" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </numerator>
+                        <denominator xsi:type="PQ" value="600" unit="g">
+                           <translation value="600" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+                        <pharm:code code="265012" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="VASELINUM ALBUM">
+                           <translation code="35971" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="VASELINE WIT"/>
+                        </pharm:code>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <!-- voorschrijver -->
+         <author>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+            <!-- Afspraakdatum -->
+            <time value="20160623"/>
+            <assignedAuthor>
+               <!-- Zorgverlener identificatie -->
+               <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+               <!-- Specialisme -->
+               <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+               <assignedPerson>
+                  <!-- ZorgverlenerNaam -->
+                  <name>Dr Jansen</name>
+               </assignedPerson>
+               <!-- Zorgaanbieder -->
+               <representedOrganization>
+                  <!-- Zorgaanbieder identificatie -->
+                  <id root="1.2.3.4" extension="URAnummer"/>
+                  <name>Ziekenhuis zus en zo</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <!--Doseerinstructie-->
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+                  <hl7nl:frequency>
+                     <hl7nl:numerator xsi:type="hl7nl:INT" value="2"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                  </hl7nl:frequency>
+               </effectiveTime>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <!--Relatie naar medicamenteuze behandeling-->
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="1.2.3.999.77.5.3.1" extension="#MB_03j"/>
+               <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <!-- Medicatieafspraak -->
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
+         <!-- identificatie -->
+         <id extension="#MB_03j#MA_03" root="1.2.3.999.77.5.3.2"/>
+         <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+         <!-- mp-9581 Omschrijving -->
+         <text mediaType="text/plain">Gedurende 4 dagen, 2 keer per dag insmeren</text>
+         <!-- Gebruiksperiode -->
+         <effectiveTime xsi:type="IVL_TS">
+            <width value="4" unit="d"/>
+         </effectiveTime>
+         <!-- 19941 Toedieningsweg -->
+         <routeCode code="53" displayName="CUTAAN" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+         <!-- Afgesproken geneesmiddel -->
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <name>Ketoconazol crème met 20% vaseline en 0,1% triam acet</name>
+                  <pharm:desc> Titel: Ketoconazol crème met 20% vaseline en 0,1% triam acet Regel: Vaselinum album 120 gr Regel: Triamcinolon acet c am or trit 1=10 6 gr Regel: Ketoconazol crème 20mg/g 474 gr </pharm:desc>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ" value="6" unit="g">
+                           <translation value="6" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </numerator>
+                        <denominator xsi:type="PQ" value="600" unit="g">
+                           <translation value="600" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+                        <pharm:code code="264105" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="TRIAMCINOLONI ACETONIDUM C AM OR TRIT 1=10 MICRON">
+                           <translation code="35416" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="TRIAMCINOLONACETONIDE 100MG/G"/>
+                        </pharm:code>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ" value="474" unit="g">
+                           <translation value="474" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </numerator>
+                        <denominator xsi:type="PQ" value="600" unit="g">
+                           <translation value="600" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+                        <pharm:code code="1131508" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="KETOCONAZOL JC CREME 20MG/G">
+                           <translation code="54828" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="KETOCONAZOL CREME  20MG/G"/>
+                        </pharm:code>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ" nullFlavor="QS"/>
+                        <denominator xsi:type="PQ" value="600" unit="g">
+                           <translation value="600" code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Gram"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT" determinerCode="KIND">
+                        <pharm:code code="265012" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="VASELINUM ALBUM">
+                           <translation code="35971" codeSystem="2.16.840.1.113883.2.4.4.1" displayName="VASELINE WIT"/>
+                        </pharm:code>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <!-- voorschrijver -->
+         <author>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+            <!-- Afspraakdatum -->
+            <time value="20160623"/>
+            <assignedAuthor>
+               <!-- Zorgverlener identificatie -->
+               <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+               <!-- Specialisme -->
+               <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+               <assignedPerson>
+                  <!-- ZorgverlenerNaam -->
+                  <name>Dr Jansen</name>
+               </assignedPerson>
+               <!-- Zorgaanbieder -->
+               <representedOrganization>
+                  <!-- Zorgaanbieder identificatie -->
+                  <id root="1.2.3.4" extension="URAnummer"/>
+                  <name>Ziekenhuis zus en zo</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <!--Doseerinstructie-->
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+                  <hl7nl:frequency>
+                     <hl7nl:numerator xsi:type="hl7nl:INT" value="2"/>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                  </hl7nl:frequency>
+               </effectiveTime>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <!--Relatie naar medicamenteuze behandeling-->
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="1.2.3.999.77.5.3.1" extension="#MB_03j"/>
+               <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+</organizer>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model href="../schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" phase="#ALL" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9221"/>
+   <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+         <patient>
+            <name>
+               <given>Joris</given>
+               <family>Hansman</family>
+            </name>
+            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+            <birthTime value="19840512"/>
+            <!-- meerlingindicator -->
+            <multipleBirthInd xmlns="urn:hl7-org:sdtc" value="false"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <!-- Medicatieafspraak -->
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
+         <!-- identificatie -->
+         <id extension="#MB_01f#MA_01" root="1.2.3.999.77.5.3.2"/>
+         <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+         <!-- mp-9581 Omschrijving -->
+         <text mediaType="text/plain">Vanaf 11 juni 2016, gedurende 8 dagen, 0.5 ml per uur parenteraal.</text>
+         <!-- Gebruiksperiode -->
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20160611"/>
+            <width value="8" unit="d"/>
+         </effectiveTime>
+         <!-- 19941 Toedieningsweg -->
+         <routeCode code="10" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="Parenteraal" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+         <!-- Afgesproken geneesmiddel -->
+         <consumable>
+            <manufacturedProduct classCode="MANU">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="94692" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <!-- voorschrijver -->
+         <author>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+            <!-- Afspraakdatum -->
+            <time value="20160611091500"/>
+            <assignedAuthor>
+               <!-- Zorgverlener identificatie -->
+               <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+               <!-- Specialisme -->
+               <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+               <assignedPerson>
+                  <!-- ZorgverlenerNaam -->
+                  <name>Dr Jansen</name>
+               </assignedPerson>
+               <!-- Zorgaanbieder -->
+               <representedOrganization>
+                  <!-- Zorgaanbieder identificatie -->
+                  <id root="1.2.3.4" extension="URAnummer"/>
+                  <name>Ziekenhuis zus en zo</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <!--Doseerinstructie-->
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+               <rateQuantity>
+                  <center value="0.5" unit="ml/h"/>
+               </rateQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <!--Relatie naar medicamenteuze behandeling-->
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="1.2.3.999.77.5.3.1" extension="#MB_01f1"/>
+               <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
+         <!-- identificatie -->
+         <id extension="MA_01b" root="1.2.3.999.77.5.3.2"/>
+         <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+         <!-- mp-9581 Omschrijving -->
+         <text mediaType="text/plain">Vanaf 19 juni 2016, gedurende 8 dagen, 0.2 tot 0.5 ml per uur parenteraal.</text>
+         <!-- Gebruiksperiode -->
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20160619"/>
+            <width value="8" unit="d"/>
+         </effectiveTime>
+         <!-- 19941 Toedieningsweg -->
+         <routeCode code="10" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="Parenteraal" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+         <!-- Afgesproken geneesmiddel -->
+         <consumable>
+            <manufacturedProduct classCode="MANU">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="94692" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <!-- voorschrijver -->
+         <author>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+            <!-- Afspraakdatum -->
+            <time value="20160618094557"/>
+            <assignedAuthor>
+               <!-- Zorgverlener identificatie -->
+               <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+               <!-- Specialisme -->
+               <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+               <assignedPerson>
+                  <!-- ZorgverlenerNaam -->
+                  <name>Dr Jansen</name>
+               </assignedPerson>
+               <!-- Zorgaanbieder -->
+               <representedOrganization>
+                  <!-- Zorgaanbieder identificatie -->
+                  <id root="1.2.3.4" extension="URAnummer"/>
+                  <name>Ziekenhuis zus en zo</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <!--Doseerinstructie-->
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+               <rateQuantity>
+                  <low value="0.2" unit="ml/h"/>
+                  <high value="0.5" unit="ml/h"/>
+               </rateQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <!--Relatie naar medicamenteuze behandeling-->
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="1.2.3.999.77.5.3.1" extension="#MB_01f1"/>
+               <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+</organizer>

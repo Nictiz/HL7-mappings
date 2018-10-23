@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="MB-01a-MA-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:1.2.3.999.77.5.3.1"/>
+         <value value="#MB_01a"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:1.2.3.999"/>
+            <value value="#MB_01a_MA_01"/>
+         </identifier>
+         <display value="relatie naar medicatieafspraak: #MB_01a_MA_01 || 1.2.3.999"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:1.2.3.999.77.5.3.2"/>
+      <value value="#MB_01a_MA_01"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/133329-2-16-840-1-113883-2-4-4-10"/>
+      <display value="METOCLOPRAMIDE ZETPIL 20MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/HANSMAN"/>
+      <display value="Joris J. Hansman"/>
+   </subject>
+   <supportingInformation>
+      <reference value="Observation/lichaamslengteHANSMAN189CM"/>
+      <display value="Lengte: 189 cm. Datum/tijd gemeten: onbekend"/>
+   </supportingInformation>
+   <supportingInformation>
+      <reference value="Observation/lichaamsgewichtHANSMAN79KG"/>
+      <display value="Gewicht: 79 kg. Datum/tijd gemeten: onbekend"/>
+   </supportingInformation>
+   <authoredOn value="2016-06-23"/>
+   <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/d6e24"/>
+            <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
+         </valueReference>
+      </extension>
+      <agent>
+         <reference value="Practitioner/012345678DRJANSEN"/>
+         <display value="Dr Jansen"/>
+      </agent>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="266709005"/>
+         <display value="Starten medicamenteuze behandeling"/>
+      </coding>
+   </reasonCode>
+   <reasonReference>
+      <reference value="Condition/redenvanvoorschrijvenHANSMAN37796009"/>
+      <display value="Migraine"/>
+   </reasonReference>
+   <note>
+      <text value="Toelichting in vrije tekst"/>
+   </note>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Tot nader order, Zo nodig 1 keer per dag 1 stuk"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <asNeededCodeableConcept>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1137"/>
+            <display value="zo nodig"/>
+         </coding>
+      </asNeededCodeableConcept>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="12"/>
+            <display value="RECTAAL"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="Stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>
