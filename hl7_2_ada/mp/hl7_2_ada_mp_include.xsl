@@ -779,40 +779,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </xsl:variable>
                                             <!-- Deze variable groepeert de $days-with-times per frequentie. Er mag eigenlijk maar 1 frequentie zijn.... -->
                                             <xsl:variable name="frequency-with-daytimes" as="element(frequency)*">
-                                                <xsl:for-each-group select="$days-with-times" group-by="./concat(@period-value,@period-unit)">
+                                                <xsl:for-each-group select="$days-with-times" group-by="./concat(@period-value, @period-unit)">
                                                     <frequency value="{./@period-value}" unit="{./@period-unit}">
-                                                            <xsl:for-each-group select="current-group()" group-by="./@value">
-                                                                <day value="{./@value}">
-                                                                    <xsl:for-each select="current-group()">
-                                                                        <xsl:sort select="./@time"/>
-                                                                        <times period-value="{./@period-value}" period-unit="{./@period-unit}">
-                                                                            <xsl:if test="./@time">
-                                                                                <xsl:attribute name="value" select="./@time"/>
-                                                                            </xsl:if>
-                                                                        </times>
-                                                                    </xsl:for-each>
-                                                                </day>
-                                                            </xsl:for-each-group>
+                                                        <xsl:for-each-group select="current-group()" group-by="./@value">
+                                                            <day value="{./@value}">
+                                                                <xsl:for-each select="current-group()">
+                                                                    <xsl:sort select="./@time"/>
+                                                                    <times period-value="{./@period-value}" period-unit="{./@period-unit}">
+                                                                        <xsl:if test="./@time">
+                                                                            <xsl:attribute name="value" select="./@time"/>
+                                                                        </xsl:if>
+                                                                    </times>
+                                                                </xsl:for-each>
+                                                            </day>
+                                                        </xsl:for-each-group>
                                                     </frequency>
                                                 </xsl:for-each-group>
                                             </xsl:variable>
                                             <!-- Deze variabele groeperen voor de tijden en zet het geheel in mp9-datamodelformaat -->
                                             <xsl:variable name="times-days-mp9-datamodel">
-                                                <xsl:if test="count($frequency-with-daytimes) = 1 and $frequency-with-daytimes[concat(@value,@unit) ne '1wk']">
+                                                <xsl:if test="count($frequency-with-daytimes) = 1 and $frequency-with-daytimes[concat(@value, @unit) ne '1wk']">
                                                     <frequentie value="{$frequency-with-daytimes/@value}" unit="{$frequency-with-daytimes/@unit}"/>
                                                 </xsl:if>
                                                 <xsl:for-each-group select="$day-with-times" group-by="string-join(./times/@value)">
-                                                        <xsl:variable name="last-group" select="last()"/>
-                                                        <times group-key="{current-grouping-key()}" last-group="{$last-group}">
-                                                             <xsl:for-each select="./times/@value">
-                                                                <toedientijd value="{.}"/>
-                                                            </xsl:for-each>
-                                                            <xsl:for-each select="current-group()">
-                                                                <weekdag value="{./@value}"/>
-                                                            </xsl:for-each>
-                                                        </times>
+                                                    <xsl:variable name="last-group" select="last()"/>
+                                                    <times group-key="{current-grouping-key()}" last-group="{$last-group}">
+                                                        <xsl:for-each select="./times/@value">
+                                                            <toedientijd value="{.}"/>
+                                                        </xsl:for-each>
+                                                        <xsl:for-each select="current-group()">
+                                                            <weekdag value="{./@value}"/>
+                                                        </xsl:for-each>
+                                                    </times>
                                                 </xsl:for-each-group>
-                                            </xsl:variable>          
+                                            </xsl:variable>
                                             <!-- there may be only one frequency in $frequency-with-daytimes and one times group in $times-days-mp9-datamodel, 
                                                 otherwise this schedule does not conform to MP9-datamodel... -->
                                             <xsl:choose>
@@ -836,7 +836,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/toedientijd">
                                                         <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'toedientijd']/@type"/>
                                                         <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                                      </xsl:for-each>
+                                                    </xsl:for-each>
                                                     <!-- Daarna alle weekdagen -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/weekdag">
                                                         <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'weekdag']/@type"/>
@@ -844,8 +844,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                             <xsl:call-template name="mp9-weekdag-attribs">
                                                                 <xsl:with-param name="day-of-week" select="./@value"/>
                                                             </xsl:call-template>
-                                                        </weekdag>                                                        
-                                                    </xsl:for-each>                                                    
+                                                        </weekdag>
+                                                    </xsl:for-each>
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                     <xsl:comment>The dosage schedule does not comply to MP-9 datamodel, please refer to text for the correct dosage information.</xsl:comment>
@@ -895,37 +895,67 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </criterium>
                                     </zo_nodig>
                                 </xsl:for-each>
+                                <!-- toedieningssnelheid -->
                                 <xsl:for-each select="./hl7:rateQuantity">
                                     <xsl:variable name="xsd-toedieningssnelheid-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningssnelheid']/@type"/>
                                     <xsl:variable name="xsd-toedieningssnelheid" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningssnelheid-complexType]"/>
-                                    <toedieningssnelheid conceptId="{$xsd-toedieningssnelheid/xs:attribute[@name='conceptId']/@fixed}">
-                                        <xsl:variable name="xsd-waarde-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'waarde']/@type"/>
-                                        <xsl:variable name="xsd-waarde" select="$xsd-ada//xs:complexType[@name = $xsd-waarde-complexType]"/>
-                                        <waarde conceptId="{$xsd-waarde/xs:attribute[@name='conceptId']/@fixed}">
-                                            <xsl:for-each select="./hl7:low">
-                                                <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'min']/@type"/>
-                                                <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                            </xsl:for-each>
-                                            <xsl:for-each select="./hl7:center">
-                                                <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'vaste_waarde']/@type"/>
-                                                <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                            </xsl:for-each>
-                                            <xsl:for-each select="./hl7:high">
-                                                <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'max']/@type"/>
-                                                <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                            </xsl:for-each>
-                                        </waarde>
-                                        <xsl:variable name="ucum-eenheid" select="substring-before((./*/@unit)[1], '/')"/>
-                                        <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'eenheid']/@type"/>
-                                        <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                                            <xsl:call-template name="UCUM2GstdBasiseenheid">
-                                                <xsl:with-param name="UCUM" select="$ucum-eenheid"/>
-                                            </xsl:call-template>
-                                        </eenheid>
-                                        <xsl:variable name="ucum-tijdseenheid" select="substring-after((./*/@unit)[1], '/')"/>
-                                        <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'tijdseenheid']/@type"/>
-                                        <tijdseenheid unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                    </toedieningssnelheid>
+                                    <xsl:variable name="ucum-rate-eenheden" select="./*/@unit"/>
+                                    <xsl:variable name="ucum-rate-eenheid">
+                                        <xsl:if test="
+                                                every $i in $ucum-rate-eenheden
+                                                    satisfies $i = $ucum-rate-eenheden[1]">
+                                            <xsl:value-of select="$ucum-rate-eenheden[1]"/>
+                                        </xsl:if>
+                                    </xsl:variable>
+                                    <xsl:choose>
+                                        <xsl:when test="string-length($ucum-rate-eenheid) gt 0">
+                                            <toedieningssnelheid conceptId="{$xsd-toedieningssnelheid/xs:attribute[@name='conceptId']/@fixed}">
+                                                <xsl:variable name="xsd-waarde-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'waarde']/@type"/>
+                                                <xsl:variable name="xsd-waarde" select="$xsd-ada//xs:complexType[@name = $xsd-waarde-complexType]"/>
+                                                <waarde conceptId="{$xsd-waarde/xs:attribute[@name='conceptId']/@fixed}">
+                                                    <xsl:for-each select="./hl7:low">
+                                                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'min']/@type"/>
+                                                        <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                    </xsl:for-each>
+                                                    <xsl:for-each select="./hl7:center">
+                                                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'vaste_waarde']/@type"/>
+                                                        <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                    </xsl:for-each>
+                                                    <xsl:for-each select="./hl7:high">
+                                                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'max']/@type"/>
+                                                        <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                    </xsl:for-each>
+                                                </waarde>
+                                                <xsl:variable name="ucum-eenheid" select="substring-before($ucum-rate-eenheid, '/')"/>
+                                                <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'eenheid']/@type"/>
+                                                <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                                    <xsl:call-template name="UCUM2GstdBasiseenheid">
+                                                        <xsl:with-param name="UCUM" select="$ucum-eenheid"/>
+                                                    </xsl:call-template>
+                                                </eenheid>
+                                                <xsl:variable name="ucum-tijdseenheid" select="substring-after($ucum-rate-eenheid, '/')"/>
+                                                <!-- tijdseenheid is usually of a format like: ml/h -->
+                                                <!-- however, a format like ml/2.h (milliliter per 2 hours) is also allowed in UCUM and the datamodel -->
+                                                <!-- however, all the occurences of rate unit (min and max) must be equal to one another -->
+                                                <xsl:variable name="firstChar" select="substring(translate($ucum-tijdseenheid, '0123456789.', ''), 1, 1)"/>
+                                                <xsl:variable name="beforeFirstChar" select="substring-before($ucum-tijdseenheid, $firstChar)"/>
+                                                <xsl:variable name="ucum-tijdseenheid-value">
+                                                    <xsl:choose>
+                                                        <xsl:when test="string-length($beforeFirstChar) gt 0">
+                                                            <xsl:value-of select="substring-before($beforeFirstChar, '.')"/>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>1</xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:variable>
+                                                <xsl:variable name="ucum-tijdseenheid-unit" select="concat($firstChar, substring-after($ucum-tijdseenheid, $firstChar))"/>
+                                                <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'tijdseenheid']/@type"/>
+                                                <tijdseenheid value="{$ucum-tijdseenheid-value}" unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid-unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                            </toedieningssnelheid>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:comment>Cannot output "toedieningssnelheid" because the ratequantity/*/@unit are not all equal, found: "<xsl:value-of select="string-join($ucum-rate-eenheden, ' and ')"/>".</xsl:comment>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </xsl:for-each>
                                 <!-- Doseerschema met toedieningsduur. -->
                                 <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
