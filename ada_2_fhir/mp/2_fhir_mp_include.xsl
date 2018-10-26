@@ -98,62 +98,60 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:variable>
     <xsl:variable name="products" as="element()*">
-        <xsl:for-each-group select="//product" group-by="nf:ada-product-code(./product_code)/concat(@codeSystem, @code)">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <uniek-product xmlns="">
-                    <group-key xmlns="">
-                        <xsl:value-of select="current-grouping-key()"/>
-                    </group-key>
-                    <xsl:for-each select="current-group()[1]">
-                        <xsl:variable name="ada-id" select="
-                                if ($uuid) then
-                                    nf:get-fhir-uuid(.)
+        <xsl:for-each-group select="//product" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <uniek-product xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <xsl:for-each select="current-group()[1]">
+                    <xsl:variable name="ada-id" select="
+                            if ($uuid) then
+                                nf:get-fhir-uuid(.)
+                            else
+                                if (./product_code) then
+                                    nf:getUriFromAdaCode(nf:ada-product-code(./product_code))
                                 else
-                                    if (./product_code) then
-                                        nf:getUriFromAdaCode(nf:ada-product-code(./product_code))
-                                    else
-                                        nf:get-fhir-uuid(.)"/>
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{$ada-id}"/>
-                            <resource>
-                                <xsl:choose>
-                                    <xsl:when test="$referById">
-                                        <xsl:variable name="fhir-resource-id">
-                                            <xsl:choose>
-                                                <xsl:when test="$uuid">
-                                                    <xsl:value-of select="generate-id(.)"/>
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <xsl:choose>
-                                                        <xsl:when test="./product_code[(@code)][not(@codeSystem = $oidHL7NullFlavor)]">
-                                                            <xsl:value-of select="nf:removeSpecialCharacters(string-join(./product_code/(@code | @codeSystem), '-'))"/>
-                                                        </xsl:when>
-                                                        <xsl:when test="./product_specificatie/product_naam/@value">
-                                                            <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
-                                                        </xsl:when>
-                                                        <xsl:otherwise>
-                                                            <!-- should not happen, but let's fall back on the grouping-key() -->
-                                                            <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
-                                                        </xsl:otherwise>
-                                                    </xsl:choose>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
-                                        </xsl:variable>
-                                        <xsl:call-template name="zib-Product">
-                                            <xsl:with-param name="medication-id" select="$fhir-resource-id"/>
-                                        </xsl:call-template>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:apply-templates select="." mode="doMedication"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </resource>
-                        </entry>
-                    </xsl:for-each>
-                </uniek-product>
-            </xsl:for-each-group>
+                                    nf:get-fhir-uuid(.)"/>
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{$ada-id}"/>
+                        <resource>
+                            <xsl:choose>
+                                <xsl:when test="$referById">
+                                    <xsl:variable name="fhir-resource-id">
+                                        <xsl:choose>
+                                            <xsl:when test="$uuid">
+                                                <xsl:value-of select="generate-id(.)"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:choose>
+                                                    <xsl:when test="./product_code[(@code)][not(@codeSystem = $oidHL7NullFlavor)]">
+                                                        <xsl:value-of select="nf:removeSpecialCharacters(string-join(./product_code/(@code | @codeSystem), '-'))"/>
+                                                    </xsl:when>
+                                                    <xsl:when test="./product_specificatie/product_naam/@value">
+                                                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <!-- should not happen, but let's fall back on the grouping-key() -->
+                                                        <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
+                                    <xsl:call-template name="zib-Product">
+                                        <xsl:with-param name="medication-id" select="$fhir-resource-id"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:apply-templates select="." mode="doMedication"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </resource>
+                    </entry>
+                </xsl:for-each>
+            </uniek-product>
         </xsl:for-each-group>
     </xsl:variable>
     <xsl:variable name="locations" as="element()*">
@@ -498,7 +496,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$ada-zorgaanbieder">
             <Organization>
                 <xsl:for-each select="$organization-id">
-                    <id value="{$organization-id}"/>
+                    <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
@@ -568,7 +566,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$ada-patient">
             <Patient>
                 <xsl:for-each select="$patient-id">
-                    <id value="{$patient-id}"/>
+                    <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
@@ -614,13 +612,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$ada-zorgverlener">
             <Practitioner>
                 <xsl:for-each select="$practitioner-id">
-                    <id value="{$practitioner-id}"/>
+                    <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
                 </meta>
                 <!-- zorgverlener_identificatie_nummer -->
-                <xsl:for-each select="./zorgverlener_identificatie_nummer">
+                <xsl:for-each select="./zorgverlener_identificatie_nummer[.//@value]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier">
                             <xsl:with-param name="in" select="."/>
@@ -631,6 +629,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./zorgverlener_naam/naamgegevens">
                     <xsl:call-template name="nl-core-humanname">
                         <xsl:with-param name="ada-naamgegevens" select="."/>
+                        <xsl:with-param name="unstructured-name" select="./ongestructureerde_naam/@value"/>
                     </xsl:call-template>
                 </xsl:for-each>
             </Practitioner>
@@ -702,7 +701,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="relatedperson-id" as="xs:string?"/>
         <RelatedPerson>
             <xsl:for-each select="$relatedperson-id">
-                <id value="{$relatedperson-id}"/>
+                <id value="{.}"/>
             </xsl:for-each>
             <meta>
                 <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
@@ -722,6 +721,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="./naamgegevens">
                 <xsl:call-template name="nl-core-humanname">
                     <xsl:with-param name="ada-naamgegevens" select="."/>
+                    <xsl:with-param name="unstructured-name" select="./ongestructureerde_naam/@value"/>
                 </xsl:call-template>
             </xsl:for-each>
         </RelatedPerson>
@@ -889,104 +889,116 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-humanname" as="element()*">
         <xsl:param name="ada-naamgegevens" as="element()*"/>
         <xsl:param name="unstructured-name" as="xs:string?"/>
-        <xsl:for-each select="$ada-naamgegevens[.//@value]">
-            <name>
-                <xsl:for-each select="./naamgebruik[@code]">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-                        <valueCode value="{./@code}"/>
-                    </extension>
-                </xsl:for-each>
-                <!-- unstructured-name, not supported in zib datamodel, may be customized per transaction, therefore parameterized in this template -->
-                <xsl:if test="string-length($unstructured-name) > 0">
-                    <text>
-                        <xsl:value-of select="."/>
-                    </text>
-                </xsl:if>
-                <xsl:if test="./(geslachtsnaam | geslachtsnaam_partner)[.//@value]">
-                    <family>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <!-- Eigen geslachtsnaam -->
-                                <xsl:when test="./naamgebruik/@code = 'NL1'">
-                                    <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value), ' '))"/>
-                                </xsl:when>
-                                <!-- 	Geslachtsnaam partner -->
-                                <xsl:when test="./naamgebruik/@code = 'NL2'">
-                                    <xsl:value-of select="normalize-space(string-join((./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
-                                </xsl:when>
-                                <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
-                                <xsl:when test="./naamgebruik/@code = 'NL3'">
-                                    <xsl:value-of select="normalize-space(string-join((./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value, ./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value), ' '))"/>
-                                </xsl:when>
-                                <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
-                                <xsl:when test="./naamgebruik/@code = 'NL4'">
-                                    <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value, ./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
-                                </xsl:when>
-                                <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
-                                <xsl:otherwise>
-                                    <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value, ./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                        <xsl:for-each select="./geslachtsnaam/voorvoegsels[@value]">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                                <valueString value="{normalize-space(./@value)}"/>
-                            </extension>
-                        </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam/achternaam[@value]">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                                <valueString value="{normalize-space(./@value)}"/>
-                            </extension>
-                        </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam_partner/voorvoegsels[@value]">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
-                                <valueString value="{normalize-space(./@value)}"/>
-                            </extension>
-                        </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam_partner/achternaam[@value]">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-                                <valueString value="{normalize-space(./@value)}"/>
-                            </extension>
-                        </xsl:for-each>
-                    </family>
-                </xsl:if>
-                <xsl:for-each select="./voornamen[.//@value]">
-                    <given value="{normalize-space(./@value)}">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                            <valueCode value="BR"/>
-                        </extension>
-                    </given>
-                </xsl:for-each>
-                <xsl:for-each select="./initialen[.//@value]">
-                    <given value="{normalize-space(./@value)}">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                            <valueCode value="IN"/>
-                        </extension>
-                    </given>
-                </xsl:for-each>
-                <xsl:for-each select="./roepnaam[.//@value]">
-                    <given value="{normalize-space(./@value)}">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                            <valueCode value="CL"/>
-                        </extension>
-                    </given>
-                </xsl:for-each>
-                <xsl:for-each select="prefix[not(tokenize(@qualifier, '\s') = 'VV')]">
-                    <prefix value="{.}"/>
-                </xsl:for-each>
-                <xsl:for-each select="suffix[.//@value]">
-                    <suffix value="{.}"/>
-                </xsl:for-each>
-                <xsl:if test="validTime[.//@value]">
-                    <period>
-                        <!-- <xsl:call-template name="IVL_TS-to-Period">
+        <xsl:if test="$ada-naamgegevens[.//@value] or string-length($unstructured-name) gt 0">
+            <xsl:choose>
+                <xsl:when test="$ada-naamgegevens[.//@value]">
+                    <xsl:for-each select="$ada-naamgegevens[.//@value]">
+                        <name>
+                            <xsl:for-each select="./naamgebruik[@code]">
+                                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                                    <valueCode value="{./@code}"/>
+                                </extension>
+                            </xsl:for-each>
+                            <!-- unstructured-name, not supported in zib datamodel, may be customized per transaction, therefore parameterized in this template -->
+                            <xsl:if test="string-length($unstructured-name) gt 0">
+                                <text value="{$unstructured-name}"/>
+                            </xsl:if>
+                            <xsl:if test="./(geslachtsnaam | geslachtsnaam_partner)[.//@value]">
+                                <family>
+                                    <xsl:attribute name="value">
+                                        <xsl:choose>
+                                            <!-- Eigen geslachtsnaam -->
+                                            <xsl:when test="./naamgebruik/@code = 'NL1'">
+                                                <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value), ' '))"/>
+                                            </xsl:when>
+                                            <!-- 	Geslachtsnaam partner -->
+                                            <xsl:when test="./naamgebruik/@code = 'NL2'">
+                                                <xsl:value-of select="normalize-space(string-join((./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
+                                            </xsl:when>
+                                            <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
+                                            <xsl:when test="./naamgebruik/@code = 'NL3'">
+                                                <xsl:value-of select="normalize-space(string-join((./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value, ./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value), ' '))"/>
+                                            </xsl:when>
+                                            <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
+                                            <xsl:when test="./naamgebruik/@code = 'NL4'">
+                                                <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value, ./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
+                                            </xsl:when>
+                                            <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value, ./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:attribute>
+                                    <xsl:for-each select="./geslachtsnaam/voorvoegsels[@value]">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                            <valueString value="{normalize-space(./@value)}"/>
+                                        </extension>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="./geslachtsnaam/achternaam[@value]">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                            <valueString value="{normalize-space(./@value)}"/>
+                                        </extension>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="./geslachtsnaam_partner/voorvoegsels[@value]">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                                            <valueString value="{normalize-space(./@value)}"/>
+                                        </extension>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="./geslachtsnaam_partner/achternaam[@value]">
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                                            <valueString value="{normalize-space(./@value)}"/>
+                                        </extension>
+                                    </xsl:for-each>
+                                </family>
+                            </xsl:if>
+                            <xsl:for-each select="./voornamen[.//@value]">
+                                <given value="{normalize-space(./@value)}">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                        <valueCode value="BR"/>
+                                    </extension>
+                                </given>
+                            </xsl:for-each>
+                            <xsl:for-each select="./initialen[.//@value]">
+                                <given value="{normalize-space(./@value)}">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                        <valueCode value="IN"/>
+                                    </extension>
+                                </given>
+                            </xsl:for-each>
+                            <xsl:for-each select="./roepnaam[.//@value]">
+                                <given value="{normalize-space(./@value)}">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                        <valueCode value="CL"/>
+                                    </extension>
+                                </given>
+                            </xsl:for-each>
+                            <xsl:for-each select="prefix[not(tokenize(@qualifier, '\s') = 'VV')]">
+                                <prefix value="{.}"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="suffix[.//@value]">
+                                <suffix value="{.}"/>
+                            </xsl:for-each>
+                            <xsl:if test="validTime[.//@value]">
+                                <period>
+                                    <!-- <xsl:call-template name="IVL_TS-to-Period">
                      <xsl:with-param name="in" select="validTime"/>
                   </xsl:call-template>
             -->
-                    </period>
-                </xsl:if>
-            </name>
-        </xsl:for-each>
+                                </period>
+                            </xsl:if>
+                        </name>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- only unstructured name -->
+                    <name>
+                        <text>
+                            <xsl:value-of select="$unstructured-name"/>
+                        </text>
+                    </name>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
     </xsl:template>
 
     <xd:doc>
@@ -1001,7 +1013,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$verstrekkingsverzoek">
             <MedicationRequest>
                 <xsl:for-each select="$medicationrequest-id">
-                    <id value="{$medicationrequest-id}"/>
+                    <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
@@ -1137,7 +1149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$toedieningsafspraak">
             <MedicationDispense>
                 <xsl:for-each select="$medicationdispense-id">
-                    <id value="{$medicationdispense-id}"/>
+                    <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
@@ -1441,7 +1453,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$verstrekking">
             <MedicationDispense>
                 <xsl:for-each select="$medicationdispense-id">
-                    <id value="{$medicationdispense-id}"/>
+                    <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
@@ -1559,7 +1571,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$ada-locatie">
             <Location>
                 <xsl:for-each select="$location-id">
-                    <id value="{$location-id}"/>
+                    <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-location"/>
@@ -1705,10 +1717,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </rateRatio>
             </xsl:for-each>
             <!-- variable toedieningssnelheid, alleen ondersteund voor hele tijdseenheden -->
-            <xsl:for-each select=".[waarde/(min | max)][tijdseenheid/@value = '1']">
+            <xsl:for-each select=".[waarde/(min | max)][tijdseenheid/@value castable as xs:integer]">
+                <xsl:variable name="ucum-tijdseenheid-value">
+                    <xsl:if test="xs:integer(tijdseenheid/@value) ne 1">
+                        <xsl:value-of select="concat(tijdseenheid/@value, '.')"/>
+                    </xsl:if>
+                </xsl:variable>
                 <!-- we cannot use the G-standaard unit in this case, can only be communicated in FHIR using UCUM -->
                 <!-- let's determine the right UCUM for the rate (toedieningssnelheid) -->
-                <xsl:variable name="UCUM-rate" select="concat(nf:convertGstdBasiseenheid2UCUM(./eenheid/@code), '/', nf:convertTime_ADA_unit2UCUM_FHIR(./tijdseenheid/@unit))"/>
+                <xsl:variable name="UCUM-rate" select="concat(nf:convertGstdBasiseenheid2UCUM(./eenheid/@code), '/', $ucum-tijdseenheid-value, nf:convertTime_ADA_unit2UCUM_FHIR(./tijdseenheid/@unit))"/>
                 <rateRange>
                     <low>
                         <value value="{./waarde/min/@value}"/>
@@ -1867,7 +1884,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <MedicationStatement>
                         <xsl:for-each select="$medicationstatement-id">
-                            <id value="{$medicationstatement-id}"/>
+                            <id value="{.}"/>
                         </xsl:for-each>
                         <meta>
                             <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
@@ -2140,7 +2157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="medication-id" as="xs:string?"/>
         <Medication xmlns="http://hl7.org/fhir">
             <xsl:for-each select="$medication-id">
-                <id value="{$medication-id}"/>
+                <id value="{.}"/>
             </xsl:for-each>
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
