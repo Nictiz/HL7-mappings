@@ -3,9 +3,9 @@
 	<xsl:strip-space elements="*"/>
 	
 	<xd:doc>
-		<xd:desc/>
-		<xd:param name="value"/>
-		<xd:param name="unit-in"/>
+		<xd:desc>Returns a unit string for display purposes, depending on the given unit ánd whether the value is singular or plural</xd:desc>
+		<xd:param name="value">Input param to determine whether to return the singular or plural form for display</xd:param>
+		<xd:param name="unit-in">Input unit string</xd:param>
 	</xd:doc>
 	<xsl:function name="nf:unit-string" as="xs:string?">
 		<xsl:param name="value" as="xs:double?"/>

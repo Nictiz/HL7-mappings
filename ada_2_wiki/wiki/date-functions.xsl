@@ -39,7 +39,7 @@
 		<xsl:param name="inputDate" as="xs:string?"/>
 		<xsl:variable name="date" select="
 				if ($inputDate) then
-					xs:date(substring($inputDate, 1, 10))
+					substring($inputDate, 1, 10)
 				else
 					()"/>
 		<xsl:if test="$date castable as xs:date">
