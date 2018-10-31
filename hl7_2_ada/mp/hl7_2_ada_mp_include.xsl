@@ -801,7 +801,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:if test="count($frequency-with-daytimes) = 1 and $frequency-with-daytimes[concat(@value, @unit) ne '1wk']">
                                                     <frequentie value="{$frequency-with-daytimes/@value}" unit="{$frequency-with-daytimes/@unit}"/>
                                                 </xsl:if>
-                                                <xsl:for-each-group select="$day-with-times" group-by="string-join(./times/@value)">
+                                                <xsl:for-each-group select="$day-with-times" group-by="string-join(./times/@value, '')">
                                                     <xsl:variable name="last-group" select="last()"/>
                                                     <times group-key="{current-grouping-key()}" last-group="{$last-group}">
                                                         <xsl:for-each select="./times/@value">
@@ -1209,9 +1209,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </ongestructureerde_naam>
             </xsl:for-each>
             <!-- voornamen -->
-            <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]][string-length(string-join(text())) gt 0]">
+            <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]][text()[not(. = '')]]">
                 <xsl:variable name="voornamen_concatted">
-                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][string-length(string-join(text())) gt 0]">
+                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][text()[not(. = '')]]">
                         <xsl:value-of select="concat(./text(), ' ')"/>
                     </xsl:for-each>
                 </xsl:variable>
@@ -1233,9 +1233,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <initialen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19801" value="{$initialen_concatted}"/>
             </xsl:for-each>
-            <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'CL')]][string-length(string-join(text())) gt 0]">
+            <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'CL')]][text()[not(. = '')]]">
                 <xsl:variable name="roepnamen_concatted">
-                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'CL')][string-length(string-join(text())) gt 0]">
+                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'CL')][text()[not(. = '')]]">
                         <xsl:value-of select="concat(./text(), ' ')"/>
                     </xsl:for-each>
                 </xsl:variable>
@@ -1244,9 +1244,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="mp9-naamgebruik">
                 <xsl:with-param name="hl7-name" select="$current-hl7-name"/>
             </xsl:call-template>
-            <xsl:for-each select="$current-hl7-name/hl7:family[@qualifier = 'BR' or not(@qualifier)][string-length(string-join(text())) gt 0]">
+            <xsl:for-each select="$current-hl7-name/hl7:family[@qualifier = 'BR' or not(@qualifier)][text()[not(. = '')]]">
                 <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804">
-                    <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1][string-length(string-join(text())) gt 0]">
+                    <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1][text()[not(. = '')]]">
                         <voorvoegsels conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19805">
                             <xsl:attribute name="value" select="./text()"/>
                         </voorvoegsels>
@@ -1258,7 +1258,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="$current-hl7-name/hl7:family[@qualifier = 'SP'][string-length(text()) gt 0]">
                 <geslachtsnaam_partner conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19807">
-                    <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1][string-length(string-join(text())) gt 0]">
+                    <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1][text()[not(. = '')]]">
                         <voorvoegsels_partner value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19808">
                             <xsl:attribute name="value" select="./text()"/>
                         </voorvoegsels_partner>

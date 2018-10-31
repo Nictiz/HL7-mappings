@@ -942,7 +942,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyDefault" as="xs:string?">
         <xsl:param name="in" as="element()?"/>
-        <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value), string-join($in//@root), string-join($in//@code), string-join($in//@codeSystem), string-join($in//@nullFlavor))))"/>
+        <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value, ''), string-join($in//@root, ''), string-join($in//@code, ''), string-join($in//@codeSystem, ''), string-join($in//@nullFlavor, ''))))"/>
     </xsl:function>
 
     <xd:doc>
@@ -1037,7 +1037,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="generate-id(.)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value))))"/>
+                                    <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable><xsl:call-template name="nl-core-organization-2.0">
@@ -1090,7 +1090,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="generate-id(.)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(.//*[not(ancestor-or-self::zorgaanbieder)]/@value))))"/>
+                                    <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(.//*[not(ancestor-or-self::zorgaanbieder)]/@value, ''))))"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>

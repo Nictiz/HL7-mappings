@@ -201,7 +201,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:when test="$referById">
                                             <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
                                             <xsl:variable name="patient-ref" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyDefault($ada-patient), true())"/>
-                                            <xsl:value-of select="concat(./local-name(), $patient-ref, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit))))))"/>
+                                            <xsl:value-of select="concat(./local-name(), $patient-ref, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit), '')))))"/>
                                         </xsl:when>
                                         <xsl:otherwise/>
                                     </xsl:choose>
@@ -230,7 +230,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:when test="$referById">
                                             <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
                                             <xsl:variable name="patient-reference" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyDefault($ada-patient), true())"/>
-                                            <xsl:value-of select="concat('redenvanvoorschrijven', $patient-reference, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code))))))"/>
+                                            <xsl:value-of select="concat('redenvanvoorschrijven', $patient-reference, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
                                         </xsl:when>
                                         <xsl:otherwise/>
                                     </xsl:choose>
@@ -1871,7 +1871,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="nl-core-relatedperson-2.0">
                             <xsl:with-param name="relatedperson-id" select="
                                     if ($referById) then
-                                        upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName))))
+                                        upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))
                                     else
                                         ()"/>
                         </xsl:call-template>
@@ -2164,7 +2164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </meta>
             <xsl:for-each select="./product_specificatie/omschrijving[@value]">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
-                    <valueString value="{replace(string-join(./@value,''),'(^\s+)|(\s+$)','')}"/>
+                    <valueString value="{replace(string-join(./@value, ''),'(^\s+)|(\s+$)','')}"/>
                 </extension>
             </xsl:for-each>
             <xsl:choose>
@@ -2313,7 +2313,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyDefault" as="xs:string?">
         <xsl:param name="in" as="element()?"/>
-        <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value), string-join($in//@root), string-join($in//@code), string-join($in//@codeSystem), string-join($in//@nullFlavor))))"/>
+        <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value, ''), string-join($in//@root, ''), string-join($in//@code, ''), string-join($in//@codeSystem, ''), string-join($in//@nullFlavor, ''))))"/>
     </xsl:function>
 
     <xd:doc>
@@ -2549,7 +2549,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="generate-id(.)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value))))"/>
+                                    <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>
@@ -2643,7 +2643,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="generate-id(.)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(.//*[not(ancestor-or-self::zorgaanbieder)]/@value))))"/>
+                                    <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(.//*[not(ancestor-or-self::zorgaanbieder)]/@value, ''))))"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>
