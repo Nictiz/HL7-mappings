@@ -98,60 +98,62 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:variable>
     <xsl:variable name="products" as="element()*">
-        <xsl:for-each-group select="//product" group-by="nf:getGroupingKeyDefault(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <uniek-product xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <xsl:for-each select="current-group()[1]">
-                    <xsl:variable name="ada-id" select="
-                            if ($uuid) then
-                                nf:get-fhir-uuid(.)
-                            else
-                                if (./product_code) then
-                                    nf:getUriFromAdaCode(nf:ada-product-code(./product_code))
+        <xsl:for-each-group select="//product" group-by="nf:getProductGroupingKey(./product_code)">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <uniek-product xmlns="">
+                    <group-key xmlns="">
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <xsl:for-each select="current-group()[1]">
+                        <xsl:variable name="ada-id" select="
+                                if ($uuid) then
+                                    nf:get-fhir-uuid(.)
                                 else
-                                    nf:get-fhir-uuid(.)"/>
-                    <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$ada-id}"/>
-                        <resource>
-                            <xsl:choose>
-                                <xsl:when test="$referById">
-                                    <xsl:variable name="fhir-resource-id">
-                                        <xsl:choose>
-                                            <xsl:when test="$uuid">
-                                                <xsl:value-of select="generate-id(.)"/>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:choose>
-                                                    <xsl:when test="./product_code[(@code)][not(@codeSystem = $oidHL7NullFlavor)]">
-                                                        <xsl:value-of select="nf:removeSpecialCharacters(string-join(./product_code/(@code | @codeSystem), '-'))"/>
-                                                    </xsl:when>
-                                                    <xsl:when test="./product_specificatie/product_naam/@value">
-                                                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                        <!-- should not happen, but let's fall back on the grouping-key() -->
-                                                        <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:variable>
-                                    <xsl:call-template name="zib-Product">
-                                        <xsl:with-param name="medication-id" select="$fhir-resource-id"/>
-                                    </xsl:call-template>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:apply-templates select="." mode="doMedication"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </resource>
-                    </entry>
-                </xsl:for-each>
-            </uniek-product>
+                                    if (./product_code) then
+                                        nf:getUriFromAdaCode(nf:get-specific-productcode(./product_code))
+                                    else
+                                        nf:get-fhir-uuid(.)"/>
+                        <entry xmlns="http://hl7.org/fhir">
+                            <fullUrl value="{$ada-id}"/>
+                            <resource>
+                                <xsl:choose>
+                                    <xsl:when test="$referById">
+                                        <xsl:variable name="fhir-resource-id">
+                                            <xsl:choose>
+                                                <xsl:when test="$uuid">
+                                                    <xsl:value-of select="generate-id(.)"/>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:choose>
+                                                        <xsl:when test="./product_code[(@code)][not(@codeSystem = $oidHL7NullFlavor)]">
+                                                            <xsl:value-of select="nf:removeSpecialCharacters(string-join(./product_code/(@code | @codeSystem), '-'))"/>
+                                                        </xsl:when>
+                                                        <xsl:when test="./product_specificatie/product_naam/@value">
+                                                            <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <!-- should not happen, but let's fall back on the grouping-key() -->
+                                                            <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:variable>
+                                        <xsl:call-template name="zib-Product">
+                                            <xsl:with-param name="medication-id" select="$fhir-resource-id"/>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:apply-templates select="." mode="doMedication"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </resource>
+                        </entry>
+                    </xsl:for-each>
+                </uniek-product>
+            </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
     <xsl:variable name="locations" as="element()*">
@@ -2188,7 +2190,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </form>
             </xsl:for-each>
-            <xsl:for-each select="./product_specificatie/ingredient">
+            <xsl:for-each select="./product_specificatie/ingredient[.//(@value | @code)]">
                 <ingredient>
                     <xsl:for-each select="./ingredient_code[@code]">
                         <itemCodeableConcept>
@@ -2378,10 +2380,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
+        <xd:desc>Creates a grouping key for product, taking account of products which don't have a product-code</xd:desc>
+        <xd:param name="ada-product-code"/>
+    </xd:doc>
+    <xsl:function name="nf:getProductGroupingKey" as="xs:string">
+        <xsl:param name="ada-product-code" as="element()*"/>
+
+        <xsl:variable name="specific-productcode" select="nf:get-specific-productcode($ada-product-code)"/>
+        <xsl:choose>
+            <xsl:when test="$specific-productcode">
+                <xsl:value-of select="$specific-productcode/concat(@code, @codeSystem)"/>
+            </xsl:when>
+            <xsl:otherwise>MAGISTRAAL</xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <xd:doc>
         <xd:desc/>
         <xd:param name="ada-product-code">Takes a collection of product_codes as input and returns the most specific one according to G-std, otherwise just the first one</xd:param>
     </xd:doc>
-    <xsl:function name="nf:ada-product-code" as="element()?">
+    <xsl:function name="nf:get-specific-productcode" as="element()?">
         <xsl:param name="ada-product-code" as="element()*"/>
         <xsl:sequence select="
                 if ($ada-product-code[@codeSystem = $oidGStandaardZInummer]) then
