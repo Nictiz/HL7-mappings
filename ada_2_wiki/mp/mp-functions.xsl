@@ -51,7 +51,12 @@
 					</xsl:when>
 				</xsl:choose>
 				<xsl:if test="$frequentie">
-					<xsl:value-of select="concat('maal per ', $frequentie/tijdseenheid/@unit)"/>
+				    <xsl:variable name="frequentie-value">
+				        <xsl:choose>
+				            <xsl:when test="xs:int($frequentie/tijdseenheid/@value) gt 1"><xsl:value-of select="concat($frequentie/tijdseenheid/@value, ' ')"/></xsl:when>
+				        </xsl:choose>
+				    </xsl:variable>
+					<xsl:value-of select="concat('maal per ', $frequentie-value, $frequentie/tijdseenheid/@unit)"/>
 				</xsl:if>
 			</xsl:variable>
 			<xsl:variable name="interval" select="./dosering/toedieningsschema/interval[(@value | @unit)]"/>
