@@ -11,6 +11,7 @@ A complete empty xml instance in the ada format is included in the folder "ada_n
 
 The folder "beschikbaarstellen_medicatiegegevens/payload" contains the stylesheet that does the conversion for the payload: "beschikbaarstellen_medicatiegegevens_2_fhir.xsl"
 This xslt uses the "../../../2_fhir_mp_include.xsl", which in turn uses ../fhir/2_fhir_fhir_include.xsl which are meant to be reused by other/different transactions in (2_fhir_mp_include.xsl) or also outside (../fhir/2_fhir_fhir_include.xsl) of MP scope.
+The xslt "beschikbaarstellen_medicatiegegevens_2_fhir_resources.xsl" also converts to FHIR, but creates a separate file for each resource instead of a Bundle with included resolvable resources within that Bundle.
 
 The folder 'ada_instance' contains sample ada instance files. They are in no way functionally valid (i.e. the situation can probably not be validated in real life). The folder 'fhir_instance' contains the result of the conversion.
 
