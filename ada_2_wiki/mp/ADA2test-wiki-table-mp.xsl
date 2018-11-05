@@ -51,341 +51,15 @@
     <xsl:template match="adaxml/data/*">
         <xsl:variable name="patient" select="./patient"/>
         <xsl:variable name="patient-achternaam" select="$patient/naamgegevens/geslachtsnaam/achternaam/@value"/>
+        <!-- Build a variable tabel which is tailored for output in documentation, such as wiki -->
         <xsl:variable name="tabel" as="element()">
             <tabellen xmlns="">
                 <!-- tabel voor patiënt -->
-                <xsl:for-each select="$patient">
-                    <tabel xmlns="" type="{./local-name()}" title="Patiënt">
-                        <xsl:for-each select="./naamgegevens[.//@value]">
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{normalize-space(string-join(.//*[not(local-name() eq 'naamgebruik')]/@value, ' '))}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./(adresgegevens)[.//@value]">
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{normalize-space(string-join(.//(@value|@displayName), ' '))}"/>
-                        </xsl:for-each>
-                        <xsl:apply-templates select="./contactgegevens/(telefoonnummers | email_adressen)[.//@value]" mode="maak-tabel-rij">
-                            <xsl:with-param name="level" select="xs:int(1)"/>
-                        </xsl:apply-templates>
-                        <xsl:for-each select="./patient_identificatienummer">
-                            <xsl:variable name="waarde" as="xs:string">
-                                <xsl:choose>
-                                    <xsl:when test="./@root eq $oid-BSN">
-                                        <xsl:value-of select="concat(./@value, ' [BSN]')"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="concat(./@value, ' met root OID ''', ./@root, '''')"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{normalize-space($waarde)}"/>
-                        </xsl:for-each>
-                        <xsl:apply-templates select="./(geboortedatum | meerling_indicator | overlijdens_indicator | datum_overlijden)[@value] | ./geslacht[@code]" mode="maak-tabel-rij"/>
-                    </tabel>
-                </xsl:for-each>
+                <xsl:apply-templates select="$patient" mode="maak-tabel"/>
                 <!-- tabel voor documentgegevens -->
-                <xsl:for-each select=".//(documentgegevens)">
-                    <xsl:variable name="level" select="xs:int(1)"/>
-                    <tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
-                        <xsl:for-each select="./document_datum[@value]">
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{nf:configurable-T-date(./../.., ., false())}"/>
-                        </xsl:for-each>
-                        <!-- auteur -->
-                        <xsl:if test="./auteur/auteur_is_patient/@value = 'true'">
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(./auteur)}" waarde="Patiënt"/>
-                        </xsl:if>
-                        <xsl:for-each select="./auteur[auteur_is_zorgaanbieder[.//(@value | @code)]]">
-                            <groep xmlns="" level="{$level}" naam="Auteur - zorgaanbieder">
-                                <xsl:variable name="level" select="xs:int($level + 1)"/>
-                                <xsl:variable name="waarde" as="xs:string*"/>
-                                <xsl:apply-templates select="./auteur_is_zorgaanbieder/zorgaanbieder/(zorgaanbieder_identificatie_nummer | organisatie_naam | afdeling_specialisme)" mode="maak-tabel-rij">
-                                    <xsl:with-param name="level" select="$level"/>
-                                </xsl:apply-templates>
-                                <xsl:for-each select="./auteur_is_zorgaanbieder/zorgaanbieder/(adres/adresgegevens)[.//@value]">
-                                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{normalize-space(string-join(.//(@value|@displayName), ' '))}"/>
-                                </xsl:for-each>
-                                <xsl:apply-templates select="./auteur_is_zorgaanbieder/zorgaanbieder/(telefoon_email/contactgegevens/(telefoonnummers | email_adressen))" mode="maak-tabel-rij">
-                                    <xsl:with-param name="level" select="$level"/>
-                                </xsl:apply-templates>
-                            </groep>
-                        </xsl:for-each>
-                        <xsl:for-each select="./(verificatie_patient | verificatie_zorgverlener)">
-                            <xsl:variable name="waarde" as="xs:string*">
-                                <xsl:for-each select="./*[starts-with(local-name(), 'geverifieerd_met')]">
-                                    <xsl:choose>
-                                        <xsl:when test="./@value = ('true')">Ja</xsl:when>
-                                        <xsl:when test="./@value = ('false')">Nee</xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:value-of select="./@value"/>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:for-each>
-                                <xsl:for-each select="./verificatie_datum">
-                                    <xsl:value-of select="concat(': ', nf:configurable-T-date((), ., false()))"/>
-                                </xsl:for-each>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
-                        </xsl:for-each>
-                        <!--  -->
-                        <xsl:apply-templates select="./(gebruik_indicator | volgens_afspraak_indicator)[@value | @nullFlavor]" mode="maak-tabel-rij"/>
-                        <xsl:variable name="gebruiksperiode-waarde" select="nf:periode-string(., gebruiksperiode_start, gebruiksperiode, gebruiksperiode_eind)"/>
-                        <xsl:if test="./(gebruiksperiode_start | gebruiksperiode_eind | gebruiksperiode)[@value | @nullFlavor]">
-                            <gegevenselement xmlns="" level="{$level}" naam="Gebruiksperiode" waarde="{$gebruiksperiode-waarde}"/>
-                        </xsl:if>
-                        <xsl:apply-templates select="./(geannuleerd_indicator | stoptype)" mode="maak-tabel-rij"/>
-                        <xsl:for-each select="./relatie_naar_afspraak_of_gebruik/*">
-                            <xsl:variable name="element-name" as="xs:string*">
-                                <xsl:value-of select="nf:element-name(./..)"/>
-                                <xsl:choose>
-                                    <xsl:when test="./local-name() eq 'identificatie'">
-                                        <xsl:value-of select="': MA'"/>
-                                    </xsl:when>
-                                    <xsl:when test="./local-name() eq 'identificatie_23288'">
-                                        <xsl:value-of select="': TA'"/>
-                                    </xsl:when>
-                                    <xsl:when test="./local-name() eq 'identificatie_23289'">
-                                        <xsl:value-of select="': MGB'"/>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="{$level}" naam="{string-join($element-name)}" waarde="{./@value}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./(voorschrijver | verstrekker)">
-                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:zorgverlener-string(.))}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./reden_afspraak">
-                            <xsl:choose>
-                                <xsl:when test="./../local-name() eq 'medicatieafspraak'">
-                                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:element-code-waarde(.)}"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{./@value}"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:for-each>
-                        <xsl:for-each select="./reden_van_voorschrijven/probleem/probleem_naam[@code]">
-                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(./../..)}" waarde="{nf:element-code-waarde(.)}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select=".//product[.//(@code | @value)]">
-                            <xsl:call-template name="product-tabel"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./gebruiksinstructie">
-                            <groep xmlns="" level="{$level}" naam="{nf:element-name(.)}">
-                                <xsl:variable name="level" select="xs:int($level + 1)"/>
-                                <xsl:for-each select="./omschrijving[.//(@value | @code)]">
-                                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{concat($gebruiksperiode-waarde, ', ' ,nf:configurable-T-date(./../.., ., false()))}"/>
-                                </xsl:for-each>
-                                <xsl:apply-templates select="./(toedieningsweg | aanvullende_instructie)" mode="maak-tabel-rij">
-                                    <xsl:with-param name="level" select="$level"/>
-                                </xsl:apply-templates>
-                                <xsl:variable name="amount-doseerinstructies" select="count(./doseerinstructie[.//(@value | @code)])" as="xs:integer"/>
-                                <xsl:for-each select="./doseerinstructie[.//(@value | @code)]">
-                                    <!-- todo expliciet sorteren op volgnummer -->
-                                    <xsl:variable name="element-name" as="xs:string*">
-                                        <xsl:value-of select="nf:element-name(.)"/>
-                                        <xsl:if test="$amount-doseerinstructies gt 1">
-                                            <xsl:value-of select="./volgnummer/@value"/>
-                                        </xsl:if>
-                                    </xsl:variable>
-                                    <gegevenselement xmlns="" level="{$level}" naam="{$element-name}" waarde="{nf:dosering-string(., $amount-doseerinstructies)}"/>
-                                </xsl:for-each>
-                                <!-- herhaalperiode cyclisch schema -->
-                                <xsl:apply-templates select="./herhaalperiode_cyclisch_schema" mode="maak-tabel-rij">
-                                    <xsl:with-param name="level" select="$level"/>
-                                </xsl:apply-templates>
-                            </groep>
-                        </xsl:for-each>
-
-                        <xsl:for-each select="./gerelateerde_afspraak/*">
-                            <xsl:variable name="element-name" as="xs:string*">
-                                <xsl:value-of select="nf:element-name(./..)"/>
-                                <xsl:choose>
-                                    <xsl:when test="./local-name() eq 'identificatie_medicatieafspraak'">
-                                        <xsl:value-of select="': MA'"/>
-                                    </xsl:when>
-                                    <xsl:when test="./local-name() eq 'identificatie_toedieningsafspraak'">
-                                        <xsl:value-of select="': TA'"/>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="1" naam="{$element-name}" waarde="{./@value}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./gerelateerde_verstrekking/*">
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(./..)}" waarde="{./@value}"/>
-                        </xsl:for-each>
-                        <!-- informant -->
-                        <xsl:for-each select="./informant[.//(@value | @code)]">
-                            <xsl:variable name="waarde" as="xs:string*">
-                                <xsl:choose>
-                                    <xsl:when test="./persoon">Persoon: <xsl:value-of select="nf:persoon-string(./persoon)"/></xsl:when>
-                                    <xsl:when test="./informant_is_patient/@value = 'true'">Patiënt</xsl:when>
-                                    <xsl:when test="./informant_is_zorgverlener[.//(@value | @code)]">Zorgverlener: <xsl:value-of select="nf:zorgverlener-string(./informant_is_zorgverlener)"/></xsl:when>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
-                        </xsl:for-each>
-                        <!-- reden gebruik -->
-                        <xsl:apply-templates select="./(reden_gebruik | reden_wijzigen_of_stoppen_gebruik)" mode="maak-tabel-rij">
-                            <xsl:with-param name="level" select="$level"/>
-                        </xsl:apply-templates>
-                        <!-- gewicht en lengte -->
-                        <xsl:for-each select="./(lichaamslengte/lengte_waarde | lichaamsgewicht/gewicht_waarde)[@value]">
-                            <xsl:variable name="date-append-string">
-                                <xsl:for-each select="./../(lengte_datum_tijd | gewicht_datum_tijd)[@value]">
-                                    <xsl:value-of select="concat('. Gemeten: ', nf:configurable-T-date(./../.., ., false()))"/>
-                                </xsl:for-each>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(./..)}" waarde="{./normalize-space(concat(@value, ' ', @unit, $date-append-string))}"/>
-                        </xsl:for-each>
-                        <xsl:apply-templates select="./(kopie_indicator | toelichting | aanvullende_informatie)" mode="maak-tabel-rij">
-                            <xsl:with-param name="level" select="$level"/>
-                        </xsl:apply-templates>
-                        <xsl:for-each select="./relatie_naar_medicatieafspraak[.//@value]">
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{./identificatie/@value}"/>
-                        </xsl:for-each>
-                        <!-- MBH identificatie -->
-                        <xsl:for-each select="./../identificatie[.//(@value | @code)]">
-                            <gegevenselement xmlns="" level="1" naam="MBH identificatie" waarde="{./@value}"/>
-                        </xsl:for-each>
-                    </tabel>
-                </xsl:for-each>
-                <!-- tabel voor iedere therapeutische bouwsteen -->
-                <xsl:for-each select=".//(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)">
-                    <xsl:variable name="level" select="xs:int(1)"/>
-                    <tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
-                        <xsl:apply-templates select="./identificatie" mode="maak-tabel-rij"/>
-                        <xsl:for-each select="./(afspraakdatum | registratiedatum)">
-                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:configurable-T-date(./.., ., false())}"/>
-                        </xsl:for-each>
-                        <xsl:apply-templates select="./(gebruik_indicator | volgens_afspraak_indicator)[@value | @nullFlavor]" mode="maak-tabel-rij"/>
-                        <xsl:variable name="gebruiksperiode-waarde" select="nf:periode-string(., gebruiksperiode_start, gebruiksperiode, gebruiksperiode_eind)"/>
-                        <xsl:if test="./(gebruiksperiode_start | gebruiksperiode_eind | gebruiksperiode)[@value | @nullFlavor]">
-                            <gegevenselement xmlns="" level="{$level}" naam="Gebruiksperiode" waarde="{$gebruiksperiode-waarde}"/>
-                        </xsl:if>
-                        <xsl:apply-templates select="./(geannuleerd_indicator | stoptype)" mode="maak-tabel-rij"/>
-                        <xsl:for-each select="./relatie_naar_afspraak_of_gebruik/*">
-                            <xsl:variable name="element-name" as="xs:string*">
-                                <xsl:value-of select="nf:element-name(./..)"/>
-                                <xsl:choose>
-                                    <xsl:when test="./local-name() eq 'identificatie'">
-                                        <xsl:value-of select="': MA'"/>
-                                    </xsl:when>
-                                    <xsl:when test="./local-name() eq 'identificatie_23288'">
-                                        <xsl:value-of select="': TA'"/>
-                                    </xsl:when>
-                                    <xsl:when test="./local-name() eq 'identificatie_23289'">
-                                        <xsl:value-of select="': MGB'"/>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="{$level}" naam="{string-join($element-name)}" waarde="{./@value}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./(voorschrijver | verstrekker)">
-                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:zorgverlener-string(.))}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./reden_afspraak">
-                            <xsl:choose>
-                                <xsl:when test="./../local-name() eq 'medicatieafspraak'">
-                                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:element-code-waarde(.)}"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{./@value}"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:for-each>
-                        <xsl:for-each select="./reden_van_voorschrijven/probleem/probleem_naam[@code]">
-                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(./../..)}" waarde="{nf:element-code-waarde(.)}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select=".//product[.//(@code | @value)]">
-                            <xsl:call-template name="product-tabel"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./gebruiksinstructie">
-                            <groep xmlns="" level="{$level}" naam="{nf:element-name(.)}">
-                                <xsl:variable name="level" select="xs:int($level + 1)"/>
-                                <xsl:for-each select="./omschrijving[.//(@value | @code)]">
-                                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{concat($gebruiksperiode-waarde, ', ' ,nf:configurable-T-date(./../.., ., false()))}"/>
-                                </xsl:for-each>
-                                <xsl:apply-templates select="./(toedieningsweg | aanvullende_instructie)" mode="maak-tabel-rij">
-                                    <xsl:with-param name="level" select="$level"/>
-                                </xsl:apply-templates>
-                                <xsl:variable name="amount-doseerinstructies" select="count(./doseerinstructie[.//(@value | @code)])" as="xs:integer"/>
-                                <xsl:for-each select="./doseerinstructie[.//(@value | @code)]">
-                                    <!-- todo expliciet sorteren op volgnummer -->
-                                    <xsl:variable name="element-name" as="xs:string*">
-                                        <xsl:value-of select="nf:element-name(.)"/>
-                                        <xsl:if test="$amount-doseerinstructies gt 1">
-                                            <xsl:value-of select="./volgnummer/@value"/>
-                                        </xsl:if>
-                                    </xsl:variable>
-                                    <gegevenselement xmlns="" level="{$level}" naam="{$element-name}" waarde="{nf:dosering-string(., $amount-doseerinstructies)}"/>
-                                </xsl:for-each>
-                                <!-- herhaalperiode cyclisch schema -->
-                                <xsl:apply-templates select="./herhaalperiode_cyclisch_schema" mode="maak-tabel-rij">
-                                    <xsl:with-param name="level" select="$level"/>
-                                </xsl:apply-templates>
-                            </groep>
-                        </xsl:for-each>
-                        <xsl:for-each select="./gerelateerde_afspraak/*">
-                            <xsl:variable name="element-name" as="xs:string*">
-                                <xsl:value-of select="nf:element-name(./..)"/>
-                                <xsl:choose>
-                                    <xsl:when test="./local-name() eq 'identificatie_medicatieafspraak'">
-                                        <xsl:value-of select="': MA'"/>
-                                    </xsl:when>
-                                    <xsl:when test="./local-name() eq 'identificatie_toedieningsafspraak'">
-                                        <xsl:value-of select="': TA'"/>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="1" naam="{$element-name}" waarde="{./@value}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./gerelateerde_verstrekking/*">
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(./..)}" waarde="{./@value}"/>
-                        </xsl:for-each>
-                        <!-- informant -->
-                        <xsl:for-each select="./informant[.//(@value | @code)]">
-                            <xsl:variable name="waarde" as="xs:string*">
-                                <xsl:choose>
-                                    <xsl:when test="./persoon">Persoon: <xsl:value-of select="nf:persoon-string(./persoon)"/></xsl:when>
-                                    <xsl:when test="./informant_is_patient/@value = 'true'">Patiënt</xsl:when>
-                                    <xsl:when test="./informant_is_zorgverlener[.//(@value | @code)]">Zorgverlener: <xsl:value-of select="nf:zorgverlener-string(./informant_is_zorgverlener)"/></xsl:when>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
-                        </xsl:for-each>
-                        <!-- auteur -->
-                        <xsl:for-each select="./auteur[.//(@value | @code)]">
-                            <xsl:variable name="waarde" as="xs:string*">
-                                <xsl:choose>
-                                    <xsl:when test="./auteur_is_patient/@value = 'true'">Patiënt</xsl:when>
-                                    <xsl:when test="./auteur_is_zorgverlener[.//(@value | @code)]">Zorgverlener: <xsl:value-of select="nf:zorgverlener-string(./auteur_is_zorgverlener)"/></xsl:when>
-                                </xsl:choose>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
-                        </xsl:for-each>
-                        <!-- reden gebruik -->
-                        <xsl:apply-templates select="./(reden_gebruik | reden_wijzigen_of_stoppen_gebruik)" mode="maak-tabel-rij">
-                            <xsl:with-param name="level" select="$level"/>
-                        </xsl:apply-templates>
-                        <!-- gewicht en lengte -->
-                        <xsl:for-each select="./(lichaamslengte/lengte_waarde | lichaamsgewicht/gewicht_waarde)[@value]">
-                            <xsl:variable name="date-append-string">
-                                <xsl:for-each select="./../(lengte_datum_tijd | gewicht_datum_tijd)[@value]">
-                                    <xsl:value-of select="concat('. Gemeten: ', nf:configurable-T-date(./../.., ., false()))"/>
-                                </xsl:for-each>
-                            </xsl:variable>
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(./..)}" waarde="{./normalize-space(concat(@value, ' ', @unit, $date-append-string))}"/>
-                        </xsl:for-each>
-                        <xsl:apply-templates select="./(kopie_indicator | toelichting | aanvullende_informatie)" mode="maak-tabel-rij">
-                            <xsl:with-param name="level" select="$level"/>
-                        </xsl:apply-templates>
-                        <xsl:for-each select="./relatie_naar_medicatieafspraak[.//@value]">
-                            <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{./identificatie/@value}"/>
-                        </xsl:for-each>
-                        <!-- MBH identificatie -->
-                        <xsl:for-each select="./../identificatie[.//(@value | @code)]">
-                            <gegevenselement xmlns="" level="1" naam="MBH identificatie" waarde="{./@value}"/>
-                        </xsl:for-each>
-                    </tabel>
-                </xsl:for-each>
+                <xsl:apply-templates select=".//(documentgegevens)" mode="maak-tabel"/>                
+                 <!-- tabel voor iedere therapeutische bouwsteen -->
+                <xsl:apply-templates select="./(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)" mode="maak-tabel"/>
                 <!-- tabelrijen voor iedere logistieke bouwsteen -->
                 <xsl:for-each select=".//(verstrekkingsverzoek | verstrekking)">
                     <xsl:variable name="level" select="xs:int(1)"/>
@@ -403,7 +77,7 @@
                         </xsl:for-each>
                         <xsl:apply-templates select="./aantal_herhalingen" mode="maak-tabel-rij"/>
                         <xsl:for-each select=".//product[.//(@code | @value)]">
-                            <xsl:call-template name="product-tabel"/>
+                            <xsl:call-template name="tabelrijen-product"/>
                         </xsl:for-each>
                         <xsl:for-each select="./verbruiksperiode[.//(@value)]">
                             <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:periode-string(., gebruiksperiode_start, gebruiksperiode, gebruiksperiode_eind)}"/>
@@ -497,10 +171,364 @@
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
+        <xd:param name="in">The ada therapeutic building block which contents are rendered in the nested 'tabel'</xd:param>
+    </xd:doc>
+    <xsl:template name="tabel-ther-bouwsteen" match="medicatieafspraak | toedieningsafspraak | medicatie_gebruik" mode="maak-tabel">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <xsl:variable name="level" select="xs:int(1)"/>
+            <tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
+                <xsl:apply-templates select="./identificatie" mode="maak-tabel-rij"/>
+                <xsl:for-each select="./(afspraakdatum | registratiedatum)">
+                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:configurable-T-date(./.., ., false())}"/>
+                </xsl:for-each>
+                <xsl:apply-templates select="./(gebruik_indicator | volgens_afspraak_indicator)[@value | @nullFlavor]" mode="maak-tabel-rij"/>
+                <xsl:variable name="gebruiksperiode-waarde" select="nf:periode-string(., gebruiksperiode_start, gebruiksperiode, gebruiksperiode_eind)"/>
+                <xsl:if test="./(gebruiksperiode_start | gebruiksperiode_eind | gebruiksperiode)[@value | @nullFlavor]">
+                    <gegevenselement xmlns="" level="{$level}" naam="Gebruiksperiode" waarde="{$gebruiksperiode-waarde}"/>
+                </xsl:if>
+                <xsl:apply-templates select="./(geannuleerd_indicator | stoptype)" mode="maak-tabel-rij"/>
+                <xsl:for-each select="./relatie_naar_afspraak_of_gebruik/*">
+                    <xsl:variable name="element-name" as="xs:string*">
+                        <xsl:value-of select="nf:element-name(./..)"/>
+                        <xsl:choose>
+                            <xsl:when test="./local-name() eq 'identificatie'">
+                                <xsl:value-of select="': MA'"/>
+                            </xsl:when>
+                            <xsl:when test="./local-name() eq 'identificatie_23288'">
+                                <xsl:value-of select="': TA'"/>
+                            </xsl:when>
+                            <xsl:when test="./local-name() eq 'identificatie_23289'">
+                                <xsl:value-of select="': MGB'"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="{$level}" naam="{string-join($element-name)}" waarde="{./@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="./(voorschrijver | verstrekker)">
+                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:zorgverlener-string(.))}"/>
+                </xsl:for-each>
+                <xsl:for-each select="./reden_afspraak">
+                    <xsl:choose>
+                        <xsl:when test="./../local-name() eq 'medicatieafspraak'">
+                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:element-code-waarde(.)}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{./@value}"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+                <xsl:for-each select="./reden_van_voorschrijven/probleem/probleem_naam[@code]">
+                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(./../..)}" waarde="{nf:element-code-waarde(.)}"/>
+                </xsl:for-each>
+                <xsl:for-each select=".//product[.//(@code | @value)]">
+                    <xsl:call-template name="tabelrijen-product"/>
+                </xsl:for-each>
+                <xsl:for-each select="./gebruiksinstructie">
+                    <groep xmlns="" level="{$level}" naam="{nf:element-name(.)}">
+                        <xsl:variable name="level" select="xs:int($level + 1)"/>
+                        <xsl:for-each select="./omschrijving[.//(@value | @code)]">
+                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{concat($gebruiksperiode-waarde, ', ' ,nf:configurable-T-date(./../.., ., false()))}"/>
+                        </xsl:for-each>
+                        <xsl:apply-templates select="./(toedieningsweg | aanvullende_instructie)" mode="maak-tabel-rij">
+                            <xsl:with-param name="level" select="$level"/>
+                        </xsl:apply-templates>
+                        <xsl:variable name="amount-doseerinstructies" select="count(./doseerinstructie[.//(@value | @code)])" as="xs:integer"/>
+                        <xsl:for-each select="./doseerinstructie[.//(@value | @code)]">
+                            <!-- todo expliciet sorteren op volgnummer -->
+                            <xsl:variable name="element-name" as="xs:string*">
+                                <xsl:value-of select="nf:element-name(.)"/>
+                                <xsl:if test="$amount-doseerinstructies gt 1">
+                                    <xsl:value-of select="./volgnummer/@value"/>
+                                </xsl:if>
+                            </xsl:variable>
+                            <gegevenselement xmlns="" level="{$level}" naam="{$element-name}" waarde="{nf:dosering-string(., $amount-doseerinstructies)}"/>
+                        </xsl:for-each>
+                        <!-- herhaalperiode cyclisch schema -->
+                        <xsl:apply-templates select="./herhaalperiode_cyclisch_schema" mode="maak-tabel-rij">
+                            <xsl:with-param name="level" select="$level"/>
+                        </xsl:apply-templates>
+                    </groep>
+                </xsl:for-each>
+                <xsl:for-each select="./gerelateerde_afspraak/*">
+                    <xsl:variable name="element-name" as="xs:string*">
+                        <xsl:value-of select="nf:element-name(./..)"/>
+                        <xsl:choose>
+                            <xsl:when test="./local-name() eq 'identificatie_medicatieafspraak'">
+                                <xsl:value-of select="': MA'"/>
+                            </xsl:when>
+                            <xsl:when test="./local-name() eq 'identificatie_toedieningsafspraak'">
+                                <xsl:value-of select="': TA'"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="1" naam="{$element-name}" waarde="{./@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="./gerelateerde_verstrekking/*">
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(./..)}" waarde="{./@value}"/>
+                </xsl:for-each>
+                <!-- informant -->
+                <xsl:for-each select="./informant[.//(@value | @code)]">
+                    <xsl:variable name="waarde" as="xs:string*">
+                        <xsl:choose>
+                            <xsl:when test="./persoon">Persoon: <xsl:value-of select="nf:persoon-string(./persoon)"/></xsl:when>
+                            <xsl:when test="./informant_is_patient/@value = 'true'">Patiënt</xsl:when>
+                            <xsl:when test="./informant_is_zorgverlener[.//(@value | @code)]">Zorgverlener: <xsl:value-of select="nf:zorgverlener-string(./informant_is_zorgverlener)"/></xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
+                </xsl:for-each>
+                <!-- auteur -->
+                <xsl:for-each select="./auteur[.//(@value | @code)]">
+                    <xsl:variable name="waarde" as="xs:string*">
+                        <xsl:choose>
+                            <xsl:when test="./auteur_is_patient/@value = 'true'">Patiënt</xsl:when>
+                            <xsl:when test="./auteur_is_zorgverlener[.//(@value | @code)]">Zorgverlener: <xsl:value-of select="nf:zorgverlener-string(./auteur_is_zorgverlener)"/></xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
+                </xsl:for-each>
+                <!-- reden gebruik -->
+                <xsl:apply-templates select="./(reden_gebruik | reden_wijzigen_of_stoppen_gebruik)" mode="maak-tabel-rij">
+                    <xsl:with-param name="level" select="$level"/>
+                </xsl:apply-templates>
+                <!-- gewicht en lengte -->
+                <xsl:for-each select="./(lichaamslengte/lengte_waarde | lichaamsgewicht/gewicht_waarde)[@value]">
+                    <xsl:variable name="date-append-string">
+                        <xsl:for-each select="./../(lengte_datum_tijd | gewicht_datum_tijd)[@value]">
+                            <xsl:value-of select="concat('. Gemeten: ', nf:configurable-T-date(./../.., ., false()))"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(./..)}" waarde="{./normalize-space(concat(@value, ' ', @unit, $date-append-string))}"/>
+                </xsl:for-each>
+                <xsl:apply-templates select="./(kopie_indicator | toelichting | aanvullende_informatie)" mode="maak-tabel-rij">
+                    <xsl:with-param name="level" select="$level"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="./relatie_naar_medicatieafspraak[.//@value]">
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{./identificatie/@value}"/>
+                </xsl:for-each>
+                <!-- MBH identificatie -->
+                <xsl:for-each select="./../identificatie[.//(@value | @code)]">
+                    <gegevenselement xmlns="" level="1" naam="MBH identificatie" waarde="{./@value}"/>
+                </xsl:for-each>
+            </tabel>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
+        <xd:param name="in">The ada patient which contents are rendered in the nested 'tabel'</xd:param>
+    </xd:doc>
+    <xsl:template name="tabel-patient" match="patient" mode="maak-tabel">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <tabel xmlns="" type="{./local-name()}" title="Patiënt">
+                <xsl:for-each select="./naamgegevens[.//@value]">
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{normalize-space(string-join(.//*[not(local-name() eq 'naamgebruik')]/@value, ' '))}"/>
+                </xsl:for-each>
+                <xsl:for-each select="./(adresgegevens)[.//@value]">
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{normalize-space(string-join(.//(@value|@displayName), ' '))}"/>
+                </xsl:for-each>
+                <xsl:apply-templates select="./contactgegevens/(telefoonnummers | email_adressen)[.//@value]" mode="maak-tabel-rij">
+                    <xsl:with-param name="level" select="xs:int(1)"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="./patient_identificatienummer">
+                    <xsl:variable name="waarde" as="xs:string">
+                        <xsl:choose>
+                            <xsl:when test="./@root eq $oid-BSN">
+                                <xsl:value-of select="concat(./@value, ' [BSN]')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="concat(./@value, ' met root OID ''', ./@root, '''')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{normalize-space($waarde)}"/>
+                </xsl:for-each>
+                <xsl:apply-templates select="./(geboortedatum | meerling_indicator | overlijdens_indicator | datum_overlijden)[@value] | ./geslacht[@code]" mode="maak-tabel-rij"/>
+            </tabel>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
+        <xd:param name="in">The ada documentgegevens which contents are rendered in the nested 'tabel'</xd:param>
+    </xd:doc>
+    <xsl:template name="tabel-documentgegevens" match="documentgegevens" mode="maak-tabel">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <xsl:variable name="level" select="xs:int(1)"/>
+            <tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
+                <xsl:for-each select="./document_datum[@value]">
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{nf:configurable-T-date(./../.., ., false())}"/>
+                </xsl:for-each>
+                <!-- auteur -->
+                <xsl:if test="./auteur/auteur_is_patient/@value = 'true'">
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(./auteur)}" waarde="Patiënt"/>
+                </xsl:if>
+                <xsl:for-each select="./auteur[auteur_is_zorgaanbieder[.//(@value | @code)]]">
+                    <groep xmlns="" level="{$level}" naam="Auteur - zorgaanbieder">
+                        <xsl:variable name="level" select="xs:int($level + 1)"/>
+                        <xsl:variable name="waarde" as="xs:string*"/>
+                        <xsl:apply-templates select="./auteur_is_zorgaanbieder/zorgaanbieder/(zorgaanbieder_identificatie_nummer | organisatie_naam | afdeling_specialisme)" mode="maak-tabel-rij">
+                            <xsl:with-param name="level" select="$level"/>
+                        </xsl:apply-templates>
+                        <xsl:for-each select="./auteur_is_zorgaanbieder/zorgaanbieder/(adres/adresgegevens)[.//@value]">
+                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{normalize-space(string-join(.//(@value|@displayName), ' '))}"/>
+                        </xsl:for-each>
+                        <xsl:apply-templates select="./auteur_is_zorgaanbieder/zorgaanbieder/(telefoon_email/contactgegevens/(telefoonnummers | email_adressen))" mode="maak-tabel-rij">
+                            <xsl:with-param name="level" select="$level"/>
+                        </xsl:apply-templates>
+                    </groep>
+                </xsl:for-each>
+                <xsl:for-each select="./(verificatie_patient | verificatie_zorgverlener)">
+                    <xsl:variable name="waarde" as="xs:string*">
+                        <xsl:for-each select="./*[starts-with(local-name(), 'geverifieerd_met')]">
+                            <xsl:choose>
+                                <xsl:when test="./@value = ('true')">Ja</xsl:when>
+                                <xsl:when test="./@value = ('false')">Nee</xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="./@value"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+                        <xsl:for-each select="./verificatie_datum">
+                            <xsl:value-of select="concat(': ', nf:configurable-T-date((), ., false()))"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
+                </xsl:for-each>
+                <!--  -->
+                <xsl:apply-templates select="./(gebruik_indicator | volgens_afspraak_indicator)[@value | @nullFlavor]" mode="maak-tabel-rij"/>
+                <xsl:variable name="gebruiksperiode-waarde" select="nf:periode-string(., gebruiksperiode_start, gebruiksperiode, gebruiksperiode_eind)"/>
+                <xsl:if test="./(gebruiksperiode_start | gebruiksperiode_eind | gebruiksperiode)[@value | @nullFlavor]">
+                    <gegevenselement xmlns="" level="{$level}" naam="Gebruiksperiode" waarde="{$gebruiksperiode-waarde}"/>
+                </xsl:if>
+                <xsl:apply-templates select="./(geannuleerd_indicator | stoptype)" mode="maak-tabel-rij"/>
+                <xsl:for-each select="./relatie_naar_afspraak_of_gebruik/*">
+                    <xsl:variable name="element-name" as="xs:string*">
+                        <xsl:value-of select="nf:element-name(./..)"/>
+                        <xsl:choose>
+                            <xsl:when test="./local-name() eq 'identificatie'">
+                                <xsl:value-of select="': MA'"/>
+                            </xsl:when>
+                            <xsl:when test="./local-name() eq 'identificatie_23288'">
+                                <xsl:value-of select="': TA'"/>
+                            </xsl:when>
+                            <xsl:when test="./local-name() eq 'identificatie_23289'">
+                                <xsl:value-of select="': MGB'"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="{$level}" naam="{string-join($element-name)}" waarde="{./@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="./(voorschrijver | verstrekker)">
+                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:zorgverlener-string(.))}"/>
+                </xsl:for-each>
+                <xsl:for-each select="./reden_afspraak">
+                    <xsl:choose>
+                        <xsl:when test="./../local-name() eq 'medicatieafspraak'">
+                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:element-code-waarde(.)}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{./@value}"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+                <xsl:for-each select="./reden_van_voorschrijven/probleem/probleem_naam[@code]">
+                    <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(./../..)}" waarde="{nf:element-code-waarde(.)}"/>
+                </xsl:for-each>
+                <xsl:for-each select=".//product[.//(@code | @value)]">
+                    <xsl:call-template name="tabelrijen-product"/>
+                </xsl:for-each>
+                <xsl:for-each select="./gebruiksinstructie">
+                    <groep xmlns="" level="{$level}" naam="{nf:element-name(.)}">
+                        <xsl:variable name="level" select="xs:int($level + 1)"/>
+                        <xsl:for-each select="./omschrijving[.//(@value | @code)]">
+                            <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{concat($gebruiksperiode-waarde, ', ' ,nf:configurable-T-date(./../.., ., false()))}"/>
+                        </xsl:for-each>
+                        <xsl:apply-templates select="./(toedieningsweg | aanvullende_instructie)" mode="maak-tabel-rij">
+                            <xsl:with-param name="level" select="$level"/>
+                        </xsl:apply-templates>
+                        <xsl:variable name="amount-doseerinstructies" select="count(./doseerinstructie[.//(@value | @code)])" as="xs:integer"/>
+                        <xsl:for-each select="./doseerinstructie[.//(@value | @code)]">
+                            <!-- todo expliciet sorteren op volgnummer -->
+                            <xsl:variable name="element-name" as="xs:string*">
+                                <xsl:value-of select="nf:element-name(.)"/>
+                                <xsl:if test="$amount-doseerinstructies gt 1">
+                                    <xsl:value-of select="./volgnummer/@value"/>
+                                </xsl:if>
+                            </xsl:variable>
+                            <gegevenselement xmlns="" level="{$level}" naam="{$element-name}" waarde="{nf:dosering-string(., $amount-doseerinstructies)}"/>
+                        </xsl:for-each>
+                        <!-- herhaalperiode cyclisch schema -->
+                        <xsl:apply-templates select="./herhaalperiode_cyclisch_schema" mode="maak-tabel-rij">
+                            <xsl:with-param name="level" select="$level"/>
+                        </xsl:apply-templates>
+                    </groep>
+                </xsl:for-each>
+
+                <xsl:for-each select="./gerelateerde_afspraak/*">
+                    <xsl:variable name="element-name" as="xs:string*">
+                        <xsl:value-of select="nf:element-name(./..)"/>
+                        <xsl:choose>
+                            <xsl:when test="./local-name() eq 'identificatie_medicatieafspraak'">
+                                <xsl:value-of select="': MA'"/>
+                            </xsl:when>
+                            <xsl:when test="./local-name() eq 'identificatie_toedieningsafspraak'">
+                                <xsl:value-of select="': TA'"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="1" naam="{$element-name}" waarde="{./@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="./gerelateerde_verstrekking/*">
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(./..)}" waarde="{./@value}"/>
+                </xsl:for-each>
+                <!-- informant -->
+                <xsl:for-each select="./informant[.//(@value | @code)]">
+                    <xsl:variable name="waarde" as="xs:string*">
+                        <xsl:choose>
+                            <xsl:when test="./persoon">Persoon: <xsl:value-of select="nf:persoon-string(./persoon)"/></xsl:when>
+                            <xsl:when test="./informant_is_patient/@value = 'true'">Patiënt</xsl:when>
+                            <xsl:when test="./informant_is_zorgverlener[.//(@value | @code)]">Zorgverlener: <xsl:value-of select="nf:zorgverlener-string(./informant_is_zorgverlener)"/></xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
+                </xsl:for-each>
+                <!-- reden gebruik -->
+                <xsl:apply-templates select="./(reden_gebruik | reden_wijzigen_of_stoppen_gebruik)" mode="maak-tabel-rij">
+                    <xsl:with-param name="level" select="$level"/>
+                </xsl:apply-templates>
+                <!-- gewicht en lengte -->
+                <xsl:for-each select="./(lichaamslengte/lengte_waarde | lichaamsgewicht/gewicht_waarde)[@value]">
+                    <xsl:variable name="date-append-string">
+                        <xsl:for-each select="./../(lengte_datum_tijd | gewicht_datum_tijd)[@value]">
+                            <xsl:value-of select="concat('. Gemeten: ', nf:configurable-T-date(./../.., ., false()))"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(./..)}" waarde="{./normalize-space(concat(@value, ' ', @unit, $date-append-string))}"/>
+                </xsl:for-each>
+                <xsl:apply-templates select="./(kopie_indicator | toelichting | aanvullende_informatie)" mode="maak-tabel-rij">
+                    <xsl:with-param name="level" select="$level"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="./relatie_naar_medicatieafspraak[.//@value]">
+                    <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{./identificatie/@value}"/>
+                </xsl:for-each>
+                <!-- MBH identificatie -->
+                <xsl:for-each select="./../identificatie[.//(@value | @code)]">
+                    <gegevenselement xmlns="" level="1" naam="MBH identificatie" waarde="{./@value}"/>
+                </xsl:for-each>
+            </tabel>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc/>
         <xd:param name="level"/>
     </xd:doc>
-    <xsl:template name="product-tabel">
+    <xsl:template name="tabelrijen-product">
         <xsl:param name="level" select="xs:int(1)"/>
         <xsl:choose>
             <!-- gecodeerd geneesmiddel -->
@@ -602,10 +630,10 @@
                             <xsl:value-of select="nf:formatDate($current-element/@value)"/>
                             <xsl:variable name="time" select="nf:formatTime(nf:getTime($current-element/@value), $output0time)"/>
                             <xsl:value-of select="
-                                if ($time) then
-                                concat(', om ', $time)
-                                else
-                                ()"/>
+                                    if ($time) then
+                                        concat(', om ', $time)
+                                    else
+                                        ()"/>
                         </xsl:when>
                         <xsl:when test="$current-element/@value castable as xs:date">
                             <xsl:value-of select="nf:formatDate($current-element/@value)"/>
