@@ -580,7 +580,7 @@
         </xsl:variable>
         <xsl:variable name="string-output" as="xs:string*">
             <xsl:choose>
-                <xsl:when test="$conversion_element">
+                <xsl:when test="count($conversion_element/*) gt 0">
                     <xsl:variable name="days" select="translate($conversion_element/*/@dayTimeDuration, 'PD', '')"/>
                     <xsl:value-of select="$conversion_element/*/@base"/>
                     <xsl:if test="$days castable as xs:int and xs:int($days) gt 0">
@@ -599,7 +599,13 @@
                 <xsl:otherwise>
                     <xsl:choose>
                         <xsl:when test="$current-element/@value castable as xs:dateTime">
-                            <xsl:value-of select="concat(nf:formatDate($current-element/@value), ', om ', nf:formatTime(nf:getTime($current-element/@value), false()))"/>
+                            <xsl:value-of select="nf:formatDate($current-element/@value)"/>
+                            <xsl:variable name="time" select="nf:formatTime(nf:getTime($current-element/@value), $output0time)"/>
+                            <xsl:value-of select="
+                                if ($time) then
+                                concat(', om ', $time)
+                                else
+                                ()"/>
                         </xsl:when>
                         <xsl:when test="$current-element/@value castable as xs:date">
                             <xsl:value-of select="nf:formatDate($current-element/@value)"/>
@@ -611,7 +617,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:value-of select="normalize-space(string-join($string-output))"/>
+        <xsl:value-of select="normalize-space(string-join($string-output, ''))"/>
     </xsl:function>
 
     <xd:doc>
