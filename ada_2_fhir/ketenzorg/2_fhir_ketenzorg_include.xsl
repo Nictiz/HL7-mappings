@@ -1045,6 +1045,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <reference value="{@value}"/>
                             </xsl:otherwise>
                         </xsl:choose>
+                        <!-- Unfortunately in this setup there is no proper name -->
+                        <display value="Informatiebron ID {@value}"/>
                     </asserter>
                 </xsl:for-each>
                 <!-- TS    NL-CM:8.2.8        LaatsteReactieDatumTijd    0..1 -->
