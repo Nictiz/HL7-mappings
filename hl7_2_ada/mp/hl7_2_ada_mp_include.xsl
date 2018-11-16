@@ -1348,8 +1348,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
                         </xsl:call-template>
                     </xsl:when>
-                    <!-- alle MAR's een low én een width -->
-                    <xsl:when test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/(hl7:low/@value and hl7:width[@unit = 'd']/@value))])">
+                    <!-- alle MAR's een low én een width bij meer dan 1 MAR -->
+                    <xsl:when test="$current-dispense-event[count(.//hl7:medicationAdministrationRequest) gt 1] and not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/(hl7:low/@value and hl7:width[@unit = 'd']/@value))])">
                         <!-- alle mar's hebben een low en een width. einddatums uitrekenen -->
                         <xsl:variable name="einddatums" as="element()*">
                             <xsl:for-each select="$IVL_TS">
