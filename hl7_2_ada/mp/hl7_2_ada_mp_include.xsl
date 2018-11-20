@@ -1002,15 +1002,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <gebruiksperiode_start value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime($inputValue), nf:determine_date_precision($inputValue))}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="current-administrativeGenderCode"/>
+        <xd:desc>Converts HL7v3 input gender to ada gender. Completes codeSystemName and displayName if not input. Creates nullFlavor UNK if input is unknown.</xd:desc>
+        <xd:param name="current-administrativeGenderCode">HL7v3 input element for gender</xd:param>
     </xd:doc>
     <xsl:template name="mp9-geslacht">
         <xsl:param name="current-administrativeGenderCode" select="."/>
+        <xsl:variable name="concept-id-ada-geslacht">2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831</xsl:variable>
         <xsl:for-each select="$current-administrativeGenderCode">
             <xsl:choose>
                 <xsl:when test=".[@codeSystem = $oidHL7AdministrativeGender]">
-                    <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="{./@code}" codeSystem="{./@codeSystem}" codeSystemName="AdministrativeGender">
+                    <geslacht conceptId="{$concept-id-ada-geslacht}" code="{./@code}" codeSystem="{./@codeSystem}" codeSystemName="AdministrativeGender">
                         <xsl:choose>
                             <xsl:when test="./@displayName">
                                 <xsl:attribute name="displayName" select="./@displayName"/>
@@ -1033,9 +1034,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:attribute name="codeSystemName" select="./@codeSystemName"/>
                         </xsl:if>
                     </geslacht>
-                </xsl:when>               
+                </xsl:when>
                 <xsl:otherwise>
-                    <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="UNK" codeSystem="{$oidHL7NullFlavor}" displayName="Onbekend"/>
+                    <geslacht conceptId="{$concept-id-ada-geslacht}">
+                        <xsl:variable name="currentNullFlavor">
+                            <xsl:choose>
+                                <xsl:when test="./@nullFlavor">
+                                    <xsl:value-of select="./@nullFlavor"/>
+                                </xsl:when>
+                                <xsl:otherwise>NI</xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <xsl:attribute name="code" select="$currentNullFlavor"/>
+                        <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
+                        <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = $currentNullFlavor]/@displayName"/>
+                    </geslacht>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
