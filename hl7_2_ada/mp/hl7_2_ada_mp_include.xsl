@@ -1007,20 +1007,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="mp9-geslacht">
         <xsl:param name="current-administrativeGenderCode" select="."/>
-        <xsl:choose>
-            <xsl:when test="$current-administrativeGenderCode/@code = 'F'">
-                <geslacht value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="F" codeSystem="{$oidHL7AdministrativeGender}" displayName="Vrouw"/>
-            </xsl:when>
-            <xsl:when test="$current-administrativeGenderCode/@code = 'M'">
-                <geslacht value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="M" codeSystem="{$oidHL7AdministrativeGender}" displayName="Man"/>
-            </xsl:when>
-            <xsl:when test="$current-administrativeGenderCode/@code = 'UN'">
-                <geslacht value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="UN" codeSystem="{$oidHL7AdministrativeGender}" displayName="Ongedifferentieerd"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <geslacht value="4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="UNK" codeSystem="{$oidHL7NullFlavor}" displayName="Onbekend"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:for-each select="$current-administrativeGenderCode">
+            <xsl:choose>
+                <xsl:when test=".[@codeSystem = $oidHL7AdministrativeGender]">
+                    <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="{./@code}" codeSystem="{./@codeSystem}" codeSystemName="AdministrativeGender">
+                        <xsl:choose>
+                            <xsl:when test="./@displayName">
+                                <xsl:attribute name="displayName" select="./@displayName"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:choose>
+                                    <xsl:when test="./@code = 'F'">
+                                        <xsl:attribute name="displayName">Vrouw</xsl:attribute>
+                                    </xsl:when>
+                                    <xsl:when test="./@code = 'M'">
+                                        <xsl:attribute name="displayName">Man</xsl:attribute>
+                                    </xsl:when>
+                                    <xsl:when test="./@code = 'UN'">
+                                        <xsl:attribute name="displayName">Ongedifferentieerd</xsl:attribute>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="./@codeSystemName">
+                            <xsl:attribute name="codeSystemName" select="./@codeSystemName"/>
+                        </xsl:if>
+                    </geslacht>
+                </xsl:when>               
+                <xsl:otherwise>
+                    <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831" code="UNK" codeSystem="{$oidHL7NullFlavor}" displayName="Onbekend"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
