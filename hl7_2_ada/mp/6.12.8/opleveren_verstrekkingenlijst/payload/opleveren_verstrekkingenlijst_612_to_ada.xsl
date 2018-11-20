@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:include href="../../../hl7_2_ada_mp_include.xsl"/>
     <!-- Dit is een conversie van MP 6.12 naar ADA 9.0 voorschrift transactie -->
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
-    <xsl:variable name="xsd-ada" select="document('file:/C:/SVN/art_decor/trunk/ada-data/projects/mp-mp9/schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
+    <xsl:variable name="xsd-ada" select="document('../ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
     <xsl:variable name="mbh-complexType" select="$xsd-ada//xs:schema/xs:complexType[@name = 'beschikbaarstellen_medicatiegegevens_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
     <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
     <xd:doc>
