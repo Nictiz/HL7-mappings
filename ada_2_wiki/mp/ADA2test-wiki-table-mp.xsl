@@ -59,7 +59,7 @@
                 <!-- tabel voor documentgegevens -->
                 <xsl:apply-templates select=".//(documentgegevens)" mode="maak-tabel"/>                
                  <!-- tabel voor iedere therapeutische bouwsteen -->
-                <xsl:apply-templates select="./(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)" mode="maak-tabel"/>
+                <xsl:apply-templates select=".//(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)" mode="maak-tabel"/>
                 <!-- tabelrijen voor iedere logistieke bouwsteen -->
                 <xsl:for-each select=".//(verstrekkingsverzoek | verstrekking)">
                     <xsl:variable name="level" select="xs:int(1)"/>

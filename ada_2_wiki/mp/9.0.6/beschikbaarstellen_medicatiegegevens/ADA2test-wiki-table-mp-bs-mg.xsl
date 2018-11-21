@@ -19,6 +19,7 @@
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>
 
     <xsl:param name="do-ada-files" select="true()"/>
+<!--    <xsl:param name="do-ada-files" select="false()"/>-->
     <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
 
     <xd:doc>
