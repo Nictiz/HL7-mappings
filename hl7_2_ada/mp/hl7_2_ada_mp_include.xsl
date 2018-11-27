@@ -991,16 +991,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="inputValue"/>
+        <xd:param name="nullFlavor"/>
         <xd:param name="xsd-comp"/>
         <xd:param name="xsd-ada"/>
     </xd:doc>
     <xsl:template name="mp9-gebruiksperiode-start">
         <xsl:param name="inputValue"/>
+        <xsl:param name="nullFlavor"/>
         <xsl:param name="xsd-comp"/>
         <xsl:param name="xsd-ada"/>
         <xsl:variable name="xsd-complexType" select="$xsd-comp//xs:element[@name = 'gebruiksperiode_start']/@type"/>
-        <gebruiksperiode_start value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime($inputValue), nf:determine_date_precision($inputValue))}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+       <xsl:choose>
+           <xsl:when test="string-length($inputValue) gt 0">
+               <gebruiksperiode_start value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime($inputValue), nf:determine_date_precision($inputValue))}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+          </xsl:when>
+           <xsl:when test="string-length($nullFlavor) gt 0">
+               <gebruiksperiode_start nullFlavor="{$nullFlavor}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+           </xsl:when>
+       </xsl:choose>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Converts HL7v3 input gender to ada gender. Completes codeSystemName and displayName if not input. Creates nullFlavor UNK if input is unknown.</xd:desc>
         <xd:param name="current-administrativeGenderCode">HL7v3 input element for gender</xd:param>
@@ -1344,13 +1354,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- gebruiksperiode-start bij eenmalig gebruik-->
                 <xsl:variable name="effectiveTimes-eenmalig" select="$mar-sorted/hl7:effectiveTime[not(@xsi:type) or (local-name-from-QName(resolve-QName(@xsi:type, .)) = 'TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]"/>
                 <xsl:choose>
-                    <xsl:when test="count($effectiveTimes-eenmalig) = 1">
+                    <xsl:when test="count($effectiveTimes-eenmalig[not(@nullFlavor)]) = 1">
                         <xsl:comment>gebruiksperiode-start bij eenmalig gebruik</xsl:comment>
                         <xsl:call-template name="mp9-gebruiksperiode-start">
                             <xsl:with-param name="inputValue" select="$effectiveTimes-eenmalig/@value"/>
                             <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                             <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
                         </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="count($effectiveTimes-eenmalig[@nullFlavor]) = 1">
+                        <xsl:comment>gebruiksperiode-start nullFlavor</xsl:comment>
+                        <xsl:call-template name="mp9-gebruiksperiode-start">
+                            <xsl:with-param name="nullFlavor" select="$effectiveTimes-eenmalig/@nullFlavor"/>
+                            <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                            <xsl:with-param name="xsd-comp" select="$xsd-toedieningsafspraak"/>
+                        </xsl:call-template>                        
                     </xsl:when>
                     <xsl:when test="count($effectiveTimes-eenmalig) = 0">
                         <!-- do nothing -->
