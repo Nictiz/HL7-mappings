@@ -63,8 +63,7 @@
             <data type="mapType">identifier</data>
             <data type="mapConcept">medicationDispenseEvent/ responsibleParty/ assignedCareProvider/ representedOrganization/ id</data>
             <data type="mapCard">1..1</data>
-            <data type="mapDescription"/>
-        </association>
+            </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19793" flexibility="2016-06-13T15:02:20"/>
             <data type="mapType">string</data>
@@ -187,15 +186,15 @@ Medicatieverstrekkingen (los) is een verouderde specificatie en vanaf 6.12.3 uit
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133" flexibility="2015-11-25T13:20:13"/>
-            <data type="mapDescription">Aanname in versie MP-6 is dat de verstrekking de aanschrijfdatum bevat. De afspraakdatum van de toedieningsafspraak wordt benaderd door deze aanschrijfdatum.</data>
             <data type="mapType">datetime</data>
             <data type="mapConcept">medicationDispenseEvent/ effectiveTime</data>
             <data type="mapCard">1..1</data>
+        <data type="mapDescription">Aanname in versie MP-6 is dat de verstrekking de aanschrijfdatum bevat. De afspraakdatum van de toedieningsafspraak wordt benaderd door deze aanschrijfdatum.</data>
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20134" flexibility="2015-11-25T13:21:46"/>
-            <data type="mapConcept">medicationDispenseEvent/ id + een concatenated string</data>
             <data type="mapType">identifier</data>
+         <data type="mapConcept">medicationDispenseEvent/ id + een concatenated string</data>
             <data type="mapCard">1..1</data>
             <data type="mapDescription">./ @root overnemen, bij extension: concat('TAConverted_', ./ @extension)</data>
         </association>
@@ -257,8 +256,7 @@ Medicatieverstrekkingen (los) is een verouderde specificatie en vanaf 6.12.3 uit
             <data type="mapType">identifier</data>
             <data type="mapConcept">medicationDispenseEvent/ responsibleParty/ assignedCareProvider/ representedOrganization/ id</data>
             <data type="mapCard">1..1</data>
-            <data type="mapDescription"/>
-        </association>
+            </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20212 " flexibility="2015-11-25T13:28:44"/>
             <data type="mapType">string</data>
@@ -331,8 +329,8 @@ Medicatieverstrekkingen (los) is een verouderde specificatie en vanaf 6.12.3 uit
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093" flexibility="2016-02-02T12:09:38"/>
-            <data type="mapConcept">medicationDispenseEvent/ id + een concatenated string</data>
             <data type="mapType">identifier</data>
+         <data type="mapConcept">medicationDispenseEvent/ id + een concatenated string</data>
             <data type="mapCard">1..1</data>
             <data type="mapDescription">./ @root overnemen, bij extension: concat('MBHConverted_', ./ @extension)</data>
         </association>
@@ -440,11 +438,12 @@ Medicatieverstrekkingen (los) is een verouderde specificatie en vanaf 6.12.3 uit
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22396" flexibility="2016-03-01T14:57:22"/>
-            <data type="mapDescription">MP-6 heeft wel een relatie naar het totale voorschrift (Medicatieafspraak + Verstrekkingsverzoek), maar niet naar een los verstrekkingsverzoek.</data>
+            <data type="mapDescription">MP-6 heeft een relatie naar het totale voorschrift (Medicatieafspraak + Verstrekkingsverzoek), dit mappen we naar een MP-9 verstrekkingsverzoek.</data>
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22397" flexibility="2016-03-01T14:58:06"/>
-            <data type="mapDescription">-</data>
+            <data type="mapType">identifier</data>
+        <data type="mapDescription">hl7:medicationDispenseEvent/hl7:product/hl7:dispensedMedication/hl7:directTargetOf/hl7:prescription/hl7:id</data>
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22498" flexibility="2016-04-07T10:03:30"/>
@@ -656,15 +655,15 @@ MP-6 drukt een variabele frequentie uit door:
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22643" flexibility="2016-06-02T10:23:24"/>
-            <data type="mapCard">0..1</data>
             <data type="mapType">group</data>
             <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity </data>
+        <data type="mapCard">0..1</data>
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22644" flexibility="2016-06-02T10:23:24"/>
-            <data type="mapCard">1..1</data>
             <data type="mapType">decimal</data>
             <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity / numerator/ translation[@codeSystem='2.16.840.1.113883.2.4.4.1.900.2'] / @value</data>
+        <data type="mapCard">1..1</data>
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22645" flexibility="2016-06-02T10:23:24"/>
@@ -674,9 +673,9 @@ MP-6 drukt een variabele frequentie uit door:
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22646" flexibility="2016-06-02T10:23:24"/>
-            <data type="mapCard">1..1</data>
             <data type="mapType">string</data>
             <data type="mapConcept">//therapeuticAgentOf/ medicationAdministrationRequest/ maxDoseQuantity / denominator</data>
+        <data type="mapCard">1..1</data>
         </association>
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22648" flexibility="2016-06-02T10:23:24"/>
