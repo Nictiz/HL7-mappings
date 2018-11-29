@@ -20,13 +20,14 @@
 
     <xsl:param name="do-ada-files" select="true()"/>
 <!--    <xsl:param name="do-ada-files" select="false()"/>-->
-    <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
+    <xsl:variable name="ada-files" select="collection('./ada_mpver_instance/?select=*.xml')"/>
 
     <xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template match="/">
         <xsl:text>
+__NUMBEREDHEADINGS__
 {{IssueBox|Deze pagina is nog in bewerking}}
 [[Bestand:Nictiz_logo_PO_rechts_rgb.png |link=https://www.nictiz.nl/|rechts|Naar nictiz.nl]]
 

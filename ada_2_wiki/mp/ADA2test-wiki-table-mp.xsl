@@ -38,7 +38,8 @@
     </xd:doc>
     <xsl:template match="/">
         <xsl:text>
-{{IssueBox|Deze pagina is nog in bewerking}}
+__NUMBEREDHEADINGS__
+{{{IssueBox|Deze pagina is nog in bewerking}}
 [[Bestand:Nictiz_logo_PO_rechts_rgb.png |link=https://www.nictiz.nl/|rechts|Naar nictiz.nl]]
 
 =Addenda voor inhoudelijke gegevens=</xsl:text>
