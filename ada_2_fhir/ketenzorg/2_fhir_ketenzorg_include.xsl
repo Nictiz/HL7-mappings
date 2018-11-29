@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:param>
     <xsl:include href="../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:variable name="patient-ada" select="/adaxml/data/*/bundle/subject/patient"/>
-    <xsl:variable name="patient-entry" as="element(f:entry)?">
+    <xsl:variable name="patient-entries" as="element(f:entry)*">
         <!-- Patient, there may be only one in the input doc -->
         <xsl:for-each select="$patient-ada">
             <!-- For privacy reasons always use UUID as fullUrl for patient -->
@@ -118,7 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:variable name="bouwstenen" as="element(f:entry)*">
         <!-- AllergieIntoleranties, voor nu alleen de medicatie overgevoeligheden -->
-        <xsl:for-each select="//allergy_intolerance[@code = '419511003'][@codeSystem = $oidSNOMEDCT]">
+        <xsl:for-each select="//allergy_intolerance[allergy_category[@code = '419511003'][@codeSystem = $oidSNOMEDCT]]">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
                 <resource>
@@ -584,8 +584,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$referById = true()">
                 <reference value="{nf:getFullUrlOrId('Patient',nf:getGroupingKeyDefault(.))}"/>
             </xsl:when>
-            <xsl:when test="$patient-entry">
-                <reference value="{($patient-entry//*:fullUrl/@value)[1]}"/>
+            <xsl:when test="$patient-entries">
+                <reference value="{($patient-entries//*:fullUrl/@value)[1]}"/>
             </xsl:when>
             <xsl:when test="$identifier[@root]">
                 <identifier>

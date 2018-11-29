@@ -117,7 +117,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="$out/@codeSystemName"/>
                 <xsl:copy-of select="$out/@codeSystemVersion"/>
                 <xsl:copy-of select="$out/@displayName"/>
-                <xsl:copy-of select="$out/@nullFlavor"/>
+                <xsl:if test="$out/@nullFlavor">
+                    <xsl:attribute name="code" select="$out/@nullFlavor"/>
+                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
+                    <xsl:attribute name="displayName">
+                        <xsl:choose>
+                            <xsl:when test="$out/@nullFlavor = 'NI'">no information</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'OTH'">other</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'UNK'">unknown</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'NAVU'">not available</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'NAV'">temporarily not available</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'MSK'">masked</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'QS'">quantity sufficient</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'ASKU'">asked but unknown</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'PINF'">positive infinity</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'NINF'">negative infinity</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'TRACE'">trace</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'NA'">not applicable</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'INV'">invalid</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'UNC'">unencoded</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'DER'">derived</xsl:when>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </xsl:if>
                 <xsl:if test="hl7:originalText">
                     <xsl:attribute name="originalText" select="hl7:originalText"/>
                 </xsl:if>
@@ -246,7 +268,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR'] and empty(hl7:family[tokenize(@qualifier, '\s') = 'SP'])">
                                 <xsl:element name="{$elmNameUsage}">
-                                    <xsl:attribute name="localId">1</xsl:attribute>
+                                    <xsl:attribute name="value">1</xsl:attribute>
                                     <xsl:attribute name="code">NL1</xsl:attribute>
                                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                                     <xsl:attribute name="displayName">Eigen geslachtsnaam</xsl:attribute>
@@ -254,7 +276,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP'] and empty(hl7:family[not(tokenize(@qualifier, '\s') = 'SP')])">
                                 <xsl:element name="{$elmNameUsage}">
-                                    <xsl:attribute name="localId">2</xsl:attribute>
+                                    <xsl:attribute name="value">2</xsl:attribute>
                                     <xsl:attribute name="code">NL2</xsl:attribute>
                                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                                     <xsl:attribute name="displayName">Geslachtsnaam partner</xsl:attribute>
@@ -262,7 +284,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP']/following-sibling::hl7:family[not(@qualifier) or tokenize(@qualifier, '\s') = 'BR']">
                                 <xsl:element name="{$elmNameUsage}">
-                                    <xsl:attribute name="localId">3</xsl:attribute>
+                                    <xsl:attribute name="value">3</xsl:attribute>
                                     <xsl:attribute name="code">NL3</xsl:attribute>
                                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                                     <xsl:attribute name="displayName">Geslachtsnaam partner gevolgd door eigen geslachtsnaam</xsl:attribute>
@@ -270,7 +292,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR']/following-sibling::hl7:family[tokenize(@qualifier, '\s') = 'SP']">
                                 <xsl:element name="{$elmNameUsage}">
-                                    <xsl:attribute name="localId">4</xsl:attribute>
+                                    <xsl:attribute name="value">4</xsl:attribute>
                                     <xsl:attribute name="code">NL4</xsl:attribute>
                                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                                     <xsl:attribute name="displayName">Eigen geslachtsnaam gevolgd door geslachtsnaam partner</xsl:attribute>
@@ -278,7 +300,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:element name="{$elmNameUsage}">
-                                    <xsl:attribute name="localId">5</xsl:attribute>
+                                    <xsl:attribute name="value">5</xsl:attribute>
                                     <xsl:attribute name="code">UNK</xsl:attribute>
                                     <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
                                     <xsl:attribute name="displayName">Unknown</xsl:attribute>
@@ -477,7 +499,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <xsl:when test=". = 'PST'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="localId">1</xsl:attribute>
+                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">PST</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Postal Addres</xsl:attribute>
@@ -485,7 +507,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test=". = 'HP'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="localId">1</xsl:attribute>
+                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">HP</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Primary Home</xsl:attribute>
@@ -493,7 +515,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test=". = 'PHYS'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="localId">1</xsl:attribute>
+                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">PHYS</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Visit Address</xsl:attribute>
@@ -501,7 +523,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test=". = 'TMP'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="localId">1</xsl:attribute>
+                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">TMP</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Tempory Address</xsl:attribute>
@@ -509,7 +531,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test="$theUse = 'WP'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="localId">1</xsl:attribute>
+                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">WP</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Work Place</xsl:attribute>
@@ -517,7 +539,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test=". = 'HV'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="localId">1</xsl:attribute>
+                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">HV</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Vacation Home</xsl:attribute>
@@ -686,7 +708,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:choose>
                                     <xsl:when test="matches(replace(normalize-space(@value), '[^\d]', ''), '^(31)?0[12345789]')">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">1</xsl:attribute>
+                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">LL</xsl:attribute>
                                             <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
                                             <xsl:attribute name="displayName">Landline</xsl:attribute>
@@ -694,7 +716,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="starts-with(@value, 'fax:')">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">2</xsl:attribute>
+                                            <xsl:attribute name="value">2</xsl:attribute>
                                             <xsl:attribute name="code">FAX</xsl:attribute>
                                             <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
                                             <xsl:attribute name="displayName">Fax</xsl:attribute>
@@ -702,7 +724,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="tokenize(@use, '\s') = 'MC'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">3</xsl:attribute>
+                                            <xsl:attribute name="value">3</xsl:attribute>
                                             <xsl:attribute name="code">MC</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Mobiele telefoon</xsl:attribute>
@@ -710,7 +732,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="tokenize(@use, '\s') = 'PG'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">4</xsl:attribute>
+                                            <xsl:attribute name="value">4</xsl:attribute>
                                             <xsl:attribute name="code">PG</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Pager</xsl:attribute>
@@ -722,7 +744,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:choose>
                                     <xsl:when test="$theUse = 'HP'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">1</xsl:attribute>
+                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
@@ -730,7 +752,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'TMP'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">1</xsl:attribute>
+                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Temporary Address</xsl:attribute>
@@ -738,7 +760,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'WP'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">1</xsl:attribute>
+                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Work place</xsl:attribute>
@@ -767,7 +789,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:choose>
                                     <xsl:when test="$theUse = 'HP'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">1</xsl:attribute>
+                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
@@ -775,7 +797,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'WP'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="localId">1</xsl:attribute>
+                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Work place</xsl:attribute>

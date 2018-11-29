@@ -19,217 +19,225 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="../../../hl7_2_ada_ketenzorg_include.xsl"/>
     
-    <!-- if this xslt is used stand alone the template below could be used. -->
+    <xd:doc>
+        <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
+    </xd:doc>
     <xsl:template match="/">
-        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerAllergyIntolerance]">
-            <xsl:call-template name="BeschikbaarstellenAllergieIntolerantie-ADA">
-                <xsl:with-param name="in" select="."/>
-                <xsl:with-param name="author" select="(ancestor::hl7:ControlActProcess/hl7:authorOrPerformer//*[hl7:id])[1]"/>
-            </xsl:call-template>
-        </xsl:for-each>
-    </xsl:template>
-    <xsl:template name="BeschikbaarstellenAllergieIntolerantie-ADA">
-        <xsl:param name="in" as="element()"/>
-        <xsl:param name="author" as="element()?"/>
-        
-        <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
-        
-        <xsl:comment>Generated from HL7v3 xml with organizer <xsl:copy-of select="$in/hl7:id"/>.</xsl:comment>
+        <xsl:comment>Generated from HL7v3 xml with <xsl:value-of select="//*[hl7:id][1]/local-name()"/> <xsl:copy-of select="(//hl7:id)[1]"/>.</xsl:comment>
         <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_allergieintoleranties.xsd">
             <meta status="new" created-by="generated" last-update-by="generated">
                 <xsl:attribute name="creation-date" select="current-dateTime()"/>
                 <xsl:attribute name="last-update-date" select="current-dateTime()"/>
             </meta>
             <data>
-                <beschikbaarstellen_allergieintoleranties app="ketenzorg3.0" shortName="beschikbaarstellen_allergieintoleranties" formName="bundle_of_allergy_intolerance" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.535" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
-                    <bundle>
-                        <!--<xsl:call-template name="handleII">
-                            <xsl:with-param name="in" select="hl7:id"/>
-                            <xsl:with-param name="elmName">identification_number</xsl:with-param>
-                        </xsl:call-template>-->
+                <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerAllergyIntolerance]">
+                    <xsl:call-template name="BeschikbaarstellenAllergieIntolerantie-ADA">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="author" select="(ancestor::hl7:ControlActProcess/hl7:authorOrPerformer//*[hl7:id])[1]"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </data>
+        </adaxml>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="in"/>
+        <xd:param name="author"/>
+    </xd:doc>
+    <xsl:template name="BeschikbaarstellenAllergieIntolerantie-ADA">
+        <xsl:param name="in" as="element()"/>
+        <xsl:param name="author" as="element()?"/>
+        
+        <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
+        <beschikbaarstellen_allergieintoleranties app="ketenzorg3.0" shortName="beschikbaarstellen_allergieintoleranties" formName="bundle_of_allergy_intolerance" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.535" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
+            <bundle>
+                <!--<xsl:call-template name="handleII">
+                    <xsl:with-param name="in" select="hl7:id"/>
+                    <xsl:with-param name="elmName">identification_number</xsl:with-param>
+                </xsl:call-template>-->
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:code"/>
+                    <xsl:with-param name="elmName">type</xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:statusCode"/>
+                    <xsl:with-param name="elmName">status</xsl:with-param>
+                </xsl:call-template>
+                <xsl:for-each select="$author[hl7:id/@root = $oidUZIPersons]">
+                    <author>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
+                            <xsl:with-param name="in" select="$author"/>
+                            <xsl:with-param name="language">en-US</xsl:with-param>
+                            <xsl:with-param name="typeCode" select="$author/../@typeCode"/>
+                        </xsl:call-template>
+                    </author>
+                </xsl:for-each>
+                <xsl:for-each select="$author//hl7:Organization">
+                    <custodian conceptId="2.16.840.1.113883.2.4.3.11.60.66.23.436">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="language">en-US</xsl:with-param>
+                        </xsl:call-template>
+                    </custodian>
+                </xsl:for-each>
+                <xsl:for-each select="$patient">
+                    <subject>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.2_20170602000000">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </subject>
+                </xsl:for-each>
+            </bundle>
+            <xsl:variable name="allergyIntoleranceObservation" select="//*[hl7:templateId/@root = $oidAllergyIntoleranceAct]/hl7:entryRelationship/*[hl7:templateId/@root = $oidAllergyIntoleranceObservation]"/>
+            <xsl:for-each select="$allergyIntoleranceObservation">
+                <allergy_intolerance>
+                    <xsl:if test="hl7:id | hl7:author/hl7:assignedAuthor">
+                        <hcimroot>
+                            <xsl:if test="hl7:id">
+                                <xsl:call-template name="handleII">
+                                    <xsl:with-param name="in" select="hl7:id"/>
+                                    <xsl:with-param name="elmName">identification_number</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:if>
+                            
+                            <xsl:for-each select="hl7:author/hl7:assignedAuthor">
+                                <author>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="language">en-US</xsl:with-param>
+                                        <xsl:with-param name="typeCode" select="../@typeCode"/>
+                                    </xsl:call-template>
+                                </author>
+                            </xsl:for-each>
+                            
+                            <!-- Date and if relevant the time the event to which the information relates took place . -->
+                            <!--<xsl:for-each select="hl7:effectiveTime/hl7:low">
+                                <xsl:call-template name="handleTS">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="elmName">date_time</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>-->
+                        </hcimroot>
+                    </xsl:if>
+                    <xsl:for-each select="hl7:participant[@typeCode = 'CSM']/hl7:participantRole/hl7:playingEntity">
                         <xsl:call-template name="handleCV">
                             <xsl:with-param name="in" select="hl7:code"/>
-                            <xsl:with-param name="elmName">type</xsl:with-param>
+                            <xsl:with-param name="elmName">causative_agent</xsl:with-param>
                         </xsl:call-template>
+                    </xsl:for-each>
+                    <!-- Ketenzorg codes match those found in the HCIM -->
+                    <xsl:for-each select="hl7:value">
                         <xsl:call-template name="handleCV">
-                            <xsl:with-param name="in" select="hl7:statusCode"/>
-                            <xsl:with-param name="elmName">status</xsl:with-param>
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="elmName">allergy_category</xsl:with-param>
                         </xsl:call-template>
-                        <xsl:for-each select="$author[hl7:id/@root = $oidUZIPersons]">
-                            <author>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
-                                    <xsl:with-param name="in" select="$author"/>
-                                    <xsl:with-param name="language">en-US</xsl:with-param>
-                                    <xsl:with-param name="typeCode" select="$author/../@typeCode"/>
-                                </xsl:call-template>
-                            </author>
+                    </xsl:for-each>
+                    <!-- 1-to-1 match value set -->
+                    <xsl:call-template name="handleCV">
+                        <xsl:with-param name="in" select="ancestor::hl7:act[1]/hl7:statusCode"/>
+                        <xsl:with-param name="elmName">allergy_status</xsl:with-param>
+                    </xsl:call-template>
+                    <!-- The date and time at which the allergy or undesired reaction was determined.  -->
+                    <xsl:for-each select="ancestor::hl7:act[1]/hl7:effectiveTime/hl7:low">
+                        <xsl:call-template name="handleTS">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="elmName">start_date_time</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidCriticalityObservation]">
+                        <xsl:call-template name="handleCV">
+                            <xsl:with-param name="in" select="hl7:value"/>
+                            <xsl:with-param name="elmName">criticality</xsl:with-param>
+                            <xsl:with-param name="codeMap" as="element(map)*">
+                                <map inCode="62482003" inCodeSystem="2.16.840.1.113883.6.96" code="255604002" codeSystem="2.16.840.1.113883.6.96" displayName="Low"/>
+                                <map inCode="75540009" inCodeSystem="2.16.840.1.113883.6.96" code="24484000" codeSystem="2.16.840.1.113883.6.96" displayName="High"/>
+                                <!--<map inCode="ASKU" inCodeSystem="2.16.840.1.113883.5.1008" code="" codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".."/>-->
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    
+                    <xsl:variable name="reactions" select="hl7:entryRelationship/*[hl7:templateId/@root = $oidReactionObservation]"/>
+                    <xsl:variable name="reactionDateTimes" select="$reactions/hl7:effectiveTime/@value | $reactions/hl7:effectiveTime/hl7:low/@value | $reactions/hl7:effectiveTime/hl7:high/@value"/>
+                    <xsl:variable name="reactionDateTimesText" as="xs:string*">
+                        <xsl:for-each select="$reactionDateTimes">
+                            <xsl:value-of select="substring(concat(tokenize(., '\+')[1], '00000000000000'), 1, 14)"/>
                         </xsl:for-each>
-                        <xsl:for-each select="$author//hl7:Organization">
-                            <custodian conceptId="2.16.840.1.113883.2.4.3.11.60.66.23.436">
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="language">en-US</xsl:with-param>
-                                </xsl:call-template>
-                            </custodian>
-                        </xsl:for-each>
-                        <xsl:for-each select="$patient">
-                            <subject>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.2_20170602000000">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </subject>
-                        </xsl:for-each>
-                    </bundle>
-                    <xsl:variable name="allergyIntoleranceObservation" select="//*[hl7:templateId/@root = $oidAllergyIntoleranceAct]/hl7:entryRelationship/*[hl7:templateId/@root = $oidAllergyIntoleranceObservation]"/>
-                    <xsl:for-each select="$allergyIntoleranceObservation">
-                        <allergy_intolerance>
-                            <xsl:if test="hl7:id | hl7:effectiveTime">
-                                <hcimroot>
-                                    <xsl:call-template name="handleII">
-                                        <xsl:with-param name="in" select="hl7:id"/>
-                                        <xsl:with-param name="elmName">identification_number</xsl:with-param>
-                                    </xsl:call-template>
-                                    
-                                    <xsl:for-each select="hl7:author/hl7:assignedAuthor">
-                                        <author>
-                                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
-                                                <xsl:with-param name="in" select="."/>
-                                                <xsl:with-param name="language">en-US</xsl:with-param>
-                                                <xsl:with-param name="typeCode" select="../@typeCode"/>
-                                            </xsl:call-template>
-                                        </author>
-                                    </xsl:for-each>
-                                    
-                                    <!-- Date and if relevant the time the event to which the information relates took place . -->
-                                    <xsl:for-each select="hl7:effectiveTime/hl7:low">
-                                        <xsl:call-template name="handleTS">
-                                            <xsl:with-param name="in" select="."/>
-                                            <xsl:with-param name="elmName">date_time</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                </hcimroot>
-                            </xsl:if>
+                    </xsl:variable>
+                    <!-- Don't invent more precision than there was, but leave the date alone -->
+                    <xsl:variable name="lastRectionDateTime" select="replace(max($reactionDateTimesText), '000000$', '')"/>
+                    
+                    <xsl:if test="$lastRectionDateTime">
+                        <xsl:call-template name="handleTS">
+                            <xsl:with-param name="in" as="element()">
+                                <effectiveTime value="{$lastRectionDateTime}"/>
+                            </xsl:with-param>
+                            <xsl:with-param name="elmName">last_reaction_date_time</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:if>
+                    <!-- comment -->
+                    <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidNoteObservation]">
+                        <xsl:call-template name="handleST">
+                            <xsl:with-param name="in" select="hl7:text"/>
+                            <xsl:with-param name="elmName">comment</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="$reactions">
+                        <reaction>
+                            <xsl:call-template name="handleCV">
+                                <xsl:with-param name="in" select="hl7:value"/>
+                                <xsl:with-param name="elmName">symptom</xsl:with-param>
+                            </xsl:call-template>
                             <xsl:for-each select="hl7:participant[@typeCode = 'CSM']/hl7:participantRole/hl7:playingEntity">
                                 <xsl:call-template name="handleCV">
                                     <xsl:with-param name="in" select="hl7:code"/>
-                                    <xsl:with-param name="elmName">causative_agent</xsl:with-param>
+                                    <xsl:with-param name="elmName">specific_substance</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <!-- Ketenzorg codes match those found in the HCIM -->
-                            <xsl:for-each select="hl7:code">
-                                <xsl:call-template name="handleCV">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="elmName">allergy_category</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <!-- 1-to-1 match value set -->
-                            <xsl:call-template name="handleCV">
-                                <xsl:with-param name="in" select="ancestor::hl7:act[1]/hl7:statusCode"/>
-                                <xsl:with-param name="elmName">allergy_status</xsl:with-param>
-                            </xsl:call-template>
-                            <!-- The date and time at which the allergy or undesired reaction was determined.  -->
-                            <xsl:for-each select="ancestor::hl7:act[1]/hl7:effectiveTime/hl7:low">
-                                <xsl:call-template name="handleTS">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="elmName">start_date_time</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidCriticalityObservation]">
-                                <xsl:call-template name="handleCV">
-                                    <xsl:with-param name="in" select="hl7:value"/>
-                                    <xsl:with-param name="elmName">criticality</xsl:with-param>
-                                    <xsl:with-param name="codeMap" as="element(map)*">
-                                        <map inCode="62482003" inCodeSystem="2.16.840.1.113883.6.96" code="255604002" codeSystem="2.16.840.1.113883.6.96" displayName="Low"/>
-                                        <map inCode="75540009" inCodeSystem="2.16.840.1.113883.6.96" code="24484000" codeSystem="2.16.840.1.113883.6.96" displayName="High"/>
-                                        <!--<map inCode="ASKU" inCodeSystem="2.16.840.1.113883.5.1008" code="" codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".."/>-->
-                                    </xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            
-                            <xsl:variable name="reactions" select="hl7:entryRelationship/*[hl7:templateId/@root = $oidReactionObservation]"/>
-                            <xsl:variable name="reactionDateTimes" select="$reactions/hl7:effectiveTime/@value | $reactions/hl7:effectiveTime/hl7:low/@value | $reactions/hl7:effectiveTime/hl7:high/@value"/>
-                            <xsl:variable name="reactionDateTimesText" as="xs:string*">
-                                <xsl:for-each select="$reactionDateTimes">
-                                    <xsl:value-of select="substring(concat(tokenize(., '\+')[1], '00000000000000'), 1, 14)"/>
-                                </xsl:for-each>
-                            </xsl:variable>
-                            <!-- Don't invent more precision than there was, but leave the date alone -->
-                            <xsl:variable name="lastRectionDateTime" select="replace(max($reactionDateTimesText), '000000$', '')"/>
-                            
-                            <xsl:if test="$lastRectionDateTime">
-                                <xsl:call-template name="handleTS">
-                                    <xsl:with-param name="in" as="element()">
-                                        <effectiveTime value="{$lastRectionDateTime}"/>
-                                    </xsl:with-param>
-                                    <xsl:with-param name="elmName">last_reaction_date_time</xsl:with-param>
+                            <xsl:if test="hl7:code/hl7:originalText">
+                                <xsl:call-template name="handleST">
+                                    <xsl:with-param name="in" select="hl7:code/hl7:originalText"/>
+                                    <xsl:with-param name="elmName">reaction_description</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:if>
-                            <!-- comment -->
-                            <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidNoteObservation]">
-                                <xsl:call-template name="handleST">
-                                    <xsl:with-param name="in" select="hl7:text"/>
-                                    <xsl:with-param name="elmName">comment</xsl:with-param>
+                            <!-- 1-to-1 valueset match... -->
+                            <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidSeverityObservation]">
+                                <xsl:call-template name="handleCV">
+                                    <xsl:with-param name="in" select="hl7:value"/>
+                                    <xsl:with-param name="elmName">severity</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <xsl:for-each select="$reactions">
-                                <reaction>
-                                    <xsl:call-template name="handleCV">
-                                        <xsl:with-param name="in" select="hl7:value"/>
-                                        <xsl:with-param name="elmName">symptom</xsl:with-param>
-                                    </xsl:call-template>
-                                    <xsl:for-each select="hl7:participant[@typeCode = 'CSM']/hl7:participantRole/hl7:playingEntity">
-                                        <xsl:call-template name="handleCV">
-                                            <xsl:with-param name="in" select="hl7:code"/>
-                                            <xsl:with-param name="elmName">specific_substance</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    <xsl:if test="hl7:code/hl7:originalText">
-                                        <xsl:call-template name="handleST">
-                                            <xsl:with-param name="in" select="hl7:code/hl7:originalText"/>
-                                            <xsl:with-param name="elmName">reaction_description</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:if>
-                                    <!-- 1-to-1 valueset match... -->
-                                    <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidSeverityObservation]">
-                                        <xsl:call-template name="handleCV">
-                                            <xsl:with-param name="in" select="hl7:value"/>
-                                            <xsl:with-param name="elmName">severity</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    <!-- 1-to-1 valueset match... -->
-                                    <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidRouteOfExposureObservation]">
-                                        <xsl:call-template name="handleCV">
-                                            <xsl:with-param name="in" select="hl7:value"/>
-                                            <xsl:with-param name="elmName">route_of_exposure</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    <xsl:choose>
-                                        <xsl:when test="hl7:effectiveTime/hl7:low">
-                                            <xsl:call-template name="handleTS">
-                                                <xsl:with-param name="in" select="hl7:effectiveTime/hl7:low"/>
-                                                <xsl:with-param name="elmName">reaction_time</xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:when>
-                                        <xsl:when test="hl7:effectiveTime/hl7:high">
-                                            <xsl:call-template name="handleTS">
-                                                <xsl:with-param name="in" select="hl7:effectiveTime/hl7:high"/>
-                                                <xsl:with-param name="elmName">reaction_time</xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:when>
-                                        <xsl:when test="hl7:effectiveTime[@value | @nullFlavor]">
-                                            <xsl:call-template name="handleTS">
-                                                <xsl:with-param name="in" select="hl7:effectiveTime"/>
-                                                <xsl:with-param name="elmName">reaction_time</xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:when>
-                                    </xsl:choose>
-                                </reaction>
+                            <!-- 1-to-1 valueset match... -->
+                            <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidRouteOfExposureObservation]">
+                                <xsl:call-template name="handleCV">
+                                    <xsl:with-param name="in" select="hl7:value"/>
+                                    <xsl:with-param name="elmName">route_of_exposure</xsl:with-param>
+                                </xsl:call-template>
                             </xsl:for-each>
-                        </allergy_intolerance>
+                            <xsl:choose>
+                                <xsl:when test="hl7:effectiveTime/hl7:low">
+                                    <xsl:call-template name="handleTS">
+                                        <xsl:with-param name="in" select="hl7:effectiveTime/hl7:low"/>
+                                        <xsl:with-param name="elmName">reaction_time</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="hl7:effectiveTime/hl7:high">
+                                    <xsl:call-template name="handleTS">
+                                        <xsl:with-param name="in" select="hl7:effectiveTime/hl7:high"/>
+                                        <xsl:with-param name="elmName">reaction_time</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="hl7:effectiveTime[@value | @nullFlavor]">
+                                    <xsl:call-template name="handleTS">
+                                        <xsl:with-param name="in" select="hl7:effectiveTime"/>
+                                        <xsl:with-param name="elmName">reaction_time</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                            </xsl:choose>
+                        </reaction>
                     </xsl:for-each>
-                </beschikbaarstellen_allergieintoleranties>
-            </data>
-        </adaxml>
+                </allergy_intolerance>
+            </xsl:for-each>
+        </beschikbaarstellen_allergieintoleranties>
         <xsl:comment>Input HL7 xml below</xsl:comment>
         <xsl:call-template name="copyElementInComment">
             <xsl:with-param name="element" select="./*"/>

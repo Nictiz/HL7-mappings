@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:param name="referByIdOverride" as="xs:boolean" select="false()"/>
 		
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-		<xsl:copy-of select="$patient-entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
+		<xsl:copy-of select="$patient-entries | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
 	</xsl:variable>
 
 	<xd:doc>
@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<type value="searchset"/>
 			<xsl:variable name="entries" as="element(f:entry)*">
 				<!-- common entries (patient, practitioners, organizations, practitionerroles) -->
-				<xsl:copy-of select="$commonEntries"/>
+				<xsl:if test="$bouwstenen"><xsl:copy-of select="$commonEntries"/></xsl:if>
 				<xsl:copy-of select="$bouwstenen"/>
 			</xsl:variable>
 			<total value="{count($entries)}"/>
