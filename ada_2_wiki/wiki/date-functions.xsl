@@ -48,9 +48,9 @@
 	</xsl:function>
 
 	<xd:doc>
-		<xd:desc>takes an inputTime as string or time and outputs the time in format '14:32', only outputs anything for a time later than 00:00:00</xd:desc>
+		<xd:desc>takes an inputTime as string or time and outputs the time in format '14:32'</xd:desc>
 		<xd:param name="inputTime"/>
-		<xd:param name="output0time">boolean to either output the time 00:00 or not. Default = true = output the zero-time</xd:param>
+		<xd:param name="output0time">boolean to either output the time smaller than or equal to 00:00:29 or not. Default = true = output the zero-time</xd:param>
 	</xd:doc>
 	<xsl:function name="nf:formatTime" as="xs:string?">
 		<xsl:param name="inputTime"/>
