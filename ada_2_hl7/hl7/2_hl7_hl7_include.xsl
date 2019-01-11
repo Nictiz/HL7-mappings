@@ -301,7 +301,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:element>
     </xsl:template>
-
+    <xsl:template name="makeEffectiveTime">
+        <xsl:param name="effectiveTime"/>
+        <xsl:if test="$effectiveTime[1] instance of element()">
+            <xsl:for-each select="$effectiveTime">
+                <effectiveTime>
+                    <xsl:call-template name="makeTSValueAttr"/>
+                </effectiveTime>
+            </xsl:for-each>
+        </xsl:if>
+    </xsl:template>
     <xsl:template name="makeENXPValue">
         <xsl:param name="xsiType">ENXP</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -640,5 +649,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
 
     </xsl:function>
-
+    <!-- addEnding checks baseString if it ends in endString, and if not adds it at the end. -->
+    <xsl:function name="nf:addEnding">
+        <xsl:param name="baseString"/>
+        <xsl:param name="endString"/>        
+        
+        <xsl:choose>
+            <xsl:when test="substring($baseString, string-length($baseString)-string-length($endString)+1, string-length($endString)) eq $endString">
+                <xsl:value-of select="$baseString"/>                    
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="concat($baseString, $endString)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
 </xsl:stylesheet>

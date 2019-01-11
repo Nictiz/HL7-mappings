@@ -16,7 +16,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <!--    <xsl:include href="../hl7/2_hl7_hl7_include.xsl"/>-->
     
     <!-- addEnding checks baseString if it ends in endString, and if not adds it at the end. -->
-    <xsl:function name="nf:addEnding">
+    <!-- moved function nf:addEnding to 2_hl7_hl7_include.xsl -->
+  <!--  <xsl:function name="nf:addEnding">
         <xsl:param name="baseString"/>
         <xsl:param name="endString"/>        
         
@@ -29,7 +30,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-	<!-- name person NL - generic -->
+-->	
+    <!-- name person NL - generic -->
 	    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
         <xsl:param name="naamgegevens"/>
         

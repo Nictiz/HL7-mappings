@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/C:/SVN/art_decor/branches/mp-qual-20180426T140905/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<PVMV_IN932000NL01 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="urn:hl7-org:v3"
+                   xmlns:cda="urn:hl7-org:v3"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:sdtc="urn:hl7-org:sdtc"
+                   xmlns:hl7nl="urn:hl7-nl:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:pharm="urn:ihe:pharm:medication"
+                   xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/art_decor/branches/mp-vzvz-20180209T133209/schemas/PVMV_IN932000NL01.xsd">
+   <id extension="20180619122555559" root="2.16.840.1.113883.2.4.6.6.9999.1"/>
+   <creationTime value="20180619122555"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="PVMV_IN932000NL01" root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <receiver>
+      <device>
+         <id extension="70000003" root="2.16.840.1.113883.2.4.6.6"/>
+         <name>Parasoft op de POC</name>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="30" root="2.16.840.1.113883.2.4.6.6"/>
+         <name>Testsysteem van Arianne</name>
+      </device>
+   </sender>
+   <ControlActProcess moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id extension="30" root="2.16.840.1.113883.2.4.6.6"/>
+               <id root="2.16.528.1.1007.3.2" extension="123412345"/>
+               <Organization>
+                  <id root="2.16.528.1.1007.3.3" extension="00765332"/>
+                  <name>Huisartspraktijk van Beek</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <overseer typeCode="RESP">
+         <AssignedPerson>
+            <id extension="123456798" root="2.16.528.1.1007.3.1"/>
+            <id extension="12365487" root="2.16.840.1.113883.2.4.6.1"/>
+            <code code="01.046"
+                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                  displayName="Huisarts"/>
+            <assignedPrincipalChoiceList>
+               <assignedPerson>
+                  <name>Peter van den Broek</name>
+               </assignedPerson>
+            </assignedPrincipalChoiceList>
+            <Organization>
+               <id extension="2BFilledWithRealValue" root="2.16.840.1.113883.2.4.3.11.21"/>
+               <id extension="12346548" root="2.16.528.1.1007.3.3"/>
+               <code code="V4"
+                     codeSystem="2.16.840.1.113883.2.4.15.1060"
+                     displayName="Ziekenhuis"/>
+               <name>Ziekenhuis X</name>
+               <addr>
+                  <city>Lutjebroek</city>
+               </addr>
+            </Organization>
+         </AssignedPerson>
+      </overseer>
+      <subject>
+         <ClinicalDocument>
+            <realmCode code="NL"/>
+            <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9219"/>
+            <id extension="someUniqueID"
+                root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9217.1.2.3.999"/>
+            <code code="52981000146104"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="SNOMED CT"
+                  displayName="Medication section (record artifact)"/>
+            <title>Voorschrift A. XXX_Gonesh op 23 juni 2016</title>
+            <effectiveTime value="20160623141518"/>
+            <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
+            <languageCode code="nl-NL"/>
+            <recordTarget xmlns:nf="http://www.nictiz.nl/functions">
+               <patientRole>
+                  <id extension="999911521" root="2.16.840.1.113883.2.4.6.3"/>
+                  <patient>
+                     <name>
+                        <given qualifier="IN">A.</given>
+                        <family qualifier="BR">XXX_Gonesh</family>
+                     </name>
+                     <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+                     <birthTime value="19640802"/>
+                  </patient>
+               </patientRole>
+            </recordTarget>
+            <author>
+               <time value="20160613080000"/>
+               <assignedAuthor><!--identificatie-->
+                  <id extension="006797896" root="2.16.528.1.1007.3.1"/>
+                  <!--specialisme-->
+                  <code code="01.016"
+                        displayName="Internist"
+                        codeSystem="2.16.840.1.113883.2.4.15.111"
+                        codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                  <assignedPerson><!--Naam-->
+                     <name>
+                        <given qualifier="IN">J.</given>
+                        <prefix qualifier="VV">van </prefix>
+                        <family>Beek</family>
+                     </name>
+                  </assignedPerson>
+                  <!--Zorgaanbieder-->
+                  <representedOrganization><!--Zorgaanbieder identificatie-->
+                     <id root="1.2.3.4" extension="URAnummer"/>
+                     <name>Ziekenhuis zus en zo</name>
+                  </representedOrganization>
+               </assignedAuthor>
+            </author>
+            <custodian>
+               <assignedCustodian>
+                  <representedCustodianOrganization>
+                     <id root="1.2.3.4" extension="URAnummer"/>
+                     <name>Ziekenhuis zus en zo</name>
+                  </representedCustodianOrganization>
+               </assignedCustodian>
+            </custodian>
+            <component>
+               <structuredBody>
+                  <component>
+                     <section>
+                        <text>Medicatiegegevens.</text>
+                        <entry>
+                           <substanceAdministration xmlns:nf="http://www.nictiz.nl/functions"
+                                                    classCode="SBADM"
+                                                    moodCode="RQO">
+                              <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9216"/>
+                              <id extension="POC_T1_MAVV_Scen3_MBH1_MA1" root="1.2.3.999"/>
+                              <code code="16076005"
+                                    displayName="Medicatieafspraak"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"/>
+                              <text mediaType="text/plain">bij een aanval 1 maal daags 1 tablet</text>
+                              <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="Oraal"/>
+                              <consumable>
+                                 <manufacturedProduct classCode="MANU">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
+                                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                       <code code="50520"
+                                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                                             displayName="RIZATRIPTAN SMELTTABLET 10MG"/>
+                                    </manufacturedMaterial>
+                                 </manufacturedProduct>
+                              </consumable>
+                              <author>
+                                 <time value="20180406000000"/>
+                                 <assignedAuthor>
+                                    <id extension="123456789" root="2.16.528.1.1007.3.1"/>
+                                    <code code="01.015"
+                                          codeSystem="2.16.840.1.113883.2.4.15.111"
+                                          displayName="Huisarts"/>
+                                    <assignedPerson>
+                                       <name>
+                                          <given qualifier="BR">zelf gekozen voornaam</given>
+                                          <family qualifier="BR">zelf gekozen achternaam</family>
+                                       </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                       <id extension="12345678" root="2.16.528.1.1007.3.1"/>
+                                       <name>Huisartsenpraktijk Zelf Gekozen</name>
+                                    </representedOrganization>
+                                 </assignedAuthor>
+                              </author>
+                              <entryRelationship typeCode="COMP">
+                                 <sequenceNumber value="1"/>
+                                 <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                                    <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                                       <hl7nl:frequency>
+                                          <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                                          <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                                       </hl7nl:frequency>
+                                    </effectiveTime>
+                                    <doseQuantity>
+                                       <center value="1" unit="1">
+                                          <translation value="1"
+                                                       code="245"
+                                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                                       displayName="stuk"/>
+                                       </center>
+                                    </doseQuantity>
+                                    <consumable xsi:nil="true"/>
+                                    <precondition>
+                                       <criterion>
+                                          <code code="1022"
+                                                codeSystem="2.16.840.1.113883.2.4.4.5"
+                                                displayName="bij een aanval"/>
+                                       </criterion>
+                                    </precondition>
+                                 </substanceAdministration>
+                              </entryRelationship>
+                              <entryRelationship typeCode="COMP" inversionInd="true">
+                                 <procedure classCode="PROC" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                    <id root="1.2.3.999" extension="POC_T1_MAVV_Scen3_MBH1"/>
+                                    <code code="1"
+                                          displayName="Medicamenteuze behandeling"
+                                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                                 </procedure>
+                              </entryRelationship>
+                           </substanceAdministration>
+                        </entry>
+                        <entry>
+                           <supply xmlns:nf="http://www.nictiz.nl/functions"
+                                   classCode="SPLY"
+                                   moodCode="RQO">
+                              <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9231"/>
+                              <id extension="POC_T1_MAVV_Scen3_MBH1_VV1" root="1.2.3.999"/>
+                              <code codeSystemName="SNOMED CT"
+                                    displayName="Verstrekkingsverzoek"
+                                    code="52711000146108"
+                                    codeSystem="2.16.840.1.113883.6.96"/>
+                              <quantity value="6" unit="1">
+                                 <translation value="6"
+                                              code="245"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                              displayName="stuk"/>
+                              </quantity>
+                              <product>
+                                 <manufacturedProduct classCode="MANU">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9070"/>
+                                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                       <code code="50520"
+                                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                                             displayName="RIZATRIPTAN SMELTTABLET 10MG"/>
+                                    </manufacturedMaterial>
+                                 </manufacturedProduct>
+                              </product>
+                              <performer>
+                                 <assignedEntity>
+                                    <id nullFlavor="NI"/>
+                                    <representedOrganization>
+                                       <id extension="11111111" root="2.16.528.1.1007.3.3"/>
+                                       <name>Apotheker Zelf Verzonnen</name>
+                                    </representedOrganization>
+                                 </assignedEntity>
+                              </performer>
+                              <author>
+                                 <time value="20180406000000"/>
+                                 <assignedAuthor>
+                                    <id extension="123456789" root="2.16.528.1.1007.3.1"/>
+                                    <code code="01.015"
+                                          codeSystem="2.16.840.1.113883.2.4.15.111"
+                                          displayName="Huisarts"/>
+                                    <assignedPerson>
+                                       <name>
+                                          <given qualifier="BR">zelf gekozen voornaam</given>
+                                          <family qualifier="BR">zelf gekozen achternaam</family>
+                                       </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                       <id extension="12345678" root="2.16.528.1.1007.3.3"/>
+                                       <name>Huisartsenpraktijk Zelf Gekozen</name>
+                                    </representedOrganization>
+                                 </assignedAuthor>
+                              </author>
+                              <entryRelationship typeCode="REFR">
+                                 <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                                    <id extension="POC_T1_MAVV_Scen3_MBH1_MA1" root="1.2.3.999"/>
+                                    <code code="16076005"
+                                          codeSystem="2.16.840.1.113883.6.96"
+                                          codeSystemName="SNOMED CT"
+                                          displayName="Medicatieafspraak"/>
+                                    <consumable xsi:nil="true"/>
+                                 </substanceAdministration>
+                              </entryRelationship>
+                              <entryRelationship typeCode="COMP" inversionInd="true">
+                                 <procedure classCode="PROC" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                    <id root="1.2.3.999" extension="POC_T1_MAVV_Scen3_MBH1"/>
+                                    <code code="1"
+                                          displayName="Medicamenteuze behandeling"
+                                          codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                                 </procedure>
+                              </entryRelationship>
+                           </supply>
+                        </entry>
+                     </section>
+                  </component>
+               </structuredBody>
+            </component>
+         </ClinicalDocument>
+      </subject>
+   </ControlActProcess>
+</PVMV_IN932000NL01>

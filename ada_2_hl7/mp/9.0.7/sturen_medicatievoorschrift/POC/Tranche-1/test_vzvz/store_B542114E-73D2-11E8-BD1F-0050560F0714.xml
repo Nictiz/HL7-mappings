@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+		<PORX_IN932000NL xmlns="urn:hl7-org:v3">
+			<id extension="6" root="2.16.840.1.113883.2.4.6.6.1043251.1.1"/>
+			<creationTime value="20180619050858"/>
+			<versionCode code="NICTIZEd2005-Okt"/>
+			<interactionId extension="PORX_IN932000NL" root="2.16.840.1.113883.1.6"/>
+			<profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+			<processingCode code="P"/>
+			<processingModeCode code="T"/>
+			<acceptAckCode code="AL"/>
+			<attentionLine>
+				<keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+				<value extension="999910413" root="2.16.840.1.113883.2.4.6.3" xsi:type="II"/>
+			</attentionLine>
+			<receiver>
+				<device>
+					<id extension="90000082" root="2.16.840.1.113883.2.4.6.6"/>
+				</device>
+			</receiver>
+			<sender>
+				<device>
+					<id extension="70000003" root="2.16.840.1.113883.2.4.6.6"/>
+				</device>
+			</sender>
+			<ControlActProcess moodCode="EVN">
+				<authorOrPerformer typeCode="AUT">
+					<participant>
+						<AssignedDevice>
+							<id extension="900017439" root="2.16.528.1.1007.3.2"/>
+							<Organization>
+								<id extension="00002727" root="2.16.528.1.1007.3.3"/>
+								<name>Test Pong organisatie</name>
+							</Organization>
+						</AssignedDevice>
+					</participant>
+				</authorOrPerformer>
+				<overseer typeCode="RESP">
+					<AssignedPerson>
+						<id extension="900001234" root="2.16.528.1.1007.3.1"/>
+						<id extension="01043251" root="2.16.840.1.113883.2.4.6.1"/>
+						<code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+						<assignedPrincipalChoiceList>
+							<assignedPerson>
+								<name>
+									<given qualifier="IN">R.</given>
+									<family>Jansen</family>
+								</name>
+							</assignedPerson>
+						</assignedPrincipalChoiceList>
+						<Organization>
+							<id extension="00002727" root="2.16.528.1.1007.3.3"/>
+							<id extension="01043251" root="2.16.840.1.113883.2.4.6.1"/>
+							<code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartsenpraktijk, inclusief zelfstandige Huisartsen"/>
+							<name>Huisartspraktijk Jansen</name>
+							<addr>
+								<city>Jansenhuizen</city>
+							</addr>
+						</Organization>
+					</AssignedPerson>
+				</overseer>
+				<subject xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+					<prescription classCode="SBADM" moodCode="RQO">
+						<id extension="POC_T1_MAVV_Scen1_MBH1_VV1" root="1.2.3.999"/>
+						<statusCode code="active"/>
+						<subject typeCode="SBJ">
+							<Patient>
+								<id extension="999910413" root="2.16.840.1.113883.2.4.6.3"/>
+								<statusCode code="active"/>
+								<Person>
+									<name>
+										<given qualifier="IN">L.</given>
+										<family qualifier="BR">XXX_Querens</family>
+									</name>
+									<administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+									<birthTime value="19540803"/>
+									<multipleBirthInd value="false"/>
+								</Person>
+							</Patient>
+						</subject>
+						<author typeCode="AUT">
+							<time value="20180406000000"/>
+							<AssignedPerson classCode="ASSIGNED">
+								<id extension="123456789" root="2.16.528.1.1007.3.1"/>
+								<code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+								<assignee>
+									<assigneePerson classCode="PSN" determinerCode="INSTANCE">
+										<name>
+											<given qualifier="BR">zelf gekozen voornaam</given>
+											<family qualifier="BR">zelf gekozen achternaam</family>
+										</name>
+									</assigneePerson>
+								</assignee>
+								<!--The message template (9043) incorrectly defines representedOrganization, however the xsd only accepts Organization-->
+								<!--Closed warnings schematron messages for this element should be ignored.-->
+								<Organization classCode="ORG" determinerCode="INSTANCE">
+									<id extension="12345678" root="2.16.528.1.1007.3.3"/>
+									<name>Huisartsenpraktijk Zelf Gekozen</name>
+								</Organization>
+							</AssignedPerson>
+						</author>
+						<directTarget typeCode="DIR">
+							<prescribedMedication>
+								<MedicationKind classCode="MMAT" determinerCode="KIND">
+									<code code="5479" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="NITROFURANTOINE CAPSULE 100MG"/>
+								</MedicationKind>
+								<productOf>
+									<medicationDispenseRequest>
+										<id extension="POC_T1_MAVV_Scen1_MBH1_VV1" root="1.2.3.999"/>
+										<statusCode nullFlavor="NA"/>
+										<quantity unit="1" value="10">
+											<translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk" value="10"/>
+										</quantity>
+										<performer typeCode="PRF">
+											<assignedPerson>
+												<representedOrganization>
+													<id extension="11111111" root="2.16.528.1.1007.3.3"/>
+													<name>Apotheker Zelf Verzonnen</name>
+												</representedOrganization>
+											</assignedPerson>
+										</performer>
+									</medicationDispenseRequest>
+								</productOf>
+								<therapeuticAgentOf>
+									<medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+										<text>Vanaf 6 april 2018 gedurende 5 dagen 2 maal daags 1 capsule</text>
+										<statusCode code="active"/>
+										<effectiveTime xsi:type="SXPR_TS">
+											<comp xsi:type="IVL_TS">
+												<low value="20180406000000"/>
+												<width unit="d" value="5"/>
+											</comp>
+											<comp operator="A" xsi:type="PIVL_TS">
+												<period unit="d" value="0.5"/>
+											</comp>
+										</effectiveTime>
+										<routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="Oraal"/>
+										<doseQuantity>
+											<center unit="1" value="1">
+												<translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk" value="1"/>
+											</center>
+										</doseQuantity>
+									</medicationAdministrationRequest>
+								</therapeuticAgentOf>
+							</prescribedMedication>
+						</directTarget>
+					</prescription>
+				</subject>
+			</ControlActProcess>
+		</PORX_IN932000NL>
