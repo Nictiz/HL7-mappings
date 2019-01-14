@@ -18,7 +18,8 @@
     <xsl:param name="adaReleaseFile" select="document('../../../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.148</xsl:param>
 
-    <xsl:param name="do-ada-files" select="true()"/>
+    <!-- do all ada files in a certain dir (true()) or take the default input file from the conversion scenario (false()) -->
+    <xsl:param name="do-ada-files" select="false()"/>
     <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
 
     <xd:doc>
