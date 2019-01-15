@@ -96,6 +96,9 @@ __NUMBEREDHEADINGS__
             <xsl:value-of select="concat('&lt;section end=MBH_', ./@id, ' /&gt;')"/>
         </xsl:for-each>
         <xsl:value-of select="concat('&lt;section end=MBHS_', $patient-achternaam, ' /&gt;')"/>
+        <xsl:text>
+
+[[Categorie:Kwalificatie]]</xsl:text>
     </xsl:template>
 
 </xsl:stylesheet>

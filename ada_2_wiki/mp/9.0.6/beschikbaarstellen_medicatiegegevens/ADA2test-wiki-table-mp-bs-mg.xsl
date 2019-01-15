@@ -20,7 +20,7 @@
 
     <xsl:param name="do-ada-files" select="true()"/>
 <!--    <xsl:param name="do-ada-files" select="false()"/>-->
-    <xsl:variable name="ada-files" select="collection('./ada_mpver_instance/?select=*.xml')"/>
+    <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
 
     <xd:doc>
         <xd:desc/>
@@ -40,6 +40,9 @@ __NUMBEREDHEADINGS__
                 <xsl:apply-templates select="adaxml/data/*"/>
             </xsl:otherwise>
         </xsl:choose>
+        <xsl:text>
+
+[[Categorie:Kwalificatie]]</xsl:text>
     </xsl:template>
 
 </xsl:stylesheet>
