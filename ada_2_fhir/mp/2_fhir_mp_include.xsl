@@ -1784,6 +1784,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </identifier>
+                        <display value="Verstrekkingsverzoek met identificatie {./@value} in identificerend systeem {./@root}."/>
                     </authorizingPrescription>
                 </xsl:for-each>
                 <xsl:for-each select="./verstrekte_hoeveelheid[.//*[@value]]">
