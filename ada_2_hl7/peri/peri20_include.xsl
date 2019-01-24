@@ -1167,6 +1167,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeTSValueAttr"/>
                 </effectiveTime>
             </xsl:for-each>
+            <!-- MdG: NI als geen datum -->
+            <xsl:if test="not(./voeding_kind_datum)">
+                <effectiveTime nullFlavor="NI"/>
+            </xsl:if>
             <xsl:for-each select="./substantie_voeding_kind">
                 <product typeCode="PRD">
                     <product classCode="ACCESS">
@@ -1307,6 +1311,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
+                    <!-- MdG: NI -->
+                    <xsl:if test="not($vrouw/geboortedatum)">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
+                    </xsl:if>
                     <xsl:for-each select="$vrouw/taalvaardigheid_vrouw_nederlandse_taal">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900727_20120503000000"/>
                     </xsl:for-each>
@@ -1456,13 +1464,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$vrouw/adres/postcode">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000"/>
                 </xsl:for-each>
+                <!-- MdG: NI wanneer geen postcode -->
+                <xsl:if test="not($vrouw/adres/postcode)">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000"/>
+                </xsl:if>
                 <patientPerson classCode="PSN" determinerCode="INSTANCE">
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
+                    <!-- MdG: NI -->
+                    <xsl:if test="not($vrouw/geboortedatum)">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
+                    </xsl:if>
                     <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
                     <!-- Altijd aanroepen, bij geen gegeven maternale_sterfte (0..1 R) in ADA deceasedInd='false' opnemen -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
                     <!--</xsl:for-each>-->
                     <xsl:for-each select="$vrouw/etniciteit">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900033_20091001000000"/>
@@ -1484,10 +1500,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$vrouw/adres/postcode">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000"/>
                 </xsl:for-each>
+                <!-- MdG: NI wanneer geen postcode -->
+                <xsl:if test="not($vrouw/adres/postcode)">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000"/>
+                </xsl:if>
                 <patientPerson classCode="PSN" determinerCode="INSTANCE">
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
+                    <!-- MdG: NI -->
+                    <xsl:if test="not($vrouw/geboortedatum)">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
+                    </xsl:if>
                     <xsl:for-each select="$zwangerschap/maternale_sterfteq">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
                     </xsl:for-each>
@@ -1515,6 +1539,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000">
                         <xsl:with-param name="inputValue" select="$vrouw/geboortedatum/@value"/>
                     </xsl:call-template>
+                    <!-- MdG: NI -->
+                    <xsl:if test="not($vrouw/geboortedatum)">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
+                    </xsl:if>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
                         <xsl:with-param name="inputValue" select="$zwangerschap/maternale_sterfteq/@value"/>
                     </xsl:call-template>
@@ -2113,7 +2141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="observation" select="./type_stollingsprobleem"/>
             <xsl:with-param name="observation_code" select="'64779008'"/>
             <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
-            <xsl:with-param name="observation_displayName" select="'Longaandoening'"/>
+            <xsl:with-param name="observation_displayName" select="'Stollingsprobleem'"/>
         </xsl:call-template>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20141027000000">
@@ -2175,17 +2203,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--Anamnese PRN-->
         <organizer classCode="CONTAINER" moodCode="EVN">
             <code code="417662000" codeSystem="{$oidSNOMEDCT}" displayName="Past history of clinical finding"/>
-            <xsl:for-each select="./onder_behandeling_geweestq">
+            <!--            <xsl:for-each select="./onder_behandeling_geweestq">-->
+            <!-- Als onder behandeling geweest? = Nee, dan alleen dat aangeven en geen anamnese opnemen -->
+            <xsl:if test="./onder_behandeling_geweestq[@value = 'false']">
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20141027000000"/>
                 </component>
-            </xsl:for-each>
-            <xsl:for-each select="./algemene_anamnese">
+                <!--</xsl:for-each>-->
+            </xsl:if>
+            <!-- Bij een algemene anamnese met gegevens erin, 'Onder behandeling geweest?' op ja zetten, anders komt er een HL7 fout op de anamnese,
+            en de anamnese opnemen -->
+            <xsl:if test="algemene_anamnese/*[@value] or algemene_anamnese/*[@code]">
                 <component typeCode="COMP">
-                    <!-- algemene_anamnese -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20141027000000"/>
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="OnderBehandeling" displayName="Onder behandeling (geweest)?" codeSystem="PerinatologyObservations"/>
+                        <value xsi:type="BL" value="true"/>
+                    </observation>
                 </component>
-            </xsl:for-each>
+                <xsl:for-each select="./algemene_anamnese">
+                    <component typeCode="COMP">
+                        <!-- algemene_anamnese -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20141027000000"/>
+                    </component>
+                </xsl:for-each>
+            </xsl:if>
         </organizer>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900964_20141027000000">
@@ -2603,15 +2644,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900984_20141028000000">
         <!-- Pathologie vrouw -->
-        <xsl:call-template name="question_observation">
-            <xsl:with-param name="parent_element_name" select="'component'"/>
-            <xsl:with-param name="question" select="./pathologie_vrouwq"/>
-            <xsl:with-param name="observation" select="./pathologie_vrouw"/>
-            <xsl:with-param name="observation_code" select="'362973001'"/>
-            <xsl:with-param name="observation_effectiveTime" select="./datum"/>
-            <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
-            <xsl:with-param name="observation_displayName" select="'Diagnose postpartum'"/>
-        </xsl:call-template>
+        <xsl:choose>
+            <xsl:when test="./pathologie_vrouwq/@value = 'true' and not(./pathologie_vrouw)">
+                <component typeCode="COMP" contextConductionInd="true">
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                        <code code="362973001" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnose postpartum"/>
+                        <value xsi:type="CE" nullFlavor="NI"/>
+                    </observation>
+                </component>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="question_observation">
+                    <xsl:with-param name="parent_element_name" select="'component'"/>
+                    <xsl:with-param name="question" select="./pathologie_vrouwq"/>
+                    <xsl:with-param name="observation" select="./pathologie_vrouw"/>
+                    <xsl:with-param name="observation_code" select="'362973001'"/>
+                    <xsl:with-param name="observation_effectiveTime" select="./datum"/>
+                    <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
+                    <xsl:with-param name="observation_displayName" select="'Diagnose postpartum'"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900985_20141103113239">
         <!-- Maternaal onderzoek PRN -->
@@ -2910,6 +2963,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20110128000000"/>
                 </outboundRelationship>
             </xsl:for-each>
+            <!-- MdG: null bij geen data -->
+            <xsl:if test="not(./kindspecifieke_uitkomstgegevens/lichamelijk_onderzoek_kind/geboortegewicht)">
+                <outboundRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+                        <value xsi:type="PQ" nullFlavor="NI"/>
+                    </observation>
+                </outboundRelationship>
+            </xsl:if>
             <!-- Item: 40080 - Congenitale afwijkingen -->
             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20141107134642"/>
             <!-- Item: 40080 - Chromosomale afwijkingen -->
@@ -2934,8 +2996,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </outboundRelationship>
             </xsl:for-each>
             <!-- Kindspecifieke kraamzorggegevens -->
-            <xsl:variable name="var_rangnummer_kind" select="./demografische_gegevens/rangnummer_kind/@value"/>
-            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens|kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep">
+            <xsl:variable name="var_rangnummer_kind" select="./ancestor-or-self::*/rangnummer_kind/@value"/>
+            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens | kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep">
                 <xsl:comment>Item: 70010 - Voeding kind</xsl:comment>
                 <outboundRelationship typeCode="COMP" contextConductionInd="true">
                     <!-- Item: 70010 - Voeding kind -->
@@ -3393,10 +3455,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901019_20141107151406">
+        <!-- MdG: null bij geen data -->
+        <xsl:if test="not(./kindspecifieke_uitkomstgegevens/problematiek_kindq) and not(./kindspecifieke_uitkomstgegevens/problematiek_kind)">
+            <outboundRelationship typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN" nullFlavor="NI">
+                    <code code="ProblematiekKind" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Problematiek kind"/>
+                </observation>
+            </outboundRelationship>
+        </xsl:if>
+        <!-- MdG: bij wel problemen is vraag 'ja' -->
+        <xsl:variable name="kindprobq" select="
+                if (not(./kindspecifieke_uitkomstgegevens/problematiek_kindq) and ./kindspecifieke_uitkomstgegevens/problematiek_kind) then
+                    'true'
+                else
+                    ./kindspecifieke_uitkomstgegevens/problematiek_kindq"/>
         <!--Problematiek kind-->
         <xsl:call-template name="question_observation">
             <xsl:with-param name="parent_element_name" select="'outboundRelationship'"/>
-            <xsl:with-param name="question" select="./kindspecifieke_uitkomstgegevens/problematiek_kindq"/>
+            <xsl:with-param name="question" select="$kindprobq"/>
             <xsl:with-param name="observation" select="./kindspecifieke_uitkomstgegevens/problematiek_kind"/>
             <xsl:with-param name="observation_code" select="'ProblematiekKind'"/>
             <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.2.4.4.13'"/>
@@ -3481,7 +3557,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="observation" select="./psychiatrie"/>
             <xsl:with-param name="observation_code" select="'74732009'"/>
             <xsl:with-param name="observation_codeSystem" select="'2.16.840.1.113883.6.96'"/>
-            <xsl:with-param name="observation_displayName" select="'Longaandoening'"/>
+            <xsl:with-param name="observation_displayName" select="'Psychiatrie'"/>
         </xsl:call-template>
     </xsl:template>
     <!-- Assigned Person [peri] -->
@@ -4286,6 +4362,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- Baring Kernset -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440">
+        <!-- Bij 2.3 is dit niet getest! -->
+        <xsl:variable name="var_rangnummer_kind" select="./ancestor-or-self::*/rangnummer_kind/@value"/>
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901102"/>
             <id nullFlavor="NI"/>
@@ -4474,7 +4552,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="../../postnatale_fase/kindspecifieke_gegevens/voeding_kind_groep[voeding_kind_datum | substantie_voeding_kind]">
+            <xsl:for-each select="//postnatale_fase/kindspecifieke_gegevens[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep[voeding_kind_datum | substantie_voeding_kind]">
                 <outboundRelationship typeCode="COMP">
                     <!-- Template :: Voeding kind -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900724_20161206135654"/>

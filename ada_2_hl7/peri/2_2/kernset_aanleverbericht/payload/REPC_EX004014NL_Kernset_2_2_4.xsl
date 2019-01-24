@@ -59,7 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <subject2 typeCode="SUBJ" contextConductionInd="false">
             <CareProvisionEvent classCode="PCPR" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.73"/>
-                <id root="1.2.3.4.5" extension="15951"/>
+                <!-- MdG: Uniek dossiernummer. Root is generieke root+lvrid, binnen lvrid moet dossiernummer uniek zijn. Ditch leading zeros in LVR ID. -->
+                <id root="2.16.840.1.113883.2.4.3.46.10.5.1.{number($zorgverlenerzorginstelling/zorginstelling/zorginstelling_lvrid/@value)}" extension="{$zwangerschap/dossiernummer/@value}"/>
                 <effectiveTime>
                     <xsl:for-each select="$zorgverlening/datum_start_zorgverantwoordelijkheid">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900115_20120902000000"/>
@@ -88,6 +89,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900118_20150113174631"/>
                     </pertinentInformation3>
                 </xsl:for-each>
+                <!-- MdG NI bij geen informatie -->
+                <xsl:if test="not($zorgverlening/eindverantwoordelijk_in_welke_perinatale_periodeq)">
+                    <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <code code="Rpp" codeSystem="2.16.840.1.113883.2.4.4.13"/>
+                            <value xsi:type="CE" nullFlavor="NI"/>
+                        </observation>
+                    </pertinentInformation3>
+                </xsl:if>
                 <!-- Conclusie risicostatus na intake -->
                 <xsl:for-each select="$zorgverlening/conclusie_risicostatus_na_intake">
                     <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
