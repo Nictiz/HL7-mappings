@@ -1888,7 +1888,7 @@
          <xs:element name="demografische_gegevens"
                      type="demografische_gegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_80696"
                      minOccurs="0"
-                     maxOccurs="unbounded"/>
+                     maxOccurs="1"/>
          <xs:element name="kindspecifieke_gegevens_vorige_uitkomsten-start"
                      minOccurs="0"
                      maxOccurs="1">
@@ -3800,6 +3800,16 @@
          <xs:documentation>Type for concept group: Kindspecifieke gegevens</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="rangnummer_kind-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.40025"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="rangnummer_kind"
+                     type="rangnummer_kind_type_1_2_3_4_5_12345_40025"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="voeding_kind_groep-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.70009"/>
@@ -3855,10 +3865,16 @@
       </xs:attribute>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Datum start zorgverantwoordelijkheid: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Datum start zorgverantwoordelijkheid: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="datum_start_zorgverantwoordelijkheid_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20290">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string">
+         <xs:annotation>
+            <xs:documentation>@conformance='M'</xs:documentation>
+         </xs:annotation>
+         <xs:minLength value="1"/>
+         <xs:pattern value=".*[^\s].*"/>
+      </xs:restriction>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Datum einde zorgverantwoordelijkheid - 0..1 R</xs:documentation>
@@ -3870,12 +3886,13 @@
             <xs:union memberTypes="datum_einde_zorgverantwoordelijkheid_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20340 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Datum einde zorgverantwoordelijkheid: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Datum einde zorgverantwoordelijkheid: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="datum_einde_zorgverantwoordelijkheid_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20340">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Eindverantwoordelijk in welke perinatale periode? - 1..* M</xs:documentation>
@@ -3890,6 +3907,8 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Conclusie risicostatus na intake - 0..1 R</xs:documentation>
@@ -3903,9 +3922,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem"
-                    type="xs:string"
-                    fixed="2.16.840.1.113883.2.4.4.13.26"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Datum verwijzing - 0..1 R</xs:documentation>
@@ -3917,12 +3937,13 @@
             <xs:union memberTypes="datum_verwijzing_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82013 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Datum verwijzing: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Datum verwijzing: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="datum_verwijzing_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82013">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ZorgaanbiederIdentificatieNummer - 0..* C</xs:documentation>
@@ -3935,6 +3956,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Specialisme - 0..1 R</xs:documentation>
@@ -3949,6 +3971,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ZorgaanbiederIdentificatieNummer - 0..* C</xs:documentation>
@@ -3961,6 +3986,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Specialisme - 0..1 R</xs:documentation>
@@ -3975,6 +4001,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type verwijzing - 0..1 C</xs:documentation>
@@ -3989,6 +4018,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Auto-immuun aandoening - 0..1 R</xs:documentation>
@@ -4003,6 +4035,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Cardiovasculaire aandoening - 0..1 R</xs:documentation>
@@ -4017,6 +4052,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Urogenitale aandoening - 0..1 R</xs:documentation>
@@ -4030,7 +4068,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Oncologische aandoening - 0..1 R</xs:documentation>
@@ -4045,6 +4086,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Schildklier aandoening - 0..1 R</xs:documentation>
@@ -4058,7 +4102,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Diabetes mellitus? - 0..1 R</xs:documentation>
@@ -4094,6 +4141,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Neurologische aandoening - 0..1 R</xs:documentation>
@@ -4108,6 +4156,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Infectieziekte - 0..1 R</xs:documentation>
@@ -4122,6 +4173,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: MDL aandoening - 0..1 R</xs:documentation>
@@ -4135,7 +4189,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Anemie - 0..1 R</xs:documentation>
@@ -4149,7 +4206,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Longaandoening - 0..1 R</xs:documentation>
@@ -4164,6 +4224,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Gynaecologische aandoening - 0..1 R</xs:documentation>
@@ -4178,6 +4241,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Orthopedische afwijking - 0..1 R</xs:documentation>
@@ -4192,6 +4258,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Bloedtransfusie? - 0..1 R</xs:documentation>
@@ -4227,6 +4296,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Transfusiereactie? - 0..1 R</xs:documentation>
@@ -4262,6 +4332,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type operatie - 0..1 R</xs:documentation>
@@ -4276,6 +4347,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type stollingsprobleem - 0..1 R</xs:documentation>
@@ -4290,6 +4364,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Psychiatrie? - 0..1 R</xs:documentation>
@@ -4325,6 +4402,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Overige aandoening? - 0..1 R</xs:documentation>
@@ -4360,6 +4438,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Gynaecologische aandoening - 0..1 R</xs:documentation>
@@ -4374,6 +4453,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Bloedverlies? - 0..1 R</xs:documentation>
@@ -4409,6 +4491,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Partiële mola? - 0..1 R</xs:documentation>
@@ -4444,6 +4527,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Cervixinsufficiëntie? - 0..1 R</xs:documentation>
@@ -4479,6 +4563,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Infectie - 0..1 R</xs:documentation>
@@ -4493,6 +4578,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hyperemesis gravidarum? - 0..1 R</xs:documentation>
@@ -4528,6 +4616,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hypertensieve aandoening - 0..1 R</xs:documentation>
@@ -4541,7 +4630,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Zwangerschapscholestase? - 0..1 R</xs:documentation>
@@ -4577,6 +4669,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Diabetes gravidarum met insuline? - 0..1 R</xs:documentation>
@@ -4612,6 +4705,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Afwijkende groei foetus - 0..1 R</xs:documentation>
@@ -4626,6 +4720,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Dreigende partus immaturus? - 0..1 R</xs:documentation>
@@ -4661,6 +4758,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Dreigende partus prematurus? - 0..1 R</xs:documentation>
@@ -4696,6 +4794,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Abruptio placentae? - 0..1 R</xs:documentation>
@@ -4731,6 +4830,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Fluxus postpartum? - 0..1 R</xs:documentation>
@@ -4766,6 +4866,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Gynaecologische aandoening - 0..1 R</xs:documentation>
@@ -4780,6 +4881,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Bloedverlies? - 0..1 R</xs:documentation>
@@ -4815,6 +4919,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Partiële mola? - 0..1 R</xs:documentation>
@@ -4850,6 +4955,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Cervixinsufficiëntie? - 0..1 R</xs:documentation>
@@ -4885,6 +4991,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Infectie - 0..1 R</xs:documentation>
@@ -4899,6 +5006,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hyperemesis gravidarum? - 0..1 R</xs:documentation>
@@ -4934,6 +5044,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hypertensieve aandoening - 0..1 R</xs:documentation>
@@ -4947,7 +5058,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Zwangerschapscholestase? - 0..1 R</xs:documentation>
@@ -4983,6 +5097,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Diabetes gravidarum met insuline? - 0..1 R</xs:documentation>
@@ -5018,6 +5133,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Afwijkende groei foetus - 0..1 R</xs:documentation>
@@ -5032,6 +5148,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Dreigende partus immaturus? - 0..1 R</xs:documentation>
@@ -5067,6 +5186,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Dreigende partus prematurus? - 0..1 R</xs:documentation>
@@ -5102,6 +5222,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Abruptio placentae? - 0..1 R</xs:documentation>
@@ -5137,6 +5258,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Navelstrengprolaps? - 0..1 R</xs:documentation>
@@ -5172,6 +5294,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Liggingsafwijking - 0..1 R</xs:documentation>
@@ -5186,6 +5309,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vermoeden intra-uteriene vruchtdood? - 0..1 R</xs:documentation>
@@ -5221,6 +5347,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Einde zwangerschap - 0..1 R</xs:documentation>
@@ -5235,6 +5362,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: PPROM? - 0..1 R</xs:documentation>
@@ -5270,6 +5400,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: PROM? - 0..1 R</xs:documentation>
@@ -5305,6 +5436,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Koorts? - 0..1 R</xs:documentation>
@@ -5340,6 +5472,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Niet vorderende ontsluiting? - 0..1 R</xs:documentation>
@@ -5375,6 +5508,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Niet vorderende uitdrijving? - 0..1 R</xs:documentation>
@@ -5410,6 +5544,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Verdenking foetale nood? - 0..1 R</xs:documentation>
@@ -5445,6 +5580,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vermoeden intra-uteriene vruchtdood? - 0..1 R</xs:documentation>
@@ -5480,6 +5616,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vastzittende placenta? - 0..1 R</xs:documentation>
@@ -5515,6 +5652,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Conditie perineum postpartum - 0..1 R</xs:documentation>
@@ -5550,6 +5688,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Fluxus postpartum? - 0..1 R</xs:documentation>
@@ -5585,6 +5724,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Pathologie vrouw - 0..1 R</xs:documentation>
@@ -5599,6 +5739,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Overig - 0..1 R</xs:documentation>
@@ -5610,6 +5753,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Van 2e naar 3e lijn - 0..1 R</xs:documentation>
@@ -5621,7 +5765,8 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      </xs:complexType>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Van 2e naar 1e lijn - 0..1 R</xs:documentation>
    </xs:annotation>
@@ -5635,6 +5780,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Van 3e naar 2e lijn - 0..1 R</xs:documentation>
@@ -5649,6 +5797,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Perinatale periode - 0..1 R</xs:documentation>
@@ -5663,6 +5814,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Zorginstelling AGB-ID - 0..1 R</xs:documentation>
@@ -5675,6 +5829,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Zorginstelling AGB-ID: identifier</xs:documentation>
@@ -5696,6 +5851,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Zorginstelling LVR-ID: identifier</xs:documentation>
@@ -5717,6 +5873,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Burgerservicenummer: identifier</xs:documentation>
@@ -5738,6 +5895,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geboortedatum - 0..1 R</xs:documentation>
@@ -5749,12 +5907,13 @@
             <xs:union memberTypes="geboortedatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_10040 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Geboortedatum: date</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Geboortedatum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="geboortedatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_10040">
-      <xs:restriction base="xs:date"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Postcode - 0..1 C</xs:documentation>
@@ -5766,6 +5925,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Etniciteit - 0..1 R</xs:documentation>
@@ -5780,6 +5940,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Onder behandeling (geweest)? - 0..1 R</xs:documentation>
@@ -5815,6 +5978,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Auto-immuun aandoening - 0..* R</xs:documentation>
@@ -5829,6 +5993,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Cardiovasculaire aandoening - 0..* R</xs:documentation>
@@ -5843,6 +6010,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Urogenitale aandoening - 0..* R</xs:documentation>
@@ -5856,7 +6026,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Oncologische aandoening - 0..* R</xs:documentation>
@@ -5871,6 +6044,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Schildklier aandoening - 0..1 R</xs:documentation>
@@ -5884,7 +6060,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Diabetes mellitus? - 0..1 R</xs:documentation>
@@ -5920,6 +6099,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Neurologische aandoening - 0..* R</xs:documentation>
@@ -5934,6 +6114,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Infectieziekte - 0..* R</xs:documentation>
@@ -5948,6 +6131,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: MDL aandoening - 0..* R</xs:documentation>
@@ -5961,7 +6147,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Anemie - 0..* R</xs:documentation>
@@ -5975,7 +6164,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Longaandoening - 0..* R</xs:documentation>
@@ -5990,6 +6182,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Gynaecologische aandoening - 0..* R</xs:documentation>
@@ -6004,6 +6199,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Orthopedische afwijking - 0..* R</xs:documentation>
@@ -6018,6 +6216,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Bloedtransfusie? - 0..1 R</xs:documentation>
@@ -6053,6 +6254,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Transfusiereactie? - 0..1 R</xs:documentation>
@@ -6088,6 +6290,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type operatie - 0..* R</xs:documentation>
@@ -6102,6 +6305,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type stollingsprobleem - 0..* R</xs:documentation>
@@ -6116,6 +6322,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Psychiatrie? - 0..1 R</xs:documentation>
@@ -6151,6 +6360,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Overige aandoening? - 0..1 R</xs:documentation>
@@ -6186,6 +6396,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Overige aandoening - 0..* C</xs:documentation>
@@ -6197,6 +6408,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Lengte (gemeten) - 0..1 R</xs:documentation>
@@ -6215,6 +6427,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Lengte (gemeten): quantity</xs:documentation>
@@ -6259,6 +6472,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type vrouwelijke genitale verminking - 0..1 C</xs:documentation>
@@ -6273,6 +6487,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Wijze einde zwangerschap - 0..1 R</xs:documentation>
@@ -6287,6 +6504,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Definitieve à terme datum - 0..1 R</xs:documentation>
@@ -6298,12 +6518,13 @@
             <xs:union memberTypes="definitieve_a_terme_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82337 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Definitieve à terme datum: date</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Definitieve à terme datum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="definitieve_a_terme_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82337">
-      <xs:restriction base="xs:date"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Gynaecologische aandoening - 0..1 R</xs:documentation>
@@ -6318,6 +6539,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Bloedverlies? - 0..1 R</xs:documentation>
@@ -6353,6 +6577,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Cervixinsufficiëntie? - 0..1 R</xs:documentation>
@@ -6388,6 +6613,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Infectie - 0..1 R</xs:documentation>
@@ -6402,6 +6628,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hyperemesis gravidarum? - 0..1 R</xs:documentation>
@@ -6437,6 +6666,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hypertensieve aandoening - 0..1 R</xs:documentation>
@@ -6450,7 +6680,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Zwangerschapscholestase? - 0..1 R</xs:documentation>
@@ -6486,6 +6719,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Diabetes gravidarum met insuline? - 0..1 R</xs:documentation>
@@ -6521,6 +6755,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Afwijkende groei foetus - 0..1 R</xs:documentation>
@@ -6535,6 +6770,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Dreigende partus immaturus? - 0..1 R</xs:documentation>
@@ -6570,6 +6808,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Dreigende partus prematurus? - 0..1 R</xs:documentation>
@@ -6605,6 +6844,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Abruptio placentae? - 0..1 R</xs:documentation>
@@ -6640,6 +6880,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Irregulaire antistoffen? - 0..1 R</xs:documentation>
@@ -6675,6 +6916,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geboorte placenta - 0..1 R</xs:documentation>
@@ -6689,6 +6931,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hoeveelheid bloedverlies - 0..1 R</xs:documentation>
@@ -6707,6 +6952,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Hoeveelheid bloedverlies: quantity</xs:documentation>
@@ -6724,12 +6970,13 @@
             <xs:union memberTypes="geboortedatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_80702 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Geboortedatum: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Geboortedatum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="geboortedatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_80702">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type partus - 0..1 R</xs:documentation>
@@ -6744,6 +6991,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Percentiel van het geboortegewicht - 0..1 R</xs:documentation>
@@ -6758,6 +7008,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Apgarscore na 5 min. - 0..1 R</xs:documentation>
@@ -6769,6 +7022,7 @@
             <xs:union memberTypes="apgarscore_na_5_min_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_10606 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Apgarscore na 5 min.: count</xs:documentation>
@@ -6813,6 +7067,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Chromosomale afwijkingen? - 0..1 R</xs:documentation>
@@ -6848,6 +7103,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Graviditeit - 0..1 R</xs:documentation>
@@ -6859,6 +7115,7 @@
             <xs:union memberTypes="graviditeit_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20010 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Graviditeit: count</xs:documentation>
@@ -6879,6 +7136,7 @@
             <xs:union memberTypes="pariteit_voor_deze_zwangerschap_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20150 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Pariteit (vóór deze zwangerschap): count</xs:documentation>
@@ -6899,12 +7157,13 @@
             <xs:union memberTypes="definitieve_a_terme_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82160 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Definitieve à terme datum: date</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Definitieve à terme datum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="definitieve_a_terme_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82160">
-      <xs:restriction base="xs:date"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Voorgenomen plaats baring tijdens zwangerschap (type locatie) - 0..1 R</xs:documentation>
@@ -6919,6 +7178,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Datum controle - 1..1 R</xs:documentation>
@@ -6930,12 +7192,13 @@
             <xs:union memberTypes="datum_controle_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_80737 "/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Datum controle: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Datum controle: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="datum_controle_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_80737">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Zwangerschapsduur - 0..1 R</xs:documentation>
@@ -6954,6 +7217,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Zwangerschapsduur: quantity</xs:documentation>
@@ -6973,7 +7237,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Rookgedrag - 0..1 R</xs:documentation>
@@ -6988,6 +7255,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Alcoholgebruik - 0..1 R</xs:documentation>
@@ -7001,9 +7271,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem"
-                    type="xs:string"
-                    fixed="2.16.840.1.113883.2.4.4.13.59"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Drugsgebruik? - 0..1 R</xs:documentation>
@@ -7039,6 +7310,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Gewicht (gemeten) - 0..1 C</xs:documentation>
@@ -7057,6 +7329,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Gewicht (gemeten): quantity</xs:documentation>
@@ -7077,12 +7350,13 @@
             <xs:union memberTypes="datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82272 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Datum: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Datum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82272">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Zwangerschapsduur - 0..1 R</xs:documentation>
@@ -7101,6 +7375,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Zwangerschapsduur: quantity</xs:documentation>
@@ -7121,6 +7396,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Bloedverlies? - 0..1 R</xs:documentation>
@@ -7156,6 +7434,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Partiële mola? - 0..1 R</xs:documentation>
@@ -7191,6 +7470,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Cervixinsufficiëntie? - 0..1 R</xs:documentation>
@@ -7226,6 +7506,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Infectie - 0..1 R</xs:documentation>
@@ -7240,6 +7521,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hyperemesis gravidarum? - 0..1 R</xs:documentation>
@@ -7275,6 +7559,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hypertensieve aandoening - 0..1 R</xs:documentation>
@@ -7288,7 +7573,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string" fixed="2.16.840.1.113883.6.96"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Zwangerschapscholestase? - 0..1 R</xs:documentation>
@@ -7324,6 +7612,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Diabetes gravidarum met insuline? - 0..1 R</xs:documentation>
@@ -7359,6 +7648,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Afwijkende groei foetus - 0..1 R</xs:documentation>
@@ -7373,6 +7663,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Dreigende partus immaturus? - 0..1 R</xs:documentation>
@@ -7408,6 +7701,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Dreigende partus prematurus? - 0..1 R</xs:documentation>
@@ -7443,6 +7737,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Abruptio placentae? - 0..1 R</xs:documentation>
@@ -7478,6 +7773,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Navelstrengprolaps? - 0..1 R</xs:documentation>
@@ -7513,6 +7809,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Liggingsafwijking - 0..1 R</xs:documentation>
@@ -7527,6 +7824,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vermoeden intra-uteriene vruchtdood? - 1..1 R</xs:documentation>
@@ -7562,6 +7862,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vermoeden iuvd op basis van - 0..1 R</xs:documentation>
@@ -7576,6 +7877,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Intra-uteriene behandeling - 0..* R</xs:documentation>
@@ -7590,6 +7894,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Maternale sterfte? - 0..1 R</xs:documentation>
@@ -7625,6 +7932,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Wijze einde zwangerschap - 0..1 R</xs:documentation>
@@ -7639,6 +7947,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Partusnummer - 0..1 R</xs:documentation>
@@ -7651,6 +7962,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Partusnummer: identifier</xs:documentation>
@@ -7695,6 +8007,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: PROM? - 0..1 R</xs:documentation>
@@ -7730,6 +8043,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Koorts? - 0..1 R</xs:documentation>
@@ -7765,6 +8079,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Niet vorderende ontsluiting? - 0..1 R</xs:documentation>
@@ -7800,6 +8115,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Niet vorderende uitdrijving? - 0..1 R</xs:documentation>
@@ -7835,6 +8151,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Verdenking foetale nood? - 0..1 R</xs:documentation>
@@ -7870,6 +8187,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vermoeden intra-uteriene vruchtdood? - 1..1 R</xs:documentation>
@@ -7905,6 +8223,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vermoeden iuvd op basis van - 0..1 R</xs:documentation>
@@ -7919,6 +8238,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vastzittende placenta? - 0..1 R</xs:documentation>
@@ -7954,6 +8276,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Fluxus postpartum? - 0..1 R</xs:documentation>
@@ -7989,6 +8312,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Aantal geboren kinderen - 0..1 R</xs:documentation>
@@ -8000,6 +8324,7 @@
             <xs:union memberTypes="aantal_geboren_kinderen_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20505 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Aantal geboren kinderen: count</xs:documentation>
@@ -8023,6 +8348,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Interventie begin baring - 0..1 R</xs:documentation>
@@ -8037,6 +8365,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Indicatie interventie begin baring - 0..1 R</xs:documentation>
@@ -8051,6 +8382,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Wijze waarop de baring begon - 0..1 R</xs:documentation>
@@ -8065,6 +8399,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Tijdstip begin actieve ontsluiting - 0..1 R</xs:documentation>
@@ -8076,12 +8413,13 @@
             <xs:union memberTypes="tijdstip_begin_actieve_ontsluiting_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20590 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Tijdstip begin actieve ontsluiting: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Tijdstip begin actieve ontsluiting: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="tijdstip_begin_actieve_ontsluiting_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20590">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Medicatie nageboortetijdperk? - 0..1 R</xs:documentation>
@@ -8117,6 +8455,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Soort medicatie nageboortetijdperk - 0..* C</xs:documentation>
@@ -8131,6 +8470,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geboorte placenta - 0..1 R</xs:documentation>
@@ -8145,6 +8487,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Hoeveelheid bloedverlies - 0..1 R</xs:documentation>
@@ -8163,6 +8508,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Hoeveelheid bloedverlies: quantity</xs:documentation>
@@ -8183,6 +8529,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Werkelijke plaats baring (type locatie) - 0..1 R</xs:documentation>
@@ -8197,6 +8546,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Ziekenhuisnummer (LVR-id) - 0..1 R</xs:documentation>
@@ -8209,6 +8561,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Ziekenhuisnummer (LVR-id): identifier</xs:documentation>
@@ -8230,6 +8583,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geslacht (medische observatie) - 0..1 R</xs:documentation>
@@ -8244,6 +8598,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geboortedatum - 0..1 R</xs:documentation>
@@ -8255,12 +8612,13 @@
             <xs:union memberTypes="geboortedatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_40050 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Geboortedatum: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Geboortedatum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="geboortedatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_40050">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Rangnummer kind - 0..1 R</xs:documentation>
@@ -8272,6 +8630,7 @@
             <xs:union memberTypes="rangnummer_kind_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_40025 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Rangnummer kind: count</xs:documentation>
@@ -8316,6 +8675,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Fase perinatale sterfte - 0..1 C</xs:documentation>
@@ -8330,6 +8690,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Datum/tijd vaststelling perinatale sterfte - 0..1 C</xs:documentation>
@@ -8341,12 +8704,13 @@
             <xs:union memberTypes="datumtijd_vaststelling_perinatale_sterfte_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_40300 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Datum/tijd vaststelling perinatale sterfte: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Datum/tijd vaststelling perinatale sterfte: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="datumtijd_vaststelling_perinatale_sterfte_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_40300">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Bijstimulatie toegediend? - 0..1 R</xs:documentation>
@@ -8382,6 +8746,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Tijdstip breken vliezen - 0..1 R</xs:documentation>
@@ -8393,12 +8758,13 @@
             <xs:union memberTypes="tijdstip_breken_vliezen_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_80619 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Tijdstip breken vliezen: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Tijdstip breken vliezen: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="tijdstip_breken_vliezen_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_80619">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Kleur en consistentie vruchtwater - 0..1 R</xs:documentation>
@@ -8413,6 +8779,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Tijdstip actief meepersen - 0..1 R</xs:documentation>
@@ -8424,12 +8793,13 @@
             <xs:union memberTypes="tijdstip_actief_meepersen_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_30030 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Tijdstip actief meepersen: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Tijdstip actief meepersen: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="tijdstip_actief_meepersen_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_30030">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Episiotomie? - 0..1 R</xs:documentation>
@@ -8465,6 +8835,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Indicatie episiotomie - 0..* R</xs:documentation>
@@ -8479,6 +8850,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Locatie episiotomie - 0..1 R</xs:documentation>
@@ -8493,6 +8867,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Ruggeprik gewenst, niet gekregen? - 0..1 R</xs:documentation>
@@ -8528,6 +8905,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Pijnbestrijding? - 0..1 R</xs:documentation>
@@ -8563,6 +8941,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Methode - 1..1 R</xs:documentation>
@@ -8577,6 +8956,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Middel - 0..1 R</xs:documentation>
@@ -8591,6 +8973,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Toediening - 0..1 R</xs:documentation>
@@ -8605,6 +8990,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Periode - 0..1 R</xs:documentation>
@@ -8618,9 +9006,10 @@
       </xs:attribute>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem"
-                    type="xs:string"
-                    fixed="2.16.840.1.113883.2.4.4.13.60"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Sedatie? - 0..1 R</xs:documentation>
@@ -8656,6 +9045,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type partus - 0..1 R</xs:documentation>
@@ -8670,6 +9060,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Ligging bij geboorte - 0..1 R</xs:documentation>
@@ -8684,6 +9077,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Rol aanpakker kind - 0..1 R</xs:documentation>
@@ -8698,6 +9094,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Rol supervisor - 0..1 R</xs:documentation>
@@ -8712,6 +9111,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Vaginale kunstverlossing - 0..1 R</xs:documentation>
@@ -8726,6 +9128,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Succes vaginale kunstverlossing? - 0..1 R</xs:documentation>
@@ -8761,6 +9166,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Beslismoment sectio caesarea - 0..1 C</xs:documentation>
@@ -8775,6 +9181,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Indicatie primaire sectio - 0..* R</xs:documentation>
@@ -8789,6 +9198,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Indicatie secundaire sectio - 0..* R</xs:documentation>
@@ -8803,6 +9215,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Overige interventies - 0..* R</xs:documentation>
@@ -8817,6 +9232,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Apgarscore na 5 min. - 0..1 R</xs:documentation>
@@ -8828,6 +9246,7 @@
             <xs:union memberTypes="apgarscore_na_5_min_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_40071 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Apgarscore na 5 min.: count</xs:documentation>
@@ -8855,6 +9274,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Geboortegewicht: quantity</xs:documentation>
@@ -8898,6 +9318,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Specificatie congenitale afwijking - 0..1 R</xs:documentation>
@@ -8912,6 +9333,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Chromosomale afwijkingen? - 0..1 R</xs:documentation>
@@ -8947,6 +9371,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Specificatie chromosomale afwijking - 1..1 R</xs:documentation>
@@ -8961,6 +9386,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Problematiek kind? - 0..1 R</xs:documentation>
@@ -8996,6 +9424,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Problematiek kind - 0..* R</xs:documentation>
@@ -9010,6 +9439,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Kinderarts betrokken? - 0..1 R</xs:documentation>
@@ -9045,6 +9477,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Datum betrokkenheid - 0..1 R</xs:documentation>
@@ -9056,12 +9489,13 @@
             <xs:union memberTypes="datum_betrokkenheid_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82122 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Datum betrokkenheid: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Datum betrokkenheid: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="datum_betrokkenheid_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82122">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Reden betrokkenheid - 0..1 R</xs:documentation>
@@ -9076,6 +9510,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Type betrokkenheid - 0..1 R</xs:documentation>
@@ -9090,6 +9527,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Zorginstelling LVR-ID - 0..1 R</xs:documentation>
@@ -9102,6 +9542,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Zorginstelling LVR-ID: identifier</xs:documentation>
@@ -9146,6 +9587,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Welke irregulaire antistoffen vrouw aanwezig. - 0..* R</xs:documentation>
@@ -9160,6 +9602,9 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Datum - 0..1 R</xs:documentation>
@@ -9171,12 +9616,13 @@
             <xs:union memberTypes="datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82298 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Datum: datetime</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Datum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82298">
-      <xs:restriction base="xs:dateTime"/>
+      <xs:restriction base="xs:string"/>
    </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Pathologie vrouw - 0..1 R</xs:documentation>
@@ -9191,7 +9637,31 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Rangnummer kind - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="rangnummer_kind_type_1_2_3_4_5_12345_40025">
+      <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.40025"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:union memberTypes="rangnummer_kind_1_datatype_1_2_3_4_5_12345_40025 empty_string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>simpleType for valueDomain: Rangnummer kind: count</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="rangnummer_kind_1_datatype_1_2_3_4_5_12345_40025">
+      <xs:restriction base="xs:nonNegativeInteger">
+         <xs:minInclusive value="1"/>
+         <xs:maxInclusive value="9"/>
+      </xs:restriction>
+   </xs:simpleType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Voeding kind (datum) - 0..1 R</xs:documentation>
    </xs:annotation>
@@ -9199,9 +9669,10 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.70011"/>
       <xs:attribute name="value">
          <xs:simpleType>
-            <xs:restriction base="xs:date"/>
+            <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Substantie voeding kind - 1..* R</xs:documentation>
@@ -9216,5 +9687,27 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
+   <xs:simpleType name="NullFlavorNoInformation">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="NI"/>
+         <xs:enumeration value="UNK"/>
+         <xs:enumeration value="OTH"/>
+         <xs:enumeration value="MSK"/>
+         <xs:enumeration value="UNC"/>
+         <xs:enumeration value="NA"/>
+         <xs:enumeration value="NAV"/>
+         <xs:enumeration value="ASKU"/>
+         <xs:enumeration value="NASK"/>
+         <xs:enumeration value="INV"/>
+         <xs:enumeration value="DER"/>
+         <xs:enumeration value="NINF"/>
+         <xs:enumeration value="PINF"/>
+         <xs:enumeration value="QS"/>
+         <xs:enumeration value="TRC"/>
+      </xs:restriction>
+   </xs:simpleType>
 </xs:schema>
