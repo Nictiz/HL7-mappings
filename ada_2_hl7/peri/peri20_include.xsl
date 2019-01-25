@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Burgerservicenummer -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900028_20161219145253">
         <!-- Item(s) :: burgerservicenummer -->
-        <xsl:for-each select="burgerservicenummer">
+        <xsl:for-each select="./burgerservicenummer[@value]">
             <xsl:call-template name="makeII.NL.BSNValue">
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">id</xsl:with-param>
@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Lokale persoonsidentificatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900029_20150204151317">
         <!-- Item(s) :: lokale_persoonsidentificatie -->
-        <xsl:for-each select="lokale_persoonsidentificatie">
+        <xsl:for-each select="lokale_persoonsidentificatie[@value]">
             <xsl:call-template name="makeIIValue">
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">id</xsl:with-param>
@@ -1529,7 +1529,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <subject typeCode="SBJ">
             <patient classCode="PAT">
                 <xsl:for-each select="$vrouw">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900028_20161219145253"/>
+                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900028_20161219145253"/>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900029_20150204151317"/>
                 </xsl:for-each>
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000">
@@ -1585,8 +1585,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <addr>
             <postalCode>
                 <xsl:choose>
-                    <xsl:when test="string-length($inputValue) > 0">
-                        <xsl:value-of select="./@value"/>
+                    <xsl:when test="string-length($inputValue) gt 0">
+                        <xsl:value-of select="$inputValue"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:attribute name="nullFlavor">NI</xsl:attribute>

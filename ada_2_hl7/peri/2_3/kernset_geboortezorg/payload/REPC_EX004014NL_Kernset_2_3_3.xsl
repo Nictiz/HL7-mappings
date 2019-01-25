@@ -62,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <templateId root="2.16.840.1.113883.2.4.6.10.90.76"/>
                 <!-- this ID must be filled by a proper id from the application -->
                 <!-- no corresponding dataset item though.... -->
-                <id root="1.2.3.4.5" extension="{$param_zwangerschap/dossiernummer}"/>
+                <id root="{$param_zwangerschap/dossiernummer/@root}" extension="{$param_zwangerschap/dossiernummer/@value}"/>
                 <effectiveTime>
                     <xsl:for-each select="$param_zorgverlening/datum_start_zorgverantwoordelijkheid">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900115_20120902000000"/>
