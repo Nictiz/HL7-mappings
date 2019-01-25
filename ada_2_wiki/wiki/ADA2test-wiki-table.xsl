@@ -216,18 +216,53 @@ __NUMBEREDHEADINGS__
                 <xsl:element name="gegevenselement" namespace="">
                     <xsl:attribute name="level" select="$level"/>
                     <xsl:attribute name="naam" select="$element-name"/>
-                    <xsl:attribute name="waarde">
-                        <xsl:choose>
-                            <xsl:when test="$value-domain = ('string', 'text', 'count', 'decimal')">
+                    <xsl:attribute name="waarde" select="nf:maak-waarde-basedon-valuedomain(.,$value-domain)">
+<!--                        <xsl:choose>
+                            <xsl:when test="$value-domain = ('string', 'text')">
+                                <!-\- let's check if there is a date in here -\->
+                                <xsl:choose>
+                                    <xsl:when test="substring(./@value, 1, 10) castable as xs:date">
+                                        <xsl:value-of select="nf:formatDate(./@value)"/>
+                                        <xsl:value-of select="concat(' ', nf:formatTime(nf:getTime(./@value), true()))"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <!-\- not a date, probably a T-string of some sort -\->
+                                        <xsl:variable name="separated-pipe" select="tokenize(./@value, '\|')" as="xs:string*"/>
+                                        <xsl:choose>
+                                            <xsl:when test="upper-case($separated-pipe[1]) = ('T', 'CURRENTDATE')">
+                                                <!-\- T|-|P150D -\->
+                                                <xsl:variable name="correction" select="replace($separated-pipe[3], 'P', '')"/>
+                                                <xsl:variable name="correction-timequantity" select="replace($correction, '[a-zA-Z\s]+', '')"/>
+                                                <xsl:variable name="correction-timeunit" select="replace($correction, '[0-9\s]+', '')"/>
+                                                <xsl:value-of select="string-join($separated-pipe[position() lt 3], ' ')"/>
+                                                <xsl:value-of select="concat(' ', $correction-timequantity, ' ')"/>
+                                                <xsl:choose>
+                                                    <xsl:when test="$correction-timeunit eq 'D'">dagen</xsl:when>
+                                                    <xsl:otherwise>Not yet supported time unit: "<xsl:value-of select="$correction-timeunit"/>"</xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="./@value"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+
+                            </xsl:when>
+                            <xsl:when test="$value-domain = ('count', 'decimal')">
                                 <xsl:value-of select="./@value"/>
                             </xsl:when>
                             <xsl:when test="$value-domain = ('boolean')">
                                 <xsl:choose>
                                     <xsl:when test="lower-case(./@value) = ('true', 'waar', 'ja')">Ja</xsl:when>
                                     <xsl:when test="lower-case(./@value) = ('false', 'onwaar', 'nee')">Nee</xsl:when>
-                                    <xsl:when test="./@nullFlavor"><xsl:value-of select="concat('NullFlavor: ', ./@nullFlavor)"/></xsl:when>
-                                    <xsl:otherwise><xsl:value-of select="./@value"/></xsl:otherwise>
-                                </xsl:choose>                                
+                                    <xsl:when test="./@nullFlavor">
+                                        <xsl:value-of select="concat('NullFlavor: ', ./@nullFlavor)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="./@value"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:when>
                             <xsl:when test="$value-domain = ('quantity', 'duration')">
                                 <xsl:value-of select="nf:element-waarde(./@value, ./@unit)"/>
@@ -249,31 +284,71 @@ __NUMBEREDHEADINGS__
                                 <xsl:choose>
                                     <xsl:when test="substring(./@value, 1, 10) castable as xs:date">
                                         <xsl:value-of select="nf:formatDate(./@value)"/>
-                                        <xsl:value-of select="concat(' ', nf:formatTime(nf:getTime(./@value),true()))"/>
+                                        <xsl:value-of select="concat(' ', nf:formatTime(nf:getTime(./@value), true()))"/>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <!-- not a date, probably a T-string of some sort -->
+                                        <!-\- not a date, probably a T-string of some sort -\->
                                         <xsl:variable name="separated-pipe" select="tokenize(./@value, '\|')" as="xs:string*"/>
                                         <xsl:choose>
-                                            <xsl:when test="upper-case($separated-pipe[1]) = ('T','CURRENTDATE')">
-                                                <!-- T|-|P150D -->
+                                            <xsl:when test="upper-case($separated-pipe[1]) = ('T', 'CURRENTDATE')">
+                                                <!-\- T|-|P150D -\->
                                                 <xsl:variable name="correction" select="replace($separated-pipe[3], 'P', '')"/>
-                                                <xsl:variable name="correction-timequantity" select="replace($correction,'[a-zA-Z\s]+','')"/>
-                                                <xsl:variable name="correction-timeunit" select="replace($correction,'[0-9\s]+','')"/>
+                                                <xsl:variable name="correction-timequantity" select="replace($correction, '[a-zA-Z\s]+', '')"/>
+                                                <xsl:variable name="correction-timeunit" select="replace($correction, '[0-9\s]+', '')"/>
                                                 <xsl:value-of select="string-join($separated-pipe[position() lt 3], ' ')"/>
-                                                <xsl:value-of select="concat(' ',$correction-timequantity, ' ')"/>
+                                                <xsl:value-of select="concat(' ', $correction-timequantity, ' ')"/>
                                                 <xsl:choose>
                                                     <xsl:when test="$correction-timeunit eq 'D'">dagen</xsl:when>
                                                     <xsl:otherwise>Not yet supported time unit: "<xsl:value-of select="$correction-timeunit"/>"</xsl:otherwise>
                                                 </xsl:choose>
-                                            </xsl:when>                                            
+                                            </xsl:when>
                                         </xsl:choose>
                                     </xsl:otherwise>
                                 </xsl:choose>
-                               
                             </xsl:when>
-                        </xsl:choose>
+                        </xsl:choose>-->
                     </xsl:attribute>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="level"/>
+        <xd:param name="element-name">Optional param to override the default element name</xd:param>
+        <xd:param name="adaxml-element"/>
+    </xd:doc>
+    <xsl:template match="*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-rij-dekkingsgraad">
+        <xsl:param name="level" select="xs:int(1)" as="xs:int"/>
+        <xsl:param name="element-name" select="nf:element-name(.)" as="xs:string?"/>
+        <xsl:param name="adaxml-element" as="element()*"/>
+        <xsl:variable name="local-element-name" select="local-name(.)"/>
+        <xsl:variable name="concept-type" select="nf:get-concept-type(.)"/>
+        <xsl:variable name="value-domain" select="nf:get-concept-value-domain(.)"/>
+
+        <xsl:choose>
+            <xsl:when test="$concept-type eq 'group'">
+                <groep xmlns="" level="{$level}" naam="{$element-name}">
+                    <xsl:apply-templates select="./*" mode="maak-tabel-rij-dekkingsgraad">
+                        <xsl:with-param name="level" select="xs:int($level + 1)"/>
+                        <xsl:with-param name="adaxml-element" select="$adaxml-element/*"/>
+                    </xsl:apply-templates>
+                </groep>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- item -->
+                <xsl:variable name="adaxml-item" select="if ($adaxml-element[local-name()=$local-element-name]) then $adaxml-element else $adaxml-element/*[local-name()=$local-element-name]"/>
+                <xsl:element name="gegevenselement" namespace="">
+                    <xsl:attribute name="level" select="$level"/>
+                    <xsl:attribute name="naam" select="$element-name"/>
+                    <xsl:variable name="waarde" as="xs:string*">
+                        <xsl:for-each select="$adaxml-item">
+                            <xsl:value-of select="nf:maak-waarde-basedon-valuedomain(.,$value-domain)"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:attribute name="waarde" select="string-join($waarde, ' - ')"/>
+                      
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
@@ -351,7 +426,107 @@ __NUMBEREDHEADINGS__
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
+    
+    <xd:doc>
+        <xd:desc>Maakt een waardestring gebaseerd op het valuedomain (datatype) uit de ada release file</xd:desc>
+        <xd:param name="in">Het gegevenselement uit ada waar het om gaat</xd:param>
+        <xd:param name="value-domain">Het waardedomein van dit gegevenselement</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:maak-waarde-basedon-valuedomain" as="xs:string*">
+        <xsl:param name="in" as="element()?"></xsl:param>
+        <xsl:param name="value-domain" as="xs:string?"/>
+        <xsl:choose>
+            <xsl:when test="$value-domain = ('string', 'text')">
+                <!-- let's check if there is a date in here -->
+                <xsl:choose>
+                    <xsl:when test="substring($in/@value, 1, 10) castable as xs:date">
+                        <xsl:value-of select="nf:formatDate($in/@value)"/>
+                        <xsl:value-of select="concat(' ', nf:formatTime(nf:getTime($in/@value), true()))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- not a date, probably a T-string of some sort -->
+                        <xsl:variable name="separated-pipe" select="tokenize($in/@value, '\|')" as="xs:string*"/>
+                        <xsl:choose>
+                            <xsl:when test="upper-case($separated-pipe[1]) = ('T', 'CURRENTDATE')">
+                                <!-- T|-|P150D -->
+                                <xsl:variable name="correction" select="replace($separated-pipe[3], 'P', '')"/>
+                                <xsl:variable name="correction-timequantity" select="replace($correction, '[a-zA-Z\s]+', '')"/>
+                                <xsl:variable name="correction-timeunit" select="replace($correction, '[0-9\s]+', '')"/>
+                                <xsl:value-of select="string-join($separated-pipe[position() lt 3], ' ')"/>
+                                <xsl:value-of select="concat(' ', $correction-timequantity, ' ')"/>
+                                <xsl:choose>
+                                    <xsl:when test="$correction-timeunit eq 'D'">dagen</xsl:when>
+                                    <xsl:otherwise>Not yet supported time unit: "<xsl:value-of select="$correction-timeunit"/>"</xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$in/@value"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>                
+            </xsl:when>
+            <xsl:when test="$value-domain = ('count', 'decimal')">
+                <xsl:value-of select="$in/@value"/>
+            </xsl:when>
+            <xsl:when test="$value-domain = ('boolean')">
+                <xsl:choose>
+                    <xsl:when test="lower-case($in/@value) = ('true', 'waar', 'ja')">Ja</xsl:when>
+                    <xsl:when test="lower-case($in/@value) = ('false', 'onwaar', 'nee')">Nee</xsl:when>
+                    <xsl:when test="$in/@nullFlavor">
+                        <xsl:value-of select="concat('NullFlavor: ', $in/@nullFlavor)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$in/@value"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:when test="$value-domain = ('quantity', 'duration')">
+                <xsl:value-of select="nf:element-waarde($in/@value, $in/@unit)"/>
+            </xsl:when>
+            <xsl:when test="$value-domain eq 'code'">
+                <xsl:value-of select="nf:element-code-waarde($in)"/>
+            </xsl:when>
+            <xsl:when test="$value-domain eq 'identifier'">
+                <xsl:choose>
+                    <xsl:when test="$in/@root">
+                        <xsl:value-of select="concat($in/@value, ' (in identificerend systeem: ', $in/@root, ')')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$in/@value"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:when test="$value-domain = ('date', 'datetime')">
+                <xsl:choose>
+                    <xsl:when test="substring($in/@value, 1, 10) castable as xs:date">
+                        <xsl:value-of select="nf:formatDate($in/@value)"/>
+                        <xsl:value-of select="concat(' ', nf:formatTime(nf:getTime($in/@value), true()))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- not a date, probably a T-string of some sort -->
+                        <xsl:variable name="separated-pipe" select="tokenize($in/@value, '\|')" as="xs:string*"/>
+                        <xsl:choose>
+                            <xsl:when test="upper-case($separated-pipe[1]) = ('T', 'CURRENTDATE')">
+                                <!-- T|-|P150D -->
+                                <xsl:variable name="correction" select="replace($separated-pipe[3], 'P', '')"/>
+                                <xsl:variable name="correction-timequantity" select="replace($correction, '[a-zA-Z\s]+', '')"/>
+                                <xsl:variable name="correction-timeunit" select="replace($correction, '[0-9\s]+', '')"/>
+                                <xsl:value-of select="string-join($separated-pipe[position() lt 3], ' ')"/>
+                                <xsl:value-of select="concat(' ', $correction-timequantity, ' ')"/>
+                                <xsl:choose>
+                                    <xsl:when test="$correction-timeunit eq 'D'">dagen</xsl:when>
+                                    <xsl:otherwise>Not yet supported time unit: "<xsl:value-of select="$correction-timeunit"/>"</xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+        </xsl:choose>
+        
+    </xsl:function>
+    
     <xd:doc>
         <xd:desc/>
         <xd:param name="currentConcept"/>
