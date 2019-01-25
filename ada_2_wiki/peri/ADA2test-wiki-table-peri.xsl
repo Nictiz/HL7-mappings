@@ -16,10 +16,14 @@
     <xsl:import href="./../wiki/ADA2test-wiki-table.xsl"/>
     <xsl:import href="./peri-functions.xsl"/>
     <!-- override ada release file and transaction to be handled -->
-    <xsl:param name="adaReleaseFile" select="document('../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
+    <xsl:param name="adaReleaseFile" select="document('../../../projects/perinatologie/definitions/peri20-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>
 
     <xsl:param name="date-conversion-xml" select="document('./date_conversion.xml')"/>
+    <xsl:param name="do-ada-files" select="true()"/>
+    <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
+    <xsl:variable name="doc-ada-new" select="document('./ada_new/kernset_geboortezorg_23.xml')"/>
+    
 
     <!-- donkerblauw -->
     <xsl:variable name="tabelkop-achtergrond-kleur">#1F497D;</xsl:variable>
@@ -42,6 +46,8 @@ __NUMBEREDHEADINGS__
 
 =Addenda voor inhoudelijke gegevens=</xsl:text>
         <xsl:apply-templates select="adaxml/data/*"/>
+        <xsl:text>
+[[Categorie:Kwalificatie]]</xsl:text>
     </xsl:template>
 
     <xd:doc>
@@ -101,6 +107,73 @@ __NUMBEREDHEADINGS__
 
     <xd:doc>
         <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
+        <xd:param name="in">The ada vrouw template which contents are rendered in the 'tabel'</xd:param>
+        <xd:param name="adaxml-vrouw">The collection of ada vrouw containing test data</xd:param>
+    </xd:doc>
+    <xsl:template name="tabel-vrouw-dekkingsgraad" match="vrouw[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-vrouw-dekkingsgraad">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="adaxml-vrouw" as="element(vrouw)*"/>
+        <xsl:for-each select="$in">
+            <tabel xmlns="" type="{./local-name()}" title="Vrouw">
+                <xsl:apply-templates select="./*[not(local-name() eq 'anamnese')][not(ends-with(local-name(),'-start'))]" mode="maak-tabel-rij-dekkingsgraad">
+                    <xsl:with-param name="level" select="xs:int(1)"/>
+                    <xsl:with-param name="adaxml-element" select="$adaxml-vrouw"/>
+                </xsl:apply-templates>
+            </tabel>
+        </xsl:for-each>
+    </xsl:template>
+    
+
+    <xd:doc>
+        <xd:desc>Override of the adaxml/data template from the imported stylesheet. Makes it a bit nicer for Peri</xd:desc>
+        <xd:param name="adaxml"/>
+    </xd:doc>
+    <xsl:template match="/kernset_geboortezorg" mode="dekkingsgraad">
+        <xsl:param name="adaxml" as="element(adaxml)*"/>
+        <xsl:variable name="vrouw" select="./vrouw"/>
+        <xsl:variable name="vrouw-bsn" select="string-join($adaxml/data/*/vrouw/burgerservicenummer/@value, ' - ')"/>
+        <!-- Build a variable tabel which is tailored for output in documentation, such as wiki -->
+        <xsl:variable name="tabel" as="element()">
+            <tabellen xmlns="">
+                <!-- tabel voor vrouw -->
+                <xsl:apply-templates select="$doc-ada-new/*/vrouw" mode="maak-tabel-vrouw-dekkingsgraad">
+                    <xsl:with-param name="adaxml-vrouw" select="$adaxml/data/*/vrouw"/>
+                </xsl:apply-templates>
+                <!-- tabel voor anamnese -->
+                <xsl:apply-templates select="$doc-ada-new/*/vrouw/anamnese" mode="maak-tabel-dekkingsgraad">
+                    <xsl:with-param name="adaxml-element" select="$adaxml/data/*/vrouw/anamnese"/>                    
+                </xsl:apply-templates>
+                <!-- tabellen voor de rest -->
+                <xsl:apply-templates select="./(zorgverlening|zorgverlenerzorginstelling|obstetrische_anamnese_gegroepeerd_per_voorgaande_zwangerschap|zwangerschap|bevalling|uitkomst_per_kind|medisch_onderzoek|postnatale_fase)" mode="maak-tabel-dekkingsgraad">
+                    <xsl:with-param name="adaxml-element" select="$adaxml/data/*/*"/>
+                </xsl:apply-templates>
+            </tabellen>
+        </xsl:variable>
+        <xsl:text>
+==Scenario </xsl:text>
+        <xsl:value-of select="./@title"/>
+        <xsl:text> (voor vrouw met BSN: </xsl:text>
+        <xsl:value-of select="normalize-space(string-join($vrouw-bsn, ' '))"/>
+        <xsl:text>)==
+</xsl:text>
+        <xsl:value-of select="concat('&lt;section begin=', $vrouw-bsn, ' /&gt;')"/>
+        <xsl:apply-templates select="$tabel/tabel[@type eq 'vrouw']"/>
+        <xsl:value-of select="concat('&lt;section end=', $vrouw-bsn, ' /&gt;')"/>
+        <xsl:for-each select="$tabel/tabel[not(@type eq 'vrouw')]">
+            <xsl:text>
+=== </xsl:text>
+            <xsl:value-of select="./@title"/>
+            <xsl:text> ===
+</xsl:text>
+            <xsl:value-of select="concat('&lt;section begin=', ./@type,'_', $vrouw-bsn, ' /&gt;')"/>
+            <xsl:apply-templates select="."/>
+            <xsl:value-of select="concat('&lt;section end=', ./@type,'_', $vrouw-bsn, ' /&gt;')"/>
+        </xsl:for-each>
+        
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
         <xd:param name="in">The ada group which contents are rendered in the nested 'tabel'</xd:param>
     </xd:doc>
     <xsl:template name="tabel-default" match="*" mode="maak-tabel">
@@ -109,6 +182,24 @@ __NUMBEREDHEADINGS__
             <tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
                 <xsl:apply-templates select="./*" mode="maak-tabel-rij">
                     <xsl:with-param name="level" select="xs:int(1)"/>
+                </xsl:apply-templates>
+            </tabel>
+        </xsl:for-each>
+    </xsl:template>
+   
+    <xd:doc>
+        <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
+        <xd:param name="in">The ada group which contents are rendered in the nested 'tabel'</xd:param>
+        <xd:param name="adaxml-element">The collection of ada element containing test data</xd:param>
+    </xd:doc>
+    <xsl:template name="tabel-default-dekkingsgraad" match="*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-dekkingsgraad">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="adaxml-element" as="element()*"/>
+        <xsl:for-each select="$in">
+            <tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
+                <xsl:apply-templates select="./*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-rij-dekkingsgraad">
+                    <xsl:with-param name="level" select="xs:int(1)"/>
+                    <xsl:with-param name="adaxml-element" select="$adaxml-element"/>
                 </xsl:apply-templates>
             </tabel>
         </xsl:for-each>

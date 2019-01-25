@@ -7,7 +7,7 @@
             <xd:p>
                 <xd:b>History:</xd:b>
                 <xd:ul>
-                    <xd:li>2018-06-12 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
+                    <xd:li>2019-01-25 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
                 </xd:ul>
             </xd:p>
         </xd:desc>
@@ -15,11 +15,11 @@
     <xsl:output method="text" encoding="UTF-16"/>
     <xsl:import href="./../../ADA2test-wiki-table-peri.xsl"/>
     <!-- override ada release file and transaction to be handled -->
-    <xsl:param name="adaReleaseFile" select="document('../../../../../projects/kernset/definitions/kernset-ada-release.xml')"/>
-    <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.90.77.4.2410</xsl:param>
+    <xsl:param name="adaReleaseFile" select="document('../../../../../projects/perinatologie/definitions/peri20-ada-release.xml')"/>
+    <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.90.77.4.2437</xsl:param>
 
 <!--    <xsl:param name="do-ada-files" select="true()"/>-->
-    <xsl:param name="do-ada-files" select="false()"/>
+    <xsl:param name="do-ada-files" select="true()"/>
     <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
 
     <xd:doc>
@@ -27,11 +27,12 @@
     </xd:doc>
     <xsl:template match="/">
         <xsl:text>
+{{#customtitle:Kernset Geboortezorg 2.3 - inhoud kwalificatie}}
 __NUMBEREDHEADINGS__
 {{IssueBox|Deze pagina is nog in bewerking}}
 [[Bestand:Nictiz_logo_PO_rechts_rgb.png |link=https://www.nictiz.nl/|rechts|Naar nictiz.nl]]
 
-=Addenda voor inhoudelijke gegevens=</xsl:text>
+=Addenda voor inhoudelijke gegevens Kernset Geboortezorg 2.3=</xsl:text>
         <xsl:choose>
             <xsl:when test="$do-ada-files">
                 <xsl:apply-templates select="$ada-files/adaxml/data/*"/>
@@ -45,7 +46,7 @@ __NUMBEREDHEADINGS__
     </xsl:template>
     
     <xd:doc>
-        <xd:desc> only postcode is present in address in kernset 2.2, so no reason to nest the postcode under group 'adres'</xd:desc>
+        <xd:desc> only postcode is present in address in kernset 2.3, so no reason to nest the postcode under group 'adres'</xd:desc>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="adres" mode="maak-tabel-rij">
@@ -56,7 +57,7 @@ __NUMBEREDHEADINGS__
         </xsl:apply-templates>
     </xsl:template>
     <xd:doc>
-        <xd:desc> only rol_aanpakker_kind is present in aanpakker_kind_groep in kernset 2.2, so no reason to nest this under the group</xd:desc>
+        <xd:desc> only rol_aanpakker_kind is present in aanpakker_kind_groep in kernset 2.3, so no reason to nest this under the group</xd:desc>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="aanpakker_kind_groep" mode="maak-tabel-rij">
@@ -65,20 +66,9 @@ __NUMBEREDHEADINGS__
             <xsl:with-param name="level" select="$level"/>
             <xsl:with-param name="element-name">Aanpakker kind - rol aanpakker kind</xsl:with-param>
         </xsl:apply-templates>
-    </xsl:template>
+    </xsl:template>   
     <xd:doc>
-        <xd:desc> only geboortegewicht is present in lichamelijk_onderzoek_kind in kernset 2.2, so no reason to nest this under the group</xd:desc>
-        <xd:param name="level"/>
-    </xd:doc>
-    <xsl:template match="lichamelijk_onderzoek_kind" mode="maak-tabel-rij">
-        <xsl:param name="level" select="xs:int(1)"/>
-        <xsl:apply-templates select="./geboortegewicht" mode="maak-tabel-rij">
-            <xsl:with-param name="level" select="$level"/>
-            <xsl:with-param name="element-name">Lichamelijk onderzoek kind - geboortegewicht</xsl:with-param>
-        </xsl:apply-templates>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc> only urine_bloed_en_aanvullende_onderzoeken/psie is present in maternale_onderzoeksgegevens in kernset 2.2, so no reason to nest this under the group</xd:desc>
+        <xd:desc> only urine_bloed_en_aanvullende_onderzoeken/psie is present in maternale_onderzoeksgegevens in kernset 2.3, so no reason to nest this under the group</xd:desc>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="maternale_onderzoeksgegevens" mode="maak-tabel-rij">
@@ -89,7 +79,7 @@ __NUMBEREDHEADINGS__
         </xsl:apply-templates>
     </xsl:template>
     <xd:doc>
-        <xd:desc> only rol_supervisor is present in supervisor_groep in kernset 2.2, so no reason to nest this under the group</xd:desc>
+        <xd:desc> only rol_supervisor is present in supervisor_groep in kernset 2.3, so no reason to nest this under the group</xd:desc>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="supervisor_groep" mode="maak-tabel-rij">
@@ -100,7 +90,7 @@ __NUMBEREDHEADINGS__
         </xsl:apply-templates>
     </xsl:template>
     <xd:doc>
-        <xd:desc> only geboortedatum is present in vorige_baring/demografische_gegevens in kernset 2.2, so no reason to nest the geboortedatum under group 'demografische_gegevens'</xd:desc>
+        <xd:desc> only geboortedatum is present in vorige_baring/demografische_gegevens in kernset 2.3, so no reason to nest the geboortedatum under group 'demografische_gegevens'</xd:desc>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="vorige_baring/demografische_gegevens" mode="maak-tabel-rij">
@@ -112,7 +102,7 @@ __NUMBEREDHEADINGS__
     </xsl:template>
     
     <xd:doc>
-        <xd:desc> only geboorte_placenta is present in placenta in kernset 2.2, so no reason to nest the geboorte_placenta under group 'placenta'</xd:desc>
+        <xd:desc> only geboorte_placenta is present in placenta in kernset 2.3, so no reason to nest the geboorte_placenta under group 'placenta'</xd:desc>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="placenta" mode="maak-tabel-rij">
@@ -124,7 +114,7 @@ __NUMBEREDHEADINGS__
     </xsl:template>
     
     <xd:doc>
-        <xd:desc> only zorginstelling_lvrid is present in zorgverlenerzorginstelling/zorginstelling in kernset 2.2, so no reason to nest the zorginstelling_lvrid under group 'zorginstelling'</xd:desc>
+        <xd:desc> only zorginstelling_lvrid is present in zorgverlenerzorginstelling/zorginstelling in kernset 2.3, so no reason to nest the zorginstelling_lvrid under group 'zorginstelling'</xd:desc>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="zorgverlenerzorginstelling/zorginstelling" mode="maak-tabel-rij">
