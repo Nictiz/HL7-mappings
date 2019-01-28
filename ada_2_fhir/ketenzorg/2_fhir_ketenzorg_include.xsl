@@ -700,33 +700,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="nl-core-address-2.0" match="adresgegevens | address_information" mode="doAddress">
         <xsl:for-each select=".[.//(@value | @code)]">
+            <xsl:variable name="lineItems" as="element()*">
+                <xsl:for-each select="straat/@value | street/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="huisnummer/@value | house_number/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="huisnummerletter/@value | huisnummertoevoeging/@value | house_number_letter/@value | house_number_addition/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="additionele_informatie/@value | additional_information/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="aanduiding_bij_nummer/@value | house_number_indication/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+            </xsl:variable>
             <address>
                 <line>
-                    <xsl:for-each select="straat/@value | street/@value">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                            <valueString value="{.}"/>
-                        </extension>
-                    </xsl:for-each>
-                    <xsl:for-each select="huisnummer/@value | house_number/@value">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                            <valueString value="{.}"/>
-                        </extension>
-                    </xsl:for-each>
-                    <xsl:for-each select="huisnummerletter/@value | huisnummertoevoeging/@value | house_number_letter/@value | house_number_addition/@value">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
-                            <valueString value="{.}"/>
-                        </extension>
-                    </xsl:for-each>
-                    <xsl:for-each select="additionele_informatie/@value | additional_information/@value">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
-                            <valueString value="{.}"/>
-                        </extension>
-                    </xsl:for-each>
-                    <xsl:for-each select="aanduiding_bij_nummer/@value | house_number_indication/@value">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
-                            <valueString value="{.}"/>
-                        </extension>
-                    </xsl:for-each>
+                    <xsl:if test="$lineItems">
+                        <xsl:attribute name="value" select="string-join($lineItems//*:valueString/@value, ' ')"/>
+                    </xsl:if>
+                    <xsl:copy-of select="$lineItems"/>
                 </line>
                 <xsl:for-each select="woonplaats/@value | place_of_residence/@value">
                     <city value="{.}"/>
