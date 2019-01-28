@@ -77,8 +77,48 @@ __NUMBEREDHEADINGS__
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="current-table"/>
+        <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation. 
+            This way the processing to make a table is separated from specific wiki-stuff. 
+            Other ways to output this table (csv?) is then easier to create.</xd:desc>
+        <xd:param name="in">The ada group element which contents are first rendered in this nested 'tabel'</xd:param>
+    </xd:doc>
+    <xsl:template name="tabel-default" match="*" mode="maak-tabel">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <tabel xmlns="" type="{./local-name()}" title="{nf:element-name(.)}">
+                <xsl:apply-templates select="./*" mode="maak-tabel-rij">
+                    <xsl:with-param name="level" select="xs:int(1)"/>
+                </xsl:apply-templates>
+            </tabel>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation
+            This way the processing to make a table is separated from specific wiki-stuff. 
+            Other ways to output this table (csv?) is then easier to create.</xd:desc>
+        <xd:param name="in">The ada group element which contents are rendered in the nested 'tabel'. 
+            This is typically an empty ada xml which contains all possible elements (but was not instantiated with content data).</xd:param>
+        <xd:param name="adaxml-element">The collection of ada element containing test data</xd:param>
+    </xd:doc>
+    <xsl:template name="tabel-default-dekkingsgraad" match="*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-dekkingsgraad">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="adaxml-element" as="element()*"/>
+        <xsl:variable name="local-element-name" select="local-name($in)"/>
+        <xsl:for-each select="$in">
+            <tabel xmlns="" type="{$local-element-name}" title="{nf:element-name(.)}">
+                <xsl:apply-templates select="./*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-rij-dekkingsgraad">
+                    <xsl:with-param name="level" select="xs:int(1)"/>
+                    <xsl:with-param name="adaxml-element" select="$adaxml-element[local-name()=$local-element-name]/*"/>
+                </xsl:apply-templates>
+            </tabel>
+        </xsl:for-each>
+    </xsl:template>
+    
+    
+    <xd:doc>
+        <xd:desc>Actually creates wiki from a table that was generated before, see template with mode 'maak-tabel'</xd:desc>
+        <xd:param name="current-table">The table to create a wiki table from</xd:param>
     </xd:doc>
     <xsl:template match="tabel">
         <xsl:param name="current-table" select="."/>
@@ -194,7 +234,8 @@ __NUMBEREDHEADINGS__
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="level"/>
+        <xd:param name="level">The indent level in the table - starts with 1</xd:param>
+
         <xd:param name="element-name">Optional param to override the default element name</xd:param>
     </xd:doc>
     <xsl:template match="*" mode="maak-tabel-rij">
@@ -216,98 +257,7 @@ __NUMBEREDHEADINGS__
                 <xsl:element name="gegevenselement" namespace="">
                     <xsl:attribute name="level" select="$level"/>
                     <xsl:attribute name="naam" select="$element-name"/>
-                    <xsl:attribute name="waarde" select="nf:maak-waarde-basedon-valuedomain(.,$value-domain)">
-<!--                        <xsl:choose>
-                            <xsl:when test="$value-domain = ('string', 'text')">
-                                <!-\- let's check if there is a date in here -\->
-                                <xsl:choose>
-                                    <xsl:when test="substring(./@value, 1, 10) castable as xs:date">
-                                        <xsl:value-of select="nf:formatDate(./@value)"/>
-                                        <xsl:value-of select="concat(' ', nf:formatTime(nf:getTime(./@value), true()))"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <!-\- not a date, probably a T-string of some sort -\->
-                                        <xsl:variable name="separated-pipe" select="tokenize(./@value, '\|')" as="xs:string*"/>
-                                        <xsl:choose>
-                                            <xsl:when test="upper-case($separated-pipe[1]) = ('T', 'CURRENTDATE')">
-                                                <!-\- T|-|P150D -\->
-                                                <xsl:variable name="correction" select="replace($separated-pipe[3], 'P', '')"/>
-                                                <xsl:variable name="correction-timequantity" select="replace($correction, '[a-zA-Z\s]+', '')"/>
-                                                <xsl:variable name="correction-timeunit" select="replace($correction, '[0-9\s]+', '')"/>
-                                                <xsl:value-of select="string-join($separated-pipe[position() lt 3], ' ')"/>
-                                                <xsl:value-of select="concat(' ', $correction-timequantity, ' ')"/>
-                                                <xsl:choose>
-                                                    <xsl:when test="$correction-timeunit eq 'D'">dagen</xsl:when>
-                                                    <xsl:otherwise>Not yet supported time unit: "<xsl:value-of select="$correction-timeunit"/>"</xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:value-of select="./@value"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-
-                            </xsl:when>
-                            <xsl:when test="$value-domain = ('count', 'decimal')">
-                                <xsl:value-of select="./@value"/>
-                            </xsl:when>
-                            <xsl:when test="$value-domain = ('boolean')">
-                                <xsl:choose>
-                                    <xsl:when test="lower-case(./@value) = ('true', 'waar', 'ja')">Ja</xsl:when>
-                                    <xsl:when test="lower-case(./@value) = ('false', 'onwaar', 'nee')">Nee</xsl:when>
-                                    <xsl:when test="./@nullFlavor">
-                                        <xsl:value-of select="concat('NullFlavor: ', ./@nullFlavor)"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="./@value"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:when>
-                            <xsl:when test="$value-domain = ('quantity', 'duration')">
-                                <xsl:value-of select="nf:element-waarde(./@value, ./@unit)"/>
-                            </xsl:when>
-                            <xsl:when test="$value-domain eq 'code'">
-                                <xsl:value-of select="nf:element-code-waarde(.)"/>
-                            </xsl:when>
-                            <xsl:when test="$value-domain eq 'identifier'">
-                                <xsl:choose>
-                                    <xsl:when test="./@root">
-                                        <xsl:value-of select="concat(./@value, ' (in identificerend systeem: ', ./@root, ')')"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="./@value"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:when>
-                            <xsl:when test="$value-domain = ('date', 'datetime')">
-                                <xsl:choose>
-                                    <xsl:when test="substring(./@value, 1, 10) castable as xs:date">
-                                        <xsl:value-of select="nf:formatDate(./@value)"/>
-                                        <xsl:value-of select="concat(' ', nf:formatTime(nf:getTime(./@value), true()))"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <!-\- not a date, probably a T-string of some sort -\->
-                                        <xsl:variable name="separated-pipe" select="tokenize(./@value, '\|')" as="xs:string*"/>
-                                        <xsl:choose>
-                                            <xsl:when test="upper-case($separated-pipe[1]) = ('T', 'CURRENTDATE')">
-                                                <!-\- T|-|P150D -\->
-                                                <xsl:variable name="correction" select="replace($separated-pipe[3], 'P', '')"/>
-                                                <xsl:variable name="correction-timequantity" select="replace($correction, '[a-zA-Z\s]+', '')"/>
-                                                <xsl:variable name="correction-timeunit" select="replace($correction, '[0-9\s]+', '')"/>
-                                                <xsl:value-of select="string-join($separated-pipe[position() lt 3], ' ')"/>
-                                                <xsl:value-of select="concat(' ', $correction-timequantity, ' ')"/>
-                                                <xsl:choose>
-                                                    <xsl:when test="$correction-timeunit eq 'D'">dagen</xsl:when>
-                                                    <xsl:otherwise>Not yet supported time unit: "<xsl:value-of select="$correction-timeunit"/>"</xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:when>
-                                        </xsl:choose>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:when>
-                        </xsl:choose>-->
-                    </xsl:attribute>
+                    <xsl:attribute name="waarde" select="nf:maak-waarde-basedon-valuedomain(.,$value-domain)"/>                   
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
@@ -315,7 +265,8 @@ __NUMBEREDHEADINGS__
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="level"/>
+        <xd:param name="level">The indent level in the table - starts with 1</xd:param>
+
         <xd:param name="element-name">Optional param to override the default element name</xd:param>
         <xd:param name="adaxml-element"/>
     </xd:doc>
@@ -332,20 +283,21 @@ __NUMBEREDHEADINGS__
                 <groep xmlns="" level="{$level}" naam="{$element-name}">
                     <xsl:apply-templates select="./*" mode="maak-tabel-rij-dekkingsgraad">
                         <xsl:with-param name="level" select="xs:int($level + 1)"/>
-                        <xsl:with-param name="adaxml-element" select="$adaxml-element/*"/>
+                        <xsl:with-param name="adaxml-element" select="$adaxml-element[local-name()=$local-element-name]/*"/>
                     </xsl:apply-templates>
                 </groep>
             </xsl:when>
             <xsl:otherwise>
                 <!-- item -->
-                <xsl:variable name="adaxml-item" select="if ($adaxml-element[local-name()=$local-element-name]) then $adaxml-element else $adaxml-element/*[local-name()=$local-element-name]"/>
+                <xsl:variable name="adaxml-item" select="if ($adaxml-element[local-name()=$local-element-name]) then $adaxml-element[local-name()=$local-element-name] else $adaxml-element/*[local-name()=$local-element-name]"/>
                 <xsl:element name="gegevenselement" namespace="">
                     <xsl:attribute name="level" select="$level"/>
                     <xsl:attribute name="naam" select="$element-name"/>
                     <xsl:variable name="waarde" as="xs:string*">
-                        <xsl:for-each select="$adaxml-item">
-                            <xsl:value-of select="nf:maak-waarde-basedon-valuedomain(.,$value-domain)"/>
-                        </xsl:for-each>
+                        <!-- only add unique entries -->
+                        <xsl:for-each-group select="$adaxml-item" group-by="nf:getGroupingKeyDefault(.)">                            
+                             <xsl:value-of select="nf:maak-waarde-basedon-valuedomain(.,$value-domain)"/>
+                        </xsl:for-each-group>
                     </xsl:variable>
                     <xsl:attribute name="waarde" select="string-join($waarde, ' - ')"/>
                       
@@ -391,7 +343,7 @@ __NUMBEREDHEADINGS__
     </xd:doc>
     <xsl:function name="nf:element-code-waarde" as="xs:string?">
         <xsl:param name="code-in" as="element()?"/>
-        <xsl:for-each select="$code-in">
+        <xsl:for-each select="$code-in[@originalText|@displayName|@codeSystem|@code|@codeSystemName]">
             <xsl:variable name="waarde" as="xs:string*">
                 <xsl:value-of select="normalize-space(concat(./@originalText, ' ', ./@displayName))"/>
                 <xsl:value-of select="concat(' (code = ''', ./@code, ''' in codeSystem ''')"/>
@@ -545,6 +497,15 @@ __NUMBEREDHEADINGS__
         <xsl:value-of select="$adaReleaseFile/ada/applications/application/views/view[@transactionId eq $transactionId]/dataset[1]//concept[@id = $currentConcept/@conceptId]/valueDomain/@type"/>
     </xsl:function>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="in"/>
+    </xd:doc>
+    <xsl:function name="nf:getGroupingKeyDefault" as="xs:string?">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value, ''), string-join($in//@root, ''), string-join($in//@code, ''), string-join($in//@codeSystem, ''), string-join($in//@nullFlavor, ''))))"/>
+    </xsl:function>
+    
 
 
 </xsl:stylesheet>

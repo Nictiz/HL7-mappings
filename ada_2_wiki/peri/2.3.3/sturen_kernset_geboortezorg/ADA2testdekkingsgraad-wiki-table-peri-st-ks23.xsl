@@ -27,23 +27,32 @@
         <xd:desc/>
     </xd:doc>
     <xsl:template match="/">
+        <xsl:variable name="kernset-gz" as="element(kernset_geboortezorg)*" select="if ($do-ada-files) then $ada-files/adaxml/data/kernset_geboortezorg else adaxml/data/kernset_geboortezorg"/>
         <xsl:text>
 {{#customtitle:Kernset Geboortezorg 2.3 - dekkingsgraad scenario's}}
 __NUMBEREDHEADINGS__
 {{IssueBox|Deze pagina is nog in bewerking}}
 [[Bestand:Nictiz_logo_PO_rechts_rgb.png |link=https://www.nictiz.nl/|rechts|Naar nictiz.nl]]
 
-=Dekkingsgraad scenario's voor Kernset Geboortezorg 2.3=</xsl:text>
-        <xsl:apply-templates select="$doc-ada-new/kernset_geboortezorg" mode="dekkingsgraad">
-            <xsl:with-param name="adaxml" select="if ($do-ada-files) then $ada-files/adaxml else adaxml"/>
-        </xsl:apply-templates>
+=Dekkingsgraad scenario's voor Kernset Geboortezorg 2.3=
+De volgende scenario's zijn meegenomen:</xsl:text>
+        <xsl:for-each select="$kernset-gz">
+            <xsl:text>
+* </xsl:text><xsl:value-of select="concat(./@title, '(id: ',./@id, ')')"/>
+        </xsl:for-each>
         <xsl:text>
+Zie voor de inhoud van deze scenario's: [[Gebz:Vdraft_AddendaKwalificatieKernsetGeboortezorg23]]. Onderstaande tabel toont de unieke waarden voor ieder veld. Lege velden worden niet geraakt door de meegenomen bovenstaande scenario's.</xsl:text>
+        <xsl:apply-templates select="$doc-ada-new/kernset_geboortezorg" mode="dekkingsgraad">
+            <xsl:with-param name="adaxml-gz" select="$kernset-gz"/>
+        </xsl:apply-templates>
+        <xsl:text>          
 [[Categorie:Kwalificatie]]</xsl:text>
     </xsl:template>
     
     <xd:doc>
         <xd:desc> only postcode is present in address in kernset 2.3, so no reason to nest the postcode under group 'adres'</xd:desc>
-        <xd:param name="level"/>
+        <xd:param name="level">The indent level in the table - starts with 1</xd:param>
+
         <xd:param name="adaxml-element"/>
     </xd:doc>
     <xsl:template match="adres" mode="maak-tabel-rij-dekkingsgraad">
@@ -57,7 +66,8 @@ __NUMBEREDHEADINGS__
     </xsl:template>
     <xd:doc>
         <xd:desc> only rol_aanpakker_kind is present in aanpakker_kind_groep in kernset 2.3, so no reason to nest this under the group</xd:desc>
-        <xd:param name="level"/>
+        <xd:param name="level">The indent level in the table - starts with 1</xd:param>
+
         <xd:param name="adaxml-element"/>
     </xd:doc>
     <xsl:template match="aanpakker_kind_groep" mode="maak-tabel-rij-dekkingsgraad">
@@ -66,12 +76,13 @@ __NUMBEREDHEADINGS__
         <xsl:apply-templates select="./rol_aanpakker_kind" mode="maak-tabel-rij-dekkingsgraad">
             <xsl:with-param name="level" select="$level"/>
             <xsl:with-param name="element-name">Aanpakker kind - rol aanpakker kind</xsl:with-param>
-            <xsl:with-param name="adaxml-element" select="$adaxml-element/aanpakker_kind_groep/rol_aanpakker_kind"/>
+            <xsl:with-param name="adaxml-element" select="$adaxml-element/rol_aanpakker_kind"/>
         </xsl:apply-templates>
     </xsl:template>   
     <xd:doc>
         <xd:desc> only urine_bloed_en_aanvullende_onderzoeken/psie is present in maternale_onderzoeksgegevens in kernset 2.3, so no reason to nest this under the group</xd:desc>
-        <xd:param name="level"/>
+        <xd:param name="level">The indent level in the table - starts with 1</xd:param>
+
         <xd:param name="adaxml-element"/>
     </xd:doc>
     <xsl:template match="maternale_onderzoeksgegevens" mode="maak-tabel-rij-dekkingsgraad">
@@ -80,12 +91,13 @@ __NUMBEREDHEADINGS__
         <xsl:apply-templates select="./urine_bloed_en_aanvullende_onderzoeken/psie" mode="maak-tabel-rij-dekkingsgraad">
             <xsl:with-param name="level" select="$level"/>
             <xsl:with-param name="element-name">Maternale onderzoeksgegevens - urine bloed en aanvullende onderzoeken - PSIE</xsl:with-param>
-            <xsl:with-param name="adaxml-element" select="$adaxml-element/maternale_onderzoeksgegevens/urine_bloed_en_aanvullende_onderzoeken/psie"/>
+            <xsl:with-param name="adaxml-element" select="$adaxml-element/urine_bloed_en_aanvullende_onderzoeken/psie"/>
         </xsl:apply-templates>
     </xsl:template>
     <xd:doc>
         <xd:desc> only rol_supervisor is present in supervisor_groep in kernset 2.3, so no reason to nest this under the group</xd:desc>
-        <xd:param name="level"/>
+        <xd:param name="level">The indent level in the table - starts with 1</xd:param>
+
         <xd:param name="adaxml-element"/>
     </xd:doc>
     <xsl:template match="supervisor_groep" mode="maak-tabel-rij-dekkingsgraad">
@@ -94,12 +106,13 @@ __NUMBEREDHEADINGS__
         <xsl:apply-templates select="./rol_supervisor" mode="maak-tabel-rij-dekkingsgraad">
             <xsl:with-param name="level" select="$level"/>
             <xsl:with-param name="element-name">Supervisor - rol supervisor</xsl:with-param>
-            <xsl:with-param name="adaxml-element" select="$adaxml-element/supervisor_groep/rol_supervisor"/>
+            <xsl:with-param name="adaxml-element" select="$adaxml-element/rol_supervisor"/>
         </xsl:apply-templates>
     </xsl:template>
     <xd:doc>
         <xd:desc> only geboortedatum is present in vorige_baring/demografische_gegevens in kernset 2.3, so no reason to nest the geboortedatum under group 'demografische_gegevens'</xd:desc>
-        <xd:param name="level"/>
+        <xd:param name="level">The indent level in the table - starts with 1</xd:param>
+
         <xd:param name="adaxml-element"/>
     </xd:doc>
     <xsl:template match="vorige_baring/demografische_gegevens" mode="maak-tabel-rij-dekkingsgraad">
@@ -107,7 +120,7 @@ __NUMBEREDHEADINGS__
         <xsl:param name="adaxml-element" as="element()*"/>
         <xsl:apply-templates select="./geboortedatum" mode="maak-tabel-rij-dekkingsgraad">
             <xsl:with-param name="level" select="$level"/>
-            <xsl:with-param name="adaxml-element" select="$adaxml-element/vorige_baring/demografische_gegevens/geboortedatum"/>
+            <xsl:with-param name="adaxml-element" select="$adaxml-element/geboortedatum"/>
         </xsl:apply-templates>
     </xsl:template>
     
