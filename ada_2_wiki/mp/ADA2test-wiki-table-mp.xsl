@@ -70,9 +70,12 @@ __NUMBEREDHEADINGS__
                             <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:configurable-T-date(./.., ., false())}"/>
                         </xsl:for-each>
                         <!-- auteur -->
-                        <xsl:for-each select="./(auteur | verstrekker)[.//(@value | @code)]">
+                        <xsl:for-each select="./(auteur)[.//(@value | @code)]">
                             <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:zorgverlener-string(.))}"/>
                         </xsl:for-each>
+                        <xsl:apply-templates select="./verstrekker" mode="maak-tabel-rij">
+                            <xsl:with-param name="element-name">Verstrekker [voorbeeldgegevens, mag gevuld met eigen testgegevens]</xsl:with-param>
+                        </xsl:apply-templates>
                         <xsl:for-each select="./(te_verstrekken_hoeveelheid | verstrekte_hoeveelheid)[.//@value]">
                             <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:element-waarde(./aantal/@value, ./eenheid/@displayName)}"/>
                         </xsl:for-each>
