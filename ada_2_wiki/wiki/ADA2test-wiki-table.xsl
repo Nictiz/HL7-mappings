@@ -14,6 +14,7 @@
     </xd:doc>
     <xsl:output method="text" encoding="UTF-16"/>
     <xsl:include href="date-functions.xsl"/>
+    <xsl:include href="../../util/constants.xsl"/>
     <xsl:import href="wiki-functions.xsl"/>
     <xsl:param name="adaReleaseFile" select="document('../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>
@@ -24,10 +25,6 @@
     <!-- grijzig -->
     <xsl:variable name="element-achtergrond-kleur">#E3E3E3;</xsl:variable>
     <xsl:variable name="elementwaarde-achtergrond-kleur">white</xsl:variable>
-
-    <xsl:variable name="oid-nullFlavor">2.16.840.1.113883.5.1008</xsl:variable>
-    <xsl:variable name="oid-BSN">2.16.840.1.113883.2.4.6.3</xsl:variable>
-
 
     <xd:doc>
         <xd:desc/>
