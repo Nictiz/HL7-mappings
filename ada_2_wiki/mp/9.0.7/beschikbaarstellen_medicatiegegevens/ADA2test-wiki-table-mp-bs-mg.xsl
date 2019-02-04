@@ -28,8 +28,7 @@
     <xsl:template match="/">
         <xsl:text>
 __NUMBEREDHEADINGS__
-{{#customtitle:Beschikbaarstellen medicatiegegevens 9.0.7: addendum voor inhoudelijke gegevens voor kwalificatie}}
-{{IssueBox|Deze pagina is nog in bewerking}}
+{{#customtitle:Raadplegen medicatiegegevens 9.0.7: addendum inhoudelijke gegevens kwalificatie}}
 [[Bestand:Nictiz_logo_PO_rechts_rgb.png |link=https://www.nictiz.nl/|rechts|Naar nictiz.nl]]
 
 =Addenda voor inhoudelijke gegevens=</xsl:text>
