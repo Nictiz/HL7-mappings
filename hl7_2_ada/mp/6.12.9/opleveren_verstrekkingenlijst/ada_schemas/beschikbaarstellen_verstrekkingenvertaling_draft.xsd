@@ -250,6 +250,16 @@
          <xs:documentation>Type for concept group: Medicamenteuze behandeling</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="identificatie-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="identificatie"
+                     type="identificatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22093"
+                     minOccurs="1"
+                     maxOccurs="1"/>
          <xs:element name="toedieningsafspraak-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132"/>
@@ -1164,7 +1174,7 @@
          </xs:element>
          <xs:element name="organisatie_naam"
                      type="organisatie_naam_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19793"
-                     minOccurs="1"
+                     minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19791"/>
@@ -1620,6 +1630,19 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Identificatie - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="identificatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22093">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="root" type="xs:string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -2361,7 +2384,7 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: OrganisatieNaam - 1..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: OrganisatieNaam - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="organisatie_naam_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19793">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19793"/>

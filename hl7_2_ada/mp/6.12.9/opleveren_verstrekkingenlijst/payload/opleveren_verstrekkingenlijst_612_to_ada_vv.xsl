@@ -56,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="dispense-events" select="./hl7:component/hl7:medicationDispenseEvent"/>
                     <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907" shortName="{$transaction-name}" formName="{$ada-formname}" transactionRef="{$transaction-oid}" transactionEffectiveDate="{$transaction-effectiveDate}" prefix="mp-" language="nl-NL">
                         <xsl:attribute name="title">Generated from HL7v3 verstrekkingenlijst 6.12 xml</xsl:attribute>
-                        <xsl:attribute name="id">DUMMY</xsl:attribute>
+                        <xsl:attribute name="id" select="tokenize(base-uri(), '/')[last()]"/>
                         <xsl:for-each select="$patient">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.816_20130521000000_2_907"/>
                         </xsl:for-each>
