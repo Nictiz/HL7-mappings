@@ -17,7 +17,8 @@
     <!-- override ada release file and transaction to be handled -->
     <xsl:param name="adaReleaseFile" select="document('../../../../../projects/mp-mp907/definitions/mp-mp907-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.162</xsl:param>
-
+    <xsl:param name="transactionType">raadplegen</xsl:param>
+    
     <xsl:param name="do-ada-files" select="true()"/>
 <!--    <xsl:param name="do-ada-files" select="false()"/>-->
     <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
@@ -28,7 +29,7 @@
     <xsl:template match="/">
         <xsl:text>
 __NUMBEREDHEADINGS__
-{{IssueBox|Deze pagina is nog in bewerking}}
+{{#customtitle:Raadplegen verstrekkingenvertaling 9.0.7: addendum inhoudelijke gegevens kwalificatie}}
 [[Bestand:Nictiz_logo_PO_rechts_rgb.png |link=https://www.nictiz.nl/|rechts|Naar nictiz.nl]]
 
 =Addenda voor inhoudelijke gegevens=</xsl:text>

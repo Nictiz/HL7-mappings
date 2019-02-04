@@ -37,8 +37,8 @@
       </xs:sequence>
       <xs:attribute name="id" type="xs:string"/>
       <xs:attribute name="app" type="xs:string"/>
-      <xs:attribute name="shortName" type="xs:string"/>
-      <xs:attribute name="formName" type="xs:string"/>
+      <xs:attribute name="shortName" type="xs:string" use="optional"/>
+      <xs:attribute name="formName" type="xs:string" use="optional"/>
       <xs:attribute name="transactionRef" type="xs:string"/>
       <xs:attribute name="transactionEffectiveDate" type="xs:dateTime"/>
       <xs:attribute name="versionDate" type="xs:string"/>
@@ -106,7 +106,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="naamgegevens_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19799">
       <xs:annotation>
@@ -185,7 +185,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="geslachtsnaam_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19804">
       <xs:annotation>
@@ -214,7 +214,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19804"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="geslachtsnaam_partner_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19807">
       <xs:annotation>
@@ -243,13 +243,23 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19807"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="medicamenteuze_behandeling_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22092">
       <xs:annotation>
          <xs:documentation>Type for concept group: Medicamenteuze behandeling</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="identificatie-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="identificatie"
+                     type="identificatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22093"
+                     minOccurs="1"
+                     maxOccurs="1"/>
          <xs:element name="toedieningsafspraak-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132"/>
@@ -272,7 +282,7 @@
                      maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22092"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="toedieningsafspraak_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20132">
       <xs:annotation>
@@ -353,7 +363,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verstrekker_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22097">
       <xs:annotation>
@@ -372,7 +382,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22097"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="zorgaanbieder_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20210">
       <xs:annotation>
@@ -403,7 +413,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20210"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="geneesmiddel_bij_toedieningsafspraak_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20237">
       <xs:annotation>
@@ -422,7 +432,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20237"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="product_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20238">
       <xs:annotation>
@@ -451,7 +461,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20238"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="product_specificatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22290">
       <xs:annotation>
@@ -500,7 +510,7 @@
                      maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22290"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="ingredient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22294">
       <xs:annotation>
@@ -529,7 +539,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22294"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="sterkte_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22295">
       <xs:annotation>
@@ -558,7 +568,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22295"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="hoeveelheid_ingredient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22296">
       <xs:annotation>
@@ -587,7 +597,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22296"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="hoeveelheid_product_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22297">
       <xs:annotation>
@@ -616,7 +626,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22297"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="gebruiksinstructie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22098">
       <xs:annotation>
@@ -677,7 +687,7 @@
                      maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22098"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="doseerinstructie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22623">
       <xs:annotation>
@@ -716,7 +726,7 @@
                      maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="dosering_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22626">
       <xs:annotation>
@@ -755,7 +765,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="keerdosis_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22627">
       <xs:annotation>
@@ -784,7 +794,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22627"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="aantal_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22628">
       <xs:annotation>
@@ -823,7 +833,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22628"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="toedieningsschema_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22631">
       <xs:annotation>
@@ -852,7 +862,7 @@
                      maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22631"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="frequentie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22632">
       <xs:annotation>
@@ -881,7 +891,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22632"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="aantal_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22633">
       <xs:annotation>
@@ -920,7 +930,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22633"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="zo_nodig_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22639">
       <xs:annotation>
@@ -949,7 +959,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22639"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="criterium_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22640">
       <xs:annotation>
@@ -978,7 +988,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22640"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="maximale_dosering_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22643">
       <xs:annotation>
@@ -1017,7 +1027,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22643"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verstrekking_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20270">
       <xs:annotation>
@@ -1118,7 +1128,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20270"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verstrekker_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20858">
       <xs:annotation>
@@ -1137,7 +1147,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20858"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="zorgaanbieder_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19791">
       <xs:annotation>
@@ -1164,11 +1174,11 @@
          </xs:element>
          <xs:element name="organisatie_naam"
                      type="organisatie_naam_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19793"
-                     minOccurs="1"
+                     minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19791"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verstrekte_hoeveelheid_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20923">
       <xs:annotation>
@@ -1197,7 +1207,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20923"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verstrekt_geneesmiddel_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22259">
       <xs:annotation>
@@ -1216,7 +1226,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22259"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="product_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22260">
       <xs:annotation>
@@ -1245,7 +1255,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22260"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="product_specificatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22680">
       <xs:annotation>
@@ -1294,7 +1304,7 @@
                      maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22680"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="ingredient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22683">
       <xs:annotation>
@@ -1323,7 +1333,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22683"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="sterkte_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22684">
       <xs:annotation>
@@ -1352,7 +1362,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22684"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="hoeveelheid_ingredient_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22685">
       <xs:annotation>
@@ -1381,7 +1391,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22685"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="hoeveelheid_product_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22688">
       <xs:annotation>
@@ -1410,7 +1420,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22688"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="relatie_naar_verstrekkingsverzoek_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22396">
       <xs:annotation>
@@ -1429,7 +1439,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22396"/>
-      <xs:attribute name="comment" type="xs:string"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Ongestructureerde naam - 0..1 R</xs:documentation>
@@ -1441,7 +1451,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Voornamen - 0..1 R</xs:documentation>
@@ -1453,7 +1463,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Initialen - 0..1 R</xs:documentation>
@@ -1465,7 +1475,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Roepnaam - 0..1 R</xs:documentation>
@@ -1477,7 +1487,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Naamgebruik - 0..1 R</xs:documentation>
@@ -1489,12 +1499,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Voorvoegsels - 0..1 R</xs:documentation>
@@ -1506,7 +1516,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Achternaam - 1..1 R</xs:documentation>
@@ -1518,7 +1528,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: VoorvoegselsPartner - 0..1 R</xs:documentation>
@@ -1530,7 +1540,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: AchternaamPartner - 0..1 R</xs:documentation>
@@ -1542,7 +1552,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Identificatienummer - 0..* C</xs:documentation>
@@ -1555,7 +1565,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geboortedatum - 1..1 R</xs:documentation>
@@ -1567,7 +1577,7 @@
             <xs:restriction base="xs:date"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geslacht - 1..1 R</xs:documentation>
@@ -1579,12 +1589,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: MeerlingIndicator - 0..1 R</xs:documentation>
@@ -1620,7 +1630,20 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Identificatie - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="identificatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22093">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Gebruiksperiode start - 0..1 R</xs:documentation>
@@ -1632,7 +1655,7 @@
             <xs:union memberTypes="gebruiksperiode_start_1_datatype_1_2_3_4_5_12345_20132_1 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Gebruiksperiode start: datetime</xs:documentation>
@@ -1650,7 +1673,7 @@
             <xs:union memberTypes="gebruiksperiode_eind_1_datatype_1_2_3_4_5_12345_20132_2 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Gebruiksperiode eind: datetime</xs:documentation>
@@ -1668,7 +1691,7 @@
             <xs:union memberTypes="afspraakdatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20133 "/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Afspraakdatum: datetime</xs:documentation>
@@ -1696,7 +1719,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Gebruiksperiode: duration</xs:documentation>
@@ -1733,7 +1756,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: OrganisatieNaam - 0..1 R</xs:documentation>
@@ -1745,7 +1768,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ProductCode - 0..* C</xs:documentation>
@@ -1757,12 +1780,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ProductNaam - 1..1 R</xs:documentation>
@@ -1774,7 +1797,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Omschrijving - 1..1 R</xs:documentation>
@@ -1786,7 +1809,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: FarmaceutischeVorm - 0..1 R</xs:documentation>
@@ -1798,12 +1821,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Waarde - 1..1 R</xs:documentation>
@@ -1820,7 +1843,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Eenheid - 1..1 R</xs:documentation>
@@ -1832,12 +1855,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Waarde - 1..1 R</xs:documentation>
@@ -1854,7 +1877,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Eenheid - 1..1 R</xs:documentation>
@@ -1866,12 +1889,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: IngredientCode - 0..1 C</xs:documentation>
@@ -1883,12 +1906,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Omschrijving - 1..1 R</xs:documentation>
@@ -1900,7 +1923,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Toedieningsweg - 0..1 R</xs:documentation>
@@ -1912,12 +1935,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Aanvullende instructie - 0..* R</xs:documentation>
@@ -1929,12 +1952,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Herhaalperiode cyclisch schema - 0..1 R</xs:documentation>
@@ -1953,7 +1976,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Herhaalperiode cyclisch schema: quantity</xs:documentation>
@@ -1971,7 +1994,7 @@
             <xs:restriction base="xs:nonNegativeInteger"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Doseerduur - 0..1 R</xs:documentation>
@@ -1993,7 +2016,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Doseerduur: quantity</xs:documentation>
@@ -2029,7 +2052,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: vaste waarde - 0..1 R</xs:documentation>
@@ -2041,7 +2064,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: max - 0..1 R</xs:documentation>
@@ -2053,7 +2076,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Eenheid - 1..1 R</xs:documentation>
@@ -2065,12 +2088,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: min - 0..1 R</xs:documentation>
@@ -2082,7 +2105,7 @@
             <xs:restriction base="xs:nonNegativeInteger"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: vaste waarde - 0..1 R</xs:documentation>
@@ -2094,7 +2117,7 @@
             <xs:restriction base="xs:nonNegativeInteger"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: max - 0..1 R</xs:documentation>
@@ -2106,7 +2129,7 @@
             <xs:restriction base="xs:nonNegativeInteger"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Tijdseenheid - 0..1 R</xs:documentation>
@@ -2130,7 +2153,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Tijdseenheid: quantity</xs:documentation>
@@ -2178,7 +2201,7 @@
             <xs:restriction base="xs:dateTime"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Code - 1..1 R</xs:documentation>
@@ -2190,12 +2213,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Omschrijving - 0..1 R</xs:documentation>
@@ -2207,7 +2230,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Aantal - 0..1 R</xs:documentation>
@@ -2219,7 +2242,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Eenheid - 0..1 R</xs:documentation>
@@ -2231,12 +2254,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Tijdseenheid - 0..1 R</xs:documentation>
@@ -2260,7 +2283,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Tijdseenheid: quantity</xs:documentation>
@@ -2309,7 +2332,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Datum - 1..1 R</xs:documentation>
@@ -2321,7 +2344,7 @@
             <xs:union memberTypes="datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_20272 "/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Datum: datetime</xs:documentation>
@@ -2339,7 +2362,7 @@
             <xs:union memberTypes="aanschrijfdatum_1_datatype_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_22500 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Aanschrijfdatum: datetime</xs:documentation>
@@ -2358,10 +2381,10 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: OrganisatieNaam - 1..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: OrganisatieNaam - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="organisatie_naam_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19793">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19793"/>
@@ -2370,7 +2393,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Aantal - 1..1 R</xs:documentation>
@@ -2382,7 +2405,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Eenheid - 1..1 R</xs:documentation>
@@ -2394,12 +2417,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ProductCode - 0..* C</xs:documentation>
@@ -2411,12 +2434,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: ProductNaam - 1..1 R</xs:documentation>
@@ -2428,7 +2451,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Omschrijving - 1..1 R</xs:documentation>
@@ -2440,7 +2463,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: FarmaceutischeVorm - 0..1 R</xs:documentation>
@@ -2452,12 +2475,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Waarde - 1..1 R</xs:documentation>
@@ -2474,7 +2497,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Eenheid - 1..1 R</xs:documentation>
@@ -2486,12 +2509,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Waarde - 1..1 R</xs:documentation>
@@ -2508,7 +2531,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Eenheid - 1..1 R</xs:documentation>
@@ -2520,12 +2543,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: IngredientCode - 0..1 C</xs:documentation>
@@ -2537,12 +2560,12 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Verbruiksduur - 0..1 R</xs:documentation>
@@ -2564,7 +2587,7 @@
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Verbruiksduur: duration</xs:documentation>
@@ -2600,7 +2623,7 @@
             <xs:restriction base="xs:string"/>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Identificatie - 1..1 R</xs:documentation>
@@ -2613,7 +2636,7 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:simpleType name="NullFlavorNoInformation">
       <xs:restriction base="xs:string">

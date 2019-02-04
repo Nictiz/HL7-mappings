@@ -15,13 +15,20 @@
     <xsl:output method="text" encoding="UTF-16"/>
     <xsl:import href="./../wiki/ADA2test-wiki-table.xsl"/>
     <xsl:import href="./mp-functions.xsl"/>
-    <!-- override ada release file and transaction to be handled -->
+    <!-- override ada release file and transaction to be handled, which may be overridden by calling template -->
     <xsl:param name="adaReleaseFile" select="document('../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>
+    <xsl:param name="transactionType">raadplegen</xsl:param>
 
     <xsl:param name="date-conversion-xml" select="document('./date_conversion.xml')"/>
 
-
+    <xsl:variable name="voorbeeld-string">
+        <xsl:choose>
+            <xsl:when test="$transactionType != 'raadplegen'">
+                <xsl:value-of select="' [voorbeeldgegevens, mag gevuld met eigen testgegevens]'"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:variable>
 
     <!-- donkerblauw -->
     <xsl:variable name="tabelkop-achtergrond-kleur">#1F497D;</xsl:variable>
@@ -29,9 +36,6 @@
     <!-- grijzig -->
     <xsl:variable name="element-achtergrond-kleur">#E3E3E3;</xsl:variable>
     <xsl:variable name="elementwaarde-achtergrond-kleur">white</xsl:variable>
-
-    <xsl:variable name="oid-nullFlavor" select="$oidHL7NullFlavor"/>
-    <xsl:variable name="oid-BSN" select="$oidBurgerservicenummer"/>
 
     <xd:doc>
         <xd:desc/>
@@ -74,7 +78,7 @@ __NUMBEREDHEADINGS__
                             <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:zorgverlener-string(.))}"/>
                         </xsl:for-each>
                         <xsl:apply-templates select="./verstrekker" mode="maak-tabel-rij">
-                            <xsl:with-param name="element-name">Verstrekker [voorbeeldgegevens, mag gevuld met eigen testgegevens]</xsl:with-param>
+                            <xsl:with-param name="element-name">Verstrekker<xsl:value-of select="$voorbeeld-string"/></xsl:with-param>
                         </xsl:apply-templates>
                         <xsl:for-each select="./(te_verstrekken_hoeveelheid | verstrekte_hoeveelheid)[.//@value]">
                             <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:element-waarde(./aantal/@value, ./eenheid/@displayName)}"/>
@@ -96,9 +100,9 @@ __NUMBEREDHEADINGS__
                             <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{./identificatie/@value}"/>
                         </xsl:for-each>
                         <!-- MBH identificatie -->
-                        <xsl:for-each select="./../identificatie[.//(@value | @code)]">
-                            <gegevenselement xmlns="" level="{$level}" naam="MBH identificatie" waarde="{./@value}"/>
-                        </xsl:for-each>
+                        <xsl:apply-templates select="./../identificatie[.//(@value)]" mode="maak-tabel-rij">
+                            <xsl:with-param name="element-name">MBH identificatie</xsl:with-param>
+                        </xsl:apply-templates>
                     </tabel>
                 </xsl:for-each>
             </tabellen>
@@ -211,9 +215,9 @@ __NUMBEREDHEADINGS__
                     <gegevenselement xmlns="" level="{$level}" naam="{string-join($element-name)}" waarde="{./@value}"/>
                 </xsl:for-each>
                 <xsl:for-each select="./(voorschrijver | verstrekker)">
-                <xsl:apply-templates select="." mode="maak-tabel-rij">
-                    <xsl:with-param name="element-name" select="concat(nf:element-name(.), ' [voorbeeldgegevens, mag gevuld met eigen testgegevens]')"></xsl:with-param>
-                </xsl:apply-templates>
+                    <xsl:apply-templates select="." mode="maak-tabel-rij">
+                        <xsl:with-param name="element-name" select="concat(nf:element-name(.), $voorbeeld-string)"/>
+                    </xsl:apply-templates>
                 </xsl:for-each>
                 <xsl:for-each select="./(reden_afspraak | reden_wijzigen_of_staken)">
                     <xsl:choose>
@@ -280,7 +284,7 @@ __NUMBEREDHEADINGS__
                         <xsl:choose>
                             <xsl:when test="./persoon">Persoon: <xsl:value-of select="nf:persoon-string(./persoon)"/></xsl:when>
                             <xsl:when test="./informant_is_patient/@value = 'true'">Patiënt</xsl:when>
-                            <xsl:when test="./informant_is_zorgverlener[.//(@value | @code)]">Zorgverlener [voorbeeldgegevens, mag gevuld met eigen gegevens]: <xsl:value-of select="nf:zorgverlener-string(./informant_is_zorgverlener)"/></xsl:when>
+                            <xsl:when test="./informant_is_zorgverlener[.//(@value | @code)]">Zorgverlener<xsl:value-of select="$voorbeeld-string"/>: <xsl:value-of select="nf:zorgverlener-string(./informant_is_zorgverlener)"/></xsl:when>
                         </xsl:choose>
                     </xsl:variable>
                     <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
@@ -290,8 +294,8 @@ __NUMBEREDHEADINGS__
                     <xsl:variable name="waarde" as="xs:string*">
                         <xsl:choose>
                             <xsl:when test="./auteur_is_patient/@value = 'true'">Patiënt</xsl:when>
-                            <xsl:when test="./auteur_is_zorgverlener[.//(@value | @code)]">Zorgverlener [voorbeeldgegevens, mag gevuld met eigen gegevens]: <xsl:value-of select="nf:zorgverlener-string(./auteur_is_zorgverlener)"/></xsl:when>
-                            <xsl:when test="./auteur_is_zorgaanbieder[.//(@value | @code)]">Zorgaanbieder [voorbeeldgegevens, mag gevuld met eigen gegevens]: <xsl:value-of select="nf:zorgaanbieder-string(./auteur_is_zorgaanbieder)"/></xsl:when>
+                            <xsl:when test="./auteur_is_zorgverlener[.//(@value | @code)]">Zorgverlener<xsl:value-of select="$voorbeeld-string"/>: <xsl:value-of select="nf:zorgverlener-string(./auteur_is_zorgverlener)"/></xsl:when>
+                            <xsl:when test="./auteur_is_zorgaanbieder[.//(@value | @code)]">Zorgaanbieder<xsl:value-of select="$voorbeeld-string"/>: <xsl:value-of select="nf:zorgaanbieder-string(./auteur_is_zorgaanbieder)"/></xsl:when>
                         </xsl:choose>
                     </xsl:variable>
                     <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{$waarde}"/>
@@ -316,9 +320,9 @@ __NUMBEREDHEADINGS__
                     <gegevenselement xmlns="" level="1" naam="{nf:element-name(.)}" waarde="{./identificatie/@value}"/>
                 </xsl:for-each>
                 <!-- MBH identificatie -->
-                <xsl:for-each select="./../identificatie[.//(@value | @code)]">
-                    <gegevenselement xmlns="" level="1" naam="MBH identificatie" waarde="{./@value}"/>
-                </xsl:for-each>
+                <xsl:apply-templates select="./../identificatie[.//(@value)]" mode="maak-tabel-rij">
+                    <xsl:with-param name="element-name">MBH identificatie</xsl:with-param>
+                </xsl:apply-templates>
             </tabel>
         </xsl:for-each>
     </xsl:template>
@@ -340,10 +344,10 @@ __NUMBEREDHEADINGS__
                 <xsl:apply-templates select="./contactgegevens/(telefoonnummers | email_adressen)[.//@value]" mode="maak-tabel-rij">
                     <xsl:with-param name="level" select="xs:int(1)"/>
                 </xsl:apply-templates>
-                <xsl:for-each select="./(patient_identificatienummer|identificatienummer)">
+                <xsl:for-each select="./(patient_identificatienummer | identificatienummer)">
                     <xsl:variable name="waarde" as="xs:string">
                         <xsl:choose>
-                            <xsl:when test="./@root eq $oid-BSN">
+                            <xsl:when test="./@root eq $oidBurgerservicenummer">
                                 <xsl:value-of select="concat(./@value, ' [BSN]')"/>
                             </xsl:when>
                             <xsl:otherwise>
@@ -375,7 +379,7 @@ __NUMBEREDHEADINGS__
                     <gegevenselement xmlns="" level="1" naam="{nf:element-name(./auteur)}" waarde="Patiënt"/>
                 </xsl:if>
                 <xsl:for-each select="./auteur[auteur_is_zorgaanbieder[.//(@value | @code)]]">
-                    <groep xmlns="" level="{$level}" naam="Auteur - zorgaanbieder [voorbeeldgegevens, mag gevuld met eigen testgegevens]">
+                    <groep xmlns="" level="{$level}" naam="Auteur - zorgaanbieder{$voorbeeld-string}">
                         <xsl:variable name="level" select="xs:int($level + 1)"/>
                         <xsl:variable name="waarde" as="xs:string*"/>
                         <xsl:apply-templates select="./auteur_is_zorgaanbieder/zorgaanbieder/(zorgaanbieder_identificatie_nummer | organisatie_naam | afdeling_specialisme)" mode="maak-tabel-rij">
@@ -589,7 +593,7 @@ __NUMBEREDHEADINGS__
                 </xsl:for-each>
                 <xsl:for-each select="./product_code[@codeSystem = $oidGStandaardSNK]">
                     <xsl:choose>
-                        <xsl:when test="./../product_code[@codeSystem = ($oidGStandaardZInummer, $oidGStandaardHPK, $oidGStandaardPRK, $oidGStandaardGPK,$oidGStandaardSSK)]">
+                        <xsl:when test="./../product_code[@codeSystem = ($oidGStandaardZInummer, $oidGStandaardHPK, $oidGStandaardPRK, $oidGStandaardGPK, $oidGStandaardSSK)]">
                             <gegevenselement xmlns="" level="{$level}" naam="{$naam-gene}" waarde="{nf:element-code-waarde(.)}"/>
                         </xsl:when>
                         <xsl:otherwise>
@@ -645,23 +649,23 @@ __NUMBEREDHEADINGS__
             </xsl:apply-templates>
         </groep>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="adresgegevens" mode="maak-tabel-rij">
         <xsl:param name="level" select="xs:int(1)" as="xs:int"/>
-        <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:adres-string(.))}"/>            
+        <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:adres-string(.))}"/>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="level"/>
     </xd:doc>
     <xsl:template match="naamgegevens[not(naamgegevens)]" mode="maak-tabel-rij">
         <xsl:param name="level" select="xs:int(1)" as="xs:int"/>
-        <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:naam-string(.))}"/>            
+        <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{string-join(nf:naam-string(.))}"/>
     </xsl:template>
     <xd:doc>
         <xd:desc>Template to get rid of nested naamgegevens which unfortunately ended up in dataset</xd:desc>
@@ -671,14 +675,14 @@ __NUMBEREDHEADINGS__
         <xsl:param name="level" select="xs:int(1)" as="xs:int"/>
         <xsl:apply-templates select="node()" mode="maak-tabel-rij">
             <xsl:with-param name="level" select="$level"/>
-        </xsl:apply-templates>            
+        </xsl:apply-templates>
     </xsl:template>
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="current-bouwsteen"/>
-        <xd:param name="current-element"/>
-        <xd:param name="output0time"/>
+        <xd:param name="current-bouwsteen">ada bouwsteen of the input ada instance xml</xd:param>
+        <xd:param name="current-element">the ada xml element in the current bouwsteen that has a date to be converted</xd:param>
+        <xd:param name="output0time">whether or not a time of 00:00 should be outputted in the text</xd:param>
     </xd:doc>
     <xsl:function name="nf:configurable-T-date" as="xs:string">
         <xsl:param name="current-bouwsteen" as="element()?"/>
@@ -689,8 +693,17 @@ __NUMBEREDHEADINGS__
                 <xsl:when test="$current-bouwsteen[local-name() eq 'beschikbaarstellen_medicatieoverzicht']">
                     <xsl:sequence select="$date-conversion-xml//*[@id eq $current-bouwsteen/@id]//*[local-name() eq $current-element/local-name()]"/>
                 </xsl:when>
-                <xsl:when test="$current-bouwsteen">
+                <xsl:when test="$current-bouwsteen[identificatie]">
                     <xsl:sequence select="$date-conversion-xml//medicamenteuze_behandeling/*[@id eq $current-bouwsteen/identificatie/@value][@root eq $current-bouwsteen/identificatie/@root]//*[local-name() eq $current-element/local-name()]"/>
+                </xsl:when>
+                <xsl:when test="$current-bouwsteen/..[identificatie]">
+                    <xsl:sequence select="$date-conversion-xml//medicamenteuze_behandeling[@id eq $current-bouwsteen/../identificatie/@value][@root eq $current-bouwsteen/../identificatie/@root]//*[local-name() eq $current-element/local-name()]"/>
+                </xsl:when>
+                <xsl:when test="$current-bouwsteen[not(identificatie)]">
+                    <!-- geen identificatie, let's try and find a possible configurable date using bsn and product_code -->
+                    <xsl:variable name="patient-bsn" select="$current-bouwsteen/../../patient/identificatienummer[@root = $oidBurgerservicenummer]"/>
+                    <xsl:variable name="product_code" select="$current-bouwsteen//product_code"/>
+                    <xsl:sequence select="$date-conversion-xml//medicamenteuze_behandeling/*[@bsn = $patient-bsn/@value][@productcode = $product_code/@code]//*[local-name() eq $current-element/local-name()]"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:sequence select="$date-conversion-xml//*[local-name() eq $current-element/local-name()]"/>
@@ -759,7 +772,7 @@ __NUMBEREDHEADINGS__
     </xd:doc>
     <xsl:function name="nf:zorgverlener-string" as="xs:string*">
         <xsl:param name="in" as="element()?"/>
-        <xsl:value-of select="normalize-space(string-join($in/zorgverlener/(zorgverlener_naam|naamgegevens)//@value, ' '))"/>
+        <xsl:value-of select="normalize-space(string-join($in/zorgverlener/(zorgverlener_naam | naamgegevens)//@value, ' '))"/>
         <xsl:if test="$in//specialisme/@displayName">
             <xsl:value-of select="concat(' - ', $in//specialisme/@displayName, '. ')"/>
         </xsl:if>
@@ -806,7 +819,7 @@ __NUMBEREDHEADINGS__
         </xsl:if>
         <xsl:value-of select="string-join($in/adresgegevens//@value, ' ')"/>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="in"/>
@@ -822,8 +835,8 @@ __NUMBEREDHEADINGS__
     </xd:doc>
     <xsl:function name="nf:adres-string" as="xs:string*">
         <xsl:param name="in" as="element(adresgegevens)?"/>
-        <xsl:value-of select="string-join($in//(@value|@displayName), ' ')"/>
+        <xsl:value-of select="string-join($in//(@value | @displayName), ' ')"/>
     </xsl:function>
-    
+
 
 </xsl:stylesheet>
