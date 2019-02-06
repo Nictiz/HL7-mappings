@@ -12,15 +12,15 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
-<!--    <xsl:include href="../hl7/2_hl7_hl7_include.xsl"/>-->
+<xsl:stylesheet xmlns="urn:hl7-org:v3" exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
+    <!--    <xsl:include href="../hl7/2_hl7_hl7_include.xsl"/>-->
 
     <!-- uitvoerende zorgaanbieder -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000">
         <xsl:param name="zorgaanbieder" select="."/>
         <xsl:for-each select="$zorgaanbieder">
             <!--MP CDA Organization id name-->
-            <xsl:for-each select="./zorgaanbieder_identificatie_nummer">
+            <xsl:for-each select="./(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
                 <!-- MP CDA Zorgaanbieder identificaties -->
                 <xsl:call-template name="makeIIid"/>
             </xsl:for-each>
@@ -68,7 +68,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <!-- address NL - generic -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000" match="adresgegevens">
-        <xsl:attribute name="use" select="./adres_soort[1]/@code"/>
+        <xsl:if test="./adres_soort[1]/@code">
+            <xsl:attribute name="use" select="./adres_soort[1]/@code"/>
+        </xsl:if>
         <xsl:for-each select="./straat">
             <streetName>
                 <xsl:value-of select="./@value"/>
@@ -196,7 +198,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <!-- CDA author of informant patient -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
-        <xsl:param name="ada_patient_identificatienummer" select="//patient/patient_identificatienummer"/>
+        <xsl:param name="ada_patient_identificatienummer" select="//patient/(patient_identificatienummer|identificatienummer)"/>
         <xsl:for-each select="$ada_patient_identificatienummer">
             <xsl:call-template name="makeIIid"/>
         </xsl:for-each>

@@ -13,12 +13,23 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="xs xd"  xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xd:doc scope="stylesheet">
+        <xd:desc>
+            <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
+            <xd:p><xd:b>Author:</xd:b> nictiz</xd:p>
+            <xd:p>Helper xslt stuff for creating HL7 for any information standard / use case. To be imported or included from another xslt.</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:include href="../../util/constants.xsl"/>
 
+    <xd:doc>
+        <xd:desc>Formats an xml date to a HL7 formatted date.</xd:desc>
+        <xd:param name="dateTime"/>
+        <xd:param name="precision">determines the picture of the date format, currently only use case for minute. Seconds is the default.</xd:param>
+    </xd:doc>
     <xsl:template name="format2HL7Date">
         <xsl:param name="dateTime"/>
-        <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
         <xsl:param name="precision">second</xsl:param>
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
@@ -39,6 +50,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeADXPValue">
         <xsl:param name="xsiType">ADXP</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -50,6 +66,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputValue"/>
+        <xd:param name="inputNullFlavor"/>
+    </xd:doc>
     <xsl:template name="makeBLAttribute">
         <xsl:param name="inputValue" as="xs:string?"/>
         <xsl:param name="inputNullFlavor" as="xs:string?"/>
@@ -76,6 +97,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeBLValue">
         <xsl:param name="xsiType">BL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -92,6 +118,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeBNValue">
         <xsl:param name="xsiType">BN</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -101,6 +132,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="displayName"/>
+        <xd:param name="elemName"/>
+        <xd:param name="originalText"/>
+        <xd:param name="strOriginalText"/>
+        <xd:param name="translations"/>
+        <xd:param name="xsiType"/>
+    </xd:doc>
     <xsl:template name="makeCDValue">
         <xsl:param name="code" as="xs:string?" select="./@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
@@ -125,6 +167,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="displayName"/>
+        <xd:param name="elemName"/>
+        <xd:param name="originalText"/>
+        <xd:param name="strOriginalText"/>
+        <xd:param name="translations"/>
+        <xd:param name="xsiType"/>
+    </xd:doc>
     <xsl:template name="makeCEValue">
         <xsl:param name="code" as="xs:string?" select="./@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
@@ -146,6 +199,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="displayName"/>
+        <xd:param name="elemName"/>
+        <xd:param name="xsiType"/>
+        <xd:param name="originalText"/>
+        <xd:param name="translations"/>
+    </xd:doc>
     <xsl:template name="makeCVValue">
         <xsl:param name="code" as="xs:string?" select="./@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
@@ -164,6 +227,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="originalText"/>
+    </xd:doc>
     <xsl:template name="makeCSValue">
         <xsl:param name="xsiType">CS</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -184,6 +253,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="originalText"/>
+    </xd:doc>
     <xsl:template name="makeCode">
         <xsl:param name="originalText"/>
         <code>
@@ -202,6 +275,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </code>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="codeSystemName"/>
+        <xd:param name="displayName"/>
+        <xd:param name="originalText"/>
+        <xd:param name="strOriginalText"/>
+        <xd:param name="value"/>
+    </xd:doc>
     <xsl:template name="makeCodeAttribs">
         <xsl:param name="code" as="xs:string?" select="./@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
@@ -255,7 +338,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <!-- OriginalText with element() param -->
+    
+    <xd:doc>
+        <xd:desc> OriginalText with element() param </xd:desc>
+        <xd:param name="originalText"/>
+    </xd:doc>
     <xsl:template name="makeoriginalText">
         <xsl:param name="originalText" as="element()*"/>
         <xsl:if test="$originalText">
@@ -264,7 +351,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </originalText>
         </xsl:if>
     </xsl:template>
-    <!-- OriginalText with string param -->
+    
+    <xd:doc>
+        <xd:desc> OriginalText with string param </xd:desc>
+        <xd:param name="strOriginalText"/>
+    </xd:doc>
     <xsl:template name="makeoriginalText2">
         <xsl:param name="strOriginalText" as="xs:string?"/>
         <xsl:if test="string-length($strOriginalText) gt 0">
@@ -274,6 +365,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="mediaType"/>
+        <xd:param name="representation"/>
+        <xd:param name="reference"/>
+    </xd:doc>
     <xsl:template name="makeEDValue">
         <xsl:param name="xsiType">ED</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -301,6 +400,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:element>
     </xsl:template>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="effectiveTime"/>
+    </xd:doc>
     <xsl:template name="makeEffectiveTime">
         <xsl:param name="effectiveTime"/>
         <xsl:if test="$effectiveTime[1] instance of element()">
@@ -311,6 +414,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:if>
     </xsl:template>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="qualifier"/>
+    </xd:doc>
     <xsl:template name="makeENXPValue">
         <xsl:param name="xsiType">ENXP</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -321,6 +430,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeINTValue">
         <xsl:param name="xsiType">INT</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -332,6 +446,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeINT.NONNEGValue">
         <xsl:param name="xsiType">INT</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -341,6 +460,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeINT.POSValue">
         <xsl:param name="xsiType">INT</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -350,6 +474,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
     <xsl:template name="makeIIid">
         <xsl:call-template name="makeIIValue">
             <xsl:with-param name="xsiType" select="''"/>
@@ -357,6 +484,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeIIValueBSN">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -365,6 +497,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.AGBValue">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -374,6 +511,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.BIGValue">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -383,6 +525,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.BSNValue">
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
@@ -393,6 +540,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.URAValue">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -402,6 +554,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.UZIValue">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -411,6 +568,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="root"/>
+        <xd:param name="nullFlavor"/>
+    </xd:doc>
     <xsl:template name="makeIIValue">
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
@@ -445,6 +609,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputValue"/>
+    </xd:doc>
     <xsl:template name="makeNegationAttr">
         <xsl:param name="inputValue" select="@value"/>
         <xsl:choose>
@@ -467,6 +635,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
     <xsl:template name="makeNullflavorWithToelichting">
         <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
         <xsl:call-template name="makeoriginalText">
@@ -474,6 +645,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeONValue">
         <xsl:param name="xsiType">ON</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -485,6 +661,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makePNValue">
         <xsl:param name="xsiType">PN</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -496,6 +677,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputValue"/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="unit"/>
+    </xd:doc>
     <xsl:template name="makePQValue">
         <xsl:param name="inputValue" select="./@value"/>
         <xsl:param name="xsiType">PQ</xsl:param>
@@ -512,6 +700,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="value"/>
+        <xd:param name="unit"/>
+    </xd:doc>
     <xsl:template name="makePQValueAttribs">
         <xsl:param name="value" select="@value"/>
         <xsl:param name="unit" select="@unit"/>
@@ -523,6 +716,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeSCValue">
         <xsl:param name="xsiType">SC</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -536,6 +734,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeSTValue">
         <xsl:param name="xsiType">ST</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -547,6 +750,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="use"/>
+    </xd:doc>
     <xsl:template name="makeTELValue">
         <xsl:param name="xsiType">TEL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -562,6 +771,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="use"/>
+    </xd:doc>
     <xsl:template name="makeTEL.NL.EXTENDEDValue">
         <xsl:param name="xsiType">TEL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -572,12 +787,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
     <xsl:template name="makeText">
         <text>
             <xsl:value-of select="@value"/>
         </text>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeTNValue">
         <xsl:param name="xsiType">TN</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -589,6 +812,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeTS.DATE.MINValue">
         <xsl:param name="xsiType">TS</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -600,6 +828,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputValue"/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeTSValue">
         <xsl:param name="inputValue" as="xs:string?" select="./@value"/>
         <!-- Do not supply default for xsiType. Due to the datatypes.xsd schema, you cannot always use xsi:type TS, 
@@ -616,6 +850,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputValue"/>
+    </xd:doc>
     <xsl:template name="makeTSValueAttr">
         <xsl:param name="inputValue" as="xs:string?" select="./@value"/>
         <xsl:choose>

@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="xs xd" version="2.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -63,6 +76,8 @@
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
     <xsl:variable name="oidSNOMEDCT">2.16.840.1.113883.6.96</xsl:variable>
+    
+    <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
 
     <xsl:variable name="hl7NullFlavorMap" as="element()+">
         <!-- bron: https://www.hl7.nl/wiki/index.php/Vocabulaire.NullFlavor -->

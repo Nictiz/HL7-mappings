@@ -194,7 +194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$patient">
             <recordTarget>
                 <patientRole>
-                    <xsl:for-each select="./patient_identificatienummer">
+                    <xsl:for-each select="./(patient_identificatienummer|identificatienummer)">
                         <xsl:call-template name="makeIIValue">
                             <xsl:with-param name="root" select="./@root"/>
                             <xsl:with-param name="elemName">id</xsl:with-param>
