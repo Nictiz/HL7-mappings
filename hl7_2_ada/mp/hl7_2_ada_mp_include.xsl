@@ -345,9 +345,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="xsd-toedieningsschema-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsschema']/@type"/>
                         <xsl:variable name="xsd-toedieningsschema" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningsschema-complexType]"/>
                         <toedieningsschema conceptId="{$xsd-toedieningsschema/xs:attribute[@name='conceptId']/@fixed}">
-                            <xsl:variable name="min_frequentie_one_decimal" select="nf:one_decimal($hl7-mar[1]//hl7:period/@value)"/>
+                            <xsl:variable name="min_frequentie_one_decimal" select="nf:one_decimal($hl7-mar[not(hl7:precondition)]//hl7:period/@value)"/>
                             <xsl:variable name="min_frequentie_decimal" select="$min_frequentie_one_decimal - floor($min_frequentie_one_decimal)"/>
-                            <xsl:variable name="max_frequentie_one_decimal" select="nf:one_decimal($hl7-mar[2]//hl7:period/@value)"/>
+                            <xsl:variable name="max_frequentie_one_decimal" select="nf:one_decimal($hl7-mar[hl7:precondition]//hl7:period/@value)"/>
                             <xsl:variable name="max_frequentie_decimal" select="$max_frequentie_one_decimal - floor($max_frequentie_one_decimal)"/>
                             <!-- only output the structured frequentie if the one decimal rounded to 0 -->
                             <xsl:choose>
@@ -369,8 +369,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:comment>At least one of the periods from the input hl7 cannot be properly converted to a frequency integer. 
-                                            Fixed period = <xsl:value-of select="$hl7-mar[1]//hl7:period/@value"/> <xsl:value-of select="$hl7-mar[1]//hl7:period/@unit"/> resulting in frequency/aantal/min rounded to one decimal of: <xsl:value-of select="$min_frequentie_one_decimal"/>
-                                           As Needed (zo nodig) period = <xsl:value-of select="$hl7-mar[2]//hl7:period/@value"/> <xsl:value-of select="$hl7-mar[2]//hl7:period/@unit"/> resulting in frequency/aantal/max rounded to one decimal of: <xsl:value-of select="$max_frequentie_one_decimal"/>
+                                            Fixed period = <xsl:value-of select="$hl7-mar[not(hl7:precondition)]//hl7:period/@value"/> <xsl:value-of select="$hl7-mar[not(hl7:precondition)]//hl7:period/@unit"/> resulting in frequency/aantal/min rounded to one decimal of: <xsl:value-of select="$min_frequentie_one_decimal"/>
+                                           As Needed (zo nodig) period = <xsl:value-of select="$hl7-mar[hl7:precondition]//hl7:period/@value"/> <xsl:value-of select="$hl7-mar[hl7:precondition]//hl7:period/@unit"/> resulting in frequency/aantal/max rounded to one decimal of: <xsl:value-of select="$max_frequentie_one_decimal"/>
                                     </xsl:comment>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -392,7 +392,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:comment>Found conflicting maxDoseQuantity, both "<xsl:value-of select="string-join($hl7-mar[1]/hl7:maxDoseQuantity//@*, ' ')"/>" and "<xsl:value-of select="string-join($hl7-mar[2]/hl7:maxDoseQuantity//@*, ' ')"/>". Cannot output the maxDose in structured format, refer to text.</xsl:comment>
+                                <xsl:comment>Found conflicting maxDoseQuantity, both "<xsl:value-of select="string-join($hl7-mar[hl7:precondition]/hl7:maxDoseQuantity//@*, ' ')"/>" and "<xsl:value-of select="string-join($hl7-mar[not(hl7:precondition)]/hl7:maxDoseQuantity//@*, ' ')"/>". Cannot output the maxDose in structured format, refer to text.</xsl:comment>
                             </xsl:otherwise>
                         </xsl:choose>
                         <!-- toedieningssnelheid en toedieningsduur niet ondersteund in 6.12-->
@@ -601,8 +601,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <!-- variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, meer dan één zo nodig, parallel -->
-                <xsl:when test="count($mar-sorted) = 2 and (count($mar-sorted[hl7:precondition]) gt 1 or $mar-sorted[hl7:precondition/hl7:observationEventCriterion/hl7:code[not(@code = $NHGZoNodigNumeriek and @codeSystem = $oidNHGTabel25BCodesNumeriek)]]) and $parallel">
+                <!-- variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel -->
+                <xsl:when test="count($mar-sorted) = 2 and (count($mar-sorted[hl7:precondition]) gt 0 or $mar-sorted[hl7:precondition/hl7:observationEventCriterion/hl7:code[not(@code = $NHGZoNodigNumeriek and @codeSystem = $oidNHGTabel25BCodesNumeriek)]]) and $parallel">
                     <xsl:comment>variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, meer dan één zo nodig, parallel, verschillende keerdosis</xsl:comment>
                     <xsl:for-each select="$mar-sorted">
                         <xsl:variable name="hl7-pivl" select=".//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]"/>
