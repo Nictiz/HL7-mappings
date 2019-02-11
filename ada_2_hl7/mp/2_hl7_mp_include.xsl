@@ -2778,22 +2778,22 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> MP CDA Zorgverlener vanaf 9.0.7</xd:desc>
+        <xd:desc> MP CDA Zorgverlener vanaf 9.0.7. Context moet ada zorgverlener zijn.</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20181205174044">
-        <xsl:for-each select="./(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)[@value]">
+        <xsl:for-each select="(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)[@value]">
             <xsl:call-template name="makeIIid"/>
         </xsl:for-each>
-        <xsl:if test="not(./(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)[@value])">
+        <xsl:if test="not((zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)[@value])">
             <!-- een id wegschrijven met nullFlavor -->
             <id nullFlavor="NI"/>
         </xsl:if>
-        <xsl:for-each select="./specialisme[@code]">
+        <xsl:for-each select="specialisme[@code]">
             <code>
                 <xsl:call-template name="makeCodeAttribs"/>
             </code>
         </xsl:for-each>
-        <xsl:for-each select="./(zorgverlener_naam/naamgegevens|naamgegevens)[.//(@value | @code | @nullFlavor)]">
+        <xsl:for-each select="((zorgverlener_naam/naamgegevens)|(.//naamgegevens[not(child::naamgegevens)]))[.//(@value | @code | @nullFlavor)]">
             <assignedPerson>
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
                     <xsl:with-param name="naamgegevens" select="."/>

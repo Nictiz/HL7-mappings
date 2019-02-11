@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>-->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
         <!-- name person NL - generic -->
-        <xsl:param name="naamgegevens"/>
+        <xsl:param name="naamgegevens" select="."/>
         <xsl:for-each select="$naamgegevens">
             <name>
                 <xsl:for-each select="./voornamen[@value]">

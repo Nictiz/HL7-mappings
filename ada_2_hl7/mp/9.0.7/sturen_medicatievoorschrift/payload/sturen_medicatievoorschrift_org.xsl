@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="mbh"/>
 
 		<!-- phase="#ALL" achteraan de volgende regel zorgt dat oXygen niet met een phase chooser dialoog komt elke keer dat je de HL7 XML opent -->
-		<xsl:processing-instruction name="xml-model">href="file:/C:/SVN/art_decor/branches/mp-qual-20180426T140905/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+		<xsl:processing-instruction name="xml-model">href="file:/C:/SVN/art_decor/branches/mp-qual-20181220T121121/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
 		<xsl:comment>Generated from ada instance with title: "<xsl:value-of select="$mbh/../@title"/>" and id: "<xsl:value-of select="$mbh/../@id"/>".</xsl:comment>
 		<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
 			<templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9240"/>
@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<statusCode nullFlavor="NI"/>
 			<!-- Patient -->
 			<xsl:for-each select="$patient">
-				<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000">
+			    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000">
 					<xsl:with-param name="patient" select="."/>
 				</xsl:call-template>
 			</xsl:for-each>
@@ -67,9 +67,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:for-each>
 			</xsl:for-each>
 		</organizer>
-		<xsl:comment>Input ada xml below</xsl:comment>
+		<!--<xsl:comment>Input ada xml below</xsl:comment>
 		<xsl:call-template name="copyElementInComment">
 			<xsl:with-param name="element" select="$mbh/.."/>
-		</xsl:call-template>
+		</xsl:call-template>-->
 	</xsl:template>
 </xsl:stylesheet>
