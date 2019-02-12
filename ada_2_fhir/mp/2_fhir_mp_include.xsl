@@ -532,7 +532,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </MedicationRequest>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-AdministrationAgreement/ </xd:desc>
         <xd:param name="medicatieafspraak"/>
@@ -648,10 +648,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <supportingInformation>
                         <reference value="{nf:getFullUrlOrId('LENGTE', nf:getGroupingKeyDefault(.), false())}"/>
                         <xsl:variable name="datum-string" select="
-                            if (./lengte_datum_tijd/@value) then
-                            format-dateTime(./lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
-                            else
-                            'onbekend'"/>
+                                if (./lengte_datum_tijd/@value) then
+                                    format-dateTime(./lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
+                                else
+                                    'onbekend'"/>
                         <display value="{concat('Lengte: ', ./lengte_waarde/@value, ' ', ./lengte_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
                     </supportingInformation>
                 </xsl:for-each>
@@ -660,10 +660,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <supportingInformation>
                         <reference value="{nf:getFullUrlOrId('GEWICHT', nf:getGroupingKeyDefault(.), false())}"/>
                         <xsl:variable name="datum-string" select="
-                            if (./gewicht_datum_tijd/@value) then
-                            format-dateTime(./gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
-                            else
-                            'onbekend'"/>
+                                if (./gewicht_datum_tijd/@value) then
+                                    format-dateTime(./gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
+                                else
+                                    'onbekend'"/>
                         <display value="{concat('Gewicht: ',./gewicht_waarde/@value, ' ', ./gewicht_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
                     </supportingInformation>
                 </xsl:for-each>
@@ -703,8 +703,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </MedicationRequest>
         </xsl:for-each>
     </xsl:template>
-    
-    
+
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="in"/>
@@ -1007,23 +1007,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <display value="{normalize-space(string-join(.//@value, ' '))}"/>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template name="missing-type-reference-practitionerrole" match="zorgverlener" mode="doMissingTypeReferencePractitionerRole">
-        <xsl:variable name="display" as="xs:string?" select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name()='naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value |.//specialisme/@displayName,' || ')))"/>
-        <extension url="http://nictiz.nl/fhir/StructureDefinition/missing-type-reference">            
+        <xsl:variable name="display" as="xs:string?" select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName, ' || ')))"/>
+        <extension url="http://nictiz.nl/fhir/StructureDefinition/missing-type-reference">
             <valueReference>
-                <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>                    
+                <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
             </valueReference>
-    </extension>
+        </extension>
         <display value="{nf:get-practitioner-role-display(.)}"/>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Creates reference and display element for practitioner role using ada element zorgverlener</xd:desc>
-   </xd:doc>
+    </xd:doc>
     <xsl:template name="practitioner-role-reference" match="zorgverlener" mode="doPractitionerRoleReference">
         <reference value="{nf:getFullUrlOrId('PRACTITIONERROLE', nf:getGroupingKeyDefault(.), false())}"/>
         <display value="{nf:get-practitioner-role-display(.)}"/>
@@ -1079,20 +1079,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </requester>
         </xsl:for-each>
     </xsl:template>
-   
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template name="zorgverlener-requester-ext-907" match="voorschrijver" mode="doRequesterExtension-907">
         <xsl:for-each select="./zorgverlener[.//(@value | @code)]">
-            <requester>                
+            <requester>
                 <agent>
                     <xsl:apply-templates select="." mode="doMissingTypeReferencePractitionerRole"/>
                 </agent>
             </requester>
         </xsl:for-each>
-    </xsl:template>    
-    
+    </xsl:template>
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -2067,16 +2067,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="MA-in-MedicationRequest-2.2">
                         <xsl:with-param name="medicatieafspraak" select="."/>
                         <xsl:with-param name="medicationrequest-id" select="
-                            if ($referById) then
-                            nf:removeSpecialCharacters(./identificatie/@value)
-                            else
-                            ()"/>
+                                if ($referById) then
+                                    nf:removeSpecialCharacters(./identificatie/@value)
+                                else
+                                    ()"/>
                     </xsl:call-template>
                 </resource>
             </entry>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="copyIndicator"/>
@@ -2160,10 +2160,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <resource>
                         <xsl:call-template name="nl-core-relatedperson-2.0">
                             <xsl:with-param name="relatedperson-id" select="
-                                if ($referById) then
-                                upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))
-                                else
-                                ()"/>
+                                    if ($referById) then
+                                        upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))
+                                    else
+                                        ()"/>
                         </xsl:call-template>
                     </resource>
                 </entry>
@@ -2396,10 +2396,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <resource>
                         <xsl:call-template name="nl-core-relatedperson-2.0">
                             <xsl:with-param name="relatedperson-id" select="
-                                if ($referById) then
-                                upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))
-                                else
-                                ()"/>
+                                    if ($referById) then
+                                        upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))
+                                    else
+                                        ()"/>
                         </xsl:call-template>
                     </resource>
                 </entry>
@@ -2613,7 +2613,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-   
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="duration"/>
@@ -2694,11 +2694,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:choose>
                 <xsl:when test="./product_code[not(@codeSystem = $oidHL7NullFlavor)]">
-                    <code>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="./product_code"/>
-                        </xsl:call-template>
-                    </code>
+                    <xsl:for-each select="./product_code[not(@codeSystem = $oidHL7NullFlavor)]">
+                        <code>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </code>
+                    </xsl:for-each>
                 </xsl:when>
                 <xsl:when test="./product_specificatie/product_naam[@value]">
                     <code>
@@ -2917,7 +2919,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>MAGISTRAAL</xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="ada-zorgverlener"/>
@@ -2925,7 +2927,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:get-practitioner-role-display" as="xs:string?">
         <xsl:param name="ada-zorgverlener" as="element()?"/>
         <xsl:for-each select="$ada-zorgverlener">
-            <xsl:value-of select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name()='naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value |.//specialisme/@displayName,' || ')))"/>
+            <xsl:value-of select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName, ' || ')))"/>
         </xsl:for-each>
     </xsl:function>
 
