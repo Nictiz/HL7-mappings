@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="organizations" as="element()*">
         <!-- Zorgaanbieders -->
-        <xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)]" group-by="concat(nf:ada-za-id(./zorgaanbieder_identificatie_nummer)/@root, nf:ada-za-id(./zorgaanbieder_identificatie_nummer)/@value)">
+        <xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)]" group-by="concat(nf:ada-za-id((zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer))/@root, nf:ada-za-id((zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer))/@value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <unieke-zorgaanbieder xmlns="">
@@ -735,7 +735,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
                 </meta>
-                <xsl:for-each select="./zorgaanbieder_identificatie_nummer[@value]">
+                <xsl:for-each select="(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)[@value]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier">
                             <xsl:with-param name="in" select="."/>
@@ -781,7 +781,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </telecom>
                     </xsl:for-each>
                 </xsl:for-each>
-                <xsl:apply-templates select="./adres/adresgegevens" mode="doAddress"/>
+                <xsl:apply-templates select="(adres/adresgegevens|adresgegevens)" mode="doAddress"/>
             </Organization>
         </xsl:for-each>
     </xsl:template>
@@ -888,26 +888,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 <xsl:for-each select=".[.//@value]">
                     <practitioner>
-                        <xsl:choose>
-                            <xsl:when test="$referById = true()">
-                                <xsl:apply-templates select="." mode="doPractitionerReference"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:apply-templates select="." mode="doPractitionerReference"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:apply-templates select="." mode="doPractitionerReference"/>
                     </practitioner>
                 </xsl:for-each>
                 <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)][.//@value]">
                     <organization>
-                        <xsl:choose>
-                            <xsl:when test="$referById = true()">
-                                <xsl:apply-templates select="." mode="doOrganizationReference"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:apply-templates select="." mode="doOrganizationReference"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:apply-templates select="." mode="doOrganizationReference"/>
                     </organization>
                 </xsl:for-each>
                 <xsl:for-each select="./zorgverlener_rol">
@@ -1003,7 +989,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="practitioner-reference" match="zorgverlener" mode="doPractitionerReference">
         <reference value="{nf:getFullUrlOrId('Practitioner',nf:getGroupingKeyPractitioner(.), false())}"/>
-        <xsl:for-each select=".//naamgegevens[.//@value]">
+        <xsl:for-each select=".//naamgegevens[not(naamgegevens)][.//@value]">
             <display value="{normalize-space(string-join(.//@value, ' '))}"/>
         </xsl:for-each>
     </xsl:template>
@@ -1097,6 +1083,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template name="nl-core-address-2.0" match="adresgegevens" mode="doAddress">
+        <!-- TODO add support for adres_soort -->
         <xsl:for-each select=".[.//(@value | @code)]">
             <xsl:variable name="lineItems" as="element()*">
                 <xsl:for-each select="./straat/@value">
@@ -2694,13 +2681,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:choose>
                 <xsl:when test="./product_code[not(@codeSystem = $oidHL7NullFlavor)]">
-                    <xsl:for-each select="./product_code[not(@codeSystem = $oidHL7NullFlavor)]">
-                        <code>
+                    <code>
+                        <xsl:for-each select="./product_code[not(@codeSystem = $oidHL7NullFlavor)]">
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </code>
-                    </xsl:for-each>
+                        </xsl:for-each>
+                    </code>
                 </xsl:when>
                 <xsl:when test="./product_specificatie/product_naam[@value]">
                     <code>
@@ -2826,7 +2813,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="concat($resource/local-name(), '/', $resource/f:id/@value)"/>
                     </xsl:otherwise>
                 </xsl:choose>
-
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$var/*[.//group-key/text() = $group-key]//f:entry/f:fullUrl/@value"/>
@@ -2849,7 +2835,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyPractitioner" as="xs:string?">
         <xsl:param name="zorgverlener" as="element()?"/>
-        <xsl:value-of select="concat(nf:getGroupingKeyDefault($zorgverlener/zorgverlener_identificatie_nummer), nf:getGroupingKeyDefault($zorgverlener/zorgverlener_naam), nf:getGroupingKeyDefault($zorgverlener/adres), nf:getGroupingKeyDefault($zorgverlener/telefoon_email))"/>
+        <xsl:value-of select="concat(nf:getGroupingKeyDefault($zorgverlener/(zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)), nf:getGroupingKeyDefault($zorgverlener/(zorgverlener_naam | naamgegevens)), nf:getGroupingKeyDefault($zorgverlener/adres), nf:getGroupingKeyDefault($zorgverlener/telefoon_email))"/>
     </xsl:function>
 
     <xd:doc>
@@ -3085,13 +3071,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="uuid"/>
     </xd:doc>
-    <xsl:template name="organization-entry" match="zorgaanbieder[not(./zorgaanbieder)]" mode="doOrganization">
+    <xsl:template name="organization-entry" match="zorgaanbieder[not(zorgaanbieder)]" mode="doOrganization">
         <xsl:param name="uuid" as="xs:boolean"/>
         <xsl:variable name="ada-id" select="
                 if ($uuid) then
                     (nf:get-fhir-uuid(.))
                 else
-                    (nf:getUriFromAdaId(nf:ada-za-id(./zorgaanbieder_identificatie_nummer)))"/>
+                (nf:getUriFromAdaId(nf:ada-za-id((zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer))))"/>
         <entry>
             <fullUrl value="{$ada-id}"/>
             <resource>
