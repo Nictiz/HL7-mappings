@@ -3061,9 +3061,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template name="medication-reference" match="product" mode="doMedicationReference">
+        <!-- determine most specific product_code -->
+        <xsl:variable name="productCode" select="./product_code"/>
+        <xsl:variable name="mainGstdLevel" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="$productCode[@codeSystem = $oidGStandaardZInummer]">
+                    <xsl:value-of select="$oidGStandaardZInummer"/>
+                </xsl:when>
+                <xsl:when test="$productCode[@codeSystem = $oidGStandaardHPK]">
+                    <xsl:value-of select="$oidGStandaardHPK"/>
+                </xsl:when>
+                <xsl:when test="$productCode[@codeSystem = $oidGStandaardPRK]">
+                    <xsl:value-of select="$oidGStandaardPRK"/>
+                </xsl:when>
+                <xsl:when test="$productCode[@codeSystem = $oidGStandaardGPK]">
+                    <xsl:value-of select="$oidGStandaardGPK"/>
+                </xsl:when>
+                <xsl:when test="$productCode[@codeSystem = $oidGStandaardSSK]">
+                    <xsl:value-of select="$oidGStandaardSSK"/>
+                </xsl:when>
+                <xsl:when test="$productCode[@codeSystem = $oidGStandaardSNK]">
+                    <xsl:value-of select="$oidGStandaardSNK"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+        
         <medicationReference>
             <reference value="{nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.), false())}"/>
-            <display value="{if (./product_code/@displayName) then ./product_code/@displayName else ./product_specificatie/product_naam/@value}"/>
+            <display>
+                <xsl:attribute name="value">
+                    <xsl:choose>
+                        <xsl:when test="./product_code[@codeSystem=$mainGstdLevel]/@displayName">
+                            <xsl:value-of select="./product_code[@codeSystem=$mainGstdLevel]/@displayName"/>
+                        </xsl:when>
+                        <xsl:when test="./product_code/@displayName">
+                            <xsl:value-of select="./product_code[@displayName][1]/@displayName"/>
+                        </xsl:when>
+                        <xsl:when test="./product_specificatie/product_naam/@value"><xsl:value-of select="./product_specificatie/product_naam/@value"/></xsl:when>
+                        <xsl:otherwise>ERROR: DISPLAYNAME NOT FOUND IN INPUT</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+            </display>
         </medicationReference>
     </xsl:template>
 
