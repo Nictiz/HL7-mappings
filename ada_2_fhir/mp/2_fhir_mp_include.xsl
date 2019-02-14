@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="practitioners" as="element()*">
         <!-- Zorgverleners in Practitioners -->
-        <xsl:for-each-group select="//zorgverlener" group-by="concat(nf:ada-zvl-id(./zorgverlener_identificatie_nummer)/@root, nf:ada-zvl-id(./zorgverlener_identificatie_nummer)/@value)">
+        <xsl:for-each-group select="//zorgverlener" group-by="concat(nf:ada-zvl-id(./(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer))/@root, nf:ada-zvl-id(./(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer))/@value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -852,7 +852,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
                 </meta>
                 <!-- zorgverlener_identificatie_nummer -->
-                <xsl:for-each select="./zorgverlener_identificatie_nummer[.//@value]">
+                <xsl:for-each select="./(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)[.//@value]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier">
                             <xsl:with-param name="in" select="."/>
@@ -860,7 +860,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
                 <!-- naamgegevens -->
-                <xsl:for-each select="./zorgverlener_naam/naamgegevens">
+                <xsl:for-each select="./(zorgverlener_naam/naamgegevens|.//naamgegevens[not(naamgegevens)])">
                     <xsl:call-template name="nl-core-humanname">
                         <xsl:with-param name="ada-naamgegevens" select="."/>
                         <xsl:with-param name="unstructured-name" select="./ongestructureerde_naam/@value"/>
@@ -3206,8 +3206,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 if ($uuid) then
                     nf:get-fhir-uuid(.)
                 else
-                    if (./zorgverlener_identificatie_nummer) then
-                        nf:getUriFromAdaId(nf:ada-zvl-id(./zorgverlener_identificatie_nummer))
+                if (./(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)) then
+                nf:getUriFromAdaId(nf:ada-zvl-id(./(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)))
                     else
                         nf:get-fhir-uuid(.)"/>
         <entry>
