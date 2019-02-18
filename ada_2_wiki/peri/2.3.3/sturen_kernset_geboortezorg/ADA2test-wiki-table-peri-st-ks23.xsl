@@ -15,7 +15,7 @@
     <xsl:output method="text" encoding="UTF-16"/>
     <xsl:import href="./../../ADA2test-wiki-table-peri.xsl"/>
     <!-- override ada release file and transaction to be handled -->
-    <xsl:param name="adaReleaseFile" select="document('../../../../../projects/perinatologie/definitions/peri20-ada-release.xml')"/>
+    <xsl:param name="adaReleaseFile" select="document('../../../../../projects/perinatologie/definitions/perinatologie-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.90.77.4.2437</xsl:param>
 
 <!--    <xsl:param name="do-ada-files" select="true()"/>-->
