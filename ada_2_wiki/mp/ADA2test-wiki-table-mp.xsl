@@ -831,11 +831,12 @@ __NUMBEREDHEADINGS__
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="in"/>
+        <xd:param name="in">ada adresgegevens</xd:param>
     </xd:doc>
     <xsl:function name="nf:adres-string" as="xs:string*">
         <xsl:param name="in" as="element(adresgegevens)?"/>
-        <xsl:value-of select="string-join($in//(@value | @displayName), ' ')"/>
+        <xsl:value-of select="concat($in/adres_soort/@displayName, ': ')"/>
+        <xsl:value-of select="string-join($in//*[not(local-name()='adres_soort')]//(@value | @displayName), ' ')"/>
     </xsl:function>
 
 
