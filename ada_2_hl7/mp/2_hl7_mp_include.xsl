@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="xs xd" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#default nf" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
@@ -20,6 +20,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Mapping xslt for creating HL7 for Medicatieproces. To be imported or included from another xslt.</xd:p>
         </xd:desc>
     </xd:doc>
+    <xsl:output method="xml" indent="yes"/>
+    
     <xsl:include href="../hl7/2_hl7_hl7_include.xsl"/>
     <xsl:include href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
     <xsl:include href="../zib2017bbr/2_hl7_zib2017bbr_include.xsl"/>
@@ -954,7 +956,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <xsl:for-each select="zorgaanbieder">
             <assignedPerson>
                 <representedOrganization>
-                    <xsl:for-each select="zorgaanbieder_identificatie_nummer">
+                    <xsl:for-each select="(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)">
                         <xsl:call-template name="makeIIid"/>
                     </xsl:for-each>
                     <xsl:for-each select="organisatie_naam">
@@ -1444,7 +1446,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <xsl:comment>The message template (9043) incorrectly defines representedOrganization, however the xsd only accepts Organization</xsl:comment>
             <xsl:comment>Closed warnings schematron messages for this element should be ignored.</xsl:comment>
             <Organization classCode="ORG" determinerCode="INSTANCE">
-                <xsl:for-each select="zorgaanbieder_identificatie_nummer[@value]">
+                <xsl:for-each select="(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)[@value]">
                     <xsl:call-template name="makeIIValue">
                         <xsl:with-param name="elemName">id</xsl:with-param>
                         <xsl:with-param name="xsiType" select="''"/>
@@ -1775,11 +1777,11 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="ingredientCode"/>
+        <xd:desc>MP CDA Ingredient Material Kind</xd:desc>
+        <xd:param name="ingredientCode">ada element ingredient_code</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9073_20160618205506">
-        <xsl:param name="ingredientCode"/>
+        <xsl:param name="ingredientCode" as="element(ingredient_code)?"/>
         <!--MP CDA Ingredient Material Kind-->
         <pharm:ingredient classCode="MMAT" determinerCode="KIND">
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9074_20160618205801">
@@ -1788,16 +1790,14 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         </pharm:ingredient>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="ingredientCode"/>
+        <xd:desc>MP CDA Material Code Ext</xd:desc>
+        <xd:param name="ingredientCode">ada element ingredient_code</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9074_20160618205801">
-        <xsl:param name="ingredientCode"/>
+        <xsl:param name="ingredientCode" as="element(ingredient_code)?"/>
         <!--MP CDA Material Code Ext-->
         <pharm:code>
-            <xsl:call-template name="makeCodeAttribs">
-                <xsl:with-param name="originalText" select="$ingredientCode"/>
-            </xsl:call-template>
+            <xsl:call-template name="makeCodeAttribs"/>
         </pharm:code>
     </xsl:template>
     <xd:doc>
@@ -2303,7 +2303,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9089_20160621134042">
         <!--MP CDA Organization id name-->
-        <xsl:for-each select="./zorgaanbieder_identificatie_nummer">
+        <xsl:for-each select="./(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)">
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9112_20160710120116"/>
         </xsl:for-each>
         <xsl:for-each select="./organisatie_naam[.//(@value | @nullFlavor)]">
@@ -2801,9 +2801,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </assignedPerson>
         </xsl:for-each>
         <xsl:for-each select="./(zorgaanbieder/zorgaanbieder|zorgaanbieder[not(zorgaanbieder)])[.//(@value | @code | @nullFlavor)]">
-            <representedOrganization>
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000"/>
-            </representedOrganization>
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
@@ -5370,14 +5368,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </consumable>
             </xsl:for-each>
             <!-- Verstrekker -->
-            <xsl:for-each select="./verstrekker/zorgaanbieder/zorgaanbieder">
+            <xsl:for-each select="./verstrekker/zorgaanbieder[not(zorgaanbieder)]">
+                <xsl:variable name="afspraakdatum" select="ancestor::*/afspraakdatum/@value"/>
                 <author>
                     <time>
                         <xsl:choose>
-                            <xsl:when test="../../../afspraakdatum/@value">
+                            <xsl:when test="$afspraakdatum">
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2HL7Date">
-                                        <xsl:with-param name="dateTime" select="../../../afspraakdatum/@value"/>
+                                        <xsl:with-param name="dateTime" select="$afspraakdatum"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
                             </xsl:when>
@@ -5710,7 +5709,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 
     <xd:doc>
         <xd:desc> Medicatiegebruik inhoud  - vanaf MP 9.0.7 </xd:desc>
-        <xd:param name="gb"/>
+        <xd:param name="gb">ada element voor medicatiegebruik</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9250_20181205111532">
         <xsl:param name="gb" select="."/>
@@ -5752,7 +5751,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </consumable>
             </xsl:for-each>
 
-            <!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
+            <!-- auteur-->
             <xsl:for-each select="./auteur[.//(@value | @code)]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9247_20181205102329">
                     <xsl:with-param name="ada-auteur" select="."/>
@@ -6041,7 +6040,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 
     <xd:doc>
         <xd:desc>Medicatiegebruik - vanaf MP 9.0.7 </xd:desc>
-        <xd:param name="gb"/>
+        <xd:param name="gb">ada element voor medicatiegebruik</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9246_20181205101627">
         <xsl:param name="gb" select="."/>
@@ -6207,12 +6206,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 
                 <!-- verbruiksperiode -->
                 <xsl:for-each select="./verbruiksperiode[.//(@value | @code)]">
-                    <expectedUseTime>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
-                            <xsl:with-param name="low" select="./ingangsdatum"/>
-                            <xsl:with-param name="width" select="./duur"/>
-                            <xsl:with-param name="high" select="./einddatum"/>
-                        </xsl:call-template>
+                    <expectedUseTime>                        
                         <xsl:for-each select="./ingangsdatum">
                             <low>
                                 <xsl:call-template name="makeTSValueAttr"/>

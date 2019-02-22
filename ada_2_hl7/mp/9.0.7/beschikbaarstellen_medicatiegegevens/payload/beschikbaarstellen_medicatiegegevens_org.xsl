@@ -12,15 +12,15 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet  xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#default" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
-            <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
+            <xd:p><xd:b>Created on:</xd:b> Feb 16, 2019</xd:p>
             <xd:p><xd:b>Author:</xd:b> nictiz</xd:p>
             <xd:p>Mapping xslt for use case 'beschikbaarstellen medicatiegegevens' in MP-9. From ada to hl7.</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
+    <xsl:output method="xml" indent="yes"/>
     <xsl:param name="schematron-ref" as="xs:boolean">true</xsl:param>
     <xsl:include href="../../../2_hl7_mp_include.xsl"/>
 
