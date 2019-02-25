@@ -1956,7 +1956,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="xsd-verstrekt_geneesmiddel" select="$xsd-ada//xs:complexType[@name = $xsd-verstrekt_geneesmiddel-complexType]"/>
                 <xsl:for-each select=".//hl7:product/hl7:dispensedMedication/hl7:MedicationKind">
                     <verstrekt_geneesmiddel conceptId="{$xsd-verstrekt_geneesmiddel/xs:attribute[@name='conceptId']/@fixed}">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.106_20130521000000">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.106_20130521000000-907">
                             <xsl:with-param name="product-hl7" select="."/>
                             <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                             <xsl:with-param name="xsd-geneesmiddel" select="$xsd-verstrekt_geneesmiddel"/>
