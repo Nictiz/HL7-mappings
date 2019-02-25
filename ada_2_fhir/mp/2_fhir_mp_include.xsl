@@ -2370,23 +2370,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="medicatiegebruik"/>
         <xsl:param name="medicationstatement-id" as="xs:string?"/>
         <xsl:for-each select="$medicatiegebruik">
-            <!-- informant / persoon in eigen resource -->
-<!--            <xsl:variable name="informant-persoon-fullUrl" select="nf:get-fhir-uuid(.)"/>-->
-   <!--         <xsl:for-each select="./informant/persoon[.//@value]">
-                <entry>
-                    <fullUrl value="{$informant-persoon-fullUrl}"/>
-                    <resource>
-                        <xsl:call-template name="nl-core-relatedperson-2.0">
-                            <xsl:with-param name="relatedperson-id" select="
-                                    if ($referById) then
-                                        upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))
-                                    else
-                                        ()"/>
-                        </xsl:call-template>
-                    </resource>
-                </entry>
-            </xsl:for-each>
-   -->         <!-- MedicationStatement entry -->
+            <!-- MedicationStatement entry -->
             <entry>
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -2517,9 +2501,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:choose>
                                     <xsl:when test="persoon[.//@value]">
                                         <xsl:apply-templates select="persoon" mode="doRelatedPersonReference"/>
-<!--                                        <reference value="{$informant-persoon-fullUrl}"/>
-                                        <display value="{normalize-space(string-join(persoon/naamgegevens[1]//*[not(name()='naamgebruik')]/@value,' '))}"/>
--->                                    </xsl:when>
+                                    </xsl:when>
                                     <xsl:when test="informant_is_patient[@value = 'true']">
                                         <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference"/>
                                     </xsl:when>
@@ -3543,7 +3525,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:call-template name="nl-core-relatedperson-2.0"/>                        
+                        <xsl:call-template name="nl-core-relatedperson-2.0"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </resource>
