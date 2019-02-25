@@ -19,51 +19,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000">
         <xsl:param name="zorgaanbieder" select="."/>
         <xsl:for-each select="$zorgaanbieder">
-            <!--MP CDA Organization id name-->
-            <xsl:for-each select="./(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
-                <!-- MP CDA Zorgaanbieder identificaties -->
-                <xsl:call-template name="makeIIid"/>
-            </xsl:for-each>
-            <xsl:for-each select="./organisatie_naam[.//(@value | @nullFlavor)]">
-                <xsl:element name="name">
-                    <xsl:choose>
-                        <xsl:when test="./@value">
-                            <xsl:value-of select="./@value"/>
-                        </xsl:when>
-                        <xsl:when test="./@nullFlavor">
-                            <xsl:attribute name="nullFlavor">
-                                <xsl:value-of select="./@nullFlavor"/>
-                            </xsl:attribute>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:element>
-            </xsl:for-each>
-            <xsl:for-each select="./contactgegevens/telefoonnummers[.//(@value | @nullFlavor)]">
-                <telecom>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000"/>
-                </telecom>
-            </xsl:for-each>
-            <xsl:for-each select="./contactgegevens/email_adressen[.//(@value | @nullFlavor)]">
-                <telecom>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.104_20180611000000"/>
-                </telecom>
-            </xsl:for-each>
-            <xsl:for-each select="./adresgegevens[.//(@value | @nullFlavor)]">
-                <addr>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
-                </addr>
-            </xsl:for-each>
-            <xsl:for-each select="./organisatie_type">
-                <standardIndustryClassCode>
-                    <xsl:call-template name="makeCodeAttribs"/>
-                </standardIndustryClassCode>
-            </xsl:for-each>
-            <xsl:for-each select="./afdeling_specialisme">
-                <asOrganizationPartOf>
-                    <xsl:call-template name="makeCode"/>
-                </asOrganizationPartOf>
-            </xsl:for-each>
-
+            <representedOrganization>
+                <!--MP CDA Organization id name-->
+                <xsl:for-each select="./(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
+                    <!-- MP CDA Zorgaanbieder identificaties -->
+                    <xsl:call-template name="makeIIid"/>
+                </xsl:for-each>
+                <xsl:for-each select="./organisatie_naam[.//(@value | @nullFlavor)]">
+                    <xsl:element name="name">
+                        <xsl:choose>
+                            <xsl:when test="./@value">
+                                <xsl:value-of select="./@value"/>
+                            </xsl:when>
+                            <xsl:when test="./@nullFlavor">
+                                <xsl:attribute name="nullFlavor">
+                                    <xsl:value-of select="./@nullFlavor"/>
+                                </xsl:attribute>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:element>
+                </xsl:for-each>
+                <xsl:for-each select="./contactgegevens/telefoonnummers[.//(@value | @nullFlavor)]">
+                    <telecom>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000"/>
+                    </telecom>
+                </xsl:for-each>
+                <xsl:for-each select="./contactgegevens/email_adressen[.//(@value | @nullFlavor)]">
+                    <telecom>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.104_20180611000000"/>
+                    </telecom>
+                </xsl:for-each>
+                <xsl:for-each select="./adresgegevens[.//(@value | @nullFlavor)]">
+                    <addr>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
+                    </addr>
+                </xsl:for-each>
+                <xsl:for-each select="./organisatie_type">
+                    <standardIndustryClassCode>
+                        <xsl:call-template name="makeCodeAttribs"/>
+                    </standardIndustryClassCode>
+                </xsl:for-each>
+                <xsl:for-each select="./afdeling_specialisme">
+                    <asOrganizationPartOf>
+                        <xsl:call-template name="makeCode"/>
+                    </asOrganizationPartOf>
+                </xsl:for-each>
+            </representedOrganization>
         </xsl:for-each>
     </xsl:template>
     <!-- address NL - generic -->
@@ -198,7 +199,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <!-- CDA author of informant patient -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
-        <xsl:param name="ada_patient_identificatienummer" select="//patient/(patient_identificatienummer|identificatienummer)"/>
+        <xsl:param name="ada_patient_identificatienummer" select="//patient/(patient_identificatienummer | identificatienummer)"/>
         <xsl:for-each select="$ada_patient_identificatienummer">
             <xsl:call-template name="makeIIid"/>
         </xsl:for-each>
