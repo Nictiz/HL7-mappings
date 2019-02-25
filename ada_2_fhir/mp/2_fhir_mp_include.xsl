@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="organizations" as="element()*">
         <!-- Zorgaanbieders -->
-        <xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)]" group-by="concat(nf:ada-za-id((zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer))/@root, nf:ada-za-id((zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer))/@value)">
+        <xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)]" group-by="concat(nf:ada-za-id(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)/@root, nf:ada-za-id(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)/@value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <unieke-zorgaanbieder xmlns="">
@@ -2430,6 +2430,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference"/>
                                         </valueReference>
                                     </xsl:when>
+                                    <xsl:when test="./auteur_is_zorgaanbieder[.//@value]">
+                                        <valueReference>
+                                            <xsl:apply-templates select="./auteur_is_zorgaanbieder/zorgaanbieder" mode="doOrganizationReference"/>
+                                        </valueReference>
+                                    </xsl:when>
                                 </xsl:choose>
                             </extension>
                         </xsl:for-each>
@@ -3106,8 +3111,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="uuid"/>
+        <xd:desc>Creates an organization resource as a FHIR entry</xd:desc>
+        <xd:param name="uuid">boolean to determine whether to generate a uuid for the fullURL</xd:param>
     </xd:doc>
     <xsl:template name="organization-entry" match="zorgaanbieder[not(zorgaanbieder)]" mode="doOrganization">
         <xsl:param name="uuid" as="xs:boolean"/>
@@ -3115,7 +3120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 if ($uuid) then
                     (nf:get-fhir-uuid(.))
                 else
-                (nf:getUriFromAdaId(nf:ada-za-id((zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer))))"/>
+                (nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)))"/>
         <entry>
             <fullUrl value="{$ada-id}"/>
             <resource>
