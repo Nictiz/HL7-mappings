@@ -21,7 +21,8 @@
     <xsl:param name="transactionType">raadplegen</xsl:param>
 
     <xsl:param name="date-conversion-xml" select="document('./date_conversion.xml')"/>
-
+    <xsl:param name="doc-ada-new" select="document('./ada_new/verstrekkingenvertaling.xml')"/>
+    
     <xsl:variable name="voorbeeld-string">
         <xsl:choose>
             <xsl:when test="$transactionType != 'raadplegen'">
@@ -178,6 +179,7 @@ __NUMBEREDHEADINGS__
         </xsl:if>
     </xsl:template>
 
+   
     <xd:doc>
         <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
         <xd:param name="in">The ada therapeutic building block which contents are rendered in the nested 'tabel'</xd:param>
@@ -362,6 +364,24 @@ __NUMBEREDHEADINGS__
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
+        <xd:param name="in">The ada patient template which contents are rendered in the 'tabel'</xd:param>
+        <xd:param name="adaxml-patient">The collection of ada patient containing test data</xd:param>
+    </xd:doc>
+    <xsl:template name="tabel-patient-dekkingsgraad" match="patient" mode="maak-tabel-patient-dekkingsgraad">
+        <xsl:param name="in" select="."/>
+        <xsl:param name="adaxml-patient" as="element(patient)*"/>
+        <xsl:for-each select="$in">
+            <tabel xmlns="" type="{./local-name()}" title="Patiënt">
+                <xsl:apply-templates select="./*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-rij-dekkingsgraad">
+                    <xsl:with-param name="level" select="xs:int(1)"/>
+                    <xsl:with-param name="adaxml-element" select="$adaxml-patient"/>
+                </xsl:apply-templates>
+            </tabel>
+        </xsl:for-each>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation</xd:desc>
         <xd:param name="in">The ada documentgegevens which contents are rendered in the nested 'tabel'</xd:param>

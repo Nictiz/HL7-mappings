@@ -232,7 +232,6 @@ __NUMBEREDHEADINGS__
     <xd:doc>
         <xd:desc/>
         <xd:param name="level">The indent level in the table - starts with 1</xd:param>
-
         <xd:param name="element-name">Optional param to override the default element name</xd:param>
     </xd:doc>
     <xsl:template match="*" mode="maak-tabel-rij">
@@ -280,7 +279,7 @@ __NUMBEREDHEADINGS__
                 <groep xmlns="" level="{$level}" naam="{$element-name}">
                     <xsl:apply-templates select="./*" mode="maak-tabel-rij-dekkingsgraad">
                         <xsl:with-param name="level" select="xs:int($level + 1)"/>
-                        <xsl:with-param name="adaxml-element" select="$adaxml-element[local-name()=$local-element-name]/*"/>
+                        <xsl:with-param name="adaxml-element" select="(if ($adaxml-element[local-name()=$local-element-name]) then $adaxml-element[local-name()=$local-element-name] else $adaxml-element/*[local-name()=$local-element-name])/*"/>
                     </xsl:apply-templates>
                 </groep>
             </xsl:when>

@@ -46,4 +46,12 @@ __NUMBEREDHEADINGS__
 [[Categorie:Kwalificatie]]</xsl:text>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Custom template for toedieningsweg with nullFlavor NI, since we want to ignore those in verstrekkingenvertaling</xd:desc>
+    </xd:doc>
+    <xsl:template match="toedieningsweg[@code='NI' and @codeSystem=$oidHL7NullFlavor]" mode="maak-tabel-rij"/>
+        
+    
+    
+
 </xsl:stylesheet>

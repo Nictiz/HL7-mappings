@@ -21,8 +21,7 @@
 
     <xsl:param name="date-conversion-xml" select="document('./date_conversion.xml')"/>
     <xsl:param name="do-ada-files" select="true()"/>
-    <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
-    <xsl:variable name="doc-ada-new" select="document('./ada_new/kernset_geboortezorg_23.xml')"/>
+    <xsl:param name="doc-ada-new" select="document('./ada_new/kernset_geboortezorg_23.xml')"/>
     
 
     <!-- donkerblauw -->
@@ -110,7 +109,7 @@ __NUMBEREDHEADINGS__
         <xd:param name="in">The ada vrouw template which contents are rendered in the 'tabel'</xd:param>
         <xd:param name="adaxml-vrouw">The collection of ada vrouw containing test data</xd:param>
     </xd:doc>
-    <xsl:template name="tabel-vrouw-dekkingsgraad" match="vrouw[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-vrouw-dekkingsgraad">
+    <xsl:template name="tabel-vrouw-dekkingsgraad" match="vrouw" mode="maak-tabel-vrouw-dekkingsgraad">
         <xsl:param name="in" select="."/>
         <xsl:param name="adaxml-vrouw" as="element(vrouw)*"/>
         <xsl:for-each select="$in">
@@ -125,8 +124,8 @@ __NUMBEREDHEADINGS__
     
 
     <xd:doc>
-        <xd:desc>Override of the adaxml/data template from the imported stylesheet. Makes it a bit nicer for Peri</xd:desc>
-        <xd:param name="adaxml-gz"/>
+        <xd:desc>Template for dekkingsgraad making use of the ada_new instance as context. Supplies all fields.</xd:desc>
+        <xd:param name="adaxml-gz">The adaxml instance(s) so that the coverage of the available fields from ada_new instance can be determined.</xd:param>
     </xd:doc>
     <xsl:template match="/kernset_geboortezorg" mode="dekkingsgraad">
         <xsl:param name="adaxml-gz" as="element(kernset_geboortezorg)*"/>
