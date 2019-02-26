@@ -16,12 +16,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <xsl:include href="../../util/constants.xsl"/>
-    <xsl:include href="../../util/uuid.xsl"/>
     <xsl:include href="../../util/datetime.xsl"/>
+    <!-- import because we want to be able to override the param for macAddress -->
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:import href="../../util/uuid.xsl"/>
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
+        <xd:desc>Transforms ada code element to FHIR CodeableConcept</xd:desc>
+        <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
         <xsl:param name="in" as="element()?"/>
@@ -43,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!--<xsl:if test="$in/@displayName">
                     <text value="{$in/@displayName}"/>
                 </xsl:if>-->
-                <!-- ADA heeft nog geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
+                <!-- ADA heeft geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
                 <xsl:for-each select="$in/translation">
                     <coding>
                         <system value="{local:getUri(@codeSystem)}"/>
@@ -330,7 +334,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>
             Returns a UUID with urn:uuid: preconcatenated
         </xd:desc>
-        <xd:param name="in"/>
+        <xd:param name="in">xml element to be used to generate uuid</xd:param>
     </xd:doc>
     <xsl:function name="nf:get-fhir-uuid" as="xs:string*">
         <xsl:param name="in" as="element()?"/>

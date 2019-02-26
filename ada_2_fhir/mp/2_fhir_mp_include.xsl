@@ -12,20 +12,16 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="referById" as="xs:boolean">
-        <xsl:choose>
-            <xsl:when test="$referByIdOverride">
-                <xsl:value-of select="$referByIdOverride"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:param>
-    <xsl:include href="../fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- import because we want to be able to override the param for macAddress for UUID generation -->
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:import href="../fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    
     <xsl:variable name="gstd-coderingen">
         <code rootoid="{$oidGStandaardGPK}"/>
         <code rootoid="{$oidGStandaardHPK}"/>
@@ -102,6 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)"/>
                 <uniek-product xmlns="">
                     <group-key xmlns="">
                         <xsl:value-of select="current-grouping-key()"/>
@@ -111,8 +108,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 if ($uuid) then
                                     nf:get-fhir-uuid(.)
                                 else
-                                    if (./product_code) then
-                                        nf:getUriFromAdaCode(nf:get-specific-productcode(./product_code))
+                                if ($most-specific-product-code) then
+                                nf:getUriFromAdaCode(nf:get-specific-productcode($most-specific-product-code))
                                     else
                                         nf:get-fhir-uuid(.)"/>
                         <entry xmlns="http://hl7.org/fhir">
@@ -127,8 +124,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                     <xsl:choose>
-                                                        <xsl:when test="./product_code[(@code)][not(@codeSystem = $oidHL7NullFlavor)]">
-                                                            <xsl:value-of select="nf:removeSpecialCharacters(string-join(./product_code/(@code | @codeSystem), '-'))"/>
+                                                        <xsl:when test="$most-specific-product-code[(@code)][not(@codeSystem = $oidHL7NullFlavor)]">
+                                                            <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code | @codeSystem), '-'))"/>
                                                         </xsl:when>
                                                         <xsl:when test="./product_specificatie/product_naam/@value">
                                                             <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
@@ -382,15 +379,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- toedieningsafspraken -->
         <xsl:for-each select="//toedieningsafspraak">
             <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
+                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
                 <resource>
                     <xsl:call-template name="mp612dispensetofhirconversionadministrationagreement-1.0.0">
                         <xsl:with-param name="toedieningsafspraak" select="."/>
-                        <xsl:with-param name="medicationdispense-id" select="
-                                if ($referById) then
-                                    nf:removeSpecialCharacters(./identificatie/@value)
-                                else
-                                    ()"/>
+                        <xsl:with-param name="medicationdispense-id">
+                            <xsl:choose>
+                                <xsl:when test="$referById">
+                                    <xsl:choose>
+                                        <xsl:when test="string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0"><xsl:value-of select="nf:removeSpecialCharacters(./identificatie/@value)"/></xsl:when>
+                                        <xsl:otherwise><xsl:value-of select="uuid:get-uuid(.)"/></xsl:otherwise>
+                                    </xsl:choose>
+                                    
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </resource>
             </entry>
@@ -575,12 +578,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <text value="{./@value}"/>
                     </note>
                 </xsl:for-each>
-                <!-- gebruiksinstructie/doseerinstructie/dosering -->
-                <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
-                    <dosageInstruction>
-                        <xsl:apply-templates select="." mode="doDosageContents"/>
-                    </dosageInstruction>
-                </xsl:for-each>
+                <!-- gebruiksinstructie -->
+                <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
             </MedicationRequest>
         </xsl:for-each>
     </xsl:template>
@@ -746,12 +745,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <text value="{./@value}"/>
                     </note>
                 </xsl:for-each>
-                <!-- gebruiksinstructie/doseerinstructie/dosering -->
-                <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
-                    <dosageInstruction>
-                        <xsl:apply-templates select="." mode="doDosageContents"/>
-                    </dosageInstruction>
-                </xsl:for-each>
+                <!-- gebruiksinstructie -->
+                <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
             </MedicationRequest>
         </xsl:for-each>
     </xsl:template>
@@ -1570,16 +1565,61 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </note>
                 </xsl:for-each>
 
-                <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
-                    <dosageInstruction>
-                        <xsl:apply-templates select="." mode="doDosageContents"/>
-                    </dosageInstruction>
-                </xsl:for-each>
+                <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
+
 
             </MedicationDispense>
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>does some processing for ada element 'gebruiksinstructie' based on whether it lands in FHIR MedicationRequest (MA), MedicationDispense (TA) or MedicationStatement (MGB)</xd:desc>
+    </xd:doc>
+    <xsl:template name="handle-gebruiksinstructie" match="gebruiksinstructie" mode="handleGebruiksinstructie">
+        <!-- Determine FHIR element name based on type of building block -->
+        <xsl:variable name="fhir-dosage-name">
+            <xsl:choose>
+                <xsl:when test="ancestor::medicatie_gebruik">dosage</xsl:when>
+                <xsl:otherwise>dosageInstruction</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="doseerinstructie/dosering[.//(@value | @code)]">
+                <xsl:for-each select="doseerinstructie/dosering[.//(@value | @code)]">
+                    <xsl:element name="{$fhir-dosage-name}">
+                        <xsl:apply-templates select="." mode="doDosageContents"/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:when test=".[.//(@value | @code)]">
+                <xsl:for-each select=".[.//(@value | @code)]">
+                    <xsl:element name="{$fhir-dosage-name}">
+                        <xsl:apply-templates select="." mode="doDosageContents"/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
+
+
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>does some processing for ada element 'toedieningsweg' based on whether it is in transaction for verstrekkingenvertaling (toedieningsweg 0..1 R) or other transactions (toedieningsweg 1..1 R)</xd:desc>
+    </xd:doc>
+    <xsl:template name="handle-toedieningsweg" match="toedieningsweg" mode="handleToedieningsweg">
+        <xsl:choose>
+            <!-- bij verstrekkingenvertaling is toedieningsweg niet verplicht -->
+            <!-- weglaten met nullFlavor NI  -->
+            <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling and .[@codeSystem = $oidHL7NullFlavor and @code = 'NI']"/>
+            <xsl:otherwise>
+                <route>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </route>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     <xd:doc>
         <xd:desc> Template based on FHIR Profile https://simplifier.net/nictizstu3-zib2017/mp612dispensetofhirconversionadministrationagreement </xd:desc>
         <xd:param name="toedieningsafspraak">ada xml element toedieningsafspraak</xd:param>
@@ -1640,12 +1680,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </subject>
                 <!-- verstrekker -->
                 <xsl:apply-templates select="./verstrekker[.//(@value | @code)]" mode="doPerformerActor"/>
-
-                <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
-                    <dosageInstruction>
-                        <xsl:apply-templates select="." mode="doDosageContents"/>
-                    </dosageInstruction>
-                </xsl:for-each>
+                <!-- gebruiksinstructie -->
+                <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
             </MedicationDispense>
         </xsl:for-each>
     </xsl:template>
@@ -2037,6 +2073,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./datum[@value]">
                     <whenHandedOver value="{nf:ada-2-dateTimeCET(./@value)}"/>
                 </xsl:for-each>
+                <xsl:for-each select="./datum[@nullFlavor]">
+                    <whenHandedOver>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                            <valueCode value="{./@nullFlavor}"/>
+                        </extension>
+                    </whenHandedOver>
+                </xsl:for-each>
                 <!-- afleverlocatie -->
                 <xsl:for-each select="./afleverlocatie[@value]">
                     <destination>
@@ -2090,8 +2133,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template for 'dosering'. Without the dosage / dosageInstruction.
-			The name of that element differs between MedicationStatement and MedicationRequest</xd:desc>
+        <xd:desc>Template for 'dosering'. 
+            Without the FHIR element dosage / dosageInstruction, 
+            the name of that FHIR-element differs between MedicationStatement and MedicationRequest
+        </xd:desc>
     </xd:doc>
     <xsl:template name="zib-InstructionsForUse-2.0" match="dosering" mode="doDosageContents">
         <xsl:for-each select="./../volgnummer[@value]">
@@ -2158,13 +2203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </asNeededCodeableConcept>
         </xsl:for-each>
         <!-- gebruiksinstructie/toedieningsweg -->
-        <xsl:for-each select="./../../toedieningsweg">
-            <route>
-                <xsl:call-template name="code-to-CodeableConcept">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
-            </route>
-        </xsl:for-each>
+        <xsl:apply-templates select="./../../toedieningsweg" mode="handleToedieningsweg"/>
         <!-- dosering/keerdosis/aantal -->
         <xsl:for-each select="./keerdosis/aantal[vaste_waarde]">
             <doseQuantity>
@@ -2229,6 +2268,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:for-each>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Template for 'gebruiksinstructie' in case there is no doseerinstructie/dosering. 
+            Without the FHIR element dosage / dosageInstruction, 
+            the name of that FHIR-element differs between MedicationStatement and MedicationRequest
+        </xd:desc>
+    </xd:doc>
+    <xsl:template name="zib-InstructionsForUse-2.0-gi" match="gebruiksinstructie" mode="doDosageContents">
+        <!-- gebruiksinstructie/omschrijving  -->
+        <xsl:for-each select="omschrijving[@value]">
+            <text value="{./@value}"/>
+        </xsl:for-each>
+        <!-- gebruiksinstructie/aanvullende_instructie  -->
+        <xsl:for-each select="aanvullende_instructie[@code]">
+            <additionalInstruction>
+                <xsl:call-template name="code-to-CodeableConcept">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </additionalInstruction>
+        </xsl:for-each>
+        <!-- gebruiksinstructie/toedieningsweg -->
+        <xsl:apply-templates select="toedieningsweg" mode="handleToedieningsweg"/>
+    </xsl:template>
+
 
     <xd:doc>
         <xd:desc/>
@@ -2568,12 +2631,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <text value="{./@value}"/>
                             </note>
                         </xsl:for-each>
-                        <!-- gebruiksinstructie/doseerinstructie/dosering -->
-                        <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
-                            <dosage>
-                                <xsl:apply-templates select="." mode="doDosageContents"/>
-                            </dosage>
-                        </xsl:for-each>
+                        <!-- gebruiksinstructie -->
+                        <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
                     </MedicationStatement>
                 </resource>
             </entry>
@@ -2807,12 +2866,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <text value="{./@value}"/>
                             </note>
                         </xsl:for-each>
-                        <!-- gebruiksinstructie/doseerinstructie/dosering -->
-                        <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
-                            <dosage>
-                                <xsl:apply-templates select="." mode="doDosageContents"/>
-                            </dosage>
-                        </xsl:for-each>
+                        <!-- gebruiksinstructie -->
+                        <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
                     </MedicationStatement>
                 </resource>
             </entry>
@@ -3140,8 +3195,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="ada-product-code">Takes a collection of product_codes as input and returns the most specific one according to G-std, otherwise just the first one</xd:param>
+        <xd:desc>Takes a collection of product_codes as input and returns the most specific one according to G-std, otherwise just the first one</xd:desc>
+        <xd:param name="ada-product-code">Collection of ada product codes to select the most specific one from</xd:param>
     </xd:doc>
     <xsl:function name="nf:get-specific-productcode" as="element()?">
         <xsl:param name="ada-product-code" as="element()*"/>

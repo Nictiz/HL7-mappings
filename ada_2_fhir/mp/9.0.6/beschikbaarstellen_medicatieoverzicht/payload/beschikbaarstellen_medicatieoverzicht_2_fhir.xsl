@@ -27,9 +27,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:output method="xml" indent="yes"/>
 	<xsl:strip-space elements="*"/>
-	<xsl:include href="../../../2_fhir_mp_include.xsl"/>
-	<xsl:param name="referByIdOverride" as="xs:boolean" select="false()"/>
-	<xsl:variable name="commonEntries" as="element(f:entry)*">
+    <!-- import because we want to be able to override the param for macAddress for UUID generation
+         and the param for referById -->
+    <xsl:import href="../../../2_fhir_mp_include.xsl"/>
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
+    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <xsl:variable name="commonEntries" as="element(f:entry)*">
 	    <xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry"/>
 	</xsl:variable>
 
