@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:functx="http://www.functx.com" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:functx="http://www.functx.com" xmlns:nf="http://www.nictiz.nl/functions"  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+   <xd:doc>
+       <xd:desc>Contains some generic dateTime functions</xd:desc>
+   </xd:doc>
+    
+    <xd:doc>
+        <xd:desc>sets CET timezone, also taking into account Daylight Saving Time (DST)</xd:desc>
+        <xd:param name="dateTimeIn">datetime without timezone for which to add timezone assuming it was generated in CET</xd:param>
+    </xd:doc>
     <xsl:function name="nf:set-CET-timezone" as="xs:dateTime">
         <xsl:param name="dateTimeIn" as="xs:dateTime"/>
         <!-- Since 1996 DST starts last sunday of March 02:00 and ends last sunday of October at 03:00/02:00 (clock is set backwards) -->
@@ -21,9 +29,12 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    <xd:doc>
+        <xd:desc>returns day of week of a certain date as integer. Sunday = 0, Saturday = 6.</xd:desc>
+        <xd:param name="date">date for which the day of week needs to be returned</xd:param>
+    </xd:doc>
     <xsl:function name="functx:day-of-week" as="xs:integer?">
-        <xsl:param name="date" as="xs:anyAtomicType?"/>
-        
+        <xsl:param name="date" as="xs:anyAtomicType?"/>        
         <xsl:if test="not(empty($date))">
             <xsl:value-of select="xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7"/>
         </xsl:if>

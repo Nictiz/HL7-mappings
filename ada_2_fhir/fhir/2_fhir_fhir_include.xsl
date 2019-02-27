@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:import href="../../util/uuid.xsl"/>
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-    
+
     <xd:doc>
         <xd:desc>Transforms ada code element to FHIR CodeableConcept</xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
@@ -64,8 +64,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
+        <xd:desc>Transforms ada 'hoeveelheid' element to FHIR Duration</xd:desc>
+        <xd:param name="in">the ada 'hoeveelheid' element, may have any name but should have ada datatype hoeveelheid (quantity)</xd:param>
     </xd:doc>
     <xsl:template name="hoeveelheid-to-Duration" as="element()*">
         <xsl:param name="in" as="element()?"/>
@@ -87,9 +87,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="numerator"/>
-        <xd:param name="denominator"/>
+        <xd:desc>Transforms ada numerator and denominator elements to FHIR Ratio</xd:desc>
+        <xd:param name="numerator">ada numerator element, may have any name but should have sub elements eenheid with datatype code and waarde with datatype aantal (count)</xd:param>
+        <xd:param name="denominator">ada denominator element, may have any name but should have sub elements eenheid with datatype code and waarde with datatype aantal (count)</xd:param>
     </xd:doc>
     <xsl:template name="hoeveelheid-complex-to-Ratio" as="element()*">
         <xsl:param name="numerator" as="element()?"/>
@@ -113,9 +113,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="waarde"/>
-        <xd:param name="eenheid"/>
+        <xd:desc>Transforms ada waarde and eenheid elements to FHIR Quantity</xd:desc>
+        <xd:param name="waarde">ada element may have any name but should have datatype aantal (count)</xd:param>
+        <xd:param name="eenheid">ada element may have any name but should have datatype code</xd:param>
     </xd:doc>
     <xsl:template name="hoeveelheid-complex-to-Quantity" as="element()*">
         <xsl:param name="waarde" as="element()?"/>
@@ -178,8 +178,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 -->
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
+        <xd:desc>Transforms ada element to FHIR Identifier</xd:desc>
+        <xd:param name="in">ada element with datatype id</xd:param>
     </xd:doc>
     <xsl:template name="id-to-Identifier" as="element()*">
         <xsl:param name="in" as="element()?"/>
@@ -200,8 +200,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
+        <xd:desc>Transforms ada element to FHIR Range</xd:desc>
+        <xd:param name="in">ada element with sub ada elements min and max (both with datatype aantal/count) and a sibling ada element eenheid (datatype code)</xd:param>
     </xd:doc>
     <xsl:template name="minmax-to-Range" as="element()*">
         <xsl:param name="in" as="element()?"/>
@@ -241,10 +241,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="numerator-aantal"/>
-        <xd:param name="numerator-eenheid"/>
-        <xd:param name="denominator"/>
+        <xd:desc>Transforms ada element numerator-aantal, -eenheid and denominator to FHIR Ratio</xd:desc>
+        <xd:param name="numerator-aantal">ada element of datatype aantal (count)</xd:param>
+        <xd:param name="numerator-eenheid">ada element of datatype code</xd:param>
+        <xd:param name="denominator">ada element of datatype hoeveelheid (quantity)</xd:param>
     </xd:doc>
     <xsl:template name="quotient-to-Ratio" as="element()*">
         <xsl:param name="numerator-aantal" as="element()?"/>
@@ -267,8 +267,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="ADAtime"/>
+        <xd:desc>Converts an ada time unit to the UCUM unit as used in FHIR</xd:desc>
+        <xd:param name="ADAtime">The ada time unit string</xd:param>
     </xd:doc>
     <xsl:function name="nf:convertTime_ADA_unit2UCUM_FHIR" as="xs:string?">
         <xsl:param name="ADAtime" as="xs:string?"/>
@@ -288,8 +288,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:function>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="ADAunit"/>
+        <xd:desc>Converts an ada unit to the UCUM unit as used in FHIR</xd:desc>
+        <xd:param name="ADAunit">The ada unit string</xd:param>
     </xd:doc>
     <xsl:function name="nf:convert_ADA_unit2UCUM_FHIR" as="xs:string?">
         <xsl:param name="ADAunit" as="xs:string?"/>
@@ -306,8 +306,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:function>
     <xd:doc>
-        <xd:desc>Get the FHIR System URI based on an input OID from HL7. xs:anyURI if possible, urn:oid:.. otherwise</xd:desc>
-        <xd:param name="oid"/>
+        <xd:desc>Get the FHIR System URI based on an input OID from ada or HL7. xs:anyURI if possible, urn:oid:.. otherwise</xd:desc>
+        <xd:param name="oid">input OID from ada or HL7</xd:param>
     </xd:doc>
     <xsl:function name="local:getUri" as="xs:string?">
         <xsl:param name="oid" as="xs:string?"/>
@@ -331,9 +331,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     <xd:doc>
-        <xd:desc>
-            Returns a UUID with urn:uuid: preconcatenated
-        </xd:desc>
+        <xd:desc>Returns a UUID with urn:uuid: preconcatenated</xd:desc>
         <xd:param name="in">xml element to be used to generate uuid</xd:param>
     </xd:doc>
     <xsl:function name="nf:get-fhir-uuid" as="xs:string*">
@@ -343,8 +341,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:function>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="ada-identificatie"/>
+        <xd:desc>If possible generates an uri based on oid or uuid from input. If not possible generates an uri based on gerenated uuid making use of input element</xd:desc>
+        <xd:param name="ada-identificatie">input element for which uri is needed</xd:param>
     </xd:doc>
     <xsl:function name="nf:getUriFromAdaId" as="xs:string?">
         <xsl:param name="ada-identificatie" as="element()?"/>
@@ -364,10 +362,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="ada-code"/>
+        <xd:desc>Generates FHIR uri based on input ada code element. OID if possible, otherwise generates uri based on generated uuid using input element.</xd:desc>
+        <xd:param name="ada-code">Input element for which uri is needed</xd:param>
     </xd:doc>
     <xsl:function name="nf:getUriFromAdaCode" as="xs:string?">
         <xsl:param name="ada-code" as="element()?"/>
@@ -382,9 +380,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="dateTime"/>
-        <xd:param name="precision"/>
+        <xd:desc>Formats ada or HL7 dateTime to FHIR date(Time) based on input precision</xd:desc>
+        <xd:param name="dateTime">Input ada or HL7 date(Time)</xd:param>
+        <xd:param name="precision">Determines the precision of the output. Precision of minutes outputs seconds as '00'</xd:param>
     </xd:doc>
     <xsl:template name="format2FHIRDate">
         <xsl:param name="dateTime"/>
@@ -405,7 +403,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001]-[M01]-[D01]')"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:variable name="newDateTime" select="replace(concat(normalize-space($dateTime),'00000000000000'), '^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})', '$1-$2-$3T$4:$5:$6')"/>
+                <xsl:variable name="newDateTime" select="replace(concat(normalize-space($dateTime), '00000000000000'), '^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})', '$1-$2-$3T$4:$5:$6')"/>
                 <xsl:variable name="newDate" select="replace(normalize-space($dateTime), '^(\d{4})(\d{2})(\d{2})', '$1-$2-$3')"/>
                 <xsl:choose>
                     <xsl:when test="$newDateTime castable as xs:dateTime">
