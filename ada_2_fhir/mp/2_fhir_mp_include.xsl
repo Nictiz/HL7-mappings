@@ -1022,7 +1022,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Helper template to create FHIR patient reference, context should be ada patient element</xd:desc>
     </xd:doc>
     <xsl:template name="patient-reference" match="patient" mode="doPatientReference">
         <reference value="{nf:getFullUrlOrId('Patient',nf:getGroupingKeyDefault(.), false())}"/>
@@ -1031,7 +1031,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Helper template to create FHIR RelatedPerson reference, context should be ada persoon element</xd:desc>
     </xd:doc>
     <xsl:template name="relatedperson-reference" match="persoon" mode="doRelatedPersonReference">
         <reference value="{nf:getFullUrlOrId('RelatedPerson',nf:getGroupingKeyDefault(.), false())}"/>
@@ -1040,7 +1040,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Helper template to create FHIR Practitioner reference, context should be ada zorgverlener element</xd:desc>
     </xd:doc>
     <xsl:template name="practitioner-reference" match="zorgverlener" mode="doPractitionerReference">
         <reference value="{nf:getFullUrlOrId('Practitioner',nf:getGroupingKeyPractitioner(.), false())}"/>
@@ -1050,7 +1050,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Helper template to create missing type extension with FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
     </xd:doc>
     <xsl:template name="missing-type-reference-practitionerrole" match="zorgverlener" mode="doMissingTypeReferencePractitionerRole">
         <xsl:variable name="display" as="xs:string?" select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName, ' || ')))"/>
@@ -1063,14 +1063,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Creates reference and display element for practitioner role using ada element zorgverlener</xd:desc>
+        <xd:desc>Helper template to create FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
     </xd:doc>
     <xsl:template name="practitioner-role-reference" match="zorgverlener" mode="doPractitionerRoleReference">
         <reference value="{nf:getFullUrlOrId('PRACTITIONERROLE', nf:getGroupingKeyDefault(.), false())}"/>
         <display value="{nf:get-practitioner-role-display(.)}"/>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Helper template to create FHIR performer.actor, context should be ada verstrekker element</xd:desc>
     </xd:doc>
     <xsl:template name="verstrekker-performer-actor" match="verstrekker" mode="doPerformerActor">
         <!-- verstrekker -->
@@ -1084,11 +1084,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </performer>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="zorgverlener"/>
+        <xd:desc>Helper template to create FHIR requestor.agent, input or context should be ada zorgverlener element</xd:desc>
+        <xd:param name="zorgverlener">ada element zorgverlener, is derived from context when not set</xd:param>
     </xd:doc>
-    <xsl:template name="zorgverlener-requester">
-        <xsl:param name="zorgverlener"/>
+    <xsl:template name="zorgverlener-requester" match="zorgverlener" mode="doRequesterAgent">
+        <xsl:param name="zorgverlener" select="."/>
         <requester>
             <xsl:for-each select="$zorgverlener">
                 <agent>
@@ -1103,7 +1103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </requester>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Helper template to create FHIR requester.extension (with PractitionerRoleReference) and .agent, context should be ada voorschrijver or auteur element</xd:desc>
     </xd:doc>
     <xsl:template name="zorgverlener-requester-ext" match="voorschrijver | auteur" mode="doRequesterExtension">
         <xsl:for-each select="./zorgverlener[.//(@value | @code)]">
@@ -1122,7 +1122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Helper template to create FHIR requester.agent (with missing type extension), context should be ada voorschrijver element</xd:desc>
     </xd:doc>
     <xsl:template name="zorgverlener-requester-ext-907" match="voorschrijver" mode="doRequesterExtension-907">
         <xsl:for-each select="./zorgverlener[.//(@value | @code)]">
@@ -1135,7 +1135,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Template for FHIR profile nl-core-address-2.0, context should be ada adresgegevens element</xd:desc>
     </xd:doc>
     <xsl:template name="nl-core-address-2.0" match="adresgegevens" mode="doAddress">
         <xsl:for-each select=".[.//(@value | @code)]">
