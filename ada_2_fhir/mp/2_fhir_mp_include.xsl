@@ -553,7 +553,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- afspraakdatum -->
                 <xsl:for-each select="./afspraakdatum[@value]">
-                    <authoredOn value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                    <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                 </xsl:for-each>
                 <!-- voorschrijver -->
                 <xsl:apply-templates select="./voorschrijver[.//(@value | @code)]" mode="doRequesterExtension"/>
@@ -720,7 +720,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- afspraakdatum -->
                 <xsl:for-each select="./afspraakdatum[@value]">
-                    <authoredOn value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                    <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                 </xsl:for-each>
                 <!-- voorschrijver -->
                 <xsl:apply-templates select="./voorschrijver[.//(@value | @code)]" mode="doRequesterExtension-907"/>
@@ -1434,7 +1434,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </subject>
                 <!-- verstrekkingsverzoek datum -->
                 <xsl:for-each select="./datum[@value]">
-                    <authoredOn value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                    <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                 </xsl:for-each>
                 <!-- auteur -->
                 <xsl:apply-templates select="./auteur[.//(@value | @code)]" mode="doRequesterExtension"/>
@@ -1458,10 +1458,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="./verbruiksperiode[(ingangsdatum | einddatum)/@value]">
                         <validityPeriod>
                             <xsl:for-each select="./ingangsdatum[@value]">
-                                <start value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                                <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                             </xsl:for-each>
                             <xsl:for-each select="./einddatum[@value]">
-                                <end value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                                <end value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                             </xsl:for-each>
                         </validityPeriod>
                     </xsl:for-each>
@@ -1740,7 +1740,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="TA-afspraakdatum" match="afspraakdatum" mode="TA-afspraakdatum">
         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-            <valueDateTime value="{nf:ada-2-dateTimeCET(./@value)}"/>
+            <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
         </extension>
     </xsl:template>
 
@@ -1853,7 +1853,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference"/>
             </subject>
             <xsl:for-each select="./lengte_datum_tijd">
-                <effectiveDateTime value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
             </xsl:for-each>
             <xsl:for-each select="./lengte_waarde">
                 <valueQuantity>
@@ -1906,7 +1906,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference"/>
             </subject>
             <xsl:for-each select="./gewicht_datum_tijd">
-                <effectiveDateTime value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
             </xsl:for-each>
             <xsl:for-each select="./gewicht_waarde">
                 <valueQuantity>
@@ -1947,7 +1947,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- aanschrijfdatum -->
                 <xsl:for-each select="./aanschrijfdatum[@value]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
-                        <valueDateTime value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                        <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                     </extension>
                 </xsl:for-each>
                 <!-- aanvullende_informatie -->
@@ -2020,7 +2020,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- datum -->
                 <xsl:for-each select="./datum[@value]">
-                    <whenHandedOver value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                    <whenHandedOver value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                 </xsl:for-each>
                 <!-- afleverlocatie -->
                 <xsl:for-each select="./afleverlocatie[@value]">
@@ -2057,7 +2057,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- aanschrijfdatum -->
                 <xsl:for-each select="./aanschrijfdatum[@value]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
-                        <valueDateTime value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                        <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                     </extension>
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
@@ -2120,7 +2120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- datum -->
                 <xsl:for-each select="./datum[@value]">
-                    <whenHandedOver value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                    <whenHandedOver value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                 </xsl:for-each>
                 <xsl:for-each select="./datum[@nullFlavor]">
                     <whenHandedOver>
@@ -2432,10 +2432,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
             <valuePeriod>
                 <xsl:for-each select="$start[@value]">
-                    <start value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                    <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                 </xsl:for-each>
                 <xsl:for-each select="$end[@value]">
-                    <end value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                    <end value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                 </xsl:for-each>
             </valuePeriod>
         </extension>
@@ -2589,16 +2589,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <xsl:for-each select="gebruiksperiode_start[@value]">
-                                    <start value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                                    <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                                 </xsl:for-each>
                                 <xsl:for-each select="gebruiksperiode_eind[@value]">
-                                    <end value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                                    <end value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                                 </xsl:for-each>
                             </effectivePeriod>
                         </xsl:for-each>
                         <!-- registratiedatum -->
                         <xsl:for-each select="./registratiedatum[@value]">
-                            <dateAsserted value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                            <dateAsserted value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                         </xsl:for-each>
                         <xsl:for-each select="./registratiedatum[@nullFlavor]">
                             <dateAsserted>
@@ -2823,16 +2823,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <xsl:for-each select="gebruiksperiode_start[@value]">
-                                    <start value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                                    <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                                 </xsl:for-each>
                                 <xsl:for-each select="gebruiksperiode_eind[@value]">
-                                    <end value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                                    <end value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                                 </xsl:for-each>
                             </effectivePeriod>
                         </xsl:for-each>
                         <!-- registratiedatum -->
                         <xsl:for-each select="./registratiedatum[@value]">
-                            <dateAsserted value="{nf:ada-2-dateTimeCET(./@value)}"/>
+                            <dateAsserted value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                         </xsl:for-each>
                         <xsl:for-each select="./registratiedatum[@nullFlavor]">
                             <dateAsserted>
@@ -3185,7 +3185,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			In all other cases, the input string is returned.</xd:desc>
         <xd:param name="valueIn">The input string to be handled.</xd:param>
     </xd:doc>
-    <xsl:function name="nf:ada-2-dateTimeCET" as="xs:string?">
+    <xsl:function name="nf:add-Amsterdam-timezone-to-dateTimeString" as="xs:string?">
         <xsl:param name="valueIn" as="xs:string?"/>
         <xsl:value-of select="
                 if (not($valueIn castable as xs:dateTime)) then
@@ -3304,7 +3304,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                                 <xsl:for-each select="./verificatie_patient/verificatie_datum/@value">
                                     <extension url="VerificationPatientDate">
-                                        <valueDateTime value="{nf:ada-2-dateTimeCET(.)}"/>
+                                        <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(.)}"/>
                                     </extension>
                                 </xsl:for-each>
                                 <xsl:for-each select="./verificatie_zorgverlener/geverifieerd_met_zorgverlenerq/@value">
@@ -3314,7 +3314,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                                 <xsl:for-each select="./verificatie_zorgverlener/verificatie_datum/@value">
                                     <extension url="VerificationHealthProfessionalDate">
-                                        <valueDateTime value="{nf:ada-2-dateTimeCET(.)}"/>
+                                        <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(.)}"/>
                                     </extension>
                                 </xsl:for-each>
                             </extension>
@@ -3332,7 +3332,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <subject>
                             <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference"/>
                         </subject>
-                        <date value="{nf:ada-2-dateTimeCET(./document_datum/@value)}"/>
+                        <date value="{nf:add-Amsterdam-timezone-to-dateTimeString(./document_datum/@value)}"/>
                         <xsl:for-each select="./auteur">
                             <xsl:for-each select="./auteur_is_zorgaanbieder/zorgaanbieder[.//(@value | @code)]">
                                 <source>

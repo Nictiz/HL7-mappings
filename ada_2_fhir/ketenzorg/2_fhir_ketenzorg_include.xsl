@@ -1232,23 +1232,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Takes input string. If it is a dateTime, it checks if it has a timezone. If it is a dateTime without timezone a CET timezone will be set. 
-            In all other cases, the input string is returned.</xd:desc>
-        <xd:param name="valueIn">The input string to be handled.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:ada-2-dateTimeCET" as="xs:string?">
-        <xsl:param name="valueIn" as="xs:string?"/>
-        <xsl:value-of select="
-                if (not($valueIn castable as xs:dateTime)) then
-                    $valueIn
-                else
-                    if (timezone-from-dateTime(xs:dateTime($valueIn))) then
-                        $valueIn
-                    else
-                        nf:set-CET-timezone(xs:dateTime($valueIn))
-                "/>
-    </xsl:function>
-    <xd:doc>
         <xd:desc/>
         <xd:param name="zorgverlener-identificatie-nummer"/>
     </xd:doc>
