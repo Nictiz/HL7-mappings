@@ -37,7 +37,7 @@
 				<xsl:choose>
 					<xsl:when test="$unit = ('dag', 'd')">dagen</xsl:when>
 					<xsl:when test="$unit = ('week', 'wk')">weken</xsl:when>
-					<xsl:when test="$unit = ('jaar', 'a')">jaren</xsl:when>
+					<xsl:when test="$unit = ('jaar', 'a')">jaar</xsl:when>
 					<xsl:when test="$unit = ('stuk', '1')">stuks</xsl:when>
 					<xsl:when test="$unit = ('dosis')">doses</xsl:when>
 					<xsl:when test="$unit = ('druppel', '[drp]')">druppels</xsl:when>
