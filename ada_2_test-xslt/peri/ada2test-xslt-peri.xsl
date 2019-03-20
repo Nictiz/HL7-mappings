@@ -1,41 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <!-- Parameters to be set, may be overridden by an importing stylesheet -->
-    <xsl:param name="adaReleaseFile" select="document('kernset-ada-release.xml')"/>
+    <xsl:param name="ad-transaction" select="document('2.3.3/sturen_kernset_geboortezorg/ada_schemas/RetrieveTransaction-ks-gz-233.xml')"/>
+    <xsl:param name="ad-trans-instance" select="document('2.3.3/sturen_kernset_geboortezorg/ada_schemas/tr-2.16.840.1.113883.2.4.3.11.60.90.77.4.2437-2016-11-22T082402_instance.xml')"/>
     <xsl:param name="releaseUri" select="'http://decor.nictiz.nl/decor/services/RetrieveTransaction?id=2.16.840.1.113883.2.4.3.11.60.90.77.4.2410&amp;language=nl-NL&amp;version=2014-11-19T17:15:44&amp;format=xml'"/>
     <xsl:param name="hl7PayloadContext" select="'/hl7:REPC_IN004014NL/hl7:ControlActProcess/hl7:subject/hl7:registrationProcess/hl7:subject2/hl7:CareProvisionEvent'"/>
 
     <xsl:import href="../test-xslt/ada2test-xslt.xsl"/>
 
-    <xsl:template match="zorgverlening" mode="doRule">
-        <xsl:comment>Regels voor "zorgverlening"</xsl:comment>
-        <sch:rule context="{$hl7PayloadContext}">
-            <xsl:apply-templates select="datum_start_zorgverantwoordelijkheid[@value]" mode="doAssert4Date">
-                <xsl:with-param name="context">hl7:effectiveTime/hl7:low</xsl:with-param>
+
+
+
+     <xd:doc>
+         <xd:desc>Makes concept type_verwijzing for transaction which contains all necessary info to create the schematron rules later.
+             type_verwijzing gets specific handling here because the ada parent 'verwijzing_naar' has a template association in hl7 
+             which is not a parent of the template association for type_verwijzing.
+        That does not work in the generic handling of the ade2test-xslt.xsl</xd:desc>
+        <xd:param name="xpath-context">this param is not used here, 
+            but since this template is an override of the more generic template in ada2test-xslt.xsl, it is still here</xd:param>
+    </xd:doc>
+    <!-- type_verwijzing iets voor doen, want hoger dan verwijzing_naar.... -->
+    <xsl:template match="concept[@shortName = 'type_verwijzing']" mode="maak-my-concept">
+        <xsl:param name="xpath-context" select="$ad-trans-instance"/>
+        <xsl:variable name="current-concept" select="."/>
+        <!-- use the $ad-trans-instance as context since type_verwijzing is not a child of verwijzing_naar in the hl7 instances -->
+        <xsl:variable name="xpath-concept" select="($ad-trans-instance//concept[@ref = $current-concept/@id])"/>
+        <xsl:variable name="xpath-tree" select="$xpath-concept/ancestor::node()"/>
+        <xsl:variable name="xpath" select="string-join($xpath-tree/@withpredicate, '/')" as="xs:string?"/>
+        <xsl:variable name="ada-input-concept" select="$ada-input//data/*//*[local-name() = $current-concept/@shortName]" as="element()*"/>
+
+        <my-concept xmlns="" type="{@type}" shortName="{@shortName}" name="{name[@language='nl-NL']/text()}" valuedomain="{valueDomain/@type}" ada-count="{count($ada-input-concept)}">
+            <xpath xmlns="" value="{$xpath}"/>
+            <xsl:copy-of select="$ada-input-concept"/>
+         </my-concept>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Makes concept verwijsdetails for transaction which contains all necessary info to create the schematron rules later.
+            Verwijsdetails gets specific handling here because the ada parent 'zorgverlening' has a template association in hl7 
+            on a child of the template association for verwijsdetails.
+            That does not work in the generic handling of the ade2test-xslt.xsl</xd:desc>
+        <xd:param name="xpath-context"/>
+    </xd:doc>
+    <!-- verwijsdetails iets voor doen, want hoger dan zorgverlening.... -->
+    <xsl:template match="concept[@shortName = 'verwijsdetails']" mode="maak-my-concept">
+        <xsl:param name="xpath-context" select="$ad-trans-instance"/>
+        <xsl:variable name="current-concept" select="."/>
+        <!-- use the $ad-trans-instance as context since verwijsdetails is higher than zorgverlening in the hl7 instances -->
+        <xsl:variable name="xpath-concept" select="($ad-trans-instance//concept[@ref = $current-concept/@id])"/>
+        <xsl:variable name="xpath-tree" select="$xpath-concept/ancestor::node()"/>
+        <xsl:variable name="xpath" select="string-join($xpath-tree/@withpredicate, '/')" as="xs:string?"/>
+        <xsl:variable name="ada-input-concept" select="$ada-input//data/*//*[local-name() = $current-concept/@shortName]" as="element()*"/>
+        
+        <my-concept xmlns="" type="{@type}" shortName="{@shortName}" name="{name[@language='nl-NL']/text()}" valuedomain="{valueDomain/@type}" ada-count="{count($ada-input-concept)}">
+            <xpath xmlns="" value="{$xpath}"/>
+            <xsl:apply-templates select="concept" mode="maak-my-concept">
+                <xsl:with-param name="xpath-context" select="$xpath-concept/.."/>
             </xsl:apply-templates>
-            <xsl:apply-templates select="datum_einde_zorgverantwoordelijkheid[@value]" mode="doAssert4Date">
-                <xsl:with-param name="context">hl7:effectiveTime/hl7:high</xsl:with-param>
-            </xsl:apply-templates>
-            <xsl:apply-templates select="eindverantwoordelijk_in_welke_perinatale_periodeq" mode="doAssert4Code">
-                <xsl:with-param name="context">hl7:pertinentInformation3[hl7:observation[hl7:code[(@code = 'Rpp' and @codeSystem = '2.16.840.1.113883.2.4.4.13')]]]/hl7:observation/hl7:value</xsl:with-param>                
-            </xsl:apply-templates>
-            <xsl:apply-templates select="conclusie_risicostatus_na_intake" mode="doAssert4Code">
-                <xsl:with-param name="context">hl7:pertinentInformation3[hl7:observation[hl7:code[(@code = 'RiskStat' and @codeSystem = '2.16.840.1.113883.2.4.4.13')]]]/hl7:observation/hl7:value</xsl:with-param>                
-            </xsl:apply-templates>
-        </sch:rule>
-        <xsl:apply-templates select="verwijsdetails" mode="doRule"/>
+        </my-concept>
     </xsl:template>
     
-    <xsl:template match="verwijsdetails" mode="doRule">
-        <xsl:comment>Regels voor "verwijsdetails"</xsl:comment>
-        <sch:rule context="{$hl7PayloadContext}/hl7:pertinentInformation3[hl7:act[hl7:code[(@code = '3457005' and @codeSystem = '2.16.840.1.113883.6.96')]]]/hl7:act">
-            <xsl:apply-templates select="datum_verwijzing" mode="doAssert4Date">
-                <xsl:with-param name="context">hl7:effectiveTime</xsl:with-param>
-            </xsl:apply-templates>
-        </sch:rule>
+    <xd:doc>
+        <xd:desc>Makes concept for transaction concept verwijzing_van/zorginstelling/zorgaanbieder_identificatie_nummer which contains all necessary info to create the schematron rules later.
+            Special handling here because there are multiple template associations.</xd:desc>
+        <xd:param name="xpath-context">context passed in from the parent group</xd:param>
+    </xd:doc>
+    <xsl:template match="concept[@shortName = 'zorgaanbieder_identificatie_nummer'][parent::concept[@shortName = 'zorginstelling'][parent::concept[@shortName = 'verwijzing_van']]]" mode="maak-my-concept">
+        <xsl:param name="xpath-context" select="$ad-trans-instance"/>
+        <xsl:variable name="current-concept" select="."/>
+        <xsl:variable name="xpath">hl7:REPC_IN004014NL/hl7:ControlActProcess/hl7:subject/hl7:registrationProcess/hl7:subject2/hl7:CareProvisionEvent/hl7:pertinentInformation3/hl7:act/hl7:author/hl7:assignedEntity/hl7:representedOrganization/hl7:id</xsl:variable>
+        <xsl:variable name="ada-input-concept" select="$ada-input//data/*//*[local-name() = $current-concept/@shortName]" as="element()*"/>
+
+        <my-concept xmlns="" type="{@type}" shortName="{@shortName}" name="{name[@language='nl-NL']/text()}" valuedomain="{valueDomain/@type}" ada-count="{count($ada-input-concept)}">
+            <xpath xmlns="" value="{$xpath}"/>
+            <xsl:copy-of select="$ada-input-concept"/>
+        </my-concept>
     </xsl:template>
+
+
 
 
     <!-- Alle xml elementen voor dit bericht dat het attribuut value bevat vanuit ADA -->
