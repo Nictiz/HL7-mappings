@@ -33,6 +33,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada-unit-cm" select="('centimeter', 'cm')"/>
     <xsl:variable name="ada-unit-m" select="('meter', 'm')"/>
 
+    <xsl:variable name="ada-unit-liter" select="('liter', 'l')"/>
+    <xsl:variable name="ada-unit-dl" select="('deciliter', 'dl')"/>
+    <xsl:variable name="ada-unit-cl" select="('centiliter', 'cl')"/>
+    <xsl:variable name="ada-unit-ml" select="('milliliter', 'ml')"/>
+    <xsl:variable name="ada-unit-ul" select="('microliter', 'ul')"/>
+    
+
     <xsl:variable name="oidAGB">2.16.840.1.113883.2.4.6.1</xsl:variable>
     <xsl:variable name="oidAGBSpecialismen">2.16.840.1.113883.2.4.6.7</xsl:variable>
     <xsl:variable name="oidAORTAApplicatieID">2.16.840.1.113883.2.4.6.6</xsl:variable>
