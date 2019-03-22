@@ -173,6 +173,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="GstdBasiseenheid_code"/>
+    </xd:doc>
     <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string?">
         <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
 
@@ -204,6 +208,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="ADAunit"/>
+    </xd:doc>
     <xsl:function name="nf:convertUnit_ADA2UCUM" as="xs:string">
         <xsl:param name="ADAunit" as="xs:string"/>
         <!-- TODO: hack in 9.0.4 om de in ADA forms aangepaste eenheden goede HL7 genereert. -->
@@ -219,23 +227,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    <xsl:function name="nf:convertTime_ADA_unit2UCUM" as="xs:string?">
-        <xsl:param name="ADAtime" as="xs:string?"/>
-        <xsl:if test="$ADAtime">
-            <xsl:choose>
-                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="concat('onbekende tijdseenheid: ', $ADAtime)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="startdatum-dosering-1"/>
+        <xd:param name="dosering"/>
+        <xd:param name="doseerinstructies"/>
+    </xd:doc>
     <xsl:function name="nf:calculate_Doseerinstructie_Startdate" as="xs:date?">
         <xsl:param name="startdatum-dosering-1" as="xs:date?"/>
         <xsl:param name="dosering"/>
@@ -260,6 +258,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputDuur"/>
+        <xd:param name="eenheid_UCUM"/>
+    </xd:doc>
     <xsl:function name="nf:calculate_Duur_In_Dagen">
         <xsl:param name="inputDuur"/>
         <xsl:param name="eenheid_UCUM"/>

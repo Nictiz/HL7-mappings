@@ -902,4 +902,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     
+    <xd:doc>
+        <xd:desc>Converts ADA time unit 2 UCUM</xd:desc>
+        <xd:param name="ADAtime"/>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_ADA_unit2UCUM" as="xs:string?">
+        <xsl:param name="ADAtime" as="xs:string?"/>
+        <xsl:if test="$ADAtime">
+            <xsl:choose>
+                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
+                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="concat('onbekende tijdseenheid: ', $ADAtime)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
+        <xd:param name="ADAunit"/>
+    </xd:doc>
+    <xsl:function name="nf:convert_ADA_unit2UCUM" as="xs:string?">
+        <xsl:param name="ADAunit" as="xs:string?"/>
+        <xsl:if test="$ADAunit">
+            <xsl:choose>
+                <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-gram">g</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-liter">l</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-dl">dl</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-cl">cl</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-ml">ml</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-ul">ul</xsl:when>
+                
+                <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))"><xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/></xsl:when>
+                 <xsl:otherwise>
+                    <xsl:value-of select="concat('unknown ada unit: ', $ADAunit)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+    
 </xsl:stylesheet>

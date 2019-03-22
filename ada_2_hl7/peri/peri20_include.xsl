@@ -2203,7 +2203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--Anamnese PRN-->
         <organizer classCode="CONTAINER" moodCode="EVN">
             <code code="417662000" codeSystem="{$oidSNOMEDCT}" displayName="Past history of clinical finding"/>
-             <!-- Als onder behandeling geweest? = Nee, dan alleen dat aangeven en geen anamnese opnemen -->
+            <!-- Als onder behandeling geweest? = Nee, dan alleen dat aangeven en geen anamnese opnemen -->
             <xsl:if test="./onder_behandeling_geweestq[@value = 'false']">
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20141027000000"/>
@@ -6598,30 +6598,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.900963"/>
             <code code="417662000" codeSystem="{$oidSNOMEDCT}" displayName="Anamnese"/>
-                <!-- Als onder behandeling geweest? = Nee, dan alleen dat aangeven en geen anamnese opnemen -->
-                <xsl:if test="./onder_behandeling_geweestq[@value = 'false']">
-                    <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20161215115649"/>
-                    </component>
-                    <!--</xsl:for-each>-->
-                </xsl:if>
-                <!-- Bij een algemene anamnese met gegevens erin, 'Onder behandeling geweest?' op ja zetten, anders komt er een HL7 fout op de anamnese,
+            <xsl:for-each select="./onder_behandeling_geweestq[@value='false']">
+                <component typeCode="COMP">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900958_20161215115649"/>
+                </component>
+            </xsl:for-each>
+            <!-- Bij een algemene anamnese met gegevens erin, 'Onder behandeling geweest?' op ja zetten, anders komt er een HL7 fout op de anamnese,
             en de anamnese opnemen -->
-                <xsl:if test="algemene_anamnese/*[@value] or algemene_anamnese/*[@code]">
+            <xsl:if test="algemene_anamnese/*[@value|@code|@nullFlavor]">
+                <component typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.900958"/>
+                        <code code="OnderBehandeling" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Onder behandeling (geweest)?"/>
+                        <value xsi:type="BL" value="true"/>
+                    </observation>
+                </component>
+                <xsl:for-each select="./algemene_anamnese[.//(@value|@code|@nullFlavor)]">
                     <component typeCode="COMP">
-                        <observation classCode="OBS" moodCode="EVN">
-                            <templateId root="2.16.840.1.113883.2.4.6.10.90.900958"/>
-                            <code code="OnderBehandeling" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Onder behandeling (geweest)?"/>
-                            <value xsi:type="BL" value="true"/>
-                        </observation>
+                        <!-- algemene_anamnese -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704"/>
                     </component>
-                    <xsl:for-each select="./algemene_anamnese">
-                        <component typeCode="COMP">
-                            <!-- algemene_anamnese -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900959_20161205180704"/>
-                        </component>
-                    </xsl:for-each>
-                </xsl:if>
+                </xsl:for-each>
+            </xsl:if>
         </organizer>
     </xsl:template>
     <!-- Anamnese PRN -->
