@@ -4363,7 +4363,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- Baring Kernset -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440">
-        <xsl:variable name="var_rangnummer_kind" select="./ancestor-or-self::*/rangnummer_kind/@value"/>
+        <xsl:variable name="var_rangnummer_kind" select="./demografische_gegevens/rangnummer_kind/@value"/>
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901102"/>
             <id nullFlavor="NI"/>
@@ -4518,16 +4518,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingenq">
                 <xsl:variable name="cong_afw_question" select="."/>
-                <xsl:for-each select="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking">
-                    <outboundRelationship typeCode="COMP">
-                        <!-- Template :: Congenitale afwijkingen NoUnc -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
-                            <xsl:with-param name="cong_afw_question" select="$cong_afw_question"/>
-                            <xsl:with-param name="cong_afw_observation" select="."/>
-                        </xsl:call-template>
-                    </outboundRelationship>
-                </xsl:for-each>
-            </xsl:for-each>
+                    <xsl:choose>
+                    <xsl:when test="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking[.//(@value|@code|@nullFlavor)]">
+                        <xsl:for-each select="../congenitale_afwijkingen_groep/specificatie_congenitale_afwijking_groep/specificatie_congenitale_afwijking">
+                                 <!-- Template :: Congenitale afwijkingen NoUnc -->
+                            <outboundRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
+                                    <xsl:with-param name="cong_afw_question" select="$cong_afw_question"/>
+                                    <xsl:with-param name="cong_afw_observation" select="."/>
+                                </xsl:call-template>
+                            </outboundRelationship>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                            <!-- Template :: Congenitale afwijkingen NoUnc -->
+                        <outboundRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
+                                <xsl:with-param name="cong_afw_question" select="$cong_afw_question"/>
+                             </xsl:call-template>
+                        </outboundRelationship>
+                      </xsl:otherwise>
+                </xsl:choose>
+              </xsl:for-each>
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingen_groep/chromosomale_afwijkingenq">
                 <xsl:variable name="chr_afw_question" select="."/>
                 <xsl:for-each select="../specificatie_chromosomale_afwijking_groep/specificatie_chromosomale_afwijking">
@@ -7568,18 +7580,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
     <!-- Diagnose bevalling Kernsetbericht PRN -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901014_20161206125851">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901014_20161206125851" match="diagnose_bevalling">
         <organizer xmlns="urn:hl7-org:v3" classCode="CONTAINER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901014"/>
             <id nullFlavor="NI"/>
             <code code="439401001" codeSystem="{$oidSNOMEDCT}" displayName="Diagnose"/>
-            <xsl:for-each select="./ppromq">
+            <xsl:for-each select="ppromq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: PPROM? -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901007_20161202173503"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="./promq">
+            <xsl:for-each select="promq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: PROM? -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901008_20161202173654"/>
@@ -7591,7 +7603,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901009_20161202173856"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="./niet_vorderende_ontsluitingq">
+            <xsl:for-each select="niet_vorderende_ontsluitingq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Niet vorderende ontsluiting? -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901010_20161202174017"/>
@@ -7620,7 +7632,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901013_20161202174410"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="fluxus_postpartum">
+            <xsl:for-each select="fluxus_postpartumq">
                 <component typeCode="COMP" contextConductionInd="true">
                     <!-- Template :: Fluxus Postpartum -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901054_20161202165703"/>
@@ -7658,7 +7670,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Congenitale afwijkingen NoUnc -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901017_20161206135251">
         <xsl:param name="cong_afw_question"/>
-        <xsl:param name="cong_afw_observation"/>
+        <xsl:param name="cong_afw_observation" as="node()*"/>
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr">
                 <xsl:with-param name="inputValue" select="$cong_afw_question/@value"/>
@@ -7666,7 +7678,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901017"/>
             <code code="443341004" codeSystem="{$oidSNOMEDCT}" displayName="Congenitale afwijking"/>
             <!-- Item(s) :: specificatie_congenitale_afwijking-->
-            <xsl:for-each select="$cong_afw_observation">
+            <xsl:for-each select="$cong_afw_observation[.//(@value|@code|@nullFlavor)]">
                 <xsl:call-template name="makeCEValue">
                     <xsl:with-param name="elemName">value</xsl:with-param>
                 </xsl:call-template>

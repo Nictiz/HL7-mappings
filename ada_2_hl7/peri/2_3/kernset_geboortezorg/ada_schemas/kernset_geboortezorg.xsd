@@ -2011,6 +2011,16 @@
          <xs:documentation>Type for concept group: Zwangerschap</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="dossiernummer-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.60.5.6.3.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="dossiernummer"
+                     type="dossiernummer_type_2_16_840_1_113883_2_4_3_11_999_60_5_6_3_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="graviditeit-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.20010"/>
@@ -3802,12 +3812,12 @@
       <xs:sequence>
          <xs:element name="rangnummer_kind-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.40025"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.60.5.6.161.1"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
          <xs:element name="rangnummer_kind"
-                     type="rangnummer_kind_type_1_2_3_4_5_12345_40025"
+                     type="rangnummer_kind_type_2_16_840_1_113883_2_4_3_11_999_60_5_6_161_1"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="voeding_kind_groep-start" minOccurs="0" maxOccurs="1">
@@ -7106,6 +7116,19 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
    </xs:complexType>
    <xs:annotation>
+      <xs:documentation>Type for concept item: Dossiernummer - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="dossiernummer_type_2_16_840_1_113883_2_4_3_11_999_60_5_6_3_1">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.60.5.6.3.1"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
       <xs:documentation>Type for concept item: Graviditeit - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="graviditeit_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_20010">
@@ -9644,11 +9667,11 @@
    <xs:annotation>
       <xs:documentation>Type for concept item: Rangnummer kind - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="rangnummer_kind_type_1_2_3_4_5_12345_40025">
-      <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.40025"/>
+   <xs:complexType name="rangnummer_kind_type_2_16_840_1_113883_2_4_3_11_999_60_5_6_161_1">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.60.5.6.161.1"/>
       <xs:attribute name="value">
          <xs:simpleType>
-            <xs:union memberTypes="rangnummer_kind_1_datatype_1_2_3_4_5_12345_40025 empty_string"/>
+            <xs:union memberTypes="rangnummer_kind_1_datatype_2_16_840_1_113883_2_4_3_11_999_60_5_6_161_1 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
@@ -9656,7 +9679,7 @@
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Rangnummer kind: count</xs:documentation>
    </xs:annotation>
-   <xs:simpleType name="rangnummer_kind_1_datatype_1_2_3_4_5_12345_40025">
+   <xs:simpleType name="rangnummer_kind_1_datatype_2_16_840_1_113883_2_4_3_11_999_60_5_6_161_1">
       <xs:restriction base="xs:nonNegativeInteger">
          <xs:minInclusive value="1"/>
          <xs:maxInclusive value="9"/>
