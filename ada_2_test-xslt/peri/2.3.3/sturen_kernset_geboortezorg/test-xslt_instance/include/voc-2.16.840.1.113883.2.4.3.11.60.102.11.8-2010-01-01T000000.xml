@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valueSets>
+   <valueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:decor="http://art-decor.org/ns/decor"
+             xmlns:sdtc="urn:hl7-org:sdtc"
+             xmlns:peri="urn:nictiz-nl:v3/peri"
+             id="2.16.840.1.113883.2.4.3.11.60.102.11.8"
+             name="ActRegistryCodeNL"
+             displayName="ActRegistryCode: x_DataDomainNL"
+             effectiveDate="2010-01-01T00:00:00"
+             statusCode="draft"
+             url="http://decor.nictiz.nl/decor/services/"
+             ident="hl7m-"
+             referencedFrom="peri20-">
+      <desc language="nl-NL">Deze waardenset bevat de waarden die de gegevenssoort van gegevens in de diverse registers bepaalt. In formele zin bevat deze tabel de definitie van een value set die deel uitmaakt van het reeds bestaande v3 vocabulary domein "ActRegistryCode". Deze tabel wordt nog nader uitgewerkt. <p>Merk op dat de tabel codes (Mnemonics) bevat afkomstig uit meerdere verschillende value sets. De OID (Base OID) van de codes is dus niet voor alle codes gelijkluidend.</p>
+                <p>VWI = Verwijsindex, ZAB = Zorgadresboek, APR = Autorisatieprofielregister, SBV-Z = Sectorale BerichtenVoorziening in de Zorg.</p>
+                <p>Noten:</p>
+                <ul>
+                    <li>834295 (Monster gerelateerd onderzoek) omvat o.a. Lab en Pathologie onderzoek.</li>
+                    <li>800310 (Overgevoeligheid) omvat o.a. allergie en intolerantie.</li>
+                    <li>Observatie: Een activiteit die tot doel heeft een bepaalde resultaatwaarde te bepalen. Alle diagnostische medische activiteiten zijn observaties. Elke observatie heeft een auteur: de observator. Voorbeelden van observaties zijn laboratoriumbepalingen, radiologie-onderzoeken, etc., maar ook het bepalen van bijv. de lengte, het gewicht of de bloeddruk van een patiënt.</li>
+                    <li>Conditie: Een kenmerk van de medische toestand van een patiënt. In alle gevallen betreft het een gegeven (binnen HL7 een Act) dat betrekking heeft op een ziekte, probleem of ander kenmerk van een specifieke patiënt, dat zich uitstrekt over een bepaalde periode in de tijd. Dit leent zich dus voor het weergeven van uiteenlopende verschijnselen, zoals: <ul>
+                            <li>Een handicap, zoals blindheid.</li>
+                            <li>Een allergie of andere overgevoeligheid.</li>
+                            <li>Een chronische aandoening, zoals diabetes.</li>
+                            <li>Een acute aandoening, zoals appendicitis of een beenbreuk.</li>
+                            <li>Een complicatie bij een achterliggend probleem, zoals koorts of slapeloosheid.</li>
+                            <li>Een ander aspect van de lichamelijke toestand, zoals zwangerschap of zelfs een ‘kinderwens’.</li>
+                            <li>Het ontkennen van het bestaan van één van bovenstaande aspecten (op basis van het attribuut negationInd).</li>
+                        </ul>
+                    </li>
+                    <li>Met ingang van de onderhoudsrelease 2008 bezit de gegevenssoort Care Provision een hierarchische structuur met afgeleide, meer gespecialiseerde, gegevenssoorten.</li>
+                </ul>
+            </desc>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.15.4"
+                        identifierName="ActCodeNL Gegevenssoorten in de verwijsindex van de Zorg Informatie Makelaar van het LSP"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.3"
+                        identifierName="Diabetis Mellitus _medische_basisgegevens"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.5"
+                        identifierName="Diabetis Mellitus _contacten"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.14"
+                        identifierName="Diabetis Mellitus _verwijzingen"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.9"
+                        identifierName="Diabetis Mellitus _bloedglucosemeter"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.2" identifierName=""/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.18"
+                        identifierName="Diabetis Mellitus _laboratoriumonderzoek"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.6"
+                        identifierName="Diabetis Mellitus _medicatie"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.16"
+                        identifierName="Diabetis Mellitus _oogonderzoek"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.4"
+                        identifierName="Diabetis Mellitus _streefwaarden"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.17"
+                        identifierName="Diabetis Mellitus _voeding"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.15"
+                        identifierName="Diabetis Mellitus _voetonderzoek"/>
+      <sourceCodeSystem id="2.16.840.1.113883.2.4.6.10.81.8"
+                        identifierName="Diabetis Mellitus _zelfzorgdossier"/>
+      <sourceCodeSystem id="2.16.840.1.113883.6.1" identifierName="LOINC"/>
+      <publishingAuthority name="KNOV">
+                <addrLine>Koninklijke Nederlandse Organisatie van Verloskundigen</addrLine>
+                <addrLine>Mercatorlaan 1200</addrLine>
+                <addrLine>3528 BL Utrecht</addrLine>
+                <addrLine>T 030 282 31 00</addrLine>
+            </publishingAuthority>
+      <conceptList>
+                <concept code="_Autorisatieprofiel"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Autorisatieprofiel"
+                  level="0"
+                  type="A"/>
+                <concept code="115115"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Patiëntprofiel"
+                  level="1"
+                  type="L"/>
+                <concept code="116116"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Autorisatieprofiel EPD voor zorgconsumenten"
+                  level="1"
+                  type="L"/>
+                <concept code="_Applicatieregister"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Applicatieregister"
+                  level="0"
+                  type="A"/>
+                <concept code="302850"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Applicatie identificerende en beschrijvende gegevens"
+                  level="1"
+                  type="L"/>
+                <concept code="_Mandaattoken"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Mandaattoken"
+                  level="0"
+                  type="A"/>
+                <concept code="585858"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Mandaattoken"
+                  level="1"
+                  type="S"/>
+                <concept code="_Verwijsindex"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Verwijsindex"
+                  level="0"
+                  type="A"/>
+                <concept code="_Medicatie"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Medicatie"
+                  level="1"
+                  type="A"/>
+                <concept code="272353"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Medicatie-verstrekking"
+                  level="2"
+                  type="L"/>
+                <concept code="585626"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Medicatiegebruik"
+                  level="2"
+                  type="L"/>
+                <concept code="722933"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Medicatievoorschrift"
+                  level="2"
+                  type="L"/>
+                <concept code="902200"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Care Provision"
+                  level="1"
+                  type="A"/>
+                <concept code="_DiabetesMellitus"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Diabetis Mellitus Care Provision"
+                  level="2"
+                  type="A"/>
+                <concept code="401352"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.3"
+                  displayName="Diabetis Mellitus _medische_basisgegevens"
+                  level="3"
+                  type="L"/>
+                <concept code="412453"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.5"
+                  displayName="Diabetis Mellitus _contacten"
+                  level="3"
+                  type="L"/>
+                <concept code="423544"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.14"
+                  displayName="Diabetis Mellitus _verwijzingen"
+                  level="3"
+                  type="L"/>
+                <concept code="436071"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.9"
+                  displayName="Diabetis Mellitus _bloedglucosemeter"
+                  level="3"
+                  type="L"/>
+                <concept code="447756"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.2"
+                  displayName="Diabetis Mellitus _diagnose"
+                  level="3"
+                  type="L"/>
+                <concept code="451451"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.18"
+                  displayName="Diabetis Mellitus _laboratoriumonderzoek"
+                  level="3"
+                  type="L"/>
+                <concept code="469835"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.6"
+                  displayName="Diabetis Mellitus _medicatie"
+                  level="3"
+                  type="L"/>
+                <concept code="483617"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.16"
+                  displayName="Diabetis Mellitus _oogonderzoek"
+                  level="3"
+                  type="L"/>
+                <concept code="492363"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.2"
+                  displayName="Diabetis Mellitus _risicoprofiel"
+                  level="3"
+                  type="L"/>
+                <concept code="409876"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.4"
+                  displayName="Diabetis Mellitus _streefwaarden"
+                  level="3"
+                  type="L"/>
+                <concept code="418323"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.17"
+                  displayName="Diabetis Mellitus _voeding"
+                  level="3"
+                  type="L"/>
+                <concept code="427369"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.15"
+                  displayName="Diabetis Mellitus _voetonderzoek"
+                  level="3"
+                  type="L"/>
+                <concept code="436512"
+                  codeSystem="2.16.840.1.113883.2.4.6.10.81.8"
+                  displayName="Diabetis Mellitus _zelfzorgdossier"
+                  level="3"
+                  type="L"/>
+                <concept code="460320"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Huisarts Care Provision"
+                  level="2"
+                  type="L"/>
+                <concept code="380630"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="JGZ Care Provision"
+                  level="2"
+                  type="L"/>
+                <concept code="900000"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Perinatale Care Provision"
+                  level="2"
+                  type="L"/>
+                <concept code="118400"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Document"
+                  level="1"
+                  type="L"/>
+                <concept code="11526-1"
+                  codeSystem="2.16.840.1.113883.6.1"
+                  displayName="Onderzoeksverslag pathologie"
+                  level="1"
+                  type="L"/>
+                <concept code="288432"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Conditie"
+                  level="1"
+                  type="L"/>
+                <concept code="800310"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Overgevoeligheid "
+                  level="1"
+                  type="L"/>
+                <concept code="_Observatie"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Observatie"
+                  level="1"
+                  type="A"/>
+                <concept code="834295"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Monster gerelateerd onderzoek"
+                  level="2"
+                  type="L"/>
+                <concept code="188011"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Beeldvormend onderzoek"
+                  level="2"
+                  type="L"/>
+                <concept code="_Laboratorium"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Laboratorium"
+                  level="1"
+                  type="A"/>
+                <concept code="703406"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="CDA-labuitslagdocument (o.a. documenten met LOINC code 11502-2) labuitslagdocument"
+                  level="2"
+                  type="L"/>
+                <concept code="504871"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="CDA-labafnamedocument (o.a. documenten met LOINC code X-LAB-SPMCOL) labafnamedocument"
+                  level="2"
+                  type="L"/>
+                <concept code="872304"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="CDA-labaanvraagdocument (o.a. documenten met LOINC code X-LAB-ORDER)"
+                  level="2"
+                  type="L"/>
+                <concept code="908809"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Procesgerichte aanmelding van een labuitslagaanvraag labuitslagaanvraag"
+                  level="2"
+                  type="L"/>
+                <concept code="909909"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Procesgerichte aanmelding van een labafnameaanvraag labafnameaanvraag"
+                  level="2"
+                  type="L"/>
+                <concept code="_SBV-Z"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Sectorale berichtenvoorzieningen in de Zorg"
+                  level="0"
+                  type="A"/>
+                <concept code="118118"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Persoon- identificerende /demografische gegevens"
+                  level="1"
+                  type="L"/>
+                <concept code="_Zorgadresboek"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Zorgadresboek"
+                  level="0"
+                  type="A"/>
+                <concept code="117117"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Organisatie- identificerende /demografische gegevens"
+                  level="1"
+                  type="L"/>
+                <concept code="603508"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Zorgverlener-identificerende/ demografische gegevens"
+                  level="1"
+                  type="L"/>
+                <concept code="302850"
+                  codeSystem="2.16.840.1.113883.2.4.15.4"
+                  displayName="Applicatie identificerende en beschrijvende gegevens"
+                  level="1"
+                  type="L"/>
+            </conceptList>
+   </valueSet>
+</valueSets>

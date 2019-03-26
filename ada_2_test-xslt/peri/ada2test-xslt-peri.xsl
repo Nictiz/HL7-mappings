@@ -104,7 +104,7 @@
                     <!-- hl7:subject/hl7:personalRelationship/hl7:relationshipHolder/hl7:birthTime -->
                     <xsl:variable name="ada-geboortedatum" select="./baring/demografische_gegevens/geboortedatum"/>
                     <xsl:variable name="ada-hl7-datetime" select="substring(nf:ada2hl7-datetime($ada-geboortedatum/@value), 1, 12)"/>
-                    <xsl:variable name="new-append-xpath">[hl7:subject/hl7:personalRelationship/hl7:relationshipHolder/hl7:birthTime[@value='<xsl:value-of select="$ada-hl7-datetime"/>']]</xsl:variable>
+                    <xsl:variable name="new-append-xpath">[hl7:subject/hl7:personalRelationship/hl7:relationshipHolder/hl7:birthTime[substring(@value,1,12)='<xsl:value-of select="$ada-hl7-datetime"/>']]</xsl:variable>
                     <xsl:variable name="new-xpath" select="concat($my-xpath, $new-append-xpath)"/>
                     <my-concept xmlns="" id="{$current-concept/@id}" type="{$current-concept/@type}" shortName="{$current-concept/@shortName}" name="{$current-concept/name[@language='nl-NL']/text()}" valuedomain="{$current-concept/valueDomain/@type}" ada-count="1">
                         <my-xpath xmlns="" value="{$new-xpath}"/>
@@ -300,24 +300,20 @@
 
 
     <xd:doc>
-        <xd:desc>Creates a schematron assert for valuedomain boolean
+        <xd:desc>Creates a schematron multiplicity assert for valuedomain boolean which has a corresponding group, therefore if the group multiplicity is more than one, then the boolean (negationInd = 'false') will also appear more than once
         Specific handling for when this ends up in @negationInd and the templateAssociation is on the element which has the @negationInd
         </xd:desc>
         <xd:param name="context">context xpath to the hl7 element containing the value</xd:param>
     </xd:doc>
-    <xsl:template match="chromosomale_afwijkingenq | congenitale_afwijkingenq | episiotomieq | irregulaire_antistoffenq | kinderarts_betrokkenq | overige_aandoeningq | pijnbestrijdingq | problematiek_kindq | psychiatrieq | sedatieq | vrouwelijke_genitale_verminkingq" mode="doAssert4Boolean">
-        <xsl:param name="context" as="xs:string?">.</xsl:param>
-        <xsl:variable name="concept-naam" select="../@name"/>
+    <xsl:template match="my-concept[@shortName = ('chromosomale_afwijkingenq', 'congenitale_afwijkingenq', 'episiotomieq', 'irregulaire_antistoffenq', 'kinderarts_betrokkenq', 'overige_aandoeningq', 'pijnbestrijdingq', 'problematiek_kindq', 'psychiatrieq', 'sedatieq', 'vrouwelijke_genitale_verminkingq')]" mode="doMultiplicityAssert">
+        <xsl:param name="context" as="xs:string?" select="./relative-xpath/@value"/>
+        <xsl:variable name="concept-naam" select="@name"/>
         <xsl:variable name="negation-boolean" select="@value = 'false'"/>
-        <xsl:comment><xsl:value-of select="concat($concept-naam, ' moet waarde = ''', string-join(@value | @nullFlavor, ' '), ''' bevatten.', ' Dataset concept id: ', @conceptId, '.')"/></xsl:comment>
-        <xsl:choose>
-            <xsl:when test="@nullFlavor">
-                <sch:assert role="error" test="{$context}[@nullFlavor = '{@nullFlavor}']/.">Verwacht is een <xsl:value-of select="$concept-naam"/> met waarde "<xsl:value-of select="@nullFlavor"/>" (nullFlavor: <xsl:value-of select="@nullFlavor"/>). Dataset concept id: <xsl:value-of select="@conceptId"/>.</sch:assert>
-            </xsl:when>
-            <xsl:otherwise>
-                <sch:assert role="error" test="{$context}[@negationInd='{$negation-boolean}']/.">Verwacht is een <xsl:value-of select="$concept-naam"/> met waarde '"<xsl:value-of select="@value"/>"'.</sch:assert>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="my-xpath" select="$context"/>
+        <xsl:comment><xsl:value-of select="$concept-naam"/> (<xsl:value-of select="@id"/>) moet <xsl:value-of select="@ada-count"/> keer voorkomen.</xsl:comment>
+        <!--These concepts are always 0..1, so more than one really means one-->
+        <sch:let name="hl7-count" value="if (count({$my-xpath}) = 0) then 0 else 1"/>
+        <sch:assert role="error" test="$hl7-count = {@ada-count}"><xsl:value-of select="$concept-naam"/> moet <xsl:value-of select="@ada-count"/> keer voorkomen (dataset concept id: <xsl:value-of select="@id"/>). Aantal gevonden: <sch:value-of select="$hl7-count"/></sch:assert>
     </xsl:template>
 
 
@@ -345,6 +341,27 @@
         <!--concept moet precies x keer voorkomen.-->
         <sch:let name="hl7-count" value="count({$my-xpath})"/>
         <sch:assert role="error" test="$hl7-count = {@ada-count}"><xsl:value-of select="$concept-naam"/> moet <xsl:value-of select="@ada-count"/> keer voorkomen (dataset concept id: <xsl:value-of select="@id"/>). Aantal gevonden: <sch:value-of select="$hl7-count"/></sch:assert>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Creates a multiplicity schematron assert for valuedomain boolean
+            Specific handling for when this ends up in @negationInd and the templateAssociation is on the element which has the @negationInd
+        </xd:desc>
+        <xd:param name="context">context xpath to the hl7 element containing the value</xd:param>
+    </xd:doc>
+    <xsl:template match="chromosomale_afwijkingenq | congenitale_afwijkingenq | episiotomieq | irregulaire_antistoffenq | kinderarts_betrokkenq | overige_aandoeningq | pijnbestrijdingq | problematiek_kindq | psychiatrieq | sedatieq | vrouwelijke_genitale_verminkingq" mode="doAssert4Boolean">
+        <xsl:param name="context" as="xs:string?">.</xsl:param>
+        <xsl:variable name="concept-naam" select="../@name"/>
+        <xsl:variable name="negation-boolean" select="@value = 'false'"/>
+        <xsl:comment><xsl:value-of select="concat($concept-naam, ' moet waarde = ''', string-join(@value | @nullFlavor, ' '), ''' bevatten.', ' Dataset concept id: ', @conceptId, '.')"/></xsl:comment>
+        <xsl:choose>
+            <xsl:when test="@nullFlavor">
+                <sch:assert role="error" test="{$context}[@nullFlavor = '{@nullFlavor}']/.">Verwacht is een <xsl:value-of select="$concept-naam"/> met waarde "<xsl:value-of select="@nullFlavor"/>" (nullFlavor: <xsl:value-of select="@nullFlavor"/>). Dataset concept id: <xsl:value-of select="@conceptId"/>.</sch:assert>
+            </xsl:when>
+            <xsl:otherwise>
+                <sch:assert role="error" test="{$context}[@negationInd='{$negation-boolean}']/.">Verwacht is een <xsl:value-of select="$concept-naam"/> met waarde '"<xsl:value-of select="@value"/>"'. Dataset concept id: <xsl:value-of select="@conceptId"/>.</sch:assert>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xd:doc>
