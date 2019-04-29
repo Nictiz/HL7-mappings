@@ -26,6 +26,7 @@
         <xd:desc/>
     </xd:doc>
     <xsl:template match="/">
+        <xsl:value-of select="'&lt;noinclude&gt;'"/>
         <xsl:text>
 {{#customtitle:Kernset Geboortezorg 2.3 - inhoud kwalificatie}}
 __NUMBEREDHEADINGS__
@@ -33,6 +34,7 @@ __NUMBEREDHEADINGS__
 [[Bestand:Nictiz_logo_PO_rechts_rgb.png |link=https://www.nictiz.nl/|rechts|Naar nictiz.nl]]
 
 =Addenda voor inhoudelijke gegevens Kernset Geboortezorg 2.3=</xsl:text>
+        <xsl:value-of select="'&lt;/noinclude&gt;'"/>        
         <xsl:choose>
             <xsl:when test="$do-ada-files">
                 <xsl:apply-templates select="$ada-files/adaxml/data/*"/>

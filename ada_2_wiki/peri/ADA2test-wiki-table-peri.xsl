@@ -31,12 +31,6 @@
     <xsl:variable name="element-achtergrond-kleur">#E3E3E3;</xsl:variable>
     <xsl:variable name="elementwaarde-achtergrond-kleur">white</xsl:variable>
 
-    <!-- TODO 
-        Tijdstip begin actieve ontsluiting
-Tijdstip breken vliezen
-    Tijdstip actief meepersen
-    -->
-
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -233,7 +227,7 @@ __NUMBEREDHEADINGS__
         <xd:desc>Creates a gegevenselement for the variable 'tabel' with a possibly configurable date</xd:desc>
         <xd:param name="level">The indent level in the table - defaults to 1 but should be passed</xd:param>
     </xd:doc>
-    <xsl:template match="datum | datum_controle | datum_einde_zorgverantwoordelijkheid | datum_start_zorgverantwoordelijkheid | datum_verwijzing | definitieve_a_terme_datum | geboortedatum[not(ancestor::vrouw)] |tijdstip_actief_meepersen |tijdstip_begin_actieve_ontsluiting |tijdstip_breken_vliezen | voeding_kind_datum" mode="maak-tabel-rij">
+    <xsl:template match="datum | datum_betrokkenheid | datum_controle | datum_einde_zorgverantwoordelijkheid | datum_start_zorgverantwoordelijkheid | datum_verwijzing | definitieve_a_terme_datum | geboortedatum[not(ancestor::vrouw)] |tijdstip_actief_meepersen |tijdstip_begin_actieve_ontsluiting |tijdstip_breken_vliezen | voeding_kind_datum" mode="maak-tabel-rij">
         <xsl:param name="level" select="xs:int(1)"/>
         <gegevenselement xmlns="" level="{$level}" naam="{nf:element-name(.)}" waarde="{nf:configurable-T-date-peri(., false())}"/>
     </xsl:template>
@@ -261,6 +255,22 @@ __NUMBEREDHEADINGS__
         <xsl:variable name="ada-transaction-id" select="$current-element/ancestor::data/*/@id"/>
         <xsl:variable name="conversion_element">
             <xsl:choose>
+                <xsl:when test="$current-element/local-name() = 'datum'">
+                    <xsl:choose>
+                        <xsl:when test="$current-element/ancestor::diagnose">
+                            <!-- This only works because all of the test scenario's have max 1 diagnose group -->
+                            <xsl:sequence select="$date-conversion-xml//*[@id = $ada-transaction-id]//diagnose/datum"/>
+                        </xsl:when>
+                        <xsl:when test="$current-element/ancestor::diagnoseinterventie_postpartum">
+                             <xsl:sequence select="$date-conversion-xml//*[@id = $ada-transaction-id]/postnatale_fase/diagnoseinterventie_postpartum/datum"/>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:when>                
+                <xsl:when test="$current-element/local-name() = 'datum_betrokkenheid'">
+                    <!-- take rangnummer kind in to account in case of multiple birth (twin or more) -->
+                    <xsl:sequence select="$date-conversion-xml//*[@id = $ada-transaction-id]/uitkomst_per_kind[not(rangnummer_kind) or not($current-element/ancestor::uitkomst_per_kind//rangnummer_kind) 
+                        or rangnummer_kind/@value = $current-element/ancestor::uitkomst_per_kind//rangnummer_kind/@value]//*[local-name() eq $current-element/local-name()]"/>
+                </xsl:when>
                 <xsl:when test="$current-element/local-name() = 'geboortedatum'">
                     <xsl:choose>
                         <xsl:when test="$current-element/ancestor::vorige_baring">
