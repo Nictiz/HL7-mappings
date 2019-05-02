@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:fb25a5c1-6d15-11e9-1790-28f10e481d92"/>
+      <resource>
+         <Questionnaire>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-questionnaire"/>
+            </meta>
+            <url value="http://dummy.questionnaire.arianne.nl"/>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.56.4"/>
+               <value value="fafb6200-6ce5-11e9-b475-0800200c9a66"/>
+            </identifier>
+            <version value="0.1"/>
+            <name value="Test Vragenlijst Nictiz door Arianne"/>
+            <title value="titel van de vragenlijst van Arianne"/>
+            <status value="draft"/>
+            <experimental value="true"/>
+            <date value="2019-05-02T16:29:00+02:00"/>
+            <publisher value="Arianne for testing @Nictz"/>
+            <description value="Omschrijving (description) van deze vragenlijst van Arianne"/>
+            <purpose value="To verify the information standard, dataset, FHIR Profiles"/>
+            <approvalDate value="2020-12-31"/>
+            <lastReviewDate value="2019-05-02"/>
+            <effectivePeriod>
+               <start value="2019-05-02T16:29:00+02:00"/>
+               <end value="2099-12-31T00:00:00+01:00"/>
+            </effectivePeriod>
+            <copyright value="copyright Nictiz 2019 - "/>
+            <subjectType value="Patient"/>
+            <item>
+               <linkId value="c748e540-6d08-11e9-b475-0800200c9a66"/>
+               <text value="Dit is de tekst voor item X in de vragenlijst"/>
+               <type value="string"/>
+               <option>
+                  <valueString value="blabla"/>
+               </option>
+               <option>
+                  <valueString value="vlalbal"/>
+               </option>
+            </item>
+            <item>
+               <linkId value="X2"/>
+               <text value="Dit is de tekst voor item X2 in de vragenlijst"/>
+               <type value="integer"/>
+               <option>
+                  <valueString value="2blabla"/>
+               </option>
+               <option>
+                  <valueString value="2vlalbal"/>
+               </option>
+            </item>
+         </Questionnaire>
+      </resource>
+   </entry>
+</Bundle>

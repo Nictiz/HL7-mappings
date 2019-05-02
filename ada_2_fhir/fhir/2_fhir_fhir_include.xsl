@@ -200,6 +200,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <xd:doc>
+        <xd:desc>Transforms ada element with zib type interval and only start and end date to FHIR Period</xd:desc>
+        <xd:param name="in">ada element with sub ada elements start and end date (both with datatype dateTime)</xd:param>
+    </xd:doc>
+    <xsl:template name="startend-to-Period" as="element()*">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:for-each select="$in">
+            <xsl:choose>
+                <xsl:when test="start_datum_tijd[@nullFlavor]">
+                    <start>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                            <valueCode value="{start_datum_tijd/@nullFlavor}"/>
+                        </extension>
+                    </start>
+                </xsl:when>
+                <xsl:when test="start_datum_tijd[@value]">
+                    <start value="{nf:add-Amsterdam-timezone(start_datum_tijd/@value)}"/>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="eind_datum_tijd[@nullFlavor]">
+                    <end>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                            <valueCode value="{eind_datum_tijd/@nullFlavor}"/>
+                        </extension>
+                    </end>
+                </xsl:when>
+                <xsl:when test="eind_datum_tijd[@value]">
+                    <end value="{nf:add-Amsterdam-timezone(eind_datum_tijd/@value)}"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc>Transforms ada element to FHIR Range</xd:desc>
         <xd:param name="in">ada element with sub ada elements min and max (both with datatype aantal/count) and a sibling ada element eenheid (datatype code)</xd:param>
     </xd:doc>

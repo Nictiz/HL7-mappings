@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="5"/>
+   <entry>
+      <fullUrl value="urn:uuid:928128d1-6cd6-11e9-1546-28f10e481d92"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999911351"/>
+            </identifier>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
+               <value value="13103"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX_Ruys">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Ruys"/>
+                  </extension>
+               </family>
+               <given value="R.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male"/>
+            <birthDate value="1964-08-01"/>
+         </Patient>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:92812b06-6cd6-11e9-1546-28f10e481d92"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <name>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:92812b0c-6cd6-11e9-1546-28f10e481d92"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:92812b05-6cd6-11e9-1546-28f10e481d92"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:92812b06-6cd6-11e9-1546-28f10e481d92"/>
+               <display value="Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:92812b0c-6cd6-11e9-1546-28f10e481d92"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+         </PractitionerRole>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:92812af7-6cd6-11e9-1546-28f10e481d92"/>
+      <resource>
+         <Task>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/QuestionnaireReferenceTask"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.56.1"/>
+               <value value="1d6f9800-6c10-11e9-b475-0800200c9a66"/>
+            </identifier>
+            <status value="ready"/>
+            <intent value="order"/>
+            <priority value="routine"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="74468-0"/>
+                  <display value="Questionnaire form definition Document"/>
+               </coding>
+            </code>
+            <description value="Vul de vragenlijst van Arianne in"/>
+            <focus>
+               <reference value="http://dummy.questionnaire.nl"/>
+               <display value="Test vragenlijst Arianne"/>
+            </focus>
+            <authoredOn value="2019-05-01T00:00:00+02:00"/>
+            <lastModified value="2019-05-01T00:00:00+02:00"/>
+            <requester>
+               <agent>
+                  <reference value="urn:uuid:92812b05-6cd6-11e9-1546-28f10e481d92"/>
+                  <display value="Peter van Pulver || Huisartsenpraktijk Pulver &amp; Partners"/>
+               </agent>
+            </requester>
+            <restriction>
+               <period>
+                  <start value="2019-05-01T00:00:00+02:00"/>
+                  <end value="2019-05-31T23:59:59+02:00"/>
+               </period>
+            </restriction>
+         </Task>
+      </resource>
+   </entry>
+</Bundle>
