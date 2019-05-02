@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:import href="../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-    
+
     <xsl:variable name="gstd-coderingen">
         <code rootoid="{$oidGStandaardGPK}"/>
         <code rootoid="{$oidGStandaardHPK}"/>
@@ -108,8 +108,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 if ($uuid) then
                                     nf:get-fhir-uuid(.)
                                 else
-                                if ($most-specific-product-code) then
-                                nf:getUriFromAdaCode(nf:get-specific-productcode($most-specific-product-code))
+                                    if ($most-specific-product-code) then
+                                        nf:getUriFromAdaCode(nf:get-specific-productcode($most-specific-product-code))
                                     else
                                         nf:get-fhir-uuid(.)"/>
                         <entry xmlns="http://hl7.org/fhir">
@@ -387,10 +387,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:choose>
                                 <xsl:when test="$referById">
                                     <xsl:choose>
-                                        <xsl:when test="string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0"><xsl:value-of select="nf:removeSpecialCharacters(./identificatie/@value)"/></xsl:when>
-                                        <xsl:otherwise><xsl:value-of select="uuid:get-uuid(.)"/></xsl:otherwise>
+                                        <xsl:when test="string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0">
+                                            <xsl:value-of select="nf:removeSpecialCharacters(./identificatie/@value)"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="uuid:get-uuid(.)"/>
+                                        </xsl:otherwise>
                                     </xsl:choose>
-                                    
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:with-param>
@@ -853,7 +856,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
                 </meta>
                 <!-- patient_identificatienummer  -->
-                <xsl:for-each select="./patient_identificatienummer[.//(@value)]">
+                <xsl:for-each select="./(patient_identificatienummer | identificatienummer)[.//(@value)]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier">
                             <xsl:with-param name="in" select="."/>
@@ -1063,6 +1066,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Helper template to create extension with FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
+    </xd:doc>
+    <xsl:template name="reference-practitionerrole" match="zorgverlener" mode="doPractitionerRoleReference-907">
+        <xsl:variable name="display" as="xs:string?" select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName, ' || ')))"/>
+        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+                <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
+            </valueReference>
+        </extension>
+        <display value="{nf:get-practitioner-role-display(.)}"/>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc>Helper template to create FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
     </xd:doc>
     <xsl:template name="practitioner-role-reference" match="zorgverlener" mode="doPractitionerRoleReference">
@@ -1128,7 +1144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="./zorgverlener[.//(@value | @code)]">
             <requester>
                 <agent>
-                    <xsl:apply-templates select="." mode="doMissingTypeReferencePractitionerRole"/>
+                    <xsl:apply-templates select="." mode="doPractitionerRoleReference-907"/>
                 </agent>
             </requester>
         </xsl:for-each>
@@ -1168,10 +1184,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <address>
                 <!-- adres_soort -->
-                <xsl:for-each select="adres_soort[@codeSystem='2.16.840.1.113883.5.1119'][@code]">
+                <xsl:for-each select="adres_soort[@codeSystem = '2.16.840.1.113883.5.1119'][@code]">
                     <xsl:choose>
                         <!-- Postadres -->
-                        <xsl:when test="./@code='PST'">
+                        <xsl:when test="./@code = 'PST'">
                             <use>
                                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                                     <valueCode value="PST"/>
@@ -1180,7 +1196,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <type value="postal"/>
                         </xsl:when>
                         <!-- Officieel adres -->
-                        <xsl:when test="./@code='HP'">
+                        <xsl:when test="./@code = 'HP'">
                             <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
                                 <valueCode value="true"/>
                             </extension>
@@ -1189,34 +1205,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <valueCode value="HP"/>
                                 </extension>
                             </use>
-                            <type value="physical"/>     
+                            <type value="physical"/>
                         </xsl:when>
                         <!-- Woon-/verblijfadres -->
-                        <xsl:when test="./@code='PHYS'">
+                        <xsl:when test="./@code = 'PHYS'">
                             <use value="home">
                                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                                     <valueCode value="HP"/>
                                 </extension>
                             </use>
-                            <type value="physical"/>     
+                            <type value="physical"/>
                         </xsl:when>
                         <!-- Tijdelijk adres -->
-                        <xsl:when test="./@code='TMP'">
+                        <xsl:when test="./@code = 'TMP'">
                             <use value="temp"/>
                         </xsl:when>
                         <!-- Werkadres -->
-                        <xsl:when test="./@code='WP'">
+                        <xsl:when test="./@code = 'WP'">
                             <use value="work"/>
                         </xsl:when>
                         <!-- Vakantie adres -->
-                        <xsl:when test="./@code='HV'">
+                        <xsl:when test="./@code = 'HV'">
                             <use value="temp">
                                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                                     <valueCode value="HV"/>
-                                </extension>                                
+                                </extension>
                             </use>
                         </xsl:when>
-                    </xsl:choose>                    
+                    </xsl:choose>
                 </xsl:for-each>
                 <line>
                     <xsl:if test="$lineItems">
@@ -2422,6 +2438,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
+        <xd:desc>Helper template to create extension for Reason for Change or Discontinuation in zib MedicationUse</xd:desc>
+        <xd:param name="reasonCode"/>
+    </xd:doc>
+    <xsl:template name="zib-MedicationUse-ReasonChange">
+        <xsl:param name="reasonCode" as="element()?"/>
+        <!-- kopie indicator -->
+        <!-- zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
+        <xsl:for-each select="$reasonCode">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse">
+                <valueCodeableConcept>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueCodeableConcept>
+            </extension>
+        </xsl:for-each>
+    </xsl:template>
+    <xd:doc>
         <xd:desc/>
         <xd:param name="start"/>
         <xd:param name="end"/>
@@ -2773,6 +2807,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="copyIndicator" select="."/>
                             </xsl:call-template>
                         </xsl:for-each>
+                        <!-- reden_wijzigen_of_stoppen_gebruik -->
+                        <xsl:for-each select="./reden_wijzigen_of_stoppen_gebruik[@code]">
+                            <xsl:call-template name="zib-MedicationUse-ReasonChange">
+                                <xsl:with-param name="reasonCode" select="."/>
+                            </xsl:call-template>
+                        </xsl:for-each>
                         <!-- herhaalperiode cyclisch schema -->
                         <xsl:for-each select="./gebruiksinstructie/herhaalperiode_cyclisch_schema[@value]">
                             <xsl:call-template name="zib-Medication-RepeatPeriodCyclicalSchedule">
@@ -2894,14 +2934,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:choose>
                                 </xsl:attribute>
                             </taken>
-                        </xsl:for-each>
-                        <!-- reden_wijzigen_of_stoppen_gebruik -->
-                        <xsl:for-each select="./reden_wijzigen_of_stoppen_gebruik[@code]">
-                            <reasonNotTaken>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </reasonNotTaken>
                         </xsl:for-each>
                         <!-- reden gebruik -->
                         <xsl:for-each select="./reden_gebruik[@value]">
@@ -3181,23 +3213,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Takes input string. If it is a dateTime, it checks if it has a timezone. If it is a dateTime without timezone a CET timezone will be set. 
-			In all other cases, the input string is returned.</xd:desc>
-        <xd:param name="valueIn">The input string to be handled.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:add-Amsterdam-timezone-to-dateTimeString" as="xs:string?">
-        <xsl:param name="valueIn" as="xs:string?"/>
-        <xsl:value-of select="
-                if (not($valueIn castable as xs:dateTime)) then
-                    $valueIn
-                else
-                    if (timezone-from-dateTime(xs:dateTime($valueIn))) then
-                        $valueIn
-                    else
-                        nf:set-CET-timezone(xs:dateTime($valueIn))
-                "/>
-    </xsl:function>
-    <xd:doc>
         <xd:desc/>
         <xd:param name="zorgverlener-identificatie-nummer"/>
     </xd:doc>
@@ -3439,11 +3454,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="organization-entry" match="zorgaanbieder[not(zorgaanbieder)]" mode="doOrganization">
         <xsl:param name="uuid" as="xs:boolean"/>
-        <xsl:variable name="ada-id" select="
-                if ($uuid) then
-                    (nf:get-fhir-uuid(.))
-                else
-                    (nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)))"/>
+        <xsl:variable name="ada-id">
+            <xsl:choose>
+                <xsl:when test="$uuid or not((zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@value)">
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <entry>
             <fullUrl value="{$ada-id}"/>
             <resource>

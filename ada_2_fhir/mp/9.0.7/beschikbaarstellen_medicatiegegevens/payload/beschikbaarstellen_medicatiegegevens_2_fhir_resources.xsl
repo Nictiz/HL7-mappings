@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:variable name="entries" as="element(f:entry)*">
 			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
 			<xsl:copy-of select="$commonEntries"/>
-			<xsl:copy-of select="$bouwstenen"/>
+			<xsl:copy-of select="$bouwstenen-907"/>
 		</xsl:variable>
 
 		<xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
