@@ -7937,7 +7937,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901098"/>
             <code code="3457005" codeSystem="{$oidSNOMEDCT}" displayName="Verwijsdetails"/>
             <!-- Item(s) :: datum_verwijzing-->
-            <xsl:for-each select="datum_verwijzing">
+            <xsl:for-each select="datum_verwijzing[(@code | @value | @nullFlavor)]">
                 <xsl:call-template name="makeTSValue">
                     <xsl:with-param name="xsiType" select="''"/>
                     <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
@@ -7953,26 +7953,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901045_20161201143523"/>
                 </author>
             </xsl:for-each>
-            <xsl:for-each select="redenen_van_verwijzing">
-                <xsl:for-each select="van_1e_naar_2e_lijn">
-                    <xsl:for-each select="./algemene_anamnese | ./obstetrische_anamnese | ./zwangerschap | ./einde_zwangerschap | ./bevalling | ./postnatale_fase | ./overig">
+            <xsl:for-each select="redenen_van_verwijzing[.//(@code | @value | @nullFlavor)]">
+                <xsl:for-each select="van_1e_naar_2e_lijn[.//(@code | @value | @nullFlavor)]">
+                    <xsl:for-each select="./algemene_anamnese[.//(@code | @value | @nullFlavor)] 
+                        | ./obstetrische_anamnese[.//(@code | @value | @nullFlavor)] 
+                        | ./zwangerschap[.//(@code | @value | @nullFlavor)] 
+                        | ./einde_zwangerschap[.//(@code | @value | @nullFlavor)] 
+                        | ./bevalling[.//(@code | @value | @nullFlavor)] 
+                        | ./postnatale_fase[.//(@code | @value | @nullFlavor)] 
+                        | ./overig[.//(@code | @value | @nullFlavor)]">
                         <outboundRelationship typeCode="RSON">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901097_20180221154011"/>
                         </outboundRelationship>
                     </xsl:for-each>
                 </xsl:for-each>
-                <xsl:for-each select="van_2e_naar_3e_lijn | van_2e_naar_1e_lijn | van_3e_naar_2e_lijn">
+                <xsl:for-each select="van_2e_naar_3e_lijn[.//(@code | @value | @nullFlavor)] 
+                    | van_2e_naar_1e_lijn[.//(@code | @value | @nullFlavor)] 
+                    | van_3e_naar_2e_lijn[.//(@code | @value | @nullFlavor)]">
                     <outboundRelationship typeCode="RSON">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901097_20180221154011"/>
                     </outboundRelationship>
                 </xsl:for-each>
             </xsl:for-each>
-            <xsl:for-each select="perinatale_periode">
+            <xsl:for-each select="perinatale_periode[.//(@code | @value | @nullFlavor)]">
                 <outboundRelationship typeCode="PERT">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900895_20161203165258"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="verwijzing_naar/type_verwijzing">
+            <xsl:for-each select="verwijzing_naar/type_verwijzing[.//(@code | @value | @nullFlavor)]">
                 <outboundRelationship typeCode="GEN" inversionInd="true">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901059_20161203164103"/>
                 </outboundRelationship>
