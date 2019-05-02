@@ -99,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900938_20161206113444"/>
                     </pertinentInformation3>
                 </xsl:for-each>
-                <!-- Zorgverzoekdetails -->
+                <!-- verwijsdetails -->
                 <xsl:for-each select="$param_zorgverlening/verwijsdetails">
                     <pertinentInformation3 typeCode="PERT" contextConductionInd="true">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901098_20180221154619"/>
