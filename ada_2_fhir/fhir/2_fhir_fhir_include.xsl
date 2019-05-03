@@ -26,9 +26,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada code element to FHIR CodeableConcept</xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
+        <xd:param name="element-name">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
         <xsl:param name="in" as="element()?"/>
+        <xsl:param name="element-name" as="xs:string?">coding</xsl:param>
         <xsl:choose>
             <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor]">
                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
@@ -36,26 +38,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </xsl:when>
             <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor)]">
-                <coding>
+                <xsl:element name="{$element-name}">
                     <system value="{local:getUri($in/@codeSystem)}"/>
                     <code value="{$in/@code}"/>
                     <xsl:if test="$in/@displayName">
                         <display value="{$in/@displayName}"/>
                     </xsl:if>
                     <!--<userSelected value="true"/>-->
-                </coding>
+                </xsl:element>
                 <!--<xsl:if test="$in/@displayName">
                     <text value="{$in/@displayName}"/>
                 </xsl:if>-->
                 <!-- ADA heeft geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
                 <xsl:for-each select="$in/translation">
-                    <coding>
+                    <xsl:element name="{$element-name}">
                         <system value="{local:getUri(@codeSystem)}"/>
                         <code value="{@code}"/>
                         <xsl:if test="@displayName">
                             <display value="{@displayName}"/>
                         </xsl:if>
-                    </coding>
+                    </xsl:element>
                 </xsl:for-each>
             </xsl:when>
         </xsl:choose>
@@ -113,6 +115,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
+        <xd:desc>Transforms ada element of type hoeveelheid to FHIR Quantity</xd:desc>
+        <xd:param name="in">ada element may have any name but should have datatype aantal (count)</xd:param>
+   </xd:doc>
+    <xsl:template name="hoeveelheid-to-Quantity" as="element()*">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$in[not(@value) or @nullFlavor]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                    <xsl:variable name="valueCode" as="xs:string">
+                        <xsl:choose>
+                            <xsl:when test="$in[@nullFlavor]"><xsl:value-of select="$in/@nullFlavor"/></xsl:when>
+                            <xsl:otherwise>NI</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable> 
+                    <valueCode value="{$valueCode}"/>
+                </extension>
+            </xsl:when>
+            <xsl:otherwise>
+                <value value="{$in/@value}"/>
+                <xsl:for-each select="$in[@unit]">
+                     <xsl:for-each select="./@unit">
+                        <!-- UCUM -->
+                        <system value="{local:getUri('2.16.840.1.113883.6.8')}"/>
+                        <unit value="{.}"/>
+                    </xsl:for-each>
+                    <code value="{$in/@unit}"/>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xd:doc>
         <xd:desc>Transforms ada waarde and eenheid elements to FHIR Quantity</xd:desc>
         <xd:param name="waarde">ada element may have any name but should have datatype aantal (count)</xd:param>
         <xd:param name="eenheid">ada element may have any name but should have datatype code</xd:param>
@@ -145,38 +178,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
-    </xd:doc>
-    <!--    <xsl:template name="hoeveelheid-to-Quantity" as="element()*">
-        <xsl:param name="in" as="element()?"/>
-        <xsl:choose>
-            <xsl:when test="$in[not(@value) or @nullFlavor]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                    <xsl:variable name="valueCode" select="
-                            if ($in[@nullFlavor]) then
-                                ($in/@nullFlavor)
-                            else
-                                ('NI')"/>
-                    <valueCode value="{$valueCode}"/>
-                </extension>
-            </xsl:when>
-            <xsl:otherwise>
-                <value value="{$in/@value}"/>
-                <xsl:for-each select="$in[@unit]">
-                    <xsl:for-each select="./@displayName">
-                        <unit value="{.}"/>
-                    </xsl:for-each>
-                    <xsl:for-each select="./@codeSystem">
-                        <system value="{.}"/>
-                    </xsl:for-each>
-                    <code value="{$in/@unit}"/>
-                </xsl:for-each>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
--->
     <xd:doc>
         <xd:desc>Transforms ada element to FHIR Identifier</xd:desc>
         <xd:param name="in">ada element with datatype id</xd:param>

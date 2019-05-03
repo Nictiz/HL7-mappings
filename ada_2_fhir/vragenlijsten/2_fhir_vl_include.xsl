@@ -190,45 +190,326 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="subject_type[@code]">
                     <subjectType value="{@code}"/>
                 </xsl:for-each>
-                <xsl:for-each select="item">
-                    <item>
-                        <xsl:for-each select="link_id[@value]">
-                            <linkId value="{@value}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="text[.//@value]">
-                            <text value="{value/@value}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="type[@code]">
-                            <type value="{@code}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="option[.//(@value | @code | @nullFlavor)]">
-                            <option>
-                                <xsl:for-each select="value/value_code[@code | @nullFlavor]">
-                                    <valueCoding>
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </valueCoding>
-                                </xsl:for-each>                                
-                                <xsl:for-each select="value/value_date[@value | @nullFlavor]">
-                                    <valueDate value="{@value}"/>
-                                </xsl:for-each>                                       
-                                <xsl:for-each select="value/value_integer[@value | @nullFlavor]">
-                                    <valueInteger value="{@value}"/>
-                                </xsl:for-each>
-                                <xsl:for-each select="value/value_string[@value | @nullFlavor]">
-                                    <valueString value="{@value}"/>
-                                </xsl:for-each>
-                                <!-- TODO , transform ada date/time to FHIR time format -->
-                                <xsl:for-each select="value/value_time[@value | @nullFlavor]">
-                                    <valueTime value="{@value}"/>
-                                </xsl:for-each>
-                            </option>
-                        </xsl:for-each>
-                     </item>
-                </xsl:for-each>                
+                <xsl:apply-templates select="item" mode="doVragenlijstItem-1.0.0"/>
             </Questionnaire>
         </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Helper template to create vragenlijst item, context should be ada vragenlijst.item element</xd:desc>
+    </xd:doc>
+    <xsl:template name="vl-vragenlijst-item-1.0.0" match="item" mode="doVragenlijstItem-1.0.0">
+        <item>
+            <xsl:for-each select="item_min_occurs[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
+                    <valueInteger value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="item_max_occurs[@value]">
+                <extension url=" http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+                    <valueInteger value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="item_optional_display[@value]">
+                <extension url="http://hl7.org/fhir/us/sdc/StructureDefinition/sdc-questionnaire-optionalDisplay">
+                    <valueBoolean value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="item_hidden[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-hidden">
+                    <valueBoolean value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="usage_mode[@code]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-usageMode">
+                    <valueCode value="{@code}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="item_control[@code]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                    <valueCodeableConcept>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </valueCodeableConcept>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="choice_orientation[@code]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-choiceOrientation">
+                    <valueCode value="{@code}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="min_length[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/minLength">
+                    <valueInteger value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="regex[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/regex">
+                    <valueString value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="entry_format[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/entryFormat">
+                    <valueString value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="min_value[.//@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/minValue">
+                    <xsl:apply-templates select="." mode="doVragenlijstMinMax-1.0.0"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="max_value[.//@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/maxValue">
+                    <xsl:apply-templates select="." mode="doVragenlijstMinMax-1.0.0"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="max_decimal_places[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/maxDecimalPlaces">
+                    <valueInteger value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <!-- TODO, see https://bits.nictiz.nl/browse/MSVOC-5 -->
+            <xsl:for-each select="mime_type[@code]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/mimeType">
+                    <valueCode value="{@code}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="max_size[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/maxSize">
+                    <valueDecimal value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="unit[@code]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-unit">
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="element-name">valueCoding</xsl:with-param>
+                    </xsl:call-template>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="allowed_resource[@code]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+                    <valueCode value="{@code}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="allowed_profile[.//@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedProfile">
+                    <valueReference>
+                        <xsl:apply-templates select="." mode="doVragenlijstValueReference-1.0.0"/>
+                    </valueReference>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="reference_filter[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+                    <valueString value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="display_category[@code]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-displayCategory">
+                    <valueCodeableConcept>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </valueCodeableConcept>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="support_link[@value]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-supportLink">
+                    <valueUri value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <!-- TODO see issue https://bits.nictiz.nl/browse/MSVOC-6 -->
+            <xsl:for-each select="enable_behavior[@code]">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/extension.questionnaire-enable-behavior">
+                    <valueCode value="{@code}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="link_id[@value]">
+                <linkId value="{@value}"/>
+            </xsl:for-each>
+            <xsl:for-each select="definition[@value]">
+                <definition value="{@value}"/>
+            </xsl:for-each>
+            <xsl:for-each select="code[@code]">
+                <xsl:call-template name="code-to-CodeableConcept">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="element-name">code</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="prefix[value/@value]">
+                <prefix value="{value/@value}">
+                    <xsl:apply-templates select="item_labelrendering_style[@value]" mode="doVragenlijstExtensionRenderingstyle-1.0.0"/>
+                    <xsl:apply-templates select="item_labelxhtml[@value]" mode="doVragenlijstExtensionRenderingxhtml-1.0.0"/>
+                </prefix>
+            </xsl:for-each>
+            <xsl:for-each select="text[value/@value]">
+                <text value="{value/@value}">
+                    <xsl:apply-templates select="group_textrendering_style[@value]" mode="doVragenlijstExtensionRenderingstyle-1.0.0"/>
+                    <xsl:apply-templates select="group_textxhtml[@value]" mode="doVragenlijstExtensionRenderingxhtml-1.0.0"/>
+                </text>
+            </xsl:for-each>
+            <xsl:for-each select="type[@code]">
+                <type value="{@code}"/>
+            </xsl:for-each>
+            <xsl:for-each select="enable_when[.//(@value | @code)]">
+                <enableWhen>
+                    <!-- TODO see issue https://bits.nictiz.nl/browse/MSVOC-7 -->
+                    <xsl:for-each select="enable_operator[@code]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/extension.questionnaire-enable-operator">
+                            <valueCode value="{@code}"/>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:for-each select="question[@value]">
+                        <question value="{@value}"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="has_answer[@value]">
+                        <hasAnswer value="{@value}"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="answer[.//@value]">
+                        <xsl:for-each select="answer_boolean[@value]">
+                            <answerBoolean value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="answer_decimal[@value]">
+                            <answerDecimal value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="answer_integer[@value]">
+                            <answerInteger value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="answer_date[@value]">
+                            <answerDate value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="answer_date_time[@value]">
+                            <answerDateTime value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="answer_time[@value]">
+                            <answerTime value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="answer_string[@value]">
+                            <answerString value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="answer_uri[@value]">
+                            <answerUri value="{@value}"/>
+                        </xsl:for-each>
+                        <!-- TODO add support for attachment -->
+                        <!--<xsl:for-each select="answer_attachment[@value]">
+                            <answerAttachment/>
+                        </xsl:for-each>-->
+                        <xsl:for-each select="answer_coding[@code]">
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="element-name">answerCoding</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <xsl:for-each select="answer_quantity[@value]">
+                            <answerQuantity>
+                                <xsl:call-template name="hoeveelheid-to-Quantity">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </answerQuantity>
+                        </xsl:for-each>
+                        <xsl:for-each select="antwoord_verwijzing[.//(@value | @code)]">
+                            <answerReference>
+                                <xsl:apply-templates select="." mode="doVragenlijstValueReference-1.0.0"/>
+                            </answerReference>
+                        </xsl:for-each>
+                    </xsl:for-each>
+                </enableWhen>
+            </xsl:for-each>
+            <xsl:for-each select="required[@value]">
+                <required value="{@value}"/>
+            </xsl:for-each>
+            <xsl:for-each select="repeats[@value]">
+                <repeats value="{@value}"/>
+            </xsl:for-each>
+            <xsl:for-each select="read_only[@value]">
+                <readOnly value="{@value}"/>
+            </xsl:for-each>
+            <xsl:for-each select="max_length[@value]">
+                <maxLength value="{@value}"/>
+            </xsl:for-each>
+            <xsl:for-each select="options[.//(@value | @code)]">
+                <options>
+                    <xsl:apply-templates select="." mode="doVragenlijstValueReference-1.0.0"/>
+                </options>
+            </xsl:for-each>
+            <xsl:for-each select="option[.//(@value | @code | @nullFlavor)]">
+                <option>
+                    <xsl:for-each select="option_prefix">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix">
+                            <valueString value="{@value}"/>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:for-each select="value/value_integer[@value]">
+                        <valueInteger value="{@value}"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="value/value_date[@value]">
+                        <valueDate value="{@value}"/>
+                    </xsl:for-each>
+                    <!-- TODO , transform ada date/time to FHIR time format -->
+                    <xsl:for-each select="value/value_time[@value]">
+                        <valueTime value="{@value}"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="value/value_string[@value]">
+                        <valueString value="{@value}"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="value/value_code[@code]">
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="element-name">valueCoding</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </option>
+            </xsl:for-each>
+            <xsl:for-each select="initial[.//@value]">
+                <xsl:for-each select="initial_boolean[@value]">
+                    <initialBoolean value="{@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="initial_decimal[@value]">
+                    <initialDecimal value="{@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="initial_integer[@value]">
+                    <initialInteger value="{@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="initial_date[@value]">
+                    <initialDate value="{@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="initial_date_time[@value]">
+                    <initialDateTime value="{@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="initial_time[@value]">
+                    <initialTime value="{@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="initial_string[@value]">
+                    <initialString value="{@value}"/>
+                </xsl:for-each>
+                <xsl:for-each select="initial_uri[@value]">
+                    <initialUri value="{@value}"/>
+                </xsl:for-each>
+                <!-- TODO add support for attachment -->
+                <!--<xsl:for-each select="initial_attachment[@value]">
+                            <initialAttachment/>
+                        </xsl:for-each>-->
+                <xsl:for-each select="initial_coding[@code]">
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="element-name">initialCoding</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="initial_quantity[@value]">
+                    <initialQuantity>
+                        <xsl:call-template name="hoeveelheid-to-Quantity">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </initialQuantity>
+                </xsl:for-each>
+                <xsl:for-each select="verwijzing[.//(@value | @code)]">
+                    <initialReference>
+                        <xsl:apply-templates select="." mode="doVragenlijstValueReference-1.0.0"/>
+                    </initialReference>
+                </xsl:for-each>
+            </xsl:for-each>            
+        </item>
     </xsl:template>
 
     <xd:doc>
@@ -236,7 +517,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="vragenlijstverwijzing">ada xml element vragenlijstverwijzing</xd:param>
         <xd:param name="vragenlijstverwijzing-id">optional technical id for the FHIR Task resource</xd:param>
     </xd:doc>
-    <xsl:template name="vl-vragenlijstverwijzing-1.0.0">
+    <xsl:template name="vl-vragenlijst-verwijzing-1.0.0">
         <xsl:param name="vragenlijstverwijzing" as="element()?"/>
         <xsl:param name="vragenlijstverwijzing-id" as="xs:string?"/>
         <xsl:for-each select="$vragenlijstverwijzing">
@@ -318,7 +599,66 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Helper template to create extension for rendering style, context is ada element with @value</xd:desc>
+    </xd:doc>
+    <xsl:template name="vl-extension-renderingstyle-1.0.0" match="*" mode="doVragenlijstExtensionRenderingstyle-1.0.0">
+        <extension url="http://hl7.org/fhir/StructureDefinition/rendering-style">
+            <valueString value="{@value}"/>
+        </extension>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Helper template to create extension for rendering xhtml, context is ada element with @value</xd:desc>
+    </xd:doc>
+    <xsl:template name="vl-extension-renderingxhtml-1.0.0" match="*" mode="doVragenlijstExtensionRenderingxhtml-1.0.0">
+        <extension url="http://hl7.org/fhir/StructureDefinition/rendering-xhtml">
+            <valueString value="{@value}"/>
+        </extension>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Helper template to make minValue maxValue extensions for Questionnaire item.
+    Context should be an ada element with the appropriate subelements (datum(tijd), integer, decimaal getal, etc.)</xd:desc>
+    </xd:doc>
+    <xsl:template name="vl-min-max-1.0.0" match="*[*]" mode="doVragenlijstMinMax-1.0.0">
+        <xsl:for-each select="datum[@value]">
+            <valueDate value="{@value}"/>
+        </xsl:for-each>
+        <xsl:for-each select="datum_tijd[@value]">
+            <valueDateTime value="{nf:add-Amsterdam-timezone(@value)}"/>
+        </xsl:for-each>
+        <xsl:for-each select="tijd[@value]">
+            <valueTime value="{nf:add-Amsterdam-timezone(@value)}"/>
+        </xsl:for-each>
+        <xsl:for-each select="moment[@value]">
+            <valueInstant value="{nf:add-Amsterdam-timezone(@value)}"/>
+        </xsl:for-each>
+        <xsl:for-each select="integer[@value]">
+            <valueInteger value="{@value}"/>
+        </xsl:for-each>
+        <xsl:for-each select="decimaal_getal[@value]">
+            <valueDecimal value="{@value}"/>
+        </xsl:for-each>
+    </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Helper template to make valueReference extensions for Questionnaire item.
+            Context should be an ada element with the appropriate subelements (verwijzing, identificatie, weergave_tekst)</xd:desc>
+    </xd:doc>
+    <xsl:template name="vl-valueReference-1.0.0" match="*[*]" mode="doVragenlijstValueReference-1.0.0">
+        <xsl:for-each select="verwijzing[@value]">
+            <reference value="{@value}"/>
+        </xsl:for-each>
+        <xsl:for-each select="identificatie[@value]">
+            <identifier>
+                <xsl:call-template name="id-to-Identifier">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </identifier>
+        </xsl:for-each>
+        <xsl:for-each select="weergave_tekst[@value]">
+            <display value="{@value}"/>
+        </xsl:for-each>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-organization-2.0</xd:desc>

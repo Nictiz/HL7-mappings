@@ -64,34 +64,44 @@
                     <max_decimal_places value="123" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5567"/>
                     <mime_type value="image" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5572"/>
                     <max_size value="5" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5577"/>
-                    <unit code="ml" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5582" codeSystem="UCUM"/>
-                    <display_category code="instructions" codeSystemName="Questionnaire Text Categories" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5602" codeSystem="http://hl7.org/fhir/questionnaire-display-category"/>
+                    <unit code="ml" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5582" codeSystem="2.16.840.1.113883.6.8" displayName="UCUM"/>
+                    <display_category code="instructions" displayName="instructies" codeSystemName="Questionnaire Text Categories" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5602" codeSystem="2.16.840.1.113883.4.642.1.853"/>
                     <support_link value="http://dummy.questionnaire.nl/additionalInformationForItemX" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5607"/>
-                    <enable_behavior conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5971"/>
+                    <enable_behavior code="all" displayName="alles" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5971"/>
                     <link_id value="c748e540-6d08-11e9-b475-0800200c9a66" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5613"/>
                     <definition value="http://dummy.questionnaire.nl/definitionForItemX" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5614"/>
-                    <code code="XXX" codeSystem="LOINC" codeSystemName="LOINC" displayName="Item X"/>
+                    <code code="XXX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Item X"/>
                     <prefix conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5616">
                         <value value="X." conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5629"/>
                     </prefix>
                     <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5630">
                         <value value="Dit is de tekst voor item X in de vragenlijst" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5643"/>
                     </text>
-                    <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="string" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                     <enable_when conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5645">
                         <enable_operator conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6008"/>
                         <question value="een-id" root="2.16.840.1.113883.2.4.3.11.999.56.8" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5649"/>
-                        <has_answer value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5650"/>
+                        <!--                        <has_answer value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5650"/>-->
                         <answer conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5651">
                             <answer_string value="Bla" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5651.7"/>
+                            <!--                            <answer_quantity value="20" unit="ml" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5651.11"/>-->
+                            <!--<antwoord_verwijzing>
+                                <verwijzing value="verwijzing"/>
+                                <identificatie value="asdfadf-id" root="1.2.3.999"/>
+                                <weergave_tekst value="antwoord-verwijzing-asdfadf-id"/>
+                            </antwoord_verwijzing>-->
                         </answer>
                     </enable_when>
                     <required value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5652"/>
                     <repeats value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5653"/>
                     <read_only value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5654"/>
-                    <max_length value="1232" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5655"/>
-                    <options conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5656"/>
-                    <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5657">
+<!--                    <max_length value="1232" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5655"/>-->
+                    <options conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5656">
+                        <verwijzing value="verwijzing"/>
+                        <identificatie value="asdfadf-id" root="1.2.3.999"/>
+                        <weergave_tekst value="antwoord-verwijzing-asdfadf-id"/>                        
+                    </options>
+                   <!-- <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5657">
                         <option_prefix value="Optie 1." conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5660"/>
                         <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5666">
                             <value_string value="blabla" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5666.4"/>
@@ -102,7 +112,7 @@
                         <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5666">
                             <value_string value="vlalbal" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5666.4"/>
                         </value>
-                    </option>
+                    </option>-->
                     <initial conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5667">
                         <initial_string value="Vul hier iets in. Gebruik je eigen woorden." conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5667.7"/>
                     </initial>
@@ -112,9 +122,9 @@
                     <item_max_occurs value="212" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5520"/>
                     <item_optional_display value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5525"/>
                     <item_hidden value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5530"/>
-                    <usage_mode value="display" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5535"/>
-                    <item_control value="text-box" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5540"/>
-                    <choice_orientation value="horizontal" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5545"/>
+                    <usage_mode code="display" displayName="weergave" codeSystem="2.16.840.1.113883.4.642.1.855" codeSystemName="QuestionnaireItemUsageMode" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5535"/>
+                    <item_control code="text-box" displayName="Tekst box" codeSystem="2.16.840.1.113883.4.642.1.849" codeSystemName="Questionnaire Item UI Control Codes" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5540"/>
+                    <choice_orientation code="horizontal" displayName="horizontaal" codeSystem="2.16.840.1.113883.4.642.1.851" codeSystemName="ChoiceListOrientation" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5545"/>
                     <min_length value="23" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5550"/>
                     <regex value="todo2" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5555"/>
                     <entry_format value="type maar gewoon 2" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5560"/>
@@ -125,26 +135,30 @@
                         <integer value="23" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6603"/>
                     </max_value>
                     <max_decimal_places value="2123" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5567"/>
-                    <mime_type value="text" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5572"/>
+                    <mime_type code="text" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5572"/>
                     <max_size value="25" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5577"/>
-                    <unit code="l" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5582" codeSystem="UCUM"/>
+                    <unit code="l" displayName="stuk" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5582" codeSystem="2.16.840.1.113883.6.8" codeSystemName="UCUM"/>
                     <display_category code="security" codeSystemName="Questionnaire Text Categories" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5602" codeSystem="http://hl7.org/fhir/questionnaire-display-category"/>
                     <support_link value="http://dummy.questionnaire.nl/additionalInformationForItemX2" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5607"/>
                     <enable_behavior conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5971"/>
                     <link_id value="X2" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5613"/>
                     <definition value="http://dummy.questionnaire.nl/definitionForItemX2" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5614"/>
-                    <code code="XXX2" codeSystem="LOINC" codeSystemName="LOINC" displayName="Item X"/>
+                    <code code="XXX2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Item X"/>
                     <prefix conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5616">
+                        <item_labelrendering_style value="style"/>
+                        <item_labelxhtml value="ddd"/>
                         <value value="2X." conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5629"/>
                     </prefix>
                     <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5630">
+                        <group_textrendering_style value="group style"/>
+                        <group_textxhtml value="ddddd xhtml"/>
                         <value value="Dit is de tekst voor item X2 in de vragenlijst" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5643"/>
                     </text>
-                    <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="integer" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                     <enable_when conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5645">
-                        <enable_operator conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6008"/>
+                        <enable_operator code="bla" codeSystem="1.2.3.999" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6008"/>
                         <question value="een-id2" root="2.16.840.1.113883.2.4.3.11.999.56.8" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5649"/>
-                        <has_answer value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5650"/>
+                        <!--                        <has_answer value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5650"/>-->
                         <answer conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5651">
                             <answer_string value="2ere" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5651.7"/>
                         </answer>
@@ -153,7 +167,6 @@
                     <repeats value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5653"/>
                     <read_only value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5654"/>
                     <max_length value="21232" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5655"/>
-                    <options conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5656"/>
                     <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5657">
                         <option_prefix value="Optie 21." conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5660"/>
                         <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5666">
