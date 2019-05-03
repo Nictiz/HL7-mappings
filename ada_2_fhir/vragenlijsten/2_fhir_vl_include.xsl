@@ -90,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <xsl:variable name="vragenlijst" as="element(f:entry)*">
-        <!-- vragenlijstverwijzingen -->
+        <!-- vragenlijst -->
         <xsl:for-each select="//questionnaire[.//(@value | @code | @nullFlavor)]">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
@@ -98,6 +98,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="vl-vragenlijst-1.0.0">
                         <xsl:with-param name="vragenlijst" select="."/>
                         <xsl:with-param name="vragenlijst-id">
+                            <xsl:choose>
+                                <xsl:when test="$referById">
+                                    <xsl:choose>
+                                        <xsl:when test="string-length(nf:removeSpecialCharacters(./identifier/@value)) gt 0">
+                                            <xsl:value-of select="nf:removeSpecialCharacters(./identifier/@value)"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="uuid:get-uuid(.)"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="vragenlijst-verwijzing" as="element(f:entry)*">
+        <!-- vragenlijst -->
+        <xsl:for-each select="//questionnaire_reference_task[.//(@value | @code | @nullFlavor)]">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <resource>
+                    <xsl:call-template name="vl-vragenlijst-verwijzing-1.0.0">
+                        <xsl:with-param name="vragenlijstverwijzing" select="."/>
+                        <xsl:with-param name="vragenlijstverwijzing-id">
                             <xsl:choose>
                                 <xsl:when test="$referById">
                                     <xsl:choose>
@@ -508,7 +535,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doVragenlijstValueReference-1.0.0"/>
                     </initialReference>
                 </xsl:for-each>
-            </xsl:for-each>            
+            </xsl:for-each>
         </item>
     </xsl:template>
 
@@ -560,7 +587,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </focus>
                 </xsl:for-each>
-                <xsl:for-each select="for/patient[.//(@value | @code | @nullFlavor)]">
+                <xsl:for-each select="../patient[.//(@value | @code | @nullFlavor)]">
                     <for>
                         <xsl:apply-templates select="." mode="doPatientReference"/>
                     </for>
@@ -578,7 +605,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </agent>
                     </requester>
                 </xsl:for-each>
-                <xsl:for-each select="for/patient[.//(@value | @code | @nullFlavor)]">
+                <!-- owner -->
+                <xsl:for-each select="../patient[.//(@value | @code | @nullFlavor)]">
                     <owner>
                         <xsl:apply-templates select="." mode="doPatientReference"/>
                     </owner>

@@ -29,36 +29,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
-    <xsl:import href="../../../2_fhir_mp_include.xsl"/>
+    <xsl:import href="../../../2_fhir_vl_include.xsl"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
     <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
 
-    <xsl:variable name="usecase">mp9</xsl:variable>
+    <xsl:variable name="usecase">vl</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry"/>
+        <xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:call-template name="verstrekkingenvertaling_90_resources">
-            <xsl:with-param name="mbh" select="//beschikbaarstellen_verstrekkingenvertaling/medicamenteuze_behandeling"/>
-        </xsl:call-template>
+        <xsl:call-template name="vragenlijstverwijzing_101"/>
+         
     </xsl:template>
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
-        <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
     </xd:doc>
-    <xsl:template name="verstrekkingenvertaling_90_resources">
-        <xsl:param name="mbh"/>
-
+    <xsl:template name="vragenlijstverwijzing_101">
+   
         <xsl:variable name="entries" as="element(f:entry)*">
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, bouwstenen -->
             <xsl:copy-of select="$commonEntries"/>
-            <xsl:copy-of select="$bouwstenen-verstrekkingenvertaling"/>
+            <xsl:copy-of select="$vragenlijst-verwijzing"/>
         </xsl:variable>
 
         <xsl:apply-templates select="$entries/f:resource/*" mode="doResourceInResultdoc"/>

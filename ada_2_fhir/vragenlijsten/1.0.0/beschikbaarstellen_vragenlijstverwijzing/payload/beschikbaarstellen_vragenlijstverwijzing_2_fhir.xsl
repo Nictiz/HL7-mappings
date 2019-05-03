@@ -39,10 +39,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
 
     <xd:doc>
-        <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen verstrekkingenvertaling".</xd:desc>
+        <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen vragenlijstverwijzing".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:call-template name="verstrekkingenvertaling_90">
+        <xsl:call-template name="vragenlijstverwijzing_101">
             <xsl:with-param name="mbh" select="//beschikbaarstellen_verstrekkingenvertaling/medicamenteuze_behandeling"/>
         </xsl:call-template>
     </xsl:template>
@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
         <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
     </xd:doc>
-    <xsl:template name="verstrekkingenvertaling_90">
+    <xsl:template name="vragenlijstverwijzing_101">
         <xsl:param name="mbh" as="element()*"/>
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="entries" as="element(f:entry)*">
                 <!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
                 <xsl:copy-of select="$commonEntries"/>
-                <xsl:copy-of select="$vragenlijsten-verwijzing"/>
+                <xsl:copy-of select="$vragenlijst-verwijzing"/>
             </xsl:variable>
             <total value="{count($entries)}"/>
             <xsl:copy-of select="$entries"/>
