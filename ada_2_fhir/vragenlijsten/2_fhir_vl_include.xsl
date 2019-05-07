@@ -116,6 +116,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
     </xsl:variable>
+    <xsl:variable name="vragenlijst-antwoord" as="element(f:entry)*">
+        <!-- vragenlijst -->
+        <xsl:for-each select="//questionnaire_response[.//(@value | @code | @nullFlavor)]">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <resource>
+                    <xsl:call-template name="vl-vragenlijst-antwoord-1.0.0">
+                        <xsl:with-param name="vragenlijst-antwoord" select="."/>
+                        <xsl:with-param name="vragenlijst-antwoord-id">
+                            <xsl:choose>
+                                <xsl:when test="$referById">
+                                    <xsl:choose>
+                                        <xsl:when test="string-length(nf:removeSpecialCharacters(./identifier/@value)) gt 0">
+                                            <xsl:value-of select="nf:removeSpecialCharacters(./identifier/@value)"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="uuid:get-uuid(.)"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+    </xsl:variable>
     <xsl:variable name="vragenlijst-verwijzing" as="element(f:entry)*">
         <!-- vragenlijst -->
         <xsl:for-each select="//questionnaire_reference_task[.//(@value | @code | @nullFlavor)]">
@@ -219,6 +246,99 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <xsl:apply-templates select="item" mode="doVragenlijstItem-1.0.0"/>
             </Questionnaire>
+        </xsl:for-each>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc> Template based on FHIR Profile http://nictiz.nl/fhir/StructureDefinition/nl-core-questionnaireresponse</xd:desc>
+        <xd:param name="vragenlijst-antwoord">ada xml element vragenlijst-antwoord</xd:param>
+        <xd:param name="vragenlijst-antwoord-id">optional technical id for the FHIR Task resource</xd:param>
+    </xd:doc>
+    <xsl:template name="vl-vragenlijst-antwoord-1.0.0">
+        <xsl:param name="vragenlijst-antwoord" as="element()?"/>
+        <xsl:param name="vragenlijst-antwoord-id" as="xs:string?"/>
+        <xsl:for-each select="$vragenlijst-antwoord">
+            <QuestionnaireResponse>
+                <xsl:for-each select="$vragenlijst-antwoord-id[string-length(.) gt 0]">
+                    <id value="{.}"/>
+                </xsl:for-each>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-questionnaireresponse"/>
+                </meta>
+                <xsl:for-each select="identifier[@value]">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </identifier>
+                </xsl:for-each>
+                <!-- TODO: no idea what to do with basedOn -->
+                <!-- TODO: no idea what to do with parent, since this information is not in the Task -->
+                <xsl:for-each select="./vragenlijst[.//(@value | @code)]">
+                    <questionnaire>
+                        <xsl:apply-templates mode="doVragenlijstValueReference-1.0.0" select="."/>
+                    </questionnaire>
+                </xsl:for-each>
+                <xsl:for-each select="status[@code]">
+                    <status value="{@code}"/>
+                </xsl:for-each>
+                <!-- currently only support for patient -->
+                <xsl:for-each select="subject[*]">
+                    <subject>
+                        <xsl:choose>
+                            <xsl:when test="patient">
+                                <xsl:apply-templates select="../../patient" mode="doPatientReference"/>
+                            </xsl:when>
+                            <xsl:when test="zorgverlener">
+                                <xsl:apply-templates select="." mode="doPractitionerRoleReference-907"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- no data for the other options in the ada xml, not sure what to reference -->
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </subject>
+                </xsl:for-each>
+                <context>
+                    <reference value="Encounter/encounter1"/>
+                </context>
+                <authored value="2019-02-13T00:36:41.051113Z"/>
+                <author>
+                    <reference value="Patient/patient-example-1"/>
+                    <display value="Dhr. A. Vogel"/>
+                </author>
+                <source>
+                    <reference value="Patient/patient-example-1"/>
+                    <display value="Dhr. A. Vogel"/>
+                </source>
+                <item>
+                    <linkId value="1"/>
+                    <text value="Hoeveel dagen heeft u laast van depressie?"/>
+                    <answer>
+                        <valueInteger value="7"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="2"/>
+                    <text value="Datum van de laatste behandeling"/>
+                    <answer>
+                        <valueDateTime value="2018-01-11T11:43:40+00:00"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="3"/>
+                    <text value="Bekend met een psychose"/>
+                    <answer>
+                        <valueString value="Ja"/>
+                    </answer>
+                </item>
+                <item>
+                    <linkId value="4"/>
+                    <text value="Type psychose"/>
+                    <answer>
+                        <valueString value="schizofrenie"/>
+                    </answer>
+                </item>
+                <!--                <xsl:apply-templates select="item" mode="doVragenlijstItem-1.0.0"/>-->
+            </QuestionnaireResponse>
         </xsl:for-each>
     </xsl:template>
 
