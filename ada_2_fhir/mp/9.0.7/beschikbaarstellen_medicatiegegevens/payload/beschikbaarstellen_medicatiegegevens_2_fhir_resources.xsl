@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
 	<xsl:variable name="usecase">mp9</xsl:variable>
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-		<xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
+		<xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $related-persons/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
 	</xsl:variable>
 	<xd:doc>
 		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="mbh"/>
 
 		<xsl:variable name="entries" as="element(f:entry)*">
-			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
+			<!-- common entries (patient, practitioners, organizations, practitionerroles, relatedpersons, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
 			<xsl:copy-of select="$commonEntries"/>
 			<xsl:copy-of select="$bouwstenen-907"/>
 		</xsl:variable>
