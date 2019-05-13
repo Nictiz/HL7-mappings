@@ -324,11 +324,19 @@
             </gebruiksinstructie>
         </toedieningsafspraak>
         <medicatiegebruik id="MBH_313_1_MGB_1" root="2.16.840.1.113883.2.4.3.11.999.77.6.1">
-            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P59D"/>
-            <registratiedatum base="T" sign="-" dayTimeDuration="P59D"/>
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P100D"/>
+            <registratiedatum base="T" sign="-" dayTimeDuration="P100D"/>
             <gebruiksinstructie>
-                <omschrijving-met-periode value="Vanaf T- 59 dagen, tot nader order, 1 maal per dag 1 dosis"/>
+                <omschrijving-met-periode value="tot nader order, 1 maal per dag 1 dosis"/>
                 <omschrijving value="1 maal per dag 1 dosis"/>
+            </gebruiksinstructie>
+        </medicatiegebruik>
+    <medicatiegebruik id="MBH_313_1_MGB_2" root="2.16.840.1.113883.2.4.3.11.999.77.6.1">
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P60D"/>
+            <registratiedatum base="T" sign="-" dayTimeDuration="P60D"/>
+            <gebruiksinstructie>
+                <omschrijving-met-periode value="tot nader order, gebruik gestopt"/>
+                <omschrijving value="gebruik gestopt"/>
             </gebruiksinstructie>
         </medicatiegebruik>
     </medicamenteuze_behandeling>
@@ -366,12 +374,16 @@
         <medicatiegebruik id="MBH_313_2_MGB_1" root="2.16.840.1.113883.2.4.3.11.999.77.6.1">
             <!--<gebruiksperiode_start base="T" sign="-" dayTimeDuration="P366D"/>
 	        <registratiedatum base="T" sign="-" dayTimeDuration="P365D"/>	 -->
-            <omschrijving value="1x per dag 1 druppel, in beide ogen"/>
+            <gebruiksinstructie>
+                <omschrijving value="1x per dag 1 druppel, in beide ogen"/></gebruiksinstructie>
         </medicatiegebruik>
         <medicatiegebruik id="MBH_313_2_MGB_2" root="2.16.840.1.113883.2.4.3.11.999.77.6.1">
             <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P366D"/>
             <registratiedatum base="T" sign="-" dayTimeDuration="P365D"/>
-            <omschrijving value="geen gebruik"/>
+            <gebruiksinstructie>
+                <omschrijving-met-periode value="tot nader order, geen gebruik"/>
+                <omschrijving value="geen gebruik"/>
+            </gebruiksinstructie>
         </medicatiegebruik>
     </medicamenteuze_behandeling>
     <medicamenteuze_behandeling id="MBH_313_3" root="2.16.840.1.113883.2.4.3.11.999.77.1.1">
@@ -412,12 +424,16 @@
         <medicatiegebruik id="MBH_313_3_MGB_1" root="2.16.840.1.113883.2.4.3.11.999.77.6.1">
             <!-- <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P4D"/>
 	        <registratiedatum base="T" sign="-" dayTimeDuration="P4D"/>	    -->
-            <omschrijving value="1 maal per dag 1 stuk, oraal"/>
+            <gebruiksinstructie>
+                <omschrijving value="1 maal per dag 1 stuk, oraal"/>
+            </gebruiksinstructie>
         </medicatiegebruik>
         <medicatiegebruik id="MBH_313_3_MGB_2" root="2.16.840.1.113883.2.4.3.11.999.77.6.1">
             <!-- <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P366D"/>
 	        <registratiedatum base="T" sign="-" dayTimeDuration="P365D"/>	-->
-            <omschrijving value="gebruik onderbroken"/>
+            <gebruiksinstructie>
+                <omschrijving value="gebruik onderbroken"/>
+            </gebruiksinstructie>
         </medicatiegebruik>
     </medicamenteuze_behandeling>
     <medicamenteuze_behandeling id="MBH_313_4" root="2.16.840.1.113883.2.4.3.11.999.77.1.1">
@@ -463,7 +479,10 @@
         <medicatiegebruik id="MBH_313_4_MGB_2" root="2.16.840.1.113883.2.4.3.11.999.77.6.1">
             <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P222D"/>
             <registratiedatum base="T" sign="-" dayTimeDuration="P222D"/>
-            <omschrijving value="gebruik onderbroken"/>
+            <gebruiksinstructie>
+                <omschrijving-met-periode value="vanaf T-222, gebruik onderbroken"/>
+                <omschrijving value="gebruik onderbroken"/>
+            </gebruiksinstructie>
         </medicatiegebruik>
     </medicamenteuze_behandeling>
     <medicamenteuze_behandeling id="MBH_323_1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1">
@@ -709,8 +728,8 @@
             <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P0D"/>
             <afspraakdatum base="T" sign="-" dayTimeDuration="P0D"/>
             <gebruiksinstructie>
-                <omschrijving-met-periode value="1 maal daags 1 stuk ’s avonds innemen, oraal"/>
-                <omschrijving value="1 maal daags 1 stuk ’s avonds innemen, oraal"/>
+                <omschrijving-met-periode value="1 maal daags 1 stuk 's avonds innemen, oraal"/>
+                <omschrijving value="1 maal daags 1 stuk 's avonds innemen, oraal"/>
             </gebruiksinstructie>
         </medicatieafspraak>
         <toedieningsafspraak id="MBH_413_9_TA_1" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1">
