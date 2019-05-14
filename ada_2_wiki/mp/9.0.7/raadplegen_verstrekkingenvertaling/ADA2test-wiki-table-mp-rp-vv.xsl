@@ -3,7 +3,7 @@
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA xml to wiki table(s) <xd:a href="https://simplifier.net/NictizSTU3/zib-AdministrationAgreement">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAdministrationAgreement</xd:a>. The HL7 V3 interaction contains both logistical information and therapeutic information.</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA xml to wiki table(s)</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
                 <xd:ul>
@@ -18,11 +18,12 @@
     <xsl:param name="adaReleaseFile" select="document('../../../../../projects/mp-mp907/definitions/mp-mp907-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.162</xsl:param>
     <xsl:param name="transactionType">raadplegen</xsl:param>
+   <xsl:param name="doc-ada-new" select="document('ada_new/verstrekkingenvertaling.xml')"/>
     
     <xsl:param name="do-ada-files" select="true()"/>
 <!--    <xsl:param name="do-ada-files" select="false()"/>-->
     <xsl:variable name="ada-files" select="collection('./ada_instance/?select=*.xml')"/>
-
+     
     <xd:doc>
         <xd:desc/>
     </xd:doc>
