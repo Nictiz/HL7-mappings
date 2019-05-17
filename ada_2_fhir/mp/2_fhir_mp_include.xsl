@@ -383,19 +383,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="mp612dispensetofhirconversionadministrationagreement-1.0.0">
                         <xsl:with-param name="toedieningsafspraak" select="."/>
-                        <xsl:with-param name="medicationdispense-id">
-                            <xsl:choose>
-                                <xsl:when test="$referById">
-                                    <xsl:choose>
-                                        <xsl:when test="string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0">
-                                            <xsl:value-of select="nf:removeSpecialCharacters(./identificatie/@value)"/>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:value-of select="uuid:get-uuid(.)"/>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:when>
-                            </xsl:choose>
+                        <xsl:with-param name="medicationdispense-id" select="
+                                if ($referById) then
+                                    (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then
+                                        nf:removeSpecialCharacters(./identificatie/@value)
+                                    else
+                                        uuid:get-uuid(.))
+                                else
+                                    ()">                           
                         </xsl:with-param>
                     </xsl:call-template>
                 </resource>

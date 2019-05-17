@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xd:p>
 		</xd:desc>
 	</xd:doc>
-	<xsl:output method="xml" indent="yes"/>
+	<xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
 	<xsl:strip-space elements="*"/>
     <!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
