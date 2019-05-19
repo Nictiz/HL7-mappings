@@ -590,6 +590,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="value/value_integer[@value]">
                         <valueInteger value="{@value}"/>
                     </xsl:for-each>
+                    <xsl:for-each select="value/value_ordinaal[@value]">
+                        <valueCoding>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-ordinalValue">
+                                <valueDecimal value="{@value}" />
+                            </extension>
+                            <display value="{../../weergavetekst/@value}" />
+                        </valueCoding>
+                    </xsl:for-each>
                     <xsl:for-each select="value/value_date[@value]">
                         <valueDate value="{@value}"/>
                     </xsl:for-each>
@@ -600,7 +608,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="value/value_string[@value]">
                         <valueString value="{@value}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="value/value_code[@code]">
+                    <xsl:for-each select="value/value_coding[@code]">
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="element-name">valueCoding</xsl:with-param>
@@ -656,6 +664,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </initialReference>
                 </xsl:for-each>
             </xsl:for-each>
+            <xsl:apply-templates select="item" mode="doVragenlijstItem-1.0.0"/>            
         </item>
     </xsl:template>
 
