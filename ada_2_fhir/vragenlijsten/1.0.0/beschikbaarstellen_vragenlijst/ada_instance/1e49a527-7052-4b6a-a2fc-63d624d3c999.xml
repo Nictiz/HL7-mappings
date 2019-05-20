@@ -8,49 +8,51 @@
                 <name value="Voorbeeld vragenlijst naam" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5338"/>
                 <title conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5339">
                     <value value="Voorbeeld vragenlijst titel" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5352"/>
-                    <adaextension/>
                 </title>
-                <status conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5353" code="draft" codeSystem="2.16.840.1.113883.4.642.1.4" codeSystemName="PublicationStatus"/>
+                <status displayName="concept" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5353" code="draft" codeSystem="2.16.840.1.113883.4.642.1.4" codeSystemName="PublicationStatus"/>
                 <date value="2019-05-13T12:00:00" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5355"/>
                 <publisher value="Nictiz" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5356"/>
                 <description value="Vragenlijst met diverse set van type vragen tbv Proves / Kwalificatie / Testen" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5357"/>
-                <subject_type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5511" code="Patient" codeSystem="http://hl7.org/fhir/resource-types"/>
+                <subject_type displayName="Patiënt" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5511" code="Patient" codeSystem="http://hl7.org/fhir/resource-types"/>
+                <!-- group  -->
                 <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5512">
+                    <item_control conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5540" code="list"  displayName="lijst" codeSystem="2.16.840.1.113883.4.642.1.849" codeSystemName="Questionnaire&#160;Item&#160;UI&#160;Control&#160;Codes"/>
                     <link_id value="1000" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5613"/>
                     <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5630">
                         <value value="Voorbeeld Persoon Algemeen" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5643"/>
-                        <adaextension/>
                     </text>
-                    <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="group" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <type displayName="groep" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="group" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <!-- string -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
+                        <item_control conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6646" code="text-box"  displayName="tekst box" codeSystem="2.16.840.1.113883.4.642.1.849" codeSystemName="Questionnaire&#160;Item&#160;UI&#160;Control&#160;Codes"/>
                         <link_id value="1100" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <definition value="Naam van invuller vragenlijst" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6680"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Naam" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="string" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
-                        <adaextension/>
+                        <type displayName="string" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="string" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                     </item>
+                    <!-- choice with valueset, no ordinals (geslacht) -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <link_id value="1200" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Geslacht" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="keuze" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <options conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6724">
-                            <verwijzing value="http://hl7.org/fhir/ValueSet/administrative-gender"/>
-                            <weergave_tekst value="AdministrativeGender"/>
+                            <verwijzing value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1--20171231000000" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6725"/>
+                            <weergave_tekst value="GeslachtCodelijst - zib 2017" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6727"/>
                         </options>
                     </item>
+                    <!--  datum -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <link_id value="1300" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Geboortedatum" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="date" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="datum" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="date" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                     </item>
+                    <!-- quantity with max 1 decimal place -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <max_decimal_places value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6665"/>
                         <unit code="kg" displayName="kg" codeSystem="2.16.840.1.113883.6.8" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6668"/>
@@ -58,11 +60,10 @@
                         <definition value="Huidige gewicht in kilogram (kg) met maximaal 1 decimaal achter de komma" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6680"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Gewicht (kg) met maximaal 1 decimaal achter de komma" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="quantity" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
-                        <adaextension/>
+                        <type displayName="hoeveelheid" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="quantity" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                     </item>
+                    <!-- quantity with 0 decimal places -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <max_decimal_places value="0" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6665"/>
                         <unit code="cm" displayName="cm" codeSystem="2.16.840.1.113883.6.8" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6668"/>
@@ -70,226 +71,223 @@
                         <definition value="huidige lengte in centimeters (cm)" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6680"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Lengte (cm)" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="quantity" codeSystemName="QuestionnaireItemType" codeSystem="2.16.840.1.113883.4.642.1.438"/>
-                        <adaextension/>
+                        <type displayName="hoeveelheid" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="quantity" codeSystemName="QuestionnaireItemType" codeSystem="2.16.840.1.113883.4.642.1.438"/>
                     </item>
-                    <adaextension/>
                 </item>
+                <!-- group  -->
                 <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5512">
                     <link_id value="2000" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5613"/>
                     <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5630">
                         <value value="Voorbeeld Persoon Specifiek (bijv. verslaving)" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5643"/>
-                        <adaextension/>
                     </text>
-                    <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="group" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <type displayName="groep" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="group" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <!-- boolean -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <link_id conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679" value="2100"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693" value="Rookt u?"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType" code="boolean"/>
-                        <adaextension/>
+                        <type displayName="boolean" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType" code="boolean"/>
                     </item>
+                    <!-- choice with string + ordinal and enable-when, in a drop-down -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
+                        <item_control conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6646" code="drop-down" displayName="drop-down" codeSystem="2.16.840.1.113883.4.642.1.849" codeSystemName="Questionnaire&#160;Item&#160;UI&#160;Control&#160;Codes" />
                         <link_id value="2110" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Hoe vaak rookt u?" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="keuze" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <enable_when conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6695">
                             <question value="2100" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6700"/>
                             <has_answer value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6701"/>
-                            <adaextension/>
                         </enable_when>
                         <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6728">
                             <weergavetekst value="nooit" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6761"/>
                             <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6733">
                                 <value_ordinaal value="0" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6763"/>
-                                <adaextension/>
                             </value>
-                            <adaextension/>
                         </option>
                         <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6728">
                             <weergavetekst value="af en toe op sociale gelegenheden" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6761"/>
                             <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6733">
                                 <value_ordinaal value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6763"/>
-                                <adaextension/>
                             </value>
-                            <adaextension/>
                         </option>
                         <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6728">
                             <weergavetekst value="geregeld , maar niet elke dag" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6761"/>
                             <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6733">
                                 <value_ordinaal value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6763"/>
-                                <adaextension/>
                             </value>
-                            <adaextension/>
                         </option>
                         <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6728">
                             <weergavetekst value="elke dag" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6761"/>
                             <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6733">
                                 <value_ordinaal value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6763"/>
-                                <adaextension/>
                             </value>
-                            <adaextension/>
                         </option>
-                        <adaextension/>
                     </item>
+                    <!-- boolean with enable-when -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
-                        <link_id value="2120" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
+                        <item_control conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6646" code="radio-button" displayName="radio-button" codeSystem="2.16.840.1.113883.4.642.1.849" codeSystemName="Questionnaire&#160;Item&#160;UI&#160;Control&#160;Codes" />
+                         <link_id value="2120" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="U rookt niet meer, maar heeft u ooit gerookt?" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="boolean" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <enable_when conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6695">
                             <question value="2100" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6700"/>
                             <has_answer value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6701"/>
-                            <adaextension/>
                         </enable_when>
-                        <adaextension/>
                     </item>
+                    <!-- quantity with enable-when  -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <unit code="a" displayName="jaar" codeSystem="2.16.840.1.113883.6.8" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6668"/>
                         <link_id value="2121" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <definition conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6680" value="Schatting in gehele jaren. Indien korter dan jaar geleden vul dan 1 in!"/>
-                        <prefix conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6682">
-                            <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6687" value="jaar:"/>
-                            <adaextension/>
-                        </prefix>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Hoe lang is het geleden dat u heeft gerookt?" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="quantity" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="hoeveelheid" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="quantity" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <enable_when conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6695">
                             <question conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6700" value="2120"/>
                             <has_answer conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6701" value="true"/>
-                            <adaextension/>
                         </enable_when>
-                        <adaextension/>
                     </item>
+                    <!-- item met SNOMED codering en choice met twee opties gecodeerd in SNOMED zonder ordinal, radio-button -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
+                        <item_control conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6646" code="radio-button" displayName="radio-button" codeSystem="2.16.840.1.113883.4.642.1.849" codeSystemName="Questionnaire&#160;Item&#160;UI&#160;Control&#160;Codes" />
                         <link_id value="2200" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
+                        <code code="228273003" displayName="bevinding betreffende alcoholgebruik (bevinding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6681"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Drinkt u alcohol?" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="keuze" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6728">
+                            <weergavetekst value="drinkt alcohol" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6761"/>
                             <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6733">
-                                <value_coding conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6738" code="elke dag" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED&#160;CT"/>
-                                <adaextension/>
+                                <value_coding code="219006" displayName="drinkt alcohol (bevinding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6738"/>
                             </value>
-                            <adaextension/>
                         </option>
                         <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6728">
+                            <weergavetekst value="drinkt momenteel geen alcohol" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6761"/>
                             <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6733">
-                                <value_coding conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6738" code="meerdere dagen per week" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED&#160;CT"/>
-                                <adaextension/>
+                                <value_coding code="105542008" displayName="drinkt momenteel geen alcohol (bevinding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6738"/>
                             </value>
-                            <adaextension/>
                         </option>
-                        <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6728">
-                            <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6733">
-                                <value_coding conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6738" code="af en toe op sociale gelegenheden" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED&#160;CT"/>
-                                <adaextension/>
-                            </value>
-                            <adaextension/>
-                        </option>
-                        <option conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6728">
-                            <value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6733">
-                                <value_coding conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6738" code="nee" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED&#160;CT"/>
-                                <adaextension/>
-                            </value>
-                            <adaextension/>
-                        </option>
-                        <adaextension/>
                     </item>
-                    <adaextension/>
+                    <!-- choice met valueSet inclusief ordinals -->
+                    <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
+                        <item_control conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6646" code="radio-button" displayName="radio-button" codeSystem="2.16.840.1.113883.4.642.1.849" codeSystemName="Questionnaire&#160;Item&#160;UI&#160;Control&#160;Codes" />
+                        <link_id value="2300" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
+                        <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
+                            <value value="Apgar score ademhaling (met ValueSet in Bundle)" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
+                        </text>
+                        <type displayName="keuze" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="choice" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <options conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6724">
+                            <verwijzing value="http://decor.nictiz.nl/fhir/ValueSet/2.16.840.1.113883.2.4.3.11.60.40.2.12.16.1--20171231000000" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6725"/>
+                            <weergave_tekst value="AdemhalingScore" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6727"/>
+                        </options>
+                    </item>
                 </item>
+                <!-- group -->
                 <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5512">
                     <link_id value="3000" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5613"/>
                     <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5630">
                         <value value="Voorbeeld Meerdere opties (bijv. Social media)" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5643"/>
-                        <adaextension/>
                     </text>
-                    <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="group" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <type displayName="groep" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="group" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <!-- display  -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <link_id value="3001" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Bent u actief op een van de volgende social media platforms:" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="display" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
-                        <adaextension/>
+                        <type displayName="weergave" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="display" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                     </item>
+                    <!-- boolean -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <link_id value="3100" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Facebook" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="boolean" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <required value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6720"/>
-                        <adaextension/>
                     </item>
+                    <!-- boolean -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <link_id value="3200" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Instagram" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="boolean" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <required value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6720"/>
-                        <adaextension/>
                     </item>
+                    <!-- boolean -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <link_id value="3300" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="LinkedIn" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="boolean" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <required value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6720"/>
-                        <adaextension/>
                     </item>
+                    <!-- boolean -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <link_id value="3400" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
                             <value value="Van een ander platform dat hier niet is genoemd?" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="boolean" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="boolean" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <required value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6720"/>
-                        <adaextension/>
                     </item>
+                    <!-- integer, max value and required -->
                     <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
                         <max_value conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6658">
-                            <integer value="50" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6663"/>
-                            <adaextension/>
+                            <integer value="5" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6663"/>
                         </max_value>
                         <link_id value="3410" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
                         <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
-                            <value value="Welk of welke platforms zijn dit dan?" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
-                            <adaextension/>
+                            <value value="Hoeveel andere platforms zijn dit dan? (max 5)" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
                         </text>
-                        <type conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="integer" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <type displayName="geheel getal" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="integer" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
                         <enable_when conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6695">
                             <question value="3400" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6700"/>
                             <has_answer value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6701"/>
-                            <adaextension/>
                         </enable_when>
                         <required value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6720"/>
-                        <adaextension/>
                     </item>
-                    <adaextension/>
+                    <!-- item repeats, max 5 times and required -->
+                    <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
+                        <item_max_occurs value="5" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6642"/>
+                        <link_id value="3410" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
+                        <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
+                            <value value="Welk of welke platforms zijn dit dan?" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
+                        </text>
+                        <type displayName="string" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="string" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                        <enable_when conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6695">
+                            <question value="3400" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6700"/>
+                            <has_answer value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6701"/>
+                        </enable_when>
+                        <required value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6720"/>
+                        <repeats value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6721"/>
+                    </item>
                 </item>
-                <adaextension/>
+                <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5512">
+                    <link_id value="4000" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5613"/>
+                    <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5630">
+                        <value value="Voorbeeld Vraag met opmaak" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5643"/>
+                    </text>
+                    <type displayName="groep" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5644" code="group" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    <item conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.5668">
+                        <link_id value="4100" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6679"/>
+                        <text conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6688">
+                            <group_textxhtml value="&lt;p&gt;&lt;strong&gt;(algemene)&lt;/strong&gt; lichamelijke gezondheid&lt;/p&gt;" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6692"/>
+                            <value value="(algemene) lichamelijke gezondheid " conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6693"/>
+                        </text>
+                        <type displayName="string" conceptId="2.16.840.1.113883.2.4.3.11.60.56.2.2.6694" code="string" codeSystem="2.16.840.1.113883.4.642.1.438" codeSystemName="QuestionnaireItemType"/>
+                    </item>
+                </item>
             </questionnaire>
         </beschikbaarstellen_vragenlijst>
     </data>
