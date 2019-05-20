@@ -88,6 +88,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:variable>
 
+    <xsl:variable name="valueSets" as="element()*">
+        <!-- ValueSets in Questionnaires -->
+        <xsl:for-each-group select="//options" group-by="nf:getGroupingKeyDefault(.)">
+            <unieke-option xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <xsl:apply-templates select="current-group()[1]" mode="doValueSetEntry"/>
+            </unieke-option>
+        </xsl:for-each-group>
+    </xsl:variable>
 
     <xsl:variable name="vragenlijst" as="element(f:entry)*">
         <!-- vragenlijst -->
@@ -577,7 +588,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="options[.//(@value | @code)]">
                 <options>
-                    <xsl:apply-templates select="." mode="doVragenlijstValueReference-1.0.0"/>
+                    <xsl:apply-templates select="." mode="doValueSetReference"/>
                 </options>
             </xsl:for-each>
             <xsl:for-each select="option[.//(@value | @code | @nullFlavor)]">
@@ -590,13 +601,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="value/value_integer[@value]">
                         <valueInteger value="{@value}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="value/value_ordinaal[@value]">
+                    <xsl:for-each select="value/value_ordinaal[@value][../value_coding[@code]]">
                         <valueCoding>
                             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-ordinalValue">
-                                <valueDecimal value="{@value}" />
+                                <valueDecimal value="{@value}"/>
                             </extension>
-                            <display value="{../../weergavetekst/@value}" />
+                            <system value="{local:getUri(../value_coding/@codeSystem)}"/>
+                            <code value="{../value_coding/@code}"/>
+                            <display value="{if (../../weergavetekst/@value) then ../../weergavetekst/@value else ../value_coding/@displayName}"/>
                         </valueCoding>
+                    </xsl:for-each>
+                    <xsl:for-each select="value/value_ordinaal[@value][not(../value_coding)]">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+                            <valueDecimal value="{@value}"/>
+                        </extension>
+                        <valueString value="{../../(weergavetekst|weergave_tekst)/@value}"/>
                     </xsl:for-each>
                     <xsl:for-each select="value/value_date[@value]">
                         <valueDate value="{@value}"/>
@@ -664,7 +683,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </initialReference>
                 </xsl:for-each>
             </xsl:for-each>
-            <xsl:apply-templates select="item" mode="doVragenlijstItem-1.0.0"/>            
+            <xsl:apply-templates select="item" mode="doVragenlijstItem-1.0.0"/>
         </item>
     </xsl:template>
 
@@ -798,25 +817,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Helper template to make valueReference extensions for Questionnaire item.
-            Context should be an ada element with the appropriate subelements (verwijzing, identificatie, weergave_tekst)</xd:desc>
+        <xd:desc>Helper template to create FHIR valueSet reference, context should be ada options element</xd:desc>
     </xd:doc>
-    <xsl:template name="vl-valueReference-1.0.0" match="*[*]" mode="doVragenlijstValueReference-1.0.0">
-        <xsl:for-each select="verwijzing[@value]">
-            <reference value="{@value}"/>
-        </xsl:for-each>
-        <xsl:for-each select="identificatie[@value]">
-            <identifier>
-                <xsl:call-template name="id-to-Identifier">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
-            </identifier>
-        </xsl:for-each>
-        <xsl:for-each select="weergave_tekst[@value]">
-            <display value="{@value}"/>
+    <xsl:template name="valueset-reference" match="options" mode="doValueSetReference">
+        <reference value="{nf:getFullUrlOrId('ValueSet',nf:getGroupingKeyDefault(.), false())}"/>
+        <xsl:for-each select="./(weergavetekst | weergave_tekst)[@value]">
+            <display value="{normalize-space(@value)}"/>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-organization-2.0</xd:desc>
         <xd:param name="ada-zorgaanbieder">ada element zorgaanbieder</xd:param>
@@ -1323,6 +1331,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$RESOURCETYPE = 'PRACTITIONERROLE'">
                     <xsl:copy-of select="$practitionerRoles"/>
                 </xsl:when>
+                <xsl:when test="$RESOURCETYPE = 'VALUESET'">
+                    <xsl:copy-of select="$valueSets"/>
+                </xsl:when>
             </xsl:choose>
         </xsl:variable>
 
@@ -1630,5 +1641,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </resource>
         </entry>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Creates entry for ValueSet using options in questionnaire</xd:desc>
+    </xd:doc>
+    <xsl:template name="valueSet-entry" match="options" mode="doValueSetEntry">
+        <entry>
+            <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+            <resource>
+                <xsl:copy-of select="document(verwijzing/@value)"/>
+            </resource>
+        </entry>
+    </xsl:template>
+
 
 </xsl:stylesheet>

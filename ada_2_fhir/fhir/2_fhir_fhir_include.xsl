@@ -397,7 +397,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="in"/>
+    </xd:doc>
+    <xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
+        <xsl:param name="in" as="xs:string?"/>
+        <xsl:value-of select="replace(translate($in, '_.', '--'), '[^a-zA-Z0-9-]', '')"/>
+    </xsl:function>
+    
     <xd:doc>
         <xd:desc>Generates FHIR uri based on input ada code element. OID if possible, otherwise generates uri based on generated uuid using input element.</xd:desc>
         <xd:param name="ada-code">Input element for which uri is needed</xd:param>

@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
+        <xsl:copy-of select="$valueSets/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
