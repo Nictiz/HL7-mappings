@@ -81,6 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidQuestionnaireItemUsageMode">2.16.840.1.113883.4.642.1.855</xsl:variable>
     <xsl:variable name="oidQuestionnaireResponseStatus">2.16.840.1.113883.4.642.1.441</xsl:variable>    
     <xsl:variable name="oidQuestionnaireTextCategories">2.16.840.1.113883.4.642.1.853</xsl:variable>
+    <xsl:variable name="oidSNOMEDCT">2.16.840.1.113883.6.96</xsl:variable>
     <xsl:variable name="oidSBVZOrganization">2.16.528.1.1007</xsl:variable>
     <xsl:variable name="oidSBVZSystems">2.16.528.1.1007.4</xsl:variable>
     <xsl:variable name="oidUCUM">2.16.840.1.113883.6.8</xsl:variable>
@@ -88,8 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidUZIPersons">2.16.528.1.1007.3.1</xsl:variable>
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
-    <xsl:variable name="oidSNOMEDCT">2.16.840.1.113883.6.96</xsl:variable>
-
+ 
     <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
 
     <xsl:variable name="hl7NullFlavorMap" as="element()+">
