@@ -6,7 +6,7 @@
    <type value="searchset"/>
    <total value="3"/>
    <entry>
-      <fullUrl value="urn:uuid:59c4eb5d-7b39-11e9-5886-28f10e481d92"/>
+      <fullUrl value="urn:uuid:5710271d-7ca3-11e9-1609-28f10e481d92"/>
       <resource>
          <ValueSet>
             <id value="2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1--20171231000000"/>
@@ -108,7 +108,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:59c500e5-7b39-11e9-5886-28f10e481d92"/>
+      <fullUrl value="urn:uuid:57103ca5-7ca3-11e9-1609-28f10e481d92"/>
       <resource>
          <ValueSet>
             <id value="2.16.840.1.113883.2.4.3.11.60.40.2.12.16.1--20171231000000"/>
@@ -203,7 +203,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:59c4e921-7b39-11e9-5886-28f10e481d92"/>
+      <fullUrl value="urn:uuid:571024e1-7ca3-11e9-1609-28f10e481d92"/>
       <resource>
          <Questionnaire>
             <meta>
@@ -250,7 +250,7 @@
                   <text value="Geslacht"/>
                   <type value="choice"/>
                   <options>
-                     <reference value="urn:uuid:59c4eb5d-7b39-11e9-5886-28f10e481d92"/>
+                     <reference value="urn:uuid:5710271d-7ca3-11e9-1609-28f10e481d92"/>
                      <display value="GeslachtCodelijst - zib 2017"/>
                   </options>
                </item>
@@ -425,7 +425,7 @@
                   <text value="Apgar score ademhaling (met ValueSet in Bundle)"/>
                   <type value="choice"/>
                   <options>
-                     <reference value="urn:uuid:59c500e5-7b39-11e9-5886-28f10e481d92"/>
+                     <reference value="urn:uuid:57103ca5-7ca3-11e9-1609-28f10e481d92"/>
                      <display value="AdemhalingScore"/>
                   </options>
                </item>
@@ -503,6 +503,130 @@
                      </extension>
                   </text>
                   <type value="string"/>
+               </item>
+            </item>
+            <item>
+               <linkId value="5000"/>
+               <text value="Voorbeeld Slider"/>
+               <type value="group"/>
+               <item>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                           <code value="slider"/>
+                           <display value="meetschaal"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/minValue">
+                     <valueInteger value="0"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/maxValue">
+                     <valueInteger value="10"/>
+                  </extension>
+                  <linkId value="5100"/>
+                  <definition value="op deze schaal staat 0 voor geen pijn en 10 voor de meest ernstige pijn die u zich kunt voorstellen"/>
+                  <text value="Hoeveel Pijn heeft u?"/>
+                  <type value="integer"/>
+               </item>
+               <item>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                           <code value="radio-button"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <linkId value="5110"/>
+                  <text value="U geeft  aan dat u veel pijn heeft (hoger dan score 5). Hoe vaak heeft u deze pijn?"/>
+                  <type value="choice"/>
+                  <enableWhen>
+                     <extension url="http://nictiz.nl/fhir/StructureDefinition/extension.questionnaire-enable-operator">
+                        <valueCode value="&gt;="/>
+                     </extension>
+                     <question value="5100"/>
+                     <answerInteger value="6"/>
+                  </enableWhen>
+                  <required value="true"/>
+                  <option>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+                        <valueDecimal value="1"/>
+                     </extension>
+                     <valueString value="1. Elke dag en de gehele dag"/>
+                  </option>
+                  <option>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+                        <valueDecimal value="2"/>
+                     </extension>
+                     <valueString value="2. Elke dag en niet de gehele dag"/>
+                  </option>
+                  <option>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
+                        <valueDecimal value="3"/>
+                     </extension>
+                     <valueString value="3. Niet elke dag, maar wel meerdere keren per week"/>
+                  </option>
+               </item>
+            </item>
+            <item>
+               <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                        <code value="list"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <linkId value="6000"/>
+               <text value="Gebruik Social Media - voorbeeld met checkbox"/>
+               <type value="group"/>
+               <item>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                           <code value="check-box"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <linkId value="6100"/>
+                  <text value="Bent u actief op een van de volgende social media platforms"/>
+                  <type value="choice"/>
+                  <option>
+                     <valueString value="Facebook"/>
+                  </option>
+                  <option>
+                     <valueString value="Instagram"/>
+                  </option>
+                  <option>
+                     <valueString value="LinkedIn"/>
+                  </option>
+                  <option>
+                     <valueString value="Anders, nl."/>
+                  </option>
+               </item>
+               <item>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                           <code value="text-box"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <linkId value="6200"/>
+                  <text value="indien meer dan 1, vul de voor u belangrijkste in"/>
+                  <type value="string"/>
+                  <enableWhen>
+                     <extension url="http://nictiz.nl/fhir/StructureDefinition/extension.questionnaire-enable-operator">
+                        <valueCode value="="/>
+                     </extension>
+                     <question value="6100"/>
+                     <hasAnswer value="true"/>
+                     <answerString value="Anders, nl."/>
+                  </enableWhen>
                </item>
             </item>
          </Questionnaire>
