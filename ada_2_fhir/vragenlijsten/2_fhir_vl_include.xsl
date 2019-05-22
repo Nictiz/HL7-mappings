@@ -608,14 +608,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </extension>
                             <system value="{local:getUri(../value_coding/@codeSystem)}"/>
                             <code value="{../value_coding/@code}"/>
-                            <display value="{if (../../weergavetekst/@value) then ../../weergavetekst/@value else ../value_coding/@displayName}"/>
+                            <display>
+                                <xsl:attribute name="value">
+                                    <xsl:choose>
+                                        <xsl:when test="@displayName"><xsl:value-of select="@displayName"/></xsl:when>
+                                        <xsl:when test="../../weergavetekst/@value"><xsl:value-of select="../../weergavetekst/@value"/></xsl:when>
+                                        <xsl:when test="../value_coding/@displayName"><xsl:value-of select="../value_coding/@displayName"/></xsl:when>
+                                        <xsl:otherwise>unknown</xsl:otherwise>                                        
+                                    </xsl:choose>
+                                </xsl:attribute>
+                            </display>
                         </valueCoding>
                     </xsl:for-each>
                     <xsl:for-each select="value/value_ordinaal[@value][not(../value_coding)]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
                             <valueDecimal value="{@value}"/>
                         </extension>
-                        <valueString value="{../../(weergavetekst|weergave_tekst)/@value}"/>
+                        <valueString>
+                                <xsl:attribute name="value">
+                                    <xsl:choose>
+                                        <xsl:when test="@displayName"><xsl:value-of select="@displayName"/></xsl:when>
+                                        <xsl:when test="../../weergavetekst/@value"><xsl:value-of select="../../weergavetekst/@value"/></xsl:when>
+                                        <xsl:otherwise>unknown</xsl:otherwise>                                        
+                                    </xsl:choose>
+                                </xsl:attribute>
+                        </valueString>
                     </xsl:for-each>
                     <xsl:for-each select="value/value_date[@value]">
                         <valueDate value="{@value}"/>
