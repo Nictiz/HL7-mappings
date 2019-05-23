@@ -6,7 +6,7 @@
    <type value="searchset"/>
    <total value="3"/>
    <entry>
-      <fullUrl value="urn:uuid:5710271d-7ca3-11e9-1609-28f10e481d92"/>
+      <fullUrl value="urn:uuid:157cbfec-7d46-11e9-1453-28f10e481d92"/>
       <resource>
          <ValueSet>
             <id value="2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1--20171231000000"/>
@@ -108,7 +108,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:57103ca5-7ca3-11e9-1609-28f10e481d92"/>
+      <fullUrl value="urn:uuid:157cd56d-7d46-11e9-1453-28f10e481d92"/>
       <resource>
          <ValueSet>
             <id value="2.16.840.1.113883.2.4.3.11.60.40.2.12.16.1--20171231000000"/>
@@ -203,14 +203,14 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:571024e1-7ca3-11e9-1609-28f10e481d92"/>
+      <fullUrl value="urn:uuid:157cbdb1-7d46-11e9-1453-28f10e481d92"/>
       <resource>
          <Questionnaire>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-questionnaire"/>
             </meta>
-            <url value="http://hl7.org/fhir/STU3/questionnaire.html"/>
-            <name value="Voorbeeld vragenlijst naam"/>
+            <url value="https://simplifier.net/nictizstu3-questionnaires/bundle-example"/>
+            <name value="voorbeeld-vragenlijst-naam"/>
             <title value="Voorbeeld vragenlijst titel"/>
             <status value="draft"/>
             <date value="2019-05-13T12:00:00+02:00"/>
@@ -241,8 +241,7 @@
                      </valueCodeableConcept>
                   </extension>
                   <linkId value="1100"/>
-                  <definition value="Naam van invuller vragenlijst"/>
-                  <text value="Naam"/>
+                  <text value="Naam van invuller vragenlijst"/>
                   <type value="string"/>
                </item>
                <item>
@@ -250,7 +249,7 @@
                   <text value="Geslacht"/>
                   <type value="choice"/>
                   <options>
-                     <reference value="urn:uuid:5710271d-7ca3-11e9-1609-28f10e481d92"/>
+                     <reference value="urn:uuid:157cbfec-7d46-11e9-1453-28f10e481d92"/>
                      <display value="GeslachtCodelijst - zib 2017"/>
                   </options>
                </item>
@@ -271,8 +270,7 @@
                      </valueCoding>
                   </extension>
                   <linkId value="1400"/>
-                  <definition value="Huidige gewicht in kilogram (kg) met maximaal 1 decimaal achter de komma"/>
-                  <text value="Gewicht (kg) met maximaal 1 decimaal achter de komma"/>
+                  <text value="Huidige gewicht (kg) met maximaal 1 decimaal achter de komma"/>
                   <type value="quantity"/>
                </item>
                <item>
@@ -287,8 +285,7 @@
                      </valueCoding>
                   </extension>
                   <linkId value="1500"/>
-                  <definition value="huidige lengte in centimeters (cm)"/>
-                  <text value="Lengte (cm)"/>
+                  <text value="Huidige lengte (cm)"/>
                   <type value="quantity"/>
                </item>
             </item>
@@ -370,8 +367,7 @@
                      </valueCoding>
                   </extension>
                   <linkId value="2121"/>
-                  <definition value="Schatting in gehele jaren. Indien korter dan jaar geleden vul dan 1 in!"/>
-                  <text value="Hoe lang is het geleden dat u heeft gerookt?"/>
+                  <text value="Hoe lang is het geleden dat u heeft gerookt? Schatting in gehele jaren. Indien korter dan jaar geleden vul dan 1 in."/>
                   <type value="quantity"/>
                   <enableWhen>
                      <question value="2120"/>
@@ -425,7 +421,7 @@
                   <text value="Apgar score ademhaling (met ValueSet in Bundle)"/>
                   <type value="choice"/>
                   <options>
-                     <reference value="urn:uuid:57103ca5-7ca3-11e9-1609-28f10e481d92"/>
+                     <reference value="urn:uuid:157cd56d-7d46-11e9-1453-28f10e481d92"/>
                      <display value="AdemhalingScore"/>
                   </options>
                </item>
@@ -526,9 +522,36 @@
                      <valueInteger value="10"/>
                   </extension>
                   <linkId value="5100"/>
-                  <definition value="op deze schaal staat 0 voor geen pijn en 10 voor de meest ernstige pijn die u zich kunt voorstellen"/>
-                  <text value="Hoeveel Pijn heeft u?"/>
+                  <text value="Hoeveel Pijn heeft u? Op deze schaal staat 0 voor geen pijn en 10 voor de meest ernstige pijn die u zich kunt voorstellen"/>
                   <type value="integer"/>
+                  <item>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                        <valueCodeableConcept>
+                           <coding>
+                              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                              <code value="lower"/>
+                              <display value="ondergrens"/>
+                           </coding>
+                        </valueCodeableConcept>
+                     </extension>
+                     <linkId value="5101"/>
+                     <text value="Geen pijn"/>
+                     <type value="display"/>
+                  </item>
+                  <item>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                        <valueCodeableConcept>
+                           <coding>
+                              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                              <code value="upper"/>
+                              <display value="bovengrens"/>
+                           </coding>
+                        </valueCodeableConcept>
+                     </extension>
+                     <linkId value="5102"/>
+                     <text value="Meest ernstige pijn voorstelbaar"/>
+                     <type value="display"/>
+                  </item>
                </item>
                <item>
                   <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">

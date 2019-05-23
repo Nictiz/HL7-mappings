@@ -89,7 +89,7 @@ __NUMBEREDHEADINGS__
             </tabel>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Creates a nested 'tabel' from which it is easy to generate wiki or other documentation
             This way the processing to make a table is separated from specific wiki-stuff. 
@@ -98,21 +98,21 @@ __NUMBEREDHEADINGS__
             This is typically an empty ada xml which contains all possible elements (but was not instantiated with content data).</xd:param>
         <xd:param name="adaxml-element">The collection of ada element containing test data</xd:param>
     </xd:doc>
-    <xsl:template name="tabel-default-dekkingsgraad" match="*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-dekkingsgraad">
+    <xsl:template name="tabel-default-dekkingsgraad" match="*[not(ends-with(local-name(), '-start'))]" mode="maak-tabel-dekkingsgraad">
         <xsl:param name="in" select="."/>
         <xsl:param name="adaxml-element" as="element()*"/>
         <xsl:variable name="local-element-name" select="local-name($in)"/>
         <xsl:for-each select="$in">
             <tabel xmlns="" type="{$local-element-name}" title="{nf:element-name(.)}">
-                <xsl:apply-templates select="./*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-rij-dekkingsgraad">
+                <xsl:apply-templates select="./*[not(ends-with(local-name(), '-start'))]" mode="maak-tabel-rij-dekkingsgraad">
                     <xsl:with-param name="level" select="xs:int(1)"/>
-                    <xsl:with-param name="adaxml-element" select="$adaxml-element[local-name()=$local-element-name]/*"/>
+                    <xsl:with-param name="adaxml-element" select="$adaxml-element[local-name() = $local-element-name]/*"/>
                 </xsl:apply-templates>
             </tabel>
         </xsl:for-each>
     </xsl:template>
-    
-    
+
+
     <xd:doc>
         <xd:desc>Actually creates wiki from a table that was generated before, see template with mode 'maak-tabel'</xd:desc>
         <xd:param name="current-table">The table to create a wiki table from</xd:param>
@@ -253,7 +253,7 @@ __NUMBEREDHEADINGS__
                 <xsl:element name="gegevenselement" namespace="">
                     <xsl:attribute name="level" select="$level"/>
                     <xsl:attribute name="naam" select="$element-name"/>
-                    <xsl:attribute name="waarde" select="nf:maak-waarde-basedon-valuedomain(.,$value-domain)"/>                   
+                    <xsl:attribute name="waarde" select="nf:maak-waarde-basedon-valuedomain(., $value-domain)"/>
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
@@ -266,7 +266,7 @@ __NUMBEREDHEADINGS__
         <xd:param name="element-name">Optional param to override the default element name</xd:param>
         <xd:param name="adaxml-element"/>
     </xd:doc>
-    <xsl:template match="*[not(ends-with(local-name(),'-start'))]" mode="maak-tabel-rij-dekkingsgraad">
+    <xsl:template match="*[not(ends-with(local-name(), '-start'))]" mode="maak-tabel-rij-dekkingsgraad">
         <xsl:param name="level" select="xs:int(1)" as="xs:int"/>
         <xsl:param name="element-name" select="nf:element-name(.)" as="xs:string?"/>
         <xsl:param name="adaxml-element" as="element()*"/>
@@ -279,24 +279,32 @@ __NUMBEREDHEADINGS__
                 <groep xmlns="" level="{$level}" naam="{$element-name}">
                     <xsl:apply-templates select="./*" mode="maak-tabel-rij-dekkingsgraad">
                         <xsl:with-param name="level" select="xs:int($level + 1)"/>
-                        <xsl:with-param name="adaxml-element" select="(if ($adaxml-element[local-name()=$local-element-name]) then $adaxml-element[local-name()=$local-element-name] else $adaxml-element/*[local-name()=$local-element-name])/*"/>
+                        <xsl:with-param name="adaxml-element" select="
+                                (if ($adaxml-element[local-name() = $local-element-name]) then
+                                    $adaxml-element[local-name() = $local-element-name]
+                                else
+                                    $adaxml-element/*[local-name() = $local-element-name])/*"/>
                     </xsl:apply-templates>
                 </groep>
             </xsl:when>
             <xsl:otherwise>
                 <!-- item -->
-                <xsl:variable name="adaxml-item" select="if ($adaxml-element[local-name()=$local-element-name]) then $adaxml-element[local-name()=$local-element-name] else $adaxml-element/*[local-name()=$local-element-name]"/>
+                <xsl:variable name="adaxml-item" select="
+                        if ($adaxml-element[local-name() = $local-element-name]) then
+                            $adaxml-element[local-name() = $local-element-name]
+                        else
+                            $adaxml-element/*[local-name() = $local-element-name]"/>
                 <xsl:element name="gegevenselement" namespace="">
                     <xsl:attribute name="level" select="$level"/>
                     <xsl:attribute name="naam" select="$element-name"/>
                     <xsl:variable name="waarde" as="xs:string*">
                         <!-- only add unique entries -->
-                        <xsl:for-each-group select="$adaxml-item" group-by="nf:getGroupingKeyDefault(.)">                            
-                             <xsl:value-of select="nf:maak-waarde-basedon-valuedomain(.,$value-domain)"/>
+                        <xsl:for-each-group select="$adaxml-item" group-by="nf:getGroupingKeyDefault(.)">
+                            <xsl:value-of select="nf:maak-waarde-basedon-valuedomain(., $value-domain)"/>
                         </xsl:for-each-group>
                     </xsl:variable>
                     <xsl:attribute name="waarde" select="string-join($waarde, ' - ')"/>
-                      
+
                 </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
@@ -339,7 +347,7 @@ __NUMBEREDHEADINGS__
     </xd:doc>
     <xsl:function name="nf:element-code-waarde" as="xs:string?">
         <xsl:param name="code-in" as="element()?"/>
-        <xsl:for-each select="$code-in[@originalText|@displayName|@codeSystem|@code|@codeSystemName]">
+        <xsl:for-each select="$code-in[@originalText | @displayName | @codeSystem | @code | @codeSystemName]">
             <xsl:variable name="waarde" as="xs:string*">
                 <xsl:value-of select="normalize-space(concat(./@originalText, ' ', ./@displayName))"/>
                 <xsl:value-of select="concat(' (code = ''', ./@code, ''' in codeSystem ''')"/>
@@ -352,6 +360,32 @@ __NUMBEREDHEADINGS__
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:value-of select="''')'"/>
+            </xsl:variable>
+            <xsl:value-of select="normalize-space(string-join($waarde))"/>
+        </xsl:for-each>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Creates a nice string for an ordinal type</xd:desc>
+        <xd:param name="ordinal-in">input ada element of type ordinal</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:element-ordinal-waarde" as="xs:string?">
+        <xsl:param name="ordinal-in" as="element()?"/>
+        <xsl:for-each select="$ordinal-in[@ordinal | @originalText | @displayName | @codeSystem | @code | @codeSystemName]">
+            <xsl:variable name="waarde" as="xs:string*">
+                <xsl:value-of select="normalize-space(concat(./@originalText, ' ', ./@displayName))"/>
+                <xsl:if test="@code">
+                    <xsl:value-of select="concat(' (code = ''', ./@code, ''' in codeSystem ''')"/>
+                    <xsl:choose>
+                        <xsl:when test="./@codeSystemName">
+                            <xsl:value-of select="./@codeSystemName"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="./@codeSystem"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:if>
+                <xsl:value-of select="concat(' (ordinal = ''', ./@ordinal, ''')')"/>
             </xsl:variable>
             <xsl:value-of select="normalize-space(string-join($waarde))"/>
         </xsl:for-each>
@@ -374,14 +408,14 @@ __NUMBEREDHEADINGS__
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Maakt een waardestring gebaseerd op het valuedomain (datatype) uit de ada release file</xd:desc>
         <xd:param name="in">Het gegevenselement uit ada waar het om gaat</xd:param>
         <xd:param name="value-domain">Het waardedomein van dit gegevenselement</xd:param>
     </xd:doc>
     <xsl:function name="nf:maak-waarde-basedon-valuedomain" as="xs:string*">
-        <xsl:param name="in" as="element()?"></xsl:param>
+        <xsl:param name="in" as="element()?"/>
         <xsl:param name="value-domain" as="xs:string?"/>
         <xsl:choose>
             <xsl:when test="$value-domain = ('string', 'text')">
@@ -412,7 +446,7 @@ __NUMBEREDHEADINGS__
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:otherwise>
-                </xsl:choose>                
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="$value-domain = ('count', 'decimal')">
                 <xsl:value-of select="$in/@value"/>
@@ -471,10 +505,13 @@ __NUMBEREDHEADINGS__
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
+            <xsl:when test="$value-domain eq 'ordinal'">
+                <xsl:value-of select="nf:element-ordinal-waarde($in)"/>
+            </xsl:when>
         </xsl:choose>
-        
+
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="currentConcept"/>
@@ -501,7 +538,7 @@ __NUMBEREDHEADINGS__
         <xsl:param name="in" as="element()?"/>
         <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value, ''), string-join($in//@root, ''), string-join($in//@code, ''), string-join($in//@codeSystem, ''), string-join($in//@nullFlavor, ''))))"/>
     </xsl:function>
-    
+
 
 
 </xsl:stylesheet>

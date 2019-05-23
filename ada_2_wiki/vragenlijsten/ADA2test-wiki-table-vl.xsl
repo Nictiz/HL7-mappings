@@ -84,9 +84,13 @@ __NUMBEREDHEADINGS__
         <xsl:param name="in" select="."/>
         <xsl:for-each select="$in">
             <tabel xmlns="" type="{./local-name()}" title="{concat('item ', ./text/value/@value)}">
-                <xsl:apply-templates select="./*" mode="maak-tabel-rij">
+                <xsl:apply-templates select="./link_id" mode="maak-tabel-rij">
                     <xsl:with-param name="level" select="xs:int(1)"/>
                 </xsl:apply-templates>
+                <xsl:apply-templates select="./*[not(local-name(.)='link_id')]" mode="maak-tabel-rij">
+                    <xsl:with-param name="level" select="xs:int(1)"/>
+                </xsl:apply-templates>
+                
             </tabel>
         </xsl:for-each>
     </xsl:template>
@@ -95,7 +99,26 @@ __NUMBEREDHEADINGS__
         <xd:desc>we make a table of each top level item, so let's not also include it in tabel-rij</xd:desc>
     </xd:doc>
     <xsl:template match="(questionnaire|vragenlijst)/item" mode="maak-tabel-rij"/>
+    
+    <xd:doc>
+        <xd:desc>Let's always put link_id as the first item, since it identifies the item and is crucial for referring back to the item</xd:desc>
+        <xd:param name="level">the indent level in the table</xd:param>
+        <xd:param name="element-name">Optional param to override the default element name</xd:param>
+    </xd:doc>
+    <xsl:template match="item/item" mode="maak-tabel-rij">
+        <xsl:param name="level" select="xs:int(1)" as="xs:int"/>
+        <xsl:param name="element-name" select="nf:element-name(.)" as="xs:string?"/>
         
+        <groep xmlns="" level="{$level}" naam="{$element-name}">
+            <xsl:apply-templates select="./link_id" mode="maak-tabel-rij">
+                <xsl:with-param name="level" select="xs:int($level + 1)"/>
+            </xsl:apply-templates>
+            <xsl:apply-templates select="./*[not(local-name(.)='link_id')]" mode="maak-tabel-rij">
+                <xsl:with-param name="level" select="xs:int($level + 1)"/>
+            </xsl:apply-templates>
+        </groep>
+    </xsl:template> 
+    
     
     
 
@@ -104,15 +127,25 @@ __NUMBEREDHEADINGS__
         <xd:desc>title/value is the string value, let's make that more clear</xd:desc>
         <xd:param name="level">the indent level in the table</xd:param>
     </xd:doc>
-    <xsl:template match="title/value" mode="maak-tabel-rij">
+    <xsl:template match="(title|text)/value" mode="maak-tabel-rij">
         <xsl:param name="level" select="xs:int(1)"/>
         <xsl:variable name="value-domain" select="nf:get-concept-value-domain(.)"/>
         <gegevenselement xmlns="" level="{$level}" naam="waarde (string)" waarde="{nf:maak-waarde-basedon-valuedomain(., $value-domain)}"/>
    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>subjectType - betere term</xd:desc>
+        <xd:param name="level">the indent level in the table</xd:param>
+    </xd:doc>
+    <xsl:template match="(questionnaire|vragenlijst)/subject_type" mode="maak-tabel-rij">
+        <xsl:param name="level" select="xs:int(1)"/>
+        <xsl:variable name="value-domain" select="nf:get-concept-value-domain(.)"/>
+        <gegevenselement xmlns="" level="{$level}" naam="Onderwerp" waarde="{nf:maak-waarde-basedon-valuedomain(., $value-domain)}"/>
+    </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
+        <xd:desc>Creates a string for zorgaanbieder</xd:desc>
+        <xd:param name="in">The input ada element</xd:param>
     </xd:doc>
     <xsl:function name="nf:zorgaanbieder-string" as="xs:string*">
         <xsl:param name="in" as="element()?"/>
@@ -125,8 +158,8 @@ __NUMBEREDHEADINGS__
         <xsl:value-of select="string-join($in/zorgaanbieder/telefoon_email//string-join(@value | @displayName, ' - '), ' ')"/>
     </xsl:function>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
+        <xd:desc>Creates a string for zorgverlener</xd:desc>
+        <xd:param name="in">The input ada element</xd:param>
     </xd:doc>
     <xsl:function name="nf:zorgverlener-string" as="xs:string*">
         <xsl:param name="in" as="element()?"/>
@@ -138,8 +171,8 @@ __NUMBEREDHEADINGS__
     </xsl:function>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
+        <xd:desc>Creates a string for a person</xd:desc>
+        <xd:param name="in">The input ada element</xd:param>
     </xd:doc>
     <xsl:function name="nf:persoon-string" as="xs:string*">
         <xsl:param name="in" as="element(persoon)?"/>
@@ -149,7 +182,5 @@ __NUMBEREDHEADINGS__
         </xsl:if>
         <xsl:value-of select="string-join($in/adresgegevens//@value, ' ')"/>
     </xsl:function>
-
-
 
 </xsl:stylesheet>

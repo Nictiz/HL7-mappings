@@ -591,7 +591,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="." mode="doValueSetReference"/>
                 </options>
             </xsl:for-each>
-            <xsl:for-each select="option[.//(@value | @code | @nullFlavor)]">
+            <xsl:for-each select="option[.//(@value | @code | @ordinal | @nullFlavor)]">
                 <option>
                     <xsl:for-each select="option_prefix">
                         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-optionPrefix">
@@ -601,10 +601,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="value/value_integer[@value]">
                         <valueInteger value="{@value}"/>
                     </xsl:for-each>
-                    <xsl:for-each select="value/value_ordinaal[@value][../value_coding[@code]]">
+                    <xsl:for-each select="value/value_ordinaal[@value|@ordinal][../value_coding[@code]]">
                         <valueCoding>
                             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-ordinalValue">
-                                <valueDecimal value="{@value}"/>
+                                <valueDecimal value="{if (@ordinal) then @ordinal else @value}"/>
                             </extension>
                             <system value="{local:getUri(../value_coding/@codeSystem)}"/>
                             <code value="{../value_coding/@code}"/>
@@ -620,9 +620,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </display>
                         </valueCoding>
                     </xsl:for-each>
-                    <xsl:for-each select="value/value_ordinaal[@value][not(../value_coding)]">
+                    <xsl:for-each select="value/value_ordinaal[@value|@ordinal][not(../value_coding)]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/ordinalValue">
-                            <valueDecimal value="{@value}"/>
+                            <valueDecimal value="{if (@ordinal) then @ordinal else @value}"/>
                         </extension>
                         <valueString>
                                 <xsl:attribute name="value">
