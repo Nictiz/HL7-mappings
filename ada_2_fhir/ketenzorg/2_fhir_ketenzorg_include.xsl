@@ -307,7 +307,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <xsl:for-each select="(ancestor-or-self::*//author//health_professional[health_professional_identification_number])[1]">
                     <asserter>
-                        <xsl:apply-templates select="." mode="doPractitioner"/>
+                        <xsl:apply-templates select="." mode="doPractitioner">
+                            <xsl:with-param name="uuid" select="false()"/>
+                        </xsl:apply-templates>
                     </asserter>
                 </xsl:for-each>
             </Condition>
@@ -1034,7 +1036,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
                 <xsl:for-each select="(ancestor-or-self::*//author//health_professional[health_professional_identification_number])[1]">
                     <recorder>
-                        <xsl:apply-templates select="." mode="doPractitioner"/>
+                        <xsl:apply-templates select="." mode="doPractitioner">
+                            <xsl:with-param name="uuid" select="false()"/>
+                        </xsl:apply-templates>
                     </recorder>
                 </xsl:for-each>
                 <!-- >     NL-CM:0.0.2        Informatiebron via nl.zorg.part.basiselementen -->
@@ -1321,19 +1325,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="uuid"/>
+        <xd:desc>Produces a FHIR entry element with a Practitioner resource</xd:desc>
+        <xd:param name="uuid">If false and (zorgverlener_identificatie_nummer | health_professional_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
     </xd:doc>
     <xsl:template name="practitioner-entry" match="zorgverlener | health_professional" mode="doPractitioner">
         <xsl:param name="uuid" as="xs:boolean"/>
-        <xsl:variable name="ada-id" select="
-            if ($uuid) then
-            nf:get-fhir-uuid(.)
-            else
-            if (zorgverlener_identificatie_nummer | health_professional_identification_number) then
-            nf:getUriFromAdaId(nf:ada-zvl-id(zorgverlener_identificatie_nummer | health_professional_identification_number))
-            else
-            nf:get-fhir-uuid(.)"/>
+        <xsl:variable name="ada-id">
+            <xsl:choose>
+                <xsl:when test="not($uuid) and (zorgverlener_identificatie_nummer | health_professional_identification_number)">
+                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-zvl-id(zorgverlener_identificatie_nummer | health_professional_identification_number))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <entry>
             <fullUrl value="{$ada-id}"/>
             <resource>
@@ -1421,10 +1427,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="in"/>
     </xd:doc>
-    <xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
-        <xsl:param name="in" as="xs:string?"/>
-        <xsl:value-of select="replace(translate($in, '_.', '--'), '[^a-zA-Z0-9-]', '')"/>
-    </xsl:function>
     
     <xd:doc>
         <xd:desc> copy an element with all of it's contents in comments </xd:desc>
