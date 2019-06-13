@@ -25,21 +25,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="otherStandardURL" select="'https://www.nictiz.nl/Paginas/Informatiestandaard%20huisartswaarneming.aspx'"/>
 -->
 
-    <xsl:param name="communityName">mp-verstrekking-6.12_2_zib</xsl:param>
-    <xsl:param name="ada-view-shortname">uitwisselen_medicatiegegevens</xsl:param>
-    <xsl:param name="otherStandard">MP-6.12 Verstrekking</xsl:param>
+    <xsl:param name="communityName">ICA612_2_MedMij112All</xsl:param>
+    <xsl:param name="ada-view-shortname">allergy_intolerance</xsl:param>
+    <xsl:param name="otherStandard">MP-6.12 Potentiële contraindicaties</xsl:param>
     <xsl:param name="otherStandardURL">https://www.nictiz.nl/Paginas/Informatiestandaard-medicatieveiligheid.aspx</xsl:param>
-    <xsl:param name="dataset-name">MP-9 dataset (beschikbaarstellen medicatiegegevens: patiënt, TA, VS)</xsl:param>
+    <xsl:param name="dataset-name">MedMij dataset (beschikbaarstellen allergie/intolerantie</xsl:param>
     <xsl:param name="concept-2b-omitted" as="xs:string*">
-        <xsl:value-of select="'medicatieafspraak'"/>
-        <xsl:value-of select="'verstrekkingsverzoek'"/>
-        <xsl:value-of select="'medicatie_gebruik'"/>
-        <xsl:value-of select="'medicatietoediening'"/>
+        <!-- none -->
     </xsl:param>
     <xsl:param name="concept-zib" as="xs:string*">
-        <xsl:value-of select="'patient'"/>
-        <xsl:value-of select="'toedieningsafspraak'"/>
-        <xsl:value-of select="'verstrekking'"/>        
+<!--        <xsl:value-of select="'patient'"/>-->
+        <xsl:value-of select="'allergy_intolerance'"/>
     </xsl:param>
     <xsl:param name="mapDirection">other2zib</xsl:param>
 
@@ -48,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:variable name="concept" select="ada/applications//view[implementation/@shortName = $ada-view-shortname]/dataset/concept"/>
-        <xsl:for-each select="$concept[not(@shortName=$concept-2b-omitted)]">
+        <xsl:for-each select="$concept[not(@shortName = $concept-2b-omitted)]">
             <xsl:choose>
                 <xsl:when test="$mapDirection = 'other2zib'">
                     <xsl:call-template name="makeTableOther2ZIB">
@@ -88,8 +84,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 |-style="vertical-align:top; background-color: #E3E3E3; " 
 |</xsl:text>
         <xsl:choose>
-            <xsl:when test="$concept/@shortName=$concept-zib"><xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text></xsl:when>
-            <xsl:otherwise><xsl:text>[[Bestand: Container.png| 20px]] </xsl:text></xsl:otherwise>
+            <xsl:when test="$concept/@shortName = $concept-zib">
+                <xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>[[Bestand: Container.png| 20px]] </xsl:text>
+            </xsl:otherwise>
         </xsl:choose>
         <xsl:text>|| </xsl:text>
         <xsl:value-of select="$concept/name"/>
@@ -117,7 +117,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="concept"/>
     </xd:doc>
     <xsl:template name="makeTableOther2ZIB">
-        <xsl:param name="concept"/>        
+        <xsl:param name="concept"/>
         <!-- Tabel starten -->
         <xsl:text>
 {| class="wikitable" 
@@ -146,8 +146,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
         <xsl:text>|| </xsl:text>
         <xsl:choose>
-            <xsl:when test="$concept/@shortName=$concept-zib"><xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text></xsl:when>
-            <xsl:otherwise><xsl:text>[[Bestand: Container.png| 20px]] </xsl:text></xsl:otherwise>
+            <xsl:when test="$concept/@shortName = $concept-zib">
+                <xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>[[Bestand: Container.png| 20px]] </xsl:text>
+            </xsl:otherwise>
         </xsl:choose>
         <xsl:text>|| </xsl:text>
         <xsl:value-of select="$concept/name"/>
@@ -159,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="$concept/@maximumMultiplicity"/>
 
         <!-- De rest van de rijen -->
-        <xsl:apply-templates select="./concept[not(@shortName=$concept-2b-omitted)]"/>
+        <xsl:apply-templates select="./concept[not(@shortName = $concept-2b-omitted)]"/>
 
         <!-- Tabel afsluiten -->
         <xsl:text>
@@ -285,11 +289,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- group -->
                 <xsl:variable name="type">
                     <xsl:choose>
-                        <xsl:when test="$concept/@shortName=$concept-zib">zib</xsl:when>
-                        <xsl:otherwise><xsl:value-of select="$concept/@type"/></xsl:otherwise>
+                        <xsl:when test="$concept/@shortName = $concept-zib">zib</xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$concept/@type"/>
+                        </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:call-template name="addType">                    
+                <xsl:call-template name="addType">
                     <xsl:with-param name="type" select="$type"/>
                 </xsl:call-template>
             </xsl:otherwise>
@@ -300,7 +306,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <xsl:value-of select="$concept/name"/>
         <xsl:text> || </xsl:text>
-        <xsl:value-of select="tokenize($concept/@id, '\.')[last()]"/>        
+        <xsl:value-of select="tokenize($concept/@id, '\.')[last()]"/>
         <xsl:text> || </xsl:text>
         <xsl:value-of select="$concept/@minimumMultiplicity"/>
         <xsl:text> .. </xsl:text>

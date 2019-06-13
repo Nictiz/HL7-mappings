@@ -1,0 +1,564 @@
+<!--ADA release generator version 1, 2018-10-10T13:41:29.76+02:00-->
+<!-- stripped the original ada release and only kept AllergyIntolerance -->
+<ada xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaVersion="1" release="2018-10-10T13:41:29.76+02:00" app="zib2017">
+    <project prefix="zib2017-" language="en-US" versionDate="">
+        <release baseUri="http://decor.nictiz.nl/decor/services/RetrieveTransaction"/>
+    </project>
+    <applications>
+        <application version="2017">
+            <views>
+                <view xmlns:xs="http://www.w3.org/2001/XMLSchema" id="1" type="index" target="xforms" addComments="true">
+                    <indexOf ref="6" shortName="allergy_intolerance"/>
+                    <name>Health and Care Information Models (HCIM) 2017 Index</name>
+                    <implementation shortName="health_and_care_information_models_hcim_2017_index"/>
+                    <controls>
+                        <button type="xml"/>
+                    </controls>
+                </view>
+                <view xmlns:xs="http://www.w3.org/2001/XMLSchema" id="6" type="crud" target="xforms" addComments="false" errorSummary="false" transactionId="2.16.840.1.113883.2.4.3.11.60.7.4.2.8.2" transactionEffectiveDate="2017-12-31T00:00:00">
+                    <name>AllergyIntolerance</name>
+                    <implementation shortName="allergy_intolerance"/>
+                    <dataset id="2.16.840.1.113883.2.4.3.11.60.40.3.8.2" effectiveDate="2017-12-31T00:00:00" statusCode="final" versionLabel="3.2" officialReleaseDate="2017-12-31T00:00:00" transactionId="2.16.840.1.113883.2.4.3.11.60.7.4.2.8.2" transactionEffectiveDate="2017-12-31T00:00:00" shortName="allergy_intolerance_registration" iddisplay="NL-BS-TR-8.2">
+                        <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.1" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="*" isMandatory="false" type="group" iddisplay="NL-CM-8.2.1" shortName="allergy_intolerance">
+                            <name language="en-US">AllergyIntolerance</name>
+                            <desc language="en-US">Root concept of the AllergyIntolerance information model. This root concept contains all data elements of the AllergyIntolerance information model.</desc>
+                            <implementation shortName="allergy_intolerance"/>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.1" shortName="basic_components_hcimroot">
+                                <name language="en-US">Basic Components HCIMRoot</name>
+                                <desc language="en-US">Rootconcept of the information model in question</desc>
+                                <implementation shortName="hcimroot"/>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-0.0.6" shortName="identification_number">
+                                    <name language="en-US">IdentificationNumber</name>
+                                    <desc language="en-US">Globally unique number that identifies the instantiation of the information model. The number is composed of an identification of the issuer organization and a unique number assigned by this organization</desc>
+                                    <implementation shortName="identification_number"/>
+                                    <operationalization language="en-US">AssigningAuthority (OID: AssigningAuthorityOID)</operationalization>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" conceptFlexibility="2017-12-31T00:00:00" code="396278008" codeSystem="2.16.840.1.113883.6.96" displayName="Identification number" codeSystemName="SNOMED Clinical Terms"/>
+                                    <valueDomain type="identifier"/>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.2" shortName="information_source">
+                                    <name language="en-US">InformationSource</name>
+                                    <desc language="en-US">The person who provided the information and ensures the correctness of it.<br/>This is not always a healthprofessional, but it may also be the patient or another person, such as a parent, caretaker or guardian.<br/>The source of information does not have to be the author of the information, who in that case is only instrumental in capturing the information.</desc>
+                                    <implementation shortName="information_source"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2" conceptFlexibility="2017-12-31T00:00:00" code="385438008" codeSystem="2.16.840.1.113883.6.96" displayName="Source of information (attribute)" codeSystemName="SNOMED Clinical Terms"/>
+                                    <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.3" shortName="patient_as_information_source">
+                                        <name language="en-US">PatientAsInformationSource</name>
+                                        <desc language="en-US">The patient as source of the information</desc>
+                                        <implementation shortName="patient_as_information_source"/>
+                                        <concept id="2.16.840.1.113883.2.4.3.11.60.7.2.140" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-2017-140" shortName="patient">
+                                            <name language="en-US">Patient</name>
+                                            <desc language="en-US">Root concept of the Patient information model. This root concept contains all data elements of the Patient information model.</desc>
+                                            <implementation shortName="patient"/>
+                                            <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1" flexibility="2017-12-31T00:00:00" prefix="zib2017bbr-" datasetId="2.16.840.1.113883.2.4.3.11.60.40.3.0.1" datasetEffectiveDate="2017-12-31T00:00:00" datasetStatusCode="final" datasetVersionLabel="3.1" iType="group" iStatusCode="final" iEffectiveDate="2017-12-31T00:00:00" refdisplay="NL-CM-0.1.1"/>
+                                            <valueDomain type="identifier"/>
+                                        </concept>
+                                    </concept>
+                                    <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.4" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.4" shortName="health_professional">
+                                        <name language="en-US">HealthProfessional</name>
+                                        <desc language="en-US">The health professional as source of the information</desc>
+                                        <implementation shortName="health_professional"/>
+                                        <concept id="2.16.840.1.113883.2.4.3.11.60.7.2.141" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-2017-141" shortName="health_professional">
+                                            <name language="en-US">HealthProfessional</name>
+                                            <desc language="en-US">Root concept of the HealthProfessional information model. This root concept contains all data elements of the HealthProfessional information model.<br/>When referring to this information model the role the health professional fulfils in the healthcare process can be addressed additionally. For health professionals, this could be for example main practitioner or referrer.</desc>
+                                            <implementation shortName="health_professional"/>
+                                            <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.1" flexibility="2017-12-31T00:00:00" prefix="zib2017bbr-" datasetId="2.16.840.1.113883.2.4.3.11.60.40.3.17.1" datasetEffectiveDate="2017-12-31T00:00:00" datasetStatusCode="final" datasetVersionLabel="3.2" iType="group" iStatusCode="final" iEffectiveDate="2017-12-31T00:00:00" refdisplay="NL-CM-17.1.1"/>
+                                            <valueDomain type="identifier"/>
+                                        </concept>
+                                    </concept>
+                                    <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.5" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.5" shortName="related_person_as_information_source">
+                                        <name language="en-US">RelatedPersonAsInformationSource</name>
+                                        <desc language="en-US">The related person (parent, caregiver, ...) as source of the information</desc>
+                                        <implementation shortName="related_person_as_information_source"/>
+                                        <concept id="2.16.840.1.113883.2.4.3.11.60.7.2.142" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-2017-142" shortName="contact">
+                                            <name language="en-US">Contact</name>
+                                            <desc language="en-US">Root concept of the Contact information model. This root concept contains all data elements of the Contact information model.</desc>
+                                            <implementation shortName="contact"/>
+                                            <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.1" flexibility="2017-12-31T00:00:00" prefix="zib2017bbr-" datasetId="2.16.840.1.113883.2.4.3.11.60.40.3.3.1" datasetEffectiveDate="2017-12-31T00:00:00" datasetStatusCode="final" datasetVersionLabel="3.1" iType="group" iStatusCode="final" iEffectiveDate="2017-12-31T00:00:00" refdisplay="NL-CM-3.1.1"/>
+                                            <valueDomain type="identifier"/>
+                                        </concept>
+                                    </concept>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.7" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.7" shortName="author">
+                                    <name language="en-US">Author</name>
+                                    <desc language="en-US">The person who has recorded the information. Depending on the information system in which the data is recorded, this may be the patient, healthcare provider or other person.</desc>
+                                    <implementation shortName="author"/>
+                                    <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.8" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.8" shortName="patient_as_author">
+                                        <name language="en-US">PatientAsAuthor</name>
+                                        <desc language="en-US">The patient as author of the information</desc>
+                                        <implementation shortName="patient_as_author"/>
+                                        <concept id="2.16.840.1.113883.2.4.3.11.60.7.2.143" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-2017-143" shortName="patient">
+                                            <name language="en-US">Patient</name>
+                                            <desc language="en-US">Root concept of the Patient information model. This root concept contains all data elements of the Patient information model.</desc>
+                                            <implementation shortName="patient"/>
+                                            <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1" flexibility="2017-12-31T00:00:00" prefix="zib2017bbr-" datasetId="2.16.840.1.113883.2.4.3.11.60.40.3.0.1" datasetEffectiveDate="2017-12-31T00:00:00" datasetStatusCode="final" datasetVersionLabel="3.1" iType="group" iStatusCode="final" iEffectiveDate="2017-12-31T00:00:00" refdisplay="NL-CM-0.1.1"/>
+                                            <valueDomain type="identifier"/>
+                                        </concept>
+                                    </concept>
+                                    <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.9" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.9" shortName="health_professional_as_author">
+                                        <name language="en-US">HealthProfessionalAsAuthor</name>
+                                        <desc language="en-US">The health professional as author of the information </desc>
+                                        <implementation shortName="health_professional_as_author"/>
+                                        <concept id="2.16.840.1.113883.2.4.3.11.60.7.2.144" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-2017-144" shortName="health_professional">
+                                            <name language="en-US">HealthProfessional</name>
+                                            <desc language="en-US">Root concept of the HealthProfessional information model. This root concept contains all data elements of the HealthProfessional information model.<br/>When referring to this information model the role the health professional fulfils in the healthcare process can be addressed additionally. For health professionals, this could be for example main practitioner or referrer.</desc>
+                                            <implementation shortName="health_professional"/>
+                                            <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.1" flexibility="2017-12-31T00:00:00" prefix="zib2017bbr-" datasetId="2.16.840.1.113883.2.4.3.11.60.40.3.17.1" datasetEffectiveDate="2017-12-31T00:00:00" datasetStatusCode="final" datasetVersionLabel="3.2" iType="group" iStatusCode="final" iEffectiveDate="2017-12-31T00:00:00" refdisplay="NL-CM-17.1.1"/>
+                                            <valueDomain type="identifier"/>
+                                        </concept>
+                                    </concept>
+                                    <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.10" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.10" shortName="related_person_as_author">
+                                        <name language="en-US">RelatedPersonAsAuthor</name>
+                                        <desc language="en-US">The related person (parent, caregiver, ...) as author of the information</desc>
+                                        <implementation shortName="related_person_as_author"/>
+                                        <concept id="2.16.840.1.113883.2.4.3.11.60.7.2.145" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-2017-145" shortName="contact">
+                                            <name language="en-US">Contact</name>
+                                            <desc language="en-US">Root concept of the Contact information model. This root concept contains all data elements of the Contact information model.</desc>
+                                            <implementation shortName="contact"/>
+                                            <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.1" flexibility="2017-12-31T00:00:00" prefix="zib2017bbr-" datasetId="2.16.840.1.113883.2.4.3.11.60.40.3.3.1" datasetEffectiveDate="2017-12-31T00:00:00" datasetStatusCode="final" datasetVersionLabel="3.1" iType="group" iStatusCode="final" iEffectiveDate="2017-12-31T00:00:00" refdisplay="NL-CM-3.1.1"/>
+                                            <valueDomain type="identifier"/>
+                                        </concept>
+                                    </concept>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.11" shortName="subject">
+                                    <name language="en-US">Subject</name>
+                                    <desc language="en-US">The person to whom the information relates. Often this will be the patient, but especially in the case of small children as patients it may be information about the parent or caregiver. Especially in the nurse transfers, for example, Competence and involvement of caregivers carries a role.</desc>
+                                    <implementation shortName="subject"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11" conceptFlexibility="2017-12-31T00:00:00" code="131195008" codeSystem="2.16.840.1.113883.6.96" displayName="Subject of information" codeSystemName="SNOMED Clinical Terms"/>
+                                    <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.12" shortName="patient">
+                                        <name language="en-US">Patient</name>
+                                        <desc language="en-US">The patient as subject of the information</desc>
+                                        <implementation shortName="patient"/>
+                                        <concept id="2.16.840.1.113883.2.4.3.11.60.7.2.146" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-2017-146" shortName="patient">
+                                            <name language="en-US">Patient</name>
+                                            <desc language="en-US">Root concept of the Patient information model. This root concept contains all data elements of the Patient information model.</desc>
+                                            <implementation shortName="patient"/>
+                                            <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1" flexibility="2017-12-31T00:00:00" prefix="zib2017bbr-" datasetId="2.16.840.1.113883.2.4.3.11.60.40.3.0.1" datasetEffectiveDate="2017-12-31T00:00:00" datasetStatusCode="final" datasetVersionLabel="3.1" iType="group" iStatusCode="final" iEffectiveDate="2017-12-31T00:00:00" refdisplay="NL-CM-0.1.1"/>
+                                            <valueDomain type="identifier"/>
+                                        </concept>
+                                    </concept>
+                                    <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.13" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="group" iddisplay="NL-CM-0.0.13" shortName="related_person_as_subject">
+                                        <name language="en-US">RelatedPersonAsSubject</name>
+                                        <desc language="en-US">The related person (parent, caregiver, ...) as subject of the information</desc>
+                                        <implementation shortName="related_person_as_subject"/>
+                                        <concept id="2.16.840.1.113883.2.4.3.11.60.7.2.147" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-2017-147" shortName="contact">
+                                            <name language="en-US">Contact</name>
+                                            <desc language="en-US">Root concept of the Contact information model. This root concept contains all data elements of the Contact information model.</desc>
+                                            <implementation shortName="contact"/>
+                                            <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.3.1.1" flexibility="2017-12-31T00:00:00" prefix="zib2017bbr-" datasetId="2.16.840.1.113883.2.4.3.11.60.40.3.3.1" datasetEffectiveDate="2017-12-31T00:00:00" datasetStatusCode="final" datasetVersionLabel="3.1" iType="group" iStatusCode="final" iEffectiveDate="2017-12-31T00:00:00" refdisplay="NL-CM-3.1.1"/>
+                                            <valueDomain type="identifier"/>
+                                        </concept>
+                                    </concept>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.14" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-0.0.14" shortName="date_time">
+                                    <name language="en-US">DateTime</name>
+                                    <desc language="en-US">Date and if relevant the time the event to which the information relates took place .<br/>This is the medically relevant date and time.</desc>
+                                    <implementation shortName="date_time"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.14" conceptFlexibility="2017-12-31T00:00:00" code="439771001" codeSystem="2.16.840.1.113883.6.96" displayName="Date of event" codeSystemName="SNOMED Clinical Terms"/>
+                                    <valueDomain type="string"><!--converted to string to support things like T-500 or other syntaxes--></valueDomain>
+                                </concept>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.2" shortName="causative_agent">
+                                <name language="en-US">CausativeAgent</name>
+                                <desc language="en-US">Substance, group of substances or environmental factor to which the patient is allergic or hypersensitive.</desc>
+                                <implementation shortName="causative_agent"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.15" flexibility="2017-12-31T00:00:00" valueSetName="VeroorzakendeStofThesaurus122Codelijst"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.19" flexibility="2017-12-31T00:00:00" valueSetName="VeroorzakendeStofHPKCodelijst"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.13" flexibility="2017-12-31T00:00:00" valueSetName="VeroorzakendeStofSSKCodelijst"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.17" flexibility="2017-12-31T00:00:00" valueSetName="VeroorzakendeStofAllergeneStoffenCodelijst"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.14" flexibility="2017-12-31T00:00:00" valueSetName="VeroorzakendeStofSNKCodelijst"/>
+                                <valueDomain type="code">
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0"/>
+                                </valueDomain>
+                                <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.13" name="VeroorzakendeStofSSKCodelijst" displayName="VeroorzakendeStofSSKCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.13" flexibility="2017-12-31T00:00:00"/>
+                                    <desc language="nl-NL">G-standaard Stofnaamcode i.c.m. toedieningsweg (SSK) - Alle waarden</desc>
+                                    <sourceCodeSystem id="2.16.840.1.113883.2.4.4.1.725" identifierName="G-Standaard Bestand 725" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.1.725"/>
+                                    <publishingAuthority name="Registratie aan de bron">
+                                        <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                        <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                    </publishingAuthority>
+                                    <completeCodeSystem codeSystem="2.16.840.1.113883.2.4.4.1.725" codeSystemName="G-Standaard Bestand 725"/>
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0"/>
+                                </valueSet>
+                                <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.14" name="VeroorzakendeStofSNKCodelijst" displayName="VeroorzakendeStofSNKCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.14" flexibility="2017-12-31T00:00:00"/>
+                                    <desc language="nl-NL">G-standaard Stofnaamcode (SNK) - Alle waarden</desc>
+                                    <sourceCodeSystem id="2.16.840.1.113883.2.4.4.1.750" identifierName="G-Standaard generieke namen (Bestand 750)" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+                                    <publishingAuthority name="Registratie aan de bron">
+                                        <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                        <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                    </publishingAuthority>
+                                    <completeCodeSystem codeSystem="2.16.840.1.113883.2.4.4.1.750" codeSystemName="G-Standaard generieke namen (Bestand 750)"/>
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0"/>
+                                </valueSet>
+                                <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.15" name="VeroorzakendeStofThesaurus122Codelijst" displayName="VeroorzakendeStofThesaurus122Codelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.15" flexibility="2017-12-31T00:00:00"/>
+                                    <desc language="nl-NL">G-standaard Ongewenste medicatiegroepen - Alle waarden</desc>
+                                    <sourceCodeSystem id="2.16.840.1.113883.2.4.4.1.902.122" identifierName="G-Standaard Tabel 122" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
+                                    <publishingAuthority name="Registratie aan de bron">
+                                        <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                        <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                    </publishingAuthority>
+                                    <completeCodeSystem codeSystem="2.16.840.1.113883.2.4.4.1.902.122" codeSystemName="G-Standaard Tabel 122"/>
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0"/>
+                                </valueSet>
+                                <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.17" name="VeroorzakendeStofAllergeneStoffenCodelijst" displayName="VeroorzakendeStofAllergeneStoffenCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.17" flexibility="2017-12-31T00:00:00"/>
+                                    <desc language="nl-NL">SNOMED CT - Alle waarden</desc>
+                                    <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED CT" canonicalUri="http://snomed.info/sct"/>
+                                    <publishingAuthority name="Registratie aan de bron">
+                                        <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                        <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                    </publishingAuthority>
+                                    <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                                    <completeCodeSystem codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0"/>
+                                </valueSet>
+                                <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.19" name="VeroorzakendeStofHPKCodelijst" displayName="VeroorzakendeStofHPKCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.19" flexibility="2017-12-31T00:00:00"/>
+                                    <desc language="nl-NL">G-Standaard Handels Product Kode (HPK) - Alle waarden</desc>
+                                    <sourceCodeSystem id="2.16.840.1.113883.2.4.4.7" identifierName="G-Standaard HPK (Handels Product Kode)" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                                    <publishingAuthority name="Registratie aan de bron">
+                                        <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                        <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                    </publishingAuthority>
+                                    <completeCodeSystem codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK (Handels Product Kode)"/>
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2.20171231000000.0"/>
+                                </valueSet>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.4" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.4" shortName="allergy_category">
+                                <name language="en-US">AllergyCategory</name>
+                                <desc language="en-US">Identifies the allergy category such as medication, food or environment.</desc>
+                                <implementation shortName="allergy_category"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.4.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.2" flexibility="2017-12-31T00:00:00" valueSetName="AllergieCategorieCodelijst"/>
+                                <valueDomain type="code">
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.4.20171231000000.0"/>
+                                </valueDomain>
+                                <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.2" name="AllergieCategorieCodelijst" displayName="AllergieCategorieCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.4.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.2" flexibility="2017-12-31T00:00:00"/>
+                                    <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED CT" canonicalUri="http://snomed.info/sct"/>
+                                    <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor" canonicalUri="http://hl7.org/fhir/v3/NullFlavor"/>
+                                    <publishingAuthority name="Registratie aan de bron">
+                                        <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                        <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                    </publishingAuthority>
+                                    <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.4.20171231000000.0">
+                                        <concept localId="1" code="418471000" codeSystem="2.16.840.1.113883.6.96" displayName="Propensity to adverse reactions to food" level="0" type="L">
+                                            <name language="en-US">Propensity to adverse reactions to food</name>
+                                        </concept>
+                                        <concept localId="2" code="419511003" codeSystem="2.16.840.1.113883.6.96" displayName="Propensity to adverse reactions to drug" level="0" type="L">
+                                            <name language="en-US">Propensity to adverse reactions to drug</name>
+                                        </concept>
+                                        <concept localId="3" code="426232007" codeSystem="2.16.840.1.113883.6.96" displayName="Environmental allergy" level="0" type="L">
+                                            <name language="en-US">Environmental allergy</name>
+                                        </concept>
+                                        <concept localId="4" code="419199007" codeSystem="2.16.840.1.113883.6.96" displayName="Allergy to substance" level="0" type="L">
+                                            <name language="en-US">Allergy to substance</name>
+                                        </concept>
+                                        <exception localId="5" code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="Other" level="0" type="L">
+                                            <name language="en-US">Other</name>
+                                        </exception>
+                                    </conceptList>
+                                </valueSet>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.5" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.5" shortName="allergy_status">
+                                <name language="en-US">AllergyStatus</name>
+                                <desc language="en-US">Statement on the status of the patient’s hypersensitivity.</desc>
+                                <implementation shortName="allergy_status"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.5.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.3" flexibility="2017-12-31T00:00:00" valueSetName="AllergieStatusCodelijst"/>
+                                <valueDomain type="code">
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.5.20171231000000.0"/>
+                                </valueDomain>
+                                <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.3" name="AllergieStatusCodelijst" displayName="AllergieStatusCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.5.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.3" flexibility="2017-12-31T00:00:00"/>
+                                    <sourceCodeSystem id="2.16.840.1.113883.5.14" identifierName="ActStatus" canonicalUri="http://hl7.org/fhir/v3/ActStatus"/>
+                                    <publishingAuthority name="Registratie aan de bron">
+                                        <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                        <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                    </publishingAuthority>
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.5.20171231000000.0">
+                                        <concept localId="1" code="active" codeSystem="2.16.840.1.113883.5.14" displayName="Active" level="0" type="L">
+                                            <name language="en-US">Active</name>
+                                        </concept>
+                                        <concept localId="2" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Completed" level="0" type="L">
+                                            <name language="en-US">Completed</name>
+                                        </concept>
+                                        <concept localId="3" code="obsolete" codeSystem="2.16.840.1.113883.5.14" displayName="Obsolete" level="0" type="L">
+                                            <name language="en-US">Obsolete</name>
+                                        </concept>
+                                        <concept localId="4" code="nullified" codeSystem="2.16.840.1.113883.5.14" displayName="Nullified" level="0" type="L">
+                                            <name language="en-US">Nullified</name>
+                                        </concept>
+                                    </conceptList>
+                                </valueSet>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.6" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.6" shortName="start_date_time">
+                                <name language="en-US">StartDateTime</name>
+                                <desc language="en-US">The date and time at which the allergy or undesired reaction was determined. <br/>This can be an exact date and time, or a rough indication of the date (such as only the year, or the month and the year).<br/>
+                                </desc>
+                                <implementation shortName="start_date_time"/>
+                                <valueDomain type="string">
+                                    <!--converted to string to support things like T-500 or other syntaxes-->
+                                    <example>09-10-2011</example>
+                                </valueDomain>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.7" shortName="criticality">
+                                <name language="en-US">Criticality</name>
+                                <desc language="en-US">Critical extent is defined as “the potential severity of future reactions.” <br/>This represents a clinical evaluation of the worst case scenario for a future reaction. It can be based on the severity of past reactions, the dose and manner of exposure which caused reactions in the past, and the life-threatening potential of the type of reaction. Critical extent is a property of the allergy, and not of the reaction itself.<br/>
+                                </desc>
+                                <implementation shortName="criticality"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7" conceptFlexibility="2017-12-31T00:00:00" code="246112005" codeSystem="2.16.840.1.113883.6.96" displayName="Severity" codeSystemName="SNOMED Clinical Terms"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.4" flexibility="2017-12-31T00:00:00" valueSetName="MateVanKritiekZijnCodelijst"/>
+                                <valueDomain type="code">
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7.20171231000000.0"/>
+                                </valueDomain>
+                                <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.4" name="MateVanKritiekZijnCodelijst" displayName="MateVanKritiekZijnCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.4" flexibility="2017-12-31T00:00:00"/>
+                                    <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED CT" canonicalUri="http://snomed.info/sct"/>
+                                    <publishingAuthority name="Registratie aan de bron">
+                                        <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                        <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                    </publishingAuthority>
+                                    <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                                    <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7.20171231000000.0">
+                                        <concept localId="1" code="255604002" codeSystem="2.16.840.1.113883.6.96" displayName="Mild" level="0" type="L">
+                                            <name language="en-US">Mild</name>
+                                        </concept>
+                                        <concept localId="2" code="6736007" codeSystem="2.16.840.1.113883.6.96" displayName="Moderate" level="0" type="L">
+                                            <name language="en-US">Moderate</name>
+                                        </concept>
+                                        <concept localId="3" code="24484000" codeSystem="2.16.840.1.113883.6.96" displayName="Severe" level="0" type="L">
+                                            <name language="en-US">Severe</name>
+                                        </concept>
+                                        <concept localId="4" code="399166001" codeSystem="2.16.840.1.113883.6.96" displayName="Fatal" level="0" type="L">
+                                            <name language="en-US">Fatal</name>
+                                        </concept>
+                                    </conceptList>
+                                </valueSet>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.8" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.8" shortName="last_reaction_date_time">
+                                <name language="en-US">LastReactionDateTime</name>
+                                <desc language="en-US">Entry of the last time a hypersensitive reaction took place.</desc>
+                                <implementation shortName="last_reaction_date_time"/>
+                                <valueDomain type="string"><!--converted to string to support things like T-500 or other syntaxes--></valueDomain>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.9" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.9" shortName="comment">
+                                <name language="en-US">Comment</name>
+                                <desc language="en-US">Textual explanation of the hypersensitivity which cannot be entered in any of the other fields.</desc>
+                                <implementation shortName="comment"/>
+                                <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.9" conceptFlexibility="2017-12-31T00:00:00" code="48767-8" codeSystem="2.16.840.1.113883.6.1" displayName="Annotation comment" codeSystemName="Logical Observation Identifier Names and Codes"/>
+                                <valueDomain type="string"/>
+                            </concept>
+                            <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.10" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="*" isMandatory="false" type="group" iddisplay="NL-CM-8.2.10" shortName="reaction">
+                                <name language="en-US">Reaction</name>
+                                <desc language="en-US">Container of the Reaction concept. This container contains all data elements of the Reaction concept.</desc>
+                                <implementation shortName="reaction"/>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.11" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="1" maximumMultiplicity="*" isMandatory="false" type="item" iddisplay="NL-CM-8.2.11" shortName="symptom">
+                                    <name language="en-US">Symptom</name>
+                                    <desc language="en-US">The content specifications of the reaction that takes place when the patient is exposed to the causative substance.</desc>
+                                    <implementation shortName="symptom"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.11.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.5" flexibility="2017-12-31T00:00:00" valueSetName="SymptoomCodelijst"/>
+                                    <valueDomain type="code">
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.11.20171231000000.0"/>
+                                        <example>Anafylaxie, Jeuk</example>
+                                    </valueDomain>
+                                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.5" name="SymptoomCodelijst" displayName="SymptoomCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.11.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.5" flexibility="2017-12-31T00:00:00"/>
+                                        <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED CT" canonicalUri="http://snomed.info/sct"/>
+                                        <sourceCodeSystem id="2.16.840.1.113883.5.1008" identifierName="NullFlavor" canonicalUri="http://hl7.org/fhir/v3/NullFlavor"/>
+                                        <publishingAuthority name="Registratie aan de bron">
+                                            <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                            <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                        </publishingAuthority>
+                                        <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.11.20171231000000.0">
+                                            <concept localId="1" code="39579001" codeSystem="2.16.840.1.113883.6.96" displayName="Anaphylaxis" level="0" type="L">
+                                                <name language="en-US">Anaphylaxis</name>
+                                            </concept>
+                                            <concept localId="2" code="41291007" codeSystem="2.16.840.1.113883.6.96" displayName="Angioedema" level="0" type="L">
+                                                <name language="en-US">Angioedema</name>
+                                            </concept>
+                                            <concept localId="3" code="490008" codeSystem="2.16.840.1.113883.6.96" displayName="Upper respiratory tract hypersensitivity reaction" level="0" type="L">
+                                                <name language="en-US">Upper respiratory tract hypersensitivity reaction</name>
+                                            </concept>
+                                            <concept localId="4" code="267036007" codeSystem="2.16.840.1.113883.6.96" displayName="Dyspnea" level="0" type="L">
+                                                <name language="en-US">Dyspnea</name>
+                                            </concept>
+                                            <concept localId="5" code="4386001" codeSystem="2.16.840.1.113883.6.96" displayName="Bronchospasm" level="0" type="L">
+                                                <name language="en-US">Bronchospasm</name>
+                                            </concept>
+                                            <concept localId="6" code="126485001" codeSystem="2.16.840.1.113883.6.96" displayName="Urticaria (hives)" level="0" type="L">
+                                                <name language="en-US">Urticaria (hives)</name>
+                                            </concept>
+                                            <concept localId="7" code="40275004" codeSystem="2.16.840.1.113883.6.96" displayName="Contact dermatitis" level="0" type="L">
+                                                <name language="en-US">Contact dermatitis</name>
+                                            </concept>
+                                            <concept localId="8" code="418363000" codeSystem="2.16.840.1.113883.6.96" displayName="Itching of skin" level="0" type="L">
+                                                <name language="en-US">Itching of skin</name>
+                                            </concept>
+                                            <concept localId="9" code="271807003" codeSystem="2.16.840.1.113883.6.96" displayName="Eruption of skin" level="0" type="L">
+                                                <name language="en-US">Eruption of skin</name>
+                                            </concept>
+                                            <concept localId="10" code="473460002" codeSystem="2.16.840.1.113883.6.96" displayName="Allergic conjunctivitis" level="0" type="L">
+                                                <name language="en-US">Allergic conjunctivitis</name>
+                                            </concept>
+                                            <concept localId="11" code="23067006" codeSystem="2.16.840.1.113883.6.96" displayName="TEN - Toxic epidermal necrolysis" level="0" type="L">
+                                                <name language="en-US">TEN - Toxic epidermal necrolysis</name>
+                                            </concept>
+                                            <concept localId="12" code="16932000" codeSystem="2.16.840.1.113883.6.96" displayName="Nausea and vomiting" level="0" type="L">
+                                                <name language="en-US">Nausea and vomiting</name>
+                                            </concept>
+                                            <concept localId="13" code="62315008" codeSystem="2.16.840.1.113883.6.96" displayName="Diarrhoea" level="0" type="L">
+                                                <name language="en-US">Diarrhoea</name>
+                                            </concept>
+                                            <concept localId="14" code="297942002" codeSystem="2.16.840.1.113883.6.96" displayName="Drug-induced erythema multiforme" level="0" type="L">
+                                                <name language="en-US">Drug-induced erythema multiforme</name>
+                                            </concept>
+                                            <concept localId="15" code="386661006" codeSystem="2.16.840.1.113883.6.96" displayName="Fever" level="0" type="L">
+                                                <name language="en-US">Fever</name>
+                                            </concept>
+                                            <exception localId="16" code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="Overig" level="0" type="L">
+                                                <name language="en-US">Overig</name>
+                                            </exception>
+                                        </conceptList>
+                                    </valueSet>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.12" shortName="specific_substance">
+                                    <name language="en-US">SpecificSubstance</name>
+                                    <desc language="en-US">More specific indication of the substance that caused the reaction. This can be a specific substance from a group of substances to which the patient is allergic or hypersensitive.</desc>
+                                    <implementation shortName="specific_substance"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.11" flexibility="2017-12-31T00:00:00" valueSetName="SpecifiekeStofThesaurus122Codelijst"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.9" flexibility="2017-12-31T00:00:00" valueSetName="SpecifiekeStofSSKCodelijst"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.16" flexibility="2017-12-31T00:00:00" valueSetName="SpecifiekeStofAllergeneStoffenCodelijst"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.10" flexibility="2017-12-31T00:00:00" valueSetName="SpecifiekeStofSNKCodelijst"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.18" flexibility="2017-12-31T00:00:00" valueSetName="SpecifiekeStofHPKCodelijst"/>
+                                    <valueDomain type="code">
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0"/>
+                                    </valueDomain>
+                                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.10" name="SpecifiekeStofSNKCodelijst" displayName="SpecifiekeStofSNKCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.10" flexibility="2017-12-31T00:00:00"/>
+                                        <desc language="nl-NL">G-standaard Stofnaamcode (SNK) - Alle waarden</desc>
+                                        <sourceCodeSystem id="2.16.840.1.113883.2.4.4.1.750" identifierName="G-Standaard generieke namen (Bestand 750)" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+                                        <publishingAuthority name="Registratie aan de bron">
+                                            <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                            <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                        </publishingAuthority>
+                                        <completeCodeSystem codeSystem="2.16.840.1.113883.2.4.4.1.750" codeSystemName="G-Standaard generieke namen (Bestand 750)"/>
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0"/>
+                                    </valueSet>
+                                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.11" name="SpecifiekeStofThesaurus122Codelijst" displayName="SpecifiekeStofThesaurus122Codelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.11" flexibility="2017-12-31T00:00:00"/>
+                                        <desc language="nl-NL">G-standaard Ongewenste medicatiegroepen - Alle waarden</desc>
+                                        <sourceCodeSystem id="2.16.840.1.113883.2.4.4.1.902.122" identifierName="G-Standaard Tabel 122" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
+                                        <publishingAuthority name="Registratie aan de bron">
+                                            <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                            <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                        </publishingAuthority>
+                                        <completeCodeSystem codeSystem="2.16.840.1.113883.2.4.4.1.902.122" codeSystemName="G-Standaard Tabel 122"/>
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0"/>
+                                    </valueSet>
+                                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.16" name="SpecifiekeStofAllergeneStoffenCodelijst" displayName="SpecifiekeStofAllergeneStoffenCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.16" flexibility="2017-12-31T00:00:00"/>
+                                        <desc language="nl-NL">SNOMED CT - SNOMED CT: ^42931000146101| Dutch non-drug allergen simple reference set (foundation metadata concept)</desc>
+                                        <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED CT" canonicalUri="http://snomed.info/sct"/>
+                                        <publishingAuthority name="Registratie aan de bron">
+                                            <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                            <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                        </publishingAuthority>
+                                        <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                                        <completeCodeSystem codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0"/>
+                                    </valueSet>
+                                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.18" name="SpecifiekeStofHPKCodelijst" displayName="SpecifiekeStofHPKCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.18" flexibility="2017-12-31T00:00:00"/>
+                                        <desc language="nl-NL">G-Standaard Handels Product Kode (HPK) - Alle waarden</desc>
+                                        <sourceCodeSystem id="2.16.840.1.113883.2.4.4.7" identifierName="G-Standaard HPK (Handels Product Kode)" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                                        <publishingAuthority name="Registratie aan de bron">
+                                            <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                            <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                        </publishingAuthority>
+                                        <completeCodeSystem codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK (Handels Product Kode)"/>
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0"/>
+                                    </valueSet>
+                                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.9" name="SpecifiekeStofSSKCodelijst" displayName="SpecifiekeStofSSKCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.9" flexibility="2017-12-31T00:00:00"/>
+                                        <desc language="nl-NL">G-standaard Stofnaamcode i.c.m. toedieningsweg (SSK) - Alle waarden</desc>
+                                        <sourceCodeSystem id="2.16.840.1.113883.2.4.4.1.725" identifierName="G-Standaard Bestand 725" canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.1.725"/>
+                                        <publishingAuthority name="Registratie aan de bron">
+                                            <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                            <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                        </publishingAuthority>
+                                        <completeCodeSystem codeSystem="2.16.840.1.113883.2.4.4.1.725" codeSystemName="G-Standaard Bestand 725"/>
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12.20171231000000.0"/>
+                                    </valueSet>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.13" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.13" shortName="reaction_description">
+                                    <name language="en-US">ReactionDescription</name>
+                                    <desc language="en-US">Textual description of the reaction as a whole.</desc>
+                                    <implementation shortName="reaction_description"/>
+                                    <valueDomain type="string"/>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.14" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.14" shortName="severity">
+                                    <name language="en-US">Severity</name>
+                                    <desc language="en-US">The severity of the reaction as a result of exposure to the causative substance.</desc>
+                                    <implementation shortName="severity"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.14.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.6" flexibility="2017-12-31T00:00:00" valueSetName="ErnstCodelijst"/>
+                                    <valueDomain type="code">
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.14.20171231000000.0"/>
+                                        <example>Ernstig</example>
+                                    </valueDomain>
+                                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.6" name="ErnstCodelijst" displayName="ErnstCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.14.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.6" flexibility="2017-12-31T00:00:00"/>
+                                        <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED CT" canonicalUri="http://snomed.info/sct"/>
+                                        <publishingAuthority name="Registratie aan de bron">
+                                            <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                            <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                        </publishingAuthority>
+                                        <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.14.20171231000000.0">
+                                            <concept localId="1" code="255604002" codeSystem="2.16.840.1.113883.6.96" displayName="Mild" level="0" type="L">
+                                                <name language="en-US">Mild</name>
+                                            </concept>
+                                            <concept localId="2" code="6736007" codeSystem="2.16.840.1.113883.6.96" displayName="Moderate" level="0" type="L">
+                                                <name language="en-US">Moderate</name>
+                                            </concept>
+                                            <concept localId="3" code="24484000" codeSystem="2.16.840.1.113883.6.96" displayName="Severe" level="0" type="L">
+                                                <name language="en-US">Severe</name>
+                                            </concept>
+                                        </conceptList>
+                                    </valueSet>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.15" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.15" shortName="route_of_exposure">
+                                    <name language="en-US">RouteOfExposure</name>
+                                    <desc language="en-US">Way in which the patient came into contact with the causative agent or the way in which the agent was administered.</desc>
+                                    <implementation shortName="route_of_exposure"/>
+                                    <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.15.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.12" flexibility="2017-12-31T00:00:00" valueSetName="WijzeVanBlootstellingCodelijst"/>
+                                    <valueDomain type="code">
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.15.20171231000000.0"/>
+                                    </valueDomain>
+                                    <valueSet id="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.12" name="WijzeVanBlootstellingCodelijst" displayName="WijzeVanBlootstellingCodelijst" effectiveDate="2017-12-31T00:00:00" statusCode="final">
+                                        <terminologyAssociation conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.15.20171231000000.0" valueSet="2.16.840.1.113883.2.4.3.11.60.40.2.8.2.12" flexibility="2017-12-31T00:00:00"/>
+                                        <desc language="nl-NL">SNOMED CT - SNOMED CT: &lt;284009009 | route of administration value|</desc>
+                                        <sourceCodeSystem id="2.16.840.1.113883.6.96" identifierName="SNOMED CT" canonicalUri="http://snomed.info/sct"/>
+                                        <publishingAuthority name="Registratie aan de bron">
+                                            <addrLine type="uri">https://www.registratieaandebron.nl</addrLine>
+                                            <addrLine type="uri">https://www.zibs.nl</addrLine>
+                                        </publishingAuthority>
+                                        <copyright language="en-US">This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these artefacts must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/getsnomed-ct or info@snomed.org.</copyright>
+                                        <conceptList id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.15.20171231000000.0"/>
+                                    </valueSet>
+                                </concept>
+                                <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.17" effectiveDate="2017-12-31T00:00:00" statusCode="final" minimumMultiplicity="0" maximumMultiplicity="1" isMandatory="false" type="item" iddisplay="NL-CM-8.2.17" shortName="reaction_time">
+                                    <name language="en-US">ReactionTime</name>
+                                    <desc language="en-US">Date and time at which the reaction took place. This may also be just the date or a partial date, in the event that the exact date is unknown.</desc>
+                                    <implementation shortName="reaction_time"/>
+                                    <valueDomain type="string"><!--converted to string to support things like T-500 or other syntaxes--></valueDomain>
+                                </concept>
+                            </concept>
+                        </concept>
+                    </dataset>
+                </view>
+            </views>
+        </application>
+    </applications>
+</ada>
