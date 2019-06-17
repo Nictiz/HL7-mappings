@@ -137,7 +137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:variable name="fhir-resource-id">
                                             <xsl:choose>
                                                 <xsl:when test="$uuid">
-                                                    <xsl:value-of select="generate-id(.)"/>
+                                                    <xsl:value-of select="nf:removeSpecialCharacters($ada-id)"/>
                                                 </xsl:when>
                                                 <xsl:otherwise>
                                                     <xsl:choose>
@@ -2248,6 +2248,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </identifier>
+                        <!-- TODO alle inhoud van dit voorschrift meegven in de display -->
                         <display value="Verstrekkingsverzoek met identificatie {./@value} in identificerend systeem {./@root}."/>
                     </authorizingPrescription>
                 </xsl:for-each>
@@ -3602,7 +3603,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="fhir-resource-id">
                             <xsl:choose>
                                 <xsl:when test="$uuid">
-                                    <xsl:value-of select="generate-id(.)"/>
+                                    <xsl:value-of select="nf:removeSpecialCharacters($ada-id)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
@@ -3658,7 +3659,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="fhir-resource-id">
                             <xsl:choose>
                                 <xsl:when test="$uuid">
-                                    <xsl:value-of select="generate-id(.)"/>
+                                    <xsl:value-of select="nf:removeSpecialCharacters($patient-fullUrl)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./naamgegevens/geslachtsnaam/achternaam/@value))"/>
@@ -3703,7 +3704,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="fhir-resource-id">
                             <xsl:choose>
                                 <xsl:when test="$uuid">
-                                    <xsl:value-of select="generate-id(.)"/>
+                                    <xsl:value-of select="nf:removeSpecialCharacters($ada-id)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(.//*[not(ancestor-or-self::zorgaanbieder)]/@value, ''))))"/>
@@ -3731,11 +3732,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="practitionerRole-entry" match="zorgverlener" mode="doPractitionerRoleEntry">
         <entry>
             <!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
-            <fullUrl value="{nf:get-fhir-uuid(./..)}"/>
+            <xsl:variable name="unique-id" select="nf:get-fhir-uuid(./..)"/>
+            <fullUrl value="{$unique-id}"/>
             <resource>
                 <xsl:choose>
                     <xsl:when test="$referById">
-                        <xsl:variable name="fhir-resource-id" select="generate-id(./..)"/>
+                        <xsl:variable name="fhir-resource-id" select="nf:removeSpecialCharacters($unique-id)"/>
                         <xsl:call-template name="nl-core-practitionerrole-2.0">
                             <xsl:with-param name="ada-zorgverlener" select="."/>
                             <xsl:with-param name="practitionerrole-id" select="$fhir-resource-id"/>
@@ -3767,7 +3769,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="fhir-resource-id">
                             <xsl:choose>
                                 <xsl:when test="$uuid">
-                                    <xsl:value-of select="generate-id(.)"/>
+                                    <xsl:value-of select="nf:removeSpecialCharacters($relatedperson-fullUrl)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:value-of select="upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))"/>
