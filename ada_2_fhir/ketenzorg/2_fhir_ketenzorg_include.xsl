@@ -115,7 +115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-condition>
         </xsl:for-each-group>
     </xsl:variable>
-    
+
     <xsl:variable name="bouwstenen" as="element(f:entry)*">
         <!-- AllergieIntoleranties, voor nu alleen de medicatie overgevoeligheden -->
         <xsl:for-each select="//allergy_intolerance[allergy_category[@code = '419511003'][@codeSystem = $oidSNOMEDCT]]">
@@ -479,6 +479,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Practitioner>
         </xsl:for-each>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc/>
         <xd:param name="ada-zorgverlener"/>
@@ -1151,6 +1152,183 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>Convert ADA contactverslag entries to gp-JournalEntry ((http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry) and gp-EncounterReport instance (http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport) instances.</xd:desc>
+        <xd:param name="rulesToInclude">The journal rule types to include in the output as a collection of 'S', 'O', 'E' and 'P'.</xd:param>
+    </xd:doc>
+    <xsl:template match="contactverslag" as="element(f:entry)*" mode="bouwstenenContactVerslag">
+        <xsl:param
+            name="rulesToInclude"
+            as="xs:string*"
+            select="('S','O','E','P')"/>
+        <xsl:for-each select="//contactverslag[journal_entry/type/@code=$rulesToInclude]">
+            <xsl:variable name="gp-JournalEntries" as="element(f:Observation)+">
+                <xsl:apply-templates select="journal_entry[type/@code=$rulesToInclude]" mode="gp-JournalEntry">
+                    <xsl:with-param name="author" select="../bundle/author"/>
+                    <xsl:with-param name="subject" select="../bundle/subject"/>
+                </xsl:apply-templates>
+            </xsl:variable>
+            
+            <entry xmlns="http://hl7.org/fhir">
+                <resource xmlns="http://hl7.org/fhir">
+                    <xsl:call-template name="gp-EncounterReport">
+                        <xsl:with-param name="author" select="../bundle/author"/>
+                        <xsl:with-param name="subject" select="../bundle/subject"/>
+                        <xsl:with-param name="gp-JournalEntries" select="$gp-JournalEntries"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+            
+            <xsl:for-each select="$gp-JournalEntries">
+                <entry xmlns="http://hl7.org/fhir">
+                    <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                    <resource>
+                        <xsl:copy-of select="."/>
+                    </resource>
+                </entry>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to facilitate mapping journal entries to the gp-JournalEntry FHIR instance (http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry, profile on Observation)</xd:desc>
+        <xd:param name="author">Author entry from the bundle</xd:param>
+        <xd:param name="subject">Subject entry from the bundle</xd:param>
+    </xd:doc>
+    <xsl:template name="gp-JournalEntry" match="journal_entry" mode="gp-JournalEntry">
+        <xsl:param name="author" as="element()"/>
+        <xsl:param name="subject" as="element()"/>
+        <Observation xmlns="http://hl7.org/fhir">
+            <status value="final"/>
+            <code>
+                <xsl:call-template name="code-to-CodeableConcept">
+                    <xsl:with-param name="in" select="type"/>
+                </xsl:call-template>
+            </code>
+            <subject>
+                <xsl:apply-templates select="$subject" mode="doPatientReference"/>
+            </subject>
+            <context>
+                <!-- TODO: This should be a gp-Encounter reference, but that's
+                     not yet supporded in the ADA template -->
+            </context>
+            <performer>
+                <xsl:apply-templates select="$author" mode="doPractitionerReference"/>
+            </performer>
+            <valueString value="{text/@value}"/>
+            
+            <!-- If ICPC coding is present and we're dealing with an 'S' or 'E'
+                 entry, include it as a component -->
+            <xsl:choose>
+                <xsl:when test="type[@conceptId='2.16.840.1.113883.2.4.3.11.60.66.2.3.3199' and @code=('S', 'E')] and problem[problem_type/@codeSystem='2.16.840.1.113883.6.96']">
+                    <component>
+                        <code>
+                            <coding>
+                                <xsl:choose>
+                                    <xsl:when test="type/@code='S'">
+                                        <system vanlue="http://hl7.org/fhir/v3/ActCode"/>
+                                        <code value="ADMDX"/>
+                                        <display value="admitting diagnosis"/>
+                                    </xsl:when>
+                                    <xsl:when test="type/@code='E'">
+                                        <system value="http://hl7.org/fhir/v3/ActCode"/>
+                                        <code value="DISDX"/>
+                                        <display value="discharge diagnosis"/>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </coding>
+                        </code>
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="problem/problem_name"/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </component>
+                </xsl:when>
+            </xsl:choose>
+        </Observation>
+    </xsl:template>
+        
+    <xd:doc>
+        <xd:desc>Template for constructing a gp-EncounterReport instance (http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport, profile on Composition) from a collection of gp-JournalEntry instances.</xd:desc>
+        <xd:param name="author">Author entry from the bundle</xd:param>
+        <xd:param name="subject">Patient entry from the bundle</xd:param>
+        <xd:param name="gp-JournalEntries">The journal entries to include as gp-JournalEntry instances</xd:param>
+    </xd:doc>
+    <xsl:template name="gp-EncounterReport">
+        <xsl:param name="author" as="element()"/>
+        <xsl:param name="subject" as="element()"/>
+        <xsl:param name="gp-JournalEntries" as="element(f:Observation)+"/>
+        
+        <Composition xmlns="http://hl7.org/fhir">
+            <id value="{nf:removeSpecialCharacters(hcimroot/identification_number/@value)}"/>
+            <meta>
+                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
+            </meta>
+            <status value="final"/>
+            <type>
+                <coding>
+                    <system value="http://loinc.org"/>
+                    <code value="67781-5"/>
+                </coding>
+            </type>
+            <xsl:variable name="patient">
+                <xsl:apply-templates select="$subject" mode="doPatientReference"/>
+            </xsl:variable>
+            <subject>
+                <xsl:copy-of select="$patient"/>
+            </subject>
+            <encounter>
+                <!-- TODO: This should be a gp-Encounter reference, but that's
+                     not yet supporded in the ADA template -->
+            </encounter>
+            <date value="{normalize-space(hcimroot/date_time/@value)}" />
+            <author>
+                <xsl:apply-templates select="$author" mode="doPractitionerReference"/>
+            </author>
+            
+            <!-- As title, the display name of the 'E' entry can be used.
+                 If no 'E' entry is availabe, fallback to a generic title. -->
+            <xsl:variable name="e_entry" as="element()?">
+                <xsl:copy-of select="$gp-JournalEntries/f:component[f:code//f:code/@value='DISDX'][1]"/>
+            </xsl:variable>
+            <xsl:choose>
+                <xsl:when test="$e_entry">
+                    <title value="{$e_entry//f:valueCodeableConcept//f:display/@value}"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <title value="{concat('Contactverslag ', $patient/*[local-name()='display']/@value)}"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <!-- Add the journal entries -->
+            <xsl:for-each select="$gp-JournalEntries">
+                <section>
+                    <!-- When an ICPC code is attached in the component, add it
+                         here in the extension -->
+                    <xsl:if test="f:component//f:system/@value='http://hl7.org/fhir/sid/icpc-1-nl'">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-icpc-1-nl">
+                            <xsl:copy-of select="f:component/f:valueCodeableConcept"/>
+                        </extension>
+                    </xsl:if>
+    
+                    <xsl:copy-of select="f:code"/>
+                    
+                    <text>
+                        <status value="additional"/>
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                            <xsl:value-of select="f:valueString/@value"/>
+                        </div>
+                    </text>
+                    
+                    <entry>
+                        <reference value="{nf:get-fhir-uuid(.)}"/>
+                    </entry>
+                </section>
+            </xsl:for-each>
+        </Composition>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc/>
         <xd:param name="resourceType"/>
         <xd:param name="group-key"/>
@@ -1207,7 +1385,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyDefault" as="xs:string?">
         <xsl:param name="in" as="element()?"/>
-        <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@valu, ''), string-join($in//@root, ''), string-join($in//@code, ''), string-join($in//@codeSystem, ''), string-join($in//@nullFlavor, ''))))"/>
+        <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value, ''), string-join($in//@root, ''), string-join($in//@code, ''), string-join($in//@codeSystem, ''), string-join($in//@nullFlavor, ''))))"/>
     </xsl:function>
 
     <xd:doc>
