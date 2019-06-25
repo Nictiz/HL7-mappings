@@ -68,7 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:with-param name="medicatieafspraak" select="."/>
 						</xsl:call-template>
 					</xsl:for-each>
-					<!-- verstrekkingsverzoeken -->
+					<!-- verstrekkingsverzoeken - should not be there, but if they are we will convert -->
 					<xsl:for-each select="./verstrekkingsverzoek">
 						<xsl:call-template name="zib-DispenseRequest-2.0">
 							<xsl:with-param name="verstrekkingsverzoek" select="."/>
@@ -85,7 +85,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							</resource>
 						</entry>
 					</xsl:for-each>
-					<xsl:for-each select="./verstrekking">
+				    <!-- verstrekkingen - should not be there, but if they are we will convert -->
+				    <xsl:for-each select="./verstrekking">
 						<entry>
 							<fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
 							<resource>
@@ -96,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</entry>
 					</xsl:for-each>
 					<xsl:for-each select="./medicatie_gebruik">
-						<xsl:call-template name="zib-MedicationUse-2.0">
+						<xsl:call-template name="zib-MedicationUse-2.2">
 							<xsl:with-param name="medicatiegebruik" select="."/>
 						</xsl:call-template>
 					</xsl:for-each>
