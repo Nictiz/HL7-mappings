@@ -31,12 +31,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer bij resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referByIdOverride" as="xs:boolean" select="false()"/>
+    <!-- default MedMij only Evaluation, Plan -->
+    <xsl:param name="rulesToInclude" select="('E', 'P')"/>
     
-    <!-- Var to select the rules that will be included in the output. Available
-         options are 'S', 'O', 'E' and 'P' -->   
-<!--    <xsl:variable name="journalTypesToInclude" select="('E','P')" as="xs:string*"/>-->
-    <xsl:import href="test.xml"/>
-
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patient-entries | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
     </xsl:variable>
@@ -47,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
             <xsl:variable name="bouwstenen" as="element()*">
                 <xsl:apply-templates mode="bouwstenenContactVerslag">
-                    <xsl:with-param name="rulesToInclude" as="xs:string*" select="('E','P')"/>
+                    <xsl:with-param name="rulesToInclude" as="xs:string*" select="$rulesToInclude"/>
                 </xsl:apply-templates>
             </xsl:variable>
             <xsl:variable name="entries" as="element(f:entry)*">
