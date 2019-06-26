@@ -230,7 +230,7 @@ __NUMBEREDHEADINGS__
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Creates a wiki table row</xd:desc>
         <xd:param name="level">The indent level in the table - starts with 1</xd:param>
         <xd:param name="element-name">Optional param to override the default element name</xd:param>
     </xd:doc>
@@ -342,18 +342,22 @@ __NUMBEREDHEADINGS__
 
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="code-in"/>
+        <xd:desc>Creates value string for an ada element which has value domain 'code'</xd:desc>
+        <xd:param name="code-in">The ada element which has value domain 'code'</xd:param>
     </xd:doc>
     <xsl:function name="nf:element-code-waarde" as="xs:string?">
         <xsl:param name="code-in" as="element()?"/>
         <xsl:for-each select="$code-in[@originalText | @displayName | @codeSystem | @code | @codeSystemName]">
+            <xsl:variable name="oid-codesystem" select="@codeSystem"/>
             <xsl:variable name="waarde" as="xs:string*">
                 <xsl:value-of select="normalize-space(concat(./@originalText, ' ', ./@displayName))"/>
                 <xsl:value-of select="concat(' (code = ''', ./@code, ''' in codeSystem ''')"/>
                 <xsl:choose>
                     <xsl:when test="./@codeSystemName">
                         <xsl:value-of select="./@codeSystemName"/>
+                    </xsl:when>
+                    <xsl:when test="$oidMap[@oid = $oid-codesystem][@displayName]">
+                        <xsl:value-of select="$oidMap[@oid = $oid-codesystem]/@displayName"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="./@codeSystem"/>
@@ -410,9 +414,9 @@ __NUMBEREDHEADINGS__
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Maakt een waardestring gebaseerd op het valuedomain (datatype) uit de ada release file</xd:desc>
-        <xd:param name="in">Het gegevenselement uit ada waar het om gaat</xd:param>
-        <xd:param name="value-domain">Het waardedomein van dit gegevenselement</xd:param>
+        <xd:desc>Creates a value string based on the value domain (datatype) from the ada release file</xd:desc>
+        <xd:param name="in">The xml element (dataset concept) from ada this concerns</xd:param>
+        <xd:param name="value-domain">The value domain of this dataset concept</xd:param>
     </xd:doc>
     <xsl:function name="nf:maak-waarde-basedon-valuedomain" as="xs:string*">
         <xsl:param name="in" as="element()?"/>
