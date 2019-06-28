@@ -19,8 +19,18 @@
 
     <xsl:param name="date-conversion-xml" select="document('./date_conversion-peri.xml')"/>
     <xsl:param name="do-ada-files" select="true()"/>
+    <xsl:param name="param-date-T" as="xs:date"/>
 
-    <xsl:variable name="datum-T" as="xs:date" select="xs:date($date-conversion-xml/date_conversion/datum_T/@value)"/>
+    <xsl:variable name="datum-T" as="xs:date">
+        <xsl:choose>
+            <xsl:when test="$param-date-T castable as xs:date">
+                <xsl:value-of select="$param-date-T"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="xs:date($date-conversion-xml/date_conversion/datum_T/@value)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
 
 
     <xd:doc>
