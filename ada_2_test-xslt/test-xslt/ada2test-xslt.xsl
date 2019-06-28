@@ -39,6 +39,7 @@
         <xd:param name="parent-concept">the parent concept (association) as exists in the transaction xml ($doc-ad-trans-instance), if applicable</xd:param>
         <xd:param name="override-parent-xpath">parameter to pass a custom xpath string for the parent element, 
             must get precedence over the other input parameters for calculating the appropriate xpath for this concept </xd:param>
+        <xd:param name="override-ada-input"/>
     </xd:doc>
     <xsl:template match="concept" mode="maak-my-concept">
         <xsl:param name="parent-hl7-element" select="$doc-ad-trans-instance//hl7:instance"/>
@@ -394,7 +395,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="child-xpath-tree" select="$limited-xpath-tree//concept[@ref=$child-concept-ref]/ancestor::node()"/>
+        <xsl:variable name="child-xpath-tree" select="$limited-xpath-tree//concept[@ref = $child-concept-ref]/ancestor::node()"/>
 
 
         <xsl:variable name="xpath-tree" select="$child-xpath-tree[position() gt 2]"/>
