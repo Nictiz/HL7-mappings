@@ -1,6 +1,7 @@
-<community name="ICA612_2_MedMij112All" projectId="2.16.840.1.113883.2.4.3.11.60.20" displayName="Potentiële contraindicaties 2 zib AllergieIntolerantie">
+<?xml version="1.0" encoding="UTF-8"?>
+<community name="ICA612_2_MedMij112Alert" projectId="2.16.840.1.113883.2.4.3.11.60.20" displayName="Potentiële contraindicaties 2 zib Alert">
     <desc language="nl-NL">
-        <div>Mapping van Potentiële contraindicaties naar MedMij 1.1.2 Allergie intolerantie (2017 zib AllergieIntolerantie).</div>
+        <div>Mapping van Potentiële contraindicaties naar MedMij 1.1.2 Alert (2017 zib Alert).</div>
     </desc>
     <access>
         <author username="arianne" rights="rw"/>
@@ -38,13 +39,13 @@
         </data>
     </prototype>
     <associations>
-        <!--AllergyIntolerance-->
+        <!--Alert-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.1" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.3.1" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
-            <data type="mapConcept">/REPC_IN000024NL/ControlActProcess/subject/Condition[code = ('DINT', 'DALG', 'DNAINT')][not(@negationInd='true')]</data>
-            <data type="mapCard">0..*</data>
-            <data type="mapDescription">Bij allergie/intolerantie kunnen alleen overgevoeligheden die aanwezig zijn worden gemapt. De overige condities (met code 'DX') kunnen niet worden gemapt op AllergieIntolerantie. In 6.12 zijn er alleen overgevoeligheden voor medicatie, overige overgevoeligheden zijn geen onderdeel van de 6.12 informatiestandaard. In 6.12 is het niet toegestaan om condities te ontkennen, als dit tóch gebeurt worden deze condities niet gemapt.</data>
+            <data type="mapConcept">/REPC_IN000024NL/ControlActProcess/subject/Condition[code = ('DX')][not(@negationInd='true')]</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">In 6.12 is het niet toegestaan om condities te ontkennen, als dit tóch gebeurt worden deze condities niet gemapt.</data>
         </association>
         <!--Basic Components HCIMRoot-->
         <association>
@@ -52,11 +53,35 @@
             <data type="mapType"/>
             <data type="mapConcept">-</data>
             <data type="mapCard">-</data>
+            <data type="mapDescription">6.12 kent geen apart concept voor Alert, maar legt alleen een diagnose vast én maakt deze onderdeel van een ICA-transactie. Diagnose mapt op zib Probleem, die ook onderdeel is van Alert. De gegevens uit basiscomponenten worden daarom gevuld bij de zib Probleem en niet bij alert.</data>
+        </association>
+        <!--Condition-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.3.3" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">/REPC_IN000024NL/ControlActProcess/subject/Condition[code = ('DX')][not(@negationInd='true')]</data>
+            <data type="mapCard">0..*</data>
+            <data type="mapDescription">In 6.12 is het niet toegestaan om condities te ontkennen, als dit tóch gebeurt worden deze condities niet gemapt.</data>
+        </association>
+        <!--Problem-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.1" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">""</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <!--Basic Components HCIMRoot-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.1" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">group</data>
+            <data type="mapConcept">-</data>
+            <data type="mapCard">0..1</data>
             <data type="mapDescription">-</data>
         </association>
         <!--IdentificationNumber-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.6" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">identifier</data>
             <data type="mapConcept">id</data>
             <data type="mapCard">1..1</data>
@@ -64,7 +89,7 @@
         </association>
         <!--InformationSource-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.2" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">informant</data>
             <data type="mapCard">0..*</data>
@@ -72,23 +97,15 @@
         </association>
         <!--PatientAsInformationSource-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType">group</data>
-            <data type="mapConcept">patient</data>
-            <data type="mapCard">0..1</data>
-            <data type="mapDescription">-</data>
-        </association>
-        <!--Patient-->
-        <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.7.2.140" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.3" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">subject/patient</data>
             <data type="mapCard">1..1</data>
             <data type="mapDescription">de referentie naar de patiënt die deze allergie/intolerantie heeft (en dus opgenomen is in Condition/subject)</data>
         </association>
-        <!--HealthProfessional-->
+        <!--Patient-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.4" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.7.2.140" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">exists(assignedPerson)</data>
             <data type="mapCard">0..1</data>
@@ -96,15 +113,20 @@
         </association>
         <!--HealthProfessional-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.7.2.141" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.4" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">assignedPerson</data>
             <data type="mapCard">0..1</data>
             <data type="mapDescription">hierin zit de zib zorgverlener</data>
         </association>
+        <!--HealthProfessional-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.7.2.141" flexibility="2017-12-31T00:00:00"/>
+                <data type="mapDescription">-</data>
+        </association>
         <!--RelatedPersonAsInformationSource-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.5" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.5" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">exists(responsibleParty)</data>
             <data type="mapCard">0..1</data>
@@ -112,7 +134,7 @@
         </association>
         <!--Contact-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.7.2.142" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.7.2.142" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">responsibleParty</data>
             <data type="mapCard">0..1</data>
@@ -120,7 +142,7 @@
         </association>
         <!--Author-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.7" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.7" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">author</data>
             <data type="mapCard">1..1</data>
@@ -128,7 +150,7 @@
         </association>
         <!--PatientAsAuthor-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.8" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.8" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">patient</data>
             <data type="mapCard">0..1</data>
@@ -136,15 +158,15 @@
         </association>
         <!--Patient-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.7.2.143" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType">group</data>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.7.2.143" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">identifier</data>
             <data type="mapConcept">subject/patient</data>
             <data type="mapCard">1..1</data>
             <data type="mapDescription">de referentie naar de patiënt die deze allergie/intolerantie heeft (en dus opgenomen is in Condition/subject)</data>
         </association>
         <!--HealthProfessionalAsAuthor-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.9" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.9" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">exists(assignedPerson)</data>
             <data type="mapCard">0..1</data>
@@ -152,31 +174,31 @@
         </association>
         <!--HealthProfessional-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.7.2.144" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType">group</data>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.7.2.144" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">identifier</data>
             <data type="mapConcept">assignedPerson</data>
             <data type="mapCard">0..1</data>
             <data type="mapDescription">hierin zit de zib zorgverlener</data>
         </association>
         <!--RelatedPersonAsAuthor-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.10" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.10" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">group</data>
             <data type="mapConcept">-</data>
             <data type="mapCard">-</data>
             <data type="mapDescription">Deze bestaat niet in 6.12</data>
         </association>
         <!--Contact-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.7.2.145" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.7.2.145" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">identifier</data>
             <data type="mapConcept">-</data>
             <data type="mapCard">-</data>
             <data type="mapDescription">-</data>
         </association>
         <!--Subject-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.11" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">subject</data>
             <data type="mapCard">1..1</data>
@@ -184,7 +206,7 @@
         </association>
         <!--Patient-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.12" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
             <data type="mapConcept">patient</data>
             <data type="mapCard">1..1</data>
@@ -197,7 +219,7 @@
         </association>
         <!--RelatedPersonAsSubject-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.13" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.13" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType"/>
             <data type="mapConcept">-</data>
             <data type="mapCard">-</data>
@@ -205,103 +227,101 @@
         </association>
         <!--Contact-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.7.2.147" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.7.2.147" flexibility="2017-12-31T00:00:00"/>
             <data type="mapDescription">-</data>
         </association>
         <!--DateTime-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.14" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.999.1.0.0.1.14" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">datetime</data>
             <data type="mapConcept">author/time</data>
             <data type="mapCard">0..1</data>
             <data type="mapDescription">-</data>
         </association>
-        <!--CausativeAgent-->
+        <!--ProblemAnatomicalLocation-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType">code</data>
-            <data type="mapConcept">causativeAgent/(administerableMaterialKind OR administerableMedicationKind)</data>
-            <data type="mapCard">0..1</data>
-            <data type="mapDescription">In 6.12 is dit één van de volgende
-* Stofnaamcode (SNK) OID 2.16.840.1.113883.2.4.4.1.750
-* Stofnaamcode i.c.m. toedieningsweg (SSK) OID 2.16.840.1.113883.2.4.4.1.725
-* Ongewenste groep OID 2.16.840.1.113883.2.4.4.1.902.122
-* Handelsproduct (HPK)  2.16.840.1.113883.2.4.4.7</data>
-        </association>
-        <!--AllergyCategory-->
-        <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.4" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType">code</data>
-            <data type="mapConcept">exists(causativeAgent)</data>
-            <data type="mapCard">1..1</data>
-            <data type="mapDescription">Alleen gebruiken als er een causativeAgent bestaat. Vaste waarde: Medicijn (Propensity to adverse reactions to drug, 419511003, SNOMED CT)</data>
-        </association>
-        <!--AllergyStatus-->
-        <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.5" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType">code</data>
-            <data type="mapConcept">statusCode</data>
-            <data type="mapCard">0..1</data>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.11" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapConcept">-</data>
             <data type="mapDescription">-</data>
         </association>
-        <!--StartDateTime-->
+        <!--ProblemLaterality-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.6" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapType">string</data>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.12" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapConcept">-</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <!--ProblemType-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.8" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">vaste waarde: Diagnose (SNOMED CT 282291009)</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">Condition/code heeft vaste waarde 'DX', hetgeen mapt op Diagnose</data>
+        </association>
+        <!--ProblemName-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.3" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">value</data>
+            <data type="mapCard">1..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <!--ProblemStartDate-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.6" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">date</data>
             <data type="mapConcept">effectiveTime/low</data>
             <data type="mapCard">0..1</data>
             <data type="mapDescription">-</data>
         </association>
-        <!--Criticality-->
+        <!--ProblemEndDate-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.9" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">date</data>
+            <data type="mapConcept">effectiveTime/high</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">-</data>
+        </association>
+        <!--ProblemStatus-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.4" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">code</data>
-            <data type="mapConcept">-</data>
-            <data type="mapCard">-</data>
-            <data type="mapDescription">Ernst van de observatie mag niet gebruikt worden in 6.12</data>
+            <data type="mapConcept">statusCode</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">
+* active -> actueel
+* completed, obsolete, nullified -> niet actueel</data>
+        </association>
+        <!--VerificationStatus-->
+        <association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.10" flexibility="2017-12-31T00:00:00"/>
+             <data type="mapDescription">-</data>
         </association>
         <!--Comment-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.9" flexibility="2017-12-31T00:00:00"/>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.5" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">string</data>
             <data type="mapConcept">subjectOf2/annotation</data>
             <data type="mapCard">0..*</data>
             <data type="mapDescription">6.12 heeft bij de comment ook verplicht een auteur, waarin een tijdstip en zorgverlener/id kan worden vastgelegd.</data>
         </association>
-        <!--Reaction-->
+        <!--AlertName-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.10" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapDescription">Bestaat niet in 6.12</data>
-        </association>
-        <!--Symptom-->
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.3.4" flexibility="2017-12-31T00:00:00"/>
+               <data type="mapDescription">-</data>
+        </association>       
+        <!--StartDateTime-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.11" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapDescription">-</data>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.3.5" flexibility="2017-12-31T00:00:00"/>
+               <data type="mapDescription">-</data>
         </association>
-        <!--SpecificSubstance-->
+        <!--AlertType-->
         <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapDescription">-</data>
-        </association>
-        <!--ReactionDescription-->
-        <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.13" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapDescription">-</data>
-        </association>
-        <!--Severity-->
-        <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.14" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapDescription">-</data>
-        </association>
-        <!--RouteOfExposure-->
-        <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.15" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapDescription">-</data>
-        </association>
-        <!--ReactionTime-->
-        <association>
-            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.17" flexibility="2017-12-31T00:00:00"/>
-            <data type="mapDescription">-</data>
-        </association>
+            <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.3.6" flexibility="2017-12-31T00:00:00"/>
+            <data type="mapType">code</data>
+            <data type="mapConcept">vaste waarde</data>
+            <data type="mapCard">0..1</data>
+            <data type="mapDescription">mappen als 'conditie'. 6.12 kent het type 'alert' niet.</data>
+        </association>      
     </associations>
 </community>

@@ -54,11 +54,12 @@
                      <name language="en-US">AllergyIntolerance</name>
                      <desc language="en-US">Root concept of the AllergyIntolerance information model. This root concept contains all data elements of the AllergyIntolerance information model.</desc>
                      <!--Added community stuff using xslt-->
+                     <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.1"-->
                      <community name="ICA612_2_MedMij112All">
                         <data type="mapType" label="Type" datatype="enum">group</data>
-                        <data type="mapConcept" label="Concept" datatype="text">/REPC_IN000024NL/ControlActProcess/subject/Condition[code = ('DINT', 'DALG', 'DNAINT')]</data>
+                        <data type="mapConcept" label="Concept" datatype="text">/REPC_IN000024NL/ControlActProcess/subject/Condition[code = ('DINT', 'DALG', 'DNAINT')][not(@negationInd='true')]</data>
                         <data type="mapCard" label="Card" datatype="text">0..*</data>
-                        <data type="mapDescription" label="Description" datatype="text">Bij allergie/intolerantie kunnen alleen overgevoeligheden worden gemapt. De overige condities (met code 'DX') kunnen niet worden gemapt op AllergieIntolerantie. In 6.12 zijn er alleen overgevoeligheden voor medicatie, overige overgevoeligheden zijn geen onderdeel van de 6.12 informatiestandaard.</data>
+                        <data type="mapDescription" label="Description" datatype="text">Bij allergie/intolerantie kunnen alleen overgevoeligheden die aanwezig zijn worden gemapt. De overige condities (met code 'DX') kunnen niet worden gemapt op AllergieIntolerantie. In 6.12 zijn er alleen overgevoeligheden voor medicatie, overige overgevoeligheden zijn geen onderdeel van de 6.12 informatiestandaard. In 6.12 is het niet toegestaan om condities te ontkennen, als dit tóch gebeurt worden deze condities niet gemapt.</data>
                      </community>
                      <implementation shortName="allergy_intolerance"/>
                      <concept id="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1"
@@ -73,6 +74,7 @@
                         <name language="en-US">Basic Components HCIMRoot</name>
                         <desc language="en-US">Rootconcept of the information model in question</desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1"-->
                         <community name="ICA612_2_MedMij112All">
                            <data type="mapType" label="Type" datatype="enum"/>
                            <data type="mapConcept" label="Concept" datatype="text">-</data>
@@ -92,6 +94,7 @@
                            <name language="en-US">IdentificationNumber</name>
                            <desc language="en-US">Globally unique number that identifies the instantiation of the information model. The number is composed of an identification of the issuer organization and a unique number assigned by this organization</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapType" label="Type" datatype="enum">identifier</data>
                               <data type="mapConcept" label="Concept" datatype="text">id</data>
@@ -120,6 +123,7 @@
                            <name language="en-US">InformationSource</name>
                            <desc language="en-US">The person who provided the information and ensures the correctness of it.<br/>This is not always a healthprofessional, but it may also be the patient or another person, such as a parent, caretaker or guardian.<br/>The source of information does not have to be the author of the information, who in that case is only instrumental in capturing the information.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapType" label="Type" datatype="enum">group</data>
                               <data type="mapConcept" label="Concept" datatype="text">informant</data>
@@ -145,6 +149,7 @@
                               <name language="en-US">PatientAsInformationSource</name>
                               <desc language="en-US">The patient as source of the information</desc>
                               <!--Added community stuff using xslt-->
+                              <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3"-->
                               <community name="ICA612_2_MedMij112All">
                                  <data type="mapType" label="Type" datatype="enum">group</data>
                                  <data type="mapConcept" label="Concept" datatype="text">patient</data>
@@ -164,11 +169,12 @@
                                  <name language="en-US">Patient</name>
                                  <desc language="en-US">Root concept of the Patient information model. This root concept contains all data elements of the Patient information model.</desc>
                                  <!--Added community stuff using xslt-->
+                                 <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.7.2.140"-->
                                  <community name="ICA612_2_MedMij112All">
                                     <data type="mapType" label="Type" datatype="enum">group</data>
                                     <data type="mapConcept" label="Concept" datatype="text">subject/patient</data>
                                     <data type="mapCard" label="Card" datatype="text">1..1</data>
-                                    <data type="mapDescription" label="Description" datatype="text">hierin zetten we een referentie naar de patiënt die deze allergie/intolerantie heeft (en dus opgenomen is in Condition/subject)</data>
+                                    <data type="mapDescription" label="Description" datatype="text">de referentie naar de patiënt die deze allergie/intolerantie heeft (en dus opgenomen is in Condition/subject)</data>
                                  </community>
                                  <implementation shortName="patient"/>
                                  <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1"
@@ -197,6 +203,7 @@
                               <name language="en-US">HealthProfessional</name>
                               <desc language="en-US">The health professional as source of the information</desc>
                               <!--Added community stuff using xslt-->
+                              <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.4"-->
                               <community name="ICA612_2_MedMij112All">
                                  <data type="mapType" label="Type" datatype="enum">group</data>
                                  <data type="mapConcept" label="Concept" datatype="text">exists(assignedPerson)</data>
@@ -216,6 +223,7 @@
                                  <name language="en-US">HealthProfessional</name>
                                  <desc language="en-US">Root concept of the HealthProfessional information model. This root concept contains all data elements of the HealthProfessional information model.<br/>When referring to this information model the role the health professional fulfils in the healthcare process can be addressed additionally. For health professionals, this could be for example main practitioner or referrer.</desc>
                                  <!--Added community stuff using xslt-->
+                                 <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.7.2.141"-->
                                  <community name="ICA612_2_MedMij112All">
                                     <data type="mapType" label="Type" datatype="enum">group</data>
                                     <data type="mapConcept" label="Concept" datatype="text">assignedPerson</data>
@@ -249,6 +257,7 @@
                               <name language="en-US">RelatedPersonAsInformationSource</name>
                               <desc language="en-US">The related person (parent, caregiver, ...) as source of the information</desc>
                               <!--Added community stuff using xslt-->
+                              <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.5"-->
                               <community name="ICA612_2_MedMij112All">
                                  <data type="mapType" label="Type" datatype="enum">group</data>
                                  <data type="mapConcept" label="Concept" datatype="text">exists(responsibleParty)</data>
@@ -268,6 +277,7 @@
                                  <name language="en-US">Contact</name>
                                  <desc language="en-US">Root concept of the Contact information model. This root concept contains all data elements of the Contact information model.</desc>
                                  <!--Added community stuff using xslt-->
+                                 <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.7.2.142"-->
                                  <community name="ICA612_2_MedMij112All">
                                     <data type="mapType" label="Type" datatype="enum">group</data>
                                     <data type="mapConcept" label="Concept" datatype="text">responsibleParty</data>
@@ -302,6 +312,7 @@
                            <name language="en-US">Author</name>
                            <desc language="en-US">The person who has recorded the information. Depending on the information system in which the data is recorded, this may be the patient, healthcare provider or other person.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.7"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapType" label="Type" datatype="enum">group</data>
                               <data type="mapConcept" label="Concept" datatype="text">author</data>
@@ -321,6 +332,7 @@
                               <name language="en-US">PatientAsAuthor</name>
                               <desc language="en-US">The patient as author of the information</desc>
                               <!--Added community stuff using xslt-->
+                              <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.8"-->
                               <community name="ICA612_2_MedMij112All">
                                  <data type="mapType" label="Type" datatype="enum">group</data>
                                  <data type="mapConcept" label="Concept" datatype="text">patient</data>
@@ -340,11 +352,12 @@
                                  <name language="en-US">Patient</name>
                                  <desc language="en-US">Root concept of the Patient information model. This root concept contains all data elements of the Patient information model.</desc>
                                  <!--Added community stuff using xslt-->
+                                 <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.7.2.143"-->
                                  <community name="ICA612_2_MedMij112All">
                                     <data type="mapType" label="Type" datatype="enum">group</data>
                                     <data type="mapConcept" label="Concept" datatype="text">subject/patient</data>
                                     <data type="mapCard" label="Card" datatype="text">1..1</data>
-                                    <data type="mapDescription" label="Description" datatype="text">hierin zetten we een referentie naar de patiënt die deze allergie/intolerantie heeft (en dus opgenomen is in Condition/subject)</data>
+                                    <data type="mapDescription" label="Description" datatype="text">de referentie naar de patiënt die deze allergie/intolerantie heeft (en dus opgenomen is in Condition/subject)</data>
                                  </community>
                                  <implementation shortName="patient"/>
                                  <contains ref="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1"
@@ -373,6 +386,7 @@
                               <name language="en-US">HealthProfessionalAsAuthor</name>
                               <desc language="en-US">The health professional as author of the information </desc>
                               <!--Added community stuff using xslt-->
+                              <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.9"-->
                               <community name="ICA612_2_MedMij112All">
                                  <data type="mapType" label="Type" datatype="enum">group</data>
                                  <data type="mapConcept" label="Concept" datatype="text">exists(assignedPerson)</data>
@@ -392,6 +406,7 @@
                                  <name language="en-US">HealthProfessional</name>
                                  <desc language="en-US">Root concept of the HealthProfessional information model. This root concept contains all data elements of the HealthProfessional information model.<br/>When referring to this information model the role the health professional fulfils in the healthcare process can be addressed additionally. For health professionals, this could be for example main practitioner or referrer.</desc>
                                  <!--Added community stuff using xslt-->
+                                 <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.7.2.144"-->
                                  <community name="ICA612_2_MedMij112All">
                                     <data type="mapType" label="Type" datatype="enum">group</data>
                                     <data type="mapConcept" label="Concept" datatype="text">assignedPerson</data>
@@ -425,6 +440,7 @@
                               <name language="en-US">RelatedPersonAsAuthor</name>
                               <desc language="en-US">The related person (parent, caregiver, ...) as author of the information</desc>
                               <!--Added community stuff using xslt-->
+                              <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.10"-->
                               <community name="ICA612_2_MedMij112All">
                                  <data type="mapType" label="Type" datatype="enum"/>
                                  <data type="mapConcept" label="Concept" datatype="text">-</data>
@@ -444,6 +460,7 @@
                                  <name language="en-US">Contact</name>
                                  <desc language="en-US">Root concept of the Contact information model. This root concept contains all data elements of the Contact information model.</desc>
                                  <!--Added community stuff using xslt-->
+                                 <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.7.2.145"-->
                                  <community name="ICA612_2_MedMij112All">
                                     <data type="mapType" label="Type" datatype="enum"/>
                                     <data type="mapConcept" label="Concept" datatype="text">-</data>
@@ -478,6 +495,7 @@
                            <name language="en-US">Subject</name>
                            <desc language="en-US">The person to whom the information relates. Often this will be the patient, but especially in the case of small children as patients it may be information about the parent or caregiver. Especially in the nurse transfers, for example, Competence and involvement of caregivers carries a role.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapType" label="Type" datatype="enum">group</data>
                               <data type="mapConcept" label="Concept" datatype="text">subject</data>
@@ -503,6 +521,7 @@
                               <name language="en-US">Patient</name>
                               <desc language="en-US">The patient as subject of the information</desc>
                               <!--Added community stuff using xslt-->
+                              <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12"-->
                               <community name="ICA612_2_MedMij112All">
                                  <data type="mapType" label="Type" datatype="enum">group</data>
                                  <data type="mapConcept" label="Concept" datatype="text">patient</data>
@@ -522,6 +541,7 @@
                                  <name language="en-US">Patient</name>
                                  <desc language="en-US">Root concept of the Patient information model. This root concept contains all data elements of the Patient information model.</desc>
                                  <!--Added community stuff using xslt-->
+                                 <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.7.2.146"-->
                                  <community name="ICA612_2_MedMij112All">
                                     <data type="mapDescription" label="Description" datatype="text">-</data>
                                  </community>
@@ -552,6 +572,7 @@
                               <name language="en-US">RelatedPersonAsSubject</name>
                               <desc language="en-US">The related person (parent, caregiver, ...) as subject of the information</desc>
                               <!--Added community stuff using xslt-->
+                              <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.13"-->
                               <community name="ICA612_2_MedMij112All">
                                  <data type="mapType" label="Type" datatype="enum"/>
                                  <data type="mapConcept" label="Concept" datatype="text">-</data>
@@ -571,6 +592,7 @@
                                  <name language="en-US">Contact</name>
                                  <desc language="en-US">Root concept of the Contact information model. This root concept contains all data elements of the Contact information model.</desc>
                                  <!--Added community stuff using xslt-->
+                                 <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.7.2.147"-->
                                  <community name="ICA612_2_MedMij112All">
                                     <data type="mapDescription" label="Description" datatype="text">-</data>
                                  </community>
@@ -602,7 +624,11 @@
                            <name language="en-US">DateTime</name>
                            <desc language="en-US">Date and if relevant the time the event to which the information relates took place .<br/>This is the medically relevant date and time.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.0.0.14"-->
                            <community name="ICA612_2_MedMij112All">
+                              <data type="mapType" label="Type" datatype="enum">datetime</data>
+                              <data type="mapConcept" label="Concept" datatype="text">author/time</data>
+                              <data type="mapCard" label="Card" datatype="text">0..1</data>
                               <data type="mapDescription" label="Description" datatype="text">-</data>
                            </community>
                            <implementation shortName="date_time"/>
@@ -627,6 +653,7 @@
                         <name language="en-US">CausativeAgent</name>
                         <desc language="en-US">Substance, group of substances or environmental factor to which the patient is allergic or hypersensitive.</desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.2"-->
                         <community name="ICA612_2_MedMij112All">
                            <data type="mapType" label="Type" datatype="enum">code</data>
                            <data type="mapConcept" label="Concept" datatype="text">causativeAgent/(administerableMaterialKind OR administerableMedicationKind)</data>
@@ -774,6 +801,7 @@
                         <name language="en-US">AllergyCategory</name>
                         <desc language="en-US">Identifies the allergy category such as medication, food or environment.</desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.4"-->
                         <community name="ICA612_2_MedMij112All">
                            <data type="mapType" label="Type" datatype="enum">code</data>
                            <data type="mapConcept" label="Concept" datatype="text">exists(causativeAgent)</data>
@@ -863,6 +891,7 @@
                         <name language="en-US">AllergyStatus</name>
                         <desc language="en-US">Statement on the status of the patient’s hypersensitivity.</desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.5"-->
                         <community name="ICA612_2_MedMij112All">
                            <data type="mapType" label="Type" datatype="enum">code</data>
                            <data type="mapConcept" label="Concept" datatype="text">statusCode</data>
@@ -941,6 +970,7 @@
                         <desc language="en-US">The date and time at which the allergy or undesired reaction was determined. <br/>This can be an exact date and time, or a rough indication of the date (such as only the year, or the month and the year).<br/>
                         </desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.6"-->
                         <community name="ICA612_2_MedMij112All">
                            <data type="mapType" label="Type" datatype="enum">string</data>
                            <data type="mapConcept" label="Concept" datatype="text">effectiveTime/low</data>
@@ -965,6 +995,7 @@
                         <desc language="en-US">Critical extent is defined as “the potential severity of future reactions.” <br/>This represents a clinical evaluation of the worst case scenario for a future reaction. It can be based on the severity of past reactions, the dose and manner of exposure which caused reactions in the past, and the life-threatening potential of the type of reaction. Critical extent is a property of the allergy, and not of the reaction itself.<br/>
                         </desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7"-->
                         <community name="ICA612_2_MedMij112All">
                            <data type="mapType" label="Type" datatype="enum">code</data>
                            <data type="mapConcept" label="Concept" datatype="text">-</data>
@@ -1049,6 +1080,7 @@
                         <name language="en-US">LastReactionDateTime</name>
                         <desc language="en-US">Entry of the last time a hypersensitive reaction took place.</desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.8"-->
                         <community name="ICA612_2_MedMij112All"/>
                         <implementation shortName="last_reaction_date_time"/>
                         <valueDomain type="string"><!--converted to string to support things like T-500 or other syntaxes--></valueDomain>
@@ -1065,8 +1097,9 @@
                         <name language="en-US">Comment</name>
                         <desc language="en-US">Textual explanation of the hypersensitivity which cannot be entered in any of the other fields.</desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.9"-->
                         <community name="ICA612_2_MedMij112All">
-                           <data type="mapType" label="Type" datatype="enum">group</data>
+                           <data type="mapType" label="Type" datatype="enum">string</data>
                            <data type="mapConcept" label="Concept" datatype="text">subjectOf2/annotation</data>
                            <data type="mapCard" label="Card" datatype="text">0..*</data>
                            <data type="mapDescription" label="Description" datatype="text">6.12 heeft bij de comment ook verplicht een auteur, waarin een tijdstip en zorgverlener/id kan worden vastgelegd.</data>
@@ -1092,6 +1125,7 @@
                         <name language="en-US">Reaction</name>
                         <desc language="en-US">Container of the Reaction concept. This container contains all data elements of the Reaction concept.</desc>
                         <!--Added community stuff using xslt-->
+                        <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.10"-->
                         <community name="ICA612_2_MedMij112All">
                            <data type="mapDescription" label="Description" datatype="text">Bestaat niet in 6.12</data>
                         </community>
@@ -1108,6 +1142,7 @@
                            <name language="en-US">Symptom</name>
                            <desc language="en-US">The content specifications of the reaction that takes place when the patient is exposed to the causative substance.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.11"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapDescription" label="Description" datatype="text">-</data>
                            </community>
@@ -1283,6 +1318,7 @@
                            <name language="en-US">SpecificSubstance</name>
                            <desc language="en-US">More specific indication of the substance that caused the reaction. This can be a specific substance from a group of substances to which the patient is allergic or hypersensitive.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.12"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapDescription" label="Description" datatype="text">-</data>
                            </community>
@@ -1423,6 +1459,7 @@
                            <name language="en-US">ReactionDescription</name>
                            <desc language="en-US">Textual description of the reaction as a whole.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.13"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapDescription" label="Description" datatype="text">-</data>
                            </community>
@@ -1441,6 +1478,7 @@
                            <name language="en-US">Severity</name>
                            <desc language="en-US">The severity of the reaction as a result of exposure to the causative substance.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.14"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapDescription" label="Description" datatype="text">-</data>
                            </community>
@@ -1509,6 +1547,7 @@
                            <name language="en-US">RouteOfExposure</name>
                            <desc language="en-US">Way in which the patient came into contact with the causative agent or the way in which the agent was administered.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.15"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapDescription" label="Description" datatype="text">-</data>
                            </community>
@@ -1552,6 +1591,7 @@
                            <name language="en-US">ReactionTime</name>
                            <desc language="en-US">Date and time at which the reaction took place. This may also be just the date or a partial date, in the event that the exact date is unknown.</desc>
                            <!--Added community stuff using xslt-->
+                           <!--current-concept-id = "2.16.840.1.113883.2.4.3.11.60.40.1.8.2.17"-->
                            <community name="ICA612_2_MedMij112All">
                               <data type="mapDescription" label="Description" datatype="text">-</data>
                            </community>

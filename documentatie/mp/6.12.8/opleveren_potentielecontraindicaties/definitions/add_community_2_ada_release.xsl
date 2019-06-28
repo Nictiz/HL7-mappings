@@ -3,7 +3,7 @@
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <xsl:param name="community-filename" as="xs:string?">community-ICA612_2_MedMij112All.xml</xsl:param>
+    <xsl:param name="community-filename" as="xs:string?">community-ICA612_2_MedMij112Alert.xml</xsl:param>
     <xsl:variable name="community-doc" select="document($community-filename)"/>
     <xsl:variable name="community-name" select="$community-doc/community/@name"/>
 
@@ -11,16 +11,16 @@
         <xsl:variable name="current-concept-id" select="../@id"/>
         <!-- add the community stuff before implementation -->
         <xsl:comment>Added community stuff using xslt</xsl:comment>
+        <xsl:comment>current-concept-id = "<xsl:value-of select="$current-concept-id"/>"</xsl:comment>
         <community name="{$community-name}">
-            <xsl:for-each select="$community-doc//association[object/@ref=$current-concept-id]/data">
+            <xsl:for-each select="$community-doc//association[object/@ref = $current-concept-id]/data">
                 <xsl:variable name="current-type" select="@type"/>
                 <xsl:variable name="current-prototype" select="$community-doc//prototype/data[@type = $current-type]"/>
                 <data type="{$current-type}" label="{$current-prototype/@label}" datatype="{$current-prototype/@datatype}">
                     <xsl:value-of select="."/>
                 </data>
-                
             </xsl:for-each>
-           </community>
+        </community>
         <xsl:copy-of select="."/>
         <xsl:apply-templates/>
     </xsl:template>
