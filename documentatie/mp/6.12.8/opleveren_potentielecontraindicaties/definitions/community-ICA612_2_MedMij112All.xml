@@ -42,9 +42,9 @@
         <association>
             <object type="DE" ref="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.1" flexibility="2017-12-31T00:00:00"/>
             <data type="mapType">group</data>
-            <data type="mapConcept">/REPC_IN000024NL/ControlActProcess/subject/Condition[code = ('DINT', 'DALG', 'DNAINT')]</data>
+            <data type="mapConcept">/REPC_IN000024NL/ControlActProcess/subject/Condition[code = ('DINT', 'DALG', 'DNAINT')][not(@negationInd='true')]</data>
             <data type="mapCard">0..*</data>
-            <data type="mapDescription">Bij allergie/intolerantie kunnen alleen overgevoeligheden worden gemapt. De overige condities (met code 'DX') kunnen niet worden gemapt op AllergieIntolerantie. In 6.12 zijn er alleen overgevoeligheden voor medicatie, overige overgevoeligheden zijn geen onderdeel van de 6.12 informatiestandaard.</data>
+            <data type="mapDescription">Bij allergie/intolerantie kunnen alleen overgevoeligheden die aanwezig zijn worden gemapt. De overige condities (met code 'DX') kunnen niet worden gemapt op AllergieIntolerantie. In 6.12 zijn er alleen overgevoeligheden voor medicatie, overige overgevoeligheden zijn geen onderdeel van de 6.12 informatiestandaard. In 6.12 is het niet toegestaan om condities te ontkennen, als dit tóch gebeurt worden deze condities niet gemapt.</data>
         </association>
         <!--Basic Components HCIMRoot-->
         <association>
