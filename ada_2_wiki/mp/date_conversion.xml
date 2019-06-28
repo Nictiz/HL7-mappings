@@ -1387,6 +1387,7 @@
     <medicamenteuze_behandeling id="78074d50-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
         <toedieningsafspraak>
             <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P0D"/>
+            <gebruiksperiode_eind base="T" sign="+" dayTimeDuration="P42D"/>            
             <afspraakdatum base="T" sign="-" dayTimeDuration="P0D"/>
             <gebruiksinstructie>
                 <omschrijving-met-periode value="vanaf T, eerst 1 week 6 stuks per dag; vanaf T + 1wk, gedurende 1 week 5 stuks per dag; vanaf T + 2 weken, gedurende 1 week 4 stuks per dag; vanaf T + 3 weken, gedurende 1 week 3 stuks per dag; vanaf T + 4 weken, gedurende 1 week 2 stuks per dag; vanaf T + 5 weken, gedurende 1 week 1 stuks per dag"/>
@@ -1507,6 +1508,7 @@
     <medicamenteuze_behandeling id="c635f350-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
         <toedieningsafspraak>
             <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P0D"/>
+            <gebruiksperiode_eind base="T" sign="+" dayTimeDuration="P27D"/>
             <afspraakdatum base="T" sign="-" dayTimeDuration="P0D"/>
             <gebruiksinstructie>
                 <omschrijving-met-periode value="Vanaf T, gedurende 2 weken, 3 gram per dag dun aanbrengen; Vanaf T+14dagen, gedurende 3 weken, 2 gram per dag dun aanbrengen ; Vanaf T+35 dagen, gedurende 6 dagen,  1 gram per dag dun aanbrengen"/>
@@ -1643,6 +1645,8 @@
     <medicamenteuze_behandeling id="5ada2a80-100b-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
         <toedieningsafspraak>
             <afspraakdatum base="T" sign="-" dayTimeDuration="P0D"/>
+            <!-- add start date otherwise query on periodofuse in Touchstone won't work -->
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P300D"/>
             <gebruiksinstructie>
                 <omschrijving-met-periode value="Gedurende 60 dagen, elke 4 dagen 2 stuks"/>
                 <omschrijving value="elke 4 dagen 2 stuks"/>
@@ -1650,6 +1654,98 @@
         </toedieningsafspraak>
         <verstrekking id="5ada2a80-100b-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
             <aanschrijfdatum base="T" sign="-" dayTimeDuration="P0D"/>
+        </verstrekking>
+    </medicamenteuze_behandeling>
+<!-- Patiënt 3 Filtering beschikbaarstellen verstrekkingenvertaling -->
+    <!-- allen met einddatum omdat anders de filtering in Touchstone niet goed werkt -->
+    <!-- Ibuprofen  -->
+    <medicamenteuze_behandeling id="9b084780-9401-11e9-b475-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+        <toedieningsafspraak>
+            <afspraakdatum base="T" sign="-" dayTimeDuration="P20D"/>
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P20D"/>
+            <gebruiksperiode_eind base="T" sign="+" dayTimeDuration="P9D"/>            
+            <gebruiksinstructie>
+                 <omschrijving-met-periode value="Gedurende 30 dagen, 1 maal per dag 2 stuks"/>
+                 <omschrijving value="1 maal per dag 2 stuks"/>
+            </gebruiksinstructie>
+        </toedieningsafspraak>
+        <verstrekking id="9b084780-9401-11e9-b475-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+            <aanschrijfdatum base="T" sign="-" dayTimeDuration="P20D"/>
+        </verstrekking>
+    </medicamenteuze_behandeling>
+    <!-- Xpraep   -->
+    <medicamenteuze_behandeling id="f77406a0-ef17-11e4-b80c-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+        <toedieningsafspraak>
+            <afspraakdatum base="T" sign="-" dayTimeDuration="P100D"/>
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P100D"/>
+            <gebruiksperiode_eind base="T" sign="-" dayTimeDuration="P72D"/>            
+            <gebruiksinstructie>
+                <omschrijving-met-periode value="Gedurende 29 dagen, 1 maal per dag 10 ml"/>
+                <omschrijving value="1 maal per dag 10 ml"/>
+            </gebruiksinstructie>
+        </toedieningsafspraak>
+        <verstrekking id="f77406a0-ef17-11e4-b80c-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+            <aanschrijfdatum base="T" sign="-" dayTimeDuration="P100D"/>
+        </verstrekking>
+    </medicamenteuze_behandeling>
+    <!-- Nutridrink -->
+    <medicamenteuze_behandeling id="fc93abe0-ef17-11e4-b80c-0800200ic9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+        <toedieningsafspraak>
+            <afspraakdatum base="T" sign="-" dayTimeDuration="P50D"/>
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P50D"/>
+            <gebruiksperiode_eind base="T" sign="-" dayTimeDuration="P11D"/>
+            <gebruiksinstructie>
+                <omschrijving-met-periode value="Gedurende 40 dagen, 2 maal per dag 50 ml"/>
+                <omschrijving value="2 maal per dag 50 ml"/>
+            </gebruiksinstructie>
+        </toedieningsafspraak>
+        <verstrekking id="fc93abe0-ef17-11e4-b80c-0800200ic9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+            <aanschrijfdatum base="T" sign="-" dayTimeDuration="P50D"/>
+        </verstrekking>
+    </medicamenteuze_behandeling>
+    <!-- Aspirin -->
+    <medicamenteuze_behandeling id="0443e710-ef18-11e4-b80c-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+        <toedieningsafspraak>
+            <afspraakdatum base="T" sign="-" dayTimeDuration="P10D"/>
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P10D"/>
+            <gebruiksperiode_eind base="T" sign="+" dayTimeDuration="P19D"/>
+            <gebruiksinstructie>
+                  <omschrijving-met-periode value="Gedurende 30 dagen, 1 maal per 2 dagen 3 stuks zo nodig"/>
+                <omschrijving value="1 maal per 2 dagen 3 stuks zo nodig"/>
+            </gebruiksinstructie>
+        </toedieningsafspraak>
+        <verstrekking id="0443e710-ef18-11e4-b80c-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+            <aanschrijfdatum base="T" sign="-" dayTimeDuration="P10D"/>
+        </verstrekking>
+    </medicamenteuze_behandeling>
+    <!-- Acenocoumarol  -->
+    <medicamenteuze_behandeling id="08c37bc0-ef18-11e4-b80c-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+        <toedieningsafspraak>
+            <afspraakdatum base="T" sign="-" dayTimeDuration="P50D"/>
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P50D"/>
+            <gebruiksperiode_eind base="T" sign="-" dayTimeDuration="P44D"/>
+            <gebruiksinstructie>
+                <omschrijving-met-periode value="Gedurende 7 dagen, Gebruik bekend"/>
+                <omschrijving value="Gebruik bekend"/>
+            </gebruiksinstructie>
+        </toedieningsafspraak>
+        <verstrekking id="08c37bc0-ef18-11e4-b80c-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+            <aanschrijfdatum base="T" sign="-" dayTimeDuration="P50D"/>
+        </verstrekking>
+    </medicamenteuze_behandeling>
+    <!-- Oxazepam  -->
+    <medicamenteuze_behandeling id="0caac810-ef18-11e4-b80c-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+        <toedieningsafspraak>
+            <afspraakdatum base="T" sign="-" dayTimeDuration="P5D"/>
+            <gebruiksperiode_start base="T" sign="-" dayTimeDuration="P5D"/>
+            <gebruiksperiode_eind base="T" sign="+" dayTimeDuration="P1D"/>
+            <gebruiksinstructie>
+                <omschrijving-met-periode value="Gedurende 7 dagen, 2 maal per dag 2 stuks "/>
+                <omschrijving value="2 maal per dag 2 stuks"/>
+            </gebruiksinstructie>
+        </toedieningsafspraak>
+        <verstrekking id="0caac810-ef18-11e4-b80c-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1">
+            <aanschrijfdatum base="T" sign="-" dayTimeDuration="P5D"/>
         </verstrekking>
     </medicamenteuze_behandeling>
 </date_conversion>
