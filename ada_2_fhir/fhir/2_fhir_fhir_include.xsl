@@ -422,6 +422,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Try to interpret the value of complex type in ADA as a quantity string with value and unit</xd:desc>
+        <xd:param name="value_string">The input text (like 12 mmol/l)</xd:param>
+        <xd:return>
+            <xd:p>A collection of 'value' and possibly 'unit' tags if the string could be interpreted as a quantity string, or an empty collection.</xd:p>
+            <xd:p><xd:b>NOTE: </xd:b>even if the string is interpreted as a quantity, only the textual 'unit' tag is included in the result, not a formal system/code pair.</xd:p>
+        </xd:return>
+    </xd:doc>
+    <xsl:function name="nf:try-complex-as-Quantity" as="element()*">
+        <xsl:param name="value_string" as="xs:string?"/>
+        <xsl:analyze-string select="$value_string" regex="^\s*([0-9\.,]+)\s*([^0-9]*)\s*$">
+            <xsl:matching-substring>
+                <value value="{regex-group(1)}"/>
+                <xsl:if test="regex-group(2)">
+                    <unit value="{regex-group(2)}"/>                   
+                </xsl:if>
+            </xsl:matching-substring>
+        </xsl:analyze-string>
+    </xsl:function>
+    
     <xd:doc>
         <xd:desc>Formats ada or HL7 dateTime to FHIR date(Time) based on input precision</xd:desc>
         <xd:param name="dateTime">Input ada or HL7 date(Time)</xd:param>
