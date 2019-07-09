@@ -89,6 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidUZIPersons">2.16.528.1.1007.3.1</xsl:variable>
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
+    <xsl:variable name="oidZIBLaboratoriumUitslagTestUitslagStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
  
     <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
 
