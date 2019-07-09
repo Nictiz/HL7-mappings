@@ -17,34 +17,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:include href="../../util/constants.xsl"/>
     <xsl:include href="../../util/uuid.xsl"/>
 
-    <xsl:function name="nf:formatHL72XMLDate">
+    <xsl:function name="nf:formatHL72XMLDate" as="xs:string">
         <xsl:param name="dateTime" as="xs:string"/>
         <!-- precision determines the picture of the date format, currently only use case for day or second. -->
         <xsl:param name="precision"/>
-        <xsl:variable name="xml-date" select="
-                xs:date(concat(
-                substring($dateTime, 1, 4), '-',
-                substring($dateTime, 5, 2), '-',
-                substring($dateTime, 7, 2)))"/>
+        
+        <xsl:variable name="yyyy" select="substring($dateTime, 1, 4)"/>
+        <xsl:variable name="mm" select="substring($dateTime, 5, 2)"/>
+        <xsl:variable name="dd" select="substring($dateTime, 7, 2)"/>
+        
+        <xsl:variable name="HH" select="substring($dateTime, 9, 2)"/>
+        <xsl:variable name="MM" select="substring($dateTime, 11, 2)"/>
+        <xsl:variable name="SS" select="substring($dateTime, 13, 2)"/>
+        
+        <xsl:variable name="sss" select="replace($dateTime, '^\d+(\.\d+)', '$1')"/>
+        
+        <xsl:variable name="TZ" select="replace($dateTime, '.*([+-]\d{2,4})$', '$1')"/>
+        
+        <xsl:variable name="str_date" select="concat($yyyy, '-', $mm, '-', $dd)"/>
+        <xsl:variable name="str_time" select="concat($HH, ':', $MM, '-', $SS, $sss, $TZ)"/>
+        <xsl:variable name="str_datetime" select="concat($str_date, 'T', $str_time)"/>
         <xsl:choose>
-            <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D')">
-                <xsl:value-of select="$xml-date"/>
+            <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDE', 'SECONDS', 'SECONDEN', 'SEC', 'S') and $str_datetime castable as xs:dateTime">
+                <xsl:value-of select="$str_datetime"/>
             </xsl:when>
-            <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDE', 'SECONDS', 'SECONDEN', 'SEC', 'S') and string-length($dateTime) >= 14">
-                <xsl:value-of select="
-                        xs:dateTime(concat(
-                        substring($dateTime, 1, 4), '-',
-                        substring($dateTime, 5, 2), '-',
-                        substring($dateTime, 7, 2), 'T',
-                        substring($dateTime, 9, 2), ':',
-                        substring($dateTime, 11, 2), ':',
-                        substring($dateTime, 13, 2)))"/>
+            <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D') and $str_date castable as xs:date">
+                <xsl:value-of select="$str_date"/>
             </xsl:when>
-            <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDE', 'SECONDS', 'SECONDEN', 'SEC', 'S') and string-length($dateTime) &lt; 14">
-                <!-- asked for seconds, but input is smaller than seconds, just return date -->
-                <xsl:value-of select="$xml-date"/>
+            <xsl:when test="$str_date castable as xs:dateTime">
+                <xsl:value-of select="$str_date"/>
+            </xsl:when>
+            <xsl:when test="$str_date castable as xs:date">
+                <xsl:value-of select="$str_date"/>
             </xsl:when>
             <xsl:otherwise>Could not determine xml date from input: '<xsl:value-of select="$dateTime"/>' with precision: '<xsl:value-of select="$precision"/>'.</xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <xsl:function name="nf:determine_date_precision">
+        <xsl:param name="input-hl7-date"/>
+        <xsl:choose>
+            <xsl:when test="string-length($input-hl7-date) le 8">DAY</xsl:when>
+            <xsl:when test="string-length($input-hl7-date) gt 8">SECOND</xsl:when>
+            <xsl:otherwise>not_supported</xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
@@ -66,6 +81,239 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    <xsl:template name="handleANY">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="codeSystem" as="xs:string?"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="codeMap" as="element()*"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="xsiType" select="@xsi:type"/>
+            <xsl:variable name="xsiTypePrefix" select="if (contains($xsiType,':')) then (substring-before($xsiType,':')) else ('')"/>
+            <xsl:variable name="xsiTypeName" select="if (contains($xsiType,':')) then (substring-after($xsiType,':')) else ($xsiType)"/>
+            <xsl:variable name="xsiTypeURI" select="namespace-uri-for-prefix($xsiTypePrefix, .)"/>
+            <xsl:variable name="xsiTypeURIName" select="concat('{', $xsiTypeURI, '}:', $xsiTypeName)"/>
+            
+            <xsl:choose>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:BL'">
+                    <xsl:call-template name="handleBL">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:CS'">
+                    <xsl:call-template name="handleCS">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="codeSystem" select="$codeSystem"/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:CV' or $xsiTypeURIName = '{urn:hl7-org:v3}:CE' or $xsiTypeURIName = '{urn:hl7-org:v3}:CD' or $xsiTypeURIName = '{urn:hl7-org:v3}:CO'">
+                    <xsl:call-template name="handleCV">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:II'">
+                    <xsl:call-template name="handleII">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:PQ'">
+                    <xsl:call-template name="handlePQ">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:ST'">
+                    <xsl:call-template name="handleST">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:TS'">
+                    <xsl:call-template name="handleTS">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:message terminate="yes">Cannot determine the datatype based on @xsi:type, or value not supported: <xsl:value-of select="$xsiType"/></xsl:message>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
+
+    <!-- for codeMap expect one or more elements like this:
+        <map inCode="xx" inCodeSystem="yy" code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".."/>
+        
+        If input @code | @codeSystem matches, copy the other attributes from this element. Expected at minimum @code, @codeSystem, @displayName, others optional
+    -->
+    <!-- CS has no codeSystem has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
+        CS also has no displayName. The code, e.g. active or completed, normally reflects the displayName too so copy code to displayName
+    -->
+    <xsl:template name="handleCS">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="codeSystem" as="xs:string" required="yes"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="codeMap" as="element()*"/>
+        
+        <xsl:variable name="rewrite" as="element()*">
+            <xsl:for-each select="$in">
+                <xsl:element name="{name(.)}">
+                    <xsl:copy-of select="@*"/>
+                    <xsl:if test="not(@codeSystem)">
+                        <xsl:attribute name="codeSystem" select="$codeSystem"/>
+                    </xsl:if>
+                    <xsl:if test="not(@displayName)">
+                        <xsl:attribute name="displayName" select="@code"/>
+                    </xsl:if>
+                    <xsl:copy-of select="node()"/>
+                </xsl:element>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:call-template name="handleCV">
+            <xsl:with-param name="in" select="$rewrite"/>
+            <xsl:with-param name="elemName" select="$elemName"/>
+            <xsl:with-param name="codeMap" select="$codeMap"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template name="handleCV">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="codeMap" as="element()*"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="theCode" select="@code"/>
+            <xsl:variable name="theNullFlavor" select="@nullFlavor"/>
+            <xsl:variable name="theCodeSystem">
+                <xsl:choose>
+                    <xsl:when test="$theCode">
+                        <xsl:value-of select="@codeSystem"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$oidHL7NullFlavor"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="out" as="element()">
+                <xsl:choose>
+                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
+                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
+                    </xsl:when>
+                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
+                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="."/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            
+            <xsl:element name="{$elemName}">
+                <xsl:copy-of select="$out/@value"/>
+                <xsl:copy-of select="$out/@code"/>
+                <xsl:copy-of select="$out/@codeSystem"/>
+                <xsl:copy-of select="$out/@codeSystemName"/>
+                <xsl:copy-of select="$out/@codeSystemVersion"/>
+                <xsl:copy-of select="$out/@displayName"/>
+                <xsl:if test="$out/@nullFlavor">
+                    <xsl:attribute name="code" select="$out/@nullFlavor"/>
+                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
+                    <xsl:attribute name="displayName">
+                        <xsl:choose>
+                            <xsl:when test="$out/@nullFlavor = 'NI'">no information</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'OTH'">other</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'UNK'">unknown</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'NAVU'">not available</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'NAV'">temporarily not available</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'MSK'">masked</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'QS'">quantity sufficient</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'ASKU'">asked but unknown</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'PINF'">positive infinity</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'NINF'">negative infinity</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'TRACE'">trace</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'NA'">not applicable</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'INV'">invalid</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'UNC'">unencoded</xsl:when>
+                            <xsl:when test="$out/@nullFlavor = 'DER'">derived</xsl:when>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </xsl:if>
+                <xsl:if test="hl7:originalText">
+                    <xsl:attribute name="originalText" select="hl7:originalText"/>
+                </xsl:if>
+            </xsl:element>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template name="handleBL">
+        <xsl:param name="in" as="element()*"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:element name="{$elemName}">
+                <xsl:copy-of select="@value"/>
+                <xsl:copy-of select="@nullFlavor"/>
+            </xsl:element>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template name="handleII">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:element name="{$elemName}">
+                <xsl:if test="@extension">
+                    <xsl:attribute name="value" select="@extension"/>
+                </xsl:if>
+                <xsl:copy-of select="@root"/>
+                <xsl:copy-of select="@nullFlavor"/>
+            </xsl:element>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template name="handlePQ">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:element name="{$elemName}">
+                <xsl:copy-of select="@value"/>
+                <xsl:copy-of select="@unit[not(. = '1')]"/>
+                <xsl:copy-of select="@nullFlavor"/>
+            </xsl:element>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template name="handleST">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:element name="{$elemName}">
+                <xsl:if test="text()[not(normalize-space() = '')]">
+                    <xsl:attribute name="value" select="."/>
+                </xsl:if>
+                <xsl:copy-of select="@nullFlavor"/>
+            </xsl:element>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xsl:template name="handleTS">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elemName">value</xsl:param>
+        <xsl:element name="{$elemName}">
+            <xsl:if test="@value">
+                <xsl:attribute name="value" select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
+            </xsl:if>
+            <xsl:copy-of select="@nullFlavor"/>
+        </xsl:element>
+    </xsl:template>
 
     <xsl:template name="makeADXPValue">
         <xsl:param name="xsiType">ADXP</xsl:param>
@@ -541,7 +789,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
-
     <xsl:template name="makeTELValue">
         <xsl:param name="xsiType">TEL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -583,10 +830,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:value-of select="@value"/>
         </xsl:element>
     </xsl:template>
-
-
-
-
-
 
 </xsl:stylesheet>
