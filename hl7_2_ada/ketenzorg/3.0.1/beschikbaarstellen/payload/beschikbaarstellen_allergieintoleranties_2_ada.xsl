@@ -24,20 +24,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:comment>Generated from HL7v3 xml with <xsl:value-of select="//*[hl7:id][1]/local-name()"/> <xsl:copy-of select="(//hl7:id)[1]"/>.</xsl:comment>
-        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_allergieintoleranties.xsd">
-            <meta status="new" created-by="generated" last-update-by="generated">
-                <xsl:attribute name="creation-date" select="current-dateTime()"/>
-                <xsl:attribute name="last-update-date" select="current-dateTime()"/>
-            </meta>
-            <data>
-                <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerAllergyIntolerance]">
+        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerAllergyIntolerance]">
+            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_allergyintolerances_response.xsd">
+                <meta status="new" created-by="generated" last-update-by="generated">
+                    <xsl:attribute name="creation-date" select="current-dateTime()"/>
+                    <xsl:attribute name="last-update-date" select="current-dateTime()"/>
+                </meta>
+                <data>
                     <xsl:call-template name="BeschikbaarstellenAllergieIntolerantie-ADA">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="author" select="(ancestor::hl7:ControlActProcess/hl7:authorOrPerformer//*[hl7:id])[1]"/>
                     </xsl:call-template>
-                </xsl:for-each>
-            </data>
-        </adaxml>
+                </data>
+            </adaxml>
+        </xsl:for-each>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="author" as="element()?"/>
         
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
-        <beschikbaarstellen_allergieintoleranties app="ketenzorg3.0" shortName="beschikbaarstellen_allergieintoleranties" formName="bundle_of_allergy_intolerance" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.535" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
+        <allergyintolerances_response app="ketenzorg3.0" shortName="allergyintolerances_response" formName="allergyintolerances_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.535" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <bundle>
                 <!--<xsl:call-template name="handleII">
                     <xsl:with-param name="in" select="hl7:id"/>
@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="allergyIntoleranceObservation" select="//*[hl7:templateId/@root = $oidAllergyIntoleranceAct]/hl7:entryRelationship/*[hl7:templateId/@root = $oidAllergyIntoleranceObservation]"/>
             <xsl:for-each select="$allergyIntoleranceObservation">
                 <allergy_intolerance>
-                    <xsl:if test="hl7:id | hl7:author/hl7:assignedAuthor">
+                    <xsl:if test="hl7:id | hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
                         <hcimroot>
                             <xsl:if test="hl7:id">
                                 <xsl:call-template name="handleII">
@@ -100,7 +100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </xsl:if>
                             
-                            <xsl:for-each select="hl7:author/hl7:assignedAuthor">
+                            <xsl:for-each select="hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
                                 <author>
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
                                         <xsl:with-param name="in" select="."/>
@@ -149,9 +149,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="hl7:value"/>
                             <xsl:with-param name="elemName">criticality</xsl:with-param>
                             <xsl:with-param name="codeMap" as="element(map)*">
-                                <map inCode="62482003" inCodeSystem="2.16.840.1.113883.6.96" code="255604002" codeSystem="2.16.840.1.113883.6.96" displayName="Low"/>
-                                <map inCode="75540009" inCodeSystem="2.16.840.1.113883.6.96" code="24484000" codeSystem="2.16.840.1.113883.6.96" displayName="High"/>
-                                <!--<map inCode="ASKU" inCodeSystem="2.16.840.1.113883.5.1008" code="" codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".."/>-->
+                                <map inCode="62482003" inCodeSystem="{$oidSNOMEDCT}" code="255604002" codeSystem="{$oidSNOMEDCT}" displayName="Low"/>
+                                <map inCode="75540009" inCodeSystem="{$oidSNOMEDCT}" code="24484000" codeSystem="{$oidSNOMEDCT}" displayName="High"/>
+                                <!--<map inCode="ASKU" inCodeSystem="{$oidHL7NullFlavor}" code="" codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".."/>-->
                             </xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
@@ -237,7 +237,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                 </allergy_intolerance>
             </xsl:for-each>
-        </beschikbaarstellen_allergieintoleranties>
+        </allergyintolerances_response>
         <xsl:comment>Input HL7 xml below</xsl:comment>
         <xsl:call-template name="copyElementInComment">
             <xsl:with-param name="element" select="./*"/>

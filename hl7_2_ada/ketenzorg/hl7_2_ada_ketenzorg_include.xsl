@@ -20,6 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidOrganizerEpisode">2.16.840.1.113883.2.4.3.11.60.66.10.16</xsl:variable>
     <xsl:variable name="oidOrganizerContactReport">2.16.840.1.113883.2.4.3.11.60.66.10.14</xsl:variable>
     <xsl:variable name="oidOrganizerAlgemeneBepaling">2.16.840.1.113883.2.4.3.11.60.66.10.8</xsl:variable>
+    <xsl:variable name="oidOrganizerLabBepaling">2.16.840.1.113883.2.4.3.11.60.66.10.77</xsl:variable>
     
     <xsl:variable name="oidAllergyIntoleranceAct">2.16.840.1.113883.2.4.3.11.60.66.10.215</xsl:variable>
     <xsl:variable name="oidAllergyIntoleranceObservation">2.16.840.1.113883.2.4.3.11.60.66.10.216</xsl:variable>
@@ -34,6 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidJournalEntryP">2.16.840.1.113883.2.4.3.11.60.66.10.211</xsl:variable>
     
     <xsl:variable name="oidAlgemeneBepaling">2.16.840.1.113883.2.4.3.11.60.66.10.202</xsl:variable>
+    <xsl:variable name="oidLabBepaling">2.16.840.1.113883.2.4.3.11.60.7.10.31</xsl:variable>
     
     <xsl:variable name="oidCriticalityObservation">2.16.840.1.113883.2.4.3.11.60.66.10.218</xsl:variable>
     <xsl:variable name="oidNoteObservation">2.16.840.1.113883.2.4.3.11.60.66.10.221</xsl:variable>
@@ -955,10 +957,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="hl7:code"/>
                     <xsl:with-param name="elemName">type</xsl:with-param>
                     <xsl:with-param name="codeMap" as="element(map)*">
-                        <map inCode="61150-9" inCodeSystem="2.16.840.1.113883.6.1" value="1" code="S" codeSystem="2.16.840.1.113883.2.4.4.32.2" displayName="Subjectief"/>
-                        <map inCode="61149-1" inCodeSystem="2.16.840.1.113883.6.1" value="2" code="O" codeSystem="2.16.840.1.113883.2.4.4.32.2" displayName="Objectief"/>
-                        <map inCode="51848-0" inCodeSystem="2.16.840.1.113883.6.1" value="3" code="E" codeSystem="2.16.840.1.113883.2.4.4.32.2" displayName="Evaluatie"/>
-                        <map inCode="18776-5" inCodeSystem="2.16.840.1.113883.6.1" value="4" code="P" codeSystem="2.16.840.1.113883.2.4.4.32.2" displayName="Plan"/>
+                        <map inCode="61150-9" inCodeSystem="{$oidLOINC}" value="1" code="S" codeSystem="{$oidJournaalregeltypen}" displayName="Subjectief"/>
+                        <map inCode="61149-1" inCodeSystem="{$oidLOINC}" value="2" code="O" codeSystem="{$oidJournaalregeltypen}" displayName="Objectief"/>
+                        <map inCode="51848-0" inCodeSystem="{$oidLOINC}" value="3" code="E" codeSystem="{$oidJournaalregeltypen}" displayName="Evaluatie"/>
+                        <map inCode="18776-5" inCodeSystem="{$oidLOINC}" value="4" code="P" codeSystem="{$oidJournaalregeltypen}" displayName="Plan"/>
                     </xsl:with-param>
                 </xsl:call-template>
                 
@@ -1033,8 +1035,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:element name="{$elemName}">
                 <xsl:if test="hl7:id">
                     <hcimroot>
-                        <xsl:for-each select="$in/hl7:id">
-                            <xsl:call-template name="makeIIValue">
+                        <xsl:for-each select="hl7:id">
+                            <xsl:call-template name="handleII">
                                 <xsl:with-param name="elemName">identification_number</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
@@ -1045,7 +1047,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="elemName">problem_type</xsl:with-param>
                     <!-- mapping into itself relevant to get the @value attributes which is required in the schema -->
                     <xsl:with-param name="codeMap" as="element(map)*">
-                        <map inCode="282291009" inCodeSystem="2.16.840.1.113883.6.96" value="1" code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                        <map inCode="282291009" inCodeSystem="{$oidSNOMEDCT}" value="1" code="282291009" codeSystem="{$oidSNOMEDCT}" displayName="Diagnosis"/>
                         <!-- other values not supported in Ketenzorg in input format -->
                     </xsl:with-param>
                 </xsl:call-template>
@@ -1068,10 +1070,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Problem status is a required element according to the hcim Problem. Observation/status is always completed. We only know for sure a problem is no longer active when effectiveTime/high has a value. Otherwise: assume active -->
                 <xsl:choose>
                     <xsl:when test="hl7:effectiveTime/hl7:high[@value]">
-                        <problem_status value="2" code="73425007" codeSystem="2.16.840.1.113883.6.96" displayName="Inactive"/>
+                        <problem_status value="2" code="73425007" codeSystem="{$oidSNOMEDCT}" displayName="Inactive"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <problem_status value="1" code="55561003" codeSystem="2.16.840.1.113883.6.96" displayName="Active"/>
+                        <problem_status value="1" code="55561003" codeSystem="{$oidSNOMEDCT}" displayName="Active"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:element>
