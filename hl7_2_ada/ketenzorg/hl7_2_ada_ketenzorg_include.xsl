@@ -18,6 +18,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    
     <xsl:variable name="oidOrganizerAllergyIntolerance">2.16.840.1.113883.2.4.3.11.60.66.10.20</xsl:variable>
     <xsl:variable name="oidOrganizerEpisode">2.16.840.1.113883.2.4.3.11.60.66.10.16</xsl:variable>
+    <xsl:variable name="oidOrganizerContactReport">2.16.840.1.113883.2.4.3.11.60.66.10.14</xsl:variable>
+    <xsl:variable name="oidOrganizerAlgemeneBepaling">2.16.840.1.113883.2.4.3.11.60.66.10.8</xsl:variable>
     
     <xsl:variable name="oidAllergyIntoleranceAct">2.16.840.1.113883.2.4.3.11.60.66.10.215</xsl:variable>
     <xsl:variable name="oidAllergyIntoleranceObservation">2.16.840.1.113883.2.4.3.11.60.66.10.216</xsl:variable>
@@ -25,172 +27,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidEpisodeAct">2.16.840.1.113883.2.4.3.11.60.66.10.212</xsl:variable>
     <xsl:variable name="oidEpisodeProblem">2.16.840.1.113883.2.4.3.11.60.66.10.213</xsl:variable>
     
+    <xsl:variable name="oidContactReport">2.16.840.1.113883.2.4.3.11.60.66.10.207</xsl:variable>
+    <xsl:variable name="oidJournalEntryS">2.16.840.1.113883.2.4.3.11.60.66.10.208</xsl:variable>
+    <xsl:variable name="oidJournalEntryO">2.16.840.1.113883.2.4.3.11.60.66.10.209</xsl:variable>
+    <xsl:variable name="oidJournalEntryE">2.16.840.1.113883.2.4.3.11.60.66.10.210</xsl:variable>
+    <xsl:variable name="oidJournalEntryP">2.16.840.1.113883.2.4.3.11.60.66.10.211</xsl:variable>
+    
+    <xsl:variable name="oidAlgemeneBepaling">2.16.840.1.113883.2.4.3.11.60.66.10.202</xsl:variable>
+    
     <xsl:variable name="oidCriticalityObservation">2.16.840.1.113883.2.4.3.11.60.66.10.218</xsl:variable>
     <xsl:variable name="oidNoteObservation">2.16.840.1.113883.2.4.3.11.60.66.10.221</xsl:variable>
     <xsl:variable name="oidReactionObservation">2.16.840.1.113883.2.4.3.11.60.66.10.217</xsl:variable>
     <xsl:variable name="oidSeverityObservation">2.16.840.1.113883.2.4.3.11.60.66.10.219</xsl:variable>
     <xsl:variable name="oidRouteOfExposureObservation">2.16.840.1.113883.2.4.3.11.60.66.10.220</xsl:variable>
     
-    <xsl:template name="handleII">
-        <xsl:param name="in" as="element()*"/>
-        <xsl:param name="elmName" as="xs:string" required="yes"/>
-        
-        <xsl:for-each select="$in">
-            <xsl:element name="{$elmName}">
-                <xsl:if test="@extension">
-                    <xsl:attribute name="value" select="@extension"/>
-                </xsl:if>
-                <xsl:copy-of select="@root"/>
-                <xsl:copy-of select="@nullFlavor"/>
-            </xsl:element>
-        </xsl:for-each>
-    </xsl:template>
-    <!-- for codeMap expect one or more elements like this:
-        <map inCode="xx" inCodeSystem="yy" code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".."/>
-        
-        If input @code | @codeSystem matches, copy the other attributes from this element. Expected at minimum @code, @codeSystem, @displayName, others optional
-    -->
-    <!-- CS has no codeSystem has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
-        CS also has no displayName. The code, e.g. active or completed, normally reflects the displayName too so copy code to displayName
-    -->
-    <xsl:template name="handleCS">
-        <xsl:param name="in" as="element()*"/>
-        <xsl:param name="codeSystem" as="xs:string" required="yes"/>
-        <xsl:param name="elmName" as="xs:string" required="yes"/>
-        <xsl:param name="codeMap" as="element()*"/>
-        
-        <xsl:variable name="rewrite" as="element()*">
-            <xsl:for-each select="$in">
-                <xsl:element name="{name(.)}">
-                    <xsl:copy-of select="@*"/>
-                    <xsl:if test="not(@codeSystem)">
-                        <xsl:attribute name="codeSystem" select="$codeSystem"/>
-                    </xsl:if>
-                    <xsl:if test="not(@displayName)">
-                        <xsl:attribute name="displayName" select="@code"/>
-                    </xsl:if>
-                    <xsl:copy-of select="node()"/>
-                </xsl:element>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:call-template name="handleCV">
-            <xsl:with-param name="in" select="$rewrite"/>
-            <xsl:with-param name="elmName" select="$elmName"/>
-            <xsl:with-param name="codeMap" select="$codeMap"/>
-        </xsl:call-template>
-    </xsl:template>
-    <xsl:template name="handleCV">
-        <xsl:param name="in" as="element()*"/>
-        <xsl:param name="elmName" as="xs:string" required="yes"/>
-        <xsl:param name="codeMap" as="element()*"/>
-        
-        <xsl:for-each select="$in">
-            <xsl:variable name="theCode" select="@code"/>
-            <xsl:variable name="theNullFlavor" select="@nullFlavor"/>
-            <xsl:variable name="theCodeSystem">
-                <xsl:choose>
-                    <xsl:when test="$theCode">
-                        <xsl:value-of select="@codeSystem"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$oidHL7NullFlavor"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
-            <xsl:variable name="out" as="element()">
-                <xsl:choose>
-                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
-                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
-                    </xsl:when>
-                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
-                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:copy-of select="."/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
-            
-            <xsl:element name="{$elmName}">
-                <xsl:copy-of select="$out/@code"/>
-                <xsl:copy-of select="$out/@codeSystem"/>
-                <xsl:copy-of select="$out/@codeSystemName"/>
-                <xsl:copy-of select="$out/@codeSystemVersion"/>
-                <xsl:copy-of select="$out/@displayName"/>
-                <xsl:if test="$out/@nullFlavor">
-                    <xsl:attribute name="code" select="$out/@nullFlavor"/>
-                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                    <xsl:attribute name="displayName">
-                        <xsl:choose>
-                            <xsl:when test="$out/@nullFlavor = 'NI'">no information</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'OTH'">other</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'UNK'">unknown</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'NAVU'">not available</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'NAV'">temporarily not available</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'MSK'">masked</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'QS'">quantity sufficient</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'ASKU'">asked but unknown</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'PINF'">positive infinity</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'NINF'">negative infinity</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'TRACE'">trace</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'NA'">not applicable</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'INV'">invalid</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'UNC'">unencoded</xsl:when>
-                            <xsl:when test="$out/@nullFlavor = 'DER'">derived</xsl:when>
-                        </xsl:choose>
-                    </xsl:attribute>
-                </xsl:if>
-                <xsl:if test="hl7:originalText">
-                    <xsl:attribute name="originalText" select="hl7:originalText"/>
-                </xsl:if>
-            </xsl:element>
-        </xsl:for-each>
-    </xsl:template>
-    <xsl:template name="handleBL">
-        <xsl:param name="in" as="element()*"/>
-        <xsl:param name="elmName" as="xs:string" required="yes"/>
-        
-        <xsl:for-each select="$in">
-            <xsl:element name="{$elmName}">
-                <xsl:copy-of select="@value"/>
-                <xsl:copy-of select="@nullFlavor"/>
-            </xsl:element>
-        </xsl:for-each>
-    </xsl:template>
-    <xsl:template name="handleST">
-        <xsl:param name="in" as="element()*"/>
-        <xsl:param name="elmName" as="xs:string" required="yes"/>
-        
-        <xsl:for-each select="$in">
-            <xsl:element name="{$elmName}">
-                <xsl:if test="text()[not(normalize-space() = '')]">
-                    <xsl:attribute name="value" select="."/>
-                </xsl:if>
-                <xsl:copy-of select="@nullFlavor"/>
-            </xsl:element>
-        </xsl:for-each>
-    </xsl:template>
-    <xsl:template name="handleTS">
-        <xsl:param name="in" as="element()*"/>
-        <xsl:param name="elmName" as="xs:string" required="yes"/>
-        
-        <xsl:for-each select="$in">
-            <xsl:element name="{$elmName}">
-                <xsl:if test="@value">
-                    <xsl:variable name="precision" select="nf:determine_date_precision(@value)"/>
-                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(@value, $precision)"/>
-                </xsl:if>
-                <xsl:copy-of select="@nullFlavor"/>
-            </xsl:element>
-        </xsl:for-each>
-    </xsl:template>
     <!-- Copy name parts as faithful as possible to HCIM 2017 nl.zorg.part.NameInformation. Calculate name usage code. Submit unstructured name in last_name -->
     <xsl:template name="handleENtoNameInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">en-US</xsl:param>
         
         <!-- Element names based on language -->
-        <xsl:variable name="elmNameInformation">
+        <xsl:variable name="elemNameInformation">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">name_information</xsl:when>
                 <xsl:otherwise>naamgegevens</xsl:otherwise>
@@ -210,11 +67,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:variable name="elmInitials">
             <xsl:choose>
-                <xsl:when test="$language = 'en-US'">initals</xsl:when>
+                <xsl:when test="$language = 'en-US'">initials</xsl:when>
                 <xsl:otherwise>initialen</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="elmNameUsage">
+        <xsl:variable name="elemNameUsage">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">name_usage</xsl:when>
                 <xsl:otherwise>naamgebruik</xsl:otherwise>
@@ -267,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="nameUsage">
                         <xsl:choose>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR'] and empty(hl7:family[tokenize(@qualifier, '\s') = 'SP'])">
-                                <xsl:element name="{$elmNameUsage}">
+                                <xsl:element name="{$elemNameUsage}">
                                     <xsl:attribute name="value">1</xsl:attribute>
                                     <xsl:attribute name="code">NL1</xsl:attribute>
                                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
@@ -275,7 +132,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:element>
                             </xsl:when>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP'] and empty(hl7:family[not(tokenize(@qualifier, '\s') = 'SP')])">
-                                <xsl:element name="{$elmNameUsage}">
+                                <xsl:element name="{$elemNameUsage}">
                                     <xsl:attribute name="value">2</xsl:attribute>
                                     <xsl:attribute name="code">NL2</xsl:attribute>
                                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
@@ -283,7 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:element>
                             </xsl:when>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP']/following-sibling::hl7:family[not(@qualifier) or tokenize(@qualifier, '\s') = 'BR']">
-                                <xsl:element name="{$elmNameUsage}">
+                                <xsl:element name="{$elemNameUsage}">
                                     <xsl:attribute name="value">3</xsl:attribute>
                                     <xsl:attribute name="code">NL3</xsl:attribute>
                                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
@@ -291,7 +148,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:element>
                             </xsl:when>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR']/following-sibling::hl7:family[tokenize(@qualifier, '\s') = 'SP']">
-                                <xsl:element name="{$elmNameUsage}">
+                                <xsl:element name="{$elemNameUsage}">
                                     <xsl:attribute name="value">4</xsl:attribute>
                                     <xsl:attribute name="code">NL4</xsl:attribute>
                                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
@@ -299,7 +156,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:element>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:element name="{$elmNameUsage}">
+                                <xsl:element name="{$elemNameUsage}">
                                     <xsl:attribute name="value">5</xsl:attribute>
                                     <xsl:attribute name="code">UNK</xsl:attribute>
                                     <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
@@ -355,7 +212,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                     </xsl:variable>
                     
-                    <xsl:element name="{$elmNameInformation}">
+                    <xsl:element name="{$elemNameInformation}">
                         <xsl:if test="string-length($firstNames) gt 0">
                             <xsl:element name="{$elmFirstNames}">
                                 <xsl:attribute name="value" select="$firstNames"/>
@@ -400,7 +257,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- No name parts.... submit as last name only... -->
-                    <xsl:element name="{$elmNameInformation}">
+                    <xsl:element name="{$elemNameInformation}">
                         <xsl:element name="{$elmLastName}">
                             <xsl:element name="{$elmLastName}">
                                 <xsl:attribute name="value" select="."/>
@@ -887,27 +744,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>-->
             <xsl:call-template name="handleII">
                 <xsl:with-param name="in" select="$in/hl7:id"/>
-                <xsl:with-param name="elmName" select="$elmPatientIdentificationNumber"/>
+                <xsl:with-param name="elemName" select="$elmPatientIdentificationNumber"/>
             </xsl:call-template>
             <xsl:call-template name="handleTS">
                 <xsl:with-param name="in" select="$in/hl7:patient/hl7:birthTime"/>
-                <xsl:with-param name="elmName" select="$elmDateOfBirth"/>
+                <xsl:with-param name="elemName" select="$elmDateOfBirth"/>
             </xsl:call-template>
             <xsl:call-template name="handleCV">
                 <xsl:with-param name="in" select="$in/hl7:patient/hl7:administrativeGenderCode"/>
-                <xsl:with-param name="elmName" select="$elmGender"/>
+                <xsl:with-param name="elemName" select="$elmGender"/>
             </xsl:call-template>
             <xsl:call-template name="handleBL">
                 <xsl:with-param name="in" select="$in/hl7:patient/*:multipleBirthInd"/>
-                <xsl:with-param name="elmName" select="$elmMultipleBirthInd"/>
+                <xsl:with-param name="elemName" select="$elmMultipleBirthInd"/>
             </xsl:call-template>
             <!--<xsl:call-template name="handleBL">
                 <xsl:with-param name="in" select="$in/hl7:patient/*:deceasedInd"/>
-                <xsl:with-param name="elmName" select="$elmDeceasedInd"/>
+                <xsl:with-param name="elemName" select="$elmDeceasedInd"/>
             </xsl:call-template>
             <xsl:call-template name="handleTS">
                 <xsl:with-param name="in" select="$in/hl7:patient/*:deceasedTime"/>
-                <xsl:with-param name="elmName" select="$elmDeceasedDate"/>
+                <xsl:with-param name="elemName" select="$elmDeceasedDate"/>
             </xsl:call-template>-->
         </xsl:element>
     </xsl:template>
@@ -951,7 +808,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:element name="{$elmHealthProfessional}">
             <xsl:call-template name="handleII">
                 <xsl:with-param name="in" select="hl7:id"/>
-                <xsl:with-param name="elmName" select="$elmHealthProfessionalIdentificationNumber"/>
+                <xsl:with-param name="elemName" select="$elmHealthProfessionalIdentificationNumber"/>
             </xsl:call-template>
             <xsl:call-template name="handleENtoNameInformation">
                 <xsl:with-param name="in" select="hl7:assignedPerson/hl7:name"/>
@@ -959,7 +816,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
             <xsl:call-template name="handleCV">
                 <xsl:with-param name="in" select="hl7:code"/>
-                <xsl:with-param name="elmName" select="$elmSpecialism"/>
+                <xsl:with-param name="elemName" select="$elmSpecialism"/>
             </xsl:call-template>
             <xsl:call-template name="handleADtoAddressInformation">
                 <xsl:with-param name="in" select="hl7:addr"/>
@@ -1027,7 +884,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
     <!-- Ketenzorg PART CDA Organization -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000" exclude-result-prefixes="#all">
         <xsl:param name="in" select="."/>
         <xsl:param name="elementName" as="xs:string?"/>
         <xsl:param name="language">en-US</xsl:param>
@@ -1061,11 +918,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:element name="{$elmHealthcareProvider}">
                 <xsl:call-template name="handleII">
                     <xsl:with-param name="in" select="hl7:id"/>
-                    <xsl:with-param name="elmName" select="$elmHealthcareProviderIdentificationNumber"/>
+                    <xsl:with-param name="elemName" select="$elmHealthcareProviderIdentificationNumber"/>
                 </xsl:call-template>
                 <xsl:call-template name="handleST">
                     <xsl:with-param name="in" select="hl7:name"/>
-                    <xsl:with-param name="elmName" select="$elmHealthcareProviderName"/>
+                    <xsl:with-param name="elemName" select="$elmHealthcareProviderName"/>
                 </xsl:call-template>
                 <xsl:call-template name="handleTELtoContactInformation">
                     <xsl:with-param name="in" select="hl7:telecom"/>
@@ -1077,43 +934,150 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
                 <xsl:call-template name="handleCV">
                     <xsl:with-param name="in" select="hl7:code"/>
-                    <xsl:with-param name="elmName" select="$elmHealthcareProviderType"/>
+                    <xsl:with-param name="elemName" select="$elmHealthcareProviderType"/>
                 </xsl:call-template>
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:function name="nf:determine_date_precision">
-        <xsl:param name="input-hl7-date"/>
-        <xsl:choose>
-            <xsl:when test="string-length($input-hl7-date) &lt;= 8">day</xsl:when>
-            <xsl:when test="string-length($input-hl7-date) > 8">second</xsl:when>
-            <xsl:otherwise>not_supported</xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-   
-    <xsl:function name="nf:format2HL7Date" as="xs:string?">
-        <xsl:param name="dateTime"/>
-        <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
-        <xsl:param name="precision"/>
-        <xsl:variable name="picture" as="xs:string?">
-            <xsl:choose>
-                <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
-                <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:choose>
-            <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
-                <xsl:value-of select="format-dateTime(xs:dateTime($dateTime), $picture)"/>
-            </xsl:when>
-            <xsl:when test="normalize-space($dateTime) castable as xs:date">
-                <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001][M01][D01]')"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="$dateTime"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
+    <!-- Ketenzorg Journaalregel S O E P -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.208-20150601000000" exclude-result-prefixes="#all">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elementName" as="xs:string?">journal_entry</xsl:param>
+        <xsl:param name="language">en-US</xsl:param>
+        <xsl:param name="typeCode" as="attribute()?"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:element name="{$elementName}">
+                
+                <!-- The journal entry type -->
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:code"/>
+                    <xsl:with-param name="elemName">type</xsl:with-param>
+                    <xsl:with-param name="codeMap" as="element(map)*">
+                        <map inCode="61150-9" inCodeSystem="2.16.840.1.113883.6.1" value="1" code="S" codeSystem="2.16.840.1.113883.2.4.4.32.2" displayName="Subjectief"/>
+                        <map inCode="61149-1" inCodeSystem="2.16.840.1.113883.6.1" value="2" code="O" codeSystem="2.16.840.1.113883.2.4.4.32.2" displayName="Objectief"/>
+                        <map inCode="51848-0" inCodeSystem="2.16.840.1.113883.6.1" value="3" code="E" codeSystem="2.16.840.1.113883.2.4.4.32.2" displayName="Evaluatie"/>
+                        <map inCode="18776-5" inCodeSystem="2.16.840.1.113883.6.1" value="4" code="P" codeSystem="2.16.840.1.113883.2.4.4.32.2" displayName="Plan"/>
+                    </xsl:with-param>
+                </xsl:call-template>
+                
+                <!-- The journal entry text -->
+                <xsl:call-template name="handleST">
+                    <xsl:with-param name="in" select="hl7:text"/>
+                    <xsl:with-param name="elemName">text</xsl:with-param>
+                </xsl:call-template>
+                
+                <!-- ICPC coded problem -->
+                <xsl:for-each select="$in/hl7:entryRelationship/*[hl7:templateId/@root = $oidEpisodeProblem]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.213-20150703000000"/>
+                </xsl:for-each>
+            </xsl:element>
+            
+        </xsl:for-each>
+    </xsl:template>
+    
+    <!-- Ketenzorg Journaalregel O -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.209-20150601000000" exclude-result-prefixes="#all">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elementName" as="xs:string?">journal_entry</xsl:param>
+        <xsl:param name="language">en-US</xsl:param>
+        <xsl:param name="typeCode" as="attribute()?"/>
+        
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.208-20150601000000">
+            <xsl:with-param name="in" select="$in"/>
+            <xsl:with-param name="elementName" select="$elementName"/>
+            <xsl:with-param name="language" select="$language"/>
+            <xsl:with-param name="typeCode" select="$typeCode"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <!-- Ketenzorg Journaalregel E -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.210-20150601000000" exclude-result-prefixes="#all">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elementName" as="xs:string?">journal_entry</xsl:param>
+        <xsl:param name="language">en-US</xsl:param>
+        <xsl:param name="typeCode" as="attribute()?"/>
+        
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.208-20150601000000">
+            <xsl:with-param name="in" select="$in"/>
+            <xsl:with-param name="elementName" select="$elementName"/>
+            <xsl:with-param name="language" select="$language"/>
+            <xsl:with-param name="typeCode" select="$typeCode"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <!-- Ketenzorg Journaalregel P -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.211-20150601000000" exclude-result-prefixes="#all">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elementName" as="xs:string?">journal_entry</xsl:param>
+        <xsl:param name="language">en-US</xsl:param>
+        <xsl:param name="typeCode" as="attribute()?"/>
+        
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.208-20150601000000">
+            <xsl:with-param name="in" select="$in"/>
+            <xsl:with-param name="elementName" select="$elementName"/>
+            <xsl:with-param name="language" select="$language"/>
+            <xsl:with-param name="typeCode" select="$typeCode"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <!-- Ketenzorg (Episode) Problem -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.213-20150703000000" exclude-result-prefixes="#all">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elemName" as="xs:string?">problem</xsl:param>
+        <xsl:param name="language">en-US</xsl:param>
+        <xsl:param name="typeCode" as="attribute()?"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:element name="{$elemName}">
+                <xsl:if test="hl7:id">
+                    <hcimroot>
+                        <xsl:for-each select="$in/hl7:id">
+                            <xsl:call-template name="makeIIValue">
+                                <xsl:with-param name="elemName">identification_number</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </hcimroot>
+                </xsl:if>
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:code"/>
+                    <xsl:with-param name="elemName">problem_type</xsl:with-param>
+                    <!-- mapping into itself relevant to get the @value attributes which is required in the schema -->
+                    <xsl:with-param name="codeMap" as="element(map)*">
+                        <map inCode="282291009" inCodeSystem="2.16.840.1.113883.6.96" value="1" code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                        <!-- other values not supported in Ketenzorg in input format -->
+                    </xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:value"/>
+                    <xsl:with-param name="elemName">problem_name</xsl:with-param>
+                </xsl:call-template>
+                <xsl:for-each select="hl7:effectiveTime/hl7:low">
+                    <xsl:call-template name="handleTS">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName">problem_start_date</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="hl7:effectiveTime/hl7:high">
+                    <xsl:call-template name="handleTS">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName">problem_end_date</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Problem status is a required element according to the hcim Problem. Observation/status is always completed. We only know for sure a problem is no longer active when effectiveTime/high has a value. Otherwise: assume active -->
+                <xsl:choose>
+                    <xsl:when test="hl7:effectiveTime/hl7:high[@value]">
+                        <problem_status value="2" code="73425007" codeSystem="2.16.840.1.113883.6.96" displayName="Inactive"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <problem_status value="1" code="55561003" codeSystem="2.16.840.1.113883.6.96" displayName="Active"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:element>
+        </xsl:for-each>
+    </xsl:template>
+    
     <!-- copy an element with all of it's contents in comments -->
     <xsl:template name="copyElementInComment">
         <xsl:param name="element"/>
