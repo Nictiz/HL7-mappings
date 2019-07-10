@@ -982,8 +982,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <!-- Complexer doseerschema met meer dan één dagdeel. -->
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'HD']/hl7:comp">
                                             <xsl:call-template name="mp9-weekdag">
-                                                <!-- FIXME: should this not be hl7nl:phase/hl7nl:low? -->
-                                                <xsl:with-param name="hl7-phase-low" select="."/>
+                                                <!-- FIXME: should this not be hl7nl:phase/hl7nl:low instead of .? -->
+                                                <xsl:with-param name="hl7-phase-low" select="hl7nl:phase/hl7nl:low"/>
                                                 <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                                                 <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
                                             </xsl:call-template>
@@ -1131,50 +1131,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="mp9-geslacht">
         <xsl:param name="current-administrativeGenderCode" select="."/>
         <xsl:variable name="concept-id-ada-geslacht">2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19831</xsl:variable>
-        <xsl:for-each select="$current-administrativeGenderCode">
-            <xsl:choose>
-                <xsl:when test=".[@codeSystem = $oidHL7AdministrativeGender]">
-                    <geslacht conceptId="{$concept-id-ada-geslacht}" code="{./@code}" codeSystem="{./@codeSystem}" codeSystemName="AdministrativeGender">
-                        <xsl:choose>
-                            <xsl:when test="./@displayName">
-                                <xsl:attribute name="displayName" select="./@displayName"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:choose>
-                                    <xsl:when test="./@code = 'F'">
-                                        <xsl:attribute name="displayName">Vrouw</xsl:attribute>
-                                    </xsl:when>
-                                    <xsl:when test="./@code = 'M'">
-                                        <xsl:attribute name="displayName">Man</xsl:attribute>
-                                    </xsl:when>
-                                    <xsl:when test="./@code = 'UN'">
-                                        <xsl:attribute name="displayName">Ongedifferentieerd</xsl:attribute>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        <xsl:if test="./@codeSystemName">
-                            <xsl:attribute name="codeSystemName" select="./@codeSystemName"/>
-                        </xsl:if>
-                    </geslacht>
-                </xsl:when>
-                <xsl:otherwise>
-                    <geslacht conceptId="{$concept-id-ada-geslacht}">
-                        <xsl:variable name="currentNullFlavor">
-                            <xsl:choose>
-                                <xsl:when test="./@nullFlavor">
-                                    <xsl:value-of select="./@nullFlavor"/>
-                                </xsl:when>
-                                <xsl:otherwise>NI</xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:variable>
-                        <xsl:attribute name="code" select="$currentNullFlavor"/>
-                        <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                        <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = $currentNullFlavor]/@displayName"/>
-                    </geslacht>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each>
+        <xsl:call-template name="handleCV">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="conceptId" select="$concept-id-ada-geslacht"/>
+            <xsl:with-param name="elemName">geslacht</xsl:with-param>
+            <xsl:with-param name="codeMap" as="element()*">
+                <map inCode="F" inCodeSystem="{$oidHL7AdministrativeGender}" value="3" codeSystemName="AdministrativeGender" displayName="Vrouw"/>
+                <map inCode="M" inCodeSystem="{$oidHL7AdministrativeGender}" value="2" codeSystemName="AdministrativeGender" displayName="Man"/>
+                <map inCode="UN" inCodeSystem="{$oidHL7AdministrativeGender}" value="1" codeSystemName="AdministrativeGender" displayName="Ongedifferentieerd"/>
+                <map inCode="UNK" inCodeSystem="{$oidHL7NullFlavor}" value="4" codeSystemName="NullFlavor" displayName="{$hl7NullFlavorMap[@hl7NullFlavor = 'UNK']/@displayName}"/>
+            </xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
