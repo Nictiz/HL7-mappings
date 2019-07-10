@@ -686,7 +686,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <!-- CDArecordTargetSDTC-NL-BSN-Minimal -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.2_20170602000000">
-        <xsl:param name="in" select="."/>
+        <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="elementName" as="xs:string?"/>
         <xsl:param name="language">en-US</xsl:param>
         
@@ -739,11 +739,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:element name="{$elmPatient}">
             <xsl:call-template name="handleENtoNameInformation">
-                <xsl:with-param name="in" select="$in/hl7:patient/hl7:name"/>
+                <xsl:with-param name="in" select="$in//hl7:patient/hl7:name"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
             <xsl:call-template name="handleADtoAddressInformation">
-                <xsl:with-param name="in" select="$in/hl7:patient/hl7:addr"/>
+                <xsl:with-param name="in" select="$in//hl7:patient/hl7:addr"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
             <!--<xsl:call-template name="handleTELtoContactInformation">
@@ -755,15 +755,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="elemName" select="$elmPatientIdentificationNumber"/>
             </xsl:call-template>
             <xsl:call-template name="handleTS">
-                <xsl:with-param name="in" select="$in/hl7:patient/hl7:birthTime"/>
+                <xsl:with-param name="in" select="$in//hl7:patient/hl7:birthTime"/>
                 <xsl:with-param name="elemName" select="$elmDateOfBirth"/>
             </xsl:call-template>
             <xsl:call-template name="handleCV">
-                <xsl:with-param name="in" select="$in/hl7:patient/hl7:administrativeGenderCode"/>
+                <xsl:with-param name="in" select="$in//hl7:patient/hl7:administrativeGenderCode"/>
                 <xsl:with-param name="elemName" select="$elmGender"/>
             </xsl:call-template>
             <xsl:call-template name="handleBL">
-                <xsl:with-param name="in" select="$in/hl7:patient/*:multipleBirthInd"/>
+                <xsl:with-param name="in" select="$in//hl7:patient/*:multipleBirthInd"/>
                 <xsl:with-param name="elemName" select="$elmMultipleBirthInd"/>
             </xsl:call-template>
             <!--<xsl:call-template name="handleBL">
