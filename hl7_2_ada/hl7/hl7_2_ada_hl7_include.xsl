@@ -130,12 +130,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         @param $in Array of elements to process. If empty array, then no output is created.
         @param $codeSystem Relevant/required only for CS. CS has no codeSystem so it has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
+        @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
         @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
     -->
     <xsl:template name="handleANY">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="codeSystem" as="xs:string?"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         <xsl:param name="codeMap" as="element()*"/>
         
@@ -150,6 +152,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:BL'">
                     <xsl:call-template name="handleBL">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:when>
@@ -157,36 +160,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="handleCS">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="codeSystem" select="$codeSystem"/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:CV' or $xsiTypeURIName = '{urn:hl7-org:v3}:CE' or $xsiTypeURIName = '{urn:hl7-org:v3}:CD' or $xsiTypeURIName = '{urn:hl7-org:v3}:CO'">
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:II'">
                     <xsl:call-template name="handleII">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:PQ'">
                     <xsl:call-template name="handlePQ">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:ST'">
                     <xsl:call-template name="handleST">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:TS'">
                     <xsl:call-template name="handleTS">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:when>
@@ -203,6 +212,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         @param $in Array of elements to process. If empty array, then no output is created. Normally there's only 1 CS datatyped element by the same name in an HL7v3 instance
         @param $codeSystem CS has no codeSystem so it has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
+        @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
         @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
             
@@ -215,6 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="handleCS">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="codeSystem" as="xs:string" required="yes"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         <xsl:param name="codeMap" as="element()*"/>
         
@@ -234,6 +245,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:call-template name="handleCV">
             <xsl:with-param name="in" select="$rewrite"/>
+            <xsl:with-param name="conceptId" select="$conceptId"/>
             <xsl:with-param name="elemName" select="$elemName"/>
             <xsl:with-param name="codeMap" select="$codeMap"/>
         </xsl:call-template>
@@ -242,6 +254,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Returns an array of ADA elements based on an array of HL7v3 CV elements. @nullFlavor is rewritten into ADA @code/@codeSystem attributes as ADA does not know @nullFlavor for coded elements.
         
         @param $in Array of elements to process. If empty array, then no output is created.
+        @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
         @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
             <map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/>
@@ -254,6 +267,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     -->
     <xsl:template name="handleCV">
         <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         <xsl:param name="codeMap" as="element()*"/>
         
@@ -299,28 +313,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$out/@nullFlavor">
                         <xsl:attribute name="code" select="$out/@nullFlavor"/>
                         <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                        <xsl:attribute name="displayName">
-                            <xsl:choose>
-                                <xsl:when test="$out/@displayName">
-                                    <xsl:copy-of select="$out/@displayName"/>
-                                </xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'NI'">no information</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'OTH'">other</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'UNK'">unknown</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'NAVU'">not available</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'NAV'">temporarily not available</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'MSK'">masked</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'QS'">quantity sufficient</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'ASKU'">asked but unknown</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'PINF'">positive infinity</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'NINF'">negative infinity</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'TRACE'">trace</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'NA'">not applicable</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'INV'">invalid</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'UNC'">unencoded</xsl:when>
-                                <xsl:when test="$out/@nullFlavor = 'DER'">derived</xsl:when>
-                            </xsl:choose>
-                        </xsl:attribute>
+                        <xsl:choose>
+                            <xsl:when test="$out/@displayName">
+                                <xsl:copy-of select="$out/@displayName"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:copy-of select="$hl7NullFlavorMap[@hl7NullFlavor = $out/@nullFlavor]/@displayName"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:copy-of select="$out/@code"/>
@@ -341,6 +341,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="hl7:originalText">
                     <xsl:attribute name="originalText" select="hl7:originalText"/>
                 </xsl:if>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
@@ -348,16 +351,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Returns an array of ADA elements based on an array of HL7v3 BL elements.
         
         @param $in Array of elements to process. If empty array, then no output is created.
+        @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
     -->
     <xsl:template name="handleBL">
         <xsl:param name="in" as="element()*"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         
         <xsl:for-each select="$in">
             <xsl:element name="{$elemName}">
                 <xsl:copy-of select="@value"/>
                 <xsl:copy-of select="@nullFlavor"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
@@ -365,10 +373,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Returns an array of ADA elements based on an array of HL7v3 II elements.
         
         @param $in Array of elements to process. If empty array, then no output is created.
+        @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
     -->
     <xsl:template name="handleII">
         <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         
         <xsl:for-each select="$in">
@@ -378,6 +388,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <xsl:copy-of select="@root"/>
                 <xsl:copy-of select="@nullFlavor"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
@@ -385,10 +398,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Returns an array of ADA elements based on an array of HL7v3 PQ elements.
         
         @param $in Array of elements to process. If empty array, then no output is created.
+        @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
     -->
     <xsl:template name="handlePQ">
         <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         
         <xsl:for-each select="$in">
@@ -396,6 +411,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="@value"/>
                 <xsl:copy-of select="@unit[not(. = '1')]"/>
                 <xsl:copy-of select="@nullFlavor"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
@@ -403,10 +421,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Returns an array of ADA elements based on an array of HL7v3 ST elements.
         
         @param $in Array of elements to process. If empty array, then no output is created.
+        @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
     -->
     <xsl:template name="handleST">
         <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         
         <xsl:for-each select="$in">
@@ -415,6 +435,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="value" select="."/>
                 </xsl:if>
                 <xsl:copy-of select="@nullFlavor"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
@@ -422,16 +445,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Returns an array of ADA elements based on an array of HL7v3 TS elements. The ADA attribute @value will be created, if the input has a @value, with as much precision as possible based on the input.
         
         @param $in Array of elements to process. If empty array, then no output is created.
+        @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
     -->
     <xsl:template name="handleTS">
         <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName">value</xsl:param>
         <xsl:element name="{$elemName}">
             <xsl:if test="@value">
                 <xsl:attribute name="value" select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
             </xsl:if>
             <xsl:copy-of select="@nullFlavor"/>
+            <xsl:if test="string-length($conceptId) gt 0">
+                <xsl:attribute name="conceptId" select="$conceptId"/>
+            </xsl:if>
         </xsl:element>
     </xsl:template>
 
@@ -951,17 +979,55 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
-    <!-- Returns an XML comment on the output that marks that the output is generated content, and shows what instance (element name + hl7:id) it came from -->
+    <!-- Returns an XML comment on the output that marks that the output is generated content, and shows what instance (element name + hl7:id or hl7:code or hl7:templateId) it came from 
+        
+        @param $in Optional explicit element to start from, if not the context node.
+    -->
     <xsl:template name="doGeneratedComment">
+        <xsl:param name="in" select="." as="node()*"/>
+        
+        <xsl:variable name="firstHL7Element" select="$in/descendant-or-self::hl7:*[1]" as="element()?"/>
+        
         <xsl:comment>
             <xsl:text>Generated from HL7v3 </xsl:text>
-            <xsl:value-of select="(//*[hl7:id])[1]/local-name()"/>
-            <xsl:text>instance with id: </xsl:text>
-            <xsl:text>&lt;id</xsl:text>
-            <xsl:for-each select="(//hl7:id)[1]/@*">
-                <xsl:value-of select="concat(' ', name(), '=&quot;', ., '&quot;')"/>
-            </xsl:for-each>
-            <xsl:text>/&gt;</xsl:text>
+            <xsl:choose>
+                <xsl:when test="$firstHL7Element">
+                    <xsl:value-of select="$firstHL7Element/local-name()"/>
+                    <xsl:text> </xsl:text>
+                </xsl:when>
+                <xsl:otherwise/>
+            </xsl:choose>
+            <xsl:text>instance</xsl:text>
+            
+            <xsl:choose>
+                <xsl:when test="$firstHL7Element/hl7:id">
+                    <xsl:text> with: </xsl:text>
+                    <xsl:text>&lt;id</xsl:text>
+                    <xsl:for-each select="($firstHL7Element/hl7:id)[1]/@*">
+                        <xsl:value-of select="concat(' ', name(), '=&quot;', ., '&quot;')"/>
+                    </xsl:for-each>
+                    <xsl:text>/&gt;</xsl:text>
+                </xsl:when>
+                <xsl:when test="$firstHL7Element/hl7:code">
+                    <xsl:text> with: </xsl:text>
+                    <xsl:text>&lt;code</xsl:text>
+                    <xsl:for-each select="($firstHL7Element/hl7:code)[1]/@*">
+                        <xsl:value-of select="concat(' ', name(), '=&quot;', ., '&quot;')"/>
+                    </xsl:for-each>
+                    <xsl:text>/&gt;</xsl:text>
+                </xsl:when>
+                <xsl:when test="$firstHL7Element/hl7:templateId">
+                    <xsl:text> with: </xsl:text>
+                    <xsl:text>&lt;templateId</xsl:text>
+                    <xsl:for-each select="($firstHL7Element/hl7:templateId)[1]/@*">
+                        <xsl:value-of select="concat(' ', name(), '=&quot;', ., '&quot;')"/>
+                    </xsl:for-each>
+                    <xsl:text>/&gt;</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>.</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:comment>
         <xsl:text>&#10;</xsl:text>
     </xsl:template>
