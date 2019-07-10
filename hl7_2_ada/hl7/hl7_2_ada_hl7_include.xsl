@@ -452,15 +452,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
-            <xsl:if test="@value">
-                <xsl:attribute name="value" select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
-            </xsl:if>
-            <xsl:copy-of select="@nullFlavor"/>
-            <xsl:if test="string-length($conceptId) gt 0">
-                <xsl:attribute name="conceptId" select="$conceptId"/>
-            </xsl:if>
-        </xsl:element>
+        
+        <xsl:for-each select="$in">
+            <xsl:element name="{$elemName}">
+                <xsl:if test="@value">
+                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
+                </xsl:if>
+                <xsl:copy-of select="@nullFlavor"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
+            </xsl:element>
+        </xsl:for-each>
     </xsl:template>
 
     <xsl:template name="makeADXPValue">
