@@ -14,13 +14,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-    <xsl:include href="../../util/constants.xsl"/>
-    <xsl:include href="../../util/datetime.xsl"/>
     <!-- import because we want to be able to override the param for macAddress -->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:import href="../../util/uuid.xsl"/>
+    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    <xsl:include href="../../util/constants.xsl"/>
+    <xsl:include href="../../util/datetime.xsl"/>
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
 
     <xd:doc>
