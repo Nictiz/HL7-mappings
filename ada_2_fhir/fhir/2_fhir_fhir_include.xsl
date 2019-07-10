@@ -179,8 +179,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Transforms ada element to FHIR Identifier</xd:desc>
-        <xd:param name="in">ada element with datatype id</xd:param>
+        <xd:desc>Transforms ada element to FHIR Identifier. Masks Burgerservicenummers</xd:desc>
+        <xd:param name="in">ada element with datatype identifier</xd:param>
     </xd:doc>
     <xsl:template name="id-to-Identifier" as="element()*">
         <xsl:param name="in" as="element()?"/>
@@ -189,6 +189,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
+            </xsl:when>
+            <xsl:when test="$in[@root = $oidBurgerservicenummer]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                    <valueCode value="masked"/>
+                </extension>
+                <system value="{local:getUri(@root)}"/>
             </xsl:when>
             <xsl:when test="$in[@value | @root]">
                 <xsl:for-each select="$in/@root">
