@@ -60,6 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidGStandaardTH040ContraIndicaties">2.16.840.1.113883.2.4.4.1.902.40</xsl:variable>
     <xsl:variable name="oidHL7AcknowledgementDetailCode">2.16.840.1.113883.5.1100</xsl:variable>
     <xsl:variable name="oidHL7ActCode">2.16.840.1.113883.5.4</xsl:variable>
+    <xsl:variable name="oidHL7ActClass">2.16.840.1.113883.5.6</xsl:variable>
     <xsl:variable name="oidHL7ActStatus">2.16.840.1.113883.5.14</xsl:variable>
     <xsl:variable name="oidHL7AddressUse">2.16.840.1.113883.5.1119</xsl:variable>
     <xsl:variable name="oidHL7AdministrativeGender">2.16.840.1.113883.5.1</xsl:variable>
