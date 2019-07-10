@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <!-- todo, add CDA-variant to xpath -->
-        <xsl:variable name="medicatiegegevens-lijst-90" select="//(hl7:organizer[hl7:code[@code='102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']])"/>
+        <xsl:variable name="medicatiegegevens-lijst-90" select="//hl7:organizer[hl7:code[@code='102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
         <xsl:call-template name="Medicatiegegevens-90-ADA">
             <xsl:with-param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-90"/>
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
@@ -46,9 +46,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="xsd-mbh"/>
     </xd:doc>
     <xsl:template name="Medicatiegegevens-90-ADA">
-        <xsl:param name="medicatiegegevens-lijst" select="//(hl7:organizer[hl7:code[@code='102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']])"/>
+        <xsl:param name="medicatiegegevens-lijst" select="//hl7:organizer[hl7:code[@code='102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
         <xsl:param name="xsd-mbh" select="$xsd-mbh"/>
-        <xsl:comment>Generated from HL7v3 xml with id <xsl:value-of select="./ancestor::*[hl7:ControlActProcess]/hl7:id/concat(@root, '-', @extension)"/>.</xsl:comment>
+        <xsl:call-template name="doGeneratedComment">
+            <xsl:with-param name="in" select="$medicatiegegevens-lijst/ancestor::*[hl7:ControlActProcess]"/>
+        </xsl:call-template>
         <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
             <meta status="new" created-by="generated" last-update-by="generated">
                 <xsl:attribute name="creation-date" select="current-dateTime()"/>
@@ -56,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </meta>
             <data>
                 <xsl:for-each select="$medicatiegegevens-lijst">
-                    <xsl:comment>Generated from HL7v3 xml with id <xsl:value-of select="$medicatiegegevens-lijst/ancestor::*[hl7:ControlActProcess]/hl7:id/concat(@root, '-', @extension)"/>.</xsl:comment>
+                    <xsl:call-template name="doGeneratedComment"/>
                     <xsl:variable name="patient" select="./hl7:recordTarget/hl7:patientRole"/>
                     <beschikbaarstellen_medicatiegegevens app="mp-mp9" shortName="beschikbaarstellen_medicatiegegevens" formName="uitwisselen_medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" versionDate="" prefix="mp-" language="nl-NL" title="Testbericht ADA conversie 2" id="d63106cd-2ebb-43c3-addd-71e768ac7b78">
                         <xsl:for-each select="$patient">
