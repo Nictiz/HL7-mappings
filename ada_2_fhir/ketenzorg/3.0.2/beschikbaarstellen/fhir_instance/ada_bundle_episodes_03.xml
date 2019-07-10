@@ -1,10 +1,10 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:a37cadc8-a302-11e9-6326-020000000000"/>
+      <fullUrl value="urn:uuid:58dbbb00-a335-11e9-1056-020000000000"/>
       <resource>
          <EpisodeOfCare>
             <meta>
@@ -33,12 +33,12 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:a37cadc7-a302-11e9-6326-020000000000"/>
+                  <reference value="urn:uuid:58dbbaff-a335-11e9-1056-020000000000"/>
                   <display value="R95 Emfyseem/COPD"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:a37cadbe-a302-11e9-6326-020000000000"/>
+               <reference value="urn:uuid:58dbbaf6-a335-11e9-1056-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <managingOrganization>
@@ -52,50 +52,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a37cadc7-a302-11e9-6326-020000000000"/>
-      <resource>
-         <Condition>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
-            </meta>
-            <clinicalStatus value="active"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="282291009"/>
-                  <display value="Diagnosis"/>
-               </coding>
-            </category>
-            <code>
-               <coding>
-                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
-                  <code value="R95"/>
-                  <display value="Emfyseem/COPD"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:a37cadbe-a302-11e9-6326-020000000000"/>
-               <display value="Joris Hansman"/>
-            </subject>
-            <onsetPeriod>
-               <start value="2015-08-10"/>
-            </onsetPeriod>
-         </Condition>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a37cadbe-a302-11e9-6326-020000000000"/>
+      <fullUrl value="urn:uuid:58dbbaf6-a335-11e9-1056-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="masked"/>
+               </extension>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="012345672"/>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">

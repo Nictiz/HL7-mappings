@@ -66,6 +66,14 @@
             <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="ada_bundle_alerts*.xml"/>
             <fileset id="inputfilesEncounters" dir="${xsl.input}" includes="ada_bundle_contactmomenten*.xml"/>
             
+            <!--<echo>ADA_2_FHIR ${xsl_allergyintolerance_resources}</echo>
+            <xslt force="true" style="${xsl_allergyintolerance_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!-\-<param name="allow-foreign" expression="true"/>-\->
+                <fileset refid="inputfilesAllergieIntoleranties"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>-->
+            
             <echo>ADA_2_FHIR ${xsl_allergyintolerance}</echo>
             <xslt force="true" style="${xsl_allergyintolerance}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
@@ -73,6 +81,14 @@
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
+            
+            <!--<echo>ADA_2_FHIR ${xsl_episodes_resources}</echo>
+            <xslt force="true" style="${xsl_episodes_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!-\-<param name="allow-foreign" expression="true"/>-\->
+                <fileset refid="inputfilesEpisodes"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>-->
             
             <echo>ADA_2_FHIR ${xsl_episodes}</echo>
             <xslt force="true" style="${xsl_episodes}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">

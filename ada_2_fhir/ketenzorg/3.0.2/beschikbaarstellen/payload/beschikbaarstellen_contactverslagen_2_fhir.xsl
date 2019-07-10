@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-            <xd:p><xd:b>Purpose (TODO):</xd:b> This XSL was created to facilitate mapping from [xxx] to gp-JournalEntry??.</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA BundleOfContactReport-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/resolve?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport">http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport</xd:a>.</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
                 <xd:ul>
@@ -31,32 +31,55 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer bij resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referByIdOverride" as="xs:boolean" select="false()"/>
-    <!-- default MedMij only Evaluation, Plan -->
-    <xsl:param name="rulesToInclude" select="('E', 'P')"/>
-    
+
+    <xsl:variable name="usecase">encounterreport</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patient-entries | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
+        <xsl:copy-of select="$patients//f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
     </xsl:variable>
     
+    <xd:doc>
+        <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen contactverslag".</xd:desc>
+    </xd:doc>
     <xsl:template match="/">
-        <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-            <type value="searchset"/>
-    
-            <xsl:variable name="bouwstenen" as="element()*">
-                <xsl:apply-templates mode="bouwstenenContactVerslag">
-                    <xsl:with-param name="rulesToInclude" as="xs:string*" select="$rulesToInclude"/>
-                </xsl:apply-templates>
-            </xsl:variable>
-            <xsl:variable name="entries" as="element(f:entry)*">
-                <xsl:copy-of select="$bouwstenen"/>
-                <!-- common entries (patient, practitioners, organizations, practitionerroles) -->
-                <xsl:if test="$bouwstenen">
-                    <xsl:copy-of select="$commonEntries"/>
-                </xsl:if>
-            </xsl:variable>
-            <total value="{count($bouwstenen)}"/>
-            <xsl:copy-of select="$entries"/>
-            
-        </Bundle>
+        <xsl:call-template name="BundleOfEncounterReport"/>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Build a FHIR Bundle of type searchset or in case of $referByIdOverride = true(), build individual files.</xd:desc>
+    </xd:doc>
+    <xsl:template name="BundleOfEncounterReport">
+        <xsl:variable name="entries" as="element(f:entry)*">
+            <xsl:copy-of select="$bouwstenen"/>
+            <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
+            <xsl:if test="$bouwstenen"><xsl:copy-of select="$commonEntries"/></xsl:if>
+        </xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="$referByIdOverride = true()">
+                <xsl:apply-templates select="$entries//f:resource/*" mode="doResourceInResultdoc"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+                <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+                    <type value="searchset"/>
+                    <total value="{count($bouwstenen)}"/>
+                    <xsl:copy-of select="$entries"/>
+                </Bundle>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
+        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, '/')[last()]"/>
+        <xsl:result-document href="../fhir_instance/{$usecase}-{$zib-name}-{ancestor::f:entry/f:fullUrl/tokenize(@value, '[/:]')[last()]}.xml">
+            <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:result-document>
     </xsl:template>
 </xsl:stylesheet>

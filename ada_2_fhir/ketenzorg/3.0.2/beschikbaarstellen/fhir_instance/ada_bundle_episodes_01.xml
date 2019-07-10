@@ -1,10 +1,10 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:a3738858-a302-11e9-7531-020000000000"/>
+      <fullUrl value="urn:uuid:58cf607b-a335-11e9-8690-020000000000"/>
       <resource>
          <EpisodeOfCare>
             <meta>
@@ -33,10 +33,13 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:a3738857-a302-11e9-7531-020000000000"/>
+                  <reference value="urn:uuid:58cf607a-a335-11e9-8690-020000000000"/>
                   <display value="T90.02 Diabetes Mellitus type II"/>
                </condition>
             </diagnosis>
+            <patient>
+               <reference value="urn:uuid:58cf6078-a335-11e9-8690-020000000000"/>
+            </patient>
             <managingOrganization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
                <display value="Huisarts de Jong ZAB"/>
@@ -48,7 +51,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a3738864-a302-11e9-7531-020000000000"/>
+      <fullUrl value="urn:uuid:58cf6087-a335-11e9-8690-020000000000"/>
       <resource>
          <EpisodeOfCare>
             <meta>
@@ -77,10 +80,13 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:a3738857-a302-11e9-7531-020000000000"/>
+                  <reference value="urn:uuid:58cf607a-a335-11e9-8690-020000000000"/>
                   <display value="T90.02 Diabetes Mellitus type II"/>
                </condition>
             </diagnosis>
+            <patient>
+               <reference value="urn:uuid:58cf6078-a335-11e9-8690-020000000000"/>
+            </patient>
             <managingOrganization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
                <display value="Huisarts de Jong ZAB"/>
@@ -92,31 +98,19 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a3738857-a302-11e9-7531-020000000000"/>
+      <fullUrl value="urn:uuid:58cf6078-a335-11e9-8690-020000000000"/>
       <resource>
-         <Condition>
+         <Patient>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
-            <clinicalStatus value="active"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="282291009"/>
-                  <display value="Diagnosis"/>
-               </coding>
-            </category>
-            <code>
-               <coding>
-                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
-                  <code value="T90.02"/>
-                  <display value="Diabetes Mellitus type II"/>
-               </coding>
-            </code>
-            <onsetPeriod>
-               <start value="2007-04-02"/>
-            </onsetPeriod>
-         </Condition>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="masked"/>
+               </extension>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+            </identifier>
+         </Patient>
       </resource>
       <search>
          <mode value="include"/>
@@ -135,7 +129,6 @@
             </identifier>
             <name value="Huisarts de Jong ZAB"/>
             <address>
-               <line/>
                <city value="Rotterdam"/>
             </address>
          </Organization>

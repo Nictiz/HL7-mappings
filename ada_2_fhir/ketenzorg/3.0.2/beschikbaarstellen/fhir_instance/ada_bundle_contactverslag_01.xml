@@ -1,13 +1,12 @@
-<Bundle xmlns="http://hl7.org/fhir"
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
    <type value="searchset"/>
-   <total value="12"/>
+   <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:a4084e4f-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1.996625"/>
       <resource>
          <Composition>
-            <id value="996625"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -19,13 +18,62 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
+               <reference value="urn:uuid:596ba076-a335-11e9-4687-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
-            <encounter/>
+            <encounter>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </encounter>
             <date value="2019-01-30"/>
-            <title value="Contactverslag E. XXX_Zegers"/>
+            <author>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <display value="Responsible Party"/>
+            </author>
+            <title value="Emfyseem/COPD"/>
             <section>
+               <code>
+                  <coding>
+                     <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
+                     <code value="S"/>
+                     <display value="Subjectief"/>
+                  </coding>
+               </code>
+               <text>
+                  <status value="additional"/>
+                  <div xmlns="http://www.w3.org/1999/xhtml">Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB.</div>
+               </text>
+               <entry>
+                  <reference value="urn:uuid:596ba089-a335-11e9-4687-020000000000"/>
+                  <display value="S: Subjectief - Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB."/>
+               </entry>
+            </section>
+            <section>
+               <code>
+                  <coding>
+                     <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
+                     <code value="O"/>
+                     <display value="Objectief"/>
+                  </coding>
+               </code>
+               <text>
+                  <status value="additional"/>
+                  <div xmlns="http://www.w3.org/1999/xhtml">Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb.</div>
+               </text>
+               <entry>
+                  <reference value="urn:uuid:596ba08c-a335-11e9-4687-020000000000"/>
+                  <display value="O: Objectief - Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb."/>
+               </entry>
+            </section>
+            <section>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-icpc-1-nl">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                        <code value="R95"/>
+                        <display value="Emfyseem/COPD"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <code>
                   <coding>
                      <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
@@ -38,7 +86,8 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">COPD, beterend</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:a4084de8-a302-11e9-1845-020000000000"/>
+                  <reference value="urn:uuid:596ba08f-a335-11e9-4687-020000000000"/>
+                  <display value="E: Evaluatie - COPD, beterend"/>
                </entry>
             </section>
             <section>
@@ -54,68 +103,20 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:a4084df2-a302-11e9-1845-020000000000"/>
+                  <reference value="urn:uuid:596ba099-a335-11e9-4687-020000000000"/>
+                  <display value="P: Plan - Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin."/>
                </entry>
             </section>
          </Composition>
       </resource>
       <search>
-         <mode value="include"/>
+         <mode value="match"/>
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a4084de8-a302-11e9-1845-020000000000"/>
-      <resource>
-         <Observation>
-            <status value="final"/>
-            <code>
-               <coding>
-                  <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
-                  <code value="E"/>
-                  <display value="Evaluatie"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <context/>
-            <valueString value="COPD, beterend"/>
-         </Observation>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a4084df2-a302-11e9-1845-020000000000"/>
-      <resource>
-         <Observation>
-            <status value="final"/>
-            <code>
-               <coding>
-                  <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
-                  <code value="P"/>
-                  <display value="Plan"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <context/>
-            <valueString value="Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin."/>
-         </Observation>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a4084e6c-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1.996626"/>
       <resource>
          <Composition>
-            <id value="996626"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
             </meta>
@@ -127,13 +128,62 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
+               <reference value="urn:uuid:596ba076-a335-11e9-4687-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
-            <encounter/>
+            <encounter>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </encounter>
             <date value="2019-02-02"/>
-            <title value="Contactverslag E. XXX_Zegers"/>
+            <author>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <display value="Responsible Party"/>
+            </author>
+            <title value="Emfyseem/COPD"/>
             <section>
+               <code>
+                  <coding>
+                     <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
+                     <code value="S"/>
+                     <display value="Subjectief"/>
+                  </coding>
+               </code>
+               <text>
+                  <status value="additional"/>
+                  <div xmlns="http://www.w3.org/1999/xhtml">Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel. </div>
+               </text>
+               <entry>
+                  <reference value="urn:uuid:596ba0a6-a335-11e9-4687-020000000000"/>
+                  <display value="S: Subjectief - Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel. "/>
+               </entry>
+            </section>
+            <section>
+               <code>
+                  <coding>
+                     <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
+                     <code value="O"/>
+                     <display value="Objectief"/>
+                  </coding>
+               </code>
+               <text>
+                  <status value="additional"/>
+                  <div xmlns="http://www.w3.org/1999/xhtml">Longen VAG crep+, piep iets, rhonchi+.  Percussie gb. </div>
+               </text>
+               <entry>
+                  <reference value="urn:uuid:596ba0a9-a335-11e9-4687-020000000000"/>
+                  <display value="O: Objectief - Longen VAG crep+, piep iets, rhonchi+.  Percussie gb. "/>
+               </entry>
+            </section>
+            <section>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-icpc-1-nl">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                        <code value="R95"/>
+                        <display value="Emfyseem/COPD"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <code>
                   <coding>
                      <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
@@ -146,7 +196,8 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">COPD, exacerbatie</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:a4084e24-a302-11e9-1845-020000000000"/>
+                  <reference value="urn:uuid:596ba0ac-a335-11e9-4687-020000000000"/>
+                  <display value="E: Evaluatie - COPD, exacerbatie"/>
                </entry>
             </section>
             <section>
@@ -162,17 +213,62 @@
                   <div xmlns="http://www.w3.org/1999/xhtml">AB starten, ventolin 3-4 dgs.</div>
                </text>
                <entry>
-                  <reference value="urn:uuid:a4084e2e-a302-11e9-1845-020000000000"/>
+                  <reference value="urn:uuid:596ba0b6-a335-11e9-4687-020000000000"/>
+                  <display value="P: Plan - AB starten, ventolin 3-4 dgs."/>
                </entry>
             </section>
          </Composition>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:596ba089-a335-11e9-4687-020000000000"/>
+      <resource>
+         <Observation>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
+                  <code value="S"/>
+                  <display value="Subjectief"/>
+               </coding>
+            </code>
+            <context>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </context>
+            <valueString value="Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB."/>
+         </Observation>
       </resource>
       <search>
          <mode value="include"/>
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a4084e24-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:uuid:596ba08c-a335-11e9-4687-020000000000"/>
+      <resource>
+         <Observation>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
+                  <code value="O"/>
+                  <display value="Objectief"/>
+               </coding>
+            </code>
+            <context>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </context>
+            <valueString value="Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb."/>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:596ba08f-a335-11e9-4687-020000000000"/>
       <resource>
          <Observation>
             <status value="final"/>
@@ -183,120 +279,26 @@
                   <display value="Evaluatie"/>
                </coding>
             </code>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <context/>
-            <valueString value="COPD, exacerbatie"/>
-         </Observation>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a4084e2e-a302-11e9-1845-020000000000"/>
-      <resource>
-         <Observation>
-            <status value="final"/>
-            <code>
-               <coding>
-                  <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
-                  <code value="P"/>
-                  <display value="Plan"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <context/>
-            <valueString value="AB starten, ventolin 3-4 dgs."/>
-         </Observation>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a4084e4f-a302-11e9-1845-020000000000"/>
-      <resource>
-         <Composition>
-            <id value="996625"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
-            </meta>
-            <status value="final"/>
-            <type>
-               <coding>
-                  <system value="http://loinc.org"/>
-                  <code value="67781-5"/>
-               </coding>
-            </type>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <encounter/>
-            <date value="2019-01-30"/>
-            <title value="Contactverslag E. XXX_Zegers"/>
-            <section>
-               <code>
-                  <coding>
-                     <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
-                     <code value="E"/>
-                     <display value="Evaluatie"/>
-                  </coding>
-               </code>
-               <text>
-                  <status value="additional"/>
-                  <div xmlns="http://www.w3.org/1999/xhtml">COPD, beterend</div>
-               </text>
-               <entry>
-                  <reference value="urn:uuid:a4084e60-a302-11e9-1845-020000000000"/>
-               </entry>
-            </section>
-            <section>
-               <code>
-                  <coding>
-                     <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
-                     <code value="P"/>
-                     <display value="Plan"/>
-                  </coding>
-               </code>
-               <text>
-                  <status value="additional"/>
-                  <div xmlns="http://www.w3.org/1999/xhtml">Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin.</div>
-               </text>
-               <entry>
-                  <reference value="urn:uuid:a4084e6a-a302-11e9-1845-020000000000"/>
-               </entry>
-            </section>
-         </Composition>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a4084e60-a302-11e9-1845-020000000000"/>
-      <resource>
-         <Observation>
-            <status value="final"/>
-            <code>
-               <coding>
-                  <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
-                  <code value="E"/>
-                  <display value="Evaluatie"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <context/>
+            <context>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </context>
             <valueString value="COPD, beterend"/>
+            <component>
+               <code>
+                  <coding>
+                     <system value="http://hl7.org/fhir/v3/ActCode"/>
+                     <code value="DISDX"/>
+                     <display value="discharge diagnosis"/>
+                  </coding>
+               </code>
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                     <code value="R95"/>
+                     <display value="Emfyseem/COPD"/>
+                  </coding>
+               </valueCodeableConcept>
+            </component>
          </Observation>
       </resource>
       <search>
@@ -304,7 +306,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a4084e6a-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:uuid:596ba099-a335-11e9-4687-020000000000"/>
       <resource>
          <Observation>
             <status value="final"/>
@@ -315,11 +317,9 @@
                   <display value="Plan"/>
                </coding>
             </code>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <context/>
+            <context>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </context>
             <valueString value="Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin."/>
          </Observation>
       </resource>
@@ -328,67 +328,51 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a4084e6c-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:uuid:596ba0a6-a335-11e9-4687-020000000000"/>
       <resource>
-         <Composition>
-            <id value="996626"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport"/>
-            </meta>
+         <Observation>
             <status value="final"/>
-            <type>
+            <code>
                <coding>
-                  <system value="http://loinc.org"/>
-                  <code value="67781-5"/>
+                  <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
+                  <code value="S"/>
+                  <display value="Subjectief"/>
                </coding>
-            </type>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <encounter/>
-            <date value="2019-02-02"/>
-            <title value="Contactverslag E. XXX_Zegers"/>
-            <section>
-               <code>
-                  <coding>
-                     <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
-                     <code value="E"/>
-                     <display value="Evaluatie"/>
-                  </coding>
-               </code>
-               <text>
-                  <status value="additional"/>
-                  <div xmlns="http://www.w3.org/1999/xhtml">COPD, exacerbatie</div>
-               </text>
-               <entry>
-                  <reference value="urn:uuid:a4084e9c-a302-11e9-1845-020000000000"/>
-               </entry>
-            </section>
-            <section>
-               <code>
-                  <coding>
-                     <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
-                     <code value="P"/>
-                     <display value="Plan"/>
-                  </coding>
-               </code>
-               <text>
-                  <status value="additional"/>
-                  <div xmlns="http://www.w3.org/1999/xhtml">AB starten, ventolin 3-4 dgs.</div>
-               </text>
-               <entry>
-                  <reference value="urn:uuid:a4084ea6-a302-11e9-1845-020000000000"/>
-               </entry>
-            </section>
-         </Composition>
+            </code>
+            <context>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </context>
+            <valueString value="Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel. "/>
+         </Observation>
       </resource>
       <search>
          <mode value="include"/>
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a4084e9c-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:uuid:596ba0a9-a335-11e9-4687-020000000000"/>
+      <resource>
+         <Observation>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/journaalregeltypen"/>
+                  <code value="O"/>
+                  <display value="Objectief"/>
+               </coding>
+            </code>
+            <context>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </context>
+            <valueString value="Longen VAG crep+, piep iets, rhonchi+.  Percussie gb. "/>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:596ba0ac-a335-11e9-4687-020000000000"/>
       <resource>
          <Observation>
             <status value="final"/>
@@ -399,12 +383,26 @@
                   <display value="Evaluatie"/>
                </coding>
             </code>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <context/>
+            <context>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </context>
             <valueString value="COPD, exacerbatie"/>
+            <component>
+               <code>
+                  <coding>
+                     <system value="http://hl7.org/fhir/v3/ActCode"/>
+                     <code value="DISDX"/>
+                     <display value="discharge diagnosis"/>
+                  </coding>
+               </code>
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                     <code value="R95"/>
+                     <display value="Emfyseem/COPD"/>
+                  </coding>
+               </valueCodeableConcept>
+            </component>
          </Observation>
       </resource>
       <search>
@@ -412,7 +410,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a4084ea6-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:uuid:596ba0b6-a335-11e9-4687-020000000000"/>
       <resource>
          <Observation>
             <status value="final"/>
@@ -423,11 +421,9 @@
                   <display value="Plan"/>
                </coding>
             </code>
-            <subject>
-               <reference value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
-               <display value="E. XXX_Zegers"/>
-            </subject>
-            <context/>
+            <context>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+            </context>
             <valueString value="AB starten, ventolin 3-4 dgs."/>
          </Observation>
       </resource>
@@ -436,15 +432,17 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a4084e46-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:uuid:596ba076-a335-11e9-4687-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="masked"/>
+               </extension>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999911624"/>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -462,6 +460,7 @@
                </given>
             </name>
             <gender value="female"/>
+            <birthDate value="1964-08-02"/>
          </Patient>
       </resource>
       <search>
@@ -504,7 +503,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a4084e52-a302-11e9-1845-020000000000"/>
+      <fullUrl value="urn:uuid:596ba082-a335-11e9-4687-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -512,6 +511,7 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <display value="Responsible Party"/>
             </practitioner>
             <code>
                <coding>

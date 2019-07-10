@@ -31,9 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer bij resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referByIdOverride" as="xs:boolean" select="false()"/>
-        
+
+    <xsl:variable name="usecase">allergyintolerance</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patient-entries | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
+        <xsl:copy-of select="$patients//f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
@@ -43,19 +44,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="BundleOfAllergyIntolerance"/>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
+        <xd:desc>Build a FHIR Bundle of type searchset or in case of $referByIdOverride = true(), build individual files.</xd:desc>
     </xd:doc>
     <xsl:template name="BundleOfAllergyIntolerance">
-        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-        <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-            <type value="searchset"/>
-            <xsl:variable name="entries" as="element(f:entry)*">
-                <xsl:copy-of select="$bouwstenen"/>
-                <!-- common entries (patient, practitioners, organizations, practitionerroles) -->
-                <xsl:if test="$bouwstenen"><xsl:copy-of select="$commonEntries"/></xsl:if>
-            </xsl:variable>
-            <total value="{count($bouwstenen)}"/>
-            <xsl:copy-of select="$entries"/>
-        </Bundle>
+        <xsl:variable name="entries" as="element(f:entry)*">
+            <xsl:copy-of select="$bouwstenen"/>
+            <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
+            <xsl:if test="$bouwstenen"><xsl:copy-of select="$commonEntries"/></xsl:if>
+        </xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="$referByIdOverride = true()">
+                <xsl:apply-templates select="$entries//f:resource/*" mode="doResourceInResultdoc"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+                <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+                    <type value="searchset"/>
+                    <total value="{count($bouwstenen)}"/>
+                    <xsl:copy-of select="$entries"/>
+                </Bundle>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
+        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, '/')[last()]"/>
+        <xsl:result-document href="../fhir_instance/{$usecase}-{$zib-name}-{ancestor::f:entry/f:fullUrl/tokenize(@value, '[/:]')[last()]}.xml">
+            <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+        <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>
+                <xsl:copy-of select="node()"/>
+            </xsl:copy>
+        </xsl:result-document>
     </xsl:template>
 </xsl:stylesheet>
