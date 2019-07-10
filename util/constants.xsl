@@ -96,23 +96,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="hl7NullFlavorMap" as="element()+">
         <!-- bron: https://www.hl7.nl/wiki/index.php/Vocabulaire.NullFlavor -->
-        <map hl7NullFlavor="NI" displayName="geen informatie"/>
-        <map hl7NullFlavor="INV" displayName="ongeldig"/>
-        <map hl7NullFlavor="DER" displayName="afgeleid"/>
+        <map hl7NullFlavor="NI" displayName="geen informatie" displayNameEN="no information"/>
+        <map hl7NullFlavor="INV" displayName="ongeldig" displayNameEN="invalid"/>
+        <map hl7NullFlavor="DER" displayName="afgeleid" displayNameEN="derived"/>
         <!-- er staat 'anders' in de bron, maar 'overig' is een logischere vertaling van other bij valuesets... -->
-        <map hl7NullFlavor="OTH" displayName="overig"/>
-        <map hl7NullFlavor="NINF" displayName="negatief oneindig"/>
-        <map hl7NullFlavor="PINF" displayName="positief oneindig"/>
-        <map hl7NullFlavor="UNC" displayName="niet-gecodeerd"/>
-        <map hl7NullFlavor="MSK" displayName="gemaskeerd"/>
-        <map hl7NullFlavor="NA" displayName="niet van toepassing"/>
-        <map hl7NullFlavor="UNK" displayName="onbekend"/>
-        <map hl7NullFlavor="ASKU" displayName="gevraagd maar onbekend"/>
-        <map hl7NullFlavor="NAV" displayName="tijdelijk niet beschikbaar"/>
-        <map hl7NullFlavor="NASK" displayName="niet gevraagd"/>
+        <map hl7NullFlavor="OTH" displayName="overig" displayNameEN="other"/>
+        <map hl7NullFlavor="NINF" displayName="negatief oneindig" displayNameEN="negative infinity"/>
+        <map hl7NullFlavor="PINF" displayName="positief oneindig" displayNameEN="positive infinity"/>
+        <map hl7NullFlavor="UNC" displayName="niet-gecodeerd" displayNameEN="unencoded"/>
+        <map hl7NullFlavor="MSK" displayName="gemaskeerd" displayNameEN="masked"/>
+        <map hl7NullFlavor="NA" displayName="niet van toepassing" displayNameEN="not applicable"/>
+        <map hl7NullFlavor="UNK" displayName="onbekend" displayNameEN="unknown"/>
+        <map hl7NullFlavor="ASKU" displayName="gevraagd maar onbekend" displayNameEN="asked but unknown"/>
+        <map hl7NullFlavor="NAV" displayName="tijdelijk niet beschikbaar" displayNameEN="temporarily unavailable"/>
+        <map hl7NullFlavor="NASK" displayName="niet gevraagd" displayNameEN="not asked"/>
         <!-- QS wordt gebruikt bij magistrale bereidingen: ingrediënten voor geneesmiddelen, betekent dan eigenlijk 'aanvullen tot' -->
-        <map hl7NullFlavor="QS" displayName="voldoende hoeveelheid"/>
-        <map hl7NullFlavor="TRC" displayName="spoor"/>
+        <map hl7NullFlavor="QS" displayName="voldoende hoeveelheid" displayNameEN="quantity sufficient"/>
+        <map hl7NullFlavor="TRC" displayName="spoor" displayNameEN="trace"/>
     </xsl:variable>
 
     <xsl:variable name="oidMap" as="element()+">
