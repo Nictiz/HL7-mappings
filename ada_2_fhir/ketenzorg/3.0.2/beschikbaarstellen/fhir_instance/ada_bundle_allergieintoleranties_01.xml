@@ -1,0 +1,151 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="2"/>
+   <entry>
+      <fullUrl value="urn:uuid:a2d7e4a1-a302-11e9-4432-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed"/>
+            <category value="biologic">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419199007"/>
+                        <display value="Allergy to substance"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <code>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Amoxicilline, opmerking: via neuroloog"/>
+            </code>
+            <patient>
+               <reference value="urn:uuid:a2d7e496-a302-11e9-4432-020000000000"/>
+               <display value="L XXX_Charan"/>
+            </patient>
+            <assertedDate value="2018-11-20"/>
+         </AllergyIntolerance>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:a2d7e4a8-a302-11e9-4432-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed"/>
+            <category value="biologic">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419199007"/>
+                        <display value="Allergy to substance"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <code>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Amoxicilline, opmerking: via neuroloog"/>
+            </code>
+            <patient>
+               <reference value="urn:uuid:a2d7e496-a302-11e9-4432-020000000000"/>
+               <display value="L XXX_Charan"/>
+            </patient>
+            <assertedDate value="2018-11-20"/>
+         </AllergyIntolerance>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:a2d7e496-a302-11e9-4432-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999900006"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="UNK"/>
+               </extension>
+               <family value="XXX_Charan">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Charan"/>
+                  </extension>
+               </family>
+               <given value="L">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00002727"/>
+            </identifier>
+            <name value="VZVZ Simulator 70000003"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
