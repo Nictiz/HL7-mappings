@@ -60,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:resource/*" mode="doResourceInResultdoc">
 		<xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, '/')[last()]"/>
-		<xsl:result-document href="../fhir_instance/{$usecase}-{$zib-name}-{f:id/@value}.xml">
+		<xsl:result-document href="../fhir_instance/{$usecase}-{$zib-name}-{ancestor::f:entry/f:fullUrl/tokenize(@value, '[/:]')[last()]}.xml">
 			<xsl:copy-of select="."/>
 		</xsl:result-document>
 	</xsl:template>
