@@ -17,21 +17,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:include href="../../util/constants.xsl"/>
     <xsl:include href="../../util/uuid.xsl"/>
 
-    <!-- Returns an ISO 8601 date or dateTime based on HL7v3 ts input string, and calculated precision
+    <!-- Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and calculated precision
         
         Calculation is done by calling nf:determine_date_precision($dateTime)
         
         Example nf:formatHL72XMLDate(hl7:effectiveTime/@value)
         
         @param $dateTime HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz
+        @return date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and $input-hl7-date is returned as-is
     -->
     <xsl:function name="nf:formatHL72XMLDate" as="xs:string">
-        <xsl:param name="dateTime" as="xs:string"/>
+        <xsl:param name="input-hl7-date" as="xs:string"/>
         
-        <xsl:value-of select="nf:formatHL72XMLDate($dateTime, nf:determine_date_precision($dateTime))"/>
+        <xsl:value-of select="nf:formatHL72XMLDate($input-hl7-date, nf:determine_date_precision($input-hl7-date))"/>
     </xsl:function>
     
-    <!-- Returns an ISO 8601 date or dateTime based on HL7v3 ts input string, and requested precision.
+    <!-- Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision.
         
         Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))
         
@@ -93,21 +94,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-    <xsl:function name="nf:appendDate2DateTime">
-        <!-- appends a HL7 date with zeros so that an XML dateTime can be created or dates can be compared -->
+    <!-- appends an HL7 date with zeros so that an XML dateTime can be created or dates can be compared -->
+    <xsl:function name="nf:appendDate2DateTime" as="xs:string?">
         <xsl:param name="inputDate" as="xs:string?"/>
-        <xsl:value-of select="substring(concat($inputDate, '00000000000000'), 1, 14)"/>
+        
+        <!-- split date/time from subseconds/timezone (if any) -->
+        <xsl:variable name="yyyymmddHHMMSS" select="replace($inputDate, '^(\d+).*', '$1')"/>
+        <xsl:variable name="ssZZzz" select="substring($inputDate, string-length(replace($inputDate, '^(\d+).*', '$1')) + 1)"/>
+        
+        <xsl:value-of select="concat(substring(concat($yyyymmddHHMMSS, '00000000000000'), 1, 14), $ssZZzz)"/>
     </xsl:function>
 
-    <xsl:function name="nf:appendDate2DateOrTime">
-        <!-- appends a HL7 date with zeros so that an XML date or dateTime can be created -->
+    <!-- appends an HL7 date with zeros so that an XML date or dateTime can be created -->
+    <xsl:function name="nf:appendDate2DateOrTime" as="xs:string?">
         <xsl:param name="inputDate"/>
+        
+        <!-- split date/time from subseconds/timezone (if any) -->
+        <xsl:variable name="yyyymmddHHMMSS" select="replace($inputDate, '^(\d+).*', '$1')"/>
+        <xsl:variable name="ssZZzz" select="substring($inputDate, string-length(replace($inputDate, '^(\d+).*', '$1')) + 1)"/>
+        
         <xsl:choose>
-            <xsl:when test="string-length($inputDate) > 8">
-                <xsl:value-of select="substring(concat($inputDate, '0000000000'), 1, 14)"/>
+            <xsl:when test="string-length($yyyymmddHHMMSS) gt 8">
+                <xsl:value-of select="concat(substring(concat($yyyymmddHHMMSS, '00000000000000'), 1, 14), $ssZZzz)"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="substring(concat($inputDate, '00000000'), 1, 8)"/>
+                <xsl:value-of select="substring(concat($yyyymmddHHMMSS, '00000000'), 1, 8)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
