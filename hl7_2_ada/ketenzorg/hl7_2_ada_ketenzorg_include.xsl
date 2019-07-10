@@ -16,17 +16,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
    <xsl:include href="../hl7/hl7_2_ada_hl7_include.xsl"/>
    
-    <xsl:variable name="oidOrganizerAllergyIntolerance">2.16.840.1.113883.2.4.3.11.60.66.10.20</xsl:variable>
-    <xsl:variable name="oidOrganizerEpisode">2.16.840.1.113883.2.4.3.11.60.66.10.16</xsl:variable>
-    <xsl:variable name="oidOrganizerContactReport">2.16.840.1.113883.2.4.3.11.60.66.10.14</xsl:variable>
-    <xsl:variable name="oidOrganizerAlgemeneBepaling">2.16.840.1.113883.2.4.3.11.60.66.10.8</xsl:variable>
-    <xsl:variable name="oidOrganizerLabBepaling">2.16.840.1.113883.2.4.3.11.60.66.10.77</xsl:variable>
+    <xsl:variable name="oidOrganizerAllergyIntolerances">2.16.840.1.113883.2.4.3.11.60.66.10.20</xsl:variable>
+    <xsl:variable name="oidOrganizerEpisodes">2.16.840.1.113883.2.4.3.11.60.66.10.16</xsl:variable>
+    <xsl:variable name="oidOrganizerContactReports">2.16.840.1.113883.2.4.3.11.60.66.10.14</xsl:variable>
+    <xsl:variable name="oidOrganizerAlgemeneBepalingen">2.16.840.1.113883.2.4.3.11.60.66.10.8</xsl:variable>
+    <xsl:variable name="oidOrganizerLabBepalingen">2.16.840.1.113883.2.4.3.11.60.66.10.77</xsl:variable>
+    <xsl:variable name="oidOrganizerAlerts">2.16.840.1.113883.2.4.3.11.60.66.10.18</xsl:variable>
+    <xsl:variable name="oidOrganizerEncounters">2.16.840.1.113883.2.4.3.11.60.66.10.10</xsl:variable>
     
     <xsl:variable name="oidAllergyIntoleranceAct">2.16.840.1.113883.2.4.3.11.60.66.10.215</xsl:variable>
     <xsl:variable name="oidAllergyIntoleranceObservation">2.16.840.1.113883.2.4.3.11.60.66.10.216</xsl:variable>
     
     <xsl:variable name="oidEpisodeAct">2.16.840.1.113883.2.4.3.11.60.66.10.212</xsl:variable>
     <xsl:variable name="oidEpisodeProblem">2.16.840.1.113883.2.4.3.11.60.66.10.213</xsl:variable>
+    
+    <xsl:variable name="oidEncounter">2.16.840.1.113883.2.4.3.11.60.66.10.201</xsl:variable>
     
     <xsl:variable name="oidContactReport">2.16.840.1.113883.2.4.3.11.60.66.10.207</xsl:variable>
     <xsl:variable name="oidJournalEntryS">2.16.840.1.113883.2.4.3.11.60.66.10.208</xsl:variable>
@@ -42,6 +46,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidReactionObservation">2.16.840.1.113883.2.4.3.11.60.66.10.217</xsl:variable>
     <xsl:variable name="oidSeverityObservation">2.16.840.1.113883.2.4.3.11.60.66.10.219</xsl:variable>
     <xsl:variable name="oidRouteOfExposureObservation">2.16.840.1.113883.2.4.3.11.60.66.10.220</xsl:variable>
+    
+    <xsl:variable name="oidAlert">2.16.840.1.113883.2.4.3.11.60.66.10.214</xsl:variable>
     
     <!-- Copy name parts as faithful as possible to HCIM 2017 nl.zorg.part.NameInformation. Calculate name usage code. Submit unstructured name in last_name -->
     <xsl:template name="handleENtoNameInformation">
@@ -1078,6 +1084,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:element>
         </xsl:for-each>
+    </xsl:template>
+    
+    <!-- Ketenzorg Bundle (HL7v3 Organizer except component) -->
+    <xsl:template name="template_organizer_2_bundle" exclude-result-prefixes="#all">
+        <xsl:param name="author" as="element()*"/>
+        <xsl:param name="patient" as="element()*"/>
+        
+        <bundle>
+            <!--<xsl:call-template name="handleII">
+                    <xsl:with-param name="in" select="hl7:id"/>
+                    <xsl:with-param name="elemName">identification_number</xsl:with-param>
+                </xsl:call-template>-->
+            <xsl:call-template name="handleCV">
+                <xsl:with-param name="in" select="hl7:code"/>
+                <xsl:with-param name="elemName">type</xsl:with-param>
+            </xsl:call-template>
+            <xsl:call-template name="handleCS">
+                <xsl:with-param name="in" select="hl7:statusCode"/>
+                <xsl:with-param name="codeSystem" select="$oidHL7ActStatus"/>
+                <xsl:with-param name="elemName">status</xsl:with-param>
+            </xsl:call-template>
+            <xsl:for-each select="$author[hl7:id/@root = $oidUZIPersons]">
+                <author>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
+                        <xsl:with-param name="in" select="$author"/>
+                        <xsl:with-param name="language">en-US</xsl:with-param>
+                        <xsl:with-param name="typeCode" select="$author/../@typeCode"/>
+                    </xsl:call-template>
+                </author>
+            </xsl:for-each>
+            <xsl:for-each select="$author//hl7:Organization">
+                <custodian>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="language">en-US</xsl:with-param>
+                    </xsl:call-template>
+                </custodian>
+            </xsl:for-each>
+            <xsl:for-each select="$patient">
+                <subject>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.2_20170602000000">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </subject>
+            </xsl:for-each>
+        </bundle>
     </xsl:template>
     
     <!-- copy an element with all of it's contents in comments -->

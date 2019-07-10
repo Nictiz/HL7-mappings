@@ -23,8 +23,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:comment>Generated from HL7v3 xml with <xsl:value-of select="//*[hl7:id][1]/local-name()"/> <xsl:copy-of select="(//hl7:id)[1]"/>.</xsl:comment>
-        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerEpisode]">
+        <xsl:call-template name="doGeneratedComment"/>
+        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerEpisodes]">
             <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_episodes_response.xsd">
                 <meta status="new" created-by="generated" last-update-by="generated">
                     <xsl:attribute name="creation-date" select="current-dateTime()"/>
@@ -50,47 +50,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
         <episodes_response app="ketenzorg3.0" shortName="episodes_response" formName="episodes_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.529" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
-            <bundle>
-                <!--<xsl:call-template name="handleII">
-                    <xsl:with-param name="in" select="hl7:id"/>
-                    <xsl:with-param name="elemName">identification_number</xsl:with-param>
-                </xsl:call-template>-->
-                <xsl:call-template name="handleCV">
-                    <xsl:with-param name="in" select="hl7:code"/>
-                    <xsl:with-param name="elemName">type</xsl:with-param>
-                </xsl:call-template>
-                <xsl:call-template name="handleCS">
-                    <xsl:with-param name="in" select="hl7:statusCode"/>
-                    <xsl:with-param name="codeSystem" select="$oidHL7ActStatus"/>
-                    <xsl:with-param name="elemName">status</xsl:with-param>
-                </xsl:call-template>
-                <xsl:for-each select="$author[hl7:id/@root = $oidUZIPersons]">
-                    <author>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
-                            <xsl:with-param name="in" select="$author"/>
-                            <xsl:with-param name="language">en-US</xsl:with-param>
-                            <xsl:with-param name="typeCode" select="$author/../@typeCode"/>
-                        </xsl:call-template>
-                    </author>
-                </xsl:for-each>
-                <xsl:for-each select="$author//hl7:Organization">
-                    <custodian>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="language">en-US</xsl:with-param>
-                        </xsl:call-template>
-                    </custodian>
-                </xsl:for-each>
-                <xsl:for-each select="$patient">
-                    <subject>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.2_20170602000000">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </subject>
-                </xsl:for-each>
-            </bundle>
-            <xsl:variable name="episodeAct" select="//*[hl7:templateId/@root = $oidEpisodeAct]"/>
-            <xsl:for-each select="$episodeAct">
+            <!-- Bundle stuff -->
+            <xsl:call-template name="template_organizer_2_bundle">
+                <xsl:with-param name="author" select="$author"/>
+                <xsl:with-param name="patient" select="$patient"/>
+            </xsl:call-template>
+            
+            <xsl:variable name="organizerComponents" select="//*[hl7:templateId/@root = $oidEpisodeAct]"/>
+            <xsl:for-each select="$organizerComponents">
                 <episode>
                     <xsl:if test="hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
                         <hcimroot>

@@ -44,10 +44,12 @@
         <property name="xsl.saxon" value="/Users/ahenket/Development/lib/SaxonPE9-7-0-20J/saxon9pe.jar"/>
         
         <property name="xsl_allergyintolerance" value="payload/beschikbaarstellen_allergieintoleranties_2_ada.xsl"/>
-        <property name="xsl_episodes" value="payload/beschikbaarstellen_episode_2_ada.xsl"/>
+        <property name="xsl_episodes" value="payload/beschikbaarstellen_episodes_2_ada.xsl"/>
         <property name="xsl_contactverslagen" value="payload/beschikbaarstellen_contactverslagen_2_ada.xsl"/>
         <property name="xsl_algemene_bepalingen" value="payload/beschikbaarstellen_algemene_bepalingen_2_ada.xsl"/>
         <property name="xsl_labbepalingen" value="payload/beschikbaarstellen_labbepalingen_2_ada.xsl"/>
+        <property name="xsl_alerts" value="payload/beschikbaarstellen_alerts_2_ada.xsl"/>
+        <property name="xsl_encounters" value="payload/beschikbaarstellen_contactmomenten_2_ada.xsl"/>
         
         <property name="xsl.input" value="hl7v3_instance"/>
         <property name="xsl.output" value="ada_instance"/>
@@ -61,6 +63,8 @@
             <fileset id="inputfilesContactverslagen" dir="${xsl.input}" includes="hl7v3_contactverslag*.xml"/>
             <fileset id="inputfilesAlgemeneBepalingen" dir="${xsl.input}" includes="hl7v3_algemene_bepalingen*.xml"/>
             <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="hl7v3_labbepalingen*.xml"/>
+            <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="hl7v3_alerts*.xml"/>
+            <fileset id="inputfilesEncounters" dir="${xsl.input}" includes="hl7v3_contactmomenten*.xml"/>
             
             <echo>HL7v3_2_ADA ${xsl_allergyintolerance}</echo>
             <xslt force="true" style="${xsl_allergyintolerance}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
@@ -98,6 +102,22 @@
             <xslt force="true" style="${xsl_labbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesLabBepalingen"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo>HL7v3_2_ADA ${xsl_alerts}</echo>
+            <xslt force="true" style="${xsl_alerts}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="inputfilesAlerts"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo>HL7v3_2_ADA ${xsl_encounters}</echo>
+            <xslt force="true" style="${xsl_encounters}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="inputfilesEncounters"/>
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>

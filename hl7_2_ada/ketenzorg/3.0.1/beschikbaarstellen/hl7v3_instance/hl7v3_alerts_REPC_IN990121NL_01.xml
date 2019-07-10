@@ -1,0 +1,141 @@
+<httpclient:response xmlns:httpclient="http://exist-db.org/xquery/httpclient" statusCode="200">
+    <httpclient:headers>
+        <httpclient:header name="Date" value="Mon, 04 Mar 2019 14:57:34 GMT"/>
+        <httpclient:header name="Server" value="Apache-Coyote/1.1"/>
+        <httpclient:header name="Accept" value="text/xml, text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"/>
+        <httpclient:header name="SOAPAction" value="&#34;&#34;"/>
+        <httpclient:header name="Content-Type" value="text/xml;charset=utf-8"/>
+        <httpclient:header name="Content-Length" value="5235"/>
+        <httpclient:header name="Vary" value="Accept-Encoding"/>
+    </httpclient:headers>
+    <httpclient:body mimetype="text/xml;charset=utf-8" type="xml">
+        <soap:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+            <soap:Header/>
+            <soap:Body>
+                <REPC_IN990121NL xmlns="urn:hl7-org:v3" xmlns:sd="urn:hl7-org:sdtc" xmlns:ph="urn:ihe:pharm:medication" xmlns:nl="urn:hl7-nl:v3">
+                    <id extension="XIS-20190304-1353-32ec5b92-4dbd-44cf-aed6-2de5e8474eaa" root="2.16.840.1.113883.2.4.6.6.90000258.1"/>
+                    <creationTime value="20190304155734"/>
+                    <versionCode code="NICTIZEd2005-Okt"/>
+                    <interactionId extension="REPC_IN990121NL" root="2.16.840.1.113883.1.6"/>
+                    <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+                    <processingCode code="P"/>
+                    <processingModeCode code="T"/>
+                    <acceptAckCode code="NE"/>
+                    <acknowledgement typeCode="AA">
+                        <targetMessage>
+                            <id extension="d0ff18eb-5a92-41f4-bd35-14a66ddad812" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+                        </targetMessage>
+                    </acknowledgement>
+                    <receiver>
+                        <device>
+                            <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+                        </device>
+                    </receiver>
+                    <sender>
+                        <device>
+                            <id extension="90000258" root="2.16.840.1.113883.2.4.6.6"/>
+                            <name>XIS LSP</name>
+                        </device>
+                    </sender>
+                    <ControlActProcess moodCode="EVN">
+                        <authorOrPerformer typeCode="AUT">
+                            <participant>
+                                <AssignedDevice>
+                                    <id extension="900017472" root="2.16.528.1.1007.3.2"/>
+                                    <Organization>
+                                        <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                        <name>Tést Zorginstelling 04</name>
+                                    </Organization>
+                                </AssignedDevice>
+                            </participant>
+                        </authorOrPerformer>
+                        <subject>
+                            <organizer classCode="CLUSTER" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.18"/>
+                                <code code="74018-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Alert"/>
+                                <statusCode code="completed"/>
+                                <recordTarget>
+                                    <patientRole>
+                                        <id extension="999911624" root="2.16.840.1.113883.2.4.6.3"/>
+                                        <addr use="HP">
+                                            <streetName>Knolweg</streetName>
+                                            <houseNumber>1001</houseNumber>
+                                            <postalCode>9999 XX</postalCode>
+                                            <city>STITSWERD</city>
+                                            <country>Nederland</country>
+                                        </addr>
+                                        <patient>
+                                            <name>
+                                                <given qualifier="IN">E.</given>
+                                                <family qualifier="BR">XXX_Zegers</family>
+                                            </name>
+                                            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                                            <birthTime value="19640802"/>
+                                        </patient>
+                                    </patientRole>
+                                </recordTarget>
+                                <participant typeCode="CST">
+                                    <participantRole classCode="ASSIGNED">
+                                        <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                    </participantRole>
+                                </participant>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.214"/>
+                                        <id extension="43316" root="2.16.840.1.113883.2.4.6.6.90000258.4.8"/>
+                                        <code code="74018-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Alert"/>
+                                        <statusCode code="completed"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="219" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Thesaurus 40" displayName="VERKEERSDEELNAME" xsi:type="CE"/>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.214"/>
+                                        <id extension="43554" root="2.16.840.1.113883.2.4.6.6.90000258.4.8"/>
+                                        <code code="74018-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Alert"/>
+                                        <statusCode code="completed"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="18" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Thesaurus 40" displayName="HYPERTENSIE" xsi:type="CE"/>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.214"/>
+                                        <id extension="43608" root="2.16.840.1.113883.2.4.6.6.90000258.4.8"/>
+                                        <code code="74018-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Alert"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime>
+                                            <low value="20190130"/>
+                                        </effectiveTime>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="1348" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Thesaurus 40" displayName="COPD" xsi:type="CE"/>
+                                        <entryRelationship typeCode="REFR">
+                                            <act classCode="ACT" moodCode="EVN">
+                                                <id extension="1826" root="2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                                                <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                            </act>
+                                        </entryRelationship>
+                                    </observation>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.214"/>
+                                        <id extension="43609" root="2.16.840.1.113883.2.4.6.6.90000258.4.8"/>
+                                        <code code="74018-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Alert"/>
+                                        <statusCode code="completed"/>
+                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="210" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-Standaard Thesaurus 40" displayName="SPORTBEOEFENING" xsi:type="CE"/>
+                                    </observation>
+                                </component>
+                            </organizer>
+                        </subject>
+                        <queryAck>
+                            <queryId extension="19fdb9d3-b1ac-4ce4-a736-950c5f83a75e" root="2.16.840.1.113883.2.4.6.6.1.1.1"/>
+                            <queryResponseCode code="OK"/>
+                            <resultTotalQuantity value="1"/>
+                            <resultCurrentQuantity value="1"/>
+                            <resultRemainingQuantity value="0"/>
+                        </queryAck>
+                    </ControlActProcess>
+                </REPC_IN990121NL>
+            </soap:Body>
+        </soap:Envelope>
+    </httpclient:body>
+</httpclient:response>
