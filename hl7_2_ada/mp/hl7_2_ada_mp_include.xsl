@@ -292,7 +292,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <!-- output the toedieningstijd -->
                                     <xsl:variable name="xsd-toedientijd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'toedientijd']/@type"/>
                                     <xsl:variable name="xsd-toedientijd" select="$xsd-ada//xs:complexType[@name = $xsd-toedientijd-complexType]"/>
-                                    <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./hl7:phase/hl7:center/@value),nf:determine_date_precision(./hl7:phase/hl7:center/@value))}" conceptId="{$xsd-toedientijd/xs:attribute[@name='conceptId']/@fixed}"/>
+                                    <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./hl7:phase/hl7:center/@value), nf:determine_date_precision(./hl7:phase/hl7:center/@value))}" conceptId="{$xsd-toedientijd/xs:attribute[@name='conceptId']/@fixed}"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:comment><!-- Do nothing --></xsl:comment>
@@ -866,7 +866,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:variable name="hl7-weekdag" select="substring(./hl7nl:phase/hl7nl:low/@value, 1, 8)"/>
                                                     <xsl:variable name="hl7-tijd" select="substring(./hl7nl:phase/hl7nl:low/@value, 9, 6)"/>
                                                     <xsl:variable name="hl7-period" select="./hl7nl:period"/>
-                                                    <xsl:variable name="weekdag-xml-date" select="nf:formatHL72XMLDate($hl7-weekdag, 'dag')"/>
+                                                    <xsl:variable name="weekdag-xml-date" select="nf:formatHL72XMLDate($hl7-weekdag, 'DAY')"/>
                                                     <days value="{nf:day-of-week($weekdag-xml-date)}" period-value="{$hl7-period/@value}" period-unit="{$hl7-period/@unit}">
                                                         <xsl:if test="string-length($hl7-tijd) gt 0">
                                                             <xsl:attribute name="time" select="$hl7-tijd"/>
@@ -982,6 +982,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <!-- Complexer doseerschema met meer dan één dagdeel. -->
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'HD']/hl7:comp">
                                             <xsl:call-template name="mp9-weekdag">
+                                                <!-- FIXME: should this not be hl7nl:phase/hl7nl:low? -->
                                                 <xsl:with-param name="hl7-phase-low" select="."/>
                                                 <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                                                 <xsl:with-param name="xsd-toedieningsschema" select="$xsd-toedieningsschema"/>
@@ -1519,7 +1520,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:variable name="hl7-start-datum" select="./hl7:low/@value"/>
                                 <!-- width is altijd in dagen in 6.12 -->
                                 <xsl:variable name="hl7-width-in-days" select="./hl7:width/@value"/>
-                                <xsl:variable name="xml-start-datum" as="xs:dateTime" select="nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-start-datum), 'SECONDEN')"/>
+                                <!-- TODO: als van $hl7-start-datum geen dateTime kan worden gemaakt, valt dit hier om: -->
+                                <xsl:variable name="xml-start-datum" as="xs:dateTime" select="xs:dateTime(nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-start-datum), 'SECOND'))"/>
                                 <xsl:variable name="xml-eind-datum" select="xs:dateTime($xml-start-datum + xs:dayTimeDuration(concat('P', $hl7-width-in-days, 'D')))"/>
                                 <xml-eind-datum value="{$xml-eind-datum}"/>
                             </xsl:for-each>
@@ -1714,7 +1716,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:variable name="hl7-start-datum" select="./hl7:low/@value"/>
                                 <!-- width is altijd in dagen in 6.12 -->
                                 <xsl:variable name="hl7-width-in-days" select="./hl7:width/@value"/>
-                                <xsl:variable name="xml-start-datum" as="xs:dateTime" select="nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-start-datum), 'SECONDEN')"/>
+                                <!-- TODO: als van $hl7-start-datum geen dateTime kan worden gemaakt, valt dit hier om: -->
+                                <xsl:variable name="xml-start-datum" as="xs:dateTime" select="xs:dateTime(nf:formatHL72XMLDate(nf:appendDate2DateTime($hl7-start-datum), 'SECOND'))"/>
                                 <xsl:variable name="xml-eind-datum" select="xs:dateTime($xml-start-datum + xs:dayTimeDuration(concat('P', $hl7-width-in-days, 'D')))"/>
                                 <xml-eind-datum value="{$xml-eind-datum}"/>
                             </xsl:for-each>
@@ -1990,7 +1993,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="xsd-ada"/>
         <xsl:param name="xsd-toedieningsschema"/>
         <xsl:variable name="hl7-weekdag" select="substring($hl7-phase-low/@value, 1, 8)"/>
-        <xsl:variable name="weekdag-xml-date" select="nf:formatHL72XMLDate($hl7-weekdag, 'dag')"/>
+        <xsl:variable name="weekdag-xml-date" select="nf:formatHL72XMLDate($hl7-weekdag, 'DAY')"/>
         <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'weekdag']/@type"/>
         <weekdag conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
             <xsl:call-template name="mp9-weekdag-attribs">
@@ -2634,7 +2637,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- output the toedieningstijd -->
                     <xsl:variable name="xsd-toedientijd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'toedientijd']/@type"/>
                     <xsl:variable name="xsd-toedientijd" select="$xsd-ada//xs:complexType[@name = $xsd-toedientijd-complexType]"/>
-                    <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./hl7:phase/hl7:center/@value),nf:determine_date_precision(./hl7:phase/hl7:center/@value))}" conceptId="{$xsd-toedientijd/xs:attribute[@name='conceptId']/@fixed}"/>
+                    <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./hl7:phase/hl7:center/@value), nf:determine_date_precision(./hl7:phase/hl7:center/@value))}" conceptId="{$xsd-toedientijd/xs:attribute[@name='conceptId']/@fixed}"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:comment><!-- Do nothing --></xsl:comment>
@@ -3471,18 +3474,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:if>
     </xsl:function>
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="input-hl7-date"/>
-    </xd:doc>
-    <xsl:function name="nf:determine_date_precision">
-        <xsl:param name="input-hl7-date"/>
-        <xsl:choose>
-            <xsl:when test="string-length($input-hl7-date) &lt;= 8">day</xsl:when>
-            <xsl:when test="string-length($input-hl7-date) > 8">second</xsl:when>
-            <xsl:otherwise>not_supported</xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
+    
     <xd:doc>
         <xd:desc/>
         <xd:param name="date"/>
@@ -3499,7 +3491,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     div xs:dayTimeDuration('P1D')) mod 7
                 "/>
     </xsl:function>
-
 
     <xd:doc>
         <xd:desc/>
