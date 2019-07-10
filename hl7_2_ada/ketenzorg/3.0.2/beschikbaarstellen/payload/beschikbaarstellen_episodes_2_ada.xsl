@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()"/>
         <xsl:param name="author" as="element()?"/>
         
-        <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
+        <xsl:variable name="patient" select="$in/hl7:recordTarget"/>
         <episodes_response app="ketenzorg3.0" shortName="episodes_response" formName="episodes_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.529" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <!-- Bundle stuff -->
             <xsl:call-template name="template_organizer_2_bundle">
