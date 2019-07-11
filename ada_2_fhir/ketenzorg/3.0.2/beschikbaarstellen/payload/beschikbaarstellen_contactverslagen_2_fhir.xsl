@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     
     <xd:doc>
-        <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen contactverslag".</xd:desc>
+        <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen encounter_note".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="BundleOfEncounterReport"/>

@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="/">
         <xsl:call-template name="doGeneratedComment"/>
         <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerContactReports]">
-            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_encounter_reports_response.xsd">
+            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_encounter_notes_response.xsd">
                 <meta status="new" created-by="generated" last-update-by="generated">
                     <xsl:attribute name="creation-date" select="current-dateTime()"/>
                     <xsl:attribute name="last-update-date" select="current-dateTime()"/>
@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="author" as="element()?"/>
         
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
-        <encounter_reports_response app="ketenzorg3.0" shortName="encounter_reports_response" formName="encounter_reports_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.526" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
+        <encounter_notes_response app="ketenzorg3.0" shortName="encounter_notes_response" formName="encounter_notes_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.526" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <!-- Bundle stuff -->
             <xsl:call-template name="template_organizer_2_bundle">
                 <xsl:with-param name="author" select="$author"/>
@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:variable name="organizerComponents" select="$in//*[hl7:templateId/@root = $oidContactReport]"/>
             <xsl:for-each select="$organizerComponents">
-                <contactverslag>
+                <encounter_note>
                     <xsl:if test="hl7:id | hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
                         <hcimroot>
                             <xsl:if test="hl7:id">
@@ -118,9 +118,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                         </xsl:choose>
                     </xsl:for-each>
-                </contactverslag>
+                </encounter_note>
             </xsl:for-each>
-        </encounter_reports_response>
+        </encounter_notes_response>
         <xsl:comment>Input HL7 xml below</xsl:comment>
         <xsl:call-template name="copyElementInComment">
             <xsl:with-param name="element" select="./*"/>

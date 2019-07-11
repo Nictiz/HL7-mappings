@@ -158,7 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- Contactverslagen -->
-        <xsl:for-each select="//*[bundle]/contactverslag">
+        <xsl:for-each select="//*[bundle]/encounter_note">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
                 <resource>
