@@ -24,6 +24,66 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
 
     <xd:doc>
+        <xd:desc>Transforms ada code element to FHIR code/@value</xd:desc>
+        <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
+            
+            <xd:p>Example. if you only want to translate ActStatus completed into a FHIR ObservationStatus final, this would suffice:</xd:p>
+            
+            <xd:p><code>&lt;map inCode="completed" inCodeSystem="$codeSystem" code="final"/&gt;</code>
+            <div>to produce</div> 
+            <code>&lt;$elemName value="final"/&gt;</code></xd:p>
+        </xd:param>
+    </xd:doc>
+    <xsl:template name="code-to-code" as="attribute(value)?">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="codeMap" as="element()*"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="theCode">
+                <xsl:choose>
+                    <xsl:when test="@code">
+                        <xsl:value-of select="@code"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="@nullFlavor"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="theCodeSystem">
+                <xsl:choose>
+                    <xsl:when test="@code">
+                        <xsl:value-of select="@codeSystem"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$oidHL7NullFlavor"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="out" as="element()">
+                <xsl:choose>
+                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
+                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
+                    </xsl:when>
+                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
+                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="."/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            
+            <xsl:attribute name="value">
+                <xsl:value-of select="$out/@code"/>
+                <!-- In the case where codeMap if only used to add a @value for ADA, this saves having to repeat the @inCode and @inCodeSystem as @code resp. @codeSystem -->
+                <xsl:if test="not($out/@code) and not(empty($theCode))">
+                    <xsl:value-of select="$theCode"/>
+                </xsl:if>
+            </xsl:attribute>
+        </xsl:for-each>
+    </xsl:template>
+    <xd:doc>
         <xd:desc>Transforms ada code element to FHIR CodeableConcept</xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="element-name">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
@@ -137,8 +197,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$in[@unit]">
                      <xsl:for-each select="./@unit">
                         <!-- UCUM -->
-                        <system value="{local:getUri('2.16.840.1.113883.6.8')}"/>
                         <unit value="{.}"/>
+                        <system value="{local:getUri($oidUCUM)}"/>
                     </xsl:for-each>
                     <code value="{$in/@unit}"/>
                 </xsl:for-each>
