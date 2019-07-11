@@ -132,6 +132,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         @param $codeSystem Relevant/required only for CS. CS has no codeSystem so it has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
         @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
+        @param $dodatatype Boolean. If true creates relevant @datatype attribute on the output.
         @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
     -->
     <xsl:template name="handleANY">
@@ -139,6 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="codeSystem" as="xs:string?"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="dodatatype" select="false()" as="xs:boolean"/>
         <xsl:param name="codeMap" as="element()*"/>
         
         <xsl:for-each select="$in">
@@ -154,6 +156,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">boolean</xsl:if>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:CS'">
@@ -162,6 +167,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="codeSystem" select="$codeSystem"/>
                         <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">code</xsl:if>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:CV' or $xsiTypeURIName = '{urn:hl7-org:v3}:CE' or $xsiTypeURIName = '{urn:hl7-org:v3}:CD' or $xsiTypeURIName = '{urn:hl7-org:v3}:CO'">
@@ -169,6 +177,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">code</xsl:if>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:II'">
@@ -176,6 +187,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">identifier</xsl:if>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:PQ'">
@@ -183,6 +197,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">quantity</xsl:if>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:ST'">
@@ -190,6 +207,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">string</xsl:if>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:TS'">
@@ -197,6 +217,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="conceptId" select="$conceptId"/>
                         <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">date</xsl:if>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
@@ -214,6 +237,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         @param $codeSystem CS has no codeSystem so it has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
         @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
+        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
         @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
             
             Example. if you only want to add a @value and a @displayName for an hl7:act <statusCode code="completed"/>, this would suffice:
@@ -227,6 +251,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="codeSystem" as="xs:string" required="yes"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="datatype" as="xs:string?"/>
         <xsl:param name="codeMap" as="element()*"/>
         
         <xsl:variable name="rewrite" as="element()*">
@@ -247,6 +272,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="$rewrite"/>
             <xsl:with-param name="conceptId" select="$conceptId"/>
             <xsl:with-param name="elemName" select="$elemName"/>
+            <xsl:with-param name="datatype" select="$datatype"/>
             <xsl:with-param name="codeMap" select="$codeMap"/>
         </xsl:call-template>
     </xsl:template>
@@ -256,6 +282,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         @param $in Array of elements to process. If empty array, then no output is created.
         @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
+        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
         @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
             <map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/>
         
@@ -269,6 +296,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="datatype" as="xs:string?"/>
         <xsl:param name="codeMap" as="element()*"/>
         
         <xsl:for-each select="$in">
@@ -307,6 +335,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             
             <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($datatype) gt 0">
+                    <xsl:attribute name="datatype" select="$datatype"/>
+                </xsl:if>
+                
                 <xsl:copy-of select="$out/@value"/>
                 
                 <xsl:choose>
@@ -353,14 +385,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         @param $in Array of elements to process. If empty array, then no output is created.
         @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
+        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
     -->
     <xsl:template name="handleBL">
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="datatype" as="xs:string?"/>
         
         <xsl:for-each select="$in">
             <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($datatype) gt 0">
+                    <xsl:attribute name="datatype" select="$datatype"/>
+                </xsl:if>
                 <xsl:copy-of select="@value"/>
                 <xsl:copy-of select="@nullFlavor"/>
                 <xsl:if test="string-length($conceptId) gt 0">
@@ -375,14 +412,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         @param $in Array of elements to process. If empty array, then no output is created.
         @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
+        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
     -->
     <xsl:template name="handleII">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="datatype" as="xs:string?"/>
         
         <xsl:for-each select="$in">
             <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($datatype) gt 0">
+                    <xsl:attribute name="datatype" select="$datatype"/>
+                </xsl:if>
                 <xsl:if test="@extension">
                     <xsl:attribute name="value" select="@extension"/>
                 </xsl:if>
@@ -400,14 +442,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         @param $in Array of elements to process. If empty array, then no output is created.
         @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
+        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
     -->
     <xsl:template name="handlePQ">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="datatype" as="xs:string?"/>
         
         <xsl:for-each select="$in">
             <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($datatype) gt 0">
+                    <xsl:attribute name="datatype" select="$datatype"/>
+                </xsl:if>
                 <xsl:copy-of select="@value"/>
                 <xsl:copy-of select="@unit[not(. = '1')]"/>
                 <xsl:copy-of select="@nullFlavor"/>
@@ -423,13 +470,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         @param $in Array of elements to process. If empty array, then no output is created.
         @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
+        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
     -->
     <xsl:template name="handleST">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="datatype" as="xs:string?"/>
         
         <xsl:for-each select="$in">
+            <xsl:if test="string-length($datatype) gt 0">
+                <xsl:attribute name="datatype" select="$datatype"/>
+            </xsl:if>
             <xsl:element name="{$elemName}">
                 <xsl:if test="text()[not(normalize-space() = '')]">
                     <xsl:attribute name="value" select="."/>
@@ -447,14 +499,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         @param $in Array of elements to process. If empty array, then no output is created.
         @param $conceptId Optional value for an ADA @conceptId attribute 
         @param $elemName Name of the ADA element to produce
+        @param $datatype If populated and @value is xs:dateTime, @datatype will be dateTime, otherwise if populated @datatype will be date. No @datatype is created otherwise
     -->
     <xsl:template name="handleTS">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName">value</xsl:param>
+        <xsl:param name="datatype" as="xs:string?"/>
         
         <xsl:for-each select="$in">
+            <xsl:variable name="value" select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
+            
             <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($datatype) gt 0">
+                    <xsl:attribute name="datatype">
+                        <xsl:choose>
+                            <xsl:when test="$value castable as xs:dateTime">dateTime</xsl:when>
+                            <xsl:otherwise>date</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </xsl:if>
                 <xsl:if test="@value">
                     <xsl:attribute name="value" select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
                 </xsl:if>

@@ -125,6 +125,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="handleANY">
                             <xsl:with-param name="in" select="hl7:value"/>
                             <xsl:with-param name="elemName">test_result</xsl:with-param>
+                            <xsl:with-param name="dodatatype" select="true()" as="xs:boolean"/>
                             <!-- mapping into itself relevant to get the @value attributes which is required in the schema -->
                             <xsl:with-param name="codeMap" as="element(map)*">
                                 <map inCode="282291009" inCodeSystem="{$oidSNOMEDCT}" value="1" code="282291009" codeSystem="{$oidSNOMEDCT}" displayName="Diagnosis"/>
@@ -162,12 +163,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="handlePQ">
                             <xsl:with-param name="in" select="hl7:referenceRange/hl7:referenceRange/hl7:observationRange/hl7:value/hl7:high"/>
                             <xsl:with-param name="elemName">reference_range_upper_limit</xsl:with-param>
+                            <xsl:with-param name="datatype">quantity</xsl:with-param>
                         </xsl:call-template>
                         
                         <!-- reference_range_lower_limit -->
                         <xsl:call-template name="handlePQ">
                             <xsl:with-param name="in" select="hl7:referenceRange/hl7:referenceRange/hl7:observationRange/hl7:value/hl7:low"/>
                             <xsl:with-param name="elemName">reference_range_lower_limit</xsl:with-param>
+                            <xsl:with-param name="datatype">quantity</xsl:with-param>
                         </xsl:call-template>
                         
                         <!-- result_flags -->
