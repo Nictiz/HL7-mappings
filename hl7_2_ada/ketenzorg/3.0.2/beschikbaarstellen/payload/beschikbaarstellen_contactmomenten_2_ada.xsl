@@ -65,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="hl7:id"/>
                                 <xsl:with-param name="elemName">identification_number</xsl:with-param>
                             </xsl:call-template>
-                            <xsl:for-each select="hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
+                            <!--<xsl:for-each select="hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
                                 <author>
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
                                         <xsl:with-param name="in" select="."/>
@@ -73,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="typeCode" select="../@typeCode"/>
                                     </xsl:call-template>
                                 </author>
-                            </xsl:for-each>
+                            </xsl:for-each>-->
                             <!-- Date and if relevant the time the event to which the information relates took place . -->
                             <!--<xsl:for-each select="hl7:effectiveTime/hl7:low">
                                 <xsl:call-template name="handleTS">
