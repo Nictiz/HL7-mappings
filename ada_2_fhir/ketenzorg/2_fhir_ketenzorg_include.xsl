@@ -127,6 +127,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
 
     <xsl:variable name="bouwstenen" as="element(f:entry)*">
+        <!-- Labuitslagen -->
+        <xsl:for-each select="//*[bundle]/laboratory_test_result/laboratory_test">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
+                <resource>
+                    <xsl:call-template name="zib-LaboratoryTestResult-4.1">
+                        <xsl:with-param name="labresult" select="."/>
+                        <xsl:with-param name="labresult-id" select="nf:removeSpecialCharacters(hcimroot/identification_number/@value)"/>
+                    </xsl:call-template>
+                </resource>
+                <search>
+                    <mode value="match"/>
+                </search>
+            </entry>
+        </xsl:for-each>
+        <!-- AllergieIntoleranties -->
         <xsl:for-each select="//*[bundle]/allergy_intolerance">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
@@ -693,7 +709,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$referById = true()">
                 <reference value="{nf:getFullUrlOrId('PRACTITIONERROLE', nf:getGroupingKeyDefault(.))}"/>
             </xsl:when>
-            <xsl:when test="$practitioners[group-key = $theGroupKey]">
+            <xsl:when test="$practitionerRoles[group-key = $theGroupKey]">
                 <reference value="{($practitionerRoles[group-key = $theGroupKey]/*:entry//*:fullUrl/@value)[1]}"/>
             </xsl:when>
             <xsl:when test="$identifier[@root]">
@@ -707,8 +723,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
 
-        <xsl:if test="naamgegevens[.//@value] | name_information[.//@value]">
-            <display value="{normalize-space(string-join(.//naamgegevens[1]//@value | name_information[1]//@value, ' '))}"/>
+        <xsl:if test="health_professional_role[@code] | naamgegevens[.//@value] | name_information[.//@value]">
+            <display value="{normalize-space(string-join(health_professional_role/(@displayName, @code)[1] | naamgegevens[1]//@value | name_information[1]//@value, ' '))}"/>
         </xsl:if>
     </xsl:template>
 
@@ -1196,6 +1212,178 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </reaction>
                 </xsl:for-each>
             </AllergyIntolerance>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc> Template based on FHIR Profile <xd:a href="https://simplifier.net/resolve?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation">http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation</xd:a> </xd:desc>
+        <xd:param name="labresult"/>
+        <xd:param name="labresult-id"/>
+    </xd:doc>
+    <xsl:template name="zib-LaboratoryTestResult-4.1">
+        <xsl:param name="labresult" as="element()?"/>
+        <xsl:param name="labresult-id" as="xs:string?"/>
+        <xsl:for-each select="$labresult">
+            <!--NL-CM:13.1.3	LaboratoryTest	0..*	Container of the LaboratoryTest concept. This container contains all data elements of the LaboratoryTest concept.-->
+            <Observation>
+                <xsl:if test="$referById">
+                    <id value="{$labresult-id}"/>
+                </xsl:if>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+                </meta>
+                <!--NL-CM:0.0.6   Identificatienummer-->
+                <xsl:for-each select="hcimroot/identification_number">
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </identifier>
+                </xsl:for-each>
+                <!--NL-CM:13.1.31	TestResultStatus	0..1	The status of the test result of this test. If the laboratory test is an panel/cluster, the overall status is given in the status of the panel/cluster.		ListTestResultStatusCodelist-->
+                <status>
+                    <xsl:call-template name="code-to-code">
+                        <xsl:with-param name="in" select="test_result_status"/>
+                        <xsl:with-param name="codeMap" as="element()*">
+                            <map inCode="pending" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" code="registered"/>
+                            <map inCode="preliminary" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" code="preliminary"/>
+                            <map inCode="final" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" code="final"/>
+                            <map inCode="appended" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" code="amended"/>
+                            <map inCode="corrected" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" code="corrected"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="test_result_status"/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </extension>
+                </status>
+                <category>
+                    <coding>
+                        <system value="{local:getUri($oidSNOMEDCT)}"/>
+                        <code value="49581000146104"/>
+                    </coding>
+                </category>
+                <!--NL-CM:13.1.8	TestCode	1	The name and code of the executed test.		ListTestNameCodelist-->
+                <xsl:for-each select="test_code">
+                    <code>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </code>
+                </xsl:for-each>
+                <!-- NL-CM:0.0.12			Arrowright.pngPatient -->
+                <xsl:for-each select="ancestor::*[bundle]/bundle/subject">
+                    <subject>
+                        <xsl:apply-templates select="." mode="doPatientReference"/>
+                    </subject>
+                </xsl:for-each>
+                <!-- TODO: we would love to tell you more about the encounter, but alas an id is all we have... -->
+                <xsl:for-each select="../encounter">
+                    <context>
+                        <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
+                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
+                    </context>
+                </xsl:for-each>
+                <!--NL-CM:13.1.9	TestMethod	0..1	The test method used to obtain the result.	246501002 Technique (attribute)	ListTestMethodCodelist-->
+                <xsl:for-each select="test_method">
+                    <method>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </method>
+                </xsl:for-each>
+                <!--NL-CM:13.1.13	TestDateTime	0..1	The date and if possible the time at which the test was carried out.-->
+                <xsl:for-each select="test_date_time">
+                    <effectiveDateTime>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="@value"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </effectiveDateTime>
+                </xsl:for-each>
+                <!-- NL-CM:0.0.9			Arrowright.pngZorgverlenerAlsAuteur::Zorgverlener -->
+                <xsl:for-each select="hcimroot/author[health_professional]">
+                    <performer>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                            <valueReference>
+                                <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
+                            </valueReference>
+                        </extension>
+                        <xsl:apply-templates select="." mode="doPractitionerReference"/>
+                    </performer>
+                </xsl:for-each>
+                <!--NL-CM:13.1.10	TestResult	0..1	The test result. Depending on the type of test, the result will consist of a value with a unit or a coded value (ordinal or nominal).-->
+                <xsl:for-each select="test_result">
+                    <xsl:choose>
+                        <xsl:when test="@datatype = 'code' or @code">
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
+                        </xsl:when>
+                        <xsl:when test="@datatype = 'quantity' or @unit">
+                            <valueQuantity>
+                                <xsl:call-template name="hoeveelheid-to-Quantity">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueQuantity>
+                        </xsl:when>
+                        <xsl:when test="@datatype = ('other', 'boolean') and @value castable as xs:boolean">
+                            <valueBoolean value="{@value}"/>
+                        </xsl:when>
+                        <xsl:when test="@datatype = ('other', 'date') and (@value castable as xs:date or @value castable as xs:dateTime)">
+                            <valueDateTime value="{@value}"/>
+                        </xsl:when>
+                        <xsl:when test="@datatype = ('other') or not(@datatype)">
+                            <valueString value="{@value}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:message terminate="yes">Datatype <xsl:value-of select="@datatype"/> for lab observation value not implemented yet</xsl:message>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+                <!--NL-CM:13.1.32	ResultInterpretation	0..1	Comment of the laboratory specialist regarding the interpretation of the results	441742003 Evaluation finding-->
+                <xsl:for-each select="result_flags">
+                    <interpretation>
+                        <!-- TODO: map V3 to V2 codes as required in FHIR -->
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </interpretation>
+                </xsl:for-each>
+                <!--NL-CM:13.1.11	ReferenceRangeUpperLimit	0..1	The upper reference limit for the patient of the value measured in the test.-->
+                <!--NL-CM:13.1.12	ReferenceRangeLowerLimit	0..1	The lower reference limit for the patient of the value measured with the test.-->
+                <xsl:if test="reference_range_upper_limit | reference_range_lower_limit">
+                    <referenceRange>
+                        <xsl:for-each select="reference_range_lower_limit">
+                            <low>
+                                <xsl:call-template name="hoeveelheid-to-Quantity">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </low>
+                        </xsl:for-each>
+                        <xsl:for-each select="reference_range_upper_limit">
+                            <high>
+                                <xsl:call-template name="hoeveelheid-to-Quantity">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </high>
+                        </xsl:for-each>
+                        <!-- Only referenceRange normal from GPs -->
+                        <type>
+                            <coding>
+                                <system value="http://hl7.org/fhir/referencerange-meaning"/>
+                                <code value="normal"/>
+                            </coding>
+                        </type>
+                    </referenceRange>
+                </xsl:if>
+            </Observation>
         </xsl:for-each>
     </xsl:template>
 
