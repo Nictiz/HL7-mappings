@@ -106,18 +106,18 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
-            <echo>ADA_2_FHIR ${xsl_algemene_bepalingen}</echo>
-            <xslt force="true" style="${xsl_algemene_bepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <!--<param name="allow-foreign" expression="true"/>-->
-                <fileset refid="inputfilesAlgemeneBepalingen"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-            
             <echo>ADA_2_FHIR ${xsl_labbepalingen}</echo>
             <xslt force="true" style="${xsl_labbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesLabBepalingen"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo>ADA_2_FHIR ${xsl_algemene_bepalingen}</echo>
+            <xslt force="true" style="${xsl_algemene_bepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="inputfilesAlgemeneBepalingen"/>
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
