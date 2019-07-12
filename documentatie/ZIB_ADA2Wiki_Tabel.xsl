@@ -214,32 +214,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Type dependent stuff -->
         <xsl:choose>
             <xsl:when test="$concept/@type = 'group'">
-                <xsl:text>style="vertical-align:top; background-color: #E8D7BE; "
-|[[Bestand: Container.png| 20px]] || </xsl:text>
-            </xsl:when>
-            <xsl:when test="$concept/valueDomain/@type = 'string'">
-                <xsl:text>
-|[[Bestand: ST.png| 16px]] ||</xsl:text>
-            </xsl:when>
-            <xsl:when test="$concept/valueDomain/@type = 'code'">
-                <xsl:text>
-|[[Bestand: CD.png| 16px]] ||</xsl:text>
-            </xsl:when>
-            <xsl:when test="$concept/valueDomain/@type = 'identifier'">
-                <xsl:text>
-|[[Bestand: II.png| 16px]] ||</xsl:text>
-            </xsl:when>
-            <xsl:when test="$concept/valueDomain/@type = 'boolean'">
-                <xsl:text>
-|[[Bestand: BL.png| 16px]] ||</xsl:text>
-            </xsl:when>
-            <xsl:when test="$concept/valueDomain/@type = 'datetime'">
-                <xsl:text>
-|[[Bestand: TS.png| 16px]] ||</xsl:text>
+                <xsl:text>style="vertical-align:top; background-color: #E8D7BE;"
+|</xsl:text>
+                <xsl:call-template name="addType">
+                    <xsl:with-param name="type" select="$concept/@type"/>
+                </xsl:call-template>
+                <xsl:text> || </xsl:text>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:text>
-| ||</xsl:text>
+|</xsl:text>
+                <xsl:call-template name="addType">
+                    <xsl:with-param name="type" select="$concept/valueDomain/@type"/>
+                </xsl:call-template>
+                <xsl:text> ||</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
 
@@ -511,6 +499,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$type = 'string'">
                 <xsl:text>[[Bestand: ST.png| 16px]] </xsl:text>
+            </xsl:when>
+            <xsl:when test="$type = 'complex'">
+                <xsl:text>[[Bestand: ANY.png| 16px]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'text'">
                 <xsl:text>[[Bestand: ST.png| 16px]] </xsl:text>
