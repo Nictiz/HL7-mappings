@@ -454,23 +454,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             add a space after every /. This renders the paths invalid as-is though</xd:desc>
     </xd:doc>
     <xsl:template match="text()" mode="replaceChars">
-        <xsl:variable name="applySpacingAroundEqualSigns" as="xs:string">
-            <xsl:choose>
-                <xsl:when test="matches(., '\S{80}')">
-                    <xsl:value-of select="replace(., '(\S)([&lt;&gt;=])([^\s=])', '$1 $2 $3')"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="."/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+        <xsl:variable name="applySpacingAroundEqualSigns" select="replace(., '(\S)([&lt;&gt;=])([^\s=])', '$1 $2 $3')" as="xs:string"/>
         <xsl:variable name="applySpacingAfterSlashes" as="xs:string">
             <xsl:choose>
                 <xsl:when test="matches($applySpacingAroundEqualSigns, '\S{80}')">
-                    <xsl:value-of select="replace(., '([^/])/(\S)', '$1/ $2')"/>
+                    <xsl:value-of select="replace($applySpacingAroundEqualSigns, '([^/])/(\S)', '$1/ $2')"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="."/>
+                    <xsl:value-of select="$applySpacingAroundEqualSigns"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
