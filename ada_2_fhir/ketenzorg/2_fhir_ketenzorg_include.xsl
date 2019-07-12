@@ -217,6 +217,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </search>
             </entry>
         </xsl:for-each>
+        <!-- Alerts -->
+        <xsl:for-each select="//*[bundle]/alert">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
+                <resource>
+                    <xsl:call-template name="zib-Alert"/>
+                </resource>
+            </entry>
+        </xsl:for-each>
     </xsl:variable>
     
     <xd:doc>
@@ -311,6 +320,110 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </EpisodeOfCare>
         </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template based on FHIR Profile <xd:a href="https://simplifier.net/resolve?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Alert">http://nictiz.nl/fhir/StructureDefinition/zib-Alert</xd:a> </xd:desc>
+    </xd:doc>
+    <xsl:template name="zib-Alert" as="element()">
+        <Flag xmlns="http://hl7.org/fhir">
+            <identifier>
+                <xsl:call-template name="id-to-Identifier">
+                    <xsl:with-param name="in" select="hcimroot/identification_number"/>
+                </xsl:call-template>
+            </identifier>
+
+            <!-- The status should active, unless an end date is specified AND it is in the past -->
+            <xsl:variable name="is_completed" as="xs:boolean">
+                <xsl:variable name="end_date">
+                    <xsl:choose>
+                        <xsl:when test="end_date_time/@value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="end_date_time/@value"/>
+                                <xsl:with-param name="precision">day</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="false()"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:choose>
+                    <xsl:when test="($end_date castable as xs:date) and ($end_date cast as xs:date lt current-date())">
+                        <xsl:value-of select="true()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="false()"/>                        
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:choose>
+                <xsl:when test="$is_completed">
+                    <status value="inactive"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <status value="active"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <category>
+                <xsl:call-template name="code-to-CodeableConcept">
+                    <xsl:with-param name="in" select="alert_type"/>
+                </xsl:call-template> 
+            </category>
+            <code>
+                <xsl:choose>
+                    <xsl:when test="alert_name/@code='OTH'">
+                        <text value="{alert_name/@originalText}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="alert_name"/>
+                        </xsl:call-template> 
+                    </xsl:otherwise>
+                </xsl:choose>
+            </code>
+            <subject>
+                <xsl:apply-templates select="../bundle/subject" mode="doPatientReference"/>
+            </subject>
+            <xsl:variable name="period_parts" as="element()*">
+                <xsl:if test="start_date_time">
+                    <start>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="start_date_time/@value"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </start>
+                </xsl:if>
+                <!-- The end date should only be included if the status is completed -->
+                <xsl:if test="$is_completed and end_date_time">
+                    <end>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="end_date_time/@value"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </end>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:if test="count($period_parts) > 0">
+                <period>
+                    <xsl:copy-of select="$period_parts"/>
+                </period>
+            </xsl:if>
+            
+            <xsl:for-each select="../bundle/author">
+                <author>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                        <valueReference>
+                            <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
+                        </valueReference>
+                    </extension>
+                    <xsl:apply-templates select="." mode="doPractitionerReference"/>
+                </author>
+            </xsl:for-each>
+        </Flag>
     </xsl:template>
     
     <xd:doc>
