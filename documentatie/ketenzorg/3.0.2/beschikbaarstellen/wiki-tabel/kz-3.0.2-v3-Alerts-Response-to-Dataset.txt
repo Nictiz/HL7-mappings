@@ -1,0 +1,563 @@
+
+{| class="wikitable" 
+| style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;"  colspan="3" | Ketenzorg v3.0.2 Beschikbaarstellen Alerts || style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;" | Conversie beschrijving (mapping)  || style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;" colspan="4" | Ketenzorg 3.0
+|-style="background-color: #1F497D;; color: white; text-align:left;" 
+|style="width:30px;"| Type 
+|style="width:150px;"| Concept 
+|style="width:40px;"| Card 
+|style="width:200px;"| 
+|style="width:30px;"| Type 
+|style="width:150px;"| Concept 
+|style="width:40px;"| # 
+|style="width:40px;"| Card 
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer</div>
+||0..1
+|| - || [[Bestand: Container.png| 20px]] || Bundle|| 1 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/code<nowiki>[</nowiki>(@code='74018-3' and @codeSystem='2.16.840.1.113883.6.1')<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;Type || 3 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/statusCode<nowiki>[</nowiki>@code='completed'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;Status || 4 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;Author || 10 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;HealthProfessional || 12 || 0 .. 1
+|-
+|[[Bestand: II.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/id</div>
+||1..*
+|| - 
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HealthProfessionalIdentificationNumber || 61 || 1 .. *
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/playingEntity/name</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;NameInformation || 62 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./given<nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'IN')<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FirstNames || 233 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./given<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'IN'<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Initials || 234 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./given<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'CL'<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;GivenName || 235 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||
+||0..1
+||Naamvolgorde wordt afgeleid uit HL7v3 elementvolgorde:
+                                                        <ul>
+                                          <li>NL1: family en geen family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki></li>
+                                          <li>NL2: family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki> en geen family<nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'SP')<nowiki>]</nowiki></li>
+                                          <li>NL3: family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki>/following-sibling::family<nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'SP')<nowiki>]</nowiki></li>
+                                          <li>NL4: family<nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'SP')<nowiki>]</nowiki>/following-sibling::family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki></li>
+                                          <li>UNK in andere gevallen</li>
+                                       </ul>
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;NameUsage || 236 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;LastName || 237 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./prefix<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'VV'<nowiki>]</nowiki><nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'SP')<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Prefix || 238 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./family<nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'SP')<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;LastName || 239 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;LastNamePartner || 240 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./prefix<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'VV'<nowiki>]</nowiki><nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;PartnerPrefix || 241 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;PartnerLastName || 242 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/code<nowiki>[</nowiki>@codeSystem='2.16.840.1.113883.2.4.15.111'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Specialty || 64 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/addr</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AddressInformation || 65 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./streetName
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Street || 243 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./houseNumber
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumber || 244 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./buildingNumberSuffix
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberLetter || 245 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./buildingNumberSuffix
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberAddition || 246 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./additionalLocator
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberIndication || 247 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./postalCode
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Postcode || 248 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./city
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;PlaceOfResidence || 249 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./county
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Municipality || 250 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./country
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Country || 251 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./unitID
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AdditionalInformation || 252 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./@use
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AddressType || 253 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/telecom</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ContactInformation || 67 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||
+||0..*
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;TelephoneNumbers || 254 || 0 .. *
+|-
+|[[Bestand: ST.png| 16px]] ||.<nowiki>[</nowiki>starts-with(@value, 'tel:') or starts-with(@value, 'fax:') or not(matches(@value, '^<nowiki>[</nowiki>a-z<nowiki>]</nowiki>+:'))<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;TelephoneNumber || 255 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./@use
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;TelecomType || 256 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./@use
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;NumberType || 257 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||
+||0..*
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;EmailAddresses || 258 || 0 .. *
+|-
+|[[Bestand: ST.png| 16px]] ||.<nowiki>[</nowiki>starts-with(@value, 'mailto:')<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;EmailAddress || 259 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./@use
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;EmailAddressType || 260 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/scopingEntity</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HealthcareProvider || 69 || 0 .. 1
+|-
+|[[Bestand: II.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/scopingEntity/id</div>
+||0..*
+|| - 
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HealthcareProviderIdentificationNumber || 262 || 0 .. *
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/scopingEntity/desc</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;OrganizationName || 263 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/participantRole/scopingEntity/code<nowiki>[</nowiki>@codeSystem='2.16.840.1.113883.2.4.15.1060'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;OrganizationType || 270 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='RESP'<nowiki>]</nowiki>/@typeCode</div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HealthProfessionalRole || 71 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='CST'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;Custodian || 436 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='CST'<nowiki>]</nowiki>/participantRole</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;HealthcareProvider || 437 || 0 .. 1
+|-
+|[[Bestand: II.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='CST'<nowiki>]</nowiki>/participantRole/id</div>
+||1..*
+|| - 
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HealthcareProviderIdentificationNumber || 438 || 1 .. *
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='CST'<nowiki>]</nowiki>/participantRole/playingEntity/name</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;OrganizationName || 439 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='CST'<nowiki>]</nowiki>/participantRole/telecom</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;ContactInformation || 442 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||
+||0..*
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;TelephoneNumbers || 448 || 0 .. *
+|-
+|[[Bestand: ST.png| 16px]] ||.<nowiki>[</nowiki>starts-with(@value, 'tel:') or starts-with(@value, 'fax:') or not(matches(@value, '^<nowiki>[</nowiki>a-z<nowiki>]</nowiki>+:'))<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;TelephoneNumber || 449 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./@use
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;TelecomType || 450 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./@use
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;NumberType || 451 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||
+||0..*
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;EmailAddresses || 452 || 0 .. *
+|-
+|[[Bestand: ST.png| 16px]] ||.<nowiki>[</nowiki>starts-with(@value, 'mailto:')<nowiki>]</nowiki>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;EmailAddress || 453 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./@use
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;EmailAddressType || 454 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='CST'<nowiki>]</nowiki>/participantRole/addr</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AddressInformation || 444 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./streetName
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Street || 455 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./houseNumber
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumber || 456 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./buildingNumberSuffix
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberLetter || 457 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./buildingNumberSuffix
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberAddition || 458 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./additionalLocator
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberIndication || 459 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./postalCode
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Postcode || 460 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./city
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;PlaceOfResidence || 461 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./county
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Municipality || 462 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./country
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Country || 463 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||./unitID
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AdditionalInformation || 464 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||./@use
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AddressType || 465 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/participant<nowiki>[</nowiki>@typeCode='CST'<nowiki>]</nowiki>/participantRole/code</div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;OrganizationType || 446 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/recordTarget</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;Subject || 14 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/recordTarget/patientRole</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;Patient || 15 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/recordTarget/patientRole/patient/name</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;NameInformation || 80 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/name/given<nowiki>[</nowiki>@qualifier='BR'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FirstNames || 317 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/name/given<nowiki>[</nowiki>@qualifier='IN'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Initials || 318 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/name/given<nowiki>[</nowiki>@qualifier='CL'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;GivenName || 319 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||
+||0..1
+||Naamvolgorde wordt afgeleid uit HL7v3 elementvolgorde:
+                                                        <ul>
+                                          <li>NL1: family en geen family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki></li>
+                                          <li>NL2: family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki> en geen family<nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'SP')<nowiki>]</nowiki></li>
+                                          <li>NL3: family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki>/following-sibling::family<nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'SP')<nowiki>]</nowiki></li>
+                                          <li>NL4: family<nowiki>[</nowiki>not(tokenize(@qualifier, '\s') = 'SP')<nowiki>]</nowiki>/following-sibling::family<nowiki>[</nowiki>tokenize(@qualifier, '\s') = 'SP'<nowiki>]</nowiki></li>
+                                          <li>UNK in andere gevallen</li>
+                                       </ul>
+
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;NameUsage || 320 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;LastName || 321 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/name/prefix<nowiki>[</nowiki>tokenize(@qualifier,'\s')='VV'<nowiki>]</nowiki><nowiki>[</nowiki>following-sibling::family<nowiki>[</nowiki>1<nowiki>]</nowiki><nowiki>[</nowiki>@qualifier='BR'<nowiki>]</nowiki><nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Prefix || 322 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/name/family<nowiki>[</nowiki>@qualifier='BR'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;LastName || 323 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;LastNamePartner || 324 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/name/prefix<nowiki>[</nowiki>tokenize(@qualifier,'\s')='VV'<nowiki>]</nowiki><nowiki>[</nowiki>following-sibling::family<nowiki>[</nowiki>1<nowiki>]</nowiki><nowiki>[</nowiki>@qualifier='SP'<nowiki>]</nowiki><nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;PartnerPrefix || 325 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/name/family<nowiki>[</nowiki>@qualifier='SP'<nowiki>]</nowiki></div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;PartnerLastName || 326 || 0 .. 1
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/recordTarget/patientRole/addr</div>
+||0..1
+|| - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AddressInformation || 82 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/streetName</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Street || 327 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/houseNumber</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumber || 328 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/buildingNumberSuffix</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberLetter || 329 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/buildingNumberSuffix</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberAddition || 330 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/additionalLocator</div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;HouseNumberIndication || 331 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/postalCode</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Postcode || 332 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/city</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;PlaceOfResidence || 333 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/county</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Municipality || 334 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/country</div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Country || 335 || 0 .. 1
+|-
+|[[Bestand: ST.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/unitID</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AdditionalInformation || 336 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/recordTarget/patientRole/addr/@use</div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;AddressType || 337 || 0 .. 1
+|-
+|[[Bestand: II.png| 16px]] ||<div>//organizer/recordTarget/patientRole/id<nowiki>[</nowiki>@root='2.16.840.1.113883.2.4.6.3'<nowiki>]</nowiki></div>
+||1..*
+|| - 
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;PatientIdentificationNumber || 86 || 1 .. *
+|-
+|[[Bestand: TS.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/birthTime</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;DateOfBirth || 87 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/administrativeGenderCode</div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Gender || 88 || 0 .. 1
+|-
+|[[Bestand: BL.png| 16px]] ||<div>//organizer/recordTarget/patientRole/patient/sdtc:multipleBirthInd</div>
+||0..1
+|| - 
+| [[Bestand: BL.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;MultipleBirthIndicator || 89 || 0 .. 1
+|}
+
+{| class="wikitable" 
+| style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;"  colspan="3" | Ketenzorg v3.0.2 Beschikbaarstellen Alerts || style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;" | Conversie beschrijving (mapping)  || style="background-color: #1F497D;; color: white; font-weight: bold; text-align:center;" colspan="4" | Ketenzorg 3.0
+|-style="background-color: #1F497D;; color: white; text-align:left;" 
+|style="width:30px;"| Type 
+|style="width:150px;"| Concept 
+|style="width:40px;"| Card 
+|style="width:200px;"| 
+|style="width:30px;"| Type 
+|style="width:150px;"| Concept 
+|style="width:40px;"| # 
+|style="width:40px;"| Card 
+|-style="vertical-align:top; background-color: #E3E3E3; "
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/component<nowiki>[</nowiki>observation<nowiki>[</nowiki>templateId<nowiki>[</nowiki>@root='2.16.840.1.113883.2.4.3.11.60.66.10.214'<nowiki>]</nowiki><nowiki>]</nowiki><nowiki>]</nowiki>/observation</div>
+||0..*
+|| - || [[Bestand: Container.png| 20px]] || Alert|| 4571 || 0 .. *
+|-style="vertical-align:top; background-color: #E3E3E3; "
+||| - || - || - 
+| [[Bestand: Container.png| 20px]]  || &#160;&#160;&#160;HCIMRoot || 4577 || 1 .. 1
+|-
+|[[Bestand: II.png| 16px]] ||<div>//organizer/component<nowiki>[</nowiki>observation<nowiki>[</nowiki>templateId<nowiki>[</nowiki>@root='2.16.840.1.113883.2.4.3.11.60.66.10.214'<nowiki>]</nowiki><nowiki>]</nowiki><nowiki>]</nowiki>/observation/id</div>
+||1..1
+|| - 
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;&#160;&#160;&#160;IdentificationNumber || 4578 || 1 .. 1
+|-
+|[[Bestand: Container.png| 20px]] ||<div>//organizer/component<nowiki>[</nowiki>observation<nowiki>[</nowiki>templateId<nowiki>[</nowiki>@root='2.16.840.1.113883.2.4.3.11.60.66.10.214'<nowiki>]</nowiki><nowiki>]</nowiki><nowiki>]</nowiki>/observation/entryRelationship<nowiki>[</nowiki>@typeCode = 'REFR'<nowiki>]</nowiki><nowiki>[</nowiki>act<nowiki>[</nowiki>code<nowiki>[</nowiki>@code = 'CONC'<nowiki>]</nowiki><nowiki>[</nowiki>@codeSystem = '2.16.840.1.113883.5.6'<nowiki>]</nowiki><nowiki>]</nowiki><nowiki>]</nowiki>/act</div>
+||0..1
+|| - 
+| [[Bestand: II.png| 16px]]  || &#160;&#160;&#160;Episode || 4695 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/component<nowiki>[</nowiki>observation<nowiki>[</nowiki>templateId<nowiki>[</nowiki>@root='2.16.840.1.113883.2.4.3.11.60.66.10.214'<nowiki>]</nowiki><nowiki>]</nowiki><nowiki>]</nowiki>/observation/value</div>
+||0..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;AlertName || 4574 || 0 .. 1
+|-
+|[[Bestand: TS.png| 16px]] ||<div>//organizer/component<nowiki>[</nowiki>observation<nowiki>[</nowiki>templateId<nowiki>[</nowiki>@root='2.16.840.1.113883.2.4.3.11.60.66.10.214'<nowiki>]</nowiki><nowiki>]</nowiki><nowiki>]</nowiki>/observation/effectiveTime/low</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;StartDateTime || 4575 || 0 .. 1
+|-
+|[[Bestand: TS.png| 16px]] ||<div>//organizer/component<nowiki>[</nowiki>observation<nowiki>[</nowiki>templateId<nowiki>[</nowiki>@root='2.16.840.1.113883.2.4.3.11.60.66.10.214'<nowiki>]</nowiki><nowiki>]</nowiki><nowiki>]</nowiki>/observation/effectiveTime/high</div>
+||0..1
+|| - 
+| [[Bestand: ST.png| 16px]]  || &#160;&#160;&#160;endDateTime || 4694 || 0 .. 1
+|-
+|[[Bestand: CD.png| 16px]] ||<div>//organizer/component<nowiki>[</nowiki>observation<nowiki>[</nowiki>templateId<nowiki>[</nowiki>@root='2.16.840.1.113883.2.4.3.11.60.66.10.214'<nowiki>]</nowiki><nowiki>]</nowiki><nowiki>]</nowiki>/observation/code<nowiki>[</nowiki>(@code='74018-3' and @codeSystem='2.16.840.1.113883.6.1')<nowiki>]</nowiki></div>
+||1..1
+|| - 
+| [[Bestand: CD.png| 16px]]  || &#160;&#160;&#160;AlertType || 4576 || 1 .. 1
+|}

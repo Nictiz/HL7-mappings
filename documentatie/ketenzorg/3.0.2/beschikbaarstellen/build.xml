@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="convert_ada_2_wiki" name="ada_2_wiki_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property name="project.title" value="ADA to Wiki for Ketenzorg 3.0.2"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.prefix" value="ketenzorg_3.0.2"/>
+    <property name="project.description" value="Contains all relevant materials to convert valid ADA instances for Ketenzorg building blocks to valid FHIR instances"/>
+    <property name="project.author" value="Nictiz"/>
+    <property name="project.website" value="http://www.nictiz.nl/"/>
+    <property name="project.status" value="beta"/>
+    <property name="project.license" value="GNU-LGPL"/>
+    <property name="project.copyright" value="true"/>
+    
+    <property name="ada.file" value="ketenzorg3.0-ada.xml"/>
+    <property name="ada.release.file" value="ketenzorg3.0-ada-release.xml"/>
+    <property name="xsl.saxon" value="/Users/ahenket/Development/lib/SaxonPE9-7-0-20J/saxon9pe.jar"/>
+    <property name="xsl_wiki" value="../../../ZIB_ADA2Wiki_Tabel.xsl"/>
+    
+    <property name="xsl.input" value="definitions"/>
+    <property name="xsl.output" value="wiki-tabel"/>
+    
+    <target name="convert_ada_2_wiki">
+        <echo>Deleting previous results, if any</echo>
+        <delete dir="${xsl.output}"/>
+        
+        <sequential>
+            <fileset id="inputfilesAdaReleases" dir="${xsl.input}" includes="${ada.release.file}"/>
+            
+            <echo/>
+            <echo>ADA_2_WIKI Alerts</echo>
+            <xslt force="true" style="${xsl_wiki}" in="${xsl.input}/${ada.release.file}" out="${xsl.output}/kz-3.0.2-v3-Alerts-Response-to-Dataset.txt">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <param name="communityName" expression="kz-3.0.2-v3-Alerts-Response-to-Dataset"/>
+                <param name="ada-view-shortname" expression="alerts_response"/>
+                <param name="otherStandard" expression="Ketenzorg v3.0.2 Beschikbaarstellen Alerts"/>
+                <param name="otherStandardURL" expression="https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/"/>
+                <param name="dataset-name" expression="Ketenzorg 3.0"/>
+                
+                <fileset refid="inputfilesAdaReleases"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>ADA_2_WIKI AllergieIntoleranties</echo>
+            <xslt force="true" style="${xsl_wiki}" in="${xsl.input}/${ada.release.file}" out="${xsl.output}/kz-3.0.2-v3-Allergyintolerances-Response-to-Dataset.txt">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <param name="communityName" expression="kz-3.0.2-v3-Allergyintolerances-Response-to-Dataset"/>
+                <param name="ada-view-shortname" expression="allergyintolerances_response"/>
+                <param name="otherStandard" expression="Ketenzorg v3.0.2 Beschikbaarstellen AllergieIntoleranties"/>
+                <param name="otherStandardURL" expression="https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/"/>
+                <param name="dataset-name" expression="Ketenzorg 3.0"/>
+                
+                <fileset refid="inputfilesAdaReleases"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>ADA_2_WIKI Encounter Notes</echo>
+            <xslt force="true" style="${xsl_wiki}" in="${xsl.input}/${ada.release.file}" out="${xsl.output}/kz-3.0.2-v3-Encounter-Notes-Response-to-Dataset.txt">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <param name="communityName" expression="kz-3.0.2-v3-Encounter-Notes-Response-to-Dataset"/>
+                <param name="ada-view-shortname" expression="encounter_notes_response"/>
+                <param name="otherStandard" expression="Ketenzorg v3.0.2 Beschikbaarstellen Contactverslagen"/>
+                <param name="otherStandardURL" expression="https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/"/>
+                <param name="dataset-name" expression="Ketenzorg 3.0"/>
+                
+                <fileset refid="inputfilesAdaReleases"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>ADA_2_WIKI Encounters</echo>
+            <xslt force="true" style="${xsl_wiki}" in="${xsl.input}/${ada.release.file}" out="${xsl.output}/kz-3.0.2-v3-Encounters-Response-to-Dataset.txt">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <param name="communityName" expression="kz-3.0.2-v3-Encounters-Response-to-Dataset"/>
+                <param name="ada-view-shortname" expression="encounters_response"/>
+                <param name="otherStandard" expression="Ketenzorg v3.0.2 Beschikbaarstellen Contactmomenten"/>
+                <param name="otherStandardURL" expression="https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/"/>
+                <param name="dataset-name" expression="Ketenzorg 3.0"/>
+                
+                <fileset refid="inputfilesAdaReleases"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>ADA_2_WIKI Episodes</echo>
+            <xslt force="true" style="${xsl_wiki}" in="${xsl.input}/${ada.release.file}" out="${xsl.output}/kz-3.0.2-v3-Episodes-Response-to-Dataset.txt">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <param name="communityName" expression="kz-3.0.2-v3-Episodes-Response-to-Dataset"/>
+                <param name="ada-view-shortname" expression="episodes_response"/>
+                <param name="otherStandard" expression="Ketenzorg v3.0.2 Beschikbaarstellen Episodes"/>
+                <param name="otherStandardURL" expression="https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/"/>
+                <param name="dataset-name" expression="Ketenzorg 3.0"/>
+                
+                <fileset refid="inputfilesAdaReleases"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>ADA_2_WIKI General Measurements</echo>
+            <xslt force="true" style="${xsl_wiki}" in="${xsl.input}/${ada.release.file}" out="${xsl.output}/kz-3.0.2-v3-General-Measurements-Response-to-Dataset.txt">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <param name="communityName" expression="kz-3.0.2-v3-General-Measurements-Response-to-Dataset"/>
+                <param name="ada-view-shortname" expression="general_measurements_response"/>
+                <param name="otherStandard" expression="Ketenzorg v3.0.2 Beschikbaarstellen Algemene bepalingen"/>
+                <param name="otherStandardURL" expression="https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/"/>
+                <param name="dataset-name" expression="Ketenzorg 3.0"/>
+                
+                <fileset refid="inputfilesAdaReleases"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>ADA_2_WIKI Lab Results</echo>
+            <xslt force="true" style="${xsl_wiki}" in="${xsl.input}/${ada.release.file}" out="${xsl.output}/kz-3.0.2-v3-Lab Results-Response-to-Dataset.txt">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <param name="communityName" expression="kz-3.0.2-v3-Lab-Results-Response-to-Dataset"/>
+                <param name="ada-view-shortname" expression="lab_results_response"/>
+                <param name="otherStandard" expression="Ketenzorg v3.0.2 Beschikbaarstellen Labbepalingen"/>
+                <param name="otherStandardURL" expression="https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/"/>
+                <param name="dataset-name" expression="Ketenzorg 3.0"/>
+                
+                <fileset refid="inputfilesAdaReleases"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+    </target>
+</project>

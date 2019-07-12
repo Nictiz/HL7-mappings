@@ -1,0 +1,61 @@
+<ada xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://decor.nictiz.nl/ada/core/ada.xsd">
+    <project prefix="kz-" language="en-US" versionDate="">
+        <release baseUri="http://decor.nictiz.nl/decor/services/RetrieveTransaction"/>
+    </project>
+    <applications>
+        <application version="2019">
+            <params>
+                <param name="overrideDatatypeDateTimeAsString" value="true"/>
+                <param name="overrideContainsAsIdentifier" value="true"/>
+            </params>
+            <views>
+                <view id="1" type="index" target="xforms" addComments="true">
+                    <name>Ketenzorg 3.0 Index</name>
+                    <indexOf ref="2"/>
+                    <indexOf ref="3"/>
+                    <indexOf ref="4"/>
+                    <indexOf ref="5"/>
+                    <indexOf ref="6"/>
+                    <indexOf ref="7"/>
+                    <indexOf ref="8"/>
+                    <indexOf ref="9"/>
+                    <controls>
+                        <button type="xml"/>
+                    </controls>
+                </view>
+                <view id="2" type="crud" target="xforms" addComments="false" errorSummary="true" transactionId="2.16.840.1.113883.2.4.3.11.60.66.4.514" transactionEffectiveDate="2018-04-13T00:00:00">
+                    <name>Lab Results Response</name>
+                    <concepts include="all"/>
+                </view>
+                <view id="3" type="crud" target="xforms" addComments="false" errorSummary="true" transactionId="2.16.840.1.113883.2.4.3.11.60.66.4.517" transactionEffectiveDate="2018-04-13T00:00:00">
+                    <name>General Measurements Response</name>
+                    <concepts include="all"/>
+                </view>
+                <view id="4" type="crud" target="xforms" addComments="false" errorSummary="true" transactionId="2.16.840.1.113883.2.4.3.11.60.66.4.520" transactionEffectiveDate="2018-04-13T00:00:00">
+                    <name>Encounters Response</name>
+                    <concepts include="all"/>
+                </view>
+                <view id="5" type="crud" target="xforms" addComments="false" errorSummary="true" transactionId="2.16.840.1.113883.2.4.3.11.60.66.4.523" transactionEffectiveDate="2018-04-13T00:00:00">
+                    <name>Medication Agreements Response</name>
+                    <concepts include="all"/>
+                </view>
+                <view id="6" type="crud" target="xforms" addComments="false" errorSummary="true" transactionId="2.16.840.1.113883.2.4.3.11.60.66.4.526" transactionEffectiveDate="2018-04-13T00:00:00">
+                    <name>Encounter Notes Response</name>
+                    <concepts include="all"/>
+                </view>
+                <view id="7" type="crud" target="xforms" addComments="false" errorSummary="true" transactionId="2.16.840.1.113883.2.4.3.11.60.66.4.529" transactionEffectiveDate="2018-04-13T00:00:00">
+                    <name>Episodes Response</name>
+                    <concepts include="all"/>
+                </view>
+                <view id="8" type="crud" target="xforms" addComments="false" errorSummary="true" transactionId="2.16.840.1.113883.2.4.3.11.60.66.4.532" transactionEffectiveDate="2018-04-13T00:00:00">
+                    <name>Alerts Response</name>
+                    <concepts include="all"/>
+                </view>
+                <view id="9" type="crud" target="xforms" addComments="false" errorSummary="true" transactionId="2.16.840.1.113883.2.4.3.11.60.66.4.535" transactionEffectiveDate="2018-04-13T00:00:00">
+                    <name>Allergy/intolerances Response</name>
+                    <concepts include="all"/>
+                </view>
+            </views>
+        </application>
+    </applications>
+</ada>
