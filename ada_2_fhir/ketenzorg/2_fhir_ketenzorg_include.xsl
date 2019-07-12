@@ -1292,10 +1292,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference"/>
                     </subject>
                 </xsl:for-each>
-                <!-- TODO: we would love to tell you more about the encounter, but alas an id is all we have... -->
+                <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
                 <xsl:for-each select="../encounter">
                     <context>
                         <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
                         <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </context>
                 </xsl:for-each>
@@ -1433,10 +1438,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="." mode="doPatientReference"/>
                 </subject>
             </xsl:for-each>
-            <!-- TODO: we would love to tell you more about the encounter, but alas an id is all we have... -->
+            <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
             <xsl:for-each select="../encounter">
                 <context>
                     <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </identifier>
                     <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                 </context>
             </xsl:for-each>
@@ -1490,7 +1500,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
-            <!--TODO: interpretation is not described in zib. Should we include it?-->
+            <!--interpretation is not described in zib. Should we include it?-->
+            <!-- Yes -->
             <xsl:for-each select="result_flags">
                 <interpretation>
                     <!-- TODO: map V3 to V2 codes as required in FHIR -->
@@ -1499,7 +1510,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </interpretation>
             </xsl:for-each>
-            <!--TODO: reference limits not described in zib. Should we include them>-->
+            <!--reference limits not described in zib. Should we include them>-->
+            <!-- Yes -->
             <xsl:if test="reference_range_upper_limit | reference_range_lower_limit">
                 <referenceRange>
                     <xsl:for-each select="reference_range_lower_limit">
@@ -1592,10 +1604,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="." mode="doPatientReference"/>
                 </subject>
             </xsl:for-each>
-            <!-- TODO: we would love to tell you more about the encounter, but alas an id is all we have... -->
+            <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
             <xsl:for-each select="../encounter">
                 <context>
                     <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </identifier>
                     <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                 </context>
             </xsl:for-each>
@@ -1673,10 +1690,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="$patient"/>
                 </subject>
             </xsl:if>
-            <!-- TODO: we would love to tell you more about the encounter, but alas an id is all we have... -->
+            <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
             <xsl:for-each select="encounter">
                 <encounter>
                     <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
+                    <identifier>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </identifier>
                     <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                 </encounter>
             </xsl:for-each>
