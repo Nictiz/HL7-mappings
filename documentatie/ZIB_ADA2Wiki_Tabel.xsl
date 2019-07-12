@@ -25,9 +25,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="otherStandardURL" select="'https://www.nictiz.nl/Paginas/Informatiestandaard%20huisartswaarneming.aspx'"/>
 -->
 
-    <xsl:param name="communityName">kz-3.0.2-v3-Alerts-Response-to-Dataset</xsl:param>
-    <xsl:param name="ada-view-shortname">alerts_response</xsl:param>
-    <xsl:param name="otherStandard">Ketenzorg v3.0.2 Beschikbaarstellen Alerts</xsl:param>
+    <xsl:param name="communityName">kz-3.0.2-v3-Lab-Results-Response-to-Dataset</xsl:param>
+    <xsl:param name="ada-view-shortname">lab_results_response</xsl:param>
+    <xsl:param name="otherStandard">Ketenzorg v3.0.2 Beschikbaarstellen Lab Results</xsl:param>
     <xsl:param name="otherStandardURL">https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/</xsl:param>
     <xsl:param name="dataset-name">Ketenzorg 3.0</xsl:param>
     <xsl:param name="concept-2b-omitted" as="xs:string*">
@@ -382,26 +382,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Copy while preserving XML elements and attributes, but while respecting wiki</xd:desc>
+    </xd:doc>
     <xsl:template match="data" mode="doCopy">
         <xsl:apply-templates mode="#current"/>
     </xsl:template>
+    <xd:doc>
+        <xd:desc>Don't want processing instructions</xd:desc>
+    </xd:doc>
     <xsl:template match="processing-instruction()" mode="doCopy">
         <!-- skip -->
     </xsl:template>
+    <xd:doc>
+        <xd:desc>skip empty leading text()</xd:desc>
+    </xd:doc>
     <xsl:template match="text()[parent::data][normalize-space() = ''][not(preceding-sibling::node())]" mode="doCopy">
         <!-- skip empty leading text() -->
     </xsl:template>
+    <xd:doc>
+        <xd:desc>skip empty trailing text()</xd:desc>
+    </xd:doc>
     <xsl:template match="text()[parent::data][normalize-space() = ''][not(following-sibling::node())]" mode="doCopy">
-        <!-- skip empty final text() -->
+        <!-- skip empty trailing text() -->
     </xsl:template>
+    <xd:doc>
+        <xd:desc>Copy text after some cleaning for too long lines and escaping</xd:desc>
+    </xd:doc>
     <xsl:template match="text()" mode="doCopy">
         <xsl:apply-templates select="." mode="replaceChars"/>
     </xsl:template>
+    <xd:doc>
+        <xd:desc>Copy comments... who knows</xd:desc>
+    </xd:doc>
     <xsl:template match="comment()" mode="doCopy">
         <xsl:text>&lt;!--</xsl:text>
         <xsl:apply-templates select="." mode="replaceChars"/>
         <xsl:text>--&gt;</xsl:text>
     </xsl:template>
+    <xd:doc>
+        <xd:desc>Create textual attributes from input</xd:desc>
+    </xd:doc>
     <xsl:template match="@*" mode="doCopy">
         <xsl:text> </xsl:text>
         <xsl:value-of select="name()"/>
@@ -409,6 +430,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates select="." mode="replaceChars"/>
         <xsl:text>"</xsl:text>
     </xsl:template>
+    <xd:doc>
+        <xd:desc>Create textual elements from input</xd:desc>
+    </xd:doc>
     <xsl:template match="*" mode="doCopy">
         <xsl:text>&lt;</xsl:text>
         <xsl:value-of select="name()"/>
@@ -424,8 +448,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:text>&gt;</xsl:text>
         </xsl:if>
     </xsl:template>
+    <xd:doc>
+        <xd:desc>Break up lines containing more than 80 consecutive characters. First try if adding 
+            spaces around equal signs helps. Benefit: xpaths are still valid. If that does not help, 
+            add a space after every /. This renders the paths invalid as-is though</xd:desc>
+    </xd:doc>
     <xsl:template match="text()" mode="replaceChars">
-        <xsl:value-of select="replace(. , '([\[\]])', '&lt;nowiki>$1&lt;/nowiki>')"/>
+        <xsl:variable name="applySpacingAroundEqualSigns" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="matches(., '\S{80}')">
+                    <xsl:value-of select="replace(., '(\S)([&lt;&gt;=])([^\s=])', '$1 $2 $3')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="applySpacingAfterSlashes" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="matches($applySpacingAroundEqualSigns, '\S{80}')">
+                    <xsl:value-of select="replace(., '([^/])/(\S)', '$1/ $2')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:value-of select="replace($applySpacingAfterSlashes, '([\[\]])', '&lt;nowiki>$1&lt;/nowiki>')"/>
     </xsl:template>
 
     <xd:doc>
