@@ -142,6 +142,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </search>
             </entry>
         </xsl:for-each>
+        <!-- Algemene Metingen -->
+        <xsl:for-each select="//*[bundle]/general_measurement/measurement_result">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
+                <resource>
+                    <xsl:call-template name="gp-DiagnosticResult"/>
+                </resource>
+                <search>
+                    <mode value="match"/>
+                </search>
+            </entry>
+        </xsl:for-each>
         <!-- AllergieIntoleranties -->
         <xsl:for-each select="//*[bundle]/allergy_intolerance">
             <entry xmlns="http://hl7.org/fhir">
@@ -206,7 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
     </xsl:variable>
-
+    
     <xd:doc>
         <xd:desc/>
         <xd:param name="episodeofcare"/>
@@ -300,7 +312,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </EpisodeOfCare>
         </xsl:for-each>
     </xsl:template>
-
+    
     <xd:doc>
         <xd:param name="ada-problem"/>
         <xd:param name="condition-id"/>
@@ -1274,7 +1286,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </code>
                 </xsl:for-each>
-                <!-- NL-CM:0.0.12			Arrowright.pngPatient -->
+                <!-- NL-CM:0.0.12			Patient -->
                 <xsl:for-each select="ancestor::*[bundle]/bundle/subject">
                     <subject>
                         <xsl:apply-templates select="." mode="doPatientReference"/>
@@ -1305,7 +1317,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:attribute>
                     </effectiveDateTime>
                 </xsl:for-each>
-                <!-- NL-CM:0.0.9			Arrowright.pngZorgverlenerAlsAuteur::Zorgverlener -->
+                <!-- NL-CM:0.0.9			ZorgverlenerAlsAuteur::Zorgverlener -->
                 <xsl:for-each select="hcimroot/author[health_professional]">
                     <performer>
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -1387,6 +1399,135 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc> Template based on FHIR Profile <xd:a href="https://simplifier.net/resolve?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult">http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult</xd:a> </xd:desc>
+    </xd:doc>
+    <xsl:template name="gp-DiagnosticResult">
+        <!--NL-CM:13.3.1 	GeneralMeasurement 		Root concept of the GeneralMeasurement information model. This root concept contains all data elements of the GeneralMeasurement information model.-->
+        <Observation>
+            <xsl:if test="$referById">
+                <id value="{nf:removeSpecialCharacters(hcimroot/identification_number/@value)}"/>
+            </xsl:if>
+            <meta>
+                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
+            </meta>
+            <!--NL-CM:0.0.6   Identificatienummer-->
+            <xsl:for-each select="hcimroot/identification_number">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:for-each>
+            <!--NL-CM:13.3.3 		ResultStatus 	0..1 	The status of the total measurement. -->
+            <!--TODO: status is not registered in ADA scenario. Should we assume final? -->
+            <status value="final"/>
+            <code>
+                <xsl:call-template name="code-to-CodeableConcept">
+                    <xsl:with-param name="in" select="measurement_name"/>
+                </xsl:call-template>
+            </code>
+            <!-- NL-CM:0.0.12			Patient -->
+            <xsl:for-each select="ancestor::*[bundle]/bundle/subject">
+                <subject>
+                    <xsl:apply-templates select="." mode="doPatientReference"/>
+                </subject>
+            </xsl:for-each>
+            <!-- TODO: we would love to tell you more about the encounter, but alas an id is all we have... -->
+            <xsl:for-each select="../encounter">
+                <context>
+                    <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
+                    <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
+                </context>
+            </xsl:for-each>
+            <!--NL-CM:13.3.9 			ResultDateTime 	0..1 	Date and if possible the time at which the measurement was carried out.-->
+            <effectiveDateTime>
+                <xsl:attribute name="value">
+                    <xsl:call-template name="format2FHIRDate">
+                        <xsl:with-param name="dateTime" select="result_date_time/@value"/>
+                    </xsl:call-template>
+                    </xsl:attribute>
+            </effectiveDateTime>
+            <!-- NL-CM:0.0.9			ZorgverlenerAlsAuteur::Zorgverlener -->
+            <xsl:for-each select="hcimroot/author[health_professional]">
+                <performer>
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                        <valueReference>
+                            <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
+                        </valueReference>
+                    </extension>
+                    <xsl:apply-templates select="." mode="doPractitionerReference"/>
+                </performer>
+            </xsl:for-each>
+            <!--NL-CM:13.3.7 			ResultValue 	0..1 	The result of the measurement. Depending on the type of measurement, the result will consist of a value with a unit or a coded value (ordinal or nominal) or of a textual result. -->
+            <xsl:for-each select="result_value">
+                <xsl:choose>
+                    <xsl:when test="@datatype = 'code' or @code">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </xsl:when>
+                    <xsl:when test="@datatype = 'quantity' or @unit">
+                        <valueQuantity>
+                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueQuantity>
+                    </xsl:when>
+                    <xsl:when test="@datatype = ('other', 'boolean') and @value castable as xs:boolean">
+                        <valueBoolean value="{@value}"/>
+                    </xsl:when>
+                    <xsl:when test="@datatype = ('other', 'date') and (@value castable as xs:date or @value castable as xs:dateTime)">
+                        <valueDateTime value="{@value}"/>
+                    </xsl:when>
+                    <xsl:when test="@datatype = ('other') or not(@datatype)">
+                        <valueString value="{@value}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:message terminate="yes">Datatype <xsl:value-of select="@datatype"/> for general observation value not implemented yet</xsl:message>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+            <!--TODO: interpretation is not described in zib. Should we include it?-->
+            <xsl:for-each select="result_flags">
+                <interpretation>
+                    <!-- TODO: map V3 to V2 codes as required in FHIR -->
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </interpretation>
+            </xsl:for-each>
+            <!--TODO: reference limits not described in zib. Should we include them>-->
+            <xsl:if test="reference_range_upper_limit | reference_range_lower_limit">
+                <referenceRange>
+                    <xsl:for-each select="reference_range_lower_limit">
+                        <low>
+                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </low>
+                    </xsl:for-each>
+                    <xsl:for-each select="reference_range_upper_limit">
+                        <high>
+                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </high>
+                    </xsl:for-each>
+                    <!-- Only referenceRange normal from GPs -->
+                    <type>
+                        <coding>
+                            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+                            <code value="normal"/>
+                        </coding>
+                    </type>
+                </referenceRange>
+            </xsl:if>
+        </Observation>
+    </xsl:template>
+    
     <!--<xd:doc>
         <xd:desc>Convert ADA contactverslag entries to gp-JournalEntry ((http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry) and gp-EncounterReport instance (http://nictiz.nl/fhir/StructureDefinition/gp-EncounterReport) instances.</xd:desc>
     </xd:doc>
