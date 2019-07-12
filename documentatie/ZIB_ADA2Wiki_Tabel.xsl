@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
-    <xsl:output method="text" encoding="UTF-16"/>
+    <xsl:output method="text" encoding="UTF-8"/>
 
     <!--<xsl:param name="communityName" select="'kz-voorschrift_2.10.3_zib'"/>
     <xsl:param name="otherStandard" select="'Ketenzorg 2.10.3 Voorschrift'"/>
@@ -25,11 +25,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="otherStandardURL" select="'https://www.nictiz.nl/Paginas/Informatiestandaard%20huisartswaarneming.aspx'"/>
 -->
 
-    <xsl:param name="communityName">ICA612_2_MedMij112All</xsl:param>
-    <xsl:param name="ada-view-shortname">allergy_intolerance</xsl:param>
-    <xsl:param name="otherStandard">MP-6.12 Potentiële contraindicaties</xsl:param>
-    <xsl:param name="otherStandardURL">https://www.nictiz.nl/Paginas/Informatiestandaard-medicatieveiligheid.aspx</xsl:param>
-    <xsl:param name="dataset-name">MedMij dataset (beschikbaarstellen allergie/intolerantie</xsl:param>
+    <xsl:param name="communityName">kz-3.0.2-v3-Alerts-Response-to-Dataset</xsl:param>
+    <xsl:param name="ada-view-shortname">alerts_response</xsl:param>
+    <xsl:param name="otherStandard">Ketenzorg v3.0.2 Beschikbaarstellen Alerts</xsl:param>
+    <xsl:param name="otherStandardURL">https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/</xsl:param>
+    <xsl:param name="dataset-name">Ketenzorg 3.0</xsl:param>
     <xsl:param name="concept-2b-omitted" as="xs:string*">
         <!-- none -->
     </xsl:param>
@@ -372,7 +372,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="communityText" select="$concept/community[@name = $communityName]/data[@type = $communityType]"/>
         <xsl:choose>
             <xsl:when test="$communityText">
-                <xsl:value-of select="$communityText"/>
+                <xsl:apply-templates select="$communityText" mode="doCopy"/>
                 <xsl:text>
 </xsl:text>
             </xsl:when>
@@ -380,6 +380,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:text> - </xsl:text>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="data" mode="doCopy">
+        <xsl:apply-templates mode="#current"/>
+    </xsl:template>
+    <xsl:template match="processing-instruction()" mode="doCopy">
+        <!-- skip -->
+    </xsl:template>
+    <xsl:template match="text()[parent::data][normalize-space() = ''][not(preceding-sibling::node())]" mode="doCopy">
+        <!-- skip empty leading text() -->
+    </xsl:template>
+    <xsl:template match="text()[parent::data][normalize-space() = ''][not(following-sibling::node())]" mode="doCopy">
+        <!-- skip empty final text() -->
+    </xsl:template>
+    <xsl:template match="text()" mode="doCopy">
+        <xsl:apply-templates select="." mode="replaceChars"/>
+    </xsl:template>
+    <xsl:template match="comment()" mode="doCopy">
+        <xsl:text>&lt;!--</xsl:text>
+        <xsl:apply-templates select="." mode="replaceChars"/>
+        <xsl:text>--&gt;</xsl:text>
+    </xsl:template>
+    <xsl:template match="@*" mode="doCopy">
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="name()"/>
+        <xsl:text>="</xsl:text>
+        <xsl:apply-templates select="." mode="replaceChars"/>
+        <xsl:text>"</xsl:text>
+    </xsl:template>
+    <xsl:template match="*" mode="doCopy">
+        <xsl:text>&lt;</xsl:text>
+        <xsl:value-of select="name()"/>
+        <xsl:apply-templates select="@*" mode="#current"/>
+        <xsl:if test="empty(node())">
+            <xsl:text>/</xsl:text>
+        </xsl:if>
+        <xsl:text>&gt;</xsl:text>
+        <xsl:apply-templates mode="#current"/>
+        <xsl:if test="not(empty(node()))">
+            <xsl:text>&lt;/</xsl:text>
+            <xsl:value-of select="name()"/>
+            <xsl:text>&gt;</xsl:text>
+        </xsl:if>
+    </xsl:template>
+    <xsl:template match="text()" mode="replaceChars">
+        <xsl:value-of select="replace(. , '([\[\]])', '&lt;nowiki>$1&lt;/nowiki>')"/>
     </xsl:template>
 
     <xd:doc>
