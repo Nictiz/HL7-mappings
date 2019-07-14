@@ -200,6 +200,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </search>
             </entry>
         </xsl:for-each>
+        <!-- Contactmomenten -->
+        <xsl:for-each select="//*[bundle]/encounter">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:getUriFromAdaId(identifier)}"/>
+                <resource>
+                    <xsl:call-template name="gp-Encounter"/>
+                </resource>
+                <search>
+                    <mode value="match"/>
+                </search>
+            </entry>
+        </xsl:for-each>        
         <!-- Episodes -->
         <xsl:for-each select="//*[bundle]/episode">
             <entry xmlns="http://hl7.org/fhir">
@@ -424,6 +436,93 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </author>
             </xsl:for-each>
         </Flag>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Template based on FHIR Profile <xd:a href="https://simplifier.net/resolve?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/gp-Encounter">http://nictiz.nl/fhir/StructureDefinition/gp-Encounter</xd:a>. <xd:b>NOTE: this template is preliminary, some things are missing</xd:b> </xd:desc>
+    </xd:doc>
+    <xsl:template name="gp-Encounter" as="element()">
+        <Encounter xmlns="http://hl7.org/fhir">
+            <identifier>
+                <xsl:call-template name="id-to-Identifier">
+                    <xsl:with-param name="in" select="hcimroot/identification_number"/>
+                </xsl:call-template>
+            </identifier>
+            <!-- From HCIM Encounter: "This only includes *past* contacts". Status is thus assumed to be "finished" -->
+            <status value="finished"/>
+            <class>
+                <!-- TODO: Although this is required in FHIR, this information is not available in ADA. It could be mapped from ADA encounter.contact_type, but this mapping is not available. -->
+            </class>
+            <xsl:if test="contact_type">
+                <type>
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="contact_type"/>
+                    </xsl:call-template> 
+                </type>
+            </xsl:if>
+            <xsl:if test="../bundle/subject">
+                <subject>
+                    <xsl:apply-templates select="../bundle/subject" mode="doPatientReference"/>
+                </subject>
+            </xsl:if>
+            <xsl:if test="contact_reason/episode">
+                <!-- TODO: episodeOfCare can map to contact_reason/episode -->                
+            </xsl:if>
+            <!-- TODO: There seems to be a mismatch here. The information model sees the details of the healthcare provider as a complete description, while FHIR wants a reference. Should we instantiate a set of healthcare provider resources from the description?? And what's the role or the health professional in the bundle? -->
+            <xsl:for-each select="../bundle/author/health_professional">
+                <participant>
+                    <xsl:if test="health_professional_role">
+                        <type>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="health_professional_role"/>
+                            </xsl:call-template>
+                        </type>
+                    </xsl:if>
+                    <individual>
+                        <xsl:if test="health_professional_role">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                <valueReference>
+                                    <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
+                                </valueReference>
+                            </extension>
+                        </xsl:if>
+                        <xsl:apply-templates select="." mode="doPractitionerReference"/>
+                    </individual>
+                </participant>
+            </xsl:for-each>
+            <period>
+                <start>
+                    <xsl:attribute name="value">
+                        <xsl:call-template name="format2FHIRDate">
+                            <xsl:with-param name="dateTime" select="start_date_time/@value"/>
+                        </xsl:call-template>
+                    </xsl:attribute>
+                </start>
+                <xsl:if test="end_date_time">
+                    <end>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="end_date_time/@value"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </end>                    
+                </xsl:if>
+            </period>
+            <!-- Encounter.reason is a codeableconcept with a binding on a valueset containing all SNOMED codes. The ADA model doesn't support this coding, but it does support the contact_reason/deviating_result string, which can be mapped to the text field of the .reason. -->
+            <xsl:if test="contact_reason/deviating_result">
+                <reason>
+                    <text value="{contact_reason/deviating_result/@value}"/>
+                </reason>
+            </xsl:if>
+            <!-- TODO: contact_reason/problem and contact_reason/procedure can be added as references in Encounter.diagnosis.condition, but the ADA model doesn't yet support these fields. -->
+            <!-- TODO: origin and destination can be mapped to Encounter.hospitalization.admitSource and .dischargeDisposition, but the ADA model doesn't yet support these fields. -->
+            <!-- TODO: Encounter.serviceProvider is the location at which the contact took place. This can be set to the work location in the bundle if it makes sense according to the type. This assumption needs to be checked with an IA. -->
+            <xsl:if test="count(../bundle/author/health_professional/healthcare_provider) = 1 and contact_type/@code = ('03', '04', '09')"> <!-- Include types "consult", "nacht/diens consult" en "overleg" -->
+                <serviceProvider>
+                    <xsl:apply-templates select="../bundle/author/health_professional/healthcare_provider" mode="doOrganizationReference"/>
+                </serviceProvider>
+            </xsl:if>
+        </Encounter>
     </xsl:template>
     
     <xd:doc>
