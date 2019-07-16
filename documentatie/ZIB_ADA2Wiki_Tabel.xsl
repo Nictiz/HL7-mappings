@@ -85,10 +85,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 |</xsl:text>
         <xsl:choose>
             <xsl:when test="$concept/@shortName = $concept-zib">
-                <xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text>
+                <xsl:text>[[Bestand:Zib.png|30px|link=]] </xsl:text>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:text>[[Bestand: Container.png| 20px]] </xsl:text>
+                <xsl:text>[[Bestand:Container.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:otherwise>
         </xsl:choose>
         <xsl:text>|| </xsl:text>
@@ -147,10 +147,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:text>|| </xsl:text>
         <xsl:choose>
             <xsl:when test="$concept/@shortName = $concept-zib">
-                <xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text>
+                <xsl:text>[[Bestand:Zib.png|30px|link=]] </xsl:text>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:text>[[Bestand: Container.png| 20px]] </xsl:text>
+                <xsl:text>[[Bestand:Container.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:otherwise>
         </xsl:choose>
         <xsl:text>|| </xsl:text>
@@ -465,49 +465,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Type dependent stuff -->
         <xsl:choose>
             <xsl:when test="$type = 'boolean'">
-                <xsl:text>[[Bestand: BL.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:BL.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'blob'">
                 <xsl:text>blob </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'code'">
-                <xsl:text>[[Bestand: CD.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:CD.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'count'">
-                <xsl:text>[[Bestand: INT.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:INT.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'date'">
-                <xsl:text>[[Bestand: TS.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:TS.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'datetime'">
-                <xsl:text>[[Bestand: TS.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:TS.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'duration'">
-                <xsl:text>[[Bestand: PQ.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:PQ.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'decimal'">
                 <xsl:text>REAL </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'group'">
-                <xsl:text>[[Bestand: Container.png| 20px]] </xsl:text>
+                <xsl:text>[[Bestand:Container.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'identifier'">
-                <xsl:text>[[Bestand: II.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:II.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'quantity'">
-                <xsl:text>[[Bestand: PQ.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:PQ.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'string'">
-                <xsl:text>[[Bestand: ST.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:ST.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'complex'">
-                <xsl:text>[[Bestand: ANY.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:ANY.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'text'">
-                <xsl:text>[[Bestand: ST.png| 16px]] </xsl:text>
+                <xsl:text>[[Bestand:ST.png|16px|link=Beschrijving_en_gebruik_datatypes]] </xsl:text>
             </xsl:when>
             <xsl:when test="$type = 'zib'">
-                <xsl:text>[[Bestand: Zib.png| 30px]] </xsl:text>
+                <xsl:text>[[Bestand:Zib.png|30px|link=]] </xsl:text>
             </xsl:when>
             <xsl:otherwise>
                 <!-- an unknown type -->
