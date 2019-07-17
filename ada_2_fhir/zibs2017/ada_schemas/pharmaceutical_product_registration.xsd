@@ -1,0 +1,306 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:annotation>
+      <xs:documentation>Schema for transaction: 2.16.840.1.113883.2.4.3.11.60.7.4.2.9.7</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="empty_string">
+      <xs:annotation>
+         <xs:documentation>Type for empty value-strings on non-mandatory concepts</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="0"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:element name="pharmaceutical_product_registration"
+               type="pharmaceutical_product_registration_type"/>
+   <xs:complexType name="pharmaceutical_product_registration_type">
+      <xs:sequence>
+         <xs:element name="farmaceutical_product-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="farmaceutical_product"
+                     type="farmaceutical_product_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19926"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string"/>
+      <xs:attribute name="app" type="xs:string"/>
+      <xs:attribute name="shortName" type="xs:string" use="optional"/>
+      <xs:attribute name="formName" type="xs:string" use="optional"/>
+      <xs:attribute name="transactionRef" type="xs:string"/>
+      <xs:attribute name="transactionEffectiveDate" type="xs:dateTime"/>
+      <xs:attribute name="versionDate" type="xs:string"/>
+      <xs:attribute name="language" type="xs:string"/>
+      <xs:attribute name="prefix" type="xs:string"/>
+      <xs:attribute name="adaVersion" type="xs:decimal"/>
+      <xs:attribute name="title" type="xs:string"/>
+      <xs:attribute name="rights" type="xs:string"/>
+      <xs:attribute name="owner" type="xs:string"/>
+   </xs:complexType>
+   <xs:complexType name="farmaceutical_product_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19926">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: FarmaceuticalProduct</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="product_specifications-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19928"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="product_specifications"
+                     type="product_specifications_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19928"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="medication_code-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19927"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="medication_code"
+                     type="medication_code_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19927"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19926"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="product_specifications_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19928">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: ProductSpecifications</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="pharmaceutical_form-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19931"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="pharmaceutical_form"
+                     type="pharmaceutical_form_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19931"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="medication-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19929"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="medication"
+                     type="medication_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19929"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="description-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19784"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="description"
+                     type="description_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19784"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="ingredient-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19932"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="ingredient"
+                     type="ingredient_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19932"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19928"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="ingredient_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19932">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Ingredient</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="substance_code-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19934"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="substance_code"
+                     type="substance_code_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19934"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="concentration-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19933"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="concentration"
+                     type="concentration_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19933"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19932"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="concentration_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19933">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Concentration</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="ingredient_amount-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.22277"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="ingredient_amount"
+                     type="ingredient_amount_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_22277"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="product_amount-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.22278"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="product_amount"
+                     type="product_amount_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_22278"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19933"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: PharmaceuticalForm - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="pharmaceutical_form_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19931">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19931"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Medication - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="medication_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19929">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19929"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Description - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="description_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19784">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19784"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: SubstanceCode - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="substance_code_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19934">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19934"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: IngredientAmount - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="ingredient_amount_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_22277">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.22277"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:decimal"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: ProductAmount - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="product_amount_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_22278">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.22278"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:decimal"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="unit">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: MedicationCode - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="medication_code_type_2_16_840_1_113883_2_4_3_11_60_40_1_9_7_19927">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.9.7.19927"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:simpleType name="NullFlavorNoInformation">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="NI"/>
+         <xs:enumeration value="UNK"/>
+         <xs:enumeration value="OTH"/>
+         <xs:enumeration value="MSK"/>
+         <xs:enumeration value="UNC"/>
+         <xs:enumeration value="NA"/>
+         <xs:enumeration value="NAV"/>
+         <xs:enumeration value="ASKU"/>
+         <xs:enumeration value="NASK"/>
+         <xs:enumeration value="INV"/>
+         <xs:enumeration value="DER"/>
+         <xs:enumeration value="NINF"/>
+         <xs:enumeration value="PINF"/>
+         <xs:enumeration value="QS"/>
+         <xs:enumeration value="TRC"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

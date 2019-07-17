@@ -1,0 +1,233 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:annotation>
+      <xs:documentation>Schema for transaction: 2.16.840.1.113883.2.4.3.11.60.7.4.2.20.6</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="empty_string">
+      <xs:annotation>
+         <xs:documentation>Type for empty value-strings on non-mandatory concepts</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="0"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:element name="contact_information_registration"
+               type="contact_information_registration_type"/>
+   <xs:complexType name="contact_information_registration_type">
+      <xs:sequence>
+         <xs:element name="contact_information-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="contact_information"
+                     type="contact_information_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_1"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="id" type="xs:string"/>
+      <xs:attribute name="app" type="xs:string"/>
+      <xs:attribute name="shortName" type="xs:string" use="optional"/>
+      <xs:attribute name="formName" type="xs:string" use="optional"/>
+      <xs:attribute name="transactionRef" type="xs:string"/>
+      <xs:attribute name="transactionEffectiveDate" type="xs:dateTime"/>
+      <xs:attribute name="versionDate" type="xs:string"/>
+      <xs:attribute name="language" type="xs:string"/>
+      <xs:attribute name="prefix" type="xs:string"/>
+      <xs:attribute name="adaVersion" type="xs:decimal"/>
+      <xs:attribute name="title" type="xs:string"/>
+      <xs:attribute name="rights" type="xs:string"/>
+      <xs:attribute name="owner" type="xs:string"/>
+   </xs:complexType>
+   <xs:complexType name="contact_information_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_1">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: ContactInformation</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="telephone_numbers-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.2"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="telephone_numbers"
+                     type="telephone_numbers_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_2"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="email_addresses-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.3"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="email_addresses"
+                     type="email_addresses_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_3"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.1"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="telephone_numbers_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_2">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: TelephoneNumbers</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="telephone_number-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.4"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="telephone_number"
+                     type="telephone_number_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_4"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="telecom_type-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.5"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="telecom_type"
+                     type="telecom_type_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_5"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="number_type-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.6"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="number_type"
+                     type="number_type_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_6"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.2"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="email_addresses_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_3">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: EmailAddresses</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="email_address-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.7"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="email_address"
+                     type="email_address_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_7"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="email_address_type-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.8"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="email_address_type"
+                     type="email_address_type_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_8"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.3"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: TelephoneNumber - 1..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="telephone_number_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_4">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.4"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: TelecomType - 1..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="telecom_type_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_5">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.5"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: NumberType - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="number_type_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_6">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.6"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: EmailAddress - 1..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="email_address_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_7">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.7"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: EmailAddressType - 0..1 </xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="email_address_type_type_2_16_840_1_113883_2_4_3_11_60_40_1_20_6_8">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.40.1.20.6.8"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="displayName" type="xs:string" use="optional"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string" use="optional"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string" use="optional"/>
+      <xs:attribute name="originalText" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:simpleType name="NullFlavorNoInformation">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="NI"/>
+         <xs:enumeration value="UNK"/>
+         <xs:enumeration value="OTH"/>
+         <xs:enumeration value="MSK"/>
+         <xs:enumeration value="UNC"/>
+         <xs:enumeration value="NA"/>
+         <xs:enumeration value="NAV"/>
+         <xs:enumeration value="ASKU"/>
+         <xs:enumeration value="NASK"/>
+         <xs:enumeration value="INV"/>
+         <xs:enumeration value="DER"/>
+         <xs:enumeration value="NINF"/>
+         <xs:enumeration value="PINF"/>
+         <xs:enumeration value="QS"/>
+         <xs:enumeration value="TRC"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
