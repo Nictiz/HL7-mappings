@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../schematron/kz-vzvz-opleverenMedicatieafspraken.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<QUMA_IN991203NL02 xmlns="urn:hl7-org:v3"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:sdtc="urn:hl7-org:sdtc"
+                   xmlns:cda="urn:hl7-org:v3"
+                   xmlns:hl7nl="urn:hl7-nl:v3"
+                   xmlns:pharm="urn:ihe:pharm:medication"
+                   xmlns:hl7="urn:hl7-org:v3"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xsi:schemaLocation="urn:hl7-org:v3 ../schemas/QUMA_IN991203NL02.xsd"
+                   type="Message">
+   <id extension="0075576002" root="2.16.840.1.113883.2.4.6.6.134.1"/>
+   <creationTime value="20161125154508"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="QUMA_IN991203NL02" root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="NE"/>
+   <acknowledgement typeCode="AA" type="Acknowledgement">
+      <targetMessage type="Message">
+         <id extension="0075576001" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+      </targetMessage>
+   </acknowledgement>
+   <receiver typeCode="RCV" type="CommunicationFunction">
+      <device determinerCode="INSTANCE" classCode="DEV" type="Device">
+         <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+         <name>Landelijk SchakelPunt</name>
+      </device>
+   </receiver>
+   <sender typeCode="SND" type="CommunicationFunction">
+      <device determinerCode="INSTANCE" classCode="DEV" type="Device">
+         <id extension="134" root="2.16.840.1.113883.2.4.6.6"/>
+         <name>HIS van huisartspraktijk Van Beek</name>
+      </device>
+   </sender>
+   <ControlActProcess moodCode="EVN" classCode="CACT" type="ControlAct">
+      <authorOrPerformer typeCode="AUT" contextControlCode="AP" type="Participation">
+         <participant type="Role">
+            <AssignedDevice classCode="ASSIGNED" type="RoleHeir">
+               <id extension="134" root="2.16.840.1.113883.2.4.6.6"/>
+               <id root="2.16.528.1.1007.3.2" extension="123412345"/>
+               <Organization determinerCode="INSTANCE" classCode="ORG" type="Organization">
+                  <id root="2.16.528.1.1007.3.3" extension="00765332"/>
+                  <name>Huisartspraktijk van Beek</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject contextConductionInd="false" typeCode="SUBJ" type="ActRelationship">
+         <organizer classCode="CLUSTER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9265" unsorted="false"/>
+            <code code="419891008"
+               displayName="Gegevensobject"
+                  codeSystem="2.16.840.1.113883.6.96"/>
+            <statusCode code="completed"/>
+            <recordTarget typeCode="RCT" contextControlCode="OP">
+               <patientRole classCode="PAT">
+                  <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+                  <patient determinerCode="INSTANCE" classCode="PSN">
+                     <name>
+                        <given mediaType="text/plain"
+                               representation="TXT"
+                               integrityCheckAlgorithm="SHA-1"
+                               partType="GIV">Joris</given>
+                        <family mediaType="text/plain"
+                                representation="TXT"
+                                integrityCheckAlgorithm="SHA-1"
+                                partType="FAM">Hansman</family>
+                     </name>
+                     <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                  </patient>
+               </patientRole>
+            </recordTarget>
+            <component typeCode="COMP">
+               <substanceAdministration classCode="SBADM" moodCode="RQO">
+                  <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+                  <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+                  <!-- identificatie -->
+                  <id extension="#MB_01h#MA_01"
+                     root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <code code="16076005"
+                     displayName="Medicatieafspraak"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+                  <!-- mp-9581 Omschrijving -->
+                  <text mediaType="text/plain">Vanaf 12 juni 2017, tot nader order, 1 maal daags 1 stuk</text>
+                  <!-- Gebruiksperiode -->
+                  <effectiveTime xsi:type="IVL_TS">
+                     <low value="20170612"/>
+                     <high nullFlavor="NI"/>
+                  </effectiveTime>
+                  <!-- 19941 Toedieningsweg -->
+                  <routeCode code="12"
+                     displayName="rectaal"
+                     codeSystem="2.16.840.1.113883.2.4.4.9"
+                     codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+                  <!-- Afgesproken geneesmiddel -->
+                  <consumable>
+                     <manufacturedProduct classCode="MANU">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                        <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                           <code code="6939"
+                              codeSystem="2.16.840.1.113883.2.4.4.10"
+                              codeSystemName="G-Standaard PRK"
+                              displayName="Metoclopramide zetpil 20mg">
+                              <translation code="63630"
+                                 displayName="METOCLOPRAMIDE ZETPIL 20MG"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1"
+                                 codeSystemName="G-Standaard GPK"/>
+                           </code>
+                        </manufacturedMaterial>
+                     </manufacturedProduct>
+                  </consumable>
+                  <!-- voorschrijver -->
+                  <author><!-- Afspraakdatum -->
+                     <time value="20160623165423"/>
+                     <assignedAuthor><!-- Zorgverlener identificatie -->
+                        <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+                        <!-- Specialisme -->
+                        <code code="01.016"
+                           displayName="Internist"
+                           codeSystem="2.16.840.1.113883.2.4.15.111"
+                           codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                        <assignedPerson><!-- ZorgverlenerNaam -->
+                           <name>Dr Jansen</name>
+                        </assignedPerson>
+                        <!-- Zorgaanbieder -->
+                        <representedOrganization><!-- Zorgaanbieder identificatie -->
+                           <id root="1.2.3.4" extension="URAnummer"/>
+                           <name>Ziekenhuis zus en zo</name>
+                           <addr use="WP">
+                              <streetName>Dorpsstraat</streetName>
+                              <houseNumber>10</houseNumber>
+                              <postalCode>1111 AA</postalCode>
+                              <city>Ons Dorp</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedAuthor>
+                  </author>         
+                  <!--Doseerinstructie-->
+                  <entryRelationship typeCode="COMP">
+                     <sequenceNumber value="1"/>
+                     <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                        <effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+                           <hl7nl:frequency>
+                              <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                              <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                           </hl7nl:frequency>
+                        </effectiveTime>
+                        <doseQuantity>
+                           <center value="1" unit="1">
+                              <translation value="1"
+                                 code="245"
+                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                 displayName="stuk"/>
+                           </center>
+                        </doseQuantity>
+                        <consumable xsi:nil="true"/>
+                        <precondition>
+                           <criterion classCode="OBS">
+                              <code code="1137"
+                                 displayName="zo nodig"
+                                 codeSystem="2.16.840.1.113883.2.4.4.5"/>
+                           </criterion>
+                        </precondition>
+                     </substanceAdministration>
+                  </entryRelationship>
+                  <!--Relatie naar medicamenteuze behandeling-->
+                  <entryRelationship typeCode="COMP" inversionInd="true">
+                     <procedure classCode="PROC" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                        <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_01h"/>
+                        <code code="1"
+                           displayName="Medicamenteuze behandeling"
+                           codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                     </procedure>
+                  </entryRelationship>
+               </substanceAdministration>
+            </component>
+         </organizer>
+      </subject>
+      <queryAck type="QueryAck">
+         <queryId extension="0000616001" root="2.16.840.1.113883.2.4.6.6.1.2"/>
+         <queryResponseCode code="OK"/>
+         <resultTotalQuantity value="1"/>
+         <resultCurrentQuantity value="1"/>
+         <resultRemainingQuantity value="0"/>
+      </queryAck>
+   </ControlActProcess>
+</QUMA_IN991203NL02>
