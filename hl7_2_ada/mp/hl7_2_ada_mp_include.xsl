@@ -2202,33 +2202,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="xsd-product-complexType" select="$xsd-geneesmiddel//xs:element[@name = 'product']/@type"/>
         <xsl:variable name="xsd-product" select="$xsd-ada//xs:complexType[@name = $xsd-product-complexType]"/>
         <product conceptId="{$xsd-product/xs:attribute[@name='conceptId']/@fixed}">
-            <xsl:for-each select="./hl7:code[@code or @nullFlavor]">
-                <xsl:variable name="xsd-complexType" select="$xsd-product//xs:element[@name = 'product_code']/@type"/>
-                <product_code conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                    <!-- Let op! Er is (nog?) geen ondersteuning voor optionele translations... -->
-                    <xsl:call-template name="mp9-code-attribs">
-                        <xsl:with-param name="current-hl7-code" select="."/>
-                    </xsl:call-template>
-                </product_code>
-            </xsl:for-each>
+            <xsl:variable name="xsd-complexType" select="$xsd-product//xs:element[@name = 'product_code']/@type"/>
+            <!-- Let op! Er is (nog?) geen ondersteuning voor optionele translations... -->
+            <xsl:call-template name="handleCV">
+                <xsl:with-param name="in" select="./hl7:id"/>
+                <xsl:with-param name="elemName">product_code</xsl:with-param>
+                <xsl:with-param name="conceptId" select="$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed"/>
+            </xsl:call-template>
             <xsl:for-each select=".[hl7:code[@nullFlavor]] | .[not(hl7:code)]">
                 <xsl:variable name="xsd-product_specificatie-complexType" select="$xsd-product//xs:element[@name = 'product_specificatie']/@type"/>
                 <xsl:variable name="xsd-product_specificatie" select="$xsd-ada//xs:complexType[@name = $xsd-product_specificatie-complexType]"/>
                 <product_specificatie conceptId="{$xsd-product_specificatie/xs:attribute[@name='conceptId']/@fixed}">
                     <!-- product_naam -->
                     <xsl:for-each select="./hl7:code/hl7:originalText">
-                        <xsl:variable name="xsd-complexType" select="$xsd-product_specificatie//xs:element[@name = 'product_naam']/@type"/>
-                        <product_naam value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                        <product_naam value="{./text()}" conceptId="{nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-product_specificatie, 'product_naam')))}"/>
                     </xsl:for-each>
                     <!-- omschrijving -->
                     <xsl:for-each select="./hl7:desc">
-                        <xsl:variable name="xsd-complexType" select="$xsd-product_specificatie//xs:element[@name = 'omschrijving']/@type"/>
-                        <omschrijving value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                        <omschrijving value="{./text()}" conceptId="{nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-product_specificatie, 'product_naam')))}"/>
                     </xsl:for-each>
                     <!-- farmaceutische vorm -->
                     <xsl:for-each select="./hl7:formCode">
-                        <xsl:variable name="xsd-complexType" select="$xsd-product_specificatie//xs:element[@name = 'farmaceutische_vorm']/@type"/>
-                        <farmaceutische_vorm conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                        <farmaceutische_vorm conceptId="{nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-product_specificatie, 'farmaceutische_vorm')))}">
                             <xsl:call-template name="mp9-code-attribs">
                                 <xsl:with-param name="current-hl7-code" select="."/>
                             </xsl:call-template>
@@ -2766,80 +2761,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="xsd-auteur"/>
 
         <xsl:for-each select="$author-hl7/hl7:assignedAuthor">
-            <xsl:variable name="zorgverlener-complexType" select="$xsd-auteur//xs:element[@name = 'zorgverlener']/@type"/>
-            <xsl:variable name="xsd-zorgverlener" select="$xsd-ada//xs:complexType[@name = $zorgverlener-complexType]"/>
-            <zorgverlener conceptId="{$xsd-zorgverlener/xs:attribute[@name='conceptId']/@fixed}">
-                <xsl:for-each select="./hl7:id">
-                    <xsl:variable name="xsd-complexType" select="$xsd-zorgverlener//xs:element[@name = 'zorgverlener_identificatienummer']/@type"/>
-                    <zorgverlener_identificatienummer value="{./@extension}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                </xsl:for-each>
-                <xsl:for-each select="./hl7:assignedPerson/hl7:name">
-                    <xsl:variable name="zorgverlener_naam-complexType" select="$xsd-zorgverlener//xs:element[@name = 'naamgegevens']/@type"/>
-                    <xsl:variable name="xsd-zorgverlener_naam" select="$xsd-ada//xs:complexType[@name = $zorgverlener_naam-complexType]"/>
-                    <naamgegevens conceptId="{$xsd-zorgverlener_naam/xs:attribute[@name='conceptId']/@fixed}">
-                        <xsl:variable name="naamgegevens-complexType" select="$xsd-zorgverlener_naam//xs:element[@name = 'naamgegevens']/@type"/>
-                        <xsl:variable name="xsd-naamgegevens" select="$xsd-ada//xs:complexType[@name = $naamgegevens-complexType]"/>
-                        <naamgegevens conceptId="{$xsd-naamgegevens/xs:attribute[@name='conceptId']/@fixed}">
-                            <!-- ongestructureerde_naam -->
-                            <xsl:for-each select=".[text()][not(child::*)]">
-                                <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'ongestructureerde_naam']/@type"/>
-                                <ongestructureerde_naam conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                                    <xsl:attribute name="value">
-                                        <xsl:value-of select="."/>
-                                    </xsl:attribute>
-                                </ongestructureerde_naam>
-                                <!-- achternaam is 1..1R, die vullen we dan maar even met een nullFlavor vanwege ada xsd foutmeldingen -->
-                                <xsl:variable name="geslachtsnaam-complexType" select="$xsd-naamgegevens//xs:element[@name = 'geslachtsnaam']/@type"/>
-                                <xsl:variable name="xsd-geslachtsnaam" select="$xsd-ada//xs:complexType[@name = $geslachtsnaam-complexType]"/>
-                                <geslachtsnaam conceptId="{$xsd-geslachtsnaam/xs:attribute[@name='conceptId']/@fixed}">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'achternaam']/@type"/>
-                                    <achternaam nullFlavor="NI" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                </geslachtsnaam>
-                            </xsl:for-each>
-                            <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
-                                <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'voornamen']/@type"/>
-                                <voornamen value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                            </xsl:for-each>
-                            <xsl:for-each select="./hl7:given[@qualifier = 'IN']">
-                                <!-- in HL7 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
-                                <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier toevoegen van de officiële voornamen -->
-                                <xsl:variable name="initialen_concatted">
-                                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
-                                        <xsl:for-each select="tokenize(., ' ')">
-                                            <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
-                                        </xsl:for-each>
-                                    </xsl:for-each>
-                                    <xsl:for-each select="./hl7:given[@qualifier = 'IN']">
-                                        <xsl:value-of select="./text()"/>
-                                    </xsl:for-each>
-                                </xsl:variable>
-                                <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'initialen']/@type"/>
-                                <initialen value="{$initialen_concatted}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                            </xsl:for-each>
-                            <xsl:for-each select="./hl7:family">
-                                <xsl:variable name="geslachtsnaam-complexType" select="$xsd-naamgegevens//xs:element[@name = 'geslachtsnaam']/@type"/>
-                                <xsl:variable name="xsd-geslachtsnaam" select="$xsd-ada//xs:complexType[@name = $geslachtsnaam-complexType]"/>
-                                <geslachtsnaam conceptId="{$xsd-geslachtsnaam/xs:attribute[@name='conceptId']/@fixed}">
-                                    <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1]">
-                                        <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'voorvoegsels']/@type"/>
-                                        <voorvoegsels value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                    </xsl:for-each>
-                                    <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'achternaam']/@type"/>
-                                    <achternaam value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                </geslachtsnaam>
-                            </xsl:for-each>
-                        </naamgegevens>
-                    </naamgegevens>
-                </xsl:for-each>
-                <!-- specialisme -->
-                <xsl:for-each select="./hl7:code">
-                    <xsl:variable name="xsd-complexType" select="$xsd-zorgverlener//xs:element[@name = 'specialisme']/@type"/>
-                    <specialisme conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                        <xsl:call-template name="mp9-code-attribs">
-                            <xsl:with-param name="current-hl7-code" select="."/>
+            <zorgverlener conceptId="{nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-auteur, 'zorgverlener')))}">
+                <xsl:call-template name="handleII">
+                    <xsl:with-param name="in" select="./hl7:id"/>
+                    <xsl:with-param name="elemName">zorgverlener_identificatienummer</xsl:with-param>
+                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-auteur, 'zorgverlener_identificatienummer')))"/>
+                </xsl:call-template>
+                
+                <xsl:variable name="xsd-zorgverlener" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-auteur, 'zorgverlener'))"/>
+                <xsl:variable name="xsd-zorgverlenernaam" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlener, 'naamgegevens'))"/>
+                <xsl:if test="./hl7:assignedPerson/hl7:name">
+                    <naamgegevens>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, $xsd-zorgverlenernaam))"/>
+                        
+                        <xsl:call-template name="handleENtoNameInformation">
+                            <xsl:with-param name="in" select="./hl7:assignedPerson/hl7:name"/>
+                            <xsl:with-param name="language">nl-NL</xsl:with-param>
+                            <xsl:with-param name="unstructurednameElement">ongestructureerde_naam</xsl:with-param>
+                            <xsl:with-param name="schema" select="$xsd-ada"/>
+                            <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlenernaam, 'naamgegevens'))"/>
                         </xsl:call-template>
-                    </specialisme>
-                </xsl:for-each>
+                    </naamgegevens>
+                </xsl:if>
+                <!-- specialisme -->
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="./hl7:code"/>
+                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlener, 'specialisme')))"/>
+                    <xsl:with-param name="elemName">specialisme</xsl:with-param>
+                </xsl:call-template>
                 <xsl:for-each select="./hl7:representedOrganization">
                     <xsl:call-template name="mp907-zorgaanbieder">
                         <xsl:with-param name="hl7-current-organization" select="."/>

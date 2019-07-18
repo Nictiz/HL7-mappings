@@ -16,31 +16,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:include href="../../util/constants.xsl"/>
     <xsl:include href="../../util/uuid.xsl"/>
-
-    <!-- Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and calculated precision
-        
-        Calculation is done by calling nf:determine_date_precision($dateTime)
-        
-        Example nf:formatHL72XMLDate(hl7:effectiveTime/@value)
-        
-        @param $dateTime HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz
-        @return date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and $input-hl7-date is returned as-is
-    -->
+    
+    <xd:doc>
+        <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and calculated precision <xd:p>Calculation is done by calling nf:determine_date_precision($dateTime)</xd:p>
+            <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value)</xd:p>
+            <xd:p><xd:b>return</xd:b> date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and $input-hl7-date is returned as-is</xd:p>
+        </xd:desc>
+        <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
+    </xd:doc>
     <xsl:function name="nf:formatHL72XMLDate" as="xs:string">
         <xsl:param name="input-hl7-date" as="xs:string"/>
         
         <xsl:value-of select="nf:formatHL72XMLDate($input-hl7-date, nf:determine_date_precision($input-hl7-date))"/>
     </xsl:function>
     
-    <!-- Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision.
-        
-        Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))
-        
-        @param $input-hl7-date HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz
-        @param $precision Coded string indicator for requested precision. Use DAY for date and SECOND for dateTime. 
-            Note that if the input does not allow for dateTime, fallback to date is applied.
-        @return date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and $input-hl7-date is returned as-is
-    -->
+    <xd:doc>
+        <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision. <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
+            <xd:p><xd:b>return</xd:b> date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and <xd:ref type="parameter" name="input-hl7-date"/> is returned as-is</xd:p>
+        </xd:desc>
+        <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
+        <xd:param name="precision">Coded string indicator for requested precision. Use DAY for date and SECOND for dateTime. Note that if the input does not allow for dateTime, fallback to date is applied.</xd:param>
+    </xd:doc>
     <xsl:function name="nf:formatHL72XMLDate" as="xs:string">
         <xsl:param name="input-hl7-date" as="xs:string"/>
         <!-- precision determines the picture of the date format, currently only use case for day or second. -->
@@ -81,10 +77,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-    <!-- Returns DAY if the input is <= 8 characters, or SECOND otherwise
-    
-        @param $input-hl7-date HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz
-    -->
+    <xd:doc>
+        <xd:desc>Returns DAY if the input is &lt;= 8 characters, or SECOND otherwise</xd:desc>
+        <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
+    </xd:doc>
     <xsl:function name="nf:determine_date_precision">
         <xsl:param name="input-hl7-date"/>
         <xsl:choose>
@@ -94,7 +90,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-    <!-- appends an HL7 date with zeros so that an XML dateTime can be created or dates can be compared -->
+    <xd:doc>
+        <xd:desc>appends an HL7 date with zeros so that an XML dateTime can be created or dates can be compared </xd:desc>
+        <xd:param name="inputDate">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
+    </xd:doc>
     <xsl:function name="nf:appendDate2DateTime" as="xs:string?">
         <xsl:param name="inputDate" as="xs:string?"/>
         
@@ -105,7 +104,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="concat(substring(concat($yyyymmddHHMMSS, '00000000000000'), 1, 14), $ssZZzz)"/>
     </xsl:function>
 
-    <!-- appends an HL7 date with zeros so that an XML date or dateTime can be created -->
+    <xd:doc>
+        <xd:desc>Returns the fixed conceptId attribute value for a named XSD complexType</xd:desc>
+        <xd:param name="schemaFragment">XSD Schema to retrieve the xs:complexType from</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:getADAComplexTypeConceptId" as="attribute(conceptId)?">
+        <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
+        <xsl:variable name="conceptId" select="$schemaFragment/xs:attribute[@name = 'conceptId']/@fixed"/>
+        
+        <xsl:if test="$conceptId">
+            <xsl:attribute name="conceptId" select="$conceptId"/>
+        </xsl:if>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns the type value for a named XSD element</xd:desc>
+        <xd:param name="schemaFragment">XSD Schema to retrieve the typed element from</xd:param>
+        <xd:param name="elementName">Name of the element to retrieve the type for</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:getADAComplexTypeName" as="xs:string?">
+        <xsl:param name="schemaFragment" as="node()*"/>
+        <xsl:param name="elementName" as="xs:string?"/>
+        <xsl:value-of select="$schemaFragment//xs:element[@name = $elementName]/@type"/>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns a named XSD complexType</xd:desc>
+        <xd:param name="schemaFragment">XSD Schema to retrieve the typed element from</xd:param>
+        <xd:param name="complexTypeName">Name of the xs:complexType to retrieve the conceptId for</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:getADAComplexType" as="element()?">
+        <xsl:param name="schemaFragment" as="node()*"/>
+        <xsl:param name="complexTypeName" as="xs:string?"/>
+        <xsl:copy-of select="$schemaFragment//xs:complexType[@name = $complexTypeName]"/>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc> appends an HL7 date with zeros so that an XML date or dateTime can be created </xd:desc>
+        <xd:param name="inputDate">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
+    </xd:doc>
     <xsl:function name="nf:appendDate2DateOrTime" as="xs:string?">
         <xsl:param name="inputDate"/>
         
@@ -123,26 +160,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     
-    <!-- Returns an array of ADA elements based on an array of HL7v3 AND elements that have an @xsi:type attribute to determine the type with. 
-        After the type is determined, the element is handed off to handleXX for further processing. Failure to determine type is a fatal error.
-        
-        Supported values for @xsi:type (datatypes releases 1 in namespace "urn:hl7-org:v3"): BL, CS, CV, CE, CD, CO, II, PQ, ST, TS
-        
-        @param $in Array of elements to process. If empty array, then no output is created.
-        @param $codeSystem Relevant/required only for CS. CS has no codeSystem so it has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
-        @param $conceptId Optional value for an ADA @conceptId attribute 
-        @param $elemName Name of the ADA element to produce
-        @param $dodatatype Boolean. If true creates relevant @datatype attribute on the output.
-        @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
-        @param $nullIfMissing If there is no element, and this has a value, create element anyway with given nullFlavor
-    -->
+    <xd:doc>
+        <xd:desc> Returns an array of ADA elements based on an array of HL7v3 AND elements that have an @xsi:type attribute to determine the type with. 
+            <xd:p>After the type is determined, the element is handed off to handleXX for further processing. Failure to determine type is a fatal error.</xd:p>
+            <xd:p>Supported values for @xsi:type (datatypes releases 1 in namespace "urn:hl7-org:v3"): BL (boolean), CS (code), CV (code), CE (code), CD (code), CO (code), II (identifier), PQ (quantity), ST (string), TS (date)</xd:p></xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="dodatatype">Boolean. If true creates relevant @datatype attribute on the output.</xd:param>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
+            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
+                In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
+                are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+            <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
+        <xd:param name="codeSystem">CS has no codeSystem so it has to be supplied from external. Usually <xd:ref type="variable" name="oidHL7ActStatus"/> or <xd:ref type="variable" name="oidHL7RoleStatus"/></xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
+    </xd:doc>
     <xsl:template name="handleANY">
         <xsl:param name="in" select="." as="element()*"/>
-        <xsl:param name="codeSystem" as="xs:string?"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         <xsl:param name="dodatatype" select="false()" as="xs:boolean"/>
         <xsl:param name="codeMap" as="element()*"/>
+        <xsl:param name="codeSystem" as="xs:string?"/>
         <xsl:param name="nullIfMissing" as="xs:string?"/>
         
         <xsl:if test="empty($in) and string-length($nullIfMissing) gt 0">
@@ -239,10 +280,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <!-- Copy name parts as faithful as possible to HCIM 2017 nl.zorg.part.NameInformation. Calculate name usage code. Submit unstructured name in last_name -->
+    <xd:doc>
+        <xd:desc>Copy ENXP parts as faithful as possible to HCIM 2017 nl.zorg.part.NameInformation. Calculate name usage code. Submit unstructured name in last_name </xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype</xd:param>
+        <xd:param name="unstructurednameElement">Name of the element to put stuff in if there are no name parts. The HCIM does not support this but the ADA format might.</xd:param>
+        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
+        <xd:param name="schemaFragment">Optional. XSD Schema complexType for naamgegevens</xd:param>
+    </xd:doc>
     <xsl:template name="handleENtoNameInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
-        <xsl:param name="language" as="xs:string?">en-US</xsl:param>
+        <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
+        <xsl:param name="schema"><xs:schema/></xsl:param>
+        <xsl:param name="schemaFragment" as="element()?"/>
+        <xsl:param name="unstructurednameElement" as="xs:string?"/>
         
         <!-- Element names based on language -->
         <xsl:variable name="elemNameInformation">
@@ -318,7 +369,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="*">
                     <xsl:variable name="firstNames" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'BR' or not(@qualifier)], ' '))"/>
                     <xsl:variable name="givenName" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'CL'], ' '))"/>
-                    <xsl:variable name="initials" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'IN'], ''))"/>
+                    <!-- in HL7 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
+                    <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier toevoegen van de officiële voornamen -->
+                    <xsl:variable name="initials">
+                        <xsl:for-each select="./hl7:given[tokenize(@qualifier, '\s') = 'IN']">
+                            <xsl:value-of select="./text()"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
+                            <xsl:for-each select="tokenize(normalize-space(.), '\s')">
+                                <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
+                            </xsl:for-each>
+                        </xsl:for-each>
+                    </xsl:variable>
                     <xsl:variable name="nameUsage">
                         <xsl:choose>
                             <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR'] and empty(hl7:family[tokenize(@qualifier, '\s') = 'SP'])">
@@ -411,54 +473,101 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     
                     <xsl:element name="{$elemNameInformation}">
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
+                        
                         <xsl:if test="string-length($firstNames) gt 0">
                             <xsl:element name="{$elmFirstNames}">
                                 <xsl:attribute name="value" select="$firstNames"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmFirstNames)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="string-length($givenName) gt 0">
                             <xsl:element name="{$elmGivenName}">
                                 <xsl:attribute name="value" select="$givenName"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmGivenName)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="string-length($initials) gt 0">
                             <xsl:element name="{$elmInitials}">
                                 <xsl:attribute name="value" select="$initials"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmInitials)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:copy-of select="$nameUsage"/>
                         <xsl:if test="string-length($last_name) gt 0">
                             <xsl:element name="{$elmLastName}">
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName)))"/>
+                                
                                 <xsl:if test="string-length($last_name_prefix) gt 0">
                                     <xsl:element name="{$elmLastNamePrefix}">
                                         <xsl:attribute name="value" select="$last_name_prefix"/>
+                                        
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNamePrefix)))"/>
                                     </xsl:element>
                                 </xsl:if>
                                 <xsl:element name="{$elmLastNameLastName}">
                                     <xsl:attribute name="value" select="$last_name"/>
+                                    
+                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNameLastName)))"/>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="string-length($last_name_partner) gt 0">
                             <xsl:element name="{$elmLastNamePartner}">
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNamePartner)))"/>
+                                
                                 <xsl:if test="string-length($last_name_partner_prefix) gt 0">
                                     <xsl:element name="{$elmLastNamePartnerPrefix}">
                                         <xsl:attribute name="value" select="$last_name_partner_prefix"/>
+                                        
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNamePartnerPrefix)))"/>
                                     </xsl:element>
                                 </xsl:if>
                                 <xsl:element name="{$elmLastNamePartner}">
                                     <xsl:attribute name="value" select="$last_name_partner"/>
+                                    
+                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNamePartner)))"/>
                                 </xsl:element>
                             </xsl:element>
                         </xsl:if>
                     </xsl:element>
                 </xsl:when>
-                <xsl:otherwise>
-                    <!-- No name parts.... submit as last name only... -->
+                <!-- No name parts.... do unstructured name only. Likely a name part is required, so fake the last_name -->
+                <xsl:when test="string-length($unstructurednameElement)">
                     <xsl:element name="{$elemNameInformation}">
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
+                        
+                        <xsl:element name="{$unstructurednameElement}">
+                            <xsl:attribute name="value" select="."/>
+                            
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $unstructurednameElement)))"/>
+                        </xsl:element>
                         <xsl:element name="{$elmLastName}">
-                            <xsl:element name="{$elmLastName}">
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName)))"/>
+                            
+                            <xsl:element name="{$elmLastNameLastName}">
+                                <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNameLastName)))"/>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:when>
+                <!-- No name parts.... do last name only -->
+                <xsl:otherwise>
+                    <xsl:element name="{$elemNameInformation}">
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
+                        
+                        <xsl:element name="{$elmLastName}">
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName)))"/>
+                            
+                            <xsl:element name="{$elmLastNameLastName}">
                                 <xsl:attribute name="value" select="."/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNameLastName)))"/>
                             </xsl:element>
                         </xsl:element>
                     </xsl:element>
@@ -467,12 +576,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <!-- Copy address parts as faithful as possible to HCIM 2017 nl.zorg.part.AddressInformation. Calculate address code. Submit unstructured address in street
-        Note: copies @code and @codeSystem for city, county and country too...
-    -->
+    <xd:doc>
+        <xd:desc> Copy address parts as faithful as possible to HCIM 2017 nl.zorg.part.AddressInformation. Calculate address code. Submit unstructured address in street
+            Note: copies @code and @codeSystem for city, county and country too...
+        </xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype</xd:param>
+        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
+        <xd:param name="schemaFragment">Optional. XSD Schema complexType for naamgegevens</xd:param>
+    </xd:doc>
     <xsl:template name="handleADtoAddressInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
-        <xsl:param name="language" as="xs:string?">en-US</xsl:param>
+        <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
+        <xsl:param name="schema"><xs:schema/></xsl:param>
+        <xsl:param name="schemaFragment" as="element()?"/>
         
         <!-- Element names based on language -->
         <xsl:variable name="elmAddressInformation">
@@ -640,34 +757,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="country" select="hl7:country[not(. = '')]"/>
                     <xsl:variable name="additionalInformation" select="hl7:desc[not(. = '')]"/>
                     <xsl:element name="{$elmAddressInformation}">
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
+                        
                         <xsl:if test="$street">
                             <xsl:element name="{$elmStreet}">
                                 <xsl:attribute name="value" select="$street"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmStreet)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$houseNumber">
                             <xsl:element name="{$elmHouseNumber}">
                                 <xsl:attribute name="value" select="$houseNumber"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHouseNumber)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$houseNumberLetter[not(. = '')]">
                             <xsl:element name="{$elmHouseNumberLetter}">
                                 <xsl:attribute name="value" select="$houseNumberLetter"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHouseNumberLetter)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$houseNumberAddition[not(. = '')]">
                             <xsl:element name="{$elmHouseNumberAddition}">
                                 <xsl:attribute name="value" select="$houseNumberAddition"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHouseNumberAddition)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$houseNumberIndication">
                             <xsl:element name="{$elmHouseNumberIndication}">
                                 <xsl:attribute name="value" select="$houseNumberIndication"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHouseNumberIndication)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$postcode">
                             <xsl:element name="{$elmPostcode}">
                                 <xsl:attribute name="value" select="$postcode"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmPostcode)))"/>
                             </xsl:element>
                         </xsl:if>
                         <!-- Codes? -->
@@ -679,6 +810,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:copy-of select="@codeSystem"/>
                                     <xsl:attribute name="displayName" select="$placeOfResidence"/>
                                 </xsl:if>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmPlaceOfResidence)))"/>
                             </xsl:element>
                         </xsl:if>
                         <!-- Codes? -->
@@ -690,6 +822,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:copy-of select="@codeSystem"/>
                                     <xsl:attribute name="displayName" select="$municipality"/>
                                 </xsl:if>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmMunicipality)))"/>
                             </xsl:element>
                         </xsl:if>
                         <!-- Codes? -->
@@ -701,11 +834,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:copy-of select="@codeSystem"/>
                                     <xsl:attribute name="displayName" select="$country"/>
                                 </xsl:if>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmCountry)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$additionalInformation">
                             <xsl:element name="{$elmAdditionalInformation}">
                                 <xsl:attribute name="value" select="$additionalInformation"/>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $additionalInformation)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:copy-of select="$addressType"/>
@@ -713,9 +848,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:element name="{$elmAddressInformation}">
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $schemaFragment/@name)))"/>
                         <!-- No address parts... submit as street -->
-                        <xsl:element name="{$elmAdditionalInformation}">
+                        <xsl:element name="{$elmStreet}">
                             <xsl:attribute name="value" select="."/>
+                            
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmStreet)))"/>
                         </xsl:element>
                         <xsl:copy-of select="$addressType"/>
                     </xsl:element>
@@ -724,10 +862,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <!-- Copy contact parts as faithful as possible to HCIM 2017 nl.zorg.part.ContactInformation. Calculate contact type code. -->
+    <xd:doc>
+        <xd:desc> Copy contact parts as faithful as possible to HCIM 2017 nl.zorg.part.ContactInformation. Calculate contact type code. </xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+    </xd:doc>
     <xsl:template name="handleTELtoContactInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
-        <xsl:param name="language" as="xs:string?">en-US</xsl:param>
+        <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
+        <xsl:param name="conceptId" as="xs:string?"/>
         
         <!-- Element names based on language -->
         <xsl:variable name="elmContactInformation">
@@ -899,35 +1043,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </xsl:element>
                 </xsl:if>
+                
+                <xsl:if test="string-length($conceptId)">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:if>
     </xsl:template>
     
-    <!-- Returns an array of ADA elements based on an array of HL7v3 CS elements. CS has no displayName. The code, e.g. active or completed, normally reflects the displayName too so copy code to displayName.
-        
-        Input is first rewritten into full CV elements, and then passed off to handleCV for producing the ADA output
-        
-        @param $in Array of elements to process. If empty array, then no output is created. Normally there's only 1 CS datatyped element by the same name in an HL7v3 instance
-        @param $codeSystem CS has no codeSystem so it has to be supplied from external. Usually oidHL7ActStatus or oidHL7RoleStatus
-        @param $conceptId Optional value for an ADA @conceptId attribute 
-        @param $elemName Name of the ADA element to produce
-        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
-        @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
-            
-            Example. if you only want to add a @value and a @displayName for an hl7:act <statusCode code="completed"/>, this would suffice:
-            
-            <map inCode="completed" inCodeSystem="$codeSystem" value="3" displayName="Voltooid"/> 
-            to produce 
-            <$elemName code="completed" codeSystem="$codeSystem" value="3" displayName="Voltooid"/>
-        @param $nullIfMissing If there is no element, and this has a value, create element anyway with given nullFlavor
-    -->
+    <xd:doc>
+        <xd:desc>Returns an array of ADA elements based on an array of HL7v3 CS elements. CS has no displayName. The code, e.g. active or completed, normally reflects the displayName too so copy code to displayName. <xd:p>Input is first rewritten into full CV elements, and then passed off to handleCV for producing the ADA output</xd:p></xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
+            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
+                In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
+                are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+            <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
+        <xd:param name="codeSystem">CS has no codeSystem so it has to be supplied from external. Usually <xd:ref type="variable" name="oidHL7ActStatus"/> or <xd:ref type="variable" name="oidHL7RoleStatus"/></xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
+    </xd:doc>
     <xsl:template name="handleCS">
         <xsl:param name="in" select="." as="element()*"/>
-        <xsl:param name="codeSystem" as="xs:string" required="yes"/>
         <xsl:param name="conceptId" as="xs:string?"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
         <xsl:param name="datatype" as="xs:string?"/>
         <xsl:param name="codeMap" as="element()*"/>
+        <xsl:param name="codeSystem" as="xs:string" required="yes"/>
         <xsl:param name="nullIfMissing" as="xs:string?"/>
         
         <xsl:variable name="rewrite" as="element()*">
@@ -954,22 +1099,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     
-    <!-- Returns an array of ADA elements based on an array of HL7v3 CV elements. @nullFlavor is rewritten into ADA @code/@codeSystem attributes as ADA does not know @nullFlavor for coded elements.
-        
-        @param $in Array of elements to process. If empty array, then no output is created.
-        @param $conceptId Optional value for an ADA @conceptId attribute 
-        @param $elemName Name of the ADA element to produce
-        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
-        @param $codeMap Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
-            <map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/>
-        
-            If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
+    <xd:doc>
+        <xd:desc> Returns an array of ADA elements based on an array of HL7v3 CV elements. @nullFlavor is rewritten into ADA @code/@codeSystem attributes as ADA does not know @nullFlavor for coded elements.</xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this:
+            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
             In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem 
-            are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.
-            
-            For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.
-        @param $nullIfMissing If there is no element, and this has a value, create element anyway with given nullFlavor
-    -->
+            are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+            <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
+    </xd:doc>
     <xsl:template name="handleCV">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
@@ -1088,14 +1231,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <!-- Returns an array of ADA elements based on an array of HL7v3 BL elements.
-        
-        @param $in Array of elements to process. If empty array, then no output is created.
-        @param $conceptId Optional value for an ADA @conceptId attribute 
-        @param $elemName Name of the ADA element to produce
-        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
-        @param $nullIfMissing If there is no element, and this has a value, create element anyway with given nullFlavor
-    -->
+    <xd:doc>
+        <xd:desc>Returns an array of ADA elements based on an array of HL7v3 BL elements.</xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor</xd:param>
+    </xd:doc>
     <xsl:template name="handleBL">
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
@@ -1128,14 +1271,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <!-- Returns an array of ADA elements based on an array of HL7v3 II elements.
-        
-        @param $in Array of elements to process. If empty array, then no output is created.
-        @param $conceptId Optional value for an ADA @conceptId attribute 
-        @param $elemName Name of the ADA element to produce
-        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
-        @param $nullIfMissing If there is no element, and this has a value, create element anyway with given nullFlavor
-    -->
+    <xd:doc>
+        <xd:desc>Returns an array of ADA elements based on an array of HL7v3 II elements.</xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor</xd:param>
+    </xd:doc>
     <xsl:template name="handleII">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
@@ -1171,14 +1314,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <!-- Returns an array of ADA elements based on an array of HL7v3 PQ elements.
-        
-        @param $in Array of elements to process. If empty array, then no output is created.
-        @param $conceptId Optional value for an ADA @conceptId attribute 
-        @param $elemName Name of the ADA element to produce
-        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
-        @param $nullIfMissing If there is no element, and this has a value, create element anyway with given nullFlavor
-    -->
+    <xd:doc>
+        <xd:desc>Returns an array of ADA elements based on an array of HL7v3 PQ elements.</xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor</xd:param>
+    </xd:doc>
     <xsl:template name="handlePQ">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
@@ -1212,14 +1355,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <!-- Returns an array of ADA elements based on an array of HL7v3 ST elements.
-        
-        @param $in Array of elements to process. If empty array, then no output is created.
-        @param $conceptId Optional value for an ADA @conceptId attribute 
-        @param $elemName Name of the ADA element to produce
-        @param $datatype If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise
-        @param $nullIfMissing If there is no element, and this has a value, create element anyway with given nullFlavor
-    -->
+    <xd:doc>
+        <xd:desc>Returns an array of ADA elements based on an array of HL7v3 ST elements.</xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor</xd:param>
+    </xd:doc>
     <xsl:template name="handleST">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
@@ -1253,15 +1396,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
-
-    <!-- Returns an array of ADA elements based on an array of HL7v3 TS elements. The ADA attribute @value will be created, if the input has a @value, with as much precision as possible based on the input.
-        
-        @param $in Array of elements to process. If empty array, then no output is created.
-        @param $conceptId Optional value for an ADA @conceptId attribute 
-        @param $elemName Name of the ADA element to produce
-        @param $datatype If populated and @value is xs:dateTime, @datatype will be dateTime, otherwise if populated @datatype will be date. No @datatype is created otherwise
-        @param $nullIfMissing If there is no element, and this has a value, create element anyway with given nullFlavor
-    -->
+    
+    <xd:doc>
+        <xd:desc>Returns an array of ADA elements based on an array of HL7v3 TS elements. The ADA attribute @value will be created, if the input has a @value, with as much precision as possible based on the input.</xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor</xd:param>
+    </xd:doc>
     <xsl:template name="handleTS">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="conceptId" as="xs:string?"/>
@@ -1303,6 +1446,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeADXPValue">
         <xsl:param name="xsiType">ADXP</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1314,6 +1462,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputValue"/>
+    </xd:doc>
     <xsl:template name="makeBLAttribute">
         <xsl:param name="inputValue"/>
         <xsl:choose>
@@ -1336,6 +1488,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeBLValue">
         <xsl:param name="xsiType">BL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1350,6 +1507,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeBNValue">
         <xsl:param name="xsiType">BN</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1359,6 +1521,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="displayName"/>
+        <xd:param name="elemName"/>
+        <xd:param name="originalText"/>
+        <xd:param name="strOriginalText"/>
+        <xd:param name="translations"/>
+        <xd:param name="xsiType"/>
+    </xd:doc>
     <xsl:template name="makeCDValue">
         <xsl:param name="code" as="xs:string?" select="./@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
@@ -1383,6 +1556,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="displayName"/>
+        <xd:param name="elemName"/>
+        <xd:param name="originalText"/>
+        <xd:param name="strOriginalText"/>
+        <xd:param name="translations"/>
+        <xd:param name="xsiType"/>
+    </xd:doc>
     <xsl:template name="makeCEValue">
         <xsl:param name="code" as="xs:string?" select="./@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
@@ -1404,6 +1588,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="displayName"/>
+        <xd:param name="elemName"/>
+        <xd:param name="xsiType"/>
+        <xd:param name="originalText"/>
+        <xd:param name="translations"/>
+    </xd:doc>
     <xsl:template name="makeCVValue">
         <xsl:param name="code" as="xs:string?" select="./@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
@@ -1422,6 +1616,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="originalText"/>
+    </xd:doc>
     <xsl:template name="makeCSValue">
         <xsl:param name="xsiType">CS</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1442,6 +1642,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="originalText"/>
+    </xd:doc>
     <xsl:template name="makeCode">
         <xsl:param name="originalText"/>
         <code>
@@ -1451,6 +1655,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </code>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="displayName"/>
+        <xd:param name="originalText"/>
+        <xd:param name="strOriginalText"/>
+        <xd:param name="value"/>
+    </xd:doc>
     <xsl:template name="makeCodeAttribs">
         <xsl:param name="code" as="xs:string?" select="./@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
@@ -1494,7 +1707,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <!-- OriginalText with element() param -->
+    
+    <xd:doc>
+        <xd:desc> OriginalText with element() param </xd:desc>
+        <xd:param name="originalText"/>
+    </xd:doc>
     <xsl:template name="makeoriginalText">
         <xsl:param name="originalText" as="element()*"/>
         <xsl:if test="$originalText">
@@ -1503,7 +1720,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </originalText>
         </xsl:if>
     </xsl:template>
-    <!-- OriginalText with string param -->
+    
+    <xd:doc>
+        <xd:desc> OriginalText with string param </xd:desc>
+        <xd:param name="strOriginalText"/>
+    </xd:doc>
     <xsl:template name="makeoriginalText2">
         <xsl:param name="strOriginalText" as="xs:string?"/>
         <xsl:if test="string-length($strOriginalText) gt 0">
@@ -1513,6 +1734,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="mediaType"/>
+        <xd:param name="representation"/>
+        <xd:param name="reference"/>
+    </xd:doc>
     <xsl:template name="makeEDValue">
         <xsl:param name="xsiType">ED</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1541,6 +1770,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="qualifier"/>
+    </xd:doc>
     <xsl:template name="makeENXPValue">
         <xsl:param name="xsiType">ENXP</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1551,6 +1786,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeINTValue">
         <xsl:param name="xsiType">INT</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1562,6 +1802,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeINT.NONNEGValue">
         <xsl:param name="xsiType">INT</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1571,6 +1816,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeINT.POSValue">
         <xsl:param name="xsiType">INT</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1580,6 +1830,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
     <xsl:template name="makeIIid">
         <xsl:call-template name="makeIIValue">
             <xsl:with-param name="xsiType" select="''"/>
@@ -1587,6 +1840,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeIIValueBSN">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1595,6 +1853,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.AGBValue">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1604,6 +1867,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.BIGValue">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1613,6 +1881,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.BSNValue">
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
@@ -1623,6 +1896,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.URAValue">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1632,6 +1910,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeII.NL.UZIValue">
         <xsl:param name="xsiType">II</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1641,6 +1924,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="root"/>
+        <xd:param name="nullFlavor"/>
+    </xd:doc>
     <xsl:template name="makeIIValue">
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
@@ -1675,6 +1965,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputValue"/>
+    </xd:doc>
     <xsl:template name="makeNegationAttr">
         <xsl:param name="inputValue" select="@value"/>
         <xsl:choose>
@@ -1697,6 +1991,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
     <xsl:template name="makeNullflavorWithToelichting">
         <xsl:attribute name="nullFlavor" select="'OTH'"/>
         <xsl:call-template name="makeoriginalText">
@@ -1704,6 +2001,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeONValue">
         <xsl:param name="xsiType">ON</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1715,6 +2017,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makePNValue">
         <xsl:param name="xsiType">PN</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1726,6 +2033,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="inputValue"/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="unit"/>
+    </xd:doc>
     <xsl:template name="makePQValue">
         <xsl:param name="inputValue" select="./@value"/>
         <xsl:param name="xsiType">PQ</xsl:param>
@@ -1742,6 +2056,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="value"/>
+        <xd:param name="unit"/>
+    </xd:doc>
     <xsl:template name="makePQValueAttribs">
         <xsl:param name="value" select="@value"/>
         <xsl:param name="unit" select="@unit"/>
@@ -1753,6 +2072,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeSCValue">
         <xsl:param name="xsiType">SC</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1766,6 +2090,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeSTValue">
         <xsl:param name="xsiType">ST</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1777,6 +2106,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="use"/>
+    </xd:doc>
     <xsl:template name="makeTELValue">
         <xsl:param name="xsiType">TEL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1792,6 +2127,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+        <xd:param name="use"/>
+    </xd:doc>
     <xsl:template name="makeTEL.NL.EXTENDEDValue">
         <xsl:param name="xsiType">TEL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1802,12 +2143,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
     <xsl:template name="makeText">
         <text>
             <xsl:value-of select="@value"/>
         </text>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="xsiType"/>
+        <xd:param name="elemName"/>
+    </xd:doc>
     <xsl:template name="makeTNValue">
         <xsl:param name="xsiType">TN</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
@@ -1917,7 +2266,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
 
-    
     <xd:doc>
         <xd:desc>Returns an XML comment on the output that marks that the output is generated content, and shows what instance (element name + hl7:id or hl7:code or hl7:templateId) it came from</xd:desc>
         <xd:param name="in">Optional explicit element to start from, if not the context node.</xd:param>
@@ -1973,7 +2321,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc> copy an element with all of it's contents in comments </xd:desc>
-        <xd:param name="element"/>
+        <xd:param name="in"></xd:param>
     </xd:doc>
     <xsl:template name="copyElementInComment">
         <xsl:param name="in"/>
