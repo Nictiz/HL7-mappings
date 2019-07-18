@@ -2186,7 +2186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </zorgaanbieder>
         </xsl:for-each>
     </xsl:template>
-
+    
     <xd:doc>
         <xd:desc> Medication Kind 6.12 to ADA 9 </xd:desc>
         <xd:param name="product-hl7">Input product ada xml element</xd:param>
@@ -2772,57 +2772,61 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <zorgverlener_identificatienummer value="{./@extension}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
                 </xsl:for-each>
                 <xsl:for-each select="./hl7:assignedPerson/hl7:name">
-                    <xsl:variable name="naamgegevens-complexType" select="$xsd-zorgverlener//xs:element[@name = 'naamgegevens']/@type"/>
-                    <xsl:variable name="xsd-naamgegevens" select="$xsd-ada//xs:complexType[@name = $naamgegevens-complexType]"/>
-                    <naamgegevens conceptId="{$xsd-naamgegevens/xs:attribute[@name='conceptId']/@fixed}">
-                        <!-- ongestructureerde_naam -->
-                        <xsl:for-each select=".[text()][not(child::*)]">
-                            <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'ongestructureerde_naam']/@type"/>
-                            <ongestructureerde_naam conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                                <xsl:attribute name="value">
-                                    <xsl:value-of select="."/>
-                                </xsl:attribute>
-                            </ongestructureerde_naam>
-                            <!-- achternaam is 1..1R, die vullen we dan maar even met een nullFlavor vanwege ada xsd foutmeldingen -->
-                            <xsl:variable name="geslachtsnaam-complexType" select="$xsd-naamgegevens//xs:element[@name = 'geslachtsnaam']/@type"/>
-                            <xsl:variable name="xsd-geslachtsnaam" select="$xsd-ada//xs:complexType[@name = $geslachtsnaam-complexType]"/>
-                            <geslachtsnaam conceptId="{$xsd-geslachtsnaam/xs:attribute[@name='conceptId']/@fixed}">
-                                <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'achternaam']/@type"/>
-                                <achternaam nullFlavor="NI" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                            </geslachtsnaam>
-                        </xsl:for-each>
-                        <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
-                            <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'voornamen']/@type"/>
-                            <voornamen value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./hl7:given[@qualifier = 'IN']">
-                            <!-- in HL7 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
-                            <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier toevoegen van de officiële voornamen -->
-                            <xsl:variable name="initialen_concatted">
-                                <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
-                                    <xsl:for-each select="tokenize(., ' ')">
-                                        <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
+                    <xsl:variable name="naamgegevens1-complexType" select="$xsd-zorgverlener//xs:element[@name = 'naamgegevens']/@type"/>
+                    <xsl:variable name="xsd-naamgegevens1" select="$xsd-ada//xs:complexType[@name = $naamgegevens1-complexType]"/>
+                    <naamgegevens conceptId="{$xsd-naamgegevens1/xs:attribute[@name='conceptId']/@fixed}">
+                        <xsl:variable name="naamgegevens-complexType" select="$xsd-zorgverlener//xs:element[@name = 'naamgegevens']/@type"/>
+                        <xsl:variable name="xsd-naamgegevens" select="$xsd-ada//xs:complexType[@name = $naamgegevens-complexType]"/>
+                        <naamgegevens conceptId="{$xsd-naamgegevens/xs:attribute[@name='conceptId']/@fixed}">
+                            <!-- ongestructureerde_naam -->
+                            <xsl:for-each select=".[text()][not(child::*)]">
+                                <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'ongestructureerde_naam']/@type"/>
+                                <ongestructureerde_naam conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:attribute name="value">
+                                        <xsl:value-of select="."/>
+                                    </xsl:attribute>
+                                </ongestructureerde_naam>
+                                <!-- achternaam is 1..1R, die vullen we dan maar even met een nullFlavor vanwege ada xsd foutmeldingen -->
+                                <xsl:variable name="geslachtsnaam-complexType" select="$xsd-naamgegevens//xs:element[@name = 'geslachtsnaam']/@type"/>
+                                <xsl:variable name="xsd-geslachtsnaam" select="$xsd-ada//xs:complexType[@name = $geslachtsnaam-complexType]"/>
+                                <geslachtsnaam conceptId="{$xsd-geslachtsnaam/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'achternaam']/@type"/>
+                                    <achternaam nullFlavor="NI" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                </geslachtsnaam>
+                            </xsl:for-each>
+                            <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
+                                <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'voornamen']/@type"/>
+                                <voornamen value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="./hl7:given[@qualifier = 'IN']">
+                                <!-- in HL7 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
+                                <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier toevoegen van de officiële voornamen -->
+                                <xsl:variable name="initialen_concatted">
+                                    <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
+                                        <xsl:for-each select="tokenize(., ' ')">
+                                            <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
+                                        </xsl:for-each>
                                     </xsl:for-each>
-                                </xsl:for-each>
-                                <xsl:for-each select="./hl7:given[@qualifier = 'IN']">
-                                    <xsl:value-of select="./text()"/>
-                                </xsl:for-each>
-                            </xsl:variable>
-                            <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'initialen']/@type"/>
-                            <initialen value="{$initialen_concatted}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./hl7:family">
-                            <xsl:variable name="geslachtsnaam-complexType" select="$xsd-naamgegevens//xs:element[@name = 'geslachtsnaam']/@type"/>
-                            <xsl:variable name="xsd-geslachtsnaam" select="$xsd-ada//xs:complexType[@name = $geslachtsnaam-complexType]"/>
-                            <geslachtsnaam conceptId="{$xsd-geslachtsnaam/xs:attribute[@name='conceptId']/@fixed}">
-                                <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1]">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'voorvoegsels']/@type"/>
-                                    <voorvoegsels value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                </xsl:for-each>
-                                <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'achternaam']/@type"/>
-                                <achternaam value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                            </geslachtsnaam>
-                        </xsl:for-each>
+                                    <xsl:for-each select="./hl7:given[@qualifier = 'IN']">
+                                        <xsl:value-of select="./text()"/>
+                                    </xsl:for-each>
+                                </xsl:variable>
+                                <xsl:variable name="xsd-complexType" select="$xsd-naamgegevens//xs:element[@name = 'initialen']/@type"/>
+                                <initialen value="{$initialen_concatted}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="./hl7:family">
+                                <xsl:variable name="geslachtsnaam-complexType" select="$xsd-naamgegevens//xs:element[@name = 'geslachtsnaam']/@type"/>
+                                <xsl:variable name="xsd-geslachtsnaam" select="$xsd-ada//xs:complexType[@name = $geslachtsnaam-complexType]"/>
+                                <geslachtsnaam conceptId="{$xsd-geslachtsnaam/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:for-each select="./preceding-sibling::hl7:prefix[@qualifier = 'VV'][position() = 1]">
+                                        <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'voorvoegsels']/@type"/>
+                                        <voorvoegsels value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                    </xsl:for-each>
+                                    <xsl:variable name="xsd-complexType" select="$xsd-geslachtsnaam//xs:element[@name = 'achternaam']/@type"/>
+                                    <achternaam value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                </geslachtsnaam>
+                            </xsl:for-each>
+                        </naamgegevens>
                     </naamgegevens>
                 </xsl:for-each>
                 <!-- specialisme -->
