@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2019-07-12T01:21:26.131+02:00"
-         last-update-date="2019-07-12T01:21:26.131+02:00"/>
+         creation-date="2019-07-18T17:48:28.775+02:00"
+         last-update-date="2019-07-18T17:48:28.775+02:00"/>
    <data>
       <general_measurements_response app="ketenzorg3.0"
                                      shortName="general_measurements_response"
@@ -16,7 +16,7 @@
                                      prefix="kz-"
                                      language="en-US"
                                      title="Generated Through Conversion"
-                                     id="9aa49e87-a432-11e9-5144-020000000000">
+                                     id="7c9171c7-a973-11e9-3787-020000000000">
          <bundle>
             <type code="27899-4"
                   codeSystem="2.16.840.1.113883.6.1"
@@ -33,19 +33,19 @@
             </custodian>
             <subject>
                <patient>
-                  <name_information>
-                     <initials value="E."/>
-                     <name_usage value="1"
-                                 code="NL1"
-                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                                 displayName="Eigen geslachtsnaam"/>
-                     <last_name>
-                        <last_name value="XXX_Zegers"/>
-                     </last_name>
-                  </name_information>
-                  <patient_identification_number value="999911624" root="2.16.840.1.113883.2.4.6.3"/>
-                  <date_of_birth value="1964-08-02"/>
-                  <gender code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                  <naamgegevens>
+                     <initialen value="E."/>
+                     <naamgebruik value="1"
+                                  code="NL1"
+                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                                  displayName="Eigen geslachtsnaam"/>
+                     <geslachtsnaam>
+                        <achternaam value="XXX_Zegers"/>
+                     </geslachtsnaam>
+                  </naamgegevens>
+                  <identificatienummer value="999911624" root="2.16.840.1.113883.2.4.6.3"/>
+                  <geboortedatum value="1964-08-02"/>
+                  <geslacht code="F" codeSystem="2.16.840.1.113883.5.1"/>
                </patient>
             </subject>
          </bundle>
@@ -643,27 +643,21 @@
                   xmlns:nl="urn:hl7-nl:v3"
                   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                   xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                  xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                  root="2.16.840.1.113883.2.4.3.11.60.66.10.8"/>
+                  xmlns:httpclient="http://exist-db.org/xquery/httpclient"/>
       <code xmlns="urn:hl7-org:v3"
             xmlns:sd="urn:hl7-org:sdtc"
             xmlns:ph="urn:ihe:pharm:medication"
             xmlns:nl="urn:hl7-nl:v3"
             xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
             xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-            xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-            code="27899-4"
-            codeSystem="2.16.840.1.113883.6.1"
-            codeSystemName="LOINC"
-            displayName="Diagnostic studies non lab"/>
+            xmlns:httpclient="http://exist-db.org/xquery/httpclient"/>
       <statusCode xmlns="urn:hl7-org:v3"
                   xmlns:sd="urn:hl7-org:sdtc"
                   xmlns:ph="urn:ihe:pharm:medication"
                   xmlns:nl="urn:hl7-nl:v3"
                   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                   xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                  xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                  code="completed"/>
+                  xmlns:httpclient="http://exist-db.org/xquery/httpclient"/>
       <recordTarget xmlns="urn:hl7-org:v3"
                     xmlns:sd="urn:hl7-org:sdtc"
                     xmlns:ph="urn:ihe:pharm:medication"
@@ -671,881 +665,649 @@
                     xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                     xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
                     xmlns:httpclient="http://exist-db.org/xquery/httpclient">
-         <patientRole>
-            <id extension="999911624" root="2.16.840.1.113883.2.4.6.3"/>
-            <addr use="HP">
-               <streetName/>
-               <houseNumber/>
-               <postalCode/>
-               <city/>
-               <country/>
-            </addr>
-            <patient>
-               <name>
-                  <given qualifier="IN"/>
-                  <family qualifier="BR"/>
-               </name>
-               <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
-               <birthTime value="19640802"/>
-            </patient>
-         </patientRole>
-      </recordTarget>
+                                    <patientRole>
+                                        <id/>
+                                        <addr>
+                                            <streetName>Knolweg</streetName>
+                                            <houseNumber>1001</houseNumber>
+                                            <postalCode>9999 XX</postalCode>
+                                            <city>STITSWERD</city>
+                                            <country>Nederland</country>
+                                        </addr>
+                                        <patient>
+                                            <name>
+                                                <given>E.</given>
+                                                <family>XXX_Zegers</family>
+                                            </name>
+                                            <administrativeGenderCode/>
+                                            <birthTime/>
+                                        </patient>
+                                    </patientRole>
+                                </recordTarget>
       <participant xmlns="urn:hl7-org:v3"
                    xmlns:sd="urn:hl7-org:sdtc"
                    xmlns:ph="urn:ihe:pharm:medication"
                    xmlns:nl="urn:hl7-nl:v3"
                    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                   xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                   typeCode="CST">
-         <participantRole classCode="ASSIGNED">
-            <id extension="900013866" root="2.16.528.1.1007.3.1"/>
-         </participantRole>
-      </participant>
+                   xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <participantRole>
+                                        <id/>
+                                    </participantRole>
+                                </participant>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21103" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1744"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="systolische bloeddruk"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20170709"/>
-            <value unit="mm[Hg]" value="184" xsi:type="PQ"/>
-            <interpretationCode code="H"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="High"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low nullFlavor="NINF"/>
-                     <high unit="mm[Hg]" value="140"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21104" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1740"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="diastolische bloeddruk"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20170709"/>
-            <value unit="mm[Hg]" value="93" xsi:type="PQ"/>
-            <interpretationCode code="H"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="High"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low nullFlavor="NINF"/>
-                     <high unit="mm[Hg]" value="89"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21105" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1875"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="polsfrequentie"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20170709"/>
-            <value unit="/min" value="120" xsi:type="PQ"/>
-            <interpretationCode code="H"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="High"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low unit="/min" value="60"/>
-                     <high unit="/min" value="100"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21106" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="2102"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="polsritme"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20170709"/>
-            <value code="202"
-                   codeSystem="2.16.840.1.113883.2.4.4.30.1045"
-                   displayName="irregulair"
-                   xsi:type="CE"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21107" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="2126"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="pols opmerkingen"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20170709"/>
-            <value xsi:type="ST"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value>linker pols C01@ST-600@</value>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21108" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1744"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="systolische bloeddruk"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value unit="mm[Hg]" value="180" xsi:type="PQ"/>
-            <interpretationCode code="H"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="High"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low nullFlavor="NINF"/>
-                     <high unit="mm[Hg]" value="140"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21109" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1740"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="diastolische bloeddruk"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value unit="mm[Hg]" value="89" xsi:type="PQ"/>
-            <interpretationCode code="N"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="Normal"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low nullFlavor="NINF"/>
-                     <high unit="mm[Hg]" value="89"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21110" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="2102"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="polsritme"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value code="201"
-                   codeSystem="2.16.840.1.113883.2.4.4.30.1045"
-                   displayName="regulair"
-                   xsi:type="CE"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21111" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="560"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="lengte patiënt"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value unit="m" value="1.72" xsi:type="PQ"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21112" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="357"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="gewicht patiënt"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value unit="kg" value="80" xsi:type="PQ"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21113" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1589"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="ademhalingsfrequentie"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value unit="/min" value="19" xsi:type="PQ"/>
-            <interpretationCode code="N"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="Normal"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low nullFlavor="NINF"/>
-                     <high unit="/min" value="20"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21114" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1675"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="FEV1/FVC ratio pré-BD"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value unit="%" value="66" xsi:type="PQ"/>
-            <interpretationCode code="L"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="Low"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low unit="%" value="70"/>
-                     <high nullFlavor="PINF"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21115" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1704"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="conclusie longfunctieonderzoek"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value xsi:type="ST"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value>CPOD C03@ST-30@</value>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21116" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1739"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="roken"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value code="4"
-                   codeSystem="2.16.840.1.113883.2.4.4.30.1045"
-                   displayName="voorheen"
-                   xsi:type="CE"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21117" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1991"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="aantal jaren gerookt"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value unit="a" value="10" xsi:type="PQ"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21118.0.97" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="2025"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="specificatie longaandoeningen in familie"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130"/>
-            <value code="97"
-                   codeSystem="2.16.840.1.113883.2.4.4.30.1045"
-                   displayName="astma"
-                   xsi:type="CE"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21122" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1272"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="Quetelet-index (BMI) patiënt"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190203"/>
-            <value unit="kg/m2" value="27" xsi:type="PQ"/>
-            <interpretationCode code="N"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="Normal"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low nullFlavor="NINF"/>
-                     <high unit="kg/m2" value="27"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21125" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1744"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="systolische bloeddruk"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190202"/>
-            <value unit="mm[Hg]" value="160" xsi:type="PQ"/>
-            <interpretationCode code="H"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="High"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low nullFlavor="NINF"/>
-                     <high unit="mm[Hg]" value="140"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21126" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1740"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="diastolische bloeddruk"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190202"/>
-            <value unit="mm[Hg]" value="80" xsi:type="PQ"/>
-            <interpretationCode code="N"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="Normal"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low nullFlavor="NINF"/>
-                     <high unit="mm[Hg]" value="89"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21127" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1875"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="polsfrequentie"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190202"/>
-            <value unit="/min" value="72" xsi:type="PQ"/>
-            <interpretationCode code="N"
-                                codeSystem="2.16.840.1.113883.5.83"
-                                codeSystemName="HL7 ObservationInterpretation"
-                                displayName="Normal"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <referenceRange typeCode="REFV">
-               <observationRange classCode="OBS" moodCode="EVN.CRT">
-                  <value xsi:type="IVL_PQ">
-                     <low unit="/min" value="60"/>
-                     <high unit="/min" value="100"/>
-                  </value>
-                  <interpretationCode code="N"
-                                      codeSystem="2.16.840.1.113883.5.83"
-                                      codeSystemName="HL7 ObservationInterpretation"
-                                      displayName="Normal"/>
-               </observationRange>
-            </referenceRange>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <interpretationCode/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <referenceRange>
+                                            <observationRange>
+                                                <value>
+                                                    <low/>
+                                                    <high/>
+                                                </value>
+                                                <interpretationCode/>
+                                            </observationRange>
+                                        </referenceRange>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21128" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="2209"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="ernst/stadium COPD (GOLD classificatie)"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190202"/>
-            <value code="255"
-                   codeSystem="2.16.840.1.113883.2.4.4.30.1045"
-                   displayName="1: mild COPD"
-                   xsi:type="CE"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21129" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1913"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="temperatuur patiënt (in oor gemeten)"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190202"/>
-            <value unit="Cel" value="37.5" xsi:type="PQ"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21130" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="1659"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="kortademigheid (anamnese)"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190202"/>
-            <value code="1"
-                   codeSystem="2.16.840.1.113883.2.4.4.30.1045"
-                   displayName="ja"
-                   xsi:type="CE"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.202"/>
-            <id extension="21131" root="2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
-            <code code="3258"
-                  codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                  codeSystemName="Codes diagnostische bepalingen"
-                  codeSystemVersion="v29"
-                  displayName="hartkloppingen (anamnese)"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190202"/>
-            <value code="8"
-                   codeSystem="2.16.840.1.113883.2.4.4.30.1045"
-                   displayName="onduidelijk"
-                   xsi:type="CE"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-         </observation>
-      </component>-->
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <observation>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <value/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                    </observation>
+                                </component>-->
 </data>
 </adaxml>

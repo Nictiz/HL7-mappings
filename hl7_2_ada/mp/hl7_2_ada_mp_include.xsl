@@ -963,7 +963,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:comment>The dosage schedule does not comply to MP-9 datamodel, please refer to text for the correct dosage information.</xsl:comment>
                                                     <xsl:comment>Found (illegal) structure:</xsl:comment>
                                                     <xsl:call-template name="copyElementInComment">
-                                                        <xsl:with-param name="element" select="$day-with-times"/>
+                                                        <xsl:with-param name="in" select="$day-with-times"/>
                                                     </xsl:call-template>
                                                 </xsl:otherwise>
                                             </xsl:choose>
@@ -2165,23 +2165,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="xsd-zorgaanbieder2" select="$xsd-ada//xs:complexType[@name = $zorgaanbieder2-complexType]"/>
         <xsl:for-each select="$hl7-current-organization">
             <zorgaanbieder conceptId="{$xsd-zorgaanbieder2/xs:attribute[@name='conceptId']/@fixed}">
-                <xsl:for-each select="./hl7:id">
-                    <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'zorgaanbieder_identificatienummer']/@type"/>
-                    <zorgaanbieder_identificatienummer value="{./@extension}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                </xsl:for-each>
+                <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'zorgaanbieder_identificatienummer']/@type"/>
+                <xsl:call-template name="handleII">
+                    <xsl:with-param name="in" select="./hl7:id"/>
+                    <xsl:with-param name="elemName">zorgaanbieder_identificatienummer</xsl:with-param>
+                    <xsl:with-param name="conceptId" select="$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed"/>
+                </xsl:call-template>
                 <!-- organisatienaam has 1..1 R in MP 9 ADA transactions, but is not always present in HL7 input messages.  -->
                 <!-- fill with nullFlavor if necessary -->
                 <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'organisatie_naam']/@type"/>
-                <organisatie_naam conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
-                    <xsl:choose>
-                        <xsl:when test="./hl7:name">
-                            <xsl:attribute name="value" select="./hl7:name/text()"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:attribute name="nullFlavor">NI</xsl:attribute>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </organisatie_naam>
+                <xsl:call-template name="handleST">
+                    <xsl:with-param name="in" select="./hl7:name"/>
+                    <xsl:with-param name="elemName">organisatie_naam</xsl:with-param>
+                    <xsl:with-param name="conceptId" select="$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed"/>
+                    <xsl:with-param name="nullIfMissing">NI</xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="handleADtoAddressInformation">
+                    <xsl:with-param name="in" select="./hl7:addr"/>
+                    <xsl:with-param name="language">nl-NL</xsl:with-param>
+                </xsl:call-template>
                 <!-- TODO other elements in representedOrganization, such as address -->
             </zorgaanbieder>
         </xsl:for-each>
@@ -2768,14 +2770,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="xsd-zorgverlener" select="$xsd-ada//xs:complexType[@name = $zorgverlener-complexType]"/>
             <zorgverlener conceptId="{$xsd-zorgverlener/xs:attribute[@name='conceptId']/@fixed}">
                 <xsl:for-each select="./hl7:id">
-                    <xsl:variable name="xsd-complexType" select="$xsd-zorgverlener//xs:element[@name = 'zorgverlener_identificatie_nummer']/@type"/>
+                    <xsl:variable name="xsd-complexType" select="$xsd-zorgverlener//xs:element[@name = 'zorgverlener_identificatienummer']/@type"/>
                     <zorgverlener_identificatienummer value="{./@extension}" root="{./@root}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
                 </xsl:for-each>
                 <xsl:for-each select="./hl7:assignedPerson/hl7:name">
-                    <xsl:variable name="naamgegevens1-complexType" select="$xsd-zorgverlener//xs:element[@name = 'naamgegevens']/@type"/>
-                    <xsl:variable name="xsd-naamgegevens1" select="$xsd-ada//xs:complexType[@name = $naamgegevens1-complexType]"/>
-                    <naamgegevens conceptId="{$xsd-naamgegevens1/xs:attribute[@name='conceptId']/@fixed}">
-                        <xsl:variable name="naamgegevens-complexType" select="$xsd-zorgverlener//xs:element[@name = 'naamgegevens']/@type"/>
+                    <xsl:variable name="zorgverlener_naam-complexType" select="$xsd-zorgverlener//xs:element[@name = 'naamgegevens']/@type"/>
+                    <xsl:variable name="xsd-zorgverlener_naam" select="$xsd-ada//xs:complexType[@name = $zorgverlener_naam-complexType]"/>
+                    <naamgegevens conceptId="{$xsd-zorgverlener_naam/xs:attribute[@name='conceptId']/@fixed}">
+                        <xsl:variable name="naamgegevens-complexType" select="$xsd-zorgverlener_naam//xs:element[@name = 'naamgegevens']/@type"/>
                         <xsl:variable name="xsd-naamgegevens" select="$xsd-ada//xs:complexType[@name = $naamgegevens-complexType]"/>
                         <naamgegevens conceptId="{$xsd-naamgegevens/xs:attribute[@name='conceptId']/@fixed}">
                             <!-- ongestructureerde_naam -->
@@ -2839,15 +2841,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </specialisme>
                 </xsl:for-each>
                 <xsl:for-each select="./hl7:representedOrganization">
-                    <xsl:variable name="zorgaanbieder-complexType" select="$xsd-zorgverlener//xs:element[@name = 'zorgaanbieder']/@type"/>
-                    <xsl:variable name="xsd-zorgaanbieder" select="$xsd-ada//xs:complexType[@name = $zorgaanbieder-complexType]"/>
-                    <zorgaanbieder conceptId="{$xsd-zorgaanbieder/xs:attribute[@name='conceptId']/@fixed}">
-                        <xsl:call-template name="mp907-zorgaanbieder">
-                            <xsl:with-param name="hl7-current-organization" select="."/>
-                            <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
-                            <xsl:with-param name="xsd-parent-of-zorgaanbieder" select="$xsd-zorgaanbieder"/>
-                        </xsl:call-template>
-                    </zorgaanbieder>
+                    <xsl:call-template name="mp907-zorgaanbieder">
+                        <xsl:with-param name="hl7-current-organization" select="."/>
+                        <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                        <xsl:with-param name="xsd-parent-of-zorgaanbieder" select="$xsd-zorgverlener"/>
+                    </xsl:call-template>
                 </xsl:for-each>
             </zorgverlener>
         </xsl:for-each>
@@ -3515,18 +3513,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="current-hl7-name" select="."/>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="$current-patient/hl7:id">
-                <identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829">
-                    <xsl:attribute name="root" select="./@root"/>
-                    <xsl:attribute name="value" select="./@extension"/>
-                </identificatienummer>
-            </xsl:for-each>
-            <xsl:for-each select="$current-patient/hl7:patient/hl7:birthTime[@value]">
-                <geboortedatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830">
-                    <xsl:variable name="precision" select="nf:determine_date_precision(./@value)"/>
-                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, $precision)"/>
-                </geboortedatum>
-            </xsl:for-each>
+            <xsl:call-template name="handleII">
+                <xsl:with-param name="conceptId">2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829</xsl:with-param>
+                <xsl:with-param name="elemName">identificatienummer</xsl:with-param>
+                <xsl:with-param name="in" select="$current-patient/hl7:id"/>
+            </xsl:call-template>
+            <xsl:call-template name="handleTS">
+                <xsl:with-param name="conceptId">2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830</xsl:with-param>
+                <xsl:with-param name="elemName">geboortedatum</xsl:with-param>
+                <xsl:with-param name="in" select="$current-patient/hl7:patient/hl7:birthTime[@value]"/>
+            </xsl:call-template>
             <xsl:for-each select="$current-patient/hl7:patient/hl7:administrativeGenderCode">
                 <xsl:call-template name="mp9-geslacht">
                     <xsl:with-param name="current-administrativeGenderCode" select="."/>
@@ -3779,7 +3775,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:if>
     </xsl:function>
-
     <xd:doc>
         <xd:desc/>
         <xd:param name="date"/>
@@ -3824,35 +3819,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
-    <xd:doc>
-        <xd:desc> copy an element with all of it's contents in comments </xd:desc>
-        <xd:param name="element"/>
-    </xd:doc>
-    <xsl:template name="copyElementInComment">
-        <xsl:param name="element"/>
-        <xsl:text disable-output-escaping="yes">
-                       &lt;!--</xsl:text>
-        <xsl:for-each select="$element">
-            <xsl:call-template name="copyWithoutComments"/>
-        </xsl:for-each>
-        <xsl:text disable-output-escaping="yes">--&gt;
-</xsl:text>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc> copy without comments </xd:desc>
-        <xd:param name="in"/>
-    </xd:doc>
-    <xsl:template name="copyWithoutComments">
-        <xsl:param name="in" select="."/>
-        <xsl:for-each select="$in">
-            <xsl:copy>
-                <xsl:for-each select="@* | *">
-                    <xsl:call-template name="copyWithoutComments"/>
-                </xsl:for-each>
-            </xsl:copy>
-        </xsl:for-each>
-    </xsl:template>
 
 </xsl:stylesheet>

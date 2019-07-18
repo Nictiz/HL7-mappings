@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2019-07-12T01:21:25.211+02:00"
-         last-update-date="2019-07-12T01:21:25.211+02:00"/>
+         creation-date="2019-07-18T17:48:27.86+02:00"
+         last-update-date="2019-07-18T17:48:27.86+02:00"/>
    <data>
       <encounter_notes_response app="ketenzorg3.0"
                                 shortName="encounter_notes_response"
@@ -16,7 +16,7 @@
                                 prefix="kz-"
                                 language="en-US"
                                 title="Generated Through Conversion"
-                                id="9a183d07-a432-11e9-6585-020000000000">
+                                id="7c05d397-a973-11e9-7853-020000000000">
          <bundle>
             <type code="34900-1"
                   codeSystem="2.16.840.1.113883.6.1"
@@ -33,19 +33,19 @@
             </custodian>
             <subject>
                <patient>
-                  <name_information>
-                     <initials value="E."/>
-                     <name_usage value="1"
-                                 code="NL1"
-                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                                 displayName="Eigen geslachtsnaam"/>
-                     <last_name>
-                        <last_name value="XXX_Zegers"/>
-                     </last_name>
-                  </name_information>
-                  <patient_identification_number value="999911624" root="2.16.840.1.113883.2.4.6.3"/>
-                  <date_of_birth value="1964-08-02"/>
-                  <gender code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                  <naamgegevens>
+                     <initialen value="E."/>
+                     <naamgebruik value="1"
+                                  code="NL1"
+                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                                  displayName="Eigen geslachtsnaam"/>
+                     <geslachtsnaam>
+                        <achternaam value="XXX_Zegers"/>
+                     </geslachtsnaam>
+                  </naamgegevens>
+                  <identificatienummer value="999911624" root="2.16.840.1.113883.2.4.6.3"/>
+                  <geboortedatum value="1964-08-02"/>
+                  <geslacht code="F" codeSystem="2.16.840.1.113883.5.1"/>
                </patient>
             </subject>
          </bundle>
@@ -181,27 +181,21 @@
                   xmlns:nl="urn:hl7-nl:v3"
                   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                   xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                  xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                  root="2.16.840.1.113883.2.4.3.11.60.66.10.14"/>
+                  xmlns:httpclient="http://exist-db.org/xquery/httpclient"/>
       <code xmlns="urn:hl7-org:v3"
             xmlns:sd="urn:hl7-org:sdtc"
             xmlns:ph="urn:ihe:pharm:medication"
             xmlns:nl="urn:hl7-nl:v3"
             xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
             xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-            xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-            code="34900-1"
-            codeSystem="2.16.840.1.113883.6.1"
-            codeSystemName="LOINC"
-            displayName="General medicine Progress note"/>
+            xmlns:httpclient="http://exist-db.org/xquery/httpclient"/>
       <statusCode xmlns="urn:hl7-org:v3"
                   xmlns:sd="urn:hl7-org:sdtc"
                   xmlns:ph="urn:ihe:pharm:medication"
                   xmlns:nl="urn:hl7-nl:v3"
                   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                   xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                  xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                  code="completed"/>
+                  xmlns:httpclient="http://exist-db.org/xquery/httpclient"/>
       <recordTarget xmlns="urn:hl7-org:v3"
                     xmlns:sd="urn:hl7-org:sdtc"
                     xmlns:ph="urn:ihe:pharm:medication"
@@ -209,240 +203,185 @@
                     xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                     xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
                     xmlns:httpclient="http://exist-db.org/xquery/httpclient">
-         <patientRole>
-            <id extension="999911624" root="2.16.840.1.113883.2.4.6.3"/>
-            <addr use="HP">
-               <streetName/>
-               <houseNumber/>
-               <postalCode/>
-               <city/>
-               <country/>
-            </addr>
-            <patient>
-               <name>
-                  <given qualifier="IN"/>
-                  <family qualifier="BR"/>
-               </name>
-               <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
-               <birthTime value="19640802"/>
-            </patient>
-         </patientRole>
-      </recordTarget>
+                                    <patientRole>
+                                        <id/>
+                                        <addr>
+                                            <streetName>Knolweg</streetName>
+                                            <houseNumber>1001</houseNumber>
+                                            <postalCode>9999 XX</postalCode>
+                                            <city>STITSWERD</city>
+                                            <country>Nederland</country>
+                                        </addr>
+                                        <patient>
+                                            <name>
+                                                <given>E.</given>
+                                                <family>XXX_Zegers</family>
+                                            </name>
+                                            <administrativeGenderCode/>
+                                            <birthTime/>
+                                        </patient>
+                                    </patientRole>
+                                </recordTarget>
       <participant xmlns="urn:hl7-org:v3"
                    xmlns:sd="urn:hl7-org:sdtc"
                    xmlns:ph="urn:ihe:pharm:medication"
                    xmlns:nl="urn:hl7-nl:v3"
                    xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                   xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                   typeCode="CST">
-         <participantRole classCode="ASSIGNED">
-            <id extension="900013866" root="2.16.528.1.1007.3.1"/>
-         </participantRole>
-      </participant>
+                   xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <participantRole>
+                                        <id/>
+                                    </participantRole>
+                                </participant>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <act classCode="ACT" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
-            <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
-            <code code="34900-1"
-                  codeSystem="2.16.840.1.113883.6.1"
-                  codeSystemName="LOINC"
-                  displayName="General medicine Progress note"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190130164500"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <entryRelationship typeCode="REFR">
-               <encounter classCode="ENC" moodCode="EVN">
-                  <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
-               </encounter>
-            </entryRelationship>
-            <entryRelationship typeCode="REFR">
-               <act classCode="ACT" moodCode="EVN">
-                  <id extension="1826" root="2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
-                  <code code="CONC"
-                        codeSystem="2.16.840.1.113883.5.6"
-                        codeSystemName="HL7ActClass"
-                        displayName="Concern"/>
-               </act>
-            </entryRelationship>
-            <entryRelationship typeCode="COMP">
-               <act classCode="ACT" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.208"/>
-                  <code code="61150-9"
-                        codeSystem="2.16.840.1.113883.6.1"
-                        codeSystemName="LOINC"
-                        displayName="Subjective Narrative"/>
-                  <text/>
-                  <statusCode code="completed"/>
-               </act>
-            </entryRelationship>
-            <entryRelationship typeCode="COMP">
-               <act classCode="ACT" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.209"/>
-                  <code code="61149-1"
-                        codeSystem="2.16.840.1.113883.6.1"
-                        codeSystemName="LOINC"
-                        displayName="Objective Narrative"/>
-                  <text/>
-                  <statusCode code="completed"/>
-               </act>
-            </entryRelationship>
-            <entryRelationship typeCode="COMP">
-               <act classCode="ACT" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
-                  <code code="51848-0"
-                        codeSystem="2.16.840.1.113883.6.1"
-                        codeSystemName="LOINC"
-                        displayName="Evaluation note"/>
-                  <text/>
-                  <statusCode code="completed"/>
-                  <entryRelationship typeCode="REFR">
-                     <observation classCode="OBS" moodCode="EVN">
-                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
-                        <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
-                        <code code="282291009"
-                              codeSystem="2.16.840.1.113883.6.96"
-                              codeSystemName="SNOMED CT"
-                              displayName="Diagnosis"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime>
-                           <low value="20190130"/>
-                        </effectiveTime>
-                        <value code="R95"
-                               codeSystem="2.16.840.1.113883.2.4.4.31.1"
-                               codeSystemName="ICPC-1-NL"
-                               displayName="Emfyseem/COPD"
-                               xsi:type="CD"/>
-                     </observation>
-                  </entryRelationship>
-               </act>
-            </entryRelationship>
-            <entryRelationship typeCode="COMP">
-               <act classCode="ACT" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
-                  <code code="18776-5"
-                        codeSystem="2.16.840.1.113883.6.1"
-                        codeSystemName="LOINC"
-                        displayName="Plan of treatment"/>
-                  <text/>
-                  <statusCode code="completed"/>
-               </act>
-            </entryRelationship>
-         </act>
-      </component>
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <act>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <entryRelationship>
+                                            <encounter>
+                                                <id/>
+                                            </encounter>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <id/>
+                                                <code/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <templateId/>
+                                                <code/>
+                                                <text>Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB.</text>
+                                                <statusCode/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <templateId/>
+                                                <code/>
+                                                <text>Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb.</text>
+                                                <statusCode/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <templateId/>
+                                                <code/>
+                                                <text>COPD, beterend</text>
+                                                <statusCode/>
+                                                <entryRelationship>
+                                                    <observation>
+                                                        <templateId/>
+                                                        <id/>
+                                                        <code/>
+                                                        <statusCode/>
+                                                        <effectiveTime>
+                                                            <low/>
+                                                        </effectiveTime>
+                                                        <value/>
+                                                    </observation>
+                                                </entryRelationship>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <templateId/>
+                                                <code/>
+                                                <text>Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin.</text>
+                                                <statusCode/>
+                                            </act>
+                                        </entryRelationship>
+                                    </act>
+                                </component>
       <component xmlns="urn:hl7-org:v3"
                  xmlns:sd="urn:hl7-org:sdtc"
                  xmlns:ph="urn:ihe:pharm:medication"
                  xmlns:nl="urn:hl7-nl:v3"
                  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
                  xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-                 xmlns:httpclient="http://exist-db.org/xquery/httpclient"
-                 contextControlCode="OP"
-                 typeCode="COMP">
-         <act classCode="ACT" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
-            <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
-            <code code="34900-1"
-                  codeSystem="2.16.840.1.113883.6.1"
-                  codeSystemName="LOINC"
-                  displayName="General medicine Progress note"/>
-            <statusCode code="completed"/>
-            <effectiveTime value="20190202170300"/>
-            <participant typeCode="RESP">
-               <participantRole classCode="ASSIGNED">
-                  <id extension="900014718" root="2.16.528.1.1007.3.1"/>
-               </participantRole>
-            </participant>
-            <entryRelationship typeCode="REFR">
-               <encounter classCode="ENC" moodCode="EVN">
-                  <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
-               </encounter>
-            </entryRelationship>
-            <entryRelationship typeCode="REFR">
-               <act classCode="ACT" moodCode="EVN">
-                  <id extension="1826" root="2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
-                  <code code="CONC"
-                        codeSystem="2.16.840.1.113883.5.6"
-                        codeSystemName="HL7ActClass"
-                        displayName="Concern"/>
-               </act>
-            </entryRelationship>
-            <entryRelationship typeCode="COMP">
-               <act classCode="ACT" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.208"/>
-                  <code code="61150-9"
-                        codeSystem="2.16.840.1.113883.6.1"
-                        codeSystemName="LOINC"
-                        displayName="Subjective Narrative"/>
-                  <text/>
-                  <statusCode code="completed"/>
-               </act>
-            </entryRelationship>
-            <entryRelationship typeCode="COMP">
-               <act classCode="ACT" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.209"/>
-                  <code code="61149-1"
-                        codeSystem="2.16.840.1.113883.6.1"
-                        codeSystemName="LOINC"
-                        displayName="Objective Narrative"/>
-                  <text/>
-                  <statusCode code="completed"/>
-               </act>
-            </entryRelationship>
-            <entryRelationship typeCode="COMP">
-               <act classCode="ACT" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
-                  <code code="51848-0"
-                        codeSystem="2.16.840.1.113883.6.1"
-                        codeSystemName="LOINC"
-                        displayName="Evaluation note"/>
-                  <text/>
-                  <statusCode code="completed"/>
-                  <entryRelationship typeCode="REFR">
-                     <observation classCode="OBS" moodCode="EVN">
-                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
-                        <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
-                        <code code="282291009"
-                              codeSystem="2.16.840.1.113883.6.96"
-                              codeSystemName="SNOMED CT"
-                              displayName="Diagnosis"/>
-                        <statusCode code="completed"/>
-                        <effectiveTime>
-                           <low value="20190202"/>
-                        </effectiveTime>
-                        <value code="R95"
-                               codeSystem="2.16.840.1.113883.2.4.4.31.1"
-                               codeSystemName="ICPC-1-NL"
-                               displayName="Emfyseem/COPD"
-                               xsi:type="CD"/>
-                     </observation>
-                  </entryRelationship>
-               </act>
-            </entryRelationship>
-            <entryRelationship typeCode="COMP">
-               <act classCode="ACT" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
-                  <code code="18776-5"
-                        codeSystem="2.16.840.1.113883.6.1"
-                        codeSystemName="LOINC"
-                        displayName="Plan of treatment"/>
-                  <text/>
-                  <statusCode code="completed"/>
-               </act>
-            </entryRelationship>
-         </act>
-      </component>-->
+                 xmlns:httpclient="http://exist-db.org/xquery/httpclient">
+                                    <act>
+                                        <templateId/>
+                                        <id/>
+                                        <code/>
+                                        <statusCode/>
+                                        <effectiveTime/>
+                                        <participant>
+                                            <participantRole>
+                                                <id/>
+                                            </participantRole>
+                                        </participant>
+                                        <entryRelationship>
+                                            <encounter>
+                                                <id/>
+                                            </encounter>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <id/>
+                                                <code/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <templateId/>
+                                                <code/>
+                                                <text>Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel. </text>
+                                                <statusCode/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <templateId/>
+                                                <code/>
+                                                <text>Longen VAG crep+, piep iets, rhonchi+.  Percussie gb. </text>
+                                                <statusCode/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <templateId/>
+                                                <code/>
+                                                <text>COPD, exacerbatie</text>
+                                                <statusCode/>
+                                                <entryRelationship>
+                                                    <observation>
+                                                        <templateId/>
+                                                        <id/>
+                                                        <code/>
+                                                        <statusCode/>
+                                                        <effectiveTime>
+                                                            <low/>
+                                                        </effectiveTime>
+                                                        <value/>
+                                                    </observation>
+                                                </entryRelationship>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship>
+                                            <act>
+                                                <templateId/>
+                                                <code/>
+                                                <text>AB starten, ventolin 3-4 dgs.</text>
+                                                <statusCode/>
+                                            </act>
+                                        </entryRelationship>
+                                    </act>
+                                </component>-->
 </data>
 </adaxml>

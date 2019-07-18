@@ -15,6 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:uuid="http://www.uuid.org" exclude-result-prefixes="#all" version="2.0">
     <xd:doc>
         <xd:desc>Conversie van <xd:a href="https://decor.nictiz.nl/ketenzorg/kz-html-20190110T164948/tmp-2.16.840.1.113883.2.4.3.11.60.66.10.10-2018-04-18T000000.html">Organizer Encounters</xd:a> id: 2.16.840.1.113883.2.4.3.11.60.66.10.10 versie 2018-04-18T00:00:00 naar ADA formaat </xd:desc>
+        <xd:desc>Documentatie voor deze mapping staat op de wikipagina <xd:a href="https://informatiestandaarden.nictiz.nl/wiki/Mappings/KZ302BeschikbaarstellenContactmomentenCDA_2_ADA">https://informatiestandaarden.nictiz.nl/wiki/Mappings/KZ302BeschikbaarstellenContactmomentenCDA_2_ADA</xd:a></xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="../../../hl7_2_ada_ketenzorg_include.xsl"/>
@@ -52,7 +53,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <encounters_response app="ketenzorg3.0" shortName="encounters_response" formName="encounters_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.532" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <!-- Bundle stuff -->
             <xsl:call-template name="template_organizer_2_bundle">
-                <xsl:with-param name="author" select="$author"/>
+                <xsl:with-param name="author" select="(hl7:participant[@typeCode = 'RESP']/hl7:participantRole, hl7:author/hl7:assignedAuthor, $author)[1]"/>
+                <xsl:with-param name="custodian" select="(hl7:participant[@typeCode = 'CST']/hl7:participantRole[hl7:scopingEntity], $author)[1]"/>
                 <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
             
@@ -134,7 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </encounters_response>
         <xsl:comment>Input HL7 xml below</xsl:comment>
         <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="element" select="./*"/>
+            <xsl:with-param name="in" select="./*"/>
         </xsl:call-template>
     </xsl:template>
 </xsl:stylesheet>

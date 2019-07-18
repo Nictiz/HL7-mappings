@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2019-07-12T01:21:23.314+02:00"
-         last-update-date="2019-07-12T01:21:23.314+02:00"/>
+         creation-date="2019-07-18T17:48:25.835+02:00"
+         last-update-date="2019-07-18T17:48:25.835+02:00"/>
    <data>
       <allergyintolerances_response app="ketenzorg3.0"
                                     shortName="allergyintolerances_response"
@@ -16,7 +16,7 @@
                                     prefix="kz-"
                                     language="en-US"
                                     title="Generated Through Conversion"
-                                    id="98f6c75e-a432-11e9-1722-020000000000">
+                                    id="7ad0d5ee-a973-11e9-2010-020000000000">
          <bundle>
             <type code="48765-2"
                   codeSystem="2.16.840.1.113883.6.1"
@@ -33,18 +33,18 @@
             </custodian>
             <subject>
                <patient>
-                  <name_information>
-                     <first_names value="Joris"/>
-                     <name_usage value="5"
-                                 code="UNK"
-                                 codeSystem="2.16.840.1.113883.5.1008"
-                                 displayName="Unknown"/>
-                     <last_name>
-                        <last_name value="Hansman"/>
-                     </last_name>
-                  </name_information>
-                  <patient_identification_number value="012345672" root="2.16.840.1.113883.2.4.6.3"/>
-                  <gender code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                  <naamgegevens>
+                     <voornamen value="Joris"/>
+                     <naamgebruik value="5"
+                                  code="UNK"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="Unknown"/>
+                     <geslachtsnaam>
+                        <achternaam value="Hansman"/>
+                     </geslachtsnaam>
+                  </naamgegevens>
+                  <identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+                  <geslacht code="M" codeSystem="2.16.840.1.113883.5.1"/>
                </patient>
             </subject>
          </bundle>
@@ -67,62 +67,53 @@
          </allergy_intolerance>
       </allergyintolerances_response>
       <!--Input HL7 xml below-->
-                       <!--<templateId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.2.4.3.11.60.66.10.20"/>
-      <code xmlns="urn:hl7-org:v3"
-            code="48765-2"
-            displayName="Allergies and/or adverse reactions"
-            codeSystem="2.16.840.1.113883.6.1"
-            codeSystemName="LOINC"/>
-      <statusCode xmlns="urn:hl7-org:v3" code="completed"/>
-      <recordTarget xmlns="urn:hl7-org:v3" typeCode="RCT" contextControlCode="OP">
-         <patientRole>
-            <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
-            <patient>
-               <name>
-                  <given/>
-                  <family/>
-               </name>
-               <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
-            </patient>
-         </patientRole>
-      </recordTarget>
-      <component xmlns="urn:hl7-org:v3" typeCode="COMP" contextControlCode="OP">
-         <act classCode="ACT" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.215"/>
-            <id extension="ai6547382f.3786" root="2.16.528.1.1007.3.3.765332.1.12"/>
-            <code code="CONC"
-                  codeSystem="2.16.840.1.113883.5.6"
-                  displayName="Concern"/>
-            <statusCode code="active"/>
-            <effectiveTime>
-               <low value="20150304"/>
-            </effectiveTime>
-            <entryRelationship typeCode="SUBJ">
-               <observation classCode="OBS" moodCode="EVN">
-                  <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.216"/>
-                  <id extension="66935281-de15-4033-9be4-a4127812dd95"
-                      root="2.16.528.1.1007.3.3.765332.1.12"/>
-                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
-                  <statusCode code="completed"/>
-                  <effectiveTime>
-                     <low value="20150304"/>
-                  </effectiveTime>
-                  <value xsi:type="CD"
-                         code="419199007"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Allergy to substance"/>
-                  <participant typeCode="CSM">
-                     <participantRole classCode="MANU">
-                        <playingEntity classCode="MMAT">
-                           <code nullFlavor="OTH">
-                              <originalText/>
-                           </code>
-                        </playingEntity>
-                     </participantRole>
-                  </participant>
-               </observation>
-            </entryRelationship>
-         </act>
-      </component>-->
+                       <!--<templateId xmlns="urn:hl7-org:v3"/>
+      <code xmlns="urn:hl7-org:v3"/>
+      <statusCode xmlns="urn:hl7-org:v3"/>
+      <recordTarget xmlns="urn:hl7-org:v3">
+                    <patientRole>
+                        <id/>
+                        <patient>
+                            <name>
+                                <given>Joris</given>
+                                <family>Hansman</family>
+                            </name>
+                            <administrativeGenderCode/>
+                        </patient>
+                    </patientRole>
+                </recordTarget>
+      <component xmlns="urn:hl7-org:v3">
+                    <act>
+                        <!-\-Allergie/Intolerantie-\->
+                        <templateId/>
+                        <id/>
+                        <code/>
+                        <statusCode/>
+                        <effectiveTime>
+                            <low/>
+                        </effectiveTime>
+                        <entryRelationship>
+                            <observation>
+                                <templateId/>
+                                <id/>
+                                <code/>
+                                <statusCode/>
+                                <effectiveTime>
+                                    <low/>
+                                </effectiveTime>
+                                <value/>
+                                <participant>
+                                    <participantRole>
+                                        <playingEntity>
+                                            <code>
+                                                <originalText>Amoxicilline, opmerking: via neuroloog</originalText>
+                                            </code>
+                                        </playingEntity>
+                                    </participantRole>
+                                </participant>
+                            </observation>
+                        </entryRelationship>
+                    </act>
+                </component>-->
 </data>
 </adaxml>

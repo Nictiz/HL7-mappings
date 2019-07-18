@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </adaxml>
         <!--        <xsl:comment>Input HL7 xml below</xsl:comment>
         <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="element" select="$dispense-list"/>
+            <xsl:with-param name="in" select="$dispense-list"/>
         </xsl:call-template>
 -->
     </xsl:template>
