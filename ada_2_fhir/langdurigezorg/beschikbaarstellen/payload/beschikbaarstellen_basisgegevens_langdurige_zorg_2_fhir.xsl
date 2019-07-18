@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:include href="../../../2_fhir_langdurigezorg_include.xsl"/>
+    <xsl:include href="../../2_fhir_langdurigezorg_include.xsl"/>
 
     <xsl:template match="/">
         
