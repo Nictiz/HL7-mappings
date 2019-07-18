@@ -2896,7 +2896,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> Medicatieafspraak MP 9.0 Inhoud </xd:desc>
+        <xd:desc> Medicatieafspraak MP 9.0.6 Inhoud</xd:desc>
         <xd:param name="ma_hl7_90"/>
         <xd:param name="xsd-ada"/>
         <xd:param name="xsd-mbh"/>
@@ -3042,6 +3042,153 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc> Medicatieafspraak MP 9.0.7 Inhoud </xd:desc>
+        <xd:param name="ma_hl7_90"/>
+        <xd:param name="xsd-ada"/>
+        <xd:param name="xsd-mbh"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9233_20181204130547">
+        <xsl:param name="ma_hl7_90" select="."/>
+        <xsl:param name="xsd-ada"/>
+        <xsl:param name="xsd-mbh"/>
+        <xsl:variable name="ma-complexType" select="$xsd-mbh//xs:element[@name = 'medicatieafspraak']/@type"/>
+        <xsl:variable name="xsd-ma" select="$xsd-ada//xs:complexType[@name = $ma-complexType]"/>
+        <xsl:for-each select="$ma_hl7_90">
+            <medicatieafspraak conceptId="{$xsd-ma/xs:attribute[@name='conceptId']/@fixed}">
+                <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[@xsi:type = 'IVL_TS']"/>
+                <xsl:for-each select="$IVL_TS/hl7:low[@value]">
+                    <xsl:call-template name="mp9-gebruiksperiode-start">
+                        <xsl:with-param name="inputValue" select="./@value"/>
+                        <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                        <xsl:with-param name="xsd-comp" select="$xsd-ma"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="$IVL_TS/hl7:high[@value]">
+                    <xsl:call-template name="mp9-gebruiksperiode-eind">
+                        <xsl:with-param name="inputValue" select="./@value"/>
+                        <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                        <xsl:with-param name="xsd-comp" select="$xsd-ma"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="./hl7:id">
+                    <identificatie value="{./@extension}" root="{./@root}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19758"/>
+                </xsl:for-each>
+                <xsl:for-each select="./hl7:author/hl7:time">
+                    <afspraakdatum value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19757"/>
+                </xsl:for-each>
+                <xsl:for-each select="$IVL_TS/hl7:width">
+                    <gebruiksperiode value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19936"/>
+                </xsl:for-each>
+                <xsl:for-each select="./hl7:statusCode">
+                    <geannuleerd_indicator value="{./@code='nullified'}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23033"/>
+                </xsl:for-each>
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067']/hl7:value">
+                    <stoptype conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19954">
+                        <xsl:call-template name="mp9-code-attribs">
+                            <xsl:with-param name="current-hl7-code" select="."/>
+                        </xsl:call-template>
+                    </stoptype>
+                </xsl:for-each>
+                <!-- relatie_naar_afspraak_of_gebruik -->
+                <!-- relatie_naar ma -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9086']/hl7:id">
+                    <!-- medicatieafspraak -->
+                    <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238">
+                        <identificatie root="{./@root}" value="{./@extension}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </xsl:for-each>
+                <!-- relatie_naar ta -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']/hl7:id">
+                    <!-- toedieningsafspraak -->
+                    <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238">
+                        <identificatie_23288 root="{./@root}" value="{./@extension}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23288"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </xsl:for-each>
+                <!-- relatie_naar gb -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9176']/hl7:id">
+                    <!-- medicatiegebruik -->
+                    <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238">
+                        <identificatie_23289 root="{./@root}" value="{./@extension}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23289"/>
+                    </relatie_naar_afspraak_of_gebruik>
+                </xsl:for-each>
+                <!-- voorschrijver -->
+                <xsl:variable name="voorschrijver-complexType" select="$xsd-ma//xs:element[@name = 'voorschrijver']/@type"/>
+                <xsl:variable name="xsd-voorschrijver" select="$xsd-ada//xs:complexType[@name = $voorschrijver-complexType]"/>
+                <voorschrijver conceptId="{$xsd-voorschrijver/xs:attribute[@name='conceptId']/@fixed}">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20160615212337">
+                        <xsl:with-param name="author-hl7" select="./hl7:author"/>
+                        <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                        <xsl:with-param name="xsd-auteur" select="$xsd-voorschrijver"/>
+                    </xsl:call-template>
+                </voorschrijver>
+                <!-- reden afspraak -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9068']/hl7:value">
+                    <reden_afspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094">
+                        <xsl:call-template name="mp9-code-attribs">
+                            <xsl:with-param name="current-hl7-code" select="."/>
+                        </xsl:call-template>
+                    </reden_afspraak>
+                </xsl:for-each>
+                <!-- reden van voorschrijven -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
+                    <reden_van_voorschrijven conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23133">
+                        <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23134">
+                            <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23136">
+                                <xsl:call-template name="mp9-code-attribs">
+                                    <xsl:with-param name="current-hl7-code" select="."/>
+                                </xsl:call-template>
+                            </probleem_naam>
+                        </probleem>
+                    </reden_van_voorschrijven>
+                </xsl:for-each>
+                <!-- afgesproken_geneesmiddel -->
+                <xsl:for-each select="hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial">
+                    <xsl:variable name="xsd-afgesproken_geneesmiddel-complexType" select="$xsd-ma//xs:element[@name = 'afgesproken_geneesmiddel']/@type"/>
+                    <xsl:variable name="xsd-afgesproken_geneesmiddel" select="$xsd-ada//xs:complexType[@name = $xsd-afgesproken_geneesmiddel-complexType]"/>
+                    <afgesproken_geneesmiddel conceptId="{$xsd-afgesproken_geneesmiddel/xs:attribute[@name='conceptId']/@fixed}">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9070_20160618193427">
+                            <xsl:with-param name="product-hl7" select="."/>
+                            <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                            <xsl:with-param name="xsd-geneesmiddel" select="$xsd-afgesproken_geneesmiddel"/>
+                        </xsl:call-template>
+                    </afgesproken_geneesmiddel>
+                </xsl:for-each>
+                <!-- gebruiksinstructie -->
+                <xsl:call-template name="mp9-gebruiksinstructie-from-mp9">
+                    <xsl:with-param name="hl7-comp" select="."/>
+                    <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+                    <xsl:with-param name="xsd-comp" select="$xsd-ma"/>
+                </xsl:call-template>
+                <!-- lichaamslengte  -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122']/hl7:value">
+                    <lichaamslengte conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23023">
+                        <lengte_waarde value="{./@value}" unit="{nf:convertUnit_UCUM2ADA(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23024"> </lengte_waarde>
+                    </lichaamslengte>
+                </xsl:for-each>
+                <!-- lichaamsgewicht  -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123']/hl7:value">
+                    <lichaamsgewicht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23028">
+                        <gewicht_waarde value="{./@value}" unit="{nf:convertUnit_UCUM2ADA(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23029"/>
+                    </lichaamsgewicht>
+                </xsl:for-each>
+                <!-- aanvullende_informatie -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value">
+                    <aanvullende_informatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23283">
+                        <xsl:call-template name="mp9-code-attribs">
+                            <xsl:with-param name="current-hl7-code" select="."/>
+                        </xsl:call-template>
+                    </aanvullende_informatie>
+                </xsl:for-each>
+                <!-- toelichting -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
+                    <toelichting value="{./text()}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22273"/>
+                </xsl:for-each>
+            </medicatieafspraak>
+        </xsl:for-each>
+    </xsl:template>
+    
+
+    <xd:doc>
         <xd:desc> Medicatieafspraak MP 9.0.6 </xd:desc>
         <xd:param name="ma_hl7_90"/>
         <xd:param name="xsd-ada"/>
@@ -3068,7 +3215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="ma_hl7_90" select="."/>
         <xsl:param name="xsd-ada"/>
         <xsl:param name="xsd-mbh"/>
-        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9201_20180419121646">
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9233_20181204130547">
             <xsl:with-param name="ma_hl7_90" select="$ma_hl7_90"/>
             <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
@@ -3219,6 +3366,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </patient>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc> PatientNL in MP 9.0.7 </xd:desc>
+        <xd:param name="current-patient"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000_2">
+        <xsl:param name="current-patient" select="."/>
+        <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
+            <xsl:for-each select="$current-patient/hl7:patient/hl7:name">
+                <xsl:call-template name="mp9-naamgegevens">
+                    <xsl:with-param name="current-hl7-name" select="."/>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="$current-patient/hl7:id">
+                <identificatienummer conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19829">
+                    <xsl:attribute name="root" select="./@root"/>
+                    <xsl:attribute name="value" select="./@extension"/>
+                </identificatienummer>
+            </xsl:for-each>
+            <xsl:for-each select="$current-patient/hl7:patient/hl7:birthTime[@value]">
+                <geboortedatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19830">
+                    <xsl:variable name="precision" select="nf:determine_date_precision(./@value)"/>
+                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(./@value, $precision)"/>
+                </geboortedatum>
+            </xsl:for-each>
+            <xsl:for-each select="$current-patient/hl7:patient/hl7:administrativeGenderCode">
+                <xsl:call-template name="mp9-geslacht">
+                    <xsl:with-param name="current-administrativeGenderCode" select="."/>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="$current-patient/hl7:patient/sdtc:multipleBirthInd[@value]">
+                <meerling_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19832">
+                    <xsl:attribute name="value" select="./@value"/>
+                </meerling_indicator>
+            </xsl:for-each>
+        </patient>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc> helper stuff </xd:desc>
         <xd:param name="operator"/>
