@@ -3057,6 +3057,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
         </xsl:call-template>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc> Medicatieafspraak MP 9.0.7</xd:desc>
+        <xd:param name="ma_hl7_90"/>
+        <xd:param name="xsd-ada"/>
+        <xd:param name="xsd-mbh"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9235_20181204143321">
+        <xsl:param name="ma_hl7_90" select="."/>
+        <xsl:param name="xsd-ada"/>
+        <xsl:param name="xsd-mbh"/>
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9201_20180419121646">
+            <xsl:with-param name="ma_hl7_90" select="$ma_hl7_90"/>
+            <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
+            <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
+        </xsl:call-template>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc> Verstrekkingsverzoek MP 9.0 </xd:desc>
