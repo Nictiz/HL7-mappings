@@ -667,19 +667,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="hl7-comp" select="."/>
         <xsl:param name="xsd-ada"/>
         <xsl:param name="xsd-comp"/>
-        <xsl:variable name="xsd-gebruiksinstructie-complexType" select="$xsd-comp//xs:element[@name = 'gebruiksinstructie']/@type"/>
-        <xsl:variable name="xsd-gebruiksinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-gebruiksinstructie-complexType]"/>
+        <xsl:variable name="xsd-gebruiksinstructie" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-comp, 'gebruiksinstructie'))"/>
         <xsl:for-each select="$hl7-comp">
-            <gebruiksinstructie conceptId="{$xsd-gebruiksinstructie/xs:attribute[@name='conceptId']/@fixed}">
+            <gebruiksinstructie>
+                <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-gebruiksinstructie)"/>
+
                 <!-- omschrijving -->
                 <xsl:for-each select="./hl7:text">
-                    <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'omschrijving']/@type"/>
-                    <omschrijving value="{./text()}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                    <omschrijving value="{./text()}">
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-gebruiksinstructie, 'omschrijving')))"/>
+                    </omschrijving>
                 </xsl:for-each>
                 <!-- toedieningsweg -->
                 <xsl:for-each select="./hl7:routeCode">
-                    <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'toedieningsweg']/@type"/>
-                    <toedieningsweg conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                    <toedieningsweg>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-gebruiksinstructie, 'toedieningsweg')))"/>
                         <xsl:call-template name="mp9-code-attribs">
                             <xsl:with-param name="current-hl7-code" select="."/>
                         </xsl:call-template>
@@ -687,8 +689,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- aanvullende_instructie -->
                 <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9085']/hl7:code">
-                    <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'aanvullende_instructie']/@type"/>
-                    <aanvullende_instructie conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                    <aanvullende_instructie>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-gebruiksinstructie, 'aanvullende_instructie')))"/>
                         <xsl:call-template name="mp9-code-attribs">
                             <xsl:with-param name="current-hl7-code" select="."/>
                         </xsl:call-template>
@@ -698,65 +700,72 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- herhaalperiode_cyclisch_schema -->
                 <!-- er mag er maar eentje zijn -->
                 <xsl:for-each select="$hl7-doseerinstructie/hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:phase[hl7nl:width]]/hl7nl:period">
-                    <xsl:variable name="xsd-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'herhaalperiode_cyclisch_schema']/@type"/>
-                    <herhaalperiode_cyclisch_schema value="{./@value}" unit="{./@unit}" conceptId="{$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                    <herhaalperiode_cyclisch_schema value="{./@value}" unit="{./@unit}">
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-gebruiksinstructie, 'herhaalperiode_cyclisch_schema')))"/>
+                    </herhaalperiode_cyclisch_schema>
                 </xsl:for-each>
                 <!-- doseerinstructie -->
                 <xsl:for-each select="$hl7-doseerinstructie">
-                    <xsl:variable name="xsd-doseerinstructie-complexType" select="$xsd-gebruiksinstructie//xs:element[@name = 'doseerinstructie']/@type"/>
-                    <xsl:variable name="xsd-doseerinstructie" select="$xsd-ada//xs:complexType[@name = $xsd-doseerinstructie-complexType]"/>
-                    <doseerinstructie conceptId="{$xsd-doseerinstructie/xs:attribute[@name='conceptId']/@fixed}">
+                    <xsl:variable name="xsd-doseerinstructie" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-gebruiksinstructie, 'doseerinstructie'))"/>
+                    <doseerinstructie>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-doseerinstructie)"/>
                         <!-- volgnummer -->
                         <xsl:for-each select="./hl7:sequenceNumber">
-                            <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'volgnummer']/@type"/>
-                            <volgnummer value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                            <volgnummer value="{./@value}">
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-doseerinstructie, 'volgnummer')))"/>
+                            </volgnummer>
                         </xsl:for-each>
                         <!-- doseerduur -->
                         <xsl:choose>
                             <!-- doseerduur in Cyclisch doseerschema. -->
                             <xsl:when test="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
                                 <xsl:for-each select="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp/hl7nl:phase/hl7nl:width">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'doseerduur']/@type"/>
-                                    <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                    <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}">
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-doseerinstructie, 'doseerduur')))"/>
+                                    </doseerduur>
                                 </xsl:for-each>
                             </xsl:when>
                             <!-- overige gevallen -->
                             <xsl:otherwise>
                                 <xsl:for-each select="./hl7:substanceAdministration/hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'IVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-org:v3')]/hl7:width">
-                                    <xsl:variable name="xsd-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'doseerduur']/@type"/>
-                                    <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                    <doseerduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}">
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-doseerinstructie, 'doseerduur')))"/>
+                                    </doseerduur>
                                 </xsl:for-each>
                             </xsl:otherwise>
                         </xsl:choose>
                         <!-- dosering -->
                         <xsl:for-each select="./hl7:substanceAdministration">
-                            <xsl:variable name="xsd-dosering-complexType" select="$xsd-doseerinstructie//xs:element[@name = 'dosering']/@type"/>
-                            <xsl:variable name="xsd-dosering" select="$xsd-ada//xs:complexType[@name = $xsd-dosering-complexType]"/>
-                            <dosering conceptId="{$xsd-dosering/xs:attribute[@name='conceptId']/@fixed}">
+                            <xsl:variable name="xsd-dosering" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-doseerinstructie, 'dosering'))"/>
+                            <dosering>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-dosering)"/>
                                 <!-- keerdosis -->
                                 <xsl:for-each select="./hl7:doseQuantity">
-                                    <xsl:variable name="xsd-keerdosis-complexType" select="$xsd-dosering//xs:element[@name = 'keerdosis']/@type"/>
-                                    <xsl:variable name="xsd-keerdosis" select="$xsd-ada//xs:complexType[@name = $xsd-keerdosis-complexType]"/>
-                                    <keerdosis conceptId="{$xsd-keerdosis/xs:attribute[@name='conceptId']/@fixed}">
-                                        <xsl:variable name="xsd-aantal-complexType" select="$xsd-keerdosis//xs:element[@name = 'aantal']/@type"/>
-                                        <xsl:variable name="xsd-aantal" select="$xsd-ada//xs:complexType[@name = $xsd-aantal-complexType]"/>
-                                        <aantal conceptId="{$xsd-aantal/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:variable name="xsd-keerdosis" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-dosering, 'keerdosis'))"/>
+                                    <keerdosis>
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-keerdosis)"/>
+                                        <xsl:variable name="xsd-aantal" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-keerdosis, 'aantal'))"/>
+                                        <aantal>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-aantal)"/>
                                             <xsl:for-each select="./hl7:low/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'min']/@type"/>
-                                                <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                <min value="{./@value}">
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-aantal, 'min')))"/>
+                                                </min>
                                             </xsl:for-each>
                                             <xsl:for-each select="./hl7:center/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
-                                                <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                <vaste_waarde value="{./@value}">
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-aantal, 'vaste_waarde')))"/>
+                                                </vaste_waarde>
                                             </xsl:for-each>
                                             <xsl:for-each select="./hl7:high/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                                                <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'max']/@type"/>
-                                                <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                <max value="{./@value}">
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-aantal, 'max')))"/>
+                                                </max>
                                             </xsl:for-each>
                                         </aantal>
                                         <xsl:for-each select="(./*/hl7:translation[@codeSystem = $oidGStandaardBST902THES2])[1]">
-                                            <xsl:variable name="xsd-complexType" select="$xsd-keerdosis//xs:element[@name = 'eenheid']/@type"/>
-                                            <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                            <eenheid>
+                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-keerdosis, 'eenheid')))"/>
                                                 <xsl:call-template name="mp9-code-attribs">
                                                     <xsl:with-param name="current-hl7-code" select="."/>
                                                 </xsl:call-template>
@@ -767,9 +776,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <!-- toedieningsschema -->
                                 <!-- er moet een PIVL_TS zijn om een toedieningsschema te maken -->
                                 <xsl:if test=".//*[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')]">
-                                    <xsl:variable name="xsd-toedieningsschema-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsschema']/@type"/>
-                                    <xsl:variable name="xsd-toedieningsschema" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningsschema-complexType]"/>
-                                    <toedieningsschema conceptId="{$xsd-toedieningsschema/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:variable name="xsd-toedieningsschema" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-dosering, 'toedieningsschema'))"/>
+                                    <toedieningsschema>
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-toedieningsschema)"/>
                                         <!-- eenvoudig doseerschema met alleen één frequentie -->
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(@xsi:type, .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(@xsi:type, .)) = 'urn:hl7-nl:v3')][@isFlexible = 'true'][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
@@ -967,9 +976,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     </xsl:call-template>
                                                 </xsl:otherwise>
                                             </xsl:choose>
-
-
-
                                         </xsl:for-each>
                                         <!-- Doseerschema met één dagdeel -->
                                         <xsl:for-each select="./hl7:effectiveTime[@alignment = 'HD']">
@@ -991,14 +997,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </toedieningsschema>
                                 </xsl:if>
                                 <xsl:for-each select="./hl7:precondition/hl7:criterion/hl7:code">
-                                    <xsl:variable name="xsd-zo_nodig-complexType" select="$xsd-dosering//xs:element[@name = 'zo_nodig']/@type"/>
-                                    <xsl:variable name="xsd-zo_nodig" select="$xsd-ada//xs:complexType[@name = $xsd-zo_nodig-complexType]"/>
-                                    <zo_nodig conceptId="{$xsd-zo_nodig/xs:attribute[@name='conceptId']/@fixed}">
-                                        <xsl:variable name="xsd-criterium-complexType" select="$xsd-zo_nodig//xs:element[@name = 'criterium']/@type"/>
-                                        <xsl:variable name="xsd-criterium" select="$xsd-ada//xs:complexType[@name = $xsd-criterium-complexType]"/>
-                                        <criterium conceptId="{$xsd-criterium/xs:attribute[@name='conceptId']/@fixed}">
+                                    <xsl:variable name="xsd-zo_nodig" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-dosering, 'zo_nodig'))"/>
+                                    <zo_nodig>
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-zo_nodig)"/>
+
+                                        <xsl:variable name="xsd-criterium" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zo_nodig, 'criterium'))"/>
+                                        <criterium>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-criterium)"/>
                                             <xsl:variable name="xsd-complexType" select="$xsd-criterium//xs:element[@name = 'code']/@type"/>
                                             <code conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-complexType, 'code')))"/>
                                                 <xsl:call-template name="mp9-code-attribs">
                                                     <xsl:with-param name="current-hl7-code" select="."/>
                                                 </xsl:call-template>
@@ -1010,8 +1018,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                                 <!-- toedieningssnelheid -->
                                 <xsl:for-each select="./hl7:rateQuantity">
-                                    <xsl:variable name="xsd-toedieningssnelheid-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningssnelheid']/@type"/>
-                                    <xsl:variable name="xsd-toedieningssnelheid" select="$xsd-ada//xs:complexType[@name = $xsd-toedieningssnelheid-complexType]"/>
+                                    <xsl:variable name="xsd-toedieningssnelheid" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-dosering, 'toedieningssnelheid'))"/>
                                     <xsl:variable name="ucum-rate-eenheden" select="./*/@unit"/>
                                     <xsl:variable name="ucum-rate-eenheid">
                                         <xsl:if test="
@@ -1022,26 +1029,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:variable>
                                     <xsl:choose>
                                         <xsl:when test="string-length($ucum-rate-eenheid) gt 0">
-                                            <toedieningssnelheid conceptId="{$xsd-toedieningssnelheid/xs:attribute[@name='conceptId']/@fixed}">
-                                                <xsl:variable name="xsd-waarde-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'waarde']/@type"/>
-                                                <xsl:variable name="xsd-waarde" select="$xsd-ada//xs:complexType[@name = $xsd-waarde-complexType]"/>
-                                                <waarde conceptId="{$xsd-waarde/xs:attribute[@name='conceptId']/@fixed}">
+                                            <toedieningssnelheid>
+                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-toedieningssnelheid)"/>
+                                                <xsl:variable name="xsd-waarde" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-toedieningssnelheid, 'waarde'))"/>
+                                                <waarde>
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-waarde)"/>
                                                     <xsl:for-each select="./hl7:low">
-                                                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'min']/@type"/>
-                                                        <min value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                        <min value="{./@value}">
+                                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-waarde, 'min')))"/>
+                                                        </min>
                                                     </xsl:for-each>
                                                     <xsl:for-each select="./hl7:center">
-                                                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'vaste_waarde']/@type"/>
-                                                        <vaste_waarde value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                        <vaste_waarde value="{./@value}">
+                                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-waarde, 'vaste_waarde')))"/>
+                                                        </vaste_waarde>
                                                     </xsl:for-each>
                                                     <xsl:for-each select="./hl7:high">
-                                                        <xsl:variable name="xsd-complexType" select="$xsd-waarde//xs:element[@name = 'max']/@type"/>
-                                                        <max value="{./@value}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                        <max value="{./@value}">
+                                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-waarde, 'max')))"/>
+                                                        </max>
                                                     </xsl:for-each>
                                                 </waarde>
                                                 <xsl:variable name="ucum-eenheid" select="substring-before($ucum-rate-eenheid, '/')"/>
-                                                <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'eenheid']/@type"/>
-                                                <eenheid conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                                <eenheid>
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-toedieningssnelheid, 'eenheid')))"/>
                                                     <xsl:call-template name="UCUM2GstdBasiseenheid">
                                                         <xsl:with-param name="UCUM" select="$ucum-eenheid"/>
                                                     </xsl:call-template>
@@ -1061,8 +1072,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     </xsl:choose>
                                                 </xsl:variable>
                                                 <xsl:variable name="ucum-tijdseenheid-unit" select="concat($firstChar, substring-after($ucum-tijdseenheid, $firstChar))"/>
-                                                <xsl:variable name="xsd-complexType" select="$xsd-toedieningssnelheid//xs:element[@name = 'tijdseenheid']/@type"/>
-                                                <tijdseenheid value="{$ucum-tijdseenheid-value}" unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid-unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                <tijdseenheid value="{$ucum-tijdseenheid-value}" unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid-unit)}">
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-toedieningssnelheid, 'tijdseenheid')))"/>
+                                                </tijdseenheid>
                                             </toedieningssnelheid>
                                         </xsl:when>
                                         <xsl:otherwise>
@@ -2164,31 +2176,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="zorgaanbieder2-complexType" select="$xsd-parent-of-zorgaanbieder//xs:element[@name = 'zorgaanbieder']/@type"/>
         <xsl:variable name="xsd-zorgaanbieder2" select="$xsd-ada//xs:complexType[@name = $zorgaanbieder2-complexType]"/>
         <xsl:for-each select="$hl7-current-organization">
-            <zorgaanbieder conceptId="{$xsd-zorgaanbieder2/xs:attribute[@name='conceptId']/@fixed}">
-                <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'zorgaanbieder_identificatienummer']/@type"/>
+            <zorgaanbieder>
+                <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-zorgaanbieder2)"/>
+
                 <xsl:call-template name="handleII">
                     <xsl:with-param name="in" select="./hl7:id"/>
                     <xsl:with-param name="elemName">zorgaanbieder_identificatienummer</xsl:with-param>
-                    <xsl:with-param name="conceptId" select="$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed"/>
+                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgaanbieder2, 'zorgaanbieder_identificatienummer')))"/>
                 </xsl:call-template>
                 <!-- organisatienaam has 1..1 R in MP 9 ADA transactions, but is not always present in HL7 input messages.  -->
                 <!-- fill with nullFlavor if necessary -->
-                <xsl:variable name="xsd-complexType" select="$xsd-zorgaanbieder2//xs:element[@name = 'organisatie_naam']/@type"/>
                 <xsl:call-template name="handleST">
                     <xsl:with-param name="in" select="./hl7:name"/>
                     <xsl:with-param name="elemName">organisatie_naam</xsl:with-param>
-                    <xsl:with-param name="conceptId" select="$xsd-ada//xs:complexType[@name=$xsd-complexType]/xs:attribute[@name='conceptId']/@fixed"/>
+                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgaanbieder2, 'organisatie_naam')))"/>
                     <xsl:with-param name="nullIfMissing">NI</xsl:with-param>
                 </xsl:call-template>
                 <xsl:call-template name="handleADtoAddressInformation">
                     <xsl:with-param name="in" select="./hl7:addr"/>
                     <xsl:with-param name="language">nl-NL</xsl:with-param>
+                    <xsl:with-param name="schema" select="$xsd-ada"/>
+                    <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgaanbieder2, 'adresgegevens'))"/>
                 </xsl:call-template>
                 <!-- TODO other elements in representedOrganization, such as address -->
             </zorgaanbieder>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> Medication Kind 6.12 to ADA 9 </xd:desc>
         <xd:param name="product-hl7">Input product ada xml element</xd:param>
@@ -2207,7 +2221,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="handleCV">
                 <xsl:with-param name="in" select="./hl7:id"/>
                 <xsl:with-param name="elemName">product_code</xsl:with-param>
-                <xsl:with-param name="conceptId" select="$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed"/>
+                <xsl:with-param name="conceptId" select="$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name = 'conceptId']/@fixed"/>
             </xsl:call-template>
             <xsl:for-each select=".[hl7:code[@nullFlavor]] | .[not(hl7:code)]">
                 <xsl:variable name="xsd-product_specificatie-complexType" select="$xsd-product//xs:element[@name = 'product_specificatie']/@type"/>
@@ -2761,25 +2775,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="xsd-auteur"/>
 
         <xsl:for-each select="$author-hl7/hl7:assignedAuthor">
-            <zorgverlener conceptId="{nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-auteur, 'zorgverlener')))}">
+            <xsl:variable name="xsd-zorgverlener" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-auteur, 'zorgverlener'))"/>
+            <zorgverlener>
+                <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-zorgverlener)"/>
+
                 <xsl:call-template name="handleII">
                     <xsl:with-param name="in" select="./hl7:id"/>
                     <xsl:with-param name="elemName">zorgverlener_identificatienummer</xsl:with-param>
-                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-auteur, 'zorgverlener_identificatienummer')))"/>
+                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlener, 'zorgverlener_identificatienummer')))"/>
                 </xsl:call-template>
-                
-                <xsl:variable name="xsd-zorgverlener" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-auteur, 'zorgverlener'))"/>
-                <xsl:variable name="xsd-zorgverlenernaam" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlener, 'naamgegevens'))"/>
+
+                <xsl:variable name="xsd-zorgverlenernaamgegevens" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlener, 'naamgegevens'))"/>
                 <xsl:if test="./hl7:assignedPerson/hl7:name">
                     <naamgegevens>
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, $xsd-zorgverlenernaam))"/>
-                        
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-zorgverlenernaamgegevens)"/>
+
                         <xsl:call-template name="handleENtoNameInformation">
                             <xsl:with-param name="in" select="./hl7:assignedPerson/hl7:name"/>
                             <xsl:with-param name="language">nl-NL</xsl:with-param>
                             <xsl:with-param name="unstructurednameElement">ongestructureerde_naam</xsl:with-param>
                             <xsl:with-param name="schema" select="$xsd-ada"/>
-                            <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlenernaam, 'naamgegevens'))"/>
+                            <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlenernaamgegevens, 'naamgegevens'))"/>
                         </xsl:call-template>
                     </naamgegevens>
                 </xsl:if>
@@ -3135,10 +3151,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="ma_hl7_90" select="."/>
         <xsl:param name="xsd-ada"/>
         <xsl:param name="xsd-mbh"/>
-        <xsl:variable name="ma-complexType" select="$xsd-mbh//xs:element[@name = 'medicatieafspraak']/@type"/>
-        <xsl:variable name="xsd-ma" select="$xsd-ada//xs:complexType[@name = $ma-complexType]"/>
+        <xsl:variable name="xsd-ma" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-mbh, 'medicatieafspraak'))"/>
         <xsl:for-each select="$ma_hl7_90">
-            <medicatieafspraak conceptId="{$xsd-ma/xs:attribute[@name='conceptId']/@fixed}">
+            <medicatieafspraak>
+                <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-ma)"/>
+
                 <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[@xsi:type = 'IVL_TS']"/>
                 <xsl:for-each select="$IVL_TS/hl7:low[@value]">
                     <xsl:call-template name="mp9-gebruiksperiode-start">
@@ -3166,6 +3183,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="./hl7:statusCode">
                     <geannuleerd_indicator value="{./@code='nullified'}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23033"/>
                 </xsl:for-each>
+                <!-- stoptype -->
                 <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067']/hl7:value">
                     <stoptype conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19954">
                         <xsl:call-template name="mp9-code-attribs">
@@ -3195,19 +3213,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <identificatie_23289 root="{./@root}" value="{./@extension}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23289"/>
                     </relatie_naar_afspraak_of_gebruik>
                 </xsl:for-each>
+                <!-- relaties ketenzorg -->
+                <xsl:variable name="rel-encounter" select="./hl7:entryRelationship[@typeCode = 'REFR']/hl7:encounter"/>
+                <xsl:variable name="rel-concern" select="./hl7:entryRelationship[@typeCode = 'REFR']/hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]"/>
+                <xsl:if test="$rel-encounter or $rel-concern">
+                    <xsl:variable name="relaties_ketenzorg-complexType" select="nf:getADAComplexTypeName($xsd-ma, 'relaties_ketenzorg')"/>
+                    <xsl:variable name="xsd-relaties_ketenzorg" select="nf:getADAComplexType($xsd-ada, $relaties_ketenzorg-complexType)"/>
+                    <relaties_ketenzorg conceptId="{$xsd-relaties_ketenzorg/xs:attribute[@name='conceptId']/@fixed}">
+                        <xsl:variable name="identificatie_contactmoment-complexType" select="$xsd-relaties_ketenzorg//xs:element[@name = 'identificatie_contactmoment']/@type"/>
+                        <xsl:variable name="xsd-identificatie_contactmoment" select="$xsd-ada//xs:complexType[@name = $identificatie_contactmoment-complexType]"/>
+                        <xsl:for-each select="$rel-encounter/hl7:id">
+                            <!-- Verwijzing naar contactmoment/bezoek -->
+                            <identificatie_contactmoment root="{./@root}" value="{./@extension}" conceptId="{$xsd-identificatie_contactmoment/xs:attribute[@name='conceptId']/@fixed}"/>
+                        </xsl:for-each>
+                        <xsl:variable name="identificatie_episode-complexType" select="$xsd-relaties_ketenzorg//xs:element[@name = 'identificatie_episode']/@type"/>
+                        <xsl:variable name="xsd-identificatie_episode" select="$xsd-ada//xs:complexType[@name = $identificatie_episode-complexType]"/>
+                        <xsl:for-each select="$rel-concern/hl7:id">
+                            <!-- Verwijzing naar episode -->
+                            <identificatie_episode root="{./@root}" value="{./@extension}" conceptId="{$xsd-identificatie_episode/xs:attribute[@name='conceptId']/@fixed}"/>
+                        </xsl:for-each>
+                    </relaties_ketenzorg>
+                </xsl:if>
                 <!-- voorschrijver -->
-                <xsl:variable name="voorschrijver-complexType" select="$xsd-ma//xs:element[@name = 'voorschrijver']/@type"/>
-                <xsl:variable name="xsd-voorschrijver" select="$xsd-ada//xs:complexType[@name = $voorschrijver-complexType]"/>
-                <voorschrijver conceptId="{$xsd-voorschrijver/xs:attribute[@name='conceptId']/@fixed}">
+                <xsl:variable name="xsd-voorschrijver" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-ma, 'voorschrijver'))"/>
+                <voorschrijver>
+                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-voorschrijver)"/>
+
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20160615212337_2">
                         <xsl:with-param name="author-hl7" select="./hl7:author"/>
                         <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                         <xsl:with-param name="xsd-auteur" select="$xsd-voorschrijver"/>
                     </xsl:call-template>
                 </voorschrijver>
-                <!-- reden afspraak -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9068']/hl7:value">
-                    <reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22094">
+                <!-- reden wijzigen of staken -->
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9270']/hl7:value">
+                    <reden_wijzigen_of_staken>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-ma, 'reden_wijzigen_of_staken')))"/>
+
                         <xsl:call-template name="mp9-code-attribs">
                             <xsl:with-param name="current-hl7-code" select="."/>
                         </xsl:call-template>
@@ -3215,9 +3257,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- reden van voorschrijven -->
                 <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160']/hl7:value">
-                    <reden_van_voorschrijven conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23133">
-                        <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23134">
-                            <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23136">
+                    <reden_van_voorschrijven>
+                        <xsl:variable name="xsd-reden" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-ma, 'reden_van_voorschrijven'))"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-reden)"/>
+
+                        <probleem>
+                            <xsl:variable name="xsd-probleem" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-reden, 'probleem'))"/>
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-probleem)"/>
+                            <probleem_naam>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-probleem, 'probleem_naam')))"/>
                                 <xsl:call-template name="mp9-code-attribs">
                                     <xsl:with-param name="current-hl7-code" select="."/>
                                 </xsl:call-template>
@@ -3243,6 +3291,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                     <xsl:with-param name="xsd-comp" select="$xsd-ma"/>
                 </xsl:call-template>
+                <!-- TODO 201907019 - hierna nog nalopen -->
                 <!-- lichaamslengte  -->
                 <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122']/hl7:value">
                     <lichaamslengte conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23023">
