@@ -669,6 +669,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="xsd-comp"/>
         <xsl:variable name="xsd-gebruiksinstructie" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-comp, 'gebruiksinstructie'))"/>
         <xsl:for-each select="$hl7-comp">
+            <!-- still can refactor with new generic functions -->
             <gebruiksinstructie>
                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-gebruiksinstructie)"/>
 
@@ -2203,8 +2204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="schema" select="$xsd-ada"/>
                     <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgaanbieder2, 'adresgegevens'))"/>
                 </xsl:call-template>
-                <!-- TODO other elements in representedOrganization, such as address -->
-            </zorgaanbieder>
+              </zorgaanbieder>
         </xsl:for-each>
     </xsl:template>
 
