@@ -16,13 +16,3 @@ The folder 'hl7v3_instance' contains sample hl7 instance files. They are not des
 The ADA user front-end for Ketenzorg 3.0.2 can be found here: 
 https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
-TODO:
-Issue 329 : Bouwsteen medicatieafspraak. Dataset, transacties en templates zijn uitgebreid met relaties naar Episode / Contact.
-Issue 338 : Transactie Voorschrift. Het is nu mogelijk om verstrekkingsverzoeken zonder MA of met een kopie-MA te sturen. Hoe het uiteindelijk moet, is nog afhankelijk van (onder andere) een juridische toets en wordt procedureel afgesproken.
-Zit kopie-indicator in de mapping?
-Issue 348 : Geneesmiddel - product code. Meerdere product codes zijn gewenst, bij een specifieke G-standaard codering nu ook de meer generieke codering(en) meegeven. Aangepast in de scenario's/transacties.
-ook TODO: de meest specifieke code moet in FHIR een user selected true krijgen.
-Issue 354 : Bouwsteen medicatieafspraak. Lengte en gewicht meetdatum/tijd waren niet verplicht in MP maar wel in zib. Met issue 360 (gebruik maken van zib template) is dit ook hersteld: dus het meegeven van datum/tijd is nu verplicht
-Issue 360 : Bouwsteen medicatieafspraak. Lengte en gewicht waren nog gebaseerd op oude zibs (2015) en een specifiek mp-template. Dit is herstel naar 2017 zib met bijbehorend template.
-nakijken of ada elementen nog goed zijn.
-
