@@ -21,7 +21,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <xsl:include href="../../util/constants.xsl"/>
     <xsl:include href="../../util/datetime.xsl"/>
-    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
+    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
 
     <xd:doc>
         <xd:desc>Transforms ada code element to FHIR code/@value</xd:desc>
