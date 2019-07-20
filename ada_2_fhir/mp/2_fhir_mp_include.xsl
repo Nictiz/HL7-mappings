@@ -2027,11 +2027,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="./@unit = 'm'">
                             <value value="{xs:double(./@value)*100}"/>
                             <unit value="cm"/>
+                            <system value="http://unitsofmeasure.org"/>
                             <code value="cm"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <value value="{./@value}"/>
                             <unit value="{./@unit}"/>
+                            <system value="http://unitsofmeasure.org"/>
                             <code value="{nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -3190,7 +3192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </xsl:for-each>
             <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
-            
+
             <xsl:choose>
                 <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
                     <code>
@@ -3198,17 +3200,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:choose>
                                 <xsl:when test="./@codeSystem = $most-specific-product-code/@codeSystem">
                                     <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>   
+                                        <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="user-selected">true</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>                                
+                                        <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
-                            
+
                         </xsl:for-each>
                     </code>
                 </xsl:when>
