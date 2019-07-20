@@ -692,6 +692,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <subject>
                     <xsl:apply-templates select="./../../patient" mode="doPatientReference"/>
                 </subject>
+                <!-- TODO ketenzorg relaties in FHIR context -->
+                
                 <!-- lichaamslengte -->
                 <xsl:for-each select="./lichaamslengte[.//@value]">
                     <supportingInformation>
