@@ -115,7 +115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)"/>
+                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
                 <uniek-product xmlns="">
                     <group-key xmlns="">
                         <xsl:value-of select="current-grouping-key()"/>
@@ -390,8 +390,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     else
                                         uuid:get-uuid(.))
                                 else
-                                    ()">                           
-                        </xsl:with-param>
+                                    ()"> </xsl:with-param>
                     </xsl:call-template>
                 </resource>
             </entry>
@@ -624,7 +623,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- kopie indicator -->
-                <!-- zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
+                <!-- het ada concept zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
                 <xsl:for-each select="./kopie_indicator[@value]">
                     <xsl:call-template name="zib-Medication-CopyIndicator">
                         <xsl:with-param name="copyIndicator" select="."/>
@@ -692,18 +691,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <subject>
                     <xsl:apply-templates select="./../../patient" mode="doPatientReference"/>
                 </subject>
-                <!-- TODO ketenzorg relaties in FHIR context -->
-                
+                <!-- relaties_ketenzorg -->
+                <xsl:for-each select="relaties_ketenzorg/*[.//@value]">
+                    <context>
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                        <display value="Relatie naar {replace(./local-name(),'identificatie_', '')} met identificatie {./@value} in identificerend systeem {./@root}."/>
+                    </context>
+                </xsl:for-each>
                 <!-- lichaamslengte -->
-                <xsl:for-each select="./lichaamslengte[.//@value]">
+                <xsl:for-each select="lichaamslengte[.//@value]">
                     <supportingInformation>
                         <reference value="{nf:getFullUrlOrId('LENGTE', nf:getGroupingKeyDefault(.), false())}"/>
                         <xsl:variable name="datum-string" select="
-                                if (./lengte_datum_tijd/@value) then
-                                    format-dateTime(./lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
+                                if (lengte_datum_tijd/@value castable as xs:dateTime) then
+                                    format-dateTime(lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
                                 else
-                                    'onbekend'"/>
-                        <display value="{concat('Lengte: ', ./lengte_waarde/@value, ' ', ./lengte_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
+                                    if (lengte_datum_tijd/@value castable as xs:date) then
+                                        format-date(lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001]')
+                                    else
+                                        lengte_datum_tijd/@value"/>
+                        <display value="{concat('Lengte: ', lengte_waarde/@value, ' ', lengte_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
                     </supportingInformation>
                 </xsl:for-each>
                 <!-- lichaamsgewicht -->
@@ -711,10 +722,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <supportingInformation>
                         <reference value="{nf:getFullUrlOrId('GEWICHT', nf:getGroupingKeyDefault(.), false())}"/>
                         <xsl:variable name="datum-string" select="
-                                if (gewicht_datum_tijd/@value) then
+                                if (gewicht_datum_tijd/@value castable as xs:dateTime) then
                                     format-dateTime(gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
                                 else
-                                    'onbekend'"/>
+                                    if (gewicht_datum_tijd/@value castable as xs:date) then
+                                        format-date(gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001]')
+                                    else
+                                        gewicht_datum_tijd/@value"/>
                         <display value="{concat('Gewicht: ',gewicht_waarde/@value, ' ', gewicht_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
                     </supportingInformation>
                 </xsl:for-each>
@@ -1973,7 +1987,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Outputs a FHIR observation for ada element lichaamslengte</xd:desc>
         <xd:param name="observation-id"/>
     </xd:doc>
     <xsl:template name="zib-BodyHeight-2.0" match="lichaamslengte" mode="doBodyObservation">
@@ -2003,10 +2017,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <subject>
                 <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference"/>
             </subject>
-            <xsl:for-each select="./lengte_datum_tijd">
+            <xsl:for-each select="./lengte_datum_tijd[@value]">
                 <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
             </xsl:for-each>
-            <xsl:for-each select="./lengte_waarde">
+            <xsl:for-each select="./lengte_waarde[@value]">
                 <valueQuantity>
                     <!-- ada has cm or m, FHIR only allows cm -->
                     <xsl:choose>
@@ -3170,18 +3184,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
-            <xsl:for-each select="./product_specificatie/omschrijving[@value]">
+            <xsl:for-each select="product_specificatie/omschrijving[@value]">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
                     <valueString value="{replace(string-join(./@value, ''),'(^\s+)|(\s+$)','')}"/>
                 </extension>
             </xsl:for-each>
+            <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
+            
             <xsl:choose>
-                <xsl:when test="./product_code[not(@codeSystem = $oidHL7NullFlavor)]">
+                <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
                     <code>
-                        <xsl:for-each select="./product_code[not(@codeSystem = $oidHL7NullFlavor)]">
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
+                        <xsl:for-each select="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
+                            <xsl:choose>
+                                <xsl:when test="./@codeSystem = $most-specific-product-code/@codeSystem">
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>   
+                                        <xsl:with-param name="user-selected">true</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>                                
+                                    </xsl:call-template>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            
                         </xsl:for-each>
                     </code>
                 </xsl:when>
@@ -3424,7 +3451,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     )"/>
     </xsl:function>
 
- <xd:doc>
+    <xd:doc>
         <xd:desc/>
         <xd:param name="documentgegevens"/>
         <xd:param name="entries"/>

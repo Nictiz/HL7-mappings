@@ -29,16 +29,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
             
             <xd:p>Example. if you only want to translate ActStatus completed into a FHIR ObservationStatus final, this would suffice:</xd:p>
-            
             <xd:p><code>&lt;map inCode="completed" inCodeSystem="$codeSystem" code="final"/&gt;</code>
-            <div>to produce</div> 
-            <code>&lt;$elemName value="final"/&gt;</code></xd:p>
+                <div>to produce</div>
+                <code>&lt;$elemName value="final"/&gt;</code></xd:p>
         </xd:param>
     </xd:doc>
     <xsl:template name="code-to-code" as="attribute(value)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="codeMap" as="element()*"/>
-        
+
         <xsl:for-each select="$in">
             <xsl:variable name="theCode">
                 <xsl:choose>
@@ -73,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            
+
             <xsl:attribute name="value">
                 <xsl:value-of select="$out/@code"/>
                 <!-- In the case where codeMap if only used to add a @value for ADA, this saves having to repeat the @inCode and @inCodeSystem as @code resp. @codeSystem -->
@@ -87,10 +86,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Transforms ada code element to FHIR CodeableConcept</xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="element-name">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
+        <xd:param name="user-selected">Optionally provide a user selected boolean.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="element-name" as="xs:string?">coding</xsl:param>
+        <xsl:param name="user-selected" as="xs:boolean?"/>
         <xsl:choose>
             <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor]">
                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
@@ -104,7 +105,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="$in/@displayName">
                         <display value="{$in/@displayName}"/>
                     </xsl:if>
-                    <!--<userSelected value="true"/>-->
+                    <xsl:if test="exists($user-selected)">
+                        <userSelected value="{$user-selected}"/>
+                    </xsl:if>
                 </xsl:element>
                 <!--<xsl:if test="$in/@displayName">
                     <text value="{$in/@displayName}"/>
@@ -177,7 +180,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada element of type hoeveelheid to FHIR Quantity</xd:desc>
         <xd:param name="in">ada element may have any name but should have datatype aantal (count)</xd:param>
-   </xd:doc>
+    </xd:doc>
     <xsl:template name="hoeveelheid-to-Quantity" as="element()*">
         <xsl:param name="in" as="element()?"/>
         <xsl:choose>
@@ -185,17 +188,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                     <xsl:variable name="valueCode" as="xs:string">
                         <xsl:choose>
-                            <xsl:when test="$in[@nullFlavor]"><xsl:value-of select="$in/@nullFlavor"/></xsl:when>
+                            <xsl:when test="$in[@nullFlavor]">
+                                <xsl:value-of select="$in/@nullFlavor"/>
+                            </xsl:when>
                             <xsl:otherwise>NI</xsl:otherwise>
                         </xsl:choose>
-                    </xsl:variable> 
+                    </xsl:variable>
                     <valueCode value="{$valueCode}"/>
                 </extension>
             </xsl:when>
             <xsl:otherwise>
                 <value value="{$in/@value}"/>
                 <xsl:for-each select="$in[@unit]">
-                     <xsl:for-each select="./@unit">
+                    <xsl:for-each select="./@unit">
                         <!-- UCUM -->
                         <unit value="{.}"/>
                         <system value="{local:getUri($oidUCUM)}"/>
@@ -471,7 +476,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="xs:string?"/>
         <xsl:value-of select="replace(translate($in, '_.', '--'), '[^a-zA-Z0-9-]', '')"/>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Generates FHIR uri based on input ada code element. OID if possible, otherwise generates uri based on generated uuid using input element.</xd:desc>
         <xd:param name="ada-code">Input element for which uri is needed</xd:param>
@@ -488,7 +493,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Try to interpret the value of complex type in ADA as a quantity string with value and unit</xd:desc>
         <xd:param name="value_string">The input text (like 12 mmol/l)</xd:param>
@@ -503,12 +508,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:matching-substring>
                 <value value="{regex-group(1)}"/>
                 <xsl:if test="regex-group(2)">
-                    <unit value="{regex-group(2)}"/>                   
+                    <unit value="{regex-group(2)}"/>
                 </xsl:if>
             </xsl:matching-substring>
         </xsl:analyze-string>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Formats ada or HL7 dateTime to FHIR date(Time) based on input precision</xd:desc>
         <xd:param name="dateTime">Input ada or HL7 date(Time)</xd:param>
