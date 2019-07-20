@@ -1247,7 +1247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="hl7-num-or-denom" select="$hl7-num-or-denom"/>
                 </xsl:call-template>
             </xsl:element>
-           <xsl:variable name="ada-elemName">eenheid</xsl:variable>
+            <xsl:variable name="ada-elemName">eenheid</xsl:variable>
             <xsl:variable name="xsd-eenheid" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-hoeveelheid, $ada-elemName))"/>
             <xsl:element name="{$ada-elemName}">
                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-eenheid)"/>
@@ -2204,7 +2204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="schema" select="$xsd-ada"/>
                     <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgaanbieder2, 'adresgegevens'))"/>
                 </xsl:call-template>
-              </zorgaanbieder>
+            </zorgaanbieder>
         </xsl:for-each>
     </xsl:template>
 
@@ -3385,6 +3385,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="ada-elemName">aanvullende_informatie</xsl:variable>
                 <xsl:call-template name="handleCV">
                     <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value"/>
+                    <xsl:with-param name="elemName" select="$ada-elemName"/>
+                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-ma, $ada-elemName)))"/>
+                </xsl:call-template>
+                <!-- kopie_indicator -->
+                <xsl:variable name="ada-elemName">kopie_indicator</xsl:variable>
+                <xsl:call-template name="handleBL">
+                    <xsl:with-param name="in" select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
                     <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-ma, $ada-elemName)))"/>
                 </xsl:call-template>
