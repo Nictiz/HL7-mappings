@@ -50,6 +50,7 @@
         <property name="xsl_labbepalingen" value="payload/beschikbaarstellen_labbepalingen_2_fhir.xsl"/>
         <property name="xsl_alerts" value="payload/beschikbaarstellen_alerts_2_fhir.xsl"/>
         <property name="xsl_encounters" value="payload/beschikbaarstellen_contactmomenten_2_fhir.xsl"/>
+        <property name="xsl_medicationagreements" value="payload/beschikbaarstellen_medicatieafspraken907_2_fhir.xsl"/>
         
         <property name="xsl.input" value="ada_instance"/>
         <property name="xsl.output" value="fhir_instance"/>
@@ -65,6 +66,7 @@
             <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="ada_bundle_labbepalingen*.xml"/>
             <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="ada_bundle_alerts*.xml"/>
             <fileset id="inputfilesEncounters" dir="${xsl.input}" includes="ada_bundle_contactmomenten*.xml"/>
+            <fileset id="inputfilesMedicationAgreements" dir="${xsl.input}" includes="ada_bundle_medicatieafspraken*.xml"/>
             
             <!--<echo>ADA_2_FHIR ${xsl_allergyintolerance_resources}</echo>
             <xslt force="true" style="${xsl_allergyintolerance_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
@@ -141,6 +143,15 @@
             <xslt force="true" style="${xsl_encounters}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesEncounters"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>ADA_2_FHIR ${xsl_medicationagreements}</echo>
+            <xslt force="true" style="${xsl_medicationagreements}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="inputfilesMedicationAgreements"/>
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
