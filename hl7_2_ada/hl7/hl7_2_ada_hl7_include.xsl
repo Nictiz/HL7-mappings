@@ -50,6 +50,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="MM" select="substring($input-hl7-date, 11, 2)"/>
         <xsl:variable name="SS" select="substring($input-hl7-date, 13, 2)"/>
         
+        <!-- This needs fixing for input without milliseconds / timezone, such as  effectiveTime value="20171029022303"  -->
+        
         <xsl:variable name="sss" select="replace($input-hl7-date, '^\d+(\.\d+)', '$1')"/>
         
         <xsl:variable name="TZ" select="replace($input-hl7-date, '.*([+-]\d{2,4})$', '$1')"/>
