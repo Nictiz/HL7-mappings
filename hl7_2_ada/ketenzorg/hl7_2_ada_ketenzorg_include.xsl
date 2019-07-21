@@ -338,9 +338,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <xsl:element name="{$elmHealthcareProvider}">
+                <!-- id is required -->
                 <xsl:call-template name="handleII">
                     <xsl:with-param name="in" select="hl7:id"/>
                     <xsl:with-param name="elemName" select="$elmHealthcareProviderIdentificationNumber"/>
+                    <xsl:with-param name="nullIfMissing">NI</xsl:with-param>
                 </xsl:call-template>
                 <xsl:call-template name="handleST">
                     <xsl:with-param name="in" select="(hl7:name | hl7:desc)[1]"/>
@@ -559,6 +561,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <subject>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.2_20170602000000">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="language">en-US</xsl:with-param>
                     </xsl:call-template>
                 </subject>
             </xsl:for-each>
