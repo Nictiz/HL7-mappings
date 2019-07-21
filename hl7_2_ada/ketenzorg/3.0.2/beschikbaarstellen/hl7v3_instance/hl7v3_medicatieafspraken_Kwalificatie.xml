@@ -1,0 +1,824 @@
+<QUMA_IN991203NL02 xmlns="urn:hl7-org:v3" xmlns:sd="urn:hl7-org:sdtc" xmlns:ph="urn:ihe:pharm:medication" xmlns:nl="urn:hl7-nl:v3">
+    <id extension="OMNIHIS-20190305-1614-329e88c9-d231-416e-bdcf-7b3dcc0788ba" root="2.16.840.1.113883.2.4.6.6.90000258.1"/>
+    <creationTime value="20190305171629"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="QUMA_IN991203NL02" root="2.16.840.1.113883.1.6"/>
+    <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="NE"/>
+    <acknowledgement typeCode="AA">
+        <targetMessage>
+            <id extension="e6d8f419-5f8d-47b5-be9a-0072e01dc2ef" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+        </targetMessage>
+    </acknowledgement>
+    <receiver>
+        <device>
+            <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+        </device>
+    </receiver>
+    <sender>
+        <device>
+            <id extension="90000258" root="2.16.840.1.113883.2.4.6.6"/>
+            <name>OmniHis LSP</name>
+        </device>
+    </sender>
+    <ControlActProcess moodCode="EVN">
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedDevice>
+                    <id extension="900017472" root="2.16.528.1.1007.3.2"/>
+                    <Organization>
+                        <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                        <name>Tést Zorginstelling 04</name>
+                    </Organization>
+                </AssignedDevice>
+            </participant>
+        </authorOrPerformer>
+        <subject>
+            <organizer classCode="CLUSTER" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9265"/>
+                <code code="419891008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Gegevensobject"/>
+                <statusCode code="completed"/>
+                <recordTarget>
+                    <patientRole>
+                        <id extension="999911624" root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                            <streetName>Knolweg</streetName>
+                            <houseNumber>1001</houseNumber>
+                            <postalCode>9999 XX</postalCode>
+                            <city>STITSWERD</city>
+                            <country>Nederland</country>
+                        </addr>
+                        <telecom use="HP" value="tel:+31190531770"/>
+                        <patient>
+                            <name>
+                                <given qualifier="IN">E.</given>
+                                <family qualifier="BR">XXX_Zegers</family>
+                            </name>
+                            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                            <birthTime value="19640802"/>
+                        </patient>
+                    </patientRole>
+                </recordTarget>
+                <component contextControlCode="OP" typeCode="COMP">
+                    <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+                        <id extension="14996" root="2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+                        <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                        <text>1 keer per dag 1 tablet</text>
+                        <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                            <low value="20180129000000"/>
+                            <high value="20180212235959"/>
+                        </effectiveTime>
+                        <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="ORAAL"/>
+                        <consumable>
+                            <manufacturedProduct classCode="MANU">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                    <code code="43044" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="PRK" displayName="PANTOPRAZOL TABLET MSR 40MG">
+                                        <translation code="96938" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="GPK" displayName="PANTOPRAZOL TABLET MSR 40MG"/>
+                                    </code>
+                                </manufacturedMaterial>
+                            </manufacturedProduct>
+                        </consumable>
+                        <author>
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                            <time value="20180129"/>
+                            <assignedAuthor>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+                                <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                <assignedPerson>
+                                    <name>
+                                        <family>Huisarts 1</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                    <addr use="WP">
+                                        <streetName>Valkendael 45</streetName>
+                                        <postalCode>6245 HK</postalCode>
+                                        <city>Maastricht</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedAuthor>
+                        </author>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+                                <code code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden medicatieafspraak"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nullFlavor="OTH" xsi:type="CE">
+                                    <originalText>Volgens afspraak</originalText>
+                                </value>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+                                <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="D02" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Maagpijn" xsi:type="CE"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <sequenceNumber value="1"/>
+                            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                                    <width unit="d" value="14"/>
+                                </effectiveTime>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="nl:PIVL_TS">
+                                    <nl:frequency>
+                                        <nl:numerator value="1" xsi:type="nl:INT"/>
+                                        <nl:denominator unit="d" value="1.0" xsi:type="nl:PQ"/>
+                                    </nl:frequency>
+                                </effectiveTime>
+                                <doseQuantity>
+                                    <center unit="1" value="1">
+                                        <translation code="100" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="tablet" value="1"/>
+                                        <translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="STUK" value="1"/>
+                                    </center>
+                                </doseQuantity>
+                                <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                            </substanceAdministration>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+                                <code code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Gebruikindicator"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" value="false" xsi:type="BL"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship inversionInd="true" typeCode="COMP">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                <id extension="OH-MBH-1551446587306-100008363" root="2.16.840.1.113883.2.4.6.6.90000258.1.100008363"/>
+                                <code code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" displayName="Identificatie van de medicamenteuze behandeling"/>
+                            </procedure>
+                        </entryRelationship>
+                        <entryRelationship typeCode="REFR">
+                            <encounter classCode="ENC" moodCode="EVN">
+                                <id extension="996624" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                            </encounter>
+                        </entryRelationship>
+                    </substanceAdministration>
+                </component>
+                <component contextControlCode="OP" typeCode="COMP">
+                    <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+                        <id extension="14997" root="2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+                        <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                        <text>6 keer per dag 1 tablet, Zo nodig</text>
+                        <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                            <low value="20190203000000"/>
+                            <high value="20190207235959"/>
+                        </effectiveTime>
+                        <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="ORAAL"/>
+                        <consumable>
+                            <manufacturedProduct classCode="MANU">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                    <code code="67903" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="PRK" displayName="PARACETAMOL TABLET  500MG">
+                                        <translation code="2194" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="GPK" displayName="PARACETAMOL TABLET  500MG"/>
+                                    </code>
+                                </manufacturedMaterial>
+                            </manufacturedProduct>
+                        </consumable>
+                        <author>
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                            <time value="20190203"/>
+                            <assignedAuthor>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+                                <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                <assignedPerson>
+                                    <name>
+                                        <family>Huisarts 1</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                    <addr use="WP">
+                                        <streetName>Valkendael 45</streetName>
+                                        <postalCode>6245 HK</postalCode>
+                                        <city>Maastricht</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedAuthor>
+                        </author>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+                                <code code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden medicatieafspraak"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nullFlavor="OTH" xsi:type="CE">
+                                    <originalText>Volgens afspraak</originalText>
+                                </value>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+                                <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="R95" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Emfyseem/COPD" xsi:type="CE"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="SPRT">
+                            <act classCode="ACT" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
+                                <code code="1137" codeSystem="2.16.840.1.113883.2.4.4.5" displayName="Zo nodig"/>
+                            </act>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <sequenceNumber value="1"/>
+                            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                                    <width unit="d" value="4"/>
+                                </effectiveTime>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="nl:PIVL_TS">
+                                    <nl:frequency>
+                                        <nl:numerator value="6" xsi:type="nl:INT"/>
+                                        <nl:denominator unit="d" value="1.0" xsi:type="nl:PQ"/>
+                                    </nl:frequency>
+                                </effectiveTime>
+                                <doseQuantity>
+                                    <center unit="1" value="1">
+                                        <translation code="100" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="tablet" value="1"/>
+                                        <translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="STUK" value="1"/>
+                                    </center>
+                                </doseQuantity>
+                                <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                                <precondition>
+                                    <criterion>
+                                        <code code="1137" codeSystem="2.16.840.1.113883.2.4.4.5" displayName="zo nodig"/>
+                                    </criterion>
+                                </precondition>
+                            </substanceAdministration>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+                                <code code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Gebruikindicator"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" value="false" xsi:type="BL"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship inversionInd="true" typeCode="COMP">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                <id extension="OH-MBH-1551446587416-100008364" root="2.16.840.1.113883.2.4.6.6.90000258.1.100008364"/>
+                                <code code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" displayName="Identificatie van de medicamenteuze behandeling"/>
+                            </procedure>
+                        </entryRelationship>
+                        <entryRelationship typeCode="REFR">
+                            <encounter classCode="ENC" moodCode="EVN">
+                                <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                            </encounter>
+                        </entryRelationship>
+                    </substanceAdministration>
+                </component>
+                <component contextControlCode="OP" typeCode="COMP">
+                    <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+                        <id extension="14998" root="2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+                        <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                        <text>2 keer per dag 1 inhalatie</text>
+                        <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                            <low value="20190203000000"/>
+                            <high value="20190304235959"/>
+                        </effectiveTime>
+                        <routeCode code="62" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="INHALATIE"/>
+                        <consumable>
+                            <manufacturedProduct classCode="MANU">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                    <code code="45632" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="PRK" displayName="FLUTICASON INHALATIEPOEDER 250UG/DO 60DO DISKUS">
+                                        <translation code="92495" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="GPK" displayName="FLUTICASON INHALATIEPOEDER 250UG/DO"/>
+                                    </code>
+                                </manufacturedMaterial>
+                            </manufacturedProduct>
+                        </consumable>
+                        <author>
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                            <time value="20190203"/>
+                            <assignedAuthor>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+                                <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                <assignedPerson>
+                                    <name>
+                                        <family>Huisarts 1</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                    <addr use="WP">
+                                        <streetName>Valkendael 45</streetName>
+                                        <postalCode>6245 HK</postalCode>
+                                        <city>Maastricht</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedAuthor>
+                        </author>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+                                <code code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden medicatieafspraak"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nullFlavor="OTH" xsi:type="CE">
+                                    <originalText>Volgens afspraak</originalText>
+                                </value>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+                                <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="R95" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Emfyseem/COPD" xsi:type="CE"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <sequenceNumber value="1"/>
+                            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                                    <width unit="d" value="29"/>
+                                </effectiveTime>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="nl:PIVL_TS">
+                                    <nl:frequency>
+                                        <nl:numerator value="2" xsi:type="nl:INT"/>
+                                        <nl:denominator unit="d" value="1.0" xsi:type="nl:PQ"/>
+                                    </nl:frequency>
+                                </effectiveTime>
+                                <doseQuantity>
+                                    <center unit="1" value="1">
+                                        <translation code="36" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="inhalatie" value="1"/>
+                                        <translation code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="DOSIS" value="1"/>
+                                    </center>
+                                </doseQuantity>
+                                <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                            </substanceAdministration>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+                                <code code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Gebruikindicator"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" value="false" xsi:type="BL"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship inversionInd="true" typeCode="COMP">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                <id extension="OH-MBH-1551446587464-100008365" root="2.16.840.1.113883.2.4.6.6.90000258.1.100008365"/>
+                                <code code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" displayName="Identificatie van de medicamenteuze behandeling"/>
+                            </procedure>
+                        </entryRelationship>
+                        <entryRelationship typeCode="REFR">
+                            <encounter classCode="ENC" moodCode="EVN">
+                                <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                            </encounter>
+                        </entryRelationship>
+                    </substanceAdministration>
+                </component>
+                <component contextControlCode="OP" typeCode="COMP">
+                    <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+                        <id extension="14999" root="2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+                        <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                        <text>3 keer per dag 1 tablet</text>
+                        <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                            <low value="20190206000000"/>
+                            <high value="20190212235959"/>
+                        </effectiveTime>
+                        <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="ORAAL"/>
+                        <consumable>
+                            <manufacturedProduct classCode="MANU">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                    <code code="17809" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="PRK" displayName="AMOXICILLINE/CLAVULAANZUUR TABLET 500/125MG">
+                                        <translation code="43079" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="GPK" displayName="AMOXICILLINE/CLAVULAANZUUR TABLET 500/125MG"/>
+                                    </code>
+                                </manufacturedMaterial>
+                            </manufacturedProduct>
+                        </consumable>
+                        <author>
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                            <time value="20190206"/>
+                            <assignedAuthor>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+                                <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                <assignedPerson>
+                                    <name>
+                                        <family>Huisarts 1</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                    <addr use="WP">
+                                        <streetName>Valkendael 45</streetName>
+                                        <postalCode>6245 HK</postalCode>
+                                        <city>Maastricht</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedAuthor>
+                        </author>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+                                <code code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden medicatieafspraak"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nullFlavor="OTH" xsi:type="CE">
+                                    <originalText>Volgens afspraak</originalText>
+                                </value>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+                                <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="R95" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Emfyseem/COPD" xsi:type="CE"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <sequenceNumber value="1"/>
+                            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                                    <width unit="d" value="6"/>
+                                </effectiveTime>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="nl:PIVL_TS">
+                                    <nl:frequency>
+                                        <nl:numerator value="3" xsi:type="nl:INT"/>
+                                        <nl:denominator unit="d" value="1.0" xsi:type="nl:PQ"/>
+                                    </nl:frequency>
+                                </effectiveTime>
+                                <doseQuantity>
+                                    <center unit="1" value="1">
+                                        <translation code="100" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="tablet" value="1"/>
+                                        <translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="STUK" value="1"/>
+                                    </center>
+                                </doseQuantity>
+                                <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                            </substanceAdministration>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+                                <code code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Gebruikindicator"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" value="false" xsi:type="BL"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship inversionInd="true" typeCode="COMP">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                <id extension="OH-MBH-1551446587502-100008366" root="2.16.840.1.113883.2.4.6.6.90000258.1.100008366"/>
+                                <code code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" displayName="Identificatie van de medicamenteuze behandeling"/>
+                            </procedure>
+                        </entryRelationship>
+                        <entryRelationship typeCode="REFR">
+                            <encounter classCode="ENC" moodCode="EVN">
+                                <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                            </encounter>
+                        </entryRelationship>
+                    </substanceAdministration>
+                </component>
+                <component contextControlCode="OP" typeCode="COMP">
+                    <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+                        <id extension="15000" root="2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+                        <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                        <text>3 tot 4 keer per dag 1 inhalatie</text>
+                        <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                            <low value="20190206000000"/>
+                        </effectiveTime>
+                        <routeCode code="62" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="INHALATIE"/>
+                        <consumable>
+                            <manufacturedProduct classCode="MANU">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                    <code code="73040" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="PRK" displayName="SALBUTAMOL INHALATIEPOEDER 100UG/DO PATR 200DO">
+                                        <translation code="99473" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="GPK" displayName="SALBUTAMOL INHALATIEPOEDER 100UG/DO"/>
+                                    </code>
+                                </manufacturedMaterial>
+                            </manufacturedProduct>
+                        </consumable>
+                        <author>
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                            <time value="20190206"/>
+                            <assignedAuthor>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+                                <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                <assignedPerson>
+                                    <name>
+                                        <family>Huisarts 1</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                    <addr use="WP">
+                                        <streetName>Valkendael 45</streetName>
+                                        <postalCode>6245 HK</postalCode>
+                                        <city>Maastricht</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedAuthor>
+                        </author>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+                                <code code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden medicatieafspraak"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nullFlavor="OTH" xsi:type="CE">
+                                    <originalText>Volgens afspraak</originalText>
+                                </value>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+                                <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="R95" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Emfyseem/COPD" xsi:type="CE"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <sequenceNumber value="1"/>
+                            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                                    <high nullFlavor="NI"/>
+                                </effectiveTime>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="nl:PIVL_TS">
+                                    <nl:frequency>
+                                        <nl:numerator xsi:type="nl:INT">
+                                            <nl:uncertainRange>
+                                                <nl:low value="3" xsi:type="nl:INT"/>
+                                                <nl:high value="4" xsi:type="nl:INT"/>
+                                            </nl:uncertainRange>
+                                        </nl:numerator>
+                                        <nl:denominator unit="d" value="1.0" xsi:type="nl:PQ"/>
+                                    </nl:frequency>
+                                </effectiveTime>
+                                <doseQuantity>
+                                    <center unit="1" value="1">
+                                        <translation code="36" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="inhalatie" value="1"/>
+                                        <translation code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="DOSIS" value="1"/>
+                                    </center>
+                                </doseQuantity>
+                                <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                            </substanceAdministration>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+                                <code code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Gebruikindicator"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" value="false" xsi:type="BL"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship inversionInd="true" typeCode="COMP">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                <id extension="OH-MBH-1551446587544-100008367" root="2.16.840.1.113883.2.4.6.6.90000258.1.100008367"/>
+                                <code code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" displayName="Identificatie van de medicamenteuze behandeling"/>
+                            </procedure>
+                        </entryRelationship>
+                        <entryRelationship typeCode="REFR">
+                            <encounter classCode="ENC" moodCode="EVN">
+                                <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                            </encounter>
+                        </entryRelationship>
+                    </substanceAdministration>
+                </component>
+                <component contextControlCode="OP" typeCode="COMP">
+                    <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+                        <id extension="15002" root="2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+                        <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                        <text>1 keer per dag 1 tablet</text>
+                        <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                            <low value="20190208000000"/>
+                            <high value="20190508235959"/>
+                        </effectiveTime>
+                        <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="ORAAL"/>
+                        <consumable>
+                            <manufacturedProduct classCode="MANU">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                    <code code="59021" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="PRK" displayName="DESLORATADINE TABLET 5MG">
+                                        <translation code="113026" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="GPK" displayName="DESLORATADINE TABLET 5MG"/>
+                                    </code>
+                                </manufacturedMaterial>
+                            </manufacturedProduct>
+                        </consumable>
+                        <author>
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                            <time value="20190208"/>
+                            <assignedAuthor>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+                                <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                <assignedPerson>
+                                    <name>
+                                        <family>Huisarts 1</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                    <addr use="WP">
+                                        <streetName>Valkendael 45</streetName>
+                                        <postalCode>6245 HK</postalCode>
+                                        <city>Maastricht</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedAuthor>
+                        </author>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+                                <code code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden medicatieafspraak"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nullFlavor="OTH" xsi:type="CE">
+                                    <originalText>Volgens afspraak</originalText>
+                                </value>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+                                <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="R97" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Hooikoorts/allergische rhinitis" xsi:type="CE"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <sequenceNumber value="1"/>
+                            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                                    <width unit="d" value="88"/>
+                                </effectiveTime>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="nl:PIVL_TS">
+                                    <nl:frequency>
+                                        <nl:numerator value="1" xsi:type="nl:INT"/>
+                                        <nl:denominator unit="d" value="1.0" xsi:type="nl:PQ"/>
+                                    </nl:frequency>
+                                </effectiveTime>
+                                <doseQuantity>
+                                    <center unit="1" value="1">
+                                        <translation code="100" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="tablet" value="1"/>
+                                        <translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="STUK" value="1"/>
+                                    </center>
+                                </doseQuantity>
+                                <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                            </substanceAdministration>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+                                <code code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Gebruikindicator"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" value="false" xsi:type="BL"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship inversionInd="true" typeCode="COMP">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                <id extension="OH-MBH-1551446587634-100008369" root="2.16.840.1.113883.2.4.6.6.90000258.1.100008369"/>
+                                <code code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" displayName="Identificatie van de medicamenteuze behandeling"/>
+                            </procedure>
+                        </entryRelationship>
+                        <entryRelationship typeCode="REFR">
+                            <encounter classCode="ENC" moodCode="EVN">
+                                <id extension="996627" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                            </encounter>
+                        </entryRelationship>
+                    </substanceAdministration>
+                </component>
+                <component contextControlCode="OP" typeCode="COMP">
+                    <substanceAdministration classCode="SBADM" moodCode="RQO">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+                        <id extension="15001" root="2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+                        <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                        <text>1 keer per dag 1 tablet</text>
+                        <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                            <low value="20190208000000"/>
+                            <high value="20190508235959"/>
+                        </effectiveTime>
+                        <routeCode code="9" codeSystem="2.16.840.1.113883.2.4.4.9" displayName="ORAAL"/>
+                        <consumable>
+                            <manufacturedProduct classCode="MANU">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                                    <code code="52191" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="PRK" displayName="CARBASALAATCALCIUM BRUISTABLET 100MG">
+                                        <translation code="106526" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="GPK" displayName="CARBASALAATCALCIUM BRUISTABLET 100MG"/>
+                                    </code>
+                                </manufacturedMaterial>
+                            </manufacturedProduct>
+                        </consumable>
+                        <author>
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                            <time value="20190208"/>
+                            <assignedAuthor>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9113"/>
+                                <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                <assignedPerson>
+                                    <name>
+                                        <family>Huisarts 1</family>
+                                    </name>
+                                </assignedPerson>
+                                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                    <addr use="WP">
+                                        <streetName>Valkendael 45</streetName>
+                                        <postalCode>6245 HK</postalCode>
+                                        <city>Maastricht</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedAuthor>
+                        </author>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+                                <code code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden medicatieafspraak"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" nullFlavor="OTH" xsi:type="CE">
+                                    <originalText>Volgens afspraak</originalText>
+                                </value>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+                                <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="K78" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Boezemfibrilleren/-fladderen" xsi:type="CE"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <sequenceNumber value="1"/>
+                            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
+                                    <width unit="d" value="88"/>
+                                </effectiveTime>
+                                <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="nl:PIVL_TS">
+                                    <nl:frequency>
+                                        <nl:numerator value="1" xsi:type="nl:INT"/>
+                                        <nl:denominator unit="d" value="1.0" xsi:type="nl:PQ"/>
+                                    </nl:frequency>
+                                </effectiveTime>
+                                <doseQuantity>
+                                    <center unit="1" value="1">
+                                        <translation code="100" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="tablet" value="1"/>
+                                        <translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="STUK" value="1"/>
+                                    </center>
+                                </doseQuantity>
+                                <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                            </substanceAdministration>
+                        </entryRelationship>
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+                                <code code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Gebruikindicator"/>
+                                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" value="false" xsi:type="BL"/>
+                            </observation>
+                        </entryRelationship>
+                        <entryRelationship inversionInd="true" typeCode="COMP">
+                            <procedure classCode="PROC" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                                <id extension="OH-MBH-1551446587591-100008368" root="2.16.840.1.113883.2.4.6.6.90000258.1.100008368"/>
+                                <code code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" displayName="Identificatie van de medicamenteuze behandeling"/>
+                            </procedure>
+                        </entryRelationship>
+                        <entryRelationship typeCode="REFR">
+                            <encounter classCode="ENC" moodCode="EVN">
+                                <id extension="996628" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                            </encounter>
+                        </entryRelationship>
+                    </substanceAdministration>
+                </component>
+            </organizer>
+        </subject>
+        <queryAck>
+            <queryId extension="2447439d-88e1-4063-bf51-663b02b4c298" root="2.16.840.1.113883.2.4.6.6.1.1.1"/>
+            <queryResponseCode code="OK"/>
+            <resultTotalQuantity value="1"/>
+            <resultCurrentQuantity value="1"/>
+            <resultRemainingQuantity value="0"/>
+        </queryAck>
+    </ControlActProcess>
+</QUMA_IN991203NL02>

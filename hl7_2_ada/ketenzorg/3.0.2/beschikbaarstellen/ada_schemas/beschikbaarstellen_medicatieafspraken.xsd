@@ -506,6 +506,16 @@
                      type="aanvullende_informatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_23283"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
+         <xs:element name="kopie_indicator-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23411"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="kopie_indicator"
+                     type="kopie_indicator_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_23411"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="toelichting-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22273"/>
@@ -970,7 +980,7 @@
          </xs:element>
          <xs:element name="huisnummer"
                      type="huisnummer_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19887"
-                     minOccurs="1"
+                     minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="huisnummerletter-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -1021,6 +1031,26 @@
          <xs:element name="woonplaats"
                      type="woonplaats_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19892"
                      minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="gemeente-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19893"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="gemeente"
+                     type="gemeente_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19893"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="land-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19894"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="land"
+                     type="land_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19894"
+                     minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="adres_soort-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -2684,7 +2714,7 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Huisnummer - 1..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Huisnummer - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="huisnummer_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19887">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19887"/>
@@ -2758,6 +2788,27 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19892"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Gemeente Municipality - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="gemeente_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19893">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19893"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Land Country - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="land_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_19894">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19894"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: AdresSoort - 0..1 C</xs:documentation>
@@ -3899,6 +3950,42 @@
       <xs:attribute name="codeSystemVersion" type="xs:string"/>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Kopie Indicator - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="kopie_indicator_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_3_23411">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23411"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>non-mandatory boolean</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="true">
+                  <xs:annotation>
+                     <xs:documentation>Yes</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="false">
+                  <xs:annotation>
+                     <xs:documentation>No</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="UNK">
+                  <xs:annotation>
+                     <xs:documentation>Unknown</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Toelichting - 0..1 R</xs:documentation>
