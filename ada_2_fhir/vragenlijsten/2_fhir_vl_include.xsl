@@ -13,14 +13,18 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:strip-space elements="*"/>
-    <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:import href="../fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
+    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <!-- parameter to determine whether to refer by resource/id -->
+    <!-- should be false when there is no FHIR server available to retrieve the resources -->
+    <xsl:param name="referById" as="xs:boolean" select="true()"/>
 
     <xsl:variable name="patients" as="element()*">
         <!-- Patients -->
