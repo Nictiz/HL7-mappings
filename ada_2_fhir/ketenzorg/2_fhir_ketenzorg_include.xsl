@@ -452,12 +452,104 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <status value="finished"/>
             <class>
                 <!-- TODO: Although this is required in FHIR, this information is not available in ADA. It could be mapped from ADA encounter.contact_type, but this mapping is not available. -->
+                <xsl:choose>
+                    <xsl:when test="contact_type[@code = '01'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">visite</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="FIELD" codeSystem="{$oidHL7ActCode}" displayName="Field"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '02'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">nacht/dienst visite</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="HH" codeSystem="{$oidHL7ActCode}" displayName="Home Health"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '03'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">consult</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="AMB" codeSystem="{$oidHL7ActCode}" displayName="Ambulatory"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '04'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">nacht/dienst consult</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="AMB" codeSystem="{$oidHL7ActCode}" displayName="Ambulatory"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '05'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">telefonisch contact</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="VR" codeSystem="{$oidHL7ActCode}" displayName="Virtual"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '06'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">nacht/dienst telefonisch consult</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="VR" codeSystem="{$oidHL7ActCode}" displayName="Virtual"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '08'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">postverwerking</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="NA" codeSystem="{$oidHL7NullFlavor}" displayName="Not applicable"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '09'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">overleg</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="NA" codeSystem="{$oidHL7NullFlavor}" displayName="Not applicable"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '11'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">notitie/memo</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" select="contact_type" as="element()"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = '12'][@codeSystem = $oidNHGTabel14Contactwijze]">
+                        <!--<name language="en-US">e-consult</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" as="element()">
+                                <contact_type code="VR" codeSystem="{$oidHL7ActCode}" displayName="Virtual"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = 'UNK'][@codeSystem = $oidHL7NullFlavor]">
+                        <!--<name language="en-US">Onbekend</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" select="contact_type" as="element()"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="contact_type[@code = 'OTH'][@codeSystem = $oidHL7NullFlavor]">
+                        <!--<name language="en-US">Anders</name>-->
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" select="contact_type" as="element()"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                </xsl:choose>
             </class>
             <xsl:if test="contact_type">
                 <type>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="contact_type"/>
-                    </xsl:call-template> 
+                    </xsl:call-template>
                 </type>
             </xsl:if>
             <xsl:if test="../bundle/subject">
@@ -466,7 +558,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </subject>
             </xsl:if>
             <xsl:if test="contact_reason/episode">
-                <!-- TODO: episodeOfCare can map to contact_reason/episode -->                
+                <!-- TODO: episodeOfCare can map to contact_reason/episode -->
             </xsl:if>
             <!-- TODO: There seems to be a mismatch here. The information model sees the details of the healthcare provider as a complete description, while FHIR wants a reference. Should we instantiate a set of healthcare provider resources from the description?? And what's the role or the health professional in the bundle? -->
             <xsl:for-each select="../bundle/author/health_professional">
@@ -716,7 +808,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="naamgegevens[.//(@value | @code)] | name_information[.//(@value | @code)]">
                     <xsl:call-template name="nl-core-humanname">
                         <xsl:with-param name="ada-naamgegevens" select="."/>
-                        <xsl:with-param name="unstructured-name" select="ongestructureerde_naam/@value"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- geslacht -->
@@ -1044,12 +1135,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="ada-naamgegevens"/>
-        <xd:param name="unstructured-name"/>
     </xd:doc>
     <xsl:template name="nl-core-humanname" as="element()*">
         <xsl:param name="ada-naamgegevens" as="element()*"/>
-        <xsl:param name="unstructured-name" as="xs:string?"/>
         <xsl:for-each select="$ada-naamgegevens[.//@value]">
+            <xsl:variable name="unstructured-name" select="ongestructureerde_naam/@value | unstructured_name/@value" as="xs:string?"/>
             <name>
                 <xsl:for-each select="naamgebruik[@code] | name_usage[@code]">
                     <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
