@@ -334,6 +334,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>naamgegevens</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="elmUnstructuredName">
+            <xsl:choose>
+                <xsl:when test="string-length($unstructurednameElement) gt 0"><xsl:value-of select="$unstructurednameElement"/></xsl:when>
+                <xsl:when test="$language = 'en-US'">unstructured_name</xsl:when>
+                <xsl:otherwise>ongestructureerde_naam</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:variable name="elmFirstNames">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">first_names</xsl:when>
@@ -397,115 +404,122 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <!-- See for the HL7 spec of name: http://www.hl7.nl/wiki/index.php/DatatypesR1:PN -->
         <xsl:for-each select="$in">
-            <xsl:choose>
-                <xsl:when test="*">
-                    <xsl:variable name="firstNames" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'BR' or not(@qualifier)], ' '))"/>
-                    <xsl:variable name="givenName" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'CL'], ' '))"/>
-                    <!-- in HL7 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
-                    <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier toevoegen van de officiële voornamen -->
-                    <xsl:variable name="initials">
-                        <xsl:for-each select="./hl7:given[tokenize(@qualifier, '\s') = 'IN']">
-                            <xsl:value-of select="./text()"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
-                            <xsl:for-each select="tokenize(normalize-space(.), '\s')">
-                                <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
+            <xsl:element name="{$elemNameInformation}">
+                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
+                <xsl:choose>
+                    <!-- Just @nullFlavor -->
+                    <xsl:when test="@nullFlavor">
+                        <xsl:copy-of select="@nullFlavor"/>
+                    </xsl:when>
+                    <xsl:when test="string-length(normalize-space(string-join(.//text(), ''))) = 0">
+                        <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                    </xsl:when>
+                    <!-- Structured name -->
+                    <xsl:when test="*">
+                        <xsl:variable name="firstNames" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'BR' or not(@qualifier)], ' '))"/>
+                        <xsl:variable name="givenName" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'CL'], ' '))"/>
+                        <!-- in HL7 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
+                        <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier toevoegen van de officiële voornamen -->
+                        <xsl:variable name="initials">
+                            <xsl:for-each select="./hl7:given[tokenize(@qualifier, '\s') = 'IN']">
+                                <xsl:value-of select="./text()"/>
                             </xsl:for-each>
-                        </xsl:for-each>
-                    </xsl:variable>
-                    <xsl:variable name="nameUsage">
-                        <xsl:choose>
-                            <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR'] and empty(hl7:family[tokenize(@qualifier, '\s') = 'SP'])">
-                                <xsl:element name="{$elemNameUsage}">
-                                    <xsl:attribute name="value">1</xsl:attribute>
-                                    <xsl:attribute name="code">NL1</xsl:attribute>
-                                    <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
-                                    <xsl:attribute name="displayName">Eigen geslachtsnaam</xsl:attribute>
-                                </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP'] and empty(hl7:family[not(tokenize(@qualifier, '\s') = 'SP')])">
-                                <xsl:element name="{$elemNameUsage}">
-                                    <xsl:attribute name="value">2</xsl:attribute>
-                                    <xsl:attribute name="code">NL2</xsl:attribute>
-                                    <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
-                                    <xsl:attribute name="displayName">Geslachtsnaam partner</xsl:attribute>
-                                </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP']/following-sibling::hl7:family[not(@qualifier) or tokenize(@qualifier, '\s') = 'BR']">
-                                <xsl:element name="{$elemNameUsage}">
-                                    <xsl:attribute name="value">3</xsl:attribute>
-                                    <xsl:attribute name="code">NL3</xsl:attribute>
-                                    <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
-                                    <xsl:attribute name="displayName">Geslachtsnaam partner gevolgd door eigen geslachtsnaam</xsl:attribute>
-                                </xsl:element>
-                            </xsl:when>
-                            <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR']/following-sibling::hl7:family[tokenize(@qualifier, '\s') = 'SP']">
-                                <xsl:element name="{$elemNameUsage}">
-                                    <xsl:attribute name="value">4</xsl:attribute>
-                                    <xsl:attribute name="code">NL4</xsl:attribute>
-                                    <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
-                                    <xsl:attribute name="displayName">Eigen geslachtsnaam gevolgd door geslachtsnaam partner</xsl:attribute>
-                                </xsl:element>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:element name="{$elemNameUsage}">
-                                    <xsl:attribute name="value">5</xsl:attribute>
-                                    <xsl:attribute name="code">UNK</xsl:attribute>
-                                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                                    <xsl:attribute name="displayName">Unknown</xsl:attribute>
-                                </xsl:element>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
-                    <xsl:variable name="last_name" select="normalize-space(string-join(hl7:family[tokenize(@qualifier, '\s') = 'BR' or not(@qualifier)], ''))"/>
-                    <xsl:variable name="last_name_prefix">
-                        <xsl:if test="hl7:prefix">
+                            <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
+                                <xsl:for-each select="tokenize(normalize-space(.), '\s')">
+                                    <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
+                                </xsl:for-each>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:variable name="nameUsage">
                             <xsl:choose>
-                                <!-- prefix of type VV and BR, don't look any further -->
-                                <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'BR']">
-                                    <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'BR'], ''))"/>
+                                <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR'] and empty(hl7:family[tokenize(@qualifier, '\s') = 'SP'])">
+                                    <xsl:element name="{$elemNameUsage}">
+                                        <xsl:attribute name="value">1</xsl:attribute>
+                                        <xsl:attribute name="code">NL1</xsl:attribute>
+                                        <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
+                                        <xsl:attribute name="displayName">Eigen geslachtsnaam</xsl:attribute>
+                                    </xsl:element>
                                 </xsl:when>
-                                <!-- prefix of type VV and no family with qualifier, assume BR for both -->
-                                <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)]">
-                                    <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)], ''))"/>
+                                <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP'] and empty(hl7:family[not(tokenize(@qualifier, '\s') = 'SP')])">
+                                    <xsl:element name="{$elemNameUsage}">
+                                        <xsl:attribute name="value">2</xsl:attribute>
+                                        <xsl:attribute name="code">NL2</xsl:attribute>
+                                        <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
+                                        <xsl:attribute name="displayName">Geslachtsnaam partner</xsl:attribute>
+                                    </xsl:element>
                                 </xsl:when>
-                                <!-- prefix of type VV and first following sibling family with qualifier BR, assume BR for both -->
-                                <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']]">
-                                    <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], ''))"/>
+                                <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP']/following-sibling::hl7:family[not(@qualifier) or tokenize(@qualifier, '\s') = 'BR']">
+                                    <xsl:element name="{$elemNameUsage}">
+                                        <xsl:attribute name="value">3</xsl:attribute>
+                                        <xsl:attribute name="code">NL3</xsl:attribute>
+                                        <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
+                                        <xsl:attribute name="displayName">Geslachtsnaam partner gevolgd door eigen geslachtsnaam</xsl:attribute>
+                                    </xsl:element>
                                 </xsl:when>
-                                <!-- prefix without qualifier and no family with qualifier, assume BR for both -->
-                                <xsl:when test="hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)]">
-                                    <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)], ''))"/>
+                                <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR']/following-sibling::hl7:family[tokenize(@qualifier, '\s') = 'SP']">
+                                    <xsl:element name="{$elemNameUsage}">
+                                        <xsl:attribute name="value">4</xsl:attribute>
+                                        <xsl:attribute name="code">NL4</xsl:attribute>
+                                        <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
+                                        <xsl:attribute name="displayName">Eigen geslachtsnaam gevolgd door geslachtsnaam partner</xsl:attribute>
+                                    </xsl:element>
                                 </xsl:when>
-                                <!-- prefix without qualifier and first following sibling family with qualifier BR, assume BR for both -->
-                                <xsl:when test="hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']]">
-                                    <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], ''))"/>
-                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:element name="{$elemNameUsage}">
+                                        <xsl:attribute name="value">5</xsl:attribute>
+                                        <xsl:attribute name="code">UNK</xsl:attribute>
+                                        <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
+                                        <xsl:attribute name="displayName">Unknown</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:otherwise>
                             </xsl:choose>
-                        </xsl:if>
-                    </xsl:variable>
-                    <xsl:variable name="last_name_partner" select="normalize-space(string-join(hl7:family[tokenize(@qualifier, '\s') = 'SP'], ''))"/>
-                    <xsl:variable name="last_name_partner_prefix">
-                        <xsl:if test="hl7:prefix">
-                            <xsl:choose>
-                                <!-- prefix of type VV and BR, don't look any further -->
-                                <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'SP']">
-                                    <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'SP'], ''))"/>
-                                </xsl:when>
-                                <!-- prefix of type VV and first following sibling family with qualifier SP, assume SP for both -->
-                                <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']]">
-                                    <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']], ''))"/>
-                                </xsl:when>
-                                <!-- prefix without qualifier and first following sibling family with qualifier SP, assume SP for both -->
-                                <xsl:when test="hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']]">
-                                    <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']], ''))"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:if>
-                    </xsl:variable>
-                    
-                    <xsl:element name="{$elemNameInformation}">
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
+                        </xsl:variable>
+                        <xsl:variable name="last_name" select="normalize-space(string-join(hl7:family[tokenize(@qualifier, '\s') = 'BR' or not(@qualifier)], ''))"/>
+                        <xsl:variable name="last_name_prefix">
+                            <xsl:if test="hl7:prefix">
+                                <xsl:choose>
+                                    <!-- prefix of type VV and BR, don't look any further -->
+                                    <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'BR']">
+                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'BR'], ''))"/>
+                                    </xsl:when>
+                                    <!-- prefix of type VV and no family with qualifier, assume BR for both -->
+                                    <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)]">
+                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)], ''))"/>
+                                    </xsl:when>
+                                    <!-- prefix of type VV and first following sibling family with qualifier BR, assume BR for both -->
+                                    <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']]">
+                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], ''))"/>
+                                    </xsl:when>
+                                    <!-- prefix without qualifier and no family with qualifier, assume BR for both -->
+                                    <xsl:when test="hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)]">
+                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)], ''))"/>
+                                    </xsl:when>
+                                    <!-- prefix without qualifier and first following sibling family with qualifier BR, assume BR for both -->
+                                    <xsl:when test="hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']]">
+                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], ''))"/>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:if>
+                        </xsl:variable>
+                        <xsl:variable name="last_name_partner" select="normalize-space(string-join(hl7:family[tokenize(@qualifier, '\s') = 'SP'], ''))"/>
+                        <xsl:variable name="last_name_partner_prefix">
+                            <xsl:if test="hl7:prefix">
+                                <xsl:choose>
+                                    <!-- prefix of type VV and BR, don't look any further -->
+                                    <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'SP']">
+                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'SP'], ''))"/>
+                                    </xsl:when>
+                                    <!-- prefix of type VV and first following sibling family with qualifier SP, assume SP for both -->
+                                    <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']]">
+                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']], ''))"/>
+                                    </xsl:when>
+                                    <!-- prefix without qualifier and first following sibling family with qualifier SP, assume SP for both -->
+                                    <xsl:when test="hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']]">
+                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']], ''))"/>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:if>
+                        </xsl:variable>
                         
                         <xsl:if test="string-length($firstNames) gt 0">
                             <xsl:element name="{$elmFirstNames}">
@@ -565,14 +579,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:element>
                             </xsl:element>
                         </xsl:if>
-                    </xsl:element>
-                </xsl:when>
-                <!-- No name parts.... do unstructured name only. Likely a name part is required, so fake the last_name -->
-                <xsl:when test="string-length($unstructurednameElement)">
-                    <xsl:element name="{$elemNameInformation}">
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
-                        
-                        <xsl:element name="{$unstructurednameElement}">
+                    </xsl:when>
+                    <!-- No name parts.... assume unstructured name element was added -->
+                    <xsl:otherwise>
+                        <xsl:element name="{$elmUnstructuredName}">
                             <xsl:attribute name="value" select="."/>
                             
                             <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $unstructurednameElement)))"/>
@@ -586,25 +596,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNameLastName)))"/>
                             </xsl:element>
                         </xsl:element>
-                    </xsl:element>
-                </xsl:when>
-                <!-- No name parts.... do last name only -->
-                <xsl:otherwise>
-                    <xsl:element name="{$elemNameInformation}">
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
-                        
-                        <xsl:element name="{$elmLastName}">
-                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName)))"/>
-                            
-                            <xsl:element name="{$elmLastNameLastName}">
-                                <xsl:attribute name="value" select="."/>
-                                
-                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNameLastName)))"/>
-                            </xsl:element>
-                        </xsl:element>
-                    </xsl:element>
-                </xsl:otherwise>
-            </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:element>
         </xsl:for-each>
     </xsl:template>
     
@@ -1456,7 +1450,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:if>
         <xsl:for-each select="$in">
-            <xsl:variable name="value" select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
+            <xsl:variable name="value" as="xs:string?">
+                <xsl:if test="@value">
+                    <xsl:value-of select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
+                </xsl:if>
+            </xsl:variable>
             
             <xsl:element name="{$elemName}">
                 <xsl:if test="string-length($datatype) gt 0">
@@ -1467,8 +1465,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:attribute>
                 </xsl:if>
-                <xsl:if test="@value">
-                    <xsl:attribute name="value" select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
+                <xsl:if test="string-length($value) gt 0">
+                    <xsl:attribute name="value" select="$value"/>
                 </xsl:if>
                 <xsl:copy-of select="@nullFlavor"/>
                 <xsl:if test="string-length($conceptId) gt 0">
