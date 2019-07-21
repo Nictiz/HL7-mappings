@@ -102,14 +102,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor)]">
                 <xsl:element name="{$element-name}">
-                    <system value="{local:getUri($in/@codeSystem)}"/>
-                    <code value="{$in/@code}"/>
-                    <xsl:if test="$in/@displayName">
-                        <display value="{$in/@displayName}"/>
-                    </xsl:if>
-                    <xsl:if test="exists($user-selected)">
-                        <userSelected value="{$user-selected}"/>
-                    </xsl:if>
+                    <xsl:call-template name="code-to-Coding">
+                        <xsl:with-param name="in" select="$in"/>
+                        <xsl:with-param name="user-selected" select="$user-selected"/>
+                    </xsl:call-template>
                 </xsl:element>
                 <!--<xsl:if test="$in/@displayName">
                     <text value="{$in/@displayName}"/>
@@ -117,11 +113,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- ADA heeft geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
                 <xsl:for-each select="$in/translation">
                     <xsl:element name="{$element-name}">
-                        <system value="{local:getUri(@codeSystem)}"/>
-                        <code value="{@code}"/>
-                        <xsl:if test="@displayName">
-                            <display value="{@displayName}"/>
-                        </xsl:if>
+                        <xsl:call-template name="code-to-Coding">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
                     </xsl:element>
                 </xsl:for-each>
             </xsl:when>
@@ -129,6 +123,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="$in[@originalText]">
             <text value="{$in/@originalText}"/>
         </xsl:if>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Transforms ada code element to FHIR Coding</xd:desc>
+        <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
+        <xd:param name="user-selected">Optionally provide a user selected boolean.</xd:param>
+    </xd:doc>
+    <xsl:template name="code-to-Coding" as="element()*">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="user-selected" as="xs:boolean?"/>
+        <xsl:choose>
+            <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor]">
+                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                    <valueCode value="{$in/@code}"/>
+                </extension>
+            </xsl:when>
+            <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor)]">
+                <system value="{local:getUri($in/@codeSystem)}"/>
+                <code value="{$in/@code}"/>
+                <xsl:if test="$in/@displayName">
+                    <display value="{$in/@displayName}"/>
+                </xsl:if>
+                <xsl:if test="exists($user-selected)">
+                    <userSelected value="{$user-selected}"/>
+                </xsl:if>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     <xd:doc>
         <xd:desc>Transforms ada 'hoeveelheid' element to FHIR Duration</xd:desc>
