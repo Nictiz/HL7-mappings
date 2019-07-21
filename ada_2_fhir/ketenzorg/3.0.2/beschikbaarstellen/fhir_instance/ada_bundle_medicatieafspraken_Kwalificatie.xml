@@ -1,0 +1,1166 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <type value="searchset"/>
+   <total value="7"/>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4.14996"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-01-29T00:00:00+01:00"/>
+                  <end value="2018-02-12T23:59:59+01:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008363"/>
+                  <value value="OH-MBH-1551446587306-100008363"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+               <value value="14996"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.43044"/>
+               <display value="PANTOPRAZOL TABLET MSR 40MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996624"/>
+               </identifier>
+               <display value="Contact ID: 996624 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
+            <authoredOn value="2018-01-29"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:bf3e1334-ab73-11e9-1551-020000000000"/>
+                        <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Volgens afspraak"/>
+            </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:bf3e1348-ab73-11e9-1551-020000000000"/>
+               <display value="Maagpijn"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 keer per dag 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="14"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="ORAAL"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="STUK"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4.14997"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2019-02-03T00:00:00+01:00"/>
+                  <end value="2019-02-07T23:59:59+01:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008364"/>
+                  <value value="OH-MBH-1551446587416-100008364"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+               <value value="14997"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.67903"/>
+               <display value="PARACETAMOL TABLET  500MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996625"/>
+               </identifier>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
+            <authoredOn value="2019-02-03"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:bf3e1334-ab73-11e9-1551-020000000000"/>
+                        <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Volgens afspraak"/>
+            </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:bf3e1379-ab73-11e9-1551-020000000000"/>
+               <display value="Emfyseem/COPD"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="6 keer per dag 1 tablet, Zo nodig"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="Zo nodig"/>
+                  </coding>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="4"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <period value="0.1667"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="ORAAL"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="STUK"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4.14998"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2019-02-03T00:00:00+01:00"/>
+                  <end value="2019-03-04T23:59:59+01:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008365"/>
+                  <value value="OH-MBH-1551446587464-100008365"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+               <value value="14998"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.45632"/>
+               <display value="FLUTICASON INHALATIEPOEDER 250UG/DO 60DO DISKUS"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996625"/>
+               </identifier>
+               <display value="Contact ID: 996625 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
+            <authoredOn value="2019-02-03"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:bf3e1334-ab73-11e9-1551-020000000000"/>
+                        <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Volgens afspraak"/>
+            </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:bf3e1379-ab73-11e9-1551-020000000000"/>
+               <display value="Emfyseem/COPD"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="2 keer per dag 1 inhalatie"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="29"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <period value="0.5"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="62"/>
+                     <display value="INHALATIE"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="DOSIS"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="208"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4.14999"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2019-02-06T00:00:00+01:00"/>
+                  <end value="2019-02-12T23:59:59+01:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008366"/>
+                  <value value="OH-MBH-1551446587502-100008366"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+               <value value="14999"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17809"/>
+               <display value="AMOXICILLINE/CLAVULAANZUUR TABLET 500/125MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996626"/>
+               </identifier>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
+            <authoredOn value="2019-02-06"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:bf3e1334-ab73-11e9-1551-020000000000"/>
+                        <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Volgens afspraak"/>
+            </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:bf3e1379-ab73-11e9-1551-020000000000"/>
+               <display value="Emfyseem/COPD"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="3 keer per dag 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="6"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <period value="0.3333"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="ORAAL"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="STUK"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4.15000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2019-02-06T00:00:00+01:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008367"/>
+                  <value value="OH-MBH-1551446587544-100008367"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+               <value value="15000"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.73040"/>
+               <display value="SALBUTAMOL INHALATIEPOEDER 100UG/DO PATR 200DO"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996626"/>
+               </identifier>
+               <display value="Contact ID: 996626 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
+            <authoredOn value="2019-02-06"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:bf3e1334-ab73-11e9-1551-020000000000"/>
+                        <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Volgens afspraak"/>
+            </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:bf3e1379-ab73-11e9-1551-020000000000"/>
+               <display value="Emfyseem/COPD"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="3 tot 4 keer per dag 1 inhalatie"/>
+               <timing>
+                  <repeat>
+                     <frequency value="3"/>
+                     <frequencyMax value="4"/>
+                     <period value="1.0"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="62"/>
+                     <display value="INHALATIE"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="DOSIS"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="208"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4.15002"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2019-02-08T00:00:00+01:00"/>
+                  <end value="2019-05-08T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008369"/>
+                  <value value="OH-MBH-1551446587634-100008369"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+               <value value="15002"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.59021"/>
+               <display value="DESLORATADINE TABLET 5MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996627"/>
+               </identifier>
+               <display value="Contact ID: 996627 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
+            <authoredOn value="2019-02-08"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:bf3e1334-ab73-11e9-1551-020000000000"/>
+                        <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Volgens afspraak"/>
+            </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:bf3e205f-ab73-11e9-1551-020000000000"/>
+               <display value="Hooikoorts/allergische rhinitis"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 keer per dag 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="88"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="ORAAL"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="STUK"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4.15001"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2019-02-08T00:00:00+01:00"/>
+                  <end value="2019-05-08T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.1.100008368"/>
+                  <value value="OH-MBH-1551446587591-100008368"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.4"/>
+               <value value="15001"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.52191"/>
+               <display value="CARBASALAATCALCIUM BRUISTABLET 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996628"/>
+               </identifier>
+               <display value="Contact ID: 996628 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
+            <authoredOn value="2019-02-08"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:bf3e1334-ab73-11e9-1551-020000000000"/>
+                        <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Huisarts 1 || Huisarts || Tést Zorginstelling 04"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Volgens afspraak"/>
+            </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:bf3e2090-ab73-11e9-1551-020000000000"/>
+               <display value="Boezemfibrilleren/-fladderen"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="1 keer per dag 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="88"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="ORAAL"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="STUK"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.43044"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="43044"/>
+                  <display value="PANTOPRAZOL TABLET MSR 40MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="96938"/>
+                  <display value="PANTOPRAZOL TABLET MSR 40MG"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.67903"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="67903"/>
+                  <display value="PARACETAMOL TABLET  500MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="2194"/>
+                  <display value="PARACETAMOL TABLET  500MG"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.45632"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="45632"/>
+                  <display value="FLUTICASON INHALATIEPOEDER 250UG/DO 60DO DISKUS"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="92495"/>
+                  <display value="FLUTICASON INHALATIEPOEDER 250UG/DO"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.17809"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="17809"/>
+                  <display value="AMOXICILLINE/CLAVULAANZUUR TABLET 500/125MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="43079"/>
+                  <display value="AMOXICILLINE/CLAVULAANZUUR TABLET 500/125MG"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.73040"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="73040"/>
+                  <display value="SALBUTAMOL INHALATIEPOEDER 100UG/DO PATR 200DO"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="99473"/>
+                  <display value="SALBUTAMOL INHALATIEPOEDER 100UG/DO"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.59021"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="59021"/>
+                  <display value="DESLORATADINE TABLET 5MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="113026"/>
+                  <display value="DESLORATADINE TABLET 5MG"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.52191"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="52191"/>
+                  <display value="CARBASALAATCALCIUM BRUISTABLET 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="106526"/>
+                  <display value="CARBASALAATCALCIUM BRUISTABLET 100MG"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="masked"/>
+               </extension>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX_Zegers">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Zegers"/>
+                  </extension>
+               </family>
+               <given value="E.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female"/>
+            <birthDate value="1964-08-02"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bf3e1334-ab73-11e9-1551-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.900013866"/>
+               <display value="5 Huisarts 1"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
+               <display value="Tést Zorginstelling 04"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.015"/>
+                  <display value="Huisarts"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.900013866"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="900013866"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="UNK"/>
+               </extension>
+               <family value="Huisarts 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Huisarts 1"/>
+                  </extension>
+               </family>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="90000381"/>
+            </identifier>
+            <name value="Tést Zorginstelling 04"/>
+            <address>
+               <use value="work"/>
+               <line value="Valkendael 45">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Valkendael 45"/>
+                  </extension>
+               </line>
+               <city value="Maastricht"/>
+               <postalCode value="6245 HK"/>
+               <country value="Nederland"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bf3e1348-ab73-11e9-1551-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <clinicalStatus value="active"/>
+            <code>
+               <coding>
+                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                  <code value="D02"/>
+                  <display value="Maagpijn"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bf3e1379-ab73-11e9-1551-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <clinicalStatus value="active"/>
+            <code>
+               <coding>
+                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                  <code value="R95"/>
+                  <display value="Emfyseem/COPD"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bf3e205f-ab73-11e9-1551-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <clinicalStatus value="active"/>
+            <code>
+               <coding>
+                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                  <code value="R97"/>
+                  <display value="Hooikoorts/allergische rhinitis"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bf3e2090-ab73-11e9-1551-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <clinicalStatus value="active"/>
+            <code>
+               <coding>
+                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                  <code value="K78"/>
+                  <display value="Boezemfibrilleren/-fladderen"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:bf3e024c-ab73-11e9-1551-020000000000"/>
+               <display value="E. XXX_Zegers"/>
+            </subject>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
