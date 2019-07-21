@@ -68,7 +68,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
                     <type value="searchset"/>
                     <total value="{count($bouwstenen-907)}"/>
-                    <xsl:copy-of select="$entries"/>
+                    <xsl:for-each select="$bouwstenen-907">
+                        <xsl:element name="{local-name(.)}" namespace="http://hl7.org/fhir">
+                            <xsl:copy-of select="@*"/>
+                            <xsl:copy-of select="f:extension"/>
+                            <xsl:copy-of select="f:modifierExtension"/>
+                            <xsl:copy-of select="f:link"/>
+                            <xsl:copy-of select="f:fullUrl"/>
+                            <xsl:copy-of select="f:resource"/>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                            <xsl:copy-of select="f:request"/>
+                            <xsl:copy-of select="f:response"/>
+                        </xsl:element>
+                    </xsl:for-each>
+                    <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
+                    <xsl:if test="$bouwstenen-907">
+                        <xsl:for-each select="$commonEntries">
+                            <xsl:element name="{local-name(.)}" namespace="http://hl7.org/fhir">
+                                <xsl:copy-of select="@*"/>
+                                <xsl:copy-of select="f:extension"/>
+                                <xsl:copy-of select="f:modifierExtension"/>
+                                <xsl:copy-of select="f:link"/>
+                                <xsl:copy-of select="f:fullUrl"/>
+                                <xsl:copy-of select="f:resource"/>
+                                <search>
+                                    <mode value="include"/>
+                                </search>
+                                <xsl:copy-of select="f:request"/>
+                                <xsl:copy-of select="f:response"/>
+                            </xsl:element>
+                        </xsl:for-each>
+                    </xsl:if>
                 </Bundle>
             </xsl:otherwise>
         </xsl:choose>
