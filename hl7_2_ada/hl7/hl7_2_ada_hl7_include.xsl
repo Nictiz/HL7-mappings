@@ -1274,13 +1274,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:if test="empty($in) and string-length($nullIfMissing) gt 0">
             <xsl:element name="{$elemName}">
-                <xsl:if test="string-length($conceptId) gt 0">
-                    <xsl:attribute name="conceptId" select="$conceptId"/>
-                </xsl:if>
                 <xsl:if test="string-length($datatype) gt 0">
                     <xsl:attribute name="datatype" select="$datatype"/>
                 </xsl:if>
                 <xsl:attribute name="nullFlavor" select="$nullIfMissing"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:if>
         <xsl:for-each select="$in">
@@ -1314,13 +1314,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:if test="empty($in) and string-length($nullIfMissing) gt 0">
             <xsl:element name="{$elemName}">
-                <xsl:if test="string-length($conceptId) gt 0">
-                    <xsl:attribute name="conceptId" select="$conceptId"/>
-                </xsl:if>
                 <xsl:if test="string-length($datatype) gt 0">
                     <xsl:attribute name="datatype" select="$datatype"/>
                 </xsl:if>
                 <xsl:attribute name="nullFlavor" select="$nullIfMissing"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:if>
         <xsl:for-each select="$in">
@@ -1332,6 +1332,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="value" select="@extension"/>
                 </xsl:if>
                 <xsl:copy-of select="@root"/>
+                <xsl:copy-of select="@nullFlavor"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
+            </xsl:element>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Returns an array of ADA elements based on an array of HL7v3 INT elements.</xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="elemName">Required. Name of the ADA element to produce</xd:param>
+        <xd:param name="datatype">Optional. If populated this is the value for the @datatype attribute on the output. No @datatype is created otherwise</xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor</xd:param>
+    </xd:doc>
+    <xsl:template name="handleINT">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="conceptId" as="xs:string?"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        <xsl:param name="datatype" as="xs:string?"/>
+        <xsl:param name="nullIfMissing" as="xs:string?"/>
+        
+        <xsl:if test="empty($in) and string-length($nullIfMissing) gt 0">
+            <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($datatype) gt 0">
+                    <xsl:attribute name="datatype" select="$datatype"/>
+                </xsl:if>
+                <xsl:attribute name="nullFlavor" select="$nullIfMissing"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
+            </xsl:element>
+        </xsl:if>
+        <xsl:for-each select="$in">
+            <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($datatype) gt 0">
+                    <xsl:attribute name="datatype" select="$datatype"/>
+                </xsl:if>
+                <xsl:copy-of select="@value"/>
                 <xsl:copy-of select="@nullFlavor"/>
                 <xsl:if test="string-length($conceptId) gt 0">
                     <xsl:attribute name="conceptId" select="$conceptId"/>
@@ -1357,13 +1397,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:if test="empty($in) and string-length($nullIfMissing) gt 0">
             <xsl:element name="{$elemName}">
-                <xsl:if test="string-length($conceptId) gt 0">
-                    <xsl:attribute name="conceptId" select="$conceptId"/>
-                </xsl:if>
                 <xsl:if test="string-length($datatype) gt 0">
                     <xsl:attribute name="datatype" select="$datatype"/>
                 </xsl:if>
                 <xsl:attribute name="nullFlavor" select="$nullIfMissing"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:if>
         <xsl:for-each select="$in">
@@ -1398,20 +1438,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:if test="empty($in) and string-length($nullIfMissing) gt 0">
             <xsl:element name="{$elemName}">
-                <xsl:if test="string-length($conceptId) gt 0">
-                    <xsl:attribute name="conceptId" select="$conceptId"/>
-                </xsl:if>
                 <xsl:if test="string-length($datatype) gt 0">
                     <xsl:attribute name="datatype" select="$datatype"/>
                 </xsl:if>
                 <xsl:attribute name="nullFlavor" select="$nullIfMissing"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:if>
         <xsl:for-each select="$in">
-            <xsl:if test="string-length($datatype) gt 0">
-                <xsl:attribute name="datatype" select="$datatype"/>
-            </xsl:if>
             <xsl:element name="{$elemName}">
+                <xsl:if test="string-length($datatype) gt 0">
+                    <xsl:attribute name="datatype" select="$datatype"/>
+                </xsl:if>
                 <xsl:if test="text()[not(normalize-space() = '')]">
                     <xsl:attribute name="value" select="."/>
                 </xsl:if>
@@ -1440,13 +1480,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:if test="empty($in) and string-length($nullIfMissing) gt 0">
             <xsl:element name="{$elemName}">
-                <xsl:if test="string-length($conceptId) gt 0">
-                    <xsl:attribute name="conceptId" select="$conceptId"/>
-                </xsl:if>
                 <xsl:if test="string-length($datatype) gt 0">
                     <xsl:attribute name="datatype" select="$datatype"/>
                 </xsl:if>
                 <xsl:attribute name="nullFlavor" select="$nullIfMissing"/>
+                <xsl:if test="string-length($conceptId) gt 0">
+                    <xsl:attribute name="conceptId" select="$conceptId"/>
+                </xsl:if>
             </xsl:element>
         </xsl:if>
         <xsl:for-each select="$in">
