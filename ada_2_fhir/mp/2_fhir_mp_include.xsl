@@ -692,7 +692,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="./../../patient" mode="doPatientReference"/>
                 </subject>
                 <!-- relaties_ketenzorg -->
-                <xsl:for-each select="relaties_ketenzorg/*[.//@value]">
+                <!-- We would love to tell you more about the encounter, but alas an id is all we have... based on R4 we will only support Encounter here. -->
+                <xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
+                    <context>
+                        <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
+                    </context>
+                </xsl:for-each>
+                <!--<xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
                     <context>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
@@ -701,7 +713,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </identifier>
                         <display value="Relatie naar {replace(./local-name(),'identificatie_', '')} met identificatie {./@value} in identificerend systeem {./@root}."/>
                     </context>
-                </xsl:for-each>
+                </xsl:for-each>-->
                 <!-- lichaamslengte -->
                 <xsl:for-each select="lichaamslengte[.//@value]">
                     <supportingInformation>
