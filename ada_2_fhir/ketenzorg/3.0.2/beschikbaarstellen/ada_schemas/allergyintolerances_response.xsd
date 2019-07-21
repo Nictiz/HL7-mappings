@@ -250,6 +250,16 @@
          <xs:documentation>Type for concept group: NameInformation</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="unstructured_name-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.62.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="unstructured_name"
+                     type="unstructured_name_type_1_2_3_4_5_12345_66_23_62_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="first_names-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.233"/>
@@ -1164,6 +1174,16 @@
          <xs:documentation>Type for concept group: NameInformation</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="unstructured_name-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.80.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="unstructured_name"
+                     type="unstructured_name_type_1_2_3_4_5_12345_66_23_80_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="first_names-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.317"/>
@@ -1750,6 +1770,16 @@
          <xs:documentation>Type for concept group: NameInformation</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="unstructured_name-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.502.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="unstructured_name"
+                     type="unstructured_name_type_1_2_3_4_5_12345_66_23_502_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="first_names-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.893"/>
@@ -2246,6 +2276,16 @@
          <xs:documentation>Type for concept group: NameInformation</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="unstructured_name-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.515.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="unstructured_name"
+                     type="unstructured_name_type_1_2_3_4_5_12345_66_23_515_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="first_names-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.819"/>
@@ -3042,6 +3082,16 @@
          <xs:documentation>Type for concept group: NameInformation</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="unstructured_name-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.525.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="unstructured_name"
+                     type="unstructured_name_type_1_2_3_4_5_12345_66_23_525_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="first_names-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.847"/>
@@ -3566,6 +3616,16 @@
          <xs:documentation>Type for concept group: NameInformation</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="unstructured_name-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.562.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="unstructured_name"
+                     type="unstructured_name_type_1_2_3_4_5_12345_66_23_562_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="first_names-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.665"/>
@@ -4516,6 +4576,14 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.61"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Ongestructureerde naam Unstructured name - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="unstructured_name_type_1_2_3_4_5_12345_66_23_62_1">
+      <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.62.1"/>
+      <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -6040,6 +6108,14 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
+      <xs:documentation>Type for concept item: Ongestructureerde naam Unstructured name - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="unstructured_name_type_1_2_3_4_5_12345_66_23_80_1">
+      <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.80.1"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
       <xs:documentation>Type for concept item: FirstNames - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="first_names_type_2_16_840_1_113883_2_4_3_11_60_66_23_317">
@@ -6431,6 +6507,14 @@
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="root" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Ongestructureerde naam Unstructured name - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="unstructured_name_type_1_2_3_4_5_12345_66_23_502_1">
+      <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.502.1"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: FirstNames - 0..1 R</xs:documentation>
@@ -6997,6 +7081,14 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.514"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Ongestructureerde naam Unstructured name - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="unstructured_name_type_1_2_3_4_5_12345_66_23_515_1">
+      <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.515.1"/>
+      <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -8363,6 +8455,14 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
+      <xs:documentation>Type for concept item: Ongestructureerde naam Unstructured name - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="unstructured_name_type_1_2_3_4_5_12345_66_23_525_1">
+      <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.525.1"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
       <xs:documentation>Type for concept item: FirstNames - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="first_names_type_2_16_840_1_113883_2_4_3_11_60_66_23_847">
@@ -9091,6 +9191,14 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.66.23.561"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="root" type="xs:string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Ongestructureerde naam Unstructured name - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="unstructured_name_type_1_2_3_4_5_12345_66_23_562_1">
+      <xs:attribute name="conceptId" fixed="1.2.3.4.5.12345.66.23.562.1"/>
+      <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
