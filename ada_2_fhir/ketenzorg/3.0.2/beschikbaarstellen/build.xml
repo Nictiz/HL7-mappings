@@ -105,7 +105,7 @@
             <echo/>
             <echo>ADA_2_FHIR ${xsl_contactverslagen}</echo>
             <xslt force="true" style="${xsl_contactverslagen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <!--<param name="allow-foreign" expression="true"/>-->
+                <!--<param name="dojournalentries" expression="SOEP"/>-->
                 <fileset refid="inputfilesContactverslagen"/>
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${xsl.saxon}"/>

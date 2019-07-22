@@ -12,20 +12,25 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <!-- import because we want to be able to override the param for macAddress for UUID generation -->
+    <xsl:import href="../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="referById" as="xs:boolean">
-        <xsl:choose>
-            <xsl:when test="$referByIdOverride">
-                <xsl:value-of select="$referByIdOverride"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:param>
-    <xsl:include href="../fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    
+    <xd:doc>
+        <xd:desc>
+            <xd:p>The "Richtlijn Online inzage in het H-EPD door patiënt" that underlies this mapping, suggests not to send S-O journal entries.</xd:p>
+            <xd:p>This mapping is designed to handle all journal entries by default based on value 'SOEP', as they occur in the source data. To filter something, leave out letters, e.g. send in 'EP' to comply with the Richtlijn.</xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:param name="dojournalentries" as="xs:string" select="'SOEP'"/>
+    <xsl:variable name="doJournalEntries" as="xs:string*" select="for $s in string-to-codepoints(upper-case($dojournalentries)) return codepoints-to-string($s)"/>
+    
     <xsl:variable name="patient-ada" select="/adaxml/data/*/bundle/subject/patient"/>
     
     <xsl:variable name="patients" as="element()*">
@@ -189,7 +194,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                         </xsl:with-param>
                         <xsl:with-param name="gp-JournalEntries" as="element()*">
-                            <xsl:for-each select="journal_entry">
+                            <!--<xsl:message><xsl:text>Parameter doJournalEntries: </xsl:text><xsl:value-of select="$doJournalEntries"/></xsl:message>-->
+                            <xsl:for-each select="journal_entry[type/@code=$doJournalEntries]">
                                 <xsl:copy-of select="nf:getPreparedResource('observation', nf:getGroupingKeyDefault(.))"/>
                             </xsl:for-each>
                         </xsl:with-param>

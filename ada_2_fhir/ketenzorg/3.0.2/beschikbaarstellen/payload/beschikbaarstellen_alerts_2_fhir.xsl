@@ -13,6 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
+    <xsl:import href="../../../2_fhir_ketenzorg_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -27,16 +29,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:include href="../../../2_fhir_ketenzorg_include.xsl"/>
-    <!-- parameter to determine whether to refer bij resource/id -->
+    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
+    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
+    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
-    <xsl:param name="referByIdOverride" as="xs:boolean" select="false()"/>
+    <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xsl:variable name="usecase">alerts</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients//f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
     </xsl:variable>
-
+    
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen alerts".</xd:desc>
     </xd:doc>
@@ -44,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="BundleOfAlerts"/>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Build a FHIR Bundle of type searchset or in case of $referByIdOverride = true(), build individual files.</xd:desc>
+        <xd:desc>Build a FHIR Bundle of type searchset or in case of $referById = true(), build individual files.</xd:desc>
     </xd:doc>
     <xsl:template name="BundleOfAlerts">
         <xsl:variable name="entries" as="element(f:entry)*">
@@ -54,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test="$referByIdOverride = true()">
+            <xsl:when test="$referById= true()">
                 <xsl:apply-templates select="$entries//f:resource/*" mode="doResourceInResultdoc"/>
             </xsl:when>
             <xsl:otherwise>
