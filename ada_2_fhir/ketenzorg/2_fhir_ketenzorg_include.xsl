@@ -1554,6 +1554,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$labresult-id}"/>
                 </xsl:if>
                 <meta>
+                    <xsl:if test="test_code[@codeSystem = $oidNHGTabel45DiagnBepal]">
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-LaboratoryResult"/>
+                    </xsl:if>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
                 </meta>
                 <!--NL-CM:0.0.6   Identificatienummer-->
