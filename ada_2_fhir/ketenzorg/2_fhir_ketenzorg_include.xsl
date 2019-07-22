@@ -325,6 +325,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doOrganizationReference"/>
                     </managingOrganization>
                 </xsl:for-each>
+                <xsl:if test="start_date | end_date">
+                    <period>
+                        <xsl:if test="start_date[@value]">
+                            <start value="{start_date/@value}"/>
+                        </xsl:if>
+                        <xsl:if test="end_date[@value]">
+                            <end value="{end_date/@value}"/>
+                        </xsl:if>
+                    </period>
+                </xsl:if>
                 <xsl:for-each select="$author/health_professional">
                     <careManager>
                         <xsl:apply-templates select="." mode="doPractitionerReference"/>
