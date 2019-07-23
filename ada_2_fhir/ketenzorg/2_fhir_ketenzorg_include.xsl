@@ -467,7 +467,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- From HCIM Encounter: "This only includes *past* contacts". Status is thus assumed to be "finished" -->
             <status value="finished"/>
             <class>
-                <!-- TODO: Although this is required in FHIR, this information is not available in ADA. It could be mapped from ADA encounter.contact_type, but this mapping is not available. -->
+                <!--https://bits.nictiz.nl/browse/ZIB-938-->
+                <!-- TODO: Although this is required in the FHIR profile, this information is not available in ADA. It could be mapped from ADA encounter.contact_type, but this mapping is not available. -->
                 <xsl:choose>
                     <xsl:when test="contact_type[@code = '01'][@codeSystem = $oidNHGTabel14Contactwijze]">
                         <!--<name language="en-US">visite</name>-->
