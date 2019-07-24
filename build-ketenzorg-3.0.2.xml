@@ -6,6 +6,12 @@
     <property name="project.uri" value="https://decor.nictiz.nl/pub/ketenzorg/kz-html-20190110T164948/index.html"/>
     <property name="build.dir" value="${project.title}"/>
     <property name="build.dir.pub" value="publicaties"/>
+    
+    <ant antfile="hl7_2_ada/ketenzorg/3.0.2/build.xml" inheritall="false" target="setup"/>
+    <ant antfile="hl7_2_ada/ketenzorg/3.0.2/build.xml" inheritall="false" target="convert_hl7v3_2_ada"/>
+    <ant antfile="ada_2_fhir/ketenzorg/3.0.2/build.xml" inheritall="false" target="setup"/>
+    <ant antfile="ada_2_fhir/ketenzorg/3.0.2/build.xml" inheritall="false" target="convert_ada_2_fhir"/>
+    
     <target name="ketenzorg-3.0.2" description="Create a zip containing all resources relevant for ${project.title}">
         <delete dir="${build.dir}"/>
         
