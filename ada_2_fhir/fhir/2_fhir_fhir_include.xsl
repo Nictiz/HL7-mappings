@@ -462,31 +462,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Returns a UUID with urn:uuid: preconcatenated</xd:desc>
         <xd:param name="in">xml element to be used to generate uuid</xd:param>
     </xd:doc>
-    <xsl:function name="nf:get-fhir-uuid" as="xs:string*">
-        <xsl:param name="in" as="element()?"/>
-        <xsl:if test="$in">
-            <xsl:value-of select="concat('urn:uuid:', uuid:get-uuid($in))"/>
-        </xsl:if>
+    <xsl:function name="nf:get-fhir-uuid" as="xs:string">
+        <xsl:param name="in" as="element()"/>
+        <xsl:value-of select="concat('urn:uuid:', uuid:get-uuid($in))"/>
+    </xsl:function>
+    <xd:doc>
+        <xd:desc>Returns a UUID</xd:desc>
+        <xd:param name="in">xml element to be used to generate uuid</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-uuid" as="xs:string">
+        <xsl:param name="in" as="element()"/>
+        <xsl:value-of select="uuid:get-uuid($in)"/>
     </xsl:function>
     <xd:doc>
         <xd:desc>If possible generates an uri based on oid or uuid from input. If not possible generates an uri based on gerenated uuid making use of input element</xd:desc>
         <xd:param name="ada-identificatie">input element for which uri is needed</xd:param>
     </xd:doc>
-    <xsl:function name="nf:getUriFromAdaId" as="xs:string?">
-        <xsl:param name="ada-identificatie" as="element()?"/>
+    <xsl:function name="nf:getUriFromAdaId" as="xs:string">
+        <xsl:param name="ada-identificatie" as="element()"/>
+        
         <xsl:choose>
-            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
-                <!-- No leading zeroes -->
-                <xsl:value-of select="concat('urn:oid:', $ada-identificatie/string-join((@root, replace(@value, '^0+', '')), '.'))"/>
+            <!-- root = oid and extension = numeric -->
+            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][matches(@extension, '^\d+$')]">
+                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][matches(@extension, '^\d+$')][1]"/>
+                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@extension, '^0+', '')[not(. = '')]),'.'))"/>
             </xsl:when>
+            <!-- root = oid and no extension -->
+            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][not(@extension)]">
+                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][not(@extension)][1]"/>
+                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@extension, '^0+', '')[not(. = '')]),'.'))"/>
+            </xsl:when>
+            <!-- root = 'not important' and extension = uuid -->
             <xsl:when test="$ada-identificatie[matches(@extension, $UUIDpattern)]">
-                <xsl:value-of select="concat('urn:uuid:', $ada-identificatie/@value)"/>
+                <xsl:variable name="ii" select="$ada-identificatie[matches(@extension, $UUIDpattern)][1]"/>
+                <xsl:value-of select="concat('urn:uuid:', $ii/@extension)"/>
             </xsl:when>
+            <!-- root = uuid and extension = 'not important' -->
             <xsl:when test="$ada-identificatie[matches(@root, $UUIDpattern)]">
-                <xsl:value-of select="concat('urn:uuid:', $ada-identificatie/@root)"/>
+                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $UUIDpattern)][1]"/>
+                <xsl:value-of select="concat('urn:uuid:', $ii/@root)"/>
             </xsl:when>
+            <!-- give up and do new uuid -->
             <xsl:otherwise>
-                <xsl:value-of select="nf:get-fhir-uuid($ada-identificatie)"/>
+                <xsl:value-of select="nf:get-fhir-uuid($ada-identificatie[1])"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
