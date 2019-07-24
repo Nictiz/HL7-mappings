@@ -21,3 +21,6 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
+===Release Notes===
+2019-07-25
+* Fixed empty fullUrl for Encounter (Contactmomenten).
