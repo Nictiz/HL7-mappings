@@ -20,6 +20,15 @@
     <target name="convert_ada_2_fhir">
         <property name="xsl.saxon" value="/Users/ahenket/Development/lib/SaxonPE9-7-0-20J/saxon9pe.jar"/>
         
+        <property name="hl7v3_2_ada.dir" value="${build.dir}/../../../../hl7_2_ada/ketenzorg/3.0.2/beschikbaarstellen"/>
+        <echo>Copying ADA result files from ${hl7v3_2_ada.dir}</echo>
+        <copy todir="${build.dir}/ada_instance" failonerror="true">
+            <fileset dir="${hl7v3_2_ada.dir}/ada_instance">
+                <include name="**"/>
+                <exclude name="*bundle*"/>
+            </fileset>
+        </copy>
+        
         <property name="xsl_allergyintolerance" value="${build.dir}/payload/beschikbaarstellen_allergieintoleranties_2_fhir.xsl"/>
         <property name="xsl_episodes" value="${build.dir}/payload/beschikbaarstellen_episodes_2_fhir.xsl"/>
         <property name="xsl_contactverslagen" value="${build.dir}/payload/beschikbaarstellen_contactverslagen_2_fhir.xsl"/>
@@ -36,14 +45,14 @@
         <delete dir="${xsl.output}"/>
         
         <sequential>
-            <fileset id="inputfilesAllergieIntoleranties" dir="${xsl.input}" includes="ada_bundle_allergieintoleranties*.xml"/>
-            <fileset id="inputfilesEpisodes" dir="${xsl.input}" includes="ada_bundle_episodes*.xml"/>
-            <fileset id="inputfilesContactverslagen" dir="${xsl.input}" includes="ada_bundle_contactverslag*.xml"/>
-            <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="ada_bundle_labbepalingen*.xml"/>
-            <fileset id="inputfilesAlgemeneBepalingen" dir="${xsl.input}" includes="ada_bundle_algemene_bepalingen*.xml"/>
-            <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="ada_bundle_alerts*.xml"/>
-            <fileset id="inputfilesEncounters" dir="${xsl.input}" includes="ada_bundle_contactmomenten*.xml"/>
-            <fileset id="inputfilesMedicationAgreements" dir="${xsl.input}" includes="ada_bundle_medicatieafspraken*.xml"/>
+            <fileset id="inputfilesAllergieIntoleranties" dir="${xsl.input}" includes="*allergieintoleranties*.xml"/>
+            <fileset id="inputfilesEpisodes" dir="${xsl.input}" includes="*episodes*.xml"/>
+            <fileset id="inputfilesContactverslagen" dir="${xsl.input}" includes="*contactverslag*.xml"/>
+            <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="*labbepalingen*.xml"/>
+            <fileset id="inputfilesAlgemeneBepalingen" dir="${xsl.input}" includes="*algemene_bepalingen*.xml"/>
+            <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="*alerts*.xml"/>
+            <fileset id="inputfilesEncounters" dir="${xsl.input}" includes="*contactmomenten*.xml"/>
+            <fileset id="inputfilesMedicationAgreements" dir="${xsl.input}" includes="*medicatieafspraken*.xml"/>
             
             <echo/>
             <echo>${echo.label} ${xsl_allergyintolerance}</echo>

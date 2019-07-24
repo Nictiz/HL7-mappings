@@ -36,14 +36,14 @@
         <delete dir="${xsl.output}"/>
         
         <sequential>
-            <fileset id="inputfilesAllergieIntoleranties" dir="${xsl.input}" includes="hl7v3_allergieintoleranties*.xml"/>
-            <fileset id="inputfilesEpisodes" dir="${xsl.input}" includes="hl7v3_episodes*.xml"/>
-            <fileset id="inputfilesContactverslagen" dir="${xsl.input}" includes="hl7v3_contactverslag*.xml"/>
-            <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="hl7v3_labbepalingen*.xml"/>
-            <fileset id="inputfilesAlgemeneBepalingen" dir="${xsl.input}" includes="hl7v3_algemene_bepalingen*.xml"/>
-            <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="hl7v3_alerts*.xml"/>
-            <fileset id="inputfilesEncounters" dir="${xsl.input}" includes="hl7v3_contactmomenten*.xml"/>
-            <fileset id="inputfilesMedicationAgreements" dir="${xsl.input}" includes="hl7v3_medicatieafspraken*.xml"/>
+            <fileset id="inputfilesAllergieIntoleranties" dir="${xsl.input}" includes="*allergieintoleranties*.xml"/>
+            <fileset id="inputfilesEpisodes" dir="${xsl.input}" includes="*episodes*.xml"/>
+            <fileset id="inputfilesContactverslagen" dir="${xsl.input}" includes="*contactverslag*.xml"/>
+            <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="*labbepalingen*.xml"/>
+            <fileset id="inputfilesAlgemeneBepalingen" dir="${xsl.input}" includes="*algemene_bepalingen*.xml"/>
+            <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="*alerts*.xml"/>
+            <fileset id="inputfilesEncounters" dir="${xsl.input}" includes="*contactmomenten*.xml"/>
+            <fileset id="inputfilesMedicationAgreements" dir="${xsl.input}" includes="*medicatieafspraken*.xml"/>
             
             <echo/>
             <echo>${echo.label} ${xsl_allergyintolerance}</echo>
