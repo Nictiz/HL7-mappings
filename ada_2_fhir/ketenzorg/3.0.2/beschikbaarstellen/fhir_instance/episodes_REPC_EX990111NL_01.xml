@@ -1,0 +1,115 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:ddb896d0-ae0d-11e9-7271-28f10e481d92"/>
+      <resource>
+         <EpisodeOfCare>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title">
+               <valueString value="COPD"/>
+            </extension>
+            <status value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="64572001"/>
+                  <display value="Condition"/>
+               </coding>
+            </type>
+            <diagnosis>
+               <condition>
+                  <reference value="urn:uuid:ddb896cf-ae0d-11e9-7271-28f10e481d92"/>
+                  <display value="R95 Emfyseem/COPD"/>
+               </condition>
+            </diagnosis>
+            <patient>
+               <reference value="urn:uuid:ddb896c6-ae0d-11e9-7271-28f10e481d92"/>
+               <display value="Joris J. Hansman"/>
+            </patient>
+            <managingOrganization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.2234567"/>
+               <display value="Bester"/>
+            </managingOrganization>
+            <period>
+               <start value="2015-08-10"/>
+            </period>
+         </EpisodeOfCare>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:ddb896c6-ae0d-11e9-7271-28f10e481d92"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="masked"/>
+               </extension>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="UNK"/>
+               </extension>
+               <family value="Hansman">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Hansman"/>
+                  </extension>
+               </family>
+               <given value="Joris">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="J.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.2234567"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="02234567"/>
+            </identifier>
+            <name value="Bester"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
