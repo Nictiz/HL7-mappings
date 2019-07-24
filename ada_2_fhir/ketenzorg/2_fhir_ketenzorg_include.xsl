@@ -209,7 +209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Contactmomenten -->
         <xsl:for-each select="//*[bundle]/encounter">
             <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId(identifier)}"/>
+                <fullUrl value="{nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])}"/>
                 <resource>
                     <xsl:call-template name="gp-Encounter"/>
                 </resource>
