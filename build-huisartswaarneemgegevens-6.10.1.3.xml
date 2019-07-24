@@ -1,0 +1,64 @@
+<!-- ant -buildfile build-ketenzorg-3.0.2.xml -->
+<project default="huisartswaarneemgegevens-6.10.1.3" name="ADA">
+    <property name="project.title" value="Huisartswaarneemgegevens 6.10.1.3 HL7v3 to HL7v3 to FHIR"/>
+    <property name="project.app" value="huisartswaarneemgegevens-6.10.1.3-hl7v3_2_fhir"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.uri" value="https://decor.nictiz.nl/pub/ketenzorg/kz-html-20190110T164948/index.html"/>
+    <property name="build.dir" value="${project.title}"/>
+    <property name="build.dir.pub" value="publicaties"/>
+    
+    <ant antfile="hl7_2_fhir/huisartswaarneemgegevens/6.10.1.3/build.xml" inheritall="false" target="convert_hl7v3_2_fhir"/>
+    
+    <target name="huisartswaarneemgegevens-6.10.1.3" description="Create a zip containing all resources relevant for ${project.title}">
+        <delete dir="${build.dir}"/>
+        
+        <!-- run the ant timestamp task -->
+        <tstamp>
+            <format property="TODAY_DD-MM-YYYY" pattern="dd-MM-yyyy" locale="nl,NL"/>
+            <format property="TODAY_YYYYMMDD" pattern="yyyyMMdd" locale="nl,NL"/>
+        </tstamp>
+        
+        <loadfile property="readme1" srcfile="hl7_2_fhir/huisartswaarneemgegevens/6.10.1.3/professionele_samenvatting/README.txt"/>
+        <echo file="${build.dir}/README.txt" append="false">${project.title} version ${project.version} date ${TODAY_DD-MM-YYYY}
+
+${readme1}</echo>
+        
+        <!-- Copy util dir with all contents -->
+        <copy todir="${build.dir}/util">
+            <fileset dir="util">
+                <include name="**"/>
+                <exclude name="**/setup.bash"/>
+                <exclude name="**/build.xml"/>
+            </fileset>
+        </copy>
+        
+        <!-- Copy ada_2_fhir/fhir dir with all contents, except any *.bash, build.xml or .DS_Store (macOS specific) file -->
+        <copy todir="${build.dir}/ada_2_fhir/fhir">
+            <fileset dir="ada_2_fhir/fhir">
+                <include name="**"/>
+                <exclude name="**/*.bash"/>
+                <exclude name="**/build.xml"/>
+                <exclude name="**/.DS_Store"/>
+            </fileset>
+        </copy>
+        
+        <!-- Copy hl7v3_2_fhir/huisartswaarneemgegevens dir the files that live there and the 6.10.1.3 directory, except any *.bash, build.xml or .DS_Store (macOS specific) file -->
+        <copy todir="${build.dir}/hl7_2_fhir/huisartswaarneemgegevens">
+            <fileset dir="hl7_2_fhir/huisartswaarneemgegevens">
+                <include name="*.xsl"/>
+                <include name="*.md"/>
+                <include name="*.txt"/>
+                <include name="6.10.1.3/**"/>
+                <exclude name="**/*.bash"/>
+                <exclude name="**/build.xml"/>
+                <exclude name="**/.DS_Store"/>
+            </fileset>
+        </copy>
+        
+        <!-- zip the temp dir -->
+        <zip basedir="${build.dir}" destfile="${build.dir.pub}/${project.app}-${project.version}-${TODAY_YYYYMMDD}.zip"/>
+        
+        <!-- Delete the temp dir -->
+        <delete dir="${build.dir}"/>
+    </target>
+</project>

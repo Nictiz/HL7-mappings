@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="convert_hl7v3_2_fhir" name="hl7v3_2_fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property name="echo.label.in" value="HL7v3"/>
+    <property name="echo.label.out" value="FHIR"/>
+    <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
+
+    <property name="project.title" value="${echo.label} for Huisartswaarneemgegevens"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.prefix" value="huisartswaarneemgegevens_6.10.1.3"/>
+    <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for Ketenzorg building blocks to valid ${echo.label.out} instances"/>
+    <property name="project.author" value="Nictiz"/>
+    <property name="project.website" value="http://www.nictiz.nl/"/>
+    <property name="project.status" value="beta"/>
+    <property name="project.license" value="GNU-LGPL"/>
+    <property name="project.copyright" value="true"/>
+    
+    <property name="build.dir" value="professionele_samenvatting"/>
+    <!--<property name="project.source.dir" value="${build.dir}/../../../../../projects/ketenzorg3.0"/>-->
+    
+    <target name="convert_hl7v3_2_fhir">
+        <property name="xsl.saxon" value="/Users/ahenket/Development/lib/SaxonPE9-7-0-20J/saxon9pe.jar"/>
+        
+        <property name="xsl_ps" value="${build.dir}/payload/QUPC_IN990002NL-2-BundleGeneralPractitioner.xsl"/>
+        
+        <property name="xsl.input" value="${build.dir}/hl7v3_instance"/>
+        <property name="xsl.output" value="${build.dir}/fhir_instance"/>
+        
+        <echo>Deleting previous results, if any</echo>
+        <delete dir="${xsl.output}"/>
+        
+        <sequential>
+            <fileset id="inputfilesPS" dir="${xsl.input}" includes="*QUPC_??990002NL*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_ps}</echo>
+            <xslt force="true" style="${xsl_ps}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="inputfilesPS"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+    </target>
+    
+    <target name="setup" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project">
+        <mkdir dir="${build.dir}"/>
+        
+        <mkdir dir="${build.dir}/hl7v3_instance"/>
+        <mkdir dir="${build.dir}/fhir_instance"/>
+        <mkdir dir="${build.dir}/payload"/>
+    </target>
+</project>
