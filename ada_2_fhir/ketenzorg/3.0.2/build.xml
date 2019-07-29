@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="convert_ada_2_fhir" name="ada_2_fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+<project basedir="." default="convert_ada_2_fhir" name="ada_2_fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <ant antfile="../../../tools/include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <property name="xsl.saxon" value="${saxon.path}"/>
+    <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
+    
     <property name="echo.label.in" value="ADA"/>
     <property name="echo.label.out" value="FHIR"/>
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
@@ -59,7 +63,7 @@
             <xslt force="true" style="${xsl_allergyintolerance}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesAllergieIntoleranties"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
@@ -68,7 +72,7 @@
             <xslt force="true" style="${xsl_episodes}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesEpisodes"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
@@ -77,7 +81,7 @@
             <xslt force="true" style="${xsl_contactverslagen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="dojournalentries" expression="SOEP"/>-->
                 <fileset refid="inputfilesContactverslagen"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
@@ -85,7 +89,7 @@
             <echo>${echo.label} ${xsl_labbepalingen}</echo>
             <xslt force="true" style="${xsl_labbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesLabBepalingen"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
@@ -94,7 +98,7 @@
             <xslt force="true" style="${xsl_algemene_bepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesAlgemeneBepalingen"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
@@ -103,7 +107,7 @@
             <xslt force="true" style="${xsl_alerts}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesAlerts"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
@@ -112,7 +116,7 @@
             <xslt force="true" style="${xsl_encounters}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesEncounters"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
@@ -121,7 +125,7 @@
             <xslt force="true" style="${xsl_medicationagreements}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesMedicationAgreements"/>
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
