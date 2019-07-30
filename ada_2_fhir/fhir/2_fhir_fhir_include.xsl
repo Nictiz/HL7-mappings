@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Returns an array of FHIR elements based on an array of ADA that a @datatype attribute to determine the type with. 
             <xd:p>After the type is determined, the element is handed off for further processing. Failure to determine type is a fatal error.</xd:p>
             <xd:p>Supported values for @datatype are ADA/DECOR datatypes boolean, code, identifier, quantity, string, text, blob, date, datetime</xd:p>
-            <xd:p>FIXME: ordinal support</xd:p>
+            <xd:p>FIXME: ‘ordinal’, ‘ratio' support</xd:p>
         </xd:desc>
         <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
         <xd:param name="elemName">Required. Base name of the FHIR element to produce. Gets postfixed with datatype, e.g. valueBoolean</xd:param>
@@ -57,7 +57,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:element>
                 </xsl:when>
-                <xsl:when test="$theDatatype = 'quantity' or @unit">
+                <!-- Observation//value does not do valueDecimal, hence quantity without unit -->
+                <xsl:when test="$theDatatype = ('quantity', 'duration', 'currency', 'decimal') or @unit">
                     <xsl:element name="{concat($elemName, 'Quantity')}" namespace="http://hl7.org/fhir">
                         <xsl:call-template name="hoeveelheid-to-Quantity">
                             <xsl:with-param name="in" select="."/>
@@ -368,12 +369,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <value value="{$in/@value}"/>
                 <xsl:for-each select="$in[@unit]">
-                    <xsl:for-each select="./@unit">
-                        <!-- UCUM -->
-                        <unit value="{.}"/>
-                        <system value="{local:getUri($oidUCUM)}"/>
-                    </xsl:for-each>
-                    <code value="{nf:convert_ADA_unit2UCUM_FHIR($in/@unit)}"/>
+                    <!-- UCUM -->
+                    <unit value="{./@unit}"/>
+                    <xsl:choose>
+                        <xsl:when test="$in[@datatype = 'currency']">
+                            <system value="urn:iso:std:iso:4217"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <system value="{local:getUri($oidUCUM)}"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <code value="{nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
                 </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
