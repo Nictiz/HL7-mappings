@@ -1,11 +1,11 @@
 <!-- ant -buildfile build-ketenzorg-3.0.2.xml -->
-<project basedir=".." default="ketenzorg-3.0.2" name="ADA">
+<project basedir="../.." default="ketenzorg-3.0.2" name="ADA">
     <property name="project.title" value="Ketenzorg 3.0.2 HL7v3 to ADA to FHIR"/>
     <property name="project.app" value="ketenzorg-3.0.2-hl7v3_2_fhir"/>
     <property name="project.version" value="1.0.0"/>
     <property name="project.uri" value="https://decor.nictiz.nl/pub/ketenzorg/kz-html-20190110T164948/index.html"/>
     <property name="build.dir" value="${project.title}"/>
-    <property name="build.dir.pub" value="publicaties"/>
+    <property name="build.dir.pub" value="../../../tags/mappings"/>
     
     <ant antfile="hl7_2_ada/ketenzorg/3.0.2/build.xml" inheritall="false" target="setup"/>
     <ant antfile="hl7_2_ada/ketenzorg/3.0.2/build.xml" inheritall="false" target="convert_hl7v3_2_ada"/>
