@@ -14,29 +14,63 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
     <xsl:output method="text" encoding="UTF-8"/>
-
+    
+    <xd:doc scope="stylesheet">
+        <xd:desc>Produces a wiki mapping table for ADA/<xd:ref name="dataset-name" type="parameter"/> to/from <xd:ref name="otherStandard" type="parameter"/> for upload to e.g. somewhere on the <xd:a href="https://informatiestandaarden.nictiz.nl/wiki/Categorie:Mappings">Nictiz Information Standards wiki</xd:a>
+            <xd:p><xd:b>Expected input</xd:b> ADA release file containing ADA community info that holds relevant mapping information. Use tool "adarelease_2_adacommunity.xsl" (should be where you found this tool) to set set up the initial community for upload on ART-DECOR</xd:p>
+            <xd:p><xd:b>Release Notes</xd:b>
+            <xd:ul>
+                <xd:li>2018-06-20 AW - Intial version as ZIB_ADA2Wiki_Tabel.xsl</xd:li>
+                <xd:li>2019-07-12 AH - UTF-8 instead of UTF-16, make sure lines don't get too long, character escaping, add support for ANY.png</xd:li>
+                <xd:li>2019-07-30 AH - Moved to consolidated tool location. Changed name to adarelease_2_wikimapping.xsl</xd:li>
+            </xd:ul>
+        </xd:p>
+        </xd:desc>
+    </xd:doc>
+    
     <!--<xsl:param name="communityName" select="'kz-voorschrift_2.10.3_zib'"/>
     <xsl:param name="otherStandard" select="'Ketenzorg 2.10.3 Voorschrift'"/>
     <xsl:param name="otherStandardURL" select="'https://www.nictiz.nl/Paginas/Informatiestandaard-ketenzorg.aspx'"/>
     -->
 
-    <!--    <xsl:param name="communityName" select="'prica6.10.01_2_zib'"/>
+    <!--<xsl:param name="communityName" select="'prica6.10.01_2_zib'"/>
     <xsl:param name="otherStandard" select="'HWG 6.10 Voorschrift'"/>
     <xsl:param name="otherStandardURL" select="'https://www.nictiz.nl/Paginas/Informatiestandaard%20huisartswaarneming.aspx'"/>
--->
-
+    -->
+    
+    <xd:doc>
+        <xd:desc>Required: Name of the ADA community to look for in building info</xd:desc>
+    </xd:doc>
     <xsl:param name="communityName">kz-3.0.2-v3-Lab-Results-Response-to-Dataset</xsl:param>
+    <xd:doc>
+        <xd:desc>Required: view/@shortName to process in the ADA Release file</xd:desc>
+    </xd:doc>
     <xsl:param name="ada-view-shortname">lab_results_response</xsl:param>
+    <xd:doc>
+        <xd:desc>Required: Name of the standard (e.g. HL7 V3 template / FHIR profile title) we are mapping to/from</xd:desc>
+    </xd:doc>
     <xsl:param name="otherStandard">Ketenzorg v3.0.2 Beschikbaarstellen Lab Results</xsl:param>
+    <xd:doc>
+        <xd:desc>Required: URL for the <xd:ref name="otherStandard" type="parameter"/></xd:desc>
+    </xd:doc>
     <xsl:param name="otherStandardURL">https://www.nictiz.nl/standaardisatie/informatiestandaarden/ketenzorg/</xsl:param>
+    <xd:doc>
+        <xd:desc>Required: Name of the ADA/DECOR Dataset we are mapping to/from</xd:desc>
+    </xd:doc>
     <xsl:param name="dataset-name">Ketenzorg 3.0</xsl:param>
-    <xsl:param name="concept-2b-omitted" as="xs:string*">
-        <!-- none -->
-    </xsl:param>
+    <xd:doc>
+        <xd:desc>Optional: Array of concept/@shortName values that should not be included in the output</xd:desc>
+    </xd:doc>
+    <xsl:param name="concept-2b-omitted" as="xs:string*"/>
+    <xd:doc>
+        <xd:desc>Optional: Array of concept/@shortName values that mark where an HCIM/zib starts. This influences the output icon for that row</xd:desc>
+    </xd:doc>
     <xsl:param name="concept-zib" as="xs:string*">
-<!--        <xsl:value-of select="'patient'"/>-->
         <xsl:value-of select="'allergy_intolerance'"/>
     </xsl:param>
+    <xd:doc>
+        <xd:desc>Required: Leave default value 'other2zib' (going from <xd:ref name="otherStandard" type="parameter"/> to <xd:ref name="dataset-name" type="parameter"/>) or use any other value to go vice versa. This influnces the order of columns in the table</xd:desc>
+    </xd:doc>
     <xsl:param name="mapDirection">other2zib</xsl:param>
 
     <xd:doc>
@@ -59,9 +93,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-
+    
     <xd:doc>
-        <xd:desc>Tabel starten voor de root concepten van de dataset</xd:desc>
+        <xd:desc>Start table for  the root concepts of the dataset</xd:desc>
         <xd:param name="concept"/>
     </xd:doc>
     <xsl:template name="makeTableZIB2Other">
@@ -111,9 +145,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 </xsl:text>
 
     </xsl:template>
-
+    
     <xd:doc>
-        <xd:desc>Tabel starten voor de root concepten van de dataset</xd:desc>
+        <xd:desc>Start table for the root concepts of the dataset</xd:desc>
         <xd:param name="concept"/>
     </xd:doc>
     <xsl:template name="makeTableOther2ZIB">
@@ -171,8 +205,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 </xsl:text>
 
     </xsl:template>
+    
     <xd:doc>
-        <xd:desc>template voor concept rijen ín een bovenste groep</xd:desc>
+        <xd:desc>Creates concept rows in a top level group</xd:desc>
     </xd:doc>
     <xsl:template match="concept">
         <xsl:choose>
@@ -193,10 +228,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Ignores valueSet elements for now</xd:desc>
     </xd:doc>
     <xsl:template match="valueSet">
-        <!--        <xsl:for-each select="./conceptList/concept">
+        <!--<xsl:for-each select="./conceptList/concept">
             <xsl:call-template name="makeTableRowCode">
                 <xsl:with-param name="code" select="."/>
             </xsl:call-template>
@@ -204,8 +239,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="concept"/>
+        <xd:desc>Creates a mapping row for a concept when <xd:ref name="otherStandard" type="parameter"/> is not other2zib</xd:desc>
+        <xd:param name="concept">Concept to process</xd:param>
     </xd:doc>
     <xsl:template name="makeTableRowZib2Other">
         <xsl:param name="concept"/>
@@ -246,8 +281,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="concept"/>
+        <xd:desc>Creates a mapping row for a concept when <xd:ref name="otherStandard" type="parameter"/> is other2zib</xd:desc>
+        <xd:param name="concept">Concept to process</xd:param>
     </xd:doc>
     <xsl:template name="makeTableRowOther2Zib">
         <xsl:param name="concept"/>
@@ -302,7 +337,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Creates a row  for concepts in a (valueSet/valueDomain) conceptList, indenting codes based on the number ancestor concepts</xd:desc>
         <xd:param name="code"/>
     </xd:doc>
     <xsl:template name="makeTableRowCode">
@@ -376,30 +411,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="data" mode="doCopy">
         <xsl:apply-templates mode="#current"/>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Don't want processing instructions</xd:desc>
     </xd:doc>
     <xsl:template match="processing-instruction()" mode="doCopy">
         <!-- skip -->
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>skip empty leading text()</xd:desc>
     </xd:doc>
     <xsl:template match="text()[parent::data][normalize-space() = ''][not(preceding-sibling::node())]" mode="doCopy">
         <!-- skip empty leading text() -->
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>skip empty trailing text()</xd:desc>
     </xd:doc>
     <xsl:template match="text()[parent::data][normalize-space() = ''][not(following-sibling::node())]" mode="doCopy">
         <!-- skip empty trailing text() -->
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Copy text after some cleaning for too long lines and escaping</xd:desc>
     </xd:doc>
     <xsl:template match="text()" mode="doCopy">
         <xsl:apply-templates select="." mode="replaceChars"/>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Copy comments... who knows</xd:desc>
     </xd:doc>
@@ -408,6 +448,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates select="." mode="replaceChars"/>
         <xsl:text>--&gt;</xsl:text>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Create textual attributes from input</xd:desc>
     </xd:doc>
@@ -418,6 +459,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates select="." mode="replaceChars"/>
         <xsl:text>"</xsl:text>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Create textual elements from input</xd:desc>
     </xd:doc>
@@ -436,6 +478,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:text>&gt;</xsl:text>
         </xsl:if>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Break up lines containing more than 80 consecutive characters. First try if adding 
             spaces around equal signs helps. Benefit: xpaths are still valid. If that does not help, 
@@ -455,10 +498,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:value-of select="replace($applySpacingAfterSlashes, '([\[\]])', '&lt;nowiki>$1&lt;/nowiki>')"/>
     </xsl:template>
-
+    
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="type"/>
+        <xd:desc>Return linked icon for datatypes if possible. Return type as-is if not.</xd:desc>
+        <xd:param name="type">Required. Datatype string to link. E.g. boolean, code, date, ...</xd:param>
     </xd:doc>
     <xsl:template name="addType">
         <xsl:param name="type"/>
