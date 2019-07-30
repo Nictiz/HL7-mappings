@@ -13,9 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
+    <xsl:import href="../../../../tools/xsl_ada_2_wiki/adarelease_2_wikimapping.xsl"/>
     <xsl:output method="text" encoding="UTF-16"/>
-
-    <xsl:import href="../../../ZIB_ADA2Wiki_Tabel.xsl"/>
 
     <xsl:param name="communityName">ICA612_2_MedMij112All</xsl:param>
     <xsl:param name="ada-view-shortname">allergy_intolerance</xsl:param>

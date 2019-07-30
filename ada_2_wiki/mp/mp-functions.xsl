@@ -6,7 +6,7 @@
 <!--    <xsl:import href="../wiki/wiki-functions.xsl"></xsl:import>-->
 
     <xd:doc>
-        <xd:desc>Function to create a nice dosering string based on the structured input.</xd:desc>
+        <xd:desc>Function to create a nice dosage string based on the structured input.</xd:desc>
         <xd:param name="doseerinstructie">Input ada element doseerinstructie</xd:param>
         <xd:param name="amount-doseerinstructies">The number of doseerinstructies, this is needed to help create order in the doseringsstring</xd:param>
     </xd:doc>

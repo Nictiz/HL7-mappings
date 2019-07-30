@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:nf="http://www.nictiz.nl/functions" xmlns:hl7="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xsl:import href="./../../tools/xsl_ada_2_wiki/adainstance_2_wikitable.xsl"/>
+    <xsl:import href="./mp-functions.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -13,8 +15,6 @@
         </xd:desc>
     </xd:doc>
     <xsl:output method="text" encoding="UTF-16"/>
-    <xsl:import href="./../wiki/ADA2test-wiki-table.xsl"/>
-    <xsl:import href="./mp-functions.xsl"/>
     <!-- override ada release file and transaction to be handled, which may be overridden by calling template -->
     <xsl:param name="adaReleaseFile" select="document('../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>

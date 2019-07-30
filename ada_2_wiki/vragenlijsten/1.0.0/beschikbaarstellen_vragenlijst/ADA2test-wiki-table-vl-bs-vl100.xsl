@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:nf="http://www.nictiz.nl/functions" xmlns:hl7="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xsl:import href="./../../ADA2test-wiki-table-vl.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -13,7 +14,6 @@
         </xd:desc>
     </xd:doc>
     <xsl:output method="text" encoding="UTF-16"/>
-    <xsl:import href="./../../ADA2test-wiki-table-vl.xsl"/>
     <!-- override ada release file and transaction to be handled -->
     <xsl:param name="adaReleaseFile" select="document('../../../../../projects/vragenlijsten/definitions/vl-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.56.4.255</xsl:param>
