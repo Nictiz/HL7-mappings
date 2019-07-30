@@ -32,8 +32,9 @@ ${readme1}</echo>
         <copy todir="${build.dir}/util">
             <fileset dir="util">
                 <include name="**"/>
-                <exclude name="**/setup.bash"/>
+                <exclude name="**/*.bash"/>
                 <exclude name="**/build.xml"/>
+                <exclude name="**/.DS_Store"/>
             </fileset>
         </copy>
         
