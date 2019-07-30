@@ -217,7 +217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <mode value="match"/>
                 </search>
             </entry>
-        </xsl:for-each>        
+        </xsl:for-each>
         <!-- Episodes -->
         <xsl:for-each select="//*[bundle]/episode">
             <entry xmlns="http://hl7.org/fhir">
@@ -242,6 +242,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="zib-Alert"/>
                 </resource>
+                <search>
+                    <mode value="match"/>
+                </search>
             </entry>
         </xsl:for-each>
     </xsl:variable>
