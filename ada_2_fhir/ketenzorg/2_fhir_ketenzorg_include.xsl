@@ -580,8 +580,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="contact_reason/episode">
                 <!-- TODO: episodeOfCare can map to contact_reason/episode -->
             </xsl:if>
-            <!-- TODO: There seems to be a mismatch here. The information model sees the details of the healthcare provider as a complete description, while FHIR wants a reference. Should we instantiate a set of healthcare provider resources from the description?? And what's the role or the health professional in the bundle? -->
-            <xsl:for-each select="../bundle/author/health_professional">
+            <!-- The information model sees the details of the healthcare provider as a complete description, while FHIR wants a reference. And what's the role or the health professional in the bundle?
+                The sending GP of the Bundle does not need to be the same authoring GP for all contained in the Bundle. Hence we always pick the author 'closest' hierarchically to the object we need it on.
+                All Practitioner(Role) resources are generated and deduplicated in the variable by that name
+            -->
+            <xsl:for-each select="contact_with/health_professional">
                 <participant>
                     <xsl:if test="health_professional_role">
                         <type>
@@ -626,12 +629,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <text value="{contact_reason/deviating_result/@value}"/>
                 </reason>
             </xsl:if>
-            <!-- TODO: contact_reason/problem and contact_reason/procedure can be added as references in Encounter.diagnosis.condition, but the ADA model doesn't yet support these fields. -->
-            <!-- TODO: origin and destination can be mapped to Encounter.hospitalization.admitSource and .dischargeDisposition, but the ADA model doesn't yet support these fields. -->
-            <!-- TODO: Encounter.serviceProvider is the location at which the contact took place. This can be set to the work location in the bundle if it makes sense according to the type. This assumption needs to be checked with an IA. -->
-            <xsl:if test="count(../bundle/author/health_professional/healthcare_provider) = 1 and contact_type/@code = ('03', '04', '09')"> <!-- Include types "consult", "nacht/diens consult" en "overleg" -->
+            <!-- NOTE: contact_reason/problem and contact_reason/procedure can be added as references in Encounter.diagnosis.condition, but the ADA model/use case doesn't yet support these fields. -->
+            <!-- NOTE: origin and destination can be mapped to Encounter.hospitalization.admitSource and .dischargeDisposition, but the ADA model/use case doesn't yet support these fields. -->
+            <!-- NOTE: Encounter.serviceProvider is the organization that is primarily responsible for this Encounter's services. (R4) -->
+            <xsl:if test="contact_with/health_professional/healthcare_provider">
                 <serviceProvider>
-                    <xsl:apply-templates select="../bundle/author/health_professional/healthcare_provider" mode="doOrganizationReference"/>
+                    <xsl:apply-templates select="contact_with/health_professional/healthcare_provider" mode="doOrganizationReference"/>
                 </serviceProvider>
             </xsl:if>
         </Encounter>
@@ -739,7 +742,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </identifier>
                 </xsl:for-each>
-                <!-- todo organisatietype / afdelingspecialisme, is not part of an MP transaction up until now -->
+                <!-- TODO? organisatietype / afdelingspecialisme, is not part of an MP transaction up until now -->
                 <xsl:for-each select="organisatie_naam[@value] | organization_name[@value]">
                     <name value="{@value}"/>
                 </xsl:for-each>
@@ -906,14 +909,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doOrganizationReference"/>
                     </organization>
                 </xsl:for-each>
-                <xsl:for-each select="zorgverlener_rol | health_professional_role">
+                <!-- See for details why this was deactivated: https://simplifier.net/NictizSTU3-Zib2017/nl-core-practitionerrole/~overview -->
+                <!--<xsl:for-each select="zorgverlener_rol | health_professional_role">
                     <code>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </code>
-                </xsl:for-each>
-                <xsl:for-each select="specialisme | specialism">
+                </xsl:for-each>-->
+                <xsl:for-each select="specialisme | specialty">
                     <specialty>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>

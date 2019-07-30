@@ -27,3 +27,9 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 2019-07-30
 * Consolidated logic for dynamically datatyped elements, e.g. Observation//value for better reuse
 * Added missing search type = match for alerts on Bundle entries
+* Fixed Encounter.participant. Now properly picks the contact_with
+* Fixed Encounter.serviceProvider. Now properly picks the contact_with organization
+* Fixed PractitionerRole.code (no longer generated)
+* Fixed PractitionerRole.specialty (was reading the wrong path)
+* Fixed quantity unit logic by adding UCUM logic based on UCUM essence
+* Fixed Observation.valueQuantity for BodyWeight to include system too
