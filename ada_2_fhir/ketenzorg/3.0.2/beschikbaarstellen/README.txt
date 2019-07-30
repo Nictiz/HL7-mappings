@@ -24,3 +24,7 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 ===Release Notes===
 2019-07-25
 * Fixed empty fullUrl for Encounter (Contactmomenten).
+2019-07-30
+* Fixed fullUrl creation which could lead to duplicates, because of only using @root and not the @value
+* Consolidated logic for dynamically datatyped elements, e.g. Observation//value for better reuse
+* Added missing search type = match for alerts on Bundle entries
