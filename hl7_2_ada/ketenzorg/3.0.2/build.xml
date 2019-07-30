@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Apache ANT build file that sets up (target = setup) or by default converts all input to output (target = convert_hl7v3_2_ada)
+    Apache ANT is based on Java and may be found here: https://ant.apache.org/
+    run on command line: 
+        ant [-f build.xml] [target]
+        
+    If you just run ant, it expects a build.xml in the working dir and runs the default target.
+-->
 <project basedir="." default="convert_hl7v3_2_ada" name="hl7v3_2_ada_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <ant antfile="../../../tools/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <ant antfile="../../..//_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
     

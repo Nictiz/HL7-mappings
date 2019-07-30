@@ -870,6 +870,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="ada-postcode-value"/>
+    </xd:doc>
     <xsl:function name="nf:convertAdaNlPostcode" as="xs:string?">
         <xsl:param name="ada-postcode-value" as="xs:string?"/>
         <xsl:variable name="postcode-uc" select="normalize-space(upper-case($ada-postcode-value))"/>
@@ -887,14 +891,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
 
     </xsl:function>
-    <!-- addEnding checks baseString if it ends in endString, and if not adds it at the end. -->
+    
+    <xd:doc>
+        <xd:desc> addEnding checks baseString if it ends in endString, and if not adds it at the end. </xd:desc>
+        <xd:param name="baseString"/>
+        <xd:param name="endString"/>
+    </xd:doc>
     <xsl:function name="nf:addEnding">
         <xsl:param name="baseString"/>
-        <xsl:param name="endString"/>        
+        <xsl:param name="endString"/>
         
         <xsl:choose>
             <xsl:when test="substring($baseString, string-length($baseString)-string-length($endString)+1, string-length($endString)) eq $endString">
-                <xsl:value-of select="$baseString"/>                    
+                <xsl:value-of select="$baseString"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="concat($baseString, $endString)"/>
