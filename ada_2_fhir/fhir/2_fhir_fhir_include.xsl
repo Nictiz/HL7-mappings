@@ -24,9 +24,154 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
     <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
-
+    
     <xd:doc>
-        <xd:desc>Transforms ada code element to FHIR code/@value</xd:desc>
+        <xd:desc>Returns an array of FHIR elements based on an array of ADA that a @datatype attribute to determine the type with. 
+            <xd:p>After the type is determined, the element is handed off for further processing. Failure to determine type is a fatal error.</xd:p>
+            <xd:p>Supported values for @datatype are ADA/DECOR datatypes boolean, code, identifier, quantity, string, text, blob, date, datetime</xd:p>
+            <xd:p>FIXME: ordinal support</xd:p>
+        </xd:desc>
+        <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
+        <xd:param name="elemName">Required. Base name of the FHIR element to produce. Gets postfixed with datatype, e.g. valueBoolean</xd:param>
+    </xd:doc>
+    <xsl:template name="any-to-value">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:param name="elemName" as="xs:string" required="yes"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="theDatatype" select="@datatype"/>
+            
+            <xsl:choose>
+                <xsl:when test="$theDatatype = 'code' or @code">
+                    <xsl:element name="{concat($elemName, 'CodeableConcept')}" namespace="http://hl7.org/fhir">
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="$theDatatype = 'identifier' or @root">
+                    <xsl:element name="{concat($elemName, 'Identifier')}" namespace="http://hl7.org/fhir">
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="$theDatatype = 'quantity' or @unit">
+                    <xsl:element name="{concat($elemName, 'Quantity')}" namespace="http://hl7.org/fhir">
+                        <xsl:call-template name="hoeveelheid-to-Quantity">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="$theDatatype = 'boolean' or @value castable as xs:boolean">
+                    <xsl:element name="{concat($elemName, 'Boolean')}" namespace="http://hl7.org/fhir">
+                        <xsl:call-template name="boolean-to-boolean">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="$theDatatype = ('date', 'datetime') or @value castable as xs:date or @value castable as xs:dateTime">
+                    <xsl:element name="{concat($elemName, 'DateTime')}" namespace="http://hl7.org/fhir">
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="$theDatatype = 'blob' and (not(@value) or @value castable as xs:base64Binary)">
+                    <xsl:element name="{concat($elemName, 'Attachment')}" namespace="http://hl7.org/fhir">
+                        <xsl:call-template name="blob-to-attachment">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:when test="$theDatatype = ('string', 'text') or not($theDatatype)">
+                    <xsl:element name="{concat($elemName, 'String')}" namespace="http://hl7.org/fhir">
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:message terminate="yes">Cannot determine the datatype based on @datatype, or value not supported: <xsl:value-of select="$theDatatype"/></xsl:message>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transforms ada boolean element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#boolean">@value</xd:a></xd:desc>
+        <xd:param name="in">the ada boolean element, may have any name but should have ada datatype boolean</xd:param>
+    </xd:doc>
+    <xsl:template name="boolean-to-boolean" as="item()?">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value">
+                <xsl:attribute name="value" select="$in/@value"/>
+            </xsl:when>
+            <xsl:when test="$in/@nullFlavor">
+                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                    <valueCode value="{$in/@nullFlavor}"/>
+                </extension>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Transforms ada string element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#string">@value</xd:a></xd:desc>
+        <xd:param name="in">the ada string element, may have any name but should have ada datatype string</xd:param>
+    </xd:doc>
+    <xsl:template name="string-to-string" as="item()?">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value">
+                <xsl:attribute name="value" select="$in/@value"/>
+            </xsl:when>
+            <xsl:when test="$in/@nullFlavor">
+                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                    <valueCode value="{$in/@nullFlavor}"/>
+                </extension>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Transforms ada string element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#datetime">@value</xd:a></xd:desc>
+        <xd:param name="in">the ada date(time) element, may have any name but should have ada datatype date(time)</xd:param>
+    </xd:doc>
+    <xsl:template name="date-to-datetime" as="item()?">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value">
+                <xsl:attribute name="value" select="$in/@value"/>
+            </xsl:when>
+            <xsl:when test="$in/@nullFlavor">
+                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                    <valueCode value="{$in/@nullFlavor}"/>
+                </extension>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Transforms ada blob element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Attachment">data/@value</xd:a></xd:desc>
+        <xd:param name="in">the ada blob element, may have any name but should have ada datatype blob</xd:param>
+    </xd:doc>
+    <xsl:template name="blob-to-attachment" as="item()?">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value">
+                <data value="{$in/@value}"/>
+            </xsl:when>
+            <xsl:when test="$in/@nullFlavor">
+                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                    <valueCode value="{$in/@nullFlavor}"/>
+                </extension>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#code">@value</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
             
@@ -39,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="code-to-code" as="attribute(value)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="codeMap" as="element()*"/>
-
+        
         <xsl:for-each select="$in">
             <xsl:variable name="theCode">
                 <xsl:choose>
@@ -85,7 +230,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Transforms ada code element to FHIR CodeableConcept</xd:desc>
+        <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#CodeableConcept">CodeableConcept contents</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="element-name">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
         <xd:param name="user-selected">Optionally provide a user selected boolean.</xd:param>
@@ -125,7 +270,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Transforms ada code element to FHIR Coding</xd:desc>
+        <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Coding">Coding contents</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="user-selected">Optionally provide a user selected boolean.</xd:param>
     </xd:doc>
@@ -266,7 +411,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Transforms ada element to FHIR Identifier. Masks Burgerservicenummers</xd:desc>
+        <xd:desc>Transforms ada element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Identifier">Identifier contents</xd:a>. Masks Burgerservicenummers</xd:desc>
         <xd:param name="in">ada element with datatype identifier</xd:param>
     </xd:doc>
     <xsl:template name="id-to-Identifier" as="element()*">

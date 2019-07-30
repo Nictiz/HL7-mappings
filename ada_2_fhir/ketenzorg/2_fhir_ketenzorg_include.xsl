@@ -1657,34 +1657,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!--NL-CM:13.1.10	TestResult	0..1	The test result. Depending on the type of test, the result will consist of a value with a unit or a coded value (ordinal or nominal).-->
                 <xsl:for-each select="test_result">
-                    <xsl:choose>
-                        <xsl:when test="@datatype = 'code' or @code">
-                            <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueCodeableConcept>
-                        </xsl:when>
-                        <xsl:when test="@datatype = 'quantity' or @unit">
-                            <valueQuantity>
-                                <xsl:call-template name="hoeveelheid-to-Quantity">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueQuantity>
-                        </xsl:when>
-                        <xsl:when test="@datatype = ('other', 'boolean') and @value castable as xs:boolean">
-                            <valueBoolean value="{@value}"/>
-                        </xsl:when>
-                        <xsl:when test="@datatype = ('other', 'date') and (@value castable as xs:date or @value castable as xs:dateTime)">
-                            <valueDateTime value="{@value}"/>
-                        </xsl:when>
-                        <xsl:when test="@datatype = ('other') or not(@datatype)">
-                            <valueString value="{@value}"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:message terminate="yes">Datatype <xsl:value-of select="@datatype"/> for lab observation value not implemented yet</xsl:message>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                    <xsl:call-template name="any-to-value">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="elemName">value</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
                 <!--NL-CM:13.1.32	ResultInterpretation	0..1	Comment of the laboratory specialist regarding the interpretation of the results	441742003 Evaluation finding-->
                 <xsl:for-each select="result_flags">
@@ -1793,34 +1769,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <!--NL-CM:13.3.7 			ResultValue 	0..1 	The result of the measurement. Depending on the type of measurement, the result will consist of a value with a unit or a coded value (ordinal or nominal) or of a textual result. -->
             <xsl:for-each select="result_value">
-                <xsl:choose>
-                    <xsl:when test="@datatype = 'code' or @code">
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
-                    </xsl:when>
-                    <xsl:when test="@datatype = 'quantity' or @unit">
-                        <valueQuantity>
-                            <xsl:call-template name="hoeveelheid-to-Quantity">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueQuantity>
-                    </xsl:when>
-                    <xsl:when test="@datatype = ('other', 'boolean') and @value castable as xs:boolean">
-                        <valueBoolean value="{@value}"/>
-                    </xsl:when>
-                    <xsl:when test="@datatype = ('other', 'date') and (@value castable as xs:date or @value castable as xs:dateTime)">
-                        <valueDateTime value="{@value}"/>
-                    </xsl:when>
-                    <xsl:when test="@datatype = ('other') or not(@datatype)">
-                        <valueString value="{@value}"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:message terminate="yes">Datatype <xsl:value-of select="@datatype"/> for general observation value not implemented yet</xsl:message>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:call-template name="any-to-value">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="elemName">value</xsl:with-param>
+                </xsl:call-template>
             </xsl:for-each>
             <!--interpretation is not described in zib. Should we include it?-->
             <!-- Yes -->
