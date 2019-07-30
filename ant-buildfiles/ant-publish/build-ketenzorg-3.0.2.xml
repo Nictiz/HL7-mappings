@@ -1,0 +1,109 @@
+<!-- ant -buildfile build-ketenzorg-3.0.2.xml -->
+<project basedir="../.." default="ketenzorg-3.0.2" name="ADA">
+    <property name="project.title" value="Ketenzorg 3.0.2 HL7v3 to ADA to FHIR"/>
+    <property name="project.app" value="ketenzorg-3.0.2-hl7v3_2_fhir"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.uri" value="https://decor.nictiz.nl/pub/ketenzorg/kz-html-20190110T164948/index.html"/>
+    <property name="build.dir" value="${project.title}"/>
+    <property name="build.dir.pub" value="../../../tags/mappings"/>
+    
+    <ant antfile="hl7_2_ada/ketenzorg/3.0.2/build.xml" inheritall="false" target="setup"/>
+    <ant antfile="hl7_2_ada/ketenzorg/3.0.2/build.xml" inheritall="false" target="convert_hl7v3_2_ada"/>
+    <ant antfile="ada_2_fhir/ketenzorg/3.0.2/build.xml" inheritall="false" target="setup"/>
+    <ant antfile="ada_2_fhir/ketenzorg/3.0.2/build.xml" inheritall="false" target="convert_ada_2_fhir"/>
+    
+    <target name="ketenzorg-3.0.2" description="Create a zip containing all resources relevant for ${project.title}">
+        <delete dir="${build.dir}"/>
+        
+        <!-- run the ant timestamp task -->
+        <tstamp>
+            <format property="TODAY_DD-MM-YYYY" pattern="dd-MM-yyyy" locale="nl,NL"/>
+            <format property="TODAY_YYYYMMDD" pattern="yyyyMMdd" locale="nl,NL"/>
+        </tstamp>
+        
+        <!--<property name="readme1" file="hl7_2_ada/ketenzorg/3.0.2/beschikbaarstellen/README.txt"/>
+        <property name="readme2" file="ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/README.txt"/>-->
+        <loadfile property="readme1" srcfile="hl7_2_ada/ketenzorg/3.0.2/beschikbaarstellen/README.txt"/>
+        <loadfile property="readme2" srcfile="ada_2_fhir/ketenzorg/3.0.2/beschikbaarstellen/README.txt"/>
+        <echo file="${build.dir}/README.txt" append="false">${project.title} version ${project.version} date ${TODAY_DD-MM-YYYY}
+
+${readme1}
+
+${readme2}</echo>
+        
+        <!-- Copy util dir with all contents -->
+        <copy todir="${build.dir}/util">
+            <fileset dir="util">
+                <include name="**"/>
+                <exclude name="**/setup.bash"/>
+                <exclude name="**/build.xml"/>
+            </fileset>
+        </copy>
+        
+        <!-- Copy hl7_2_ada/hl7 dir with all contents, except any *.bash, build.xml or .DS_Store (macOS specific) file -->
+        <copy todir="${build.dir}/hl7_2_ada/hl7">
+            <fileset dir="hl7_2_ada/hl7">
+                <include name="**"/>
+                <exclude name="**/*.bash"/>
+                <exclude name="**/build.xml"/>
+                <exclude name="**/.DS_Store"/>
+            </fileset>
+        </copy>
+        <!-- Copy hl7_2_ada/ketenzorg dir the files that live there and the 3.0.2 directory, except any *.bash, build.xml or .DS_Store (macOS specific) file -->
+        <copy todir="${build.dir}/hl7_2_ada/ketenzorg">
+            <fileset dir="hl7_2_ada/ketenzorg">
+                <include name="*.xsl"/>
+                <include name="*.md"/>
+                <include name="*.txt"/>
+                <include name="3.0.2/**"/>
+                <exclude name="**/*.bash"/>
+                <exclude name="**/build.xml"/>
+                <exclude name="**/.DS_Store"/>
+            </fileset>
+        </copy>
+        <!-- Copy from hl7_2_ada/mp dir the xsl/md/txt files that live there -->
+        <copy todir="${build.dir}/hl7_2_ada/mp">
+            <fileset dir="hl7_2_ada/mp">
+                <include name="*.xsl"/>
+                <include name="*.md"/>
+                <include name="*.txt"/>
+            </fileset>
+        </copy>
+        
+        <!-- Copy ada_2_fhir/fhir dir with all contents, except any *.bash, build.xml or .DS_Store (macOS specific) file -->
+        <copy todir="${build.dir}/ada_2_fhir/fhir">
+            <fileset dir="ada_2_fhir/fhir">
+                <include name="**"/>
+                <exclude name="**/*.bash"/>
+                <exclude name="**/build.xml"/>
+                <exclude name="**/.DS_Store"/>
+            </fileset>
+        </copy>
+        <!-- Copy ada_2_fhir/ketenzorg dir the files that live there and the 3.0.2 directory, except any *.bash, build.xml or .DS_Store (macOS specific) file -->
+        <copy todir="${build.dir}/ada_2_fhir/ketenzorg">
+            <fileset dir="ada_2_fhir/ketenzorg">
+                <include name="*.xsl"/>
+                <include name="*.md"/>
+                <include name="*.txt"/>
+                <include name="3.0.2/**"/>
+                <exclude name="**/*.bash"/>
+                <exclude name="**/build.xml"/>
+                <exclude name="**/.DS_Store"/>
+            </fileset>
+        </copy>
+        <!-- Copy from ada_2_fhir/mp dir the xsl/md/txt files that live there -->
+        <copy todir="${build.dir}/ada_2_fhir/mp">
+            <fileset dir="ada_2_fhir/mp">
+                <include name="*.xsl"/>
+                <include name="*.md"/>
+                <include name="*.txt"/>
+            </fileset>
+        </copy>
+        
+        <!-- zip the temp dir -->
+        <zip basedir="${build.dir}" destfile="${build.dir.pub}/${project.app}-${project.version}-${TODAY_YYYYMMDD}.zip"/>
+        
+        <!-- Delete the temp dir -->
+        <delete dir="${build.dir}"/>
+    </target>
+</project>
