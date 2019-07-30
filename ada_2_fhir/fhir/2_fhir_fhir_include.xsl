@@ -628,19 +628,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:choose>
             <!-- root = oid and extension = numeric -->
-            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][matches(@extension, '^\d+$')]">
-                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][matches(@extension, '^\d+$')][1]"/>
-                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@extension, '^0+', '')[not(. = '')]),'.'))"/>
+            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
+                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][matches(@value, '^\d+$')][1]"/>
+                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]),'.'))"/>
             </xsl:when>
             <!-- root = oid and no extension -->
-            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][not(@extension)]">
-                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][not(@extension)][1]"/>
-                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@extension, '^0+', '')[not(. = '')]),'.'))"/>
+            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][not(@value)]">
+                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][not(@value)][1]"/>
+                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]),'.'))"/>
             </xsl:when>
             <!-- root = 'not important' and extension = uuid -->
-            <xsl:when test="$ada-identificatie[matches(@extension, $UUIDpattern)]">
-                <xsl:variable name="ii" select="$ada-identificatie[matches(@extension, $UUIDpattern)][1]"/>
-                <xsl:value-of select="concat('urn:uuid:', $ii/@extension)"/>
+            <xsl:when test="$ada-identificatie[matches(@value, $UUIDpattern)]">
+                <xsl:variable name="ii" select="$ada-identificatie[matches(@value, $UUIDpattern)][1]"/>
+                <xsl:value-of select="concat('urn:uuid:', $ii/@value)"/>
             </xsl:when>
             <!-- root = uuid and extension = 'not important' -->
             <xsl:when test="$ada-identificatie[matches(@root, $UUIDpattern)]">
