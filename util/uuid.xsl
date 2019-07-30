@@ -105,13 +105,7 @@
 		<xsl:param name="power"/>
 		<xsl:choose>
 			<xsl:when test="$power lt 0 or contains(string($power), '.')">
-				<xsl:message terminate="yes">
-				
-				The XSLT template math:power doesn't support negative or
-				
-				fractional arguments.
-				
-			</xsl:message>
+				<xsl:message terminate="yes">The XSLT template math:power doesn't support negative or fractional arguments.</xsl:message>
 				<xsl:text>NaN</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>
