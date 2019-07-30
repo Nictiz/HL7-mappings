@@ -21,6 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <xsl:include href="../../util/constants.xsl"/>
     <xsl:include href="../../util/datetime.xsl"/>
+    <xsl:include href="../../util/units.xsl"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
     <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
@@ -372,7 +373,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <unit value="{.}"/>
                         <system value="{local:getUri($oidUCUM)}"/>
                     </xsl:for-each>
-                    <code value="{$in/@unit}"/>
+                    <code value="{nf:convert_ADA_unit2UCUM_FHIR($in/@unit)}"/>
                 </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
@@ -405,7 +406,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="./@codeSystem">
                         <system value="{local:getUri(.)}"/>
                     </xsl:for-each>
-                    <code value="{$eenheid/@code}"/>
+                    <code value="{if (@codeSystem = $oidUCUM) then nf:convert_ADA_unit2UCUM_FHIR($eenheid/@code) else $eenheid/@code}"/>
                 </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
@@ -572,8 +573,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
+                <xsl:when test="nf:isValidUCUMUnit($ADAunit)"><xsl:value-of select="$ADAunit"/></xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="concat('onbekende tijdseenheid: ', $ADAunit)"/>
+                    <!-- Is all else fails: wrap in {} to make it an annotation -->
+                    <xsl:value-of select="concat('{', $ADAunit, '}')"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
