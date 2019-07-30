@@ -39,7 +39,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada-unit-ml" select="('milliliter', 'ml')"/>
     <xsl:variable name="ada-unit-ul" select="('microliter', 'ul')"/>
 
-
     <xsl:variable name="oidAGB">2.16.840.1.113883.2.4.6.1</xsl:variable>
     <xsl:variable name="oidAGBSpecialismen">2.16.840.1.113883.2.4.6.7</xsl:variable>
     <xsl:variable name="oidAORTAApplicatieID">2.16.840.1.113883.2.4.6.6</xsl:variable>
@@ -47,6 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidBIGregister">2.16.528.1.1007.5.1</xsl:variable>
     <xsl:variable name="oidBurgerservicenummer">2.16.840.1.113883.2.4.6.3</xsl:variable>
     <xsl:variable name="oidChoiceListOrientation">2.16.840.1.113883.4.642.1.851</xsl:variable>
+    <xsl:variable name="oidFHIRObservationCategory">2.16.840.1.113883.4.642.1.393</xsl:variable>
     <xsl:variable name="oidGStandaardGPK">2.16.840.1.113883.2.4.4.1</xsl:variable>
     <xsl:variable name="oidGStandaardPRK">2.16.840.1.113883.2.4.4.10</xsl:variable>
     <xsl:variable name="oidGStandaardHPK">2.16.840.1.113883.2.4.4.7</xsl:variable>
@@ -120,6 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidAGB}" uri="http://fhir.nl/fhir/NamingSystem/agb-z" displayName="AGB-Z"/>
         <map oid="{$oidBurgerservicenummer}" uri="http://fhir.nl/fhir/NamingSystem/bsn" displayName="BSN"/>
         <map oid="{$oidChoiceListOrientation}" uri="http://hl7.org/fhir/choice-list-orientation" displayName="ChoiceListOrientation"/>
+        <map oid="{$oidFHIRObservationCategory}" uri="http://hl7.org/fhir/observation-category" displayName="ObservationCategory"/>
         <map oid="{$oidGStandaardHPK}" displayName="G-Standaard HPK"/>
         <map oid="{$oidGStandaardPRK}" displayName="G-Standaard PRK"/>
         <map oid="{$oidGStandaardGPK}" displayName="G-Standaard GPK"/>

@@ -2014,7 +2014,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <status value="final"/>
             <category>
                 <coding>
-                    <system value="http://hl7.org/fhir/observation-category"/>
+                    <system value="{local:getUri($oidFHIRObservationCategory)}"/>
                     <code value="vital-signs"/>
                 </coding>
             </category>
@@ -2069,7 +2069,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <status value="final"/>
             <category>
                 <coding>
-                    <system value="http://hl7.org/fhir/observation-category"/>
+                    <system value="{local:getUri($oidFHIRObservationCategory)}"/>
                     <code value="vital-signs"/>
                 </coding>
             </category>
@@ -2089,9 +2089,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="./gewicht_waarde">
                 <valueQuantity>
-                    <value value="{./@value}"/>
-                    <unit value="{./@unit}"/>
-                    <code value="{nf:convert_ADA_unit2UCUM_FHIR(./@unit)}"/>
+                    <xsl:call-template name="hoeveelheid-to-Quantity">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
                 </valueQuantity>
             </xsl:for-each>
         </Observation>
@@ -3293,7 +3293,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
-                <!-- geen integer meegekregen --> G-standaard code is not an integer. Not supported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
+                <!-- geen integer meegekregen --> G-standaard code is not an integer. Unsupported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
         </xsl:choose>
         <xsl:if test="$GstdBasiseenheid_code castable as xs:integer"> </xsl:if>
     </xsl:function>
