@@ -13,21 +13,20 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
-    <xsl:output method="text" encoding="UTF-8"/>
-    
     <xd:doc scope="stylesheet">
         <xd:desc>Produces a wiki mapping table for ADA/<xd:ref name="dataset-name" type="parameter"/> to/from <xd:ref name="otherStandard" type="parameter"/> for upload to e.g. somewhere on the <xd:a href="https://informatiestandaarden.nictiz.nl/wiki/Categorie:Mappings">Nictiz Information Standards wiki</xd:a>
             <xd:p><xd:b>Expected input</xd:b> ADA release file containing ADA community info that holds relevant mapping information. Use tool "adarelease_2_adacommunity.xsl" (should be where you found this tool) to set set up the initial community for upload on ART-DECOR</xd:p>
-            <xd:p><xd:b>Release Notes</xd:b>
+            <xd:p><xd:b>History:</xd:b>
             <xd:ul>
-                <xd:li>2018-06-20 AW - Intial version as ZIB_ADA2Wiki_Tabel.xsl</xd:li>
-                <xd:li>2019-07-12 AH - UTF-8 instead of UTF-16, make sure lines don't get too long, character escaping, add support for ANY.png</xd:li>
-                <xd:li>2019-07-30 AH - Moved to consolidated tool location. Changed name to adarelease_2_wikimapping.xsl</xd:li>
+                <xd:li>2018-06-20 version 0.1 AW <xd:ul><xd:li>Intial version as ZIB_ADA2Wiki_Tabel.xsl</xd:li></xd:ul></xd:li>
+                <xd:li>2019-07-12 version 0.2 AH <xd:ul><xd:li>UTF-8 instead of UTF-16</xd:li><xd:li>make sure lines don't get too long</xd:li><xd:li>character escaping</xd:li><xd:li>add support for ANY.png</xd:li></xd:ul></xd:li>
+                <xd:li>2019-07-30 version 0.3 AH <xd:ul><xd:li>Moved to consolidated tool location</xd:li><xd:li>Changed name to adarelease_2_wikimapping.xsl</xd:li></xd:ul></xd:li>
             </xd:ul>
         </xd:p>
         </xd:desc>
     </xd:doc>
     
+    <xsl:output method="text" encoding="UTF-8"/>
     <!--<xsl:param name="communityName" select="'kz-voorschrift_2.10.3_zib'"/>
     <xsl:param name="otherStandard" select="'Ketenzorg 2.10.3 Voorschrift'"/>
     <xsl:param name="otherStandardURL" select="'https://www.nictiz.nl/Paginas/Informatiestandaard-ketenzorg.aspx'"/>

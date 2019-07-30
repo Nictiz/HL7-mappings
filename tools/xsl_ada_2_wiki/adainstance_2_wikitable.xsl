@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
 <xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:nf="http://www.nictiz.nl/functions" xmlns:hl7="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xsl:import href="wiki-functions.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -7,15 +21,20 @@
             <xd:p>
                 <xd:b>History:</xd:b>
                 <xd:ul>
-                    <xd:li>2018-06-12 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
+                    <xd:li>2018-06-12 version 0.1 AW <xd:ul><xd:li>Initial version as ADA2test-wiki-table.xsl</xd:li></xd:ul></xd:li>
+                    <xd:li>2019-07-30 version 0.2 AH <xd:ul><xd:li>Moved to more consolidated location, renamed to adainstance_2_wikitable.xsl</xd:li></xd:ul></xd:li>
                 </xd:ul>
             </xd:p>
         </xd:desc>
     </xd:doc>
     <xsl:output method="text" encoding="UTF-16"/>
+    
     <xsl:include href="date-functions.xsl"/>
     <xsl:include href="../../util/constants.xsl"/>
-    <xsl:import href="wiki-functions.xsl"/>
+    
+    <xd:doc>
+        <xd:desc>ADA Release file to get the meta data for this instance from.</xd:desc>
+    </xd:doc>
     <xsl:param name="adaReleaseFile" select="document('../../../projects/mp-mp9/definitions/mp-mp9-ada-release.xml')"/>
     <xsl:param name="transactionId">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:param>
 
