@@ -575,7 +575,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
                 <xsl:when test="nf:isValidUCUMUnit($ADAunit)"><xsl:value-of select="$ADAunit"/></xsl:when>
                 <xsl:otherwise>
-                    <!-- Is all else fails: wrap in {} to make it an annotation -->
+                    <!-- If all else fails: wrap in {} to make it an annotation -->
                     <xsl:value-of select="concat('{', $ADAunit, '}')"/>
                 </xsl:otherwise>
             </xsl:choose>
