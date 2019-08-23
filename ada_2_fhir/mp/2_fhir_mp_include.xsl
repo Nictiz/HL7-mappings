@@ -1748,7 +1748,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code value="52711000146108"/>
                         <display value="Request to dispense medication to patient (situation)"/>
                     </coding>
-                    <text value="Toedieningsafspraak"/>
+                    <text value="Verstrekkingsverzoek"/>
                 </category>
                 <!-- geneesmiddel -->
                 <xsl:apply-templates select="./te_verstrekken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReference"/>
