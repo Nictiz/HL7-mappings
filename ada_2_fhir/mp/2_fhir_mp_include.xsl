@@ -944,41 +944,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="./organisatie_naam[.//(@value | @code)]">
             <name value="{./@value}"/>
         </xsl:for-each>
-        <xsl:for-each select="./telefoon_email/contactgegevens[.//(@value | @code)]">
-            <xsl:for-each select="./telefoonnummers[.//(@value | @code)]">
-                <telecom>
-                    <system value="phone"/>
-                    <value value="{./telefoonnummer/@value}"/>
-                    <!-- todo telecomtype, is not part of an MP transaction up until now -->
-                    <use>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test="./nummer_soort/@code = 'WP'">work</xsl:when>
-                                <xsl:when test="./nummer_soort/@code = 'HP'">home</xsl:when>
-                                <xsl:when test="./nummer_soort/@code = 'TMP'">temp</xsl:when>
-                                <xsl:otherwise>unsupported nummer_soort/@code: '<xsl:value-of select="./nummer_soort/@code"/>'.</xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                    </use>
-                </telecom>
-            </xsl:for-each>
-            <xsl:for-each select="./email_adressen[.//(@value | @code)]">
-                <telecom>
-                    <system value="email"/>
-                    <value value="{./email_adres/@value}"/>
-                    <!-- todo telecomtype, is not part of an MP transaction up until now -->
-                    <use>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test="./email_soort/@code = 'WP'">work</xsl:when>
-                                <xsl:when test="./email_soort/@code = 'HP'">home</xsl:when>
-                                <xsl:otherwise>unsupported nummer_soort/@code: '<xsl:value-of select="./nummer_soort/@code"/>'.</xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                    </use>
-                </telecom>
-            </xsl:for-each>
-        </xsl:for-each>
+        <!-- contactgegevens -->
+        <xsl:apply-templates select="telefoon_email/contactgegevens[.//(@value | @code | @nullFlavor)]" mode="doContactPoint"/>
         <!-- There was a dataset change to remove the obsolete group 'adres' which was adopted by MP 9.0.7, 
                      adres/adresgegevens is still here for backwards compatibility with 9.0.6 and before -->
         <xsl:apply-templates select="(adres/adresgegevens | adresgegevens)" mode="doAddress"/>
@@ -1037,12 +1004,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </identifier>
         </xsl:for-each>
         <!-- naamgegevens -->
-        <xsl:for-each select="naamgegevens[.//(@value | @code)]">
+        <xsl:for-each select="naamgegevens[.//(@value | @code | @nullFlavor)]">
             <xsl:call-template name="nl-core-humanname">
                 <xsl:with-param name="ada-naamgegevens" select="."/>
                 <xsl:with-param name="unstructured-name" select="ongestructureerde_naam/@value"/>
             </xsl:call-template>
         </xsl:for-each>
+        <!-- contactgegevens -->
+        <xsl:apply-templates select="contactgegevens[.//(@value | @code | @nullFlavor)]" mode="doContactPoint"/>
         <!-- geslacht -->
         <xsl:for-each select="geslacht[.//(@value | @code)]">
             <xsl:call-template name="patient-gender">
@@ -1053,6 +1022,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="geboortedatum[@value]">
             <birthDate value="{@value}"/>
         </xsl:for-each>
+        <!-- adresgegevens -->
+        <xsl:apply-templates select="adresgegevens[.//(@value | @code | @nullFlavor)]" mode="doAddress"></xsl:apply-templates>
     </xsl:template>
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-practitioner-2.0</xd:desc>
@@ -1320,7 +1291,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </requester>
         </xsl:for-each>
     </xsl:template>
-
+    <xd:doc>
+        <xd:desc>Template for FHIR datatype ContactPoint, context should be ada contactgegevens element</xd:desc>
+    </xd:doc>
+    <xsl:template name="fhir-contact-point" match="contactgegevens" mode="doContactPoint">
+        <xsl:for-each select="telefoonnummers[.//(@value | @code)]">
+            <telecom>
+                <system value="phone"/>
+                <value value="{telefoonnummer/@value}"/>
+                <!-- todo telecomtype, is not part of an MP transaction up until now -->
+                <use>
+                    <xsl:attribute name="value">
+                        <xsl:choose>
+                            <xsl:when test="nummer_soort/@code = 'WP'">work</xsl:when>
+                            <xsl:when test="nummer_soort/@code = 'HP'">home</xsl:when>
+                            <xsl:when test="nummer_soort/@code = 'TMP'">temp</xsl:when>
+                            <xsl:otherwise>unsupported nummer_soort/@code: '<xsl:value-of select="nummer_soort/@code"/>'.</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </use>
+            </telecom>
+        </xsl:for-each>
+        <xsl:for-each select="email_adressen[.//(@value | @code)]">
+            <telecom>
+                <system value="email"/>
+                <value value="{email_adres/@value}"/>
+                <!-- todo telecomtype, is not part of an MP transaction up until now -->
+                <use>
+                    <xsl:attribute name="value">
+                        <xsl:choose>
+                            <xsl:when test="email_soort/@code = 'WP'">work</xsl:when>
+                            <xsl:when test="email_soort/@code = 'HP'">home</xsl:when>
+                            <xsl:otherwise>unsupported nummer_soort/@code: '<xsl:value-of select="nummer_soort/@code"/>'.</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </use>
+            </telecom>
+        </xsl:for-each>
+        
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-address-2.0, context should be ada adresgegevens element</xd:desc>
     </xd:doc>
