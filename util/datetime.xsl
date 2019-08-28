@@ -56,6 +56,20 @@
     </xsl:function>
     
     <xd:doc>
+        <xd:desc>Returns the xs:time from a xs:dateTime formatted string. Could include timezone.</xd:desc>
+        <xd:param name="xs-datetime"/>
+        <xd:return>xs:time or nothing</xd:return>
+    </xd:doc>
+    <xsl:function name="nf:getTime" as="xs:time?">
+        <xsl:param name="xs-datetime" as="xs:string?"/>
+        
+        <xsl:if test="substring-after($xs-datetime, 'T') castable as xs:time">
+            <xsl:value-of select="xs:time(substring-after($xs-datetime, 'T'))"/>
+        </xsl:if>
+    </xsl:function>
+    
+    
+    <xd:doc>
         <xd:desc>Returns day of week of a certain date as integer. Sunday = 0, Saturday = 6.</xd:desc>
         <xd:param name="date">xs:date for which the day of week needs to be returned</xd:param>
     </xd:doc>
