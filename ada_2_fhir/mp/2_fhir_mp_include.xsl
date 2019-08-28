@@ -3457,7 +3457,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </itemCodeableConcept>
                 </xsl:for-each>
-                <isActive value="true"/>
                 <xsl:for-each select="./sterkte">
                     <amount>
                         <xsl:call-template name="hoeveelheid-complex-to-Ratio">
