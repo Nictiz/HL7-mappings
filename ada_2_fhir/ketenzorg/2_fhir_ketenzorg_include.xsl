@@ -1318,6 +1318,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="start_date_time[@value]">
                         <verificationStatus value="confirmed"/>
                     </xsl:when>
+                    <xsl:otherwise>
+                        <!-- we don't know, but still a required element, dataabsentreason -->
+                        <verificationStatus>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                <valueCode value="unknown"/>
+                            </extension>
+                        </verificationStatus>
+                    </xsl:otherwise>
                 </xsl:choose>
                 <!--<verificationStatus value="confirmed"/>-->
                 <!-- CD    NL-CM:8.2.4        AllergieCategorie        0..1 AllergieCategorieCodelijst-->
