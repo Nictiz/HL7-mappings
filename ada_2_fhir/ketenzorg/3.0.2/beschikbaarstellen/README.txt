@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2019-08-28
+* Added default dataabsentreason 'unknown' for AllergyIntolerance/verificationStatus, since this is a required element in FHIR and we can't always properly map it from the zib/ada.
 2019-07-25
 * Fixed empty fullUrl for Encounter (Contactmomenten).
 2019-07-30
