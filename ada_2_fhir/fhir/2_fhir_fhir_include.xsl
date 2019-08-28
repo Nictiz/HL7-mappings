@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
     <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
-    
+
     <xd:doc>
         <xd:desc>Returns an array of FHIR elements based on an array of ADA that a @datatype attribute to determine the type with. 
             <xd:p>After the type is determined, the element is handed off for further processing. Failure to determine type is a fatal error.</xd:p>
@@ -38,10 +38,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="any-to-value">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="elemName" as="xs:string" required="yes"/>
-        
+
         <xsl:for-each select="$in">
             <xsl:variable name="theDatatype" select="@datatype"/>
-            
+
             <xsl:choose>
                 <xsl:when test="$theDatatype = 'code' or @code">
                     <xsl:element name="{concat($elemName, 'CodeableConcept')}" namespace="http://hl7.org/fhir">
@@ -99,14 +99,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Transforms ada boolean element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#boolean">@value</xd:a></xd:desc>
         <xd:param name="in">the ada boolean element, may have any name but should have ada datatype boolean</xd:param>
     </xd:doc>
     <xsl:template name="boolean-to-boolean" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:choose>
             <xsl:when test="$in/@value">
                 <xsl:attribute name="value" select="$in/@value"/>
@@ -124,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="string-to-string" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:choose>
             <xsl:when test="$in/@value">
                 <xsl:attribute name="value" select="$in/@value"/>
@@ -142,7 +142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="date-to-datetime" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:choose>
             <xsl:when test="$in/@value">
                 <xsl:attribute name="value" select="$in/@value"/>
@@ -160,7 +160,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="blob-to-attachment" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
-        
+
         <xsl:choose>
             <xsl:when test="$in/@value">
                 <data value="{$in/@value}"/>
@@ -186,7 +186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="code-to-code" as="attribute(value)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="codeMap" as="element()*"/>
-        
+
         <xsl:for-each select="$in">
             <xsl:variable name="theCode">
                 <xsl:choose>
@@ -430,10 +430,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </xsl:when>
             <xsl:when test="$in[@root = $oidBurgerservicenummer]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                    <valueCode value="masked"/>
-                </extension>
                 <system value="{local:getUri(@root)}"/>
+                <value>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="masked"/>
+                    </extension>
+                </value>
             </xsl:when>
             <xsl:when test="$in[@value | @root]">
                 <xsl:for-each select="$in/@root">
@@ -579,7 +581,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
-                <xsl:when test="nf:isValidUCUMUnit($ADAunit)"><xsl:value-of select="$ADAunit"/></xsl:when>
+                <xsl:when test="nf:isValidUCUMUnit($ADAunit)">
+                    <xsl:value-of select="$ADAunit"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <!-- If all else fails: wrap in {} to make it an annotation -->
                     <xsl:value-of select="concat('{', $ADAunit, '}')"/>
@@ -634,17 +638,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:getUriFromAdaId" as="xs:string">
         <xsl:param name="ada-identificatie" as="element()"/>
-        
+
         <xsl:choose>
             <!-- root = oid and extension = numeric -->
             <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
                 <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][matches(@value, '^\d+$')][1]"/>
-                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]),'.'))"/>
+                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]), '.'))"/>
             </xsl:when>
             <!-- root = oid and no extension -->
             <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][not(@value)]">
                 <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][not(@value)][1]"/>
-                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]),'.'))"/>
+                <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]), '.'))"/>
             </xsl:when>
             <!-- root = 'not important' and extension = uuid -->
             <xsl:when test="$ada-identificatie[matches(@value, $UUIDpattern)]">
