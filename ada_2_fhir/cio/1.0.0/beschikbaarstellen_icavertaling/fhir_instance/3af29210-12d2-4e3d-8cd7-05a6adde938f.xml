@@ -1,272 +1,217 @@
-<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<Bundle xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-    <type value="searchset"/>
-    <total value="10"/>
-    <entry>
-        <fullUrl value="urn:uuid:77ed26b5-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <Patient>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
-                </meta>
-                <identifier>
-                    <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                    <value>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                            <valueCode value="masked"/>
-                        </extension>
-                    </value>
-                </identifier>
-                <identifier>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
-                    <value value="10009"/>
-                </identifier>
-                <name>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-                        <valueCode value="NL1"/>
-                    </extension>
-                    <family value="XXX_Jangi">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                            <valueString value="XXX_Jangi"/>
-                        </extension>
-                    </family>
-                    <given value="I.">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                            <valueCode value="IN"/>
-                        </extension>
-                    </given>
-                </name>
-                <telecom>
-                    <system value="phone"/>
-                    <value value="+31612345678"/>
-                    <use value="home"/>
-                </telecom>
-                <gender value="male"/>
-                <birthDate value="1964-08-02"/>
-                <address>
-                    <use value="home">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                            <valueCode value="HP"/>
-                        </extension>
-                    </use>
-                    <type value="physical"/>
-                    <line value="Knolweg 1002">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                            <valueString value="Knolweg"/>
-                        </extension>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                            <valueString value="1002"/>
-                        </extension>
-                    </line>
-                    <city value="Stitswerd"/>
-                    <postalCode value="9999ZZ"/>
-                </address>
-            </Patient>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed29a4-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <Patient>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
-                </meta>
-            </Patient>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed29b9-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <Practitioner>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
-                </meta>
-            </Practitioner>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed29db-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <Practitioner>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
-                </meta>
-                <identifier>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.4.11.999.26.1.139"/>
-                    <value value="zorgverlener-01"/>
-                </identifier>
-                <name>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-                        <valueCode value="NL1"/>
-                    </extension>
-                    <family value="van der Spek">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                            <valueString value="van der"/>
-                        </extension>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                            <valueString value="Spek"/>
-                        </extension>
-                    </family>
-                </name>
-            </Practitioner>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed4608-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <Organization>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-                </meta>
-            </Organization>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed460b-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <Organization>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-                </meta>
-                <identifier>
-                    <system value="urn:oid:2.16.840.1.113883.2.4.4.11.999.26.1.205"/>
-                    <value value="zorgaanbieder-01"/>
-                </identifier>
-                <name value="Bedrijfsartsenconsortium"/>
-            </Organization>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed29b8-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <PractitionerRole>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
-                </meta>
-                <practitioner>
-                    <reference value=" "/>
-                </practitioner>
-            </PractitionerRole>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed29cd-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <PractitionerRole>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
-                </meta>
-                <practitioner>
-                    <reference value=" "/>
-                </practitioner>
-            </PractitionerRole>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed26b4-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <PractitionerRole>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
-                </meta>
-                <practitioner>
-                    <reference value=" "/>
-                    <display value="1 van der Spek"/>
-                </practitioner>
-                <organization>
-                    <reference value=""/>
-                    <display value="Organisatie informatie: #zorgaanbieder-01"/>
-                </organization>
-                <specialty>
-                    <coding>
-                        <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-                        <code value="01.008"/>
-                        <display value="Bedrijfsarts"/>
-                    </coding>
-                </specialty>
-            </PractitionerRole>
-        </resource>
-    </entry>
-    <entry>
-        <fullUrl value="urn:uuid:77ed299a-c9cd-11e9-1776-020000000000"/>
-        <resource>
-            <AllergyIntolerance>
-                <clinicalStatus value="active">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                        <valueCodeableConcept>
-                            <coding>
-                                <system value="http://hl7.org/fhir/v3/ActStatus"/>
-                                <code value="active"/>
-                                <display value="Actief"/>
-                            </coding>
-                        </valueCodeableConcept>
-                    </extension>
-                </clinicalStatus>
-                <verificationStatus>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                        <valueCode value="unknown"/>
-                    </extension>
-                </verificationStatus>
-                <criticality value="high">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                        <valueCodeableConcept>
-                            <coding>
-                                <system value="http://snomed.info/sct"/>
-                                <code value="255604002"/>
-                                <display value="Licht"/>
-                            </coding>
-                        </valueCodeableConcept>
-                    </extension>
-                </criticality>
-                <code>
-                    <coding>
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="5"/>
+   <entry>
+      <fullUrl value="urn:uuid:74d74065-cb1b-11e9-5791-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
+               <value value="10009"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX_Jangi">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Jangi"/>
+                  </extension>
+               </family>
+               <given value="I.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <system value="phone"/>
+               <value value="+31612345678"/>
+               <use value="home"/>
+            </telecom>
+            <gender value="male"/>
+            <birthDate value="1964-08-02"/>
+            <address>
+               <use value="home">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                     <valueCode value="HP"/>
+                  </extension>
+               </use>
+               <type value="physical"/>
+               <line value="Knolweg 1002">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Knolweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1002"/>
+                  </extension>
+               </line>
+               <city value="Stitswerd"/>
+               <postalCode value="9999ZZ"/>
+            </address>
+         </Patient>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:74d7438b-cb1b-11e9-5791-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.11.999.26.1.139"/>
+               <value value="zorgverlener-01"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="van der Spek">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van der"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Spek"/>
+                  </extension>
+               </family>
+            </name>
+         </Practitioner>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:74d75fbb-cb1b-11e9-5791-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.11.999.26.1.205"/>
+               <value value="zorgaanbieder-01"/>
+            </identifier>
+            <name value="Bedrijfsartsenconsortium"/>
+         </Organization>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:74d74064-cb1b-11e9-5791-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:74d7438b-cb1b-11e9-5791-020000000000"/>
+               <display value="1 van der Spek"/>
+            </practitioner>
+            <organization>
+               <reference value=""/>
+               <display value="Organisatie informatie: #zorgaanbieder-01"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.008"/>
+                  <display value="Bedrijfsarts"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:74d7434a-cb1b-11e9-5791-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="Actief"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </verificationStatus>
+            <criticality value="high">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="288328004"/>
-                        <display value="Bijengif"/>
-                    </coding>
-                </code>
-                <patient>
-                    <reference value="urn:uuid:77ed26b5-c9cd-11e9-1776-020000000000"/>
-                    <display value="I. XXX_Jangi"/>
-                </patient>
-                <onsetDateTime value="2019-08-27T14:00:00"/>
-                <lastOccurrence value="2009-11-15T00:00:00"/>
-                <note>
-                    <text value="voor het eerst gestoken door een bij en enorme bulten"/>
-                </note>
-                <reaction>
-                    <substance>
-                        <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="288328004"/>
-                            <display value="Bijengif"/>
-                        </coding>
-                    </substance>
-                    <manifestation>
-                        <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="39579001"/>
-                            <display value="Anafylaxie"/>
-                        </coding>
-                    </manifestation>
-                    <manifestation>
-                        <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="418363000"/>
-                            <display value="Jeuk"/>
-                        </coding>
-                    </manifestation>
-                    <severity value="moderate"/>
-                    <exposureRoute>
-                        <coding>
-                            <system value="http://snomed.info/sct"/>
-                            <code value="771313007"/>
-                            <display value="Sting by bee (event)"/>
-                        </coding>
-                    </exposureRoute>
-                    <onset value="2019-08-27T14:00:00"/>
-                </reaction>
-            </AllergyIntolerance>
-        </resource>
-    </entry>
+                        <code value="255604002"/>
+                        <display value="Licht"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </criticality>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="288328004"/>
+                  <display value="Bijengif"/>
+               </coding>
+            </code>
+            <patient>
+               <reference value="urn:uuid:74d74065-cb1b-11e9-5791-020000000000"/>
+               <display value="I. XXX_Jangi"/>
+            </patient>
+            <onsetDateTime value="2019-08-27T14:00:00"/>
+            <lastOccurrence value="2009-11-15T00:00:00"/>
+            <note>
+               <text value="voor het eerst gestoken door een bij en enorme bulten"/>
+            </note>
+            <reaction>
+               <substance>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="288328004"/>
+                     <display value="Bijengif"/>
+                  </coding>
+               </substance>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="39579001"/>
+                     <display value="Anafylaxie"/>
+                  </coding>
+               </manifestation>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="418363000"/>
+                     <display value="Jeuk"/>
+                  </coding>
+               </manifestation>
+               <onset value="2019-08-27T14:00:00"/>
+               <severity value="moderate"/>
+               <exposureRoute>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="771313007"/>
+                     <display value="Sting by bee (event)"/>
+                  </coding>
+               </exposureRoute>
+            </reaction>
+         </AllergyIntolerance>
+      </resource>
+   </entry>
 </Bundle>

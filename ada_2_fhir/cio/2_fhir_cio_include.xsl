@@ -86,17 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <display value="{normalize-space(string-join(.//*[not(name()='naamgebruik')]/@value,' '))}"/>
         </xsl:for-each>
     </xsl:template>
-    <xd:doc>
-        <xd:desc>Helper template to create FHIR Practitioner reference, context should be ada zorgverlener element</xd:desc>
-    </xd:doc>
-    <xsl:template name="practitioner-reference" match="zorgverlener" mode="doPractitionerReference">
-        <reference value=" {nf:getResourceInfo('Practitioner',nf:getGroupingKeyDefault(.), false(), 'FullUrlOrId')}"/>
-        <xsl:for-each select=".//naamgegevens[not(naamgegevens)][.//@value]">
-            <display value="{normalize-space(string-join(.//@value, ' '))}"/>
-        </xsl:for-each>
-    </xsl:template>
-
-     <xd:doc>
+       <xd:doc>
         <xd:desc>Helper template to create extension with FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
     </xd:doc>
     <xsl:template name="reference-practitionerrole" match="zorgverlener" mode="doPractitionerRoleReference-907">
