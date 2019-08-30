@@ -99,14 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <display value="{nf:get-practitioner-role-display(.)}"/>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Helper template to create FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
-    </xd:doc>
-    <xsl:template name="practitioner-role-reference" match="zorgverlener" mode="doPractitionerRoleReference">
-         <reference value=" {nf:getResourceInfo('PRACTITIONERROLE',nf:getGroupingKeyDefault(.), false(), 'FullUrlOrId')}"/>
-        <display value="{nf:get-practitioner-role-display(.)}"/>
-    </xsl:template>
-    <xd:doc>
+     <xd:doc>
         <xd:desc>Helper template to create FHIR performer.actor, context should be ada verstrekker element</xd:desc>
     </xd:doc>
     <xsl:template name="verstrekker-performer-actor" match="verstrekker" mode="doPerformerActor">

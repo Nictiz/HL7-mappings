@@ -1,8 +1,8 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/C:/SVN/art_decor/trunk/ada-data/projects/cio/schemas/ada_beschikbaarstellen_icavertaling.xsd">
-    <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2019-08-28T15:17:44.384+02:00" last-update-date="2019-08-28T21:42:09.879+02:00"/>
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../projects/cio/schemas/ada_beschikbaarstellen_icavertaling.xsd">
+    <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2019-08-28T15:17:44.384+02:00" last-update-date="2019-08-30T17:13:05.066+02:00"/>
     <data>
         <beschikbaarstellen_icavertaling app="cio" shortName="beschikbaarstellen_icavertaling" formName="beschikbaarstellen_icavertaling" transactionRef="2.16.840.1.113883.2.4.3.11.60.26.4.3" transactionEffectiveDate="2019-08-28T13:33:41" versionDate="" prefix="cio-" language="nl-NL" title="Test 1" desc="" id="3af29210-12d2-4e3d-8cd7-05a6adde938f">
-            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.98">
+            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.98" id="patient-01">
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.100">
                     <initialen value="I." conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.112"/>
                     <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.114" value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
@@ -34,17 +34,17 @@
                     <identificatienummer value="AI-test-AWE-01" root="2.16.840.1.113883.2.4.3.11.999.26.​1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.55"/>
                     <informatiebron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.56">
                         <patient_als_bron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.57">
-                            <patient value="#patient" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.58"/>
+                            <patient value="patient-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.58" datatype="reference"/>
                         </patient_als_bron>
                     </informatiebron>
                     <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.63">
                         <patient_als_auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.64">
-                            <patient value="#patient" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.65"/>
+                            <patient value="zorgverlener-01" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.65"/>
                         </patient_als_auteur>
                     </auteur>
                     <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.70">
                         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.71">
-                            <patient value="#patient" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.72"/>
+                            <patient value="patient-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.72" datatype="reference"/>
                         </patient>
                     </onderwerp>
                     <datum_tijd value="2019-08-28T12:45:00" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.75"/>
@@ -70,43 +70,43 @@
                     <identificatienummer value="Alert-test-AWE-01" root="​2.16.840.1.113883.2.4.3.11.999.26.1.16" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.33"/>
                     <informatiebron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.34">
                         <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.37">
-                            <zorgverlener value="#zorgverlener-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.38"/>
+                            <zorgverlener value="zorgverlener-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.38" datatype="reference"/>
                         </zorgverlener>
                     </informatiebron>
                     <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.41">
                         <betrokkene_als_auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.46">
-                            <contactpersoon value="#contact-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.47"/>
+                            <contactpersoon value="contactpersoon-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.47" datatype="reference"/>
                         </betrokkene_als_auteur>
                     </auteur>
                     <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.48">
                         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.49">
-                            <patient value="#patient" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.50"/>
+                            <patient value="patient-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.50" datatype="reference"/>
                         </patient>
                     </onderwerp>
                     <datum_tijd value="2018-05-15T00:00:00" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.53"/>
                 </zibroot>
                 <conditie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.17">
-                    <probleem value="#problem-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.18"/>
+                    <probleem value="probleem-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.18" datatype="reference"/>
                 </conditie>
                 <alert_naam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.19" value="1" code="66598005" codeSystem="2.16.840.1.113883.6.96" displayName="Drager van besmettelijke ziekte"/>
                 <alert_type conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.21" value="1" code="75323-6" codeSystem="2.16.840.1.113883.6.1" displayName="conditie"/>
             </alert>
-            <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.22">
+            <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.22" id="probleem-01">
                 <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.76">
                     <identificatienummer value="problem-01" root="​​2.16.840.1.113883.2.4.3.11.999.26.1.22" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.77"/>
                     <informatiebron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.78">
                         <betrokkene_als_bron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.83">
-                            <contactpersoon value="#contact-02" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.84"/>
+                            <contactpersoon value="contactpersoon-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.84" datatype="reference"/>
                         </betrokkene_als_bron>
                     </informatiebron>
                     <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.85">
                         <zorgverlener_als_auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.88">
-                            <zorgverlener value="#zorgverlener-02" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.89"/>
+                            <zorgverlener value="zorgverlener-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.89" datatype="reference"/>
                         </zorgverlener_als_auteur>
                     </auteur>
                     <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.92">
                         <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.93">
-                            <patient value="#patient" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.94"/>
+                            <patient value="patient-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.94" datatype="reference"/>
                         </patient>
                     </onderwerp>
                 </zibroot>
@@ -119,7 +119,7 @@
                 <verificatie_status conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.30" value="3" code="410605003" codeSystem="2.16.840.1.113883.6.96" displayName="Bevestigd"/>
                 <toelichting value="matig ernstig" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.31"/>
             </probleem>
-            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.139">
+            <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.139" id="zorgverlener-01">
                 <zorgverlener_identificatienummer value="zorgverlener-01" root="2.16.840.1.113883.2.4.4.11.999.26.1.139" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.140"/>
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.142">
                     <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.173" value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
@@ -137,35 +137,25 @@
                     </telefoonnummers>
                 </contactgegevens>
                 <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.148">
-                    <zorgaanbieder value="#zorgaanbieder-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.149"/>
+                    <zorgaanbieder value="zorgaanbieder-01" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.149"/>
                 </zorgaanbieder>
                 <zorgverleners_rol conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.150" originalText="bedrijfsarts" value="7" code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="Anders"/>
             </zorgverlener>
-            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.205">
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.205" id="zorgaanbieder-01">
                 <zorgaanbieder_identificatienummer value="zorgaanbieder-01" root="2.16.840.1.113883.2.4.4.11.999.26.1.205" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.206"/>
                 <organisatie_naam value="Bedrijfsartsenconsortium" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.207"/>
                 <organisatie_locatie value="Vestiging Amsterdam" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.208"/>
                 <afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.209" value="387" code="8425" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))" codeSystemVersion="2017-12-14T00:00:00" displayName="Overige artsen, basisarts"/>
                 <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.214" value="18" code="P6" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Preventieve gezondheidszorg"/>
             </zorgaanbieder>
-            <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.161">
+            <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.161" id="contactpersoon-01">
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.163">
                     <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.236" value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+                    <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.237">
+                        <achternaam value="achternaam-contact" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.239"/>
+                    </geslachtsnaam>
                 </naamgegevens>
-                <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.157">
-                    <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.198">
-                        <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.200" value="1" code="LL" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.22.1" displayName="Vast telefoonnummer"/>
-                        <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.201" value="1" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Telefoonnummer thuis"/>
-                    </telefoonnummers>
-                    <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.202">
-                        <email_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.204" value="1" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Privé e-mailadres"/>
-                    </email_adressen>
-                </contactgegevens>
-                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.167">
-                    <aanduiding_bij_nummer conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.247" value="1" code="to" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.3" displayName="Tegenover"/>
-                    <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.253" value="1" code="PST" codeSystem="2.16.840.1.113883.5.1119" displayName="Postadres"/>
-                </adresgegevens>
-                <rol conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.168" value="1" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.22.472" displayName="Eerste relatie/contactpersoon"/>
+                <rol conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.168" value="3" code="3" codeSystem="2.16.840.1.113883.2.4.3.11.22.472" displayName="Curator (juridisch)"/>
                 <relatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.169" value="1" code="ADOPTF" codeSystem="2.16.840.1.113883.5.111" displayName="Adoptievader"/>
             </contactpersoon>
         </beschikbaarstellen_icavertaling>
