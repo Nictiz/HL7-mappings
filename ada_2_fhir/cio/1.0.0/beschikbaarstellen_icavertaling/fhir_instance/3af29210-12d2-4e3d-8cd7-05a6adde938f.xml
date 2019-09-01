@@ -2,9 +2,185 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="5"/>
+   <total value="8"/>
    <entry>
-      <fullUrl value="urn:uuid:1bd5ece5-cb44-11e9-1979-020000000000"/>
+      <fullUrl value="urn:uuid:f1b0b6aa-cc9a-11e9-1974-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="Actief"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </verificationStatus>
+            <criticality value="high">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="255604002"/>
+                        <display value="Licht"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </criticality>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="288328004"/>
+                  <display value="Bijengif"/>
+               </coding>
+            </code>
+            <patient>
+               <reference value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
+               <display value="I. XXX_Jangi"/>
+            </patient>
+            <onsetDateTime value="2019-08-27T14:00:00"/>
+            <lastOccurrence value="2009-11-15T00:00:00"/>
+            <note>
+               <text value="voor het eerst gestoken door een bij en enorme bulten"/>
+            </note>
+            <reaction>
+               <substance>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="288328004"/>
+                     <display value="Bijengif"/>
+                  </coding>
+               </substance>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="39579001"/>
+                     <display value="Anafylaxie"/>
+                  </coding>
+               </manifestation>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="418363000"/>
+                     <display value="Jeuk"/>
+                  </coding>
+               </manifestation>
+               <onset value="2019-08-27T14:00:00"/>
+               <severity value="moderate"/>
+               <exposureRoute>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="771313007"/>
+                     <display value="Sting by bee (event)"/>
+                  </coding>
+               </exposureRoute>
+            </reaction>
+         </AllergyIntolerance>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f1b0b6c5-cc9a-11e9-1974-020000000000"/>
+      <resource>
+         <Flag>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
+            </meta>
+            <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+               <valueReference>
+                  <reference value="urn:uuid:f1b0b6d6-cc9a-11e9-1974-020000000000"/>
+                  <display value="Localized lupus erythematosus"/>
+               </valueReference>
+            </extension>
+            <status>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="75323-6"/>
+                  <display value="conditie"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="66598005"/>
+                  <display value="Drager van besmettelijke ziekte"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
+               <display value="I. XXX_Jangi"/>
+            </subject>
+         </Flag>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f1b0b6d6-cc9a-11e9-1974-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <clinicalStatus value="active"/>
+            <verificationStatus value="confirmed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="248536006"/>
+                  <display value="Functionele Beperking"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="21021000146108"/>
+                  <display value="Localized lupus erythematosus"/>
+               </coding>
+            </code>
+            <bodySite>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="7771000"/>
+                        <display value="Links"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="302545001"/>
+                  <display value="Entire foot"/>
+               </coding>
+            </bodySite>
+            <subject>
+               <reference value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
+               <display value="I. XXX_Jangi"/>
+            </subject>
+            <onsetPeriod>
+               <start value="2016-01-07T00:00:00"/>
+            </onsetPeriod>
+            <note>
+               <text value="matig ernstig"/>
+            </note>
+         </Condition>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -66,7 +242,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1bd5f00b-cb44-11e9-1979-020000000000"/>
+      <fullUrl value="urn:uuid:f1b0b6eb-cc9a-11e9-1974-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -93,34 +269,44 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1bd60c3b-cb44-11e9-1979-020000000000"/>
+      <fullUrl value="urn:uuid:f1b0d31b-cc9a-11e9-1974-020000000000"/>
       <resource>
          <Organization>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.4.11.999.26.1.205"/>
-               <value value="zorgaanbieder-01"/>
-            </identifier>
-            <name value="Bedrijfsartsenconsortium"/>
+            <type>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="8425"/>
+                  <display value="Overige artsen, basisarts"/>
+               </coding>
+            </type>
+            <type>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.15.1060"/>
+                  <code value="P6"/>
+                  <display value="Preventieve gezondheidszorg"/>
+               </coding>
+            </type>
+            <name value="Bedrijfsartsenconsortium - Vestiging Amsterdam"/>
          </Organization>
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1bd5ece4-cb44-11e9-1979-020000000000"/>
+      <fullUrl value="urn:uuid:f1b0b3c4-cc9a-11e9-1974-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:1bd5f00b-cb44-11e9-1979-020000000000"/>
-               <display value="1 van der Spek"/>
+               <reference value="urn:uuid:f1b0b6eb-cc9a-11e9-1974-020000000000"/>
+               <display value="van der Spek"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:1bd60c3b-cb44-11e9-1979-020000000000"/>
-               <display value="Bedrijfsartsenconsortium"/>
+               <reference value="urn:uuid:f1b0d31b-cc9a-11e9-1974-020000000000"/>
+               <display value="Bedrijfsartsenconsortium - Vestiging Amsterdam"/>
             </organization>
             <specialty>
                <coding>
@@ -133,85 +319,43 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1bd5efca-cb44-11e9-1979-020000000000"/>
+      <fullUrl value="urn:uuid:f1b0d320-cc9a-11e9-1974-020000000000"/>
       <resource>
-         <AllergyIntolerance>
-            <clinicalStatus value="active">
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
-                        <code value="active"/>
-                        <display value="Actief"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-            </clinicalStatus>
-            <verificationStatus>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </verificationStatus>
-            <criticality value="high">
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="255604002"/>
-                        <display value="Licht"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-            </criticality>
-            <code>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="288328004"/>
-                  <display value="Bijengif"/>
-               </coding>
-            </code>
+         <RelatedPerson>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+            </meta>
+            <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+                     <code value="3"/>
+                     <display value="Curator (juridisch)"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
             <patient>
-               <reference value="urn:uuid:1bd5ece5-cb44-11e9-1979-020000000000"/>
+               <reference value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </patient>
-            <onsetDateTime value="2019-08-27T14:00:00"/>
-            <lastOccurrence value="2009-11-15T00:00:00"/>
-            <note>
-               <text value="voor het eerst gestoken door een bij en enorme bulten"/>
-            </note>
-            <reaction>
-               <substance>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="288328004"/>
-                     <display value="Bijengif"/>
-                  </coding>
-               </substance>
-               <manifestation>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="39579001"/>
-                     <display value="Anafylaxie"/>
-                  </coding>
-               </manifestation>
-               <manifestation>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="418363000"/>
-                     <display value="Jeuk"/>
-                  </coding>
-               </manifestation>
-               <onset value="2019-08-27T14:00:00"/>
-               <severity value="moderate"/>
-               <exposureRoute>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="771313007"/>
-                     <display value="Sting by bee (event)"/>
-                  </coding>
-               </exposureRoute>
-            </reaction>
-         </AllergyIntolerance>
+            <relationship>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/RoleCode"/>
+                  <code value="ADOPTF"/>
+                  <display value="Adoptievader"/>
+               </coding>
+            </relationship>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="achternaam-contact">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="achternaam-contact"/>
+                  </extension>
+               </family>
+            </name>
+         </RelatedPerson>
       </resource>
    </entry>
 </Bundle>

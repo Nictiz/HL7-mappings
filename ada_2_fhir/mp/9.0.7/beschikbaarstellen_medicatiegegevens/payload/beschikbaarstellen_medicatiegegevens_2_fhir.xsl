@@ -30,7 +30,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
     <xsl:output method="xml" indent="yes"/>
 	<xsl:strip-space elements="*"/>
-    <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>

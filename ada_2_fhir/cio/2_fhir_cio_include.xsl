@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <xsl:import href="../zibs2017/payload/zib2017.xsl"/>
     <xsl:output method="xml" indent="yes"/>
@@ -22,45 +22,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
 
-    <xsl:variable name="prescribe-reasons" as="element()*">
-        <!-- redenen -->
-        <xsl:for-each-group select="//reden_van_voorschrijven/probleem[.//@code]" group-by="nf:getGroupingKeyDefault(.)">
-            <unieke-reden xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <xsl:for-each select="current-group()[1]">
-                    <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{nf:get-fhir-uuid(.)}"/>
-                        <resource>
-                            <xsl:apply-templates select="." mode="doConditionForProbleem">
-                                <xsl:with-param name="condition-id">
-                                    <xsl:choose>
-                                        <xsl:when test="$referById">
-                                            <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
-                                            <xsl:variable name="patient-reference" select="nf:getResourceInfo('Patient',nf:getGroupingKeyDefault(.), false(), 'FullUrlOrId')"/>
-                                            <xsl:value-of select="concat('redenvanvoorschrijven', $patient-reference, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
-                                        </xsl:when>
-                                        <xsl:otherwise/>
-                                    </xsl:choose>
-                                </xsl:with-param>
-                            </xsl:apply-templates>
-                        </resource>
-                    </entry>
-                </xsl:for-each>
-            </unieke-reden>
-        </xsl:for-each-group>
-    </xsl:variable>
-
-
-
     <xsl:variable name="bouwstenen-icavertaling" as="element(f:entry)*">
-        <!-- toedieningsafspraken -->
-        <xsl:for-each select="//allergie_intolerantie">
+        <!-- allergie_intolerantie -->
+        <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
                 <resource>
-                    <xsl:call-template name="AllergieIntolerantie">
+                    <xsl:call-template name="zib-AllergyIntolerance">
                         <xsl:with-param name="logicalId" select="
                                 if ($referById) then
                                     (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then
@@ -74,136 +42,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each>
+        <!-- allergie_intolerantie -->
+        <xsl:for-each select="//alert">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <resource>
+                    <xsl:call-template name="zib-Alert">
+                        <xsl:with-param name="logicalId" select="
+                            if ($referById) then
+                            (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then
+                            nf:removeSpecialCharacters(./identificatie/@value)
+                            else
+                            uuid:get-uuid(.))
+                            else
+                            ()"> </xsl:with-param>
+                        <xsl:with-param name="ada-patient" select="../patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+        
        </xsl:variable>
 
 
-    <xd:doc>
-        <xd:desc>Helper template to create FHIR RelatedPerson reference, context should be ada persoon element</xd:desc>
-    </xd:doc>
-    <xsl:template name="relatedperson-reference" match="persoon" mode="doRelatedPersonReference">
-        <reference value="{nf:getResourceInfo('RelatedPerson',nf:getGroupingKeyDefault(.), false(), 'FullUrlOrId')}"/>        
-        <xsl:for-each select="./naamgegevens[1][.//@value]">
-            <display value="{normalize-space(string-join(.//*[not(name()='naamgebruik')]/@value,' '))}"/>
-        </xsl:for-each>
-    </xsl:template>
-       <xd:doc>
-        <xd:desc>Helper template to create extension with FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
-    </xd:doc>
-    <xsl:template name="reference-practitionerrole" match="zorgverlener" mode="doPractitionerRoleReference-907">
-        <xsl:variable name="display" as="xs:string?" select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName, ' || ')))"/>
-        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-                <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
-            </valueReference>
-        </extension>
-        <display value="{nf:get-practitioner-role-display(.)}"/>
-    </xsl:template>
-
-     <xd:doc>
-        <xd:desc>Helper template to create FHIR performer.actor, context should be ada verstrekker element</xd:desc>
-    </xd:doc>
-    <xsl:template name="verstrekker-performer-actor" match="verstrekker" mode="doPerformerActor">
-        <!-- verstrekker -->
-        <performer>
-            <!-- in dataset toedieningsafspraak 9.0.6 staat zorgaanbieder (onnodig) een keer extra genest -->
-            <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)]">
-                <actor>
-                    <xsl:apply-templates select="." mode="doOrganizationReference"/>
-                </actor>
-            </xsl:for-each>
-        </performer>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc>Helper template to create FHIR requestor.agent, input or context should be ada zorgverlener element</xd:desc>
-        <xd:param name="zorgverlener">ada element zorgverlener, is derived from context when not set</xd:param>
-    </xd:doc>
-    <xsl:template name="zorgverlener-requester" match="zorgverlener" mode="doRequesterAgent">
-        <xsl:param name="zorgverlener" select="."/>
-        <requester>
-            <xsl:for-each select="$zorgverlener">
-                <agent>
-                    <xsl:apply-templates select="." mode="doPractitionerReference"/>
-                </agent>
-                <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)][.//@value]">
-                    <onBehalfOf>
-                        <xsl:apply-templates select="." mode="doOrganizationReference"/>
-                    </onBehalfOf>
-                </xsl:for-each>
-            </xsl:for-each>
-        </requester>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc>Helper template to create FHIR requester.extension (with PractitionerRoleReference) and .agent, context should be ada voorschrijver or auteur element</xd:desc>
-    </xd:doc>
-    <xsl:template name="zorgverlener-requester-ext" match="voorschrijver | auteur" mode="doRequesterExtension">
-        <xsl:for-each select="./zorgverlener[.//(@value | @code)]">
-            <requester>
-                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-                    <valueReference>
-                        <xsl:apply-templates select="." mode="doPractitionerRoleReference"/>
-                    </valueReference>
-                </extension>
-                <!-- agent is verplicht in FHIR, dit is eigenlijk dubbelop omdat de practitionerRole hier ook al naar verwijst -->
-                <agent>
-                    <xsl:apply-templates select="." mode="doPractitionerReference"/>
-                </agent>
-            </requester>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Helper template to create FHIR requester.agent (with missing type extension), context should be ada voorschrijver element</xd:desc>
-    </xd:doc>
-    <xsl:template name="zorgverlener-requester-ext-907" match="voorschrijver | auteur" mode="doRequesterExtension-907">
-        <xsl:for-each select="./zorgverlener[.//(@value | @code)]">
-            <requester>
-                <agent>
-                    <xsl:apply-templates select="." mode="doPractitionerRoleReference-907"/>
-                </agent>
-            </requester>
-        </xsl:for-each>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc>Template for FHIR datatype ContactPoint, context should be ada contactgegevens element</xd:desc>
-    </xd:doc>
-    <xsl:template name="fhir-contact-point" match="contactgegevens" mode="doContactPoint">
-        <xsl:for-each select="telefoonnummers[.//(@value | @code)]">
-            <telecom>
-                <system value="phone"/>
-                <value value="{telefoonnummer/@value}"/>
-                <!-- todo telecomtype, is not part of an MP transaction up until now -->
-                <use>
-                    <xsl:attribute name="value">
-                        <xsl:choose>
-                            <xsl:when test="nummer_soort/@code = 'WP'">work</xsl:when>
-                            <xsl:when test="nummer_soort/@code = 'HP'">home</xsl:when>
-                            <xsl:when test="nummer_soort/@code = 'TMP'">temp</xsl:when>
-                            <xsl:otherwise>unsupported nummer_soort/@code: '<xsl:value-of select="nummer_soort/@code"/>'.</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                </use>
-            </telecom>
-        </xsl:for-each>
-        <xsl:for-each select="email_adressen[.//(@value | @code)]">
-            <telecom>
-                <system value="email"/>
-                <value value="{email_adres/@value}"/>
-                <!-- todo telecomtype, is not part of an MP transaction up until now -->
-                <use>
-                    <xsl:attribute name="value">
-                        <xsl:choose>
-                            <xsl:when test="email_soort/@code = 'WP'">work</xsl:when>
-                            <xsl:when test="email_soort/@code = 'HP'">home</xsl:when>
-                            <xsl:otherwise>unsupported nummer_soort/@code: '<xsl:value-of select="nummer_soort/@code"/>'.</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                </use>
-            </telecom>
-        </xsl:for-each>
-
-    </xsl:template>
-       
-     <xd:doc>
+        <xd:doc>
         <xd:desc/>
         <xd:param name="condition-id"/>
     </xd:doc>
