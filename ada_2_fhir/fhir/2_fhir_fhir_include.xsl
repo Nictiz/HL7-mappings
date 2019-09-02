@@ -724,8 +724,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D')">[Y0001]-[M01]-[D01]</xsl:when>
-                <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001]-[M01]-[D01]T[H01]:[m01]:00</xsl:when>
-                <xsl:otherwise>[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]</xsl:otherwise>
+                <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001]-[M01]-[D01]T[H01]:[m01]:00Z</xsl:when>
+                <xsl:otherwise>[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
@@ -752,4 +752,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
 </xsl:stylesheet>
