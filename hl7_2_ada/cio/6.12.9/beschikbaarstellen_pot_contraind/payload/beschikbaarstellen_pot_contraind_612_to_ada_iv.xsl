@@ -27,7 +27,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="transaction-oid">2.16.840.1.113883.2.4.3.11.60.26.4.3</xsl:variable>
     <xsl:variable name="transaction-effectiveDate" as="xs:dateTime">2019-08-28T13:33:41</xsl:variable>
     <xsl:variable name="ada-formname">beschikbaarstellen_icavertaling</xsl:variable>
-
+    
+    <!-- variable problems which contains the information to create the ada problem + a link to the related Condition, so we know to which alert it belongs -->
+    <xsl:variable name="problems" as="element()">
+        <xsl:for-each select="//hl7:Condition[hl7:code/@code = ('DX')][not(@negationInd = 'true')]">
+        <problem xmlns="">
+            <condition-id><xsl:copy-of select="hl7:id/@*"></xsl:copy-of></condition-id>
+        </problem></xsl:for-each>
+    </xsl:variable>
+    
     <xd:doc>
         <xd:desc>Template voor converteren van de 6.12 XML</xd:desc>
     </xd:doc>
@@ -85,4 +93,79 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
 -->
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Handle the HL7 6.12 Condition to determine whether to create an ada alert or an allergy_intolerance HCIM</xd:desc>
+        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
+        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for the transaction</xd:param>
+    </xd:doc>
+    <xsl:template name="HandleCondition" match="hl7:Condition" mode="HandleCondition">
+        <xsl:param name="schema"/>
+        <xsl:param name="schemaFragment"/>
+        <xsl:choose>
+            <xsl:when test=".[hl7:code/@code = ('DX')][not(@negationInd = 'true')]">
+                <xsl:variable name="elmAlert">
+                    <xsl:choose>
+                        <xsl:when test="$language = 'en-US'">alert</xsl:when>
+                        <xsl:otherwise>alert</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                
+                <!-- variable which contains all information needed to create ada problem (reference) for transaction beschikbaarstellen_icavertaling -->
+                <xsl:variable name="problem" as="element()*">
+                    <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.22" id="probleem-01">
+                        <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.76">
+                            <identificatienummer value="problem-01" root="​​2.16.840.1.113883.2.4.3.11.999.26.1.22" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.77"/>
+                            <informatiebron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.78">
+                                <betrokkene_als_bron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.83">
+                                    <contactpersoon value="contactpersoon-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.84" datatype="reference"/>
+                                </betrokkene_als_bron>
+                            </informatiebron>
+                            <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.85">
+                                <zorgverlener_als_auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.88">
+                                    <zorgverlener value="zorgverlener-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.89" datatype="reference"/>
+                                </zorgverlener_als_auteur>
+                            </auteur>
+                            <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.92">
+                                <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.93">
+                                    <patient value="patient-01" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.94" datatype="reference"/>
+                                </patient>
+                            </onderwerp>
+                        </zibroot>
+                        <probleem_anatomische_locatie code="302545001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Entire foot" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.23"/>
+                        <probleem_lateraliteit conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.24" value="1" code="7771000" codeSystem="2.16.840.1.113883.6.96" displayName="Links"/>
+                        <probleem_type conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.25" value="4" code="248536006" codeSystem="2.16.840.1.113883.6.96" displayName="Functionele Beperking"/>
+                        <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.26" code="21021000146108" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Localized lupus erythematosus"/>
+                        <probleem_begin_datum value="2016-01-07T00:00:00" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.27"/>
+                        <probleem_status conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.29" value="1" code="55561003" codeSystem="2.16.840.1.113883.6.96" displayName="Actueel"/>
+                        <verificatie_status conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.30" value="3" code="410605003" codeSystem="2.16.840.1.113883.6.96" displayName="Bevestigd"/>
+                        <toelichting value="matig ernstig" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.31"/>
+                    </probleem>                    
+                </xsl:variable>
+                
+                <!-- tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111-2013-05-25T000000.html -->
+                <xsl:call-template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111_20130525000000_2_alert">
+                    <xsl:with-param name="elmName" select="$elmAlert"/>
+                    <xsl:with-param name="schema" select="$schema"/>
+                    <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmAlert))"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test=".[hl7:code/@code = ('DINT', 'DALG', 'DNAINT')][not(@negationInd = 'true')]">
+                <xsl:variable name="elmAI">
+                    <xsl:choose>
+                        <xsl:when test="$language = 'en-US'">allergy_intolerance</xsl:when>
+                        <xsl:otherwise>allergie_intolerantie</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:call-template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111_20130525000000_2_allergy">
+                    <xsl:with-param name="elmName" select="$elmAI"/>
+                    <xsl:with-param name="schema" select="$schema"/>
+                    <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmAI))"/>
+                </xsl:call-template>
+            </xsl:when>
+        </xsl:choose>
+        
+    </xsl:template>
+    
+    
 </xsl:stylesheet>

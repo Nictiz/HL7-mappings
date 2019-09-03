@@ -1626,6 +1626,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="translations" as="element(hl7:translation)*"/>
         <xsl:param name="xsiType" as="xs:string?">CD</xsl:param>
         <xsl:element name="{$elemName}">
+            <!-- Why would we ever need an xsi:type in ada? -->
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
@@ -1766,7 +1767,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <xsl:attribute name="code" select="$code"/>
                 <xsl:attribute name="codeSystem" select="$codeSystem"/>
-                <xsl:attribute name="displayName" select="$displayName"/>
+                <xsl:if test="$displayName">
+                    <xsl:attribute name="displayName" select="$displayName"/>
+                </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
         <xsl:choose>
