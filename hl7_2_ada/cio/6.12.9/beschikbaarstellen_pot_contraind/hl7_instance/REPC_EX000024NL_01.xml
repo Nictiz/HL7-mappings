@@ -76,7 +76,7 @@
             <Condition negationInd="false">
                 <id extension="0008112345" root="2.16.528.1.1007.3.3.123451.1.432" assigningAuthorityName="Apotheeksysteem Haspers"/>
                 <code code="DX" codeSystem="2.16.840.1.113883.5.4"/>
-                <statusCode code="active"/>
+                <statusCode code="nullified"/>
                 <uncertaintyCode code="N" codeSystem="2.16.840.1.113883.5.1053"/>
                 <!-- hier dus die conditie invullen dan, bijvoorbeeld diabetes mellitus 
                 oid geeft oid voor tabel 40 van de thesaurus g-standaard  aan-->
@@ -103,6 +103,9 @@
                     <assignedPerson>
                         <!--UZI-pas apotheker-->
                         <id root="2.16.528.1.1007.3.1" extension="000001111"/>
+                        <addr>
+                            <city>Wolvega</city>
+                        </addr>
                         <assignee>
                             <assigneePerson>
                                 <name>
@@ -112,8 +115,44 @@
                                 </name>
                             </assigneePerson>
                         </assignee>
+                        <Organization>
+                            <id extension="00123451" root="2.16.528.1.1007.3.3"/>
+                            <code code="J8" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Openbare apotheek"/>
+                            <name>Apotheek Haspers</name>
+                            <addr>
+                                <city>Wolvega</city>
+                            </addr>
+                        </Organization>                        
                     </assignedPerson>
                 </author>
+                <!--<informant>
+                    <patient classCode="PAT"/>
+                </informant>-->
+                <informant>
+                    <assignedPerson>
+                        <!--UZI-pas apotheker-->
+                        <id root="2.16.528.1.1007.3.1" extension="000001111"/>
+                        <assignedPerson>
+                            <name>
+                                <given>Peter</given>
+                                <prefix qualifier="VV">van </prefix>
+                                <family qualifier="BR">Pulver</family>
+                            </name>
+                        </assignedPerson>
+                    </assignedPerson>
+                </informant>
+                <subjectOf2>
+                    <annotation>
+                        <text>Toelichting in vrije - niet opgemaakte - tekst.</text>
+                        <statusCode code="completed"/>
+                        <author>
+                            <time value="20190830120000"/>
+                            <assignedPerson>
+                                <id extension="dadasdffd" root="2.16.528.1.1007.3.1"/>
+                            </assignedPerson>
+                        </author>
+                    </annotation>
+                </subjectOf2>
             </Condition>
         </subject>
         <subject>
