@@ -2835,7 +2835,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="language">nl-NL</xsl:with-param>
                             <xsl:with-param name="unstructurednameElement">ongestructureerde_naam</xsl:with-param>
                             <xsl:with-param name="schema" select="$xsd-ada"/>
-                            <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-zorgverlenernaamgegevens, 'naamgegevens'))"/>
+                            <xsl:with-param name="schemaFragment" select="$xsd-zorgverlenernaamgegevens"/>
                         </xsl:call-template>
                     </naamgegevens>
                 </xsl:if>

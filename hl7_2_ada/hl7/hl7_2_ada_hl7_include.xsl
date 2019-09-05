@@ -326,7 +326,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype</xd:param>
         <xd:param name="unstructurednameElement">Name of the element to put stuff in if there are no name parts. The HCIM does not support this but the ADA format might.</xd:param>
         <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
-        <xd:param name="schemaFragment">Optional. XSD Schema complexType for naamgegevens</xd:param>
+        <xd:param name="schemaFragment">Optional. XSD Schema complexType for the parent of naamgegevens</xd:param>
     </xd:doc>
     <xsl:template name="handleENtoNameInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
@@ -417,8 +417,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- See for the HL7 spec of name: http://www.hl7.nl/wiki/index.php/DatatypesR1:PN -->
         <xsl:for-each select="$in">
             <xsl:element name="{$elemNameInformation}">
-                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
-                <xsl:choose>
+                <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemNameInformation))"/>
+                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                 <xsl:choose>
                     <!-- Just @nullFlavor -->
                     <xsl:when test="@nullFlavor">
                         <xsl:copy-of select="@nullFlavor"/>
@@ -557,8 +558,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="$nameUsage"/>
                         <xsl:if test="string-length($last_name) gt 0">
                             <xsl:element name="{$elmLastName}">
-                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName)))"/>
-
+                                <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName))"/>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                          
                                 <xsl:if test="string-length($last_name_prefix) gt 0">
                                     <xsl:element name="{$elmLastNamePrefix}">
                                         <xsl:attribute name="value" select="$last_name_prefix"/>
@@ -575,8 +577,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                         <xsl:if test="string-length($last_name_partner) gt 0">
                             <xsl:element name="{$elmLastNamePartner}">
-                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNamePartner)))"/>
-
+                                <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNamePartner))"/>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                           
                                 <xsl:if test="string-length($last_name_partner_prefix) gt 0">
                                     <xsl:element name="{$elmLastNamePartnerPrefix}">
                                         <xsl:attribute name="value" select="$last_name_partner_prefix"/>
@@ -597,11 +600,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:element name="{$elmUnstructuredName}">
                             <xsl:attribute name="value" select="."/>
 
-                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $unstructurednameElement)))"/>
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmUnstructuredName)))"/>
                         </xsl:element>
                         <xsl:element name="{$elmLastName}">
-                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName)))"/>
-
+                            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName))"/>
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                      
                             <xsl:element name="{$elmLastNameLastName}">
                                 <xsl:attribute name="nullFlavor">NI</xsl:attribute>
 
@@ -906,13 +910,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc> Copy contact parts as faithful as possible to HCIM 2017 nl.zorg.part.ContactInformation. Calculate contact type code. </xd:desc>
         <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
         <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype</xd:param>
-        <xd:param name="conceptId">Optional value for an ADA @conceptId attribute</xd:param>
+        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
+        <xd:param name="schemaFragment">Optional. XSD Schema complexType for the parent of contact details</xd:param>
     </xd:doc>
     <xsl:template name="handleTELtoContactInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-        <xsl:param name="conceptId" as="xs:string?"/>
-
+        <xsl:param name="schema">
+            <xs:schema/>
+        </xsl:param>
+        <xsl:param name="schemaFragment" as="element()?"/>
+        
         <!-- Element names based on language -->
         <xsl:variable name="elmContactInformation">
             <xsl:choose>
@@ -947,13 +955,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="elmEmailAddresses">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">email_addresses</xsl:when>
-                <xsl:otherwise>emailadressen</xsl:otherwise>
+                <xsl:otherwise>email_adressen</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="elmEmailAddress">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">email_address</xsl:when>
-                <xsl:otherwise>emailadres</xsl:otherwise>
+                <xsl:otherwise>email_adres</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="elmEmailAddressType">
@@ -968,34 +976,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="emailAddresses" select="$in[matches(@value, '^mailto:')] | $in[matches(@value, '.+@[^\.]+\.')]"/>
 
             <xsl:element name="{$elmContactInformation}">
+                <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactInformation))"/>
+                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                
                 <xsl:if test="$telephoneNumbers">
                     <xsl:element name="{$elmTelephoneNumbers}">
+                        <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelephoneNumbers))"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                        
                         <xsl:for-each select="$telephoneNumbers">
                             <xsl:variable name="theUse" select="tokenize(@use, '\s')"/>
                             <xsl:variable name="telecomType" as="element()?">
                                 <xsl:choose>
-                                    <xsl:when test="matches(replace(normalize-space(@value), '[^\d]', ''), '^(31)?0[12345789]')">
-                                        <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="value">1</xsl:attribute>
-                                            <xsl:attribute name="code">LL</xsl:attribute>
-                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
-                                            <xsl:attribute name="displayName">Landline</xsl:attribute>
-                                        </xsl:element>
-                                    </xsl:when>
                                     <xsl:when test="starts-with(@value, 'fax:')">
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="value">2</xsl:attribute>
                                             <xsl:attribute name="code">FAX</xsl:attribute>
                                             <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
                                             <xsl:attribute name="displayName">Fax</xsl:attribute>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelecomType)))"/>
                                         </xsl:element>
                                     </xsl:when>
-                                    <xsl:when test="tokenize(@use, '\s') = 'MC'">
+                                     <xsl:when test="tokenize(@use, '\s') = 'MC'">
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="value">3</xsl:attribute>
                                             <xsl:attribute name="code">MC</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Mobiele telefoon</xsl:attribute>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelecomType)))"/>
                                         </xsl:element>
                                     </xsl:when>
                                     <xsl:when test="tokenize(@use, '\s') = 'PG'">
@@ -1004,6 +1012,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:attribute name="code">PG</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Pager</xsl:attribute>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelecomType)))"/>
+                                        </xsl:element>
+                                    </xsl:when>
+                                    <xsl:when test="matches(replace(normalize-space(@value), '[^\d]', ''), '^(31)?0[12345789]')">
+                                        <xsl:element name="{$elmTelecomType}">
+                                            <xsl:attribute name="value">1</xsl:attribute>
+                                            <xsl:attribute name="code">LL</xsl:attribute>
+                                            <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
+                                            <xsl:attribute name="displayName">Landline</xsl:attribute>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelecomType)))"/>
                                         </xsl:element>
                                     </xsl:when>
                                 </xsl:choose>
@@ -1011,27 +1029,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:variable name="numberType" as="element()?">
                                 <xsl:choose>
                                     <xsl:when test="$theUse = 'HP'">
-                                        <xsl:element name="{$elmTelecomType}">
+                                        <xsl:element name="{$elmNumberType}">
                                             <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmNumberType)))"/>
                                         </xsl:element>
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'TMP'">
-                                        <xsl:element name="{$elmTelecomType}">
+                                        <xsl:element name="{$elmNumberType}">
                                             <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Temporary Address</xsl:attribute>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmNumberType)))"/>
                                         </xsl:element>
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'WP'">
-                                        <xsl:element name="{$elmTelecomType}">
+                                        <xsl:element name="{$elmNumberType}">
                                             <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Work place</xsl:attribute>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmNumberType)))"/>
                                         </xsl:element>
                                     </xsl:when>
                                 </xsl:choose>
@@ -1039,6 +1060,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                             <xsl:element name="{$elmTelephoneNumber}">
                                 <xsl:attribute name="value" select="@value"/>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelephoneNumber)))"/>
                             </xsl:element>
                             <xsl:if test="$telecomType">
                                 <xsl:copy-of select="$telecomType"/>
@@ -1051,6 +1073,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <xsl:if test="$emailAddresses">
                     <xsl:element name="{$elmEmailAddresses}">
+                        <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmEmailAddresses))"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
                         <xsl:for-each select="$emailAddresses">
                             <xsl:variable name="theUse" select="tokenize(@use, '\s')"/>
                             <xsl:variable name="emailType" as="element()?">
@@ -1076,18 +1100,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                             <xsl:element name="{$elmEmailAddress}">
                                 <xsl:attribute name="value" select="@value"/>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmEmailAddress)))"/>
                             </xsl:element>
                             <xsl:if test="$emailType">
                                 <xsl:copy-of select="$emailType"/>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $emailType)))"/>
                             </xsl:if>
                         </xsl:for-each>
                     </xsl:element>
                 </xsl:if>
 
-                <xsl:if test="string-length($conceptId)">
-                    <xsl:attribute name="conceptId" select="$conceptId"/>
-                </xsl:if>
-            </xsl:element>
+                   </xsl:element>
         </xsl:if>
     </xsl:template>
 

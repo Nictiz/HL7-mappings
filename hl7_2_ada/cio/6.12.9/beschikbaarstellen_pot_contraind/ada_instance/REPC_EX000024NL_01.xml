@@ -4,11 +4,10 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2019-09-04T18:44:47.663+02:00"
-         last-update-date="2019-09-04T18:44:47.663+02:00"/>
+         creation-date="2019-09-05T16:33:07.729+02:00"
+         last-update-date="2019-09-05T16:33:07.729+02:00"/>
    <data>
-        <!--Generated from HL7v3 ica 6.12 xml with message id (REPC_IN000024NL/id) root: 2.16.528.1.1007.3.3.123451.1 and extension: 0007656757.-->
-        <beschikbaarstellen_icavertaling app="cio"
+      <beschikbaarstellen_icavertaling app="cio"
                                        shortName="beschikbaarstellen_icavertaling"
                                        formName="beschikbaarstellen_icavertaling"
                                        transactionRef="2.16.840.1.113883.2.4.3.11.60.26.4.3"
@@ -24,8 +23,8 @@
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
                             displayName="Geslachtsnaam partner"/>
                <geslachtsnaam_partner conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.118">
-                  <voorvoegsels_partner value="de"/>
-                  <achternaam_partner value="Groot"/>
+                  <voorvoegsels_partner value="de" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.119"/>
+                  <achternaam_partner value="Groot" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.120"/>
                </geslachtsnaam_partner>
             </naamgegevens>
             <identificatienummer value="789123459"
@@ -42,10 +41,18 @@
                <identificatienummer value="0008112345"
                                     root="2.16.528.1.1007.3.3.123451.1.432"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.33"/>
-               <informatiebron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.34"/>
+               <informatiebron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.34">
+                  <betrokkene_als_bron conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.39">
+                     <contactpersoon value="d5e232"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.40"
+                                     datatype="reference"/>
+                  </betrokkene_als_bron>
+               </informatiebron>
             </zibroot>
             <conditie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.17">
-               <probleem value="d5e127" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.18"/>
+               <probleem value="d5e127"
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.18"
+                         datatype="reference"/>
             </conditie>
             <alert_type code="75323-6"
                         codeSystem="2.16.840.1.113883.6.1"
@@ -73,23 +80,25 @@
             <toelichting conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.31"
                          value="Toelichting in vrije - niet opgemaakte - tekst. Vastgelegd op: 30 aug 2019 om 12:00:00. Door auteur met id: 'dadasdffd' in identificerend systeem: UZI Personen ('2.16.528.1.1007.3.1')"/>
          </probleem>
-         <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.139">
-            <zorgverlener_identificatienummer value="000001111"
-                                              root="2.16.528.1.1007.3.1"
-                                              conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.140"/>
-            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.142">
-               <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.170"/>
-               <initialen value="P." conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.171"/>
-               <naamgebruik value="1"
-                            code="NL1"
-                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"/>
-               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.174">
-                  <voorvoegsels value="van"/>
-                  <achternaam value="Pulver"/>
+         <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.161" id="d5e232">
+            <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.163">
+               <ongestructureerde_naam value="responsibleParty naam"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.266"/>
+               <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.271">
+                  <achternaam nullFlavor="NI" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.273"/>
                </geslachtsnaam>
             </naamgegevens>
-         </zorgverlener>
+            <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.157">
+               <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.198">
+                  <telefoonnummer value="tel:+31101234567"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.199"/>
+               </telefoonnummers>
+               <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.202">
+                  <email_adres value="mailto:dialyse@centrum-rotterdam.nl"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.203"/>
+               </email_adressen>
+            </contactgegevens>
+         </contactpersoon>
       </beschikbaarstellen_icavertaling>
    </data>
 </adaxml>

@@ -13,60 +13,73 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:ncf="http://www.nictiz.nl/cio-functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:output method="xml" indent="yes"/>
     <xsl:import href="../../../hl7_2_ada_cio_include.xsl"/>
+    <xsl:output method="xml" indent="yes"/>
+    <xd:doc>
+        <xd:desc>Conversion ICA 6.12 to CIO 1.0 icavertaling transaction</xd:desc>
+        <xd:param name="xsdAda">Optional. The ada xsd belonging to the transaction being converted. 
+            Needed to find the appropriate conceptId's for ADA xml.</xd:param>
+    </xd:doc>
 
-    <!-- Conversion ICA 6.12 to CIO 1.0 icavertaling transaction -->
-    <!-- de xsd param is needed to find the appropriate conceptId's for ADA xml -->
-    <xsl:param name="xsdAda" select="document('../../../../../../projects/cio/schemas/beschikbaarstellen_icavertaling.xsd')"/>
+    <!-- ada output language -->
+    <xsl:param name="language">nl-NL</xsl:param>
+    <xsl:param name="xsdAda" as="node()*" select="document('../../../../../../projects/cio/schemas/beschikbaarstellen_icavertaling.xsd')"/>
     <xsl:variable name="xsdTransaction" select="nf:getADAComplexType($xsdAda, nf:getADAComplexTypeName($xsdAda, 'beschikbaarstellen_icavertaling'))"/>
     <xsl:variable name="ada-formname">beschikbaarstellen_icavertaling</xsl:variable>
     <xsl:variable name="transaction-name">beschikbaarstellen_icavertaling</xsl:variable>
     <xsl:variable name="transaction-oid">2.16.840.1.113883.2.4.3.11.60.26.4.3</xsl:variable>
     <xsl:variable name="transaction-effectiveDate" as="xs:dateTime">2019-08-28T13:33:41</xsl:variable>
+    <xsl:variable name="ica612Root" select="//hl7:REPC_IN000024NL"/>
+
+    <!-- Variable to hold all information to create actual ada instance -->
+    <!-- Only uses reference for patient, but outputs the whole element for others -->
+    <!-- When references are needed in output, this is done in templates with mode "adaOutput".  -->
+    <xsl:variable name="transactionResult">
+        <xsl:for-each select="$ica612Root">
+            <xsl:text>
+        </xsl:text>
+            <xsl:comment>Generated from HL7v3 ica 6.12 xml with message id (<xsl:value-of select="./local-name()"/>/id) <xsl:value-of select="concat('root: ', ./hl7:id/@root, ' and extension: ', ./hl7:id/@extension)"/>.</xsl:comment>
+            <xsl:text>
+        </xsl:text>
+            <beschikbaarstellen_icavertaling app="cio" shortName="{$transaction-name}" formName="{$ada-formname}" transactionRef="{$transaction-oid}" transactionEffectiveDate="{$transaction-effectiveDate}" prefix="cio-" language="nl-NL">
+                <xsl:attribute name="title">Generated from HL7v3 potentiële contraindicaties 6.12 xml</xsl:attribute>
+                <xsl:attribute name="id" select="tokenize(base-uri(), '/')[last()]"/>
+                <xsl:copy-of select="$patients/patient_information/*[local-name() = $elmPatient]"/>
+                <xsl:for-each select="hl7:ControlActProcess/hl7:subject/hl7:Condition">
+                    <xsl:call-template name="HandleCondition"/>
+                </xsl:for-each>
+            </beschikbaarstellen_icavertaling>
+        </xsl:for-each>
+    </xsl:variable>
 
 
     <xd:doc>
         <xd:desc>Template for converting 6.12 ICA XML</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:variable name="ica-trans-612" select="//hl7:REPC_IN000024NL"/>
-        <xsl:if test="$ica-trans-612">
+        <xsl:if test="$ica612Root">
             <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../projects/cio/schemas/ada_beschikbaarstellen_icavertaling.xsd">
                 <meta status="new" created-by="generated" last-update-by="generated">
                     <xsl:attribute name="creation-date" select="current-dateTime()"/>
                     <xsl:attribute name="last-update-date" select="current-dateTime()"/>
                 </meta>
                 <data>
-                    <xsl:for-each select="$ica-trans-612">
-                        <xsl:call-template name="ICA612"/>
+                    <xsl:for-each select="$transactionResult/beschikbaarstellen_icavertaling">
+                        <xsl:copy>
+                            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
+                            <!-- output problems -->
+                            <xsl:apply-templates select="alert/conditie/probleem[*]" mode="adaOutputHcim"/>
+                            <!-- output healthprofessionals -->
+                            <xsl:apply-templates select="//zibroot/informatiebron//zorgverlener[not(zorgverlener)][*]" mode="adaOutputHcim"/>
+                            <!-- output health providers -->
+                            <!-- output contact points -->
+                            <xsl:apply-templates select="//zibroot/informatiebron//contactpersoon[*]" mode="adaOutputHcim"/>
+                            
+                        </xsl:copy>
                     </xsl:for-each>
                 </data>
             </adaxml>
         </xsl:if>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc>Converta a 6.12 ica transaction to cia ada icavertaling</xd:desc>
-    </xd:doc>
-    <xsl:template name="ICA612" match="hl7:REPC_IN000024NL">
-        <xsl:text>
-        </xsl:text>
-        <xsl:comment>Generated from HL7v3 ica 6.12 xml with message id (REPC_IN000024NL/id) <xsl:value-of select="concat('root: ', /hl7:REPC_IN000024NL/hl7:id/@root, ' and extension: ', /hl7:REPC_IN000024NL/hl7:id/@extension)"/>.</xsl:comment>
-        <xsl:text>
-        </xsl:text>
-
-        <xsl:for-each select=".">
-            <beschikbaarstellen_icavertaling app="cio" shortName="{$transaction-name}" formName="{$ada-formname}" transactionRef="{$transaction-oid}" transactionEffectiveDate="{$transaction-effectiveDate}" prefix="cio-" language="nl-NL">
-                <xsl:attribute name="title">Generated from HL7v3 potentiële contraindicaties 6.12 xml</xsl:attribute>
-                <xsl:attribute name="id" select="tokenize(base-uri(), '/')[last()]"/>
-                <xsl:copy-of select="$patients/patient_information/*[local-name()=$elmPatient]"/>
-                <xsl:for-each select="hl7:ControlActProcess/hl7:subject/hl7:Condition">
-                    <xsl:call-template name="HandleCondition"/>
-                </xsl:for-each>
-                <xsl:copy-of select="$problems/problem_information/*[local-name()=$elmProblem]"/>
-                <xsl:copy-of select="$healthProfessional/health_professional_information/*[local-name()=$elmHealthProfessional]"/>
-            </beschikbaarstellen_icavertaling>
-        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
@@ -99,10 +112,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="HandleAlert" match="hl7:Condition" mode="HandleAlert">
         <xsl:param name="schema" as="node()*" select="$xsdAda"/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
-       
-        <!-- tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111-2013-05-25T000000.html -->
+
         <xsl:call-template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111_20130525000000_2_alert"/>
-      
+
     </xsl:template>
 
     <xd:doc>
@@ -126,10 +138,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="schema" select="$schema"/>
             <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmAI))"/>
         </xsl:call-template>
-
     </xsl:template>
 
 
+    <xd:doc>
+        <xd:desc>Do not copy elements with id, they follow later, exception for patient, first element in the transaction</xd:desc>
+    </xd:doc>
+    <xsl:template match="*[not(local-name()=$elmPatient)][@id]" mode="adaOutput">
+        <!-- this is the actual ada hcim do nothing here -->
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Copy template with specific mode adaOutputHcim, to output the Hcim's being referred to at the correct place in the transaction</xd:desc>
+    </xd:doc>
+    <xsl:template match="*[@id]" mode="adaOutputHcim">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
+        </xsl:copy>
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Copy template with specific mode adaOutput, to output the actual ada xml</xd:desc>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="adaOutput">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
+        </xsl:copy>
+    </xsl:template>
 
 
 

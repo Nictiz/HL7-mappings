@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?nictiz status="example"?> 
-<?xml-model href="../../../../../../../../../AORTA/trunk/XML/schematron/REPC_IN000024NL.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!--<?xml-model href="../../../../../../../../../AORTA/trunk/XML/schematron/REPC_IN000024NL.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>-->
 <?xml-model href="../../../../../../../../../AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-cilstresp.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN000024NL xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/trunk/XML/schemas/REPC_IN000024NL.xsd" xmlns="urn:hl7-org:v3">
     <id extension="0007656757" root="2.16.528.1.1007.3.3.123451.1"/>
@@ -128,9 +128,9 @@
                 <!--<informant>
                     <patient classCode="PAT"/>
                 </informant>-->
-                <informant>
+           <!--     <informant>
                     <assignedPerson>
-                        <!--UZI-pas apotheker-->
+                        <!-\-UZI-pas apotheker-\->
                         <id root="2.16.528.1.1007.3.1" extension="000001111"/>
                         <assignedPerson>
                             <name>
@@ -139,7 +139,25 @@
                                 <family qualifier="BR">Pulver</family>
                             </name>
                         </assignedPerson>
+                        <Organization>
+                            <id extension="00123451" root="2.16.528.1.1007.3.3"/>
+                            <code code="J8" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Openbare apotheek"/>
+                            <name>Apotheek Haspers</name>
+                            <addr>
+                                <city>Wolvega</city>
+                            </addr>
+                        </Organization>  
                     </assignedPerson>
+                </informant>
+       -->  
+                       <informant>
+                    <responsibleParty classCode="AGNT">
+                        <telecom value="tel:+31101234567"/>
+                        <telecom value="mailto:dialyse@centrum-rotterdam.nl"/>
+                        <agentPerson>
+                            <name>responsibleParty naam</name>
+                        </agentPerson>
+                    </responsibleParty>
                 </informant>
                 <subjectOf2>
                     <annotation>
