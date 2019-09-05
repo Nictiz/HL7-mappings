@@ -12,10 +12,10 @@
     <property name="build.dir" value="${project.title}"/>
     <property name="build.dir.pub" value="../../../tags/mappings"/>
     
-    <ant antfile="hl7_2_ada/ketenzorg/3.0.2/build.xml" inheritall="false" target="setup"/>
-    <ant antfile="hl7_2_ada/ketenzorg/3.0.2/build.xml" inheritall="false" target="convert_hl7v3_2_ada"/>
-    <ant antfile="ada_2_fhir/ketenzorg/3.0.2/build.xml" inheritall="false" target="setup"/>
-    <ant antfile="ada_2_fhir/ketenzorg/3.0.2/build.xml" inheritall="false" target="convert_ada_2_fhir"/>
+    <ant antfile="build-hl72ada-ketenzorg-302" inheritall="false" target="setup"/>
+    <ant antfile="build-hl72ada-ketenzorg-302" inheritall="false" target="convert_hl7v3_2_ada"/>
+    <ant antfile="build-ketenzorg-3.0.2.xml" inheritall="false" target="setup"/>
+    <ant antfile="build-ketenzorg-3.0.2.xml" inheritall="false" target="convert_ada_2_fhir"/>
     
     <target name="ketenzorg-3.0.2" description="Create a zip containing all resources relevant for ${project.title}">
         <delete dir="${build.dir}"/>
