@@ -118,7 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="value" select="$in/@value"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
@@ -136,7 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="value" select="$in/@value"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
@@ -154,7 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="value" select="$in/@value"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$oidHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
@@ -172,7 +172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <data value="{$in/@value}"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
@@ -249,7 +249,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="user-selected" as="xs:boolean?"/>
         <xsl:choose>
             <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@code}"/>
                 </extension>
             </xsl:when>
@@ -287,7 +287,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="user-selected" as="xs:boolean?"/>
         <xsl:choose>
             <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@code}"/>
                 </extension>
             </xsl:when>
@@ -320,7 +320,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </xsl:when>
             <xsl:when test="$in[@nullFlavor]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
@@ -360,7 +360,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$in[not(@value) or @nullFlavor]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <xsl:variable name="valueCode" as="xs:string">
                         <xsl:choose>
                             <xsl:when test="$in[@nullFlavor]">
@@ -400,7 +400,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="eenheid" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$waarde[not(@value) or @nullFlavor]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <xsl:variable name="valueCode" select="
                             if ($waarde[@nullFlavor]) then
                                 ($waarde/@nullFlavor)
@@ -431,7 +431,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$in[@nullFlavor]">
-                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
@@ -463,7 +463,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="start_datum_tijd[@nullFlavor]">
                     <start>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                        <extension url="{$urlExtHL7NullFlavor}">
                             <valueCode value="{start_datum_tijd/@nullFlavor}"/>
                         </extension>
                     </start>
@@ -475,7 +475,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="eind_datum_tijd[@nullFlavor]">
                     <end>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                        <extension url="{$urlExtHL7NullFlavor}">
                             <valueCode value="{eind_datum_tijd/@nullFlavor}"/>
                         </extension>
                     </end>
@@ -486,7 +486,271 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-
+    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="in">Nodes to consider. Defaults to context node</xd:param>
+    </xd:doc>
+    <xsl:template name="nl-core-address-2.0" match="adresgegevens | address_information" mode="doAddressInformation">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:for-each select="$in[.//@value | .//@code]">
+            <xsl:variable name="lineItems" as="element()*">
+                <xsl:for-each select="straat/@value | street/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="huisnummer/@value | house_number/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="huisnummerletter/@value | huisnummertoevoeging/@value | house_number_letter/@value | house_number_addition/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="additionele_informatie/@value | additional_information/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+                <xsl:for-each select="aanduiding_bij_nummer/@value | house_number_indication/@value">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+                        <valueString value="{.}"/>
+                    </extension>
+                </xsl:for-each>
+            </xsl:variable>
+            <address>
+                <xsl:if test="$lineItems">
+                    <line>
+                        <xsl:attribute name="value" select="string-join($lineItems//*:valueString/@value, ' ')"/>
+                        <xsl:copy-of select="$lineItems"/>
+                    </line>
+                </xsl:if>
+                <xsl:for-each select="woonplaats/@value | place_of_residence/@value">
+                    <city value="{.}"/>
+                </xsl:for-each>
+                <xsl:for-each select="gemeente/@value | municipality/@value">
+                    <district value="{.}"/>
+                </xsl:for-each>
+                <xsl:for-each select="postcode/@value">
+                    <postalCode value="{.}"/>
+                </xsl:for-each>
+                <xsl:for-each select="land/@value | country/@value">
+                    <country value="{.}"/>
+                </xsl:for-each>
+            </address>
+        </xsl:for-each>
+        
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:param name="in">Nodes to consider. Defaults to context node</xd:param>
+    </xd:doc>
+    <xsl:template name="nl-core-contactpoint-1.0" match="contactgegevens | contact_information" mode="doContactInformation">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:for-each select="$in[.//@value | .//@code]">
+            <xsl:for-each select="telefoonnummers[telefoonnummer/@value] | telephone_numbers[telephone_number/@value]">
+                <xsl:variable name="telecomType" select="telecom_type/@code"/>
+                <xsl:variable name="telecomTypeValue" as="xs:string?">
+                    <xsl:choose>
+                        <xsl:when test="empty($telecomType)">phone</xsl:when>
+                        <xsl:when test="$telecomType = 'LL'">phone</xsl:when>
+                        <xsl:when test="$telecomType = 'FAX'">fax</xsl:when>
+                        <xsl:when test="$telecomType = 'MC'">phone</xsl:when>
+                        <xsl:when test="$telecomType = 'PG'">pager</xsl:when>
+                        <xsl:when test="not($telecomType = 'UNK')">other</xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="numberType" select="nummer_soort/@code | number_type/@code"/>
+                <xsl:variable name="numberTypeValue" as="xs:string?">
+                    <xsl:choose>
+                        <xsl:when test="$telecomType = 'MC'">mobile</xsl:when>
+                        <xsl:when test="$numberType = 'WP'">work</xsl:when>
+                        <xsl:when test="$numberType = 'HP'">home</xsl:when>
+                        <xsl:when test="$numberType = 'TMP'">temp</xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <telecom>
+                    <system>
+                        <xsl:if test="not(empty($telecomTypeValue))">
+                            <xsl:attribute name="value" select="$telecomTypeValue"/>
+                        </xsl:if>
+                        <xsl:choose>
+                            <xsl:when test="empty($telecomType)">
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:when>
+                            <xsl:when test="$telecomType/../@codeSystem = $oidHL7NullFlavor">
+                                <xsl:call-template name="NullFlavor-to-DataAbsentReason">
+                                    <xsl:with-param name="in" select="$telecomType/parent::*"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:when test="$telecomType">
+                                <extension url="{$urlExtNLCodeSpecification}">
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="$telecomType/parent::*"/>
+                                        <xsl:with-param name="element-name">valueCodeableConcept</xsl:with-param>
+                                    </xsl:call-template>
+                                </extension>
+                            </xsl:when>
+                        </xsl:choose>
+                    </system>
+                    <value value="{telefoonnummer/@value | telephone_number/@value}"/>
+                    <xsl:if test="$numberTypeValue">
+                        <use value="{$numberTypeValue}">
+                            <xsl:choose>
+                                <xsl:when test="$numberType/../@codeSystem = $oidHL7NullFlavor">
+                                    <xsl:call-template name="NullFlavor-to-DataAbsentReason">
+                                        <xsl:with-param name="in" select="$numberType/parent::*"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="$numberType">
+                                    <extension url="{$urlExtNLCodeSpecification}">
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="$numberType/parent::*"/>
+                                            <xsl:with-param name="element-name">valueCodeableConcept</xsl:with-param>
+                                        </xsl:call-template>
+                                    </extension>
+                                </xsl:when>
+                            </xsl:choose>
+                        </use>
+                    </xsl:if>
+                </telecom>
+            </xsl:for-each>
+            <xsl:for-each select="email_adressen[email_adres/@value] | email_addresses[email_address/@value]">
+                <xsl:variable name="emailType" select="email_soort/@code | email_address_type/@code"/>
+                <xsl:variable name="emailTypeValue" as="xs:string?">
+                    <xsl:choose>
+                        <xsl:when test="$emailType = 'WP'">work</xsl:when>
+                        <xsl:when test="$emailType = 'HP'">home</xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <telecom>
+                    <system value="email"/>
+                    <value value="{email_adres/@value | email_address/@value}"/>
+                    <xsl:if test="$emailTypeValue">
+                        <use value="{$emailTypeValue}">
+                            <xsl:choose>
+                                <xsl:when test="$emailType/../@codeSystem = $oidHL7NullFlavor">
+                                    <xsl:call-template name="NullFlavor-to-DataAbsentReason">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="$emailType">
+                                    <extension url="{$urlExtNLCodeSpecification}">
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="$emailType/parent::*"/>
+                                            <xsl:with-param name="element-name">valueCodeableConcept</xsl:with-param>
+                                        </xsl:call-template>
+                                    </extension>
+                                </xsl:when>
+                            </xsl:choose>
+                        </use>
+                    </xsl:if>
+                </telecom>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="in">Nodes to consider. Defaults to context node</xd:param>
+    </xd:doc>
+    <xsl:template name="nl-core-humanname-2.0" match="naamgegevens | name_information" mode="doNameInformation" as="element()*">
+        <xsl:param name="in" select="." as="element()*"/>
+        <xsl:for-each select="$in[.//@value]">
+            <xsl:variable name="unstructured-name" select="ongestructureerde_naam/@value | unstructured_name/@value" as="xs:string?"/>
+            <name>
+                <xsl:for-each select="naamgebruik[@code] | name_usage[@code]">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <valueCode value="{@code}"/>
+                    </extension>
+                </xsl:for-each>
+                <!-- unstructured-name, not supported in zib datamodel, may be customized per transaction, therefore parameterized in this template -->
+                <xsl:if test="string-length($unstructured-name) > 0">
+                    <text>
+                        <xsl:value-of select="."/>
+                    </text>
+                </xsl:if>
+                <xsl:if test="geslachtsnaam[.//@value] | geslachtsnaam_partner[.//@value] | last_name[.//@value] | last_name_partner[.//@value]">
+                    <xsl:variable name="lastName" select="normalize-space(string-join((.//geslachtsnaam/voorvoegsels/@value, .//geslachtsnaam/achternaam/@value, ./last_name/prefix/@value, ./last_name/last_name/@value), ' '))[not(. = '')]"/>
+                    <xsl:variable name="lastNamePartner" select="normalize-space(string-join((.//voorvoegsels_partner/@value, .//achternaam_partner/@value, .//partner_prefix/@value, .//partner_last_name/@value), ' '))[not(. = '')]"/>
+                    <xsl:variable name="nameUsage" select="naamgebruik/@code | name_usage/@code"/>
+                    <family>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <!-- Eigen geslachtsnaam -->
+                                <xsl:when test="$nameUsage = 'NL1'">
+                                    <xsl:value-of select="$lastName"/>
+                                </xsl:when>
+                                <!--     Geslachtsnaam partner -->
+                                <xsl:when test="$nameUsage = 'NL2'">
+                                    <xsl:value-of select="$lastNamePartner"/>
+                                </xsl:when>
+                                <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
+                                <xsl:when test="$nameUsage = 'NL3'">
+                                    <xsl:value-of select="string-join(($lastNamePartner, $lastName), '-')"/>
+                                </xsl:when>
+                                <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
+                                <xsl:when test="$nameUsage = 'NL4'">
+                                    <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
+                                </xsl:when>
+                                <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
+                                <xsl:otherwise>
+                                    <xsl:value-of select="string-join(($lastName, $lastNamePartner), '-')"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                        <xsl:for-each select=".//geslachtsnaam/voorvoegsels/@value | ./last_name/prefix/@value">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                <valueString value="{.}"/>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select=".//geslachtsnaam/achternaam/@value | ./last_name/last_name/@value">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                <valueString value="{normalize-space(.)}"/>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select=".//voorvoegsels_partner/@value | .//partner_prefix/@value">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                                <valueString value="{.}"/>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select=".//achternaam_partner/@value | .//partner_last_name/@value">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                                <valueString value="{normalize-space(.)}"/>
+                            </extension>
+                        </xsl:for-each>
+                    </family>
+                </xsl:if>
+                <xsl:for-each select="voornamen/@value | first_names/@value">
+                    <given value="{normalize-space(.)}">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="BR"/>
+                        </extension>
+                    </given>
+                </xsl:for-each>
+                <xsl:for-each select="initialen/@value | initials/@value">
+                    <given value="{normalize-space(.)}">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="IN"/>
+                        </extension>
+                    </given>
+                </xsl:for-each>
+                <xsl:for-each select="roepnaam/@value | given_name/@value">
+                    <given value="{normalize-space(.)}">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="CL"/>
+                        </extension>
+                    </given>
+                </xsl:for-each>
+            </name>
+        </xsl:for-each>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Transforms ada element to FHIR Range</xd:desc>
         <xd:param name="in">ada element with sub ada elements min and max (both with datatype aantal/count) and a sibling ada element eenheid (datatype code)</xd:param>
@@ -496,7 +760,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$in/min[@nullFlavor]">
                 <low>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                    <extension url="{$urlExtHL7NullFlavor}">
                         <valueCode value="{$in/min/@nullFlavor}"/>
                     </extension>
                 </low>
@@ -513,7 +777,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$in/max[@nullFlavor]">
                 <high>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                    <extension url="{$urlExtHL7NullFlavor}">
                         <valueCode value="{$in/max/@nullFlavor}"/>
                     </extension>
                 </high>
@@ -759,4 +1023,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Based on http://hl7.org/fhir/STU3/cm-data-absent-reason-v3.html</xd:desc>
+        <xd:param name="in">Input node with @codeSystem = <xd:ref name="$oidHL7NullFlavor" type="variable"/></xd:param>
+    </xd:doc>
+    <xsl:template name="NullFlavor-to-DataAbsentReason" as="element()?">
+        <xsl:param name="in" select="." as="element()?"/>
+        
+        <xsl:for-each select="$in[@codeSystem = $oidHL7NullFlavor]">
+            <extension url="{$urlExtHL7DataAbsentReason}">
+                <valueCode>
+                    <xsl:attribute name="value">
+                        <xsl:choose>
+                            <xsl:when test="@code = 'UNK'">unknown</xsl:when>
+                            <xsl:when test="@code = 'ASKU'">asked</xsl:when>
+                            <xsl:when test="@code = 'NAV'">temp</xsl:when>
+                            <xsl:when test="@code = 'NASK'">not-asked</xsl:when>
+                            <xsl:when test="@code = 'MSK'">masked</xsl:when>
+                            <xsl:when test="@code = 'NA'">unsupported</xsl:when>
+                            <xsl:otherwise>unknown</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </valueCode>
+            </extension>
+        </xsl:for-each>
+    </xsl:template>
+
 </xsl:stylesheet>
