@@ -1392,7 +1392,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="@code = 'PHYS'">
                             <use value="home">
                                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="HP"/>
+                                    <valueCode value="PHYS"/>
                                 </extension>
                             </use>
                             <type value="physical"/>

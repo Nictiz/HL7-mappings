@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:for-each>
-                <!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
+                <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
                 <xsl:copy-of select="$commonEntries"/>
             </xsl:variable>
             <!-- one extra: the List entry for medicatieoverzicht  -->
