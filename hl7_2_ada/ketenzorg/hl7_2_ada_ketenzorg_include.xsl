@@ -326,7 +326,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="elmHealthcareProviderName">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">organization_name</xsl:when>
-                <xsl:otherwise>organisatienaam</xsl:otherwise>
+                <xsl:otherwise>organisatie_naam</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="elmHealthcareProviderType">
