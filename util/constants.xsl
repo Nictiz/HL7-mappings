@@ -93,6 +93,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
     <xsl:variable name="oidZIBLaboratoriumUitslagTestUitslagStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
  
+    <xsl:variable name="urlExtNLCodeSpecification">http://nictiz.nl/fhir/StructureDefinition/code-specification</xsl:variable>
+    <xsl:variable name="urlExtHL7DataAbsentReason">http://hl7.org/fhir/StructureDefinition/data-absent-reason</xsl:variable>
+    <xsl:variable name="urlExtHL7NullFlavor">http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor</xsl:variable>
+    
     <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
 
     <xsl:variable name="hl7NullFlavorMap" as="element()+">
