@@ -945,7 +945,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <name value="{./@value}"/>
         </xsl:for-each>
         <!-- contactgegevens -->
-        <xsl:apply-templates select="telefoon_email/contactgegevens[.//(@value | @code | @nullFlavor)]" mode="doContactPoint"/>
+        <xsl:apply-templates select="(telefoon_email/contactgegevens | contactgegevens)[.//(@value | @code | @nullFlavor)]" mode="doContactPoint"/>
         <!-- There was a dataset change to remove the obsolete group 'adres' which was adopted by MP 9.0.7, 
                      adres/adresgegevens is still here for backwards compatibility with 9.0.6 and before -->
         <xsl:apply-templates select="(adres/adresgegevens | adresgegevens)" mode="doAddress"/>
@@ -1023,7 +1023,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <birthDate value="{@value}"/>
         </xsl:for-each>
         <!-- adresgegevens -->
-        <xsl:apply-templates select="adresgegevens[.//(@value | @code | @nullFlavor)]" mode="doAddress"></xsl:apply-templates>
+        <xsl:apply-templates select="adresgegevens[.//(@value | @code | @nullFlavor)]" mode="doAddress"/>
     </xsl:template>
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-practitioner-2.0</xd:desc>
@@ -1328,9 +1328,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </use>
             </telecom>
         </xsl:for-each>
-        
+
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-address-2.0, context should be ada adresgegevens element</xd:desc>
     </xd:doc>
@@ -3374,7 +3374,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
-            <xsl:call-template name="medication-payload"/> 
+            <xsl:call-template name="medication-payload"/>
         </Medication>
     </xsl:template>
 
@@ -3737,6 +3737,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:apply-templates select="." mode="doOrganizationReference"/>
                                         </valueReference>
                                     </extension>
+                                    <xsl:variable name="display-for-reference">
+                                        <xsl:choose>
+                                            <xsl:when test="organisatie_naam[@value]">
+                                                <xsl:value-of select="organisatie_naam/@value"/>
+                                            </xsl:when>
+                                            <xsl:when test="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value]">Organisatie met id '<xsl:value-of select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@value"/>' in identificerend systeem '<xsl:value-of select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@root"/>'.</xsl:when>
+                                            <xsl:otherwise>Organisatie informatie: <xsl:value-of select="string-join(.//(@value | @code | @root | @codeSystem), ' - ')"/></xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:variable>
+                                    <display value="{$display-for-reference}"/>
                                 </source>
                             </xsl:for-each>
                             <xsl:for-each select="./auteur_is_patient[@value = 'true']">
@@ -3816,8 +3826,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="product_code[@codeSystem = $mainGstdLevel]/@displayName">
                             <xsl:value-of select="product_code[@codeSystem = $mainGstdLevel]/@displayName"/>
                         </xsl:when>
-                        <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor][@code='OTH'][../product_specificatie/product_naam[@value]]">
-                            <xsl:value-of select="product_specificatie/product_naam/@value"/>                            
+                        <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor][@code = 'OTH'][../product_specificatie/product_naam[@value]]">
+                            <xsl:value-of select="product_specificatie/product_naam/@value"/>
                         </xsl:when>
                         <!-- assume the first product_code displayName if not match above -->
                         <xsl:when test="product_code/@displayName">
