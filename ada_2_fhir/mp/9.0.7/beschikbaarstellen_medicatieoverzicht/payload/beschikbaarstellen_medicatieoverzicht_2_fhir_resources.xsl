@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="usecase">mp9</xsl:variable>
 
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-	    <xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry"/>
+	    <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $locations/f:entry"/>
 	</xsl:variable>
 
 	<xd:doc>
@@ -72,10 +72,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:for-each>
 		</xsl:variable>
 
-		<xsl:apply-templates select="($entries | $medicatieoverzicht-list)/f:resource/*" mode="doResourceInResultdoc"/>
+	    <xsl:apply-templates select="($medicatieoverzicht-list, $entries)/f:resource/*" mode="doResourceInResultdoc"/>
 		<!-- also create a Bundle that can be returned as answer to a medication overview query -->
 		<xsl:call-template name="create-mo-bundle">
-			<xsl:with-param name="entries" select="($entries | $medicatieoverzicht-list)"/>
+		    <xsl:with-param name="entries" select="($medicatieoverzicht-list, $entries)"/>
 		</xsl:call-template>
 	</xsl:template>
 

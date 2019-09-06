@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry"/>
+        <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $locations/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
@@ -51,6 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
         <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
+        <xd:param name="adaTransaction"/>
     </xd:doc>
     <xsl:template name="medicatieoverzicht_90">
         <xsl:param name="adaTransaction" as="element()*"/>

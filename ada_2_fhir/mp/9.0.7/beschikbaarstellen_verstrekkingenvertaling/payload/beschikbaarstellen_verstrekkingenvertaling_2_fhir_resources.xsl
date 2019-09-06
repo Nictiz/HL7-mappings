@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="usecase">mp9</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients-612/f:entry | $practitioners/f:entry | $organizations-612/f:entry | $practitionerRoles/f:entry | $products-612/f:entry | $locations/f:entry"/>
+        <xsl:copy-of select="$patients-612/f:entry , $practitioners/f:entry , $organizations-612/f:entry , $practitionerRoles/f:entry , $products-612/f:entry , $locations/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
@@ -57,9 +57,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="mbh"/>
 
         <xsl:variable name="entries" as="element(f:entry)*">
+            <xsl:copy-of select="$bouwstenen-verstrekkingenvertaling"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, bouwstenen -->
             <xsl:copy-of select="$commonEntries"/>
-            <xsl:copy-of select="$bouwstenen-verstrekkingenvertaling"/>
         </xsl:variable>
 
         <xsl:apply-templates select="$entries/f:resource/*" mode="doResourceInResultdoc"/>
