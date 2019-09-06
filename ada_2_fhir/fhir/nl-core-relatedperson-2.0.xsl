@@ -26,10 +26,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="relatedperson-id">RelatedPerson.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a RelatedPerson resource</xd:param>
+        <xd:param name="patient-ref">f:reference + f:display for the Patient that this RelatedPerson is related too</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-relatedperson-2.0" match="persoon" mode="doRelatedPerson">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="relatedperson-id" as="xs:string?"/>
+        <xsl:param name="patient-ref" as="element()+"/>
         <xsl:for-each select="$in">
             <RelatedPerson>
                 <xsl:if test="$referById">
@@ -48,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 <patient>
-                    <xsl:apply-templates select="$patient-ada" mode="doPatientReference"/>
+                    <xsl:copy-of select="$patient-ref"/>
                 </patient>
                 <!-- naamgegevens -->
                 <xsl:for-each select="naamgegevens | name_information">
