@@ -26,8 +26,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="practitionerrole-id">PractitionerRole.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a PractitionerRole resource</xd:param>
-        <xd:param name="practitioner-ref">f:reference + f:display</xd:param>
-        <xd:param name="organization-ref">f:reference + f:display</xd:param>
+        <xd:param name="practitioner-ref">f:reference + f:display for the Practitioner that holds the person data</xd:param>
+        <xd:param name="organization-ref">f:reference + f:display for the Organization that holds the organization data</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-practitionerrole-2.0">
         <xsl:param name="in" as="element()?"/>
