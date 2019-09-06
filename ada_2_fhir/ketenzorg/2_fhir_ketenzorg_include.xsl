@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <xsl:import href="../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="../fhir/nl-core-patient-2.1.xsl"/>
-    <xsl:import href="../fhir/nl-core-relatedperson-2.0.xsl"/>
+    <!--<xsl:import href="../fhir/nl-core-relatedperson-2.0.xsl"/>-->
     <xsl:import href="../fhir/nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="../fhir/nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="../fhir/nl-core-organization-2.0.xsl"/>
