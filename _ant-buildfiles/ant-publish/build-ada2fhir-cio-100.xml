@@ -15,9 +15,9 @@
     <property name="echo.label.out" value="FHIR"/>
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
 
-    <property name="project.title" value="${echo.label} for Ketenzorg 3.0.2"/>
+    <property name="project.title" value="${echo.label} for Contra-indicaties 1.0.0"/>
     <property name="project.version" value="1.0.0"/>
-    <property name="project.prefix" value="ketenzorg_3.0.2"/>
+    <property name="project.prefix" value="cio_1.0.0"/>
     <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for Ketenzorg building blocks to valid ${echo.label.out} instances"/>
     <property name="project.author" value="Nictiz"/>
     <property name="project.website" value="http://www.nictiz.nl/"/>
@@ -39,6 +39,7 @@
             </fileset>
         </copy>
         
+        <property name="xsl_cio_resources" value="${build.dir}/payload/beschikbaarstellen_icavertaling_2_fhir_resources.xsl"/>
         <property name="xsl_cio" value="${build.dir}/payload/beschikbaarstellen_icavertaling_2_fhir.xsl"/>
         
         <property name="xsl.input" value="${build.dir}/ada_instance"/>
@@ -49,6 +50,14 @@
         
         <sequential>
             <fileset id="inputfilesCio" dir="${xsl.input}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_cio_resources}</echo>
+            <xslt force="true" style="${xsl_cio_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesCio"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
             
             <echo/>
             <echo>${echo.label} ${xsl_cio}</echo>

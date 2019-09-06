@@ -15,9 +15,9 @@
     <property name="echo.label.out" value="FHIR"/>
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
 
-    <property name="project.title" value="${echo.label} for Ketenzorg 3.0.2"/>
+    <property name="project.title" value="${echo.label} for Medicatieproces 9.0.7"/>
     <property name="project.version" value="1.0.0"/>
-    <property name="project.prefix" value="ketenzorg_3.0.2"/>
+    <property name="project.prefix" value="mp_9.0.7"/>
     <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for Ketenzorg building blocks to valid ${echo.label.out} instances"/>
     <property name="project.author" value="Nictiz"/>
     <property name="project.website" value="http://www.nictiz.nl/"/>
@@ -51,6 +51,7 @@
         </copy>
         
         <property name="xsl_mp" value="${build.dir}/payload/${build.dir}_2_fhir.xsl"/>
+        <property name="xsl_mp_resources" value="${build.dir}/payload/${build.dir}_2_fhir_resources.xsl"/>
         
         <property name="xsl.input" value="${build.dir}/ada_instance"/>
         <property name="xsl.output" value="${build.dir}/fhir_instance"/>
@@ -60,6 +61,14 @@
         
         <sequential>
             <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_mp_resources}</echo>
+            <xslt force="true" style="${xsl_mp_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMP"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
             
             <echo/>
             <echo>${echo.label} ${xsl_mp}</echo>
