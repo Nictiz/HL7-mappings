@@ -27,7 +27,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:7a0e304a-b317-11e9-9470-28f10e481d92"/>
+               <reference value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -60,7 +60,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:7a0e304a-b317-11e9-9470-28f10e481d92"/>
+               <reference value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -93,7 +93,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:7a0e304a-b317-11e9-9470-28f10e481d92"/>
+               <reference value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <period>
@@ -129,7 +129,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:7a0e304a-b317-11e9-9470-28f10e481d92"/>
+               <reference value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -157,17 +157,19 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7a0e304a-b317-11e9-9470-28f10e481d92"/>
+      <fullUrl value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <identifier>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="masked"/>
-               </extension>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -186,6 +188,19 @@
             </name>
             <gender value="female"/>
             <birthDate value="1964-08-02"/>
+            <address>
+               <line value="Knolweg 1001">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Knolweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1001"/>
+                  </extension>
+               </line>
+               <city value="STITSWERD"/>
+               <postalCode value="9999 XX"/>
+               <country value="Nederland"/>
+            </address>
          </Patient>
       </resource>
       <search>
