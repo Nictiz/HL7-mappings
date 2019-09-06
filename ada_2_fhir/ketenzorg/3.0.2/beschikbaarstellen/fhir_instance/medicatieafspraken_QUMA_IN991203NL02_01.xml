@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:767af430-d029-11e9-1025-28f10e481d92"/>
+      <fullUrl value="urn:uuid:fcafcf68-d0af-11e9-3375-28f10e481d92"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -39,7 +39,7 @@
                <display value="Metoclopramide zetpil 20mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:767adc94-d029-11e9-1025-28f10e481d92"/>
+               <reference value="urn:uuid:fcafbcb8-d0af-11e9-3375-28f10e481d92"/>
                <display value="Joris J. Hansman"/>
             </subject>
             <authoredOn value="2016-06-23T16:54:23+02:00"/>
@@ -47,11 +47,10 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:767af432-d029-11e9-1025-28f10e481d92"/>
-                        <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
+                        <reference value="urn:uuid:fcafcf6a-d0af-11e9-3375-28f10e481d92"/>
+                        <display value="Dr Jansen"/>
                      </valueReference>
                   </extension>
-                  <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -92,46 +91,12 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.6939"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="6939"/>
-                  <display value="Metoclopramide zetpil 20mg"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="63630"/>
-                  <display value="METOCLOPRAMIDE ZETPIL 20MG"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:767adc94-d029-11e9-1025-28f10e481d92"/>
+      <fullUrl value="urn:uuid:fcafbcb8-d0af-11e9-3375-28f10e481d92"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                     <valueCode value="masked"/>
-                  </extension>
-               </value>
-            </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="UNK"/>
@@ -160,47 +125,12 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:767af432-d029-11e9-1025-28f10e481d92"/>
-      <resource>
-         <PractitionerRole>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.12345678"/>
-               <display value="Dr Jansen"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:767af43c-d029-11e9-1025-28f10e481d92"/>
-               <display value="Ziekenhuis zus en zo"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-                  <code value="01.016"/>
-                  <display value="Internist"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.12345678"/>
+      <fullUrl value="urn:uuid:fcafcf6b-d0af-11e9-3375-28f10e481d92"/>
       <resource>
          <Practitioner>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="012345678"/>
-            </identifier>
-            <name>
-               <text value="Dr Jansen"/>
-            </name>
          </Practitioner>
       </resource>
       <search>
@@ -208,16 +138,12 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:767af43c-d029-11e9-1025-28f10e481d92"/>
+      <fullUrl value="urn:uuid:fcafcf73-d0af-11e9-3375-28f10e481d92"/>
       <resource>
          <Organization>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
-            <identifier>
-               <system value="urn:oid:1.2.3.4"/>
-               <value value="URAnummer"/>
-            </identifier>
             <name value="Ziekenhuis zus en zo"/>
             <address>
                <use value="work"/>
@@ -233,6 +159,52 @@
                <postalCode value="1111 AA"/>
             </address>
          </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fcafcf6a-d0af-11e9-3375-28f10e481d92"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.016"/>
+                  <display value="Internist"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.6939"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="6939"/>
+                  <display value="Metoclopramide zetpil 20mg"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="63630"/>
+                  <display value="METOCLOPRAMIDE ZETPIL 20MG"/>
+               </coding>
+            </code>
+         </Medication>
       </resource>
       <search>
          <mode value="include"/>

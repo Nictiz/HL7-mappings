@@ -25,7 +25,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:765c5a2e-d029-11e9-1544-28f10e481d92"/>
+               <reference value="urn:uuid:fc8ad23e-d0af-11e9-1815-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <participant>
@@ -39,10 +39,12 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:765c5a42-d029-11e9-1544-28f10e481d92"/>
+                        <reference value="urn:uuid:fc8ad252-d0af-11e9-1815-28f10e481d92"/>
+                        <display value="5 XIS test Performer"/>
                      </valueReference>
                   </extension>
                   <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+                  <display value="5 XIS test Performer"/>
                </individual>
             </participant>
             <period>
@@ -50,7 +52,7 @@
                <end value="2019-02-03"/>
             </period>
             <serviceProvider>
-               <reference value="urn:uuid:765c5a4a-d029-11e9-1544-28f10e481d92"/>
+               <reference value="urn:uuid:fc8ad25a-d0af-11e9-1815-28f10e481d92"/>
                <display value="Tést Zorginstelling 02"/>
             </serviceProvider>
          </Encounter>
@@ -81,7 +83,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:765c5a2e-d029-11e9-1544-28f10e481d92"/>
+               <reference value="urn:uuid:fc8ad23e-d0af-11e9-1815-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <participant>
@@ -95,10 +97,12 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:765c5a42-d029-11e9-1544-28f10e481d92"/>
+                        <reference value="urn:uuid:fc8ad252-d0af-11e9-1815-28f10e481d92"/>
+                        <display value="5 XIS test Performer"/>
                      </valueReference>
                   </extension>
                   <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+                  <display value="5 XIS test Performer"/>
                </individual>
             </participant>
             <period>
@@ -106,7 +110,7 @@
                <end value="2019-02-06"/>
             </period>
             <serviceProvider>
-               <reference value="urn:uuid:765c5a4a-d029-11e9-1544-28f10e481d92"/>
+               <reference value="urn:uuid:fc8ad25a-d0af-11e9-1815-28f10e481d92"/>
                <display value="Tést Zorginstelling 02"/>
             </serviceProvider>
          </Encounter>
@@ -116,7 +120,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:765c5a2e-d029-11e9-1544-28f10e481d92"/>
+      <fullUrl value="urn:uuid:fc8ad23e-d0af-11e9-1815-28f10e481d92"/>
       <resource>
          <Patient>
             <meta>
@@ -148,6 +152,15 @@
             <gender value="female"/>
             <birthDate value="1964-08-02"/>
             <address>
+               <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+                  <valueCode value="true"/>
+               </extension>
+               <use value="home">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                     <valueCode value="HP"/>
+                  </extension>
+               </use>
+               <type value="physical"/>
                <line value="Knolweg 1001">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Knolweg"/>
@@ -161,69 +174,6 @@
                <country value="Nederland"/>
             </address>
          </Patient>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="90000381"/>
-            </identifier>
-            <name value="Tést Zorginstelling 04"/>
-         </Organization>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:765c5a4a-d029-11e9-1544-28f10e481d92"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="90000381"/>
-            </identifier>
-            <name value="Tést Zorginstelling 02"/>
-         </Organization>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:765c5a42-d029-11e9-1544-28f10e481d92"/>
-      <resource>
-         <PractitionerRole>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:765c5a4a-d029-11e9-1544-28f10e481d92"/>
-               <display value="Tést Zorginstelling 02"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-                  <code value="01.015"/>
-                  <display value="Huisarts"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
       </resource>
       <search>
          <mode value="include"/>
@@ -251,6 +201,62 @@
                </family>
             </name>
          </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="90000381"/>
+            </identifier>
+            <name value="Tést Zorginstelling 04"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc8ad25a-d0af-11e9-1815-28f10e481d92"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="90000381"/>
+            </identifier>
+            <name value="Tést Zorginstelling 02"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc8ad252-d0af-11e9-1815-28f10e481d92"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.015"/>
+                  <display value="Huisarts"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
       </resource>
       <search>
          <mode value="include"/>

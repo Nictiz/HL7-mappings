@@ -27,7 +27,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
+               <reference value="urn:uuid:fc721a1e-d0af-11e9-1266-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -60,7 +60,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
+               <reference value="urn:uuid:fc721a1e-d0af-11e9-1266-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -93,7 +93,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
+               <reference value="urn:uuid:fc721a1e-d0af-11e9-1266-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <period>
@@ -129,7 +129,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
+               <reference value="urn:uuid:fc721a1e-d0af-11e9-1266-28f10e481d92"/>
                <display value="E. XXX_Zegers"/>
             </subject>
          </Flag>
@@ -139,25 +139,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="90000381"/>
-            </identifier>
-            <name value="Tést Zorginstelling 04"/>
-         </Organization>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:7646130e-d029-11e9-1345-28f10e481d92"/>
+      <fullUrl value="urn:uuid:fc721a1e-d0af-11e9-1266-28f10e481d92"/>
       <resource>
          <Patient>
             <meta>
@@ -189,6 +171,15 @@
             <gender value="female"/>
             <birthDate value="1964-08-02"/>
             <address>
+               <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+                  <valueCode value="true"/>
+               </extension>
+               <use value="home">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                     <valueCode value="HP"/>
+                  </extension>
+               </use>
+               <type value="physical"/>
                <line value="Knolweg 1001">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Knolweg"/>
@@ -202,6 +193,24 @@
                <country value="Nederland"/>
             </address>
          </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="90000381"/>
+            </identifier>
+            <name value="Tést Zorginstelling 04"/>
+         </Organization>
       </resource>
       <search>
          <mode value="include"/>
