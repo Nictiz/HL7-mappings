@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="urnuuid070fda0c-d0e6-11e9-9418-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <name value="Apotheek de Gulle Gaper"/>
+   <telecom>
+      <system value="phone"/>
+      <value value="+31703655424"/>
+      <use value="work">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@apotheekgullegaper.com"/>
+      <use value="work">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk e-mailadres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <address>
+      <use>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+            <valueCode value="PST"/>
+         </extension>
+      </use>
+      <type value="postal"/>
+      <line value="1">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+            <valueString value="1"/>
+         </extension>
+      </line>
+   </address>
+</Organization>

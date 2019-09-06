@@ -1,0 +1,51 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="5ed2f870-100a-11e5-b939-0800200c9a66"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
+      <valueDateTime value="2006-01-28"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="5ed2f870-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+      <value value="5ed2f870-100a-11e5-b939-0800200c9a66"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="Dispensing medication (procedure)"/>
+      </coding>
+      <text value="Medicatieverstrekking"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/13906550-2-16-840-1-113883-2-4-4-8"/>
+      <display value="TRUSOPT OOGDRUPPELS 20MG/ML FLACON 5ML"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/CARELC-CREIENS"/>
+      <display value="Carel C. Creiens"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <quantity>
+      <value value="1"/>
+      <unit value="Stuk"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+      <code value="245"/>
+   </quantity>
+   <whenHandedOver>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="NI"/>
+      </extension>
+   </whenHandedOver>
+</MedicationDispense>

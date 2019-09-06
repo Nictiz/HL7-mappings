@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="MBH-313-2-MA-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="2017-04-21T00:00:00+02:00"/>
+         <end value="2017-09-02T17:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_313_2"/>
+      </valueIdentifier>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+            <code value="2"/>
+            <display value="Staking"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_313_2_MA_2"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/60526-2-16-840-1-113883-2-4-4-10"/>
+      <display value="Timolol/Latanoprost oogdr 5mg/50ug/ml fl 2,5ml"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/J-XXX-CNOSSEN"/>
+      <display value="J. XXX_Cnossen"/>
+   </subject>
+   <authoredOn value="2017-09-02T17:54:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/urnuuid06e4f15d-d0e6-11e9-2061-020000000000"/>
+               <display value="John de Vries"/>
+            </valueReference>
+         </extension>
+      </agent>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+         <code value="8"/>
+         <display value="Toedieningsweg voldoet niet"/>
+      </coding>
+   </reasonCode>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Vanaf 21 apr 2017 tot en met 2 sep 2017 17:00, 1x per dag 1 druppel, in beide ogen"/>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1026"/>
+            <display value="in beide ogen"/>
+         </coding>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="7"/>
+            <display value="oculair"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="druppel"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="303"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

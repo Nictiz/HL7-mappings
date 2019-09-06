@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="MBH-413-3-MGB-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/urnuuid07244292-d0e6-11e9-8519-020000000000"/>
+         <display value="Peter van Pulver"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/R-XXX-STRENGERSZ"/>
+         <display value="R. XXX_Strengersz"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_413_3"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_413_3_MGB_1"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/67903-2-16-840-1-113883-2-4-4-10"/>
+      <display value="PARACETAMOL 500MG TABLET"/>
+   </medicationReference>
+   <effectivePeriod>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+         <valueDuration>
+            <value value="4"/>
+            <unit value="week"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="wk"/>
+         </valueDuration>
+      </extension>
+      <start value="2018-07-15T00:00:00+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="2018-09-03T10:45:00+02:00"/>
+   <subject>
+      <reference value="Patient/R-XXX-STRENGERSZ"/>
+      <display value="R. XXX_Strengersz"/>
+   </subject>
+   <derivedFrom>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_413_3_MA_1"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+   <taken value="y"/>
+   <dosage>
+      <sequence value="1"/>
+      <text value="Vanaf 15 jul 2018, gedurende 4 weken, 3 maal per dag 1 à 2 stuks, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseRange>
+         <low>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </low>
+         <high>
+            <value value="2"/>
+            <unit value="stuk"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </high>
+      </doseRange>
+   </dosage>
+</MedicationStatement>

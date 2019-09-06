@@ -1,0 +1,57 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="08500598-d0e6-11e9-1290-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2007-01-28"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="2007-01-28"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="63c23ee0-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/13650203-2-16-840-1-113883-2-4-4-8"/>
+      <display value="RESONIUM A POEDER"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/CARELC-CREIENS"/>
+      <display value="Carel C. Creiens"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Vanaf T-287D, 2 maal per dag 5 gram"/>
+      <timing>
+         <repeat>
+            <frequency value="2"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <doseQuantity>
+         <value value="5"/>
+         <unit value="Gram"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="215"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationDispense>

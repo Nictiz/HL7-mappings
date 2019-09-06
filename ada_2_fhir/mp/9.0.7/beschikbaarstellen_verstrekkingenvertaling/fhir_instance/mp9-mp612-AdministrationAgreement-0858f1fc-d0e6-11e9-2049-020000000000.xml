@@ -1,0 +1,54 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="0858f1fc-d0e6-11e9-2049-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2007-01-10"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="a378f9c0-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/14344491-2-16-840-1-113883-2-4-4-8"/>
+      <display value="Cetomacrogolcreme met 10% vaseline fagron"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/AYGLA-DIREN"/>
+      <display value="Aygül A. Direnç"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="1 tot 3 keer per dag aanbrengen"/>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1018"/>
+            <display value="aanbrengen"/>
+         </coding>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <frequencyMax value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+   </dosageInstruction>
+</MedicationDispense>

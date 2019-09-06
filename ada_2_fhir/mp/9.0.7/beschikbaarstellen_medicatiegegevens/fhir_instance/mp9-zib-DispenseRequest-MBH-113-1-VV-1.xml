@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="MBH-113-1-VV-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <value value="MBH_113_1_MA_1"/>
+         </identifier>
+         <display value="Relatie naar medicatieafspraak, id = MBH_113_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_113_1"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+      <value value="MBH_113_1_VV_1"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="52711000146108"/>
+         <display value="Request to dispense medication to patient (situation)"/>
+      </coding>
+      <text value="Verstrekkingsverzoek"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/6939-2-16-840-1-113883-2-4-4-10"/>
+      <display value="Metoclopramide zetpil 20mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/R-XXX-DIRKSZ"/>
+      <display value="R. XXX_Dirksz"/>
+   </subject>
+   <authoredOn value="2018-07-15T11:25:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/urnuuid06f7976a-d0e6-11e9-1331-020000000000"/>
+               <display value="Peter van Pulver"/>
+            </valueReference>
+         </extension>
+      </agent>
+   </requester>
+   <dispenseRequest>
+      <quantity>
+         <value value="30"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </quantity>
+      <performer>
+         <reference value="Organization/01236578APOTHEEKDEGULLEGAPER"/>
+         <display value="Apotheek De Gulle Gaper"/>
+      </performer>
+   </dispenseRequest>
+</MedicationRequest>

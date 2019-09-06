@@ -1,0 +1,51 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="0caac810-ef18-11e4-b80c-0800200c9a66"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
+      <valueDateTime value="2015-05-28"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="0caac810-ef18-11e4-b80c-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+      <value value="0caac810-ef18-11e4-b80c-0800200c9a66"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="Dispensing medication (procedure)"/>
+      </coding>
+      <text value="Medicatieverstrekking"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/14243091-2-16-840-1-113883-2-4-4-8"/>
+      <display value="OXAZEPAM GF TABLET 10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/PETERP-VEENOORD"/>
+      <display value="Peter P. Veenoord"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <quantity>
+      <value value="35"/>
+      <unit value="STUK"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+      <code value="245"/>
+   </quantity>
+   <whenHandedOver>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="NI"/>
+      </extension>
+   </whenHandedOver>
+</MedicationDispense>
