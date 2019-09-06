@@ -18,16 +18,86 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
-    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template name="organization-reference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationReference-2.0">
+        <xsl:variable name="theIdentifier" select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
+        <xsl:choose>
+            <xsl:when test="$theGroupElement">
+                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+            </xsl:when>
+            <xsl:when test="$theIdentifier">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+            <display value="{$theGroupElement/reference-display}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Produces a FHIR entry element with an Organization resource</xd:desc>
+        <xd:param name="uuid">If false and (zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.Organization.id</xd:param>
+        <xd:param name="search-mode">Optional. Value for entry.search.mode. Default: include</xd:param>
+    </xd:doc>
+    <xsl:template name="organization-entry" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationEntry-2.0">
+        <xsl:param name="uuid" select="false()" as="xs:boolean"/>
+        <xsl:param name="entry-fullurl">
+            <xsl:choose>
+                <xsl:when test="not($uuid) and (zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)">
+                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
+        <xsl:param name="fhir-resource-id">
+            <xsl:if test="$referById">
+                <xsl:choose>
+                    <xsl:when test="$uuid">
+                        <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:param>
+        <xsl:param name="search-mode">include</xsl:param>
+        <entry>
+            <fullUrl value="{$entry-fullurl}"/>
+            <resource>
+                <xsl:call-template name="nl-core-organization-2.0">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="organization-id" select="$fhir-resource-id"/>
+                </xsl:call-template>
+            </resource>
+            <xsl:if test="string-length($search-mode) gt 0">
+                <search>
+                    <mode value="{$search-mode}"/>
+                </search>
+            </xsl:if>
+        </entry>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc/>
         <xd:param name="organization-id">Organization.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of an Organization resource</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-organization-2.0">
+    <xsl:template name="nl-core-organization-2.0" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="organization-id" as="xs:string?"/>
         <xsl:for-each select="$in">
@@ -38,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
                 </meta>
-                <xsl:for-each select="zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]">
+                <xsl:for-each select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier">
                             <xsl:with-param name="in" select="."/>

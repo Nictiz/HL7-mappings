@@ -18,23 +18,89 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
-    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
+    
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template name="releatedperson-reference" match="persoon[not(persoon)] | person[not(person)]" mode="doRelatedPersonReference-2.0">
+        <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:variable name="theGroupElement" select="$relatedPersons[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$theGroupElement">
+                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+            </xsl:when>
+            <xsl:when test="$theIdentifier">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+            <display value="{$theGroupElement/reference-display}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Produces a FHIR entry element with an RelatedPerson resource</xd:desc>
+        <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.Organization.id</xd:param>
+        <xd:param name="search-mode">Optional. Value for entry.search.mode. Default: include</xd:param>
+    </xd:doc>
+    <xsl:template name="relatedperson-entry" match="persoon | person" mode="doRelatedPersonEntry-2.0">
+        <xsl:param name="uuid" select="false()" as="xs:boolean"/>
+        <xsl:param name="entry-fullurl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="fhir-resource-id">
+            <xsl:if test="$referById">
+                <xsl:choose>
+                    <xsl:when test="not($uuid) and (naamgegevens[1]//*[not(name()='naamgebruik')]/@value | name_information[1]//*[not(name()='name_usage')]/@value)">
+                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:param>
+        <xsl:param name="search-mode">include</xsl:param>
+        <entry>
+            <fullUrl value="{$entry-fullurl}"/>
+            <resource>
+                <xsl:call-template name="nl-core-relatedperson-2.0">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="relatedperson-id" select="$fhir-resource-id"/>
+                    <xsl:with-param name="patient-ref" as="element()+">
+                        <xsl:for-each select="(ancestor::*/patient[.//@value])[1]">
+                            <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                        </xsl:for-each>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </resource>
+            <xsl:if test="string-length($search-mode) gt 0">
+                <search>
+                    <mode value="{$search-mode}"/>
+                </search>
+            </xsl:if>
+        </entry>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc/>
         <xd:param name="relatedperson-id">RelatedPerson.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a RelatedPerson resource</xd:param>
-        <xd:param name="patient-ref">f:reference + f:display for the Patient that this RelatedPerson is related too</xd:param>
+        <xd:param name="patient-ref">Required. Reference datatype elements for the Patient that this RelatedPerson is related too</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-relatedperson-2.0" match="persoon" mode="doRelatedPerson">
+    <xsl:template name="nl-core-relatedperson-2.0" match="persoon | person" mode="doRelatedPersonResource-2.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="relatedperson-id" as="xs:string?"/>
         <xsl:param name="patient-ref" as="element()+"/>
         <xsl:for-each select="$in">
             <RelatedPerson>
-                <xsl:if test="$referById">
+                <xsl:if test="string-length($relatedperson-id) gt 0">
                     <id value="{$relatedperson-id}"/>
                 </xsl:if>
                 <meta>
@@ -50,7 +116,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 <patient>
-                    <xsl:copy-of select="$patient-ref"/>
+                    <xsl:copy-of select="$patient-ref[self::f:extension]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:reference]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:identifier]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:display]"/>
                 </patient>
                 <!-- naamgegevens -->
                 <xsl:for-each select="naamgegevens | name_information">
