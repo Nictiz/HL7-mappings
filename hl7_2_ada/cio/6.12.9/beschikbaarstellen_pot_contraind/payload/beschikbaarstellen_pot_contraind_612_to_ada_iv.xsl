@@ -45,8 +45,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="title">Generated from HL7v3 potentiële contraindicaties 6.12 xml</xsl:attribute>
                 <xsl:attribute name="id" select="tokenize(base-uri(), '/')[last()]"/>
                 <xsl:copy-of select="$patients/patient_information/*[local-name() = $elmPatient]"/>
-                <xsl:for-each select="hl7:ControlActProcess/hl7:subject/hl7:Condition">
-                    <xsl:call-template name="HandleCondition"/>
+                <xsl:for-each select="hl7:ControlActProcess[hl7:subject[hl7:Condition]]">
+                    <xsl:call-template name="HandleConditions"/>
                 </xsl:for-each>
             </beschikbaarstellen_icavertaling>
         </xsl:for-each>
@@ -70,10 +70,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- output problems -->
                             <xsl:apply-templates select="alert/conditie/probleem[*]" mode="adaOutputHcim"/>
                             <!-- output healthprofessionals -->
-                            <xsl:apply-templates select="//zibroot/informatiebron//zorgverlener[not(zorgverlener)][*]" mode="adaOutputHcim"/>
+                            <xsl:apply-templates select="//zibroot/informatiebron//zorgverlener[not(zorgverlener)][@id]
+                                | //zibroot/auteur//zorgverlener[@id]" mode="adaOutputHcim"/>
                             <!-- output health providers -->
+                            <xsl:apply-templates select="//zorgaanbieder[@id]" mode="adaOutputHcim"/>
                             <!-- output contact points -->
-                            <xsl:apply-templates select="//zibroot/informatiebron//contactpersoon[*]" mode="adaOutputHcim"/>
+                            <xsl:apply-templates select="//zibroot/informatiebron//contactpersoon[@id]" mode="adaOutputHcim"/>
                             
                         </xsl:copy>
                     </xsl:for-each>
@@ -89,17 +91,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for the transaction.
         Defaults to global variable</xd:param>
     </xd:doc>
-    <xsl:template name="HandleCondition" match="hl7:Condition" mode="HandleCondition">
+    <xsl:template name="HandleConditions" match="hl7:ControlActProcess" mode="HandleConditions">
         <xsl:param name="schema" as="node()*" select="$xsdAda"/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
-        <xsl:choose>
-            <xsl:when test=".[hl7:code/@code = ('DX')][not(@negationInd = 'true')]">
-                <xsl:call-template name="HandleAlert"/>
-            </xsl:when>
-            <xsl:when test=".[hl7:code/@code = ('DINT', 'DALG', 'DNAINT')][not(@negationInd = 'true')]">
-                <xsl:call-template name="HandleAllergy"/>
-            </xsl:when>
-        </xsl:choose>
+        
+        <xsl:for-each select="hl7:subject/hl7:Condition[hl7:code/@code = ('DINT', 'DALG', 'DNAINT')][not(@negationInd = 'true')]">
+            <xsl:call-template name="HandleAllergy"/>            
+        </xsl:for-each>
+        
+        <xsl:for-each select="hl7:subject/hl7:Condition[hl7:code/@code = ('DX')][not(@negationInd = 'true')]">
+            <xsl:call-template name="HandleAlert"/>            
+        </xsl:for-each>       
+      
     </xsl:template>
 
     <xd:doc>

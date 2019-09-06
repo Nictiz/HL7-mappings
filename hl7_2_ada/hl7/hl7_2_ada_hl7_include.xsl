@@ -625,7 +625,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Optional. Array of elements to process. If empty array, then no output is created.</xd:param>
         <xd:param name="language">Optional. Default: nl-NL. Determines the name of the child elements to create for this datatype</xd:param>
         <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
-        <xd:param name="schemaFragment">Optional. XSD Schema complexType for naamgegevens</xd:param>
+        <xd:param name="schemaFragment">Optional. XSD Schema complexType for parent of adresgegevens</xd:param>
     </xd:doc>
     <xsl:template name="handleADtoAddressInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
@@ -801,47 +801,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="country" select="hl7:country[not(. = '')]"/>
                     <xsl:variable name="additionalInformation" select="hl7:desc[not(. = '')]"/>
                     <xsl:element name="{$elmAddressInformation}">
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, $schemaFragment/@name))"/>
-
+                        <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmAddressInformation))"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                        
                         <xsl:if test="$street">
                             <xsl:element name="{$elmStreet}">
                                 <xsl:attribute name="value" select="$street"/>
-
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmStreet)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$houseNumber">
                             <xsl:element name="{$elmHouseNumber}">
                                 <xsl:attribute name="value" select="$houseNumber"/>
-
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHouseNumber)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$houseNumberLetter[not(. = '')]">
                             <xsl:element name="{$elmHouseNumberLetter}">
                                 <xsl:attribute name="value" select="$houseNumberLetter"/>
-
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHouseNumberLetter)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$houseNumberAddition[not(. = '')]">
                             <xsl:element name="{$elmHouseNumberAddition}">
                                 <xsl:attribute name="value" select="$houseNumberAddition"/>
-
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHouseNumberAddition)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$houseNumberIndication">
                             <xsl:element name="{$elmHouseNumberIndication}">
                                 <xsl:attribute name="value" select="$houseNumberIndication"/>
-
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHouseNumberIndication)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$postcode">
                             <xsl:element name="{$elmPostcode}">
                                 <xsl:attribute name="value" select="$postcode"/>
-
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmPostcode)))"/>
                             </xsl:element>
                         </xsl:if>

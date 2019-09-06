@@ -20,10 +20,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="xsdAda" select="document('../../../../../../projects/cio/schemas/beschikbaarstellen_icavertaling.xsd')"/>
     <xsl:variable name="xsdTransaction" select="nf:getADAComplexType($xsdAda, nf:getADAComplexTypeName($xsdAda, 'beschikbaarstellen_icavertaling'))"/>
 
-    <xsl:variable name="elmContactPoint">
+    <xsl:variable name="elmContactPerson">
         <xsl:choose>
-            <xsl:when test="$language = 'en-US'">contact_point</xsl:when>
+            <xsl:when test="$language = 'en-US'">contact_person</xsl:when>
             <xsl:otherwise>contactpersoon</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="elmHealthcareProvider">
+        <xsl:choose>
+            <xsl:when test="$language = 'en-US'">healthcare_provider</xsl:when>
+            <xsl:otherwise>zorgaanbieder</xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
     <xsl:variable name="elmHealthProfessional">
@@ -104,10 +110,83 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
 -->
     <xd:doc>
+        <xd:desc>Create ada healthcare_provider using hl7:Organization</xd:desc>
+        <xd:param name="adaId">Optional parameter to specify the ada id for this ada element. Defaults to a generate-id of context element</xd:param>
+        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
+        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada parent of this concept</xd:param>
+    </xd:doc>
+    <xsl:template name="HandleOrganization" match="hl7:Organization" mode="HandleOrganization">
+        <xsl:param name="adaId" as="xs:string?" select="generate-id(.)"/>
+        <xsl:param name="schema" as="node()*" select="$xsdAda"/>
+        <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
+        <!-- ada language aware element names -->
+        <xsl:variable name="elmHealthcareProvider">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">healthcare_provider</xsl:when>
+                <xsl:otherwise>zorgaanbieder</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmHealthcareProviderIdentificationNumber">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">healthcare_provider_identification_number</xsl:when>
+                <xsl:otherwise>zorgaanbieder_identificatienummer</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmHealthcareProviderName">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">organization_name</xsl:when>
+                <xsl:otherwise>organisatie_naam</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmHealthcareProviderType">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">organization_type</xsl:when>
+                <xsl:otherwise>organisatie_type</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:element name="{$elmHealthcareProvider}">
+            <xsl:attribute name="id" select="$adaId"/>
+            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthcareProvider))"/>
+            <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+            
+            <!-- id is required -->
+            <xsl:call-template name="handleII">
+                <xsl:with-param name="in" select="hl7:id"/>
+                <xsl:with-param name="elemName" select="$elmHealthcareProviderIdentificationNumber"/>
+                <xsl:with-param name="nullIfMissing">NI</xsl:with-param>
+                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthcareProviderIdentificationNumber)))"/>
+            </xsl:call-template>
+            <xsl:call-template name="handleST">
+                <xsl:with-param name="in" select="(hl7:name | hl7:desc)[1]"/>
+                <xsl:with-param name="elemName" select="$elmHealthcareProviderName"/>
+                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthcareProviderName)))"/>
+            </xsl:call-template>
+            <xsl:call-template name="handleTELtoContactInformation">
+                <xsl:with-param name="in" select="hl7:telecom"/>
+                <xsl:with-param name="language" select="$language"/>
+                <xsl:with-param name="schema" select="$schema"/>
+                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
+            </xsl:call-template>
+            <xsl:call-template name="handleADtoAddressInformation">
+                <xsl:with-param name="in" select="hl7:addr"/>
+                <xsl:with-param name="language" select="$language"/>
+                <xsl:with-param name="schema" select="$schema"/>
+                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
+            </xsl:call-template>
+            <xsl:call-template name="handleCV">
+                <xsl:with-param name="in" select="hl7:code"/>
+                <xsl:with-param name="elemName" select="$elmHealthcareProviderType"/>
+                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthcareProviderType)))"/>
+            </xsl:call-template>
+        </xsl:element>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc>Create ada problem using hl7:Condition</xd:desc>
         <xd:param name="adaId">Optional parameter to specify the ada id for this ada element. Defaults to a generate-id of context element</xd:param>
         <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
-        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada alert</xd:param>
+        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada parent of this concept</xd:param>
     </xd:doc>
     <xsl:template name="HandleProblem" match="hl7:Condition" mode="HandleProblem">
         <xsl:param name="adaId" as="xs:string?" select="generate-id(.)"/>
@@ -256,7 +335,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="schema" as="node()*" select="$xsdAda"/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
 
-        <!-- Element name -->
+        <!-- language specific ada element names -->
         <xsl:variable name="elmHealthProfessionalIdentificationNumber">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">health_professional_identification_number</xsl:when>
@@ -284,25 +363,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
             <!-- name information -->
-            <!-- todo Fix handleENtoNameInformation  for missing conceptids -->
             <xsl:call-template name="handleENtoNameInformation">
                 <xsl:with-param name="in" select="./hl7:assignedPerson/hl7:name"/>
                 <xsl:with-param name="language" select="$language"/>
                 <xsl:with-param name="schema" select="$xsdAda"/>
                 <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
             </xsl:call-template>
+
+            <!-- Specialism -->
             <xsl:call-template name="handleCV">
                 <xsl:with-param name="in" select="hl7:code"/>
                 <xsl:with-param name="elemName" select="$elmSpecialism"/>
             </xsl:call-template>
+
+            <!-- address information -->
             <xsl:call-template name="handleADtoAddressInformation">
                 <xsl:with-param name="in" select="hl7:addr"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
+
+            <!-- contact details -->
             <xsl:call-template name="handleTELtoContactInformation">
                 <xsl:with-param name="in" select="hl7:telecom"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
+
+            <!-- zorgaanbieder -->
+            <xsl:for-each select="hl7:Organization">
+                <xsl:element name="{$elmHealthcareProvider}">
+                    <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthcareProvider))"/>
+                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                    <xsl:variable name="ref" select="generate-id(.)"/>
+                    <!-- create the element for the reference -->
+                    <xsl:element name="{$elmHealthcareProvider}">
+                        <xsl:attribute name="value" select="$ref"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthcareProvider)))"/>
+                        <xsl:attribute name="datatype">reference</xsl:attribute>
+                    </xsl:element>
+                    <!-- output the actual problem here as well, we will take it out later -->
+                    <xsl:call-template name="HandleOrganization">
+                        <xsl:with-param name="adaId" select="$ref"/>
+                    </xsl:call-template>
+                </xsl:element>
+            </xsl:for-each>
             <!-- <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000">
                 <xsl:with-param name="in" select="hl7:Organization | hl7:representedOrganization"/>
             </xsl:call-template>
@@ -361,7 +464,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>betrokkene_als_bron</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-
+        <xsl:variable name="elmZibrootAuthor">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">author</xsl:when>
+                <xsl:otherwise>auteur</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmZibrootAuthorPatient">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">patient_as_author</xsl:when>
+                <xsl:otherwise>patient_als_auteur</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmZibrootAuthorHealthProfessional">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">health_professional_as_author</xsl:when>
+                <xsl:otherwise>zorgverlener_als_auteur</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmZibrootSubject">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">subject</xsl:when>
+                <xsl:otherwise>onderwerp</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmZibrootDateTime">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">date_time</xsl:when>
+                <xsl:otherwise>datum_tijd</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:variable name="elmAlertCondition">
             <xsl:choose>
@@ -452,9 +584,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootInformationSourceContact))"/>
                                         <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
                                         <!-- create the element for the reference -->
-                                        <xsl:element name="{$elmContactPoint}">
+                                        <xsl:element name="{$elmContactPerson}">
                                             <xsl:attribute name="value" select="$ref"/>
-                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactPoint)))"/>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactPerson)))"/>
                                             <xsl:attribute name="datatype">reference</xsl:attribute>
                                         </xsl:element>
                                         <!-- output the actual contactpoint here as well, we will move it to apropriate location in ada xml later -->
@@ -467,7 +599,80 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:element>
                 </xsl:for-each>
+
+                <!-- author -->
+                <xsl:for-each select="hl7:author">
+                    <xsl:element name="{$elmZibrootAuthor}">
+                        <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootAuthor))"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+
+                        <xsl:choose>
+                            <xsl:when test="hl7:patient">
+                                <xsl:element name="{$elmZibrootAuthorPatient}">
+                                    <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootAuthorPatient))"/>
+                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                                    <xsl:element name="{$elmPatient}">
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmPatient)))"/>
+                                        <xsl:attribute name="value" select="$patients/patient_information/*[local-name() = $elmPatient]/@id"/>
+                                        <xsl:attribute name="datatype">reference</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:element>
+                            </xsl:when>
+                            <!-- healthprofessional as author -->
+                            <xsl:when test="hl7:assignedPerson">
+                                <xsl:for-each select="hl7:assignedPerson">
+                                    <xsl:element name="{$elmZibrootAuthorHealthProfessional}">
+                                        <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootAuthorHealthProfessional))"/>
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                                        <xsl:variable name="ref" select="generate-id(.)"/>
+                                        <!-- create the element for the reference -->
+                                        <xsl:element name="{$elmHealthProfessional}">
+                                            <xsl:attribute name="value" select="$ref"/>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthProfessional)))"/>
+                                            <xsl:attribute name="datatype">reference</xsl:attribute>
+                                        </xsl:element>
+                                        <!-- output the actual healthcare professional here as well, we will move it to apropriate location in ada xml later -->
+                                        <xsl:call-template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.810_20130521000000">
+                                            <xsl:with-param name="adaId" select="$ref"/>
+                                        </xsl:call-template>
+                                    </xsl:element>
+                                </xsl:for-each>
+                            </xsl:when>
+                            <!-- related person as author not in HL7v3 ICA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.111 -->
+                            <!-- no mapping needed -->
+                        </xsl:choose>
+                    </xsl:element>
+                </xsl:for-each>
+
+                <!-- subject, always patient in HL7v3 ICA -->
+                <xsl:for-each select="hl7:subject">
+                    <xsl:element name="{$elmZibrootSubject}">
+                        <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootSubject))"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                        <xsl:element name="{$elmPatient}">
+                            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmPatient))"/>
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+                            <!-- create the element for the reference -->
+                            <xsl:element name="{$elmPatient}">
+                                <xsl:attribute name="value" select="$patients/patient_information/patient/@id"/>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmPatient)))"/>
+                                <xsl:attribute name="datatype">reference</xsl:attribute>
+                            </xsl:element>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:for-each>
+
+                <!-- date time -->
+                <xsl:for-each select="hl7:author/hl7:time">
+                    <xsl:call-template name="handleTS">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootDateTime)))"/>
+                        <xsl:with-param name="elemName" select="$elmZibrootDateTime"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:element>
+
+
 
             <!-- condition/problem -->
             <xsl:element name="{$elmAlertCondition}">
@@ -505,13 +710,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
         <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada transaction</xd:param>
     </xd:doc>
-    <xsl:template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.813_20130525000000" match="hl7:responsibleParty" mode="HandleContactPoint">
+    <xsl:template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.813_20130525000000" match="hl7:responsibleParty" mode="HandleContactPerson">
         <xsl:param name="adaId" as="xs:string?" select="generate-id(.)"/>
         <xsl:param name="schema" as="node()*" select="$xsdAda"/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
 
-        <xsl:element name="{$elmContactPoint}">
-            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactPoint))"/>
+        <xsl:element name="{$elmContactPerson}">
+            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactPerson))"/>
             <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
             <xsl:attribute name="id" select="$adaId"/>
 
@@ -521,13 +726,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="schema" select="$schema"/>
                 <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
             </xsl:call-template>
-            
+
             <xsl:call-template name="handleTELtoContactInformation">
                 <xsl:with-param name="in" select="hl7:telecom"/>
                 <xsl:with-param name="language" select="$language"/>
                 <xsl:with-param name="schema" select="$schema"/>
-                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>                
+                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
             </xsl:call-template>
+
+            <xsl:call-template name="handleADtoAddressInformation">
+                <xsl:with-param name="in" select="hl7:addr"/>
+                <xsl:with-param name="language" select="$language"/>
+                <xsl:with-param name="schema" select="$schema"/>
+                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
+            </xsl:call-template>
+
+
 
 
         </xsl:element>
