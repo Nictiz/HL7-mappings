@@ -70,13 +70,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- output problems -->
                             <xsl:apply-templates select="alert/conditie/probleem[*]" mode="adaOutputHcim"/>
                             <!-- output healthprofessionals -->
-                            <xsl:apply-templates select="//zibroot/informatiebron//zorgverlener[not(zorgverlener)][@id]
-                                | //zibroot/auteur//zorgverlener[@id]" mode="adaOutputHcim"/>
+                            <xsl:apply-templates select="
+                                    //zibroot/informatiebron//zorgverlener[not(zorgverlener)][@id]
+                                    | //zibroot/auteur//zorgverlener[@id]" mode="adaOutputHcim"/>
                             <!-- output health providers -->
                             <xsl:apply-templates select="//zorgaanbieder[@id]" mode="adaOutputHcim"/>
                             <!-- output contact points -->
                             <xsl:apply-templates select="//zibroot/informatiebron//contactpersoon[@id]" mode="adaOutputHcim"/>
-                            
+
                         </xsl:copy>
                     </xsl:for-each>
                 </data>
@@ -94,60 +95,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="HandleConditions" match="hl7:ControlActProcess" mode="HandleConditions">
         <xsl:param name="schema" as="node()*" select="$xsdAda"/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
-        
+
         <xsl:for-each select="hl7:subject/hl7:Condition[hl7:code/@code = ('DINT', 'DALG', 'DNAINT')][not(@negationInd = 'true')]">
-            <xsl:call-template name="HandleAllergy"/>            
+            <xsl:call-template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111_20130525000000_2_allergy">
+                <xsl:with-param name="schema" select="$schema"/>
+                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
+            </xsl:call-template>
         </xsl:for-each>
-        
+
         <xsl:for-each select="hl7:subject/hl7:Condition[hl7:code/@code = ('DX')][not(@negationInd = 'true')]">
-            <xsl:call-template name="HandleAlert"/>            
-        </xsl:for-each>       
-      
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Handle the HL7 6.12 Condition to determine whether to create an ada alert or an allergy_intolerance HCIM</xd:desc>
-        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema.
-        Defaults to global param.</xd:param>
-        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for the transaction.
-            Defaults to global variable</xd:param>
-    </xd:doc>
-    <xsl:template name="HandleAlert" match="hl7:Condition" mode="HandleAlert">
-        <xsl:param name="schema" as="node()*" select="$xsdAda"/>
-        <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
-
-        <xsl:call-template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111_20130525000000_2_alert"/>
+            <xsl:call-template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111_20130525000000_2_alert">
+                <xsl:with-param name="schema" select="$schema"/>
+                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>                
+            </xsl:call-template>
+        </xsl:for-each>
 
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Handle the HL7 6.12 Condition to determine whether to create an ada alert or an allergy_intolerance HCIM</xd:desc>
-        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema.
-              Defaults to global param.</xd:param>
-        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for the transaction.
-              Defaults to global variable</xd:param>
-    </xd:doc>
-    <xsl:template name="HandleAllergy" match="hl7:Condition" mode="HandleAllergy">
-        <xsl:param name="schema" as="node()*" select="$xsdAda"/>
-        <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
-        <xsl:variable name="elmAI">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">allergy_intolerance</xsl:when>
-                <xsl:otherwise>allergie_intolerantie</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:call-template name="tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.111_20130525000000_2_allergy">
-            <xsl:with-param name="elmName" select="$elmAI"/>
-            <xsl:with-param name="schema" select="$schema"/>
-            <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmAI))"/>
-        </xsl:call-template>
-    </xsl:template>
-
 
     <xd:doc>
         <xd:desc>Do not copy elements with id, they follow later, exception for patient, first element in the transaction</xd:desc>
     </xd:doc>
-    <xsl:template match="*[not(local-name()=$elmPatient)][@id]" mode="adaOutput">
+    <xsl:template match="*[not(local-name() = $elmPatient)][@id]" mode="adaOutput">
         <!-- this is the actual ada hcim do nothing here -->
     </xsl:template>
 

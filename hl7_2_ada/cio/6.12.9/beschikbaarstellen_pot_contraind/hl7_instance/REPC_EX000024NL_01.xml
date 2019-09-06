@@ -183,14 +183,21 @@
         </subject>
         <subject>
             <Condition negationInd="false">
+                
                 <id extension="0008967554" root="2.16.528.1.1007.3.3.123451.1.432" assigningAuthorityName="Apotheeksysteem Haspers"/>
+                
                 <code code="DINT" codeSystem="2.16.840.1.113883.5.4"/>
+                
                 <text>Patiënt         : Mevrouw de Groot (BSN: 789123459, geboren 9 juli 1925)
 Auteur          : Peter van Pulver (UZI: 000001111)
 Conditienummer  : 0008967554
 Type            : Milde allergie voor PENICILLINES (tabel 122 Ongewenste groepen, code 35)
 Status          : Actief</text>
+                
                 <statusCode code="active"/>
+                <effectiveTime xsi:type="IVL_TS">
+                    <low value="20190101"/>
+                </effectiveTime>
                 <uncertaintyCode code="N" codeSystem="2.16.840.1.113883.5.1053"/>
                 <value nullFlavor="OTH"/>
                 <subject>
@@ -208,9 +215,12 @@ Status          : Actief</text>
                         </Person>
                     </patient>
                 </subject>
-                <causativeAgent>
+                <causativeAgent>                    
                     <administerableMaterial>
-                        <administerableMaterialKind>
+                      <!--  <administerableMedicationKind>
+                            <code></code>
+                        </administerableMedicationKind>
+                   -->     <administerableMaterialKind>
                             <code code="35" codeSystem="2.16.840.1.113883.2.4.4.1.902.122" displayName="PENICILLINES"/>
                         </administerableMaterialKind>
                     </administerableMaterial>

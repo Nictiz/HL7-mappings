@@ -331,9 +331,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="handleENtoNameInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-        <xsl:param name="schema">
-            <xs:schema/>
-        </xsl:param>
+        <xsl:param name="schema" as="node()*"/>           
         <xsl:param name="schemaFragment" as="element()?"/>
         <xsl:param name="unstructurednameElement" as="xs:string?"/>
 
@@ -630,9 +628,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="handleADtoAddressInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-        <xsl:param name="schema">
-            <xs:schema/>
-        </xsl:param>
+        <xsl:param name="schema" as="node()*"/>           
         <xsl:param name="schemaFragment" as="element()?"/>
 
         <!-- Element names based on language -->
@@ -911,9 +907,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="handleTELtoContactInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-        <xsl:param name="schema" as="element()?">
-            <xs:schema/>
-        </xsl:param>
+        <xsl:param name="schema" as="node()*"/>           
         <xsl:param name="schemaFragment" as="element()?"/>
         
         <!-- Element names based on language -->
