@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="$uuid">
                                 <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
                             </xsl:when>
-                            <xsl:when test="$most-specific-product-code[(@code)][not(@codeSystem = $oidHL7NullFlavor)]">
+                            <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
                                 <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>
                             </xsl:when>
                             <xsl:when test="./product_specificatie/product_naam/@value">
