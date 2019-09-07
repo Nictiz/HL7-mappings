@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="mag08"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
+      <valueDateTime value="2016-03-03"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+         <value value="MedBehConverted_mag08"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+      <value value="mag08"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="Dispensing medication (procedure)"/>
+      </coding>
+      <text value="Medicatieverstrekking"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/urnuuidc67c415c-d186-11e9-1380-020000000000"/>
+      <display value="Furosemide 125mg/50ml pump"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/J-J-LENOBLEVANSON"/>
+      <display value="J.J. le Noble van Son"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <quantity>
+      <value value="1"/>
+      <unit value="Stuk"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+      <code value="245"/>
+   </quantity>
+</MedicationDispense>

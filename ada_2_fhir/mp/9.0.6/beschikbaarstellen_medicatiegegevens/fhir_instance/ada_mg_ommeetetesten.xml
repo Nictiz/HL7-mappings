@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="8"/>
+   <entry>
+      <fullUrl value="urn:uuid:c6e0662f-d186-11e9-3733-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="10"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.999.1"/>
+                     <code value="34"/>
+                     <display value="aanvullende informatie in teskt"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="medbeh_VMA_001"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MA#1"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MA#1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:1.2.3.999"/>
+                     <value value="GB#1"/>
+                  </identifier>
+                  <display value="relatie naar medicatiegebruik: GB#1 || 1.2.3.999"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="medbeh_VMA_001_MA02"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:c6e06649-d186-11e9-3733-020000000000"/>
+               <display value="Dalterparine ing. 0,5ml=500e"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:c6e05781-d186-11e9-3733-020000000000"/>
+               <display value="Antje de Vries"/>
+            </subject>
+            <supportingInformation>
+               <reference value="urn:uuid:c6e05c54-d186-11e9-3733-020000000000"/>
+               <display value="Lengte: 99 cm. Datum/tijd gemeten: "/>
+            </supportingInformation>
+            <supportingInformation>
+               <reference value="urn:uuid:c6e05c56-d186-11e9-3733-020000000000"/>
+               <display value="Gewicht: 23 kg. Datum/tijd gemeten: "/>
+            </supportingInformation>
+            <authoredOn value="2016-09-02T14:30:23+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:c6e06636-d186-11e9-3733-020000000000"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="438833006"/>
+                  <display value="Contra-indicatie"/>
+               </coding>
+            </reasonCode>
+            <note>
+               <text value="Patiënt gebruikt Verapamil, contra-indicatie voor het origineel voorgeschreven Klacid."/>
+            </note>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Gedurende 10 dagen, eerste dag 2 tabletten en vervolgens 1x daags 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="2"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="2"/>
+               <text value="Gedurende 10 dagen, eerste dag 2 tabletten en vervolgens 1x daags 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="9"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6e05781-d186-11e9-3733-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="32456487"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="de Vries">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Vries"/>
+                  </extension>
+               </family>
+               <given value="Antje">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="F"/>
+            <birthDate value="1974-05-03"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.6797896"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="006797896"/>
+            </identifier>
+            <name>
+               <family value="van Beek">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van "/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Beek"/>
+                  </extension>
+               </family>
+               <given value="Johan">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="J.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.765332"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00765332"/>
+            </identifier>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="01028432"/>
+            </identifier>
+            <name value="Huisartspraktijk Van Beek"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6e06636-d186-11e9-3733-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.6797896"/>
+               <display value="Johan J. van Beek || Huisarts || Huisartspraktijk Van Beek"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.765332"/>
+               <display value="Huisartspraktijk Van Beek"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.015"/>
+                  <display value="Huisarts"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6e06649-d186-11e9-3733-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
+               <valueString value="Titel: Dalterparine ing. 0,5ml=500e Regel: minpl clas nacl 90mg/10ml Regel: Fragmin 5000/0,2ml wwsp"/>
+            </extension>
+            <code>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="OTH"/>
+               </extension>
+               <text value="Dalterparine ing. 0,5ml=500e"/>
+            </code>
+            <ingredient>
+               <itemCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                     <code value="634123"/>
+                     <display value="FRAGMIN   5000 INJVLST 25.000IE/ML WWSP 0,2ML"/>
+                  </coding>
+               </itemCodeableConcept>
+               <amount>
+                  <numerator>
+                     <value value="0.1"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </denominator>
+               </amount>
+            </ingredient>
+            <ingredient>
+               <itemCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                     <code value="15739074"/>
+                     <display value="OMNIFLUSH NACL 0,9% WWSP 10ML IN 10ML"/>
+                  </coding>
+               </itemCodeableConcept>
+               <amount>
+                  <numerator>
+                     <value value="0.05"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </numerator>
+                  <denominator>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                     <code value="245"/>
+                  </denominator>
+               </amount>
+            </ingredient>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6e05c54-d186-11e9-3733-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
+            </meta>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://hl7.org/fhir/observation-category"/>
+                  <code value="vital-signs"/>
+                  <display value="Vital Signs"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="8302-2"/>
+                  <display value="lichaamslengte"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:c6e05781-d186-11e9-3733-020000000000"/>
+               <display value="Antje de Vries"/>
+            </subject>
+            <performer>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+               <display value="onbekend"/>
+            </performer>
+            <valueQuantity>
+               <value value="99"/>
+               <unit value="cm"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="cm"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c6e05c56-d186-11e9-3733-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
+            </meta>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://hl7.org/fhir/observation-category"/>
+                  <code value="vital-signs"/>
+                  <display value="Vital Signs"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="29463-7"/>
+                  <display value="lichaamsgewicht"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:c6e05781-d186-11e9-3733-020000000000"/>
+               <display value="Antje de Vries"/>
+            </subject>
+            <performer>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+               <display value="onbekend"/>
+            </performer>
+            <valueQuantity>
+               <value value="23"/>
+               <unit value="kg"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="kg"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+   </entry>
+</Bundle>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="MBH-213-1-MGB-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/urnuuidc6522755-d186-11e9-2110-020000000000"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/R-XXX-GOBEE"/>
+         <display value="R. XXX_Gobee"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_213_1"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_213_1_MGB_2"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/48291-2-16-840-1-113883-2-4-4-10"/>
+      <display value="MIZOLASTINE TABLET MGA  10MG"/>
+   </medicationReference>
+   <effectivePeriod>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+         <valueDuration>
+            <value value="6"/>
+            <unit value="dag"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </valueDuration>
+      </extension>
+      <start value="2018-07-19T00:00:00+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="2018-07-24T11:25:00+02:00"/>
+   <subject>
+      <reference value="Patient/R-XXX-GOBEE"/>
+      <display value="R. XXX_Gobee"/>
+   </subject>
+   <derivedFrom>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_213_1_MA_1"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+   <taken value="y"/>
+   <dosage>
+      <sequence value="1"/>
+      <text value="Vanaf 19 jul 2018, gedurende 6 dagen, 2 maal per dag 1 tablet, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="2"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosage>
+</MedicationStatement>

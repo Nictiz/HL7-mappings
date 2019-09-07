@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="TAConverted-mag10"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2016-03-03"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+         <value value="MedBehConverted_mag10"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+      <value value="TAConverted_mag10"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/urnuuidc67c4230-d186-11e9-1380-020000000000"/>
+      <display value="Dalterparine ing. 0,5ml=500e"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/J-J-LENOBLEVANSON"/>
+      <display value="J.J. le Noble van Son"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <identifier>
+         <system value="'2.16.840.1.113883.5.1008'"/>
+         <value value="NI"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak: NI || '2.16.840.1.113883.5.1008'"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <text value="gebruik volgens schema"/>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1131"/>
+            <display value="gebruik volgens schema"/>
+         </coding>
+      </additionalInstruction>
+      <route>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="NI"/>
+         </extension>
+      </route>
+   </dosageInstruction>
+</MedicationDispense>

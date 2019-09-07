@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="MBH-313-4-MA-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="2017-11-07T00:00:00+01:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_313_4"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_313_4_MA_1"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/88803-2-16-840-1-113883-2-4-4-10"/>
+      <display value="Omeprazol tablet MSR 40mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/J-XXX-CNOSSEN"/>
+      <display value="J. XXX_Cnossen"/>
+   </subject>
+   <authoredOn value="2017-11-07T14:23:00+01:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/urnuuidc6389605-d186-11e9-8850-020000000000"/>
+            </valueReference>
+         </extension>
+      </agent>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="266709005"/>
+         <display value="Starten medicamenteuze behandeling"/>
+      </coding>
+   </reasonCode>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Vanaf 7 nov 2017, tot nader order, 1 maal per dag 1 stuk, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

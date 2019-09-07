@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="medbeh-VMA-001-MA02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="10"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.999.1"/>
+            <code value="34"/>
+            <display value="aanvullende informatie in teskt"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="medbeh_VMA_001"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <value value="MA#1"/>
+         </identifier>
+         <display value="relatie naar medicatieafspraak: MA#1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:1.2.3.999"/>
+            <value value="GB#1"/>
+         </identifier>
+         <display value="relatie naar medicatiegebruik: GB#1 || 1.2.3.999"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="medbeh_VMA_001_MA02"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/DALTERPARINEING-05ML500E"/>
+      <display value="Dalterparine ing. 0,5ml=500e"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/ANTJEDEVRIES"/>
+      <display value="Antje de Vries"/>
+   </subject>
+   <supportingInformation>
+      <reference value="Observation/lichaamslengte99CM"/>
+      <display value="Lengte: 99 cm. Datum/tijd gemeten: "/>
+   </supportingInformation>
+   <supportingInformation>
+      <reference value="Observation/lichaamsgewicht23KG"/>
+      <display value="Gewicht: 23 kg. Datum/tijd gemeten: "/>
+   </supportingInformation>
+   <authoredOn value="2016-09-02T14:30:23+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/urnuuidc685774e-d186-11e9-1105-020000000000"/>
+            </valueReference>
+         </extension>
+      </agent>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="438833006"/>
+         <display value="Contra-indicatie"/>
+      </coding>
+   </reasonCode>
+   <note>
+      <text value="Patiënt gebruikt Verapamil, contra-indicatie voor het origineel voorgeschreven Klacid."/>
+   </note>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Gedurende 10 dagen, eerste dag 2 tabletten en vervolgens 1x daags 1 tablet"/>
+      <timing>
+         <repeat>
+            <boundsDuration>
+               <value value="1"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="2"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+   <dosageInstruction>
+      <sequence value="2"/>
+      <text value="Gedurende 10 dagen, eerste dag 2 tabletten en vervolgens 1x daags 1 tablet"/>
+      <timing>
+         <repeat>
+            <boundsDuration>
+               <value value="9"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

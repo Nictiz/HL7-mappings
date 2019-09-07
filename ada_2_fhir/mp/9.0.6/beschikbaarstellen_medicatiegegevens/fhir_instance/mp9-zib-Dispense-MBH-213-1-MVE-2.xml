@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="MBH-213-1-MVE-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_213_1"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+      <value value="MBH_213_1_MVE_2"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="Dispensing medication (procedure)"/>
+      </coding>
+      <text value="Medicatieverstrekking"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/1101099-2-16-840-1-113883-2-4-4-7"/>
+      <display value="MIZOLLEN TABLET MGA 10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/R-XXX-GOBEE"/>
+      <display value="R. XXX_Gobee"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01236578APOTHEEKDEGULLEGAPER"/>
+         <display value="Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+         <value value="MBH_213_1_VV_2"/>
+      </identifier>
+      <display value="Verstrekkingsverzoek met identificatie MBH_213_1_VV_2 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+   </authorizingPrescription>
+   <quantity>
+      <value value="60"/>
+      <unit value="stuk"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+      <code value="245"/>
+   </quantity>
+   <whenHandedOver value="2018-07-25T09:13:00+02:00"/>
+</MedicationDispense>

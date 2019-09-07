@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="MBH-313-1-MA-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="2018-05-26T00:00:00+02:00"/>
+         <end value="2018-07-06T23:59:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_313_1"/>
+      </valueIdentifier>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+            <code value="2"/>
+            <display value="Staking"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_313_1_MA_2"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/59919-2-16-840-1-113883-2-4-4-10"/>
+      <display value="Tiotropium inhalatiecapsule 18ug"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/J-XXX-CNOSSEN"/>
+      <display value="J. XXX_Cnossen"/>
+   </subject>
+   <authoredOn value="2018-07-07T13:54:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/urnuuidc638962c-d186-11e9-8850-020000000000"/>
+            </valueReference>
+         </extension>
+      </agent>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+         <code value="9"/>
+         <display value="Indicatie vervallen"/>
+      </coding>
+   </reasonCode>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Vanaf 26 mei 2018 tot en met 6 jul 2018, 1 maal per dag 1 dosis, inhalatie"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="62"/>
+            <display value="inhalatie"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="dosis"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="208"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

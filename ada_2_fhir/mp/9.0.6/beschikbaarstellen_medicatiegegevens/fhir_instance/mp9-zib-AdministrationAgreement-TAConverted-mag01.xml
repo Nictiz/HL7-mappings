@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="TAConverted-mag01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2016-03-04"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+         <value value="MedBehConverted_mag01"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.528.1.1007.3.3.1234567.3"/>
+      <value value="TAConverted_mag01"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/HYDROCORTISONZETPIL100MG"/>
+      <display value="Hydrocortison zetpil 100 mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/J-J-LENOBLEVANTSON"/>
+      <display value="J.J. le Noble van 't Son"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <identifier>
+         <system value="'2.16.840.1.113883.5.1008'"/>
+         <value value="NI"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak: NI || '2.16.840.1.113883.5.1008'"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="pilschema"/>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1131"/>
+            <display value="gebruik volgens schema"/>
+         </coding>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <timeOfDay value="09:00:00"/>
+            <timeOfDay value="12:00:00"/>
+         </repeat>
+      </timing>
+      <asNeededCodeableConcept>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="OTH"/>
+         </extension>
+         <text value="adf a dfasdf asdf d"/>
+      </asNeededCodeableConcept>
+      <route>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="NI"/>
+         </extension>
+      </route>
+   </dosageInstruction>
+</MedicationDispense>

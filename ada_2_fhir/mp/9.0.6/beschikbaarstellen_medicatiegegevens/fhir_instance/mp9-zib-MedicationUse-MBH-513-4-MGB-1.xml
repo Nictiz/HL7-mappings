@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="MBH-513-4-MGB-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
+      <valueBoolean value="false"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/J-XXX-AMAYA"/>
+         <display value="J. XXX_Amaya"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_513_4"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_513_4_MGB_1"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/17205-2-16-840-1-113883-2-4-4-10"/>
+      <display value="FENETICILLINE CAPSULE 500MG"/>
+   </medicationReference>
+   <effectivePeriod>
+      <start value="2018-08-29T00:00:00+02:00"/>
+      <end value="2018-08-30T23:59:00+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="2018-08-30T22:35:00+02:00"/>
+   <subject>
+      <reference value="Patient/J-XXX-AMAYA"/>
+      <display value="J. XXX_Amaya"/>
+   </subject>
+   <derivedFrom>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_513_4_MA_1"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+   <taken value="y"/>
+   <dosage>
+      <sequence value="1"/>
+      <text value="Vanaf 29 aug 2018 tot en met 30 aug 2018, 1 maal per dag 1 stuk, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosage>
+</MedicationStatement>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="MBH-113-3-MGB-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/urnuuidc649144a-d186-11e9-1247-020000000000"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/R-XXX-DIRKSZ"/>
+         <display value="R. XXX_Dirksz"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_113_3"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_113_3_MGB_1"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/3891-2-16-840-1-113883-2-4-4-10"/>
+      <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
+   </medicationReference>
+   <effectivePeriod>
+      <start value="2018-08-05"/>
+      <end value="2018-08-26T23:59:59+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="2018-08-05T14:57:00+02:00"/>
+   <subject>
+      <reference value="Patient/R-XXX-DIRKSZ"/>
+      <display value="R. XXX_Dirksz"/>
+   </subject>
+   <derivedFrom>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_113_3_MA_1"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+   <taken value="y"/>
+   <dosage>
+      <sequence value="1"/>
+      <text value="Vanaf 5 aug 2018 tot en met 26 aug 2018, 1 maal per dag 1 stuk, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosage>
+</MedicationStatement>

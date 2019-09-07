@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="MBH-413-7-MGB-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/urnuuidc6620a86-d186-11e9-2131-020000000000"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/R-XXX-STRENGERSZ"/>
+         <display value="R. XXX_Strengersz"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_413_7"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_413_7_MGB_1"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/34851-2-16-840-1-113883-2-4-4-10"/>
+      <display value="Insuline isofaan injsusp 100ie/ml patr 3ml"/>
+   </medicationReference>
+   <effectivePeriod>
+      <start value="2018-09-03T07:00:00+02:00"/>
+      <end value="2018-09-03T23:59:00+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="2018-09-03T14:05:00+02:00"/>
+   <subject>
+      <reference value="Patient/R-XXX-STRENGERSZ"/>
+      <display value="R. XXX_Strengersz"/>
+   </subject>
+   <derivedFrom>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_413_7_MA_1"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+   <taken value="y"/>
+   <dosage>
+      <sequence value="1"/>
+      <text value="vanaf 3 sep 2018, gedurende 1 dag, elke dag om 08:00, 14:00 en 20:00 uur 16IE"/>
+      <timing>
+         <repeat>
+            <timeOfDay value="08:00:00"/>
+            <timeOfDay value="14:00:00"/>
+            <timeOfDay value="20:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="21"/>
+            <display value="subcutaan"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="16"/>
+         <unit value="internationale eenheid"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="217"/>
+      </doseQuantity>
+   </dosage>
+</MedicationStatement>
