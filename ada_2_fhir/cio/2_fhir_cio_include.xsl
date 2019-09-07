@@ -64,8 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
        </xsl:variable>
 
-
-        <xd:doc>
+    <xd:doc>
         <xd:desc/>
         <xd:param name="condition-id"/>
     </xd:doc>
@@ -105,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </code>
             </xsl:for-each>
             <subject>
-                <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference"/>
+                <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference-2.1"/>
             </subject>
         </Condition>
     </xsl:template>
