@@ -30,14 +30,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:output method="xml" indent="yes"/>
 	<xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
-    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-		<xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry | $related-persons/f:entry"/>
+		<xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $locations/f:entry , $body-observations/f:entry , $prescribe-reasons/f:entry"/>
 	</xsl:variable>
 
 	<xd:doc>
@@ -58,9 +58,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
 			<type value="searchset"/>
 			<xsl:variable name="entries" as="element(f:entry)*">
+				<xsl:copy-of select="$bouwstenen-907"/>
 				<!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
 				<xsl:copy-of select="$commonEntries"/>
-				<xsl:copy-of select="$bouwstenen"/>
 			</xsl:variable>
 			<total value="{count($entries)}"/>
 			<xsl:copy-of select="$entries"/>

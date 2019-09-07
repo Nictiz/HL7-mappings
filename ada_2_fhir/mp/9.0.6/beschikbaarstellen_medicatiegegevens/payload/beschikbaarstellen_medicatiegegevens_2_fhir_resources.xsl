@@ -31,15 +31,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:output method="xml" indent="yes"/>
 	<xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
-    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
     
 	<xsl:variable name="usecase">mp9</xsl:variable>
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-		<xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry | $body-observations/f:entry | $prescribe-reasons/f:entry"/>
+		<xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $related-persons/f:entry , $locations/f:entry , $body-observations/f:entry , $prescribe-reasons/f:entry"/>
 	</xsl:variable>
 	<xd:doc>
 		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
@@ -57,9 +57,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="mbh"/>
 
 		<xsl:variable name="entries" as="element(f:entry)*">
-			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
+			<xsl:copy-of select="$bouwstenen-907"/>
+			<!-- common entries (patient, practitioners, organizations, practitionerroles, relatedpersons, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
 			<xsl:copy-of select="$commonEntries"/>
-			<xsl:copy-of select="$bouwstenen"/>
 		</xsl:variable>
 
 		<xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>

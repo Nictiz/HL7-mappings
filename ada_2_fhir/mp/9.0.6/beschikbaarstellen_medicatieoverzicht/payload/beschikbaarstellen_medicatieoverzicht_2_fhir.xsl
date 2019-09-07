@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-	    <xsl:copy-of select="$patients/f:entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry | $products/f:entry | $locations/f:entry"/>
+	    <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $locations/f:entry"/>
 	</xsl:variable>
 
 	<xd:doc>
@@ -61,8 +61,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</meta>
 			<type value="searchset"/>
 			<xsl:variable name="entries" as="element(f:entry)*">
-				<!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
-				<xsl:copy-of select="$commonEntries"/>
 				<xsl:for-each select="$mbh">
 					<!-- medicatieafspraken -->
 					<xsl:for-each select="./medicatieafspraak">
@@ -103,10 +101,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</xsl:call-template>
 					</xsl:for-each>
 				</xsl:for-each>
+				<!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
+				<xsl:copy-of select="$commonEntries"/>
 			</xsl:variable>
 			<!-- one extra: the List entry for medicatieoverzicht  -->
 			<total value="{count($entries) + 1}"/>
-			<xsl:copy-of select="$entries"/>
 			<!-- documentgegevens in List entry -->
 			<xsl:for-each select="$mbh/../documentgegevens">
 				<xsl:call-template name="medicatieoverzicht-9.0.6">
@@ -114,6 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<xsl:with-param name="entries" select="$entries"/>
 				</xsl:call-template>
 			</xsl:for-each>
+			<xsl:copy-of select="$entries"/>
 		</Bundle>
 	</xsl:template>
 
