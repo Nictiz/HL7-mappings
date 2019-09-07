@@ -135,7 +135,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- geboortedatum -->
                 <xsl:for-each select="geboortedatum[@value] | date_of_birth[./@value]">
-                    <birthDate value="{./@value}"/>
+                    <birthDate value="{./@value}">
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="@value"/>
+                                <xsl:with-param name="precision" select="'DAY'"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                    </birthDate>
                 </xsl:for-each>
                 <!-- deceased -->
                 <xsl:choose>

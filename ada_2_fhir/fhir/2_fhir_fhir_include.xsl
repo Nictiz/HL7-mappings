@@ -39,9 +39,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:variable name="patients" as="element()*">
         <!-- Patiënten -->
-        <xsl:for-each-group select="//patient" group-by="
-            concat(nf:ada-zvl-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/@root,
-            nf:ada-zvl-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/@value)">
+        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" 
+                            group-by="nf:ada-zvl-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/concat(@root, @value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -61,7 +60,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="relatedPersons" as="element()*">
         <!-- related-persons -->
-        <xsl:for-each-group select="//informant/persoon[.//@value]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)])[not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" 
+                            group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-persoon xmlns="">
@@ -79,9 +79,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="organizations" as="element()*">
         <!-- Zorgaanbieders -->
-        <xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)] | //healthcare_provider[not(healthcare_provider)]" group-by="
-            concat(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@root,
-            nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@value)">
+        <xsl:for-each-group select="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" 
+                            group-by="nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/concat(@root, @value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -90,7 +89,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="current-grouping-key()"/>
                     </group-key>
                     <reference-display>
-                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(organisatie_naam[1]//@value | organization_name[1]//@value, ' '))"/>
+                        <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value[not(. = '')]"/>
+                        <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value[not(. = '')]"/>
+                        <xsl:value-of select="current-group()[1]/normalize-space(string-join($organizationName[1] | $organizationLocation[1], ' - '))"/>
                     </reference-display>
                     <xsl:apply-templates select="current-group()[1]" mode="doOrganizationEntry-2.0">
                         <xsl:with-param name="uuid" select="$uuid"/>
@@ -101,9 +102,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="practitioners" as="element()*">
         <!-- Zorgverleners in Practitioners -->
-        <xsl:for-each-group select="//zorgverlener | //health_professional" group-by="
-            concat(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
-            nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@value)">
+        <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" 
+                            group-by="nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/concat(@root, @value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -124,7 +124,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="practitionerRoles" as="element()*">
         <!-- Zorgverleners in PractitionerRoles -->
-        <xsl:for-each-group select="//zorgverlener[not(zorgverlener)] | //health_professional[not(health_professional)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" 
+                            group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="true()"/>
             <unieke-practitionerRole xmlns="">
@@ -1313,7 +1314,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
+    
+    <xd:doc>
+        <xd:desc>Resolves the reference in an ada-transaction. Outputs a sequence with the resolved element.</xd:desc>
+        <xd:param name="ada-element">The ada element which may need resolving, if not return the element, else the resolved element</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:ada-resolve-reference" as="element()*">
+        <xsl:param name="ada-element" as="element()"/>
+        <!-- The current ada-transaction element -->
+        <xsl:variable name="currentAdaTransaction" select="$ada-element/ancestor::*[ancestor::data[ancestor::adaxml]]"/>
+        <!-- resolve the reference -->
+        <xsl:choose>
+            <xsl:when test="$ada-element[not(@datatype = 'reference')]">
+                <xsl:sequence select="$ada-element"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="$currentAdaTransaction//*[@id = $ada-element/@value]"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
     <xd:doc>
         <xd:desc> copy an element with all of it's contents in comments </xd:desc>
         <xd:param name="element"/>

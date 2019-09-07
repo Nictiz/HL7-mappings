@@ -72,7 +72,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:with-param>
                     <xsl:with-param name="organization-ref" as="element()*">
                         <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)][.//@value] | .//healthcare_provider[not(healthcare_provider)][.//@value]">
-                            <xsl:call-template name="organization-reference"/>
+                            <xsl:for-each select="nf:ada-resolve-reference(.)">
+                                <xsl:call-template name="organization-reference"/>
+                            </xsl:for-each>
                         </xsl:for-each>
                     </xsl:with-param>
                 </xsl:call-template>

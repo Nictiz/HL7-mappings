@@ -22,8 +22,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
 
-    <xsl:variable name="organizations" as="element()*">
-        <!-- Zorgaanbieders -->
+    <!--<xsl:variable name="organizations" as="element()*">
+        <!-\- Zorgaanbieders -\->
         <xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="concat(nff:ada-za-id(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@root, nff:ada-za-id(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@value)">
             <xsl:for-each-group select="current-group()" group-by="nff:get-grouping-key-default(.)">
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -53,12 +53,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </unieke-zorgaanbieder>
             </xsl:for-each-group>
         </xsl:for-each-group>
-    </xsl:variable>
+    </xsl:variable>-->
 
-    <xsl:variable name="patients" as="element()*">
-        <!-- Patients -->
+    <!--<xsl:variable name="patients" as="element()*">
+        <!-\- Patients -\->
         <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nff:get-grouping-key-default(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-patient xmlns="">
                 <group-key xmlns="">
@@ -74,12 +74,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </unieke-patient>
         </xsl:for-each-group>
-    </xsl:variable>
-    <xsl:variable name="practitioners" as="element()*">
-        <!-- Zorgverleners with actual data in Practitioners -->
+    </xsl:variable>-->
+    
+    <!--<xsl:variable name="practitioners" as="element()*">
+        <!-\- Zorgverleners with actual data in Practitioners -\->
         <xsl:for-each-group select="//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)][*//(@value | @code | @nullFlavor)]" group-by="concat(nff:ada-zvl-id(./(zorgverlener_identificatie_nummer | zorgverlener_identificatienummer))/@root, nff:ada-zvl-id(./(zorgverlener_identificatie_nummer | zorgverlener_identificatienummer))/@value)">
             <xsl:for-each-group select="current-group()" group-by="nff:get-grouping-key-practitioner(.)">
-                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <unieke-zorgverlener xmlns="">
                     <group-key xmlns="">
@@ -96,10 +97,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </unieke-zorgverlener>
             </xsl:for-each-group>
         </xsl:for-each-group>
-    </xsl:variable>
+    </xsl:variable>-->
 
-    <xsl:variable name="practitionerRoles" as="element()*">
-        <!-- Zorgverleners in PractitionerRoles -->
+    <!--<xsl:variable name="practitionerRoles" as="element()*">
+        <!-\- Zorgverleners in PractitionerRoles -\->
         <xsl:for-each-group select="//zorgverlener[not(zorgverlener)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nff:get-grouping-key-default(.)">
             <unieke-practitionerRole xmlns="">
                 <group-key xmlns="">
@@ -111,11 +112,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="current-group()[1]" mode="doPractitionerRoleEntry"/>
             </unieke-practitionerRole>
         </xsl:for-each-group>
-    </xsl:variable>
+    </xsl:variable>-->
 
     <xsl:variable name="problems" as="element()*">
         <!-- probleem in problem -->
-        <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nff:get-grouping-key-default(.)">
+        <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <unieke-problem xmlns="">
                 <group-key xmlns="">
                     <xsl:value-of select="current-grouping-key()"/>
@@ -128,10 +129,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:variable>
 
-    <xsl:variable name="related-persons" as="element()*">
-        <!-- related-persons  -->
+    <!--<xsl:variable name="relatedPersons" as="element()*">
+        <!-\- relatedPersons  -\->
         <xsl:for-each-group select="//(contactpersoon[not(contactpersoon)] | contact[not(contact)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nff:get-grouping-key-default(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-persoon xmlns="">
                 <group-key xmlns="">
@@ -147,14 +148,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </unieke-persoon>
         </xsl:for-each-group>
-    </xsl:variable>
+    </xsl:variable>-->
 
-
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Helper template for organization payload independent of version (6.12 or nl-core).</xd:desc>
     </xd:doc>
     <xsl:template name="_organization-payload">
-        <!-- zorgaanbieder_identificatienummer -->
+        <!-\- zorgaanbieder_identificatienummer -\->
         <xsl:for-each select="(zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value]">
             <identifier>
                 <xsl:call-template name="id-to-Identifier">
@@ -162,7 +162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </identifier>
         </xsl:for-each>
-        <!-- type -->
+        <!-\- type -\->
         <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
             <type>
                 <xsl:call-template name="code-to-CodeableConcept">
@@ -170,35 +170,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </type>
         </xsl:for-each>
-        <!-- name -->
+        <!-\- name -\->
         <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value"/>
         <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value"/>
         <xsl:if test="$organizationName or $organizationLocation">
-            <!-- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -->
+            <!-\- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -\->
             <name value="{string-join(($organizationName, $organizationLocation)[. != ''],' - ')}"/>
         </xsl:if>
 
-        <!-- contactgegevens -->
+        <!-\- contactgegevens -\->
         <xsl:apply-templates select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(contact_information)])" mode="doContactPoint"/>
-        <!-- adresgegevens -->
+        <!-\- adresgegevens -\->
         <xsl:apply-templates select=".//(adresgegevens[not(adresgegevens)] | address_information[not(address_information)])" mode="doAddress"/>
-    </xsl:template>
+    </xsl:template>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Helper template for patient payload independent of profile tag (MP 6.12 DispenseConversion or nl-core).</xd:desc>
     </xd:doc>
     <xsl:template name="_patient-payload">
 
-        <!-- patient_identificatienummer  -->
+        <!-\- patient_identificatienummer  -\->
         <xsl:for-each select="(identificatienummer | patient_identification_number)[@value]">
-            <!-- translation inconsistency -->
+            <!-\- translation inconsistency -\->
             <identifier>
                 <xsl:call-template name="id-to-Identifier">
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
             </identifier>
         </xsl:for-each>
-        <!-- naamgegevens -->
+        <!-\- naamgegevens -\->
         <xsl:for-each select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])">
             <xsl:call-template name="nl-core-humanname">
                 <xsl:with-param name="ada-naamgegevens" select="."/>
@@ -222,10 +222,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </gender>
         </xsl:for-each>
 
-        <!-- geboortedatum -->
+        <!-\- geboortedatum -\->
         <xsl:for-each select="(geboortedatum | date_of_birth)/@value">
-            <!-- in the zib birthdate is of type date/time, in FHIR it is type date. 
-                If we get a date/time in the input let's at least ignore a time earlier than 00:00:01 -->
+            <!-\- in the zib birthdate is of type date/time, in FHIR it is type date. 
+                If we get a date/time in the input let's at least ignore a time earlier than 00:00:01 -\->
             <xsl:variable name="fhirBirthDate">
                 <xsl:choose>
                     <xsl:when test=". castable as xs:date">
@@ -234,11 +234,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test=". castable as xs:dateTime">
                         <xsl:choose>
                             <xsl:when test="xs:time(nf:getTime(.)) lt xs:time('00:00:01')">
-                                <!-- return only date -->
+                                <!-\- return only date -\->
                                 <xsl:value-of select="substring(., 1, 10)"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <!-- a time was in the input and may be relevant, let's output the time even though it will result in invalid FHIR -->
+                                <!-\- a time was in the input and may be relevant, let's output the time even though it will result in invalid FHIR -\->
                                 <xsl:value-of select="."/>
                             </xsl:otherwise>
                         </xsl:choose>
@@ -252,9 +252,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <birthDate value="{$fhirBirthDate}"/>
         </xsl:for-each>
 
-        <!-- zib/ADA defines date_of_death and death_indicator as separate fields, while FHIR uses the deceased[x] field.
+        <!-\- zib/ADA defines date_of_death and death_indicator as separate fields, while FHIR uses the deceased[x] field.
                  So we first try to take the date_of_death value and if that isn't present, we try to take
-                 death_indicator. -->
+                 death_indicator. -\->
         <xsl:choose>
             <xsl:when test="(datum_overlijden | date_of_death)[@value]">
                 <deceasedDateTime>
@@ -269,15 +269,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <deceasedBoolean value="{xs:boolean((overlijdens_indicator | death_indicator)/@value)}"/>
             </xsl:when>
         </xsl:choose>
-        <!-- adresgegevens -->
+        <!-\- adresgegevens -\->
         <xsl:apply-templates select="adresgegevens[.//(@value | @code | @nullFlavor)]" mode="doAddress"/>
 
         <xsl:for-each select="(meerling_indicator | multiple_birth_indicator)[@value]">
             <multipleBirthBoolean value="{./@value}"/>
         </xsl:for-each>
 
-    </xsl:template>
-    <xd:doc>
+    </xsl:template>-->
+    
+    <!--<xd:doc>
         <xd:desc>Write out a FHIR reference type element.</xd:desc>
         <xd:param name="reference">A map containing the parameters for the reference. If this parameter is absent, no output will be produced. The following keys are recognized:
             <xd:ul>
@@ -290,7 +291,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>This parameter makes it easy to create an element only if the reference parameter is present.</xd:p>
         </xd:param>
     </xd:doc>
-    <!--<xsl:template name="_Reference">
+    <xsl:template name="_Reference">
         <xsl:param name="reference" as="map(xs:string, xs:string)?"/>
         <xsl:param name="wrapIn" as="xs:string?"/>
 
@@ -324,16 +325,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="ResourceType" as="xs:string"/>
         <xsl:variable name="group-key">
             <xsl:choose>
+                <xsl:when test="$ResourceType = 'Patient'">
+                    <xsl:value-of select="nf:getGroupingKeyPatient(.)"/>
+                </xsl:when>
                 <xsl:when test="$ResourceType = 'Practitioner'">
-                    <xsl:value-of select="nff:get-grouping-key-practitioner(.)"/>
+                    <xsl:value-of select="nf:getGroupingKeyPractitioner(.)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nff:get-grouping-key-default(.)"/>
+                    <xsl:value-of select="nf:getGroupingKeyDefault(.)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <reference value="{nff:get-resource-info($ResourceType,$group-key, false(), 'FullUrlOrId')}"/>
-        <display value="{nff:get-resource-info($ResourceType,$group-key, false(), 'ReferenceDisplay')}"/>
+        <reference value="{nff:get-resource-info($ResourceType, $group-key, false(), 'FullUrlOrId')}"/>
+        <display value="{nff:get-resource-info($ResourceType, $group-key, false(), 'ReferenceDisplay')}"/>
     </xsl:template>
 
     <xd:doc>
@@ -569,8 +573,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </AllergyIntolerance>
     </xsl:template>
 
-
-
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.AllergieIntolerantie concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">zib-AllergyIntolerance</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
@@ -595,7 +597,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
             </meta>
 
-            <xsl:for-each select="nff:ada-resolve-reference(conditie/probleem | condition/problem)">
+            <xsl:for-each select="nf:ada-resolve-reference(conditie/probleem | condition/problem)">
 
                 <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                     <valueReference>
@@ -646,9 +648,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </Flag>
     </xsl:template>
 
-
-
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Template for FHIR profile nl-core-address-2.0, context should be ada adresgegevens element</xd:desc>
     </xd:doc>
     <xsl:template name="nl-core-address-2.0" match="adresgegevens[not(adresgegevens)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | address_information[not(address_information)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAddress">
@@ -681,10 +681,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:variable>
             <address>
-                <!-- adres_soort -->
+                <!-\- adres_soort -\->
                 <xsl:for-each select="adres_soort[@codeSystem = '2.16.840.1.113883.5.1119'][@code]">
                     <xsl:choose>
-                        <!-- Postadres -->
+                        <!-\- Postadres -\->
                         <xsl:when test="@code = 'PST'">
                             <use>
                                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
@@ -693,7 +693,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </use>
                             <type value="postal"/>
                         </xsl:when>
-                        <!-- Officieel adres -->
+                        <!-\- Officieel adres -\->
                         <xsl:when test="@code = 'HP'">
                             <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
                                 <valueCode value="true"/>
@@ -705,7 +705,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </use>
                             <type value="physical"/>
                         </xsl:when>
-                        <!-- Woon-/verblijfadres -->
+                        <!-\- Woon-/verblijfadres -\->
                         <xsl:when test="@code = 'PHYS'">
                             <use value="home">
                                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
@@ -714,15 +714,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </use>
                             <type value="physical"/>
                         </xsl:when>
-                        <!-- Tijdelijk adres -->
+                        <!-\- Tijdelijk adres -\->
                         <xsl:when test="@code = 'TMP'">
                             <use value="temp"/>
                         </xsl:when>
-                        <!-- Werkadres -->
+                        <!-\- Werkadres -\->
                         <xsl:when test="@code = 'WP'">
                             <use value="work"/>
                         </xsl:when>
-                        <!-- Vakantie adres -->
+                        <!-\- Vakantie adres -\->
                         <xsl:when test="@code = 'HV'">
                             <use value="temp">
                                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
@@ -753,8 +753,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </address>
         </xsl:for-each>
 
-    </xsl:template>
-    <xd:doc>
+    </xsl:template>-->
+    
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="ada-naamgegevens"/>
         <xd:param name="unstructured-name"/>
@@ -772,7 +773,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <valueCode value="{./@code}"/>
                                 </extension>
                             </xsl:for-each>
-                            <!-- unstructured-name, not supported in zib datamodel, may be customized per transaction, therefore parameterized in this template -->
+                            <!-\- unstructured-name, not supported in zib datamodel, may be customized per transaction, therefore parameterized in this template -\->
                             <xsl:if test="string-length($unstructured-name) gt 0">
                                 <text value="{$unstructured-name}"/>
                             </xsl:if>
@@ -780,23 +781,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <family>
                                     <xsl:attribute name="value">
                                         <xsl:choose>
-                                            <!-- Eigen geslachtsnaam -->
+                                            <!-\- Eigen geslachtsnaam -\->
                                             <xsl:when test="./naamgebruik/@code = 'NL1'">
                                                 <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value), ' '))"/>
                                             </xsl:when>
-                                            <!-- 	Geslachtsnaam partner -->
+                                            <!-\- 	Geslachtsnaam partner -\->
                                             <xsl:when test="./naamgebruik/@code = 'NL2'">
                                                 <xsl:value-of select="normalize-space(string-join((./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
                                             </xsl:when>
-                                            <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
+                                            <!-\- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -\->
                                             <xsl:when test="./naamgebruik/@code = 'NL3'">
                                                 <xsl:value-of select="normalize-space(string-join((./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value, ./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value), ' '))"/>
                                             </xsl:when>
-                                            <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
+                                            <!-\- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -\->
                                             <xsl:when test="./naamgebruik/@code = 'NL4'">
                                                 <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value, ./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
                                             </xsl:when>
-                                            <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
+                                            <!-\- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -\->
                                             <xsl:otherwise>
                                                 <xsl:value-of select="normalize-space(string-join((./geslachtsnaam/voorvoegsels/@value, ././geslachtsnaam/achternaam/@value, ./geslachtsnaam_partner/voorvoegsels_partner/@value, ././geslachtsnaam_partner/achternaam_partner/@value), ' '))"/>
                                             </xsl:otherwise>
@@ -853,17 +854,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                             <xsl:if test="validTime[.//@value]">
                                 <period>
-                                    <!-- <xsl:call-template name="IVL_TS-to-Period">
+                                    <!-\- <xsl:call-template name="IVL_TS-to-Period">
                      <xsl:with-param name="in" select="validTime"/>
                   </xsl:call-template>
-            -->
+            -\->
                                 </period>
                             </xsl:if>
                         </name>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <!-- only unstructured name -->
+                    <!-\- only unstructured name -\->
                     <name>
                         <text>
                             <xsl:value-of select="$unstructured-name"/>
@@ -872,8 +873,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
-    </xsl:template>
-    <xd:doc>
+    </xsl:template>-->
+    
+    <!--<xd:doc>
         <xd:desc>Template for FHIR profile nl-core-organization-2.0</xd:desc>
         <xd:param name="ada-zorgaanbieder">Optional ada element zorgaanbieder, defaults to context</xd:param>
         <xd:param name="logicalId">Optional FHIR logical id for this record.</xd:param>
@@ -892,9 +894,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="_organization-payload"/>
             </Organization>
         </xsl:for-each>
-    </xsl:template>
+    </xsl:template>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Mapping of nl.zorg.Patient concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://fhir.nl/fhir/structuredefinition/nl-core-patient">nl-core-patient</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
     </xd:doc>
@@ -912,9 +914,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="_patient-payload"/>
 
         </Patient>
-    </xsl:template>
+    </xsl:template>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Template for FHIR profile nl-core-practitioner-2.0</xd:desc>
         <xd:param name="ada-zorgverlener">The practitioner in ada format</xd:param>
         <xd:param name="logicalId">Optional FHIR logical id for the resource.</xd:param>
@@ -922,7 +924,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-practitioner-2.0">
         <xsl:param name="ada-zorgverlener" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <!-- zorgverlener -->
+        <!-\- zorgverlener -\->
         <xsl:for-each select="$ada-zorgverlener">
             <Practitioner>
                 <xsl:for-each select="$logicalId">
@@ -931,7 +933,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
                 </meta>
-                <!-- zorgverlener_identificatie_nummer -->
+                <!-\- zorgverlener_identificatie_nummer -\->
                 <xsl:for-each select="./(zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)[.//@value]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier">
@@ -939,7 +941,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </identifier>
                 </xsl:for-each>
-                <!-- naamgegevens -->
+                <!-\- naamgegevens -\->
                 <xsl:for-each select="./(zorgverlener_naam/naamgegevens | .//naamgegevens[not(naamgegevens)])">
                     <xsl:call-template name="nl-core-humanname">
                         <xsl:with-param name="ada-naamgegevens" select="."/>
@@ -948,8 +950,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </Practitioner>
         </xsl:for-each>
-    </xsl:template>
-    <xd:doc>
+    </xsl:template>-->
+    
+    <!--<xd:doc>
         <xd:desc>Template for FHIR profile nl-core-practitionerrole-2.0</xd:desc>
         <xd:param name="ada-zorgverlener">ada element zorgverlener</xd:param>
         <xd:param name="logicalId">Optional FHIR logical id for the resource.</xd:param>
@@ -976,7 +979,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </practitioner>
                 </xsl:for-each>
 
-                <xsl:for-each select="nff:ada-resolve-reference(.//zorgaanbieder[not(zorgaanbieder)])">
+                <xsl:for-each select="nf:ada-resolve-reference(.//zorgaanbieder[not(zorgaanbieder)])">
                     <organization>
                         <xsl:apply-templates select="." mode="doReference">
                             <xsl:with-param name="ResourceType">Organization</xsl:with-param>
@@ -1001,8 +1004,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </PractitionerRole>
         </xsl:for-each>
     </xsl:template>
-
-
+-->
+    
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-problem-2.1.1</xd:desc>
         <xd:param name="ada-patient">The ada patient that is subject of this Condition, if not given template attempts to get subject from zibroot</xd:param>
@@ -1160,6 +1163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     </xsl:template>
 
+    <!--
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-relatedperson-2.0</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id.</xd:param>
@@ -1182,9 +1186,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </valueCodeableConcept>
                 </extension>
             </xsl:for-each>
-            <!-- TODO, use zibroot or input ada-patient -->
+            <!-\- TODO, use zibroot or input ada-patient -\->
             <patient>
-                <!-- find the one (! should be only one) patient which has proper data and is not a reference in this ada transaction -->
+                <!-\- find the one (! should be only one) patient which has proper data and is not a reference in this ada transaction -\->
                 <xsl:apply-templates select="./ancestor::*[ancestor::data]//patient[not(patient)][not(@datatype = 'reference')]" mode="doReference">
                     <xsl:with-param name="ResourceType">Patient</xsl:with-param>
                 </xsl:apply-templates>
@@ -1211,6 +1215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </RelatedPerson>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Template for FHIR datatype ContactPoint, context should be ada contactgegevens element</xd:desc>
     </xd:doc>
@@ -1219,7 +1224,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <telecom>
                 <system value="phone"/>
                 <value value="{telefoonnummer/@value}"/>
-                <!-- todo telecomtype, is not part of an MP transaction up until now -->
+                <!-\- todo telecomtype, is not part of an MP transaction up until now -\->
                 <use>
                     <xsl:attribute name="value">
                         <xsl:choose>
@@ -1236,7 +1241,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <telecom>
                 <system value="email"/>
                 <value value="{email_adres/@value}"/>
-                <!-- todo telecomtype, is not part of an MP transaction up until now -->
+                <!-\- todo telecomtype, is not part of an MP transaction up until now -\->
                 <use>
                     <xsl:attribute name="value">
                         <xsl:choose>
@@ -1250,7 +1255,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
 
     </xsl:template>
-
+-->
+    
     <xd:doc>
         <xd:desc>Helper template to make a reference to given ada subject/resourceType, if that's not present than whatever is specified in hcim rootsubject of the current zib/hcim or if nothing is given it will try and find the patient in the transaction.</xd:desc>
         <xd:param name="adaSubject">Optional ada element which should be in the subject</xd:param>
@@ -1304,24 +1310,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="_zibRootSubject" match="onderwerp[parent::zibroot | parent::hcimroot][*] | subject[parent::zibroot | parent::hcimroot][*]" mode="_doZibRootSubject">
         <xsl:choose>
             <xsl:when test=".//patient[not(patient)]">
-                <xsl:apply-templates select="nff:ada-resolve-reference(.//patient[not(patient)])" mode="doReference">
+                <xsl:apply-templates select="nf:ada-resolve-reference(.//patient[not(patient)])" mode="doReference">
                     <xsl:with-param name="ResourceType">Patient</xsl:with-param>
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test=".//contactpersoon">
-                <xsl:apply-templates select="nff:ada-resolve-reference(.//contactpersoon)" mode="doReference">
+                <xsl:apply-templates select="nf:ada-resolve-reference(.//contactpersoon)" mode="doReference">
                     <xsl:with-param name="ResourceType">RelatedPerson</xsl:with-param>
                 </xsl:apply-templates>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Mapping of nl.zorg.Contactpersoon concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/nl-core-relatedperson">nl-core-relatedperson</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
         <xd:param name="patientRef">The patient (subject) reference this person is a contact of, as a map with 'target' and optional 'display' keys.</xd:param>
     </xd:doc>
-    <!--<xsl:template name="Contactpersoon" match="contactpersoon | contact" as="element()">
+    <xsl:template name="Contactpersoon" match="contactpersoon | contact" as="element()">
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="patientRef" as="map(xs:string, xs:string)"/>
 
@@ -1336,7 +1342,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </RelatedPerson>
     </xsl:template>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Creates an organization resource as a FHIR entry</xd:desc>
         <xd:param name="uuid">boolean to determine whether to generate a uuid for the fullURL</xd:param>
     </xd:doc>
@@ -1379,14 +1385,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </resource>
         </entry>
-    </xsl:template>
+    </xsl:template>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template name="practitionerRole-entry" match="zorgverlener" mode="doPractitionerRoleEntry">
         <entry>
-            <!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
+            <!-\- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -\->
             <xsl:variable name="unique-id" select="nf:get-fhir-uuid(./..)"/>
             <fullUrl value="{$unique-id}"/>
             <resource>
@@ -1408,7 +1414,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </resource>
         </entry>
     </xsl:template>
-
+-->
+    
     <xd:doc>
         <xd:desc>Creates a FHIR entry for ada problem</xd:desc>
     </xd:doc>
@@ -1432,15 +1439,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </entry>
     </xsl:template>
 
-
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="uuid"/>
     </xd:doc>
     <xsl:template name="patient-entry" match="patient" mode="doPatientEntry">
         <xsl:param name="uuid" as="xs:boolean"/>
 
-        <!-- For privacy reasons always use UUID as fullUrl for patient -->
+        <!-\- For privacy reasons always use UUID as fullUrl for patient -\->
         <xsl:variable name="patient-fullUrl" select="nf:get-fhir-uuid(.)"/>
         <entry>
             <fullUrl value="{$patient-fullUrl}"/>
@@ -1467,11 +1473,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </resource>
         </entry>
-    </xsl:template>
+    </xsl:template>-->
 
-
-
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="uuid"/>
     </xd:doc>
@@ -1513,9 +1517,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </resource>
         </entry>
-    </xsl:template>
+    </xsl:template>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="uuid"/>
     </xd:doc>
@@ -1547,17 +1551,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </resource>
         </entry>
-    </xsl:template>
+    </xsl:template>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc>Resolves the reference in an ada-transaction. Outputs a sequence with the resolved element.</xd:desc>
         <xd:param name="ada-element">The ada element which may need resolving, if not return the element, else the resolved element</xd:param>
     </xd:doc>
-    <xsl:function name="nff:ada-resolve-reference" as="element()*">
+    <xsl:function name="nf:ada-resolve-reference" as="element()*">
         <xsl:param name="ada-element" as="element()"/>
-        <!-- The current ada-transaction element -->
+        <!-\- The current ada-transaction element -\->
         <xsl:variable name="currentAdaTransaction" select="$ada-element/ancestor::*[ancestor::data[ancestor::adaxml]]"/>
-        <!-- resolve the reference -->
+        <!-\- resolve the reference -\->
         <xsl:choose>
             <xsl:when test="$ada-element[not(@datatype = 'reference')]">
                 <xsl:sequence select="$ada-element"/>
@@ -1566,9 +1570,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:sequence select="$currentAdaTransaction//*[@id = $ada-element/@value]"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:function>
+    </xsl:function>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="zorgaanbieder-identificatie-nummer"/>
     </xd:doc>
@@ -1582,8 +1586,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         ($zorgaanbieder-identificatie-nummer[@root = $oidAGB])
                     else
                         $zorgaanbieder-identificatie-nummer[1])"/>
-    </xsl:function>
-    <xd:doc>
+    </xsl:function>-->
+    
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="ada-zorgverlener"/>
     </xd:doc>
@@ -1592,10 +1597,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$ada-zorgverlener">
             <xsl:value-of select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName, ' || ')))"/>
         </xsl:for-each>
-    </xsl:function>
+    </xsl:function>-->
 
-
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="zorgverlener-identificatie-nummer"/>
     </xd:doc>
@@ -1612,8 +1616,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             ($zorgverlener-identificatie-nummer[@root = $oidBIGregister])
                         else
                             $zorgverlener-identificatie-nummer[1]))"/>
-    </xsl:function>
-
+    </xsl:function>-->
 
     <xd:doc>
         <xd:desc/>
@@ -1647,7 +1650,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="$problems"/>
                 </xsl:when>
                 <xsl:when test="$RESOURCETYPE = 'RELATEDPERSON'">
-                    <xsl:copy-of select="$related-persons"/>
+                    <xsl:copy-of select="$relatedPersons"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
@@ -1677,26 +1680,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="in"/>
     </xd:doc>
     <xsl:function name="nff:get-grouping-key-default" as="xs:string?">
         <xsl:param name="in" as="element()?"/>
         <xsl:value-of select="normalize-space(upper-case(concat(string-join($in//@value, ''), string-join($in//@root, ''), string-join($in//@code, ''), string-join($in//@codeSystem, ''), string-join($in//@nullFlavor, ''))))"/>
-    </xsl:function>
+    </xsl:function>-->
 
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
         <xd:param name="zorgverlener"/>
     </xd:doc>
     <xsl:function name="nff:get-grouping-key-practitioner" as="xs:string?">
         <xsl:param name="zorgverlener" as="element()?"/>
         <xsl:value-of select="concat(nff:get-grouping-key-default($zorgverlener/(zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)), nff:get-grouping-key-default($zorgverlener/(zorgverlener_naam | naamgegevens)), nff:get-grouping-key-default($zorgverlener/adres), nff:get-grouping-key-default($zorgverlener/telefoon_email))"/>
-    </xsl:function>
-
-
-
-
-
+    </xsl:function>-->
 </xsl:stylesheet>

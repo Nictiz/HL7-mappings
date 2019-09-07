@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="releatedperson-reference" match="persoon[not(persoon)] | person[not(person)]" mode="doRelatedPersonReference-2.0">
+    <xsl:template name="releatedperson-reference" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)]" mode="doRelatedPersonReference-2.0">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$relatedPersons[group-key = $theGroupKey]" as="element()?"/>
@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.Organization.id</xd:param>
         <xd:param name="search-mode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="relatedperson-entry" match="persoon | person" mode="doRelatedPersonEntry-2.0">
+    <xsl:template name="relatedperson-entry" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)]" mode="doRelatedPersonEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entry-fullurl" select="nf:get-fhir-uuid(.)"/>
         <xsl:param name="fhir-resource-id">
@@ -94,7 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of a RelatedPerson resource</xd:param>
         <xd:param name="patient-ref">Required. Reference datatype elements for the Patient that this RelatedPerson is related too</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-relatedperson-2.0" match="persoon | person" mode="doRelatedPersonResource-2.0">
+    <xsl:template name="nl-core-relatedperson-2.0" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)]" mode="doRelatedPersonResource-2.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="relatedperson-id" as="xs:string?"/>
         <xsl:param name="patient-ref" as="element()+"/>
@@ -106,7 +106,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
                 </meta>
-                <xsl:for-each select="rol_of_functie | role">
+                <xsl:for-each select="(rol_of_functie | rol | role)[@code]">
                     <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept">
@@ -121,6 +121,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="$patient-ref[self::f:identifier]"/>
                     <xsl:copy-of select="$patient-ref[self::f:display]"/>
                 </patient>
+                <!-- relatie -->
+                <xsl:for-each select="(relatie | relationship)[@code]">
+                    <relationship>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </relationship>
+                </xsl:for-each>
                 <!-- naamgegevens -->
                 <xsl:for-each select="naamgegevens | name_information">
                     <xsl:call-template name="nl-core-humanname-2.0">

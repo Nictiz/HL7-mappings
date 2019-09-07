@@ -115,15 +115,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </identifier>
                 </xsl:for-each>
-                <!-- TODO? organisatietype / afdelingspecialisme, is not part of an MP transaction up until now -->
-                <!-- naamgegevens -->
-                <xsl:for-each select="organisatie_naam | organization_name">
-                    <name>
-                        <xsl:call-template name="string-to-string">
+                <!-- type -->
+                <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
+                    <type>
+                        <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </name>
+                    </type>
                 </xsl:for-each>
+                <!-- name -->
+                <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value"/>
+                <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value"/>
+                <xsl:if test="$organizationName | $organizationLocation">
+                    <!-- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -->
+                    <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
+                </xsl:if>
                 <!-- contactgegevens -->
                 <xsl:call-template name="nl-core-contactpoint-1.0">
                     <xsl:with-param name="in" select="contactgegevens | contact_information"/>
