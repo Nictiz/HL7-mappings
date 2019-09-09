@@ -16,20 +16,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
     <xsl:import href="../../../2_fhir_mp_include.xsl"/>
-	<xd:doc scope="stylesheet">
-		<xd:desc>
-			<xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-			<xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/NictizSTU3/zib-AdministrationAgreement">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAdministrationAgreement</xd:a>. The HL7 V3 interaction contains both logistical information and therapeutic information.</xd:p>
-			<xd:p>
-				<xd:b>History:</xd:b>
-				<xd:ul>
-					<xd:li>2018-06-12 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
-				</xd:ul>
-			</xd:p>
-		</xd:desc>
-	</xd:doc>
-	<xsl:output method="xml" indent="yes"/>
-	<xsl:strip-space elements="*"/>
+    <xd:doc scope="stylesheet">
+        <xd:desc>
+            <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/NictizSTU3/zib-AdministrationAgreement">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAdministrationAgreement</xd:a>. The HL7 V3 interaction contains both logistical information and therapeutic information.</xd:p>
+            <xd:p>
+                <xd:b>History:</xd:b>
+                <xd:ul>
+                    <xd:li>2018-06-12 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
+                </xd:ul>
+            </xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
     <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
@@ -38,76 +38,95 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
     <xsl:variable name="usecase">mp9</xsl:variable>
 
-	<xsl:variable name="commonEntries" as="element(f:entry)*">
-	    <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $locations/f:entry"/>
-	</xsl:variable>
+    <xsl:variable name="commonEntries" as="element(f:entry)*">
+        <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
+    </xsl:variable>
 
-	<xd:doc>
-		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
-	</xd:doc>
-	<xsl:template match="/">
-		<xsl:call-template name="medicatieoverzicht_90_resources">
-			<xsl:with-param name="mbh" select="//beschikbaarstellen_medicatieoverzicht/medicamenteuze_behandeling"/>
-		</xsl:call-template>
-	</xsl:template>
-	<xd:doc>
-		<xd:desc>Build the individual FHIR resources.</xd:desc>
-		<xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
-	</xd:doc>
-	<xsl:template name="medicatieoverzicht_90_resources">
-		<xsl:param name="mbh"/>
+    <xd:doc>
+        <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
+    </xd:doc>
+    <xsl:template match="/">
+        <xsl:call-template name="medicatieoverzicht_90_resources">
+            <xsl:with-param name="mbh" select="//beschikbaarstellen_medicatieoverzicht/medicamenteuze_behandeling"/>
+        </xsl:call-template>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Build the individual FHIR resources.</xd:desc>
+        <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
+    </xd:doc>
+    <xsl:template name="medicatieoverzicht_90_resources">
+        <xsl:param name="mbh"/>
+        
+        <xsl:variable name="entries" as="element(f:entry)*">
+            <xsl:for-each select="$bouwstenen, $commonEntries">
+                <xsl:apply-templates select="." mode="doSearchModeInclude"/>
+            </xsl:for-each>
+        </xsl:variable>
+        
+        <xsl:variable name="medicatieoverzicht-list" as="element(f:entry)*">
+            <xsl:for-each select="$mbh[1]/../documentgegevens">
+                <xsl:call-template name="medicatieoverzicht-9.0.6">
+                    <xsl:with-param name="documentgegevens" select="."/>
+                    <xsl:with-param name="entries" select="$entries"/>
+                </xsl:call-template>
+            </xsl:for-each>
+        </xsl:variable>
+        
+        <xsl:apply-templates select="($medicatieoverzicht-list, $entries)/f:resource/*" mode="doResourceInResultdoc"/>
+        <!-- also create a Bundle that can be returned as answer to a medication overview query -->
+        <xsl:call-template name="create-mo-bundle">
+            <xsl:with-param name="entries" select="($medicatieoverzicht-list, $entries)"/>
+        </xsl:call-template>
+    </xsl:template>
 
-		<xsl:variable name="entries" as="element(f:entry)*">
-			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, bouwstenen -->
-			<xsl:copy-of select="$commonEntries"/>
-			<xsl:copy-of select="$bouwstenen"/>
-		</xsl:variable>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="entries"/>
+    </xd:doc>
+    <xsl:template name="create-mo-bundle">
+        <xsl:param name="entries" select="."/>
+        <xsl:result-document href="./{$usecase}-Bundle-{$entries/f:resource/f:List/f:id/@value}.xml">
+            <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+            <Bundle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd" xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
+                </meta>
+                <type value="searchset"/>
+                <!-- one extra: the List entry for medicatieoverzicht  -->
+                <!-- FIXME Expectation: one List object only. If there are more: we should worry -->
+                <total value="1"/>
+                <xsl:copy-of select="$entries"/>
+            </Bundle>
+        </xsl:result-document>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Overwrite Bundle/entry/search/mode/@value with 'include'</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:search/f:mode" mode="doSearchModeInclude">
+        <xsl:copy>
+            <xsl:apply-templates select="@*" mode="doSearchModeInclude"/>
+            <xsl:attribute name="value">include</xsl:attribute>
+            <xsl:apply-templates select="node()" mode="doSearchModeInclude"/>
+        </xsl:copy>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Overwrite Bundle/entry/search/mode/@value with 'include'</xd:desc>
+    </xd:doc>
+    <xsl:template match="node()|@*" mode="doSearchModeInclude">
+        <xsl:copy>
+            <xsl:apply-templates select="node()|@*" mode="#current"/>
+        </xsl:copy>
+    </xsl:template>
 
-		<xsl:variable name="medicatieoverzicht-list" as="element(f:entry)*">
-			<xsl:for-each select="$mbh[1]/../documentgegevens">
-				<xsl:call-template name="medicatieoverzicht-9.0.6">
-					<xsl:with-param name="documentgegevens" select="."/>
-					<xsl:with-param name="entries" select="$entries"/>
-				</xsl:call-template>
-			</xsl:for-each>
-		</xsl:variable>
-
-		<xsl:apply-templates select="($medicatieoverzicht-list, $entries)/f:resource/*" mode="doResourceInResultdoc"/>
-		<!-- also create a Bundle that can be returned as answer to a medication overview query -->
-		<xsl:call-template name="create-mo-bundle">
-			<xsl:with-param name="entries" select="($medicatieoverzicht-list, $entries)"/>
-		</xsl:call-template>
-	</xsl:template>
-
-	<xd:doc>
-		<xd:desc/>
-		<xd:param name="entries"/>
-	</xd:doc>
-	<xsl:template name="create-mo-bundle">
-		<xsl:param name="entries" select="."/>
-		<xsl:result-document href="./{$usecase}-Bundle-{$entries/f:resource/f:List/f:id/@value}.xml">
-			<Bundle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd" xmlns="http://hl7.org/fhir">
-				<meta>
-					<profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
-				</meta>
-				<type value="searchset"/>
-				<xsl:for-each select="$entries">
-					<entry>
-						<xsl:copy-of select="./f:resource"/>
-					</entry>
-				</xsl:for-each>
-			</Bundle>
-		</xsl:result-document>
-	</xsl:template>
-
-	<xd:doc>
-		<xd:desc>Creates xml document for a FHIR resource</xd:desc>
-	</xd:doc>
-	<xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-		<xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>
-		<xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
-			<xsl:copy-of select="."/>
-		</xsl:result-document>
-	</xsl:template>
+    <xd:doc>
+        <xd:desc>Creates xml document for a FHIR resource</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
+        <xsl:variable name="zib-name" select="tokenize(./f:meta/f:profile/@value, './')[last()]"/>
+        <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
+            <xsl:copy-of select="."/>
+        </xsl:result-document>
+    </xsl:template>
 
 </xsl:stylesheet>
