@@ -56,60 +56,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="medicatieoverzicht_90">
         <xsl:param name="adaTransaction" as="element()*"/>
         <xsl:param name="mbh" as="element()*" select="$adaTransaction/medicamenteuze_behandeling"/>
+        
+        <xsl:variable name="entries" as="element(f:entry)*">
+            <xsl:copy-of select="$bouwstenen"/>
+            <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
+            <xsl:copy-of select="$commonEntries"/>
+        </xsl:variable>
+        
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
             </meta>
             <type value="searchset"/>
-            <xsl:variable name="entries" as="element(f:entry)*">
-                <!-- medication hcim's -->
-                <xsl:for-each select="$mbh">
-                    <!-- medicatieafspraken -->
-                    <xsl:for-each select="./medicatieafspraak">
-                        <xsl:call-template name="zib-MedicationAgreement-2.0">
-                            <xsl:with-param name="medicatieafspraak" select="."/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- verstrekkingsverzoeken - should not be there, but if they are we will convert -->
-                    <xsl:for-each select="./verstrekkingsverzoek">
-                        <xsl:call-template name="zib-DispenseRequest-2.0">
-                            <xsl:with-param name="verstrekkingsverzoek" select="."/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- toedieningsafspraken -->
-                    <xsl:for-each select="./toedieningsafspraak">
-                        <entry>
-                            <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
-                            <resource>
-                                <xsl:call-template name="zib-AdministrationAgreement-2.0">
-                                    <xsl:with-param name="toedieningsafspraak" select="."/>
-                                </xsl:call-template>
-                            </resource>
-                        </entry>
-                    </xsl:for-each>
-                    <!-- verstrekkingen - should not be there, but if they are we will convert -->
-                    <xsl:for-each select="./verstrekking">
-                        <entry>
-                            <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
-                            <resource>
-                                <xsl:call-template name="zib-Dispense-2.0">
-                                    <xsl:with-param name="verstrekking" select="."/>
-                                </xsl:call-template>
-                            </resource>
-                        </entry>
-                    </xsl:for-each>
-                    <xsl:for-each select="./medicatie_gebruik">
-                        <xsl:call-template name="zib-MedicationUse-2.2">
-                            <xsl:with-param name="medicatiegebruik" select="."/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </xsl:for-each>
-                <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
-                <xsl:copy-of select="$commonEntries"/>
-            </xsl:variable>
             <!-- one extra: the List entry for medicatieoverzicht  -->
-            <total value="{count($entries) + 1}"/>
+            <!-- FIXME Expectation: one List object only. If there are more: we should worry -->
+            <total value="1"/>
             <!-- documentgegevens in List entry -->
             <xsl:for-each select="$adaTransaction/documentgegevens">
                 <xsl:call-template name="medicatieoverzicht-9.0.6">
@@ -117,10 +79,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="entries" select="$entries"/>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:copy-of select="$entries"/>
+            <xsl:for-each select="$entries">
+                <xsl:apply-templates select="." mode="doSearchModeInclude"/>
+            </xsl:for-each>
         </Bundle>
     </xsl:template>
-
-
+    
+    <xd:doc>
+        <xd:desc>Overwrite Bundle/entry/search/mode/@value with 'include'</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:search/f:mode" mode="doSearchModeInclude">
+        <xsl:copy>
+            <xsl:apply-templates select="@*" mode="doSearchModeInclude"/>
+            <xsl:attribute name="value">include</xsl:attribute>
+            <xsl:apply-templates select="node()" mode="doSearchModeInclude"/>
+        </xsl:copy>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Overwrite Bundle/entry/search/mode/@value with 'include'</xd:desc>
+    </xd:doc>
+    <xsl:template match="node()|@*" mode="doSearchModeInclude">
+        <xsl:copy>
+            <xsl:apply-templates select="node()|@*" mode="#current"/>
+        </xsl:copy>
+    </xsl:template>
 
 </xsl:stylesheet>
