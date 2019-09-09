@@ -1,0 +1,46 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="fcf5f777-d2ea-11e9-1031-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2018-03-13"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="a083ca80-5772-11e8-b566-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/UREUM10INEUCERINECUMAQUA"/>
+      <display value="Ureum 10% in eucerine cum aqua"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/HANNEKEXXX-BEKKER"/>
+      <display value="Hanneke XXX_Bekker"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Zo nodig"/>
+      <asNeededCodeableConcept>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1137"/>
+            <display value="zo nodig"/>
+         </coding>
+      </asNeededCodeableConcept>
+   </dosageInstruction>
+</MedicationDispense>

@@ -39,7 +39,7 @@
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="Organization/urnuuid07e51fba-d0e6-11e9-1380-28f10e481d92"/>
+                     <reference value="Organization/urnuuidfc76ea3a-d2ea-11e9-1893-28f10e481d92"/>
                      <display value="Apotheek de Gulle Gaper"/>
                   </valueReference>
                </extension>
@@ -246,15 +246,10 @@
    <entry>
       <resource>
          <Practitioner>
-            <id value="urnuuid07e51ee6-d0e6-11e9-1380-28f10e481d92"/>
+            <id value="urnuuidfc76e885-d2ea-11e9-1893-28f10e481d92"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
-            <identifier>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="NI"/>
-               </extension>
-            </identifier>
             <name>
                <family value="Ternist">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
@@ -340,7 +335,7 @@
    <entry>
       <resource>
          <Organization>
-            <id value="urnuuid07e51eef-d0e6-11e9-1380-28f10e481d92"/>
+            <id value="urnuuidfc76e96f-d2ea-11e9-1893-28f10e481d92"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -351,7 +346,7 @@
    <entry>
       <resource>
          <Organization>
-            <id value="urnuuid07e51fba-d0e6-11e9-1380-28f10e481d92"/>
+            <id value="urnuuidfc76ea3a-d2ea-11e9-1893-28f10e481d92"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -420,13 +415,13 @@
    <entry>
       <resource>
          <PractitionerRole>
-            <id value="urnuuid07e51d9e-d0e6-11e9-1380-28f10e481d92"/>
+            <id value="urnuuidfc76e81e-d2ea-11e9-1893-28f10e481d92"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
                <reference value="Practitioner/JOHNDEVRIES1"/>
-               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               <display value="John de Vries"/>
             </practitioner>
             <organization>
                <reference value="Organization/00001111HUISARTSENPRAKTIJKPULVERPARTNERS"/>
@@ -445,13 +440,13 @@
    <entry>
       <resource>
          <PractitionerRole>
-            <id value="urnuuid07e51e04-d0e6-11e9-1380-28f10e481d92"/>
+            <id value="urnuuidfc76e884-d2ea-11e9-1893-28f10e481d92"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="Practitioner/JOHNDEVRIES1"/>
-               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               <reference value="Practitioner/urnuuidfc76e885-d2ea-11e9-1893-28f10e481d92"/>
+               <display value="I. Ternist"/>
             </practitioner>
             <organization>
                <reference value="Organization/ANTONIUS"/>
@@ -470,16 +465,16 @@
    <entry>
       <resource>
          <PractitionerRole>
-            <id value="urnuuid07e51ee5-d0e6-11e9-1380-28f10e481d92"/>
+            <id value="urnuuidfc76e965-d2ea-11e9-1893-28f10e481d92"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="Practitioner/urnuuid07e51ee6-d0e6-11e9-1380-28f10e481d92"/>
-               <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
+               <reference value="Practitioner/urnuuidfc76e885-d2ea-11e9-1893-28f10e481d92"/>
+               <display value="I. Ternist"/>
             </practitioner>
             <organization>
-               <reference value="Organization/urnuuid07e51eef-d0e6-11e9-1380-28f10e481d92"/>
+               <reference value="Organization/urnuuidfc76e96f-d2ea-11e9-1893-28f10e481d92"/>
                <display value="Antonius"/>
             </organization>
             <specialty>
@@ -508,7 +503,7 @@
    <entry>
       <resource>
          <Medication>
-            <id value="urnuuid07e51deb-d0e6-11e9-1380-28f10e481d92"/>
+            <id value="urnuuidfc76e86b-d2ea-11e9-1893-28f10e481d92"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -860,13 +855,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuid07e51d9e-d0e6-11e9-1380-28f10e481d92"/>
-                     <display value="John de Vries"/>
+                     <reference value="PractitionerRole/urnuuidfc76e81e-d2ea-11e9-1893-28f10e481d92"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
                <agent>
                   <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <note>
@@ -945,13 +940,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuid07e51e04-d0e6-11e9-1380-28f10e481d92"/>
-                     <display value="I. Ternist"/>
+                     <reference value="PractitionerRole/urnuuidfc76e884-d2ea-11e9-1893-28f10e481d92"/>
+                     <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
                   </valueReference>
                </extension>
                <agent>
-                  <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <reference value="Practitioner/urnuuidfc76e885-d2ea-11e9-1893-28f10e481d92"/>
+                  <display value="I. Ternist"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -1027,13 +1022,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuid07e51d9e-d0e6-11e9-1380-28f10e481d92"/>
-                     <display value="John de Vries"/>
+                     <reference value="PractitionerRole/urnuuidfc76e81e-d2ea-11e9-1893-28f10e481d92"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
                <agent>
                   <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -1111,13 +1106,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuid07e51d9e-d0e6-11e9-1380-28f10e481d92"/>
-                     <display value="John de Vries"/>
+                     <reference value="PractitionerRole/urnuuidfc76e81e-d2ea-11e9-1893-28f10e481d92"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
                <agent>
                   <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -1194,13 +1189,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuid07e51d9e-d0e6-11e9-1380-28f10e481d92"/>
-                     <display value="John de Vries"/>
+                     <reference value="PractitionerRole/urnuuidfc76e81e-d2ea-11e9-1893-28f10e481d92"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
                <agent>
                   <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -1998,7 +1993,7 @@
                <text value="Medicatiegebruik"/>
             </category>
             <medicationReference>
-               <reference value="Medication/urnuuid07e51deb-d0e6-11e9-1380-28f10e481d92"/>
+               <reference value="Medication/urnuuidfc76e86b-d2ea-11e9-1893-28f10e481d92"/>
                <display value="Glimepiride"/>
             </medicationReference>
             <effectivePeriod>
@@ -2116,7 +2111,8 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="PractitionerRole/urnuuid07e51ee5-d0e6-11e9-1380-28f10e481d92"/>
+                  <reference value="PractitionerRole/urnuuidfc76e965-d2ea-11e9-1893-28f10e481d92"/>
+                  <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">

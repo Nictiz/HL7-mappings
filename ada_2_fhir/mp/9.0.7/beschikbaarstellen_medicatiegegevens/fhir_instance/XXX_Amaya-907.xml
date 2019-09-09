@@ -4,9 +4,1632 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="48"/>
+   <total value="46"/>
    <entry>
-      <fullUrl value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf95033-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-09-02T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="1"/>
+                  <unit value="jaar"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="a"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_513_1_MA_1"/>
+            </identifier>
+            <status value="entered-in-error"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.49484"/>
+               <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <authoredOn value="2018-09-02T11:25:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fbf95037-d2ea-11e9-8882-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 2 sep 2018, gedurende 1 jaar, 10 maal per dag 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="10"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf9505f-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-09-03T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="1"/>
+                  <unit value="jaar"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="a"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_513_1_MA_2"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.49484"/>
+               <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <authoredOn value="2018-09-03T09:00:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fbf95062-d2ea-11e9-8882-020000000000"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 3 sep 2018, gedurende 1 jaar, 1 maal per dag 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf953cb-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-09-03T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_2"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                     <value value="MBH_513_2_TA_1"/>
+                  </identifier>
+                  <display value="relatie naar toedieningsafspraak: MBH_513_2_TA_1 || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_513_2_MA_2"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+               <display value="FUROSEMIDE TABLET 40MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <authoredOn value="2018-09-03T14:32:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fbf953cf-d2ea-11e9-8882-020000000000"/>
+                        <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="305335007"/>
+                  <display value="Opname"/>
+               </coding>
+            </reasonCode>
+            <note>
+               <text value="Toedieningsafspraak van apotheker ontvangen, geen medicatieafspraak van voorschrijver ontvangen. Deze nieuwe medicatieafspraak is gebaseerd op de toedieningsafspraak: MBH_513_2_TA_1"/>
+            </note>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf95514-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-09-03T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="28"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_3"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+                     <value value="MBH_513_3_MGB_1"/>
+                  </identifier>
+                  <display value="relatie naar medicatiegebruik: MBH_513_3_MGB_1 || 2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_513_3_MA_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
+               <display value="METHOTREXAAT TABLET 2,5MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <authoredOn value="2018-09-03T14:32:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fbf953cf-d2ea-11e9-8882-020000000000"/>
+                        <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="305335007"/>
+                  <display value="Opname"/>
+               </coding>
+            </reasonCode>
+            <reasonReference>
+               <reference value="urn:uuid:fbf9552e-d2ea-11e9-8882-020000000000"/>
+               <display value="Andere maligniteit bloed/lymfestelsel"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 3 sep 2018, gedurende 28 dagen, 1 maal per week 5 stuks, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="5"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf95571-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-08-29T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="10"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
+                     <code value="1"/>
+                     <display value="Bewust hoge dosering"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_513_4_MA_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
+               <display value="FENETICILLINE CAPSULE 500MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <supportingInformation>
+               <reference value="urn:uuid:fbf9559a-d2ea-11e9-8882-020000000000"/>
+               <display value="Lengte: 155 cm. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
+            </supportingInformation>
+            <supportingInformation>
+               <reference value="urn:uuid:fbf9559d-d2ea-11e9-8882-020000000000"/>
+               <display value="Gewicht: 54 kg. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
+            </supportingInformation>
+            <authoredOn value="2018-08-29T09:35:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fbf95037-d2ea-11e9-8882-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <note>
+               <text value="In overleg met specialist"/>
+            </note>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 29 aug 2018, gedurende 10 dagen, 3 maal per dag 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf953f8-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_513_2_MA_2"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_513_2_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_2"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_513_2_VV_2"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+               <text value="Verstrekkingsverzoek"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+               <display value="FUROSEMIDE TABLET 40MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <authoredOn value="2018-08-16T14:32:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fbf953fa-d2ea-11e9-8882-020000000000"/>
+                        <display value="Hans van Doorn || Huisartsen, niet nader gespecificeerd || Ziekenhuis Stitswerd"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <note>
+               <text value="Extra verstrekkingsverzoek omdat patiënt de medicatie is kwijt geraakt"/>
+            </note>
+            <dispenseRequest>
+               <quantity>
+                  <value value="30"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </quantity>
+               <performer>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </performer>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf955a3-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"/>
+                     <code value="3"/>
+                     <display value="Bezorgen"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_513_4_MA_1"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_513_4_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_513_4_VV_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+               <text value="Verstrekkingsverzoek"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
+               <display value="FENETICILLINE CAPSULE 500MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <authoredOn value="2018-08-11T09:35:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fbf95037-d2ea-11e9-8882-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <dispenseRequest>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
+                  <valueReference>
+                     <reference value="urn:uuid:fbf955c3-d2ea-11e9-8882-020000000000"/>
+                     <display value="Huisadres patiënt"/>
+                  </valueReference>
+               </extension>
+               <quantity>
+                  <value value="40"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </quantity>
+               <performer>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </performer>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf953aa-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="2018-09-03T12:25:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-09-03T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="1"/>
+                  <unit value="jaar"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="a"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_513_1_TA_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1110837"/>
+               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_1_MA_2"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_513_1_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 3 sep 2018, gedurende 1 jaar, 1 maal per dag 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf9541d-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="2018-08-27T14:52:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AgreementReason">
+               <valueString value="Opname"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-08-27T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_2"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_513_2_TA_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.571148"/>
+               <display value="FUROSEMIDE ACTAVIS TABLET 40MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_2_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_513_2_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 27 aug 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf955c9-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="2018-08-29T09:45:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-08-29T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+               <valueDuration>
+                  <value value="10"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"/>
+                     <code value="10"/>
+                     <display value="Gebruiksinstructie gegeven"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_513_4_TA_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.646083"/>
+               <display value="AMOXICILLINE PCH CAPSULE 500MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_4_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_513_4_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <note>
+               <text value="Wegens niet leverbaar zijn van Broxil"/>
+            </note>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 29 aug 2018, gedurende 10 dagen, 3 maal per dag 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf9543b-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
+               <valueDateTime value="2018-09-03T14:32:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_2"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_513_2_MVE_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="Dispensing medication (procedure)"/>
+               </coding>
+               <text value="Medicatieverstrekking"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.571148"/>
+               <display value="FUROSEMIDE ACTAVIS TABLET 40MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_513_2_VV_2"/>
+               </identifier>
+               <display value="Verstrekkingsverzoek met identificatie MBH_513_2_VV_2 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+            </authorizingPrescription>
+            <quantity>
+               <value value="30"/>
+               <unit value="stuk"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </quantity>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf955e9-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"/>
+                     <code value="1"/>
+                     <display value="Aantal bewust gewijzigd"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_513_4_MVE_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="Dispensing medication (procedure)"/>
+               </coding>
+               <text value="Medicatieverstrekking"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.646083"/>
+               <display value="AMOXICILLINE PCH CAPSULE 500MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_513_4_VV_1"/>
+               </identifier>
+               <display value="Verstrekkingsverzoek met identificatie MBH_513_4_VV_1 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+            </authorizingPrescription>
+            <quantity>
+               <value value="30"/>
+               <unit value="stuk"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </quantity>
+            <whenHandedOver value="2018-08-29T09:45:00+02:00"/>
+            <destination>
+               <reference value="urn:uuid:fbf955c3-d2ea-11e9-8882-020000000000"/>
+               <display value="Huisadres patiënt"/>
+            </destination>
+            <note>
+               <text value="Patiënt gaf aan nog wat op voorraad te hebben, wens patiënt om minder te verstrekken."/>
+            </note>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf9544e-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:fbf95466-d2ea-11e9-8882-020000000000"/>
+                  <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fbf95466-d2ea-11e9-8882-020000000000"/>
+                  <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_2"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_513_2_MGB_1"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+               <display value="FUROSEMIDE TABLET 40MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <start value="2018-09-01T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-09-01T15:39:00+02:00"/>
+            <informationSource>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </informationSource>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_2_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf 1 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf95486-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:fbf95466-d2ea-11e9-8882-020000000000"/>
+                  <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fbf95466-d2ea-11e9-8882-020000000000"/>
+                  <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_2"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_513_2_MGB_2"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+               <display value="FUROSEMIDE TABLET 40MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <start value="2018-09-02T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-09-03T20:40:00+02:00"/>
+            <informationSource>
+               <reference value="urn:uuid:fbf954ac-d2ea-11e9-8882-020000000000"/>
+               <display value="M. XXX_Amaya"/>
+            </informationSource>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_2_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf 2 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf954c3-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fbf95470-d2ea-11e9-8882-020000000000"/>
+                  <display value="Ziekenhuis Stitswerd"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_2"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_513_2_MGB_3"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+               <display value="FUROSEMIDE TABLET 40MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <start value="2018-09-03T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-09-03T21:39:00+02:00"/>
+            <informationSource>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/missing-type-reference">
+                  <valueReference>
+                     <reference value="urn:uuid:fbf954dc-d2ea-11e9-8882-020000000000"/>
+                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
+            </informationSource>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_2_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf954f3-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+                  <display value="J. XXX_Amaya"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_5132_2"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_5132_2_MGB_1"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.8.13806769"/>
+               <display value="TEMAZEPAM APOTEX TABLET 10MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                  <valueDuration>
+                     <value value="1"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </valueDuration>
+               </extension>
+               <start value="2018-08-16T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-08-16T20:59:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                  <value value="MBH_5132_2_MVE_1"/>
+               </identifier>
+               <display value="relatie naar verstrekking"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf T, gedurende 1 dag, 1 maal daags 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf95546-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:fbf95466-d2ea-11e9-8882-020000000000"/>
+                  <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+                  <display value="J. XXX_Amaya"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_3"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_513_3_MGB_1"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
+               <display value="METHOTREXAAT TABLET 2,5MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <start value="2018-08-26T00:00:00+02:00"/>
+               <end value="2018-08-31T23:59:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-08-31T20:59:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_3_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <reasonCode>
+               <text value="Lymfekanker"/>
+            </reasonCode>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf 26 aug 2018 tot en met 31 aug 2018, 1 maal per week 5 stuks, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="wk"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="5"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf955ff-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+                  <display value="J. XXX_Amaya"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_513_4_MGB_1"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
+               <display value="FENETICILLINE CAPSULE 500MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <start value="2018-08-29T00:00:00+02:00"/>
+               <end value="2018-08-30T23:59:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-08-30T22:35:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_4_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf 29 aug 2018 tot en met 30 aug 2018, 1 maal per dag 1 stuk, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf9561c-d2ea-11e9-8882-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
+               <valueBoolean value="false"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+                  <display value="J. XXX_Amaya"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_513_4"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_513_4_MGB_2"/>
+            </identifier>
+            <status value="on-hold"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
+               <display value="FENETICILLINE CAPSULE 500MG"/>
+            </medicationReference>
+            <effectivePeriod>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                  <valueDuration>
+                     <value value="1"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </valueDuration>
+               </extension>
+               <start value="2018-08-30T00:00:01+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-08-30T22:35:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
+               <display value="J. XXX_Amaya"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_513_4_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="n"/>
+            <dosage>
+               <text value="Vanaf 30 aug 2018 gedurende 1 dag, geen gebruik"/>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -45,38 +1668,6 @@
    </entry>
    <entry>
       <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
-      <resource>
-         <Practitioner>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="000001111"/>
-            </identifier>
-            <name>
-               <family value="van Pulver">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van "/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Pulver"/>
-                  </extension>
-               </family>
-               <given value="Peter">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662acd-d0e6-11e9-1668-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -172,38 +1763,6 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662a67-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <Practitioner>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="999001112"/>
-            </identifier>
-            <name>
-               <family value="van Doorn">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van "/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Doorn"/>
-                  </extension>
-               </family>
-               <given value="Hans">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
       <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
       <resource>
          <Organization>
@@ -235,7 +1794,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662ad7-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf954e7-d2ea-11e9-8882-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -302,7 +1861,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662a60-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf95470-d2ea-11e9-8882-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -320,7 +1879,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662627-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf95037-d2ea-11e9-8882-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -328,7 +1887,7 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
-               <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               <display value="Peter van Pulver"/>
             </practitioner>
             <organization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
@@ -348,7 +1907,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662652-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf95062-d2ea-11e9-8882-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -356,7 +1915,7 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
-               <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               <display value="Bertine van Doorn"/>
             </practitioner>
             <organization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
@@ -376,7 +1935,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:076629bf-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf953cf-d2ea-11e9-8882-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -384,7 +1943,7 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
-               <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+               <display value="Hans van Doorn"/>
             </practitioner>
             <organization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.99901111"/>
@@ -404,7 +1963,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:076629ea-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf953fa-d2ea-11e9-8882-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -412,7 +1971,7 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
-               <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+               <display value="Hans van Doorn"/>
             </practitioner>
             <organization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.99901111"/>
@@ -432,7 +1991,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662a56-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf95466-d2ea-11e9-8882-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -440,10 +1999,10 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
-               <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+               <display value="Hans van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:07662a60-d0e6-11e9-1668-020000000000"/>
+               <reference value="urn:uuid:fbf95470-d2ea-11e9-8882-020000000000"/>
                <display value="Ziekenhuis Stitswerd"/>
             </organization>
             <specialty>
@@ -460,18 +2019,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662acc-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf954dc-d2ea-11e9-8882-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:07662acd-d0e6-11e9-1668-020000000000"/>
-               <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <display value="Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:07662ad7-d0e6-11e9-1668-020000000000"/>
+               <reference value="urn:uuid:fbf954e7-d2ea-11e9-8882-020000000000"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>
@@ -721,7 +2280,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662bb3-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf955c3-d2ea-11e9-8882-020000000000"/>
       <resource>
          <Location>
             <meta>
@@ -732,7 +2291,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662b8a-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf9559a-d2ea-11e9-8882-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -754,7 +2313,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <effectiveDateTime value="2018-08-29T09:35:00+02:00"/>
@@ -774,7 +2333,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662b8d-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf9559d-d2ea-11e9-8882-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -796,7 +2355,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <effectiveDateTime value="2018-08-29T09:35:00+02:00"/>
@@ -816,7 +2375,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07662b1e-d0e6-11e9-1668-020000000000"/>
+      <fullUrl value="urn:uuid:fbf9552e-d2ea-11e9-8882-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -831,1632 +2390,10 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
+               <reference value="urn:uuid:fbf94bed-d2ea-11e9-8882-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
          </Condition>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662623-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-09-02T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-               <valueDuration>
-                  <value value="1"/>
-                  <unit value="jaar"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="a"/>
-               </valueDuration>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_513_1_MA_1"/>
-            </identifier>
-            <status value="entered-in-error"/>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.49484"/>
-               <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <authoredOn value="2018-09-02T11:25:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:07662627-d0e6-11e9-1668-020000000000"/>
-                        <display value="Peter van Pulver"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 2 sep 2018, gedurende 1 jaar, 10 maal per dag 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="10"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:0766264f-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-               <valueDuration>
-                  <value value="1"/>
-                  <unit value="jaar"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="a"/>
-               </valueDuration>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_513_1_MA_2"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.49484"/>
-               <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <authoredOn value="2018-09-03T09:00:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:07662652-d0e6-11e9-1668-020000000000"/>
-                        <display value="Bertine van Doorn"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 1 jaar, 1 maal per dag 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:076629bb-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_2"/>
-               </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                     <value value="MBH_513_2_TA_1"/>
-                  </identifier>
-                  <display value="relatie naar toedieningsafspraak: MBH_513_2_TA_1 || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               </valueReference>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_513_2_MA_2"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
-               <display value="FUROSEMIDE TABLET 40MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <authoredOn value="2018-09-03T14:32:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:076629bf-d0e6-11e9-1668-020000000000"/>
-                        <display value="Hans van Doorn"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <reasonCode>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="305335007"/>
-                  <display value="Opname"/>
-               </coding>
-            </reasonCode>
-            <note>
-               <text value="Toedieningsafspraak van apotheker ontvangen, geen medicatieafspraak van voorschrijver ontvangen. Deze nieuwe medicatieafspraak is gebaseerd op de toedieningsafspraak: MBH_513_2_TA_1"/>
-            </note>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662b04-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-               <valueDuration>
-                  <value value="28"/>
-                  <unit value="dag"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="d"/>
-               </valueDuration>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_3"/>
-               </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-                     <value value="MBH_513_3_MGB_1"/>
-                  </identifier>
-                  <display value="relatie naar medicatiegebruik: MBH_513_3_MGB_1 || 2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               </valueReference>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_513_3_MA_1"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
-               <display value="METHOTREXAAT TABLET 2,5MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <authoredOn value="2018-09-03T14:32:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:076629bf-d0e6-11e9-1668-020000000000"/>
-                        <display value="Hans van Doorn"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <reasonCode>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="305335007"/>
-                  <display value="Opname"/>
-               </coding>
-            </reasonCode>
-            <reasonReference>
-               <reference value="urn:uuid:07662b1e-d0e6-11e9-1668-020000000000"/>
-               <display value="Andere maligniteit bloed/lymfestelsel"/>
-            </reasonReference>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 28 dagen, 1 maal per week 5 stuks, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="wk"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="5"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662b61-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-08-29T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-               <valueDuration>
-                  <value value="10"/>
-                  <unit value="dag"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="d"/>
-               </valueDuration>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
-                     <code value="1"/>
-                     <display value="Bewust hoge dosering"/>
-                  </coding>
-               </valueCodeableConcept>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_4"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_513_4_MA_1"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
-               <display value="FENETICILLINE CAPSULE 500MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <supportingInformation>
-               <reference value="urn:uuid:07662b8a-d0e6-11e9-1668-020000000000"/>
-               <display value="Lengte: 155 cm. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
-            </supportingInformation>
-            <supportingInformation>
-               <reference value="urn:uuid:07662b8d-d0e6-11e9-1668-020000000000"/>
-               <display value="Gewicht: 54 kg. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
-            </supportingInformation>
-            <authoredOn value="2018-08-29T09:35:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:07662627-d0e6-11e9-1668-020000000000"/>
-                        <display value="Peter van Pulver"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <note>
-               <text value="In overleg met specialist"/>
-            </note>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 29 aug 2018, gedurende 10 dagen, 3 maal per dag 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:076629e8-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_513_2_MA_2"/>
-                  </identifier>
-                  <display value="Relatie naar medicatieafspraak, id = MBH_513_2_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_2"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_513_2_VV_2"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="52711000146108"/>
-                  <display value="Request to dispense medication to patient (situation)"/>
-               </coding>
-               <text value="Verstrekkingsverzoek"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
-               <display value="FUROSEMIDE TABLET 40MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <authoredOn value="2018-08-16T14:32:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:076629ea-d0e6-11e9-1668-020000000000"/>
-                        <display value="Hans van Doorn"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <note>
-               <text value="Extra verstrekkingsverzoek omdat patiënt de medicatie is kwijt geraakt"/>
-            </note>
-            <dispenseRequest>
-               <quantity>
-                  <value value="30"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </quantity>
-               <performer>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </performer>
-            </dispenseRequest>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662b93-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"/>
-                     <code value="3"/>
-                     <display value="Bezorgen"/>
-                  </coding>
-               </valueCodeableConcept>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_513_4_MA_1"/>
-                  </identifier>
-                  <display value="Relatie naar medicatieafspraak, id = MBH_513_4_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_4"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_513_4_VV_1"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="52711000146108"/>
-                  <display value="Request to dispense medication to patient (situation)"/>
-               </coding>
-               <text value="Verstrekkingsverzoek"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
-               <display value="FENETICILLINE CAPSULE 500MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <authoredOn value="2018-08-11T09:35:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:07662627-d0e6-11e9-1668-020000000000"/>
-                        <display value="Peter van Pulver"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <dispenseRequest>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
-                  <valueReference>
-                     <reference value="urn:uuid:07662bb3-d0e6-11e9-1668-020000000000"/>
-                     <display value="Huisadres patiënt"/>
-                  </valueReference>
-               </extension>
-               <quantity>
-                  <value value="40"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </quantity>
-               <performer>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </performer>
-            </dispenseRequest>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:0766299a-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-09-03T12:25:00+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-09-03T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-               <valueDuration>
-                  <value value="1"/>
-                  <unit value="jaar"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="a"/>
-               </valueDuration>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_513_1_TA_1"/>
-            </identifier>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422037009"/>
-                  <display value="Provider medication administration instructions (procedure)"/>
-               </coding>
-               <text value="Toedieningsafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1110837"/>
-               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_1_MA_2"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak: MBH_513_1_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </authorizingPrescription>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, gedurende 1 jaar, 1 maal per dag 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationDispense>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662a0d-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-27T14:52:00+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AgreementReason">
-               <valueString value="Opname"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-08-27T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_2"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_513_2_TA_1"/>
-            </identifier>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422037009"/>
-                  <display value="Provider medication administration instructions (procedure)"/>
-               </coding>
-               <text value="Toedieningsafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.571148"/>
-               <display value="FUROSEMIDE ACTAVIS TABLET 40MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_2_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak: MBH_513_2_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </authorizingPrescription>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 27 aug 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationDispense>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662bb9-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-29T09:45:00+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-08-29T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-               <valueDuration>
-                  <value value="10"/>
-                  <unit value="dag"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="d"/>
-               </valueDuration>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"/>
-                     <code value="10"/>
-                     <display value="Gebruiksinstructie gegeven"/>
-                  </coding>
-               </valueCodeableConcept>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_4"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_513_4_TA_1"/>
-            </identifier>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422037009"/>
-                  <display value="Provider medication administration instructions (procedure)"/>
-               </coding>
-               <text value="Toedieningsafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.646083"/>
-               <display value="AMOXICILLINE PCH CAPSULE 500MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_4_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak: MBH_513_4_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </authorizingPrescription>
-            <note>
-               <text value="Wegens niet leverbaar zijn van Broxil"/>
-            </note>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 29 aug 2018, gedurende 10 dagen, 3 maal per dag 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationDispense>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662a2b-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
-               <valueDateTime value="2018-09-03T14:32:00+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_2"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_513_2_MVE_1"/>
-            </identifier>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="373784005"/>
-                  <display value="Dispensing medication (procedure)"/>
-               </coding>
-               <text value="Medicatieverstrekking"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.571148"/>
-               <display value="FUROSEMIDE ACTAVIS TABLET 40MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_513_2_VV_2"/>
-               </identifier>
-               <display value="Verstrekkingsverzoek met identificatie MBH_513_2_VV_2 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
-            </authorizingPrescription>
-            <quantity>
-               <value value="30"/>
-               <unit value="stuk"/>
-               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-               <code value="245"/>
-            </quantity>
-         </MedicationDispense>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662bd9-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"/>
-                     <code value="1"/>
-                     <display value="Aantal bewust gewijzigd"/>
-                  </coding>
-               </valueCodeableConcept>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_4"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_513_4_MVE_1"/>
-            </identifier>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="373784005"/>
-                  <display value="Dispensing medication (procedure)"/>
-               </coding>
-               <text value="Medicatieverstrekking"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.646083"/>
-               <display value="AMOXICILLINE PCH CAPSULE 500MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_513_4_VV_1"/>
-               </identifier>
-               <display value="Verstrekkingsverzoek met identificatie MBH_513_4_VV_1 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
-            </authorizingPrescription>
-            <quantity>
-               <value value="30"/>
-               <unit value="stuk"/>
-               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-               <code value="245"/>
-            </quantity>
-            <whenHandedOver value="2018-08-29T09:45:00+02:00"/>
-            <destination>
-               <reference value="urn:uuid:07662bb3-d0e6-11e9-1668-020000000000"/>
-               <display value="Huisadres patiënt"/>
-            </destination>
-            <note>
-               <text value="Patiënt gaf aan nog wat op voorraad te hebben, wens patiënt om minder te verstrekken."/>
-            </note>
-         </MedicationDispense>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662a3e-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
-               <valueReference>
-                  <reference value="urn:uuid:07662a56-d0e6-11e9-1668-020000000000"/>
-                  <display value="Hans van Doorn"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:07662a56-d0e6-11e9-1668-020000000000"/>
-                  <display value="Hans van Doorn"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_2"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_513_2_MGB_1"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
-               <display value="FUROSEMIDE TABLET 40MG"/>
-            </medicationReference>
-            <effectivePeriod>
-               <start value="2018-09-01T00:00:00+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-09-01T15:39:00+02:00"/>
-            <informationSource>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </informationSource>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <derivedFrom>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_2_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </derivedFrom>
-            <taken value="y"/>
-            <dosage>
-               <sequence value="1"/>
-               <text value="Vanaf 1 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosage>
-         </MedicationStatement>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662a76-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
-               <valueReference>
-                  <reference value="urn:uuid:07662a56-d0e6-11e9-1668-020000000000"/>
-                  <display value="Hans van Doorn"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:07662a56-d0e6-11e9-1668-020000000000"/>
-                  <display value="Hans van Doorn"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_2"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_513_2_MGB_2"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
-               <display value="FUROSEMIDE TABLET 40MG"/>
-            </medicationReference>
-            <effectivePeriod>
-               <start value="2018-09-02T00:00:00+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-09-03T20:40:00+02:00"/>
-            <informationSource>
-               <reference value="urn:uuid:07662a9c-d0e6-11e9-1668-020000000000"/>
-               <display value="M. XXX_Amaya"/>
-            </informationSource>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <derivedFrom>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_2_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </derivedFrom>
-            <taken value="y"/>
-            <dosage>
-               <sequence value="1"/>
-               <text value="Vanaf 2 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosage>
-         </MedicationStatement>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662ab3-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:07662a60-d0e6-11e9-1668-020000000000"/>
-                  <display value="Ziekenhuis Stitswerd"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_2"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_513_2_MGB_3"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
-               <display value="FUROSEMIDE TABLET 40MG"/>
-            </medicationReference>
-            <effectivePeriod>
-               <start value="2018-09-03T00:00:00+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-09-03T21:39:00+02:00"/>
-            <informationSource>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/missing-type-reference">
-                  <valueReference>
-                     <reference value="urn:uuid:07662acc-d0e6-11e9-1668-020000000000"/>
-                  </valueReference>
-               </extension>
-            </informationSource>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <derivedFrom>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_2_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </derivedFrom>
-            <taken value="y"/>
-            <dosage>
-               <sequence value="1"/>
-               <text value="Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosage>
-         </MedicationStatement>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662ae3-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-                  <display value="J. XXX_Amaya"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_5132_2"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_5132_2_MGB_1"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.8.13806769"/>
-               <display value="TEMAZEPAM APOTEX TABLET 10MG"/>
-            </medicationReference>
-            <effectivePeriod>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-                  <valueDuration>
-                     <value value="1"/>
-                     <unit value="dag"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="d"/>
-                  </valueDuration>
-               </extension>
-               <start value="2018-08-16T00:00:00+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-08-16T20:59:00+02:00"/>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <derivedFrom>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-                  <value value="MBH_5132_2_MVE_1"/>
-               </identifier>
-               <display value="relatie naar verstrekking"/>
-            </derivedFrom>
-            <taken value="y"/>
-            <dosage>
-               <sequence value="1"/>
-               <text value="Vanaf T, gedurende 1 dag, 1 maal daags 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosage>
-         </MedicationStatement>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662b36-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
-               <valueReference>
-                  <reference value="urn:uuid:07662a56-d0e6-11e9-1668-020000000000"/>
-                  <display value="Hans van Doorn"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-                  <display value="J. XXX_Amaya"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_3"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_513_3_MGB_1"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
-               <display value="METHOTREXAAT TABLET 2,5MG"/>
-            </medicationReference>
-            <effectivePeriod>
-               <start value="2018-08-26T00:00:00+02:00"/>
-               <end value="2018-08-31T23:59:00+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-08-31T20:59:00+02:00"/>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <derivedFrom>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_3_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </derivedFrom>
-            <taken value="y"/>
-            <reasonCode>
-               <text value="Lymfekanker"/>
-            </reasonCode>
-            <dosage>
-               <sequence value="1"/>
-               <text value="Vanaf 26 aug 2018 tot en met 31 aug 2018, 1 maal per week 5 stuks, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="wk"/>
-                  </repeat>
-               </timing>
-               <doseQuantity>
-                  <value value="5"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosage>
-         </MedicationStatement>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662bef-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
-               <valueBoolean value="false"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-                  <display value="J. XXX_Amaya"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_4"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_513_4_MGB_1"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
-               <display value="FENETICILLINE CAPSULE 500MG"/>
-            </medicationReference>
-            <effectivePeriod>
-               <start value="2018-08-29T00:00:00+02:00"/>
-               <end value="2018-08-30T23:59:00+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-08-30T22:35:00+02:00"/>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <derivedFrom>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_4_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </derivedFrom>
-            <taken value="y"/>
-            <dosage>
-               <sequence value="1"/>
-               <text value="Vanaf 29 aug 2018 tot en met 30 aug 2018, 1 maal per dag 1 stuk, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosage>
-         </MedicationStatement>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07662c0c-d0e6-11e9-1668-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
-               <valueBoolean value="false"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-                  <display value="J. XXX_Amaya"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_513_4"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_513_4_MGB_2"/>
-            </identifier>
-            <status value="on-hold"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
-               <display value="FENETICILLINE CAPSULE 500MG"/>
-            </medicationReference>
-            <effectivePeriod>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-                  <valueDuration>
-                     <value value="1"/>
-                     <unit value="dag"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="d"/>
-                  </valueDuration>
-               </extension>
-               <start value="2018-08-30T00:00:01+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-08-30T22:35:00+02:00"/>
-            <subject>
-               <reference value="urn:uuid:076621dd-d0e6-11e9-1668-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-            <derivedFrom>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_513_4_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </derivedFrom>
-            <taken value="n"/>
-            <dosage>
-               <text value="Vanaf 30 aug 2018 gedurende 1 dag, geen gebruik"/>
-            </dosage>
-         </MedicationStatement>
       </resource>
    </entry>
 </Bundle>

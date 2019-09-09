@@ -1,0 +1,60 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="fce6115a-d2ea-11e9-2052-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2007-02-14"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="90"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="a7e331b0-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/14750406-2-16-840-1-113883-2-4-4-8"/>
+      <display value="SPIRIVA INHALPDR 18 MCG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/AYGLA-DIREN"/>
+      <display value="Aygül A. Direnç"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Gedurende 90 dagen, per 2 dagen 1 inhalatie"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="2"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="Dosis"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="208"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationDispense>

@@ -6,7 +6,393 @@
    <type value="searchset"/>
    <total value="14"/>
    <entry>
-      <fullUrl value="urn:uuid:076eddf5-d0e6-11e9-2035-020000000000"/>
+      <fullUrl value="urn:uuid:fc00cc9c-d2ea-11e9-1363-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-08-27"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_123_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_123_1_MA_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.1.133329"/>
+               <display value="Cetomacrogolcreme met vaseline"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <display value="Pauline P. XXX_Bourgonje"/>
+            </subject>
+            <authoredOn value="2018-08-27"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fc00cc9e-d2ea-11e9-1363-020000000000"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 27 aug 2018, Zo nodig 2 maal daags aanbrengen, op de huid"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1018"/>
+                     <display value="aanbrengen"/>
+                  </coding>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="53"/>
+                     <display value="Cutaan"/>
+                  </coding>
+               </route>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc00ccc4-d2ea-11e9-1363-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_123_1_MA_1"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_123_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_123_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_123_1_VV_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+               <text value="Verstrekkingsverzoek"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.1.133329"/>
+               <display value="Cetomacrogolcreme met vaseline 10%"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <display value="Pauline P. XXX_Bourgonje"/>
+            </subject>
+            <authoredOn value="2018-08-27"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fc00cc9e-d2ea-11e9-1363-020000000000"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <dispenseRequest>
+               <quantity>
+                  <value value="100"/>
+                  <unit value="gram"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="215"/>
+               </quantity>
+               <performer>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </performer>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc00cce7-d2ea-11e9-1363-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="2018-08-27T00:00:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-08-27T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_123_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <value value="MBH_123_1_TA_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1205943"/>
+               <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <display value="Pauline P. XXX_Bourgonje"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_123_1_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_123_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </authorizingPrescription>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 27 aug 2018, Zo nodig 2 maal daags aanbrengen, op de huid"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1018"/>
+                     <display value="aanbrengen"/>
+                  </coding>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <asNeededCodeableConcept>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1137"/>
+                     <display value="zo nodig"/>
+                  </coding>
+               </asNeededCodeableConcept>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="53"/>
+                     <display value="Cutaan"/>
+                  </coding>
+               </route>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc00e53c-d2ea-11e9-1363-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_123_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <value value="MBH_123_1_MVE_1"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="Dispensing medication (procedure)"/>
+               </coding>
+               <text value="Medicatieverstrekking"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1205943"/>
+               <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <display value="Pauline P. XXX_Bourgonje"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Apotheek De Gulle Gaper"/>
+               </actor>
+            </performer>
+            <authorizingPrescription>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                  <value value="MBH_123_1_VV_1"/>
+               </identifier>
+               <display value="Verstrekkingsverzoek met identificatie MBH_123_1_VV_1 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+            </authorizingPrescription>
+            <quantity>
+               <value value="100"/>
+               <unit value="gram"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="215"/>
+            </quantity>
+            <whenHandedOver value="2018-08-27"/>
+         </MedicationDispense>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc00e54e-d2ea-11e9-1363-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+               <valueReference>
+                  <reference value="urn:uuid:fc00e562-d2ea-11e9-1363-020000000000"/>
+                  <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+                  <display value="Pauline P. XXX_Bourgonje"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_123_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_123_1_MGB_1"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.1.133329"/>
+               <display value="Cetomacrogolcreme met vaseline 10%"/>
+            </medicationReference>
+            <effectivePeriod>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                  <valueDuration>
+                     <value value="2"/>
+                     <unit value="dag"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="d"/>
+                  </valueDuration>
+               </extension>
+               <start value="2018-08-11T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-08-12T20:58:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <display value="Pauline P. XXX_Bourgonje"/>
+            </subject>
+            <derivedFrom>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_123_1_MA_1"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak"/>
+            </derivedFrom>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf T-5 dagen, gedurende 2 dagen, 2 maal per dag aanbrengen"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                     <code value="1018"/>
+                     <display value="aanbrengen"/>
+                  </coding>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -112,7 +498,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:076eec0c-d0e6-11e9-2035-020000000000"/>
+      <fullUrl value="urn:uuid:fc00e56c-d2ea-11e9-1363-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -148,7 +534,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:076ee9e6-d0e6-11e9-2035-020000000000"/>
+      <fullUrl value="urn:uuid:fc00cc9e-d2ea-11e9-1363-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -156,7 +542,7 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
-               <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
+               <display value="Bertine van Doorn"/>
             </practitioner>
             <organization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.99001111"/>
@@ -176,7 +562,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:076eec02-d0e6-11e9-2035-020000000000"/>
+      <fullUrl value="urn:uuid:fc00e562-d2ea-11e9-1363-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -184,10 +570,10 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
-               <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
+               <display value="Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:076eec0c-d0e6-11e9-2035-020000000000"/>
+               <reference value="urn:uuid:fc00e56c-d2ea-11e9-1363-020000000000"/>
                <display value="Huisartsenpraktijk Stitswerd Oost"/>
             </organization>
             <specialty>
@@ -254,391 +640,5 @@
       <search>
          <mode value="include"/>
       </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:076ee9e4-d0e6-11e9-2035-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-08-27"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_123_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_123_1_MA_1"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.1.133329"/>
-               <display value="Cetomacrogolcreme met vaseline"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076eddf5-d0e6-11e9-2035-020000000000"/>
-               <display value="Pauline P. XXX_Bourgonje"/>
-            </subject>
-            <authoredOn value="2018-08-27"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:076ee9e6-d0e6-11e9-2035-020000000000"/>
-                        <display value="Bertine van Doorn"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 27 aug 2018, Zo nodig 2 maal daags aanbrengen, op de huid"/>
-               <additionalInstruction>
-                  <coding>
-                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-                     <code value="1018"/>
-                     <display value="aanbrengen"/>
-                  </coding>
-               </additionalInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="2"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <asNeededCodeableConcept>
-                  <coding>
-                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-                     <code value="1137"/>
-                     <display value="zo nodig"/>
-                  </coding>
-               </asNeededCodeableConcept>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="53"/>
-                     <display value="Cutaan"/>
-                  </coding>
-               </route>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:076eea0c-d0e6-11e9-2035-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_123_1_MA_1"/>
-                  </identifier>
-                  <display value="Relatie naar medicatieafspraak, id = MBH_123_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_123_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_123_1_VV_1"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="52711000146108"/>
-                  <display value="Request to dispense medication to patient (situation)"/>
-               </coding>
-               <text value="Verstrekkingsverzoek"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.1.133329"/>
-               <display value="Cetomacrogolcreme met vaseline 10%"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076eddf5-d0e6-11e9-2035-020000000000"/>
-               <display value="Pauline P. XXX_Bourgonje"/>
-            </subject>
-            <authoredOn value="2018-08-27"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:076ee9e6-d0e6-11e9-2035-020000000000"/>
-                        <display value="Bertine van Doorn"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <dispenseRequest>
-               <quantity>
-                  <value value="100"/>
-                  <unit value="gram"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="215"/>
-               </quantity>
-               <performer>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </performer>
-            </dispenseRequest>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:076eea2f-d0e6-11e9-2035-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2018-08-27T00:00:00+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-08-27T00:00:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_123_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_123_1_TA_1"/>
-            </identifier>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422037009"/>
-                  <display value="Provider medication administration instructions (procedure)"/>
-               </coding>
-               <text value="Toedieningsafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1205943"/>
-               <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076eddf5-d0e6-11e9-2035-020000000000"/>
-               <display value="Pauline P. XXX_Bourgonje"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_123_1_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak: MBH_123_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </authorizingPrescription>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 27 aug 2018, Zo nodig 2 maal daags aanbrengen, op de huid"/>
-               <additionalInstruction>
-                  <coding>
-                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-                     <code value="1018"/>
-                     <display value="aanbrengen"/>
-                  </coding>
-               </additionalInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="2"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <asNeededCodeableConcept>
-                  <coding>
-                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-                     <code value="1137"/>
-                     <display value="zo nodig"/>
-                  </coding>
-               </asNeededCodeableConcept>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="53"/>
-                     <display value="Cutaan"/>
-                  </coding>
-               </route>
-            </dosageInstruction>
-         </MedicationDispense>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:076eebdc-d0e6-11e9-2035-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_123_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <value value="MBH_123_1_MVE_1"/>
-            </identifier>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="373784005"/>
-                  <display value="Dispensing medication (procedure)"/>
-               </coding>
-               <text value="Medicatieverstrekking"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1205943"/>
-               <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:076eddf5-d0e6-11e9-2035-020000000000"/>
-               <display value="Pauline P. XXX_Bourgonje"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                  <value value="MBH_123_1_VV_1"/>
-               </identifier>
-               <display value="Verstrekkingsverzoek met identificatie MBH_123_1_VV_1 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
-            </authorizingPrescription>
-            <quantity>
-               <value value="100"/>
-               <unit value="gram"/>
-               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-               <code value="215"/>
-            </quantity>
-            <whenHandedOver value="2018-08-27"/>
-         </MedicationDispense>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:076eebee-d0e6-11e9-2035-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
-               <valueReference>
-                  <reference value="urn:uuid:076eec02-d0e6-11e9-2035-020000000000"/>
-                  <display value="Bertine van Doorn"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:076eddf5-d0e6-11e9-2035-020000000000"/>
-                  <display value="Pauline P. XXX_Bourgonje"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_123_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_123_1_MGB_1"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.1.133329"/>
-               <display value="Cetomacrogolcreme met vaseline 10%"/>
-            </medicationReference>
-            <effectivePeriod>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-                  <valueDuration>
-                     <value value="2"/>
-                     <unit value="dag"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="d"/>
-                  </valueDuration>
-               </extension>
-               <start value="2018-08-11T00:00:00+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-08-12T20:58:00+02:00"/>
-            <subject>
-               <reference value="urn:uuid:076eddf5-d0e6-11e9-2035-020000000000"/>
-               <display value="Pauline P. XXX_Bourgonje"/>
-            </subject>
-            <derivedFrom>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_123_1_MA_1"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak"/>
-            </derivedFrom>
-            <taken value="y"/>
-            <dosage>
-               <sequence value="1"/>
-               <text value="Vanaf T-5 dagen, gedurende 2 dagen, 2 maal per dag aanbrengen"/>
-               <additionalInstruction>
-                  <coding>
-                     <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-                     <code value="1018"/>
-                     <display value="aanbrengen"/>
-                  </coding>
-               </additionalInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="2"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-            </dosage>
-         </MedicationStatement>
-      </resource>
    </entry>
 </Bundle>

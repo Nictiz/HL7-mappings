@@ -6,7 +6,175 @@
    <type value="searchset"/>
    <total value="7"/>
    <entry>
-      <fullUrl value="urn:uuid:078b8617-d0e6-11e9-1346-020000000000"/>
+      <fullUrl value="urn:uuid:fc1dc75c-d2ea-11e9-4615-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2018-08-14T00:00:00+02:00"/>
+                  <end value="2018-08-28T23:59:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_323_1"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                     <value value="MBH_323_1_MGB_1"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MBH_323_1_MGB_1 || 2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+               </valueReference>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                     <code value="2"/>
+                     <display value="Staking"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_323_1_MA_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.2121522"/>
+               <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:fc1de6f1-d2ea-11e9-4615-020000000000"/>
+               <display value="J. XXX_Kilkenny"/>
+            </subject>
+            <authoredOn value="2018-08-29T15:34:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:fc1dc761-d2ea-11e9-4615-020000000000"/>
+                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="Vanaf 14 aug 2018 tot en met 28 aug 2018, 3x per dag 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc1dc789-d2ea-11e9-4615-020000000000"/>
+      <resource>
+         <MedicationStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+               <valueReference>
+                  <reference value="urn:uuid:fc1de6f1-d2ea-11e9-4615-020000000000"/>
+                  <display value="J. XXX_Kilkenny"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_323_1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <value value="MBH_323_1_MGB_1"/>
+            </identifier>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                  <code value="6"/>
+                  <display value="Medicatiegebruik"/>
+               </coding>
+               <text value="Medicatiegebruik"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.2121522"/>
+               <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
+            </medicationReference>
+            <effectivePeriod>
+               <start value="2018-08-14T00:00:00+02:00"/>
+            </effectivePeriod>
+            <dateAsserted value="2018-08-24T11:25:00+02:00"/>
+            <subject>
+               <reference value="urn:uuid:fc1de6f1-d2ea-11e9-4615-020000000000"/>
+               <display value="J. XXX_Kilkenny"/>
+            </subject>
+            <taken value="y"/>
+            <dosage>
+               <sequence value="1"/>
+               <text value="Vanaf 14 aug 2018, 3x per dag 1 tablet, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosage>
+         </MedicationStatement>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:fc1de6f1-d2ea-11e9-4615-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -44,7 +212,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:078b9b9e-d0e6-11e9-1346-020000000000"/>
+      <fullUrl value="urn:uuid:fc1dc762-d2ea-11e9-4615-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -103,15 +271,15 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:078b9b9d-d0e6-11e9-1346-020000000000"/>
+      <fullUrl value="urn:uuid:fc1dc761-d2ea-11e9-4615-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:078b9b9e-d0e6-11e9-1346-020000000000"/>
-               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+               <reference value="urn:uuid:fc1dc762-d2ea-11e9-4615-020000000000"/>
+               <display value="John de Vries"/>
             </practitioner>
             <organization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
@@ -160,173 +328,5 @@
       <search>
          <mode value="include"/>
       </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:078b9b98-d0e6-11e9-1346-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="2018-08-14T00:00:00+02:00"/>
-                  <end value="2018-08-28T23:59:00+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_323_1"/>
-               </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                     <value value="MBH_323_1_MGB_1"/>
-                  </identifier>
-                  <display value="relatie naar medicatieafspraak: MBH_323_1_MGB_1 || 2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-               </valueReference>
-            </extension>
-            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
-                     <code value="2"/>
-                     <display value="Staking"/>
-                  </coding>
-               </valueCodeableConcept>
-            </modifierExtension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_323_1_MA_1"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.2121522"/>
-               <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:078b8617-d0e6-11e9-1346-020000000000"/>
-               <display value="J. XXX_Kilkenny"/>
-            </subject>
-            <authoredOn value="2018-08-29T15:34:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:078b9b9d-d0e6-11e9-1346-020000000000"/>
-                        <display value="John de Vries"/>
-                     </valueReference>
-                  </extension>
-               </agent>
-            </requester>
-            <dosageInstruction>
-               <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018 tot en met 28 aug 2018, 3x per dag 1 tablet"/>
-               <timing>
-                  <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:078b9bc5-d0e6-11e9-1346-020000000000"/>
-      <resource>
-         <MedicationStatement>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
-               <valueReference>
-                  <reference value="urn:uuid:078b8617-d0e6-11e9-1346-020000000000"/>
-                  <display value="J. XXX_Kilkenny"/>
-               </valueReference>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_323_1"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_323_1_MGB_1"/>
-            </identifier>
-            <status value="active"/>
-            <category>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-                  <code value="6"/>
-                  <display value="Medicatiegebruik"/>
-               </coding>
-               <text value="Medicatiegebruik"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.2121522"/>
-               <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
-            </medicationReference>
-            <effectivePeriod>
-               <start value="2018-08-14T00:00:00+02:00"/>
-            </effectivePeriod>
-            <dateAsserted value="2018-08-24T11:25:00+02:00"/>
-            <subject>
-               <reference value="urn:uuid:078b8617-d0e6-11e9-1346-020000000000"/>
-               <display value="J. XXX_Kilkenny"/>
-            </subject>
-            <taken value="y"/>
-            <dosage>
-               <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, 3x per dag 1 tablet, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosage>
-         </MedicationStatement>
-      </resource>
    </entry>
 </Bundle>
