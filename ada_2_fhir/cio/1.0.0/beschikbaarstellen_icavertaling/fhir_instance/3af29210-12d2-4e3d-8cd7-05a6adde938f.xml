@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="8"/>
    <entry>
-      <fullUrl value="urn:uuid:f1b0b6aa-cc9a-11e9-1974-020000000000"/>
+      <fullUrl value="urn:uuid:ad0f221e-d192-11e9-1959-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -45,11 +45,11 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
+               <reference value="urn:uuid:ad0f1d77-d192-11e9-1959-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </patient>
-            <onsetDateTime value="2019-08-27T14:00:00"/>
-            <lastOccurrence value="2009-11-15T00:00:00"/>
+            <onsetDateTime value="2019-08-27T14:00:00Z"/>
+            <lastOccurrence value="2009-11-15T00:00:00Z"/>
             <note>
                <text value="voor het eerst gestoken door een bij en enorme bulten"/>
             </note>
@@ -75,7 +75,7 @@
                      <display value="Jeuk"/>
                   </coding>
                </manifestation>
-               <onset value="2019-08-27T14:00:00"/>
+               <onset value="2019-08-27T14:00:00Z"/>
                <severity value="moderate"/>
                <exposureRoute>
                   <coding>
@@ -89,7 +89,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1b0b6c5-cc9a-11e9-1974-020000000000"/>
+      <fullUrl value="urn:uuid:ad0f2239-d192-11e9-1959-020000000000"/>
       <resource>
          <Flag>
             <meta>
@@ -97,7 +97,7 @@
             </meta>
             <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                <valueReference>
-                  <reference value="urn:uuid:f1b0b6d6-cc9a-11e9-1974-020000000000"/>
+                  <reference value="urn:uuid:ad0f224a-d192-11e9-1959-020000000000"/>
                   <display value="Localized lupus erythematosus"/>
                </valueReference>
             </extension>
@@ -121,14 +121,14 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
+               <reference value="urn:uuid:ad0f1d77-d192-11e9-1959-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </subject>
          </Flag>
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1b0b6d6-cc9a-11e9-1974-020000000000"/>
+      <fullUrl value="urn:uuid:ad0f224a-d192-11e9-1959-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -167,11 +167,11 @@
                </coding>
             </bodySite>
             <subject>
-               <reference value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
+               <reference value="urn:uuid:ad0f1d77-d192-11e9-1959-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </subject>
             <onsetPeriod>
-               <start value="2016-01-07T00:00:00"/>
+               <start value="2016-01-07T00:00:00Z"/>
             </onsetPeriod>
             <note>
                <text value="matig ernstig"/>
@@ -180,7 +180,7 @@
       </resource>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
+      <fullUrl value="urn:uuid:ad0f1d77-d192-11e9-1959-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -188,11 +188,7 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                     <valueCode value="masked"/>
-                  </extension>
-               </value>
+               <value value="999911727"/>
             </identifier>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
@@ -214,16 +210,36 @@
                </given>
             </name>
             <telecom>
-               <system value="phone"/>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                           <code value="LL"/>
+                           <display value="Vast telefoonnummer"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
                <value value="+31612345678"/>
-               <use value="home"/>
+               <use value="home">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                           <code value="HP"/>
+                           <display value="Telefoonnummer thuis"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </use>
             </telecom>
             <gender value="male"/>
             <birthDate value="1964-08-02"/>
             <address>
                <use value="home">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                     <valueCode value="HP"/>
+                     <valueCode value="PHYS"/>
                   </extension>
                </use>
                <type value="physical"/>
@@ -240,9 +256,12 @@
             </address>
          </Patient>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1b0b6eb-cc9a-11e9-1974-020000000000"/>
+      <fullUrl value="urn:uuid:ad0f225f-d192-11e9-1959-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -258,7 +277,7 @@
                </extension>
                <family value="van der Spek">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van der"/>
+                     <valueString value="van der "/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
                      <valueString value="Spek"/>
@@ -267,14 +286,21 @@
             </name>
          </Practitioner>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1b0d31b-cc9a-11e9-1974-020000000000"/>
+      <fullUrl value="urn:uuid:ad0f2913-d192-11e9-1959-020000000000"/>
       <resource>
          <Organization>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.11.999.26.1.205"/>
+               <value value="zorgaanbieder-01"/>
+            </identifier>
             <type>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
@@ -292,20 +318,23 @@
             <name value="Bedrijfsartsenconsortium - Vestiging Amsterdam"/>
          </Organization>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1b0b3c4-cc9a-11e9-1974-020000000000"/>
+      <fullUrl value="urn:uuid:ad0f1d76-d192-11e9-1959-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:f1b0b6eb-cc9a-11e9-1974-020000000000"/>
-               <display value="van der Spek"/>
+               <reference value="urn:uuid:ad0f225f-d192-11e9-1959-020000000000"/>
+               <display value="van der Spek || Bedrijfsarts"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:f1b0d31b-cc9a-11e9-1974-020000000000"/>
+               <reference value="urn:uuid:ad0f2913-d192-11e9-1959-020000000000"/>
                <display value="Bedrijfsartsenconsortium - Vestiging Amsterdam"/>
             </organization>
             <specialty>
@@ -317,9 +346,12 @@
             </specialty>
          </PractitionerRole>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f1b0d320-cc9a-11e9-1974-020000000000"/>
+      <fullUrl value="urn:uuid:ad0f2918-d192-11e9-1959-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
@@ -335,7 +367,7 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:f1b0b3c5-cc9a-11e9-1974-020000000000"/>
+               <reference value="urn:uuid:ad0f1d77-d192-11e9-1959-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </patient>
             <relationship>
@@ -357,5 +389,8 @@
             </name>
          </RelatedPerson>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>
