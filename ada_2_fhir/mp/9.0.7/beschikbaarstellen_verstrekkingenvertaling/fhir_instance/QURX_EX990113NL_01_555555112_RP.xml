@@ -2,9 +2,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="5"/>
+   <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:fd0dcd74-d2ea-11e9-1366-020000000000"/>
+      <fullUrl value="urn:uuid:35d0c6e4-d30d-11e9-1684-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -32,7 +32,7 @@
                <display value="MEBENDAZOL SAN TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fd0dc92e-d2ea-11e9-1366-020000000000"/>
+               <reference value="urn:uuid:35d0c29e-d30d-11e9-1684-020000000000"/>
                <display value="Richard R. van Henegouwen"/>
             </subject>
             <performer>
@@ -45,6 +45,9 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:uuid:38129f10-100a-11e5-b939-0800200c9a66"/>
@@ -79,7 +82,7 @@
                <display value="MEBENDAZOL SAN TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fd0dc92e-d2ea-11e9-1366-020000000000"/>
+               <reference value="urn:uuid:35d0c29e-d30d-11e9-1684-020000000000"/>
                <display value="Richard R. van Henegouwen"/>
             </subject>
             <performer>
@@ -100,9 +103,12 @@
             </whenHandedOver>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fd0dc92e-d2ea-11e9-1366-020000000000"/>
+      <fullUrl value="urn:uuid:35d0c29e-d30d-11e9-1684-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -139,6 +145,9 @@
             <birthDate value="1950-02-20"/>
          </Patient>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1234567"/>
@@ -153,13 +162,16 @@
             </identifier>
          </Organization>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.14234785"/>
       <resource>
          <Medication>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
             <code>
                <coding>
@@ -179,5 +191,8 @@
             </code>
          </Medication>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

@@ -4,9 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="7"/>
+   <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:fc1dc75c-d2ea-11e9-4615-020000000000"/>
+      <fullUrl value="urn:uuid:34d67158-d30d-11e9-4132-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -60,18 +60,20 @@
                <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc1de6f1-d2ea-11e9-4615-020000000000"/>
+               <reference value="urn:uuid:34d67617-d30d-11e9-4132-020000000000"/>
                <display value="J. XXX_Kilkenny"/>
             </subject>
             <authoredOn value="2018-08-29T15:34:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34d6715d-d30d-11e9-4132-020000000000"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc1dc761-d2ea-11e9-4615-020000000000"/>
-                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:uuid:34d6715e-d30d-11e9-4132-020000000000"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -100,9 +102,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc1dc789-d2ea-11e9-4615-020000000000"/>
+      <fullUrl value="urn:uuid:34d67185-d30d-11e9-4132-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -110,7 +115,7 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc1de6f1-d2ea-11e9-4615-020000000000"/>
+                  <reference value="urn:uuid:34d67617-d30d-11e9-4132-020000000000"/>
                   <display value="J. XXX_Kilkenny"/>
                </valueReference>
             </extension>
@@ -142,7 +147,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-24T11:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc1de6f1-d2ea-11e9-4615-020000000000"/>
+               <reference value="urn:uuid:34d67617-d30d-11e9-4132-020000000000"/>
                <display value="J. XXX_Kilkenny"/>
             </subject>
             <taken value="y"/>
@@ -172,9 +177,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc1de6f1-d2ea-11e9-4615-020000000000"/>
+      <fullUrl value="urn:uuid:34d67617-d30d-11e9-4132-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -212,7 +220,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc1dc762-d2ea-11e9-4615-020000000000"/>
+      <fullUrl value="urn:uuid:34d6715e-d30d-11e9-4132-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -271,14 +279,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc1dc761-d2ea-11e9-4615-020000000000"/>
+      <fullUrl value="urn:uuid:34d6715d-d30d-11e9-4132-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:fc1dc762-d2ea-11e9-4615-020000000000"/>
+               <reference value="urn:uuid:34d6715e-d30d-11e9-4132-020000000000"/>
                <display value="John de Vries"/>
             </practitioner>
             <organization>

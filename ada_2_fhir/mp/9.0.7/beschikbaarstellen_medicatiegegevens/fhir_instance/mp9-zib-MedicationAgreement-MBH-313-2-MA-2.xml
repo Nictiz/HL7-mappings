@@ -48,22 +48,17 @@
    </subject>
    <authoredOn value="2017-09-02T17:54:00+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid3436427d-d30d-11e9-2131-020000000000"/>
+            <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/urnuuidfb821a05-d2ea-11e9-1613-020000000000"/>
-               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-            </valueReference>
-         </extension>
+         <reference value="Practitioner/JOHNDEVRIES1"/>
+         <display value="John de Vries"/>
       </agent>
    </requester>
-   <reasonCode>
-      <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
-         <code value="8"/>
-         <display value="Toedieningsweg voldoet niet"/>
-      </coding>
-   </reasonCode>
    <dosageInstruction>
       <sequence value="1"/>
       <text value="Vanaf 21 apr 2017 tot en met 2 sep 2017 17:00, 1x per dag 1 druppel, in beide ogen"/>

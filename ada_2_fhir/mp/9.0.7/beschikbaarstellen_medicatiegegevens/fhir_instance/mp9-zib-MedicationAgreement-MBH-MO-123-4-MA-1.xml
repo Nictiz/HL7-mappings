@@ -41,13 +41,15 @@
    </subject>
    <authoredOn value="2018-06-17T09:13:00+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid34605a72-d30d-11e9-1380-020000000000"/>
+            <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/urnuuidfbac68aa-d2ea-11e9-8519-020000000000"/>
-               <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
-            </valueReference>
-         </extension>
+         <reference value="Practitioner/urnuuid34605a73-d30d-11e9-1380-020000000000"/>
+         <display value="I. Ternist"/>
       </agent>
    </requester>
    <dosageInstruction>

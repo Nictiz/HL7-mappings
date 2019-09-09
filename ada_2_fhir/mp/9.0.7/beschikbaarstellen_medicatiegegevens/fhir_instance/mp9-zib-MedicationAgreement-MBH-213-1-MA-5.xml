@@ -55,22 +55,17 @@
    </subject>
    <authoredOn value="2018-08-20T16:25:00+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid3450f3e9-d30d-11e9-1990-020000000000"/>
+            <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/urnuuidfb9ef74d-d2ea-11e9-2406-020000000000"/>
-               <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-            </valueReference>
-         </extension>
+         <reference value="Practitioner/000001111PETERVANPULVER1"/>
+         <display value="Peter van Pulver"/>
       </agent>
    </requester>
-   <reasonCode>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="305335007"/>
-         <display value="Opname"/>
-      </coding>
-   </reasonCode>
    <dosageInstruction>
       <sequence value="1"/>
       <text value="Vanaf 20 aug 2018, gedurende 30 dagen, 1 maal per dag 1 tablet, oraal"/>

@@ -55,22 +55,17 @@
    </subject>
    <authoredOn value="2018-07-25T09:13:00+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid3450f41b-d30d-11e9-1990-020000000000"/>
+            <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/urnuuidfb9ef77f-d2ea-11e9-2406-020000000000"/>
-               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-            </valueReference>
-         </extension>
+         <reference value="Practitioner/JOHNDEVRIES1"/>
+         <display value="John de Vries"/>
       </agent>
    </requester>
-   <reasonCode>
-      <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
-         <code value="16"/>
-         <display value="Overgevoeligheid"/>
-      </coding>
-   </reasonCode>
    <dosageInstruction>
       <sequence value="1"/>
       <text value="Vanaf 25 jul 2018, gedurende 30 dagen, 2 maal per dag 1 tablet, oraal"/>

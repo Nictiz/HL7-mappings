@@ -4,9 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="32"/>
+   <total value="21"/>
    <entry>
-      <fullUrl value="urn:uuid:fc0fdf97-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb94df-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -41,18 +41,20 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <authoredOn value="2018-07-15T11:25:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34cb94e1-d30d-11e9-1195-020000000000"/>
+                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc0fdf99-d2ea-11e9-1048-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -89,9 +91,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fdfc6-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb950e-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -145,18 +150,20 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <authoredOn value="2018-07-25T09:13:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34cb9513-d30d-11e9-1195-020000000000"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc0fdfcb-d2ea-11e9-1048-020000000000"/>
-                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:uuid:34cb9514-d30d-11e9-1195-020000000000"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -193,9 +200,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd56a-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9b1a-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -247,27 +257,22 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <authoredOn value="2018-07-25T09:13:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34cb9513-d30d-11e9-1195-020000000000"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc0fdfcb-d2ea-11e9-1048-020000000000"/>
-                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:uuid:34cb9514-d30d-11e9-1195-020000000000"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
-            <reasonCode>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
-                  <code value="16"/>
-                  <display value="Overgevoeligheid"/>
-               </coding>
-            </reasonCode>
             <dosageInstruction>
                <sequence value="1"/>
                <text value="Vanaf 25 jul 2018, gedurende 30 dagen, 2 maal per dag 1 tablet, oraal"/>
@@ -294,9 +299,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd598-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9b48-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -350,18 +358,20 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <authoredOn value="2018-08-20T16:25:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34cb94e1-d30d-11e9-1195-020000000000"/>
+                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc0fdf99-d2ea-11e9-1048-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -390,9 +400,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd5c5-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9b75-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -444,27 +457,22 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <authoredOn value="2018-08-20T16:25:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34cb94e1-d30d-11e9-1195-020000000000"/>
+                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc0fdf99-d2ea-11e9-1048-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
                </agent>
             </requester>
-            <reasonCode>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="305335007"/>
-                  <display value="Opname"/>
-               </coding>
-            </reasonCode>
             <dosageInstruction>
                <sequence value="1"/>
                <text value="Vanaf 20 aug 2018, gedurende 30 dagen, 1 maal per dag 1 tablet, oraal"/>
@@ -491,9 +499,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd5f2-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9ba2-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -532,7 +543,7 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <authoredOn value="2018-07-15T11:25:00+02:00"/>
@@ -540,7 +551,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:fc0fdf99-d2ea-11e9-1048-020000000000"/>
+                        <reference value="urn:uuid:34cb94e1-d30d-11e9-1195-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -561,9 +572,12 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd616-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9bc6-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -602,7 +616,7 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <authoredOn value="2018-07-25T09:13:00+02:00"/>
@@ -610,7 +624,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:fc0fdfcb-d2ea-11e9-1048-020000000000"/>
+                        <reference value="urn:uuid:34cb9513-d30d-11e9-1195-020000000000"/>
                         <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -631,9 +645,12 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd639-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9be9-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -672,7 +689,7 @@
                <display value="MIZOLASTINE TABLET MGA  10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <authoredOn value="2018-08-19T16:25:00+02:00"/>
@@ -680,7 +697,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:fc0fdf99-d2ea-11e9-1048-020000000000"/>
+                        <reference value="urn:uuid:34cb94e1-d30d-11e9-1195-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -703,9 +720,12 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd660-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9c10-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -742,7 +762,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <performer>
@@ -792,9 +812,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd683-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9c33-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -841,7 +864,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <performer>
@@ -891,9 +914,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd6a7-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9c57-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -938,7 +964,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <performer>
@@ -980,9 +1006,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd6c7-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9c77-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1029,7 +1058,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <performer>
@@ -1071,9 +1100,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd6e6-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9c96-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1118,7 +1150,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <performer>
@@ -1160,9 +1192,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd704-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9cb4-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1191,7 +1226,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <performer>
@@ -1216,9 +1251,12 @@
             <whenHandedOver value="2018-07-15T13:25:00+02:00"/>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd715-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9cc5-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1247,7 +1285,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <performer>
@@ -1272,9 +1310,12 @@
             <whenHandedOver value="2018-07-25T09:13:00+02:00"/>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd726-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9cd6-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1303,7 +1344,7 @@
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <performer>
@@ -1334,9 +1375,12 @@
             <whenHandedOver value="2018-08-20T17:25:00+02:00"/>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd739-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9ce9-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1344,13 +1388,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd752-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9d02-d30d-11e9-1195-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                   <display value="R. XXX_Gobee"/>
                </valueReference>
             </extension>
@@ -1390,7 +1434,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-07-18T11:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <derivedFrom>
@@ -1427,9 +1471,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd763-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9d13-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1437,13 +1484,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd752-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9d02-d30d-11e9-1195-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                   <display value="R. XXX_Gobee"/>
                </valueReference>
             </extension>
@@ -1483,7 +1530,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-07-24T11:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <derivedFrom>
@@ -1520,9 +1567,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd78d-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9d3d-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1530,7 +1580,7 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                   <display value="R. XXX_Gobee"/>
                </valueReference>
             </extension>
@@ -1570,7 +1620,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-07-30T19:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <derivedFrom>
@@ -1607,9 +1657,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd7ab-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9d5b-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1617,13 +1670,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd752-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9d02-d30d-11e9-1195-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                   <display value="R. XXX_Gobee"/>
                </valueReference>
             </extension>
@@ -1663,7 +1716,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-18T11:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <derivedFrom>
@@ -1700,9 +1753,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd7d5-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9d85-d30d-11e9-1195-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1710,13 +1766,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd752-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9d02-d30d-11e9-1195-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+                  <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                   <display value="R. XXX_Gobee"/>
                </valueReference>
             </extension>
@@ -1756,7 +1812,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-24T11:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
                <display value="R. XXX_Gobee"/>
             </subject>
             <derivedFrom>
@@ -1793,9 +1849,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd0f7-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9823-d30d-11e9-1195-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -1865,7 +1924,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fdfcc-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9514-d30d-11e9-1195-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -1924,7 +1983,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd75c-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9d0c-d30d-11e9-1195-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -1960,7 +2019,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fdf99-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb94e1-d30d-11e9-1195-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1988,14 +2047,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fdfcb-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9513-d30d-11e9-1195-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:fc0fdfcc-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9514-d30d-11e9-1195-020000000000"/>
                <display value="John de Vries"/>
             </practitioner>
             <organization>
@@ -2016,7 +2075,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc0fd752-d2ea-11e9-1048-020000000000"/>
+      <fullUrl value="urn:uuid:34cb9d02-d30d-11e9-1195-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2027,7 +2086,7 @@
                <display value="Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:fc0fd75c-d2ea-11e9-1048-020000000000"/>
+               <reference value="urn:uuid:34cb9d0c-d30d-11e9-1195-020000000000"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>

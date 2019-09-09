@@ -4,9 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="14"/>
+   <total value="5"/>
    <entry>
-      <fullUrl value="urn:uuid:fc00cc9c-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb7394-d30d-11e9-1792-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -41,18 +41,20 @@
                <display value="Cetomacrogolcreme met vaseline"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <reference value="urn:uuid:34bb60ed-d30d-11e9-1792-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
             <authoredOn value="2018-08-27"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34bb7396-d30d-11e9-1792-020000000000"/>
+                     <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc00cc9e-d2ea-11e9-1363-020000000000"/>
-                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
+                  <display value="Bertine van Doorn"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -89,9 +91,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc00ccc4-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb73bc-d30d-11e9-1792-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -130,7 +135,7 @@
                <display value="Cetomacrogolcreme met vaseline 10%"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <reference value="urn:uuid:34bb60ed-d30d-11e9-1792-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
             <authoredOn value="2018-08-27"/>
@@ -138,7 +143,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:fc00cc9e-d2ea-11e9-1363-020000000000"/>
+                        <reference value="urn:uuid:34bb7396-d30d-11e9-1792-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
                      </valueReference>
                   </extension>
@@ -158,9 +163,12 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc00cce7-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb73df-d30d-11e9-1792-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -197,7 +205,7 @@
                <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <reference value="urn:uuid:34bb60ed-d30d-11e9-1792-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
             <performer>
@@ -247,9 +255,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc00e53c-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb6a9c-d30d-11e9-1792-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -278,7 +289,7 @@
                <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <reference value="urn:uuid:34bb60ed-d30d-11e9-1792-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
             <performer>
@@ -303,9 +314,12 @@
             <whenHandedOver value="2018-08-27"/>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc00e54e-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb6aae-d30d-11e9-1792-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -313,13 +327,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc00e562-d2ea-11e9-1363-020000000000"/>
+                  <reference value="urn:uuid:34bb6ac2-d30d-11e9-1792-020000000000"/>
                   <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Stitswerd Oost"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+                  <reference value="urn:uuid:34bb60ed-d30d-11e9-1792-020000000000"/>
                   <display value="Pauline P. XXX_Bourgonje"/>
                </valueReference>
             </extension>
@@ -359,7 +373,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-12T20:58:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+               <reference value="urn:uuid:34bb60ed-d30d-11e9-1792-020000000000"/>
                <display value="Pauline P. XXX_Bourgonje"/>
             </subject>
             <derivedFrom>
@@ -390,9 +404,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc00ce09-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb60ed-d30d-11e9-1792-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -498,7 +515,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc00e56c-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb6acc-d30d-11e9-1792-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -534,7 +551,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc00cc9e-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb7396-d30d-11e9-1792-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -562,7 +579,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc00e562-d2ea-11e9-1363-020000000000"/>
+      <fullUrl value="urn:uuid:34bb6ac2-d30d-11e9-1792-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -573,7 +590,7 @@
                <display value="Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:fc00e56c-d2ea-11e9-1363-020000000000"/>
+               <reference value="urn:uuid:34bb6acc-d30d-11e9-1792-020000000000"/>
                <display value="Huisartsenpraktijk Stitswerd Oost"/>
             </organization>
             <specialty>

@@ -4,9 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="42"/>
+   <total value="24"/>
    <entry>
-      <fullUrl value="urn:uuid:fc03cb03-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be92cb-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -41,18 +41,20 @@
                <display value="Tiotropium inhalatiecapsule 18ug"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <authoredOn value="2018-05-26T12:11:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34be92cd-d30d-11e9-2299-020000000000"/>
+                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc03cb05-d2ea-11e9-8960-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -81,9 +83,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03cb2e-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be92f6-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -128,27 +133,22 @@
                <display value="Tiotropium inhalatiecapsule 18ug"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <authoredOn value="2018-07-07T13:54:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34be92f9-d30d-11e9-2299-020000000000"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc03cb31-d2ea-11e9-8960-020000000000"/>
-                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:uuid:34be92fa-d30d-11e9-2299-020000000000"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
-            <reasonCode>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
-                  <code value="8"/>
-                  <display value="Toedieningsweg voldoet niet"/>
-               </coding>
-            </reasonCode>
             <dosageInstruction>
                <sequence value="1"/>
                <text value="Vanaf 26 mei 2018 tot en met 6 jul 2018, 1 maal per dag 1 dosis, inhalatie"/>
@@ -175,9 +175,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ac9f-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8fbf-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -212,18 +215,20 @@
                <display value="Timolol/Latanoprost oogdr 5mg/50ug/ml fl 2,5ml"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <authoredOn value="2017-04-21T10:19:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34be92cd-d30d-11e9-2299-020000000000"/>
+                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc03cb05-d2ea-11e9-8960-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -259,9 +264,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03accb-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8feb-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -306,27 +314,22 @@
                <display value="Timolol/Latanoprost oogdr 5mg/50ug/ml fl 2,5ml"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <authoredOn value="2017-09-02T17:54:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34be92f9-d30d-11e9-2299-020000000000"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc03cb31-d2ea-11e9-8960-020000000000"/>
-                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:uuid:34be92fa-d30d-11e9-2299-020000000000"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
-            <reasonCode>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
-                  <code value="8"/>
-                  <display value="Toedieningsweg voldoet niet"/>
-               </coding>
-            </reasonCode>
             <dosageInstruction>
                <sequence value="1"/>
                <text value="Vanaf 21 apr 2017 tot en met 2 sep 2017 17:00, 1x per dag 1 druppel, in beide ogen"/>
@@ -360,9 +363,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ad81-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be90a1-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -397,18 +403,20 @@
                <display value="CARBASALAATCALCIUM 100MG PO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <authoredOn value="2018-05-26T12:11:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34be92cd-d30d-11e9-2299-020000000000"/>
+                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc03cb05-d2ea-11e9-8960-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -437,9 +445,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03adac-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be90cc-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -484,18 +495,20 @@
                <display value="CARBASALAATCALCIUM 100MG PO"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <authoredOn value="2018-08-30T13:54:00+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34be92f9-d30d-11e9-2299-020000000000"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc03cb31-d2ea-11e9-8960-020000000000"/>
-                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:uuid:34be92fa-d30d-11e9-2299-020000000000"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -524,9 +537,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ae5d-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be917d-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -561,18 +577,20 @@
                <display value="Omeprazol tablet MSR 40mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <authoredOn value="2017-11-07T14:23:00+01:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34be92cd-d30d-11e9-2299-020000000000"/>
+                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc03cb05-d2ea-11e9-8960-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <display value="Peter van Pulver"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -601,9 +619,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ae88-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be91a8-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -648,18 +669,20 @@
                <display value="Omeprazol tablet MSR 40mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <authoredOn value="2018-01-24T08:54:00+01:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:34be92f9-d30d-11e9-2299-020000000000"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:fc03cb31-d2ea-11e9-8960-020000000000"/>
-                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:uuid:34be92fa-d30d-11e9-2299-020000000000"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -688,9 +711,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ac19-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8f39-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -727,7 +753,7 @@
                <display value="SPIRIVA INHALPDR 18MCG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <performer>
@@ -769,9 +795,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ac38-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8f58-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -818,7 +847,7 @@
                <display value="SPIRIVA INHALPDR 18MCG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <performer>
@@ -860,9 +889,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03acf7-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9017-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -899,7 +931,7 @@
                <display value="LATANOPROST/TIMOLOL SDZ OOGDR 0,05/5MG/ML FL 2,5ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <performer>
@@ -948,9 +980,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ad17-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9037-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -997,7 +1032,7 @@
                <display value="LATANOPROST/TIMOLOL SDZ OOGDR 0,05/5MG/ML FL 2,5ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <performer>
@@ -1046,9 +1081,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03add6-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be90f6-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1085,7 +1123,7 @@
                <display value="CARBASALAATCALCIUM CF SACHET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <performer>
@@ -1127,9 +1165,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03adf5-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9115-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1176,7 +1217,7 @@
                <display value="CARBASALAATCALCIUM CF SACHET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <performer>
@@ -1218,9 +1259,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03aeb2-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be91d2-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1257,7 +1301,7 @@
                <display value="OMEPRAZOL SANDOZ MUT TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <performer>
@@ -1299,9 +1343,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03aed1-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be91f1-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1348,7 +1395,7 @@
                <display value="OMEPRAZOL SANDOZ MUT TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <performer>
@@ -1390,9 +1437,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ac57-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8f77-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1400,13 +1450,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc03ac6f-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be8f8f-d30d-11e9-2299-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                   <display value="J. XXX_Cnossen"/>
                </valueReference>
             </extension>
@@ -1438,7 +1488,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-07-06T12:11:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <derivedFrom>
@@ -1475,9 +1525,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ac80-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8fa0-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1488,13 +1541,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc03ac8d-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be8fad-d30d-11e9-2299-020000000000"/>
                   <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                   <display value="J. XXX_Cnossen"/>
                </valueReference>
             </extension>
@@ -1526,7 +1579,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-07-07T15:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <derivedFrom>
@@ -1542,9 +1595,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ad37-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9057-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1555,13 +1611,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc03ac6f-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be8f8f-d30d-11e9-2299-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                   <display value="J. XXX_Cnossen"/>
                </valueReference>
             </extension>
@@ -1593,7 +1649,7 @@
             </effectivePeriod>
             <dateAsserted value="2017-04-21T10:19:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <derivedFrom>
@@ -1637,9 +1693,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ad62-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9082-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1650,13 +1709,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc03ac8d-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be8fad-d30d-11e9-2299-020000000000"/>
                   <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                   <display value="J. XXX_Cnossen"/>
                </valueReference>
             </extension>
@@ -1688,7 +1747,7 @@
             </effectivePeriod>
             <dateAsserted value="2017-09-03T17:54:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <derivedFrom>
@@ -1704,9 +1763,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ae14-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9134-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1717,13 +1779,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc03ac6f-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be8f8f-d30d-11e9-2299-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                   <display value="J. XXX_Cnossen"/>
                </valueReference>
             </extension>
@@ -1755,7 +1817,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-05-26T14:11:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <derivedFrom>
@@ -1792,9 +1854,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ae3e-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be915e-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1805,13 +1870,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc03ac8d-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be8fad-d30d-11e9-2299-020000000000"/>
                   <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                   <display value="J. XXX_Cnossen"/>
                </valueReference>
             </extension>
@@ -1843,7 +1908,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-29T13:54:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <derivedFrom>
@@ -1859,9 +1924,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03aef0-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9210-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1869,13 +1937,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc03ac6f-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be8f8f-d30d-11e9-2299-020000000000"/>
                   <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                   <display value="J. XXX_Cnossen"/>
                </valueReference>
             </extension>
@@ -1907,7 +1975,7 @@
             </effectivePeriod>
             <dateAsserted value="2017-11-07T17:23:00+01:00"/>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <derivedFrom>
@@ -1944,9 +2012,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03af19-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9239-d30d-11e9-2299-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1957,13 +2028,13 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:fc03ac8d-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be8fad-d30d-11e9-2299-020000000000"/>
                   <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+                  <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                   <display value="J. XXX_Cnossen"/>
                </valueReference>
             </extension>
@@ -1995,7 +2066,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-01-24T19:35:00+01:00"/>
             <subject>
-               <reference value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
                <display value="J. XXX_Cnossen"/>
             </subject>
             <derivedFrom>
@@ -2011,9 +2082,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03b6a5-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be9709-d30d-11e9-2299-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -2083,7 +2157,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03cb32-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be92fa-d30d-11e9-2299-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -2142,7 +2216,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ac79-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8f99-d30d-11e9-2299-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -2178,7 +2252,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03cb05-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be92cd-d30d-11e9-2299-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2206,14 +2280,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03cb31-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be92f9-d30d-11e9-2299-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:fc03cb32-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be92fa-d30d-11e9-2299-020000000000"/>
                <display value="John de Vries"/>
             </practitioner>
             <organization>
@@ -2234,7 +2308,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ac6f-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8f8f-d30d-11e9-2299-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2245,7 +2319,7 @@
                <display value="Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:fc03ac79-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be8f99-d30d-11e9-2299-020000000000"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>
@@ -2262,18 +2336,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fc03ac8d-d2ea-11e9-8960-020000000000"/>
+      <fullUrl value="urn:uuid:34be8fad-d30d-11e9-2299-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:fc03cb32-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be92fa-d30d-11e9-2299-020000000000"/>
                <display value="John de Vries"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:fc03ac79-d2ea-11e9-8960-020000000000"/>
+               <reference value="urn:uuid:34be8f99-d30d-11e9-2299-020000000000"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>
