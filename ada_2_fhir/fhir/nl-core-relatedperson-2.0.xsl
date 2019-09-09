@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
         <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.Organization.id</xd:param>
-        <xd:param name="search-mode">Optional. Value for entry.search.mode. Default: include</xd:param>
+        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
     <xsl:template name="relatedperson-entry" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)]" mode="doRelatedPersonEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:if>
         </xsl:param>
-        <xsl:param name="search-mode">include</xsl:param>
+        <xsl:param name="searchMode">include</xsl:param>
         <entry>
             <fullUrl value="{$entry-fullurl}"/>
             <resource>
@@ -80,9 +80,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:with-param>
                 </xsl:call-template>
             </resource>
-            <xsl:if test="string-length($search-mode) gt 0">
+            <xsl:if test="string-length($searchMode) gt 0">
                 <search>
-                    <mode value="{$search-mode}"/>
+                    <mode value="{$searchMode}"/>
                 </search>
             </xsl:if>
         </entry>

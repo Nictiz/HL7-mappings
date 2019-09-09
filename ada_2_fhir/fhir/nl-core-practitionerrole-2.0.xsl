@@ -47,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Produces a FHIR entry element with a PractitionerRole resource</xd:desc>
         <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.PractitionerRole.id</xd:param>
-        <xd:param name="search-mode">Optional. Value for entry.search.mode. Default: include</xd:param>
+        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
     <xsl:template name="practitionerRole-entry" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleEntry-2.0">
         <!--<xsl:param name="uuid" select="true()" as="xs:boolean"/>-->
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
             </xsl:if>
         </xsl:param>
-        <xsl:param name="search-mode">include</xsl:param>
+        <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
             <!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
             <fullUrl value="{$entry-fullurl}"/>
@@ -79,9 +79,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:with-param>
                 </xsl:call-template>
             </resource>
-            <xsl:if test="string-length($search-mode) gt 0">
+            <xsl:if test="string-length($searchMode) gt 0">
                 <search>
-                    <mode value="{$search-mode}"/>
+                    <mode value="{$searchMode}"/>
                 </search>
             </xsl:if>
         </entry>
