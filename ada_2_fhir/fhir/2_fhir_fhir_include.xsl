@@ -28,8 +28,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:include href="../../util/datetime.xsl"/>
     <xsl:include href="../../util/units.xsl"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
-    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     
     <xd:doc>
         <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
@@ -40,7 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="patients" as="element()*">
         <!-- Patiënten -->
         <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" 
-                            group-by="nf:ada-zvl-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/concat(@root, @value)">
+                            group-by="string-join(for $att in nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value) return $att, '')">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="practitioners" as="element()*">
         <!-- Zorgverleners in Practitioners -->
         <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" 
-                            group-by="nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/concat(@root, @value)">
+                            group-by="string-join(for $att in nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/(@root, @value) return $att, '')">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -113,8 +113,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="current-grouping-key()"/>
                     </group-key>
                     <reference-display>
-                        <!--<xsl:value-of select="current-group()[1]/normalize-space(string-join(zorgverleners_rol/(@displayName, @code)[1] | health_professional_role/(@displayName, @code)[1] | naamgegevens[1]//@value | name_information[1]//@value, ' '))"/>-->
-                        <xsl:value-of select="nf:get-practitioner-role-display(current-group()[1])"/>
+                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(zorgverleners_rol/(@displayName, @code)[1] | health_professional_role/(@displayName, @code)[1] | naamgegevens[1]//@value | name_information[1]//@value, ' '))"/>
+                        <!--<xsl:value-of select="nf:get-practitioner-role-display(current-group()[1])"/>-->
                     </reference-display>
                     <xsl:apply-templates select="current-group()[1]" mode="doPractitionerEntry-2.0">
                         <xsl:with-param name="uuid" select="$uuid"/>
@@ -134,7 +134,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
                 <reference-display>
-                    <xsl:value-of select="current-group()[1]/normalize-space(string-join(zorgverleners_rol/(@displayName, @code)[1] | health_professional_role/(@displayName, @code)[1] | naamgegevens[1]//@value | name_information[1]//@value, ' '))"/>
+                    <!--<xsl:value-of select="current-group()[1]/normalize-space(string-join(zorgverleners_rol/(@displayName, @code)[1] | health_professional_role/(@displayName, @code)[1] | naamgegevens[1]//@value | name_information[1]//@value, ' '))"/>-->
+                    <xsl:value-of select="nf:get-practitioner-role-display(current-group()[1])"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doPractitionerRoleEntry-2.0">
                     <xsl:with-param name="uuid" select="$uuid"/>
@@ -1312,6 +1313,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:copy-of select="$zorgverlener-identificatie-nummer[1]"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="patient-identificatie-nummer"/>
+    </xd:doc>
+    <xsl:function name="nf:ada-pat-id" as="element()?">
+        <xsl:param name="patient-identificatie-nummer" as="element()*"/>
+        <xsl:choose>
+            <xsl:when test="$patient-identificatie-nummer[@root = $oidBurgerservicenummer]">
+                <xsl:copy-of select="$patient-identificatie-nummer[@root = $oidBurgerservicenummer][1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="$patient-identificatie-nummer[1]"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
