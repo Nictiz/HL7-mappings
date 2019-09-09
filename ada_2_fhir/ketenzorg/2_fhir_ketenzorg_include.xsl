@@ -232,7 +232,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                        <extension url="{$urlExtNLCodeSpecification}">
                             <valueCodeableConcept>
                                 <coding>
                                     <system value="{local:getUri(@codeSystem)}"/>
@@ -608,7 +608,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="problem_name">
                     <xsl:choose>
                         <xsl:when test="@nullFlavor">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                            <extension url="{$urlExtHL7NullFlavor}">
                                 <valueCode value="{@nullFlavor}"/>
                             </extension>
                         </xsl:when>
@@ -686,7 +686,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                        <extension url="{$urlExtNLCodeSpecification}">
                             <valueCodeableConcept>
                                 <coding>
                                     <system value="{local:getUri(@codeSystem)}"/>
@@ -703,7 +703,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="allergy_status[@code = 'nullified'][@codeSystem][1]">
                         <xsl:for-each select="allergy_status[@code = 'nullified'][@codeSystem][1]">
                             <verificationStatus value="entered-in-error">
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                                <extension url="{$urlExtNLCodeSpecification}">
                                     <valueCodeableConcept>
                                         <coding>
                                             <system value="{local:getUri(@codeSystem)}"/>
@@ -723,7 +723,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>
                         <!-- we don't know, but still a required element, dataabsentreason -->
                         <verificationStatus>
-                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <extension url="{$urlExtHL7DataAbsentReason}">
                                 <valueCode value="unknown"/>
                             </extension>
                         </verificationStatus>
@@ -751,7 +751,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:attribute>
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                                <extension url="{$urlExtNLCodeSpecification}">
                                     <valueCodeableConcept>
                                         <coding>
                                             <system value="{local:getUri(@codeSystem)}"/>
@@ -765,10 +765,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <!--Other    OTH    NullFlavor    2.16.840.1.113883.5.1008    Anders-->
                             <xsl:when test=".[@nullFlavor]">
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <extension url="{$urlExtHL7NullFlavor}">
                                     <valueCode value="{@nullFlavor}"/>
                                 </extension>
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                                <extension url="{$urlExtNLCodeSpecification}">
                                     <valueCodeableConcept>
                                         <coding>
                                             <system value="{local:getUri($oidHL7NullFlavor)}"/>
@@ -802,7 +802,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                        <extension url="{$urlExtNLCodeSpecification}">
                             <valueCodeableConcept>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
@@ -934,7 +934,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:attribute>
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                                <extension url="{$urlExtNLCodeSpecification}">
                                     <valueCodeableConcept>
                                         <xsl:call-template name="code-to-CodeableConcept">
                                             <xsl:with-param name="in" select="."/>
@@ -1003,7 +1003,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <map inCode="corrected" inCodeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" code="corrected"/>
                         </xsl:with-param>
                     </xsl:call-template>
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                    <extension url="{$urlExtNLCodeSpecification}">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="test_result_status"/>
@@ -1062,7 +1062,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </effectiveDateTime>
                 </xsl:for-each>
                 <!-- NL-CM:0.0.9			ZorgverlenerAlsAuteur::Zorgverlener -->
-                <xsl:for-each select="hcimroot/author[health_professional]">
+                <xsl:for-each select="hcimroot/author/health_professional">
                     <performer>
                         <extension url="{$urlExtNLPractitionerRoleReference}">
                             <valueReference>
@@ -1174,7 +1174,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:attribute>
             </effectiveDateTime>
             <!-- NL-CM:0.0.9			ZorgverlenerAlsAuteur::Zorgverlener -->
-            <xsl:for-each select="hcimroot/author[health_professional]">
+            <xsl:for-each select="hcimroot/author/health_professional">
                 <performer>
                     <extension url="{$urlExtNLPractitionerRoleReference}">
                         <valueReference>
