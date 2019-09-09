@@ -28,8 +28,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xd:p>
         </xd:desc>
     </xd:doc>
-	<xsl:output method="xml" indent="yes"/>
-	<xsl:strip-space elements="*"/>
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
     <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
@@ -79,10 +79,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
-	<xd:doc>
-		<xd:desc/>
-		<xd:param name="entries"/>
-	</xd:doc>
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="entries"/>
+    </xd:doc>
     <xsl:template name="create-mo-bundle">
         <xsl:param name="entries" select="."/>
         <xsl:result-document href="./{$usecase}-Bundle-{$entries/f:resource/f:List/f:id/@value}.xml">
