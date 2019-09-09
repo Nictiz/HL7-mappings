@@ -1,0 +1,72 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="2"/>
+   <entry>
+      <fullUrl value="urn:uuid:734278af-d2cf-11e9-7071-28f10e481d92"/>
+      <resource>
+         <AllergyIntolerance>
+            <id value="gp-allergyintolerance-fenoxymethylpenicilline"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="Active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed"/>
+            <category value="medication">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419511003"/>
+                        <display value="Propensity to adverse reactions to drug"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1051555"/>
+                  <display value="FENOXYMETHYLPENICILLINE CF CAPSULE 250MG"/>
+               </coding>
+            </code>
+            <patient>
+               <reference value="Patient/gpdata-patient-kwalificatie1"/>
+               <display value="Patient/gpdata-patient-kwalificatie1"/>
+            </patient>
+            <assertedDate value="${CURRENTDATETIME, d, -500}"/>
+            <recorder>
+               <reference value="Practitioner/gpdata-practitioner-kwalificatie1"/>
+               <display value="Practitioner/gpdata-practitioner-kwalificatie1"/>
+            </recorder>
+            <note>
+               <text value="Forse reactie op FENOXYMETHYLPENICILLINE TEVA CAPSULE 250MG"/>
+            </note>
+         </AllergyIntolerance>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:73427cea-d2cf-11e9-7071-28f10e481d92"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

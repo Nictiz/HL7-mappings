@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	
 	<xsl:variable name="usecase">allergyintolerance</xsl:variable>
 	<xsl:variable name="commonEntries" as="element(f:entry)*">
-		<xsl:copy-of select="$patient-entry | $practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
+		<xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry"/>
 	</xsl:variable>
 	<xd:doc>
 		<xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen allergyintolerance".</xd:desc>
@@ -47,9 +47,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template name="AllergyIntolerance_2018.05">
 		<xsl:variable name="entries" as="element(f:entry)*">
+			<xsl:copy-of select="$bouwstenen"/>
 			<!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
 			<xsl:copy-of select="$commonEntries"/>
-			<xsl:copy-of select="$bouwstenen"/>
 		</xsl:variable>
 
 		<xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
