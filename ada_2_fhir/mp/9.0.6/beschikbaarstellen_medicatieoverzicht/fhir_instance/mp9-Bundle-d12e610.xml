@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
@@ -6,7 +7,9 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
    <type value="searchset"/>
+   <total value="1"/>
    <entry>
+      <fullUrl value="urn:uuid:48336482-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <List>
             <id value="d12e610"/>
@@ -39,7 +42,7 @@
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="Organization/urnuuidc72ee3e6-d186-11e9-1893-28f10e481d92"/>
+                     <reference value="Organization/urnuuid48336486-d320-11e9-7272-28f10e481d92"/>
                      <display value="Apotheek de Gulle Gaper"/>
                   </valueReference>
                </extension>
@@ -149,452 +152,12 @@
             </entry>
          </List>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <resource>
-         <Patient>
-            <id value="I-XXX-JANGI"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999911727"/>
-            </identifier>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
-               <value value="10009"/>
-            </identifier>
-            <name>
-               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-                  <valueCode value="NL1"/>
-               </extension>
-               <family value="XXX_Jangi">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Jangi"/>
-                  </extension>
-               </family>
-               <given value="I.">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="IN"/>
-                  </extension>
-               </given>
-            </name>
-            <telecom>
-               <system value="phone"/>
-               <value value="+31612345678"/>
-            </telecom>
-            <gender value="male"/>
-            <birthDate value="1964-08-02"/>
-            <address>
-               <line value="Knolweg  1002">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Knolweg "/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1002"/>
-                  </extension>
-               </line>
-               <city value="Stitswerd"/>
-               <postalCode value="9999ZZ"/>
-            </address>
-         </Patient>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Practitioner>
-            <id value="JOHNDEVRIES1"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
-            </meta>
-            <name>
-               <family value="de Vries">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="de "/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Vries"/>
-                  </extension>
-               </family>
-               <given value="John">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Practitioner>
-            <id value="urnuuidc72ee24e-d186-11e9-1893-28f10e481d92"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
-            </meta>
-            <identifier>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="NI"/>
-               </extension>
-            </identifier>
-            <name>
-               <family value="Ternist">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Ternist"/>
-                  </extension>
-               </family>
-               <given value="I.">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="IN"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Organization>
-            <id value="01236578APOTHEEKDEGULLEGAPER"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="01236578"/>
-            </identifier>
-            <name value="Apotheek De Gulle Gaper"/>
-         </Organization>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Organization>
-            <id value="00001111HUISARTSENPRAKTIJKPULVERPARTNERS"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
-            </identifier>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
-         </Organization>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Organization>
-            <id value="13336578POLIAPOTHEEKANTONIUS"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="13336578"/>
-            </identifier>
-            <name value="Poliapotheek Antonius"/>
-         </Organization>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Organization>
-            <id value="ANTONIUS"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <name value="Antonius"/>
-         </Organization>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Organization>
-            <id value="urnuuidc72ee3e6-d186-11e9-1893-28f10e481d92"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <name value="Apotheek de Gulle Gaper"/>
-         </Organization>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <PractitionerRole>
-            <id value="urnuuidc72ee1ed-d186-11e9-1893-28f10e481d92"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
-            </meta>
-            <practitioner>
-               <reference value="Practitioner/JOHNDEVRIES1"/>
-               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-            </practitioner>
-            <organization>
-               <reference value="Organization/00001111HUISARTSENPRAKTIJKPULVERPARTNERS"/>
-               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <code value="0100"/>
-                  <display value="Huisartsen, niet nader gespecificeerd"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <PractitionerRole>
-            <id value="urnuuidc72ee24d-d186-11e9-1893-28f10e481d92"/>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
-            </meta>
-            <practitioner>
-               <reference value="Practitioner/urnuuidc72ee24e-d186-11e9-1893-28f10e481d92"/>
-               <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
-            </practitioner>
-            <organization>
-               <reference value="Organization/ANTONIUS"/>
-               <display value="Antonius"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <code value="0313"/>
-                  <display value="Medisch specialisten, inwendige geneeskunde"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="IBUPROFEN"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <text value="Ibuprofen"/>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="urnuuidc72ee234-d186-11e9-1893-28f10e481d92"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <text value="Glimepiride"/>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="400629-2-16-840-1-113883-2-4-4-7"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="400629"/>
-                  <display value="Emovate zalf 0,5 mg/g"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="44458-2-16-840-1-113883-2-4-4-10"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="44458"/>
-                  <display value="Glimepiride tablet 3mg"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="1753029-2-16-840-1-113883-2-4-4-7"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1753029"/>
-                  <display value="Glimepiride activis tablet 3mg"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="121312-2-16-840-1-113883-2-4-4-10"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="121312"/>
-                  <display value="Insuline glargine 100e/ml injvlst"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="1859226-2-16-840-1-113883-2-4-4-7"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1859226"/>
-                  <display value="LANTUS SOLOSTAR INJ 100E/ML PEN 3ML"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="2105594-2-16-840-1-113883-2-4-4-7"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="2105594"/>
-                  <display value="PERINDOPRIL TERT-BUTYLAMINE GLENMARK TABLET 8MG"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="67814-2-16-840-1-113883-2-4-4-10"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="67814"/>
-                  <display value="Simvastine teblet fo 20 mg"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="1537792-2-16-840-1-113883-2-4-4-7"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1537792"/>
-                  <display value="SIMVASTATINE APOTEX TABLET FILMOMHULD 10MG"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="5274-2-16-840-1-113883-2-4-4-10"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="5274"/>
-                  <display value="Flucloxacilline capsule 500mg"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="2230879-2-16-840-1-113883-2-4-4-7"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="2230879"/>
-                  <display value="Atorvastatine ranbaxy tablet filmomhuld 40 mg"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
-      <resource>
-         <Medication>
-            <id value="2105586-2-16-840-1-113883-2-4-4-7"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="2105586"/>
-                  <display value="PERINDOPRIL TERT-BUTYLAMINE GLENMARK TABLET 4MG"/>
-                  <userSelected value="true"/>
-               </coding>
-            </code>
-         </Medication>
-      </resource>
-   </entry>
-   <entry>
+      <fullUrl value="urn:uuid:4833628a-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationRequest>
             <id value="MBH-MO-123-3-MA-1"/>
@@ -648,12 +211,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuidc72ee1ed-d186-11e9-1893-28f10e481d92"/>
+                     <reference value="PractitionerRole/urnuuid4833628d-d320-11e9-7272-28f10e481d92"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
                <agent>
                   <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <note>
@@ -685,8 +249,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:483362eb-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationRequest>
             <id value="MBH-MO-123-4-MA-1"/>
@@ -732,12 +300,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuidc72ee24d-d186-11e9-1893-28f10e481d92"/>
+                     <reference value="PractitionerRole/urnuuid483362ed-d320-11e9-7272-28f10e481d92"/>
+                     <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
                   </valueReference>
                </extension>
                <agent>
-                  <reference value="Practitioner/urnuuidc72ee24e-d186-11e9-1893-28f10e481d92"/>
-                  <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
+                  <reference value="Practitioner/urnuuid483362ee-d320-11e9-7272-28f10e481d92"/>
+                  <display value="I. Ternist"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -766,8 +335,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:48336369-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationRequest>
             <id value="MBH-MO-123-6-MA-1"/>
@@ -813,12 +386,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuidc72ee1ed-d186-11e9-1893-28f10e481d92"/>
+                     <reference value="PractitionerRole/urnuuid4833628d-d320-11e9-7272-28f10e481d92"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
                <agent>
                   <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -848,8 +422,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:483363f3-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationRequest>
             <id value="MBH-MO-123-7-MA-1"/>
@@ -896,12 +474,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuidc72ee1ed-d186-11e9-1893-28f10e481d92"/>
+                     <reference value="PractitionerRole/urnuuid4833628d-d320-11e9-7272-28f10e481d92"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
                <agent>
                   <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -930,8 +509,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:4833643e-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationRequest>
             <id value="MBH-MO-123-9-MA-1"/>
@@ -978,12 +561,13 @@
             <requester>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
                   <valueReference>
-                     <reference value="PractitionerRole/urnuuidc72ee1ed-d186-11e9-1893-28f10e481d92"/>
+                     <reference value="PractitionerRole/urnuuid4833628d-d320-11e9-7272-28f10e481d92"/>
+                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
                <agent>
                   <reference value="Practitioner/JOHNDEVRIES1"/>
-                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -1011,8 +595,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:48335f3a-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationDispense>
             <id value="MBH-MO-123-2-TA-1"/>
@@ -1139,8 +727,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:483362b1-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationDispense>
             <id value="MBH-MO-123-3-TA-1"/>
@@ -1224,8 +816,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:4833630f-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationDispense>
             <id value="MBH-MO-123-4-TA-1"/>
@@ -1306,8 +902,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:4833632c-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationDispense>
             <id value="MBH-MO-123-5-TA-1"/>
@@ -1391,8 +991,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:4833638e-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationDispense>
             <id value="MBH-MO-123-6-TA-1"/>
@@ -1476,8 +1080,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:4833641a-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationDispense>
             <id value="MBH-MO-123-8-TA-2"/>
@@ -1574,8 +1182,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:48336462-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationDispense>
             <id value="MBH-MO-123-10-TA-2"/>
@@ -1665,8 +1277,12 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:48335f1c-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationStatement>
             <id value="MBH-MO-123-1-MGB-1"/>
@@ -1750,8 +1366,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:483362d0-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationStatement>
             <id value="MBH-MO-123-3-MGB-1"/>
@@ -1787,7 +1407,7 @@
                <text value="Medicatiegebruik"/>
             </category>
             <medicationReference>
-               <reference value="Medication/urnuuidc72ee234-d186-11e9-1893-28f10e481d92"/>
+               <reference value="Medication/urnuuid483362d4-d320-11e9-7272-28f10e481d92"/>
                <display value="Glimepiride"/>
             </medicationReference>
             <effectivePeriod>
@@ -1818,8 +1438,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:4833634c-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationStatement>
             <id value="MBH-MO-123-5-MGB-1"/>
@@ -1903,8 +1527,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:483363ad-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationStatement>
             <id value="MBH-MO-123-6-MGB-1"/>
@@ -1913,7 +1541,8 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="PractitionerRole/urnuuidc72ee24d-d186-11e9-1893-28f10e481d92"/>
+                  <reference value="PractitionerRole/urnuuid483362ed-d320-11e9-7272-28f10e481d92"/>
+                  <display value="I. Ternist || Medisch specialisten, inwendige geneeskunde || Antonius"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -1980,8 +1609,12 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:483363d5-d320-11e9-7272-28f10e481d92"/>
       <resource>
          <MedicationStatement>
             <id value="MBH-MO-123-6-MGB-2"/>
@@ -2059,5 +1692,544 @@
             </dosage>
          </MedicationStatement>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:48335acd-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <Patient>
+            <id value="I-XXX-JANGI"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999911727"/>
+            </identifier>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.19829.1"/>
+               <value value="10009"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX_Jangi">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Jangi"/>
+                  </extension>
+               </family>
+               <given value="I.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <system value="phone"/>
+               <value value="+31612345678"/>
+            </telecom>
+            <gender value="male"/>
+            <birthDate value="1964-08-02"/>
+            <address>
+               <line value="Knolweg  1002">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Knolweg "/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1002"/>
+                  </extension>
+               </line>
+               <city value="Stitswerd"/>
+               <postalCode value="9999ZZ"/>
+            </address>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4833628e-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <Practitioner>
+            <id value="JOHNDEVRIES1"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <name>
+               <family value="de Vries">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de "/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Vries"/>
+                  </extension>
+               </family>
+               <given value="John">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:483362ee-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <Practitioner>
+            <id value="urnuuid483362ee-d320-11e9-7272-28f10e481d92"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="NI"/>
+               </extension>
+            </identifier>
+            <name>
+               <family value="Ternist">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Ternist"/>
+                  </extension>
+               </family>
+               <given value="I.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+      <resource>
+         <Organization>
+            <id value="01236578APOTHEEKDEGULLEGAPER"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+      <resource>
+         <Organization>
+            <id value="00001111HUISARTSENPRAKTIJKPULVERPARTNERS"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.13336578"/>
+      <resource>
+         <Organization>
+            <id value="13336578POLIAPOTHEEKANTONIUS"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="13336578"/>
+            </identifier>
+            <name value="Poliapotheek Antonius"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:483362f8-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <Organization>
+            <id value="ANTONIUS"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <name value="Antonius"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:48336486-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <Organization>
+            <id value="urnuuid48336486-d320-11e9-7272-28f10e481d92"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <name value="Apotheek de Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4833628d-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <PractitionerRole>
+            <id value="urnuuid4833628d-d320-11e9-7272-28f10e481d92"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <practitioner>
+               <reference value="Practitioner/JOHNDEVRIES1"/>
+               <display value="John de Vries"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/00001111HUISARTSENPRAKTIJKPULVERPARTNERS"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:483362ed-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <PractitionerRole>
+            <id value="urnuuid483362ed-d320-11e9-7272-28f10e481d92"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <practitioner>
+               <reference value="Practitioner/urnuuid483362ee-d320-11e9-7272-28f10e481d92"/>
+               <display value="I. Ternist"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/ANTONIUS"/>
+               <display value="Antonius"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0313"/>
+                  <display value="Medisch specialisten, inwendige geneeskunde"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:48335f21-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <Medication>
+            <id value="IBUPROFEN"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <text value="Ibuprofen"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:483362d4-d320-11e9-7272-28f10e481d92"/>
+      <resource>
+         <Medication>
+            <id value="urnuuid483362d4-d320-11e9-7272-28f10e481d92"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <text value="Glimepiride"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.7.400629"/>
+      <resource>
+         <Medication>
+            <id value="400629-2-16-840-1-113883-2-4-4-7"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="400629"/>
+                  <display value="Emovate zalf 0,5 mg/g"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.44458"/>
+      <resource>
+         <Medication>
+            <id value="44458-2-16-840-1-113883-2-4-4-10"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="44458"/>
+                  <display value="Glimepiride tablet 3mg"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.7.1753029"/>
+      <resource>
+         <Medication>
+            <id value="1753029-2-16-840-1-113883-2-4-4-7"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1753029"/>
+                  <display value="Glimepiride activis tablet 3mg"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.121312"/>
+      <resource>
+         <Medication>
+            <id value="121312-2-16-840-1-113883-2-4-4-10"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="121312"/>
+                  <display value="Insuline glargine 100e/ml injvlst"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.7.1859226"/>
+      <resource>
+         <Medication>
+            <id value="1859226-2-16-840-1-113883-2-4-4-7"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1859226"/>
+                  <display value="LANTUS SOLOSTAR INJ 100E/ML PEN 3ML"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.7.2105594"/>
+      <resource>
+         <Medication>
+            <id value="2105594-2-16-840-1-113883-2-4-4-7"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="2105594"/>
+                  <display value="PERINDOPRIL TERT-BUTYLAMINE GLENMARK TABLET 8MG"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.67814"/>
+      <resource>
+         <Medication>
+            <id value="67814-2-16-840-1-113883-2-4-4-10"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="67814"/>
+                  <display value="Simvastine teblet fo 20 mg"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.7.1537792"/>
+      <resource>
+         <Medication>
+            <id value="1537792-2-16-840-1-113883-2-4-4-7"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1537792"/>
+                  <display value="SIMVASTATINE APOTEX TABLET FILMOMHULD 10MG"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5274"/>
+      <resource>
+         <Medication>
+            <id value="5274-2-16-840-1-113883-2-4-4-10"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="5274"/>
+                  <display value="Flucloxacilline capsule 500mg"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.7.2230879"/>
+      <resource>
+         <Medication>
+            <id value="2230879-2-16-840-1-113883-2-4-4-7"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="2230879"/>
+                  <display value="Atorvastatine ranbaxy tablet filmomhuld 40 mg"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.7.2105586"/>
+      <resource>
+         <Medication>
+            <id value="2105586-2-16-840-1-113883-2-4-4-7"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="2105586"/>
+                  <display value="PERINDOPRIL TERT-BUTYLAMINE GLENMARK TABLET 4MG"/>
+                  <userSelected value="true"/>
+               </coding>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

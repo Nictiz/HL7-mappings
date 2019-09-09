@@ -46,12 +46,15 @@
    </subject>
    <authoredOn value="2018-09-03T09:00:00+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid4706c61d-d320-11e9-1663-020000000000"/>
+            <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/urnuuidc610011d-d186-11e9-6896-020000000000"/>
-            </valueReference>
-         </extension>
+         <reference value="Practitioner/000001112BERTINEVANDOORN1"/>
+         <display value="Bertine van Doorn"/>
       </agent>
    </requester>
    <reasonCode>

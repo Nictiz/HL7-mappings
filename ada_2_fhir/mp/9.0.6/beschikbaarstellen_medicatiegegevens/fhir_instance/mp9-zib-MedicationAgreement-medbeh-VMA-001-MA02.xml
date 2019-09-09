@@ -68,20 +68,23 @@
    </subject>
    <supportingInformation>
       <reference value="Observation/lichaamslengte99CM"/>
-      <display value="Lengte: 99 cm. Datum/tijd gemeten: "/>
+      <display value="Lengte: 99 cm. Datum/tijd gemeten: onbekend"/>
    </supportingInformation>
    <supportingInformation>
       <reference value="Observation/lichaamsgewicht23KG"/>
-      <display value="Gewicht: 23 kg. Datum/tijd gemeten: "/>
+      <display value="Gewicht: 23 kg. Datum/tijd gemeten: onbekend"/>
    </supportingInformation>
    <authoredOn value="2016-09-02T14:30:23+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid4791a1a6-d320-11e9-1027-020000000000"/>
+            <display value="Johan J. van Beek || Huisarts || Huisartspraktijk Van Beek"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/urnuuidc685774e-d186-11e9-1105-020000000000"/>
-            </valueReference>
-         </extension>
+         <reference value="Practitioner/006797896JOHANJ-VANBEEK"/>
+         <display value="Johan J. van Beek"/>
       </agent>
    </requester>
    <reasonCode>

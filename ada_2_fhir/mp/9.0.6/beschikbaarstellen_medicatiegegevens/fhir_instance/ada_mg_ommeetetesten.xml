@@ -6,7 +6,7 @@
    <type value="searchset"/>
    <total value="8"/>
    <entry>
-      <fullUrl value="urn:uuid:c6e0662f-d186-11e9-3733-020000000000"/>
+      <fullUrl value="urn:uuid:47eb7f7b-d320-11e9-1262-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -67,29 +67,32 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c6e06649-d186-11e9-3733-020000000000"/>
+               <reference value="urn:uuid:47eb7f95-d320-11e9-1262-020000000000"/>
                <display value="Dalterparine ing. 0,5ml=500e"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c6e05781-d186-11e9-3733-020000000000"/>
+               <reference value="urn:uuid:47eb8bdf-d320-11e9-1262-020000000000"/>
                <display value="Antje de Vries"/>
             </subject>
             <supportingInformation>
-               <reference value="urn:uuid:c6e05c54-d186-11e9-3733-020000000000"/>
-               <display value="Lengte: 99 cm. Datum/tijd gemeten: "/>
+               <reference value="urn:uuid:47eb9f6c-d320-11e9-1262-020000000000"/>
+               <display value="Lengte: 99 cm. Datum/tijd gemeten: onbekend"/>
             </supportingInformation>
             <supportingInformation>
-               <reference value="urn:uuid:c6e05c56-d186-11e9-3733-020000000000"/>
-               <display value="Gewicht: 23 kg. Datum/tijd gemeten: "/>
+               <reference value="urn:uuid:47eb9f6e-d320-11e9-1262-020000000000"/>
+               <display value="Gewicht: 23 kg. Datum/tijd gemeten: onbekend"/>
             </supportingInformation>
             <authoredOn value="2016-09-02T14:30:23+02:00"/>
             <requester>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+                  <valueReference>
+                     <reference value="urn:uuid:47eb7f82-d320-11e9-1262-020000000000"/>
+                     <display value="Johan J. van Beek || Huisarts || Huisartspraktijk Van Beek"/>
+                  </valueReference>
+               </extension>
                <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:c6e06636-d186-11e9-3733-020000000000"/>
-                     </valueReference>
-                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.6797896"/>
+                  <display value="Johan J. van Beek"/>
                </agent>
             </requester>
             <reasonCode>
@@ -164,9 +167,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c6e05781-d186-11e9-3733-020000000000"/>
+      <fullUrl value="urn:uuid:47eb8bdf-d320-11e9-1262-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -262,7 +268,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c6e06636-d186-11e9-3733-020000000000"/>
+      <fullUrl value="urn:uuid:47eb7f82-d320-11e9-1262-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -270,7 +276,7 @@
             </meta>
             <practitioner>
                <reference value="urn:oid:2.16.528.1.1007.3.1.6797896"/>
-               <display value="Johan J. van Beek || Huisarts || Huisartspraktijk Van Beek"/>
+               <display value="Johan J. van Beek"/>
             </practitioner>
             <organization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.765332"/>
@@ -290,7 +296,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c6e06649-d186-11e9-3733-020000000000"/>
+      <fullUrl value="urn:uuid:47eb7f95-d320-11e9-1262-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -358,7 +364,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c6e05c54-d186-11e9-3733-020000000000"/>
+      <fullUrl value="urn:uuid:47eb9f6c-d320-11e9-1262-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -380,7 +386,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:c6e05781-d186-11e9-3733-020000000000"/>
+               <reference value="urn:uuid:47eb8bdf-d320-11e9-1262-020000000000"/>
                <display value="Antje de Vries"/>
             </subject>
             <performer>
@@ -397,9 +403,12 @@
             </valueQuantity>
          </Observation>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c6e05c56-d186-11e9-3733-020000000000"/>
+      <fullUrl value="urn:uuid:47eb9f6e-d320-11e9-1262-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -421,7 +430,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:c6e05781-d186-11e9-3733-020000000000"/>
+               <reference value="urn:uuid:47eb8bdf-d320-11e9-1262-020000000000"/>
                <display value="Antje de Vries"/>
             </subject>
             <performer>
@@ -438,5 +447,8 @@
             </valueQuantity>
          </Observation>
       </resource>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

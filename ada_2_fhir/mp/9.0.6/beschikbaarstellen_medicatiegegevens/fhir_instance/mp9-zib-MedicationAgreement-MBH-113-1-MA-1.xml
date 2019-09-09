@@ -39,12 +39,15 @@
    </subject>
    <authoredOn value="2018-07-15T11:25:00+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid4745032a-d320-11e9-2142-020000000000"/>
+            <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/urnuuidc649144a-d186-11e9-1247-020000000000"/>
-            </valueReference>
-         </extension>
+         <reference value="Practitioner/000001111PETERVANPULVER1"/>
+         <display value="Peter van Pulver"/>
       </agent>
    </requester>
    <reasonCode>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medication xmlns="http://hl7.org/fhir">
+   <id value="urnuuid47857b68-d320-11e9-2422-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
+      <valueString value="Titel: Nafazoline oogdruppels 0,025% ex FNA Regel: Naphazolini nitras 25 mg Regel: Boorzuur-benzalk opl FNA ad 100 ml"/>
+   </extension>
+   <code>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="OTH"/>
+      </extension>
+      <text value="Nafazoline oogdruppels 0,025% ex FNA"/>
+   </code>
+   <ingredient>
+      <itemCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+            <code value="256234"/>
+            <display value="NAPHAZOLINI HYDROCHLORIDUM"/>
+         </coding>
+      </itemCodeableConcept>
+      <amount>
+         <numerator>
+            <value value="25"/>
+            <unit value="milligram"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="229"/>
+         </numerator>
+         <denominator>
+            <value value="100"/>
+            <unit value="milliliter"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="233"/>
+         </denominator>
+      </amount>
+   </ingredient>
+   <ingredient>
+      <itemCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+            <code value="261173"/>
+            <display value="BOORZUUR-BENZALKONIUMOPLOSSING FNA MR"/>
+         </coding>
+      </itemCodeableConcept>
+      <amount>
+         <numerator>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+               <valueCode value="QS"/>
+            </extension>
+         </numerator>
+         <denominator>
+            <value value="100"/>
+            <unit value="milliliter"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="233"/>
+         </denominator>
+      </amount>
+   </ingredient>
+</Medication>

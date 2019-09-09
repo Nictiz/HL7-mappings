@@ -57,12 +57,15 @@
    </subject>
    <authoredOn value="2018-08-29T15:34:00+02:00"/>
    <requester>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid475b4b79-d320-11e9-1932-020000000000"/>
+            <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+         </valueReference>
+      </extension>
       <agent>
-         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-               <reference value="PractitionerRole/urnuuidc65e053d-d186-11e9-9092-020000000000"/>
-            </valueReference>
-         </extension>
+         <reference value="Practitioner/JOHNDEVRIES1"/>
+         <display value="John de Vries"/>
       </agent>
    </requester>
    <dosageInstruction>

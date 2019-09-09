@@ -4,9 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="3"/>
+   <total value="5"/>
    <entry>
-      <fullUrl value="urn:uuid:e01eb2dd-d2c1-11e9-1717-28f10e481d92"/>
+      <fullUrl value="urn:uuid:58e5f3ad-d320-11e9-1709-28f10e481d92"/>
       <resource>
          <Patient>
             <meta>
@@ -44,12 +44,62 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e01eb72d-d2c1-11e9-1717-28f10e481d92"/>
+      <fullUrl value="urn:uuid:58e5f7fe-d320-11e9-1709-28f10e481d92"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <name>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van "/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:58e5f804-d320-11e9-1709-28f10e481d92"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:58e5f7fd-d320-11e9-1709-28f10e481d92"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
+            <practitioner>
+               <reference value="urn:uuid:58e5f7fe-d320-11e9-1709-28f10e481d92"/>
+               <display value="Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:58e5f804-d320-11e9-1709-28f10e481d92"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
          </PractitionerRole>
       </resource>
       <search>
@@ -57,7 +107,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e01eb71f-d2c1-11e9-1717-28f10e481d92"/>
+      <fullUrl value="urn:uuid:58e5f7ef-d320-11e9-1709-28f10e481d92"/>
       <resource>
          <Task>
             <meta>
@@ -83,19 +133,19 @@
                <display value="Test vragenlijst Arianne"/>
             </focus>
             <for>
-               <reference value="urn:uuid:e01eb2dd-d2c1-11e9-1717-28f10e481d92"/>
+               <reference value="urn:uuid:58e5f3ad-d320-11e9-1709-28f10e481d92"/>
                <display value="R. XXX_Ruys"/>
             </for>
             <authoredOn value="2019-05-01T00:00:00+02:00"/>
             <lastModified value="2019-05-01T00:00:00+02:00"/>
             <requester>
                <agent>
-                  <reference value="urn:uuid:e01eb72d-d2c1-11e9-1717-28f10e481d92"/>
-                  <display value="Peter van Pulver"/>
+                  <reference value="urn:uuid:58e5f7fd-d320-11e9-1709-28f10e481d92"/>
+                  <display value="Peter van Pulver || Huisartsenpraktijk Pulver &amp; Partners"/>
                </agent>
             </requester>
             <owner>
-               <reference value="urn:uuid:e01eb2dd-d2c1-11e9-1717-28f10e481d92"/>
+               <reference value="urn:uuid:58e5f3ad-d320-11e9-1709-28f10e481d92"/>
                <display value="R. XXX_Ruys"/>
             </owner>
             <restriction>

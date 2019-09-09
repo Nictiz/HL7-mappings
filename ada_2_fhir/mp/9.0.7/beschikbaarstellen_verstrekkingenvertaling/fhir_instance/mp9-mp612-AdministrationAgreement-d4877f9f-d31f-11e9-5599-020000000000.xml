@@ -1,0 +1,68 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="d4877f9f-d31f-11e9-5599-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2006-01-14"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="50"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="d4d03380-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/14305054-2-16-840-1-113883-2-4-4-8"/>
+      <display value="NOVORAPID PENFILL INJVLST 100E/ML PATROON 3ML"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/AYGLA-DIREN"/>
+      <display value="Aygül A. Direnç"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Gedurende 50 dagen, 3x per dag 8 tot 10 eenheid"/>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <doseRange>
+         <low>
+            <value value="8"/>
+            <unit value="Eenheid"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="211"/>
+         </low>
+         <high>
+            <value value="10"/>
+            <unit value="Eenheid"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="211"/>
+         </high>
+      </doseRange>
+   </dosageInstruction>
+</MedicationDispense>
