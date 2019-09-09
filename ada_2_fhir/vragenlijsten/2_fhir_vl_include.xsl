@@ -1095,7 +1095,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Helper template to create FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
     </xd:doc>
     <xsl:template name="practitioner-role-reference" match="zorgverlener" mode="doPractitionerRoleReference-2.0">
-        <reference value="{nf:getFullUrlOrId('PRACTITIONERROLE', nf:getGroupingKeyDefault(.), false())}"/>
+        <reference value="{nf:getFullUrlOrId('PRACTITIONERROLE', nf:getGroupingKeyPractitionerRole(.), false())}"/>
         <display value="{nf:get-practitioner-role-display(.)}"/>
     </xsl:template>-->
 
