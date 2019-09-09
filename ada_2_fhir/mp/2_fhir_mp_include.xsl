@@ -63,10 +63,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
-    <xsl:variable name="related-persons" as="element()*">
-        <!-- related-persons -->
+    <!--<xsl:variable name="related-persons" as="element()*">
+        <!-\- related-persons -\->
         <xsl:for-each-group select="//informant/persoon[.//@value]" group-by="nf:getGroupingKeyDefault(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-persoon xmlns="">
                 <group-key xmlns="">
@@ -79,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </unieke-persoon>
         </xsl:for-each-group>
-    </xsl:variable>
+    </xsl:variable>-->
     
     <xsl:variable name="products" as="element()*">
         <!-- Products -->
@@ -3078,7 +3078,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="$prescribe-reasons"/>
                 </xsl:when>
                 <xsl:when test="$RESOURCETYPE = 'RELATEDPERSON'">
-                    <xsl:copy-of select="$related-persons"/>
+                    <xsl:copy-of select="$relatedPersons"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>

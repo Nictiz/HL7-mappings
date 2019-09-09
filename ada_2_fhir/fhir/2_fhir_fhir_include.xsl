@@ -1262,7 +1262,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyPractitioner" as="xs:string?">
         <xsl:param name="zorgverlener" as="element()?"/>
-        <xsl:value-of select="concat(nf:getGroupingKeyDefault($zorgverlener/zorgverlener_identificatienummer | $zorgverlener/zorgverlener_identificatie_nummer | $zorgverlener/health_professional_identification_number), nf:getGroupingKeyDefault($zorgverlener/zorgverlener_naam | $zorgverlener/name_information), nf:getGroupingKeyDefault($zorgverlener/adres | $zorgverlener/address_information), nf:getGroupingKeyDefault($zorgverlener/telefoon_email | $zorgverlener/contact_information))"/>
+        <xsl:value-of select="concat(nf:getGroupingKeyDefault($zorgverlener/zorgverlener_identificatienummer | $zorgverlener/zorgverlener_identificatie_nummer | $zorgverlener/health_professional_identification_number), nf:getGroupingKeyDefault($zorgverlener/zorgverlener_naam | $zorgverlener/naamgegevens | $zorgverlener/name_information), nf:getGroupingKeyDefault($zorgverlener/adres | $zorgverlener/adresgegevens | $zorgverlener/address_information), nf:getGroupingKeyDefault($zorgverlener/telefoon_email | $zorgverlener/contactgegevens | $zorgverlener/contact_information))"/>
     </xsl:function>
     
     <xd:doc>
