@@ -87,7 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="string-length($inputNullFlavor) gt 0">
                 <xsl:attribute name="nullFlavor" select="$inputNullFlavor"/>
             </xsl:when>
-            <xsl:when test="string-length($inputValue) = 0 and string-length($inputNullFlavor)=0">
+            <xsl:when test="string-length($inputValue) = 0 and string-length($inputNullFlavor) = 0">
                 <!-- Do nothing -->
             </xsl:when>
             <xsl:otherwise>
@@ -98,16 +98,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
+        <xd:desc>Generates an element with a boolean value. Also handles nullFlavors. Expected context is ada element.</xd:desc>
+        <xd:param name="xsiType">The xsi type to be included. Defaults to BL.</xd:param>
+        <xd:param name="elemName">The hl7 element name to be outputted</xd:param>
+        <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
     </xd:doc>
-    <xsl:template name="makeBLValue">
+    <xsl:template name="makeBLValue" match="element()" mode="MakeBLValue">
         <xsl:param name="xsiType">BL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
+        <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
         <xsl:variable name="inputValue" select="./@value" as="xs:string?"/>
         <xsl:variable name="inputNullFlavor" select="./@nullFlavor" as="xs:string?"/>
-        <xsl:element name="{$elemName}">
+        <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
@@ -286,13 +288,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="value"/>
     </xd:doc>
     <xsl:template name="makeCodeAttribs">
-        <xsl:param name="code" as="xs:string?" select="./@code"/>
-        <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
-        <xsl:param name="codeSystemName" as="xs:string?" select="./@codeSystemName"/>        
-        <xsl:param name="displayName" as="xs:string?" select="./@displayName"/>
+        <xsl:param name="code" as="xs:string?" select="@code"/>
+        <xsl:param name="codeSystem" as="xs:string?" select="@codeSystem"/>
+        <xsl:param name="codeSystemName" as="xs:string?" select="@codeSystemName"/>
+        <xsl:param name="displayName" as="xs:string?" select="@displayName"/>
         <xsl:param name="originalText"/>
         <xsl:param name="strOriginalText" as="xs:string?"/>
-        <xsl:param name="value" select="./@value"/>
+        <xsl:param name="value" select="@value"/>
         <xsl:choose>
             <xsl:when test="string-length($code) = 0 and (string-length($value) gt 0 or string-length($strOriginalText) gt 0)">
                 <xsl:attribute name="nullFlavor" select="'OTH'"/>
@@ -338,7 +340,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> OriginalText with element() param </xd:desc>
         <xd:param name="originalText"/>
@@ -351,7 +353,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </originalText>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> OriginalText with string param </xd:desc>
         <xd:param name="strOriginalText"/>
@@ -431,18 +433,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
+        <xd:desc>Generates an element with an integer value. Also handles nullFlavors. Expected context is ada element.</xd:desc>
+        <xd:param name="xsiType">The xsi type to be included. Defaults to INT.</xd:param>
+        <xd:param name="elemName">The hl7 element name to be outputted</xd:param>
+        <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
     </xd:doc>
     <xsl:template name="makeINTValue">
         <xsl:param name="xsiType">INT</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
+        <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
+
+        <xsl:variable name="inputValue" select="@value" as="xs:string?"/>
+        <xsl:variable name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
+
+        <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:attribute name="value" select="@value"/>
+            <xsl:if test="string-length($inputNullFlavor) gt 0">
+                <xsl:attribute name="nullFlavor" select="$inputNullFlavor"/>
+            </xsl:if>
+            <xsl:if test="string-length($inputValue) gt 0">
+                <xsl:attribute name="value" select="$inputValue"/>
+            </xsl:if>
         </xsl:element>
     </xsl:template>
 
@@ -829,23 +842,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="inputValue"/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
+        <xd:doc>
+            <xd:desc>Generates an element with a date(time) value. Also handles nullFlavors. Expected context is ada element.</xd:desc>
+            <xd:param name="xsiType">The xsi type to be included. Defaults to BL.</xd:param>
+            <xd:param name="elemName">The hl7 element name to be outputted. Defaults to value.</xd:param>
+            <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
+        </xd:doc>
     </xd:doc>
-    <xsl:template name="makeTSValue">
+    <xsl:template name="makeTSValue" match="element()" mode="MakeBLValue">
         <xsl:param name="inputValue" as="xs:string?" select="./@value"/>
         <!-- Do not supply default for xsiType. Due to the datatypes.xsd schema, you cannot always use xsi:type TS, 
             unless the base type is TS, QTY or ANY -->
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
-        <xsl:element name="{$elemName}">
+        <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
+        <xsl:variable name="inputValue" select="@value" as="xs:string?"/>
+        <xsl:variable name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
+        <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
             <xsl:call-template name="makeTSValueAttr">
                 <xsl:with-param name="inputValue" select="$inputValue"/>
+                <xsl:with-param name="inputNullFlavor" select="$inputNullFlavor"/>
             </xsl:call-template>
         </xsl:element>
     </xsl:template>
@@ -855,7 +874,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="inputValue"/>
     </xd:doc>
     <xsl:template name="makeTSValueAttr">
-        <xsl:param name="inputValue" as="xs:string?" select="./@value"/>
+        <xsl:param name="inputValue" as="xs:string?" select="@value"/>
+        <xsl:param name="inputNullFlavor" as="xs:string?" select="@nullFlavor"/>
         <xsl:choose>
             <xsl:when test="$inputValue">
                 <xsl:attribute name="value">
@@ -863,6 +883,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="dateTime" select="$inputValue"/>
                     </xsl:call-template>
                 </xsl:attribute>
+            </xsl:when>
+            <xsl:when test="$inputNullFlavor">
+                <xsl:attribute name="nullFlavor" select="$inputNullFlavor"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:attribute name="nullFlavor" select="'NI'"/>
@@ -891,7 +914,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
 
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc> addEnding checks baseString if it ends in endString, and if not adds it at the end. </xd:desc>
         <xd:param name="baseString"/>
@@ -900,9 +923,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:addEnding">
         <xsl:param name="baseString"/>
         <xsl:param name="endString"/>
-        
+
         <xsl:choose>
-            <xsl:when test="substring($baseString, string-length($baseString)-string-length($endString)+1, string-length($endString)) eq $endString">
+            <xsl:when test="substring($baseString, string-length($baseString) - string-length($endString) + 1, string-length($endString)) eq $endString">
                 <xsl:value-of select="$baseString"/>
             </xsl:when>
             <xsl:otherwise>
@@ -910,7 +933,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Converts ADA time unit 2 UCUM</xd:desc>
         <xd:param name="ADAtime"/>
@@ -932,7 +955,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:if>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
         <xd:param name="ADAunit"/>
@@ -950,13 +973,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAunit = $ada-unit-cl">cl</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-ml">ml</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-ul">ul</xsl:when>
-                
-                <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))"><xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/></xsl:when>
-                 <xsl:otherwise>
+
+                <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))">
+                    <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>
+                </xsl:when>
+                <xsl:otherwise>
                     <xsl:value-of select="concat('unknown ada unit: ', $ADAunit)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
     </xsl:function>
-    
+
 </xsl:stylesheet>

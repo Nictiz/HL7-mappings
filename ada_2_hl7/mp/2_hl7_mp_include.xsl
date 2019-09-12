@@ -13,6 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#default nf" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../zib2017bbr/2_hl7_zib2017bbr_include.xsl"/>
+    <xsl:import href="../naw/2_hl7_naw_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
@@ -22,11 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes"/>
     
-    <xsl:include href="../hl7/2_hl7_hl7_include.xsl"/>
-    <xsl:include href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
-    <xsl:include href="../zib2017bbr/2_hl7_zib2017bbr_include.xsl"/>
-    <xsl:include href="../naw/2_hl7_naw_include.xsl"/>
-
+ 
     <xd:doc>
         <xd:desc/>
         <xd:param name="hoeveelheid-ada"/>
