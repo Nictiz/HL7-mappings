@@ -167,19 +167,24 @@
                             <participant typeCode="LOC">
                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901124"/>
                                 <participantRole classCode="BIRTHPL">
-                                    <code code="56321000146103" displayName="Birth in hospital (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                    <code code="56321000146103" codeSystem="2.16.840.1.113883.6.96" displayName="Birth in hospital (finding)"/>
                                 </participantRole>
                             </participant>
                             <participant typeCode="LOC">
                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901125"/>
                                 <participantRole classCode="DSDLOC">
-                                    <id extension="234" root="2.16.840.1.113883.2.4.3.22.96.6"/>
-                                    <code code="V5" displayName="Universitair Medisch Centrum" codeSystem="2.16.840.1.113883.2.4.15.1060" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"/>
+                                    <id extension="06010850" root="2.16.840.1.113883.2.4.6.1"/>
                                     <playingEntity>
-                                        <name>Erasmus Universitair Medisch Centrum</name>
+                                        <name>Stichting Langeland Ziekenhuis</name>
                                     </playingEntity>
                                 </participantRole>
                             </participant>
+                            <entryRelationship typeCode="COMP">
+                                <observation classCode="OBS" moodCode="EVN">
+                                    <code code="412726003" codeSystem="2.16.840.1.113883.6.96"/>
+                                    <value xsi:type="PQ" unit="d" value="187"/>
+                                </observation>
+                            </entryRelationship>
                             <entryRelationship typeCode="COMP">
                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.900358"/>
@@ -200,15 +205,21 @@
             </component>
             <component>
                 <section>
-                    <templateId root="2.16.840.1.113883.10.12.701"/>
                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901127"/>
+                    <templateId root="2.16.840.1.113883.10.12.701"/>
                     <code code="109121000146106" displayName="Information about assisted therapy before admission (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                     <title>Ondersteuning opvang van Kernset Neonatologie</title>
-                    <text>Tekstuele weergave van de inhoud van deze sectie</text>
+                    <text/>
                     <entry>
                         <procedure classCode="PROC" moodCode="EVN">
                             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                            <code code="57485005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Oxygen therapy (procedure)"/>
+                            <code code="57485005" codeSystem="2.16.840.1.113883.6.96" displayName="Oxygen therapy (procedure)"/>
+                        </procedure>
+                    </entry>
+                    <entry>
+                        <procedure classCode="PROC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
+                            <code code="33631000146101" codeSystem="2.16.840.1.113883.6.96" displayName="mechanische thoraxcompressies (verrichting)"/>
                         </procedure>
                     </entry>
                     <entry>
@@ -221,18 +232,18 @@
             </component>
             <component>
                 <section>
-                    <templateId root="2.16.840.1.113883.10.12.701"/>
                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901128"/>
+                    <templateId root="2.16.840.1.113883.10.12.701"/>
                     <code code="51849-8" displayName="Admission history and physical note" codeSystem="2.16.840.1.113883.1.6" codeSystemName="LOINC"/>
                     <title>Gegevens bij opname, Kernset Neonatologie</title>
-                    <text>Tekstuele weergave van de inhoud van deze sectie</text>
+                    <text/>
                     <entry typeCode="COMP" contextConductionInd="true">
                         <procedure classCode="PROC" moodCode="EVN">
                             <templateId root="2.16.840.1.113883.2.4.6.10.90.901129"/>
                             <code code="305056002" displayName="Admission procedure (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                             <effectiveTime xsi:type="IVL_TS">
-                                <low value="20190112"/>
-                                <high value="20190123"/>
+                                <low value="20190409"/>
+                                <high value="20190415"/>
                             </effectiveTime>
                             <entryRelationship typeCode="COMP">
                                 <procedure classCode="PROC" moodCode="EVN" negationInd="false">

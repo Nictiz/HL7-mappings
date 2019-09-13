@@ -409,7 +409,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="makeEffectiveTime">
         <xsl:param name="effectiveTime"/>
         <xsl:if test="$effectiveTime[1] instance of element()">
-            <xsl:for-each select="$effectiveTime">
+            <xsl:for-each select="$effectiveTime[@value | @nullFlavor]">
                 <effectiveTime>
                     <xsl:call-template name="makeTSValueAttr"/>
                 </effectiveTime>
@@ -691,17 +691,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="inputValue"/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="unit"/>
+        <xd:desc>Makes an element of type PQ</xd:desc>
+        <xd:param name="inputValue">input value string, default to context/@value</xd:param>
+        <xd:param name="xsiType">the xsi:type for the HL7 element to be generated</xd:param>
+        <xd:param name="elemName">the element name to be created, defaults to value</xd:param>
+        <xd:param name="unit">the unit belonging to value context/@unit</xd:param>
+        <xd:param name="nullFlavor">the nullFlavor context/@nullFlavor</xd:param>
     </xd:doc>
-    <xsl:template name="makePQValue">
-        <xsl:param name="inputValue" select="./@value"/>
-        <xsl:param name="xsiType">PQ</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="unit" select="./@unit"/>
+    <xsl:template name="makePQValue" match="element()" mode="MakePQValue">
+        <xsl:param name="inputValue" select="@value" as="xs:string?"/>
+        <xsl:param name="xsiType" as="xs:string?">PQ</xsl:param>
+        <xsl:param name="elemName" as="xs:string?">value</xsl:param>
+        <xsl:param name="unit" as="xs:string?" select="@unit"/>
+        <xsl:param name="nullFlavor" as="xs:string?" select="@nullFlavor"/>
         <xsl:element name="{$elemName}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
@@ -721,11 +723,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="makePQValueAttribs">
         <xsl:param name="value" select="@value"/>
         <xsl:param name="unit" select="@unit"/>
+        <xsl:param name="nullFlavor" select="@nullFlavor"/>
         <xsl:if test="$value">
             <xsl:attribute name="value" select="$value"/>
         </xsl:if>
         <xsl:if test="$unit">
             <xsl:attribute name="unit" select="$unit"/>
+        </xsl:if>
+        <xsl:if test="$nullFlavor">
+            <xsl:attribute name="nullFlavor" select="$nullFlavor"/>
         </xsl:if>
     </xsl:template>
 

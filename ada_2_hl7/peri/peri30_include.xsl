@@ -55,6 +55,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Handles a Yes/No for a procedure based on ada boolean element</xd:desc>
+        <xd:param name="code">code attribute for value element</xd:param>
+        <xd:param name="codeSystem">codeSystem attribute for value element</xd:param>
+        <xd:param name="codeSystemName">codeSystemName attribute for value element</xd:param>
+        <xd:param name="displayName">displayName attribute for value element</xd:param>
+        <xd:param name="templateId">optional additional templateId to be outputted</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN" match="element()" mode="HandleProcedureYN">
+        <xsl:param name="code" as="xs:string?"/>
+        <xsl:param name="codeSystem" as="xs:string?"/>
+        <xsl:param name="codeSystemName" as="xs:string?"/>
+        <xsl:param name="displayName" as="xs:string?"/>
+        <xsl:param name="templateId" as="xs:string*"/>
+
+        <procedure classCode="PROC" moodCode="EVN">
+            <xsl:choose>
+                <xsl:when test="@value = 'false'">
+                    <xsl:attribute name="negationInd">true</xsl:attribute>
+                </xsl:when>
+                <xsl:when test="@nullFlavor">
+                    <xsl:attribute name="nullFlavor" select="@nullFlavor"/>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:for-each select="$templateId[string-length() gt 0]">
+                <templateId root="{$templateId}"/>
+            </xsl:for-each>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
+            <code code="{$code}" codeSystem="{$codeSystem}">
+                <xsl:if test="$displayName">
+                    <xsl:attribute name="displayName" select="$displayName"/>
+                </xsl:if>
+                <xsl:if test="$codeSystemName">
+                    <xsl:attribute name="codeSystemName" select="$codeSystemName"/>
+                </xsl:if>
+            </code>
+        </procedure>
+    </xsl:template>
+
+
 
     <xd:doc>
         <xd:desc>Kernset Neonatologie CDA Structured Body</xd:desc>
@@ -63,201 +103,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <component>
             <structuredBody>
                 <!-- Maternale gegevens -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901111_20181102115214"/>
+                <component>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901111_20181102115214"/>
+                </component>
                 <!-- Bevallingsgegevens -->
-                <xsl:for-each select="kind/bevallingsgegevens">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901122_20181102155231"/>
+                <xsl:for-each select="kind/bevallingsgegevens[.//(@value | @code | @nullFlavor)]">
+                    <component>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901122_20181102155231"/>
+                    </component>
                 </xsl:for-each>
-                <!-- TODO -->
                 <!-- Ondersteuning opvang -->
-                <component>
-                    <section>
-                        <templateId root="2.16.840.1.113883.10.12.701"/>
-                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901127"/>
-                        <code code="109121000146106" displayName="Information about assisted therapy before admission (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                        <title>Ondersteuning opvang van Kernset Neonatologie</title>
-                        <text>Tekstuele weergave van de inhoud van deze sectie</text>
-                        <!-- verrichtingen -->
-                        <entry>
-                            <procedure classCode="PROC" moodCode="EVN">
-                                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                <!-- VerrichtingType -->
-                                <code code="57485005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Oxygen therapy (procedure)"/>
-                            </procedure>
-                        </entry>
-                        <entry>
-                            <!-- zib template -->
-                            <procedure classCode="PROC" moodCode="EVN">
-                                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                <!-- VerrichtingType -->
-                                <code code="408853006" displayName="Intermittent positive pressure ventilation via endotracheal tube (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                            </procedure>
-                        </entry>
-                    </section>
-                </component>
+                <xsl:for-each select="kind/ondersteuning_opvang[.//(@value | @code | @nullFlavor)]">
+                    <component>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901127_20181102175559"/>
+                    </component>
+                </xsl:for-each>
                 <!-- Gegevens horende bij Opname -->
-                <component>
-                    <section>
-                        <templateId root="2.16.840.1.113883.10.12.701"/>
-                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901128"/>
-                        <code code="51849-8" displayName="Admission history and physical note" codeSystem="2.16.840.1.113883.1.6" codeSystemName="LOINC"/>
-                        <title>Gegevens bij opname, Kernset Neonatologie</title>
-                        <text>Tekstuele weergave van de inhoud van deze sectie</text>
-                        <entry typeCode="COMP" contextConductionInd="true">
-                            <!-- Opname -->
-                            <procedure classCode="PROC" moodCode="EVN">
-                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901129"/>
-                                <code code="305056002" displayName="Admission procedure (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                <effectiveTime xsi:type="IVL_TS">
-                                    <!-- opname datum 	peri30-dataelement-90500 -->
-                                    <low value="20190112"/>
-                                    <!-- ontslag datum  peri30-dataelement-90504-->
-                                    <high value="20190123"/>
-                                </effectiveTime>
-                                <!-- IC opname -->
-                                <entryRelationship typeCode="COMP">
-                                    <procedure classCode="PROC" moodCode="EVN" negationInd="false">
-                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901131"/>
-                                        <code code="305351004" displayName="Admission to intensive care unit (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    </procedure>
-                                </entryRelationship>
-                                <!-- heropname -->
-                                <entryRelationship typeCode="COMP">
-                                    <procedure classCode="PROC" moodCode="EVN" negationInd="true">
-                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901132"/>
-                                        <code code="417005" displayName="Hospital re-admission (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    </procedure>
-                                </entryRelationship>
-                                <!-- herkomst kind -->
-                                <entryRelationship typeCode="COMP">
-                                    <observation classCode="OBS" moodCode="EVN">
-                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901136"/>
-                                        <code code="58881000146108" displayName="Location of child before admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                        <value xsi:type="CD" code="59151000146103" displayName="Via eigen ziekenhuis, verloskunde" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    </observation>
-                                </entryRelationship>
-                                <!-- opname indicaties -->
-                                <entryRelationship typeCode="RSON">
-                                    <observation classCode="OBS" moodCode="EVN">
-                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901130"/>
-                                        <code code="59021000146108" displayName="Reason for admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                        <value xsi:type="CD" code="47340003" displayName="Geboortegewicht (bevinding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    </observation>
-                                </entryRelationship>
-                                <entryRelationship typeCode="RSON">
-                                    <observation classCode="OBS" moodCode="EVN">
-                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901130"/>
-                                        <code code="59021000146108" displayName="Reason for admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                        <value xsi:type="CD" code="366323009" displayName="Finding of length of gestation (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    </observation>
-                                </entryRelationship>
-                                <!-- Lichamelijk onderzoek -->
-                                <entryRelationship typeCode="COMP">
-                                    <procedure classCode="ACT" moodCode="EVN">
-                                        <templateId root="2.16.840.1.113883.10.12.806"/>
-                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901133"/>
-                                        <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                        <!-- Zwangerschapsduur bij geboorte  -->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901216"/>
-                                                <code code="412726003" displayName="Length of gestation at birth" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                                <value xsi:type="PQ" value="277" unit="d"/>
-                                            </observation>
-                                        </entryRelationship>
-                                        <!-- Lichaamslengte -->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
-                                                <code code="8302-2" displayName="Body height" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                                                <effectiveTime value="20180512133106"/>
-                                                <value xsi:type="PQ" unit="cm" value="41"/>
-                                            </observation>
-                                        </entryRelationship>
-                                        <!-- Lichaamsgewicht -->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
-                                                <code code="29463-7" displayName="Body weight" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                                                <effectiveTime value="20180512133207"/>
-                                                <value xsi:type="PQ" value="2457" unit="g"/>
-                                            </observation>
-                                        </entryRelationship>
-                                        <!-- Lichaamstemperatuur -->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901137"/>
-                                                <code code="8310-5" displayName="Body temperature" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                                                <effectiveTime value="20180512133308"/>
-                                                <value xsi:type="PQ" value="36.5" unit="Cel"/>
-                                                <entryRelationship typeCode="REFR">
-                                                    <act classCode="ACT" moodCode="EVN">
-                                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
-                                                        <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" displayName="Annotation comment"/>
-                                                        <text>Toelichting op lichaamstemperatuur</text>
-                                                    </act>
-                                                </entryRelationship>
-                                                <entryRelationship typeCode="COMP">
-                                                    <observation classCode="OBS" moodCode="EVN">
-                                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901138"/>
-                                                        <code code="307047009" displayName="Rectal temperature" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                                    </observation>
-                                                </entryRelationship>
-                                            </observation>
-                                        </entryRelationship>
-                                        <!-- Schedelomvang -->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901119"/>
-                                                <templateId root="2.16.840.1.113883.10.12.803"/>
-                                                <code code="56792006" displayName="Measurement of skull circumference" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                                <effectiveTime value="20180512133507"/>
-                                                <value xsi:type="PQ" value="20" unit="cm"/>
-                                                <methodCode code="31551000146109" displayName="	Measurement of skull circumference with measuring tape" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                            </observation>
-                                        </entryRelationship>
-                                        <!-- Apgar na 1 min -->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.900293"/>
-                                                <code code="9272-6" displayName="1 minute Apgar Score" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                                                <value xsi:type="INT" value="3"/>
-                                            </observation>
-                                        </entryRelationship>
-                                        <!-- Apgar na 5 min -->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.900294"/>
-                                                <code code="9274-2" displayName="5 minute Apgar Score" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                                                <value xsi:type="INT" value="5"/>
-                                            </observation>
-                                        </entryRelationship>
-                                        <!-- NSpH pH van de navelstreng-->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901139"/>
-                                                <code code="56361000146105" displayName="Umbilical arterial cord pH (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                                <value xsi:type="PQ" value="4" unit="[pH]"/>
-                                            </observation>
-                                        </entryRelationship>
-                                        <!-- Base Excess -->
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901140"/>
-                                                <code code="56351000146107" displayName="Umbilical arterial cord base excess (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                                <value xsi:type="PQ" value="200" unit="ml"/>
-                                            </observation>
-                                        </entryRelationship>
-                                    </procedure>
-                                </entryRelationship>
-                            </procedure>
-                        </entry>
-                    </section>
-                </component>
+                <xsl:for-each select="kind/opname_gegevens[.//(@value | @code | @nullFlavor)]">
+                    <component>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901128_20181103142748"/>
+                    </component>
+                </xsl:for-each>
                 <!-- Problematiek kind -->
                 <component>
                     <section>
@@ -1410,47 +1276,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901111_20181102115214" match="kernset_neonatologie" mode="HandleCDAKernsetNeoMaternal">
         <!-- Maternal Information -->
         <xsl:if test="(vrouw | zwangerschapsgegevens)[.//(@value | @code | @nullFlavor)]">
-            <component>
-                <section>
-                    <templateId root="2.16.840.1.113883.2.4.6.10.90.901111"/>
-                    <templateId root="2.16.840.1.113883.10.12.701"/>
-                    <code code="79192-1" displayName="Maternal information section" codeSystem="{$oidLOINC}" codeSystemName="{$oidMap[@oid=$oidLOINC]/@displayName}"/>
-                    <title>Maternale gegevens van Kernset Neonatologie</title>
-                    <!-- textual representation not relevant for Perined -->
-                    <text/>
-                    <!-- Woman -->
-                    <xsl:for-each select="vrouw/demografische_gegevens/patient[.//(@value | @code | @nullFlavor)]">
-                        <subject>
-                            <relatedSubject classCode="PRS">
-                                <xsl:for-each select="identificatienummer">
-                                    <sdtc:id extension="{@value}" root="{@root}"/>
-                                </xsl:for-each>
-                                <code code="NMTH" displayName="natural mother" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode"/>
-                                <!-- Adres -->
-                                <xsl:for-each select=".//adresgegevens[not(adresgegevens)][.//(@value | @code | @nullFlavor)]">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20170602000000">
-                                        <xsl:with-param name="adres" select="."/>
-                                    </xsl:call-template>
-                                </xsl:for-each>
+            <section>
+                <templateId root="2.16.840.1.113883.2.4.6.10.90.901111"/>
+                <templateId root="2.16.840.1.113883.10.12.701"/>
+                <code code="79192-1" displayName="Maternal information section" codeSystem="{$oidLOINC}" codeSystemName="{$oidMap[@oid=$oidLOINC]/@displayName}"/>
+                <title>Maternale gegevens van Kernset Neonatologie</title>
+                <!-- textual representation not relevant for Perined -->
+                <text/>
+                <!-- Woman -->
+                <xsl:for-each select="vrouw/demografische_gegevens/patient[.//(@value | @code | @nullFlavor)]">
+                    <subject>
+                        <relatedSubject classCode="PRS">
+                            <xsl:for-each select="identificatienummer">
+                                <sdtc:id extension="{@value}" root="{@root}"/>
+                            </xsl:for-each>
+                            <code code="NMTH" displayName="natural mother" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode"/>
+                            <!-- Adres -->
+                            <xsl:for-each select=".//adresgegevens[not(adresgegevens)][.//(@value | @code | @nullFlavor)]">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20170602000000">
+                                    <xsl:with-param name="adres" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
 
-                                <!--Telecom details-->
-                                <xsl:call-template name="_CdaTelecom"/>
+                            <!--Telecom details-->
+                            <xsl:call-template name="_CdaTelecom"/>
 
-                                <!-- Person details -->
-                                <subject>
-                                    <xsl:call-template name="_CdaPerson"/>
-                                </subject>
-                            </relatedSubject>
-                        </subject>
-                    </xsl:for-each>
-                    <!-- pregnancy details -->
-                    <xsl:for-each select="zwangerschapsgegevens[.//(@value | @code | @nullFlavor)]">
-                        <entry typeCode="COMP">
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901113_20181102122311"/>
-                        </entry>
-                    </xsl:for-each>
-                </section>
-            </component>
+                            <!-- Person details -->
+                            <subject>
+                                <xsl:call-template name="_CdaPerson"/>
+                            </subject>
+                        </relatedSubject>
+                    </subject>
+                </xsl:for-each>
+                <!-- pregnancy details -->
+                <xsl:for-each select="zwangerschapsgegevens[.//(@value | @code | @nullFlavor)]">
+                    <entry typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901113_20181102122311"/>
+                    </entry>
+                </xsl:for-each>
+            </section>
         </xsl:if>
     </xsl:template>
 
@@ -1458,64 +1322,287 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Make section for neonatal delivery information based on ada bevallingsgegevens</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901122_20181102155231" match="bevallingsgegevens" mode="HandleCDAKernsetNeoDelivery">
-        <component>
-            <section>
-                <templateId root="2.16.840.1.113883.2.4.6.10.90.901122"/>
-                <templateId root="2.16.840.1.113883.10.12.701"/>
-                <code code="15508-5" displayName="Labor and delivery records" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                <title>Neonatale bevallingsgegevens van Kernset Neonatologie</title>
-                <text/>
-                <entry>
-                    <procedure classCode="ACT" moodCode="EVN">
-                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901123"/>
-                        <templateId root="2.16.840.1.113883.10.12.806"/>
-                        <code code="Baring" displayName="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" codeSystemName="PerinatologyProceduresPRN"/>
-                        <!-- Locatie partus -->
-                        <!-- Thuis -->
-                        <!--<participant typeCode="LOC">
-                                <participantRole classCode="BIRTHPL">
-                                    <code code="169813005" codeSystem="2.16.840.1.113883.6.96" displayName="Thuis"/>
-                                </participantRole>
-                            </participant>-->
-                        <!-- ziekenhuis -->
+        <section>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901122"/>
+            <templateId root="2.16.840.1.113883.10.12.701"/>
+            <code code="15508-5" displayName="Labor and delivery records" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+            <title>Neonatale bevallingsgegevens van Kernset Neonatologie</title>
+            <text/>
+            <entry>
+                <procedure classCode="ACT" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.6.10.90.901123"/>
+                    <templateId root="2.16.840.1.113883.10.12.806"/>
+                    <code code="Baring" displayName="Baring" codeSystem="2.16.840.1.113883.2.4.3.22.1.3" codeSystemName="PerinatologyProceduresPRN"/>
+                    <!-- Locatie partus -->
+                    <!-- Thuis -->
+                    <xsl:for-each select="locatie_partus[@code]">
                         <participant typeCode="LOC">
-                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901124"/>
-                            <participantRole classCode="BIRTHPL">
-                                <code code="56321000146103" displayName="Birth in hospital (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                            </participantRole>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901124_20181102163242"/>
                         </participant>
-                        <!-- ziekenhuis baring -->
+                    </xsl:for-each>
+                    <!-- ziekenhuis baring -->
+                    <xsl:for-each select="ziekenhuis_baring//zorgaanbieder[not(zorgaanbieder)][.//(@value | @code | @nullFlavor)]">
                         <participant typeCode="LOC">
-                            <templateId root="2.16.840.1.113883.2.4.6.10.90.901125"/>
-                            <participantRole classCode="DSDLOC">
-                                <!-- LVR id ziekenhuis -->
-                                <id extension="234" root="2.16.840.1.113883.2.4.3.22.96.6"/>
-                                <code code="V5" displayName="Universitair Medisch Centrum" codeSystem="2.16.840.1.113883.2.4.15.1060" codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"/>
-                                <playingEntity>
-                                    <name>Erasmus Universitair Medisch Centrum</name>
-                                </playingEntity>
-                            </participantRole>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901125_20181102172304"/>
                         </participant>
-                        <!-- zwangerschapsduur -->
-                        
-                        <!-- aantal geboren kinderen -->
-                        <xsl:for-each select="omvang_meerlingzwangerschap[@value | @nullFlavor]">
-                            <entryRelationship typeCode="COMP">
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900358_20161206130005"/>
-                            </entryRelationship>
-                        </xsl:for-each>
-                        <!-- Type partus -->
-                        <xsl:for-each select="type_partus[@code | @nullFlavor]">
-                            <entryRelationship typeCode="COMP">
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810"/>
-                            </entryRelationship>
-                        </xsl:for-each>
-                    </procedure>
-                </entry>
-            </section>
-        </component>
+                    </xsl:for-each>
+                    <!-- zwangerschapsduur -->
+                    <xsl:for-each select="zwangerschapsduur[@value | @nullFlavor]">
+                        <entryRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901216_20190531145950"/>
+                        </entryRelationship>
+                    </xsl:for-each>
+                    <!-- aantal geboren kinderen -->
+                    <xsl:for-each select="omvang_meerlingzwangerschap[@value | @nullFlavor]">
+                        <entryRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900358_20161206130005"/>
+                        </entryRelationship>
+                    </xsl:for-each>
+                    <!-- Type partus -->
+                    <xsl:for-each select="type_partus[@code | @nullFlavor]">
+                        <entryRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810"/>
+                        </entryRelationship>
+                    </xsl:for-each>
+                </procedure>
+            </entry>
+        </section>
 
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>locatie_partus participantRole</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901124_20181102163242" match="locatie_partus" mode="HandleBirthTypeLocation">
+        <templateId root="2.16.840.1.113883.2.4.6.10.90.901124"/>
+        <participantRole classCode="BIRTHPL">
+            <xsl:call-template name="makeCode"/>
+        </participantRole>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>ziekenhuis_baring participantRole</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901125_20181102172304" match="zorgaanbieder" mode="HandleBirthLocation">
+        <templateId root="2.16.840.1.113883.2.4.6.10.90.901125"/>
+        <participantRole classCode="DSDLOC">
+            <!--  id ziekenhuis -->
+            <xsl:for-each select="zorgaanbieder_identificatienummer[@value | @nullFlavor]">
+                <xsl:call-template name="makeIIid"/>
+            </xsl:for-each>
+            <xsl:for-each select="organisatie_type[@code | @nullFlavor]">
+                <xsl:call-template name="makeCode"/>
+            </xsl:for-each>
+            <xsl:for-each select="organisatie_naam[@value]">
+                <playingEntity>
+                    <name>
+                        <xsl:value-of select="@value"/>
+                    </name>
+                </playingEntity>
+            </xsl:for-each>
+        </participantRole>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Ondersteuning opvang van Kernset Neonatologie</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901127_20181102175559">
+        <section>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901127"/>
+            <templateId root="2.16.840.1.113883.10.12.701"/>
+            <code code="109121000146106" displayName="Information about assisted therapy before admission (record artifact)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <title>Ondersteuning opvang van Kernset Neonatologie</title>
+            <text/>
+            <!-- verrichtingen -->
+            <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
+                <entry>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
+                </entry>
+            </xsl:for-each>
+            <entry>
+                <!-- zib template -->
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
+                    <!-- VerrichtingType -->
+                    <code code="408853006" displayName="Intermittent positive pressure ventilation via endotracheal tube (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                </procedure>
+            </entry>
+        </section>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Ondersteuning opvang van Kernset Neonatologie</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901128_20181103142748" match="opname_gegevens" mode="HandleAdmissionDetailsSection">
+        <section>
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901128"/>
+            <templateId root="2.16.840.1.113883.10.12.701"/>
+            <code code="51849-8" displayName="Admission history and physical note" codeSystem="2.16.840.1.113883.1.6" codeSystemName="LOINC"/>
+            <title>Gegevens bij opname, Kernset Neonatologie</title>
+            <text/>
+            <entry typeCode="COMP" contextConductionInd="true">
+                <!-- Opname -->
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.6.10.90.901129"/>
+                    <code code="305056002" displayName="Admission procedure (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    <effectiveTime xsi:type="IVL_TS">
+                        <!-- opname datum 	peri30-dataelement-90500 -->
+                        <xsl:for-each select="opname/opname_datum[@value | @nullFlavor]">
+                            <xsl:call-template name="makeTSValue">
+                                <xsl:with-param name="elemName">low</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- ontslag datum  peri30-dataelement-90504-->
+                        <xsl:for-each select="opname/ontslag_datum[@value | @nullFlavor]">
+                            <xsl:call-template name="makeTSValue">
+                                <xsl:with-param name="elemName">high</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </effectiveTime>
+
+                    <!-- IC opname -->
+                    <xsl:for-each select="opname/ic_opname[@value | @nullFlavor]">
+                        <entryRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
+                                <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.901131</xsl:with-param>
+                                <xsl:with-param name="code">305351004</xsl:with-param>
+                                <xsl:with-param name="codeSystem" select="$oidSNOMEDCT"/>
+                                <xsl:with-param name="codeSystemName" select="$oidMap[@oid = $oidSNOMEDCT]/@displayName"/>
+                                <xsl:with-param name="displayName">Admission to intensive care unit (procedure)</xsl:with-param>
+                            </xsl:call-template>
+                        </entryRelationship>
+                    </xsl:for-each>
+                    <!-- heropname -->
+                    <xsl:for-each select="opname/heropname[@value | @nullFlavor]">
+                        <entryRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
+                                <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.901132</xsl:with-param>
+                                <xsl:with-param name="code">417005</xsl:with-param>
+                                <xsl:with-param name="codeSystem" select="$oidSNOMEDCT"/>
+                                <xsl:with-param name="codeSystemName" select="$oidMap[@oid = $oidSNOMEDCT]/@displayName"/>
+                                <xsl:with-param name="displayName">Hospital re-admission (procedure)</xsl:with-param>
+                            </xsl:call-template>
+                        </entryRelationship>
+                    </xsl:for-each>
+
+                    <!-- herkomst kind -->
+                    <xsl:for-each select="opname/herkomst_kind[@code | @nullFlavor]">
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901136"/>
+                                <code code="58881000146108" displayName="Location of child before admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                <xsl:call-template name="makeCDValue"/>
+                            </observation>
+                        </entryRelationship>
+                    </xsl:for-each>
+                    <!-- opname indicaties -->
+                    <xsl:for-each select="opname/opname_indicatie[@code | @nullFlavor]">
+                        <entryRelationship typeCode="RSON">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901130"/>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
+                                <code code="59021000146108" displayName="Reason for admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                <xsl:call-template name="makeCDValue"/>
+                            </observation>
+                        </entryRelationship>
+                    </xsl:for-each>
+
+                    <!-- Lichamelijk onderzoek -->
+                    <xsl:for-each select="onderzoek">
+                        <entryRelationship typeCode="COMP">
+                            <procedure classCode="ACT" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901133"/>
+                                <templateId root="2.16.840.1.113883.10.12.806"/>
+                                <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                <!-- Lichaamslengte -->
+                                <xsl:for-each select="lichaamslengte[.//(@value | @code | @nullFlavor)]">
+                                    <entryRelationship typeCode="COMP">
+                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000"/>
+                                    </entryRelationship>
+                                </xsl:for-each>
+                                <!-- TODO start here 20190913 -->
+                                <!-- Lichaamsgewicht -->
+                                <entryRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
+                                        <code code="29463-7" displayName="Body weight" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                                        <effectiveTime value="20180512133207"/>
+                                        <value xsi:type="PQ" value="2457" unit="g"/>
+                                    </observation>
+                                </entryRelationship>
+                                <!-- Lichaamstemperatuur -->
+                                <entryRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901137"/>
+                                        <code code="8310-5" displayName="Body temperature" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                                        <effectiveTime value="20180512133308"/>
+                                        <value xsi:type="PQ" value="36.5" unit="Cel"/>
+                                        <entryRelationship typeCode="REFR">
+                                            <act classCode="ACT" moodCode="EVN">
+                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                                                <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" displayName="Annotation comment"/>
+                                                <text>Toelichting op lichaamstemperatuur</text>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship typeCode="COMP">
+                                            <observation classCode="OBS" moodCode="EVN">
+                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901138"/>
+                                                <code code="307047009" displayName="Rectal temperature" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                            </observation>
+                                        </entryRelationship>
+                                    </observation>
+                                </entryRelationship>
+                                <!-- Schedelomvang -->
+                                <entryRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901119"/>
+                                        <templateId root="2.16.840.1.113883.10.12.803"/>
+                                        <code code="56792006" displayName="Measurement of skull circumference" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                        <effectiveTime value="20180512133507"/>
+                                        <value xsi:type="PQ" value="20" unit="cm"/>
+                                        <methodCode code="31551000146109" displayName="	Measurement of skull circumference with measuring tape" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                    </observation>
+                                </entryRelationship>
+                                <!-- Apgar na 1 min -->
+                                <entryRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.900293"/>
+                                        <code code="9272-6" displayName="1 minute Apgar Score" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                                        <value xsi:type="INT" value="3"/>
+                                    </observation>
+                                </entryRelationship>
+                                <!-- Apgar na 5 min -->
+                                <entryRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.900294"/>
+                                        <code code="9274-2" displayName="5 minute Apgar Score" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                                        <value xsi:type="INT" value="5"/>
+                                    </observation>
+                                </entryRelationship>
+                                <!-- NSpH pH van de navelstreng-->
+                                <entryRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901139"/>
+                                        <code code="56361000146105" displayName="Umbilical arterial cord pH (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                        <value xsi:type="PQ" value="4" unit="[pH]"/>
+                                    </observation>
+                                </entryRelationship>
+                                <!-- Base Excess -->
+                                <entryRelationship typeCode="COMP">
+                                    <observation classCode="OBS" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901140"/>
+                                        <code code="56351000146107" displayName="Umbilical arterial cord base excess (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                        <value xsi:type="PQ" value="200" unit="ml"/>
+                                    </observation>
+                                </entryRelationship>
+                            </procedure>
+                        </entryRelationship>
+                    </xsl:for-each>
+                </procedure>
+            </entry>
+        </section>
+    </xsl:template>
+
 
     <xd:doc>
         <xd:desc>Handle Kernset Neonatology pregnancy details, context is ada element for transaction kernset_neonatologie</xd:desc>
@@ -1679,4 +1766,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Make observation for length of gestation at birth</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901216_20190531145950" match="zwangerschapsduur" mode="HandleBirthPregDuration">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901216"/>
+            <code code="412726003" displayName="Length of gestation at birth" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <xsl:call-template name="makePQValue"/>
+        </observation>
+    </xsl:template>
+
 </xsl:stylesheet>

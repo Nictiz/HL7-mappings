@@ -23,8 +23,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900200_20120808000000">
         <observation classCode="OBS" moodCode="EVN">
-            <code code="412726003" codeSystem="{$oidSNOMEDCT}"/>
-            <!-- moet in dagen in bericht -->
+            <code code="412726003" displayName="Length of gestation at birth" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+             <!-- moet in dagen -->
             <value xsi:type="PQ" unit="d">
                 <xsl:attribute name="value" select="@value"/>
             </value>

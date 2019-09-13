@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
-<!--    <xsl:import href="../hl7/2_hl7_hl7_include.xsl"/>-->
+    <xsl:import href="../hl7/2_hl7_hl7_include.xsl"/>
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
 
@@ -405,6 +405,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>procedure_activity</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000" match="verrichting" mode="HandleProcedureActivity">
+        <procedure classCode="PROC" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
+            <!-- VerrichtingType -->
+            <xsl:for-each select="verrichting_type">
+                <xsl:call-template name="makeCode"/>
+            </xsl:for-each>
+        </procedure>
+
+    </xsl:template>
+    <xd:doc>
         <xd:desc>problem observation diagnose based on ada element probleem, defaults to problem type diagnosis</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000" match="probleem" mode="HandleProblemObservationDiagnose">
@@ -412,17 +425,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
             <xsl:choose>
                 <xsl:when test="probleem_type[@code | @nullFlavor]">
-                    <xsl:call-template name="makeCode"/>                          
+                    <xsl:call-template name="makeCode"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- default to diagnose -->
                     <code code="282291009" displayName="Diagnose" codeSystem="2.16.840.1.113883.6.96"/>
                 </xsl:otherwise>
             </xsl:choose>
-            
+
             <xsl:for-each select="probleem_naam[.//(@value | @code | @nullFlavor)]">
                 <xsl:call-template name="makeCDValue"/>
-               </xsl:for-each>
+            </xsl:for-each>
             <!--  verificatiestatus -->
             <xsl:for-each select="verificatie_status[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="SPRT">
@@ -468,23 +481,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </observation>
     </xsl:template>
-    <!-- MP CDA Body Height -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000">
-        <xsl:param name="effectiveTime"/>
-        <xsl:param name="PQvalue"/>
+
+    <xd:doc>
+        <xd:desc> MP CDA Body Height based on ada lichaamslengte, only zib elements are lengte_datum_tijd and lengte_waarde are supported at this point in time</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000" match="lichaamslengte" mode="HandleBodyHeight">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
-            <code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Body height"/>
+            <code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="{$oidMap[@oid=$oidLOINC]/@displayName}" displayName="Body height"/>
             <xsl:call-template name="makeEffectiveTime">
-                <xsl:with-param name="effectiveTime" select="$effectiveTime"/>
+                <xsl:with-param name="effectiveTime" select="lengte_datum_tijd"/>
             </xsl:call-template>
-            <xsl:if test="$PQvalue[1] instance of element()">
-                <xsl:for-each select="$PQvalue">
-                    <xsl:call-template name="makePQValue"/>
-                </xsl:for-each>
-            </xsl:if>
+            <xsl:for-each select="lengte_waarde[@value | @nullFlavor]">
+                <xsl:call-template name="makePQValue"/>
+            </xsl:for-each>
         </observation>
     </xsl:template>
+    
     <!-- part Encounter reference -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947">
         <entryRelationship typeCode="REFR">
