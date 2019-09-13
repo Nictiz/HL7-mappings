@@ -2598,10 +2598,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- stoptype mapt bij medicatiegebruik op status -->
                 <xsl:choose>
                     <xsl:when test="./stoptype/@code = '1'">
-                        <status value="stopped"/>
+                        <status value="on-hold"/>
                     </xsl:when>
                     <xsl:when test="./stoptype/@code = '2'">
-                        <status value="on-hold"/>
+                        <status value="stopped"/>
                     </xsl:when>
                     <xsl:when test="./stoptype/@code">
                         <status value="unknown-stoptype"/>

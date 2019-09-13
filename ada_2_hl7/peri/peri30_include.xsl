@@ -65,8 +65,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Maternale gegevens -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901111_20181102115214"/>
                 <!-- Bevallingsgegevens -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901122_20181102155231"/>
-                 <!-- TODO -->
+                <xsl:for-each select="kind/bevallingsgegevens">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901122_20181102155231"/>
+                </xsl:for-each>
+                <!-- TODO -->
                 <!-- Ondersteuning opvang -->
                 <component>
                     <section>
@@ -1451,7 +1453,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </component>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Make section for neonatal delivery information based on ada bevallingsgegevens</xd:desc>
     </xd:doc>
@@ -1494,22 +1496,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </playingEntity>
                             </participantRole>
                         </participant>
+                        <!-- zwangerschapsduur -->
+                        
+                        <!-- aantal geboren kinderen -->
+                        <xsl:for-each select="omvang_meerlingzwangerschap[@value | @nullFlavor]">
+                            <entryRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900358_20161206130005"/>
+                            </entryRelationship>
+                        </xsl:for-each>
                         <!-- Type partus -->
-                        <entryRelationship typeCode="COMP">
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810"/>
-                            <observation classCode="OBS" moodCode="EVN">
-                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
-                                <code code="364336006" displayName="Pattern of delivery (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                <value xsi:type="CE" code="177184002" displayName="Delivery normal (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                            </observation>
-                        </entryRelationship>
+                        <xsl:for-each select="type_partus[@code | @nullFlavor]">
+                            <entryRelationship typeCode="COMP">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901107_20180228162810"/>
+                            </entryRelationship>
+                        </xsl:for-each>
                     </procedure>
                 </entry>
             </section>
         </component>
-        
+
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Handle Kernset Neonatology pregnancy details, context is ada element for transaction kernset_neonatologie</xd:desc>
+    </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901113_20181102122311" match="kernset_neonatologie" mode="HandleCDAKernsetNeoPregnancy">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901113"/>
@@ -1590,7 +1600,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901120"/>
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                         <code code="434601000124108" displayName="Steroid therapy for fetal lung maturation (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                       <xsl:choose>
+                        <xsl:choose>
                             <xsl:when test="not(@code = '260413007')">
                                 <methodCode>
                                     <xsl:call-template name="makeCodeAttribs"/>

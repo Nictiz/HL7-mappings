@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="mbh"/>
         
         <xsl:variable name="entries" as="element(f:entry)*">
-            <xsl:for-each select="$bouwstenen, $commonEntries">
+            <xsl:for-each select="$bouwstenen-907, $commonEntries">
                 <xsl:apply-templates select="." mode="doSearchModeInclude"/>
             </xsl:for-each>
         </xsl:variable>

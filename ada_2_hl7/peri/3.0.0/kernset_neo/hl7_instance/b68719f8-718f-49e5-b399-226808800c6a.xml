@@ -158,7 +158,7 @@
                     <templateId root="2.16.840.1.113883.10.12.701"/>
                     <code code="15508-5" displayName="Labor and delivery records" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
                     <title>Neonatale bevallingsgegevens van Kernset Neonatologie</title>
-                    <text>Tekstuele weergave van de inhoud van deze sectie</text>
+                    <text/>
                     <entry>
                         <procedure classCode="ACT" moodCode="EVN">
                             <templateId root="2.16.840.1.113883.2.4.6.10.90.901123"/>
@@ -182,9 +182,16 @@
                             </participant>
                             <entryRelationship typeCode="COMP">
                                 <observation classCode="OBS" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.90.900358"/>
+                                    <code code="NBorn16" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Aantal geboren kinderen"/>
+                                    <value xsi:type="INT" value="2"/>
+                                </observation>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901107"/>
-                                    <code code="364336006" displayName="Pattern of delivery (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    <value xsi:type="CE" code="177184002" displayName="Delivery normal (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                    <code code="364336006" codeSystem="2.16.840.1.113883.6.96" displayName="Type partus"/>
+                                    <value xsi:type="CE" code="274130007" codeSystem="2.16.840.1.113883.6.96" displayName="Emergency cesarian section (procedure)"/>
                                 </observation>
                             </entryRelationship>
                         </procedure>

@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="mbh" as="element()*" select="$adaTransaction/medicamenteuze_behandeling"/>
         
         <xsl:variable name="entries" as="element(f:entry)*">
-            <xsl:copy-of select="$bouwstenen"/>
+            <xsl:copy-of select="$bouwstenen-907"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
             <xsl:copy-of select="$commonEntries"/>
         </xsl:variable>

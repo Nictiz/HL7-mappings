@@ -308,17 +308,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900200_20120808000000">
-        <!-- Zwangerschapsduur -->
-        <observation classCode="OBS" moodCode="EVN">
-            <code code="412726003" codeSystem="{$oidSNOMEDCT}"/>
-            <!-- moet in dagen in bericht -->
-            <value xsi:type="PQ" unit="d">
-                <xsl:attribute name="value" select="./@value"/>
-            </value>
-        </observation>
-    </xsl:template>
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20091001000000">
+   <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20091001000000">
         <!--Geboorte placenta -->
         <observation classCode="OBS" moodCode="EVN">
             <code code="AfterBirthMethod" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Geboorte placenta"/>
@@ -5669,17 +5659,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
             <code code="PartusNr" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Partusnummer"/>
         </act>
-    </xsl:template>
-    <!-- Aantal geboren kinderen -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900358_20161206130005">
-        <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.6.10.90.900358"/>
-            <code code="NBorn16" codeSystem="2.16.840.1.113883.2.4.4.13" displayName="Aantal geboren kinderen"/>
-            <!-- Item(s) :: aantal_geboren_kinderen-->
-            <xsl:call-template name="makeINTValue">
-                <xsl:with-param name="elemName">value</xsl:with-param>
-            </xsl:call-template>
-        </observation>
     </xsl:template>
     <!-- Ligging bij geboorte -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900359_20161206134724">
