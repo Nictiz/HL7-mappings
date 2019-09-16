@@ -462,23 +462,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
 
-
-
-    <!-- MP CDA Body Weight -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000">
-        <xsl:param name="effectiveTime"/>
-        <xsl:param name="PQvalue"/>
+    <xd:doc>
+        <xd:desc> MP CDA Body Weight based on ada lichaamsgewicht, only zib elements are gewicht_datum_tijd and gewicht_waarde are supported at this point in time</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000" match="lichaamsgewicht" mode="HandleBodyWeight">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
             <code code="29463-7" codeSystem="{$oidLOINC}" displayName="Body Weight"/>
-            <xsl:call-template name="makeEffectiveTime">
-                <xsl:with-param name="effectiveTime" select="$effectiveTime"/>
-            </xsl:call-template>
-            <xsl:if test="$PQvalue[1] instance of element()">
-                <xsl:for-each select="$PQvalue">
-                    <xsl:call-template name="makePQValue"/>
-                </xsl:for-each>
-            </xsl:if>
+            <xsl:for-each select="gewicht_datum_tijd[@value | @nullFlavor]">
+                <xsl:call-template name="makeEffectiveTime">
+                    <xsl:with-param name="effectiveTime" select="."/>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="gewicht_waarde[@value | @nullFlavor]">
+                <xsl:call-template name="makePQValue"/>
+            </xsl:for-each>
         </observation>
     </xsl:template>
 
@@ -489,15 +487,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
             <code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="{$oidMap[@oid=$oidLOINC]/@displayName}" displayName="Body height"/>
-            <xsl:call-template name="makeEffectiveTime">
-                <xsl:with-param name="effectiveTime" select="lengte_datum_tijd"/>
-            </xsl:call-template>
+            <xsl:for-each select="lengte_datum_tijd[@value | @nullFlavor]">
+                <xsl:call-template name="makeEffectiveTime">
+                    <xsl:with-param name="effectiveTime" select="."/>
+                </xsl:call-template>
+            </xsl:for-each>
             <xsl:for-each select="lengte_waarde[@value | @nullFlavor]">
                 <xsl:call-template name="makePQValue"/>
             </xsl:for-each>
         </observation>
     </xsl:template>
-    
+
     <!-- part Encounter reference -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947">
         <entryRelationship typeCode="REFR">
@@ -604,6 +604,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <code code="ONESELF" displayName="Self" codeSystem="{$oidHL7RoleCode}" codeSystemName="RoleCode"/>
     </xsl:template>
+
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.55_20190708135422" match="schedelomvang" mode="HandleHeadCircumference">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.55"/>
+            <code code="363812007" displayName="Head circumference" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <xsl:for-each select="schedelomvang_datum_tijd[@value | @nullFlavor]">
+                <xsl:call-template name="makeTSValue">
+                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="schedelomvang_waarde[@value | @nullFlavor]">
+                <xsl:call-template name="makePQValue"/>
+            </xsl:for-each>
+            <xsl:for-each select="schedelomvang_meetmethode[@value | @nullFlavor]">
+                <xsl:call-template name="makeCode">
+                    <xsl:with-param name="elemName">methodCode</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <!-- todo toelichting -->
+        </observation>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc> MP CDA Body Temperature based on ada lichaamstemperatuur</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.56_20190916154439" match="lichaamstemperatuur" mode="HandleBodyTemperature">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.56"/>
+            <code code="8310-5" displayName="Body temperature" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+            <xsl:for-each select="temperatuur_datum_tijd[@value | @nullFlavor]">
+                <xsl:call-template name="makeTSValue">
+                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="temperatuur_waarde[@value | @nullFlavor]">
+                <xsl:call-template name="makePQValue"/>
+            </xsl:for-each>
+            <entryRelationship typeCode="REFR">
+                <act classCode="ACT" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                    <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" displayName="Annotation comment"/>
+                    <text>Toelichting op lichaamstemperatuur</text>
+                </act>
+            </entryRelationship>
+            <methodCode code="307047009" codeSystem="2.16.840.1.113883.6.96" displayName="Rectal temperature"/>
+
+        </observation>
+
+    </xsl:template>
+
 
 
 </xsl:stylesheet>

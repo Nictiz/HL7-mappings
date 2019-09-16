@@ -103,9 +103,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <component>
             <structuredBody>
                 <!-- Maternale gegevens -->
-                <component>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901111_20181102115214"/>
-                </component>
+                <xsl:if test="vrouw/demografische_gegevens/patient[.//(@value | @code | @nullFlavor)] | zwangerschapsgegevens[.//(@value | @code | @nullFlavor)]">
+                    <component>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901111_20181102115214"/>
+                    </component>
+                </xsl:if>
                 <!-- Bevallingsgegevens -->
                 <xsl:for-each select="kind/bevallingsgegevens[.//(@value | @code | @nullFlavor)]">
                     <component>
@@ -1514,44 +1516,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <templateId root="2.16.840.1.113883.2.4.6.10.90.901133"/>
                                 <templateId root="2.16.840.1.113883.10.12.806"/>
                                 <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                <!-- Lichaamslengte -->
+                                <!-- lichaamslengte -->
                                 <xsl:for-each select="lichaamslengte[.//(@value | @code | @nullFlavor)]">
                                     <entryRelationship typeCode="COMP">
                                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000"/>
                                     </entryRelationship>
                                 </xsl:for-each>
-                                <!-- TODO start here 20190913 -->
-                                <!-- Lichaamsgewicht -->
-                                <entryRelationship typeCode="COMP">
-                                    <observation classCode="OBS" moodCode="EVN">
-                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
-                                        <code code="29463-7" displayName="Body weight" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                                        <effectiveTime value="20180512133207"/>
-                                        <value xsi:type="PQ" value="2457" unit="g"/>
-                                    </observation>
-                                </entryRelationship>
+                                <!-- lichaamsgewicht -->
+                                <xsl:for-each select="lichaamsgewicht[.//(@value | @code | @nullFlavor)]">
+                                    <entryRelationship typeCode="COMP">
+                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000"/>
+                                    </entryRelationship>
+                                </xsl:for-each>
+
                                 <!-- Lichaamstemperatuur -->
-                                <entryRelationship typeCode="COMP">
-                                    <observation classCode="OBS" moodCode="EVN">
-                                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901137"/>
-                                        <code code="8310-5" displayName="Body temperature" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                                        <effectiveTime value="20180512133308"/>
-                                        <value xsi:type="PQ" value="36.5" unit="Cel"/>
-                                        <entryRelationship typeCode="REFR">
-                                            <act classCode="ACT" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
-                                                <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" displayName="Annotation comment"/>
-                                                <text>Toelichting op lichaamstemperatuur</text>
-                                            </act>
-                                        </entryRelationship>
-                                        <entryRelationship typeCode="COMP">
-                                            <observation classCode="OBS" moodCode="EVN">
-                                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901138"/>
-                                                <code code="307047009" displayName="Rectal temperature" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                            </observation>
-                                        </entryRelationship>
-                                    </observation>
-                                </entryRelationship>
+                                <xsl:for-each select="lichaamstemperatuur[.//(@value | @code | @nullFlavor)]">
+                                    <entryRelationship typeCode="COMP">
+                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.56_20190916154439"/>
+                                    </entryRelationship>
+                                </xsl:for-each>
+
                                 <!-- Schedelomvang -->
                                 <entryRelationship typeCode="COMP">
                                     <observation classCode="OBS" moodCode="EVN">

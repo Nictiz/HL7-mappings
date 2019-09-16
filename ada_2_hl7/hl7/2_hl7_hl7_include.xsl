@@ -256,12 +256,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="originalText"/>
+        <xd:desc>Makes a HL7 code type element based on ada element with datatype code</xd:desc>
+        <xd:param name="originalText">Optional to supply originalText with OTH code</xd:param>
+        <xd:param name="elemName">The HL7 xml element name. Defaults to code.</xd:param>
     </xd:doc>
     <xsl:template name="makeCode">
         <xsl:param name="originalText"/>
-        <code>
+        <xsl:param name="elemName" as="xs:string?">code</xsl:param>
+
+        <xsl:element name="{$elemName}">
             <xsl:choose>
                 <xsl:when test="$originalText instance of element()">
                     <xsl:call-template name="makeCodeAttribs">
@@ -274,7 +277,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
-        </code>
+        </xsl:element>
     </xsl:template>
 
     <xd:doc>
@@ -728,7 +731,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:attribute name="value" select="$value"/>
         </xsl:if>
         <xsl:if test="$unit">
-            <xsl:attribute name="unit" select="$unit"/>
+            <xsl:attribute name="unit" select="nf:convert_ADA_unit2UCUM($unit)"/>
         </xsl:if>
         <xsl:if test="$nullFlavor">
             <xsl:attribute name="nullFlavor" select="$nullFlavor"/>

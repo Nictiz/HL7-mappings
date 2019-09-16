@@ -284,6 +284,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
+    <!-- MP CDA Body Weight -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000">
+        <xsl:param name="effectiveTime"/>
+        <xsl:param name="PQvalue"/>
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
+            <code code="29463-7" codeSystem="{$oidLOINC}" displayName="Body Weight"/>
+            <xsl:call-template name="makeEffectiveTime">
+                <xsl:with-param name="effectiveTime" select="$effectiveTime"/>
+            </xsl:call-template>
+            <xsl:if test="$PQvalue[1] instance of element()">
+                <xsl:for-each select="$PQvalue">
+                    <xsl:call-template name="makePQValue"/>
+                </xsl:for-each>
+            </xsl:if>
+        </observation>
+    </xsl:template>
+    
     <!-- MP CDA Body Height -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000">
         <xsl:param name="effectiveTime"/>
