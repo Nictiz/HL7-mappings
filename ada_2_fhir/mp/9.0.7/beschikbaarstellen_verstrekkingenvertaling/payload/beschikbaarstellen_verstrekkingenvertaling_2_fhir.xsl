@@ -13,7 +13,6 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <xsl:import href="../../../2_fhir_mp_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -34,8 +33,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients-612/f:entry , $practitioners/f:entry , $organizations-612/f:entry , $practitionerRoles/f:entry , $products-612/f:entry , $locations/f:entry"/>
+    <xsl:variable name="commonEntries" as="element(f:entry)*">
+        <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
@@ -56,10 +55,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
             <type value="searchset"/>
             <total value="{count($bouwstenen-verstrekkingenvertaling)}"/>
-            <xsl:copy-of select="$bouwstenen-verstrekkingenvertaling"/>
+            <xsl:apply-templates select="$bouwstenen-verstrekkingenvertaling" mode="ResultOutput"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, locations -->
-            <xsl:copy-of select="$commonEntries"/>
-        </Bundle>
+            <xsl:apply-templates select="$commonEntries" mode="ResultOutput"/>
+           </Bundle>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:Organization/f:meta/f:profile" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:Patient/f:meta/f:profile" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Patient</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:Medication/f:meta/f:profile" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
+    
+    
+    
+
+
 
 </xsl:stylesheet>

@@ -28,10 +28,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <code rootoid="{$oidGStandaardPRK}"/>
         <code rootoid="{$oidGStandaardZInummer}"/>
     </xsl:variable>
-    <xsl:variable name="patients-612" as="element()*">
-        <!-- Patients -->
+ <!--   <xsl:variable name="patients-612" as="element()*">
+        <!-\- Patients -\->
         <xsl:for-each-group select="//patient" group-by="nf:getGroupingKeyDefault(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-patient xmlns="">
                 <group-key xmlns="">
@@ -45,8 +45,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-patient>
         </xsl:for-each-group>
     </xsl:variable>
-    <xsl:variable name="organizations-612" as="element()*">
-        <!-- Zorgaanbieders -->
+ -->  <!-- <xsl:variable name="organizations-612" as="element()*">
+        <!-\- Zorgaanbieders -\->
         <xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)]" group-by="concat(nf:ada-za-id(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@root, nf:ada-za-id(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
-    <!--<xsl:variable name="related-persons" as="element()*">
+   --> <!--<xsl:variable name="related-persons" as="element()*">
         <!-\- related-persons -\->
         <xsl:for-each-group select="//informant/persoon[.//@value]" group-by="nf:getGroupingKeyDefault(.)">
             <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
@@ -146,11 +146,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:variable>
     
-    <xsl:variable name="products-612" as="element()*">
-        <!-- Products -->
+  <!--  <xsl:variable name="products-612" as="element()*">
+        <!-\- Products -\->
         <xsl:for-each-group select="//product" group-by="nf:getProductGroupingKey(./product_code)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
                 <xsl:variable name="entry-fullurl">
@@ -176,7 +176,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <!-- should not happen, but let's fall back on the grouping-key() -->
+                                <!-\- should not happen, but let's fall back on the grouping-key() -\->
                                 <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
                             </xsl:otherwise>
                         </xsl:choose>
@@ -211,7 +211,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
-    <xsl:variable name="locations" as="element()*">
+ -->   <xsl:variable name="locations" as="element()*">
         <!-- Locaties -->
         <xsl:for-each-group select="//afleverlocatie" group-by="nf:getGroupingKeyDefault(.)">
             <unieke-locatie xmlns="">
@@ -1718,7 +1718,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="./../../patient" mode="doPatientReference-2.1"/>
                 </subject>
                 <!-- verstrekker -->
-                <xsl:apply-templates select="./verstrekker[.//(@value | @code)]" mode="doPerformerActor"/>
+                <xsl:apply-templates select="verstrekker[.//(@value | @code)]" mode="doPerformerActor"/>
                 <!-- gebruiksinstructie -->
                 <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
             </MedicationDispense>
@@ -2100,7 +2100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="./../../patient" mode="doPatientReference-2.1"/>
                 </subject>
                 <!-- verstrekker -->
-                <xsl:apply-templates select="./verstrekker[.//(@value | @code)]" mode="doPerformerActor"/>
+                <xsl:apply-templates select="verstrekker[.//(@value | @code)]" mode="doPerformerActor"/>
                 <!-- relatie naar verstrekkingsverzoek -->
                 <xsl:for-each select="./relatie_naar_verstrekkingsverzoek/identificatie[@value]">
                     <authorizingPrescription>
@@ -3502,6 +3502,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
 
         </entry>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Default copy template for outputting the results </xd:desc>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="ResultOutput"/>
+        </xsl:copy>
     </xsl:template>
 
 </xsl:stylesheet>

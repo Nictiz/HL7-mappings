@@ -20,7 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Creates organization reference</xd:desc>
     </xd:doc>
     <xsl:template name="organization-reference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationReference-2.0">
         <xsl:variable name="theIdentifier" select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]"/>

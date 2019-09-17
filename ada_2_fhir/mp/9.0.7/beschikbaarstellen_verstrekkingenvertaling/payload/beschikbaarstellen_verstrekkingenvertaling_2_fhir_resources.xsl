@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="usecase">mp9</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients-612/f:entry , $practitioners/f:entry , $organizations-612/f:entry , $practitionerRoles/f:entry , $products-612/f:entry , $locations/f:entry"/>
+        <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
@@ -69,10 +69,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
     </xd:doc>
     <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-DispenseToFHIRConversion-', '-')"/>
+        <xsl:variable name="zib-name">
+            <xsl:choose>
+                <xsl:when test="./local-name() = 'Organization'">mp612-Organization</xsl:when>
+                <xsl:when test="./local-name() = 'Patient'">mp612-Patient</xsl:when>
+                <xsl:when test="./local-name() = 'Medication'">mp612-Product</xsl:when>
+                <xsl:otherwise><xsl:value-of select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-DispenseToFHIRConversion-', '-')"/></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
-            <xsl:copy-of select="."/>
+            <xsl:apply-templates select="." mode="ResultOutput"/>
         </xsl:result-document>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:Organization/f:meta/f:profile" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:Patient/f:meta/f:profile" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Patient</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:Medication/f:meta/f:profile" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+
 
 </xsl:stylesheet>
