@@ -173,7 +173,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <act classCode="ACT" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
             <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" displayName="Annotation comment"/>
-            <text><xsl:value-of select="@value"/></text>
+            <text>
+                <xsl:value-of select="@value"/>
+            </text>
         </act>
 
     </xsl:template>
@@ -413,15 +415,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>procedure_activity</xd:desc>
+        <xd:desc>procedure_activity based on ada verrichting, only supports type and start/end date</xd:desc>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000" match="verrichting" mode="HandleProcedureActivity">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000" match="verrichting | procedure" mode="HandleProcedureActivity">
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
             <!-- VerrichtingType -->
-            <xsl:for-each select="verrichting_type">
+            <xsl:for-each select="verrichting_type | procedure_type">
                 <xsl:call-template name="makeCode"/>
             </xsl:for-each>
+            <xsl:variable name="theStartDate" select="verrichting_start_datum | procedure_start_date"/>
+            <xsl:variable name="theEndDate" select="verrichting_eind_datum | procedure_end_date"/>
+            <xsl:if test="$theStartDate[@value | @nullFlavor] or $theEndDate[@value | @nullFlavor]">
+                <effectiveTime xsi:type="IVL_TS">
+                    <xsl:for-each select="$theStartDate[@value | @nullFlavor]">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">low</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="$theEndDate[@value | @nullFlavor]">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">high</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </effectiveTime>
+            </xsl:if>
         </procedure>
 
     </xsl:template>
@@ -431,6 +449,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000" match="probleem" mode="HandleProblemObservationDiagnose">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
+
+            <!-- probleem type -->
             <xsl:choose>
                 <xsl:when test="probleem_type[@code | @nullFlavor]">
                     <xsl:call-template name="makeCode"/>
@@ -440,6 +460,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <code code="282291009" displayName="Diagnose" codeSystem="2.16.840.1.113883.6.96"/>
                 </xsl:otherwise>
             </xsl:choose>
+
+            <!-- start en einddatum -->
+            <xsl:variable name="theStartDate" select="probleem_begin_datum | problem_start_date"/>
+            <xsl:variable name="theEndDate" select="probleem_eind_datum | problem_end_date"/>
+            <xsl:if test="$theStartDate[@value | @nullFlavor] or $theEndDate[@value | @nullFlavor]">
+                <effectiveTime xsi:type="IVL_TS">
+                    <xsl:for-each select="$theStartDate[@value | @nullFlavor]">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">low</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="$theEndDate[@value | @nullFlavor]">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">high</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </effectiveTime>
+            </xsl:if>
+
 
             <xsl:for-each select="probleem_naam[.//(@value | @code | @nullFlavor)]">
                 <xsl:call-template name="makeCDValue"/>
@@ -464,6 +503,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:attribute name="codeSystemName" select="@codeSystemName"/>
                             </xsl:if>
                         </value>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+            
+            <!-- because we need a "union" template which caters for all use cases some concepts have been added here -->
+            <!-- this is not yet in the zib template (there is no such thing as 'union' template yet), but it does help to put it here for conversion -->
+            <!-- aanvang -->
+            <xsl:for-each select="aanvang | aanvang_pneumothorax[@code | @nullFlavor]">
+                <entryRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901155"/>
+                        <code code="58891000146105" displayName="Location of patient at start of disorder (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeCDValue"/>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+            
+            <!-- early onset (infectieus probleem neonatologie) -->
+            <xsl:for-each select="early_onset[@value | @nullFlavor]">
+                <entryRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901223"/>
+                        <code code="303114002" displayName="Early neonatal period (qualifier value)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeBLValue"/>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+            
+            <!-- Microorganisme  -->
+            <xsl:for-each select="microorganisme[@code | @nullFlavor]">
+                <entryRelationship typeCode="CAUS">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
+                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeCDValue"/>
                     </observation>
                 </entryRelationship>
             </xsl:for-each>
@@ -516,7 +590,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entryRelationship typeCode="REFR">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                 </entryRelationship>
-            </xsl:for-each>            
+            </xsl:for-each>
         </observation>
     </xsl:template>
 
@@ -654,7 +728,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </entryRelationship>
             </xsl:for-each>
         </observation>
-     </xsl:template>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc> MP CDA Body Temperature based on ada lichaamstemperatuur</xd:desc>
