@@ -14,8 +14,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:include href="../../util/constants.xsl"/>
-    <xsl:include href="../../util/uuid.xsl"/>
+    <xsl:import href="../../util/constants.xsl"/>
+    <xsl:import href="../../util/uuid.xsl"/>
 
     <xd:doc>
         <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and calculated precision <xd:p>Calculation is done by calling nf:determine_date_precision($dateTime)</xd:p>
