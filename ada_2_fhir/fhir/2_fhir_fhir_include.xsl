@@ -23,10 +23,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../fhir/nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="../fhir/nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="../fhir/nl-core-organization-2.0.xsl"/>
+    <xsl:import href="../../util/constants.xsl"/>
+    <xsl:import href="../../util/datetime.xsl"/>
+    <xsl:import href="../../util/units.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-    <xsl:include href="../../util/constants.xsl"/>
-    <xsl:include href="../../util/datetime.xsl"/>
-    <xsl:include href="../../util/units.xsl"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>

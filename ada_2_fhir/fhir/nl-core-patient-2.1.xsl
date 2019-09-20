@@ -12,13 +12,19 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
+
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- import because we want to be able to override the param for macAddress for UUID generation -->
-    <!--<xsl:import href="2_fhir_fhir_include.xsl"/>-->
+    <!--    <xsl:import href="2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    <xd:doc>
+        <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-patient-2.1</xd:desc>
+        <xd:param name="referById">Optional parameter to indicate whether to output resource logical id. Defaults to false.</xd:param>
+        <xd:param name="patientTokensXml">Optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
+    </xd:doc>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    
+    <xsl:param name="patientTokensXml" select="document('QualificationTokens.xml')"/>
+
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
@@ -38,14 +44,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </identifier>
             </xsl:when>
         </xsl:choose>
-        
+
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with a P{atient resource</xd:desc>
+        <xd:desc>Produces a FHIR entry element with a Patient resource</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
         <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.Patient.id</xd:param>
@@ -57,8 +63,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="fhir-resource-id">
             <xsl:if test="$referById">
                 <xsl:choose>
-                    <xsl:when test="not($uuid) and (naamgegevens[1]//*[not(name()='naamgebruik')]/@value | name_information[1]//*[not(name()='name_usage')]/@value)">
-                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name()='naamgebruik')]/@value | name_information[1]//*[not(name()='name_usage')]/@value, ' '))))"/>
+                    <xsl:when test="not($uuid) and string-length(nf:get-resourceid-from-token(.)) gt 0">
+                        <xsl:value-of select="nf:get-resourceid-from-token(.)"/>
+                    </xsl:when>
+                    <xsl:when test="not($uuid) and (naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value)">
+                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))))"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
@@ -82,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </entry>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="patient-id">Patient.id value</xd:param>
@@ -166,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
                 </xsl:call-template>
                 <!-- maritalStatus -->
-                
+
                 <!-- multipleBirth -->
                 <xsl:for-each select="meerling_indicator | multiple_birth_indicator">
                     <multipleBirthBoolean>
@@ -176,13 +185,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </multipleBirthBoolean>
                 </xsl:for-each>
                 <!-- photo -->
-                
+
                 <!-- contact -->
-                
+
                 <!-- animal -->
-                
+
                 <!-- communication -->
-                
+
                 <!-- generalPractitioner -->
                 <xsl:if test="$generalpractitioner-ref">
                     <generalPractitioner>
@@ -205,4 +214,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Patient>
         </xsl:for-each>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Searches for resourceid using the input ada patient in global param patientTokensXml (configuration document)and returns it when found. 
+            First attempt on bsn. Second attempt on familyName. Then gives up.</xd:desc>
+        <xd:param name="adaPatient">Input ada patient</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-resourceid-from-token" as="xs:string?">
+        <xsl:param name="adaPatient" as="element(patient)?"/>
+
+        <xsl:variable name="adaBsn" select="normalize-space($adaPatient/identificatienummer[@root = $oidBurgerservicenummer]/@value)"/>
+        <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[bsn/normalize-space(text()) = $adaBsn]/resourceId[1]"/>
+
+        <xsl:choose>
+            <xsl:when test="$tokenResourceId">
+                <xsl:value-of select="$tokenResourceId"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- not found using bsn, let's try family name -->
+                <xsl:variable name="adaEigenAchternaam" select="upper-case(normalize-space($adaPatient/naamgegevens/geslachtsnaam/achternaam/@value))"/>
+                <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[contains(familyName/upper-case(normalize-space(text())), $adaEigenAchternaam)]/resourceId[1]"/>
+
+                <xsl:choose>
+                    <xsl:when test="$tokenResourceId">
+                        <xsl:value-of select="$tokenResourceId"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- return nothing -->
+                    </xsl:otherwise>
+                </xsl:choose>
+
+            </xsl:otherwise>
+        </xsl:choose>
+
+    </xsl:function>
 </xsl:stylesheet>
