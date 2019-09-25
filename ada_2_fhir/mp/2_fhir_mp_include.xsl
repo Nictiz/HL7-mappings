@@ -431,7 +431,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
-                    <xsl:call-template name="zib-MedicationAgreement-2.0">
+                    <xsl:call-template name="zib-MedicationAgreement-2.2">
                         <xsl:with-param name="medicatieafspraak" select="."/>
                     </xsl:call-template>
                 </resource>
@@ -1099,14 +1099,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Helper template to create extension with FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
     </xd:doc>
     <xsl:template name="reference-practitionerrole" match="zorgverlener" mode="doPractitionerRoleReference-907">
-        <!--<xsl:variable name="display" as="xs:string?" select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName, ' || ')))"/>-->
         <extension url="{$urlExtNLPractitionerRoleReference}">
             <valueReference>
                 <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
             </valueReference>
         </extension>
-        <!--<display value="{$display}"/>-->
-    </xsl:template>
+        
+        <!-- additional display element -->
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPractitionerRole(.)"/>
+        <xsl:variable name="theGroupElement" select="$practitionerRoles[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+            <display value="{$theGroupElement/reference-display}"/>
+        </xsl:if>
+      </xsl:template>
 
     <xd:doc>
         <xd:desc>Helper template to create FHIR performer.actor, context should be ada verstrekker element</xd:desc>
