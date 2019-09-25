@@ -114,9 +114,9 @@
                             <apgar_score_totaal value="7" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90278"/>
                         </apgar_score_na_5_min>
                         <!--                        <nsp_h_arterieel conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90490" nullFlavor="UNK"/>-->
-                        <nsp_h_arterieel value="7.4" unit="[pH]" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90490"/>
+                        <nsp_h_arterieel value="7.4" unit="pH" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90490"/>
                         <!--                        <be conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90491" nullFlavor="UNK"/>-->
-                        <be value="150" unit="ml" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90491"/>
+                        <be value="150" unit="mmol/L" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90491"/>
                     </onderzoek>
                 </opname_gegevens>
                 <problematiek_kind conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90354">
@@ -179,13 +179,11 @@
                         <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90391">
                             <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90395" value="7" code="45007003" codeSystem="2.16.840.1.113883.6.96" displayName="Low blood pressure (disorder)"/>
                         </probleem>
-                        <!-- ligatie pda staat er dubbel in.... -->
-                        <!--<verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90374">
+                        <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90374">
                             <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90381" value="1" code="175212004" codeSystem="2.16.840.1.113883.6.96" displayName="Ligation of ductus arteriosus (procedure)"/>
-                        </verrichting>-->
+                        </verrichting>
                         <hypotensie_indien_minimaal_inotropie value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90514"/>
                         <medicatie_bij_pda value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90517"/>
-                        <ligatie_pda value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90518"/>
                         <ritmestoornissen_waarvoor_behandeling value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90519"/>
                         <cor_vitium_waarvoor_prostin value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90520"/>
                     </circulatoir>
@@ -249,16 +247,16 @@
                         <hypoglycemie_waarvoor_glucose_infuus value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90999"/>                        
                     </metabool_en_endocrien>
                     <neurologisch conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90325">
-                        <problemen_aanwezigq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91098"/>
+                        <problemen_aanwezigq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91099"/>
                         <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90690">
                             <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90694" value="1" code="703300001" codeSystem="2.16.840.1.113883.6.96" displayName="hypoxisch-ischemische encefalopathie (aandoening)"/>
+                            <ernst_encefalopathie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90724" value="1" code="255604002" codeSystem="2.16.840.1.113883.6.96" displayName="Licht"/>
                             <verificatie_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90698" value="1" code="415684004" codeSystem="2.16.840.1.113883.6.96" displayName="Werk"/>
                         </probleem>
                         <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91010">
                             <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91033" value="1" code="241449005" codeSystem="2.16.840.1.113883.6.96" displayName="US scan of head (procedure)"/>                            
                         </verrichting>
-                        <ernst_encefalopathie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90724" value="1" code="255604002" codeSystem="2.16.840.1.113883.6.96" displayName="Licht"/>
-                    </neurologisch>
+                     </neurologisch>
                     <zintuigen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90326">
                         <problemen_aanwezigq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91100"/>
                         <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90725">
@@ -278,7 +276,8 @@
                             <bera_lateraliteit conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90755" value="1" code="7771000" codeSystem="2.16.840.1.113883.6.96" displayName="Links"/>
                         </bera>
                     </zintuigen>
-                    <congenitale_aandoeningen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90327">                      
+                    <congenitale_aandoeningen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90327">   
+                        <problemen_aanwezigq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91101"/>
                         <aangeboren_anatomische_afwijkingen_majorsyndromen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90353">
                             <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90820">
                                 <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90824" value="1" code="88425004" codeSystem="2.16.840.1.113883.6.96" displayName="Congenital anomaly of nervous system (disorder)"/>

@@ -13,11 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../hl7/2_hl7_hl7_include.xsl"/> 
+<!--    <xsl:import href="../hl7/2_hl7_hl7_include.xsl"/> -->
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
 
-    
-    
     <xd:doc>
         <xd:desc>Zwangerschapsduur bij geboorte</xd:desc>
     </xd:doc>

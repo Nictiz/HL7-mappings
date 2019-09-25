@@ -986,6 +986,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAunit = $ada-unit-druppel">[drp]</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-degrees-celsius">Cel</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-pH">[pH]</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-mmol-l">mmol/L</xsl:when>
                 
                 <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))">
                     <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>

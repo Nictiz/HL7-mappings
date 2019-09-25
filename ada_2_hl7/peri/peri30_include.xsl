@@ -1200,24 +1200,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                             </component>
                         </xsl:for-each>
-
-                        <!-- Ernst encefalopathie -->
-                        <xsl:for-each select="ernst_encefalopathie[@code | @nullFlavor]">
-                            <component>
-                                <observation classCode="OBS" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.90.901185"/>
-                                    <code code="282291009" displayName="Diagnose" codeSystem="2.16.840.1.113883.6.96"/>
-                                    <value xsi:type="CD" code="81308009" displayName="encefalopathie (aandoening)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    <entryRelationship typeCode="SUBJ" inversionInd="true">
-                                        <observation classCode="OBS" moodCode="EVN">
-                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.18"/>
-                                            <code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
-                                            <xsl:call-template name="makeCDValue"/>
-                                        </observation>
-                                    </entryRelationship>
-                                </observation>
-                            </component>
-                        </xsl:for-each>
                     </organizer>
                 </entry>
             </xsl:for-each>
@@ -1239,8 +1221,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="problemen_aanwezigq[@value | @nullFlavor]">
                             <component>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000_YN">
-                                    <xsl:with-param name="code">58771000146102</xsl:with-param>
-                                    <xsl:with-param name="displayName">Congenital disease (record artifact)</xsl:with-param>
+                                    <xsl:with-param name="code">66091009</xsl:with-param>
+                                    <xsl:with-param name="displayName">Congenital disease (disorder)</xsl:with-param>
                                 </xsl:call-template>
                             </component>
                         </xsl:for-each>
@@ -1289,7 +1271,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
             <id extension="someUniqueID" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
-            <code code="TODO" displayName="Document met Kernset Neonatologie" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+            <code code="59268-3" displayName="Neonatal care report" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
             <title>Kernset Neonatologie</title>
             <xsl:for-each select="documentgegevens/document_datum[@value | @nullFlavor]">
                 <xsl:call-template name="makeTSValue">
@@ -1333,7 +1315,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901109_20181102113603"/>
 
         </ClinicalDocument>
-
 
     </xsl:template>
 

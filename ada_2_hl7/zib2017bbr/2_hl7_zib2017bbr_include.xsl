@@ -13,7 +13,6 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
-    <xsl:import href="../hl7/2_hl7_hl7_include.xsl"/>
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
 
@@ -506,7 +505,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </observation>
                 </entryRelationship>
             </xsl:for-each>
-            
+
             <!-- because we need a "union" template which caters for all use cases some concepts have been added here -->
             <!-- this is not yet in the zib template (there is no such thing as 'union' template yet), but it does help to put it here for conversion -->
             <!-- aanvang -->
@@ -519,7 +518,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </observation>
                 </entryRelationship>
             </xsl:for-each>
-            
+
+            <!-- ernst -->
+            <!-- Ernst encefalopathie -->
+            <xsl:for-each select="(ernst | ernst_encefalopathie)[@code | @nullFlavor]">
+                <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.18"/>
+                        <code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                        <xsl:call-template name="makeCDValue"/>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+
+
             <!-- early onset (infectieus probleem neonatologie) -->
             <xsl:for-each select="early_onset[@value | @nullFlavor]">
                 <entryRelationship typeCode="COMP">
@@ -530,7 +542,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </observation>
                 </entryRelationship>
             </xsl:for-each>
-            
+
             <!-- Microorganisme  -->
             <xsl:for-each select="microorganisme[@code | @nullFlavor]">
                 <entryRelationship typeCode="CAUS">
