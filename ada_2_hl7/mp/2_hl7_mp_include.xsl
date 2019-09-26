@@ -23,8 +23,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes"/>
-    
- 
+
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="hoeveelheid-ada"/>
@@ -225,7 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="startdatum-dosering-1"/>
@@ -301,7 +301,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </observation>
     </xsl:template>
-    
+
     <!-- MP CDA Body Height -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000">
         <xsl:param name="effectiveTime"/>
@@ -319,7 +319,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </observation>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> therapeuticAgentOf - Medication Administration Request </xd:desc>
         <xd:param name="medicatieafspraak"/>
@@ -993,7 +993,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <xsl:for-each select="zorgaanbieder">
             <assignedPerson>
                 <representedOrganization>
-                    <xsl:for-each select="(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)">
+                    <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
                         <xsl:call-template name="makeIIid"/>
                     </xsl:for-each>
                     <xsl:for-each select="organisatie_naam">
@@ -1483,7 +1483,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <xsl:comment>The message template (9043) incorrectly defines representedOrganization, however the xsd only accepts Organization</xsl:comment>
             <xsl:comment>Closed warnings schematron messages for this element should be ignored.</xsl:comment>
             <Organization classCode="ORG" determinerCode="INSTANCE">
-                <xsl:for-each select="(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)[@value]">
+                <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)[@value]">
                     <xsl:call-template name="makeIIValue">
                         <xsl:with-param name="elemName">id</xsl:with-param>
                         <xsl:with-param name="xsiType" select="''"/>
@@ -2340,7 +2340,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9089_20160621134042">
         <!--MP CDA Organization id name-->
-        <xsl:for-each select="./(zorgaanbieder_identificatie_nummer|zorgaanbieder_identificatienummer)">
+        <xsl:for-each select="./(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9112_20160710120116"/>
         </xsl:for-each>
         <xsl:for-each select="./organisatie_naam[.//(@value | @nullFlavor)]">
@@ -2818,10 +2818,10 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <xd:desc> MP CDA Zorgverlener vanaf 9.0.7. Context moet ada zorgverlener zijn.</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20181205174044">
-        <xsl:for-each select="(zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)[@value]">
+        <xsl:for-each select="(zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)[@value]">
             <xsl:call-template name="makeIIid"/>
         </xsl:for-each>
-        <xsl:if test="not((zorgverlener_identificatie_nummer|zorgverlener_identificatienummer)[@value])">
+        <xsl:if test="not((zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)[@value])">
             <!-- een id wegschrijven met nullFlavor -->
             <id nullFlavor="NI"/>
         </xsl:if>
@@ -2830,15 +2830,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 <xsl:call-template name="makeCodeAttribs"/>
             </code>
         </xsl:for-each>
-        <xsl:for-each select="((zorgverlener_naam/naamgegevens)|(.//naamgegevens[not(child::naamgegevens)]))[.//(@value | @code | @nullFlavor)]">
+        <xsl:for-each select="((zorgverlener_naam/naamgegevens) | (.//naamgegevens[not(child::naamgegevens)]))[.//(@value | @code | @nullFlavor)]">
             <assignedPerson>
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
                     <xsl:with-param name="naamgegevens" select="."/>
                 </xsl:call-template>
             </assignedPerson>
         </xsl:for-each>
-        <xsl:for-each select="./(zorgaanbieder/zorgaanbieder|zorgaanbieder[not(zorgaanbieder)])[.//(@value | @code | @nullFlavor)]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000"/>
+        <xsl:for-each select="./(zorgaanbieder/zorgaanbieder | zorgaanbieder[not(zorgaanbieder)])[.//(@value | @code | @nullFlavor)]">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000"/>
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
@@ -3140,13 +3140,13 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9149_20160725134340">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9149_20160725134340" match="doseerinstructie">
         <!-- MP CDA Dosering -->
         <substanceAdministration classCode="SBADM" moodCode="RQO">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
-            <xsl:if test="not(../../herhaalperiode_cyclisch_schema[.//(@value | @code)])">
+            <xsl:if test="not(../herhaalperiode_cyclisch_schema[.//(@value | @code)])">
                 <!-- Alleen bij een NIET cyclisch schema -->
-                <xsl:for-each select="../doseerduur[.//(@value | @code)]">
+                <xsl:for-each select="./doseerduur[.//(@value | @code)]">
                     <!-- TODO: ondersteuning voor 'tot nader order' - niet urgent omdat dit in ADA niet kan worden opgegeven -->
                     <effectiveTime xsi:type="IVL_TS">
                         <width>
@@ -3155,25 +3155,47 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     </effectiveTime>
                 </xsl:for-each>
             </xsl:if>
-            <xsl:for-each select="./toedieningsschema[.//(@value | @code)]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9076_20160619200644"/>
-            </xsl:for-each>
-            <xsl:for-each select="./keerdosis[.//(@value | @code)]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
-            </xsl:for-each>
-            <xsl:for-each select="./toedieningssnelheid[.//(@value | @code)]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9150_20160726150449"/>
-            </xsl:for-each>
-            <xsl:for-each select="./zo_nodig/maximale_dosering[.//(@value | @code)]">
-                <maxDoseQuantity>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9064_20160601000000"/>
-                </maxDoseQuantity>
-            </xsl:for-each>
 
+            <!-- cyclisch schema, doseerinstructie zonder toedieningsschema -->
+
+            <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code)] and not(./dosering/toedieningsschema[.//(@value | @code)])">
+                <!-- pauze periode -->
+                <xsl:for-each select="./doseerduur[.//(@value | @code)]">
+                    <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                        <hl7nl:phase>
+                            <hl7nl:width xsi:type="hl7nl:PQ">
+                                <xsl:call-template name="makeTimePQValueAttribs"/>
+                            </hl7nl:width>
+                        </hl7nl:phase>
+                        <xsl:for-each select="../../herhaalperiode_cyclisch_schema">
+                            <hl7nl:period>
+                                <xsl:call-template name="makeTimePQValueAttribs"/>
+                            </hl7nl:period>
+                        </xsl:for-each>
+                    </effectiveTime>
+                </xsl:for-each>
+            </xsl:if>
+
+            <xsl:for-each select="./dosering">
+                <xsl:for-each select="./toedieningsschema[.//(@value | @code)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9076_20160619200644"/>
+                </xsl:for-each>
+                <xsl:for-each select="keerdosis[.//(@value | @code)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
+                </xsl:for-each>
+                <xsl:for-each select="toedieningssnelheid[.//(@value | @code)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9150_20160726150449"/>
+                </xsl:for-each>
+                <xsl:for-each select="zo_nodig/maximale_dosering[.//(@value | @code)]">
+                    <maxDoseQuantity>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9064_20160601000000"/>
+                    </maxDoseQuantity>
+                </xsl:for-each>
+            </xsl:for-each>
             <!-- Altijd verplicht op deze manier aanwezig in de HL7 -->
             <consumable xsi:nil="true"/>
 
-            <xsl:for-each select="./zo_nodig/criterium[.//(@value | @code)]">
+            <xsl:for-each select="./dosering/zo_nodig/criterium[.//(@value | @code)]">
                 <precondition>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9182_20170601000000">
                         <xsl:with-param name="code" select="./code/@code"/>
@@ -3362,15 +3384,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </xsl:for-each>
 
                 <!--Doseerinstructie-->
-                <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering">
+                <xsl:for-each select="./gebruiksinstructie/doseerinstructie[.//(@value | @code | @nullFlavor)]">
                     <entryRelationship typeCode="COMP">
-                        <xsl:for-each select="../volgnummer">
+                        <xsl:for-each select="volgnummer">
                             <sequenceNumber>
                                 <xsl:attribute name="value" select="./@value"/>
                             </sequenceNumber>
                         </xsl:for-each>
                         <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
-                        <xsl:if test="not(../volgnummer)">
+                        <xsl:if test="not(volgnummer)">
                             <sequenceNumber>
                                 <xsl:attribute name="value" select="1"/>
                             </sequenceNumber>
@@ -4430,15 +4452,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </entryRelationship>
             </xsl:for-each>
             <!--Doseerinstructie-->
-            <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
+            <xsl:for-each select="./gebruiksinstructie/doseerinstructie[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:for-each select="../volgnummer[.//(@value | @code)]">
+                    <xsl:for-each select="../../volgnummer[.//(@value | @code)]">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="./@value"/>
                         </sequenceNumber>
                     </xsl:for-each>
                     <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
-                    <xsl:if test="not(../volgnummer[.//(@value | @code)])">
+                    <xsl:if test="not(../../volgnummer[.//(@value | @code)])">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="1"/>
                         </sequenceNumber>
@@ -4490,31 +4512,31 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9234_20181204140853">
         <xsl:param name="ma"/>
         <xsl:for-each select="$ma">
-            <xsl:for-each select="./stoptype[.//(@value | @code)]">
+            <xsl:for-each select="stoptype[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9067_20160617102209"/>
                 </entryRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./(reden_afspraak|reden_wijzigen_of_staken)[.//(@value | @code)]">
+            <xsl:for-each select="(reden_afspraak | reden_wijzigen_of_staken)[.//(@value | @code)]">
                 <entryRelationship typeCode="RSON">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9270_20181218111500"/>
                 </entryRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./reden_van_voorschrijven/probleem/probleem_naam[.//(@value | @code)]">
+            <xsl:for-each select="reden_van_voorschrijven/probleem/probleem_naam[.//(@value | @code)]">
                 <entryRelationship typeCode="RSON">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9160_20161109134526">
                         <xsl:with-param name="originalText" select="."/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
+            <xsl:for-each select="gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
                 <entryRelationship typeCode="SPRT">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818">
                         <xsl:with-param name="ada-aanvullende-instructie" select="."/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./lichaamslengte[.//(@value | @code)]">
+            <xsl:for-each select="lichaamslengte[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000">
                         <xsl:with-param name="effectiveTime" select="./lengte_datum_tijd"/>
@@ -4522,7 +4544,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./lichaamsgewicht[.//(@value | @code)]">
+            <xsl:for-each select="lichaamsgewicht[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000">
                         <xsl:with-param name="effectiveTime" select="./gewicht_datum_tijd"/>
@@ -4530,26 +4552,26 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./aanvullende_informatie[.//(@value | @code)]">
+            <xsl:for-each select="aanvullende_informatie[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9177_20170523084315"/>
                 </entryRelationship>
             </xsl:for-each>
-            <xsl:for-each select="./toelichting[.//(@value | @code)]">
+            <xsl:for-each select="toelichting[.//(@value | @code)]">
                 <entryRelationship typeCode="SUBJ" inversionInd="true">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9069_20160617163405"/>
                 </entryRelationship>
             </xsl:for-each>
             <!--Doseerinstructie-->
-            <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
+            <xsl:for-each select="gebruiksinstructie/doseerinstructie[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:for-each select="../volgnummer[.//(@value | @code)]">
+                    <xsl:for-each select="volgnummer[.//(@value | @code)]">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="./@value"/>
                         </sequenceNumber>
                     </xsl:for-each>
                     <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
-                    <xsl:if test="not(../volgnummer[.//(@value | @code)])">
+                    <xsl:if test="not(volgnummer[.//(@value | @code)])">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="1"/>
                         </sequenceNumber>
@@ -4815,7 +4837,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <xd:desc> MP CDA author of informant patient </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9188_20170825000000">
-        <xsl:for-each select="//patient/(patient_identificatienummer|identificatienummer)">
+        <xsl:for-each select="//patient/(patient_identificatienummer | identificatienummer)">
             <xsl:call-template name="makeIIid"/>
         </xsl:for-each>
         <code code="ONESELF" displayName="Self" codeSystem="{$oidHL7RoleCode}" codeSystemName="HL7 Role code"/>
@@ -4978,15 +5000,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
 
             <!--Doseerinstructie-->
-            <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering">
+            <xsl:for-each select="./gebruiksinstructie/doseerinstructie">
                 <entryRelationship typeCode="COMP">
-                    <xsl:for-each select="../volgnummer">
+                    <xsl:for-each select="volgnummer">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="./@value"/>
                         </sequenceNumber>
                     </xsl:for-each>
                     <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
-                    <xsl:if test="not(../volgnummer)">
+                    <xsl:if test="not(volgnummer)">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="1"/>
                         </sequenceNumber>
@@ -5305,15 +5327,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </entryRelationship>
             </xsl:for-each>
             <!--Doseerinstructie-->
-            <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering">
+            <xsl:for-each select="./gebruiksinstructie/doseerinstructie">
                 <entryRelationship typeCode="COMP">
-                    <xsl:for-each select="../volgnummer">
+                    <xsl:for-each select="volgnummer">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="./@value"/>
                         </sequenceNumber>
                     </xsl:for-each>
                     <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
-                    <xsl:if test="not(../volgnummer)">
+                    <xsl:if test="not(volgnummer)">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="1"/>
                         </sequenceNumber>
@@ -5460,15 +5482,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </entryRelationship>
             </xsl:for-each>
             <!--Doseerinstructie-->
-            <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering">
+            <xsl:for-each select="./gebruiksinstructie/doseerinstructie">
                 <entryRelationship typeCode="COMP">
-                    <xsl:for-each select="../volgnummer">
+                    <xsl:for-each select="volgnummer">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="./@value"/>
                         </sequenceNumber>
                     </xsl:for-each>
                     <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
-                    <xsl:if test="not(../volgnummer)">
+                    <xsl:if test="not(volgnummer)">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="1"/>
                         </sequenceNumber>
@@ -5669,15 +5691,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         </xsl:for-each>
 
         <!--Doseerinstructie-->
-        <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
+        <xsl:for-each select="./gebruiksinstructie/doseerinstructie[.//(@value | @code)]">
             <entryRelationship typeCode="COMP">
-                <xsl:for-each select="../volgnummer[.//(@value | @code)]">
+                <xsl:for-each select="../../volgnummer[.//(@value | @code)]">
                     <sequenceNumber>
                         <xsl:attribute name="value" select="./@value"/>
                     </sequenceNumber>
                 </xsl:for-each>
                 <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
-                <xsl:if test="not(../volgnummer[.//(@value | @code)])">
+                <xsl:if test="not(../../volgnummer[.//(@value | @code)])">
                     <sequenceNumber>
                         <xsl:attribute name="value" select="1"/>
                     </sequenceNumber>
@@ -5875,15 +5897,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
 
             <!--Doseerinstructie-->
-            <xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering[.//(@value | @code)]">
+            <xsl:for-each select="./gebruiksinstructie/doseerinstructie[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:for-each select="../volgnummer[.//(@value | @code)]">
+                    <xsl:for-each select="../../volgnummer[.//(@value | @code | @nullFlavor)]">
                         <sequenceNumber>
-                            <xsl:attribute name="value" select="./@value"/>
+                            <xsl:attribute name="value" select="@value"/>
                         </sequenceNumber>
                     </xsl:for-each>
                     <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
-                    <xsl:if test="not(../volgnummer[.//(@value | @code)])">
+                    <xsl:if test="not(../../volgnummer[.//(@value | @code | @nullFlavor)])">
                         <sequenceNumber>
                             <xsl:attribute name="value" select="1"/>
                         </sequenceNumber>
@@ -6243,7 +6265,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 
                 <!-- verbruiksperiode -->
                 <xsl:for-each select="./verbruiksperiode[.//(@value | @code)]">
-                    <expectedUseTime>                        
+                    <expectedUseTime>
                         <xsl:for-each select="./ingangsdatum">
                             <low>
                                 <xsl:call-template name="makeTSValueAttr"/>

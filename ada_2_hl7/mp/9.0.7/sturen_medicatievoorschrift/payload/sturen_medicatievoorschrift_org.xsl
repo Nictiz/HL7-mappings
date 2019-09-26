@@ -42,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- Medicamenteuze behandeling -->
 			<xsl:for-each select="$mbh">
 				<!-- Medicatieafspraak -->
-			    <xsl:for-each select="./medicatieafspraak[not(kopie_indicator/@value='true')]">
+			    <xsl:for-each select="medicatieafspraak[not(kopie_indicator/@value='true')]">
 					<component typeCode="COMP">
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9235_20181204143321">
 							<xsl:with-param name="ma" select="."/>
