@@ -509,7 +509,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- because we need a "union" template which caters for all use cases some concepts have been added here -->
             <!-- this is not yet in the zib template (there is no such thing as 'union' template yet), but it does help to put it here for conversion -->
             <!-- aanvang -->
-            <xsl:for-each select="aanvang | aanvang_pneumothorax[@code | @nullFlavor]">
+            <xsl:for-each select="aanvang[@code | @nullFlavor]">
                 <entryRelationship typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901155"/>
@@ -538,6 +538,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901223"/>
                         <code code="303114002" displayName="Early neonatal period (qualifier value)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeBLValue"/>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+            
+            <!-- early onset (infectieus probleem neonatologie) -->
+            <xsl:for-each select="late_onset[@value | @nullFlavor]">
+                <entryRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901240"/>
+                        <code code="303115001" displayName="Late neonatal period (qualifier value)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                         <xsl:call-template name="makeBLValue"/>
                     </observation>
                 </entryRelationship>

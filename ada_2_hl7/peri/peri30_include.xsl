@@ -973,8 +973,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000"/>
                             </component>
                         </xsl:for-each>
+                        <!-- lijnsepsis -->
+                        <xsl:for-each select="probleem/lijnsepsis[.//(@value | @code | @nullFlavor)]">
+                            <component>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000_YN">
+                                    <xsl:with-param name="code">736152001</xsl:with-param>
+                                    <xsl:with-param name="displayName">Infection of bloodstream co-occurrent and due to central venous catheter in situ (disorder)</xsl:with-param>
+                                </xsl:call-template>
+                            </component>
+                        </xsl:for-each>
                         <!--  Antibiotica eerste 3 dagen peri30-dataelement-91045 -->
-                        <xsl:for-each select="probleem/antibiotica_eerste_3_dagen[@value | @nullFlavor]">
+                        <xsl:for-each select="antibiotica_eerste_3_dagen[@value | @nullFlavor]">
                             <component>
                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901238"/>
