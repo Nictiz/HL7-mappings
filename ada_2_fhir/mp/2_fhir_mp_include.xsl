@@ -1630,24 +1630,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>dosageInstruction</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        
         <xsl:choose>
-            <xsl:when test="doseerinstructie[.//(@value | @code)]">
-                <xsl:for-each select="doseerinstructie[.//(@value | @code)]">
-                    <xsl:element name="{$fhir-dosage-name}">
-                        <xsl:apply-templates select="." mode="doDosageContents"/>
-                    </xsl:element>
-                </xsl:for-each>
+            <xsl:when test=".[doseerinstructie[.//(@value|@code)]]">
+                <xsl:for-each select="doseerinstructie">
+                    <xsl:choose>
+                        <xsl:when test="dosering[.//(@value | @code)]">
+                            <xsl:for-each select="dosering[.//(@value | @code)]">
+                                <xsl:element name="{$fhir-dosage-name}">
+                                    <xsl:apply-templates select="." mode="doDosageContents"/>
+                                </xsl:element>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:when test=".[.//(@value | @code)]">
+                            <xsl:element name="{$fhir-dosage-name}">
+                                <xsl:apply-templates select="." mode="doDosageContents"/>
+                            </xsl:element>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:for-each>                
             </xsl:when>
             <xsl:when test=".[.//(@value | @code)]">
-                <xsl:for-each select=".[.//(@value | @code)]">
-                    <xsl:element name="{$fhir-dosage-name}">
-                        <xsl:apply-templates select="." mode="doDosageContents"/>
-                    </xsl:element>
-                </xsl:for-each>
+                <xsl:element name="{$fhir-dosage-name}">
+                    <xsl:apply-templates select="." mode="doDosageContents"/>
+                </xsl:element>
             </xsl:when>
         </xsl:choose>
-
-
     </xsl:template>
 
     <xd:doc>
@@ -2224,8 +2232,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             the name of that FHIR-element differs between MedicationStatement and MedicationRequest
         </xd:desc>
     </xd:doc>
-    <xsl:template name="zib-InstructionsForUse-2.0" match="doseerinstructie" mode="doDosageContents">
-        <xsl:for-each select="volgnummer[@value]">
+    <xsl:template name="zib-InstructionsForUse-2.0" match="dosering" mode="doDosageContents">
+        <xsl:for-each select="../volgnummer[@value]">
             <sequence value="{./@value}"/>
         </xsl:for-each>
         <!-- gebruiksinstructie/omschrijving  -->
@@ -2241,7 +2249,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </additionalInstruction>
         </xsl:for-each>
         <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
-        <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./dosering/toedieningsschema[.//(@value | @code | @nullFlavor)])">
+        <xsl:if test="../../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./toedieningsschema[.//(@value | @code | @nullFlavor)])">
             <!-- pauze periode -->
             <xsl:for-each select="doseerduur[.//(@value | @code)]">
                 <timing>
@@ -2256,13 +2264,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:if>
         <!-- dosering/toedieningsschema -->
-        <xsl:for-each select="dosering/toedieningsschema[.//(@code | @value | @nullFlavor)]">
+        <xsl:for-each select="./toedieningsschema[.//(@code | @value | @nullFlavor)]">
             <xsl:call-template name="zib-Administration-Schedule-2.0">
                 <xsl:with-param name="toedieningsschema" select="."/>
             </xsl:call-template>
         </xsl:for-each>
         <!-- dosering/zo_nodig/criterium/code -->
-        <xsl:for-each select="dosering/zo_nodig/criterium/code">
+        <xsl:for-each select="zo_nodig/criterium/code">
             <asNeededCodeableConcept>
                 <xsl:variable name="in" select="."/>
                 <!-- roep hier niet het standaard template aan omdat criterium/omschrijving ook nog omschrijving zou kunnen bevatten... -->
@@ -2304,18 +2312,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </asNeededCodeableConcept>
         </xsl:for-each>
         <!-- gebruiksinstructie/toedieningsweg, only output if there is a dosering-->
-        <xsl:if test="dosering[.//(@value | @code | @nullFlavor)]">
-            <xsl:apply-templates select="../toedieningsweg" mode="handleToedieningsweg"/>
-        </xsl:if> <!-- dosering/keerdosis/aantal -->
-        <xsl:for-each select="dosering/keerdosis/aantal[vaste_waarde]">
+        <xsl:if test=".[.//(@value | @code | @nullFlavor)]">
+            <xsl:apply-templates select="../../toedieningsweg" mode="handleToedieningsweg"/>
+        </xsl:if>
+        <!-- dosering/keerdosis/aantal -->
+        <xsl:for-each select="keerdosis/aantal[vaste_waarde]">
             <doseQuantity>
                 <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                    <xsl:with-param name="eenheid" select="./../eenheid"/>
-                    <xsl:with-param name="waarde" select="./vaste_waarde"/>
+                    <xsl:with-param name="eenheid" select="../eenheid"/>
+                    <xsl:with-param name="waarde" select="vaste_waarde"/>
                 </xsl:call-template>
             </doseQuantity>
         </xsl:for-each>
-        <xsl:for-each select="dosering/keerdosis/aantal[min | max]">
+        <xsl:for-each select="keerdosis/aantal[min | max]">
             <doseRange>
                 <xsl:call-template name="minmax-to-Range">
                     <xsl:with-param name="in" select="."/>
@@ -2323,17 +2332,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </doseRange>
         </xsl:for-each>
         <!-- maximale_dosering -->
-        <xsl:for-each select="dosering/zo_nodig/maximale_dosering[.//*[@value]]">
+        <xsl:for-each select="zo_nodig/maximale_dosering[.//*[@value]]">
             <maxDosePerPeriod>
                 <xsl:call-template name="quotient-to-Ratio">
-                    <xsl:with-param name="denominator" select="./tijdseenheid"/>
-                    <xsl:with-param name="numerator-aantal" select="./aantal"/>
-                    <xsl:with-param name="numerator-eenheid" select="./eenheid"/>
+                    <xsl:with-param name="denominator" select="tijdseenheid"/>
+                    <xsl:with-param name="numerator-aantal" select="aantal"/>
+                    <xsl:with-param name="numerator-eenheid" select="eenheid"/>
                 </xsl:call-template>
             </maxDosePerPeriod>
         </xsl:for-each>
         <!-- toedieningssnelheid -->
-        <xsl:for-each select="dosering/toedieningssnelheid[.//*[@value]]">
+        <xsl:for-each select="toedieningssnelheid[.//*[@value]]">
             <xsl:for-each select=".[waarde/vaste_waarde]">
                 <rateRatio>
                     <xsl:call-template name="quotient-to-Ratio">
@@ -2369,6 +2378,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </rateRange>
             </xsl:for-each>
         </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Template for 'gebruiksinstructie' in case there is no doseerinstructie/dosering. 
+            Without the FHIR element dosage / dosageInstruction, 
+            the name of that FHIR-element differs between MedicationStatement and MedicationRequest
+        </xd:desc>
+    </xd:doc>
+    <xsl:template name="zib-InstructionsForUse-2.0-di" match="doseerinstructie" mode="doDosageContents">
+        <!-- gebruiksinstructie/omschrijving  -->
+        <xsl:for-each select="../omschrijving[@value]">
+            <text value="{./@value}"/>
+        </xsl:for-each>
+        <!-- gebruiksinstructie/aanvullende_instructie  -->
+        <xsl:for-each select="../aanvullende_instructie[@code]">
+            <additionalInstruction>
+                <xsl:call-template name="code-to-CodeableConcept">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </additionalInstruction>
+        </xsl:for-each>
+        <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
+        <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./dosering/toedieningsschema[.//(@value | @code | @nullFlavor)])">
+            <!-- pauze periode -->
+            <xsl:for-each select="doseerduur[.//(@value | @code)]">
+                <timing>
+                    <repeat>
+                        <boundsDuration>
+                            <xsl:call-template name="hoeveelheid-to-Duration">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </boundsDuration>
+                    </repeat>
+                </timing>
+            </xsl:for-each>
+        </xsl:if>
+        <!-- gebruiksinstructie/toedieningsweg -->
+        <xsl:apply-templates select="../toedieningsweg" mode="handleToedieningsweg"/>
+        
     </xsl:template>
 
     <xd:doc>
