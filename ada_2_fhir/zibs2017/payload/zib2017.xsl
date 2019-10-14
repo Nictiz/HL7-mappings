@@ -526,8 +526,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
    <xd:doc>
-        <xd:desc>Helper template to make a reference to given ada subject/resourceType, if that's not present than whatever is specified in hcim rootsubject of the current zib/hcim or if nothing is given it will try and find the patient in the transaction.</xd:desc>
-        <xd:param name="adaSubject">Optional ada element which should be in the subject</xd:param>
+        <xd:desc>Helper template to make a reference to given ada subject/resourceType, 
+            if that's not present than whatever is specified in hcim rootsubject of the current zib/hcim 
+            or if nothing is given it will try and find the patient in the transaction.</xd:desc>
+        <xd:param name="adaSubject">Optional ada element which should be put in the subject</xd:param>
         <xd:param name="adaSubjectResourceType">The FHIR resource type belonging to the adaSubject. Defaults to Patient.</xd:param>
         <xd:param name="currentHcim">Optional current hcim/zib for which to add a reference based on hcim/zib root (basic elements)</xd:param>
     </xd:doc>

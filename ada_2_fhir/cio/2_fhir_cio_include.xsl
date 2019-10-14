@@ -22,6 +22,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
 
+    <xsl:variable name="bouwstenen-all-int-vertaling" as="element(f:entry)*">
+        <!-- allergie_intolerantie -->
+        <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <resource>
+                    <xsl:call-template name="zib-AllergyIntolerance">
+                        <xsl:with-param name="logicalId" select="
+                            if ($referById) then
+                            (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then
+                            nf:removeSpecialCharacters(./identificatie/@value)
+                            else
+                            uuid:get-uuid(.))
+                            else
+                            ()"> </xsl:with-param>
+                        <xsl:with-param name="ada-patient" select="../patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+         
+    </xsl:variable>
     <xsl:variable name="bouwstenen-icavertaling" as="element(f:entry)*">
         <!-- allergie_intolerantie -->
         <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
@@ -42,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each>
-        <!-- allergie_intolerantie -->
+        <!-- alert -->
         <xsl:for-each select="//alert">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
@@ -63,6 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         
        </xsl:variable>
+
 
     <xd:doc>
         <xd:desc/>

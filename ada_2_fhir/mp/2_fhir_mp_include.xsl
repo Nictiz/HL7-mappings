@@ -2237,11 +2237,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <sequence value="{./@value}"/>
         </xsl:for-each>
         <!-- gebruiksinstructie/omschrijving  -->
-        <xsl:for-each select="../omschrijving[@value]">
+        <xsl:for-each select="../../omschrijving[@value]">
             <text value="{./@value}"/>
         </xsl:for-each>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
-        <xsl:for-each select="../aanvullende_instructie[@code]">
+        <xsl:for-each select="../../aanvullende_instructie[@code]">
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>

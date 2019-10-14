@@ -217,7 +217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>verificatie_status</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-  
+
         <!-- the actual ada problem -->
         <xsl:element name="{$elmProblem}">
             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmProblem))"/>
@@ -270,7 +270,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                 </xsl:choose>
             </xsl:for-each>
-          
+
             <!-- problem comment -->
             <xsl:for-each select="hl7:subjectOf2/hl7:annotation">
                 <xsl:call-template name="HandleConditionComment">
@@ -296,7 +296,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:param>
         <xsl:param name="schema" as="node()*" select="$xsdAda"/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
-        
+
         <!-- condition comment -->
         <xsl:variable name="comment" as="xs:string*">
             <xsl:value-of select="hl7:text"/>
@@ -337,6 +337,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="schema" as="node()*" select="$xsdAda"/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
 
+        <!-- multi language support for ada element names -->
         <xsl:variable name="elmAllergyIntolerance">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">allergy_intolerance</xsl:when>
@@ -368,6 +369,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
 
+        <!-- allergy_intolerance -->
         <xsl:element name="{$elmAllergyIntolerance}">
             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmAllergyIntolerance))"/>
             <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
@@ -427,9 +429,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                 </xsl:call-template>
             </xsl:for-each>
-            
+
             <!-- reaction not in 6.12 -->
-            
+
         </xsl:element>
     </xsl:template>
 
@@ -535,6 +537,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="HL7element2Zibroot" match="hl7:*" mode="HL7element2Zibroot">
         <xsl:param name="schema" as="node()*" select="$xsdAda"/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="$xsdTransaction"/>
+        <!-- multi language support for ada element names -->
         <xsl:variable name="elmZibroot">
             <xsl:choose>
                 <xsl:when test="$language = 'en-US'">hcimroot</xsl:when>
@@ -610,7 +613,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- informant -->
-            <xsl:for-each select="hl7:informant">
+            <!-- in theory there may be more than one informant, but we want maximum one, we take the first one -->
+            <xsl:for-each select="hl7:informant[1]">
                 <xsl:element name="{$elmZibrootInformationSource}">
                     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootInformationSource))"/>
                     <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
@@ -734,6 +738,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- date time -->
+            <!-- NOTE TODO: issue ZIB-784, this mapping may be wrong...  -->
             <xsl:for-each select="hl7:author/hl7:time">
                 <xsl:call-template name="handleTS">
                     <xsl:with-param name="in" select="."/>
@@ -742,8 +747,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:element>
-
-
 
     </xsl:template>
 

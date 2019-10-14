@@ -143,18 +143,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 return
                     $att, '')">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitionerRole(.)">
-                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-                <xsl:variable name="uuid" as="xs:boolean" select="true()"/>
+                <!-- the default is to input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner -->
+                <!-- However, that does not work in a dataset that puts zorgverlener as a separate concept group directly under transaction, and uses ada reference
+                     such as the cio dataset -->
+                <!-- so in that case we take the first element that has a reference to this zorgverlener, which will make a unique xml node for each PractitionerRole -->
+                <xsl:variable name="id" select="./@id"/>
+                <xsl:variable name="node-for-id" select="(//*[@value = $id])[1]"/>
+                <xsl:variable name="input-node-for-uuid" as="element()">                    
+                    <xsl:choose>
+                        <xsl:when test="$node-for-id">
+                              <xsl:sequence select="$node-for-id"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- parent node contains unique xml element node for PractitionerRole -->
+                            <xsl:sequence select="./.."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+
                 <unieke-practitionerRole xmlns="">
                     <group-key>
                         <xsl:value-of select="current-grouping-key()"/>
                     </group-key>
                     <reference-display>
-                        <!--<xsl:value-of select="current-group()[1]/normalize-space(string-join(zorgverleners_rol/(@displayName, @code)[1] | health_professional_role/(@displayName, @code)[1] | naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' || '))"/>-->
                         <xsl:value-of select="nf:get-practitioner-role-display(current-group()[1])"/>
                     </reference-display>
                     <xsl:apply-templates select="current-group()[1]" mode="doPractitionerRoleEntry-2.0">
-                        <xsl:with-param name="uuid" select="$uuid"/>
+                        <xsl:with-param name="entry-fullurl" select="nf:get-fhir-uuid($input-node-for-uuid)"/>
                     </xsl:apply-templates>
                 </unieke-practitionerRole>
             </xsl:for-each-group>
