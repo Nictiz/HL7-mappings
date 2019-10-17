@@ -16,6 +16,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../zib2017bbr/2_hl7_zib2017bbr_include.xsl"/>
     <xsl:import href="../naw/2_hl7_naw_include.xsl"/>
     <xsl:import href="../../../ada_2_wiki/_utils/date-functions.xsl"/>
+    <xsl:import href="../../util/datetime.xsl"/>
+    
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
@@ -6478,8 +6480,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Converts a string like $T-12D (date T minus 12 days) to an actual date</xd:desc>
+        <xd:desc>Converts a string like $T-12D (date T minus 12 days) to an actual date in a nice formatted string</xd:desc>
         <xd:param name="in">Total input string potentially containing a string like $T-12D</xd:param>
+        <xd:param name="inputDateT">The input date T to be used. Optional, but nothing is converted if not given.</xd:param>
     </xd:doc>
     <xsl:function name="nf:replaceTDateString" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>

@@ -1,0 +1,71 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="03999999TESTMEDISCHCENTRUM4"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="03999999"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.15.1060"/>
+         <code value="Z4"/>
+         <display value="Zelfstandig behandelcentrum"/>
+      </coding>
+   </type>
+   <name value="Test Medisch Centrum"/>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                  <code value="LL"/>
+                  <display value="Vast telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="0800-987654"/>
+      <use value="work">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="info@testmedischcentrum.nl"/>
+      <use value="work">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk e-mailadres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </use>
+   </telecom>
+   <address>
+      <use value="work"/>
+      <line value="Valkendael 45">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Valkendael"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="45"/>
+         </extension>
+      </line>
+      <city value="Maastricht"/>
+      <postalCode value="6245 HK"/>
+   </address>
+</Organization>

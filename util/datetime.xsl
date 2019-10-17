@@ -56,6 +56,80 @@
     </xsl:function>
     
     <xd:doc>
+        <xd:desc>Converts a T-12D{12:34:56} like string into a proper XML date or dateTime</xd:desc>
+        <xd:param name="in">The input string to be converted</xd:param>
+        <xd:param name="inputDateT" as="xs:date">The T date</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:calculate-t-date" as="xs:string">
+        <xsl:param name="in" as="xs:string?"/>
+        <xsl:param name="inputDateT" as="xs:date?"/>
+        
+        <xsl:choose>
+            <xsl:when test="(string-length($in) gt 0) and exists($inputDateT)">
+                <xsl:variable name="sign" select="replace($in, 'T([+\-]).*', '$1')"/>
+                <xsl:variable name="amount" select="replace($in, 'T[+\-](\d+(\.\d+)?)[YMD].*', '$1')"/>
+                <xsl:variable name="yearMonthDay" select="replace($in, 'T[+\-]\d+(\.\d+)?([YMD]).*', '$2')"/>
+                <xsl:variable name="xsDurationString" select="replace($in, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
+                <xsl:variable name="timePart" select="replace($in, 'T[+\-]\d+(\.\d+)?[YMD](\{(.*)})?', '$3')"/>
+                <xsl:variable name="time">
+                    <xsl:choose>
+                        <xsl:when test="string-length($timePart) = 5">
+                            <!-- time given in minutes, let's add 0 seconds -->
+                            <xsl:value-of select="concat($timePart, ':00')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$timePart"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="newDate">
+                    <xsl:choose>
+                        <xsl:when test="$sign = '-'">
+                            <xsl:choose>
+                                <xsl:when test="$yearMonthDay = ('Y', 'M')">
+                                    <xsl:value-of select="xs:date($inputDateT) - xs:yearMonthDuration($xsDurationString)"/>
+                                </xsl:when>
+                                <xsl:when test="$yearMonthDay = 'D'">
+                                    <xsl:value-of select="xs:date($inputDateT) - xs:dayTimeDuration($xsDurationString)"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:when>
+                        <xsl:when test="$sign = '+'">
+                            <xsl:choose>
+                                <xsl:when test="$yearMonthDay = ('Y', 'M')">
+                                    <xsl:value-of select="xs:date($inputDateT) + xs:yearMonthDuration($xsDurationString)"/>
+                                </xsl:when>
+                                <xsl:when test="$yearMonthDay = 'D'">
+                                    <xsl:value-of select="xs:date($inputDateT) + xs:dayTimeDuration($xsDurationString)"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="newDateTime">
+                    <xsl:choose>
+                        <xsl:when test="string-length($time) gt 0">
+                            <xsl:value-of select="xs:dateTime(concat(format-date($newDate, '[Y0001]-[M01]-[D01]'), 'T', $time))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- we get a timezone, which is the current timezone of the system which does not make sense -->
+                            <!-- so we strip the timezone -->
+                            <xsl:value-of select="substring($newDate,1, 10)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:value-of select="$newDateTime"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- we cannot calculate anything -->
+                <xsl:value-of select="$in"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    
+    
+    <xd:doc>
         <xd:desc>Returns the xs:time from a xs:dateTime formatted string. Could include timezone.</xd:desc>
         <xd:param name="xs-datetime"/>
         <xd:return>xs:time or nothing</xd:return>

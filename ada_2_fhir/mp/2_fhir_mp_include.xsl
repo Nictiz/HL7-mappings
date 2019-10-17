@@ -3577,13 +3577,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </entry>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Default copy template for outputting the results </xd:desc>
-    </xd:doc>
-    <xsl:template match="@* | node()" mode="ResultOutput">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="ResultOutput"/>
-        </xsl:copy>
-    </xsl:template>
 
 </xsl:stylesheet>

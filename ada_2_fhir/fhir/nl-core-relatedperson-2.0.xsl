@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
-    <!--<xsl:import href="2_fhir_fhir_include.xsl"/>-->
+<!--    <xsl:import href="2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="$referById">
                 <xsl:choose>
                     <xsl:when test="not($uuid) and (naamgegevens[1]//*[not(name()='naamgebruik')]/@value | name_information[1]//*[not(name()='name_usage')]/@value)">
-                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @displayName), '')))"/>
+                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(string-join( (naamgegevens[1]//*[not(name()='naamgebruik')] | name_information[1]//*[not(name()='name_usage')])//(@value), '')))"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="relatedperson-id" select="$fhir-resource-id"/>
                     <xsl:with-param name="patient-ref" as="element()+">
-                        <xsl:for-each select="(ancestor::*/patient[.//@value])[1]">
+                        <xsl:for-each select="(ancestor::*/patient[*//@value])[1]">
                             <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                         </xsl:for-each>
                     </xsl:with-param>
@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="relatedperson-id">RelatedPerson.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a RelatedPerson resource</xd:param>
-        <xd:param name="patient-ref">Required. Reference datatype elements for the Patient that this RelatedPerson is related too</xd:param>
+        <xd:param name="patient-ref">Required. Reference datatype elements for the Patient that this RelatedPerson is related to</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-relatedperson-2.0" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)]" mode="doRelatedPersonResource-2.0">
         <xsl:param name="in" select="." as="element()?"/>

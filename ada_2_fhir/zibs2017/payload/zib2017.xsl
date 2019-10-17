@@ -60,239 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <display value="{nff:get-resource-info($ResourceType, $group-key, false(), 'ReferenceDisplay')}"/>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Mapping of nl.zorg.AllergieIntolerantie concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">zib-AllergyIntolerance</xd:a>.</xd:desc>
-        <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
-        <xd:param name="ada-patient">The ada patient that is subject of this AllergyIntolerance</xd:param>
-        <!-- <xd:param name="patientRef">The patient (subject) reference this resource applies to, as a map with 'target' and optional 'display' keys.</xd:param>
-        <xd:param name="recorderRef">The recorder (auteur) reference of this resource, as a map with 'target' and optional 'display' keys.</xd:param>
-        <xd:param name="asserterRef">The recorder (informant) reference of this resource, as a map with 'target' and optional 'display' keys.</xd:param>
-   -->
-    </xd:doc>
-    <xsl:template name="zib-AllergyIntolerance" match="allergie_intolerantie | allergy_intolerance" as="element()" mode="doZibAllergyIntolerance">
-        <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="ada-patient" as="element(patient)?"/>
-        <!--  <xsl:param name="patientRef" as="map(xs:string, xs:string)"/>
-        <xsl:param name="recorderRef" as="map(xs:string, xs:string)?"/>
-        <xsl:param name="asserterRef" as="map(xs:string, xs:string)?"/>
-    -->
-        <AllergyIntolerance>
-
-            <xsl:if test="exists($logicalId)">
-                <id value="{$logicalId}"/>
-            </xsl:if>
-
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
-            </meta>
-
-            <xsl:for-each select="(allergie_status | allergy_status)[@code]">
-                <clinicalStatus>
-                    <xsl:attribute name="value">
-                        <xsl:choose>
-                            <xsl:when test="@code = 'active'">active</xsl:when>
-                            <xsl:when test="@code = 'completed'">resolved</xsl:when>
-                            <xsl:otherwise>inactive</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
-                    </extension>
-                </clinicalStatus>
-            </xsl:for-each>
-
-            <xsl:for-each select="(allergie_categorie | allergy_category)[@code]">
-                <xsl:choose>
-                    <xsl:when test="(allergie_status | allergy_status)[@code = 'nullified'][@codeSystem][1]">
-                        <xsl:for-each select="allergie_status | allergy_status[@code = 'nullified'][@codeSystem][1]">
-                            <verificationStatus value="entered-in-error">
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                                    <valueCodeableConcept>
-                                        <coding>
-                                            <system value="{local:getUri(@codeSystem)}"/>
-                                            <code value="{@code}"/>
-                                            <xsl:if test="@displayName">
-                                                <display value="{@displayName}"/>
-                                            </xsl:if>
-                                        </coding>
-                                    </valueCodeableConcept>
-                                </extension>
-                            </verificationStatus>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:when test="(begin_datum_tijd | start_date_time)[@value]">
-                        <verificationStatus value="confirmed"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- we don't know, but still a required element, data-absent-reason -->
-                        <verificationStatus>
-                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                <valueCode value="unknown"/>
-                            </extension>
-                        </verificationStatus>
-                    </xsl:otherwise>
-                </xsl:choose>
-                <!-- The ZIB prescribes an (optional) value list for the allergy category, which is mapped onto
-                     AllergyIntolerance.category. However, .category defines its own required coding, which can't be
-                     always translated from the zib value set. In case we can't make the translation, we have no other
-                     option than to exclude .category altogether, even if it means we also exclude the ZIB value - we
-                     can't produce a valid FHIR instance otherwise. -->
-                <xsl:variable name="fhirCategory">
-                    <xsl:choose>
-                        <xsl:when test="@code = '418471000'">food</xsl:when>
-                        <xsl:when test="@code = '419511003'">medication</xsl:when>
-                        <xsl:when test="@code = '426232007'">environment</xsl:when>
-                        <xsl:otherwise/>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:if test="$fhirCategory != ''">
-                    <category value="{$fhirCategory}">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                            <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueCodeableConcept>
-                        </extension>
-                    </category>
-                </xsl:if>
-            </xsl:for-each>
-
-            <xsl:for-each select="(mate_van_kritiek_zijn | criticality)[@code]">
-                <criticality>
-                    <xsl:attribute name="value">
-                        <xsl:choose>
-                            <xsl:when test="@code = 62482003">low</xsl:when>
-                            <xsl:otherwise>high</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                        <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueCodeableConcept>
-                    </extension>
-                </criticality>
-            </xsl:for-each>
-
-            <xsl:for-each select="veroorzakende_stof | causative_agent">
-                <code>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </code>
-            </xsl:for-each>
-
-            <!-- Who the sensitivity is for -->
-            <patient>
-                <xsl:call-template name="_subjectOrZibrootSubject">
-                    <xsl:with-param name="adaSubject" select="$ada-patient"/>
-                    <xsl:with-param name="adaSubjectResourceType">Patient</xsl:with-param>
-                    <xsl:with-param name="currentHcim" select="."/>
-                </xsl:call-template>
-            </patient>
-
-            <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
-                <onsetDateTime>
-                    <xsl:attribute name="value">
-                        <xsl:call-template name="format2FHIRDate">
-                            <xsl:with-param name="dateTime" select="@value"/>
-                        </xsl:call-template>
-                    </xsl:attribute>
-                </onsetDateTime>
-            </xsl:for-each>
-
-            <!-- TODO -->
-
-            <!--<xsl:call-template name="_Reference">
-                <xsl:with-param name="reference" select="$recorderRef"/>
-                <xsl:with-param name="wrapIn" select="'recorder'"/>
-            </xsl:call-template>
-            
-            <xsl:call-template name="_Reference">
-                <xsl:with-param name="reference" select="$asserterRef"/>
-                <xsl:with-param name="wrapIn" select="'asserter'"/>
-            </xsl:call-template>-->
-
-            <xsl:for-each select="(laatste_reactie_datum_tijd | last_reaction_date_time)[@value]">
-                <lastOccurrence>
-                    <xsl:attribute name="value">
-                        <xsl:call-template name="format2FHIRDate">
-                            <xsl:with-param name="dateTime" select="@value"/>
-                        </xsl:call-template>
-                    </xsl:attribute>
-                </lastOccurrence>
-            </xsl:for-each>
-
-            <xsl:for-each select="(toelichting | comment)[@value]">
-                <note>
-                    <text value="{@value}"/>
-                </note>
-            </xsl:for-each>
-
-            <xsl:for-each select="(reactie | reaction)[//@code or //@value]">
-                <reaction>
-                    <xsl:for-each select="(specifieke_stof | specific_substance)[@code]">
-                        <substance>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </substance>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="(symptoom | symptom)[@code]">
-                        <manifestation>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </manifestation>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="(reactie_beschrijving | reaction_description)[@value]">
-                        <description value="{@value}"/>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="(reactie_tijdstip | reaction_time)[@value]">
-                        <onset>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </onset>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="(ernst | severity)[@code]">
-                        <severity>
-                            <xsl:attribute name="value">
-                                <xsl:choose>
-                                    <xsl:when test="@code = 255604002">mild</xsl:when>
-                                    <xsl:when test="@code = 6736007">moderate</xsl:when>
-                                    <xsl:when test="@code = 24484000">severe</xsl:when>
-                                </xsl:choose>
-                            </xsl:attribute>
-                        </severity>
-                    </xsl:for-each>
-
-                    <xsl:for-each select="(wijze_van_blootstelling | route_of_exposure)[@code]">
-                        <exposureRoute>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </exposureRoute>
-                    </xsl:for-each>
-
-                </reaction>
-            </xsl:for-each>
-
-        </AllergyIntolerance>
-    </xsl:template>
-
+  
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.AllergieIntolerantie concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">zib-AllergyIntolerance</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
@@ -358,19 +126,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </code>
 
-            <subject>
-                <xsl:call-template name="_subjectOrZibrootSubject">
-                    <xsl:with-param name="adaSubject" select="$ada-patient"/>
-                    <xsl:with-param name="adaSubjectResourceType">Patient</xsl:with-param>
-                    <xsl:with-param name="currentHcim" select="."/>
-                </xsl:call-template>
-            </subject>
+            <!-- The alert has as subject the patient -->
+            <xsl:for-each select="$ada-patient[.//@value]">
+                <xsl:variable name="patient-ref" as="element()+">
+                    <xsl:for-each select="(.)">
+                        <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                    </xsl:for-each>
+                </xsl:variable>
+
+                <subject>
+                    <xsl:copy-of select="$patient-ref[self::f:extension]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:reference]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:identifier]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:display]"/>
+                </subject>
+            </xsl:for-each>
         </Flag>
     </xsl:template>
-     
+
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-problem-2.1.1</xd:desc>
-        <xd:param name="ada-patient">The ada patient that is subject of this Condition, if not given template attempts to get subject from zibroot</xd:param>
+        <xd:param name="ada-patient">The ada patient that is subject of this Condition</xd:param>
         <xd:param name="logicalId">Optional FHIR logical id for the resource.</xd:param>
     </xd:doc>
     <xsl:template name="zib-Problem-2.1.1" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doZibProblem211">
@@ -453,13 +229,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </bodySite>
             </xsl:if>
 
-            <subject>
-                <xsl:call-template name="_subjectOrZibrootSubject">
-                    <xsl:with-param name="adaSubject" select="$ada-patient"/>
-                    <xsl:with-param name="adaSubjectResourceType">Patient</xsl:with-param>
-                    <xsl:with-param name="currentHcim" select="."/>
-                </xsl:call-template>
-            </subject>
+            <!-- The problem has as subject the patient -->
+            <xsl:for-each select="$ada-patient[.//@value]">
+                <xsl:variable name="patient-ref" as="element()+">
+                    <xsl:for-each select="(.)">
+                        <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                    </xsl:for-each>
+                </xsl:variable>
+
+                <subject>
+                    <xsl:copy-of select="$patient-ref[self::f:extension]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:reference]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:identifier]"/>
+                    <xsl:copy-of select="$patient-ref[self::f:display]"/>
+                </subject>
+            </xsl:for-each>
 
             <!-- OnsetPeriod -->
             <xsl:if test="(problem_start_date | probleem_begin_datum | problem_end_date | probleem_eind_datum)[@value]">
@@ -524,74 +308,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     </xsl:template>
-
-   <xd:doc>
-        <xd:desc>Helper template to make a reference to given ada subject/resourceType, 
-            if that's not present than whatever is specified in hcim rootsubject of the current zib/hcim 
-            or if nothing is given it will try and find the patient in the transaction.</xd:desc>
-        <xd:param name="adaSubject">Optional ada element which should be put in the subject</xd:param>
-        <xd:param name="adaSubjectResourceType">The FHIR resource type belonging to the adaSubject. Defaults to Patient.</xd:param>
-        <xd:param name="currentHcim">Optional current hcim/zib for which to add a reference based on hcim/zib root (basic elements)</xd:param>
-    </xd:doc>
-    <xsl:template name="_subjectOrZibrootSubject">
-        <xsl:param name="adaSubject" as="element()?"/>
-        <xsl:param name="adaSubjectResourceType" as="xs:string?">Patient</xsl:param>
-        <xsl:param name="currentHcim" as="element()?"/>
-        <!-- The current ada-transaction element for resolving ada elements with datatype reference-->
-        <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data[ancestor::adaxml]]"/>
-        <!-- The zib root subject to be handled, is only evaluated when there is no adaSubject. -->
-        <xsl:variable name="hcimrootSubject" select="$currentHcim//(zibroot | hcimroot)/(onderwerp | subject)[*]"/>
-
-        <xsl:choose>
-            <xsl:when test="$adaSubject">
-                <xsl:apply-templates select="$adaSubject" mode="doReference">
-                    <xsl:with-param name="ResourceType" select="$adaSubjectResourceType"/>
-                </xsl:apply-templates>
-            </xsl:when>
-            <xsl:when test="$hcimrootSubject">
-                <xsl:apply-templates select="$hcimrootSubject" mode="_doZibRootSubject"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- nothing specified as subject, we should assume the problem is related to the patient which should be found in the current
-                            ada transaction.
-                            So let's try and find the patient in the transaction this problem should relate to -->
-                <xsl:variable name="subject-patient" select="$currentAdaTransaction//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]"/>
-                <xsl:choose>
-                    <xsl:when test="$subject-patient">
-                        <xsl:apply-templates select="$subject-patient" mode="doReference">
-                            <xsl:with-param name="ResourceType">Patient</xsl:with-param>
-                        </xsl:apply-templates>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- I give up -->
-                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                            <valueCode value="unknown"/>
-                        </extension>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:otherwise>
-        </xsl:choose>
-
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Helper template to make a reference for zibroot/subject. Resolves the ada reference if needed</xd:desc>
-    </xd:doc>
-    <xsl:template name="_zibRootSubject" match="onderwerp[parent::zibroot | parent::hcimroot][*] | subject[parent::zibroot | parent::hcimroot][*]" mode="_doZibRootSubject">
-        <xsl:choose>
-            <xsl:when test=".//patient[not(patient)]">
-                <xsl:apply-templates select="nf:ada-resolve-reference(.//patient[not(patient)])" mode="doReference">
-                    <xsl:with-param name="ResourceType">Patient</xsl:with-param>
-                </xsl:apply-templates>
-            </xsl:when>
-            <xsl:when test=".//contactpersoon">
-                <xsl:apply-templates select="nf:ada-resolve-reference(.//contactpersoon)" mode="doReference">
-                    <xsl:with-param name="ResourceType">RelatedPerson</xsl:with-param>
-                </xsl:apply-templates>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
-
     <xd:doc>
         <xd:desc>Creates a FHIR entry for ada problem</xd:desc>
     </xd:doc>
@@ -614,7 +330,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </resource>
         </entry>
     </xsl:template>
- 
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="resourceType">The type of resource to find, using the variable with common entries</xd:param>
@@ -676,5 +392,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:function>
- 
- </xsl:stylesheet>
+
+</xsl:stylesheet>

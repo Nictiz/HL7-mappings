@@ -15,6 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <xsl:import href="../../../2_fhir_cio_include.xsl"/>
+    <xsl:import href="../../../../zibs2017/payload/zib2017.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -38,6 +39,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
      <xsl:variable name="commonEntries" as="element(f:entry)*">
          <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $relatedPersons/f:entry"/>
     </xsl:variable>
+    <xsl:variable name="bouwstenen-icavertaling" as="element(f:entry)*">
+        <!-- allergie_intolerantie -->
+        <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <resource>
+                    <xsl:call-template name="zib-AllergyIntolerance-2.1.1">
+                        <xsl:with-param name="logicalId" select="
+                            if ($referById) then
+                            (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then
+                            nf:removeSpecialCharacters(./identificatie/@value)
+                            else
+                            uuid:get-uuid(.))
+                            else
+                            ()"> </xsl:with-param>
+                        <xsl:with-param name="ada-patient" select="../patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+        <!-- alert -->
+        <xsl:for-each select="//alert">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                <resource>
+                    <xsl:call-template name="zib-Alert">
+                        <xsl:with-param name="logicalId" select="
+                            if ($referById) then
+                            (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then
+                            nf:removeSpecialCharacters(./identificatie/@value)
+                            else
+                            uuid:get-uuid(.))
+                            else
+                            ()"> </xsl:with-param>
+                        <xsl:with-param name="ada-patient" select="../patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each>
+        
+    </xsl:variable>
+    
 
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen icavertaling".</xd:desc>

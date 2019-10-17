@@ -1,0 +1,71 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="CIO-01-032-16-840-1-113883-2-4-3-11-999-26-1-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="CIO_01_03"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </verificationStatus>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="Medicijn"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.725"/>
+         <code value="16322"/>
+         <display value="Amoxicilline oraal"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-Stalewska"/>
+      <display value="Maria Christina M. Marieke van XXX_Stalewska"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -150}"/>
+   <assertedDate value="${DATE, T, D, -90}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuiddd1638d1-f0b4-11e9-1773-28f10e481d92"/>
+            <display value="S. Calpel || Medisch specialisten, chirurgie"/>
+         </valueReference>
+      </extension>
+      <display value="S. Calpel || Medisch specialisten, chirurgie"/>
+   </recorder>
+   <asserter>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuiddd1638d1-f0b4-11e9-1773-28f10e481d92"/>
+            <display value="S. Calpel || Medisch specialisten, chirurgie"/>
+         </valueReference>
+      </extension>
+      <display value="S. Calpel || Medisch specialisten, chirurgie"/>
+   </asserter>
+   <note>
+      <text value="Geconstateerd tijdens operatie"/>
+   </note>
+</AllergyIntolerance>

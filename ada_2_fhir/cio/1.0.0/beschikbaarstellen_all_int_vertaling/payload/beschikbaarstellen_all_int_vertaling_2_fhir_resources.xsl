@@ -13,9 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- import because we want to be able to override the param for macAddress for UUID generation
-         and the param for referById -->
-    <xsl:import href="../../../../mp/2_fhir_mp_include.xsl"/>
+    <xsl:import href="../../../2_fhir_cio_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -37,29 +35,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
 
-    <xsl:variable name="usecase">mp9</xsl:variable>
+    <xsl:variable name="usecase">cio1</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients-612/f:entry , $practitioners/f:entry , $organizations-612/f:entry , $practitionerRoles/f:entry , $products-612/f:entry , $locations/f:entry"/>
+        <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $relatedPersons/f:entry"/>
     </xsl:variable>
 
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatieoverzicht".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:call-template name="verstrekkingenvertaling_90_resources">
-            <xsl:with-param name="mbh" select="//beschikbaarstellen_verstrekkingenvertaling/medicamenteuze_behandeling"/>
-        </xsl:call-template>
+        <xsl:apply-templates select="//beschikbaarstellen_allergie_intolerantie_vertaling"/>
     </xsl:template>
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
-        <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
-    </xd:doc>
-    <xsl:template name="verstrekkingenvertaling_90_resources">
-        <xsl:param name="mbh"/>
-
+     </xd:doc>
+    <xsl:template name="AllIntConversion_10" match="beschikbaarstellen_allergie_intolerantie_vertaling">
+   
         <xsl:variable name="entries" as="element(f:entry)*">
-            <xsl:copy-of select="$bouwstenen-verstrekkingenvertaling"/>
-            <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, bouwstenen -->
+            <xsl:copy-of select="$bouwstenen-all-int-vertaling"/>
+            <!-- common entries (patient, practitioners, organizations, practitionerroles, relatedpersons -->
             <xsl:copy-of select="$commonEntries"/>
         </xsl:variable>
 
@@ -70,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
     </xd:doc>
     <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-DispenseToFHIRConversion-', '-')"/>
+        <xsl:variable name="zib-name" select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-AllergyIntoleranceToFHIRConversion-', '-')"/>
         <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
             <xsl:copy-of select="."/>
         </xsl:result-document>

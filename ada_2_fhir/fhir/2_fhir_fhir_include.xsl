@@ -149,10 +149,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- so in that case we take the first element that has a reference to this zorgverlener, which will make a unique xml node for each PractitionerRole -->
                 <xsl:variable name="id" select="./@id"/>
                 <xsl:variable name="node-for-id" select="(//*[@value = $id])[1]"/>
-                <xsl:variable name="input-node-for-uuid" as="element()">                    
+                <xsl:variable name="input-node-for-uuid" as="element()">
                     <xsl:choose>
                         <xsl:when test="$node-for-id">
-                              <xsl:sequence select="$node-for-id"/>
+                            <xsl:sequence select="$node-for-id"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <!-- parent node contains unique xml element node for PractitionerRole -->
@@ -1181,14 +1181,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Formats ada or HL7 dateTime to FHIR date(Time) based on input precision</xd:desc>
+        <xd:desc>Formats ada normal or relativeDate(time) or HL7 dateTime to FHIR date(Time) or Touchstone T variable string based on input precision</xd:desc>
         <xd:param name="dateTime">Input ada or HL7 date(Time)</xd:param>
         <xd:param name="precision">Determines the precision of the output. Precision of minutes outputs seconds as '00'</xd:param>
+        <xd:param name="dateT">Optional parameter. The T-date for which a relativeDate must be calculated. If not given a Touchstone like parameterised string is outputted</xd:param>
+        
     </xd:doc>
     <xsl:template name="format2FHIRDate">
-        <xsl:param name="dateTime"/>
+        <xsl:param name="dateTime" as="xs:string?"/>
         <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
         <xsl:param name="precision">second</xsl:param>
+        <xsl:param name="dateT" as="xs:date?"/>
+        
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D')">[Y0001]-[M01]-[D01]</xsl:when>
@@ -1203,7 +1207,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="normalize-space($dateTime) castable as xs:date">
                 <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001]-[M01]-[D01]')"/>
             </xsl:when>
+            <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
+            <xsl:when test="matches($dateTime, 'T[+\-]\d+(\.\d+)?[YMD]')">
+                <xsl:variable name="sign" select="replace($dateTime, 'T([+\-]).*', '$1')"/>
+                <xsl:variable name="amount" select="replace($dateTime, 'T[+\-](\d+(\.\d+)?)[YMD].*', '$1')"/>
+                <xsl:variable name="yearMonthDay" select="replace($dateTime, 'T[+\-]\d+(\.\d+)?([YMD]).*', '$2')"/>
+                <xsl:variable name="xsDurationString" select="replace($dateTime, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
+                <xsl:variable name="timePart" select="replace($dateTime, 'T[+\-]\d+(\.\d+)?[YMD](\{(.*)})?', '$3')"/>
+                <xsl:variable name="time">
+                    <xsl:choose>
+                        <xsl:when test="string-length($timePart) = 5">
+                            <!-- time given in minutes, let's add 0 seconds -->
+                            <xsl:value-of select="concat($timePart, ':00')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$timePart"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:choose>
+                    <xsl:when test="$dateT castable as xs:date">
+                        <xsl:variable name="newDate" select="nf:calculate-t-date($dateTime, $dateT)"/>
+                        <xsl:choose>
+                            <xsl:when test="$newDate castable as xs:dateTime">
+                                <!-- in an ada relative datetime the timezone is not permitted (or known), let's add the timezon -->
+                                <xsl:value-of select="nf:add-Amsterdam-timezone-to-dateTimeString($newDate)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$newDate"/>
+                            </xsl:otherwise>
+                        </xsl:choose>                        
+                      </xsl:when>
+                    <xsl:otherwise>
+                        <!-- output a relative date for Touchstone -->
+                        <xsl:value-of select="concat('${DATE, T, ', $yearMonthDay, ', ', $sign, $amount, '}')"/>
+                        <xsl:if test="$time castable as xs:time">
+                            <!-- we'll assume the timezone (required in FHIR) because there is no way of knowing the T-date -->
+                            <xsl:value-of select="concat('T', $time, '+02:00')"/>
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
             <xsl:otherwise>
+                <!-- let's try if the input is HL7 date or dateTime, should not be since input is ada -->
                 <xsl:variable name="newDateTime" select="replace(concat(normalize-space($dateTime), '00000000000000'), '^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})', '$1-$2-$3T$4:$5:$6')"/>
                 <xsl:variable name="newDate" select="replace(normalize-space($dateTime), '^(\d{4})(\d{2})(\d{2})', '$1-$2-$3')"/>
                 <xsl:choose>
@@ -1459,7 +1505,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:text disable-output-escaping="yes">--&gt;
 </xsl:text>
     </xsl:template>
-
+    
     <xd:doc>
         <xd:desc> copy without comments </xd:desc>
     </xd:doc>
@@ -1469,6 +1515,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="copyWithoutComments"/>
             </xsl:for-each>
         </xsl:copy>
+    </xsl:template>    
+    
+    
+    <xd:doc>
+        <xd:desc>Default copy template for outputting the results </xd:desc>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="ResultOutput"/>
+        </xsl:copy>
     </xsl:template>
+    
 
 </xsl:stylesheet>

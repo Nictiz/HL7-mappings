@@ -14,6 +14,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
 <xsl:stylesheet exclude-result-prefixes="#default nf" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../util/constants.xsl"/>
+    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
@@ -21,31 +23,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Helper xslt stuff for creating HL7 for any information standard / use case. To be imported or included from another xslt.</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:include href="../../util/constants.xsl"/>
 
     <xd:doc>
-        <xd:desc>Formats an xml date to a HL7 formatted date.</xd:desc>
-        <xd:param name="dateTime"/>
+        <xd:desc>Formats an xml date or relative Date string to a HL7 formatted date.</xd:desc>
+        <xd:param name="dateTime">The dateTime string to be formatted. Maybe a relative date</xd:param>
         <xd:param name="precision">determines the picture of the date format, currently only use case for minute. Seconds is the default.</xd:param>
     </xd:doc>
     <xsl:template name="format2HL7Date">
-        <xsl:param name="dateTime"/>
-        <xsl:param name="precision">second</xsl:param>
+        <xsl:param name="dateTime" as="xs:string?"/>
+        <xsl:param name="precision" as="xs:string?">second</xsl:param>
+        <xsl:param name="inputDateT" as="xs:date?" select="$dateT"/>
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
                 <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="inputDateTime" select="upper-case(normalize-space($dateTime))"/>
+        <xsl:variable name="processedDateTime">
+            <xsl:choose>
+                <!-- relative Date when first character is 'T' -->
+                <xsl:when test="starts-with($inputDateTime, 'T')">
+                    <xsl:value-of select="nf:calculate-t-date($inputDateTime, $inputDateT)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$inputDateTime"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
         <xsl:choose>
-            <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
-                <xsl:value-of select="format-dateTime(xs:dateTime($dateTime), $picture)"/>
+            <xsl:when test="normalize-space($processedDateTime) castable as xs:dateTime">
+                <xsl:value-of select="format-dateTime(xs:dateTime($processedDateTime), $picture)"/>
             </xsl:when>
-            <xsl:when test="normalize-space($dateTime) castable as xs:date">
-                <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001][M01][D01]')"/>
+            <xsl:when test="normalize-space($processedDateTime) castable as xs:date">
+                <xsl:value-of select="format-date(xs:date($processedDateTime), '[Y0001][M01][D01]')"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="$dateTime"/>
+                <xsl:value-of select="$processedDateTime"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -964,7 +979,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:if>
     </xsl:function>
-
+ 
     <xd:doc>
         <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
         <xd:param name="ADAunit"/>
@@ -987,7 +1002,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$ADAunit = $ada-unit-degrees-celsius">Cel</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-pH">[pH]</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-mmol-l">mmol/L</xsl:when>
-                
+
                 <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))">
                     <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>
                 </xsl:when>
