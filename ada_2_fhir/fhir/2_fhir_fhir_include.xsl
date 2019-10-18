@@ -671,11 +671,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <!-- Postadres -->
                         <xsl:when test="@code = 'PST'">
-                            <use>
+                            <!-- AWE, no use to be outputted for postal address, see https://simplifier.net/NictizSTU3-Zib2017/AdresSoortCodelijst-to-AddressUse -->
+                        <!--     <use>
                                 <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
                                     <valueCode value="PST"/>
                                 </extension>
-                            </use>
+                            </use>-->
                             <type value="postal"/>
                         </xsl:when>
                         <!-- Officieel adres -->
