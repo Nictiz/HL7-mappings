@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="logicalId" select="
                             if ($referById) then
                             (if (string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0) then
-                            nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/(@value|@root), ''))
+                            nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/(@value), ''))
                             else
                             uuid:get-uuid(.))
                             else

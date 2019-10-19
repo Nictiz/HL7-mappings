@@ -29,8 +29,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
-    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <!-- 02-00-00-00-00-00 may not be used in a production situation -->
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
@@ -66,8 +66,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:resource/*" mode="doResourceInResultdoc">
         <xsl:variable name="zib-name" select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-AllergyIntoleranceToFHIRConversion-', '-')"/>
         <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
-            <xsl:copy-of select="."/>
-        </xsl:result-document>
+            <xsl:apply-templates select="." mode="ResultOutput"/>
+        </xsl:result-document>           
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:AllergyIntolerance/f:meta/f:profile" mode="ResultOutput">
+        <xsl:copy>
+            <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>  
+    
 
 </xsl:stylesheet>

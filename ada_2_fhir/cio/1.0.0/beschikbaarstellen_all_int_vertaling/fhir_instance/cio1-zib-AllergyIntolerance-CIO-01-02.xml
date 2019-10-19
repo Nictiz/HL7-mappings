@@ -1,11 +1,11 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="CIO-01-042-16-840-1-113883-2-4-3-11-999-26-1-1"/>
+   <id value="CIO-01-02"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion"/>
    </meta>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
-      <value value="CIO_01_04"/>
+      <value value="CIO_01_02"/>
    </identifier>
    <clinicalStatus value="active">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -36,28 +36,36 @@
    </category>
    <code>
       <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
-         <code value="35"/>
-         <display value="Penicillines"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+         <code value="23167"/>
+         <display value="Amoxicilline"/>
       </coding>
    </code>
    <patient>
       <reference value="Patient/XXX-Stalewska"/>
       <display value="Maria Christina M. Marieke van XXX_Stalewska"/>
    </patient>
-   <onsetDateTime value="${DATE, T, D, -200}"/>
-   <assertedDate value="${DATE, T, D, -120}"/>
+   <onsetDateTime value="${DATE, T, D, -100}"/>
+   <assertedDate value="${DATE, T, D, -60}"/>
    <recorder>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/urnuuiddd1638e7-f0b4-11e9-1773-28f10e481d92"/>
-            <display value="O. Orthopeed || Medisch specialisten, orthopedie"/>
+            <reference value="PractitionerRole/urnuuid1485ed5e-f1b7-11e9-1950-020000000000"/>
+            <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde"/>
          </valueReference>
       </extension>
-      <display value="O. Orthopeed || Medisch specialisten, orthopedie"/>
+      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde"/>
    </recorder>
    <asserter>
-      <reference value="RelatedPerson/PETERP-J-PETERVANDENHERIKVANXXX-STALEWSKA"/>
-      <display value="Peter P.J. Peter van den Herik van XXX_Stalewska"/>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid1485ed5e-f1b7-11e9-1950-020000000000"/>
+            <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde"/>
+         </valueReference>
+      </extension>
+      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde"/>
    </asserter>
+   <note>
+      <text value="Overgevoeligheid leidt tot paarse vlekjes op de huid en jeuk."/>
+   </note>
 </AllergyIntolerance>

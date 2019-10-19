@@ -1,19 +1,19 @@
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="CIO-01-012-16-840-1-113883-2-4-3-11-999-26-1-1"/>
+   <id value="CIO-02-02"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion"/>
    </meta>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
-      <value value="CIO_01_01"/>
+      <value value="CIO_02_02"/>
    </identifier>
-   <clinicalStatus value="active">
+   <clinicalStatus value="inactive">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/ActStatus"/>
-               <code value="active"/>
-               <display value="Actief"/>
+               <code value="obsolete"/>
+               <display value="Achterhaald"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -36,31 +36,36 @@
    </category>
    <code>
       <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-         <code value="1127039"/>
-         <display value="AMOXI/CLAV SANDOZ TABLET 500/125MG"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+         <code value="23167"/>
+         <display value="Amoxicilline"/>
       </coding>
    </code>
    <patient>
-      <reference value="Patient/XXX-Stalewska"/>
-      <display value="Maria Christina M. Marieke van XXX_Stalewska"/>
+      <reference value="Patient/XXX-Smits"/>
+      <display value="M.P.H. Mike XXX_Smits"/>
    </patient>
-   <onsetDateTime value="${DATE, T, D, -50}"/>
-   <assertedDate value="${DATE, T, D, -30}"/>
+   <onsetDateTime value="${DATE, T, D, -100}"/>
+   <assertedDate value="${DATE, T, D, -60}"/>
    <recorder>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/urnuuiddd1638ae-f0b4-11e9-1773-28f10e481d92"/>
+            <reference value="PractitionerRole/urnuuid1a65120b-f1b7-11e9-4591-020000000000"/>
             <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde"/>
          </valueReference>
       </extension>
       <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde"/>
    </recorder>
    <asserter>
-      <reference value="Patient/XXX-Stalewska"/>
-      <display value="Maria Christina M. Marieke van XXX_Stalewska"/>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/urnuuid1a65120b-f1b7-11e9-4591-020000000000"/>
+            <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde"/>
+         </valueReference>
+      </extension>
+      <display value="I.N. ter Nist || Medisch specialisten, inwendige geneeskunde"/>
    </asserter>
    <note>
-      <text value="Geldt alleen voor dit merk."/>
+      <text value="Betreft nu Ciprofloxacine. Leidt tot paarse vlekjes op de huid en jeuk."/>
    </note>
 </AllergyIntolerance>
