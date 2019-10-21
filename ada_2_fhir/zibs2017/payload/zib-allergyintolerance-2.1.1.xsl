@@ -13,13 +13,13 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-   <!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    
-     
-      <xd:doc>
+
+
+    <xd:doc>
         <xd:desc>Mapping of nl.zorg.AllergieIntolerantie concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">zib-AllergyIntolerance</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
         <xd:param name="ada-patient">The ada patient that is subject of this AllergyIntolerance</xd:param>
@@ -42,14 +42,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
             </meta>
 
-<!-- text narrative -->
+            <!-- text narrative -->
             <xsl:for-each select="omschrijving[@value]">
                 <text>
                     <status value="additional"/>
-                    <div  xmlns="http://www.w3.org/1999/xhtml"><xsl:value-of select="@value"/></div>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                        <xsl:value-of select="@value"/>
+                    </div>
                 </text>
             </xsl:for-each>
-            
+
             <!-- identifier -->
             <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
                 <identifier>
@@ -78,51 +80,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </clinicalStatus>
             </xsl:for-each>
 
-            <xsl:for-each select="(allergie_categorie | allergy_category)[@code]">
-                <xsl:choose>
-                    <xsl:when test="(allergie_status | allergy_status)[@code = 'nullified'][@codeSystem][1]">
-                        <xsl:for-each select="allergie_status | allergy_status[@code = 'nullified'][@codeSystem][1]">
-                            <verificationStatus value="entered-in-error">
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                                    <valueCodeableConcept>
-                                        <coding>
-                                            <system value="{local:getUri(@codeSystem)}"/>
-                                            <code value="{@code}"/>
-                                            <xsl:if test="@displayName">
-                                                <display value="{@displayName}"/>
-                                            </xsl:if>
-                                        </coding>
-                                    </valueCodeableConcept>
-                                </extension>
-                            </verificationStatus>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:when test="(begin_datum_tijd | start_date_time)[@value]">
-                        <verificationStatus value="confirmed"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- we don't know, but still a required element, data-absent-reason -->
-                        <verificationStatus>
-                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                <valueCode value="unknown"/>
-                            </extension>
-                        </verificationStatus>
-                    </xsl:otherwise>
-                </xsl:choose>
-                <!-- The ZIB prescribes an (optional) value list for the allergy category, which is mapped onto
+            <!-- see https://bits.nictiz.nl/browse/MM-492 on how top map allergy_status to verificationStatus -->
+            <!-- we don't know, but still a required element, data-absent-reason -->
+            <verificationStatus>
+                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                    <valueCode value="unknown"/>
+                </extension>
+            </verificationStatus>
+
+            <!-- The ZIB prescribes an (optional) value list for the allergy category, which is mapped onto
                      AllergyIntolerance.category. However, .category defines its own required coding, which can't be
                      always translated from the zib value set. In case we can't make the translation, we have no other
                      option than to exclude .category altogether, even if it means we also exclude the ZIB value - we
                      can't produce a valid FHIR instance otherwise. -->
+            <xsl:for-each select="(allergie_categorie | allergy_category)[@code]">
                 <xsl:variable name="fhirCategory">
                     <xsl:choose>
-                        <xsl:when test="@code = '418471000'">food</xsl:when>
-                        <xsl:when test="@code = '419511003'">medication</xsl:when>
-                        <xsl:when test="@code = '426232007'">environment</xsl:when>
-                        <xsl:otherwise/>
+                        <!--Propensity to adverse reactions to food    418471000    SNOMED CT    2.16.840.1.113883.6.96    Voeding-->
+                        <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">food</xsl:when>
+                        <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
+                        <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">medication</xsl:when>
+                        <!--Environmental allergy    426232007    SNOMED CT    2.16.840.1.113883.6.96    Omgeving-->
+                        <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">environment</xsl:when>
+                        <!--Allergy to substance    419199007    SNOMED CT    2.16.840.1.113883.6.96    Stof of product-->
+                        <!-- TODO https://bits.nictiz.nl/browse/MM-498 is this mapping correct? -->
+                        <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">biologic</xsl:when>
+                        <xsl:when test="@nullFlavor = 'OTH'"/>
+                        <xsl:otherwise>
+                            <xsl:message>Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                        </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:if test="$fhirCategory != ''">
+                <!-- valueset binding in FHIR is required, so only one of the four options in the valueSet is permitted, otherwise do not output category -->
+                <xsl:if test="string-length($fhirCategory) gt 0">
                     <category value="{$fhirCategory}">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                             <valueCodeableConcept>

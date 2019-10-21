@@ -60,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <display value="{nff:get-resource-info($ResourceType, $group-key, false(), 'ReferenceDisplay')}"/>
     </xsl:template>
 
-  
+
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.AllergieIntolerantie concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">zib-AllergyIntolerance</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
@@ -112,12 +112,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <!-- code is 1..1 in FHIR profile, in zib either alert_naam or reference to problem should exist -->
             <code>
+                <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                 <xsl:choose>
                     <xsl:when test="alert_naam[@code]">
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="alert_naam[@code]"/>
+                            <xsl:with-param name="treatNullFlavorAsCoding" select="alert_naam/@code = $nullFlavorsInValueset and alert_naam/@codeSystem = $oidHL7NullFlavor"/>
                         </xsl:call-template>
+                        <xsl:if test="alert_naam[@displayName]">
+                            <text value="{alert_naam/@displayName}"/>
+                        </xsl:if>
                     </xsl:when>
+                    <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
                     <xsl:otherwise>
                         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
                             <valueCode value="unknown"/>
