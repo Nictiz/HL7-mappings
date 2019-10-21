@@ -722,6 +722,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                         </xsl:call-template>
                     </reasonCode>
                 </xsl:for-each>
@@ -918,6 +919,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                         </xsl:call-template>
                     </reasonCode>
                 </xsl:for-each>
@@ -1632,7 +1634,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test=".[doseerinstructie[.//(@value|@code)]]">
+            <xsl:when test=".[doseerinstructie[.//(@value | @code)]]">
                 <xsl:for-each select="doseerinstructie">
                     <xsl:choose>
                         <xsl:when test="dosering[.//(@value | @code)]">
@@ -2245,7 +2247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="treatNullFlavorAsCoding" select="./@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
+                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                 </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>
@@ -2274,14 +2276,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="zo_nodig/criterium/code">
             <asNeededCodeableConcept>
                 <xsl:variable name="in" select="."/>
+                <xsl:variable name="nullFlavorsInValueset" select="('NI', 'OTH')"/>
                 <!-- roep hier niet het standaard template aan omdat criterium/omschrijving ook nog omschrijving zou kunnen bevatten... -->
                 <xsl:choose>
-                    <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor]">
+                    <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor][not(@code=$nullFlavorsInValueset)]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                             <valueCode value="{$in/@code}"/>
                         </extension>
                     </xsl:when>
-                    <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor)]">
+                    <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or (@codeSystem = $oidHL7NullFlavor and @code=$nullFlavorsInValueset)]">
                         <coding>
                             <system value="{local:getUri($in/@codeSystem)}"/>
                             <code value="{$in/@code}"/>
@@ -2290,7 +2293,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                             <!--<userSelected value="true"/>-->
                         </coding>
-                        <!-- ADA heeft nog geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
+                        <!-- ADA heeft geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
                         <xsl:for-each select="$in/translation">
                             <coding>
                                 <system value="{local:getUri(@codeSystem)}"/>
@@ -2397,7 +2400,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="treatNullFlavorAsCoding" select="./@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
+                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                   </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>
@@ -2437,7 +2440,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="treatNullFlavorAsCoding" select="./@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
+                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                 </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>
@@ -3102,7 +3105,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <xsl:for-each select="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
                                 <xsl:choose>
-                                    <xsl:when test="./@codeSystem = $most-specific-product-code/@codeSystem">
+                                    <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
                                         <xsl:call-template name="code-to-CodeableConcept">
                                             <xsl:with-param name="in" select="."/>
                                             <xsl:with-param name="user-selected">true</xsl:with-param>
@@ -3114,6 +3117,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:call-template>
                                     </xsl:otherwise>
                                 </xsl:choose>
+                            </xsl:for-each>
+                        <xsl:for-each select="$most-specific-product-code[@displayName]">
+                                <text value="{@displayName}"/>
                             </xsl:for-each>
                         </code>
                     </xsl:when>
