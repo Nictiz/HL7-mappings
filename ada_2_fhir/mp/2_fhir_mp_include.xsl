@@ -2245,6 +2245,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="treatNullFlavorAsCoding" select="./@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                 </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>
@@ -2396,7 +2397,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
+                    <xsl:with-param name="treatNullFlavorAsCoding" select="./@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
+                  </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>
         <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
@@ -2435,6 +2437,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="treatNullFlavorAsCoding" select="./@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                 </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>

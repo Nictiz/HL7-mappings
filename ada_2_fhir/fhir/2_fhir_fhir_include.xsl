@@ -386,22 +386,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="element-name">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
         <xd:param name="user-selected">Optionally provide a user selected boolean.</xd:param>
+        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. 
+            Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="element-name" as="xs:string?">coding</xsl:param>
         <xsl:param name="user-selected" as="xs:boolean?"/>
+        <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
         <xsl:choose>
-            <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor]">
+            <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor] and not($treatNullFlavorAsCoding)">
                 <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@code}"/>
                 </extension>
             </xsl:when>
-            <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor)]">
+            <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or $treatNullFlavorAsCoding]">
                 <xsl:element name="{$element-name}">
                     <xsl:call-template name="code-to-Coding">
                         <xsl:with-param name="in" select="$in"/>
                         <xsl:with-param name="user-selected" select="$user-selected"/>
+                        <xsl:with-param name="treatNullFlavorAsCoding" select="$treatNullFlavorAsCoding"/>
                     </xsl:call-template>
                 </xsl:element>
                 <!--<xsl:if test="$in/@displayName">
@@ -425,17 +429,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Coding">Coding contents</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="user-selected">Optionally provide a user selected boolean.</xd:param>
+        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. 
+            Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-Coding" as="element()*">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="user-selected" as="xs:boolean?"/>
+        <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
         <xsl:choose>
-            <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor]">
+            <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor] and not($treatNullFlavorAsCoding)">
                 <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@code}"/>
                 </extension>
             </xsl:when>
-            <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor)]">
+            <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or $treatNullFlavorAsCoding]">
                 <system value="{local:getUri($in/@codeSystem)}"/>
                 <code value="{$in/@code}"/>
                 <xsl:if test="$in/@displayName">
