@@ -27,8 +27,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="bouwstenen-all-int-vertaling" as="element(f:entry)*">
         <!-- allergie_intolerantie -->
         <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
-            <xsl:call-template name="allergyintolerance-entry">
-                 <xsl:with-param name="dateT" select="$dateT"/>
+            <xsl:call-template name="AllergyIntoleranceEntry">
+                <xsl:with-param name="adaPatient" select="../patient"/>
+                <xsl:with-param name="dateT" select="$dateT"/>
              </xsl:call-template>
         </xsl:for-each>         
     </xsl:variable>
