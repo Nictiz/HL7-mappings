@@ -7,9 +7,14 @@
       <fullUrl value="urn:uuid:66935281-de15-4033-9be4-a4127812dd95"/>
       <resource>
          <AllergyIntolerance>
+            <id value="66935281-de15-4033-9be4-a4127812dd95"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
             </meta>
+            <identifier>
+               <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+               <value value="66935281-de15-4033-9be4-a4127812dd95"/>
+            </identifier>
             <clinicalStatus value="active">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -21,7 +26,11 @@
                   </valueCodeableConcept>
                </extension>
             </clinicalStatus>
-            <verificationStatus value="confirmed"/>
+            <verificationStatus>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </verificationStatus>
             <category value="biologic">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -40,10 +49,10 @@
                <text value="Amoxicilline, opmerking: via neuroloog"/>
             </code>
             <patient>
-               <reference value="urn:uuid:0992f62e-d320-11e9-1908-28f10e481d92"/>
+               <reference value="urn:uuid:3f48c7f2-f4c8-11e9-1371-020000000000"/>
                <display value="Joris J. Hansman"/>
             </patient>
-            <assertedDate value="2015-03-04"/>
+            <onsetDateTime value="2015-03-04"/>
          </AllergyIntolerance>
       </resource>
       <search>
@@ -51,7 +60,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0992f62e-d320-11e9-1908-28f10e481d92"/>
+      <fullUrl value="urn:uuid:3f48c7f2-f4c8-11e9-1371-020000000000"/>
       <resource>
          <Patient>
             <meta>
