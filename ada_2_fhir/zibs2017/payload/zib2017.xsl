@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-humanname-2.0.xsl"/>
     <xsl:import href="nl-core-address-2.0.xsl"/>
     <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
-    <xsl:import href="zib-allergyintolerance-2.1.1.xsl"/>
+    <xsl:import href="zib-allergyintolerance-2.1.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     
     <xsl:strip-space elements="*"/>
@@ -167,6 +167,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:apply-templates>
                 </unieke-practitionerRole>
             </xsl:for-each-group>
+        </xsl:for-each-group>
+    </xsl:variable>
+    <xsl:variable name="allergyIntolerances" as="element()*">
+        <!-- related-persons -->
+        <xsl:for-each-group select="//(allergie_intolerantie | allergy_intolerance)[not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <unieke-allergie-intolerantie xmlns="">
+                <group-key>
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display>
+                    <xsl:value-of select="current-group()[1]/normalize-space(string-join(((allergie_categorie | allergy_category)/@displayName, (allergie_categorie | allergy_category)/@originalText, (veroorzakende_stof | causative_agent)/@code, (veroorzakende_stof | causative_agent)/@originalText), ' '))"/>
+                </reference-display>
+                <xsl:apply-templates select="current-group()[1]" mode="doAllergyIntoleranceEntry-2.1">
+                    <xsl:with-param name="uuid" select="$uuid"/>
+                </xsl:apply-templates>
+            </unieke-allergie-intolerantie>
         </xsl:for-each-group>
     </xsl:variable>
     <xsl:variable name="problems" as="element()*">
@@ -499,6 +517,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="RESOURCETYPE" select="normalize-space(upper-case($resourceType))"/>
         <xsl:variable name="var">
             <xsl:choose>
+                <xsl:when test="$RESOURCETYPE = 'ALLERGYINTOLERANCE'">
+                    <xsl:copy-of select="$allergyIntolerances"/>
+                </xsl:when>
                 <xsl:when test="$RESOURCETYPE = 'PATIENT'">
                     <xsl:copy-of select="$patients"/>
                 </xsl:when>
