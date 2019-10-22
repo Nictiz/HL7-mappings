@@ -13,23 +13,67 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
+    <xd:doc>
+        <xd:desc>Produces a FHIR entry element with an AllergyIntolerance resource</xd:desc>
+        <xd:param name="adaPatient">Optional, but should be there. Patient for which this AllergyIntolerance is for.</xd:param>
+        <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
+        <xd:param name="entryFullurl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.AllergyIntolerance.id</xd:param>
+        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
+        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). 
+            Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+    </xd:doc>
+    <xsl:template name="AllergyIntoleranceEntry" match="allergie_intolerantie | allergy_intolerance" mode="doAllergyIntoleranceEntry-2.1" as="element(f:entry)">
+        <xsl:param name="adaPatient" as="element(patient)?"/>
+        <xsl:param name="dateT"/>
+        <xsl:param name="entryFullurl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="fhirResourceId">
+            <xsl:if test="$referById">
+                <xsl:choose>
+                    <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
+                        <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:removeSpecialCharacters($entryFullurl)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:param>
+        <xsl:param name="searchMode">include</xsl:param>
+        <xsl:param name="uuid" select="false()" as="xs:boolean"/>
+        <entry>
+            <fullUrl value="{$entryFullurl}"/>
+            <resource>
+                <xsl:call-template name="zib-AllergyIntolerance-2.1">
+                    <xsl:with-param name="fhirResourceId" select="$fhirResourceId"/>
+                    <xsl:with-param name="adaPatient" select="$adaPatient"/>
+                    <xsl:with-param name="dateT" select="$dateT"/>
+                </xsl:call-template>
+            </resource>
+            <xsl:if test="string-length($searchMode) gt 0">
+                <search>
+                    <mode value="{$searchMode}"/>
+                </search>
+            </xsl:if>
+        </entry>
+    </xsl:template>
+
 
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.AllergieIntolerantie concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">zib-AllergyIntolerance</xd:a>.</xd:desc>
-        <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
-        <xd:param name="ada-patient">The ada patient that is subject of this AllergyIntolerance</xd:param>
+        <xd:param name="fhirResourceId">Optional FHIR logical id for the record.</xd:param>
+        <xd:param name="adaPatient">The ada patient that is subject of this AllergyIntolerance</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-AllergyIntolerance-2.1.1" match="allergie_intolerantie | allergy_intolerance" as="element()" mode="doZibAllergyIntolerance211">
-        <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="ada-patient" as="element(patient)?"/>
+    <xsl:template name="zib-AllergyIntolerance-2.1" match="allergie_intolerantie | allergy_intolerance" as="element()" mode="doZibAllergyIntolerance21">
+        <xsl:param name="fhirResourceId" as="xs:string?"/>
+        <xsl:param name="adaPatient" as="element(patient)?"/>
         <xsl:param name="dateT" as="xs:date?"/>
-
 
         <AllergyIntolerance>
 
