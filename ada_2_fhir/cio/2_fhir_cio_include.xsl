@@ -27,40 +27,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="bouwstenen-all-int-vertaling" as="element(f:entry)*">
         <!-- allergie_intolerantie -->
         <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
-            <xsl:call-template name="AllergyIntoleranceEntry">
-                <xsl:with-param name="adaPatient" select="../patient"/>
-                <xsl:with-param name="dateT" select="$dateT"/>
+            <xsl:call-template name="allergyintolerance-entry">
+                 <xsl:with-param name="dateT" select="$dateT"/>
              </xsl:call-template>
-            
-            
-            <!--<entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
-                <resource>
-                    <xsl:call-template name="zib-AllergyIntolerance-2.1">
-                        <xsl:with-param name="allergyintolerance-id">
-                            <xsl:if test="$referById">
-                                <xsl:variable name="tempId" select="nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)"/>
-                                <xsl:choose>
-                                    <xsl:when test="string-length($tempId) gt 0">
-                                        <xsl:value-of select="$tempId"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="uuid:get-uuid(.)"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:if>
-                        </xsl:with-param>
-                        <xsl:with-param name="patient-ref" as="element()*">
-                            <xsl:for-each select="../patient">
-                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                            </xsl:for-each>
-                        </xsl:with-param>
-                        <xsl:with-param name="dateT" select="$dateT"/>
-                    </xsl:call-template>
-                </resource>
-            </entry>-->
-        </xsl:for-each>
-         
+        </xsl:for-each>         
     </xsl:variable>
 
 

@@ -1,5 +1,5 @@
 <RelatedPerson xmlns="http://hl7.org/fhir">
-   <id value="PETERP-J-PETERVANDENHERIKVANXXX-STALEWSKA"/>
+   <id value="MEIKEM-G-J-VANHOOF"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
    </meta>
@@ -13,47 +13,35 @@
       </valueCodeableConcept>
    </extension>
    <patient>
-      <reference value="Patient/XXX-Stalewska"/>
-      <display value="Maria Christina M. Marieke van XXX_Stalewska"/>
+      <reference value="Patient/XXX-Smits"/>
+      <display value="M.P.H. Mike XXX_Smits"/>
    </patient>
    <relationship>
-      <coding>
-         <system value="http://hl7.org/fhir/v3/RoleCode"/>
-         <code value="HUSB"/>
-         <display value="Echtgenoot"/>
-      </coding>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="OTH"/>
+      </extension>
+      <text value="Vriendin"/>
    </relationship>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
       </extension>
-      <family value="van den Herik">
+      <family value="van Hoof">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-            <valueString value="van den"/>
-         </extension>
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="Herik"/>
-         </extension>
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
             <valueString value="van"/>
          </extension>
-         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
-            <valueString value="XXX_Stalewska"/>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Hoof"/>
          </extension>
       </family>
-      <given value="Peter">
+      <given value="Meike">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
          </extension>
       </given>
-      <given value="P.J.">
+      <given value="M.G.J.">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="IN"/>
-         </extension>
-      </given>
-      <given value="Peter">
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-            <valueCode value="CL"/>
          </extension>
       </given>
    </name>
@@ -69,7 +57,7 @@
             </valueCodeableConcept>
          </extension>
       </system>
-      <value value="06-12345670"/>
+      <value value="06-12345678"/>
       <use value="mobile">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
@@ -84,14 +72,14 @@
    </telecom>
    <telecom>
       <system value="email"/>
-      <value value="pjvandenherik123@hotmail.com"/>
-      <use value="home">
+      <value value="m.vanhoof@werkmail.nl"/>
+      <use value="work">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
                <coding>
                   <system value="http://hl7.org/fhir/v3/AddressUse"/>
-                  <code value="HP"/>
-                  <display value="Privé e-mailadres"/>
+                  <code value="WP"/>
+                  <display value="Zakelijk e-mailadres"/>
                </coding>
             </valueCodeableConcept>
          </extension>
@@ -104,18 +92,18 @@
          </extension>
       </use>
       <type value="physical"/>
-      <line value="Knolweg 1001 b">
+      <line value="Heuvellaan 10 b">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-            <valueString value="Knolweg"/>
+            <valueString value="Heuvellaan"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-            <valueString value="1001"/>
+            <valueString value="10"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
             <valueString value="b"/>
          </extension>
       </line>
-      <city value="Stitswerd"/>
+      <city value="Ons Dorp"/>
       <postalCode value="9999 XX"/>
    </address>
 </RelatedPerson>

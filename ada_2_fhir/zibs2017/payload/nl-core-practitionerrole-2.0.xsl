@@ -13,13 +13,16 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- import because we want to be able to override the param for macAddress for UUID generation -->
-    <!--    <xsl:import href="2_fhir_fhir_include.xsl"/>-->
+    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:import href="nl-core-practitioner-2.0.xsl"/>
+    <xsl:import href="nl-core-organization-2.0.xsl"/>
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
+        <xd:param name="useExtension">Boolean to control whether the NL extension should be used to output the reference. Defaults to false.</xd:param>
     </xd:doc>
     <xsl:template name="practitionerrole-reference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleReference-2.0" as="element()*">
         <xsl:param name="useExtension" as="xs:boolean?" select="false()"/>
@@ -44,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theDisplay">
             <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
                 <display value="{$theGroupElement/reference-display}"/>
-            </xsl:if>            
+            </xsl:if>
         </xsl:variable>
         <!-- extension -->
         <xsl:choose>
@@ -75,9 +78,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="practitionerRole-entry" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleEntry-2.0">
         <xsl:param name="entry-fullurl" select="nf:get-fhir-uuid(./..)"/>
         <xsl:param name="fhir-resource-id">
+            <xsl:variable name="theIdentifier" select="zorgverlener_identificatienummer[@value] | zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
+
             <xsl:if test="$referById">
-                <!-- TODO: improve this for a more stable id -->
-                <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                <xsl:variable name="theResourceId" as="xs:string*">
+                    <xsl:choose>
+                        <xsl:when test="$theIdentifier">
+                            <xsl:variable name="theOrgId">
+                                <xsl:for-each select=".//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])/@value">
+                                    <xsl:value-of select="."/>
+                                </xsl:for-each>
+                                <xsl:for-each select=".//((zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])/(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@value)[1]">
+                                    <xsl:value-of select="."/>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <xsl:value-of select="($theIdentifier[not(@root = $mask-ids-var)]/@value)[1]"/>
+                            <xsl:value-of select="$theOrgId"/>
+                            <xsl:value-of select="(specialisme | specialty)/@code"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:value-of select="nf:removeSpecialCharacters(string-join($theResourceId, '-'))"/>
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
