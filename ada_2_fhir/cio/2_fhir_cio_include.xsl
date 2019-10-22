@@ -13,7 +13,6 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <xsl:import href="../zibs2017/payload/zib2017.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -31,29 +30,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="adaPatient" select="../patient"/>
                 <xsl:with-param name="dateT" select="$dateT"/>
              </xsl:call-template>
-            
-            
-            <!--<entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
-                <resource>
-                    <xsl:call-template name="zib-AllergyIntolerance-2.1.1">
-                        <xsl:with-param name="logicalId" select="
-                            if ($referById) then
-                            (if (string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0) then
-                            nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))
-                            else
-                            uuid:get-uuid(.))
-                            else
-                            ()"> </xsl:with-param>
-                        <xsl:with-param name="ada-patient" select="../patient"/>
-                        <xsl:with-param name="dateT" select="$dateT"/>
-                    </xsl:call-template>
-                </resource>
-            </entry>-->
         </xsl:for-each>
-         
     </xsl:variable>
-
 
     <xd:doc>
         <xd:desc/>
