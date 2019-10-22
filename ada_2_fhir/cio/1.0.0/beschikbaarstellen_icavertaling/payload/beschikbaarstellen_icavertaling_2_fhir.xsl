@@ -15,7 +15,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"  xmlns:uuid="http://www.uuid.org" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <xsl:import href="../../../2_fhir_cio_include.xsl"/>
-    <xsl:import href="../../../../zibs2017/payload/zib2017.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -45,16 +44,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
                 <resource>
-                    <xsl:call-template name="zib-AllergyIntolerance-2.1.1">
-                        <xsl:with-param name="logicalId" select="
-                            if ($referById) then
-                            (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then
-                            nf:removeSpecialCharacters(./identificatie/@value)
-                            else
-                            uuid:get-uuid(.))
-                            else
-                            ()"> </xsl:with-param>
-                        <xsl:with-param name="ada-patient" select="../patient"/>
+                    <xsl:call-template name="zib-AllergyIntolerance-2.1">
+                        <xsl:with-param name="allergyintolerance-id" as="xs:string?">
+                            <xsl:if test="$referById">
+                                <xsl:choose>
+                                    <xsl:when test="string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0">
+                                        <xsl:value-of select="nf:removeSpecialCharacters(./identificatie/@value)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="uuid:get-uuid(.)"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:if>
+                        </xsl:with-param>
+                        <xsl:with-param name="patient-ref" as="element()*">
+                            <xsl:for-each select="../patient">
+                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                            </xsl:for-each>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </resource>
             </entry>

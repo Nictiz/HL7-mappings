@@ -67,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="zib-name" select="replace(tokenize(./f:meta/f:profile/@value, './')[last()], '-AllergyIntoleranceToFHIRConversion-', '-')"/>
         <xsl:result-document href="./{$usecase}-{$zib-name}-{./f:id/@value}.xml">
             <xsl:apply-templates select="." mode="ResultOutput"/>
-        </xsl:result-document>           
+        </xsl:result-document>
     </xsl:template>
     
     <xd:doc>
@@ -77,7 +77,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:copy>
             <xsl:attribute name="value">http://nictiz.nl/fhir/StructureDefinition/mp612-AllergyIntoleranceToFHIRConversion</xsl:attribute>
         </xsl:copy>
-    </xsl:template>  
-    
+    </xsl:template>
 
 </xsl:stylesheet>

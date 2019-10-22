@@ -25,43 +25,73 @@
     <property name="project.license" value="GNU-LGPL"/>
     <property name="project.copyright" value="true"/>
     
-    <property name="build.dir" value="beschikbaarstellen_icavertaling"/>
+    <property name="build.dir1" value="beschikbaarstellen_all_int_vertaling"/>
+    <property name="build.dir2" value="beschikbaarstellen_icavertaling"/>
     <property name="project.source.dir" value="${build.dir}/../../../../../projects/cio"/>
     
     <target name="convert_ada_2_fhir">
         <property name="xsl.saxon" value="/Users/ahenket/Development/lib/SaxonPE9-7-0-20J/saxon9pe.jar"/>
         
-        <echo>Copying ADA result files from ${build.dir}</echo>
-        <copy todir="${build.dir}/ada_instance" failonerror="true">
-            <fileset dir="${build.dir}/ada_instance">
+        <echo>Copying ADA result files from ${build.dir1}</echo>
+        <copy todir="${build.dir1}/ada_instance" failonerror="true">
+            <fileset dir="${build.dir1}/ada_instance">
                 <include name="**"/>
                 <exclude name="*bundle*"/>
             </fileset>
         </copy>
         
-        <property name="xsl_cio_resources" value="${build.dir}/payload/beschikbaarstellen_icavertaling_2_fhir_resources.xsl"/>
-        <property name="xsl_cio" value="${build.dir}/payload/beschikbaarstellen_icavertaling_2_fhir.xsl"/>
+        <property name="xsl_cio_resources1" value="${build.dir1}/payload/beschikbaarstellen_all_int_vertaling_2_fhir_resources.xsl"/>
+        <property name="xsl_cio1" value="${build.dir1}/payload/beschikbaarstellen_all_int_vertaling_2_fhir.xsl"/>
         
-        <property name="xsl.input" value="${build.dir}/ada_instance"/>
-        <property name="xsl.output" value="${build.dir}/fhir_instance"/>
+        <property name="xsl.input1" value="${build.dir1}/ada_instance"/>
+        <property name="xsl.output1" value="${build.dir1}/fhir_instance"/>
         
         <echo>Deleting previous results, if any</echo>
-        <delete dir="${xsl.output}"/>
+        <delete dir="${xsl.output1}"/>
         
         <sequential>
-            <fileset id="inputfilesCio" dir="${xsl.input}" includes="*.xml"/>
+            <fileset id="inputfilesCio" dir="${xsl.input1}" includes="*.xml"/>
             
             <echo/>
-            <echo>${echo.label} ${xsl_cio_resources}</echo>
-            <xslt force="true" style="${xsl_cio_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <echo>${echo.label} ${xsl_cio_resources1}</echo>
+            <xslt force="true" style="${xsl_cio_resources1}" destdir="${xsl.output1}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesCio"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
             <echo/>
-            <echo>${echo.label} ${xsl_cio}</echo>
-            <xslt force="true" style="${xsl_cio}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <echo>${echo.label} ${xsl_cio1}</echo>
+            <xslt force="true" style="${xsl_cio1}" destdir="${xsl.output1}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesCio"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <echo>Copying ADA result files from ${build.dir2}</echo>
+        <copy todir="${build.dir2}/ada_instance" failonerror="true">
+            <fileset dir="${build.dir2}/ada_instance">
+                <include name="**"/>
+                <exclude name="*bundle*"/>
+            </fileset>
+        </copy>
+        
+        <!--<property name="xsl_cio_resources" value="${build.dir}/payload/beschikbaarstellen_icavertaling_2_fhir_resources.xsl"/>-->
+        <property name="xsl_cio2" value="${build.dir2}/payload/beschikbaarstellen_icavertaling_2_fhir.xsl"/>
+        
+        <property name="xsl.input2" value="${build.dir2}/ada_instance"/>
+        <property name="xsl.output2" value="${build.dir2}/fhir_instance"/>
+        
+        <echo>Deleting previous results, if any</echo>
+        <delete dir="${xsl.output2}"/>
+        
+        <sequential>
+            <fileset id="inputfilesCio" dir="${xsl.input2}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_cio2}</echo>
+            <xslt force="true" style="${xsl_cio2}" destdir="${xsl.output2}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesCio"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -69,25 +99,25 @@
         </sequential>
     </target>
     
-    <target name="setup" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project">
-        <mkdir dir="${build.dir}"/>
+    <target name="setup" description="Setup containing the new/schemas folder from the original ADA project">
+        <mkdir dir="${build.dir2}"/>
         
-        <delete dir="${build.dir}/ada_new"/>
-        <delete dir="${build.dir}/ada_schemas"/>
+        <delete dir="${build.dir2}/ada_new"/>
+        <delete dir="${build.dir2}/ada_schemas"/>
         
-        <copy todir="${build.dir}/ada_new" failonerror="true">
+        <copy todir="${build.dir2}/ada_new" failonerror="true">
             <fileset dir="${project.source.dir}/new">
                 <include name="**"/>
             </fileset>
         </copy>
-        <copy todir="${build.dir}/ada_schemas" failonerror="true">
+        <copy todir="${build.dir2}/ada_schemas" failonerror="true">
             <fileset dir="${project.source.dir}/schemas">
                 <include name="**"/>
             </fileset>
         </copy>
         
-        <mkdir dir="${build.dir}/ada_instance"/>
-        <mkdir dir="${build.dir}/fhir_instance"/>
-        <mkdir dir="${build.dir}/payload"/>
+        <mkdir dir="${build.dir2}/ada_instance"/>
+        <mkdir dir="${build.dir2}/fhir_instance"/>
+        <mkdir dir="${build.dir2}/payload"/>
     </target>
 </project>
