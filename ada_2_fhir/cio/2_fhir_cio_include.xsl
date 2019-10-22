@@ -27,14 +27,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="bouwstenen-all-int-vertaling" as="element(f:entry)*">
         <!-- allergie_intolerantie -->
         <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
-            <entry xmlns="http://hl7.org/fhir">
+            <xsl:call-template name="AllergyIntoleranceEntry">
+                <xsl:with-param name="adaPatient" select="../patient"/>
+                <xsl:with-param name="dateT" select="$dateT"/>
+             </xsl:call-template>
+            
+            
+            <!--<entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
                 <resource>
                     <xsl:call-template name="zib-AllergyIntolerance-2.1.1">
                         <xsl:with-param name="logicalId" select="
                             if ($referById) then
                             (if (string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0) then
-                            nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/(@value), ''))
+                            nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))
                             else
                             uuid:get-uuid(.))
                             else
@@ -43,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="dateT" select="$dateT"/>
                     </xsl:call-template>
                 </resource>
-            </entry>
+            </entry>-->
         </xsl:for-each>
          
     </xsl:variable>
