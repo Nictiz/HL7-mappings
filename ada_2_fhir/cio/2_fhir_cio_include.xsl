@@ -27,23 +27,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="bouwstenen-all-int-vertaling" as="element(f:entry)*">
         <!-- allergie_intolerantie -->
         <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
-            <xsl:call-template name="AllergyIntoleranceEntry">
+            <xsl:call-template name="allergyIntoleranceEntry">
                 <xsl:with-param name="adaPatient" select="../patient"/>
                 <xsl:with-param name="dateT" select="$dateT"/>
+                <xsl:with-param name="searchMode">match</xsl:with-param>
              </xsl:call-template>
-        </xsl:for-each>         
+        </xsl:for-each>
     </xsl:variable>
-
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="condition-id"/>
+        <xd:param name="logicalId"/>
     </xd:doc>
     <xsl:template name="zib-problem-2.0" match="probleem" mode="doConditionForProbleem">
-        <xsl:param name="condition-id" as="xs:string?"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
         <Condition>
-            <xsl:if test="string-length($condition-id) gt 0">
-                <id value="{$condition-id}"/>
+            <xsl:if test="string-length($logicalId) gt 0">
+                <id value="{$logicalId}"/>
             </xsl:if>
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>

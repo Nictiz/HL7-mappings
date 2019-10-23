@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
         <xd:param name="useExtension">Boolean to control whether the NL extension should be used to output the reference. Defaults to false.</xd:param>
     </xd:doc>
-    <xsl:template name="practitionerrole-reference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleReference-2.0" as="element()*">
+    <xsl:template name="practitionerRoleReference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleReference-2.0" as="element()*">
         <xsl:param name="useExtension" as="xs:boolean?" select="false()"/>
         <xsl:variable name="theIdentifier" select="zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPractitionerRole(.)"/>
@@ -71,56 +71,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a PractitionerRole resource</xd:desc>
-        <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.PractitionerRole.id</xd:param>
+        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.PractitionerRole.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
     <xsl:template name="practitionerRole-entry" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleEntry-2.0">
         <xsl:param name="entry-fullurl" select="nf:get-fhir-uuid(./..)"/>
         <xsl:param name="fhir-resource-id">
-            <xsl:variable name="theIdentifier" select="zorgverlener_identificatienummer[@value] | zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
-
             <xsl:if test="$referById">
-                <xsl:variable name="theResourceId" as="xs:string*">
-                    <xsl:choose>
-                        <xsl:when test="$theIdentifier">
-                            <xsl:variable name="theOrgId">
-                                <xsl:for-each select=".//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])/@value">
-                                    <xsl:value-of select="."/>
-                                </xsl:for-each>
-                                <xsl:for-each select=".//((zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])/(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@value)[1]">
-                                    <xsl:value-of select="."/>
-                                </xsl:for-each>
-                            </xsl:variable>
-                            <xsl:value-of select="($theIdentifier[not(@root = $mask-ids-var)]/@value)[1]"/>
-                            <xsl:value-of select="$theOrgId"/>
-                            <xsl:value-of select="(specialisme | specialty)/@code"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:value-of select="nf:removeSpecialCharacters(string-join($theResourceId, '-'))"/>
+                <!-- TODO: improve this for a more stable id -->
+                <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
             <!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
-            <fullUrl value="{$entry-fullurl}"/>
+            <fullUrl value="{$entryFullUrl}"/>
             <resource>
                 <xsl:call-template name="nl-core-practitionerrole-2.0">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="practitionerrole-id" select="$fhir-resource-id"/>
-                    <xsl:with-param name="practitioner-ref" as="element()*">
+                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
+                    <xsl:with-param name="practitionerRef" as="element()*">
                         <xsl:for-each select=".[.//@value]">
-                            <xsl:call-template name="practitioner-reference"/>
+                            <xsl:call-template name="practitionerReference"/>
                         </xsl:for-each>
                     </xsl:with-param>
-                    <xsl:with-param name="organization-ref" as="element()*">
+                    <xsl:with-param name="organizationRef" as="element()*">
                         <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)][.//@value] | .//healthcare_provider[not(healthcare_provider)][.//@value]">
                             <xsl:for-each select="nf:ada-resolve-reference(.)">
-                                <xsl:call-template name="organization-reference"/>
+                                <xsl:call-template name="organizationReference"/>
                             </xsl:for-each>
                         </xsl:for-each>
                     </xsl:with-param>
@@ -136,39 +115,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="practitionerrole-id">PractitionerRole.id value</xd:param>
+        <xd:param name="logicalId">PractitionerRole.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a PractitionerRole resource</xd:param>
-        <xd:param name="practitioner-ref">Optional. Reference datatype elements for the Practitioner that holds the person data</xd:param>
-        <xd:param name="organization-ref">Optional. Reference datatype elements for the Organization that holds the organization data</xd:param>
+        <xd:param name="practitionerRef">Optional. Reference datatype elements for the Practitioner that holds the person data</xd:param>
+        <xd:param name="organizationRef">Optional. Reference datatype elements for the Organization that holds the organization data</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-practitionerrole-2.0" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleResource-2.0">
         <xsl:param name="in" as="element()?"/>
-        <xsl:param name="practitionerrole-id" as="xs:string?"/>
-        <xsl:param name="practitioner-ref" as="element()*"/>
-        <xsl:param name="organization-ref" as="element()*"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="practitionerRef" as="element()*"/>
+        <xsl:param name="organizationRef" as="element()*"/>
 
         <xsl:for-each select="$in">
             <PractitionerRole>
-                <xsl:if test="string-length($practitionerrole-id) gt 0">
-                    <id value="{$practitionerrole-id}"/>
+                <xsl:if test="string-length($logicalId) gt 0">
+                    <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
                 </meta>
-                <xsl:if test="$practitioner-ref">
+                <xsl:if test="$practitionerRef">
                     <practitioner>
-                        <xsl:copy-of select="$organization-ref[self::f:extension]"/>
-                        <xsl:copy-of select="$practitioner-ref[self::f:reference]"/>
-                        <xsl:copy-of select="$practitioner-ref[self::f:identifier]"/>
-                        <xsl:copy-of select="$practitioner-ref[self::f:display]"/>
+                        <xsl:copy-of select="$organizationRef[self::f:extension]"/>
+                        <xsl:copy-of select="$practitionerRef[self::f:reference]"/>
+                        <xsl:copy-of select="$practitionerRef[self::f:identifier]"/>
+                        <xsl:copy-of select="$practitionerRef[self::f:display]"/>
                     </practitioner>
                 </xsl:if>
-                <xsl:if test="$organization-ref">
+                <xsl:if test="$organizationRef">
                     <organization>
-                        <xsl:copy-of select="$organization-ref[self::f:extension]"/>
-                        <xsl:copy-of select="$organization-ref[self::f:reference]"/>
-                        <xsl:copy-of select="$organization-ref[self::f:identifier]"/>
-                        <xsl:copy-of select="$organization-ref[self::f:display]"/>
+                        <xsl:copy-of select="$organizationRef[self::f:extension]"/>
+                        <xsl:copy-of select="$organizationRef[self::f:reference]"/>
+                        <xsl:copy-of select="$organizationRef[self::f:identifier]"/>
+                        <xsl:copy-of select="$organizationRef[self::f:display]"/>
                     </organization>
                 </xsl:if>
                 <!-- See for details why this was deactivated: https://simplifier.net/NictizSTU3-Zib2017/nl-core-practitionerrole/~overview -->

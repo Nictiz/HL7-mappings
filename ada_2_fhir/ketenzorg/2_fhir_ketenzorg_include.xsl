@@ -101,13 +101,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="zib-AllergyIntolerance-2.1">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="allergyintolerance-id" select="nf:removeSpecialCharacters(hcimroot/identification_number/@value)"/>
-                        <xsl:with-param name="patient-ref" as="element()*">
-                            <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
-                            <xsl:for-each select="(ancestor-or-self::*//subject//patient[patient_identification_number])[1]">
-                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                            </xsl:for-each>
-                        </xsl:with-param>
+                        <xsl:with-param name="logicalId" select="nf:removeSpecialCharacters(hcimroot/identification_number/@value)"/>
+                        <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
+                        <xsl:with-param name="adaPatient" select="(ancestor-or-self::*//subject//patient[patient_identification_number])[1]" as="element()"/>
                     </xsl:call-template>
                 </resource>
                 <search>
@@ -1140,17 +1136,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="condition-entry" match="probleem | problem" mode="doConditionEntry">
+    <xsl:template name="conditionEntry" match="probleem | problem" mode="doConditionEntry">
         <entry xmlns="http://hl7.org/fhir">
             <!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
             <fullUrl value="{nf:get-fhir-uuid(./..)}"/>
             <resource>
                 <xsl:choose>
                     <xsl:when test="$referById">
-                        <xsl:variable name="fhir-resource-id" select="generate-id(./..)"/>
+                        <xsl:variable name="fhirResourceId" select="generate-id(./..)"/>
                         <xsl:call-template name="zib-problem-2.0">
                             <xsl:with-param name="ada-problem" select="."/>
-                            <xsl:with-param name="condition-id" select="$fhir-resource-id"/>
+                            <xsl:with-param name="condition-id" select="$fhirResourceId"/>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
@@ -1169,7 +1165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="observation-entry" match="journaalregel | journal_entry" mode="doObservationEntry">
+    <xsl:template name="observationEntry" match="journaalregel | journal_entry" mode="doObservationEntry">
         <xsl:variable name="ada-id" select="nf:get-fhir-uuid(.)"/>
         <entry>
             <fullUrl value="{$ada-id}"/>
@@ -1189,7 +1185,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="observation-reference" match="f:entry | journal_entry" mode="doObservationReference">
+    <xsl:template name="observationReference" match="f:entry | journal_entry" mode="doObservationReference">
         <xsl:variable name="theIdentifier" select="()"/>
         <xsl:variable name="theGroupKey" select="(../group-key, nf:getGroupingKeyDefault(.))[1]"/>
         <xsl:variable name="theGroupKeyElement" select="$body-observations/group-key[. = $theGroupKey]" as="element()?"/>

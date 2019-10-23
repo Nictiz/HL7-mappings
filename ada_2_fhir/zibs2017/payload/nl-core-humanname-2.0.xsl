@@ -2,12 +2,12 @@
     <xd:doc>
         <xd:desc/>
         <xd:param name="in">Nodes to consider. Defaults to context node</xd:param>
-        <xd:param name="unstructured-name">Node to consider for an unstructured name which is part of <xd:ref name="in" type="parameter"/></xd:param>
+        <xd:param name="unstructuredName">Node to consider for an unstructured name which is part of <xd:ref name="in" type="parameter"/></xd:param>
     </xd:doc>
     <xsl:template name="nl-core-humanname-2.0" match="naamgegevens | name_information" mode="doNameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
         <!-- unstructured-name, not supported in zib datamodel, may be customized per transaction, therefore parameterized in this template -->
-        <xsl:param name="unstructured-name" select="ongestructureerde_naam | unstructured_name" as="element()?"/>
+        <xsl:param name="unstructuredName" select="ongestructureerde_naam | unstructured_name" as="element()?"/>
         <xsl:for-each select="$in[.//@value]">
             <name>
                 <xsl:for-each select="naamgebruik[@code] | name_usage[@code]">
@@ -15,9 +15,9 @@
                         <valueCode value="{@code}"/>
                     </extension>
                 </xsl:for-each>
-                <xsl:if test="string-length($unstructured-name/@value) gt 0">
+                <xsl:if test="string-length($unstructuredName/@value) gt 0">
                     <text>
-                        <xsl:copy-of select="$unstructured-name/@value"/>
+                        <xsl:copy-of select="$unstructuredName/@value"/>
                     </text>
                 </xsl:if>
                 <xsl:if test="geslachtsnaam[.//@value] | geslachtsnaam_partner[.//@value] | last_name[.//@value] | last_name_partner[.//@value]">
@@ -94,10 +94,10 @@
                 </xsl:for-each>
             </name>
         </xsl:for-each>
-        <xsl:if test="$in[not(.//@value)] and string-length($unstructured-name/@value) gt 0">
+        <xsl:if test="$in[not(.//@value)] and string-length($unstructuredName/@value) gt 0">
             <name>
                 <text>
-                    <xsl:copy-of select="$unstructured-name/@value"/>
+                    <xsl:copy-of select="$unstructuredName/@value"/>
                 </text>
             </name>
         </xsl:if>

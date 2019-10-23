@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
                 <xsl:for-each select="current-group()[1]">
-                    <xsl:call-template name="relatedperson-entry">
+                    <xsl:call-template name="relatedpersonEntry">
                         <xsl:with-param name="uuid" select="$uuid"/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -90,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
-                <xsl:variable name="entry-fullurl">
+                <xsl:variable name="entryFullUrl">
                     <xsl:choose>
                         <xsl:when test="not($uuid) and $most-specific-product-code">
                             <xsl:value-of select="nf:getUriFromAdaCode($most-specific-product-code)"/>
@@ -100,11 +100,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:variable name="fhir-resource-id">
+                <xsl:variable name="fhirResourceId">
                     <xsl:if test="$referById">
                         <xsl:choose>
                             <xsl:when test="$uuid">
-                                <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                                <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
                             </xsl:when>
                             <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
                                 <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>
@@ -130,11 +130,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                     <xsl:variable name="searchMode" as="xs:string">include</xsl:variable>
                     <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$entry-fullurl}"/>
+                        <fullUrl value="{$entryFullUrl}"/>
                         <resource>
                             <xsl:call-template name="zib-Product">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="medication-id" select="$fhir-resource-id"/>
+                                <xsl:with-param name="medication-id" select="$fhirResourceId"/>
                             </xsl:call-template>
                         </resource>
                         <xsl:if test="string-length($searchMode) gt 0">
@@ -155,7 +155,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
-                <xsl:variable name="entry-fullurl">
+                <xsl:variable name="entryFullUrl">
                     <xsl:choose>
                         <xsl:when test="not($uuid) and $most-specific-product-code">
                             <xsl:value-of select="nf:getUriFromAdaCode($most-specific-product-code)"/>
@@ -165,11 +165,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:variable name="fhir-resource-id">
+                <xsl:variable name="fhirResourceId">
                     <xsl:if test="$referById">
                         <xsl:choose>
                             <xsl:when test="$uuid">
-                                <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                                <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
                             </xsl:when>
                             <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
                                 <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>
@@ -195,11 +195,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:variable name="searchMode" as="xs:string">include</xsl:variable>
                     <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$entry-fullurl}"/>
+                        <fullUrl value="{$entryFullUrl}"/>
                         <resource>
                             <xsl:call-template name="zib-Product">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="medication-id" select="$fhir-resource-id"/>
+                                <xsl:with-param name="medication-id" select="$fhirResourceId"/>
                                 <xsl:with-param name="profile-uri">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:with-param>
                             </xsl:call-template>
                         </resource>
@@ -269,8 +269,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:choose>
                                         <xsl:when test="$referById">
                                             <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
-                                            <xsl:variable name="patient-ref" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyPatient($ada-patient), true())"/>
-                                            <xsl:value-of select="concat(./local-name(), $patient-ref, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit), '')))))"/>
+                                            <xsl:variable name="patientRef" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyPatient($ada-patient), true())"/>
+                                            <xsl:value-of select="concat(./local-name(), $patientRef, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit), '')))))"/>
                                         </xsl:when>
                                         <xsl:otherwise/>
                                     </xsl:choose>
@@ -305,8 +305,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:choose>
                                         <xsl:when test="$referById">
                                             <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
-                                            <xsl:variable name="patient-reference" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyPatient($ada-patient), true())"/>
-                                            <xsl:value-of select="concat('redenvanvoorschrijven', $patient-reference, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
+                                            <xsl:variable name="patientReference" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyPatient($ada-patient), true())"/>
+                                            <xsl:value-of select="concat('redenvanvoorschrijven', $patientReference, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
                                         </xsl:when>
                                         <xsl:otherwise/>
                                     </xsl:choose>
@@ -961,14 +961,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template for FHIR profile nl-core-organization-2.0</xd:desc>
         <xd:param name="ada-zorgaanbieder">ada element zorgaanbieder</xd:param>
-        <xd:param name="organization-id">optional technical FHIR organization-id to be used as resource.id</xd:param>
+        <xd:param name="logicalId">optional technical FHIR logicalId to be used as resource.id</xd:param>
     </xd:doc>
     <xsl:template name="organization-612-1.0">
         <xsl:param name="ada-zorgaanbieder" as="element()?"/>
-        <xsl:param name="organization-id" as="xs:string?"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$ada-zorgaanbieder">
             <Organization>
-                <xsl:for-each select="$organization-id">
+                <xsl:for-each select="$logicalId">
                     <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
@@ -1005,14 +1005,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template for FHIR profile 612-patient-1.0</xd:desc>
         <xd:param name="ada-patient">ada element patient</xd:param>
-        <xd:param name="patient-id">optional technical FHIR organization-id to be used as resource.id</xd:param>
+        <xd:param name="logicalId">optional technical FHIR logicalId to be used as resource.id</xd:param>
     </xd:doc>
     <xsl:template name="patient-612-1.0">
         <xsl:param name="ada-patient" as="element()?"/>
-        <xsl:param name="patient-id" as="xs:string?"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$ada-patient">
             <Patient>
-                <xsl:for-each select="$patient-id">
+                <xsl:for-each select="$logicalId">
                     <id value="{.}"/>
                 </xsl:for-each>
                 <meta>
@@ -1038,7 +1038,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="naamgegevens[.//(@value | @code | @nullFlavor)]">
             <xsl:call-template name="nl-core-humanname-2.0">
                 <xsl:with-param name="in" select="."/>
-                <xsl:with-param name="unstructured-name" select="ongestructureerde_naam"/>
+                <xsl:with-param name="unstructuredName" select="ongestructureerde_naam"/>
             </xsl:call-template>
         </xsl:for-each>
         <!-- contactgegevens -->
@@ -1060,7 +1060,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Helper template to create a FHIR reference to a Location resource for afleverlocatie</xd:desc>
     </xd:doc>
-    <xsl:template name="afleverlocatie-reference" match="afleverlocatie" mode="doLocationReference">
+    <xsl:template name="afleverlocatieReference" match="afleverlocatie" mode="doLocationReference">
         <reference value="{nf:getFullUrlOrId('LOCATION', nf:getGroupingKeyDefault(.), false())}"/>
         <xsl:if test="./@value">
             <display value="{./@value}"/>
@@ -2340,8 +2340,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <maxDosePerPeriod>
                 <xsl:call-template name="quotient-to-Ratio">
                     <xsl:with-param name="denominator" select="tijdseenheid"/>
-                    <xsl:with-param name="numerator-aantal" select="aantal"/>
-                    <xsl:with-param name="numerator-eenheid" select="eenheid"/>
+                    <xsl:with-param name="numeratorAantal" select="aantal"/>
+                    <xsl:with-param name="numeratorEenheid" select="eenheid"/>
                 </xsl:call-template>
             </maxDosePerPeriod>
         </xsl:for-each>
@@ -2351,8 +2351,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <rateRatio>
                     <xsl:call-template name="quotient-to-Ratio">
                         <xsl:with-param name="denominator" select="./tijdseenheid"/>
-                        <xsl:with-param name="numerator-aantal" select="./waarde/vaste_waarde"/>
-                        <xsl:with-param name="numerator-eenheid" select="./eenheid"/>
+                        <xsl:with-param name="numeratorAantal" select="./waarde/vaste_waarde"/>
+                        <xsl:with-param name="numeratorEenheid" select="./eenheid"/>
                     </xsl:call-template>
                 </rateRatio>
             </xsl:for-each>
@@ -3108,7 +3108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
                                         <xsl:call-template name="code-to-CodeableConcept">
                                             <xsl:with-param name="in" select="."/>
-                                            <xsl:with-param name="user-selected">true</xsl:with-param>
+                                            <xsl:with-param name="userSelected">true</xsl:with-param>
                                         </xsl:call-template>
                                     </xsl:when>
                                     <xsl:otherwise>
@@ -3435,7 +3435,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="medication-reference" match="product" mode="doMedicationReference">
+    <xsl:template name="medicationReference" match="product" mode="doMedicationReference">
         <!-- determine most specific product_code -->
         <xsl:variable name="productCode" select="product_code"/>
         <xsl:variable name="mainGstdLevel" as="xs:string?">
@@ -3509,7 +3509,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <resource>
                 <xsl:choose>
                     <xsl:when test="$referById">
-                        <xsl:variable name="fhir-resource-id">
+                        <xsl:variable name="fhirResourceId">
                             <xsl:choose>
                                 <xsl:when test="$uuid">
                                     <xsl:value-of select="nf:removeSpecialCharacters($ada-id)"/>
@@ -3521,7 +3521,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:variable>
                         <xsl:call-template name="organization-612-1.0">
                             <xsl:with-param name="ada-zorgaanbieder" select="."/>
-                            <xsl:with-param name="organization-id" select="$fhir-resource-id"/>
+                            <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
@@ -3555,7 +3555,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <resource>
                 <xsl:choose>
                     <xsl:when test="$referById">
-                        <xsl:variable name="fhir-resource-id">
+                        <xsl:variable name="fhirResourceId">
                             <xsl:choose>
                                 <xsl:when test="$uuid">
                                     <xsl:value-of select="nf:removeSpecialCharacters($patient-fullUrl)"/>
@@ -3567,7 +3567,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:variable>
                         <xsl:call-template name="patient-612-1.0">
                             <xsl:with-param name="ada-patient" select="."/>
-                            <xsl:with-param name="patient-id" select="$fhir-resource-id"/>
+                            <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>

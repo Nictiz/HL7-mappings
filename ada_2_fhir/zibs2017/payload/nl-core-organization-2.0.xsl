@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates organization reference</xd:desc>
     </xd:doc>
-    <xsl:template name="organization-reference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationReference-2.0">
+    <xsl:template name="organizationReference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationReference-2.0">
         <xsl:variable name="theIdentifier" select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
@@ -47,13 +47,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an Organization resource</xd:desc>
         <xd:param name="uuid">If false and (zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
-        <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.Organization.id</xd:param>
+        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Organization.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="organization-entry" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationEntry-2.0">
+    <xsl:template name="organizationEntry" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="entry-fullurl">
+        <xsl:param name="entryFullUrl">
             <xsl:choose>
                 <xsl:when test="not($uuid) and (zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)">
                     <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number))"/>
@@ -63,11 +63,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
-        <xsl:param name="fhir-resource-id">
+        <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>
                     <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                        <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
@@ -77,11 +77,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry>
-            <fullUrl value="{$entry-fullurl}"/>
+            <fullUrl value="{$entryFullUrl}"/>
             <resource>
                 <xsl:call-template name="nl-core-organization-2.0">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="organization-id" select="$fhir-resource-id"/>
+                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                 </xsl:call-template>
             </resource>
             <xsl:if test="string-length($searchMode) gt 0">
@@ -94,16 +94,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc/>
-        <xd:param name="organization-id">Organization.id value</xd:param>
+        <xd:param name="logicalId">Organization.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of an Organization resource</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-organization-2.0" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationResource-2.0">
         <xsl:param name="in" as="element()?"/>
-        <xsl:param name="organization-id" as="xs:string?"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$in">
             <Organization>
                 <xsl:if test="$referById">
-                    <id value="{$organization-id}"/>
+                    <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>

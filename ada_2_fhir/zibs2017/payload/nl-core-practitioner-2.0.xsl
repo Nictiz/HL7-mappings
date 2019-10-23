@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
     
-     <xsl:template name="practitioner-reference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerReference-2.0" as="element()*">
+     <xsl:template name="practitionerReference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerReference-2.0" as="element()*">
         <xsl:variable name="theIdentifier" select="zorgverlener_identificatienummer[@value] | zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPractitioner(.)"/>
         <xsl:variable name="theGroupElement" select="$practitioners[group-key = $theGroupKey]" as="element()?"/>
@@ -47,13 +47,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a Practitioner resource</xd:desc>
         <xd:param name="uuid">If false and (zorgverlener_identificatie_nummer | health_professional_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
-        <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.Practitioner.id</xd:param>
+        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Practitioner.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="practitioner-entry" match="zorgverlener[not(zorgverlener)][*] | health_professional[not(health_professional)][*]" mode="doPractitionerEntry-2.0">
+    <xsl:template name="practitionerEntry" match="zorgverlener[not(zorgverlener)][*] | health_professional[not(health_professional)][*]" mode="doPractitionerEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="entry-fullurl">
+        <xsl:param name="entryFullUrl">
             <xsl:choose>
                 <xsl:when test="not($uuid) and (zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)">
                     <xsl:value-of select="nf:getUriFromAdaId(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number))"/>
@@ -63,11 +63,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
-        <xsl:param name="fhir-resource-id">
+        <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>
                     <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                        <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number )/(@value|@root), ''))))"/>
@@ -77,11 +77,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
-            <fullUrl value="{$entry-fullurl}"/>
+            <fullUrl value="{$entryFullUrl}"/>
             <resource>
                 <xsl:call-template name="nl-core-practitioner-2.0">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="practitioner-id" select="$fhir-resource-id"/>
+                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                 </xsl:call-template>
             </resource>
             <xsl:if test="string-length($searchMode) gt 0">
@@ -94,17 +94,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc/>
-        <xd:param name="practitioner-id">Practitioner.id value</xd:param>
+        <xd:param name="logicalId">Practitioner.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a Practitioner resource</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-practitioner-2.0" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerResource-2.0">
         <xsl:param name="in" as="element()?"/>
-        <xsl:param name="practitioner-id" as="xs:string?"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
         <!-- zorgverlener -->
         <xsl:for-each select="$in">
             <Practitioner>
-                <xsl:if test="string-length($practitioner-id) gt 0">
-                    <id value="{$practitioner-id}"/>
+                <xsl:if test="string-length($logicalId) gt 0">
+                    <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>

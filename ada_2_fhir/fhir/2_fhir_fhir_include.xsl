@@ -243,15 +243,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#CodeableConcept">CodeableConcept contents</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
-        <xd:param name="element-name">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
-        <xd:param name="user-selected">Optionally provide a user selected boolean.</xd:param>
+        <xd:param name="elementName">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
+        <xd:param name="userSelected">Optionally provide a user selected boolean.</xd:param>
         <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. 
             Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
         <xsl:param name="in" as="element()?"/>
-        <xsl:param name="element-name" as="xs:string?">coding</xsl:param>
-        <xsl:param name="user-selected" as="xs:boolean?"/>
+        <xsl:param name="elementName" as="xs:string?">coding</xsl:param>
+        <xsl:param name="userSelected" as="xs:boolean?"/>
         <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
         <xsl:choose>
             <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor] and not($treatNullFlavorAsCoding)">
@@ -260,10 +260,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </xsl:when>
             <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or $treatNullFlavorAsCoding]">
-                <xsl:element name="{$element-name}">
+                <xsl:element name="{$elementName}">
                     <xsl:call-template name="code-to-Coding">
                         <xsl:with-param name="in" select="$in"/>
-                        <xsl:with-param name="user-selected" select="$user-selected"/>
+                        <xsl:with-param name="userSelected" select="$userSelected"/>
                         <xsl:with-param name="treatNullFlavorAsCoding" select="$treatNullFlavorAsCoding"/>
                     </xsl:call-template>
                 </xsl:element>
@@ -272,7 +272,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>-->
                 <!-- ADA heeft geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
                 <xsl:for-each select="$in/translation">
-                    <xsl:element name="{$element-name}">
+                    <xsl:element name="{$elementName}">
                         <xsl:call-template name="code-to-Coding">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
@@ -287,13 +287,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Coding">Coding contents</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
-        <xd:param name="user-selected">Optionally provide a user selected boolean.</xd:param>
+        <xd:param name="userSelected">Optionally provide a user selected boolean.</xd:param>
         <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. 
             Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-Coding" as="element()*">
         <xsl:param name="in" as="element()?"/>
-        <xsl:param name="user-selected" as="xs:boolean?"/>
+        <xsl:param name="userSelected" as="xs:boolean?"/>
         <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
         <xsl:choose>
             <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor] and not($treatNullFlavorAsCoding)">
@@ -307,8 +307,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$in/@displayName">
                     <display value="{$in/@displayName}"/>
                 </xsl:if>
-                <xsl:if test="exists($user-selected)">
-                    <userSelected value="{$user-selected}"/>
+                <xsl:if test="exists($userSelected)">
+                    <userSelected value="{$userSelected}"/>
                 </xsl:if>
             </xsl:when>
         </xsl:choose>
@@ -540,19 +540,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xd:doc>
         <xd:desc>Transforms ada element numerator-aantal, -eenheid and denominator to FHIR Ratio</xd:desc>
-        <xd:param name="numerator-aantal">ada element of datatype aantal (count)</xd:param>
-        <xd:param name="numerator-eenheid">ada element of datatype code</xd:param>
+        <xd:param name="numeratorAantal">ada element of datatype aantal (count)</xd:param>
+        <xd:param name="numeratorEenheid">ada element of datatype code</xd:param>
         <xd:param name="denominator">ada element of datatype hoeveelheid (quantity)</xd:param>
     </xd:doc>
     <xsl:template name="quotient-to-Ratio" as="element()*">
-        <xsl:param name="numerator-aantal" as="element()?"/>
-        <xsl:param name="numerator-eenheid" as="element()?"/>
+        <xsl:param name="numeratorAantal" as="element()?"/>
+        <xsl:param name="numeratorEenheid" as="element()?"/>
         <xsl:param name="denominator" as="element()?"/>
-        <xsl:if test="$numerator-aantal | $numerator-eenheid">
+        <xsl:if test="$numeratorAantal | $numeratorEenheid">
             <numerator>
                 <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                    <xsl:with-param name="eenheid" select="$numerator-eenheid"/>
-                    <xsl:with-param name="waarde" select="$numerator-aantal"/>
+                    <xsl:with-param name="eenheid" select="$numeratorEenheid"/>
+                    <xsl:with-param name="waarde" select="$numeratorAantal"/>
                 </xsl:call-template>
             </numerator>
         </xsl:if>
@@ -651,35 +651,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     <xd:doc>
         <xd:desc>If possible generates an uri based on oid or uuid from input. If not possible generates an uri based on gerenated uuid making use of input element</xd:desc>
-        <xd:param name="ada-identificatie">input element for which uri is needed</xd:param>
+        <xd:param name="adaIdentification">input element for which uri is needed</xd:param>
     </xd:doc>
     <xsl:function name="nf:getUriFromAdaId" as="xs:string">
-        <xsl:param name="ada-identificatie" as="element()"/>
+        <xsl:param name="adaIdentification" as="element()"/>
 
         <xsl:choose>
             <!-- root = oid and extension = numeric -->
-            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
-                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][matches(@value, '^\d+$')][1]"/>
+            <xsl:when test="$adaIdentification[matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
+                <xsl:variable name="ii" select="$adaIdentification[matches(@root, $OIDpattern)][matches(@value, '^\d+$')][1]"/>
                 <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]), '.'))"/>
             </xsl:when>
             <!-- root = oid and no extension -->
-            <xsl:when test="$ada-identificatie[matches(@root, $OIDpattern)][not(@value)]">
-                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $OIDpattern)][not(@value)][1]"/>
+            <xsl:when test="$adaIdentification[matches(@root, $OIDpattern)][not(@value)]">
+                <xsl:variable name="ii" select="$adaIdentification[matches(@root, $OIDpattern)][not(@value)][1]"/>
                 <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]), '.'))"/>
             </xsl:when>
             <!-- root = 'not important' and extension = uuid -->
-            <xsl:when test="$ada-identificatie[matches(@value, $UUIDpattern)]">
-                <xsl:variable name="ii" select="$ada-identificatie[matches(@value, $UUIDpattern)][1]"/>
+            <xsl:when test="$adaIdentification[matches(@value, $UUIDpattern)]">
+                <xsl:variable name="ii" select="$adaIdentification[matches(@value, $UUIDpattern)][1]"/>
                 <xsl:value-of select="concat('urn:uuid:', $ii/@value)"/>
             </xsl:when>
             <!-- root = uuid and extension = 'not important' -->
-            <xsl:when test="$ada-identificatie[matches(@root, $UUIDpattern)]">
-                <xsl:variable name="ii" select="$ada-identificatie[matches(@root, $UUIDpattern)][1]"/>
+            <xsl:when test="$adaIdentification[matches(@root, $UUIDpattern)]">
+                <xsl:variable name="ii" select="$adaIdentification[matches(@root, $UUIDpattern)][1]"/>
                 <xsl:value-of select="concat('urn:uuid:', $ii/@root)"/>
             </xsl:when>
             <!-- give up and do new uuid -->
             <xsl:otherwise>
-                <xsl:value-of select="nf:get-fhir-uuid($ada-identificatie[1])"/>
+                <xsl:value-of select="nf:get-fhir-uuid($adaIdentification[1])"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -694,17 +694,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Generates FHIR uri based on input ada code element. OID if possible, otherwise generates uri based on generated uuid using input element.</xd:desc>
-        <xd:param name="ada-code">Input element for which uri is needed</xd:param>
+        <xd:param name="adaCode">Input element for which uri is needed</xd:param>
     </xd:doc>
     <xsl:function name="nf:getUriFromAdaCode" as="xs:string?">
-        <xsl:param name="ada-code" as="element()?"/>
+        <xsl:param name="adaCode" as="element()?"/>
         <xsl:choose>
-            <xsl:when test="$ada-code[matches(@codeSystem, $OIDpattern)][matches(@code, '^\d+$')]">
+            <xsl:when test="$adaCode[matches(@codeSystem, $OIDpattern)][matches(@code, '^\d+$')]">
                 <!-- No leading zeroes -->
-                <xsl:value-of select="concat('urn:oid:', $ada-code/string-join((@codeSystem, replace(@code, '^0+', '')), '.'))"/>
+                <xsl:value-of select="concat('urn:oid:', $adaCode/string-join((@codeSystem, replace(@code, '^0+', '')), '.'))"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="nf:get-fhir-uuid($ada-code)"/>
+                <xsl:value-of select="nf:get-fhir-uuid($adaCode)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -884,39 +884,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>If <xd:ref name="zorgverlener" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty</xd:desc>
-        <xd:param name="zorgverlener"/>
+        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty</xd:desc>
+        <xd:param name="healthProfessional"/>
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyPractitioner" as="xs:string?">
-        <xsl:param name="zorgverlener" as="element()?"/>
-        <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault($zorgverlener/zorgverlener_identificatienummer | $zorgverlener/zorgverlener_identificatie_nummer | $zorgverlener/health_professional_identification_number)"/>
-        <xsl:variable name="personName" select="nf:getGroupingKeyDefault($zorgverlener/zorgverlener_naam | $zorgverlener/naamgegevens | $zorgverlener/name_information)"/>
-        <xsl:variable name="personAddress" select="nf:getGroupingKeyDefault($zorgverlener/adres | $zorgverlener/adresgegevens | $zorgverlener/address_information)"/>
-        <xsl:variable name="contactInformation" select="nf:getGroupingKeyDefault($zorgverlener/telefoon_email | $zorgverlener/contactgegevens | $zorgverlener/contact_information)"/>
+        <xsl:param name="healthProfessional" as="element()?"/>
+        <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number)"/>
+        <xsl:variable name="personName" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_naam | $healthProfessional/naamgegevens | $healthProfessional/name_information)"/>
+        <xsl:variable name="personAddress" select="nf:getGroupingKeyDefault($healthProfessional/adres | $healthProfessional/adresgegevens | $healthProfessional/address_information)"/>
+        <xsl:variable name="contactInformation" select="nf:getGroupingKeyDefault($healthProfessional/telefoon_email | $healthProfessional/contactgegevens | $healthProfessional/contact_information)"/>
 
         <xsl:value-of select="concat($personIdentifier, $personName, $personAddress, $contactInformation)"/>
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>If <xd:ref name="zorgverlener" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty</xd:desc>
-        <xd:param name="zorgverlener"/>
+        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty</xd:desc>
+        <xd:param name="healthProfessional"/>
     </xd:doc>
     <xsl:function name="nf:getGroupingKeyPractitionerRole" as="xs:string?">
-        <xsl:param name="zorgverlener" as="element()?"/>
-        <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault(nf:ada-zvl-id($zorgverlener/zorgverlener_identificatienummer | $zorgverlener/zorgverlener_identificatie_nummer | $zorgverlener/health_professional_identification_number))"/>
-        <xsl:variable name="specialism" select="nf:getGroupingKeyDefault($zorgverlener/specialisme | $zorgverlener/specialty)"/>
-        <xsl:variable name="organizationId" select="nf:getGroupingKeyDefault(nf:ada-za-id($zorgverlener//zorgaanbieder_identificatienummer | $zorgverlener//healthcare_provider_identification_number))"/>
+        <xsl:param name="healthProfessional" as="element()?"/>
+        <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault(nf:ada-zvl-id($healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number))"/>
+        <xsl:variable name="specialism" select="nf:getGroupingKeyDefault($healthProfessional/specialisme | $healthProfessional/specialty)"/>
+        <xsl:variable name="organizationId" select="nf:getGroupingKeyDefault(nf:ada-za-id($healthProfessional//zorgaanbieder_identificatienummer | $healthProfessional//healthcare_provider_identification_number))"/>
 
         <xsl:value-of select="concat($personIdentifier, $specialism, $organizationId)"/>
     </xsl:function>
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="ada-zorgverlener"/>
+        <xd:param name="healthProfessional"/>
     </xd:doc>
     <xsl:function name="nf:get-practitioner-display" as="xs:string?">
-        <xsl:param name="ada-zorgverlener" as="element()?"/>
-        <xsl:for-each select="$ada-zorgverlener">
+        <xsl:param name="healthProfessional" as="element()?"/>
+        <xsl:for-each select="$healthProfessional">
             <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1] | .//zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])/@value"/>
             <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
             <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
@@ -939,11 +939,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="ada-zorgverlener"/>
+        <xd:param name="healthProfessional"/>
     </xd:doc>
     <xsl:function name="nf:get-practitioner-role-display" as="xs:string?">
-        <xsl:param name="ada-zorgverlener" as="element()?"/>
-        <xsl:for-each select="$ada-zorgverlener">
+        <xsl:param name="healthProfessional" as="element()?"/>
+        <xsl:for-each select="$healthProfessional">
             <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])/@value"/>
             <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
             <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
@@ -966,76 +966,76 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="zorgaanbieder-identificatie-nummer"/>
+        <xd:param name="healthcareProviderIdentification">ADA element containing the healthcare provider organization identification</xd:param>
     </xd:doc>
     <xsl:function name="nf:ada-za-id" as="element()?">
-        <xsl:param name="zorgaanbieder-identificatie-nummer" as="element()*"/>
+        <xsl:param name="healthcareProviderIdentification" as="element()*"/>
         <xsl:choose>
-            <xsl:when test="$zorgaanbieder-identificatie-nummer[@root = $oidURAOrganizations]">
-                <xsl:copy-of select="$zorgaanbieder-identificatie-nummer[@root = $oidURAOrganizations][1]"/>
+            <xsl:when test="$healthcareProviderIdentification[@root = $oidURAOrganizations]">
+                <xsl:copy-of select="$healthcareProviderIdentification[@root = $oidURAOrganizations][1]"/>
             </xsl:when>
-            <xsl:when test="$zorgaanbieder-identificatie-nummer[@root = $oidAGB]">
-                <xsl:copy-of select="$zorgaanbieder-identificatie-nummer[@root = $oidAGB][1]"/>
+            <xsl:when test="$healthcareProviderIdentification[@root = $oidAGB]">
+                <xsl:copy-of select="$healthcareProviderIdentification[@root = $oidAGB][1]"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:copy-of select="$zorgaanbieder-identificatie-nummer[1]"/>
+                <xsl:copy-of select="$healthcareProviderIdentification[1]"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="zorgverlener-identificatie-nummer"/>
+        <xd:param name="healthProfessionalIdentification">ADA element containing the health professional identification</xd:param>
     </xd:doc>
     <xsl:function name="nf:ada-zvl-id" as="element()?">
-        <xsl:param name="zorgverlener-identificatie-nummer" as="element()*"/>
+        <xsl:param name="healthProfessionalIdentification" as="element()*"/>
         <xsl:choose>
-            <xsl:when test="$zorgverlener-identificatie-nummer[@root = $oidUZIPersons]">
-                <xsl:copy-of select="$zorgverlener-identificatie-nummer[@root = $oidUZIPersons][1]"/>
+            <xsl:when test="$healthProfessionalIdentification[@root = $oidUZIPersons]">
+                <xsl:copy-of select="$healthProfessionalIdentification[@root = $oidUZIPersons][1]"/>
             </xsl:when>
-            <xsl:when test="$zorgverlener-identificatie-nummer[@root = $oidAGB]">
-                <xsl:copy-of select="$zorgverlener-identificatie-nummer[@root = $oidAGB][1]"/>
+            <xsl:when test="$healthProfessionalIdentification[@root = $oidAGB]">
+                <xsl:copy-of select="$healthProfessionalIdentification[@root = $oidAGB][1]"/>
             </xsl:when>
-            <xsl:when test="$zorgverlener-identificatie-nummer[@root = $oidBIGregister]">
-                <xsl:copy-of select="$zorgverlener-identificatie-nummer[@root = $oidBIGregister][1]"/>
+            <xsl:when test="$healthProfessionalIdentification[@root = $oidBIGregister]">
+                <xsl:copy-of select="$healthProfessionalIdentification[@root = $oidBIGregister][1]"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:copy-of select="$zorgverlener-identificatie-nummer[1]"/>
+                <xsl:copy-of select="$healthProfessionalIdentification[1]"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="patient-identificatie-nummer"/>
+        <xd:param name="patientIdentification">ADA element containing the patient identification</xd:param>
     </xd:doc>
     <xsl:function name="nf:ada-pat-id" as="element()?">
-        <xsl:param name="patient-identificatie-nummer" as="element()*"/>
+        <xsl:param name="patientIdentification" as="element()*"/>
         <xsl:choose>
-            <xsl:when test="$patient-identificatie-nummer[@root = $oidBurgerservicenummer]">
-                <xsl:copy-of select="$patient-identificatie-nummer[@root = $oidBurgerservicenummer][1]"/>
+            <xsl:when test="$patientIdentification[@root = $oidBurgerservicenummer]">
+                <xsl:copy-of select="$patientIdentification[@root = $oidBurgerservicenummer][1]"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:copy-of select="$patient-identificatie-nummer[1]"/>
+                <xsl:copy-of select="$patientIdentification[1]"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
     <xd:doc>
         <xd:desc>Resolves the reference in an ada-transaction. Outputs a sequence with the resolved element.</xd:desc>
-        <xd:param name="ada-element">The ada element which may need resolving, if not return the element, else the resolved element</xd:param>
+        <xd:param name="adaElement">The ada element which may need resolving, if not return the element, else the resolved element</xd:param>
     </xd:doc>
     <xsl:function name="nf:ada-resolve-reference" as="element()*">
-        <xsl:param name="ada-element" as="element()"/>
+        <xsl:param name="adaElement" as="element()"/>
         <!-- The current ada-transaction element -->
-        <xsl:variable name="currentAdaTransaction" select="$ada-element/ancestor::*[ancestor::data[ancestor::adaxml]]"/>
+        <xsl:variable name="currentAdaTransaction" select="$adaElement/ancestor::*[ancestor::data[ancestor::adaxml]]"/>
         <!-- resolve the reference -->
         <xsl:choose>
-            <xsl:when test="$ada-element[not(@datatype = 'reference')]">
-                <xsl:sequence select="$ada-element"/>
+            <xsl:when test="$adaElement[not(@datatype = 'reference')]">
+                <xsl:sequence select="$adaElement"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:sequence select="$currentAdaTransaction//*[@id = $ada-element/@value]"/>
+                <xsl:sequence select="$currentAdaTransaction//*[@id = $adaElement/@value]"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -1064,8 +1064,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="copyWithoutComments"/>
             </xsl:for-each>
         </xsl:copy>
-    </xsl:template>    
-    
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Default copy template for outputting the results </xd:desc>

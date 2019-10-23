@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="patient-reference" match="patient" mode="doPatientReference-2.1" as="element()*">
+    <xsl:template name="patientReference" match="patient" mode="doPatientReference-2.1" as="element()*">
         <xsl:variable name="theIdentifier" select="identificatienummer[@value] | patient_identificatie_nummer[@value] | patient_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPatient(.)"/>
         <xsl:variable name="theGroupElement" select="$patients[group-key = $theGroupKey]" as="element()?"/>
@@ -53,14 +53,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a Patient resource</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
-        <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.Patient.id</xd:param>
+        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Patient.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="patient-entry" match="patient" mode="doPatientEntry-2.1" as="element(f:entry)">
+    <xsl:template name="patientEntry" match="patient" mode="doPatientEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
-        <xsl:param name="entry-fullurl" select="nf:get-fhir-uuid(.)"/>
-        <xsl:param name="fhir-resource-id">
+        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>
                     <xsl:when test="not($uuid) and string-length(nf:get-resourceid-from-token(.)) gt 0">
@@ -70,18 +70,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                        <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry>
-            <fullUrl value="{$entry-fullurl}"/>
+            <fullUrl value="{$entryFullUrl}"/>
             <resource>
                 <xsl:call-template name="nl-core-patient-2.1">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="patient-id" select="$fhir-resource-id"/>
+                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                 </xsl:call-template>
             </resource>
             <xsl:if test="string-length($searchMode) gt 0">
@@ -94,20 +94,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="patient-id">Patient.id value</xd:param>
+        <xd:param name="logicalId">Patient.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of a Patient resource</xd:param>
-        <xd:param name="generalpractitioner-ref">Optional. Reference datatype elements for the general practitioner of this Patient</xd:param>
-        <xd:param name="managingorganization-ref">Optional. Reference datatype elements for the amanging organization of this Patient record</xd:param>
+        <xd:param name="generalPractitionerRef">Optional. Reference datatype elements for the general practitioner of this Patient</xd:param>
+        <xd:param name="managingOrganizationRef">Optional. Reference datatype elements for the amanging organization of this Patient record</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-patient-2.1" match="patient" mode="doPatientResource-2.1" as="element(f:Patient)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="patient-id" as="xs:string?"/>
-        <xsl:param name="generalpractitioner-ref" as="element()*"/>
-        <xsl:param name="managingorganization-ref" as="element()*"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="generalPractitionerRef" as="element()*"/>
+        <xsl:param name="managingOrganizationRef" as="element()*"/>
         <xsl:for-each select="$in">
             <Patient>
-                <xsl:if test="string-length($patient-id) gt 0">
-                    <id value="{$patient-id}"/>
+                <xsl:if test="string-length($logicalId) gt 0">
+                    <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
@@ -193,21 +193,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- communication -->
 
                 <!-- generalPractitioner -->
-                <xsl:if test="$generalpractitioner-ref">
+                <xsl:if test="$generalPractitionerRef">
                     <generalPractitioner>
-                        <xsl:copy-of select="$generalpractitioner-ref[self::f:extension]"/>
-                        <xsl:copy-of select="$generalpractitioner-ref[self::f:reference]"/>
-                        <xsl:copy-of select="$generalpractitioner-ref[self::f:identifier]"/>
-                        <xsl:copy-of select="$generalpractitioner-ref[self::f:display]"/>
+                        <xsl:copy-of select="$generalPractitionerRef[self::f:extension]"/>
+                        <xsl:copy-of select="$generalPractitionerRef[self::f:reference]"/>
+                        <xsl:copy-of select="$generalPractitionerRef[self::f:identifier]"/>
+                        <xsl:copy-of select="$generalPractitionerRef[self::f:display]"/>
                     </generalPractitioner>
                 </xsl:if>
                 <!-- managingOrganization -->
-                <xsl:if test="$managingorganization-ref">
+                <xsl:if test="$managingOrganizationRef">
                     <generalPractitioner>
-                        <xsl:copy-of select="$managingorganization-ref[self::f:extension]"/>
-                        <xsl:copy-of select="$managingorganization-ref[self::f:reference]"/>
-                        <xsl:copy-of select="$managingorganization-ref[self::f:identifier]"/>
-                        <xsl:copy-of select="$managingorganization-ref[self::f:display]"/>
+                        <xsl:copy-of select="$managingOrganizationRef[self::f:extension]"/>
+                        <xsl:copy-of select="$managingOrganizationRef[self::f:reference]"/>
+                        <xsl:copy-of select="$managingOrganizationRef[self::f:identifier]"/>
+                        <xsl:copy-of select="$managingOrganizationRef[self::f:display]"/>
                     </generalPractitioner>
                 </xsl:if>
                 <!-- link -->

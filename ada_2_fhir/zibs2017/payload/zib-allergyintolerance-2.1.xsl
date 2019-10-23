@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="allergyintolerance-reference" match="allergie_intolerantie | allergy_intolerance" mode="doAllergyIntoleranceReference-2.1">
+    <xsl:template name="allergyintoleranceReference" match="allergie_intolerantie | allergy_intolerance" mode="doAllergyIntoleranceReference-2.1">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$allergyIntolerances[group-key = $theGroupKey]" as="element()?"/>
@@ -49,38 +49,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient for which this AllergyIntolerance is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
-        <xd:param name="entry-fullurl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhir-resource-id">Optional. Value for the entry.resource.AllergyIntolerance.id</xd:param>
+        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.AllergyIntolerance.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="allergyintolerance-entry" match="allergie_intolerantie | allergy_intolerance" mode="doAllergyIntoleranceEntry-2.1" as="element(f:entry)">
+    <xsl:template name="allergyIntoleranceEntry" match="allergie_intolerantie | allergy_intolerance" mode="doallergyIntoleranceEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="adaPatient" as="element()+">
-            <xsl:for-each select="(ancestor::*/patient[*//@value])[1]">
-                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-            </xsl:for-each>
-        </xsl:param>
-        <xsl:param name="dateT"/>
-        <xsl:param name="entry-fullurl" select="nf:get-fhir-uuid(.)"/>
-        <xsl:param name="fhir-resource-id">
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="dateT" as="xs:date?"/>
+        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>
                     <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
                         <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                        <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
+        
         <entry>
-            <fullUrl value="{$entry-fullurl}"/>
+            <fullUrl value="{$entryFullUrl}"/>
             <resource>
                 <xsl:call-template name="zib-AllergyIntolerance-2.1">
-                    <xsl:with-param name="allergyintolerance-id" select="$fhir-resource-id"/>
-                    <xsl:with-param name="patient-ref" select="$adaPatient" as="element()+"/>
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
+                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                     <xsl:with-param name="dateT" select="$dateT"/>
                 </xsl:call-template>
             </resource>
@@ -94,21 +92,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.AllergieIntolerantie concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">zib-AllergyIntolerance</xd:a>.</xd:desc>
-        <xd:param name="allergyintolerance-id">Optional FHIR logical id for the record.</xd:param>
+        <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
         <xd:param name="in">Node to consider in the creation of a AllergyIntolerance resource</xd:param>
-        <xd:param name="patient-ref">Required. Reference datatype elements for the Patient who is the AllergyIntolerance.patient</xd:param>
+        <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
     <xsl:template name="zib-AllergyIntolerance-2.1" match="allergie_intolerantie | allergy_intolerance" as="element()" mode="doZibAllergyIntolerance-2.1">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="allergyintolerance-id" as="xs:string?"/>
-        <xsl:param name="patient-ref" as="element()+"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="adaPatient" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
+        
+        <xsl:variable name="patientRef" as="element()*">
+            <xsl:for-each select="$adaPatient">
+                <xsl:call-template name="patientReference"/>
+            </xsl:for-each>
+        </xsl:variable>
+        
         <xsl:for-each select="$in">
             <!-- NL-CM:8.2.1    AllergieIntolerantie -->
             <AllergyIntolerance>
-                <xsl:if test="string-length($allergyintolerance-id) gt 0">
-                    <id value="{$allergyintolerance-id}"/>
+                <xsl:if test="string-length($logicalId) gt 0">
+                    <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
@@ -231,10 +236,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
                 <patient>
-                    <xsl:copy-of select="$patient-ref[self::f:extension]"/>
-                    <xsl:copy-of select="$patient-ref[self::f:reference]"/>
-                    <xsl:copy-of select="$patient-ref[self::f:identifier]"/>
-                    <xsl:copy-of select="$patient-ref[self::f:display]"/>
+                    <xsl:copy-of select="$patientRef[self::f:extension]"/>
+                    <xsl:copy-of select="$patientRef[self::f:reference]"/>
+                    <xsl:copy-of select="$patientRef[self::f:identifier]"/>
+                    <xsl:copy-of select="$patientRef[self::f:display]"/>
                 </patient>
                 
                 <!--TS    NL-CM:0.0.14    DatumTijd    0..1-->
@@ -279,15 +284,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:variable name="authorRef" as="element()*">
                     <xsl:for-each select="$adaAuteur[self::zorgverlener]">
-                        <xsl:call-template name="practitionerrole-reference">
+                        <xsl:call-template name="practitionerRoleReference">
                             <xsl:with-param name="useExtension" select="true()"/>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="$adaAuteur[self::patient]">
-                        <xsl:sequence select="$patient-ref"/>
+                        <xsl:sequence select="$patientRef"/>
                     </xsl:for-each>
                     <xsl:for-each select="$adaAuteur[self::contactpersoon or self::contact_person]">
-                        <xsl:call-template name="releatedperson-reference"/>
+                        <xsl:call-template name="relatedPersonReference"/>
                     </xsl:for-each>
                 </xsl:variable>
                 
@@ -318,15 +323,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:variable name="informantRef" as="element()*">
                     <xsl:for-each select="$adaInformant[self::zorgverlener or self::health_professional]">
-                        <xsl:call-template name="practitionerrole-reference">
+                        <xsl:call-template name="practitionerRoleReference">
                             <xsl:with-param name="useExtension" select="true()"/>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="$adaInformant[self::patient]">
-                        <xsl:sequence select="$patient-ref"/>
+                        <xsl:sequence select="$patientRef"/>
                     </xsl:for-each>
                     <xsl:for-each select="$adaInformant[self::contactpersoon or self::contact_person]">
-                        <xsl:call-template name="releatedperson-reference"/>
+                        <xsl:call-template name="relatedPersonReference"/>
                     </xsl:for-each>
                 </xsl:variable>
                 

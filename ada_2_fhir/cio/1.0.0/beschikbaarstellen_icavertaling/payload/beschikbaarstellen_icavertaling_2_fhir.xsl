@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
                 <resource>
                     <xsl:call-template name="zib-AllergyIntolerance-2.1">
-                        <xsl:with-param name="allergyintolerance-id" as="xs:string?">
+                        <xsl:with-param name="logicalId" as="xs:string?">
                             <xsl:if test="$referById">
                                 <xsl:choose>
                                     <xsl:when test="string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0">
@@ -57,13 +57,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:if>
                         </xsl:with-param>
-                        <xsl:with-param name="patient-ref" as="element()*">
-                            <xsl:for-each select="../patient">
-                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                            </xsl:for-each>
-                        </xsl:with-param>
+                        <xsl:with-param name="adaPatient" select="../patient" as="element()*"/>
                     </xsl:call-template>
                 </resource>
+                <search>
+                    <mode value="match"/>
+                </search>
             </entry>
         </xsl:for-each>
         <!-- alert -->
@@ -83,12 +82,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="ada-patient" select="../patient"/>
                     </xsl:call-template>
                 </resource>
+                <search>
+                    <mode value="match"/>
+                </search>
             </entry>
         </xsl:for-each>
-        
     </xsl:variable>
     
-
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen icavertaling".</xd:desc>
     </xd:doc>
