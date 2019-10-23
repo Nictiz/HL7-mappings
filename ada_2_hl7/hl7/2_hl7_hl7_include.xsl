@@ -28,6 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Formats an xml date or relative Date string to a HL7 formatted date.</xd:desc>
         <xd:param name="dateTime">The dateTime string to be formatted. Maybe a relative date</xd:param>
         <xd:param name="precision">determines the picture of the date format, currently only use case for minute. Seconds is the default.</xd:param>
+        <xd:param name="inputDateT"/>
     </xd:doc>
     <xsl:template name="format2HL7Date">
         <xsl:param name="dateTime" as="xs:string?"/>
@@ -737,6 +738,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="value"/>
         <xd:param name="unit"/>
+        <xd:param name="nullFlavor"/>
     </xd:doc>
     <xsl:template name="makePQValueAttribs">
         <xsl:param name="value" select="@value"/>
@@ -868,10 +870,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:doc>
             <xd:desc>Generates an element with a date(time) value. Also handles nullFlavors. Expected context is ada element.</xd:desc>
-            <xd:param name="xsiType">The xsi type to be included. Defaults to BL.</xd:param>
-            <xd:param name="elemName">The hl7 element name to be outputted. Defaults to value.</xd:param>
-            <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
         </xd:doc>
+        <xd:param name="inputValue"/>
+        <xd:param name="xsiType">The xsi type to be included. Defaults to BL.</xd:param>
+        <xd:param name="elemName">The hl7 element name to be outputted. Defaults to value.</xd:param>
+        <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValue" match="element()" mode="MakeBLValue">
         <xsl:param name="inputValue" as="xs:string?" select="./@value"/>
@@ -896,6 +899,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="inputValue"/>
+        <xd:param name="inputNullFlavor"/>
     </xd:doc>
     <xsl:template name="makeTSValueAttr">
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
@@ -919,21 +923,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc/>
-        <xd:param name="ada-postcode-value"/>
+        <xd:param name="adaPostalCodeValue"/>
     </xd:doc>
     <xsl:function name="nf:convertAdaNlPostcode" as="xs:string?">
-        <xsl:param name="ada-postcode-value" as="xs:string?"/>
-        <xsl:variable name="postcode-uc" select="normalize-space(upper-case($ada-postcode-value))"/>
+        <xsl:param name="adaPostalCodeValue" as="xs:string?"/>
+        <xsl:variable name="postalCodeUpperCase" select="normalize-space(upper-case($adaPostalCodeValue))"/>
 
         <xsl:choose>
-            <xsl:when test="string-length($postcode-uc) = 6 and matches(($postcode-uc), '\d{4}[A-Z]{2}')">
-                <xsl:value-of select="concat(substring($postcode-uc, 1, 4), ' ', substring($postcode-uc, 5, 2))"/>
+            <xsl:when test="string-length($postalCodeUpperCase) = 6 and matches(($postalCodeUpperCase), '\d{4}[A-Z]{2}')">
+                <xsl:value-of select="concat(substring($postalCodeUpperCase, 1, 4), ' ', substring($postalCodeUpperCase, 5, 2))"/>
             </xsl:when>
-            <xsl:when test="string-length($postcode-uc) = 7 and matches(($postcode-uc), '\d{4}\s{1}[A-Z]{2}')">
-                <xsl:value-of select="$postcode-uc"/>
+            <xsl:when test="string-length($postalCodeUpperCase) = 7 and matches(($postalCodeUpperCase), '\d{4}\s{1}[A-Z]{2}')">
+                <xsl:value-of select="$postalCodeUpperCase"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="$ada-postcode-value"/>
+                <xsl:value-of select="$adaPostalCodeValue"/>
             </xsl:otherwise>
         </xsl:choose>
 
