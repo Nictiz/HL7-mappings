@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="$referById">
                         <xsl:choose>
                             <xsl:when test="$uuid">
-                                <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
+                                <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                             </xsl:when>
                             <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
                                 <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>
@@ -169,7 +169,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="$referById">
                         <xsl:choose>
                             <xsl:when test="$uuid">
-                                <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
+                                <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                             </xsl:when>
                             <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
                                 <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>

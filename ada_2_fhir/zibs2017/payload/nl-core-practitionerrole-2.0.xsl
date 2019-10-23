@@ -13,11 +13,12 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:import href="nl-core-practitioner-2.0.xsl"/>
-    <xsl:import href="nl-core-organization-2.0.xsl"/>
+    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+    <!--<xsl:import href="nl-core-practitioner-2.0.xsl"/>-->
+    <!--<xsl:import href="nl-core-organization-2.0.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xd:doc>
@@ -76,11 +77,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
     <xsl:template name="practitionerRole-entry" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleEntry-2.0">
-        <xsl:param name="entry-fullurl" select="nf:get-fhir-uuid(./..)"/>
-        <xsl:param name="fhir-resource-id">
+        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(./..)"/>
+        <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <!-- TODO: improve this for a more stable id -->
-                <xsl:value-of select="nf:removeSpecialCharacters($entry-fullurl)"/>
+                <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>

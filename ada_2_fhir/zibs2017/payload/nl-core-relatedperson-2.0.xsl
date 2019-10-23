@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="upper-case(nf:removeSpecialCharacters(string-join( (naamgegevens[1]//*[not(name()='naamgebruik')] | name_information[1]//*[not(name()='name_usage')])//(@value), '')))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:if>

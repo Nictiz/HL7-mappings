@@ -67,10 +67,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="$referById">
                 <xsl:choose>
                     <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters($entryFullUrl)"/>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                    </xsl:when>
+                    <xsl:when test="(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)[@value | @root]">
+                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/(@value|@root), ''))))"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number )/(@value|@root), ''))))"/>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:if>
