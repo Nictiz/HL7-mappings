@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="problemReference" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemReference-2.1">
+    <xsl:template name="problemReference" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemReference-2.1" as="element()+">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$problems[group-key = $theGroupKey]" as="element()?"/>
@@ -121,16 +121,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 
                 <!-- Clinical Status-->
-                <xsl:for-each select="(problem_status | probleem_status)/@code">
-                    <clinicalStatus>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test=". = '55561003'">active</xsl:when>
-                                <xsl:when test=". = '73425007'">inactive</xsl:when>
-                            </xsl:choose>
-                        </xsl:attribute>
-                    </clinicalStatus>
-                </xsl:for-each>
+                <!-- probleem status -->
+                <clinicalStatus>
+                    <xsl:choose>
+                        <xsl:when test="(problem_status | probleem_status)/@code = '73425007'">
+                            <xsl:attribute name="value">inactive</xsl:attribute>
+                        </xsl:when>
+                        <xsl:when test="(problem_status | probleem_status)/@code = '55561003'">
+                            <xsl:attribute name="value">active</xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <extension url="{$urlExtHL7DataAbsentReason}">
+                                <valueCode value="unknown"/>
+                            </extension>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </clinicalStatus>
                 <!-- Verification Status-->
                 <xsl:for-each select="(verification_status | verificatie_status)/@code">
                     <verificationStatus>
