@@ -3033,50 +3033,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xd:doc>
         <xd:desc/>
-        <xd:param name="condition-id"/>
-    </xd:doc>
-    <xsl:template name="zib-problem-2.0" match="probleem" mode="doConditionForProbleem">
-        <xsl:param name="condition-id" as="xs:string?"/>
-        <Condition>
-            <xsl:if test="string-length($condition-id) gt 0">
-                <id value="{$condition-id}"/>
-            </xsl:if>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
-            </meta>
-            <!-- probleem status -->
-            <xsl:choose>
-                <xsl:when test="./probleem_status[@code]">
-                    <clinicalStatus>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test="./@code = '73425007'">inactive</xsl:when>
-                                <xsl:when test="./@code = '55561003'">active</xsl:when>
-                                <xsl:otherwise>active</xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                    </clinicalStatus>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- 1..1, so let's assume active if  -->
-                    <clinicalStatus value="active"/>
-                </xsl:otherwise>
-            </xsl:choose>
-            <!-- probleem naam -->
-            <xsl:for-each select="./probleem_naam[@code]">
-                <code>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </code>
-            </xsl:for-each>
-            <subject>
-                <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference-2.1"/>
-            </subject>
-        </Condition>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc/>
         <xd:param name="in">Node to process. Defaults to context node</xd:param>
         <xd:param name="profile-uri">Resource.meta.profile. Defaults to http://nictiz.nl/fhir/StructureDefinition/zib-Product</xd:param>
         <xd:param name="medication-id">Resource.id. Resource.id is created when this parameter is populated. Default is empty</xd:param>

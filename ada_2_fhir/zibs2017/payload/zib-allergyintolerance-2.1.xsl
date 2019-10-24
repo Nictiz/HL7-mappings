@@ -13,8 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>-->
+    <!-- import because we want to be able to override the param for macAddress for UUID generation -->
+    <!--<xsl:import href="2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -47,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an AllergyIntolerance resource</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
-        <xd:param name="adaPatient">Optional, but should be there. Patient for which this AllergyIntolerance is for.</xd:param>
+        <xd:param name="adaPatient">Optional, but should be there. Patient this AllergyIntolerance is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.AllergyIntolerance.id</xd:param>
@@ -162,9 +162,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- see https://bits.nictiz.nl/browse/MM-492 on how top map allergy_status to verificationStatus -->
                 <!-- we don't know, but still a required element, data-absent-reason -->
                 <verificationStatus>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                        <valueCode value="unknown"/>
-                    </extension>
+                    <xsl:choose>
+                        <xsl:when test="(allergie_categorie | allergy_status)[@code = 'nullified'][@codeSystem][1]">
+                            <xsl:attribute name="value" select="'entered-in-error'"/>
+                        </xsl:when>
+                        <!--<xsl:when test="start_date_time[@value]">
+                            <verificationStatus value="confirmed"/>
+                        </xsl:when>-->
+                        <xsl:otherwise>
+                            <!-- we don't know, but still a required element, data-absent-reason -->
+                            <extension url="{$urlExtHL7DataAbsentReason}">
+                                <valueCode value="unknown"/>
+                            </extension>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </verificationStatus>
                 
                 <!-- CD    NL-CM:8.2.4        AllergieCategorie        0..1 AllergieCategorieCodelijst-->
@@ -211,8 +222,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <criticality>
                         <xsl:attribute name="value">
                             <xsl:choose>
-                                <xsl:when test="@code = '62482003'">low</xsl:when>
-                                <xsl:otherwise>high</xsl:otherwise>
+                                <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
+                                <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">low</xsl:when>
+                                <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
+                                <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
+                                <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                <!--Fatal    399166001    SNOMED CT    2.16.840.1.113883.6.96    Fataal-->
+                                <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:message>Unsupported AllergyIntolerance criticality code "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                                </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
                         <extension url="{$urlExtNLCodeSpecification}">
@@ -405,11 +425,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <severity>
                                 <xsl:attribute name="value">
                                     <xsl:choose>
-                                        <xsl:when test="@code = 255604002">mild</xsl:when>
-                                        <xsl:when test="@code = 6736007">moderate</xsl:when>
-                                        <xsl:when test="@code = 24484000">severe</xsl:when>
+                                        <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
+                                        <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">mild</xsl:when>
+                                        <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
+                                        <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">moderate</xsl:when>
+                                        <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
+                                        <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">severe</xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:message>Unsupported AllergyIntolerance reaction severity "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                                        </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:attribute>
+                                <extension url="{$urlExtNLCodeSpecification}">
+                                    <valueCodeableConcept>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </valueCodeableConcept>
+                                </extension>
                             </severity>
                         </xsl:for-each>
                         
