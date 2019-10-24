@@ -205,7 +205,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="_doReference" match="element()" mode="doReference">
         <xsl:param name="ResourceType" as="xs:string"/>
-        <xsl:variable name="group-key">
+        <xsl:variable name="groupKey">
             <xsl:choose>
                 <xsl:when test="$ResourceType = 'Patient'">
                     <xsl:value-of select="nf:getGroupingKeyPatient(.)"/>
@@ -218,69 +218,69 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <reference value="{nff:get-resource-info($ResourceType, $group-key, false(), 'FullUrlOrId')}"/>
-        <display value="{nff:get-resource-info($ResourceType, $group-key, false(), 'ReferenceDisplay')}"/>
+        <reference value="{nff:get-resource-info($ResourceType, $groupKey, 'FullUrlOrId')}"/>
+        <display value="{nff:get-resource-info($ResourceType, $groupKey, 'ReferenceDisplay')}"/>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="resourceType">The type of resource to find, using the variable with common entries</xd:param>
-        <xd:param name="group-key">The group key to find the correct instance in the variables with common entries</xd:param>
-        <xd:param name="bln-id">In case of $referById determine whether you get the id of or reference to the resource. If false() you get the reference (Patient/XXX_Amaya), if true() you get the id (XXX_Amaya).</xd:param>
-        <xd:param name="info">The type if info needed, currently supported: "FullURLorID" of "ReferenceDisplay", defaults to "FullURLorID"</xd:param>
+        <xd:desc>Retreive info about a given resource from the global list of entries.</xd:desc>
+        <xd:param name="resourceType">The type of resource to find, using the variable with common entries.</xd:param>
+        <xd:param name="groupKey">The group key to find the correct instance in the variables with common entries.</xd:param>
+        <xd:param name="info">The type if info needed, currently supported:<xd:ul>
+            <xd:li>"FullURLorID" (default): the relative or full url of the resource, depending on the value of the global $referById.</xd:li>
+            <xd:li>"ID": the id of the resource.</xd:li>
+            <xd:li>"ReferenceDisplay": the description of the resource to use in display elements.</xd:li>
+        </xd:ul></xd:param>
     </xd:doc>
     <xsl:function name="nff:get-resource-info" as="xs:string?">
         <xsl:param name="resourceType" as="xs:string?"/>
-        <xsl:param name="group-key" as="xs:string?"/>
-        <xsl:param name="bln-id" as="xs:boolean"/>
-        <xsl:param name="info" as="xs:string?"/>
+        <xsl:param name="groupKey" as="xs:string?"/>
+        <xsl:param name="info" as="xs:string"/>
 
         <xsl:variable name="RESOURCETYPE" select="normalize-space(upper-case($resourceType))"/>
-        <xsl:variable name="var">
-            <xsl:choose>
-                <xsl:when test="$RESOURCETYPE = 'ALLERGYINTOLERANCE'">
-                    <xsl:copy-of select="$allergyIntolerances"/>
-                </xsl:when>
-                <xsl:when test="$RESOURCETYPE = 'CONDITION'">
-                    <xsl:copy-of select="$problems"/>
-                </xsl:when>
-                <xsl:when test="$RESOURCETYPE = 'ORGANIZATION'">
-                    <xsl:copy-of select="$organizations"/>
-                </xsl:when>
-                <xsl:when test="$RESOURCETYPE = 'PATIENT'">
-                    <xsl:copy-of select="$patients"/>
-                </xsl:when>
-                <xsl:when test="$RESOURCETYPE = 'PRACTITIONER'">
-                    <xsl:copy-of select="$practitioners"/>
-                </xsl:when>
-                <xsl:when test="$RESOURCETYPE = 'PRACTITIONERROLE'">
-                    <xsl:copy-of select="$practitionerRoles"/>
-                </xsl:when>
-                <xsl:when test="$RESOURCETYPE = 'RELATEDPERSON'">
-                    <xsl:copy-of select="$relatedPersons"/>
-                </xsl:when>
-            </xsl:choose>
+        <xsl:variable name="resource">
+            <xsl:variable name="resources">
+                <xsl:choose>
+                    <xsl:when test="$RESOURCETYPE = 'ALLERGYINTOLERANCE'">
+                        <xsl:copy-of select="$allergyIntolerances"/>
+                    </xsl:when>
+                    <xsl:when test="$RESOURCETYPE = 'CONDITION'">
+                        <xsl:copy-of select="$problems"/>
+                    </xsl:when>
+                    <xsl:when test="$RESOURCETYPE = 'ORGANIZATION'">
+                        <xsl:copy-of select="$organizations"/>
+                    </xsl:when>
+                    <xsl:when test="$RESOURCETYPE = 'PATIENT'">
+                        <xsl:copy-of select="$patients"/>
+                    </xsl:when>
+                    <xsl:when test="$RESOURCETYPE = 'PRACTITIONER'">
+                        <xsl:copy-of select="$practitioners"/>
+                    </xsl:when>
+                    <xsl:when test="$RESOURCETYPE = 'PRACTITIONERROLE'">
+                        <xsl:copy-of select="$practitionerRoles"/>
+                    </xsl:when>
+                    <xsl:when test="$RESOURCETYPE = 'RELATEDPERSON'">
+                        <xsl:copy-of select="$relatedPersons"/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:copy-of select="$resources[.//group-key/text() = $groupKey]"/>
         </xsl:variable>
 
         <xsl:choose>
             <xsl:when test="normalize-space(upper-case($info)) = 'REFERENCEDISPLAY'">
-                <xsl:value-of select="$var[.//group-key/text() = $group-key]//reference-display/text()"/>
+                <xsl:value-of select="$resource//reference-display/text()"/>
+            </xsl:when>
+            <xsl:when test="normalize-space(upper-case($info)) = 'ID'">
+                <xsl:value-of select="$resource//f:id/@value"/>
             </xsl:when>
             <xsl:when test="normalize-space(upper-case($info)) = 'FULLURLORID' or not($info)">
                 <xsl:choose>
                     <xsl:when test="$referById = true()">
-                        <xsl:variable name="resource" select="$var/*[.//group-key/text() = $group-key]//*[f:id]"/>
-                        <xsl:choose>
-                            <xsl:when test="$bln-id">
-                                <xsl:value-of select="$resource/f:id/@value"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="concat($resource/local-name(), '/', $resource/f:id/@value)"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:value-of select="concat($resource/local-name(), '/', $resource//f:id/@value)"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="$var/*[.//group-key/text() = $group-key]//f:entry/f:fullUrl/@value"/>
+                        <xsl:value-of select="$resource//f:entry/f:fullUrl/@value"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
