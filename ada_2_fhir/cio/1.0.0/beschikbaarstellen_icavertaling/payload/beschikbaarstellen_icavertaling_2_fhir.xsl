@@ -79,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             uuid:get-uuid(.))
                             else
                             ()"> </xsl:with-param>
-                        <xsl:with-param name="ada-patient" select="../patient"/>
+                        <xsl:with-param name="adaPatient" select="../patient"/>
                     </xsl:call-template>
                 </resource>
                 <search>
