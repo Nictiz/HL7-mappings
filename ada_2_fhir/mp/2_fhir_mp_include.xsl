@@ -536,12 +536,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="mp612dispensetofhirconversionadministrationagreement-1.0.0">
                         <xsl:with-param name="toedieningsafspraak" select="."/>
+                        <!-- there may be only one toedieningsafspraak per MBH, so if there is no identification we fall back on MBH id
+                        with an appended string, since it may not be the same as the verstrekking id-->
+                        
                         <xsl:with-param name="medicationdispense-id" select="
                                 if ($referById) then
-                                    (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then
-                                        nf:removeSpecialCharacters(./identificatie/@value)
+                                    (if (string-length(nf:removeSpecialCharacters(identificatie/@value)) gt 0) then
+                                        nf:removeSpecialCharacters(identificatie/@value)
                                     else
-                                        uuid:get-uuid(.))
+                                        (if (string-length(nf:removeSpecialCharacters(../identificatie/@value)) gt 0) then
+                                            concat('ta-',nf:removeSpecialCharacters(../identificatie/@value))
+                                        else
+                                            uuid:get-uuid(.)))
                                 else
                                     ()"> </xsl:with-param>
                     </xsl:call-template>
@@ -722,7 +728,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
+                            <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                         </xsl:call-template>
                     </reasonCode>
                 </xsl:for-each>
@@ -919,7 +925,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
+                            <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                         </xsl:call-template>
                     </reasonCode>
                 </xsl:for-each>
@@ -1632,7 +1638,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>dosageInstruction</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <xsl:choose>
             <xsl:when test=".[doseerinstructie[.//(@value | @code)]]">
                 <xsl:for-each select="doseerinstructie">
@@ -1650,7 +1656,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:element>
                         </xsl:when>
                     </xsl:choose>
-                </xsl:for-each>                
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test=".[.//(@value | @code)]">
                 <xsl:element name="{$fhir-dosage-name}">
@@ -2279,12 +2285,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="nullFlavorsInValueset" select="('NI', 'OTH')"/>
                 <!-- roep hier niet het standaard template aan omdat criterium/omschrijving ook nog omschrijving zou kunnen bevatten... -->
                 <xsl:choose>
-                    <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor][not(@code=$nullFlavorsInValueset)]">
+                    <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor][not(@code = $nullFlavorsInValueset)]">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                             <valueCode value="{$in/@code}"/>
                         </extension>
                     </xsl:when>
-                    <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or (@codeSystem = $oidHL7NullFlavor and @code=$nullFlavorsInValueset)]">
+                    <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or (@codeSystem = $oidHL7NullFlavor and @code = $nullFlavorsInValueset)]">
                         <coding>
                             <system value="{local:getUri($in/@codeSystem)}"/>
                             <code value="{$in/@code}"/>
@@ -2401,7 +2407,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
-                  </xsl:call-template>
+                </xsl:call-template>
             </additionalInstruction>
         </xsl:for-each>
         <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
@@ -2421,7 +2427,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         <!-- gebruiksinstructie/toedieningsweg -->
         <xsl:apply-templates select="../toedieningsweg" mode="handleToedieningsweg"/>
-        
+
     </xsl:template>
 
     <xd:doc>
@@ -2529,13 +2535,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="zib-MedicationUse-ReasonChange">
         <xsl:param name="reasonCode" as="element()?"/>
-        <!-- kopie indicator -->
-        <!-- zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
         <xsl:for-each select="$reasonCode">
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse">
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                     </xsl:call-template>
                 </valueCodeableConcept>
             </extension>
@@ -3074,7 +3079,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:for-each>
-                        <xsl:for-each select="$most-specific-product-code[@displayName]">
+                            <xsl:for-each select="$most-specific-product-code[@displayName]">
                                 <text value="{@displayName}"/>
                             </xsl:for-each>
                         </code>
