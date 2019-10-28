@@ -26,4 +26,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="zib-allergyintolerance-2.1.xsl"/>
     <xsl:import href="zib-problem-2.1.xsl"/>
     
+    <xsl:import href="_zib2017.xsl"/>
 </xsl:stylesheet>

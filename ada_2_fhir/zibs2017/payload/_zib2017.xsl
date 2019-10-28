@@ -22,12 +22,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
 
+    <xsl:variable name="entries">
+        <xsl:call-template name="problemReferenceVar"/>
+    </xsl:variable>
+    
     <xsl:variable name="patients" as="element()*">
         <!-- Patiënten -->
-        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
-            string-join(for $att in nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value)
-            return
-            $att, '')">
+        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]"
+            group-by="string-join(
+                for $att in nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value) return $att,
+            '')">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -179,25 +183,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-allergie-intolerantie>
         </xsl:for-each-group>
     </xsl:variable>
-    <xsl:variable name="problems" as="element()*">
-        <!-- probleem in problem -->
-        <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <unieke-problem xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <reference-display xmlns="">
-                    <xsl:value-of select="(probleem_naam | problem_name)/@displayName"/>
-                </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
-                    <xsl:with-param name="uuid" select="$uuid"/>
-                    <xsl:with-param name="searchMode">match</xsl:with-param>
-                </xsl:apply-templates>
-            </unieke-problem>
-        </xsl:for-each-group>
-    </xsl:variable>
 
     <xd:doc>
         <xd:desc>Helper template to create FHIR default reference using grouping key default, context should be ada element to reference</xd:desc>
@@ -237,8 +222,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="groupKey" as="xs:string?"/>
         <xsl:param name="info" as="xs:string"/>
 
-        <xsl:variable name="RESOURCETYPE" select="normalize-space(upper-case($resourceType))"/>
-        <xsl:variable name="resource">
+        <xsl:variable name="RESOURCETYPE" select="normalize-space(lower-case($resourceType))"/>
+        <xsl:variable name="resource" select="$entries[resource_set/@value = $resourceType][.//group-key/text() = $groupKey]"/>
+<!--        <xsl:variable name="resource">
             <xsl:variable name="resources">
                 <xsl:choose>
                     <xsl:when test="$RESOURCETYPE = 'ALLERGYINTOLERANCE'">
@@ -266,7 +252,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <xsl:copy-of select="$resources[.//group-key/text() = $groupKey]"/>
         </xsl:variable>
-
+-->
         <xsl:choose>
             <xsl:when test="normalize-space(upper-case($info)) = 'REFERENCEDISPLAY'">
                 <xsl:value-of select="$resource//reference-display/text()"/>

@@ -262,4 +262,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Condition>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template name="problemLogicalId" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemLogicalId-2.1" as="xs:string">
+        <xsl:value-of select="string-join(('problem', format-number(position(), '00')), '-')"/>
+    </xsl:template>
+    
+    <xsl:template name="problemDisplay" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemDisplay-2.1" as="xs:string">
+        <xsl:value-of select="(probleem_naam | problem_name)/@displayName"/>
+    </xsl:template>
+    
+    <xsl:template name="problemReferenceVar" as="element()">
+        <resource_set value="condition" xmlns="">
+            <!-- probleem in problem -->
+            <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <xsl:variable name="logicalId" as="xs:string">
+                    <xsl:apply-templates mode="doProblemLogicalId-2.1" select="current-group()[1]"/>
+                </xsl:variable>
+                <unieke-entry xmlns="">
+                    <group-key xmlns="">
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <reference-display xmlns="">
+                        <xsl:apply-templates mode="doProblemDisplay-2.1" select="."/>
+                    </reference-display>
+                    <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
+                        <xsl:with-param name="fhirResourceId" select="$logicalId"/>
+                        <xsl:with-param name="uuid" select="$uuid"/>
+                        <xsl:with-param name="searchMode">match</xsl:with-param>
+                    </xsl:apply-templates>
+                </unieke-entry>
+            </xsl:for-each-group>
+        </resource_set>
+    </xsl:template>
+    
 </xsl:stylesheet>
