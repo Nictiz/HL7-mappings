@@ -187,6 +187,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="(allergie_categorie | allergy_category)[@code]">
                     <xsl:variable name="fhirCategory">
                         <xsl:choose>
+                            <!-- SEE https://bits.nictiz.nl/browse/MM-498 for the mapping discussion -->
                             <!-- Propensity to adverse reactions to food    418471000    SNOMED CT    2.16.840.1.113883.6.96    Voeding-->
                             <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">food</xsl:when>
                             <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
@@ -194,26 +195,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!--Environmental allergy    426232007    SNOMED CT    2.16.840.1.113883.6.96    Omgeving-->
                             <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">environment</xsl:when>
                             <!--Allergy to substance    419199007    SNOMED CT    2.16.840.1.113883.6.96    Stof of product-->
-                            <!-- TODO https://bits.nictiz.nl/browse/MM-498 is this mapping correct? -->
                             <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">biologic</xsl:when>
-                            <xsl:when test="@nullFlavor = 'OTH'"/>
+                            <xsl:when test="@codeSystem = $oidHL7NullFlavor"/>
                             <xsl:otherwise>
                                 <xsl:message>Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:message>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
                     <!-- valueset binding in FHIR is required, so only one of the four options in the valueSet is permitted, otherwise do not output category -->
-                    <xsl:if test="string-length($fhirCategory) gt 0">
-                        <category value="{$fhirCategory}">
-                            <extension url="{$urlExtNLCodeSpecification}">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
-                        </category>
-                    </xsl:if>
+                    <category>
+                        <xsl:choose>
+                            <xsl:when test="string-length($fhirCategory) gt 0">
+                                <xsl:attribute name="value" select="$fhirCategory"/>
+                            </xsl:when>
+                            <xsl:when test="@codeSystem = $oidHL7NullFlavor">
+                                <xsl:call-template name="NullFlavor-to-DataAbsentReason">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- should not reach this, but safe than sorry because we are missing a @value without dataAbsentReason -->
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <!-- And now for the actual thing: -->
+                        <extension url="{$urlExtNLCodeSpecification}">
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
+                        </extension>
+                    </category>
                 </xsl:for-each>
                 
                 <!-- CD    NL-CM:8.2.7        MateVanKritiekZijn        0..1 MateVanKritiekZijnCodelijst -->
