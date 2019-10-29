@@ -1137,8 +1137,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template name="conditionEntry" match="probleem | problem" mode="doConditionEntry">
-        <entry xmlns="http://hl7.org/fhir">
-            <!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
+        <xsl:call-template name="problemEntry">
+            <xsl:with-param name="searchMode">include</xsl:with-param>
+        </xsl:call-template>
+        <!--<entry xmlns="http://hl7.org/fhir">
+            <!-\- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -\->
             <fullUrl value="{nf:get-fhir-uuid(./..)}"/>
             <resource>
                 <xsl:choose>
@@ -1159,7 +1162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <search>
                 <mode value="include"/>
             </search>
-        </entry>
+        </entry>-->
     </xsl:template>
     
     <xd:doc>
