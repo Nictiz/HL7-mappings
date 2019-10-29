@@ -6,7 +6,7 @@
    <type value="searchset"/>
    <total value="7"/>
    <entry>
-      <fullUrl value="urn:uuid:47d35fb0-d320-11e9-1722-020000000000"/>
+      <fullUrl value="urn:uuid:60086c98-fa61-11e9-1753-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -60,20 +60,19 @@
                <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:47d3582b-d320-11e9-1722-020000000000"/>
+               <reference value="urn:uuid:6008721f-fa61-11e9-1753-020000000000"/>
                <display value="J. XXX_Kilkenny"/>
             </subject>
             <authoredOn value="2018-08-29T15:34:00+02:00"/>
             <requester>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-                  <valueReference>
-                     <reference value="urn:uuid:47d35fb5-d320-11e9-1722-020000000000"/>
-                     <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                  </valueReference>
-               </extension>
                <agent>
-                  <reference value="urn:uuid:47d35fb6-d320-11e9-1722-020000000000"/>
-                  <display value="John de Vries"/>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:60086c9d-fa61-11e9-1753-020000000000"/>
+                        <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -107,7 +106,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:47d35fd6-d320-11e9-1722-020000000000"/>
+      <fullUrl value="urn:uuid:60086cbe-fa61-11e9-1753-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -115,7 +114,7 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:47d3582b-d320-11e9-1722-020000000000"/>
+                  <reference value="urn:uuid:6008721f-fa61-11e9-1753-020000000000"/>
                   <display value="J. XXX_Kilkenny"/>
                </valueReference>
             </extension>
@@ -147,7 +146,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-24T11:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:47d3582b-d320-11e9-1722-020000000000"/>
+               <reference value="urn:uuid:6008721f-fa61-11e9-1753-020000000000"/>
                <display value="J. XXX_Kilkenny"/>
             </subject>
             <taken value="y"/>
@@ -182,7 +181,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:47d3582b-d320-11e9-1722-020000000000"/>
+      <fullUrl value="urn:uuid:6008721f-fa61-11e9-1753-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -220,7 +219,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:47d35fb6-d320-11e9-1722-020000000000"/>
+      <fullUrl value="urn:uuid:60086c9e-fa61-11e9-1753-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -266,14 +265,14 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:47d35fb5-d320-11e9-1722-020000000000"/>
+      <fullUrl value="urn:uuid:60086c9d-fa61-11e9-1753-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:47d35fb6-d320-11e9-1722-020000000000"/>
+               <reference value="urn:uuid:60086c9e-fa61-11e9-1753-020000000000"/>
                <display value="John de Vries"/>
             </practitioner>
             <organization>
@@ -307,6 +306,7 @@
                   <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
                   <userSelected value="true"/>
                </coding>
+               <text value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
             </code>
          </Medication>
       </resource>

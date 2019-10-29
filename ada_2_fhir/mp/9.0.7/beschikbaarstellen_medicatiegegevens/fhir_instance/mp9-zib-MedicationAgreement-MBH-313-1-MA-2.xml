@@ -43,22 +43,28 @@
       <display value="Tiotropium inhalatiecapsule 18ug"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/J-XXX-CNOSSEN"/>
+      <reference value="Patient/XXX-CNOSSEN"/>
       <display value="J. XXX_Cnossen"/>
    </subject>
    <authoredOn value="2018-07-07T13:54:00+02:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuidd31ee29d-d31f-11e9-2131-020000000000"/>
-            <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/JOHNDEVRIES1"/>
-         <display value="John de Vries"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/0b985e9d-fa61-11e9-7011-020000000000"/>
+               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </agent>
    </requester>
+   <reasonCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+         <code value="8"/>
+         <display value="Toedieningsweg voldoet niet"/>
+      </coding>
+   </reasonCode>
    <dosageInstruction>
       <sequence value="1"/>
       <text value="Vanaf 26 mei 2018 tot en met 6 jul 2018, 1 maal per dag 1 dosis, inhalatie"/>

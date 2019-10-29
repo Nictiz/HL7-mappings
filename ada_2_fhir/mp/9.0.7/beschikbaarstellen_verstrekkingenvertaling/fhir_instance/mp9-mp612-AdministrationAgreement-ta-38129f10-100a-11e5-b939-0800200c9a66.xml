@@ -1,0 +1,40 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="ta-38129f10-100a-11e5-b939-0800200c9a66"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2007-12-08"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="38129f10-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/14234785-2-16-840-1-113883-2-4-4-8"/>
+      <display value="MEBENDAZOL SAN TABLET 100MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/HENEGOUWEN"/>
+      <display value="Richard R. van Henegouwen"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+         <display value="Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'."/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Gebruik bekend"/>
+   </dosageInstruction>
+</MedicationDispense>

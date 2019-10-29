@@ -37,20 +37,19 @@
       <display value="Flucloxacilline capsule 500mg"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/I-XXX-JANGI"/>
+      <reference value="Patient/XXX-JANGI"/>
       <display value="I. XXX_Jangi"/>
    </subject>
    <authoredOn value="2018-08-19T09:27:31+02:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuidd4139a0e-d31f-11e9-4073-28f10e481d92"/>
-            <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/JOHNDEVRIES1"/>
-         <display value="John de Vries"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/0ca9b17e-fa61-11e9-4676-28f10e481d92"/>
+               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </agent>
    </requester>
    <dosageInstruction>

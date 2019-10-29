@@ -43,20 +43,19 @@
       <display value="Omeprazol tablet MSR 40mg"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/J-XXX-CNOSSEN"/>
+      <reference value="Patient/XXX-CNOSSEN"/>
       <display value="J. XXX_Cnossen"/>
    </subject>
    <authoredOn value="2018-01-24T08:54:00+01:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuidd31ee29d-d31f-11e9-2131-020000000000"/>
-            <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/JOHNDEVRIES1"/>
-         <display value="John de Vries"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/0b985e9d-fa61-11e9-7011-020000000000"/>
+               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </agent>
    </requester>
    <dosageInstruction>

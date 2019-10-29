@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="8"/>
    <entry>
-      <fullUrl value="urn:uuid:bccd27de-f4c7-11e9-1125-020000000000"/>
+      <fullUrl value="urn:uuid:ddbd64ba-fa60-11e9-1795-020000000000"/>
       <resource>
          <AllergyIntolerance>
             <meta>
@@ -41,7 +41,7 @@
                   </valueCodeableConcept>
                </extension>
             </category>
-            <criticality value="high">
+            <criticality value="low">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
                      <coding>
@@ -60,7 +60,7 @@
                </coding>
             </code>
             <patient>
-               <reference value="urn:uuid:bccd21cf-f4c7-11e9-1125-020000000000"/>
+               <reference value="urn:uuid:ddbd5d9d-fa60-11e9-1795-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </patient>
             <onsetDateTime value="2019-08-27T14:00:00Z"/>
@@ -68,14 +68,14 @@
             <recorder>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:bccd27e6-f4c7-11e9-1125-020000000000"/>
+                     <reference value="urn:uuid:ddbd64c2-fa60-11e9-1795-020000000000"/>
                      <display value="van der Spek || Bedrijfsarts"/>
                   </valueReference>
                </extension>
                <display value="van der Spek || Bedrijfsarts"/>
             </recorder>
             <asserter>
-               <reference value="urn:uuid:bccd21cf-f4c7-11e9-1125-020000000000"/>
+               <reference value="urn:uuid:ddbd5d9d-fa60-11e9-1795-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </asserter>
             <lastOccurrence value="2009-11-15T00:00:00Z"/>
@@ -105,7 +105,17 @@
                   </coding>
                </manifestation>
                <onset value="2019-08-27T14:00:00Z"/>
-               <severity value="moderate"/>
+               <severity value="moderate">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="6736007"/>
+                           <display value="Matig"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </severity>
                <exposureRoute>
                   <coding>
                      <system value="http://snomed.info/sct"/>
@@ -116,9 +126,12 @@
             </reaction>
          </AllergyIntolerance>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bccd27f9-f4c7-11e9-1125-020000000000"/>
+      <fullUrl value="urn:uuid:ddbd64d5-fa60-11e9-1795-020000000000"/>
       <resource>
          <Flag>
             <meta>
@@ -126,7 +139,7 @@
             </meta>
             <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                <valueReference>
-                  <reference value="urn:uuid:bccd280b-f4c7-11e9-1125-020000000000"/>
+                  <reference value="urn:uuid:ddbd64e7-fa60-11e9-1795-020000000000"/>
                   <display value="Localized lupus erythematosus"/>
                </valueReference>
             </extension>
@@ -148,14 +161,17 @@
                </extension>
             </code>
             <subject>
-               <reference value="urn:uuid:bccd21cf-f4c7-11e9-1125-020000000000"/>
+               <reference value="urn:uuid:ddbd5d9d-fa60-11e9-1795-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </subject>
          </Flag>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bccd280b-f4c7-11e9-1125-020000000000"/>
+      <fullUrl value="urn:uuid:ddbd64e7-fa60-11e9-1795-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -193,6 +209,10 @@
                   <display value="Entire foot"/>
                </coding>
             </bodySite>
+            <subject>
+               <reference value="urn:uuid:ddbd5d9d-fa60-11e9-1795-020000000000"/>
+               <display value="I. XXX_Jangi"/>
+            </subject>
             <onsetPeriod>
                <start value="2016-01-07T00:00:00Z"/>
             </onsetPeriod>
@@ -201,9 +221,12 @@
             </note>
          </Condition>
       </resource>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bccd21cf-f4c7-11e9-1125-020000000000"/>
+      <fullUrl value="urn:uuid:ddbd5d9d-fa60-11e9-1795-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -284,7 +307,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bccd2820-f4c7-11e9-1125-020000000000"/>
+      <fullUrl value="urn:uuid:ddbd64fc-fa60-11e9-1795-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -314,7 +337,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bccd3ce4-f4c7-11e9-1125-020000000000"/>
+      <fullUrl value="urn:uuid:ddbd5d3c-fa60-11e9-1795-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -346,18 +369,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bccd27e6-f4c7-11e9-1125-020000000000"/>
+      <fullUrl value="urn:uuid:ddbd64c2-fa60-11e9-1795-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:bccd2820-f4c7-11e9-1125-020000000000"/>
+               <reference value="urn:uuid:ddbd64fc-fa60-11e9-1795-020000000000"/>
                <display value="van der Spek"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:bccd3ce4-f4c7-11e9-1125-020000000000"/>
+               <reference value="urn:uuid:ddbd5d3c-fa60-11e9-1795-020000000000"/>
                <display value="Bedrijfsartsenconsortium - Vestiging Amsterdam"/>
             </organization>
             <specialty>
@@ -374,7 +397,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bccd3ce9-f4c7-11e9-1125-020000000000"/>
+      <fullUrl value="urn:uuid:ddbd5d41-fa60-11e9-1795-020000000000"/>
       <resource>
          <RelatedPerson>
             <meta>
@@ -390,7 +413,7 @@
                </valueCodeableConcept>
             </extension>
             <patient>
-               <reference value="urn:uuid:bccd21cf-f4c7-11e9-1125-020000000000"/>
+               <reference value="urn:uuid:ddbd5d9d-fa60-11e9-1795-020000000000"/>
                <display value="I. XXX_Jangi"/>
             </patient>
             <relationship>

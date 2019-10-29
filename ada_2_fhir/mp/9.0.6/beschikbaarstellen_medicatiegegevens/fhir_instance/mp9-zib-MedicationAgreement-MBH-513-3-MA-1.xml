@@ -50,20 +50,19 @@
       <display value="Methotrexaat tablet 2,5mg"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/J-XXX-AMAYA"/>
+      <reference value="Patient/XXX-AMAYA"/>
       <display value="J. XXX_Amaya"/>
    </subject>
    <authoredOn value="2018-09-03T14:32:00+02:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuid4706c985-d320-11e9-1663-020000000000"/>
-            <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/999001112HANSVANDOORN21"/>
-         <display value="Hans van Doorn"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/5f0ed555-fa61-11e9-1703-020000000000"/>
+               <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+            </valueReference>
+         </extension>
+         <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
       </agent>
    </requester>
    <reasonCode>
@@ -74,7 +73,7 @@
       </coding>
    </reasonCode>
    <reasonReference>
-      <reference value="Condition/redenvanvoorschrijvenB74"/>
+      <reference value="/"/>
       <display value="Andere maligniteit bloed/lymfestelsel"/>
    </reasonReference>
    <dosageInstruction>

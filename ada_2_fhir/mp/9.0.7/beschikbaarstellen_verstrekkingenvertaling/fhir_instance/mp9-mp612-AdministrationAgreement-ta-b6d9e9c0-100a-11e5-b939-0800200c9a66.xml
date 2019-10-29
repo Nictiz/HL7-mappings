@@ -1,0 +1,61 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="ta-b6d9e9c0-100a-11e5-b939-0800200c9a66"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2008-03-06"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="60"/>
+         <unit value="dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <value value="b6d9e9c0-100a-11e5-b939-0800200c9a66"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/14815982-2-16-840-1-113883-2-4-4-8"/>
+      <display value="INSULATARD PENFILL INJ 100IE/ML PATR 3ML"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/DIREN"/>
+      <display value="Aygül A. Direnç"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/01234567"/>
+         <display value="Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'."/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="Gedurende 60 dagen, Elke dag om 8:00, 14:00 en 20:00 uur 16IE"/>
+      <timing>
+         <repeat>
+            <timeOfDay value="08:00:00"/>
+            <timeOfDay value="14:00:00"/>
+            <timeOfDay value="20:00:00"/>
+         </repeat>
+      </timing>
+      <doseQuantity>
+         <value value="16"/>
+         <unit value="Internat.eenh."/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="217"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationDispense>

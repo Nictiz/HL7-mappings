@@ -36,6 +36,7 @@
    <performer>
       <actor>
          <reference value="Organization/01234567"/>
+         <display value="Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'."/>
       </actor>
    </performer>
    <dosageInstruction>
@@ -55,9 +56,11 @@
          </repeat>
       </timing>
       <asNeededCodeableConcept>
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-            <valueCode value="OTH"/>
-         </extension>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
          <text value="adf a dfasdf asdf d"/>
       </asNeededCodeableConcept>
       <route>

@@ -6,7 +6,7 @@
    <type value="searchset"/>
    <total value="19"/>
    <entry>
-      <fullUrl value="urn:uuid:d398e853-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184e63-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -50,20 +50,19 @@
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-09-02T11:25:00+02:00"/>
             <requester>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-                  <valueReference>
-                     <reference value="urn:uuid:d398e857-d31f-11e9-1904-020000000000"/>
-                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                  </valueReference>
-               </extension>
                <agent>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
-                  <display value="Peter van Pulver"/>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:0c184e67-fa61-11e9-1524-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -97,7 +96,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398e87f-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184e8f-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -140,20 +139,19 @@
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-09-03T09:00:00+02:00"/>
             <requester>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-                  <valueReference>
-                     <reference value="urn:uuid:d398e882-d31f-11e9-1904-020000000000"/>
-                     <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                  </valueReference>
-               </extension>
                <agent>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
-                  <display value="Bertine van Doorn"/>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:0c184e92-fa61-11e9-1524-020000000000"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </agent>
             </requester>
             <dosageInstruction>
@@ -187,7 +185,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ebeb-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18470b-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -231,22 +229,28 @@
                <display value="FUROSEMIDE TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-09-03T14:32:00+02:00"/>
             <requester>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-                  <valueReference>
-                     <reference value="urn:uuid:d398ebef-d31f-11e9-1904-020000000000"/>
-                     <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
-                  </valueReference>
-               </extension>
                <agent>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
-                  <display value="Hans van Doorn"/>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:0c18470f-fa61-11e9-1524-020000000000"/>
+                        <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                </agent>
             </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="305335007"/>
+                  <display value="Opname"/>
+               </coding>
+            </reasonCode>
             <note>
                <text value="Toedieningsafspraak van apotheker ontvangen, geen medicatieafspraak van voorschrijver ontvangen. Deze nieuwe medicatieafspraak is gebaseerd op de toedieningsafspraak: MBH_513_2_TA_1"/>
             </note>
@@ -281,7 +285,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ed34-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184854-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -333,24 +337,30 @@
                <display value="METHOTREXAAT TABLET 2,5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-09-03T14:32:00+02:00"/>
             <requester>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-                  <valueReference>
-                     <reference value="urn:uuid:d398ebef-d31f-11e9-1904-020000000000"/>
-                     <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
-                  </valueReference>
-               </extension>
                <agent>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
-                  <display value="Hans van Doorn"/>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:0c18470f-fa61-11e9-1524-020000000000"/>
+                        <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                </agent>
             </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="305335007"/>
+                  <display value="Opname"/>
+               </coding>
+            </reasonCode>
             <reasonReference>
-               <reference value="urn:uuid:d398ed4e-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18486e-fa61-11e9-1524-020000000000"/>
                <display value="Andere maligniteit bloed/lymfestelsel"/>
             </reasonReference>
             <dosageInstruction>
@@ -384,7 +394,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ed91-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c1848b1-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -436,28 +446,27 @@
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <supportingInformation>
-               <reference value="urn:uuid:d398edba-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c1848da-fa61-11e9-1524-020000000000"/>
                <display value="Lengte: 155 cm. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
             </supportingInformation>
             <supportingInformation>
-               <reference value="urn:uuid:d398edbd-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c1848dd-fa61-11e9-1524-020000000000"/>
                <display value="Gewicht: 54 kg. Datum/tijd gemeten: 29 AUG, 2018 09:35"/>
             </supportingInformation>
             <authoredOn value="2018-08-29T09:35:00+02:00"/>
             <requester>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-                  <valueReference>
-                     <reference value="urn:uuid:d398e857-d31f-11e9-1904-020000000000"/>
-                     <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                  </valueReference>
-               </extension>
                <agent>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
-                  <display value="Peter van Pulver"/>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:0c184e67-fa61-11e9-1524-020000000000"/>
+                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </agent>
             </requester>
             <note>
@@ -494,7 +503,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ec18-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184738-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -533,7 +542,7 @@
                <display value="FUROSEMIDE TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-08-16T14:32:00+02:00"/>
@@ -541,10 +550,11 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:d398ec1a-d31f-11e9-1904-020000000000"/>
+                        <reference value="urn:uuid:0c18473a-fa61-11e9-1524-020000000000"/>
                         <display value="Hans van Doorn || Huisartsen, niet nader gespecificeerd || Ziekenhuis Stitswerd"/>
                      </valueReference>
                   </extension>
+                  <display value="Hans van Doorn || Huisartsen, niet nader gespecificeerd || Ziekenhuis Stitswerd"/>
                </agent>
             </requester>
             <note>
@@ -569,7 +579,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398edc3-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c1848e3-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -617,7 +627,7 @@
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <authoredOn value="2018-08-11T09:35:00+02:00"/>
@@ -625,16 +635,17 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:d398ecfc-d31f-11e9-1904-020000000000"/>
+                        <reference value="urn:uuid:0c18481c-fa61-11e9-1524-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
+                  <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                </agent>
             </requester>
             <dispenseRequest>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location">
                   <valueReference>
-                     <reference value="urn:uuid:d398ede3-d31f-11e9-1904-020000000000"/>
+                     <reference value="urn:uuid:0c184903-fa61-11e9-1524-020000000000"/>
                      <display value="Huisadres patiënt"/>
                   </valueReference>
                </extension>
@@ -656,7 +667,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ebca-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c1846ea-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -701,7 +712,7 @@
                <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <performer>
@@ -748,7 +759,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ec3d-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18475d-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -788,7 +799,7 @@
                <display value="FUROSEMIDE ACTAVIS TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <performer>
@@ -835,7 +846,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ede9-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184909-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -889,7 +900,7 @@
                <display value="AMOXICILLINE PCH CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <performer>
@@ -939,7 +950,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ec5b-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18477b-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -971,7 +982,7 @@
                <display value="FUROSEMIDE ACTAVIS TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <performer>
@@ -1000,7 +1011,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ee09-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184929-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -1038,7 +1049,7 @@
                <display value="AMOXICILLINE PCH CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <performer>
@@ -1062,7 +1073,7 @@
             </quantity>
             <whenHandedOver value="2018-08-29T09:45:00+02:00"/>
             <destination>
-               <reference value="urn:uuid:d398ede3-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c184903-fa61-11e9-1524-020000000000"/>
                <display value="Huisadres patiënt"/>
             </destination>
             <note>
@@ -1075,7 +1086,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ec6e-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18478e-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1083,13 +1094,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:d398ec86-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c1847a6-fa61-11e9-1524-020000000000"/>
                   <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:d398ec86-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c1847a6-fa61-11e9-1524-020000000000"/>
                   <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                </valueReference>
             </extension>
@@ -1121,11 +1132,11 @@
             </effectivePeriod>
             <dateAsserted value="2018-09-01T15:39:00+02:00"/>
             <informationSource>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </informationSource>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <derivedFrom>
@@ -1167,7 +1178,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398eca6-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c1847c6-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1175,13 +1186,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:d398ec86-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c1847a6-fa61-11e9-1524-020000000000"/>
                   <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:d398ec86-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c1847a6-fa61-11e9-1524-020000000000"/>
                   <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                </valueReference>
             </extension>
@@ -1213,11 +1224,11 @@
             </effectivePeriod>
             <dateAsserted value="2018-09-03T20:40:00+02:00"/>
             <informationSource>
-               <reference value="urn:uuid:d398eccc-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c1847ec-fa61-11e9-1524-020000000000"/>
                <display value="M. XXX_Amaya"/>
             </informationSource>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <derivedFrom>
@@ -1259,7 +1270,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ece3-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184803-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1267,7 +1278,7 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:d398ec90-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c1847b0-fa61-11e9-1524-020000000000"/>
                   <display value="Ziekenhuis Stitswerd"/>
                </valueReference>
             </extension>
@@ -1301,13 +1312,13 @@
             <informationSource>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/missing-type-reference">
                   <valueReference>
-                     <reference value="urn:uuid:d398ecfc-d31f-11e9-1904-020000000000"/>
+                     <reference value="urn:uuid:0c18481c-fa61-11e9-1524-020000000000"/>
                      <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
             </informationSource>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <derivedFrom>
@@ -1349,7 +1360,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ed13-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184833-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1357,7 +1368,7 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                   <display value="J. XXX_Amaya"/>
                </valueReference>
             </extension>
@@ -1397,7 +1408,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-16T20:59:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <derivedFrom>
@@ -1439,7 +1450,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ed66-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184886-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1447,13 +1458,13 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:d398ec86-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c1847a6-fa61-11e9-1524-020000000000"/>
                   <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                   <display value="J. XXX_Amaya"/>
                </valueReference>
             </extension>
@@ -1486,7 +1497,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-31T20:59:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <derivedFrom>
@@ -1524,7 +1535,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ee1f-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18493f-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1535,7 +1546,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                   <display value="J. XXX_Amaya"/>
                </valueReference>
             </extension>
@@ -1568,7 +1579,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-30T22:35:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <derivedFrom>
@@ -1610,7 +1621,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ee3c-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18495c-fa61-11e9-1524-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -1621,7 +1632,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+                  <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                   <display value="J. XXX_Amaya"/>
                </valueReference>
             </extension>
@@ -1661,7 +1672,7 @@
             </effectivePeriod>
             <dateAsserted value="2018-08-30T22:35:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <derivedFrom>
@@ -1682,7 +1693,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -1847,7 +1858,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ed07-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184827-fa61-11e9-1524-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -1914,7 +1925,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ec90-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c1847b0-fa61-11e9-1524-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -1932,7 +1943,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398e857-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184e67-fa61-11e9-1524-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1960,7 +1971,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ecfc-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18481c-fa61-11e9-1524-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -1971,7 +1982,7 @@
                <display value="Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:d398ed07-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c184827-fa61-11e9-1524-020000000000"/>
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>
@@ -1988,7 +1999,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398e882-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184e92-fa61-11e9-1524-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2016,7 +2027,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ebef-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18470f-fa61-11e9-1524-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2044,7 +2055,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ec1a-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c18473a-fa61-11e9-1524-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2072,7 +2083,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ec86-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c1847a6-fa61-11e9-1524-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2083,7 +2094,7 @@
                <display value="Hans van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:d398ec90-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c1847b0-fa61-11e9-1524-020000000000"/>
                <display value="Ziekenhuis Stitswerd"/>
             </organization>
             <specialty>
@@ -2118,6 +2129,7 @@
                   <code value="103039"/>
                   <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
                </coding>
+               <text value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </code>
          </Medication>
       </resource>
@@ -2149,6 +2161,7 @@
                   <code value="103039"/>
                   <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
                </coding>
+               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </code>
          </Medication>
       </resource>
@@ -2175,6 +2188,7 @@
                   <code value="16810"/>
                   <display value="FUROSEMIDE TABLET 40MG"/>
                </coding>
+               <text value="FUROSEMIDE TABLET 40MG"/>
             </code>
          </Medication>
       </resource>
@@ -2206,6 +2220,7 @@
                   <code value="16810"/>
                   <display value="FUROSEMIDE TABLET 40MG"/>
                </coding>
+               <text value="FUROSEMIDE ACTAVIS TABLET 40MG"/>
             </code>
          </Medication>
       </resource>
@@ -2242,6 +2257,7 @@
                   <code value="84190"/>
                   <display value="TEMAZEPAM TABLET 10MG"/>
                </coding>
+               <text value="TEMAZEPAM APOTEX TABLET 10MG"/>
             </code>
          </Medication>
       </resource>
@@ -2268,6 +2284,7 @@
                   <code value="42609"/>
                   <display value="METHOTREXAAT TABLET 2,5MG"/>
                </coding>
+               <text value="METHOTREXAAT TABLET 2,5MG"/>
             </code>
          </Medication>
       </resource>
@@ -2294,6 +2311,7 @@
                   <code value="41092"/>
                   <display value="FENETICILLINE CAPSULE 500MG"/>
                </coding>
+               <text value="FENETICILLINE CAPSULE 500MG"/>
             </code>
          </Medication>
       </resource>
@@ -2325,6 +2343,7 @@
                   <code value="15423"/>
                   <display value="AMOXICILLINE 500MG CAPSULE"/>
                </coding>
+               <text value="AMOXICILLINE PCH CAPSULE 500MG"/>
             </code>
          </Medication>
       </resource>
@@ -2333,7 +2352,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ede3-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c184903-fa61-11e9-1524-020000000000"/>
       <resource>
          <Location>
             <meta>
@@ -2347,7 +2366,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398edba-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c1848da-fa61-11e9-1524-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2369,7 +2388,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <effectiveDateTime value="2018-08-29T09:35:00+02:00"/>
@@ -2392,7 +2411,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398edbd-d31f-11e9-1904-020000000000"/>
+      <fullUrl value="urn:uuid:0c1848dd-fa61-11e9-1524-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -2414,7 +2433,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
+               <reference value="urn:uuid:0c18474d-fa61-11e9-1524-020000000000"/>
                <display value="J. XXX_Amaya"/>
             </subject>
             <effectiveDateTime value="2018-08-29T09:35:00+02:00"/>
@@ -2437,26 +2456,8 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d398ed4e-d31f-11e9-1904-020000000000"/>
-      <resource>
-         <Condition>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
-            </meta>
-            <clinicalStatus value="active"/>
-            <code>
-               <coding>
-                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
-                  <code value="B74"/>
-                  <display value="Andere maligniteit bloed/lymfestelsel"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:d398e40d-d31f-11e9-1904-020000000000"/>
-               <display value="J. XXX_Amaya"/>
-            </subject>
-         </Condition>
-      </resource>
+      <fullUrl value="urn:uuid:0c18486e-fa61-11e9-1524-020000000000"/>
+      <resource/>
       <search>
          <mode value="include"/>
       </search>

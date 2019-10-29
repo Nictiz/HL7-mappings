@@ -42,22 +42,28 @@
       <display value="FUROSEMIDE TABLET 40MG"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/J-XXX-AMAYA"/>
+      <reference value="Patient/XXX-AMAYA"/>
       <display value="J. XXX_Amaya"/>
    </subject>
    <authoredOn value="2018-09-03T14:32:00+02:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuidd2f1885f-d31f-11e9-1942-020000000000"/>
-            <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/999001112HANSVANDOORN21"/>
-         <display value="Hans van Doorn"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/0b67e2cf-fa61-11e9-1724-020000000000"/>
+               <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+            </valueReference>
+         </extension>
+         <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
       </agent>
    </requester>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="305335007"/>
+         <display value="Opname"/>
+      </coding>
+   </reasonCode>
    <note>
       <text value="Toedieningsafspraak van apotheker ontvangen, geen medicatieafspraak van voorschrijver ontvangen. Deze nieuwe medicatieafspraak is gebaseerd op de toedieningsafspraak: MBH_513_2_TA_1"/>
    </note>

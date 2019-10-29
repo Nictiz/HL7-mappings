@@ -27,9 +27,9 @@
       <valueReference>
          <identifier>
             <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            <value value="MBH_213_1_MA_2"/>
+            <value value="MBH_213_1_MA_1"/>
          </identifier>
-         <display value="relatie naar medicatieafspraak: MBH_213_1_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <display value="relatie naar medicatieafspraak: MBH_213_1_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
       </valueReference>
    </extension>
    <identifier>
@@ -50,22 +50,28 @@
       <display value="MIZOLASTINE TABLET MGA  10MG"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/R-XXX-GOBEE"/>
+      <reference value="Patient/XXX-GOBEE"/>
       <display value="R. XXX_Gobee"/>
    </subject>
    <authoredOn value="2018-07-25T09:13:00+02:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuidd33b870f-d31f-11e9-1990-020000000000"/>
-            <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/JOHNDEVRIES1"/>
-         <display value="John de Vries"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/0bb5143f-fa61-11e9-1477-020000000000"/>
+               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </agent>
    </requester>
+   <reasonCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+         <code value="16"/>
+         <display value="Overgevoeligheid"/>
+      </coding>
+   </reasonCode>
    <dosageInstruction>
       <sequence value="1"/>
       <text value="Vanaf 25 jul 2018, gedurende 30 dagen, 2 maal per dag 1 tablet, oraal"/>

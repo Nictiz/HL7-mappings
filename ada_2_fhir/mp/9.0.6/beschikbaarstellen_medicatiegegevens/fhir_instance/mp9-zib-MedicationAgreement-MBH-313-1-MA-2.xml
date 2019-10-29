@@ -43,20 +43,19 @@
       <display value="Tiotropium inhalatiecapsule 18ug"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/J-XXX-CNOSSEN"/>
+      <reference value="Patient/XXX-CNOSSEN"/>
       <display value="J. XXX_Cnossen"/>
    </subject>
    <authoredOn value="2018-07-07T13:54:00+02:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuid4732b880-d320-11e9-1160-020000000000"/>
-            <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/JOHNDEVRIES1"/>
-         <display value="John de Vries"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/5f497c48-fa61-11e9-7900-020000000000"/>
+               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </agent>
    </requester>
    <reasonCode>

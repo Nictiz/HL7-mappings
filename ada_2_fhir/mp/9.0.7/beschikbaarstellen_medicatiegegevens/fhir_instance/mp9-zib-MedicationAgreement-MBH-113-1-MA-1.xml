@@ -34,20 +34,19 @@
       <display value="Metoclopramide zetpil 20mg"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/R-XXX-DIRKSZ"/>
+      <reference value="Patient/XXX-DIRKSZ"/>
       <display value="R. XXX_Dirksz"/>
    </subject>
    <authoredOn value="2018-07-15T11:25:00+02:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuidd3322292-d31f-11e9-1415-020000000000"/>
-            <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/000001111PETERVANPULVER1"/>
-         <display value="Peter van Pulver"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/0baa227e-fa61-11e9-1874-020000000000"/>
+               <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </agent>
    </requester>
    <dosageInstruction>

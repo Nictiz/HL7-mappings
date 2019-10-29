@@ -27,9 +27,9 @@
       <valueReference>
          <identifier>
             <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            <value value="MBH_213_1_MA_4"/>
+            <value value="MBH_213_1_MA_3"/>
          </identifier>
-         <display value="relatie naar medicatieafspraak: MBH_213_1_MA_4 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <display value="relatie naar medicatieafspraak: MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
       </valueReference>
    </extension>
    <identifier>
@@ -50,22 +50,28 @@
       <display value="MIZOLASTINE TABLET MGA  10MG"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/R-XXX-GOBEE"/>
+      <reference value="Patient/XXX-GOBEE"/>
       <display value="R. XXX_Gobee"/>
    </subject>
    <authoredOn value="2018-08-20T16:25:00+02:00"/>
    <requester>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-RequesterRole">
-         <valueReference>
-            <reference value="PractitionerRole/urnuuidd33b86dd-d31f-11e9-1990-020000000000"/>
-            <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-         </valueReference>
-      </extension>
       <agent>
-         <reference value="Practitioner/000001111PETERVANPULVER1"/>
-         <display value="Peter van Pulver"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/0bb5140d-fa61-11e9-1477-020000000000"/>
+               <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </agent>
    </requester>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="305335007"/>
+         <display value="Opname"/>
+      </coding>
+   </reasonCode>
    <dosageInstruction>
       <sequence value="1"/>
       <text value="Vanaf 20 aug 2018, gedurende 30 dagen, 1 maal per dag 1 tablet, oraal"/>
