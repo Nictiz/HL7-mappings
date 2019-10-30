@@ -160,6 +160,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
+    <xsl:variable name="alerts" as="element()*">
+        <!-- probleem in problem -->
+        <xsl:for-each-group select="//alert[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <unieke-problem xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display xmlns="">
+                    <xsl:value-of select="(alert_naam | alert_name)/@displayName"/>
+                </reference-display>
+                <xsl:apply-templates select="current-group()[1]" mode="doAlertEntry-2.1">
+                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <xsl:with-param name="searchMode">match</xsl:with-param>
+                </xsl:apply-templates>
+            </unieke-problem>
+        </xsl:for-each-group>
+    </xsl:variable>
     <xsl:variable name="allergyIntolerances" as="element()*">
         <!-- related-persons -->
         <xsl:for-each-group select="//(allergie_intolerantie | allergy_intolerance)[not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
@@ -172,7 +191,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <reference-display>
                     <xsl:value-of select="current-group()[1]/normalize-space(string-join(((allergie_categorie | allergy_category)/@displayName, (allergie_categorie | allergy_category)/@originalText, (veroorzakende_stof | causative_agent)/@code, (veroorzakende_stof | causative_agent)/@originalText), ' '))"/>
                 </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doallergyIntoleranceEntry-2.1">
+                <xsl:apply-templates select="current-group()[1]" mode="doAllergyIntoleranceEntry-2.1">
                     <xsl:with-param name="uuid" select="$uuid"/>
                     <xsl:with-param name="searchMode">match</xsl:with-param>
                 </xsl:apply-templates>
