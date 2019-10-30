@@ -13,8 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- import because we want to be able to override the param for macAddress for UUID generation -->
-    <!--<xsl:import href="2_fhir_fhir_include.xsl"/>-->
+    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -22,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="allergyintoleranceReference" match="allergie_intolerantie | allergy_intolerance" mode="doAllergyIntoleranceReference-2.1">
+    <xsl:template name="allergyintoleranceReference" match="allergie_intolerantie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | allergy_intolerance[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAllergyIntoleranceReference-2.1">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$allergyIntolerances[group-key = $theGroupKey]" as="element()?"/>
@@ -53,9 +52,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.AllergyIntolerance.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="allergyIntoleranceEntry" match="allergie_intolerantie | allergy_intolerance" mode="doallergyIntoleranceEntry-2.1" as="element(f:entry)">
+    <xsl:template name="allergyIntoleranceEntry" match="allergie_intolerantie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | allergy_intolerance[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAllergyIntoleranceEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
         <xsl:param name="fhirResourceId">
@@ -100,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="zib-AllergyIntolerance-2.1" match="allergie_intolerantie | allergy_intolerance" as="element()" mode="doZibAllergyIntolerance-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="adaPatient" as="element()"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:variable name="patientRef" as="element()*">
