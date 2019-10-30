@@ -13,7 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    
+    <!-- Without this import, all depending XSLs need to import it -->
+    <xsl:import href="_zib2017.xsl"/>
     <xsl:import href="nl-core-patient-2.1.xsl"/>
     <xsl:import href="nl-core-relatedperson-2.0.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
