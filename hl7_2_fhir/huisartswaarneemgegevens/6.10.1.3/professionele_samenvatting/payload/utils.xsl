@@ -21,8 +21,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
-    <!-- 28-F1-0E-48-1D-92 is the mac address of a Nictiz device and may not be used outside of Nictiz -->
-    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <!-- 02-00-00-00-00-00 and may not be used in a production situation -->
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     
     <xd:doc scope="stylesheet">
         <xd:desc>

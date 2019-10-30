@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
-    <xsl:param name="macAddress">28-F1-0E-48-1D-92</xsl:param>
+    <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
