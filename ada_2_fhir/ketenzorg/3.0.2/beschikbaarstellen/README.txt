@@ -22,8 +22,25 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
-2019-08-28
-* Added default dataabsentreason 'unknown' for AllergyIntolerance/verificationStatus, since this is a required element in FHIR and we can't always properly map it from the zib/ada.
+2019-10-30 - 1.2.0
+* Large refactoring efforts have led to a more centralized approach for HCIM conversion to FHIR. Name, Address, ContactData, Patient and more now have a central place in the folder zib2017
+* (!!) There is a new XSL level parameter for masking of Burgerservicenummers (BSNs), as not all use cases require this. If you want to mask, please use paramater mask-ids with value 2.16.840.1.113883.2.4.6.3 rather than relyiing on the defaults
+* Datatypes: where ValueSets for a given context specify NullFlavor, this will be transformed to a regular Coding, instead of the NullFlavor extension. Example: MedicationRequest.reasonCode
+* Datatypes: when an Identifer is masked, the dataAbsentReason is written into the .value, instead of the top level
+* Datatypes: quantity units that are supposed to be UCUM but aren't, are now returned in {}, which is a valid UCUM escape
+* Datatypes: quantity value commas are converted into dots
+* Datatypes: support for parametrized date/time. Relevant for Touchstone instances
+* General: Bundle.entry now supports search.mode everywhere
+* Patient: add support for Patient.address, Patient.telecom
+* AllergyIntolerance: add support for .identifier
+* AllergyIntolerance: https://bits.nictiz.nl/browse/MM-492 leads to improved verificationStatus handling
+* AllergyIntolerance: .assertedDate is now mapped onto .onsetDateTime. This is a semantically better fit
+* Composition: (EncounterReport) is now built differently. It used to list the main complaint. Now simply says "Contactverslag [patient name]"
+* Episodes: fixed broken link to the Condition by adding the appropriate entry to the Bundle
+* Condition: improved .clicnicalStatus handling. No longer assumes active unless input is specific
+* zib-BodyWeight: fixed missing .performer element
+2019-08-28 - 1.1.0
+* Added default dataAbsentReason 'unknown' for AllergyIntolerance/verificationStatus, since this is a required element in FHIR and we can't always properly map it from the zib/ada.
 2019-07-25
 * Fixed empty fullUrl for Encounter (Contactmomenten).
 2019-07-30
