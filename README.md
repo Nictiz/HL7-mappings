@@ -23,3 +23,7 @@ Subfolders for specific standards and versions can be found within these main fo
 * XML schema's for the ADA formats (folder `ada_schemas` or similar)
 * Example instances of input messages (folders `ada_instance`, `hl7v3_instance` and similar, depending on context)
 * Generated output of these example instances (folders `fhir_instance`, `ada_instance` and similar, depending on context)
+
+## Issues
+
+If you discover issues in the mappings, please refer to our issue tracking tool [BITS](https://bits.nictiz.nl/projects/MM/issues)
