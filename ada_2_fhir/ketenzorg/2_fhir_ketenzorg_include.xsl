@@ -88,7 +88,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="zib-AllergyIntolerance-2.1">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="logicalId" select="nf:removeSpecialCharacters(hcimroot/identification_number/@value)"/>
                         <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
                         <xsl:with-param name="adaPatient" select="(ancestor-or-self::*//subject//patient[patient_identification_number])[1]" as="element()"/>
                     </xsl:call-template>
