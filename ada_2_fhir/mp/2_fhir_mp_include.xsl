@@ -300,16 +300,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <entry xmlns="http://hl7.org/fhir">
                         <fullUrl value="{nf:get-fhir-uuid(.)}"/>
                         <resource>
-                            <xsl:apply-templates select="." mode="doConditionForProbleem">
-                                <xsl:with-param name="condition-id">
-                                    <xsl:choose>
-                                        <xsl:when test="$referById">
-                                            <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
-                                            <xsl:variable name="patientReference" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyPatient($ada-patient), true())"/>
-                                            <xsl:value-of select="concat('redenvanvoorschrijven', $patientReference, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
-                                        </xsl:when>
-                                        <xsl:otherwise/>
-                                    </xsl:choose>
+                            <xsl:apply-templates select="." mode="doZibProblem-2.1">
+                                <xsl:with-param name="logicalId">
+                                    <xsl:if test="$referById">
+                                        <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
+                                        <xsl:variable name="patientReference" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyPatient($ada-patient), true())"/>
+                                        <xsl:value-of select="concat('redenvanvoorschrijven', $patientReference, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
+                                    </xsl:if>
                                 </xsl:with-param>
                             </xsl:apply-templates>
                         </resource>
