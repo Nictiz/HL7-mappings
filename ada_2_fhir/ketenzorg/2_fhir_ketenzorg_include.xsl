@@ -45,27 +45,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
                 <reference-display>
-                    <xsl:value-of select="normalize-space(string-join(tekst[1]//@value | text[1]//@value, ' '))"/>
+                    <xsl:value-of select="string-join((normalize-space(string-join(type[1]//@code | type[1]//@displayName, ': ')), normalize-space(string-join(tekst[1]//@value | text[1]//@value, ' '))), ' - ')"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doObservationEntry"/>
             </unieke-observatie>
         </xsl:for-each-group>
     </xsl:variable>
     <xsl:variable name="prescribe-reasons" as="element()*"/>
-    <xsl:variable name="conditions" as="element()*">
-        <xsl:for-each-group select="//problem" group-by="nf:getGroupingKeyDefault(.)">
-            <unieke-condition xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <reference-display>
-                    <xsl:value-of select="normalize-space(string-join(problem_name/(@displayName, @code)[1] | probleem_naam/(@displayName, @code)[1], ' '))"/>
-                </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doConditionEntry"/>
-            </unieke-condition>
-        </xsl:for-each-group>
-    </xsl:variable>
-    
+
     <xsl:variable name="bouwstenen" as="element(f:entry)*">
         <!-- Labuitslagen -->
         <xsl:for-each select="//*[bundle]/laboratory_test_result/laboratory_test">
@@ -113,6 +100,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <!-- Contactverslagen -->
         <xsl:for-each select="//*[bundle]/encounter_note">
+            <xsl:variable name="journalEntries" as="element()*">
+                <xsl:for-each select="journal_entry[type/@code = $doJournalEntries]">
+                    <xsl:variable name="bodyGroupingKey" select="nf:getGroupingKeyDefault(.)"/>
+                    <xsl:variable name="bodyGroupJournalEntry" select="$body-observations[group-key = $bodyGroupingKey]"/>
+                    <xsl:copy-of select="$bodyGroupJournalEntry"/>
+                </xsl:for-each>
+            </xsl:variable>
+            
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
                 <resource>
@@ -130,12 +125,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:with-param>
-                        <xsl:with-param name="gp-JournalEntries" as="element()*">
-                            <!--<xsl:message><xsl:text>Parameter doJournalEntries: </xsl:text><xsl:value-of select="$doJournalEntries"/></xsl:message>-->
-                            <xsl:for-each select="journal_entry[type/@code=$doJournalEntries]">
-                                <xsl:copy-of select="$body-observations[.//group-key/text() = nf:getGroupingKeyDefault(.)]/f:resource/*"/>
-                            </xsl:for-each>
-                        </xsl:with-param>
+                        <xsl:with-param name="gp-JournalEntries" select="$journalEntries" as="element()*"/>
                     </xsl:call-template>
                 </resource>
                 <search>
@@ -257,7 +247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="problem">
                     <diagnosis>
                         <condition>
-                            <xsl:apply-templates select="." mode="doConditionReference"/>
+                            <xsl:call-template name="problemReference"/>
                         </condition>
                     </diagnosis>
                 </xsl:for-each>
@@ -575,85 +565,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </serviceProvider>
             </xsl:if>
         </Encounter>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:param name="ada-problem"/>
-        <xd:param name="condition-id"/>
-    </xd:doc>
-    <xsl:template name="zib-problem-2.0">
-        <xsl:param name="ada-problem" as="element()?"/>
-        <xsl:param name="condition-id" as="xs:string?"/>
-        <xsl:for-each select="$ada-problem">
-            <Condition xmlns="http://hl7.org/fhir">
-                <xsl:if test="$referById">
-                    <id value="{$condition-id}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
-                </meta>
-                <xsl:choose>
-                    <xsl:when test="problem_end_date[@value | @nullFlavor[. = 'UNK']]">
-                        <clinicalStatus value="inactive"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <clinicalStatus value="active"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-                <category>
-                    <coding>
-                        <system value="{local:getUri($oidSNOMEDCT)}"/>
-                        <code value="282291009"/>
-                        <display value="Diagnosis"/>
-                    </coding>
-                </category>
-                <xsl:for-each select="problem_name">
-                    <xsl:choose>
-                        <xsl:when test="@nullFlavor">
-                            <extension url="{$urlExtHL7NullFlavor}">
-                                <valueCode value="{@nullFlavor}"/>
-                            </extension>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <code>
-                                <coding>
-                                    <system value="{local:getUri(local:getUri(@codeSystem))}"/>
-                                    <code value="{@code}"/>
-                                    <xsl:if test="@displayName">
-                                        <display value="{@displayName}"/>
-                                    </xsl:if>
-                                </coding>
-                            </code>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:for-each>
-                <xsl:for-each select="($ada-problem/ancestor-or-self::*//subject//patient[patient_identification_number])[1]">
-                    <subject>
-                        <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                    </subject>
-                </xsl:for-each>
-                <xsl:if test="problem_start_date | problem_end_date">
-                    <onsetPeriod>
-                        <xsl:if test="problem_start_date[@value]">
-                            <start value="{problem_start_date/@value}"/>
-                        </xsl:if>
-                        <xsl:if test="problem_end_date[@value]">
-                            <end value="{problem_end_date/@value}"/>
-                        </xsl:if>
-                    </onsetPeriod>
-                </xsl:if>
-                <xsl:if test="problem_end_date[@value]">
-                    <abatementDateTime value="{problem_end_date/@value}"/>
-                </xsl:if>
-                <xsl:for-each select="(ancestor-or-self::*//author//health_professional[health_professional_identification_number])[1]">
-                    <asserter>
-                        <xsl:apply-templates select="." mode="doPractitioner">
-                            <xsl:with-param name="uuid" select="false()"/>
-                        </xsl:apply-templates>
-                    </asserter>
-                </xsl:for-each>
-            </Condition>
-        </xsl:for-each>
     </xsl:template>
     
     <xd:doc>
@@ -1106,65 +1017,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
 
             <!-- Add the journal entries -->
-            <xsl:for-each select="$gp-JournalEntries/descendant-or-self::f:Observation[1]">
+            <xsl:for-each select="$gp-JournalEntries[descendant-or-self::f:Observation[1]]">
+                <xsl:variable name="journalEntryObservation" select="descendant-or-self::f:Observation[1]"/>
                 <section>
                     <!-- When an ICPC code is attached in the component, add it
                          here in the extension -->
-                    <xsl:if test="f:component//f:system/@value = 'http://hl7.org/fhir/sid/icpc-1-nl'">
+                    <xsl:if test="$journalEntryObservation/f:component//f:system/@value = 'http://hl7.org/fhir/sid/icpc-1-nl'">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-icpc-1-nl">
-                            <xsl:copy-of select="f:component/f:valueCodeableConcept"/>
+                            <xsl:copy-of select="$journalEntryObservation/f:component/f:valueCodeableConcept"/>
                         </extension>
                     </xsl:if>
 
-                    <xsl:copy-of select="f:code"/>
+                    <xsl:copy-of select="$journalEntryObservation/f:code"/>
 
                     <text>
                         <status value="additional"/>
                         <div xmlns="http://www.w3.org/1999/xhtml">
-                            <xsl:value-of select="f:valueString/@value"/>
+                            <xsl:value-of select="$journalEntryObservation/f:valueString/@value"/>
                         </div>
                     </text>
 
                     <entry>
-                        <xsl:apply-templates select="ancestor::f:entry" mode="doObservationReference"/>
+                        <xsl:apply-templates select="." mode="doObservationReference"/>
                     </entry>
                 </section>
             </xsl:for-each>
         </Composition>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
-    <xsl:template name="conditionEntry" match="probleem | problem" mode="doConditionEntry">
-        <xsl:call-template name="problemEntry">
-            <xsl:with-param name="searchMode">include</xsl:with-param>
-        </xsl:call-template>
-        <!--<entry xmlns="http://hl7.org/fhir">
-            <!-\- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -\->
-            <fullUrl value="{nf:get-fhir-uuid(./..)}"/>
-            <resource>
-                <xsl:choose>
-                    <xsl:when test="$referById">
-                        <xsl:variable name="fhirResourceId" select="generate-id(./..)"/>
-                        <xsl:call-template name="zib-problem-2.0">
-                            <xsl:with-param name="ada-problem" select="."/>
-                            <xsl:with-param name="condition-id" select="$fhirResourceId"/>
-                        </xsl:call-template>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="zib-problem-2.0">
-                            <xsl:with-param name="ada-problem" select="."/>
-                        </xsl:call-template>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </resource>
-            <search>
-                <mode value="include"/>
-            </search>
-        </entry>-->
-    </xsl:template>
-    
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1188,25 +1068,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="observationReference" match="f:entry | journal_entry" mode="doObservationReference">
+    <xsl:template name="observationReference" match="unieke-observatie | f:entry | journal_entry" mode="doObservationReference">
+        <xsl:variable name="theObject" select="."/>
         <xsl:variable name="theIdentifier" select="()"/>
-        <xsl:variable name="theGroupKey" select="(../group-key, nf:getGroupingKeyDefault(.))[1]"/>
-        <xsl:variable name="theGroupKeyElement" select="$body-observations/group-key[. = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupKey" select="(group-key, ../group-key, nf:getGroupingKeyDefault(.))[1]"/>
+        <xsl:variable name="theGroupElement" select="$body-observations[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
-            <xsl:when test="$theGroupKeyElement">
-                <reference value="{nf:getFullUrlOrId($theGroupKeyElement/../f:entry)}"/>
+            <xsl:when test="$theGroupElement">
+                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>
                     <xsl:call-template name="id-to-Identifier">
-                        <xsl:with-param name="in" select="$theIdentifier"/>
+                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
                     </xsl:call-template>
                 </identifier>
             </xsl:when>
         </xsl:choose>
         
-        <xsl:if test="string-length($theGroupKeyElement/reference-display) gt 0">
-            <display value="{$theGroupKeyElement/reference-display}"/>
+        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+            <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
 </xsl:stylesheet>
