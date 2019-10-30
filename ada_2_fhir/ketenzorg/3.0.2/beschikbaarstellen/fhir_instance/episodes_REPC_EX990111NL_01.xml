@@ -32,10 +32,13 @@
                </coding>
             </type>
             <diagnosis>
-               <condition/>
+               <condition>
+                  <reference value="urn:uuid:5ac5bf1c-fb16-11e9-1299-020000000000"/>
+                  <display value="Emfyseem/COPD"/>
+               </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:2d5bfd1e-fa5b-11e9-1585-28f10e481d92"/>
+               <reference value="urn:uuid:5ac5bf0e-fb16-11e9-1299-020000000000"/>
                <display value="Joris J. Hansman"/>
             </patient>
             <managingOrganization>
@@ -52,7 +55,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2d5bfd1e-fa5b-11e9-1585-28f10e481d92"/>
+      <fullUrl value="urn:uuid:5ac5bf0e-fb16-11e9-1299-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -109,6 +112,41 @@
       </resource>
       <search>
          <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5ac5bf1c-fb16-11e9-1299-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <clinicalStatus value="active"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="282291009"/>
+                  <display value="Diagnosis"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                  <code value="R95"/>
+                  <display value="Emfyseem/COPD"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:5ac5bf0e-fb16-11e9-1299-020000000000"/>
+               <display value="Joris J. Hansman"/>
+            </subject>
+            <onsetPeriod>
+               <start value="2015-08-10"/>
+            </onsetPeriod>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="match"/>
       </search>
    </entry>
 </Bundle>
