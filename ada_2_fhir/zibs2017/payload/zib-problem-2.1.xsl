@@ -18,7 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <xsl:param name="problemSearchMode">match</xsl:param>
     
     <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     
@@ -26,6 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Produce a FHIR entry element with an zib-Problem (Condition) resource.</xd:desc>
         <xd:param name="fullUrl">Optional. Value for the entry.fullUrl.</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Condition.id.</xd:param>
+        <xd:param name="searchModes">Optional. Xml element containing search modes for the different kind of resources.</xd:param>
     </xd:doc>
     <xsl:template name="problemEntry"
         match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]"
@@ -33,6 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         as="element(f:entry)">
         <xsl:param name="fullUrl"/>
         <xsl:param name="fhirResourceId"/>
+        <xsl:param name="searchModes" tunnel="yes"/>
         
         <entry>
             <fullUrl value="{$fullUrl}"/>
@@ -42,9 +43,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                 </xsl:call-template>
             </resource>
-            <xsl:if test="string-length($problemSearchMode) gt 0">
+            <xsl:variable name="searchMode" select="$searchModes[resource-type/text() = 'Condition']/mode/text()" as="xs:string"/>
+            <xsl:if test="string-length($searchMode) gt 0">
                 <search>
-                    <mode value="{$problemSearchMode}"/>
+                    <mode value="{$searchMode}"/>
                 </search>
             </xsl:if>
         </entry>

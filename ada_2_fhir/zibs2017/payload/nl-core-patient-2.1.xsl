@@ -28,7 +28,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="patientSearchMode">Optional parameter to set the search/mode value for Patient bundle entries.</xd:param>
     </xd:doc>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <xsl:param name="patientSearchMode">include</xsl:param>
     
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
@@ -72,10 +71,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Produce a FHIR entry element with an nl-core-patient (Patient) resource.</xd:desc>
         <xd:param name="fullUrl">Optional. Value for the entry.fullUrl.</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Patient.id.</xd:param>
+        <xd:param name="searchModes">Optional. Xml element containing search modes for the different kind of resources.</xd:param>
     </xd:doc>
     <xsl:template name="patientEntry" match="patient" mode="doPatientEntry-2.1" as="element(f:entry)">
         <xsl:param name="fullUrl"/>
         <xsl:param name="fhirResourceId"/>
+        <xsl:param name="searchModes" as="element(entry)*" tunnel="yes"/>
+        
         <entry>
             <fullUrl value="{$fullUrl}"/>
             <resource>
@@ -84,9 +86,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                 </xsl:call-template>
             </resource>
-            <xsl:if test="string-length($patientSearchMode) gt 0">
+            <xsl:variable name="searchMode" select="$searchModes[resource-type = 'Patient']/mode/text()" as="xs:string?"/>
+            <xsl:if test="string-length($searchMode) gt 0">
                 <search>
-                    <mode value="{$patientSearchMode}"/>
+                    <mode value="{$searchMode}"/>
                 </search>
             </xsl:if>
         </entry>
