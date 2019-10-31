@@ -13,28 +13,46 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="2_fhir_fhir_include.xsl"/>-->
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
+    <xsl:import href="nl-core-address-2.0.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>
+    
     <xd:doc>
         <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-patient-2.1</xd:desc>
         <xd:param name="referById">Optional parameter to indicate whether to output resource logical id. Defaults to false.</xd:param>
-        <xd:param name="patientTokensXml">Optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
+        <xd:param name="patientSearchMode">Optional parameter to set the search/mode value for Patient bundle entries.</xd:param>
     </xd:doc>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <xsl:param name="patientTokensXml" select="document('../../fhir/QualificationTokens.xml')"/>
-
+    <xsl:param name="patientSearchMode">include</xsl:param>
+    
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
     <xsl:template name="patientReference" match="patient" mode="doPatientReference-2.1" as="element()*">
+        <xsl:param name="metadata" tunnel="yes"/>
+        
         <xsl:variable name="theIdentifier" select="identificatienummer[@value] | patient_identificatie_nummer[@value] | patient_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPatient(.)"/>
-        <xsl:variable name="theGroupElement" select="$patients[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupElement" select="$metadata[resource-type/text() = 'Patient' and group-key/text() = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                <reference>
+                    <xsl:attribute name="value">
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <xsl:value-of select="concat('Patient/', $theGroupElement/id)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="concat('urn:uuid:', $theGroupElement/uuid)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </reference>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>
@@ -45,57 +63,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
 
-        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
-            <display value="{$theGroupElement/reference-display}"/>
+        <xsl:if test="string-length($theGroupElement/display) gt 0">
+            <display value="{$theGroupElement/display}"/>
         </xsl:if>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with a Patient resource</xd:desc>
-        <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
-        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Patient.id</xd:param>
-        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
+        <xd:desc>Produce a FHIR entry element with an nl-core-patient (Patient) resource.</xd:desc>
+        <xd:param name="fullUrl">Optional. Value for the entry.fullUrl.</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Patient.id.</xd:param>
     </xd:doc>
     <xsl:template name="patientEntry" match="patient" mode="doPatientEntry-2.1" as="element(f:entry)">
-        <xsl:param name="uuid" select="true()" as="xs:boolean"/>
-        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
-        <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:choose>
-                    <xsl:when test="not($uuid) and string-length(nf:get-resourceid-from-token(.)) gt 0">
-                        <xsl:value-of select="nf:get-resourceid-from-token(.)"/>
-                    </xsl:when>
-                    <xsl:when test="not($uuid) and (naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value)">
-                        <xsl:value-of select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
-        </xsl:param>
-        <xsl:param name="searchMode">include</xsl:param>
+        <xsl:param name="fullUrl"/>
+        <xsl:param name="fhirResourceId"/>
         <entry>
-            <fullUrl value="{$entryFullUrl}"/>
+            <fullUrl value="{$fullUrl}"/>
             <resource>
                 <xsl:call-template name="nl-core-patient-2.1">
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                 </xsl:call-template>
             </resource>
-            <xsl:if test="string-length($searchMode) gt 0">
+            <xsl:if test="string-length($patientSearchMode) gt 0">
                 <search>
-                    <mode value="{$searchMode}"/>
+                    <mode value="{$patientSearchMode}"/>
                 </search>
             </xsl:if>
         </entry>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="logicalId">Patient.id value</xd:param>
-        <xd:param name="in">Node to consider in the creation of a Patient resource</xd:param>
+        <xd:desc>Mapping of nl.zorg.Patient concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://fhir.nl/fhir/StructureDefinition/nl-core-patient">nl-core-patient</xd:a>.</xd:desc>
+        <xd:param name="in">Node to consider in the creation of a Condition resource</xd:param>
+        <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
         <xd:param name="generalPractitionerRef">Optional. Reference datatype elements for the general practitioner of this Patient</xd:param>
         <xd:param name="managingOrganizationRef">Optional. Reference datatype elements for the amanging organization of this Patient record</xd:param>
     </xd:doc>
@@ -122,7 +122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- naamgegevens -->
                 <xsl:call-template name="nl-core-humanname-2.0">
-                    <xsl:with-param name="in" select="naamgegevens | name_information" as="element()*"/>
+                    <xsl:with-param name="in" select=".//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)]" as="element()*"/>
                 </xsl:call-template>
                 <!-- contactgegevens -->
                 <xsl:call-template name="nl-core-contactpoint-1.0">
@@ -214,38 +214,99 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Patient>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Build a logical ID for the nl-core-patient resource.</xd:desc>
+    </xd:doc>
+    <xsl:template name="patientLogicalId" match="patient" mode="doPatientLogicalId-2.1" as="xs:string">
+        <xsl:variable name="name" select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))))"/>
+        <xsl:if test="string-length($name) gt 0">
+            <xsl:value-of select="string-join(('Patient', $name), '-')"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Build a reference display string for the nl-core-patient resource.</xd:desc>
+    </xd:doc>
+    <xsl:template name="patientDisplay" match="patient" mode="doPatientDisplay-2.1" as="xs:string">
+        <xsl:apply-templates mode="doHumannameDisplay" select=".//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)]"/>
+    </xsl:template>
 
     <xd:doc>
-        <xd:desc>Searches for resourceid using the input ada patient in global param patientTokensXml (configuration document)and returns it when found. 
-            First attempt on bsn. Second attempt on familyName. Then gives up.</xd:desc>
-        <xd:param name="adaPatient">Input ada patient</xd:param>
+        <xd:desc>Build the metadata for all the nl-core-patient resources.</xd:desc>
     </xd:doc>
-    <xsl:function name="nf:get-resourceid-from-token" as="xs:string?">
-        <xsl:param name="adaPatient" as="element(patient)?"/>
-
-        <xsl:variable name="adaBsn" select="normalize-space($adaPatient/identificatienummer[@root = $oidBurgerservicenummer]/@value)"/>
-        <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[bsn/normalize-space(text()) = $adaBsn]/resourceId[1]"/>
-
-        <xsl:choose>
-            <xsl:when test="$tokenResourceId">
-                <xsl:value-of select="$tokenResourceId"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- not found using bsn, let's try family name -->
-                <xsl:variable name="adaEigenAchternaam" select="upper-case(normalize-space($adaPatient/naamgegevens/geslachtsnaam/achternaam/@value))"/>
-                <xsl:variable name="tokenResourceId" select="$patientTokensXml//*[contains(familyName/upper-case(normalize-space(text())), $adaEigenAchternaam)]/resourceId[1]"/>
-
-                <xsl:choose>
-                    <xsl:when test="$tokenResourceId">
-                        <xsl:value-of select="$tokenResourceId"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- return nothing -->
-                    </xsl:otherwise>
-                </xsl:choose>
-
-            </xsl:otherwise>
-        </xsl:choose>
-
-    </xsl:function>
+    <xsl:template name="patientMetadata" match="patient" mode="doPatientMetadata" as="element(entry)*">
+        <!-- We use a doube group loop to handle the situation where there are multiple patient instances with the
+             same identifier but differences in content. We cannot know how to merge this information, so we have
+             to create multiple resources. --> 
+        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]"
+            group-by="string-join(nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value), '')">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
+                <xsl:variable name="uuid" select="uuid:get-uuid(.)"/>
+                <xsl:variable name="fhirId">
+                    <xsl:if test="$referById">
+                        <xsl:variable name="generatedId">
+                            <xsl:apply-templates mode="doPatientLogicalId-2.1" select="."/>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <!-- When there are multiple differing instances for the same patient, use a uuid for
+                                 all extra instances. -->
+                            <xsl:when test="string-length($generatedId) = 0 or position() > 1">
+                                <xsl:value-of select="nf:removeSpecialCharacters($uuid)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$generatedId"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:if>
+                </xsl:variable>
+                
+                <entry xmlns="">
+                    <resource-type xmlns="">Patient</resource-type>
+                    <group-key xmlns="">
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <uuid>
+                        <xsl:value-of select="$uuid"/>
+                    </uuid>
+                    <id>
+                        <xsl:value-of select="$fhirId"/>
+                    </id>
+                    <display xmlns="">
+                        <xsl:apply-templates mode="doPatientDisplay-2.1" select="."/>
+                    </display>
+                </entry>
+            </xsl:for-each-group>
+        </xsl:for-each-group>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Build the entries for all the nl-core-patient resources.</xd:desc>
+        <xd:param name="metadata">The metadata for all resources.</xd:param>
+    </xd:doc>
+    <xsl:template name="patientEntries" match="patient" mode="doPatientEntries" as="element(entry)*">
+        <xsl:param name="metadata" tunnel="yes"/>
+        
+        <!-- We use a doube group loop to handle the situation where there are multiple patient instances with the
+             same identifier but differences in content. We cannot know how to merge this information, so we have
+             to create multiple resources. --> 
+        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]"
+            group-by="string-join(nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value), '')">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
+                <xsl:variable name="currRefInfo" select="$metadata[resource-type/text() = 'Patient' and group-key/text() = current-grouping-key()]"/>
+                <xsl:variable name="fullUrl" select="nff:uuid-to-full-url($currRefInfo/uuid/text())"/>
+                
+                <entry xmlns="">
+                    <group-key>
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <xsl:apply-templates select="current-group()[1]" mode="doPatientEntry-2.1">
+                        <xsl:with-param name="fullUrl" select="$fullUrl"/>
+                        <xsl:with-param name="fhirResourceId" select="$currRefInfo/id"/>
+                    </xsl:apply-templates>
+                </entry>
+            </xsl:for-each-group>
+        </xsl:for-each-group>
+    </xsl:template>
+    
 </xsl:stylesheet>

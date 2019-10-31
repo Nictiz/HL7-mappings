@@ -102,4 +102,22 @@
             </name>
         </xsl:if>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Create a display value for the given name information.</xd:desc>
+    </xd:doc>
+    <xsl:template name="humannameDisplay"  match="naamgegevens | name_information" mode="doHumannameDisplay" as="xs:string">
+        <!-- Base the display name on the FHIR representation. -->
+        <xsl:variable name="formatted">
+            <xsl:for-each select=".">
+                <xsl:call-template name="nl-core-humanname-2.0"/>
+            </xsl:for-each>
+        </xsl:variable>
+        
+        <!-- Try given name, first names and initials, in that order, for the given name -->
+        <xsl:variable name="given" select="($formatted//f:given[f:extension/f:valueCode/@value = 'CL']/@value, $formatted//f:given[f:extension/f:valueCode/@value = 'BR']/@value, $formatted//f:given[f:extension/f:valueCode/@value = 'IN']/@value)[1]"/>
+        
+        <!-- Concat with the family name -->
+        <xsl:value-of select="string-join(($given, $formatted/f:name/f:family/@value), ' ')"/>
+    </xsl:template>
 </xsl:stylesheet>

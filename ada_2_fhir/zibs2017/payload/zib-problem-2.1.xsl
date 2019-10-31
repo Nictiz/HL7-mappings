@@ -12,76 +12,39 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <!--<xsl:import href="2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <xsl:param name="problemSearchMode">match</xsl:param>
+    
+    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Produce a FHIR entry element with an zib-Problem (Condition) resource.</xd:desc>
+        <xd:param name="fullUrl">Optional. Value for the entry.fullUrl.</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Condition.id.</xd:param>
     </xd:doc>
-    <xsl:template name="problemReference" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemReference-2.1" as="element()+">
-        <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
-        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$problems[group-key = $theGroupKey]" as="element()?"/>
-        <xsl:choose>
-            <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
-            </xsl:when>
-            <xsl:when test="$theIdentifier">
-                <identifier>
-                    <xsl:call-template name="id-to-Identifier">
-                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
-                    </xsl:call-template>
-                </identifier>
-            </xsl:when>
-        </xsl:choose>
-        
-        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
-            <display value="{$theGroupElement/reference-display}"/>
-        </xsl:if>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Condition resource</xd:desc>
-        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
-        <xd:param name="adaPatient">Optional, but should be there. Patient for which this Condition is for.</xd:param>
-        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Condition.id</xd:param>
-        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
-    </xd:doc>
-    <xsl:template name="problemEntry" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemEntry-2.1" as="element(f:entry)">
-        <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value])[1]" as="element()"/>
-        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
-        <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:choose>
-                    <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
-                        <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
-        </xsl:param>
-        <xsl:param name="searchMode">include</xsl:param>
+    <xsl:template name="problemEntry"
+        match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]"
+        mode="doProblemEntry-2.1"
+        as="element(f:entry)">
+        <xsl:param name="fullUrl"/>
+        <xsl:param name="fhirResourceId"/>
         
         <entry>
-            <fullUrl value="{$entryFullUrl}"/>
+            <fullUrl value="{$fullUrl}"/>
             <resource>
                 <xsl:call-template name="zib-Problem-2.1">
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
-                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                 </xsl:call-template>
             </resource>
-            <xsl:if test="string-length($searchMode) gt 0">
+            <xsl:if test="string-length($problemSearchMode) gt 0">
                 <search>
-                    <mode value="{$searchMode}"/>
+                    <mode value="{$problemSearchMode}"/>
                 </search>
             </xsl:if>
         </entry>
@@ -89,14 +52,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.Problem concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Problem">zib-Problem</xd:a>.</xd:desc>
-        <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
         <xd:param name="in">Node to consider in the creation of a Condition resource</xd:param>
-        <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
+        <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
+        <xd:param name="adaPatient">Optional. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
     <xsl:template name="zib-Problem-2.1" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element()" mode="doZibProblem-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="adaPatient" as="element()"/>
+        <xsl:param name="adaPatient" as="element()*" tunnel="yes"/>
         
         <xsl:variable name="patientRef" as="element()*">
             <xsl:for-each select="$adaPatient">
@@ -259,40 +222,75 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Build a logical ID for the zib-Problem resource.</xd:desc>
+        <xd:param name="index">The index number of the resource in the scenario</xd:param>
     </xd:doc>
     <xsl:template name="problemLogicalId" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemLogicalId-2.1" as="xs:string">
-        <xsl:value-of select="string-join(('problem', format-number(position(), '00')), '-')"/>
+        <xsl:param name="index"/>
+        <xsl:value-of select="string-join(('problem', format-number($index, '00')), '-')"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Build a reference display string for the zib-Problem resource.</xd:desc>
+    </xd:doc>
     <xsl:template name="problemDisplay" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemDisplay-2.1" as="xs:string">
         <xsl:value-of select="(probleem_naam | problem_name)/@displayName"/>
     </xsl:template>
     
-    <xsl:template name="problemReferenceVar" as="element()">
-        <resource_set value="condition" xmlns="">
-            <!-- probleem in problem -->
-            <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
-                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <xsl:variable name="logicalId" as="xs:string">
-                    <xsl:apply-templates mode="doProblemLogicalId-2.1" select="current-group()[1]"/>
-                </xsl:variable>
-                <unieke-entry xmlns="">
-                    <group-key xmlns="">
-                        <xsl:value-of select="current-grouping-key()"/>
-                    </group-key>
-                    <reference-display xmlns="">
-                        <xsl:apply-templates mode="doProblemDisplay-2.1" select="."/>
-                    </reference-display>
-                    <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
-                        <xsl:with-param name="fhirResourceId" select="$logicalId"/>
-                        <xsl:with-param name="uuid" select="$uuid"/>
-                        <xsl:with-param name="searchMode">match</xsl:with-param>
+    <xd:doc>
+        <xd:desc>Build the metadata for all the zib-Problem resources.</xd:desc>
+    </xd:doc>
+    <xsl:template name="problemMetadata" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemMetadata" as="element(entry)*">
+        <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <xsl:variable name="uuid" select="uuid:get-uuid(.)"/>
+            <xsl:variable name="fhirId">
+                <xsl:variable name="generatedId">
+                    <xsl:apply-templates mode="doProblemLogicalId-2.1" select=".">
+                        <xsl:with-param name="index" select="position()"/>
                     </xsl:apply-templates>
-                </unieke-entry>
-            </xsl:for-each-group>
-        </resource_set>
+                </xsl:variable>
+                <xsl:value-of select="nff:select-id($generatedId, $uuid)"/>
+            </xsl:variable>
+            
+            <entry xmlns="">
+                <resource-type xmlns="">Condition</resource-type>
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <uuid>
+                    <xsl:value-of select="$uuid"/>
+                </uuid>
+                <id>
+                    <xsl:value-of select="$fhirId"/>
+                </id>
+                <display xmlns="">
+                    <xsl:apply-templates mode="doProblemDisplay-2.1" select="."/>
+                </display>
+            </entry>
+        </xsl:for-each-group>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Build the entries for all the zib-Problem resources.</xd:desc>
+        <xd:param name="metadata">The metadata for all resources.</xd:param>
+    </xd:doc>
+    <xsl:template name="problemEntries" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemEntries" as="element(entry)*">
+        <xsl:param name="metadata" tunnel="yes"/>
+        
+        <!-- probleem in problem -->
+        <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <xsl:variable name="currRefInfo" select="$metadata[resource-type/text() = 'Condition' and group-key/text() = current-grouping-key()]"/>
+            
+            <entry xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
+                    <xsl:with-param name="fullUrl" select="nff:uuid-to-full-url($currRefInfo/uuid)"/>
+                    <xsl:with-param name="fhirResourceId" select="$currRefInfo/id"/>
+                </xsl:apply-templates>
+            </entry>
+        </xsl:for-each-group>
     </xsl:template>
     
 </xsl:stylesheet>

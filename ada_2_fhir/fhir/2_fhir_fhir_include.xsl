@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress -->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
@@ -1040,6 +1040,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
+    <xd:doc>
+        <xd:desc>Convert a bare uuid to a full url</xd:desc>
+        <xd:param name="uuid">The uuid to use.</xd:param>
+    </xd:doc>
+    <xsl:function name="nff:uuid-to-full-url" as="xs:string">
+        <xsl:param name="uuid" as="xs:string"/>
+        <xsl:value-of select="concat('urn:uuid:', $uuid)"/>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Construct a fhir id based on the input and context.<xd:ul>
+            <xd:li>if the global $referById is false, the output will be empty.</xd:li>
+            <xd:li>otherwise, if the supplied $fhirId is valid, it will be returned.</xd:li>
+            <xd:li>otherise, if the supplied $uuid will be used.</xd:li>
+        </xd:ul>
+        </xd:desc>
+        <xd:param name="fhirId">Suggestion for a FHIR ID</xd:param>
+        <xd:param name="uuid">A uuid to fall back on</xd:param>
+    </xd:doc>
+    <xsl:function name="nff:select-id" as="xs:string?">
+        <xsl:param name="fhirId" as="xs:string"/>
+        <xsl:param name="uuid" as="xs:string"/>
+
+        <xsl:if test="$referById">
+            <xsl:choose>
+                <xsl:when test="string-length($fhirId) gt 0">
+                    <xsl:value-of select="$fhirId"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:removeSpecialCharacters($uuid)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+    
     <xd:doc>
         <xd:desc> copy an element with all of it's contents in comments </xd:desc>
         <xd:param name="element"/>
