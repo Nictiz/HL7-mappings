@@ -1043,7 +1043,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc> copy an element with all of it's contents in comments </xd:desc>
         <xd:param name="element"/>
-    </xd:doc>
+    </xd:doc
     <xsl:template name="copyElementInComment">
         <xsl:param name="element"/>
         <xsl:text disable-output-escaping="yes">
