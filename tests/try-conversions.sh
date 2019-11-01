@@ -7,9 +7,12 @@ ada_instances=$(find $scriptdir/.. -path '*ada_2_fhir/*/ada_instance/*.xml') # L
 for instance_path in $ada_instances; do
   instance_file=$(basename $instance_path)
   project_folder=$(realpath --relative-to $(pwd) $(dirname $instance_path)/..)
-  for transformation_path in $(find $project_folder/payload/ -name *.xsl); do
+  for transformation_path in $(find $project_folder/payload/ -name *2_fhir.xsl); do # Skip the 2_fhir_resources.xsl
     echo "Transforming $instance_file with $(basename $transformation_path) in $project_folder"
     java -jar /usr/share/java/Saxon-HE.jar -quit:on -warnings:recover -s:$instance_path -xsl:$transformation_path -o:$output_dir/tmp.xml > /dev/null
+	if [ $? -ne 0 ]; then
+	  exit $?
+	fi
   done
 done
 rm -r $output_dir
