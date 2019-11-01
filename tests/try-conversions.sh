@@ -1,5 +1,10 @@
 #!/bin/bash
 
+function exitScript {
+  rm -r $output_dir
+  exit $1
+}
+
 scriptdir=$(realpath --relative-to $(pwd) $(dirname $0))
 output_dir=$scriptdir/output
 mkdir -p $output_dir
@@ -10,9 +15,11 @@ for instance_path in $ada_instances; do
   for transformation_path in $(find $project_folder/payload/ -name *2_fhir.xsl); do # Skip the 2_fhir_resources.xsl
     echo "Transforming $instance_file with $(basename $transformation_path) in $project_folder"
     java -jar /usr/share/java/Saxon-HE.jar -quit:on -warnings:recover -s:$instance_path -xsl:$transformation_path -o:$output_dir/tmp.xml > /dev/null
-	if [ $? -ne 0 ]; then
-	  exit $?
+	exit_status=$?
+	if [ $exit_status -ne 0 ]; then
+	  exitScript $exit_status
 	fi
   done
 done
-rm -r $output_dir
+
+exitScript 0
