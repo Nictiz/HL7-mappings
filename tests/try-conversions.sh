@@ -9,7 +9,7 @@ for instance_path in $ada_instances; do
   project_folder=$(realpath --relative-to $(pwd) $(dirname $instance_path)/..)
   for transformation_path in $(find $project_folder/payload/ -name *.xsl); do
     echo "Transforming $instance_file with $(basename $transformation_path) in $project_folder"
-    java -jar /usr/share/java/Saxon-HE.jar -quit:on -warnings:recover -s:$instance_path -xsl:$transformation_path -o $output_dir > /dev/null
+    java -jar /usr/share/java/Saxon-HE.jar -quit:on -warnings:recover -s:$instance_path -xsl:$transformation_path -o:$output_dir/tmp.xml > /dev/null
   done
 done
 rm -r $output_dir
