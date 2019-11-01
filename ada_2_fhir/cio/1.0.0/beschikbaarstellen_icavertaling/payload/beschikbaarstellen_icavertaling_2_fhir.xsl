@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
                 <resource>
-                    <xsl:call-template name="zib-Alert">
+                    <xsl:call-template name="zib-Alert-2.1">
                         <xsl:with-param name="logicalId" select="
                             if ($referById) then
                             (if (string-length(nf:removeSpecialCharacters(./identificatie/@value)) gt 0) then

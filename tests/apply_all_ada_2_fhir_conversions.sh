@@ -8,7 +8,6 @@
 # to the Saxon-HE jar can be specified as argument to this script.
 
 # Read path to Saxon jar or use default location
-echo "Number of arguments: $#"
 if [ $# -ne 1 ]; then
   saxon_path="/usr/share/java/Saxon-HE.jar"
 else
