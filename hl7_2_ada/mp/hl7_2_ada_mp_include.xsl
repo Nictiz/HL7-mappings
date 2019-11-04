@@ -1383,7 +1383,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </ongestructureerde_naam>
             </xsl:for-each>
             <!-- voornamen -->
-            <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]][text()[not(. = '')]]">
+            <xsl:for-each select="$current-hl7-name[hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][text()[not(. = '')]]]">
                 <xsl:variable name="voornamen_concatted">
                     <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)][text()[not(. = '')]]">
                         <xsl:value-of select="concat(./text(), ' ')"/>
