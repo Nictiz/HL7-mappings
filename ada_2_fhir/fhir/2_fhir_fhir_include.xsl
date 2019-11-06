@@ -860,8 +860,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
-    <xd:doc>
+    
+      <xd:doc>
         <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor. Else return empty</xd:desc>
         <xd:param name="in"/>
     </xd:doc>
@@ -869,6 +869,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?"/>
         <xsl:if test="$in">
             <xsl:value-of select="upper-case(string-join(($in//@value, $in//@root, $in//@unit, $in//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>
+        </xsl:if>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value. Else return empty</xd:desc>
+        <xd:param name="in"/>
+    </xd:doc>
+    <xsl:function name="nf:getValueAttrDefault" as="xs:string?">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:if test="$in">
+            <xsl:value-of select="upper-case(string-join(($in//@value)/normalize-space(), ''))"/>
         </xsl:if>
     </xsl:function>
 
@@ -883,88 +894,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:function>
 
-    <xd:doc>
-        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty</xd:desc>
-        <xd:param name="healthProfessional"/>
-    </xd:doc>
-    <xsl:function name="nf:getGroupingKeyPractitioner" as="xs:string?">
-        <xsl:param name="healthProfessional" as="element()?"/>
-        <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number)"/>
-        <xsl:variable name="personName" select="nf:getGroupingKeyDefault($healthProfessional/zorgverlener_naam | $healthProfessional/naamgegevens | $healthProfessional/name_information)"/>
-        <xsl:variable name="personAddress" select="nf:getGroupingKeyDefault($healthProfessional/adres | $healthProfessional/adresgegevens | $healthProfessional/address_information)"/>
-        <xsl:variable name="contactInformation" select="nf:getGroupingKeyDefault($healthProfessional/telefoon_email | $healthProfessional/contactgegevens | $healthProfessional/contact_information)"/>
-
-        <xsl:value-of select="concat($personIdentifier, $personName, $personAddress, $contactInformation)"/>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty</xd:desc>
-        <xd:param name="healthProfessional"/>
-    </xd:doc>
-    <xsl:function name="nf:getGroupingKeyPractitionerRole" as="xs:string?">
-        <xsl:param name="healthProfessional" as="element()?"/>
-        <xsl:variable name="personIdentifier" select="nf:getGroupingKeyDefault(nf:ada-zvl-id($healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number))"/>
-        <xsl:variable name="specialism" select="nf:getGroupingKeyDefault($healthProfessional/specialisme | $healthProfessional/specialty)"/>
-        <xsl:variable name="organizationId" select="nf:getGroupingKeyDefault(nf:ada-za-id($healthProfessional//zorgaanbieder_identificatienummer | $healthProfessional//healthcare_provider_identification_number))"/>
-
-        <xsl:value-of select="concat($personIdentifier, $specialism, $organizationId)"/>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="healthProfessional"/>
-    </xd:doc>
-    <xsl:function name="nf:get-practitioner-display" as="xs:string?">
-        <xsl:param name="healthProfessional" as="element()?"/>
-        <xsl:for-each select="$healthProfessional">
-            <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1] | .//zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])/@value"/>
-            <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
-            <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
-            <xsl:variable name="specialty" select=".//specialisme/@displayName | .//specialty/@displayName"/>
-            <xsl:variable name="role" select=".//zorgverleners_rol/(@displayName, @code)[1] | .//health_professional_role/(@displayName, @code)[1]"/>
-
-            <xsl:choose>
-                <xsl:when test="$personName">
-                    <xsl:value-of select="normalize-space(string-join($personName, ' '))"/>
-                </xsl:when>
-                <xsl:when test="$role">
-                    <xsl:value-of select="normalize-space($role)"/>
-                </xsl:when>
-                <xsl:when test="$personIdentifier">
-                    <xsl:value-of select="normalize-space($personIdentifier)"/>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:for-each>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="healthProfessional"/>
-    </xd:doc>
-    <xsl:function name="nf:get-practitioner-role-display" as="xs:string?">
-        <xsl:param name="healthProfessional" as="element()?"/>
-        <xsl:for-each select="$healthProfessional">
-            <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])/@value"/>
-            <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
-            <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
-            <xsl:variable name="specialty" select=".//specialisme/@displayName | .//specialty/@displayName"/>
-            <xsl:variable name="role" select=".//zorgverleners_rol/(@displayName, @code)[1] | .//health_professional_role/(@displayName, @code)[1]"/>
-
-            <xsl:choose>
-                <xsl:when test="$personName | $specialty | $organizationName">
-                    <xsl:value-of select="normalize-space(string-join((string-join($personName, ' ')[not(. = '')], $specialty, $organizationName), ' || '))"/>
-                </xsl:when>
-                <xsl:when test="$role">
-                    <xsl:value-of select="normalize-space($role)"/>
-                </xsl:when>
-                <xsl:when test="$personIdentifier">
-                    <xsl:value-of select="normalize-space($personIdentifier)"/>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:for-each>
-    </xsl:function>
-
-    <xd:doc>
+     <xd:doc>
         <xd:desc/>
         <xd:param name="healthcareProviderIdentification">ADA element containing the healthcare provider organization identification</xd:param>
     </xd:doc>

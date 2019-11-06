@@ -911,7 +911,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </extension>
 
         <!-- additional display element -->
-        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPractitionerRole(.)"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$practitionerRoles[group-key = $theGroupKey]" as="element()?"/>
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
