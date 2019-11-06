@@ -162,7 +162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- we don't know, but still a required element, data-absent-reason -->
                 <verificationStatus>
                     <xsl:choose>
-                        <xsl:when test="(allergie_categorie | allergy_status)[@code = 'nullified'][@codeSystem][1]">
+                        <xsl:when test="allergy_status[@code = 'nullified'][@codeSystem]">
                             <xsl:attribute name="value" select="'entered-in-error'"/>
                         </xsl:when>
                         <!--<xsl:when test="start_date_time[@value]">
