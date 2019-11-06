@@ -428,7 +428,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- medicatieafspraken -->
         <xsl:for-each select="//medicatieafspraak">
             <!-- entry for MedicationRequest -->
-            <entry xmlns="http://hl7.org/fhir">
+            <xsl:call-template name="MedicationAgreementEntry-2.2"/>
+            <!--       <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
                     <xsl:call-template name="zib-MedicationAgreement-2.2">
@@ -441,6 +442,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </search>
                 </xsl:if>
             </entry>
+   -->
         </xsl:for-each>
         <!-- verstrekkingsverzoeken -->
         <xsl:for-each select="//verstrekkingsverzoek">
@@ -535,14 +537,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="toedieningsafspraak" select="."/>
                         <!-- there may be only one toedieningsafspraak per MBH, so if there is no identification we fall back on MBH id
                         with an appended string, since it may not be the same as the verstrekking id-->
-                        
+
                         <xsl:with-param name="medicationdispense-id" select="
                                 if ($referById) then
                                     (if (string-length(nf:removeSpecialCharacters(identificatie/@value)) gt 0) then
                                         nf:removeSpecialCharacters(identificatie/@value)
                                     else
                                         (if (string-length(nf:removeSpecialCharacters(../identificatie/@value)) gt 0) then
-                                            concat('ta-',nf:removeSpecialCharacters(../identificatie/@value))
+                                            concat('ta-', nf:removeSpecialCharacters(../identificatie/@value))
                                         else
                                             uuid:get-uuid(.)))
                                 else
@@ -598,41 +600,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 <!-- gebruiksperiode_start /eind -->
                 <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
-                    <xsl:call-template name="zib-Medication-Period-Of-Use-2.0">
+                    <xsl:call-template name="ext-zib-Medication-Period-Of-Use-2.0">
                         <xsl:with-param name="start" select="./gebruiksperiode_start"/>
                         <xsl:with-param name="end" select="./gebruiksperiode_eind"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- gebruiksperiode - duur -->
                 <xsl:for-each select="./gebruiksperiode[@value]">
-                    <xsl:call-template name="zib-Medication-Use-Duration">
-                        <xsl:with-param name="duration" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
                 </xsl:for-each>
                 <!-- aanvullende_informatie -->
                 <xsl:for-each select="./aanvullende_informatie[@code]">
-                    <xsl:call-template name="zib-Medication-AdditionalInformation">
-                        <xsl:with-param name="additionalInfo" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-AdditionalInformation-2.0"/>
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[@value]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- kopie indicator -->
                 <!-- zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
                 <xsl:for-each select="./kopie_indicator[@value]">
-                    <xsl:call-template name="zib-Medication-CopyIndicator">
-                        <xsl:with-param name="copyIndicator" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-CopyIndicator-2.0"/>
                 </xsl:for-each>
                 <!-- herhaalperiode cyclisch schema -->
                 <xsl:for-each select="./gebruiksinstructie/herhaalperiode_cyclisch_schema[.//(@value | @code)]">
-                    <xsl:call-template name="zib-Medication-RepeatPeriodCyclicalSchedule">
-                        <xsl:with-param name="repeat-period" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-RepeatPeriodCyclicalSchedule-2.0"/>
                 </xsl:for-each>
                 <!-- relatie naar medicatieafspraak of gebruik -->
                 <xsl:for-each select="relatie_naar_afspraak_of_gebruik/(identificatie | identificatie_23288 | identificatie_23289)[@value]">
@@ -658,9 +652,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- stoptype -->
                 <xsl:for-each select="stoptype[@code]">
-                    <xsl:call-template name="zib-Medication-StopType">
-                        <xsl:with-param name="stopType" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-StopType-2.0"/>
                 </xsl:for-each>
                 <!-- MA id -->
                 <xsl:for-each select="./identificatie[@value]">
@@ -748,209 +740,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-AdministrationAgreement/ </xd:desc>
-        <xd:param name="medicatieafspraak"/>
-        <xd:param name="medicationrequest-id"/>
-    </xd:doc>
-    <xsl:template name="MA-in-MedicationRequest-2.2">
-        <xsl:param name="medicatieafspraak" as="element()?"/>
-        <xsl:param name="medicationrequest-id" as="xs:string?"/>
-        <xsl:for-each select="$medicatieafspraak">
-            <MedicationRequest xsl:exclude-result-prefixes="#all">
-                <xsl:for-each select="$medicationrequest-id">
-                    <id value="{$medicationrequest-id}"/>
-                </xsl:for-each>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-                </meta>
-                <!-- gebruiksperiode_start /eind -->
-                <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
-                    <xsl:call-template name="zib-Medication-Period-Of-Use-2.0">
-                        <xsl:with-param name="start" select="./gebruiksperiode_start"/>
-                        <xsl:with-param name="end" select="./gebruiksperiode_eind"/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- gebruiksperiode - duur -->
-                <xsl:for-each select="./gebruiksperiode[@value]">
-                    <xsl:call-template name="zib-Medication-Use-Duration">
-                        <xsl:with-param name="duration" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- aanvullende_informatie -->
-                <xsl:for-each select="./aanvullende_informatie[@code]">
-                    <xsl:call-template name="zib-Medication-AdditionalInformation">
-                        <xsl:with-param name="additionalInfo" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- relatie naar medicamenteuze behandeling -->
-                <xsl:for-each select="./../identificatie[@value]">
-                    <xsl:call-template name="mbh-id-2-reference">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- kopie indicator -->
-                <!-- het ada concept zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
-                <xsl:for-each select="./kopie_indicator[@value]">
-                    <xsl:call-template name="zib-Medication-CopyIndicator">
-                        <xsl:with-param name="copyIndicator" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- herhaalperiode cyclisch schema -->
-                <xsl:for-each select="./gebruiksinstructie/herhaalperiode_cyclisch_schema[.//(@value | @code)]">
-                    <xsl:call-template name="zib-Medication-RepeatPeriodCyclicalSchedule">
-                        <xsl:with-param name="repeat-period" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- relatie naar medicatieafspraak of gebruik -->
-                <xsl:for-each select="relatie_naar_afspraak_of_gebruik/(identificatie | identificatie_23288 | identificatie_23289)[@value]">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-                        <valueReference>
-                            <identifier>
-                                <xsl:call-template name="id-to-Identifier">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </identifier>
-                            <display>
-                                <xsl:attribute name="value">
-                                    <xsl:choose>
-                                        <xsl:when test="./name() = 'identificatie'">relatie naar medicatieafspraak: </xsl:when>
-                                        <xsl:when test="./name() = 'identificatie_23288'">relatie naar toedieningsafspraak: </xsl:when>
-                                        <xsl:when test="./name() = 'identificatie_23289'">relatie naar medicatiegebruik: </xsl:when>
-                                    </xsl:choose>
-                                    <xsl:value-of select="./string-join((@value, @root), ' || ')"/>
-                                </xsl:attribute>
-                            </display>
-                        </valueReference>
-                    </extension>
-                </xsl:for-each>
-                <!-- stoptype -->
-                <xsl:for-each select="stoptype[@code]">
-                    <xsl:call-template name="zib-Medication-StopType">
-                        <xsl:with-param name="stopType" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- MA id -->
-                <xsl:for-each select="./identificatie[@value]">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:for-each>
-                <!-- geannuleerd_indicator, in status -->
-                <xsl:for-each select="./geannuleerd_indicator[@value = 'true']">
-                    <status value="entered-in-error"/>
-                </xsl:for-each>
-                <intent value="order"/>
-                <!-- type bouwsteen, hier een medicatieafspraak -->
-                <category>
-                    <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="16076005"/>
-                        <display value="Prescription (procedure)"/>
-                    </coding>
-                    <text value="Medicatieafspraak"/>
-                </category>
-                <!-- geneesmiddel -->
-                <xsl:apply-templates select="./afgesproken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReference"/>
-                <!-- patiënt -->
-                <subject>
-                    <xsl:apply-templates select="./../../patient" mode="doPatientReference-2.1"/>
-                </subject>
-                <!-- relaties_ketenzorg -->
-                <!-- We would love to tell you more about the encounter, but alas an id is all we have... based on R4 we will only support Encounter here. -->
-                <xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
-                    <context>
-                        <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
-                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
-                    </context>
-                </xsl:for-each>
-                <!--<xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
-                    <context>
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
-                        <display value="Relatie naar {replace(./local-name(),'identificatie_', '')} met identificatie {./@value} in identificerend systeem {./@root}."/>
-                    </context>
-                </xsl:for-each>-->
-                <!-- lichaamslengte -->
-                <xsl:for-each select="lichaamslengte[.//@value]">
-                    <supportingInformation>
-                        <reference value="{nf:getFullUrlOrId('LENGTE', nf:getGroupingKeyDefault(.), false())}"/>
-                        <xsl:variable name="datum-string" select="
-                                if (lengte_datum_tijd/@value castable as xs:dateTime) then
-                                    format-dateTime(lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
-                                else
-                                    if (lengte_datum_tijd/@value castable as xs:date) then
-                                        format-date(lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001]')
-                                    else
-                                        lengte_datum_tijd/@value"/>
-                        <display value="{concat('Lengte: ', lengte_waarde/@value, ' ', lengte_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
-                    </supportingInformation>
-                </xsl:for-each>
-                <!-- lichaamsgewicht -->
-                <xsl:for-each select="lichaamsgewicht[.//@value]">
-                    <supportingInformation>
-                        <reference value="{nf:getFullUrlOrId('GEWICHT', nf:getGroupingKeyDefault(.), false())}"/>
-                        <xsl:variable name="datum-string" select="
-                                if (gewicht_datum_tijd/@value castable as xs:dateTime) then
-                                    format-dateTime(gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
-                                else
-                                    if (gewicht_datum_tijd/@value castable as xs:date) then
-                                        format-date(gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001]')
-                                    else
-                                        gewicht_datum_tijd/@value"/>
-                        <display value="{concat('Gewicht: ',gewicht_waarde/@value, ' ', gewicht_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
-                    </supportingInformation>
-                </xsl:for-each>
-                <!-- afspraakdatum -->
-                <xsl:for-each select="afspraakdatum[@value]">
-                    <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
-                </xsl:for-each>
-                <!-- voorschrijver -->
-                <xsl:apply-templates select="voorschrijver[.//(@value | @code)]" mode="doRequesterExtension-907"/>
-                <!-- reden afspraak -->
-                <xsl:for-each select="(reden_afspraak | reden_wijzigen_of_staken)[@code]">
-                    <reasonCode>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
-                        </xsl:call-template>
-                    </reasonCode>
-                </xsl:for-each>
-                <!-- reden van voorschrijven -->
-                <xsl:for-each select="reden_van_voorschrijven/probleem[.//@code]">
-                    <reasonReference>
-                        <reference value="{nf:getFullUrlOrId('REDENVOORSCHRIJVEN', nf:getGroupingKeyDefault(.), false())}"/>
-                        <display value="{normalize-space(string-join(.//(@displayName|@originalText), ' '))}"/>
-                    </reasonReference>
-                </xsl:for-each>
-                <!-- toelichting -->
-                <xsl:for-each select="toelichting[@value]">
-                    <note>
-                        <text value="{./@value}"/>
-                    </note>
-                </xsl:for-each>
-                <!-- gebruiksinstructie -->
-                <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
-            </MedicationRequest>
-        </xsl:for-each>
-    </xsl:template>
 
 
     <xd:doc>
         <xd:desc/>
         <xd:param name="in"/>
     </xd:doc>
-    <xsl:template name="mbh-id-2-reference">
+    <!--    <xsl:template name="mbh-id-2-reference">-->
+    <xsl:template name="ext-zib-medication-medication-treatment-2.0">
         <xsl:param name="in" as="element()?"/>
         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
             <valueIdentifier>
@@ -1269,7 +1066,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[@value]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -1406,7 +1203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[@value]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -1439,7 +1236,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
                 </xsl:for-each>
                 <!-- auteur -->
-                <xsl:apply-templates select="./auteur[.//(@value | @code)]" mode="doRequesterExtension-907"/>
+                <!-- todo -->
+<!--                <xsl:apply-templates select="./[.//(@value | @code)]" mode="doRequesterExtension-907"/>-->
+                <xsl:for-each select="auteur/zorgverlener[.//(@value | @code)]">
+                    <requester>
+                        <agent>
+                            <xsl:call-template name="practitionerRoleReference">
+                                <xsl:with-param name="useExtension" select="true()"/>
+                            </xsl:call-template>
+                            <xsl:call-template name="practitionerReference"/>
+                        </agent>
+                    </requester>
+                </xsl:for-each>
+                
                 <!-- toelichting -->
                 <xsl:for-each select="./toelichting[@value]">
                     <note>
@@ -1526,47 +1335,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- gebruiksperiode_start /eind -->
                 <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
-                    <xsl:call-template name="zib-Medication-Period-Of-Use-2.0">
+                    <xsl:call-template name="ext-zib-Medication-Period-Of-Use-2.0">
                         <xsl:with-param name="start" select="./gebruiksperiode_start"/>
                         <xsl:with-param name="end" select="./gebruiksperiode_eind"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- gebruiksperiode - duur -->
                 <xsl:for-each select="./gebruiksperiode[.//@value]">
-                    <xsl:call-template name="zib-Medication-Use-Duration">
-                        <xsl:with-param name="duration" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
                 </xsl:for-each>
                 <!-- aanvullende_informatie -->
                 <xsl:for-each select="./aanvullende_informatie[.//(@value | @code)]">
-                    <xsl:call-template name="zib-Medication-AdditionalInformation">
-                        <xsl:with-param name="additionalInfo" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-AdditionalInformation-2.0"/>
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[.//(@value)]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- kopie indicator -->
                 <!-- zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
                 <xsl:for-each select="./kopie_indicator[.//(@value | @code)]">
-                    <xsl:call-template name="zib-Medication-CopyIndicator">
-                        <xsl:with-param name="copyIndicator" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-CopyIndicator-2.0"/>
                 </xsl:for-each>
                 <!-- herhaalperiode cyclisch schema -->
                 <xsl:for-each select="./gebruiksinstructie/herhaalperiode_cyclisch_schema[.//(@value | @code)]">
-                    <xsl:call-template name="zib-Medication-RepeatPeriodCyclicalSchedule">
-                        <xsl:with-param name="repeat-period" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-RepeatPeriodCyclicalSchedule-2.0"/>
                 </xsl:for-each>
                 <!-- stoptype -->
                 <xsl:for-each select="stoptype[.//(@value | @code)]">
-                    <xsl:call-template name="zib-Medication-StopType">
-                        <xsl:with-param name="stopType" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-StopType-2.0"/>
                 </xsl:for-each>
                 <!-- TA id -->
                 <xsl:for-each select="./identificatie[.//(@value | @code)]">
@@ -1624,63 +1423,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>does some processing for ada element 'gebruiksinstructie' based on whether it lands in FHIR MedicationRequest (MA), MedicationDispense (TA) or MedicationStatement (MGB)</xd:desc>
-    </xd:doc>
-    <xsl:template name="handle-gebruiksinstructie" match="gebruiksinstructie" mode="handleGebruiksinstructie">
-        <!-- Determine FHIR element name based on type of building block -->
-        <xsl:variable name="fhir-dosage-name">
-            <xsl:choose>
-                <xsl:when test="ancestor::medicatie_gebruik">dosage</xsl:when>
-                <xsl:otherwise>dosageInstruction</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:choose>
-            <xsl:when test=".[doseerinstructie[.//(@value | @code)]]">
-                <xsl:for-each select="doseerinstructie">
-                    <xsl:choose>
-                        <xsl:when test="dosering[.//(@value | @code)]">
-                            <xsl:for-each select="dosering[.//(@value | @code)]">
-                                <xsl:element name="{$fhir-dosage-name}">
-                                    <xsl:apply-templates select="." mode="doDosageContents"/>
-                                </xsl:element>
-                            </xsl:for-each>
-                        </xsl:when>
-                        <xsl:when test=".[.//(@value | @code)]">
-                            <xsl:element name="{$fhir-dosage-name}">
-                                <xsl:apply-templates select="." mode="doDosageContents"/>
-                            </xsl:element>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:for-each>
-            </xsl:when>
-            <xsl:when test=".[.//(@value | @code)]">
-                <xsl:element name="{$fhir-dosage-name}">
-                    <xsl:apply-templates select="." mode="doDosageContents"/>
-                </xsl:element>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>does some processing for ada element 'toedieningsweg' based on whether it is in transaction for verstrekkingenvertaling (toedieningsweg 0..1 R) or other transactions (toedieningsweg 1..1 R)</xd:desc>
-    </xd:doc>
-    <xsl:template name="handle-toedieningsweg" match="toedieningsweg" mode="handleToedieningsweg">
-        <xsl:choose>
-            <!-- bij verstrekkingenvertaling is toedieningsweg niet verplicht -->
-            <!-- weglaten met nullFlavor NI  -->
-            <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling and .[@codeSystem = $oidHL7NullFlavor and @code = 'NI']"/>
-            <xsl:otherwise>
-                <route>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </route>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xd:doc>
+     <xd:doc>
         <xd:desc> Template based on FHIR Profile https://simplifier.net/nictizstu3-zib2017/mp612dispensetofhirconversionadministrationagreement </xd:desc>
         <xd:param name="toedieningsafspraak">ada xml element toedieningsafspraak</xd:param>
         <xd:param name="medicationdispense-id">optional technical id for the FHIR MedicationDispense resource</xd:param>
@@ -1700,28 +1443,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="afspraakdatum[@value]" mode="TA-afspraakdatum"/>
                 <!-- gebruiksperiode_start /eind -->
                 <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
-                    <xsl:call-template name="zib-Medication-Period-Of-Use-2.0">
+                    <xsl:call-template name="ext-zib-Medication-Period-Of-Use-2.0">
                         <xsl:with-param name="start" select="./gebruiksperiode_start"/>
                         <xsl:with-param name="end" select="./gebruiksperiode_eind"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- gebruiksperiode - duur -->
                 <xsl:for-each select="./gebruiksperiode[.//@value]">
-                    <xsl:call-template name="zib-Medication-Use-Duration">
-                        <xsl:with-param name="duration" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[.//(@value)]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- herhaalperiode cyclisch schema -->
                 <xsl:for-each select="./gebruiksinstructie/herhaalperiode_cyclisch_schema[.//(@value | @code)]">
-                    <xsl:call-template name="zib-Medication-RepeatPeriodCyclicalSchedule">
-                        <xsl:with-param name="repeat-period" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-RepeatPeriodCyclicalSchedule-2.0"/>
                 </xsl:for-each>
                 <!-- type bouwsteen, hier een toedieningsafspraak -->
                 <category>
@@ -1993,7 +1732,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[@value]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -2093,7 +1832,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[@value]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -2232,244 +1971,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template for 'dosering'. 
-            Without the FHIR element dosage / dosageInstruction, 
-            the name of that FHIR-element differs between MedicationStatement and MedicationRequest
-        </xd:desc>
-    </xd:doc>
-    <xsl:template name="zib-InstructionsForUse-2.0" match="dosering" mode="doDosageContents">
-        <xsl:for-each select="../volgnummer[@value]">
-            <sequence value="{./@value}"/>
-        </xsl:for-each>
-        <!-- gebruiksinstructie/omschrijving  -->
-        <xsl:for-each select="../../omschrijving[@value]">
-            <text value="{./@value}"/>
-        </xsl:for-each>
-        <!-- gebruiksinstructie/aanvullende_instructie  -->
-        <xsl:for-each select="../../aanvullende_instructie[@code]">
-            <additionalInstruction>
-                <xsl:call-template name="code-to-CodeableConcept">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
-                </xsl:call-template>
-            </additionalInstruction>
-        </xsl:for-each>
-        <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
-        <xsl:if test="../../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./toedieningsschema[.//(@value | @code | @nullFlavor)])">
-            <!-- pauze periode -->
-            <xsl:for-each select="doseerduur[.//(@value | @code)]">
-                <timing>
-                    <repeat>
-                        <boundsDuration>
-                            <xsl:call-template name="hoeveelheid-to-Duration">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </boundsDuration>
-                    </repeat>
-                </timing>
-            </xsl:for-each>
-        </xsl:if>
-        <!-- dosering/toedieningsschema -->
-        <xsl:for-each select="./toedieningsschema[.//(@code | @value | @nullFlavor)]">
-            <xsl:call-template name="zib-Administration-Schedule-2.0">
-                <xsl:with-param name="toedieningsschema" select="."/>
-            </xsl:call-template>
-        </xsl:for-each>
-        <!-- dosering/zo_nodig/criterium/code -->
-        <xsl:for-each select="zo_nodig/criterium/code">
-            <asNeededCodeableConcept>
-                <xsl:variable name="in" select="."/>
-                <xsl:variable name="nullFlavorsInValueset" select="('NI', 'OTH')"/>
-                <!-- roep hier niet het standaard template aan omdat criterium/omschrijving ook nog omschrijving zou kunnen bevatten... -->
-                <xsl:choose>
-                    <xsl:when test="$in[@codeSystem = $oidHL7NullFlavor][not(@code = $nullFlavorsInValueset)]">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                            <valueCode value="{$in/@code}"/>
-                        </extension>
-                    </xsl:when>
-                    <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or (@codeSystem = $oidHL7NullFlavor and @code = $nullFlavorsInValueset)]">
-                        <coding>
-                            <system value="{local:getUri($in/@codeSystem)}"/>
-                            <code value="{$in/@code}"/>
-                            <xsl:if test="$in/@displayName">
-                                <display value="{$in/@displayName}"/>
-                            </xsl:if>
-                            <!--<userSelected value="true"/>-->
-                        </coding>
-                        <!-- ADA heeft geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
-                        <xsl:for-each select="$in/translation">
-                            <coding>
-                                <system value="{local:getUri(@codeSystem)}"/>
-                                <code value="{@code}"/>
-                                <xsl:if test="@displayName">
-                                    <display value="{@displayName}"/>
-                                </xsl:if>
-                            </coding>
-                        </xsl:for-each>
-                    </xsl:when>
-                </xsl:choose>
-                <xsl:choose>
-                    <xsl:when test="./../omschrijving[@value]">
-                        <text value="{./../omschrijving/@value}"/>
-                    </xsl:when>
-                    <xsl:when test="$in[@originalText]">
-                        <text value="{$in/@originalText}"/>
-                    </xsl:when>
-                </xsl:choose>
-            </asNeededCodeableConcept>
-        </xsl:for-each>
-        <!-- gebruiksinstructie/toedieningsweg, only output if there is a dosering-->
-        <xsl:if test=".[.//(@value | @code | @nullFlavor)]">
-            <xsl:apply-templates select="../../toedieningsweg" mode="handleToedieningsweg"/>
-        </xsl:if>
-        <!-- dosering/keerdosis/aantal -->
-        <xsl:for-each select="keerdosis/aantal[vaste_waarde]">
-            <doseQuantity>
-                <xsl:call-template name="hoeveelheid-complex-to-Quantity">
-                    <xsl:with-param name="eenheid" select="../eenheid"/>
-                    <xsl:with-param name="waarde" select="vaste_waarde"/>
-                </xsl:call-template>
-            </doseQuantity>
-        </xsl:for-each>
-        <xsl:for-each select="keerdosis/aantal[min | max]">
-            <doseRange>
-                <xsl:call-template name="minmax-to-Range">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
-            </doseRange>
-        </xsl:for-each>
-        <!-- maximale_dosering -->
-        <xsl:for-each select="zo_nodig/maximale_dosering[.//*[@value]]">
-            <maxDosePerPeriod>
-                <xsl:call-template name="quotient-to-Ratio">
-                    <xsl:with-param name="denominator" select="tijdseenheid"/>
-                    <xsl:with-param name="numeratorAantal" select="aantal"/>
-                    <xsl:with-param name="numeratorEenheid" select="eenheid"/>
-                </xsl:call-template>
-            </maxDosePerPeriod>
-        </xsl:for-each>
-        <!-- toedieningssnelheid -->
-        <xsl:for-each select="toedieningssnelheid[.//*[@value]]">
-            <xsl:for-each select=".[waarde/vaste_waarde]">
-                <rateRatio>
-                    <xsl:call-template name="quotient-to-Ratio">
-                        <xsl:with-param name="denominator" select="./tijdseenheid"/>
-                        <xsl:with-param name="numeratorAantal" select="./waarde/vaste_waarde"/>
-                        <xsl:with-param name="numeratorEenheid" select="./eenheid"/>
-                    </xsl:call-template>
-                </rateRatio>
-            </xsl:for-each>
-            <!-- variable toedieningssnelheid, alleen ondersteund voor hele tijdseenheden -->
-            <xsl:for-each select=".[waarde/(min | max)][tijdseenheid/@value castable as xs:integer]">
-                <xsl:variable name="ucum-tijdseenheid-value">
-                    <xsl:if test="xs:integer(tijdseenheid/@value) ne 1">
-                        <xsl:value-of select="concat(tijdseenheid/@value, '.')"/>
-                    </xsl:if>
-                </xsl:variable>
-                <!-- we cannot use the G-standaard unit in this case, can only be communicated in FHIR using UCUM -->
-                <!-- let's determine the right UCUM for the rate (toedieningssnelheid) -->
-                <xsl:variable name="UCUM-rate" select="concat(nf:convertGstdBasiseenheid2UCUM(./eenheid/@code), '/', $ucum-tijdseenheid-value, nf:convertTime_ADA_unit2UCUM_FHIR(./tijdseenheid/@unit))"/>
-                <rateRange>
-                    <low>
-                        <value value="{./waarde/min/@value}"/>
-                        <unit value="{$UCUM-rate}"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="{$UCUM-rate}"/>
-                    </low>
-                    <high>
-                        <value value="{./waarde/max/@value}"/>
-                        <unit value="{$UCUM-rate}"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="{$UCUM-rate}"/>
-                    </high>
-                </rateRange>
-            </xsl:for-each>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template for 'gebruiksinstructie' in case there is no doseerinstructie/dosering. 
-            Without the FHIR element dosage / dosageInstruction, 
-            the name of that FHIR-element differs between MedicationStatement and MedicationRequest
-        </xd:desc>
-    </xd:doc>
-    <xsl:template name="zib-InstructionsForUse-2.0-di" match="doseerinstructie" mode="doDosageContents">
-        <!-- gebruiksinstructie/omschrijving  -->
-        <xsl:for-each select="../omschrijving[@value]">
-            <text value="{./@value}"/>
-        </xsl:for-each>
-        <!-- gebruiksinstructie/aanvullende_instructie  -->
-        <xsl:for-each select="../aanvullende_instructie[@code]">
-            <additionalInstruction>
-                <xsl:call-template name="code-to-CodeableConcept">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
-                </xsl:call-template>
-            </additionalInstruction>
-        </xsl:for-each>
-        <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
-        <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./dosering/toedieningsschema[.//(@value | @code | @nullFlavor)])">
-            <!-- pauze periode -->
-            <xsl:for-each select="doseerduur[.//(@value | @code)]">
-                <timing>
-                    <repeat>
-                        <boundsDuration>
-                            <xsl:call-template name="hoeveelheid-to-Duration">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </boundsDuration>
-                    </repeat>
-                </timing>
-            </xsl:for-each>
-        </xsl:if>
-        <!-- gebruiksinstructie/toedieningsweg -->
-        <xsl:apply-templates select="../toedieningsweg" mode="handleToedieningsweg"/>
-
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template for 'gebruiksinstructie' in case there is no doseerinstructie/dosering. 
-            Without the FHIR element dosage / dosageInstruction, 
-            the name of that FHIR-element differs between MedicationStatement and MedicationRequest
-        </xd:desc>
-    </xd:doc>
-    <xsl:template name="zib-InstructionsForUse-2.0-gi" match="gebruiksinstructie" mode="doDosageContents">
-        <!-- gebruiksinstructie/omschrijving  -->
-        <xsl:for-each select="omschrijving[@value]">
-            <text value="{./@value}"/>
-        </xsl:for-each>
-        <!-- gebruiksinstructie/aanvullende_instructie  -->
-        <xsl:for-each select="aanvullende_instructie[@code]">
-            <additionalInstruction>
-                <xsl:call-template name="code-to-CodeableConcept">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
-                </xsl:call-template>
-            </additionalInstruction>
-        </xsl:for-each>
-        <!-- gebruiksinstructie/toedieningsweg -->
-        <xsl:apply-templates select="toedieningsweg" mode="handleToedieningsweg"/>
-    </xsl:template>
-
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="additionalInfo"/>
-    </xd:doc>
-    <xsl:template name="zib-Medication-AdditionalInformation">
-        <xsl:param name="additionalInfo" as="element()?"/>
-        <!-- aanvullende_informatie -->
-        <xsl:for-each select="$additionalInfo">
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
-                <valueCodeableConcept>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </valueCodeableConcept>
-            </extension>
-        </xsl:for-each>
-    </xsl:template>
-    <xd:doc>
         <xd:desc>Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-MedicationAgreement/ </xd:desc>
         <xd:param name="medicatieafspraak"/>
         <xd:param name="searchMode"/>
@@ -2491,42 +1992,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-MedicationAgreement/ version 2.2 </xd:desc>
-        <xd:param name="medicatieafspraak"/>
-        <xd:param name="searchMode"/>
-    </xd:doc>
-    <xsl:template name="zib-MedicationAgreement-2.2">
-        <xsl:param name="medicatieafspraak" as="element()?"/>
-        <xsl:param name="searchMode" as="xs:string">include</xsl:param>
-
-        <xsl:for-each select="$medicatieafspraak">
-            <!-- entry for MedicationRequest -->
-            <xsl:call-template name="MA-in-MedicationRequest-2.2">
-                <xsl:with-param name="medicatieafspraak" select="."/>
-                <xsl:with-param name="medicationrequest-id" select="
-                        if ($referById) then
-                            nf:removeSpecialCharacters(./identificatie/@value)
-                        else
-                            ()"/>
-            </xsl:call-template>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="copyIndicator"/>
-    </xd:doc>
-    <xsl:template name="zib-Medication-CopyIndicator">
-        <xsl:param name="copyIndicator" as="element()?"/>
-        <!-- kopie indicator -->
-        <!-- zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
-        <xsl:for-each select="$copyIndicator">
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
-                <valueBoolean value="{(./@value='true')}"/>
-            </extension>
-        </xsl:for-each>
-    </xsl:template>
-    <xd:doc>
         <xd:desc>Helper template to create extension for Reason for Change or Discontinuation in zib MedicationUse</xd:desc>
         <xd:param name="reasonCode"/>
     </xd:doc>
@@ -2541,58 +2006,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </valueCodeableConcept>
             </extension>
-        </xsl:for-each>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="start"/>
-        <xd:param name="end"/>
-    </xd:doc>
-    <xsl:template name="zib-Medication-Period-Of-Use-2.0">
-        <xsl:param name="start" as="element()?"/>
-        <xsl:param name="end" as="element()?"/>
-        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-            <valuePeriod>
-                <xsl:for-each select="$start[@value]">
-                    <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
-                </xsl:for-each>
-                <xsl:for-each select="$end[@value]">
-                    <end value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
-                </xsl:for-each>
-            </valuePeriod>
-        </extension>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="repeat-period"/>
-    </xd:doc>
-    <xsl:template name="zib-Medication-RepeatPeriodCyclicalSchedule">
-        <xsl:param name="repeat-period" as="element()?"/>
-        <!-- herhaalperiode cyclisch schema -->
-        <xsl:for-each select="$repeat-period">
-            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
-                <valueDuration>
-                    <xsl:call-template name="hoeveelheid-to-Duration">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </valueDuration>
-            </modifierExtension>
-        </xsl:for-each>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="stopType"/>
-    </xd:doc>
-    <xsl:template name="zib-Medication-StopType">
-        <xsl:param name="stopType" as="element()?"/>
-        <xsl:for-each select="$stopType">
-            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
-                <valueCodeableConcept>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </valueCodeableConcept>
-            </modifierExtension>
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
@@ -2650,22 +2063,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[@value]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- kopie indicator -->
                 <!-- zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
                 <xsl:for-each select="./kopie_indicator[@value]">
-                    <xsl:call-template name="zib-Medication-CopyIndicator">
-                        <xsl:with-param name="copyIndicator" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-CopyIndicator-2.0"/>
                 </xsl:for-each>
                 <!-- herhaalperiode cyclisch schema -->
                 <xsl:for-each select="./gebruiksinstructie/herhaalperiode_cyclisch_schema[@value]">
-                    <xsl:call-template name="zib-Medication-RepeatPeriodCyclicalSchedule">
-                        <xsl:with-param name="repeat-period" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-RepeatPeriodCyclicalSchedule-2.0"/>
                 </xsl:for-each>
                 <!-- medicatiegebruik id -->
                 <xsl:for-each select="./identificatie[@value]">
@@ -2705,9 +2114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind | gebruiksperiode)[@value]]">
                     <effectivePeriod>
                         <xsl:for-each select="./gebruiksperiode[@value]">
-                            <xsl:call-template name="zib-Medication-Use-Duration">
-                                <xsl:with-param name="duration" select="."/>
-                            </xsl:call-template>
+                            <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
                         </xsl:for-each>
                         <xsl:for-each select="gebruiksperiode_start[@value]">
                             <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
@@ -2832,6 +2239,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 <!-- voorschrijver in extension -->
+                <!-- todo: display mist -->
                 <xsl:for-each select="./voorschrijver/zorgverlener[.//(@value | @code)]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
                         <valueReference>
@@ -2863,16 +2271,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- relatie naar medicamenteuze behandeling -->
                 <xsl:for-each select="./../identificatie[@value]">
-                    <xsl:call-template name="mbh-id-2-reference">
+                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- kopie indicator -->
                 <!-- zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
                 <xsl:for-each select="./kopie_indicator[@value]">
-                    <xsl:call-template name="zib-Medication-CopyIndicator">
-                        <xsl:with-param name="copyIndicator" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-CopyIndicator-2.0"/>
                 </xsl:for-each>
                 <!-- reden_wijzigen_of_stoppen_gebruik -->
                 <xsl:for-each select="./reden_wijzigen_of_stoppen_gebruik[@code]">
@@ -2882,9 +2288,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- herhaalperiode cyclisch schema -->
                 <xsl:for-each select="./gebruiksinstructie/herhaalperiode_cyclisch_schema[@value]">
-                    <xsl:call-template name="zib-Medication-RepeatPeriodCyclicalSchedule">
-                        <xsl:with-param name="repeat-period" select="."/>
-                    </xsl:call-template>
+                    <xsl:call-template name="ext-zib-Medication-RepeatPeriodCyclicalSchedule-2.0"/>
                 </xsl:for-each>
                 <!-- medicatiegebruik id -->
                 <xsl:for-each select="./identificatie[@value]">
@@ -2924,9 +2328,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind | gebruiksperiode)[@value]]">
                     <effectivePeriod>
                         <xsl:for-each select="./gebruiksperiode[@value]">
-                            <xsl:call-template name="zib-Medication-Use-Duration">
-                                <xsl:with-param name="duration" select="."/>
-                            </xsl:call-template>
+                            <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
                         </xsl:for-each>
                         <xsl:for-each select="gebruiksperiode_start[@value]">
                             <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
@@ -2951,21 +2353,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="informant[.//@value]">
                     <informationSource>
                         <xsl:choose>
-                            <xsl:when test="./persoon[.//@value]">
-                                <xsl:apply-templates select="./persoon" mode="doRelatedPersonReference-2.0"/>
+                            <xsl:when test="persoon[.//@value]">
+                                <xsl:apply-templates select="persoon" mode="doRelatedPersonReference-2.0"/>
                             </xsl:when>
-                            <xsl:when test="./informant_is_patient[@value = 'true']">
-                                <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference-2.1"/>
+                            <xsl:when test="informant_is_patient[@value = 'true']">
+                                <xsl:apply-templates select="ancestor::*[ancestor::data]/patient" mode="doPatientReference-2.1"/>
                             </xsl:when>
-                            <xsl:when test="./informant_is_zorgverlener[.//@value]">
-                                <xsl:apply-templates select="./informant_is_zorgverlener/zorgverlener" mode="doMissingTypeReferencePractitionerRole"/>
+                            <xsl:when test="informant_is_zorgverlener[.//@value]">
+                                <xsl:for-each select="informant_is_zorgverlener/zorgverlener">
+                                    <xsl:call-template name="practitionerRoleReference">
+                                        <xsl:with-param name="useExtension" select="true()"/>
+                                    </xsl:call-template>
+                                    <xsl:call-template name="practitionerReference"/>
+                                </xsl:for-each>
                             </xsl:when>
                         </xsl:choose>
                     </informationSource>
                 </xsl:for-each>
                 <!-- patiënt -->
                 <subject>
-                    <xsl:apply-templates select="./../../patient" mode="doPatientReference-2.1"/>
+                    <xsl:apply-templates select="../../patient" mode="doPatientReference-2.1"/>
                 </subject>
                 <!-- gerelateerde_afspraak en gerelateerde_verstrekking-->
                 <xsl:for-each select="./((gerelateerde_afspraak/(identificatie_medicatieafspraak | identificatie_toedieningsafspraak)) | (gerelateerde_verstrekking/identificatie))[@value]">
@@ -3017,22 +2424,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="duration"/>
-    </xd:doc>
-    <xsl:template name="zib-Medication-Use-Duration">
-        <xsl:param name="duration" as="element()?"/>
-        <xsl:for-each select="$duration">
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-                <valueDuration>
-                    <xsl:call-template name="hoeveelheid-to-Duration">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </valueDuration>
-            </extension>
-        </xsl:for-each>
-    </xsl:template>
     <xd:doc>
         <xd:desc/>
         <xd:param name="in">Node to process. Defaults to context node</xd:param>
@@ -3126,42 +2517,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Medication>
         </xsl:for-each>
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Converts unit from G-Standaard to UCUM</xd:desc>
-        <xd:param name="GstdBasiseenheid_code"/>
-    </xd:doc>
-    <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string">
-        <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
-
-        <xsl:choose>
-            <xsl:when test="$GstdBasiseenheid_code castable as xs:integer">
-                <xsl:choose>
-                    <xsl:when test="$GstdBasiseenheid_code = '205'">cm</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '208'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '211'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '215'">g</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '217'">[iU]</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '219'">kg</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '222'">l</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '229'">mg</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '233'">ml</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '234'">mm</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '245'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '252'">ug</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '254'">ul</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '303'">[drp]</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '345'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '490'">1</xsl:when>
-                    <xsl:when test="$GstdBasiseenheid_code = '500'">1</xsl:when>
-                    <xsl:otherwise>Not supported G-standaard basiseenheid: <xsl:value-of select="$GstdBasiseenheid_code"/></xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- geen integer meegekregen --> G-standaard code is not an integer. Unsupported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
-        </xsl:choose>
-        <xsl:if test="$GstdBasiseenheid_code castable as xs:integer"> </xsl:if>
-    </xsl:function>
 
     <xd:doc>
         <xd:desc/>

@@ -140,6 +140,156 @@
         <xsl:value-of select="empty($validParts[. = 'false'])"/>
     </xsl:function>
     
+    <xd:doc>
+        <xd:desc>Converts unit from G-Standaard to UCUM</xd:desc>
+        <xd:param name="GstdBasiseenheid_code"/>
+    </xd:doc>
+    <xsl:function name="nf:convertGstdBasiseenheid2UCUM" as="xs:string">
+        <xsl:param name="GstdBasiseenheid_code" as="xs:string"/>
+        
+        <xsl:choose>
+            <xsl:when test="$GstdBasiseenheid_code castable as xs:integer">
+                <xsl:choose>
+                    <!-- 201	AB	ABW	ANTITOXINE B.W.	ABW	ANTITOXINE BINDINGS WAARDE   (ZIE RIV VAD.'81, 16) -->
+                    <!-- 202	AE	AE	ANTITOXISCHE EH	AE	ANTITOXISCHE EENHEID         (ZIE RIV VAD.'81, 16) -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('201', '202')">1</xsl:when>
+                    <!-- 203	BQ	BECQ	BECQUEREL	Bq	BECQUEREL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '203'">Bq</xsl:when>
+                    <!-- 205	CM	CM	CENTIMETER	cm	CENTIMETER -->
+                    <xsl:when test="$GstdBasiseenheid_code = '205'">cm</xsl:when>
+                    <!-- 206	C2	CM-2	VIERKANTE CM	cm2	VIERKANTE CENTIMETER -->
+                    <xsl:when test="$GstdBasiseenheid_code = '206'">cm2</xsl:when>
+                    <!-- 207	D	D	DECIM.POTENTIE	D	DECIMALE POTENTIE -->
+                    <xsl:when test="$GstdBasiseenheid_code = '207'">[hp_X]</xsl:when>
+                    <!-- 208	DO	DOSI	DOSIS	dosis	DOSIS -->
+                    <!-- 211	E	EENH	EENHEID	E	EENHEID -->
+                    <!-- 213	FE	FIPE	FIP EENHEID	FIP-E	FIP EENHEID                 (ZIE NED.PH.8.BLZ.836) -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('208', '211', '213')">1</xsl:when>
+                    <!-- 215	G	GRAM	GRAM	g	GRAM -->
+                    <xsl:when test="$GstdBasiseenheid_code = '215'">g</xsl:when>
+                    <!-- 217	IE	IE	INTERNAT.EENH.	IE	INTERNATIONALE EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = '217'">[iU]</xsl:when>
+                    <!-- 218	J	JOUL	JOULE	J	JOULE -->
+                    <xsl:when test="$GstdBasiseenheid_code = '218'">J</xsl:when>
+                    <!-- 219	KG	KG	KILOGRAM	kg	KILOGRAM -->
+                    <xsl:when test="$GstdBasiseenheid_code = '219'">kg</xsl:when>
+                    <!-- 221	KM	KIEM	KIEMEN	kiemen	KIEMEN -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('221')">1</xsl:when>
+                    <!-- 222	L	L	LITER	l	LITER -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('222')">l</xsl:when>
+                    <!-- 225	M	M	METER	m	METER -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('225')">m</xsl:when>
+                    <!-- 229	MG	MG	MILLIGRAM	mg	MILLIGRAM -->
+                    <xsl:when test="$GstdBasiseenheid_code = '229'">mg</xsl:when>
+                    <!-- 231	MI	MMOL	MILLIMOL	mmol	MILLIMOL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '231'">mmol</xsl:when>
+                    <!-- 233	ML	ML	MILLILITER	ml	MILLILITER -->
+                    <xsl:when test="$GstdBasiseenheid_code = '233'">ml</xsl:when>
+                    <!-- 234	MM	MM	MILLIMETER	mm	MILLIMETER -->
+                    <xsl:when test="$GstdBasiseenheid_code = '234'">mm</xsl:when>
+                    <!-- 235	MO	MOL	MOL	mol	MOL                   (ZIE MARTINDALE 28, BLZ XXI) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '235'">mol</xsl:when>
+                    <!-- 236	M2	M-2	VIERKANTE METER	m2	VIERKANTE METER -->
+                    <xsl:when test="$GstdBasiseenheid_code = '236'">m2</xsl:when>
+                    <!-- 237	N	N	NORMAAL	N	NORMAAL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '237'">1</xsl:when>
+                    <!-- 238	NE	NOOE	NOON EENHEID	Noon-E	NOON EENHEID                     (POLLENALLERGEEN) -->
+                    <!-- 242	PE	PLOE	PLOUGH EENHEID	Plough-E	PLOUGH EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('238', '242')">1</xsl:when>
+                    <!-- 244	PU	PFU	POCK FORM. UNIT	pfu	POCK/PLAQUE FORMING UNIT -->
+                    <xsl:when test="$GstdBasiseenheid_code = '244'">[PFU]</xsl:when>
+                    <!-- 245	ST	STUK	STUK	stuk	STUK -->
+                    <xsl:when test="$GstdBasiseenheid_code = '245'">1</xsl:when>
+                    <!-- 246	CC	CCID	CCID50	CCID50	CELL CULTURE INFECTIVE DOSE 50% (CCID50) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '246'">[CCID_50]</xsl:when>
+                    <!-- 247	TE	TB-E	TUBERCULIN EENH	TB-E	TUBERCULINE EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = '247'">[tb'U]</xsl:when>
+                    <!-- 252	UG	UG	MICROGRAM	ug	MICROGRAM -->
+                    <xsl:when test="$GstdBasiseenheid_code = '252'">ug</xsl:when>
+                    <!-- 253	UK	UKAT	MICROKATAL	uKat	MICROKATAL                  (ZIE NED.PH.8,BLZ 522) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '253'">ukat</xsl:when>
+                    <!-- 254	UL	UL	MICROLITER	ul	MICROLITER -->
+                    <xsl:when test="$GstdBasiseenheid_code = '254'">ul</xsl:when>
+                    <!-- 255	UU	USPE	USP EENHEID	USP-E	USP EENHEID,INCL ANSON,ARMOUR,USNF,WALLACE,WAMPOLE -->
+                    <xsl:when test="$GstdBasiseenheid_code = '255'">[USP'U]</xsl:when>
+                    <!-- 257	WE	WILE	WILSTATTER EENH	Wilst-E	WILLSTATTER EENHEID -->
+                    <!-- 290	AH	AHFE	ANTIHEMOF.FAC.E	AHF-E	ANTIHEMOFILIE FACTOR EENHEID -->
+                    <!-- 292	BE	BP-E	BRITISH PH.EENH	BP-E	BRITISH PHARMACOPOEIA EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('257', '290', '292')">1</xsl:when>
+                    <!-- 303	DR	DRUP	DRUPPEL	gt	DRUPPEL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '303'">[drp]</xsl:when>
+                    <!-- 304	LE	LEVE	LEVY EENHEID	Levy-E	LEVY EENHEID          (ZIE MARTINDALE 28, BLZ 654) -->
+                    <!-- 305	KE	KIE	KALLID.INACT.EH	KIE	KALLIDINOGENASE INACTIVERENDE EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('304', '305')">1</xsl:when>
+                    <!-- 306	LF	LFEQ	LIMES FLOC.EQUI	Lf	LIMES FLOCCULATIE EQUIVALENT        (ZIE NED.PH.8) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '306'">[Lf]</xsl:when>
+                    <!-- 308	MK	MK	MILJ.KIEMEN	milj.kiem	MILJOEN KIEMEN (ZIE RIV VADEM.'81 16) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '308'">1</xsl:when>
+                    <!-- 310	MQ	MBEQ	MEGABECQUEREL	MBq	MEGABECQUEREL          (ZIE MARTINDALE 28,BLZ XXI) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '310'">MBq</xsl:when>
+                    <!-- 316	NI	NIHE	NIH-EENHEID	NIH-E	NATIONAL INSTITUTE OF HEALTH EENHEID -->
+                    <!-- 331	HE	HDBE	HDB-EENHEID	HDB-E	HEPARINOID BAYER EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('316', '331')">1</xsl:when>
+                    <!-- 332	UM	UMOL	MICROMOL	umol	MICROMOL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '332'">umol</xsl:when>
+                    <!-- 335	CH	CHRE	CRICK-H-R EENH.	CHR-E	CRICK-HARPER-RAPER EENHEID (ZIE INF.M.'84,BLZ 426) -->
+                    <!-- 336	CU	CL-E	CLINISCHE EENH.	CL-E	CLINISCHE EENHEID         (ZIE INF.M.1984,BLZ 426) -->
+                    <!-- 337	XX	XX	ONBEP. EENHEID	onbepaald	ONBEPAALDE EENHEID -->
+                    <!-- 338	CB	CHBE	CHYMOT.BOURN-EH	CHB-E	CHYMOTRYPSINE BOURNONVILLE EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('335', '336', '337', '338')">1</xsl:when>
+                    <!-- 339	QQ	MGML	MG/ML	mg/ml-g	MG/ML NB. ALLEEN TOEGESTAAN BIJ GEIMPR.DEPPER/GAAS -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('339')">1</xsl:when>
+                    <!-- 340	NK	NKAT	NANOKATAL	nKat	NANOKATAL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '340'">nkat</xsl:when>
+                    <!-- 341	DE	D-AE	D-ANTIGEEN EENH	DE	D-ANTIGEEN EENHEID  (ZIE RIV VAD.'81,POLIO VACCIN) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '341'">[D'ag'U]</xsl:when>
+                    <!-- 342	OE	IOE	INT.OPACIT.EENH	IOE	INTERNATIONALE OPACITY EENHEID   (ZIE RIV VAD.'81) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '342'">1</xsl:when>
+                    <!-- 343	VM	MM2	VIERKANTE MM	mm2	VIERKANTE MILLIMETER -->
+                    <xsl:when test="$GstdBasiseenheid_code = '343'">mm2</xsl:when>
+                    <!-- 344	ID	ID-E	IVY DOG EENHEID	Ivy dog-E	IVY DOG EENHEID (ZIE MARTINDALE 28 BLZ 521) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '344'">1</xsl:when>
+                    <!-- 345	ME	ME	MILJ. IE	milj. IE	MILJOEN IE -->
+                    <xsl:when test="$GstdBasiseenheid_code = '345'">M[iU]</xsl:when>
+                    <!-- 346	AX	AXAE	ANTI-XA-E	AXa-E	ANTIFACTOR-XA-ACTIVITEIT EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = '346'">[anti'Xa'U]</xsl:when>
+                    <!-- 347	KQ	KBEQ	KILOBECQUEREL	kBq	KILOBECQUEREL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '347'">kBq</xsl:when>
+                    <!-- 348	GQ	GBQ	GIGABECQUEREL	GBq	GIGABECQUEREL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '348'">GBq</xsl:when>
+                    <!-- 349	CE	CEL	CELLEN	cellen	CELLEN -->
+                    <xsl:when test="$GstdBasiseenheid_code = '349'">1</xsl:when>
+                    <!-- 350	IR	RE.I	REACT. INDEX	IR	REACTIVITEITSINDEX (STALLERGENES) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '350'">[IR]</xsl:when>
+                    <!-- 351	GK	GENK	GEN.KOPIE	gen.k	GENOOMKOPIEËN -->
+                    <!-- 352	TG	TGK	TERGENKOP	teragenoomkopieën	TERAGENOOMKOPIEËN -->
+                    <xsl:when test="$GstdBasiseenheid_code = ('351', '352')">1</xsl:when>
+                    <!-- 353	MU	MPFU	MILJ. PFU	milj. pfu	MILJOEN PLAQUE FORMING UNITS -->
+                    <xsl:when test="$GstdBasiseenheid_code = '353'">M[PFU]</xsl:when>
+                    <!-- 354	AU	AU	ANTIGEEN-EENH	AU	ANTIGEEN-EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = '354'">1</xsl:when>
+                    <!-- 356	MD	MIE	MILLI-IE	mIE	MILLI-INTERNATIONALE EENHEID -->
+                    <xsl:when test="$GstdBasiseenheid_code = '356'">m[iU]</xsl:when>
+                    <!-- 490	VP	VERP	VERPAKKING	verp.	VERPAKKING -->
+                    <xsl:when test="$GstdBasiseenheid_code = '490'">1</xsl:when>
+                    <!-- 500	CH	CH	CHARRIERE	CHARRIERE	CHARRIERE -->
+                    <xsl:when test="$GstdBasiseenheid_code = '500'">[Ch]</xsl:when>
+                    <!-- 501	MQ	MBEQ	MEGABEQUEREL	MBq	MEGABEQUEREL -->
+                    <xsl:when test="$GstdBasiseenheid_code = '501'">MBq</xsl:when>
+                    <!-- 502	C2	CM-2	VIERKANTE CM	cm2	VIERKANTE CENTIMETER -->
+                    <xsl:when test="$GstdBasiseenheid_code = '502'">cm2</xsl:when>
+                    <!-- 504	FE	FIPE	FIP EENHEID	FIP-E	FIP EENHEID (ZIE NED.PH.8.BLZ.836) -->
+                    <xsl:when test="$GstdBasiseenheid_code = '504'">1</xsl:when>
+                    <xsl:otherwise>Unsupported G-standaard basiseenheid: <xsl:value-of select="$GstdBasiseenheid_code"/></xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- geen integer meegekregen --> G-standaard code is not an integer. Unsupported G-standaard basiseenheid: "<xsl:value-of select="$GstdBasiseenheid_code"/>". </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    
+    
     <!--<xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">
         <xsl:variable name="term" as="element()*">

@@ -36,6 +36,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->    
+    <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>    
     
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry, $body-observations/f:entry, $prescribe-reasons/f:entry"/>

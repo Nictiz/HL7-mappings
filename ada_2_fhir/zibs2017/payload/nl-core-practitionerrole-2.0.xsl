@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
     <!--<xsl:import href="nl-core-practitioner-2.0.xsl"/>-->
     <!--<xsl:import href="nl-core-organization-2.0.xsl"/>-->
 
@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
         <xd:param name="useExtension">Boolean to control whether the NL extension should be used to output the reference. Defaults to false.</xd:param>
     </xd:doc>
-    <xsl:template name="practitionerRoleReference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleReference-2.0" as="element()*">
+    <xsl:template name="practitionerRoleReference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" as="element()*" mode="doPractitionerRoleReference-2.0">
         <xsl:param name="useExtension" as="xs:boolean?" select="false()"/>
         <xsl:variable name="theIdentifier" select="zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPractitionerRole(.)"/>
@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="theDisplay">
+        <xsl:variable name="theDisplay"  as="element()*">
             <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
                 <display value="{$theGroupElement/reference-display}"/>
             </xsl:if>
@@ -53,6 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- extension -->
         <xsl:choose>
             <xsl:when test="$useExtension">
+                <!-- deliberately not used $urlExtNLPractitionerRoleReference, this should be the only place this extension is used -->
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                     <valueReference>
                         <xsl:sequence select="$referenceOrIdentifier"/>
@@ -62,12 +63,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:sequence select="$referenceOrIdentifier"/>
+                <xsl:sequence select="$theDisplay"/>
             </xsl:otherwise>
         </xsl:choose>
 
-        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
-            <display value="{$theGroupElement/reference-display}"/>
-        </xsl:if>
     </xsl:template>
 
     <xd:doc>
