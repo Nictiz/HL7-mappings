@@ -228,8 +228,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
      <xd:doc>
-        <xd:desc/>
-        <xd:param name="healthProfessional"/>
+        <xd:desc>Create display for practitionerRole</xd:desc>
+        <xd:param name="healthProfessional">ada element for hcim health_professional</xd:param>
     </xd:doc>
     <xsl:function name="nf:get-practitioner-role-display" as="xs:string?">
         <xsl:param name="healthProfessional" as="element()?"/>
@@ -256,7 +256,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <xd:doc>
-        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value on the health_professional_identification_number / specialty / healthcare_provider_identification_number. Else return empty</xd:desc>
+        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, 
+            return the upper-cased combined string of @value on the health_professional_identification_number / specialty / healthcare_provider_identification_number. 
+            Else return empty. Used as FHIR logical id to generate more stable resources / filenames.
+        </xd:desc>
         <xd:param name="healthProfessional"/>
     </xd:doc>
     <xsl:function name="nf:getValueAttrPractitionerRole" as="xs:string?">

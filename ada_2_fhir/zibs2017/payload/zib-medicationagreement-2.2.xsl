@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <!--<xsl:import href="_zib2017.xsl"/>
     <xsl:import href="ext-zib-medication-additional-information-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-copy-indicator-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-medication-treatment-2.0.xsl"/>
@@ -22,7 +22,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
-    <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>-->
+    <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
+    <xsl:import href="zib-body-height-2.1.xsl"/>
+    <xsl:import href="zib-body-weight-2.1.xsl"/>
+    <xsl:import href="zib-problem-2.1.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -189,6 +192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </context>
                 </xsl:for-each>
+                <!-- AWE: Not sure why this is commented out or even here -->
                 <!--<xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
                     <context>
                         <identifier>
@@ -202,31 +206,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- lichaamslengte -->
                 <xsl:for-each select="lichaamslengte[.//@value]">
                     <supportingInformation>
-                        <reference value="{nf:getFullUrlOrId('LENGTE', nf:getGroupingKeyDefault(.), false())}"/>
-                        <xsl:variable name="datum-string" select="
-                                if (lengte_datum_tijd/@value castable as xs:dateTime) then
-                                    format-dateTime(lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
-                                else
-                                    if (lengte_datum_tijd/@value castable as xs:date) then
-                                        format-date(lengte_datum_tijd/@value, '[D01] [MN,*-3], [Y0001]')
-                                    else
-                                        lengte_datum_tijd/@value"/>
-                        <display value="{concat('Lengte: ', lengte_waarde/@value, ' ', lengte_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
+                        <xsl:call-template name="bodyHeightReference"/>
                     </supportingInformation>
                 </xsl:for-each>
                 <!-- lichaamsgewicht -->
                 <xsl:for-each select="lichaamsgewicht[.//@value]">
                     <supportingInformation>
-                        <reference value="{nf:getFullUrlOrId('GEWICHT', nf:getGroupingKeyDefault(.), false())}"/>
-                        <xsl:variable name="datum-string" select="
-                                if (gewicht_datum_tijd/@value castable as xs:dateTime) then
-                                    format-dateTime(gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001] [H01]:[m01]')
-                                else
-                                    if (gewicht_datum_tijd/@value castable as xs:date) then
-                                        format-date(gewicht_datum_tijd/@value, '[D01] [MN,*-3], [Y0001]')
-                                    else
-                                        gewicht_datum_tijd/@value"/>
-                        <display value="{concat('Gewicht: ',gewicht_waarde/@value, ' ', gewicht_waarde/@unit,'. Datum/tijd gemeten: ', $datum-string)}"/>
+                        <xsl:call-template name="bodyWeightReference"/>
                     </supportingInformation>
                 </xsl:for-each>
                 <!-- afspraakdatum -->
@@ -242,9 +228,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                             <xsl:call-template name="practitionerReference"/>
                         </agent>
-                      </requester>
+                    </requester>
                 </xsl:for-each>
-                
+
                 <!-- reden afspraak -->
                 <xsl:for-each select="(reden_afspraak | reden_wijzigen_of_staken)[@code]">
                     <reasonCode>
@@ -257,8 +243,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- reden van voorschrijven -->
                 <xsl:for-each select="reden_van_voorschrijven/probleem[.//@code]">
                     <reasonReference>
-                        <reference value="{nf:getFullUrlOrId('REDENVOORSCHRIJVEN', nf:getGroupingKeyDefault(.), false())}"/>
-                        <display value="{normalize-space(string-join(.//(@displayName|@originalText), ' '))}"/>
+                        <xsl:call-template name="problemReference"/>
                     </reasonReference>
                 </xsl:for-each>
                 <!-- toelichting -->

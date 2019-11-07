@@ -19,10 +19,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
     <xsl:template name="allergyintoleranceReference" match="allergie_intolerantie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | allergy_intolerance[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAllergyIntoleranceReference-2.1">
-        <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
+        <xsl:variable name="theIdentifier" select="(identificatie_nummer | zibroot/identificatienummer | identification_number | hcimroot/identification_number)[@value] "/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$allergyIntolerances[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>

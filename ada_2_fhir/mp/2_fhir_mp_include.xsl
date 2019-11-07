@@ -251,51 +251,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-locatie>
         </xsl:for-each-group>
     </xsl:variable>
-    <xsl:variable name="body-observations" as="element()*">
-        <!-- lichaamsgewicht | lichaamslengte -->
-        <xsl:for-each-group select="//(lichaamsgewicht | lichaamslengte)" group-by="nf:getGroupingKeyDefault(.)">
-            <unieke-observatie xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <xsl:for-each select="current-group()[1]">
-
-                    <xsl:variable name="searchMode" as="xs:string">include</xsl:variable>
-                    <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{nf:get-fhir-uuid(.)}"/>
-                        <resource>
-                            <xsl:apply-templates select="." mode="doBodyObservation">
-                                <xsl:with-param name="observation-id">
-                                    <xsl:choose>
-                                        <xsl:when test="$referById">
-                                            <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
-                                            <xsl:variable name="patientRef" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyPatient($ada-patient), true())"/>
-                                            <xsl:value-of select="concat(./local-name(), $patientRef, (upper-case(nf:removeSpecialCharacters(string-join(./*/(@value | @unit), '')))))"/>
-                                        </xsl:when>
-                                        <xsl:otherwise/>
-                                    </xsl:choose>
-                                </xsl:with-param>
-                            </xsl:apply-templates>
-                        </resource>
-                        <xsl:if test="string-length($searchMode) gt 0">
-                            <search>
-                                <mode value="{$searchMode}"/>
-                            </search>
-                        </xsl:if>
-                    </entry>
-                </xsl:for-each>
-            </unieke-observatie>
-        </xsl:for-each-group>
-    </xsl:variable>
-    <xsl:variable name="prescribe-reasons" as="element()*">
+   <xsl:variable name="prescribe-reasons" as="element()*">
         <!-- redenen -->
         <xsl:for-each-group select="//reden_van_voorschrijven/probleem[.//@code]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- own copy of what could be $problems, but we want a stable logical id, and get a changing uuid from $problems -->
             <unieke-reden xmlns="">
                 <group-key xmlns="">
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
+                <reference-display xmlns="">
+                    <xsl:value-of select="(probleem_naam | problem_name)/@displayName"/>
+                </reference-display>                
                 <xsl:for-each select="current-group()[1]">
-
                     <xsl:variable name="searchMode" as="xs:string">include</xsl:variable>
                     <entry xmlns="http://hl7.org/fhir">
                         <fullUrl value="{nf:get-fhir-uuid(.)}"/>
@@ -1494,200 +1461,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </extension>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>zib-Administration-Schedule-2.0</xd:desc>
-        <xd:param name="toedieningsschema">ada toedieningsschema</xd:param>
-    </xd:doc>
-    <xsl:template name="zib-Administration-Schedule-2.0" match="toedieningsschema">
-        <xsl:param name="toedieningsschema" as="element()?" select="."/>
-        <xsl:for-each select="$toedieningsschema">
-            <timing>
-                <xsl:if test="./../../doseerduur or ./../toedieningsduur or .//*[@value or @code]">
-                    <repeat>
-                        <!-- doseerduur -->
-                        <xsl:for-each select="./../../doseerduur[@value]">
-                            <boundsDuration>
-                                <xsl:call-template name="hoeveelheid-to-Duration">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </boundsDuration>
-                        </xsl:for-each>
-                        <!-- toedieningsduur -->
-                        <xsl:for-each select="./../toedieningsduur[@value]">
-                            <duration value="{./@value}"/>
-                            <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
-                        </xsl:for-each>
-                        <!-- frequentie -->
-                        <xsl:for-each select="./frequentie/aantal/(vaste_waarde | min)[@value]">
-                            <frequency value="{./@value}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./frequentie/aantal/(max)[@value]">
-                            <frequencyMax value="{./@value}"/>
-                        </xsl:for-each>
-                        <!-- ./frequentie/tijdseenheid -->
-                        <xsl:for-each select="./frequentie/tijdseenheid">
-                            <period value="{./@value}"/>
-                            <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
-                        </xsl:for-each>
-                        <!-- interval -->
-                        <xsl:for-each select="./interval">
-                            <period value="{./@value}"/>
-                            <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
-                        </xsl:for-each>
-                        <xsl:for-each select="./weekdag">
-                            <dayOfWeek>
-                                <xsl:attribute name="value">
-                                    <xsl:choose>
-                                        <xsl:when test="./@code = '307145004'">mon</xsl:when>
-                                        <xsl:when test="./@code = '307147007'">tue</xsl:when>
-                                        <xsl:when test="./@code = '307148002'">wed</xsl:when>
-                                        <xsl:when test="./@code = '307149005'">thu</xsl:when>
-                                        <xsl:when test="./@code = '307150005'">fri</xsl:when>
-                                        <xsl:when test="./@code = '307151009'">sat</xsl:when>
-                                        <xsl:when test="./@code = '307146003'">sun</xsl:when>
-                                    </xsl:choose>
-                                </xsl:attribute>
-                            </dayOfWeek>
-                        </xsl:for-each>
-                        <!-- toedientijd -->
-                        <xsl:for-each select="./toedientijd[@value]">
-                            <timeOfDay value="{format-dateTime(./@value, '[H01]:[m01]:[s01]')}"/>
-                        </xsl:for-each>
-                        <!-- dagdeel -->
-                        <xsl:for-each select="./dagdeel[@code][not(@codeSystem = $oidHL7NullFlavor)]">
-                            <when>
-                                <xsl:attribute name="value">
-                                    <xsl:choose>
-                                        <xsl:when test="./@code = '73775008'">MORN</xsl:when>
-                                        <xsl:when test="./@code = '255213009'">AFT</xsl:when>
-                                        <xsl:when test="./@code = '3157002'">EVE</xsl:when>
-                                        <xsl:when test="./@code = '2546009'">NIGHT</xsl:when>
-                                    </xsl:choose>
-                                </xsl:attribute>
-                            </when>
-                        </xsl:for-each>
-                    </repeat>
-                </xsl:if>
-            </timing>
-        </xsl:for-each>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc>Outputs a FHIR observation for ada element lichaamslengte</xd:desc>
-        <xd:param name="observation-id"/>
-    </xd:doc>
-    <xsl:template name="zib-BodyHeight-2.0" match="lichaamslengte" mode="doBodyObservation">
-        <xsl:param name="observation-id" as="xs:string?"/>
-        <Observation>
-            <xsl:if test="string-length($observation-id) gt 0">
-                <id value="{$observation-id}"/>
-            </xsl:if>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
-            </meta>
-            <status value="final"/>
-            <category>
-                <coding>
-                    <system value="{local:getUri($oidFHIRObservationCategory)}"/>
-                    <code value="vital-signs"/>
-                    <display value="Vital Signs"/>
-                </coding>
-            </category>
-            <code>
-                <coding>
-                    <system value="http://loinc.org"/>
-                    <code value="8302-2"/>
-                    <display value="lichaamslengte"/>
-                </coding>
-            </code>
-            <!-- patient reference -->
-            <subject>
-                <xsl:apply-templates select="ancestor::*[ancestor::data]/patient" mode="doPatientReference-2.1"/>
-            </subject>
-            <xsl:for-each select="lengte_datum_tijd[@value]">
-                <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
-            </xsl:for-each>
-            <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
-            <!-- https://bits.nictiz.nl/browse/MM-434 -->
-            <performer>
-                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                    <valueCode value="unknown"/>
-                </extension>
-                <display value="onbekend"/>
-            </performer>
-            <xsl:for-each select="lengte_waarde[@value]">
-                <valueQuantity>
-                    <!-- ada has cm or m, FHIR only allows cm -->
-                    <xsl:choose>
-                        <xsl:when test="@unit = 'm'">
-                            <value value="{xs:double(@value)*100}"/>
-                            <unit value="cm"/>
-                            <system value="http://unitsofmeasure.org"/>
-                            <code value="cm"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <value value="{@value}"/>
-                            <unit value="{@unit}"/>
-                            <system value="http://unitsofmeasure.org"/>
-                            <code value="{nf:convert_ADA_unit2UCUM_FHIR(@unit)}"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </valueQuantity>
-            </xsl:for-each>
-        </Observation>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="observation-id"/>
-    </xd:doc>
-    <xsl:template name="zib-BodyWeight-2.0" match="lichaamsgewicht" mode="doBodyObservation">
-        <xsl:param name="observation-id" as="xs:string?"/>
-        <Observation>
-            <xsl:if test="string-length($observation-id) gt 0">
-                <id value="{$observation-id}"/>
-            </xsl:if>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
-            </meta>
-            <status value="final"/>
-            <category>
-                <coding>
-                    <system value="{local:getUri($oidFHIRObservationCategory)}"/>
-                    <code value="vital-signs"/>
-                    <display value="Vital Signs"/>
-                </coding>
-            </category>
-            <code>
-                <coding>
-                    <system value="http://loinc.org"/>
-                    <code value="29463-7"/>
-                    <display value="lichaamsgewicht"/>
-                </coding>
-            </code>
-            <!-- patient reference -->
-            <subject>
-                <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference-2.1"/>
-            </subject>
-            <xsl:for-each select="gewicht_datum_tijd">
-                <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
-            </xsl:for-each>
-            <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
-            <!-- https://bits.nictiz.nl/browse/MM-434 -->
-            <performer>
-                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                    <valueCode value="unknown"/>
-                </extension>
-                <display value="onbekend"/>
-            </performer>
-            <xsl:for-each select="gewicht_waarde">
-                <valueQuantity>
-                    <xsl:call-template name="hoeveelheid-to-Quantity">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </valueQuantity>
-            </xsl:for-each>
-        </Observation>
-    </xsl:template>
-    <xd:doc>
+         <xd:doc>
         <xd:desc>Creates a FHIR MedicationDispense resource based on ada verstrekking</xd:desc>
         <xd:param name="verstrekking">ada verstrekking</xd:param>
         <xd:param name="medicationdispense-id">optional technical FHIR resource id</xd:param>

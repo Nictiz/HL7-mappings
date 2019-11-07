@@ -63,6 +63,84 @@
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>zib-Administration-Schedule-2.0</xd:desc>
+        <xd:param name="toedieningsschema">ada toedieningsschema</xd:param>
+    </xd:doc>
+    <xsl:template name="zib-Administration-Schedule-2.0" match="toedieningsschema">
+        <xsl:param name="toedieningsschema" as="element()?" select="."/>
+        <xsl:for-each select="$toedieningsschema">
+            <timing>
+                <xsl:if test="./../../doseerduur or ./../toedieningsduur or .//*[@value or @code]">
+                    <repeat>
+                        <!-- doseerduur -->
+                        <xsl:for-each select="./../../doseerduur[@value]">
+                            <boundsDuration>
+                                <xsl:call-template name="hoeveelheid-to-Duration">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </boundsDuration>
+                        </xsl:for-each>
+                        <!-- toedieningsduur -->
+                        <xsl:for-each select="./../toedieningsduur[@value]">
+                            <duration value="{./@value}"/>
+                            <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
+                        </xsl:for-each>
+                        <!-- frequentie -->
+                        <xsl:for-each select="./frequentie/aantal/(vaste_waarde | min)[@value]">
+                            <frequency value="{./@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="./frequentie/aantal/(max)[@value]">
+                            <frequencyMax value="{./@value}"/>
+                        </xsl:for-each>
+                        <!-- ./frequentie/tijdseenheid -->
+                        <xsl:for-each select="./frequentie/tijdseenheid">
+                            <period value="{./@value}"/>
+                            <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
+                        </xsl:for-each>
+                        <!-- interval -->
+                        <xsl:for-each select="./interval">
+                            <period value="{./@value}"/>
+                            <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="./weekdag">
+                            <dayOfWeek>
+                                <xsl:attribute name="value">
+                                    <xsl:choose>
+                                        <xsl:when test="./@code = '307145004'">mon</xsl:when>
+                                        <xsl:when test="./@code = '307147007'">tue</xsl:when>
+                                        <xsl:when test="./@code = '307148002'">wed</xsl:when>
+                                        <xsl:when test="./@code = '307149005'">thu</xsl:when>
+                                        <xsl:when test="./@code = '307150005'">fri</xsl:when>
+                                        <xsl:when test="./@code = '307151009'">sat</xsl:when>
+                                        <xsl:when test="./@code = '307146003'">sun</xsl:when>
+                                    </xsl:choose>
+                                </xsl:attribute>
+                            </dayOfWeek>
+                        </xsl:for-each>
+                        <!-- toedientijd -->
+                        <xsl:for-each select="./toedientijd[@value]">
+                            <timeOfDay value="{format-dateTime(./@value, '[H01]:[m01]:[s01]')}"/>
+                        </xsl:for-each>
+                        <!-- dagdeel -->
+                        <xsl:for-each select="./dagdeel[@code][not(@codeSystem = $oidHL7NullFlavor)]">
+                            <when>
+                                <xsl:attribute name="value">
+                                    <xsl:choose>
+                                        <xsl:when test="./@code = '73775008'">MORN</xsl:when>
+                                        <xsl:when test="./@code = '255213009'">AFT</xsl:when>
+                                        <xsl:when test="./@code = '3157002'">EVE</xsl:when>
+                                        <xsl:when test="./@code = '2546009'">NIGHT</xsl:when>
+                                    </xsl:choose>
+                                </xsl:attribute>
+                            </when>
+                        </xsl:for-each>
+                    </repeat>
+                </xsl:if>
+            </timing>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
             <xd:desc>Template for 'dosering'. 
                 Without the FHIR element dosage / dosageInstruction, 
                 the name of that FHIR-element differs between MedicationStatement and MedicationRequest

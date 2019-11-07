@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-persoon>
         </xsl:for-each-group>
     </xsl:variable>
-     <xsl:variable name="alerts" as="element()*">
+    <xsl:variable name="alerts" as="element()*">
         <!-- probleem in problem -->
         <xsl:for-each-group select="//alert[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
@@ -101,6 +101,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-allergie-intolerantie>
         </xsl:for-each-group>
     </xsl:variable>
+    <xsl:variable name="body-observations" as="element()*">
+        <!-- body_height | body_weight -->
+        <xsl:copy-of select="$bodyHeights"/>
+        <xsl:copy-of select="$bodyWeights"/>
+    </xsl:variable>
     <xsl:variable name="problems" as="element()*">
         <!-- probleem in problem -->
         <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
@@ -111,7 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
                 <reference-display xmlns="">
-                    <xsl:value-of select="(probleem_naam | problem_name)/@displayName"/>
+                    <xsl:value-of select="(probleem_naam | problem_name)/(@displayName|@originalText)"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
                     <xsl:with-param name="uuid" select="$uuid"/>
