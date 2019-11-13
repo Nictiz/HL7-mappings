@@ -56,18 +56,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping of nl.zorg.Problem concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Problem">zib-Problem</xd:a>.</xd:desc>
         <xd:param name="in">Node to consider in the creation of a Condition resource</xd:param>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="adaPatient">Optional. ADA patient concept to build a reference to from this resource</xd:param>
+        <xd:param name="subject">Optional. ADA element, FHIR ID or UUID of the subject to refer to.</xd:param>
     </xd:doc>
     <xsl:template name="zib-Problem-2.1" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element()" mode="doZibProblem-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="adaPatient" as="element()*" tunnel="yes"/>
-        
-        <xsl:variable name="patientRef" as="element()*">
-            <xsl:for-each select="$adaPatient">
-                <xsl:call-template name="patientReference"/>
-            </xsl:for-each>
-        </xsl:variable>
+        <xsl:param name="subject" as="element()*" tunnel="yes"/>
         
         <xsl:for-each select="$in">
             <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data]"/>
@@ -152,12 +146,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </bodySite>
                 </xsl:if>
                 
-                <!-- The problem has as subject the patient -->
                 <subject>
-                    <xsl:copy-of select="$patientRef[self::f:extension]"/>
-                    <xsl:copy-of select="$patientRef[self::f:reference]"/>
-                    <xsl:copy-of select="$patientRef[self::f:identifier]"/>
-                    <xsl:copy-of select="$patientRef[self::f:display]"/>
+                    <xsl:call-template name="_Reference">
+                        <xsl:with-param name="referTo" select="$subject"/>
+                    </xsl:call-template>
                 </subject>
                 
                 <!-- OnsetPeriod -->

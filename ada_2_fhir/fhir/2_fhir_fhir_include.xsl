@@ -1110,5 +1110,70 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:copy>
     </xsl:template>
     
-
+    <xd:doc>
+        <xd:desc>Write out a FHIR reference type element.</xd:desc>
+        <xd:param name="referTo">The instance to refer to. May be a FHIR logical ID (if referById is true), a uuid, or a complete ADA object that can be hashed using nf:getGroupingKeyDefault().</xd:param>
+        <xd:param name="metadata">TODO</xd:param>
+        <xd:param name="wrapIn">
+            <xd:p>Wrap the reference in an element with this name. If this parameter is not present, the output will be the naked content.</xd:p>
+            <xd:p>This parameter makes it easy to create an element only if the reference parameter is present.</xd:p>
+        </xd:param>
+    </xd:doc>
+    <xsl:template name="_Reference">
+        <xsl:param name="referTo"/>
+        <xsl:param name="metadata" as="element(entry)*" tunnel="yes"/>
+        <xsl:param name="wrapIn" as="xs:string?"/>
+        
+        <xsl:for-each select="$referTo">
+            <xsl:variable name="reference">
+                
+                <!-- Resolve what it is what we need to refer to; either an ID, a UUID, or a hash. -->
+                <xsl:variable name="currMetadata">
+                    <xsl:choose>
+                        <xsl:when test=". castable as xs:string">
+                            <xsl:variable name="textToFind" select=". cast as xs:string"/>
+                            <xsl:choose>
+                                <xsl:when test="$referById">
+                                    <xsl:copy-of select="$metadata[id = $textToFind]"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:copy-of select="$metadata[uuid = $textToFind]"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="$metadata[grouping-key/text() = nf:getGroupingKeyDefault(.)]"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                
+                <!-- Write out the reference and display tags -->
+                <xsl:if test="$currMetadata">
+                    <xsl:choose>
+                        <xsl:when test="$referById">
+                            <reference value="{string-join(($currMetadata/entry/resource-type, $currMetadata/entry/id), '/')}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <reference value="{string-join(($currMetadata/entry/resource-type, $currMetadata/entry/uuid), '/')}"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:if test="$currMetadata[entry/display/text()]">
+                        <display value="{$currMetadata/entry/display}"/>
+                    </xsl:if>
+                </xsl:if>
+            </xsl:variable>
+            
+            <!-- Wrap in an element if present and needed -->
+            <xsl:choose>
+                <xsl:when test="$wrapIn">
+                    <xsl:element name="{$wrapIn}">
+                        <xsl:copy-of select="$reference"/>
+                    </xsl:element>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$reference"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
 </xsl:stylesheet>
