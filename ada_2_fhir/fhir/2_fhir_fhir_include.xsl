@@ -35,6 +35,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="mask-ids" as="xs:string?"/>
     <xsl:variable name="mask-ids-var" select="tokenize($mask-ids, ',')" as="xs:string*"/>
 
+    <xsl:param name="logLevel" select="'fatal'"/>
+
     <xd:doc>
         <xd:desc>Returns an array of FHIR elements based on an array of ADA that a @datatype attribute to determine the type with. 
             <xd:p>After the type is determined, the element is handed off for further processing. Failure to determine type is a fatal error.</xd:p>
@@ -1175,5 +1177,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Log a warning i.e. a recovarable error. What happens depends on the value of the global $logLevel parameter:
+            <xd:ul>
+                <xd:li>silent: don't do anything.</xd:li>
+                <xd:li>warn: output the warning as message.</xd:li>
+                <xd:li>fatal: output the warning as message.</xd:li>
+            </xd:ul>
+        </xd:desc>
+        <xd:param name="message">The warning message to log.</xd:param>
+    </xd:doc>
+    <xsl:template name="LogWarning">
+        <xsl:param name="message" as="xs:string"/>
+        <xsl:if test="$logLevel = ('warn', 'fatal')">
+            <xsl:message terminate="no" select="concat('WARNING: ', $message)"/>
+        </xsl:if>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Log a non-recovarable error. What happens depends on the value of the global $logLevel parameter:
+            <xd:ul>
+                <xd:li>silent: don't do anything, the error will be silently ignored.</xd:li>
+                <xd:li>warn: output the error as message but continue processing.</xd:li>
+                <xd:li>fatal: output the error and terminate processing.</xd:li>
+            </xd:ul>
+        </xd:desc>
+        <xd:param name="message">The error message to log.</xd:param>
+    </xd:doc>
+    <xsl:template name="LogError">
+        <xsl:param name="message" as="xs:string"/>
+        <xsl:if test="$logLevel = ('warn', 'fatal')">
+            <xsl:message terminate="{$logLevel = 'fatal'}" select="concat('ERROR: ', $message)"/>
+        </xsl:if>
     </xsl:template>
 </xsl:stylesheet>
