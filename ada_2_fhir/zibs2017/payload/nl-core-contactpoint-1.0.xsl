@@ -45,13 +45,9 @@
                         </xsl:choose>
                         <xsl:choose>
                             <xsl:when test="$telecomType[not(../@codeSystem = $oidHL7NullFlavor)]">
-                                <extension url="{$urlExtNLCodeSpecification}">
-                                    <valueCodeableConcept>
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="$telecomType/parent::*"/>
-                                        </xsl:call-template>
-                                    </valueCodeableConcept>
-                                </extension>
+                                <xsl:call-template name="ext-code-specification-1.0">
+                                    <xsl:with-param name="in" select="$telecomType/parent::*"/>
+                                </xsl:call-template>
                             </xsl:when>
                         </xsl:choose>
                     </system>
@@ -60,13 +56,9 @@
                         <use value="{$numberTypeValue}">
                             <xsl:choose>
                                 <xsl:when test="$numberType[not(../@codeSystem = $oidHL7NullFlavor)]">
-                                    <extension url="{$urlExtNLCodeSpecification}">
-                                        <valueCodeableConcept>
-                                            <xsl:call-template name="code-to-CodeableConcept">
-                                                <xsl:with-param name="in" select="$numberType/parent::*"/>
-                                            </xsl:call-template>
-                                        </valueCodeableConcept>
-                                    </extension>
+                                    <xsl:call-template name="ext-code-specification-1.0">
+                                        <xsl:with-param name="in" select="$numberType/parent::*"/>
+                                    </xsl:call-template>
                                 </xsl:when>
                             </xsl:choose>
                         </use>
@@ -88,13 +80,9 @@
                         <use value="{$emailTypeValue}">
                             <xsl:choose>
                                 <xsl:when test="$emailType[not(../@codeSystem = $oidHL7NullFlavor)]">
-                                    <extension url="{$urlExtNLCodeSpecification}">
-                                        <valueCodeableConcept>
-                                            <xsl:call-template name="code-to-CodeableConcept">
-                                                <xsl:with-param name="in" select="$emailType/parent::*"/>
-                                            </xsl:call-template>
-                                        </valueCodeableConcept>
-                                    </extension>
+                                    <xsl:call-template name="ext-code-specification-1.0">
+                                        <xsl:with-param name="in" select="$emailType/parent::*"/>
+                                    </xsl:call-template>
                                 </xsl:when>
                             </xsl:choose>
                         </use>
