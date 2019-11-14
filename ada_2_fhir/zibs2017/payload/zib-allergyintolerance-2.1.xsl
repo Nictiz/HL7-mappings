@@ -148,13 +148,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:otherwise>inactive</xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                        <extension url="{$urlExtNLCodeSpecification}">
-                            <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueCodeableConcept>
-                        </extension>
+                        <xsl:call-template name="ext-code-specification-1.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
                     </clinicalStatus>
                 </xsl:for-each>
                 
@@ -220,14 +216,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                         <!-- And now for the actual thing: -->
-                        <extension url="{$urlExtNLCodeSpecification}">
-                            <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
-                                </xsl:call-template>
-                            </valueCodeableConcept>
-                        </extension>
+                        <xsl:call-template name="ext-code-specification-1.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
                     </category>
                 </xsl:for-each>
                 
@@ -250,13 +241,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                        <extension url="{$urlExtNLCodeSpecification}">
-                            <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueCodeableConcept>
-                        </extension>
+                        <xsl:call-template name="ext-code-specification-1.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
                     </criticality>
                 </xsl:for-each>
                 
@@ -451,13 +438,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:attribute>
-                                <extension url="{$urlExtNLCodeSpecification}">
-                                    <valueCodeableConcept>
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </valueCodeableConcept>
-                                </extension>
+                                <xsl:call-template name="ext-code-specification-1.0">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
                             </severity>
                         </xsl:for-each>
                         
