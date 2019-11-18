@@ -106,6 +106,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:copy-of select="$bodyHeights"/>
         <xsl:copy-of select="$bodyWeights"/>
     </xsl:variable>
+    <!--<xsl:variable name="lab-observations" as="element()*">
+        <xsl:copy-of select="$labObservations"/>
+    </xsl:variable>-->
+    <!--<xsl:variable name="lab-specimens" as="element()*">
+        <xsl:copy-of select="$labSpecimens"/>
+    </xsl:variable>-->
     <xsl:variable name="problems" as="element()*">
         <!-- probleem in problem -->
         <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
