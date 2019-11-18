@@ -148,13 +148,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada string element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#datetime">@value</xd:a></xd:desc>
         <xd:param name="in">the ada date(time) element, may have any name but should have ada datatype date(time)</xd:param>
+        <xd:param name="inputDateT" as="xs:date">The T date (if applicable) that <xd:ref name="in" type="parameter"/> is relative to</xd:param>
     </xd:doc>
     <xsl:template name="date-to-datetime" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="inputDateT" as="xs:date?"/>
 
         <xsl:choose>
             <xsl:when test="$in/@value">
-                <xsl:attribute name="value" select="$in/@value"/>
+                <xsl:attribute name="value" select="nf:calculate-t-date($in/@value, $inputDateT)"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
                 <extension url="{$oidHL7NullFlavor}">
@@ -465,36 +467,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xd:doc>
         <xd:desc>Transforms ada element with zib type interval and only start and end date to FHIR Period</xd:desc>
-        <xd:param name="in">ada element with sub ada elements start and end date (both with datatype dateTime)</xd:param>
+        <xd:param name="start">ada element start date (with datatype dateTime)</xd:param>
+        <xd:param name="end">ada element with end date (with datatype dateTime)</xd:param>
+        <xd:param name="inputDateT" as="xs:date">The T date (if applicable) that <xd:ref name="start" type="parameter"/> and/or <xd:ref name="end" type="parameter"/> are relative to</xd:param>
     </xd:doc>
     <xsl:template name="startend-to-Period" as="element()*">
-        <xsl:param name="in" as="element()?"/>
-        <xsl:for-each select="$in">
-            <xsl:choose>
-                <xsl:when test="start_datum_tijd[@nullFlavor]">
-                    <start>
-                        <extension url="{$urlExtHL7NullFlavor}">
-                            <valueCode value="{start_datum_tijd/@nullFlavor}"/>
-                        </extension>
-                    </start>
-                </xsl:when>
-                <xsl:when test="start_datum_tijd[@value]">
-                    <start value="{nf:add-Amsterdam-timezone(start_datum_tijd/@value)}"/>
-                </xsl:when>
-            </xsl:choose>
-            <xsl:choose>
-                <xsl:when test="eind_datum_tijd[@nullFlavor]">
-                    <end>
-                        <extension url="{$urlExtHL7NullFlavor}">
-                            <valueCode value="{eind_datum_tijd/@nullFlavor}"/>
-                        </extension>
-                    </end>
-                </xsl:when>
-                <xsl:when test="eind_datum_tijd[@value]">
-                    <end value="{nf:add-Amsterdam-timezone(eind_datum_tijd/@value)}"/>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:for-each>
+        <xsl:param name="start" as="element()?"/>
+        <xsl:param name="end" as="element()?"/>
+        <xsl:param name="inputDateT" as="xs:date?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$start[@nullFlavor]">
+                <start>
+                    <extension url="{$urlExtHL7NullFlavor}">
+                        <valueCode value="{$start/@nullFlavor}"/>
+                    </extension>
+                </start>
+            </xsl:when>
+            <xsl:when test="$start[@value]">
+                <start value="{nf:add-Amsterdam-timezone($start/@value)}"/>
+            </xsl:when>
+        </xsl:choose>
+        <xsl:choose>
+            <xsl:when test="$end[@nullFlavor]">
+                <end>
+                    <extension url="{$urlExtHL7NullFlavor}">
+                        <valueCode value="{$end/@nullFlavor}"/>
+                    </extension>
+                </end>
+            </xsl:when>
+            <xsl:when test="$end[@value]">
+                <end value="{nf:add-Amsterdam-timezone($end/@value)}"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
     <xd:doc>
@@ -861,7 +866,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     
-      <xd:doc>
+    <xd:doc>
         <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor. Else return empty</xd:desc>
         <xd:param name="in"/>
     </xd:doc>

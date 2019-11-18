@@ -246,7 +246,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="effective_period[(start_datum_tijd | eind_datum_tijd)/(@value | @nullFlavor)]">
                     <effectivePeriod>
                         <xsl:call-template name="startend-to-Period">
-                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="start" select="start_datum_tijd"/>
+                            <xsl:with-param name="end" select="eind_datum_tijd"/>
                         </xsl:call-template>
                     </effectivePeriod>
                 </xsl:for-each>

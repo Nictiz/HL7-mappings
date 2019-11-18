@@ -15,6 +15,12 @@
             <xsl:when test="$in castable as xs:dateTime">
                 <xsl:value-of select="nf:add-Amsterdam-timezone(xs:dateTime($in))"/>
             </xsl:when>
+            <!-- http://hl7.org/fhir/STU3/datatypes.html#datetime
+                If hours and minutes are specified, a time zone SHALL be populated. 
+                Seconds must be provided due to schema type constraints but may be zero-filled and may be ignored. -->
+            <xsl:when test="concat($in, ':00') castable as xs:dateTime">
+                <xsl:value-of select="nf:add-Amsterdam-timezone(xs:dateTime(concat($in, ':00')))"/>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$in"/>
             </xsl:otherwise>
@@ -58,9 +64,9 @@
     <xd:doc>
         <xd:desc>Converts a T-12D{12:34:56} like string into a proper XML date or dateTime</xd:desc>
         <xd:param name="in">The input string to be converted</xd:param>
-        <xd:param name="inputDateT" as="xs:date">The T date</xd:param>
+        <xd:param name="inputDateT" as="xs:date">The T date (if applicable) that <xd:ref name="in" type="parameter"/> is relative to</xd:param>
     </xd:doc>
-    <xsl:function name="nf:calculate-t-date" as="xs:string">
+    <xsl:function name="nf:calculate-t-date" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
         <xsl:param name="inputDateT" as="xs:date?"/>
         
@@ -118,11 +124,11 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:value-of select="$newDateTime"/>
+                <xsl:value-of select="nf:add-Amsterdam-timezone-to-dateTimeString($newDateTime)"/>
             </xsl:when>
             <xsl:otherwise>
                 <!-- we cannot calculate anything -->
-                <xsl:value-of select="$in"/>
+                <xsl:value-of select="nf:add-Amsterdam-timezone-to-dateTimeString($in)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
