@@ -567,7 +567,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 <!-- gebruiksperiode_start /eind -->
                 <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
-                    <xsl:call-template name="ext-zib-Medication-Period-Of-Use-2.0">
+                    <xsl:call-template name="ext-zib-Medication-PeriodOfUse-2.0">
                         <xsl:with-param name="start" select="./gebruiksperiode_start"/>
                         <xsl:with-param name="end" select="./gebruiksperiode_eind"/>
                     </xsl:call-template>
@@ -1302,7 +1302,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <!-- gebruiksperiode_start /eind -->
                 <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
-                    <xsl:call-template name="ext-zib-Medication-Period-Of-Use-2.0">
+                    <xsl:call-template name="ext-zib-Medication-PeriodOfUse-2.0">
                         <xsl:with-param name="start" select="./gebruiksperiode_start"/>
                         <xsl:with-param name="end" select="./gebruiksperiode_eind"/>
                     </xsl:call-template>
@@ -1410,7 +1410,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="afspraakdatum[@value]" mode="TA-afspraakdatum"/>
                 <!-- gebruiksperiode_start /eind -->
                 <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
-                    <xsl:call-template name="ext-zib-Medication-Period-Of-Use-2.0">
+                    <xsl:call-template name="ext-zib-Medication-PeriodOfUse-2.0">
                         <xsl:with-param name="start" select="./gebruiksperiode_start"/>
                         <xsl:with-param name="end" select="./gebruiksperiode_eind"/>
                     </xsl:call-template>
