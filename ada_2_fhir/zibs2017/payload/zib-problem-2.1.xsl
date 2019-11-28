@@ -18,6 +18,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
+    <xsl:variable name="problems" as="element()*">
+        <!-- probleem in problem -->
+        <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <unieke-problem xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display xmlns="">
+                    <xsl:value-of select="(probleem_naam | problem_name)/(@displayName|@originalText)"/>
+                </reference-display>
+                <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
+                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <xsl:with-param name="searchMode">match</xsl:with-param>
+                </xsl:apply-templates>
+            </unieke-problem>
+        </xsl:for-each-group>
+    </xsl:variable>    
+    
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -62,6 +82,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:choose>
                     <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
                         <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
+                    </xsl:when>
+                    <!-- specific handling for MP prescribe reasons for more stable id -->
+                    <xsl:when test="./ancestor::reden_van_voorschrijven[probleem/probleem_naam[@code][not(@codeSystem=$oidHL7NullFlavor)]]">
+                        <xsl:variable name="patientRef" select="$patients[group-key = nf:getGroupingKeyPatient($adaPatient)]/f:entry/f:resource/f:Patient/f:id/@value" as="xs:string?"/>
+                        <xsl:value-of select="concat('redenvoorschrijven', $patientRef, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>

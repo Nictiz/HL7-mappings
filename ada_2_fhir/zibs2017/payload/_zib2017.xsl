@@ -112,25 +112,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:variable name="lab-specimens" as="element()*">
         <xsl:copy-of select="$labSpecimens"/>
     </xsl:variable>-->
-    <xsl:variable name="problems" as="element()*">
-        <!-- probleem in problem -->
-        <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
-            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <unieke-problem xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <reference-display xmlns="">
-                    <xsl:value-of select="(probleem_naam | problem_name)/(@displayName|@originalText)"/>
-                </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
-                    <xsl:with-param name="uuid" select="$uuid"/>
-                    <xsl:with-param name="searchMode">match</xsl:with-param>
-                </xsl:apply-templates>
-            </unieke-problem>
-        </xsl:for-each-group>
-    </xsl:variable>
 
     <xd:doc>
         <xd:desc>Helper template to create FHIR default reference using grouping key default, context should be ada element to reference</xd:desc>

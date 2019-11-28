@@ -28,61 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <code rootoid="{$oidGStandaardPRK}"/>
         <code rootoid="{$oidGStandaardZInummer}"/>
     </xsl:variable>
-    <!--   <xsl:variable name="patients-612" as="element()*">
-        <!-\- Patients -\->
-        <xsl:for-each-group select="//patient" group-by="nf:getGroupingKeyDefault(.)">
-            <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <unieke-patient xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <xsl:for-each select="current-group()[1]">
-                    <xsl:call-template name="patient-entry-612">
-                        <xsl:with-param name="uuid" select="$uuid"/>
-                    </xsl:call-template>
-                </xsl:for-each>
-            </unieke-patient>
-        </xsl:for-each-group>
-    </xsl:variable>
- -->
-    <!-- <xsl:variable name="organizations-612" as="element()*">
-        <!-\- Zorgaanbieders -\->
-        <xsl:for-each-group select="//zorgaanbieder[not(zorgaanbieder)]" group-by="concat(nf:ada-za-id(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@root, nf:ada-za-id(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)/@value)">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <unieke-zorgaanbieder xmlns="">
-                    <group-key xmlns="">
-                        <xsl:value-of select="current-grouping-key()"/>
-                    </group-key>
-                    <xsl:for-each select="current-group()[1]">
-                        <xsl:call-template name="organization-entry-612">
-                            <xsl:with-param name="uuid" select="$uuid"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </unieke-zorgaanbieder>
-            </xsl:for-each-group>
-        </xsl:for-each-group>
-    </xsl:variable>
-   -->
-    <!--<xsl:variable name="related-persons" as="element()*">
-        <!-\- related-persons -\->
-        <xsl:for-each-group select="//informant/persoon[.//@value]" group-by="nf:getGroupingKeyDefault(.)">
-            <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <unieke-persoon xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <xsl:for-each select="current-group()[1]">
-                    <xsl:call-template name="relatedpersonEntry">
-                        <xsl:with-param name="uuid" select="$uuid"/>
-                    </xsl:call-template>
-                </xsl:for-each>
-            </unieke-persoon>
-        </xsl:for-each-group>
-    </xsl:variable>-->
-
+   
     <xsl:variable name="products" as="element()*">
         <!-- Products -->
         <xsl:for-each-group select="//product" group-by="nf:getProductGroupingKey(./product_code)">
@@ -147,73 +93,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
-
-    <!--  <xsl:variable name="products-612" as="element()*">
-        <!-\- Products -\->
-        <xsl:for-each-group select="//product" group-by="nf:getProductGroupingKey(./product_code)">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <!-\- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -\->
-                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
-                <xsl:variable name="entryFullUrl">
-                    <xsl:choose>
-                        <xsl:when test="not($uuid) and $most-specific-product-code">
-                            <xsl:value-of select="nf:getUriFromAdaCode($most-specific-product-code)"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="nf:get-fhir-uuid(.)"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:variable name="fhirResourceId">
-                    <xsl:if test="$referById">
-                        <xsl:choose>
-                            <xsl:when test="$uuid">
-                                <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                            </xsl:when>
-                            <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
-                                <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>
-                            </xsl:when>
-                            <xsl:when test="./product_specificatie/product_naam/@value">
-                                <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <!-\- should not happen, but let's fall back on the grouping-key() -\->
-                                <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:if>
-                </xsl:variable>
-                <xsl:variable name="searchMode">include</xsl:variable>
-                <uniek-product xmlns="">
-                    <group-key>
-                        <xsl:value-of select="current-grouping-key()"/>
-                    </group-key>
-                    <reference-display>
-                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(organisatie_naam[1]//@value | organization_name[1]//@value, ' '))"/>
-                    </reference-display>
-                    
-                    <xsl:variable name="searchMode" as="xs:string">include</xsl:variable>
-                    <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$entryFullUrl}"/>
-                        <resource>
-                            <xsl:call-template name="zib-Product">
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="medication-id" select="$fhirResourceId"/>
-                                <xsl:with-param name="profile-uri">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:with-param>
-                            </xsl:call-template>
-                        </resource>
-                        <xsl:if test="string-length($searchMode) gt 0">
-                            <search>
-                                <mode value="{$searchMode}"/>
-                            </search>
-                        </xsl:if>
-                    </entry>
-                </uniek-product>
-            </xsl:for-each-group>
-        </xsl:for-each-group>
-    </xsl:variable>
- -->
     <xsl:variable name="locations" as="element()*">
         <!-- Locaties -->
         <xsl:for-each-group select="//afleverlocatie" group-by="nf:getGroupingKeyDefault(.)">
@@ -251,43 +130,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-locatie>
         </xsl:for-each-group>
     </xsl:variable>
-   <xsl:variable name="prescribe-reasons" as="element()*">
-        <!-- redenen -->
-        <xsl:for-each-group select="//reden_van_voorschrijven/probleem[.//@code]" group-by="nf:getGroupingKeyDefault(.)">
-            <!-- own copy of what could be $problems, but we want a stable logical id, and get a changing uuid from $problems -->
-            <unieke-reden xmlns="">
-                <group-key xmlns="">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </group-key>
-                <reference-display xmlns="">
-                    <xsl:value-of select="(probleem_naam | problem_name)/@displayName"/>
-                </reference-display>                
-                <xsl:for-each select="current-group()[1]">
-                    <xsl:variable name="searchMode" as="xs:string">include</xsl:variable>
-                    <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{nf:get-fhir-uuid(.)}"/>
-                        <resource>
-                            <xsl:apply-templates select="." mode="doZibProblem-2.1">
-                                <xsl:with-param name="logicalId">
-                                    <xsl:if test="$referById">
-                                        <xsl:variable name="ada-patient" select="./ancestor::*[ancestor::data]/patient"/>
-                                        <xsl:variable name="patientReference" select="nf:getFullUrlOrId('Patient', nf:getGroupingKeyPatient($ada-patient), true())"/>
-                                        <xsl:value-of select="concat('redenvanvoorschrijven', $patientReference, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
-                                    </xsl:if>
-                                </xsl:with-param>
-                            </xsl:apply-templates>
-                        </resource>
-                        <xsl:if test="string-length($searchMode) gt 0">
-                            <search>
-                                <mode value="{$searchMode}"/>
-                            </search>
-                        </xsl:if>
-                    </entry>
-                </xsl:for-each>
-            </unieke-reden>
-        </xsl:for-each-group>
-    </xsl:variable>
-
     <xsl:variable name="bouwstenen" as="element(f:entry)*">
         <xsl:variable name="searchMode" as="xs:string">match</xsl:variable>
 
@@ -2328,7 +2170,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="$body-observations"/>
                 </xsl:when>
                 <xsl:when test="$RESOURCETYPE = 'REDENVOORSCHRIJVEN'">
-                    <xsl:copy-of select="$prescribe-reasons"/>
+                    <xsl:copy-of select="$problems"/>
                 </xsl:when>
                 <xsl:when test="$RESOURCETYPE = 'RELATEDPERSON'">
                     <xsl:copy-of select="$relatedPersons"/>
