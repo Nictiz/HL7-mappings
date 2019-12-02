@@ -23,7 +23,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- dateT may be given for relative dates, only applicable for test instances -->
     <xsl:param name="dateT" as="xs:date?"/>
-     
+   
+    <xsl:variable name="bouwstenen-all-int-gegevens" as="element(f:entry)*">
+        <!-- allergie_intolerantie -->
+        <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">
+            <xsl:call-template name="allergyIntoleranceEntry">
+                <xsl:with-param name="adaPatient" select="../patient"/>
+                <xsl:with-param name="dateT" select="$dateT"/>
+                <xsl:with-param name="searchMode">match</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:variable>
+    
     <xsl:variable name="bouwstenen-all-int-vertaling" as="element(f:entry)*">
         <!-- allergie_intolerantie -->
         <xsl:for-each select="//(allergie_intolerantie | allergy_intolerance)">

@@ -1,0 +1,105 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="AI-01-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="AI_01_01"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="Medicijn"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24484000"/>
+               <display value="Ernstig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+         <code value="1112821"/>
+         <display value="PREDNISOLON CAPSULE 65MG FNA MR"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-Yong20"/>
+      <display value="Kendrick K. Ken XXX_Yong20"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -50}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/33333333301-002"/>
+            <display value="M. Boot || Allergoloog (gesloten register)"/>
+         </valueReference>
+      </extension>
+   </recorder>
+   <asserter>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/33333333301-002"/>
+            <display value="M. Boot || Allergoloog (gesloten register)"/>
+         </valueReference>
+      </extension>
+   </asserter>
+   <lastOccurrence value="${DATE, T, D, -50}T17:45:00+02:00"/>
+   <note>
+      <text value="Geldt alleen voor dit merk."/>
+   </note>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+            <code value="4170"/>
+            <display value="Prednisolon"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="23067006"/>
+            <display value="Toxische epidermale necrolyse"/>
+         </coding>
+      </manifestation>
+      <description value="Blaren op grote delen van de huid"/>
+      <onset value="${DATE, T, D, -50}T17:45:00+02:00"/>
+      <severity value="severe">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="24484000"/>
+                  <display value="Ernstig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
+</AllergyIntolerance>

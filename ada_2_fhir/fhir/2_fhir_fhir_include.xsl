@@ -307,7 +307,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <system value="{local:getUri($in/@codeSystem)}"/>
                 <code value="{$in/@code}"/>
                 <xsl:if test="$in/@displayName">
-                    <display value="{$in/@displayName}"/>
+                    <display value="{normalize-space($in/@displayName)}"/>
                 </xsl:if>
                 <xsl:if test="exists($userSelected)">
                     <userSelected value="{$userSelected}"/>
