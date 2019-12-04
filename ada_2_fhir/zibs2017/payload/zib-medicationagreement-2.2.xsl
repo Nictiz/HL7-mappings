@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Optional, but should be there. Patient this AllergyIntolerance is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.AllergyIntolerance.id</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.xxx.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
     <xsl:template name="MedicationAgreementEntry-2.2" match="medicatieafspraak | medication_agreement" as="element()" mode="doMedicationAgreementEntry-2.2">
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:if>
         </xsl:param>
-        <xsl:param name="searchMode">match</xsl:param>
+        <xsl:param name="searchMode">include</xsl:param>
 
         <entry>
             <fullUrl value="{$entryFullUrl}"/>
@@ -80,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template based on FHIR Profile https://simplifier.net/nictizstu3-zib2017/zib-medicationagreement </xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of a AllergyIntolerance resource</xd:param>
+        <xd:param name="in">Node to consider in the creation of a resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>

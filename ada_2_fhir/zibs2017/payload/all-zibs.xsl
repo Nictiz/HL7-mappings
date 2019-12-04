@@ -39,6 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="zib-LaboratoryTestResult-Observation-2.1.xsl"/>-->
     <!--<xsl:import href="zib-LaboratoryTestResult-Specimen-2.1.xsl"/>-->
     <xsl:import href="zib-medicationagreement-2.2.xsl"/>
+    <xsl:import href="zib-medicationuse-2.2.xsl"/>
     <xsl:import href="zib-problem-2.1.xsl"/>
     
     <!--<xsl:template match="/">
