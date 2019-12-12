@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/uuid.xsl"/>
 
@@ -331,7 +331,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="handleENtoNameInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-        <xsl:param name="schema" as="node()*"/>           
+        <xsl:param name="schema" as="node()*"/>
         <xsl:param name="schemaFragment" as="element()?"/>
         <xsl:param name="unstructurednameElement" as="xs:string?"/>
 
@@ -417,7 +417,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:element name="{$elemNameInformation}">
                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemNameInformation))"/>
                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                 <xsl:choose>
+                <xsl:choose>
                     <!-- Just @nullFlavor -->
                     <xsl:when test="@nullFlavor">
                         <xsl:copy-of select="@nullFlavor"/>
@@ -445,7 +445,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:choose>
                                 <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR'] and empty(hl7:family[tokenize(@qualifier, '\s') = 'SP'])">
                                     <xsl:element name="{$elemNameUsage}">
-                                        <xsl:attribute name="value">1</xsl:attribute>
                                         <xsl:attribute name="code">NL1</xsl:attribute>
                                         <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                                         <xsl:attribute name="displayName">Eigen geslachtsnaam</xsl:attribute>
@@ -453,15 +452,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:when>
                                 <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP'] and empty(hl7:family[not(tokenize(@qualifier, '\s') = 'SP')])">
                                     <xsl:element name="{$elemNameUsage}">
-                                        <xsl:attribute name="value">2</xsl:attribute>
-                                        <xsl:attribute name="code">NL2</xsl:attribute>
+                                         <xsl:attribute name="code">NL2</xsl:attribute>
                                         <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                                         <xsl:attribute name="displayName">Geslachtsnaam partner</xsl:attribute>
                                     </xsl:element>
                                 </xsl:when>
                                 <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'SP']/following-sibling::hl7:family[not(@qualifier) or tokenize(@qualifier, '\s') = 'BR']">
                                     <xsl:element name="{$elemNameUsage}">
-                                        <xsl:attribute name="value">3</xsl:attribute>
                                         <xsl:attribute name="code">NL3</xsl:attribute>
                                         <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                                         <xsl:attribute name="displayName">Geslachtsnaam partner gevolgd door eigen geslachtsnaam</xsl:attribute>
@@ -469,7 +466,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:when>
                                 <xsl:when test="hl7:family[tokenize(@qualifier, '\s') = 'BR']/following-sibling::hl7:family[tokenize(@qualifier, '\s') = 'SP']">
                                     <xsl:element name="{$elemNameUsage}">
-                                        <xsl:attribute name="value">4</xsl:attribute>
                                         <xsl:attribute name="code">NL4</xsl:attribute>
                                         <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                                         <xsl:attribute name="displayName">Eigen geslachtsnaam gevolgd door geslachtsnaam partner</xsl:attribute>
@@ -477,7 +473,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:element name="{$elemNameUsage}">
-                                        <xsl:attribute name="value">5</xsl:attribute>
                                         <xsl:attribute name="code">UNK</xsl:attribute>
                                         <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
                                         <xsl:attribute name="displayName">Unknown</xsl:attribute>
@@ -558,7 +553,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$elmLastName}">
                                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName))"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                          
+
                                 <xsl:if test="string-length($last_name_prefix) gt 0">
                                     <xsl:element name="{$elmLastNamePrefix}">
                                         <xsl:attribute name="value" select="$last_name_prefix"/>
@@ -577,7 +572,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:element name="{$elmLastNamePartner}">
                                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastNamePartner))"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                           
+
                                 <xsl:if test="string-length($last_name_partner_prefix) gt 0">
                                     <xsl:element name="{$elmLastNamePartnerPrefix}">
                                         <xsl:attribute name="value" select="$last_name_partner_prefix"/>
@@ -603,7 +598,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:element name="{$elmLastName}">
                             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmLastName))"/>
                             <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                      
+
                             <xsl:element name="{$elmLastNameLastName}">
                                 <xsl:attribute name="nullFlavor">NI</xsl:attribute>
 
@@ -628,7 +623,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="handleADtoAddressInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-        <xsl:param name="schema" as="node()*"/>           
+        <xsl:param name="schema" as="node()*"/>
         <xsl:param name="schemaFragment" as="element()?"/>
 
         <!-- Element names based on language -->
@@ -712,7 +707,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <xsl:when test=". = 'PST'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">PST</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Postal Addres</xsl:attribute>
@@ -720,7 +714,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test=". = 'HP'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">HP</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Primary Home</xsl:attribute>
@@ -728,7 +721,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test=". = 'PHYS'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">PHYS</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Visit Address</xsl:attribute>
@@ -736,7 +728,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test=". = 'TMP'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">TMP</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Tempory Address</xsl:attribute>
@@ -744,7 +735,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test="$theUse = 'WP'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">WP</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Work Place</xsl:attribute>
@@ -752,7 +742,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:when test=". = 'HV'">
                             <xsl:element name="{$elmAddressType}">
-                                <xsl:attribute name="value">1</xsl:attribute>
                                 <xsl:attribute name="code">HV</xsl:attribute>
                                 <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                 <xsl:attribute name="displayName">Vacation Home</xsl:attribute>
@@ -799,7 +788,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:element name="{$elmAddressInformation}">
                         <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmAddressInformation))"/>
                         <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                        
+
                         <xsl:if test="$street">
                             <xsl:element name="{$elmStreet}">
                                 <xsl:attribute name="value" select="$street"/>
@@ -907,9 +896,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="handleTELtoContactInformation">
         <xsl:param name="in" as="element()*" required="yes"/>
         <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-        <xsl:param name="schema" as="node()*"/>           
+        <xsl:param name="schema" as="node()*"/>
         <xsl:param name="schemaFragment" as="element()?"/>
-        
+
         <!-- Element names based on language -->
         <xsl:variable name="elmContactInformation">
             <xsl:choose>
@@ -967,12 +956,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:element name="{$elmContactInformation}">
                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmContactInformation))"/>
                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                
+
                 <xsl:if test="$telephoneNumbers">
                     <xsl:element name="{$elmTelephoneNumbers}">
                         <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelephoneNumbers))"/>
                         <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                        
+
                         <xsl:for-each select="$telephoneNumbers">
                             <xsl:variable name="theUse" select="tokenize(@use, '\s')"/>
                             <xsl:variable name="telecomType" as="element()?">
@@ -980,8 +969,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <!-- @use=MC or any of +316... +3106... 06... 6... are mobile numbers -->
                                     <xsl:when test="tokenize(@use, '\s') = 'MC' or matches(replace(normalize-space(@value), '[^\d]', ''), '^(31)?0?6')">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="value">3</xsl:attribute>
-                                            <xsl:attribute name="code">MC</xsl:attribute>
+                                             <xsl:attribute name="code">MC</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Mobiele telefoon</xsl:attribute>
                                             <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelecomType)))"/>
@@ -990,7 +978,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <!-- @use=PG is a pager -->
                                     <xsl:when test="tokenize(@use, '\s') = 'PG'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="value">4</xsl:attribute>
                                             <xsl:attribute name="code">PG</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Pager</xsl:attribute>
@@ -1000,7 +987,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <!-- @value starts with fax: is a fax (note that this RFC is obsolete so in practice this scheme should not occur) -->
                                     <xsl:when test="starts-with(@value, 'fax:')">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="value">2</xsl:attribute>
                                             <xsl:attribute name="code">FAX</xsl:attribute>
                                             <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
                                             <xsl:attribute name="displayName">Fax</xsl:attribute>
@@ -1017,8 +1003,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     -->
                                     <xsl:otherwise>
                                         <xsl:element name="{$elmTelecomType}">
-                                            <!--<xsl:attribute name="value">1</xsl:attribute>
-                                            <xsl:attribute name="code">LL</xsl:attribute>
+                                             <xsl:attribute name="code">LL</xsl:attribute>
                                             <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
                                             <xsl:attribute name="displayName">Landline</xsl:attribute>-->
                                             <xsl:attribute name="code">UNK</xsl:attribute>
@@ -1033,8 +1018,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:choose>
                                     <xsl:when test="$theUse = 'HP'">
                                         <xsl:element name="{$elmNumberType}">
-                                            <xsl:attribute name="value">1</xsl:attribute>
-                                            <xsl:attribute name="code">HP</xsl:attribute>
+                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
                                             <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmNumberType)))"/>
@@ -1042,7 +1026,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'TMP'">
                                         <xsl:element name="{$elmNumberType}">
-                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Temporary Address</xsl:attribute>
@@ -1051,7 +1034,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'WP'">
                                         <xsl:element name="{$elmNumberType}">
-                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Work place</xsl:attribute>
@@ -1084,7 +1066,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:choose>
                                     <xsl:when test="$theUse = 'HP'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
@@ -1093,7 +1074,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'WP'">
                                         <xsl:element name="{$elmTelecomType}">
-                                            <xsl:attribute name="value">1</xsl:attribute>
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Work place</xsl:attribute>
@@ -1113,7 +1093,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </xsl:element>
                 </xsl:if>
-                
+
             </xsl:element>
         </xsl:if>
     </xsl:template>
@@ -2280,6 +2260,110 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>-->
 
     <xd:doc>
+        <xd:desc>CDArecordTargetSDTC</xd:desc>
+        <xd:param name="in">hl7 patient to be converted</xd:param>
+        <xd:param name="language">optional, defaults to nl-NL</xd:param>
+        <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
+        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for parent of patient</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180601000000" match="hl7:patient | hl7:patientRole">
+        <xsl:param name="in" as="node()?" select="."/>
+        <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
+        <xsl:param name="schema" as="node()*"/>
+        <xsl:param name="schemaFragment" as="element()?"/>
+        <xsl:variable name="current-patient" select="$in"/>
+
+        <!-- Element names based on language -->
+        <xsl:variable name="elmPatient">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">patient</xsl:when>
+                <xsl:otherwise>patient</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmId">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">patient-identification-number</xsl:when>
+                <xsl:otherwise>identificatienummer</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmBirthdat">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">date-of-birth</xsl:when>
+                <xsl:otherwise>geboortedatum</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmGender">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">gender</xsl:when>
+                <xsl:otherwise>geslacht</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmMultipleBirthInd">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">multiple_birth_indicator</xsl:when>
+                <xsl:otherwise>meerling_indicator</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <!-- ada output for patient -->
+        <xsl:element name="{$elmPatient}">
+            <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+            <!--            <xsl:attribute name="id" select="generate-id(.)"/>-->
+
+            <!-- naamgegevens -->
+            <xsl:for-each select="$current-patient/(hl7:Person | hl7:patient)/hl7:name">
+                <xsl:call-template name="handleENtoNameInformation">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="language" select="$language"/>
+                    <xsl:with-param name="schema" select="$schema"/>
+                    <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
+                </xsl:call-template>
+            </xsl:for-each>
+
+            <!-- adresgegevens -->
+            <xsl:for-each select="$current-patient/hl7:addr">
+                <xsl:call-template name="handleADtoAddressInformation">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="language" select="$language"/>
+                    <xsl:with-param name="schema" select="$schema"/>
+                    <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'naamgegevens'))"/>
+                </xsl:call-template>
+            </xsl:for-each>
+
+            <!-- contactgegevens -->
+
+            <!-- identificatienummer -->
+            <xsl:call-template name="handleII">
+                <xsl:with-param name="in" select="$current-patient/hl7:id"/>
+                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmId)))"/>
+                <xsl:with-param name="elemName" select="$elmId"/>
+            </xsl:call-template>
+
+            <!-- geboortedatum -->
+            <xsl:call-template name="handleTS">
+                <xsl:with-param name="in" select="$current-patient/(hl7:Person | hl7:patient)/hl7:birthTime"/>
+                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmBirthdat)))"/>
+                <xsl:with-param name="elemName" select="$elmBirthdat"/>
+            </xsl:call-template>
+
+            <!-- geslacht -->
+            <xsl:call-template name="handleCV">
+                <xsl:with-param name="in" select="$current-patient/(hl7:Person | hl7:patient)/hl7:administrativeGenderCode"/>
+                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmGender)))"/>
+                <xsl:with-param name="elemName" select="$elmGender"/>
+            </xsl:call-template>
+
+            <!-- meerlingindicator -->
+            <xsl:call-template name="handleBL">
+                <xsl:with-param name="in" select="$current-patient/(hl7:Person | hl7:patient)/(hl7:multipleBirthInd | sdtc:multipleBirthInd)"/>
+                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmMultipleBirthInd)))"/>
+                <xsl:with-param name="elemName" select="$elmMultipleBirthInd"/>
+            </xsl:call-template>
+        </xsl:element>
+    </xsl:template>
+
+
+    <xd:doc>
         <xd:desc> CDArecordTargetSDTC-NL-BSN-Minimal </xd:desc>
         <xd:param name="in"/>
         <xd:param name="elementName"/>
@@ -2376,6 +2460,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:element>
     </xsl:template>
+
+
 
     <xd:doc>
         <xd:desc>Returns an XML comment on the output that marks that the output is generated content, and shows what instance (element name + hl7:id or hl7:code or hl7:templateId) it came from</xd:desc>
