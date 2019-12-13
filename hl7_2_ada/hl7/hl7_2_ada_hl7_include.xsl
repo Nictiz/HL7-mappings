@@ -429,16 +429,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="*">
                         <xsl:variable name="firstNames" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'BR' or not(@qualifier)], ' '))"/>
                         <xsl:variable name="givenName" select="normalize-space(string-join(hl7:given[tokenize(@qualifier, '\s') = 'CL'], ' '))"/>
-                        <!-- in HL7 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
+                        <!-- in HL7v3 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
+                        <!-- https://hl7.nl/wiki/index.php?title=DatatypesR1:PN -->
                         <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier toevoegen van de officiële voornamen -->
+                        <!-- "Esther F.A." maar ook "Esther F A" of "F A Esther" wordt 
+                             E.F.A. -->
+                        <!-- Als de HL7v3 instance niet correct is gevuld en de voornaam ook in de initialen staat, komt op deze manier onterecht tweemaal 
+                            dezelfde initiaal door. Als de HL7v3 instance wel goed is gevuld en we vullen de voornaam-initiaal niet aan, dan raken we deze 
+                            juist kwijt. Je kunt je voorstellen dat we kijken of de voornaam-initiaal al voorkomt en hem dan niet toevoegen, maar dan zou 
+                            Martha M(aria) niet goed gaan. 
+                            We zijn dus sterk afhankelijk van de kwaliteit van implementaties. -->
                         <xsl:variable name="initials">
-                            <xsl:for-each select="./hl7:given[tokenize(@qualifier, '\s') = 'IN']">
-                                <xsl:value-of select="./text()"/>
+                            <xsl:for-each select="./hl7:given[not(tokenize(@qualifier, '\s') = 'IN')][tokenize(@qualifier, '\s') = 'BR']/tokenize(normalize-space(replace(., '\.', ' ')), '\s')">
+                                <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
                             </xsl:for-each>
-                            <xsl:for-each select="./hl7:given[contains(@qualifier, 'BR') or not(@qualifier)]">
-                                <xsl:for-each select="tokenize(normalize-space(.), '\s')">
-                                    <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
-                                </xsl:for-each>
+                            <xsl:for-each select="./hl7:given[tokenize(@qualifier, '\s') = 'IN']/tokenize(normalize-space(replace(., '\.', ' ')), '\s')">
+                                <xsl:value-of select="concat(., '.')"/>
                             </xsl:for-each>
                         </xsl:variable>
                         <xsl:variable name="nameUsage">
@@ -541,9 +547,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmGivenName)))"/>
                             </xsl:element>
                         </xsl:if>
-                        <xsl:if test="string-length($initials) gt 0">
+                        <xsl:if test="not(empty($initials))">
                             <xsl:element name="{$elmInitials}">
-                                <xsl:attribute name="value" select="$initials"/>
+                                <xsl:attribute name="value" select="string-join($initials, '')"/>
 
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmInitials)))"/>
                             </xsl:element>
