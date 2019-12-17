@@ -12,113 +12,100 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
-    <!--<xsl:include href="../hl7/hl7_include.xsl"/>-->
-
-    <!-- Function addEnding is already defined in zib1bbr.xsl. If that source is not included in the project, uncomment this block.   
-    <!-\- addEnding checks baseString if it ends in endString, and if not adds it at the end. -\->
-    <xsl:function name="nf:addEnding">
-        <xsl:param name="baseString"/>
-        <xsl:param name="endString"/>
-        
-        <xsl:choose>
-            <xsl:when test="substring($baseString, string-length($baseString)-string-length($endString)+1, string-length($endString)) eq $endString">
-                <xsl:value-of select="$baseString"/>                    
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="concat($baseString, $endString)"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>-->
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
+    <!-- Function addEnding is already defined in 2_hl7_hl7_include.xsl. If that source is not included in the project, uncomment this import.   -->
+<!--     <xsl:import href="../hl7/2_hl7_hl7_include.xsl"/>-->
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000" match="naamgegevens" mode="Template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
         <!-- name person NL - generic -->
         <xsl:param name="naamgegevens" select="."/>
-        <xsl:for-each select="$naamgegevens">
+        <xsl:for-each select="$naamgegevens[.//(@value | @code | @nullFlavor)]">
             <name>
+                <xsl:for-each select="ongestructureerde_naam[@value]">
+                    <xsl:value-of select="@value"/>
+                </xsl:for-each>
                 <xsl:for-each select="./voornamen[@value]">
                     <given qualifier="BR">
-                        <xsl:value-of select="./@value"/>
+                        <xsl:value-of select="@value"/>
                     </given>
                 </xsl:for-each>
-                <xsl:for-each select="./initialen[@value]">
+                <xsl:for-each select="initialen[@value]">
                     <given qualifier="IN">
-                        <xsl:value-of select="nf:addEnding(./@value, '.')"/>
+                        <xsl:value-of select="nf:addEnding(@value, '.')"/>
                     </given>
                 </xsl:for-each>
-                <xsl:for-each select="./roepnaam[@value]">
+                <xsl:for-each select="roepnaam[@value]">
                     <given qualifier="CL">
-                        <xsl:value-of select="./@value"/>
+                        <xsl:value-of select="@value"/>
                     </given>
                 </xsl:for-each>
-
                 <xsl:choose>
-                    <xsl:when test="./naamgebruik/@code = 'NL1'">
+                    <xsl:when test="naamgebruik/@code = 'NL1'">
                         <!-- Eigen geslachtsnaam -->
-                        <xsl:for-each select="./geslachtsnaam/voorvoegsels[@value]">
+                        <xsl:for-each select="geslachtsnaam/voorvoegsels[@value]">
                             <prefix qualifier="VV">
                                 <xsl:value-of select="./@value"/>
                             </prefix>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam/achternaam[@value]">
+                        <xsl:for-each select="geslachtsnaam/achternaam[@value]">
                             <family qualifier="BR">
                                 <xsl:value-of select="./@value"/>
                             </family>
                         </xsl:for-each>
                     </xsl:when>
-                    <xsl:when test="./naamgebruik/@code = 'NL2'">
+                    <xsl:when test="naamgebruik/@code = 'NL2'">
                         <!-- 	Geslachtsnaam partner -->
                         <xsl:for-each select="./geslachtsnaam_partner/voorvoegsels_partner[@value]">
                             <prefix qualifier="VV">
                                 <xsl:value-of select="./@value"/>
                             </prefix>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam_partner/achternaam_partner[@value]">
+                        <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[@value]">
                             <family qualifier="SP">
                                 <xsl:value-of select="./@value"/>
                             </family>
                         </xsl:for-each>
                     </xsl:when>
-                    <xsl:when test="./naamgebruik/@code = 'NL3'">
+                    <xsl:when test="naamgebruik/@code = 'NL3'">
                         <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
-                        <xsl:for-each select="./geslachtsnaam_partner/voorvoegsels_partner[@value]">
+                        <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[@value]">
                             <prefix qualifier="VV">
                                 <xsl:value-of select="./@value"/>
                             </prefix>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam_partner/achternaam_partner[@value]">
+                        <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[@value]">
                             <family qualifier="SP">
                                 <xsl:value-of select="./@value"/>
                             </family>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam/voorvoegsels[@value]">
+                        <xsl:for-each select="geslachtsnaam/voorvoegsels[@value]">
                             <prefix qualifier="VV">
                                 <xsl:value-of select="./@value"/>
                             </prefix>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam/achternaam[@value]">
+                        <xsl:for-each select="geslachtsnaam/achternaam[@value]">
                             <family qualifier="BR">
                                 <xsl:value-of select="./@value"/>
                             </family>
                         </xsl:for-each>
                     </xsl:when>
-                    <xsl:when test="./naamgebruik/@code = 'NL4'">
+                    <xsl:when test="naamgebruik/@code = 'NL4'">
                         <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
-                        <xsl:for-each select="./geslachtsnaam/voorvoegsels[@value]">
+                        <xsl:for-each select="geslachtsnaam/voorvoegsels[@value]">
                             <prefix qualifier="VV">
                                 <xsl:value-of select="./@value"/>
                             </prefix>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam/achternaam[@value]">
+                        <xsl:for-each select="geslachtsnaam/achternaam[@value]">
                             <family qualifier="BR">
                                 <xsl:value-of select="./@value"/>
                             </family>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam_partner/voorvoegsels_partner[@value]">
+                        <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[@value]">
                             <prefix qualifier="VV">
                                 <xsl:value-of select="./@value"/>
                             </prefix>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam_partner/achternaam_partner[@value]">
+                        <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[@value]">
                             <family qualifier="SP">
                                 <xsl:value-of select="./@value"/>
                             </family>
@@ -126,12 +113,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- we nemen aan NL1 - alleen de eigen naam -->
-                        <xsl:for-each select="./geslachtsnaam/voorvoegsels[@value]">
+                        <xsl:for-each select="geslachtsnaam/voorvoegsels[@value]">
                             <prefix qualifier="VV">
                                 <xsl:value-of select="./@value"/>
                             </prefix>
                         </xsl:for-each>
-                        <xsl:for-each select="./geslachtsnaam/achternaam[@value]">
+                        <xsl:for-each select="geslachtsnaam/achternaam[@value]">
                             <family qualifier="BR">
                                 <xsl:value-of select="./@value"/>
                             </family>
@@ -143,7 +130,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- suffix (nog) niet in gebruik -->
         <!-- validTime (nog) niet in gebruik -->
     </xsl:template>
-
     <!-- Template verouderd: vervangen door ZIB template 2.16.840.1.113883.2.4.3.11.60.3.10.1.101 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.2_20141106000000">
         <!--Adres-->
@@ -204,5 +190,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </addr>
         </xsl:for-each>
     </xsl:template>
-
 </xsl:stylesheet>
