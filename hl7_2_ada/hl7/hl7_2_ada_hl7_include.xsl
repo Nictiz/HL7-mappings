@@ -439,7 +439,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             juist kwijt. Je kunt je voorstellen dat we kijken of de voornaam-initiaal al voorkomt en hem dan niet toevoegen, maar dan zou 
                             Martha M(aria) niet goed gaan. 
                             We zijn dus sterk afhankelijk van de kwaliteit van implementaties. -->
-                        <xsl:variable name="initials">
+                        <xsl:variable name="initials" as="xs:string*">
                             <xsl:for-each select="./hl7:given[not(tokenize(@qualifier, '\s') = 'IN')][tokenize(@qualifier, '\s') = 'BR']/tokenize(normalize-space(replace(., '\.', ' ')), '\s')">
                                 <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
                             </xsl:for-each>
@@ -975,7 +975,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <!-- @use=MC or any of +316... +3106... 06... 6... are mobile numbers -->
                                     <xsl:when test="tokenize(@use, '\s') = 'MC' or matches(replace(normalize-space(@value), '[^\d]', ''), '^(31)?0?6')">
                                         <xsl:element name="{$elmTelecomType}">
-                                             <xsl:attribute name="code">MC</xsl:attribute>
+                                            <xsl:attribute name="code">MC</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Mobiele telefoon</xsl:attribute>
                                             <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelecomType)))"/>
@@ -1009,7 +1009,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     -->
                                     <xsl:otherwise>
                                         <xsl:element name="{$elmTelecomType}">
-                                             <xsl:attribute name="code">LL</xsl:attribute>
+                                            <!--<xsl:attribute name="code">LL</xsl:attribute>
                                             <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:attribute>
                                             <xsl:attribute name="displayName">Landline</xsl:attribute>-->
                                             <xsl:attribute name="code">UNK</xsl:attribute>
@@ -1024,7 +1024,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:choose>
                                     <xsl:when test="$theUse = 'HP'">
                                         <xsl:element name="{$elmNumberType}">
-                                             <xsl:attribute name="code">HP</xsl:attribute>
+                                            <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
                                             <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmNumberType)))"/>
@@ -1053,12 +1053,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:attribute name="value" select="@value"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmTelephoneNumber)))"/>
                             </xsl:element>
-                            <xsl:if test="$telecomType">
-                                <xsl:copy-of select="$telecomType"/>
-                            </xsl:if>
-                            <xsl:if test="$numberType">
-                                <xsl:copy-of select="$numberType"/>
-                            </xsl:if>
+                            <xsl:copy-of select="$telecomType"/>
+                            <xsl:copy-of select="$numberType"/>
                         </xsl:for-each>
                     </xsl:element>
                 </xsl:if>
