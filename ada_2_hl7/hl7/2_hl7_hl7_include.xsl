@@ -619,7 +619,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <!-- extension + root ... the regular case -->
                 <xsl:when test="string-length($root) gt 0 and string-length(@value) gt 0">
-                    <xsl:attribute name="extension" select="@value"/>
+                    <xsl:attribute name="extension">
+                        <xsl:choose>
+                            <!-- https://bits.nictiz.nl/browse/MM-831 -->
+                            <!-- HL7v3 II.NL.BSN http://hl7.nl/wiki/index.php?title=Implementatiehandleiding_HL7v3_basiscomponenten_v2.3_Rev2#Identificatiesystemen_OID_Referentietabel 
+                                says to add a leading zero on 8-digit-BSNs in the datatype -->
+                            <xsl:when test="$root = $oidBurgerservicenummer and matches(@value, '^\d{8}$')">
+                                <xsl:value-of select="concat('0', @value)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@value"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
                     <xsl:attribute name="root" select="$root"/>
                 </xsl:when>
                 <!-- extension + nullFlavor=UNC. Extension MAY NOT appear on its own unless with nullFlavor=UNC -->
