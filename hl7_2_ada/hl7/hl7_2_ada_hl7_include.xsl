@@ -452,10 +452,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             Martha M(aria) niet goed gaan. 
                             We zijn dus sterk afhankelijk van de kwaliteit van implementaties. -->
                         <xsl:variable name="initials" as="xs:string*">
-                            <xsl:for-each select="./hl7:given[not(tokenize(@qualifier, '\s') = 'IN')][tokenize(@qualifier, '\s') = 'BR']/tokenize(normalize-space(replace(., '\.', ' ')), '\s')">
+                            <xsl:for-each select="hl7:given[not(tokenize(@qualifier, '\s') = 'IN')][tokenize(@qualifier, '\s') = 'BR']/tokenize(normalize-space(replace(., '\.', ' ')), '\s')">
                                         <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
                                     </xsl:for-each>
-                            <xsl:for-each select="./hl7:given[tokenize(@qualifier, '\s') = 'IN']/tokenize(normalize-space(replace(., '\.', ' ')), '\s')">
+                            <xsl:for-each select="hl7:given[tokenize(@qualifier, '\s') = 'IN']/tokenize(normalize-space(replace(., '\.', ' ')), '\s')">
                                 <xsl:value-of select="concat(., '.')"/>
                                 </xsl:for-each>
                             </xsl:variable>
@@ -508,24 +508,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:if test="hl7:prefix">
                                 <xsl:choose>
                                     <!-- prefix of type VV and BR, don't look any further -->
+                                    <!-- no normalize space to preserve spaces behind prefixes -->
                                     <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'BR']">
-                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'BR'], ''))"/>
+                                        <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'BR'], '')"/>
                                     </xsl:when>
                                     <!-- prefix of type VV and no family with qualifier, assume BR for both -->
                                     <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)]">
-                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)], ''))"/>
+                                        <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][not(hl7:family/@qualifier)], '')"/>
                                     </xsl:when>
                                     <!-- prefix of type VV and first following sibling family with qualifier BR, assume BR for both -->
                                     <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']]">
-                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], ''))"/>
+                                        <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], '')"/>
                                     </xsl:when>
                                     <!-- prefix without qualifier and no family with qualifier, assume BR for both -->
                                     <xsl:when test="hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)]">
-                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)], ''))"/>
+                                        <xsl:value-of select="string-join(hl7:prefix[not(@qualifier)][not(hl7:family/@qualifier)], '')"/>
                                     </xsl:when>
                                     <!-- prefix without qualifier and first following sibling family with qualifier BR, assume BR for both -->
                                     <xsl:when test="hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']]">
-                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], ''))"/>
+                                        <xsl:value-of select="string-join(hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'BR']], '')"/>
                                     </xsl:when>
                                 </xsl:choose>
                             </xsl:if>
@@ -536,15 +537,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:choose>
                                     <!-- prefix of type VV and BR, don't look any further -->
                                     <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'SP']">
-                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'SP'], ''))"/>
+                                        <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][tokenize(@qualifier, '\s') = 'SP'], '')"/>
                                     </xsl:when>
                                     <!-- prefix of type VV and first following sibling family with qualifier SP, assume SP for both -->
                                     <xsl:when test="hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']]">
-                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']], ''))"/>
+                                        <xsl:value-of select="string-join(hl7:prefix[tokenize(@qualifier, '\s') = 'VV'][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']], '')"/>
                                     </xsl:when>
                                     <!-- prefix without qualifier and first following sibling family with qualifier SP, assume SP for both -->
                                     <xsl:when test="hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']]">
-                                        <xsl:value-of select="normalize-space(string-join(hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']], ''))"/>
+                                        <xsl:value-of select="string-join(hl7:prefix[not(@qualifier)][following-sibling::hl7:family[1][tokenize(@qualifier, '\s') = 'SP']], '')"/>
                                     </xsl:when>
                                 </xsl:choose>
                             </xsl:if>
