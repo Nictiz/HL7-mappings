@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- meerlingindicator -->
         <xsl:for-each select="meerling_indicator[@value | @nullFlavor]">
             <xsl:call-template name="makeBLValue">
-                <xsl:with-param name="elemName">multipleBirthInd</xsl:with-param>
+                <xsl:with-param name="elemName">sdtc:multipleBirthInd</xsl:with-param>
                 <xsl:with-param name="elemNamespace">urn:hl7-org:sdtc</xsl:with-param>
                 <xsl:with-param name="xsiType"/>
             </xsl:call-template>
