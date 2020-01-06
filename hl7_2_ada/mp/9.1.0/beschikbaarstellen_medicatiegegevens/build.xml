@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="convert_hl7v3_2_ada" name="hl7v3_2_ada_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property name="project.title" value="HL7v3 to ADA for Medicatieproces 9.0.6"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.prefix" value="medicatieproces_9.0.6"/>
+    <property name="project.description" value="Contains all relevant materials to convert valid HL7v3 instances for Medicatieproces building blocks to valid ADA instances"/>
+    <property name="project.author" value="Nictiz"/>
+    <property name="project.website" value="http://www.nictiz.nl/"/>
+    <property name="project.status" value="beta"/>
+    <property name="project.license" value="GNU-LGPL"/>
+    <property name="project.copyright" value="true"/>
+    
+    <!--<target name="xar">
+        <mkdir dir="${build.dir}"/>
+        <copy file="expath-pkg.xml.tmpl" tofile="expath-pkg.xml" filtering="true" overwrite="true">
+            <filterset>
+                <filter token="project.title" value="${project.title}"/>
+                <filter token="project.version" value="${project.version}"/>
+                <filter token="project.abbrev" value="${project.abbrev}"/>
+                <filter token="project.uri" value="${project.uri}"/>
+            </filterset>
+        </copy>
+        <copy file="repo.xml.tmpl" tofile="repo.xml" filtering="true" overwrite="true">
+            <filterset>
+                <filter token="project.version" value="${project.version}"/>
+                
+                <filter token="project.description" value="${project.description}"/>
+                <filter token="project.author" value="${project.author}"/>
+                <filter token="project.website" value="${project.website}"/>
+                <filter token="project.status" value="${project.status}"/>
+                <filter token="project.license" value="${project.license}"/>
+                <filter token="project.copyright" value="${project.copyright}"/>
+                <filter token="repo.type" value="${repo.type}"/>
+                <filter token="repo.target" value="${repo.target}"/>
+                <filter token="repo.prepare.script" value="${repo.prepare.script}"/>
+                <filter token="repo.finish.script" value="${repo.finish.script}"/>
+                <filter token="project.uri.releasenotes" value="${project.uri.releasenotes}"/>
+            </filterset>
+        </copy>
+        <zip basedir="." destfile="${build.dir}/${project.abbrev}-${project.version}.xar" excludes="${build.dir}/* schemas/** schemas_codeGen/** schemas_codeGen_LSP/** schematron/** schematron_closed_warnings/** tools_internal/** expath-pkg.xml.tmpl repo.xml.tmpl build.xml"/>
+    </target>-->
+    
+    <target name="convert_hl7v3_2_ada">
+        <property name="xsl.saxon" value="/Users/ahenket/Development/lib/SaxonPE9-7-0-20J/saxon9pe.jar"/>
+        
+        <property name="xsl_medicatiegegevens" value="payload/beschikbaarstellen_medicatiegegevens_9.0.6_2_ada.xsl"/>
+        
+        <property name="xsl.input" value="hl7_instance"/>
+        <property name="xsl.output" value="ada_instance"/>
+        
+        <echo>Deleting previous results, if any</echo>
+        <delete dir="${xsl.output}"/>
+        
+        <sequential>
+            <fileset id="inputfilesMedicatiegegevens" dir="${xsl.input}" includes="*.xml"/>
+            
+            <echo>HL7v3_2_ADA ${xsl_medicatiegegevens}</echo>
+            <xslt force="true" style="${xsl_medicatiegegevens}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="inputfilesMedicatiegegevens"/>
+                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+    </target>
+    
+    <!--<target name="publish" depends="sch2svrl">
+        <zip basedir="." destfile="../${project.prefix}-xml-${project.date}.zip" includes="coreschemas/** css/** schemas/** schemas_codeGen/** schemas_codeGen_LSP/** schematron/** schematron_svrl/** vocab/** wsdl/** xml/** index.html"/>
+    </target>-->
+</project>
