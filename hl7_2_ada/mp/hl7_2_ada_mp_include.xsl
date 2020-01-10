@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
-    <xsl:param name="schema" select="document('9.1.0\beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
+    <xsl:param name="schema" select="document('9.1.0/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
 
 
     <xsl:variable name="transaction-name">beschikbaarstellen_medicatiegegevens</xsl:variable>

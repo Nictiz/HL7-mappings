@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'medicamenteuze_behandeling'))"/>
 
-    <xsl:variable name="templateId-medicatieafspraak">2.16.840.1.113883.2.4.3.11.60.20.77.10.9275</xsl:variable>
+    <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235'"/>
     <xsl:variable name="templateId-verstrekkingsverzoek" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9301', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9257'"/>
     <xsl:variable name="templateId-toedieningsafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9299', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9259'"/>
     <xsl:variable name="templateId-verstrekking" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9294', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9255'"/>
@@ -63,8 +63,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doGeneratedComment"/>
                     <xsl:variable name="patient" select="hl7:recordTarget/hl7:patientRole"/>
                     <beschikbaarstellen_medicatiegegevens app="mp-mp910" shortName="beschikbaarstellen_medicatiegegevens" formName="uitwisselen_medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" prefix="mp-" language="nl-NL" title="Generated" id="TODO">
-                        <xsl:variable name="filename" select="tokenize(document-uri(/),'/')[last()]"/>
-                        <xsl:variable name="extension" select="tokenize($filename,'\.')[last()]"/>
+                        <xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/>
+                        <xsl:variable name="extension" select="tokenize($filename, '\.')[last()]"/>
                         <xsl:variable name="theId" select="replace($filename, concat('.', $extension, '$'), '')"/>
                         <xsl:attribute name="title" select="$theId"/>
                         <xsl:attribute name="id" select="$theId"/>
@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'patient'))"/>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <xsl:variable name="component" select=".//*[hl7:templateId/@root = ($templateId-medicatieafspraak , $templateId-verstrekkingsverzoek , $templateId-toedieningsafspraak, $templateId-verstrekking, $templateId-medicatiegebruik)]"/>
+                        <xsl:variable name="component" select=".//*[hl7:templateId/@root = ($templateId-medicatieafspraak, $templateId-verstrekkingsverzoek, $templateId-toedieningsafspraak, $templateId-verstrekking, $templateId-medicatiegebruik)]"/>
                         <xsl:for-each-group select="$component" group-by="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id/concat(@root, @extension)">
                             <!-- medicamenteuze_behandeling -->
                             <medicamenteuze_behandeling conceptId="{$schemaFragment/xs:attribute[@name='conceptId']/@fixed}">
