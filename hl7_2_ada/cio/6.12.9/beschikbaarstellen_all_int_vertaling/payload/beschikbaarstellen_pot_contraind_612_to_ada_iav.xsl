@@ -66,7 +66,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <data>
                     <xsl:for-each select="$transactionResult/beschikbaarstellen_allergie_intolerantie_vertaling">
                         <xsl:copy>
+                            <!-- patient is first element in dataset, output the HCIM first -->
+                            <xsl:apply-templates select="patient" mode="adaOutputHcim"/>
                             <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
+                            <!-- output other HCIMs in the correct order -->
                             <!-- output healthprofessionals -->
                             <xsl:apply-templates select="
                                     //zibroot/informatiebron//zorgverlener[not(zorgverlener)][@id]
@@ -103,34 +106,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Other Conditions than intolerances are not part of this transaction and thus ignored  -->
 
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Do not copy elements with id, they follow later, exception for patient, first element in the transaction</xd:desc>
-    </xd:doc>
-    <xsl:template match="*[not(local-name() = $elmPatient)][@id]" mode="adaOutput">
-        <!-- this is the actual ada hcim do nothing here -->
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Copy template with specific mode adaOutputHcim, to output the Hcim's being referred to at the correct place in the transaction</xd:desc>
-    </xd:doc>
-    <xsl:template match="*[@id]" mode="adaOutputHcim">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
-        </xsl:copy>
-    </xsl:template>
-
-
-    <xd:doc>
-        <xd:desc>Copy template with specific mode adaOutput, to output the actual ada xml</xd:desc>
-    </xd:doc>
-    <xsl:template match="@* | node()" mode="adaOutput">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
-        </xsl:copy>
-    </xsl:template>
-
-
-
 
 </xsl:stylesheet>

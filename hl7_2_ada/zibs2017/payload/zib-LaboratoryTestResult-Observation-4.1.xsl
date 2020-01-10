@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="_zib2017.xsl"/>-->
+    <xsl:import href="_zib2017.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -26,9 +26,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping of HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.7.10.31 to zib nl.zorg.LaboratoriumUitslag 4.1 concept in ADA. 
                  Created for Ketenzorg / MP voorschrift, currently only supports fields used in those scenario's</xd:desc>
         <xd:param name="in">HL7 Node to consider in the creation of the ada element</xd:param>
+        <xd:param name="zibroot">The ada zibroot element to be outputted with this HCIM, will be copied in laboratory_test</xd:param>
     </xd:doc>
     <xsl:template name="zib-LaboratoryTestResult-Observation-4.1" match="hl7:observation" as="element()*" mode="doZibLaboratoryResultObservation-4.1">
         <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="zibroot" as="element()?"/>
 
         <!-- laboratory_test_result -->
         <xsl:variable name="elemName">
@@ -54,10 +56,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:element name="{$elemName}">
                     <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
 
-                    <!-- zibroot stuff -->
-                    <xsl:call-template name="HL7element2Zibroot">
-                        <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
-                    </xsl:call-template>
+                    <!-- zibroot -->
+                    <xsl:copy-of select="$zibroot"/>
 
                     <!-- test_code -->
                     <xsl:variable name="elemName">

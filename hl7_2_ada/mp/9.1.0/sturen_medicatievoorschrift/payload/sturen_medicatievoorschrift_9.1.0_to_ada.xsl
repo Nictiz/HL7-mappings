@@ -12,10 +12,10 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
-    
+
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- Dit is een conversie van MP 9.1.0 naar ADA 9.0 voorschrift bericht -->
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
     <xsl:variable name="templateId-lichaamsgewicht" select="'2.16.840.1.113883.2.4.3.11.60.7.10.28', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123'"/>
     <xsl:variable name="templateId-lichaamslengte" select="'2.16.840.1.113883.2.4.3.11.60.7.10.30', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9122'"/>
-    <xsl:variable name="templateId-labuitslag" select="'2.16.840.1.113883.2.4.3.11.60.7.10.31'"/>   
+    <xsl:variable name="templateId-labuitslag" select="'2.16.840.1.113883.2.4.3.11.60.7.10.31'"/>
 
 
     <!-- if this xslt is used stand alone the template below could be used. -->
@@ -39,6 +39,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Create adaxml for transaction voorschrift</xd:desc>
+        <xd:param name="patient">HL7 patient</xd:param>
+        <xd:param name="xsd-mbh">schemaFragment for MBH</xd:param>
+    </xd:doc>
     <xsl:template name="Voorschrift-90-ADA">
         <xsl:param name="patient" select="//hl7:recordTarget/hl7:patientRole"/>
         <xsl:param name="xsd-mbh" select="$schemaFragment"/>
@@ -112,12 +117,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!-- labuitslag -->
                     <xsl:for-each select="//*[hl7:templateId/@root = $templateId-labuitslag]">
-                        <xsl:call-template name="zib-LaboratoryTestResult-Observation-4.1"/>
-                        
-                       
+                        <xsl:variable name="zibroot" as="element()?">
+                            <xsl:call-template name="HL7element2Zibroot4Lab"/>
+                        </xsl:variable>
+                        <xsl:call-template name="zib-LaboratoryTestResult-Observation-4.1">
+                            <xsl:with-param name="zibroot" select="$zibroot"/>
+                        </xsl:call-template>
+
+
                     </xsl:for-each>
                 </sturen_medicatievoorschrift>
             </data>
         </adaxml>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Handle HL7 stuff to create an ada zibRoot HCIM</xd:desc>
+        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada parent of zibroot</xd:param>
+    </xd:doc>
+    <xsl:template name="HL7element2Zibroot4Lab" match="hl7:*" mode="HL7element2Zibroot4Lab">
+        <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
+
+        <!-- multi language support for ada element names -->
+        <xsl:variable name="elmZibroot">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">hcimroot</xsl:when>
+                <xsl:otherwise>zibroot</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="elmZibrootIdentification">
+            <xsl:choose>
+                <xsl:when test="$language = 'en-US'">identification_number</xsl:when>
+                <xsl:otherwise>identificatienummer</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:element name="{$elmZibroot}">
+            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibroot))"/>
+            <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+
+            <!-- identification number -->
+            <xsl:for-each select="hl7:id">
+                <xsl:call-template name="handleII">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootIdentification)))"/>
+                    <xsl:with-param name="elemName" select="$elmZibrootIdentification"/>
+                </xsl:call-template>
+            </xsl:for-each>
+
+        </xsl:element>
+    </xsl:template>
+
+
 </xsl:stylesheet>
