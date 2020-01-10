@@ -126,12 +126,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                         
                         <xsl:call-template name="handlePQ">
-                            <xsl:with-param name="in" select="hl7:referenceRange/hl7:referenceRange/hl7:observationRange/hl7:value/hl7:low"/>
+                            <xsl:with-param name="in" select="hl7:referenceRange/hl7:observationRange/hl7:value/hl7:low"/>
                             <xsl:with-param name="elemName">reference_range_lower_limit</xsl:with-param>
                         </xsl:call-template>
                         
                         <xsl:call-template name="handlePQ">
-                            <xsl:with-param name="in" select="hl7:referenceRange/hl7:referenceRange/hl7:observationRange/hl7:value/hl7:high"/>
+                            <xsl:with-param name="in" select="hl7:referenceRange/hl7:observationRange/hl7:value/hl7:high"/>
                             <xsl:with-param name="elemName">reference_range_upper_limit</xsl:with-param>
                         </xsl:call-template>
                         

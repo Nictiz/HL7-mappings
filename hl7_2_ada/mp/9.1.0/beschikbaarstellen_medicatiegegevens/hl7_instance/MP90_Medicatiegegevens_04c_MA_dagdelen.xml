@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<organizer xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9284"/>
+    <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
+    <statusCode nullFlavor="NI"/>
+    <recordTarget>
+        <patientRole>
+            <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+            <patient>
+                <name>
+                    <given qualifier="BR">Joris</given>
+                    <family qualifier="BR">Hansman</family>
+                </name>
+                <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                <birthTime value="19840512"/>
+                <!-- meerlingindicator -->
+                <multipleBirthInd xmlns="urn:hl7-org:sdtc" value="false"/>
+            </patient>
+        </patientRole>
+    </recordTarget>
+    <!-- Medicatieafspraak -->
+    <component typeCode="COMP">
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9275"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9276"/>
+            <!-- identificatie -->
+            <id extension="#MB_04c#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <!-- mp-9581 Omschrijving -->
+            <text mediaType="text/plain">Vanaf 12 aug 2017, Gedurende 8 weken, 's ochtends en 's middags 1 stuk</text>
+            <!-- Gebruiksperiode -->
+            <effectiveTime xsi:type="IVL_TS">
+                <low value="20170812"/>
+                <width value="8" unit="wk"/>
+            </effectiveTime>
+            <!-- zo nodig -->
+            <!-- 19941 Toedieningsweg -->
+            <routeCode code="9" displayName="oraal" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+            <!-- Afgesproken geneesmiddel -->
+            <consumable>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="615560" codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK" displayName="Zestril tablet 10mg">
+                            <translation code="26638" displayName="LISINOPRIL TABLET 10MG" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK"/>
+                            <translation code="71587" displayName="LISINOPRIL TABLET 10MG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </consumable>
+            <!-- voorschrijver -->
+            <author>
+                <!-- Afspraakdatum -->
+                <time value="20160623124724"/>
+                <assignedAuthor>
+                    <!-- Zorgverlener identificatie -->
+                    <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+                    <!-- Specialisme -->
+                    <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                    <assignedPerson>
+                        <!-- ZorgverlenerNaam -->
+                        <name>Dr Jansen</name>
+                    </assignedPerson>
+                    <!-- Zorgaanbieder -->
+                    <representedOrganization>
+                        <!-- Zorgaanbieder identificatie -->
+                        <id root="1.2.3.4" extension="URAnummer"/>
+                        <name>Ziekenhuis zus en zo</name>
+                        <addr use="WP">
+                            <streetName>Dorpsstraat</streetName>
+                            <houseNumber>10</houseNumber>
+                            <postalCode>1111 AA</postalCode>
+                            <city>Ons Dorp</city>
+                        </addr>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!--Doseerinstructie-->
+            <entryRelationship typeCode="COMP">
+                <sequenceNumber value="1"/>
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9309"/>
+                    <effectiveTime xsi:type="SXPR_TS" operator="A">
+                        <comp xsi:type="hl7nl:PIVL_TS" isFlexible="true" alignment="HD" operator="A">
+                            <!-- iedere ochtend -->
+                            <hl7nl:phase>
+                                <hl7nl:low value="1970010106"/>
+                                <hl7nl:high value="1970010112"/>
+                            </hl7nl:phase>
+                            <hl7nl:period value="1" unit="d"/>
+                        </comp>
+                        <comp xsi:type="hl7nl:PIVL_TS" isFlexible="true" alignment="HD" operator="I">
+                            <!-- iedere middag -->
+                            <hl7nl:phase>
+                                <hl7nl:low value="1970010112"/>
+                                <hl7nl:high value="1970010118"/>
+                            </hl7nl:phase>
+                            <hl7nl:period value="1" unit="d"/>
+                        </comp>
+                    </effectiveTime>
+                    <doseQuantity>
+                        <center value="1" unit="1">
+                            <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                        </center>
+                    </doseQuantity>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_04c"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </substanceAdministration>
+    </component>
+</organizer>

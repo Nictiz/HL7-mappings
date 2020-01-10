@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3"  xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
 
@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- meerlingindicator -->
         <xsl:for-each select="meerling_indicator[@value | @nullFlavor]">
             <xsl:call-template name="makeBLValue">
-                <xsl:with-param name="elemName">multipleBirthInd</xsl:with-param>
+                <xsl:with-param name="elemName">sdtc:multipleBirthInd</xsl:with-param>
                 <xsl:with-param name="elemNamespace">urn:hl7-org:sdtc</xsl:with-param>
                 <xsl:with-param name="xsiType"/>
             </xsl:call-template>
@@ -194,17 +194,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$varNaamgegevens[.//(@value | @code | @nullFlavor)]">
             <xsl:for-each select="voornamen[.//(@value | @code | @nullFlavor)]">
                 <given qualifier="BR">
-                    <xsl:value-of select="./@value"/>
+                    <xsl:value-of select="@value"/>
                 </given>
             </xsl:for-each>
             <xsl:for-each select="initialen[.//(@value | @code | @nullFlavor)]">
-                <given qualifier="IN">
-                    <xsl:value-of select="nf:addEnding(./@value, '.')"/>
-                </given>
+                <!-- in HL7v3 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
+                <!-- https://hl7.nl/wiki/index.php?title=DatatypesR1:PN -->
+                <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier verwijderen van de officiële voornamen -->
+                <!-- "Esther" "E.F.A." of "Esther" "E F A" wordt "Esther" "F.A.",
+                     "Esther Feline" "E.F.A." wordt "Esther Feline" "A." -->
+                <!-- Een voornaam met een streepje wordt gezien als één naam met één bijbehorend initiaal
+                     "Albert-Jan" "A.D." wordt "Albert-Jan" "D.",
+                     "Albert-Jan" "A.J.D." wordt "Albert-Jan" "J.D.", 
+                     "Albert-Jan" "A.J." wordt "Albert-Jan" "J.",
+                     "Albert-Jan" "A." wordt "Albert-Jan" ""
+                -->
+                <!-- Als de ada instance niet correct is gevuld en het initiaal van de ook doorgegeven voornamen niet in de juiste volgorde in de initialen staat, 
+                     dan lukt het verwijderen van initialen niet goed. 
+                     We zijn dus sterk afhankelijk van de kwaliteit van implementaties. -->
+                <xsl:variable name="adaFirstNameInitials" as="xs:string">
+                    <xsl:variable name="init" as="xs:string*">
+                        <xsl:for-each select="../voornamen/tokenize(normalize-space(@value), '\s')">
+                            <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:value-of select="string-join($init, '')"/>
+                </xsl:variable>
+                <xsl:variable name="adaInitials" as="xs:string">
+                    <xsl:variable name="init" as="xs:string*">
+                        <xsl:for-each select="tokenize(normalize-space(replace(@value, '\.', ' ')), '\s')">
+                            <xsl:value-of select="concat(., '.')"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:value-of select="string-join($init, '')"/>
+                </xsl:variable>
+                <xsl:variable name="hl7Initials" select="replace($adaInitials, concat('^', $adaFirstNameInitials), '')"/>
+                <xsl:if test="$hl7Initials">
+                    <given qualifier="IN">
+                        <xsl:value-of select="nf:addEnding($hl7Initials, '.')"/>
+                    </given>
+                </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="roepnaam[.//(@value | @code | @nullFlavor)]">
                 <given qualifier="CL">
-                    <xsl:value-of select="./@value"/>
+                    <xsl:value-of select="@value"/>
                 </given>
             </xsl:for-each>
 
@@ -356,27 +389,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unitID>
         </xsl:for-each>-->
     </xsl:template>
-    <!-- phone number - generic -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000" match="telefoonnummers">
-        <xsl:attribute name="use">
-            <xsl:value-of select="./nummer_soort/@code"/>
-        </xsl:attribute>
+
+    <xd:doc>
+        <xd:desc> phone number - generic </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000" match="telefoonnummers" mode="HandleTelNrs">
+        <xsl:if test="nummer_soort[@code]">
+            <xsl:attribute name="use">
+                <xsl:value-of select="nummer_soort/@code"/>
+            </xsl:attribute>
+        </xsl:if>
         <xsl:attribute name="value">
             <xsl:choose>
-                <xsl:when test="./telecom_type/@code = 'FAX'">fax:</xsl:when>
+                <xsl:when test="telecom_type/@code = 'FAX' and not(starts-with(telefoonnummer/@value, 'fax:'))">fax:</xsl:when>
+                <xsl:when test="starts-with(telefoonnummer/@value, 'tel:')"/>
                 <xsl:otherwise>tel:</xsl:otherwise>
             </xsl:choose>
-            <xsl:value-of select="translate(./telefoonnummer/@value, ' ', '')"/>
+            <xsl:value-of select="translate(telefoonnummer/@value, ' ', '')"/>
         </xsl:attribute>
     </xsl:template>
-    <!-- email address - generic -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.104_20180611000000" match="email_adressen">
-        <xsl:attribute name="use">
-            <xsl:value-of select="./email_soort/@code"/>
-        </xsl:attribute>
+
+    <xd:doc>
+        <xd:desc> email address - generic </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.104_20180611000000" match="email_adressen" mode="HandleEmailAdressen">
+        <xsl:if test="email_soort[@code]">
+            <xsl:attribute name="use">
+                <xsl:value-of select="email_soort/@code"/>
+            </xsl:attribute>
+        </xsl:if>
         <xsl:attribute name="value">
-            <xsl:value-of select="concat('mailto:', translate(./email_adres/@value, ' ', ''))"/>
-        </xsl:attribute>
+            <xsl:choose>
+                <xsl:when test="starts-with(email_adres/@value, 'mailto:')">
+                    <xsl:value-of select="translate(email_adres/@value, ' ', '')"/>
+                </xsl:when>
+                <xsl:otherwise>  <xsl:value-of select="concat('mailto:', translate(email_adres/@value, ' ', ''))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+          </xsl:attribute>
     </xsl:template>
 
     <xd:doc>
@@ -542,7 +592,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </observation>
                 </entryRelationship>
             </xsl:for-each>
-            
+
             <!-- early onset (infectieus probleem neonatologie) -->
             <xsl:for-each select="late_onset[@value | @nullFlavor]">
                 <entryRelationship typeCode="COMP">

@@ -13,9 +13,11 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#default nf" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all"  xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
-    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>
+    <xsl:import href="../../util/datetime.xsl"/>
+    <!-- only give dateT a value if you want conversion of relative T dates -->
+    <xsl:param name="dateT" as="xs:date?"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
@@ -25,10 +27,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Formats an xml date or relative Date string to a HL7 formatted date.</xd:desc>
-        <xd:param name="dateTime">The dateTime string to be formatted. Maybe a relative date</xd:param>
-        <xd:param name="precision">determines the picture of the date format, currently only use case for minute. Seconds is the default.</xd:param>
-        <xd:param name="inputDateT"/>
+        <xd:desc>Formats an ada xml date or an ada vague date or an ada relative Date string to a HL7 formatted date.</xd:desc>
+        <xd:param name="dateTime">The dateTime string to be formatted. May be a relative or vague date(time)</xd:param>
+        <xd:param name="precision">Determines the picture of the date(time) format. Seconds is the default.</xd:param>
+        <xd:param name="inputDateT">Optional. For test instances with relative T date</xd:param>
     </xd:doc>
     <xsl:template name="format2HL7Date">
         <xsl:param name="dateTime" as="xs:string?"/>
@@ -37,6 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
+                <xsl:when test="upper-case($precision) = ('HOUR', 'UUR', 'HOURS', 'UREN', 'HR', 'HH', 'H', 'U')">[Y0001][M01][D01][H01]</xsl:when>
                 <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -45,21 +48,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <!-- relative Date when first character is 'T' -->
                 <xsl:when test="starts-with($inputDateTime, 'T')">
-                    <xsl:value-of select="nf:calculate-t-date($inputDateTime, $inputDateT)"/>
+                    <xsl:value-of select="normalize-space(nf:calculate-t-date($inputDateTime, $inputDateT))"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="$inputDateTime"/>
+                    <xsl:value-of select="normalize-space($inputDateTime)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
 
         <xsl:choose>
-            <xsl:when test="normalize-space($processedDateTime) castable as xs:dateTime">
+            <xsl:when test="$processedDateTime castable as xs:dateTime">
                 <xsl:value-of select="format-dateTime(xs:dateTime($processedDateTime), $picture)"/>
             </xsl:when>
-            <xsl:when test="normalize-space($processedDateTime) castable as xs:date">
+            <xsl:when test="$processedDateTime castable as xs:date">
                 <xsl:value-of select="format-date(xs:date($processedDateTime), '[Y0001][M01][D01]')"/>
             </xsl:when>
+            <!-- input dateTime stops at minutes -->
+            <xsl:when test="matches($processedDateTime, '\d{4}-(0[1-9]|1[012])-(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3])(:(0\d|[1-5]\d))')">
+                <xsl:value-of select="format-dateTime(xs:dateTime(concat($processedDateTime, ':00')), '[Y0001][M01][D01][H01][m01]')"/>
+            </xsl:when>
+            <!-- input dateTime stops at hours -->
+            <xsl:when test="matches($processedDateTime, '\d{4}-(0[1-9]|1[012])-(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3])')">
+                <xsl:value-of select="format-dateTime(xs:dateTime(concat($processedDateTime, ':00:00')), '[Y0001][M01][D01][H01]')"/>
+            </xsl:when>
+            <!-- input date stops at months -->
+            <xsl:when test="matches($processedDateTime, '\d{4}-(0[1-9]|1[012])')">
+                <xsl:value-of select="format-date(xs:date(concat($processedDateTime, '-01')), '[Y0001][M01]')"/>
+            </xsl:when>
+            <!-- input date stops at year -->
+            <xsl:when test="matches($processedDateTime, '\d{4}')">
+                <xsl:value-of select="format-date(xs:date(concat($processedDateTime, '-01-01')), '[Y0001]')"/>
+            </xsl:when>
+            <!-- return the normalize space of whatever was the input -->
             <xsl:otherwise>
                 <xsl:value-of select="$processedDateTime"/>
             </xsl:otherwise>
@@ -197,12 +217,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="xsiType"/>
     </xd:doc>
     <xsl:template name="makeCEValue">
-        <xsl:param name="code" as="xs:string?" select="./@code"/>
-        <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
+        <xsl:param name="code" as="xs:string?" select="@code"/>
+        <xsl:param name="codeSystem" as="xs:string?" select="@codeSystem"/>
         <xsl:param name="displayName" as="xs:string?" select="@displayName"/>
         <xsl:param name="elemName" as="xs:string?">value</xsl:param>
-        <xsl:param name="originalText"/>
-        <xsl:param name="strOriginalText" as="xs:string?"/>
+        <xsl:param name="originalText" as="element()?"/>
+        <xsl:param name="strOriginalText" as="xs:string?" select="@originalText"/>
         <xsl:param name="translations" as="element(hl7:translation)*"/>
         <xsl:param name="xsiType" as="xs:string?">CE</xsl:param>
         <xsl:call-template name="makeCDValue">
@@ -273,11 +293,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Makes a HL7 code type element based on ada element with datatype code</xd:desc>
-        <xd:param name="originalText">Optional to supply originalText with OTH code</xd:param>
+        <xd:param name="originalText">Optional to supply originalText with OTH code. Defaults to originalText attribute, if any</xd:param>
         <xd:param name="elemName">The HL7 xml element name. Defaults to code.</xd:param>
     </xd:doc>
     <xsl:template name="makeCode">
-        <xsl:param name="originalText"/>
+        <xsl:param name="originalText" select="@originalText"/>
         <xsl:param name="elemName" as="xs:string?">code</xsl:param>
 
         <xsl:element name="{$elemName}">
@@ -507,7 +527,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Makes a HL7 id element (datatype II) based on ada identification element</xd:desc>
     </xd:doc>
     <xsl:template name="makeIIid">
         <xsl:call-template name="makeIIValue">
@@ -601,11 +621,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="root"/>
-        <xd:param name="nullFlavor"/>
+        <xd:desc>makeIIValue. Makes a HL7 II element based on ada identification element</xd:desc>
+        <xd:param name="xsiType">Optional. The @xsi:type to be outputted. No default.</xd:param>
+        <xd:param name="elemName">The HL7 element name to be outputted, defaults to 'value'</xd:param>
+        <xd:param name="root">The @root attribute to be outputted, defaults to @root of context</xd:param>
+        <xd:param name="nullFlavor">The @nullFlavor attribute to be outputted, defaults to NI</xd:param>
     </xd:doc>
     <xsl:template name="makeIIValue">
         <xsl:param name="xsiType"/>
@@ -909,11 +929,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="inputValue"/>
+        <xd:desc>Makes HL7 TS value attribute, based on input ada possible vague date/time string</xd:desc>
+        <xd:param name="inputValue">The input ada value string</xd:param>
         <xd:param name="inputNullFlavor"/>
     </xd:doc>
-    <xsl:template name="makeTSValueAttr">
+    <xsl:template name="makeTSValueAttr" match="element()" mode="MakeTSValueAttr">
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
         <xsl:param name="inputNullFlavor" as="xs:string?" select="@nullFlavor"/>
         <xsl:choose>
@@ -995,7 +1015,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:if>
     </xsl:function>
- 
+
     <xd:doc>
         <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
         <xd:param name="ADAunit"/>
