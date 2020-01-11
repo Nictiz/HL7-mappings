@@ -399,6 +399,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:INT'">
+                    <xsl:call-template name="handleINT">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">count</xsl:if>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:PQ'">
                     <xsl:call-template name="handlePQ">
                         <xsl:with-param name="in" select="."/>
@@ -406,6 +416,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="elemName" select="$elemName"/>
                         <xsl:with-param name="datatype">
                             <xsl:if test="$dodatatype">quantity</xsl:if>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:REAL'">
+                    <xsl:call-template name="handleINT">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">decimal</xsl:if>
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
@@ -1410,9 +1430,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <xsl:variable name="out" as="element()">
                 <xsl:choose>
-                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
-                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
-                    </xsl:when>
                     <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
                         <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
                     </xsl:when>

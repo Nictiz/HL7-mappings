@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3"  xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#default" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
 
@@ -113,12 +113,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Creates HL7 performing healthcare provider (uitvoerende zorgaanbieder) </xd:desc>
-        <xd:param name="zorgaanbieder">ada zorgaanbieder, defaults to context element</xd:param>
+        <xd:param name="deZorgaanbieder">ada zorgaanbieder, defaults to context element</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000" match="zorgaanbieder | healthcare_provider">
-        <xsl:param name="zorgaanbieder" select="."/>
+        <xsl:param name="deZorgaanbieder" select="."/>
 
-        <xsl:for-each select="$zorgaanbieder">
+        <xsl:for-each select="$deZorgaanbieder">
             <representedOrganization>
                 <!--MP CDA Organization id name-->
                 <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
@@ -168,6 +168,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Creates HL7 performing healthcare provider (uitvoerende zorgaanbieder) </xd:desc>
+        <xd:param name="deZorgaanbieder">ada zorgaanbieder, defaults to context element</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.9_20180611000000" match="zorgaanbieder | healthcare_provider" mode="handleScopingEntity">
+        <xsl:param name="deZorgaanbieder" select="."/>
+
+        <xsl:for-each select="$deZorgaanbieder">
+            <scopingEntity>
+                <!--MP CDA Organization id name-->
+                <!-- id -->
+                <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
+                    <!-- MP CDA Zorgaanbieder identificaties -->
+                    <xsl:call-template name="makeIIid"/>
+                </xsl:for-each>
+                <xsl:for-each select="organisatie_type">
+                    <code>
+                        <xsl:call-template name="makeCodeAttribs"/>
+                    </code>
+                </xsl:for-each>
+                <!-- desc -->
+                <xsl:for-each select="organisatie_naam[.//(@value | @nullFlavor)]">
+                    <xsl:element name="desc">
+                        <xsl:choose>
+                            <xsl:when test="./@value">
+                                <xsl:value-of select="./@value"/>
+                            </xsl:when>
+                            <xsl:when test="./@nullFlavor">
+                                <xsl:attribute name="nullFlavor">
+                                    <xsl:value-of select="./@nullFlavor"/>
+                                </xsl:attribute>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:element>
+                </xsl:for-each>
+            </scopingEntity>
+        </xsl:for-each>
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Template for comment</xd:desc>
+    </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000" match="toelichting | comment" mode="HandleComment">
         <act classCode="ACT" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
@@ -332,72 +375,82 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- suffix (nog) niet in gebruik -->
         <!-- validTime (nog) niet in gebruik -->
     </xsl:template>
-    <!-- address NL - generic -->
+
+    <xd:doc>
+        <xd:desc> address NL - generic </xd:desc>
+        <xd:param name="in">The input ada adresgegevens</xd:param>
+    </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000" match="adresgegevens">
-        <xsl:if test="./adres_soort[1]/@code">
-            <xsl:attribute name="use" select="./adres_soort[1]/@code"/>
-        </xsl:if>
-        <xsl:for-each select="./straat">
-            <streetName>
-                <xsl:value-of select="./@value"/>
-            </streetName>
-        </xsl:for-each>
-        <xsl:for-each select="./huisnummer">
-            <houseNumber>
-                <xsl:value-of select="./@value"/>
-            </houseNumber>
-        </xsl:for-each>
-        <xsl:if test="./huisnummerletter or ./huisnummertoevoeging">
-            <buildingNumberSuffix>
-                <xsl:value-of select="./huisnummerletter/@value"/>
-                <!-- voeg scheidende spatie toe als beide aanwezig -->
-                <xsl:if test="./huisnummerletter and ./huisnummertoevoeging">
-                    <xsl:text> </xsl:text>
-                </xsl:if>
-                <xsl:value-of select="./huisnummertoevoeging/@value"/>
-            </buildingNumberSuffix>
-        </xsl:if>
-        <xsl:for-each select="./aanduiding_bij_nummer">
-            <additionalLocator>
-                <xsl:value-of select="./@code"/>
-            </additionalLocator>
-        </xsl:for-each>
-        <xsl:for-each select="./postcode">
-            <postalCode>
-                <xsl:value-of select="nf:convertAdaNlPostcode(./@value)"/>
-            </postalCode>
-        </xsl:for-each>
-        <xsl:for-each select="./gemeente">
-            <county>
-                <xsl:value-of select="./@value"/>
-            </county>
-        </xsl:for-each>
-        <xsl:for-each select="./woonplaats">
-            <city>
-                <xsl:value-of select="./@value"/>
-            </city>
-        </xsl:for-each>
-        <xsl:for-each select="./land">
-            <country>
-                <xsl:value-of select="./@value"/>
-            </country>
-        </xsl:for-each>
-        <!-- Additionele informatie niet gemapt op het template... -->
-        <!--<xsl:for-each select="./additionele_informatie">
+        <xsl:param name="in" select="."/>
+
+        <xsl:for-each select="$in">
+            <xsl:if test="./adres_soort[1]/@code">
+                <xsl:attribute name="use" select="./adres_soort[1]/@code"/>
+            </xsl:if>
+            <xsl:for-each select="./straat">
+                <streetName>
+                    <xsl:value-of select="./@value"/>
+                </streetName>
+            </xsl:for-each>
+            <xsl:for-each select="./huisnummer">
+                <houseNumber>
+                    <xsl:value-of select="./@value"/>
+                </houseNumber>
+            </xsl:for-each>
+            <xsl:if test="./huisnummerletter or ./huisnummertoevoeging">
+                <buildingNumberSuffix>
+                    <xsl:value-of select="./huisnummerletter/@value"/>
+                    <!-- voeg scheidende spatie toe als beide aanwezig -->
+                    <xsl:if test="./huisnummerletter and ./huisnummertoevoeging">
+                        <xsl:text> </xsl:text>
+                    </xsl:if>
+                    <xsl:value-of select="./huisnummertoevoeging/@value"/>
+                </buildingNumberSuffix>
+            </xsl:if>
+            <xsl:for-each select="./aanduiding_bij_nummer">
+                <additionalLocator>
+                    <xsl:value-of select="./@code"/>
+                </additionalLocator>
+            </xsl:for-each>
+            <xsl:for-each select="./postcode">
+                <postalCode>
+                    <xsl:value-of select="nf:convertAdaNlPostcode(./@value)"/>
+                </postalCode>
+            </xsl:for-each>
+            <xsl:for-each select="./gemeente">
+                <county>
+                    <xsl:value-of select="./@value"/>
+                </county>
+            </xsl:for-each>
+            <xsl:for-each select="./woonplaats">
+                <city>
+                    <xsl:value-of select="./@value"/>
+                </city>
+            </xsl:for-each>
+            <xsl:for-each select="./land">
+                <country>
+                    <xsl:value-of select="./@value"/>
+                </country>
+            </xsl:for-each>
+            <!-- Additionele informatie niet gemapt op het template... -->
+            <!--<xsl:for-each select="./additionele_informatie">
             <unitID>
                 <xsl:value-of select="./@value"/>
             </unitID>
         </xsl:for-each>-->
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
         <xd:desc> phone number - generic </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000" match="telefoonnummers" mode="HandleTelNrs">
-        <xsl:if test="nummer_soort[@code]">
-            <xsl:attribute name="use">
-                <xsl:value-of select="nummer_soort/@code"/>
-            </xsl:attribute>
+        <xsl:if test="nummer_soort[@code] or telecom_type/@code = 'MC'">
+            <xsl:variable name="hl7Use" as="xs:string*">
+                <xsl:if test="nummer_soort[@code]"><xsl:value-of select="nummer_soort/@code"/></xsl:if>
+                <xsl:if test="telecom_type/@code = 'MC'"><xsl:value-of select="telecom_type/@code"/></xsl:if>                
+            </xsl:variable>
+            <xsl:attribute name="use" select="string-join($hl7Use, ' ')"/>               
         </xsl:if>
         <xsl:attribute name="value">
             <xsl:choose>
@@ -423,10 +476,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="starts-with(email_adres/@value, 'mailto:')">
                     <xsl:value-of select="translate(email_adres/@value, ' ', '')"/>
                 </xsl:when>
-                <xsl:otherwise>  <xsl:value-of select="concat('mailto:', translate(email_adres/@value, ' ', ''))"/>
+                <xsl:otherwise>
+                    <xsl:value-of select="concat('mailto:', translate(email_adres/@value, ' ', ''))"/>
                 </xsl:otherwise>
             </xsl:choose>
-          </xsl:attribute>
+        </xsl:attribute>
     </xsl:template>
 
     <xd:doc>
@@ -618,56 +672,129 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc> zorgverlener-participantRole based on ada health professional</xd:desc>
+        <xd:param name="in">The input ada health professional element</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.27_20180611000000" match="health_professional | zorgverlener" mode="HandleHealthProfessionalRole">
+        <xsl:param name="in" select="."/>
+
+        <xsl:for-each select="$in">
+            <participantRole classCode="ROL">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.27"/>
+
+                <!-- id -->
+                <xsl:for-each select="(zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)[@value]">
+                    <xsl:call-template name="makeIIid"/>
+                </xsl:for-each>
+                <xsl:if test="not((zorgverlener_identificatie_nummer | zorgverlener_identificatienummer)[@value])">
+                    <!-- een id wegschrijven met nullFlavor -->
+                    <id nullFlavor="NI"/>
+                </xsl:if>
+
+                <!-- code -->
+                <xsl:for-each select="specialisme[@code]">
+                    <code>
+                        <xsl:call-template name="makeCodeAttribs"/>
+                    </code>
+                </xsl:for-each>
+
+                <!-- addr -->
+                <xsl:for-each select="adresgegevens[.//(@value | @code | @nullFlavor)]">
+                    <addr>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
+                    </addr>
+                </xsl:for-each>
+                
+                <!-- telecom -->
+                <xsl:for-each select="contactgegevens/telefoonnummers[.//(@value | @nullFlavor)]">
+                    <telecom>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000"/>
+                    </telecom>
+                </xsl:for-each>
+                <xsl:for-each select="contactgegevens/email_adressen[.//(@value | @nullFlavor)]">
+                    <telecom>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.104_20180611000000"/>
+                    </telecom>
+                </xsl:for-each>
+                
+                <!-- playingEntity -->
+                <xsl:for-each select="((zorgverlener_naam/naamgegevens) | (.//naamgegevens[not(child::naamgegevens)]))[.//(@value | @code | @nullFlavor)]">
+                    <playingEntity>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
+                            <xsl:with-param name="naamgegevens" select="."/>
+                        </xsl:call-template>
+                    </playingEntity>
+                </xsl:for-each>
+
+                <!-- scopingEntity -->
+                <xsl:for-each select="(zorgaanbieder/zorgaanbieder | zorgaanbieder[not(zorgaanbieder)])[.//(@value | @code | @nullFlavor)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.9_20180611000000"/>
+                </xsl:for-each>
+
+            </participantRole>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc> MP CDA Body Weight based on ada lichaamsgewicht, only zib elements are gewicht_datum_tijd and gewicht_waarde are supported at this point in time</xd:desc>
+        <xd:param name="in">The input ada body weight element</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000" match="lichaamsgewicht | body_weight" mode="HandleBodyWeight">
-        <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
-            <code code="29463-7" codeSystem="{$oidLOINC}" displayName="Body Weight"/>
-            <xsl:for-each select="(gewicht_datum_tijd | weight_date_time)[@value | @nullFlavor]">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:for-each select="$in">
+            <observation classCode="OBS" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
+                <code code="29463-7" codeSystem="{$oidLOINC}" displayName="Body Weight"/>
                 <xsl:call-template name="makeEffectiveTime">
-                    <xsl:with-param name="effectiveTime" select="."/>
+                    <xsl:with-param name="effectiveTime" select="gewicht_datum_tijd | weight_date_time"/>
+                    <xsl:with-param name="nullIfAbsent" select="true()"/>
                 </xsl:call-template>
-            </xsl:for-each>
-            <xsl:for-each select="(gewicht_waarde | weight_value)[@value | @nullFlavor]">
-                <xsl:call-template name="makePQValue"/>
-            </xsl:for-each>
-            <!-- todo clothing -->
-            <!-- toelichting, text is mandatory in this template so do not output anything when there is no @value in input -->
-            <xsl:for-each select="(toelichting | comment)[@value]">
-                <entryRelationship typeCode="REFR">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
-                </entryRelationship>
-            </xsl:for-each>
-        </observation>
+                <xsl:for-each select="(gewicht_waarde | weight_value)[@value | @nullFlavor]">
+                    <xsl:call-template name="makePQValue"/>
+                </xsl:for-each>
+                <!-- todo clothing -->
+                <!-- toelichting, text is mandatory in this template so do not output anything when there is no @value in input -->
+                <xsl:for-each select="(toelichting | comment)[@value]">
+                    <entryRelationship typeCode="REFR">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
+                    </entryRelationship>
+                </xsl:for-each>
+            </observation>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
         <xd:desc> MP CDA Body Height based on ada lichaamslengte, only zib elements are lengte_datum_tijd and lengte_waarde are supported at this point in time</xd:desc>
+        <xd:param name="in">The input ada body height element</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000" match="lichaamslengte | body_height" mode="HandleBodyHeight">
-        <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
-            <code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="{$oidMap[@oid=$oidLOINC]/@displayName}" displayName="Body height"/>
-            <xsl:for-each select="(lengte_datum_tijd | height_date_time)[@value | @nullFlavor]">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:for-each select="$in">
+            <observation classCode="OBS" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
+                <code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="{$oidMap[@oid=$oidLOINC]/@displayName}" displayName="Body height"/>
                 <xsl:call-template name="makeEffectiveTime">
-                    <xsl:with-param name="effectiveTime" select="."/>
+                    <xsl:with-param name="effectiveTime" select="lengte_datum_tijd | height_date_time"/>
+                    <xsl:with-param name="nullIfAbsent" select="true()"/>
                 </xsl:call-template>
-            </xsl:for-each>
-            <xsl:for-each select="(lengte_waarde | height_value)[@value | @nullFlavor]">
-                <xsl:call-template name="makePQValue"/>
-            </xsl:for-each>
-            <!-- todo position -->
-            <!-- toelichting, text is mandatory in this template so do not output anything when there is no @value in input -->
-            <xsl:for-each select="(toelichting | comment)[@value]">
-                <entryRelationship typeCode="REFR">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
-                </entryRelationship>
-            </xsl:for-each>
-        </observation>
+                <xsl:for-each select="(lengte_waarde | height_value)[@value | @nullFlavor]">
+                    <xsl:call-template name="makePQValue"/>
+                </xsl:for-each>
+                <!-- todo position -->
+                <!-- toelichting, text is mandatory in this template so do not output anything when there is no @value in input -->
+                <xsl:for-each select="(toelichting | comment)[@value]">
+                    <entryRelationship typeCode="REFR">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
+                    </entryRelationship>
+                </xsl:for-each>
+            </observation>
+        </xsl:for-each>
     </xsl:template>
 
-    <!-- part Encounter reference -->
+    
+    <xd:doc>
+        <xd:desc> part Encounter reference </xd:desc>
+    </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.32_20171221123947">
         <entryRelationship typeCode="REFR">
             <encounter classCode="ENC" moodCode="EVN">
@@ -675,7 +802,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </encounter>
         </entryRelationship>
     </xsl:template>
-    <!-- part Concern reference -->
+    
+    <xd:doc>
+        <xd:desc> part Concern reference </xd:desc>
+    </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.33_20171221124050">
         <entryRelationship typeCode="REFR">
             <act classCode="ACT" moodCode="EVN">
@@ -765,7 +895,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </author>
     </xsl:template>
 
-    <!-- CDA author of informant patient -->
+    
+    <xd:doc>
+        <xd:desc> CDA author of informant patient </xd:desc>
+        <xd:param name="ada_patient_identificatienummer">ada patient id</xd:param>
+    </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
         <xsl:param name="ada_patient_identificatienummer" select="//patient/(patient_identificatienummer | identificatienummer)"/>
         <xsl:for-each select="$ada_patient_identificatienummer">

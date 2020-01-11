@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:import href="../../../2_hl7_mp_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
-    <xsl:param name="schematron-ref" as="xs:boolean">true</xsl:param>
+    <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
   
     <xd:doc>
         <xd:desc> 

@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all"  xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../zib2017bbr/2_hl7_zib2017bbr_include.xsl"/>
+   <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
     <xsl:import href="../naw/2_hl7_naw_include.xsl"/>
     <!--     <xsl:import href="../../util/datetime.xsl"/>-->
 
@@ -186,51 +186,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     
-    <xd:doc>
-        <xd:desc> MP CDA Body Weight </xd:desc>
-        <xd:param name="effectiveTime"/>
-        <xd:param name="PQvalue"/>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000">
-        <xsl:param name="effectiveTime"/>
-        <xsl:param name="PQvalue"/>
-        <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
-            <code code="29463-7" codeSystem="{$oidLOINC}" displayName="Body Weight"/>
-            <xsl:call-template name="makeEffectiveTime">
-                <xsl:with-param name="effectiveTime" select="$effectiveTime"/>
-            </xsl:call-template>
-            <xsl:if test="$PQvalue[1] instance of element()">
-                <xsl:for-each select="$PQvalue">
-                    <xsl:call-template name="makePQValue"/>
-                </xsl:for-each>
-            </xsl:if>
-        </observation>
-    </xsl:template>
-
-
-    <xd:doc>
-        <xd:desc> MP CDA Body Height </xd:desc>
-        <xd:param name="effectiveTime"/>
-        <xd:param name="PQvalue"/>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000">
-        <xsl:param name="effectiveTime"/>
-        <xsl:param name="PQvalue"/>
-        <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
-            <code code="8302-2" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Body height"/>
-            <xsl:call-template name="makeEffectiveTime">
-                <xsl:with-param name="effectiveTime" select="$effectiveTime"/>
-            </xsl:call-template>
-            <xsl:if test="$PQvalue[1] instance of element()">
-                <xsl:for-each select="$PQvalue">
-                    <xsl:call-template name="makePQValue"/>
-                </xsl:for-each>
-            </xsl:if>
-        </observation>
-    </xsl:template>
-
     <xd:doc>
         <xd:desc> therapeuticAgentOf - Medication Administration Request </xd:desc>
         <xd:param name="medicatieafspraak"/>
@@ -5138,18 +5093,12 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
             <xsl:for-each select="lichaamslengte[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000">
-                        <xsl:with-param name="effectiveTime" select="./lengte_datum_tijd"/>
-                        <xsl:with-param name="PQvalue" select="./lengte_waarde"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000"/>
                 </entryRelationship>
             </xsl:for-each>
             <xsl:for-each select="lichaamsgewicht[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000">
-                        <xsl:with-param name="effectiveTime" select="./gewicht_datum_tijd"/>
-                        <xsl:with-param name="PQvalue" select="./gewicht_waarde"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000"/>
                 </entryRelationship>
             </xsl:for-each>
             <xsl:for-each select="aanvullende_informatie[.//(@value | @code)]">
@@ -5294,18 +5243,12 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
             <xsl:for-each select="lichaamslengte[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000">
-                        <xsl:with-param name="effectiveTime" select="./lengte_datum_tijd"/>
-                        <xsl:with-param name="PQvalue" select="./lengte_waarde"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000"/>
                 </entryRelationship>
             </xsl:for-each>
             <xsl:for-each select="lichaamsgewicht[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000">
-                        <xsl:with-param name="effectiveTime" select="./gewicht_datum_tijd"/>
-                        <xsl:with-param name="PQvalue" select="./gewicht_waarde"/>
-                    </xsl:call-template>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.28_20171025000000"/>
                 </entryRelationship>
             </xsl:for-each>
             <xsl:for-each select="aanvullende_informatie[.//(@value | @code)]">

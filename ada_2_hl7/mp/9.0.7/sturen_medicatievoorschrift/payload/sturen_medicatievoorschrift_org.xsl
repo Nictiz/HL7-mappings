@@ -13,9 +13,12 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:pharm="urn:ihe:pharm:medication" xmlns:nf="http://www.nictiz.nl/functions" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-	<!-- Generates a HL7 message based on ADA input -->
+	<xsl:import href="../../../2_hl7_mp_include.xsl"/>
+<!-- Generates a HL7 message based on ADA input -->
 	<xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-	<xsl:include href="../../../2_hl7_mp_include.xsl"/>
+	<!-- only give dateT a value if you want conversion of relative T dates -->
+    <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
+    
 	<xsl:template match="/">
 		<xsl:call-template name="Voorschrift_90">
 			<xsl:with-param name="patient" select="//sturen_medicatievoorschrift/patient"/>
