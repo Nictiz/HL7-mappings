@@ -151,8 +151,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:element name="{$elmHealthProfessional}">
             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthProfessional))"/>
             <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-            <xsl:attribute name="id" select="$adaId"/>
-
+            <xsl:if test="nf:existsADAComplexTypeId($schemaFragment)">
+                <xsl:attribute name="id" select="$adaId"/>
+            </xsl:if>
+     
             <!-- identification number -->
             <xsl:for-each select="hl7:id">
                 <xsl:call-template name="handleII">

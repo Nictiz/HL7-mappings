@@ -123,8 +123,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="zib-LaboratoryTestResult-Observation-4.1">
                             <xsl:with-param name="zibroot" select="$zibroot"/>
                         </xsl:call-template>
-
-
                     </xsl:for-each>
                 </sturen_medicatievoorschrift>
             </data>
@@ -202,7 +200,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
                     
                     <xsl:choose>
-                        <xsl:when test="hl7:patient">
+                        <xsl:when test="hl7:patient | hl7:assignedAuthor[hl7:code/@code='ONESELF']">
                             <xsl:element name="{$elmZibrootAuthorPatient}">
                                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootAuthorPatient))"/>
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
@@ -214,26 +212,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:element>
                         </xsl:when>
                         <!-- healthprofessional as author -->
-                        <xsl:when test="hl7:assignedPerson | hl7:assignedAuthor | hl7:participantRole">
+                        <xsl:when test="(hl7:assignedPerson | hl7:assignedAuthor | hl7:participantRole)[not(hl7:code/@code='ONESELF')]">
                             <xsl:for-each select="hl7:assignedPerson | hl7:assignedAuthor | hl7:participantRole">
                                 <xsl:element name="{$elmZibrootAuthorHealthProfessional}">
                                     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootAuthorHealthProfessional))"/>
                                     <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                                    <xsl:variable name="ref" select="generate-id(.)"/>
-                                    <!-- create the element for the reference -->
-                                    <xsl:element name="{$elmHealthProfessional}">
-                                        <xsl:attribute name="value" select="$ref"/>
-                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmHealthProfessional)))"/>
-                                        <xsl:attribute name="datatype">reference</xsl:attribute>
-                                    </xsl:element>
-                                    <!-- output the actual healthcare professional here as well, we will move it to apropriate location in ada xml later -->
-                                    <xsl:call-template name="HandleHealthProfessional">
-                                        <xsl:with-param name="adaId" select="$ref"/>
-                                    </xsl:call-template>
-                                </xsl:element>
+                                           <!-- output the actual healthcare professional -->
+                                    <xsl:call-template name="HandleHealthProfessional"/>
+                                   </xsl:element>
                             </xsl:for-each>
                         </xsl:when>
-                        <!-- related person as author not in HL7v3 ICA template 2.16.840.1.113883.2.4.3.11.60.7.10.31 -->
+                        <!-- related person as author not in HL7v3 template  -->
                         <!-- no mapping needed -->
                     </xsl:choose>
                 </xsl:element>
