@@ -2705,32 +2705,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <xd:desc>Aanvullende wens</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9093_20160623183534">
-        <!---->
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
         <act classCode="ACT" moodCode="RQO">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9093"/>
             <xsl:call-template name="makeCode">
                 <xsl:with-param name="elemName">code</xsl:with-param>
-            </xsl:call-template>
-            <!--      <xsl:choose>
-                <xsl:when test="@code">
-                    <code>
-                        <xsl:attribute name="code" select="./@code"/>
-                        <xsl:attribute name="codeSystem" select="./@codeSystem"/>
-                        <xsl:attribute name="displayName" select="./@displayName"/>
-                    </code>
-                </xsl:when>
-                <!-\- Niet ondersteund door huidige ADA form; onzeker of vrije tekst dan in displayaName opgeslagen zou worden. -\->
-                <!-\-<xsl:otherwise>
-               <code nullFlavor="OTH">
-                  <originalText>
-                     <xsl:value-of select="./@displayName"/>
-                  </originalText>
-               </code>
-            </xsl:otherwise>-\->
-            </xsl:choose>
-  -->
+            </xsl:call-template>          
         </act>
-    </xsl:template>
+        </xsl:for-each> </xsl:template>
 
     <xd:doc>
         <xd:desc> Verstrekking </xd:desc>
@@ -7739,7 +7722,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </xsl:for-each>
 
                 <!-- Auteur / zorgverlener -->
-                <xsl:for-each select="auteur/zorgverlener[.//(@value | @code)]">
+                <xsl:for-each select="./auteur/zorgverlener[.//(@value | @code)]">
                     <author>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
                             <xsl:with-param name="authorTime" select="../../datum"/>
