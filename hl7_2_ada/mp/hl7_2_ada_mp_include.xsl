@@ -5214,8 +5214,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- aantal_herhalingen -->
-                <xsl:for-each select="hl7:repeatNumber[@value castable as xs:int]">
-                    <aantal_herhalingen value="{xs:int(@value) - 1}">
+                <xsl:for-each select="hl7:repeatNumber[@value castable as xs:integer]">
+                    <aantal_herhalingen value="{xs:integer(@value) - 1}">
                         <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'aantal_herhalingen')))"/>
                     </aantal_herhalingen>
                 </xsl:for-each>

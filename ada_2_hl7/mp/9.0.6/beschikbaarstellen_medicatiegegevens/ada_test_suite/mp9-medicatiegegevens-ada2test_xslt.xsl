@@ -340,7 +340,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:attribute name="test" select="concat('count(', $context-nacht, ')=1')"/> Bij de doseerinstructie(s) van <value-of select="$naam"/> is 1 dagdeel 's nachts verwacht</assert>
 						<xsl:choose>
 							<xsl:when test="./../frequentie[tijdseenheid[@value and @unit]]/aantal/vaste_waarde[@value]">
-								<xsl:variable name="period-value" select="format-number(xs:int(./../frequentie/tijdseenheid/@value) div xs:int(./../frequentie/aantal/vaste_waarde/@value), '0.####')"/>
+								<xsl:variable name="period-value" select="format-number(xs:integer(./../frequentie/tijdseenheid/@value) div xs:integer(./../frequentie/aantal/vaste_waarde/@value), '0.####')"/>
 								<xsl:variable name="period-unit" select="nf:convertTime_ADA_unit2UCUM(./../frequentie/tijdseenheid/@unit)"/>
 								<assert>
 									<xsl:attribute name="test" select="concat('count(', $context-nacht, ')!=1', ' or (', concat('count(', $context-nacht, ')=1'), ' and ', concat('count(', $context-nacht, '/hl7nl:period[@value=''', $period-value, '''][@unit=''', $period-unit, '''])=1)'))"/> Bij de doseerinstructie(s) van <value-of select="$naam"/> met dagdeel 's nachts is een verkeerd doseerinterval aangetroffen (period).</assert>
