@@ -14,6 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
+    <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
     <xd:doc>
         <xd:desc>Dit is een conversie van MP 9.1.0 naar ADA 9.1 beschikbaarstellen medicatiegegevens</xd:desc>
     </xd:doc>
@@ -81,10 +82,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="component" select=".//*[hl7:templateId/@root = ($templateId-medicatieafspraak, $templateId-verstrekkingsverzoek, $templateId-toedieningsafspraak, $templateId-verstrekking, $templateId-medicatiegebruik)]"/>
                         <xsl:for-each-group select="$component" group-by="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id/concat(@root, @extension)">
                             <!-- medicamenteuze_behandeling -->
-                            <medicamenteuze_behandeling conceptId="{$schemaFragment/xs:attribute[@name='conceptId']/@fixed}">
+                            <medicamenteuze_behandeling>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
                                 <xsl:variable name="identificatie-complexType" select="$schemaFragment//xs:element[@name = 'identificatie']/@type"/>
                                 <xsl:for-each select="./hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id">
-                                    <identificatie value="{./@extension}" root="{./@root}" conceptId="{$schema//xs:complexType[@name=$identificatie-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                    <xsl:variable name="elemName">identificatie</xsl:variable>
+                                    <xsl:element name="{$elemName}">
+                                        <xsl:for-each select="@extension">
+                                            <xsl:attribute name="value" select="."/>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="@root">
+                                            <xsl:attribute name="root" select="."/>
+                                        </xsl:for-each>
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema,nf:getADAComplexTypeName($schemaFragment, $elemName)))"></xsl:copy-of>
+                                    </xsl:element>
+<!--                                    <identificatie value="{./@extension}" root="{./@root}" conceptId="{$schema//xs:complexType[@name=$identificatie-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                        
+                                    </identificatie>
+-->   
                                 </xsl:for-each>
                                 <!-- medicatieafspraak -->
                                 <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-medicatieafspraak]">
