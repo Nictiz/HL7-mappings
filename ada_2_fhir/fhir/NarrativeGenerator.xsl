@@ -4,7 +4,7 @@
     <xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:param name="override" select="'true'"/>
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
-    <!--<xsl:template match="f:AllergyIntolerance | f:Appointment | f:Binary | f:CarePlan | f:CareTeam | f:Composition | f:Condition | f:Consent | f:Coverage | f:Device | f:DeviceUseStatement | f:DiagnosticReport | f:Encounter | f:EpisodeOfCare | f:Flag | f:Goal | f:Immunization | f:ImmunizationRecommendation | f:List | f:Location | f:Media | f:Medication | f:NutritionOrder | f:Observation | f:Organization | f:Patient | f:Person | f:Practitioner | f:PractitionerRole | f:Procedure | f:ProcedureRequest | f:QuestionnaireResponse | f:RelatedPerson | f:Slot | f:Specimen">
+    <!--<xsl:template match="f:AllergyIntolerance | f:Appointment | f:Binary | f:CarePlan | f:CareTeam | f:Composition | f:Condition | f:Consent | f:Coverage | f:Device | f:DeviceUseStatement | f:DiagnosticReport | f:Encounter | f:EpisodeOfCare | f:Flag | f:Goal | f:Immunization | f:ImmunizationRecommendation | f:List | f:Location | f:Media | f:Medication | f:NutritionOrder | f:Observation | f:Organization | f:Patient | f:Person | f:Practitioner | f:PractitionerRole | f:Procedure | f:ProcedureRequest | f:QuestionnaireResponse | f:RelatedPerson | f:Slot | f:Specimen | f:Task">
         <xsl:apply-templates select="." mode="createNarrative"/>
     </xsl:template>-->
     <xsl:template match="f:AllergyIntolerance" mode="createNarrative">
@@ -6713,9 +6713,18 @@
                                     <xsl:with-param name="key">Priority</xsl:with-param>
                                     <xsl:with-param name="post" select="': '"/>
                                 </xsl:call-template>
-                                <xsl:call-template name="doDT_CodeableConcept">
-                                    <xsl:with-param name="in" select="f:priority"/>
-                                </xsl:call-template>
+                                <xsl:choose>
+                                    <xsl:when test="f:priority[@value]">
+                                        <xsl:call-template name="getLocalizedRequestPriority">
+                                            <xsl:with-param name="in" select="f:priority"/>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                    <xsl:when test="f:priority[f:text | f:coding]">
+                                        <xsl:call-template name="doDT_CodeableConcept">
+                                            <xsl:with-param name="in" select="f:priority"/>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                </xsl:choose>
                             </xsl:if>
                         </xsl:if>
                     </div>
@@ -8326,6 +8335,7 @@
         </xsl:choose>
     </xsl:template>
     <!-- https://www.hl7.org/fhir/STU3/valueset-care-plan-intent.html -->
+    <!-- https://www.hl7.org/fhir/STU3/valueset-request-intent.html -->
     <xsl:template name="getLocalizedIntent">
         <xsl:param name="in" as="element()?"/>
         
@@ -8606,6 +8616,23 @@
                 <xsl:text>/</xsl:text>
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">addressUse_PHYS</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- https://www.hl7.org/fhir/STU3/valueset-request-priority.html -->
+    <xsl:template name="getLocalizedRequestPriority">
+        <xsl:param name="in" as="element()?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value = ('routine', 'urgent', 'asap', 'stat')">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key" select="concat('requestpriority-', $in/@value)"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
