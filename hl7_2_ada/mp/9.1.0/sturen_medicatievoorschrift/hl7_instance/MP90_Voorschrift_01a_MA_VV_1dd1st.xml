@@ -75,6 +75,7 @@
                     </representedOrganization>
                 </assignedAuthor>
             </author>
+            <!-- Doseerinstructie -->
             <entryRelationship typeCode="COMP">
                 <sequenceNumber value="1"/>
                 <substanceAdministration classCode="SBADM" moodCode="RQO">
@@ -209,22 +210,25 @@
             </entryRelationship>
         </supply>
     </component>
+    <!-- Lichaamslengte -->
     <component typeCode="COMP">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.30"/>
             <code code="8302-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Body height"/>
-            <effectiveTime nullFlavor="NI"/>
+            <effectiveTime value="20191229124532"/>
             <value xsi:type="PQ" value="189" unit="cm"/>
         </observation>
     </component>
+    <!-- Lichaamsgewicht -->
     <component typeCode="COMP">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.28"/>
             <code code="29463-7" codeSystem="2.16.840.1.113883.6.1" displayName="Body Weight"/>
-            <effectiveTime nullFlavor="NI"/>
+            <effectiveTime value="20201229124532"/>
             <value xsi:type="PQ" value="79" unit="kg"/>
         </observation>
     </component>
+    <!-- Lab uitslag -->
     <component typeCode="COMP">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
@@ -236,16 +240,8 @@
             <effectiveTime value="20140430"/>
             <value xsi:type="REAL" value="83.2"/>
             <interpretationCode code="L" codeSystem="2.16.840.1.113883.5.83" displayName="Low" codeSystemName="HL7 ObservationInterpretation"/>
-            <!--            <interpretationCode code="HU" displayName="Low" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation"/>-->
-            <methodCode code="dd" codeSystem="1.2.3"/>
-            <!--<author>
-                <time/>
-                <assignedAuthor classCode="ASSIGNED">
-                    <id nullFlavor="MSK"/>
-                    <code code="ONESELF"/>
-                </assignedAuthor>
-            </author>-->
-            <participant typeCode="RESP">
+<!--             <methodCode code="dd" codeSystem="1.2.3"/>           -->
+     <!--       <participant typeCode="RESP">
                 <participantRole classCode="ROL">
                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.27"/>
                     <id extension="006797896" root="2.16.528.1.1007.3.1"/>
@@ -256,8 +252,8 @@
                         <city>Ons Dorp</city>
                     </addr>
                 </participantRole>
-            </participant>
-            <entryRelationship typeCode="COMP">
+            </participant>     -->
+            <!--<entryRelationship typeCode="COMP">
                 <act classCode="ACT" moodCode="EVN">
                     <templateId root="2.16.840.1.113883.10.20.1.40"/>
                     <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
@@ -266,7 +262,7 @@
                     </text>
                     <statusCode code="completed"/>
                 </act>
-            </entryRelationship>
+            </entryRelationship>-->
             <referenceRange typeCode="REFV">
                 <observationRange classCode="OBS" moodCode="EVN.CRT">
                     <value xsi:type="IVL_PQ">
@@ -276,7 +272,6 @@
                     <interpretationCode code="N" displayName="Normal" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation"/>
                 </observationRange>
             </referenceRange>
-
         </observation>
     </component>
 </organizer>

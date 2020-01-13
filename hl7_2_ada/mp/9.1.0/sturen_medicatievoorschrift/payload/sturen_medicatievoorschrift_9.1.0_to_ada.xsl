@@ -30,7 +30,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="templateId-labuitslag" select="'2.16.840.1.113883.2.4.3.11.60.7.10.31'"/>
 
 
-    <!-- if this xslt is used stand alone the template below could be used. -->
+    
+    <xd:doc>
+        <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
+    </xd:doc>
     <xsl:template match="/">
         <xsl:variable name="patient-recordTarget" select="//hl7:recordTarget/hl7:patientRole"/>
         <xsl:call-template name="Voorschrift-90-ADA">
@@ -103,17 +106,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each-group>
                     <!-- lengte / gewicht van vóór 9.1.0 die in MA zitten ook converteren -->
                     <!-- lichaamslengte  -->
-                    <!-- todo ook datum/tijd support toevoegen en in zibs2017 zetten -->
-                    <xsl:for-each select="$component//hl7:entryRelationship/*[hl7:templateId/@root = $templateId-lichaamslengte]/hl7:value">
-                        <lichaamslengte conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23023">
-                            <lengte_waarde value="{./@value}" unit="{nf:convertUnit_UCUM2ADA(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23024"> </lengte_waarde>
-                        </lichaamslengte>
+                    <xsl:for-each select="//*[hl7:templateId/@root = $templateId-lichaamslengte]">
+                        <xsl:call-template name="zib-Lichaamslengte-3.1"/>
                     </xsl:for-each>
                     <!-- lichaamsgewicht  -->
-                    <xsl:for-each select="$component//hl7:entryRelationship/*[hl7:templateId/@root = $templateId-lichaamsgewicht]/hl7:value">
-                        <lichaamsgewicht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23028">
-                            <gewicht_waarde value="{./@value}" unit="{nf:convertUnit_UCUM2ADA(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23029"/>
-                        </lichaamsgewicht>
+                    <xsl:for-each select="//*[hl7:templateId/@root = $templateId-lichaamsgewicht]">
+                        <xsl:call-template name="zib-Lichaamsgewicht-3.1"/>
                     </xsl:for-each>
                     <!-- labuitslag -->
                     <xsl:for-each select="//*[hl7:templateId/@root = $templateId-labuitslag]">

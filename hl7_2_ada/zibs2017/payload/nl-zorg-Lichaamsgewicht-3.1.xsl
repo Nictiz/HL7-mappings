@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="schema"/>
 
     <xd:doc>
-        <xd:desc>Mapping of HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.7.10.31 to zib nl.zorg.LaboratoriumUitslag 4.1 concept in ADA. 
+        <xd:desc>Mapping of HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.40.3.12.1 20171231 to zib nl.zorg.Lichaamsgewicht 3.1 concept in ADA. 
                  Created for Ketenzorg / MP voorschrift, currently only supports fields used in those scenario's</xd:desc>
         <xd:param name="in">HL7 Node to consider in the creation of the ada element</xd:param>
         <xd:param name="zibroot">The ada zibroot element to be outputted with this HCIM, will be copied in laboratory_test</xd:param>

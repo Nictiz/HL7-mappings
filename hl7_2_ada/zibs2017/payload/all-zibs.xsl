@@ -16,4 +16,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Without this import, all depending XSLs need to import it -->
     <xsl:import href="_zib2017.xsl"/>
     <xsl:import href="zib-LaboratoryTestResult-Observation-4.1.xsl"/>
+    <xsl:import href="zib-Lichaamsgewicht-3.1.xsl"/>
+    <xsl:import href="zib-Lichaamslengte-3.1.xsl"/>
  </xsl:stylesheet>
