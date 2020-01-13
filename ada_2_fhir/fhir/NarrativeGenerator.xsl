@@ -480,11 +480,11 @@
             <status value="generated"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <div>
-                    <strong>
+                    <b>
                         <xsl:call-template name="util:getLocalizedString">
                             <xsl:with-param name="key">Binary</xsl:with-param>
                         </xsl:call-template>
-                    </strong>
+                    </b>
                     <xsl:text> - </xsl:text>
                     <xsl:call-template name="doDT_Code">
                         <xsl:with-param name="in" select="f:contentType"/>
@@ -505,11 +505,11 @@
             <status value="generated"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:if test="f:title">
-                    <strong>
+                    <b>
                         <xsl:call-template name="doDT_String">
                             <xsl:with-param name="in" select="f:title"/>
                         </xsl:call-template>
-                    </strong>
+                    </b>
                 </xsl:if>
                 <table>
                     <xsl:call-template name="doTableCaption">
@@ -878,11 +878,11 @@
                                                                     </xsl:if>
                                                                 </div>
                                                                 <xsl:if test="f:prohibited[@value = 'true']">
-                                                                    <strong>
+                                                                    <b>
                                                                         <xsl:call-template name="util:getLocalizedString">
                                                                             <xsl:with-param name="key">Do NOT do</xsl:with-param>
                                                                         </xsl:call-template>
-                                                                    </strong>
+                                                                    </b>
                                                                 </xsl:if>
                                                             </caption>
                                                             <tfoot>
@@ -1282,11 +1282,11 @@
             <status value="generated"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:if test="f:title">
-                    <strong>
+                    <b>
                         <xsl:call-template name="doDT_String">
                             <xsl:with-param name="in" select="f:title"/>
                         </xsl:call-template>
-                    </strong>
+                    </b>
                 </xsl:if>
                 <table>
                     <xsl:call-template name="doTableCaption">
@@ -1910,11 +1910,11 @@
                                 <td>
                                     <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Restrictions']">
                                         <div>
-                                            <strong>
+                                            <b>
                                                 <xsl:call-template name="util:getLocalizedString">
                                                     <xsl:with-param name="key">Treatment Restriction</xsl:with-param>
                                                 </xsl:call-template>
-                                            </strong>
+                                            </b>
                                             <div>
                                                 <xsl:call-template name="doDT_String">
                                                     <xsl:with-param name="in" select="f:valueString"/>
@@ -1924,7 +1924,7 @@
                                     </xsl:for-each>
                                     <xsl:for-each select="f:actor">
                                         <div>
-                                            <strong>
+                                            <b>
                                                 <xsl:call-template name="util:getLocalizedString">
                                                     <xsl:with-param name="key">Actor</xsl:with-param>
                                                     <xsl:with-param name="post" select="' '"/>
@@ -1932,7 +1932,7 @@
                                                 <xsl:call-template name="doDT_CodeableConcept">
                                                     <xsl:with-param name="in" select="f:role"/>
                                                 </xsl:call-template>
-                                            </strong>
+                                            </b>
                                             <div>
                                                 <xsl:call-template name="doDT_Reference">
                                                     <xsl:with-param name="in" select="f:reference"/>
@@ -3738,11 +3738,11 @@
             <status value="generated"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:if test="f:title">
-                    <strong>
+                    <b>
                         <xsl:call-template name="doDT_String">
                             <xsl:with-param name="in" select="f:title"/>
                         </xsl:call-template>
-                    </strong>
+                    </b>
                 </xsl:if>
                 <table>
                     <xsl:call-template name="doTableCaption">
@@ -3780,11 +3780,11 @@
                                 <xsl:if test="$doExtraItemInfo">
                                     <td>
                                         <xsl:if test="f:deleted[@value = 'true']">
-                                            <strong>
+                                            <b>
                                                 <xsl:call-template name="util:getLocalizedString">
                                                     <xsl:with-param name="key">Deleted</xsl:with-param>
                                                 </xsl:call-template>
-                                            </strong>
+                                            </b>
                                         </xsl:if>
                                         <xsl:if test="f:date">
                                             <xsl:text> </xsl:text>
@@ -4827,7 +4827,7 @@
                             <xsl:text>, </xsl:text>
                         </xsl:if>
                         <xsl:call-template name="doDT_Date">
-                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="in" select="f:birthDate"/>
                         </xsl:call-template>
                     </xsl:if>
                     <xsl:if test="f:deceasedBoolean[@value = 'true'] | f:deceasedDateTime[@value]">
@@ -4841,7 +4841,7 @@
                             <xsl:if test="f:deceasedDateTime[@value]">
                                 <xsl:text> </xsl:text>
                                 <xsl:call-template name="doDT_DateTime">
-                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="in" select="f:deceasedDateTime"/>
                                 </xsl:call-template>
                             </xsl:if>
                         </i>
@@ -4869,21 +4869,18 @@
                             <xsl:with-param name="key">Legal Status</xsl:with-param>
                             <xsl:with-param name="post" select="': '"/>
                         </xsl:call-template>
-                        <strong>
+                        <b>
                             <xsl:call-template name="doDT_CodeableConcept">
                                 <xsl:with-param name="in" select="f:valueCodeableConcept"/>
                             </xsl:call-template>
-                        </strong>
+                        </b>
                     </div>
                 </xsl:for-each>
                 <xsl:if test="f:telecom">
                     <div>
-                        <xsl:variable name="telecomData">
-                            <xsl:call-template name="doDT_ContactPoint">
-                                <xsl:with-param name="in" select="f:telecom"/>
-                            </xsl:call-template>
-                        </xsl:variable>
-                        <xsl:value-of select="string-join($telecomData, '')"/>
+                        <xsl:call-template name="doDT_ContactPoint">
+                            <xsl:with-param name="in" select="f:telecom"/>
+                        </xsl:call-template>
                     </div>
                 </xsl:if>
                 <xsl:if test="f:address">
@@ -4937,17 +4934,17 @@
                         </xsl:call-template>
                         <xsl:if test="f:telecom | f:address">
                             <div>
-                                <xsl:variable name="telecomData">
-                                    <xsl:call-template name="doDT_ContactPoint">
-                                        <xsl:with-param name="in" select="f:telecom"/>
-                                    </xsl:call-template>
-                                </xsl:variable>
-                                <xsl:variable name="addressData">
+                                <xsl:call-template name="doDT_ContactPoint">
+                                    <xsl:with-param name="in" select="f:telecom"/>
+                                </xsl:call-template>
+                                <xsl:if test="f:address">
+                                    <xsl:if test="f:telecom">
+                                        <xsl:text>, </xsl:text>
+                                    </xsl:if>
                                     <xsl:call-template name="doDT_Address">
                                         <xsl:with-param name="in" select="f:address[1]"/>
                                     </xsl:call-template>
-                                </xsl:variable>
-                                <xsl:value-of select="string-join((string-join($telecomData, ''), string-join($addressData, '')), ', ')"/>
+                                </xsl:if>
                             </div>
                         </xsl:if>
                     </div>
@@ -5344,12 +5341,12 @@
                         <tr>
                             <td>
                                 <xsl:if test="f:notDone[@value = 'true']">
-                                    <strong>
+                                    <b>
                                         <xsl:call-template name="util:getLocalizedString">
                                             <xsl:with-param name="key">Not Performed</xsl:with-param>
                                             <xsl:with-param name="post" select="': '"/>
                                         </xsl:call-template>
-                                    </strong>
+                                    </b>
                                 </xsl:if>
                                 <xsl:call-template name="doDT_CodeableConcept">
                                     <xsl:with-param name="in" select="f:code"/>
@@ -5580,12 +5577,12 @@
                         <tr>
                             <td>
                                 <xsl:if test="f:doNotPerform[@value = 'true']">
-                                    <strong>
+                                    <b>
                                         <xsl:call-template name="util:getLocalizedString">
                                             <xsl:with-param name="key">Do Not Perform</xsl:with-param>
                                             <xsl:with-param name="post" select="': '"/>
                                         </xsl:call-template>
-                                    </strong>
+                                    </b>
                                 </xsl:if>
                                 <xsl:call-template name="doDT_CodeableConcept">
                                     <xsl:with-param name="in" select="f:code"/>
@@ -5734,7 +5731,7 @@
             <status value="generated"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <div class="questionnaireResponseHeader">
-                    <strong>
+                    <b>
                         <xsl:call-template name="util:getLocalizedString">
                             <xsl:with-param name="key">Questionnaire Response for patient </xsl:with-param>
                             <xsl:with-param name="post" select="' '"/>
@@ -5750,7 +5747,7 @@
                         <xsl:call-template name="getLocalizedStatus">
                             <xsl:with-param name="in" select="f:status"/>
                         </xsl:call-template>
-                    </strong>
+                    </b>
                     <div>
                         <xsl:call-template name="util:getLocalizedString">
                             <xsl:with-param name="key">typeCode-AUT</xsl:with-param>
@@ -6466,24 +6463,57 @@
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="sep" select="', '" as="xs:string?"/>
         <xsl:for-each select="$in">
+            <xsl:variable name="official">
+                <xsl:if test="f:extension[@url = 'http://fhir.nl/fhir/StructureDefinition/nl-core-address-official']/f:valueBoolean/@value = 'true'">
+                    <xsl:call-template name="util:getLocalizedString">
+                        <xsl:with-param name="key">official</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="use">
+                <xsl:choose>
+                    <xsl:when test="f:use/f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-AD-use']">
+                        <xsl:for-each select="f:use/f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-AD-use']">
+                            <xsl:call-template name="getLocalizedPostalAddressUse">
+                                <xsl:with-param name="in" select="f:valueCode"/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:when test="f:use/@value">
+                        <xsl:call-template name="getLocalizedAddressUse">
+                            <xsl:with-param name="in" select="f:use"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="type">
+                <xsl:if test="f:type/@value">
+                    <xsl:call-template name="getLocalizedAddressType">
+                        <xsl:with-param name="in" select="f:type"/>
+                    </xsl:call-template>
+                </xsl:if>
+            </xsl:variable>
             <xsl:variable name="period" as="xs:string?">
                 <xsl:call-template name="doDT_Period">
                     <xsl:with-param name="in" select="f:period"/>
                 </xsl:call-template>
             </xsl:variable>
-            <xsl:variable name="str" select="normalize-space(string-join((f:line/@value, f:postalCode/@value, f:city/@value, f:state/@value, f:country/@value), ' '))"/>
+            <xsl:variable name="str">
+                <xsl:choose>
+                    <xsl:when test="not(empty($official) and empty($use) and empty($period))">
+                        <xsl:value-of select="normalize-space(string-join((f:text/@value, f:line/@value, string-join((f:postalCode/@value, f:city/@value, f:district/@value, f:state/@value), ' '), f:country/@value), ', '))"/>
+                        <xsl:text> (</xsl:text>
+                        <xsl:value-of select="string-join(($official[not(. = '')], $use[not(. = '')], $type[not(. = '')], $period[not(. = '')]), ' ')"/>
+                        <xsl:text>)</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="f:value/@value"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
             
             <xsl:call-template name="doSeparator">
-                <xsl:with-param name="str">
-                    <xsl:choose>
-                        <xsl:when test="empty($period)">
-                            <xsl:copy-of select="$str"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="concat($str, ' (', $period,')')"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:with-param>
+                <xsl:with-param name="str" select="$str"/>
                 <xsl:with-param name="sep" select="$sep"/>
             </xsl:call-template>
         </xsl:for-each>
@@ -6728,52 +6758,58 @@
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="sep" select="', '" as="xs:string?"/>
         <xsl:for-each select="$in">
-            <xsl:variable name="cpSystem">
+            <xsl:sort select="f:rank/@value"/>
+            <xsl:variable name="system">
                 <xsl:if test="f:system/@value">
-                    <xsl:call-template name="util:getLocalizedString">
-                        <xsl:with-param name="key">
-                            <xsl:choose>
-                                <xsl:when test="f:system/@value = 'phone'">Tel</xsl:when>
-                                <xsl:when test="f:system/@value = 'fax'">Fax</xsl:when>
-                                <xsl:when test="f:system/@value = 'email'">Email</xsl:when>
-                                <xsl:when test="f:system/@value = 'uri'">Web</xsl:when>
-                                <xsl:when test="f:system/@value = 'pager'">addressUse_PG</xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="f:system/@value"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:with-param>
+                    <xsl:call-template name="getLocalizedContactPointSystem">
+                        <xsl:with-param name="in" select="f:system"/>
                     </xsl:call-template>
                 </xsl:if>
             </xsl:variable>
-            <xsl:variable name="cpUse">
+            <xsl:variable name="use">
                 <xsl:if test="f:use/@value">
-                    <xsl:call-template name="util:getLocalizedString">
-                        <xsl:with-param name="key">
-                            <xsl:choose>
-                                <xsl:when test="f:use/@value = 'home'">addressUse_H</xsl:when>
-                                <xsl:when test="f:use/@value = 'work'">addressUse_WP</xsl:when>
-                                <xsl:when test="f:use/@value = 'tmp'">addressUse_TMP</xsl:when>
-                                <xsl:when test="f:use/@value = 'old'">addressUse_BAD</xsl:when>
-                                <xsl:when test="f:use/@value = 'mobile'">addressUse_MC</xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="f:use/@value"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:with-param>
+                    <xsl:call-template name="getLocalizedContactPointUse">
+                        <xsl:with-param name="in" select="f:use"/>
                     </xsl:call-template>
                 </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="period" as="xs:string?">
+                <xsl:call-template name="doDT_Period">
+                    <xsl:with-param name="in" select="f:period"/>
+                </xsl:call-template>
             </xsl:variable>
             <xsl:variable name="str">
                 <xsl:choose>
-                    <xsl:when test="f:system/@value | f:use/@value">
+                    <xsl:when test="empty($system) and empty($use) and empty($period)">
                         <xsl:value-of select="f:value/@value"/>
-                        <xsl:text> (</xsl:text>
-                        <xsl:value-of select="string-join(($cpSystem[not(. = '')], $cpUse[not(. = '')]), ' ')"/>
-                        <xsl:text>)</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="f:value/@value"/>
+                        <xsl:variable name="uri">
+                            <xsl:choose>
+                                <xsl:when test="matches(f:value/@value, '^[a-z-]:')">
+                                    <xsl:value-of select="f:value/@value"/>
+                                </xsl:when>
+                                <xsl:when test="f:system/@value = ('email')">
+                                    <xsl:value-of select="concat('mailto:', normalize-space(f:value/@value))"/>
+                                </xsl:when>
+                                <xsl:when test="f:system/@value = ('phone', 'fax', 'pager', 'sms')">
+                                    <xsl:value-of select="concat('tel:', normalize-space(f:value/@value))"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="empty($uri)">
+                                <xsl:value-of select="f:value/@value"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <a href="{$uri}" xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:value-of select="f:value/@value"/>
+                                </a>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:text> (</xsl:text>
+                        <xsl:value-of select="string-join(($system[not(. = '')], $use[not(. = '')], $period[not(. = '')]), ' ')"/>
+                        <xsl:text>)</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
@@ -7090,6 +7126,22 @@
         <xsl:for-each select="$in">
             <xsl:variable name="display">
                 <xsl:choose>
+                    <xsl:when test="f:display and f:identifier">
+                        <xsl:call-template name="doDT_String">
+                            <xsl:with-param name="in" select="f:display"/>
+                            <xsl:with-param name="sep" select="$sep"/>
+                        </xsl:call-template>
+                        <xsl:text> (</xsl:text>
+                        <xsl:call-template name="util:getLocalizedString">
+                            <xsl:with-param name="key">id</xsl:with-param>
+                            <xsl:with-param name="post" select="': '"/>
+                        </xsl:call-template>
+                        <xsl:call-template name="doDT_Identifier">
+                            <xsl:with-param name="in" select="f:identifier"/>
+                            <xsl:with-param name="sep" select="$sep"/>
+                        </xsl:call-template>
+                        <xsl:text>)</xsl:text>
+                    </xsl:when>
                     <xsl:when test="f:display">
                         <xsl:call-template name="doDT_String">
                             <xsl:with-param name="in" select="f:display"/>
@@ -7102,39 +7154,109 @@
                             <xsl:with-param name="sep" select="$sep"/>
                         </xsl:call-template>
                     </xsl:when>
+                    <xsl:when test="f:reference">
+                        <xsl:call-template name="doDT_String">
+                            <xsl:with-param name="in" select="f:reference"/>
+                            <xsl:with-param name="sep" select="$sep"/>
+                        </xsl:call-template>
+                    </xsl:when>
                     <xsl:otherwise>
-                        <xsl:message>TODO doDT_Reference without display or identifier</xsl:message>
-                        <xsl:text>TODO Reference without display or identifier</xsl:text>
+                        <xsl:message>TODO doDT_Reference without reference, display or identifier</xsl:message>
+                        <xsl:text>TODO Reference without reference, display or identifier</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
+            <xsl:variable name="displayForPractitionerRole">
+                <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']/f:valueReference">
+                    <xsl:choose>
+                        <xsl:when test="f:display and f:identifier">
+                            <xsl:call-template name="doDT_String">
+                                <xsl:with-param name="in" select="f:display"/>
+                                <xsl:with-param name="sep" select="$sep"/>
+                            </xsl:call-template>
+                            <xsl:text> (</xsl:text>
+                            <xsl:call-template name="util:getLocalizedString">
+                                <xsl:with-param name="key">id</xsl:with-param>
+                                <xsl:with-param name="post" select="': '"/>
+                            </xsl:call-template>
+                            <xsl:call-template name="doDT_Identifier">
+                                <xsl:with-param name="in" select="f:identifier"/>
+                                <xsl:with-param name="sep" select="$sep"/>
+                            </xsl:call-template>
+                            <xsl:text>)</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="f:display">
+                            <xsl:call-template name="doDT_String">
+                                <xsl:with-param name="in" select="f:display"/>
+                                <xsl:with-param name="sep" select="$sep"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:when test="f:identifier">
+                            <xsl:call-template name="doDT_Identifier">
+                                <xsl:with-param name="in" select="f:identifier"/>
+                                <xsl:with-param name="sep" select="$sep"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:when test="f:reference">
+                            <xsl:call-template name="doDT_String">
+                                <xsl:with-param name="in" select="f:reference"/>
+                                <xsl:with-param name="sep" select="$sep"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:message>TODO doDT_Reference PractitionerRole without reference, display or identifier</xsl:message>
+                            <xsl:text>TODO Reference PractitionerRole without reference, display or identifier</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+            </xsl:variable>
             <xsl:variable name="str">
                 <xsl:choose>
-                    <xsl:when test="f:reference">
-                        <a href="{f:reference/@value}" xmlns="http://www.w3.org/1999/xhtml">
-                            <xsl:for-each select="$display">
-                                <xsl:choose>
-                                    <xsl:when test=". instance of attribute()">
-                                        <xsl:value-of select="."/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:copy-of select="."/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:for-each>
-                        </a>
+                    <xsl:when test="$displayForPractitionerRole[contains(., $display)]">
+                        <xsl:call-template name="doDT_Reference">
+                            <xsl:with-param name="in" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']/f:valueReference"/>
+                        </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:for-each select="$display">
-                            <xsl:choose>
-                                <xsl:when test=". instance of attribute()">
-                                    <xsl:value-of select="."/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:copy-of select="."/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:for-each>
+                        <xsl:choose>
+                            <xsl:when test="f:reference[@value][not(starts-with(@value, 'urn:'))]">
+                                <a href="{f:reference/@value}" xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:for-each select="$display">
+                                        <xsl:choose>
+                                            <xsl:when test=". instance of attribute()">
+                                                <xsl:value-of select="."/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:copy-of select="."/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:for-each>
+                                </a>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:for-each select="$display">
+                                    <xsl:choose>
+                                        <xsl:when test=". instance of attribute()">
+                                            <xsl:value-of select="."/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:copy-of select="."/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']">
+                            <div xmlns="http://www.w3.org/1999/xhtml">
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">PractitionerRole</xsl:with-param>
+                                    <xsl:with-param name="post" select="': '"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="doDT_Reference">
+                                    <xsl:with-param name="in" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']/f:valueReference"/>
+                                </xsl:call-template>
+                            </div>
+                        </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
@@ -7781,5 +7903,199 @@
             </xsl:call-template>
             <xsl:text>)</xsl:text>
         </i>
+    </xsl:template>
+    <!-- https://www.hl7.org/fhir/STU3/valueset-contact-point-use.html -->
+    <xsl:template name="getLocalizedContactPointSystem">
+        <xsl:param name="in" as="element()?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'phone'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">Tel</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'fax'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">Fax</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'email'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">Email</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'uri'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">Web</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'pager'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PG</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- https://www.hl7.org/fhir/STU3/valueset-contact-point-use.html -->
+    <xsl:template name="getLocalizedContactPointUse">
+        <xsl:param name="in" as="element()?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'pager'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PG</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'home'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_H</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'work'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_WP</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'temp'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_TMP</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'old'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_BAD</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'mobile'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_MC</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- http://hl7.org/fhir/STU3/valueset-address-use.html -->
+    <xsl:template name="getLocalizedAddressUse">
+        <xsl:param name="in" as="element()?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'home'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_H</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'work'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_WP</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'temp'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_TMP</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'old'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_BAD</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- http://hl7.org/fhir/STU3/valueset-postal-address-use.html -->
+    <xsl:template name="getLocalizedPostalAddressUse">
+        <xsl:param name="in" as="element()?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'BAD'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_BAD</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'CONF'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_CONF</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'HP'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_HP</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'HV'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_HV</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'DIR'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_DIR</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'PUB'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PUB</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'PHYS'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PHYS</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'PST'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PST</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- https://www.hl7.org/fhir/STU3/valueset-address-type.html -->
+    <xsl:template name="getLocalizedAddressType">
+        <xsl:param name="in" as="element()?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'postal'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PST</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'physical'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PHYS</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'both'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PST</xsl:with-param>
+                </xsl:call-template>
+                <xsl:text>/</xsl:text>
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_PHYS</xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
