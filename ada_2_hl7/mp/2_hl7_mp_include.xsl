@@ -3994,38 +3994,38 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
 
     <xd:doc>
         <xd:desc>Voorstel Medicatieafspraak</xd:desc>
-        <xd:param name="vma"/>
+        <xd:param name="in">The proposed medication agreement</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9153_20160726162345">
-        <xsl:param name="vma"/>
-        <xsl:for-each select="$vma">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9153_20160726162345" match="medicatieafspraak | medication_agreement" mode="HandleMAProposal91">
+        <xsl:param name="in" select="."/>
+        
+        <xsl:for-each select="$in">
             <substanceAdministration classCode="SBADM" moodCode="PRP">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9153"/>
                 <!-- Geen id bij voorstel MA: dit is een vluchtig ding waar toch niet naar verwezen mag worden. -->
                 <code code="16076005" displayName="Medicatieafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="SNOMED CT"/>
-                <xsl:for-each select="./gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
                     <text mediaType="text/plain">
                         <xsl:value-of select="./@value"/>
                     </text>
                 </xsl:for-each>
                 <!-- Gebruiksperiode -->
-                <!-- TODO: Tijdelijke fix (9.04) waarbij aparte velden in ADA form staan voor effectiveTime\low en -\high -->
-                <xsl:if test="./gebruiksperiode[.//(@value | @code)] or ./gebruiksperiode_start[.//(@value | @code)] or ./gebruiksperiode_eind[.//(@value | @code)]">
+                <xsl:if test="gebruiksperiode[.//(@value | @code)] or gebruiksperiode_start[.//(@value | @code)] or gebruiksperiode_eind[.//(@value | @code)]">
                     <effectiveTime xsi:type="IVL_TS">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
-                            <xsl:with-param name="low" select="./gebruiksperiode_start"/>
-                            <xsl:with-param name="high" select="./gebruiksperiode_eind"/>
-                            <xsl:with-param name="width" select="./gebruiksperiode"/>
+                            <xsl:with-param name="low" select="gebruiksperiode_start"/>
+                            <xsl:with-param name="high" select="gebruiksperiode_eind"/>
+                            <xsl:with-param name="width" select="gebruiksperiode"/>
                         </xsl:call-template>
                     </effectiveTime>
                 </xsl:if>
-                <xsl:for-each select="./gebruiksinstructie/toedieningsweg[.//(@value | @code)]">
+                <xsl:for-each select="gebruiksinstructie/toedieningsweg[.//(@value | @code)]">
                     <routeCode>
                         <xsl:call-template name="makeCodeAttribs"/>
                     </routeCode>
                 </xsl:for-each>
 
-                <xsl:for-each select="./afgesproken_geneesmiddel/product[.//(@value | @code)]">
+                <xsl:for-each select="afgesproken_geneesmiddel/product[.//(@value | @code)]">
                     <consumable>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9263_20181211154012">
                             <xsl:with-param name="product" select="."/>
@@ -4034,21 +4034,14 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </xsl:for-each>
 
                 <!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
-                <xsl:if test="./../../(auteur[.//(@value | @code)] | voorsteldatum[.//(@value | @code)])">
+                <xsl:if test="../../(auteur[.//(@value | @code)] | voorsteldatum[.//(@value | @code)])">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20181205180828">
                         <xsl:with-param name="ada-auteur" select="./../../auteur"/>
                         <xsl:with-param name="authorTime" select="./../../voorstel_datum"/>
                     </xsl:call-template>
                 </xsl:if>
 
-                <!-- Toelichting op het voorstel (er is ook een toelichting bij de MA) -->
-                <xsl:for-each select="//voorstelgegevens/toelichting">
-                    <entryRelationship typeCode="SUBJ" inversionInd="true">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9183_20170818085324"/>
-                    </entryRelationship>
-                </xsl:for-each>
-
-                <!-- Overige onderdelen van deze MA -->
+                 <!-- Overige onderdelen van deze MA -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9234_20181204140853">
                     <xsl:with-param name="ma" select="."/>
                 </xsl:call-template>
@@ -4064,232 +4057,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         </xsl:for-each>
     </xsl:template>
 
-    <!--Medicatiegebruik t/m MP 9.04; vervangen door 9190 -->
-
-
     <xd:doc>
-        <xd:desc>&lt;xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9154_20160726181533"&gt;
-            &lt;xsl:param name="gb"/&gt;
-            
-            &lt;xsl:variable name="isInGebruik" select="./gebruik_indicator/@value" as="xs:boolean"/&gt;
-            
-            &lt;substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="{not($isInGebruik)}"&gt;
-            &lt;!-\- Feitelijk medicatiegebruik -\-&gt;
-            &lt;templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9154"/&gt;
-            &lt;!-\- identificatie -\-&gt;
-            &lt;xsl:for-each select="./identificatie"&gt;
-            &lt;xsl:call-template name="makeIIid"/&gt;
-            &lt;/xsl:for-each&gt;
-            &lt;code code="6" displayName="Gebruik" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"
-            codeSystemName="Medicatieproces acts"/&gt;
-            &lt;xsl:for-each select="./gebruiksinstructie/omschrijving"&gt;
-            &lt;text mediaType="text/plain"&gt;
-            &lt;xsl:value-of select="./@value"/&gt;
-            &lt;/text&gt;
-            &lt;/xsl:for-each&gt;
-            &lt;!-\- Gebruiksperiode -\-&gt;
-            &lt;!-\-&lt;xsl:if test="$isInGebruik"&gt; -\-&gt;
-            &lt;!-\- EffectiveTime mag niet voorkomen als gebruiksindicator = false
-            Deze eis gaat vervallen, en er is sowieso geen reden om dit in de conversie af te dwingen. -\-&gt;
-            &lt;!-\- TODO: Tijdelijke fix (9.04) waarbij aparte velden in ADA form staan voor effectiveTime\low en -\high -\-&gt;
-            &lt;xsl:if test="./gebruiksperiode or ./gebruiksperiode_start or ./gebruiksperiode_eind"&gt;
-            &lt;effectiveTime xsi:type="IVL_TS"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001"&gt;
-            &lt;xsl:with-param name="low" select="./gebruiksperiode_start"/&gt;
-            &lt;xsl:with-param name="high" select="./gebruiksperiode_eind"/&gt;
-            &lt;xsl:with-param name="width" select="./gebruiksperiode"/&gt;
-            &lt;/xsl:call-template&gt;
-            &lt;/effectiveTime&gt;
-            &lt;/xsl:if&gt;
-            &lt;!-\-&lt;/xsl:if&gt;-\-&gt;
-            &lt;xsl:for-each select="./gebruiksinstructie/toedieningsweg"&gt;
-            &lt;routeCode&gt;
-            &lt;xsl:call-template name="makeCodeAttribs"/&gt;
-            &lt;/routeCode&gt;
-            &lt;/xsl:for-each&gt;
-            &lt;xsl:for-each select="./gebruiks_product/product"&gt;
-            &lt;consumable&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9070_20160618193427"&gt;
-            &lt;xsl:with-param name="product" select="."/&gt;
-            &lt;/xsl:call-template&gt;
-            &lt;/consumable&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -\-&gt;
-            &lt;xsl:for-each select="./auteur"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20170818144258"&gt;
-            &lt;xsl:with-param name="authorTime" select="../registratiedatum"/&gt;
-            &lt;/xsl:call-template&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Informant van het medicatiegebruik: zorgverlener -\-&gt;
-            &lt;xsl:for-each select="./informant/informant_is_zorgverlener/zorgverlener"&gt;
-            &lt;informant&gt;
-            &lt;assignedEntity&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9167_20170516000000"/&gt;
-            &lt;/assignedEntity&gt;
-            &lt;/informant&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Informant van het medicatiegebruik: contactpartij = ander persoon -\-&gt;
-            &lt;xsl:for-each select="./informant/persoon"&gt;
-            &lt;informant&gt;
-            &lt;relatedEntity classCode="AGNT"&gt;
-            &lt;code code="407542009" codeSystem="{$oidSNOMEDCT}"
-            displayName="Informal carer (person)"/&gt;
-            &lt;relatedPerson classCode="PSN" determinerCode="INSTANCE"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000"&gt;
-            &lt;xsl:with-param name="naamgegevens" select="./naamgegevens"/&gt;
-            &lt;/xsl:call-template&gt;
-            &lt;/relatedPerson&gt;
-            &lt;/relatedEntity&gt;
-            &lt;/informant&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Informant van het medicatiegebruik: patiënt -\-&gt;
-            &lt;xsl:if test="./informant/informant_is_patient/@value = 'true'"&gt;
-            &lt;informant&gt;
-            &lt;assignedEntity&gt;
-            &lt;xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9188_20170825000000"/&gt;
-            &lt;/assignedEntity&gt;
-            &lt;/informant&gt;
-            &lt;/xsl:if&gt;
-            
-            &lt;!-\- Volgens afspraak indicator -\-&gt;
-            &lt;xsl:for-each select="./volgens_afspraak_indicator"&gt;
-            &lt;entryRelationship typeCode="COMP"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9117_20160710194752"/&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Stoptype -\-&gt;
-            &lt;xsl:for-each select="./stoptype"&gt;
-            &lt;entryRelationship typeCode="COMP"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9067_20160617102209"/&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Aanvullende Instructie. -\-&gt;
-            &lt;xsl:for-each select="./gebruiksinstructie/aanvullende_instructie"&gt;
-            &lt;entryRelationship typeCode="SPRT"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818"/&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Reden gebruik -\-&gt;
-            &lt;xsl:for-each select="./reden_gebruik"&gt;
-            &lt;entryRelationship typeCode="RSON"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9114_20160710170744"/&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Reden wijzigen/stoppen gebruik -\-&gt;
-            &lt;xsl:for-each select="./reden_wijzigen_of_stoppen_gebruik"&gt;
-            &lt;entryRelationship typeCode="RSON"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9115_20160710171719"/&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Toelichting -\-&gt;
-            &lt;xsl:for-each select="./toelichting"&gt;
-            &lt;entryRelationship typeCode="SUBJ" inversionInd="true"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9069_20160617163405"/&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\-Doseerinstructie-\-&gt;
-            &lt;xsl:for-each select="./gebruiksinstructie/doseerinstructie/dosering"&gt;
-            &lt;entryRelationship typeCode="COMP"&gt;
-            &lt;xsl:for-each select="../volgnummer"&gt;
-            &lt;sequenceNumber&gt;
-            &lt;xsl:attribute name="value" select="./@value"/&gt;
-            &lt;/sequenceNumber&gt;
-            &lt;/xsl:for-each&gt;
-            &lt;!-\- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -\-&gt;
-            &lt;xsl:if test="not(../volgnummer)"&gt;
-            &lt;sequenceNumber&gt;
-            &lt;xsl:attribute name="value" select="1"/&gt;
-            &lt;/sequenceNumber&gt;
-            &lt;/xsl:if&gt;
-            &lt;xsl:for-each select="."&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9149_20160725134340"/&gt;
-            &lt;/xsl:for-each&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Relatie naar (voorschrift met) voorschrijver -\-&gt;
-            &lt;xsl:for-each select="./voorschrijver/zorgverlener"&gt;
-            &lt;entryRelationship typeCode="REFR"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9166_20170516000000"/&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Relatie naar afspraak (medicatieafspraak óf toedieningsafspraak) -\-&gt;
-            &lt;!-\- Eigenlijk zit hier template 2.16.840.1.113883.2.4.3.11.60.77.10.9120 (MP Afspraak Identificatie) omheen,
-            maar omdat die geen eigen elementen bevat, maar alleen een keuze, is die niet uitgewerkt. 
-            Hier doen we geen input validatie, dus wordt elk aanwezig element omgezet. -\-&gt;
-            &lt;xsl:for-each select="./gerelateerde_afspraak/identificatie_medicatieafspraak"&gt;
-            &lt;!-\- kunnen er 0 of 1 zijn -\-&gt;
-            &lt;entryRelationship typeCode="REFR"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9086_20160621122009"&gt;
-            &lt;xsl:with-param name="identificatieElement" select="."/&gt;
-            &lt;/xsl:call-template&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            &lt;xsl:for-each select="./gerelateerde_afspraak/identificatie_toedieningsafspraak"&gt;
-            &lt;!-\- kunnen er 0 of 1 zijn -\-&gt;
-            &lt;entryRelationship typeCode="REFR"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9101_20160624130316"&gt;
-            &lt;xsl:with-param name="identificatieElement" select="."/&gt;
-            &lt;/xsl:call-template&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Relatie naar verstrekking -\-&gt;
-            &lt;xsl:for-each select="./gerelateerde_verstrekking"&gt;
-            &lt;!-\- kunnen er 0 of 1 zijn -\-&gt;
-            &lt;entryRelationship typeCode="REFR"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9102_20160624133045"&gt;
-            &lt;xsl:with-param name="identificatieElement" select="./identificatie"/&gt;
-            &lt;/xsl:call-template&gt;
-            &lt;/entryRelationship&gt;
-            &lt;/xsl:for-each&gt;
-            
-            &lt;!-\- Relatie naar medicamenteuze behandeling -\-&gt;
-            &lt;entryRelationship typeCode="COMP" inversionInd="true"&gt;
-            &lt;xsl:call-template
-            name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9084_20160621103838"&gt;
-            &lt;xsl:with-param name="MBHroot" select=".."/&gt;
-            &lt;/xsl:call-template&gt;
-            &lt;/entryRelationship&gt;
-            
-            &lt;/substanceAdministration&gt;
-            &lt;/xsl:template&gt;
-        </xd:desc>
+        <xd:desc>HL7NL PIVL_TS Weekdag</xd:desc>
         <xd:param name="operator"/>
         <xd:param name="toedientijd"/>
         <xd:param name="aantalPerWeek"/>
         <xd:param name="weekdagCode"/>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
-        <!-- HL7NL PIVL_TS Weekdag -->
-        <xsl:param name="operator"/>
+         <xsl:param name="operator"/>
         <xsl:param name="toedientijd"/>
         <xsl:param name="aantalPerWeek"/>
         <xsl:param name="weekdagCode"/>
@@ -5097,7 +4873,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
             <xsl:for-each select="toelichting[.//(@value | @code)]">
                 <entryRelationship typeCode="SUBJ" inversionInd="true">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9069_20160617163405"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                 </entryRelationship>
             </xsl:for-each>
             <!--Doseerinstructie-->
@@ -5376,6 +5152,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:call-template>
         </criterion>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -5387,6 +5164,21 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <code code="48767-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Toelichting"/>
             <text mediaType="text/plain">
                 <xsl:value-of select="./@value"/>
+            </text>
+        </act>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Toelichting</xd:desc>
+        <xd:param name="in">Input ada element</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000" match="toelichting | comment" mode="HandleComment">
+        <xsl:param name="in" select="."/>
+         <act classCode="ACT" moodCode="EVN">
+             <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+            <code code="48767-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Annotation comment"/>
+            <text mediaType="text/plain">
+                <xsl:value-of select="@value"/>
             </text>
         </act>
     </xsl:template>

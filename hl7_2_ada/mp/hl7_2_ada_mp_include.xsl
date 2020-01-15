@@ -4377,16 +4377,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="elemName" select="$elemName"/>
                         <xsl:with-param name="vagueDate" select="true()"/>
                     </xsl:call-template>
-                </xsl:for-each>
-                
-                <!-- afspraak_datum_tijd -->
-                <xsl:for-each select="hl7:author/hl7:time[@value | @nullFlavor]">
-                    <xsl:variable name="elemName">afspraak_datum_tijd</xsl:variable>
-                    <xsl:call-template name="handleTS">
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
-                        <xsl:with-param name="elemName" select="$elemName"/>
-                    </xsl:call-template>
-                </xsl:for-each>
+                </xsl:for-each>   
                 
                 <!-- gebruiksperiode -->
                 <xsl:for-each select="$IVL_TS/hl7:width">
@@ -4449,21 +4440,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:for-each>
                 
-                <!-- voorschrijver -->
-                <xsl:for-each select="hl7:author">
-                    <xsl:variable name="elemName">voorschrijver</xsl:variable>
-                    <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
-                    <xsl:element name="{$elemName}">
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="schema" select="$schema"/>
-                            <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
-                        </xsl:call-template>
-                    </xsl:element>
-                </xsl:for-each>
-                
-                <!-- reden_wijzigen_of_staken -->
+                 <!-- reden_wijzigen_of_staken -->
                 <xsl:for-each select="./hl7:entryRelationship/*[hl7:code[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:value">
                     <xsl:variable name="elemName">reden_wijzigen_of_staken</xsl:variable>
                     <xsl:call-template name="handleCV">
@@ -4524,7 +4501,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
                 
                 <!-- toelichting -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
+                <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:code[@code = '48767-8'][@codeSystem = $oidLOINC]]/hl7:text">
                     <xsl:variable name="elemName">toelichting</xsl:variable>
                     <xsl:element name="{$elemName}">
                         <xsl:attribute name="value" select="text()"/>
