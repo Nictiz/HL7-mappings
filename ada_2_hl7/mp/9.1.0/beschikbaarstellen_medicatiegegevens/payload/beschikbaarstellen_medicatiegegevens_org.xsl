@@ -13,6 +13,10 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="cda xd xsl xs" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../../2_hl7_mp_include.xsl"/>
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
+    
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Feb 16, 2019</xd:p>
@@ -20,10 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Mapping xslt for use case 'beschikbaarstellen medicatiegegevens' in MP-9. From ada to hl7.</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:import href="../../../2_hl7_mp_include.xsl"/>
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
-
+ 
     <xd:doc>
         <xd:desc> 
             Base template puts a reference to schematron useful in development/testing phases. Then calls appropriate template to do the conversion. Puts a reference to schematron.
@@ -58,9 +59,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="patient"/>
-        <xd:param name="mbh"/>
+        <xd:desc>Convert ada to HL7 for transaction beschikbaarstellen_medicatiegegevens</xd:desc>
+        <xd:param name="patient">ada patient</xd:param>
+        <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
     </xd:doc>
     <xsl:template name="Medicatiegegevens_910">
         <xsl:param name="patient" as="element()?"/>
@@ -73,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Patient -->
             <xsl:for-each select="$patient">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000">
-                    <xsl:with-param name="patient" select="."/>
+                    <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
             </xsl:for-each>
 

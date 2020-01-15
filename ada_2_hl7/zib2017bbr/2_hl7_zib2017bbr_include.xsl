@@ -14,102 +14,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
+    <!--    <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>-->
+
     <xsl:output method="xml" indent="yes"/>
-
-    <xd:doc>
-        <xd:desc>Helper template to fill person details based on ada patient</xd:desc>
-    </xd:doc>
-    <xsl:template name="_CdaPerson">
-        <xsl:for-each select=".//naamgegevens[not(naamgegevens)][.//(@value | @code | @nullFlavor)]">
-            <name>
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
-                    <xsl:with-param name="naamgegevens" select="."/>
-                </xsl:call-template>
-            </name>
-        </xsl:for-each>
-        <xsl:for-each select="geslacht[.//(@value | @code | @nullFlavor)]">
-            <administrativeGenderCode>
-                <xsl:call-template name="makeCodeAttribs"/>
-            </administrativeGenderCode>
-        </xsl:for-each>
-        <!-- geboortedatum -->
-        <xsl:for-each select="geboortedatum[.//(@value | @code | @nullFlavor)]">
-            <birthTime>
-                <xsl:call-template name="makeTSValueAttr"/>
-            </birthTime>
-        </xsl:for-each>
-
-        <!-- overlijdens_indicator -->
-        <xsl:for-each select="overlijdens_indicator[.//(@value | @code | @nullFlavor)]">
-            <xsl:call-template name="makeBLValue">
-                <xsl:with-param name="elemName">deceasedInd</xsl:with-param>
-                <xsl:with-param name="elemNamespace">urn:hl7-org:sdtc</xsl:with-param>
-                <xsl:with-param name="xsiType"/>
-            </xsl:call-template>
-        </xsl:for-each>
-
-        <xsl:for-each select="datum_overlijden[.//(@value | @code | @nullFlavor)]">
-            <xsl:call-template name="makeTSValue">
-                <xsl:with-param name="elemName">deceasedTime</xsl:with-param>
-                <xsl:with-param name="elemNamespace">urn:hl7-org:sdtc</xsl:with-param>
-                <xsl:with-param name="xsiType"/>
-            </xsl:call-template>
-        </xsl:for-each>
-        <!-- meerlingindicator -->
-        <xsl:for-each select="meerling_indicator[@value | @nullFlavor]">
-            <xsl:call-template name="makeBLValue">
-                <xsl:with-param name="elemName">sdtc:multipleBirthInd</xsl:with-param>
-                <xsl:with-param name="elemNamespace">urn:hl7-org:sdtc</xsl:with-param>
-                <xsl:with-param name="xsiType"/>
-            </xsl:call-template>
-
-        </xsl:for-each>
-        <!-- rangnummer_kind added for peri-->
-        <xsl:for-each select="rangnummer_kind[@value | @nullFlavor]">
-            <xsl:call-template name="makeINTValue">
-                <xsl:with-param name="elemName">multipleBirthOrderNumber</xsl:with-param>
-                <xsl:with-param name="elemNamespace">urn:hl7-org:sdtc</xsl:with-param>
-                <xsl:with-param name="xsiType"/>
-            </xsl:call-template>
-        </xsl:for-each>
-
-    </xsl:template>
-
-
-    <xd:doc>
-        <xd:desc>Helper template to fill telecom details based on ada patient</xd:desc>
-    </xd:doc>
-    <xsl:template name="_CdaTelecom">
-        <!--Telecom gegevens-->
-        <xsl:for-each select=".//telefoonnummers[.//(@value | @code | @nullFlavor)]">
-            <telecom>
-                <xsl:for-each select="nummer_soort/@code">
-                    <xsl:attribute name="use" select="."/>
-                </xsl:for-each>
-                <xsl:for-each select="telefoonnummer/@value">
-                    <xsl:attribute name="value">
-                        <xsl:text>tel:</xsl:text>
-                        <xsl:value-of select="."/>
-                    </xsl:attribute>
-                </xsl:for-each>
-            </telecom>
-        </xsl:for-each>
-
-        <xsl:for-each select=".//email_adressen[.//(@value | @code | @nullFlavor)]">
-            <telecom>
-                <xsl:for-each select="email_soort/@code">
-                    <xsl:attribute name="use" select="."/>
-                </xsl:for-each>
-                <xsl:for-each select="email_adres/@value">
-                    <xsl:attribute name="value">
-                        <xsl:text>mailto:</xsl:text>
-                        <xsl:value-of select="."/>
-                    </xsl:attribute>
-                </xsl:for-each>
-            </telecom>
-        </xsl:for-each>
-
-    </xsl:template>
 
     <xd:doc>
         <xd:desc>Creates HL7 performing healthcare provider (uitvoerende zorgaanbieder) </xd:desc>
@@ -207,20 +114,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
     <xd:doc>
-        <xd:desc>Template for comment</xd:desc>
+        <xd:desc>Toelichting</xd:desc>
+        <xd:param name="in">Input ada element</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000" match="toelichting | comment" mode="HandleComment">
-        <act classCode="ACT" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
-            <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" displayName="Annotation comment"/>
-            <text>
-                <xsl:value-of select="@value"/>
-            </text>
-        </act>
-
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <act classCode="ACT" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                <code code="48767-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Annotation comment"/>
+                <text mediaType="text/plain">
+                    <xsl:value-of select="@value"/>
+                </text>
+            </act>
+        </xsl:for-each>
     </xsl:template>
+
     <xd:doc>
         <xd:desc> name person NL - generic </xd:desc>
         <xd:param name="naamgegevens">ada naamgegevens element</xd:param>
@@ -255,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Als de ada instance niet correct is gevuld en het initiaal van de ook doorgegeven voornamen niet in de juiste volgorde in de initialen staat, 
                      dan lukt het verwijderen van initialen niet goed. 
                      We zijn dus sterk afhankelijk van de kwaliteit van implementaties. -->
-                <xsl:variable name="adaFirstNameInitials" as="xs:string">
+                <xsl:variable name="adaFirstNameInitials" as="xs:string?">
                     <xsl:variable name="init" as="xs:string*">
                         <xsl:for-each select="../voornamen/tokenize(normalize-space(@value), '\s')">
                             <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
@@ -271,7 +181,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     <xsl:value-of select="string-join($init, '')"/>
                 </xsl:variable>
-                <xsl:variable name="hl7Initials" select="replace($adaInitials, concat('^', $adaFirstNameInitials), '')"/>
+                <xsl:variable name="hl7Initials">
+                    <xsl:choose>
+                        <xsl:when test="string-length($adaFirstNameInitials) gt 0 and string-length($adaInitials) gt 0">
+                            <xsl:value-of select="replace($adaInitials, concat('^', $adaFirstNameInitials), '')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$adaInitials"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <xsl:if test="$hl7Initials">
                     <given qualifier="IN">
                         <xsl:value-of select="nf:addEnding($hl7Initials, '.')"/>
@@ -447,10 +366,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.103_20180611000000" match="telefoonnummers" mode="HandleTelNrs">
         <xsl:if test="nummer_soort[@code] or telecom_type/@code = 'MC'">
             <xsl:variable name="hl7Use" as="xs:string*">
-                <xsl:if test="nummer_soort[@code]"><xsl:value-of select="nummer_soort/@code"/></xsl:if>
-                <xsl:if test="telecom_type/@code = 'MC'"><xsl:value-of select="telecom_type/@code"/></xsl:if>                
+                <xsl:if test="nummer_soort[@code]">
+                    <xsl:value-of select="nummer_soort/@code"/>
+                </xsl:if>
+                <xsl:if test="telecom_type/@code = 'MC'">
+                    <xsl:value-of select="telecom_type/@code"/>
+                </xsl:if>
             </xsl:variable>
-            <xsl:attribute name="use" select="string-join($hl7Use, ' ')"/>               
+            <xsl:attribute name="use" select="string-join($hl7Use, ' ')"/>
         </xsl:if>
         <xsl:attribute name="value">
             <xsl:choose>
@@ -483,39 +406,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:attribute>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>CDA recordTarget SDTC NL BSN Contactible</xd:desc>
-        <xd:param name="patient">ada patient</xd:param>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000" match="patient">
-        <xsl:param name="patient" select="."/>
-        <xsl:for-each select="$patient">
-            <recordTarget>
-                <patientRole>
-                    <xsl:for-each select="(patient_identificatienummer | identificatienummer)">
-                        <xsl:call-template name="makeIIValue">
-                            <xsl:with-param name="root" select="./@root"/>
-                            <xsl:with-param name="elemName">id</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-
-                    <!-- Adres -->
-                    <xsl:for-each select=".//adresgegevens[not(adresgegevens)][.//(@value | @code | @nullFlavor)]">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20170602000000">
-                            <xsl:with-param name="adres" select="."/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-
-                    <!--Telecom gegevens-->
-                    <xsl:call-template name="_CdaTelecom"/>
-
-                    <patient>
-                        <xsl:call-template name="_CdaPerson"/>
-                    </patient>
-                </patientRole>
-            </recordTarget>
-        </xsl:for-each>
-    </xsl:template>
 
     <xd:doc>
         <xd:desc>procedure_activity based on ada verrichting, only supports type and start/end date</xd:desc>
@@ -704,7 +594,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
                     </addr>
                 </xsl:for-each>
-                
+
                 <!-- telecom -->
                 <xsl:for-each select="contactgegevens/telefoonnummers[.//(@value | @nullFlavor)]">
                     <telecom>
@@ -716,7 +606,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.104_20180611000000"/>
                     </telecom>
                 </xsl:for-each>
-                
+
                 <!-- playingEntity -->
                 <xsl:for-each select="((zorgverlener_naam/naamgegevens) | (.//naamgegevens[not(child::naamgegevens)]))[.//(@value | @code | @nullFlavor)]">
                     <playingEntity>
@@ -791,7 +681,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    
+
     <xd:doc>
         <xd:desc> part Encounter reference </xd:desc>
     </xd:doc>
@@ -802,7 +692,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </encounter>
         </entryRelationship>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> part Concern reference </xd:desc>
     </xd:doc>
@@ -895,7 +785,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </author>
     </xsl:template>
 
-    
+
     <xd:doc>
         <xd:desc> CDA author of informant patient </xd:desc>
         <xd:param name="ada_patient_identificatienummer">ada patient id</xd:param>

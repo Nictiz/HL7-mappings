@@ -18,14 +18,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xsl:param name="language" as="xs:string?">nl-NL</xsl:param>
-    <!-- de xsd parameter bevat het ada xsd om de juiste conceptId's te vinden voor de ADA xml, ada xsd verschilt per ad transactie -->
-    <!-- indien niet gevuld, heeft de ada output geen conceptId's -->
-    <xsl:param name="schema"/>
-
+ 
     <xd:doc>
         <xd:desc>Mapping of zib nl.zorg.LaboratoriumUitslag 4.1 concept in ADA to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.7.10.31. 
                  Created for Ketenzorg / MP voorschrift, currently only supports fields used in those scenario's</xd:desc>
-        <xd:param name="in">ADA Node to consider in the creation of the ada element</xd:param>
+        <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
     </xd:doc>
     <xsl:template name="hl7-LaboratoryObservation-20171205" match="laboratorium_uitslag | laboratory_test_result" as="element()*" mode="doHl7LaboratoryObservation20171205">
         <xsl:param name="in" select="." as="element()?"/>

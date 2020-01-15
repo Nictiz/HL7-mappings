@@ -16,4 +16,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Without this import, all depending XSLs need to import it -->
     <xsl:import href="_ada2hl7_zib2017.xsl"/>
     <xsl:import href="hl7-LaboratoryObservation-20171205.xsl"/>
+    <xsl:import href="hl7-CDARecordTargetSDTCNLBSNContactible-20180611.xsl"/>    
+      
  </xsl:stylesheet>
