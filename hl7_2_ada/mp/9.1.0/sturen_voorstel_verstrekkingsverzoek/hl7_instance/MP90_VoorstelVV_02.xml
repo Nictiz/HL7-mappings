@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model href="../schematron_closed_warnings/mp-MP90_vvv.sch" type="application/xml"  phase="#ALL" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9130"/>
+    <code code="104" displayName="Voorstel verstrekkingsverzoek" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
+    <statusCode nullFlavor="NI"/>
+    <recordTarget>
+        <patientRole>
+            <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+            <patient>
+                <name>
+                    <given>Joris</given>
+                    <family>Hansman</family>
+                </name>
+                <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                <birthTime value="19840512"/>
+                <!-- meerlingindicator -->
+                <sdtc:multipleBirthInd value="false"/>
+            </patient>
+        </patientRole>
+    </recordTarget>
+    <!-- Voorstel Verstrekkingsverzoek -->
+    <component typeCode="COMP">
+        <supply classCode="SPLY" moodCode="PRP">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9131"/>
+            <code xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" code="52711000146108" codeSystem="2.16.840.1.113883.6.96" displayName="Verstrekkingsverzoek" codeSystemName="SNOMED CT"/>
+            <!-- iter -->
+            <repeatNumber value="0"/>
+            <!-- te verstrekken hoeveelheid -->
+            <quantity value="40" unit="1">
+                <translation value="40" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+            </quantity>
+            <expectedUseTime xsi:type="IVL_TS">
+                <high value="20161213"/>
+            </expectedUseTime>
+            <!-- Te verstrekken geneesmiddel -->
+            <product>
+                <manufacturedProduct classCode="MANU">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9263"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <name>Die blauwe pillen</name>
+                        <pharm:desc>Die blauwe ronde pillen voor mijn maagproblemen</pharm:desc>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </product>
+            <!-- beoogd verstrekker -->
+            <performer typeCode="PRF">
+                <assignedEntity>
+                    <id nullFlavor="NI"/>
+                    <representedOrganization>
+                        <id root="1.2.343.235.34" extension="ura"/>
+                        <name>Apotheek De Gulle Gaper</name>
+                    </representedOrganization>
+                </assignedEntity>
+            </performer>
+            <!-- Auteur / patiënt -->
+            <author>
+                <!-- Registratiedatum -->
+                <time value="20160613080000"/>
+                <assignedAuthor>
+                    <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+                    <!-- specialisme -->
+                    <code code="ONESELF" displayName="Self" codeSystem="2.16.840.1.113883.5.111" codeSystemName="HL7 Role code"/>
+                </assignedAuthor>
+            </author>
+            <!-- Toelichting bij voorstelgegevens-->
+            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9183"/>
+                    <code code="48767-8" displayName="Toelichting" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                    <text mediaType="text/plain">Algemene toelichting bij voorstelgegevens</text>
+                </act>
+            </entryRelationship>
+            <!-- Aanvullende wens -->
+            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9093"/>
+                    <code code="1" displayName="Spoed" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"/>
+                </act>
+            </entryRelationship>
+            <!-- Toelichting -->
+            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
+                    <code code="48767-8" displayName="Toelichting" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                    <text mediaType="text/plain">Toelichting bij voorstel verstrekkingsverzoek</text>
+                </act>
+            </entryRelationship>
+            <!-- Relatie naar medicatieafspraak -->
+            <entryRelationship typeCode="REFR">
+                <substanceAdministration moodCode="RQO" classCode="SBADM">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                    <id extension="MBH_VVV_02#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_VVV_02"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </supply>
+    </component>
+</organizer>

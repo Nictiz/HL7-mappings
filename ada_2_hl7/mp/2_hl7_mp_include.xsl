@@ -3465,24 +3465,24 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9131"/>
             <code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="{$oidSNOMEDCT}"/>
             <!-- aantal herhalingen -->
-            <xsl:for-each select="./aantal_herhalingen[@value]">
+            <xsl:for-each select="aantal_herhalingen[@value]">
                 <repeatNumber>
                     <xsl:attribute name="value" select="xs:integer(./@value) + 1"/>
                 </repeatNumber>
             </xsl:for-each>
 
             <!-- Te verstrekken hoeveelheid -->
-            <xsl:for-each select="./te_verstrekken_hoeveelheid[.//(@value | @code)]">
+            <xsl:for-each select="te_verstrekken_hoeveelheid[.//(@value | @code)]">
                 <quantity>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9165_20170118000000"/>
                 </quantity>
             </xsl:for-each>
 
             <!-- verbruiksperiode -->
-            <xsl:for-each select="./verbruiksperiode[.//(@value | @code)]">
+            <xsl:for-each select="verbruiksperiode[.//(@value | @code)]">
                 <expectedUseTime>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
-                        <xsl:with-param name="low" select="./ingangsdatum"/>
+                        <xsl:with-param name="low" select="ingangsdatum"/>
                         <xsl:with-param name="width" select="./duur"/>
                         <xsl:with-param name="high" select="./einddatum"/>
                     </xsl:call-template>
@@ -3490,7 +3490,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
 
             <!-- Te verstrekken geneesmiddel -->
-            <xsl:for-each select="./te_verstrekken_geneesmiddel/product[.//(@value | @code)]">
+            <xsl:for-each select="te_verstrekken_geneesmiddel/product[.//(@value | @code)]">
                 <product>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9263_20181211154012">
                         <xsl:with-param name="product" select="."/>
@@ -3499,7 +3499,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
 
             <!-- beoogd verstrekker -->
-            <xsl:for-each select="./beoogd_verstrekker/zorgaanbieder[.//(@value | @code)]">
+            <xsl:for-each select="beoogd_verstrekker/zorgaanbieder[.//(@value | @code)]">
                 <performer>
                     <assignedEntity>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9088_20160621133312"/>
@@ -3508,48 +3508,40 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
 
             <!-- Als auteur is er ofwel een zorgverlener, ofwel de gebruiker die een voorstel doet -->
-            <xsl:if test="./../../(auteur[.//(@value | @code)] | voorsteldatum[.//(@value | @code)])">
+            <xsl:if test="../../(auteur[.//(@value | @code)] | voorsteldatum[.//(@value | @code)])">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20181205180828">
-                    <xsl:with-param name="ada-auteur" select="./../../auteur"/>
-                    <xsl:with-param name="authorTime" select="./../../voorstel_datum"/>
+                    <xsl:with-param name="ada-auteur" select="../../auteur"/>
+                    <xsl:with-param name="authorTime" select="../../voorstel_datum"/>
                 </xsl:call-template>
             </xsl:if>
 
             <!-- afleverlocatie -->
-            <xsl:for-each select="./afleverlocatie[.//(@value | @code | @nullFlavor)]">
+            <xsl:for-each select="afleverlocatie[.//(@value | @code | @nullFlavor)]">
                 <participant typeCode="DST">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9091_20160621153127"/>
                 </participant>
             </xsl:for-each>
 
-            <!-- Toelichting op het voorstel (er is ook een toelichting bij de MA) -->
-            <xsl:for-each select="//voorstelgegevens/toelichting[.//(@value | @code | @nullFlavor)]">
-                <entryRelationship typeCode="SUBJ" inversionInd="true">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9183_20170818085324"/>
-                </entryRelationship>
-            </xsl:for-each>
-
-            <!-- aanvullende wensen -->
-            <xsl:for-each select="./aanvullende_wensen[.//(@value | @code | @nullFlavor)]">
+                <!-- aanvullende wensen -->
+            <xsl:for-each select="aanvullende_wensen[.//(@value | @code | @nullFlavor)]">
                 <!-- kunnen er 0 of meer zijn -->
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9093_20160623183534"/>
                 </entryRelationship>
             </xsl:for-each>
-
-            <!-- Toelichting bij het gebruik -->
-            <xsl:for-each select="./toelichting[.//(@value | @code | @nullFlavor)]">
-                <!-- kan er 0 of 1 zijn -->
+           
+            <!-- Toelichting op het VV -->
+            <xsl:for-each select="../../toelichting[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="SUBJ" inversionInd="true">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9069_20160617163405"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
                 </entryRelationship>
-            </xsl:for-each>
-
+            </xsl:for-each>           
+                       
             <!--Relatie naar medicatieafspraak -->
             <xsl:for-each select="./relatie_naar_medicatieafspraak[.//(@value | @code | @nullFlavor)]">
-                <entryRelationship typeCode="COMP" inversionInd="true">
+                <entryRelationship typeCode="REFR">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9086_20160621122009">
-                        <xsl:with-param name="identificatieElement" select="./identificatie"/>
+                        <xsl:with-param name="identificatieElement" select="identificatie"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:for-each>
@@ -3560,6 +3552,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     <xsl:with-param name="MBHroot" select=".."/>
                 </xsl:call-template>
             </entryRelationship>
+            
         </supply>
     </xsl:template>
 
