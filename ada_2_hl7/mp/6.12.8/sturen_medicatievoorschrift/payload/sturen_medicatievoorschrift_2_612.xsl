@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-    <xsl:include href="../../../2_hl7_mp_include.xsl"/>
+    <xsl:include href="../../../2_hl7_mp_include_612.xsl"/>
     <!-- Dit is een conversie van ADA 9.0 naar MP 6.12 voorschrift bericht -->
     <xsl:template match="/">
         <xsl:variable name="voorschrift" select="//sturen_medicatievoorschrift"/>
