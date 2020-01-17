@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping of zib nl.zorg.Patient 3.1 concept in ADA to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.3.10.3</xd:desc>
         <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
     </xd:doc>   
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000" match="patient">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000" match="patient" mode="HandleCDAREcordTargetSDTCNLBSNContactible">
         <xsl:param name="in" select="."/>
         <xsl:for-each select="$in">
             <recordTarget>
@@ -52,5 +52,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </recordTarget>
         </xsl:for-each>
     </xsl:template>
-    
+      
 </xsl:stylesheet>

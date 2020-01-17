@@ -73,9 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <statusCode nullFlavor="NI"/>
             <!-- Patient -->
             <xsl:for-each select="$patient">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180611000000"/>
             </xsl:for-each>
 
             <xsl:for-each select="$mbh">

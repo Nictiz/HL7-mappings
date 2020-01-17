@@ -13,8 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../../2_hl7_mp_include_90.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
-    <xsl:include href="../../../2_hl7_mp_include.xsl"/>
     <xsl:template match="/">
         <xsl:call-template name="AfhandelenVoorschrift_90">
             <xsl:with-param name="patient" select="//sturen_afhandeling_medicatievoorschrift/patient"/>
@@ -24,8 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="AfhandelenVoorschrift_90">
         <xsl:param name="patient"/>
         <xsl:param name="mbh"/>
-        
-        <!-- phase="#ALL" achteraan de volgende regel zorgt dat oXygen niet met een phase chooser dialoog komt elke keer dat je de HL7 XML opent --> 
+
+        <!-- phase="#ALL" achteraan de volgende regel zorgt dat oXygen niet met een phase chooser dialoog komt elke keer dat je de HL7 XML opent -->
         <xsl:processing-instruction name="xml-model">href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_av.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
 
         <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
@@ -35,10 +35,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Patient -->
             <xsl:for-each select="$patient">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000">
-                    <xsl:with-param name="patient" select="."/>
+                    <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
             </xsl:for-each>
-            
+
             <xsl:for-each select="$mbh">
                 <!-- Toedieningsafspraak -->
                 <xsl:for-each select="./toedieningsafspraak">
@@ -59,5 +59,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </organizer>
     </xsl:template>
-    
+
 </xsl:stylesheet>

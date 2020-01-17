@@ -12,23 +12,23 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#default" xmlns:sdtc="urn:hl7-org:sdtc"  xmlns:pharm="urn:ihe:pharm:medication" xmlns:nf="http://www.nictiz.nl/functions" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#default" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:nf="http://www.nictiz.nl/functions" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_hl7_mp_include.xsl"/>
     <!-- Generates a HL7 message based on ADA input -->
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- only give dateT a value if you want conversion of relative T dates -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
-    
+
     <xsl:template match="/">
         <xsl:call-template name="Voorschrift_90">
             <xsl:with-param name="in" select="//sturen_medicatievoorschrift"/>
         </xsl:call-template>
     </xsl:template>
-    
+
     <xsl:template name="Voorschrift_90">
         <xsl:param name="in" select="//sturen_medicatievoorschrift"/>
-        
+
         <xsl:variable name="patient" select="$in/patient"/>
         <xsl:variable name="mbh" select="$in/medicamenteuze_behandeling"/>
 
@@ -44,43 +44,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <statusCode nullFlavor="NI"/>
             <!-- Patient -->
             <xsl:for-each select="$patient">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000">
-                    <xsl:with-param name="patient" select="."/>
-                </xsl:call-template>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180611000000"/>
             </xsl:for-each>
             <!-- Medicamenteuze behandeling -->
             <xsl:for-each select="$mbh">
                 <!-- Medicatieafspraak -->
                 <xsl:for-each select="medicatieafspraak[not(kopie_indicator/@value = 'true')]">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9275_20191121115247">
-                            <xsl:with-param name="ma" select="."/>
-                        </xsl:call-template>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9275_20191121115247"/>
                     </component>
                 </xsl:for-each>
                 <!-- Medicatieafspraak -->
                 <xsl:for-each select="medicatieafspraak[kopie_indicator/@value = 'true']">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9277_20191121123918">
-                            <xsl:with-param name="ma" select="."/>
-                        </xsl:call-template>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9277_20191121123918"/>
                     </component>
                 </xsl:for-each>
                 <!-- Verstrekkingsverzoek -->
                 <xsl:for-each select="verstrekkingsverzoek">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9301_20191125141436">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9301_20191125141436"/>
                     </component>
-                </xsl:for-each>                
-             </xsl:for-each>
+                </xsl:for-each>
+            </xsl:for-each>
             <!-- Lichaamslengte -->
             <xsl:for-each select="$in/lichaamslengte[.//(@value | @code)]">
                 <component typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000"/>
                 </component>
-            </xsl:for-each>               
+            </xsl:for-each>
             <!-- Lichaamsgewicht -->
             <xsl:for-each select="$in/lichaamsgewicht[.//(@value | @code)]">
                 <component typeCode="COMP">
@@ -93,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="hl7-LaboratoryObservation-20171205"/>
                 </component>
             </xsl:for-each>
-            
+
         </organizer>
     </xsl:template>
 </xsl:stylesheet>

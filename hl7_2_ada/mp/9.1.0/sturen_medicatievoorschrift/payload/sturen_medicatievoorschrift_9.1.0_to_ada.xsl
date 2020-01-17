@@ -107,16 +107,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- lengte / gewicht van vóór 9.1.0 die in MA zitten ook converteren -->
                     <!-- lichaamslengte  -->
                     <xsl:for-each select="//*[hl7:templateId/@root = $templateId-lichaamslengte]">
-                        <xsl:call-template name="zib-Lichaamslengte-3.1"/>
+                        <xsl:variable name="zibroot" as="element()?">
+                            <xsl:call-template name="HL7element2Zibroot"/>
+                        </xsl:variable>
+                        <xsl:call-template name="zib-Lichaamslengte-3.1">
+                            <xsl:with-param name="zibroot" select="$zibroot"/>                            
+                        </xsl:call-template>
                     </xsl:for-each>
                     <!-- lichaamsgewicht  -->
                     <xsl:for-each select="//*[hl7:templateId/@root = $templateId-lichaamsgewicht]">
-                        <xsl:call-template name="zib-Lichaamsgewicht-3.1"/>
+                        <xsl:variable name="zibroot" as="element()?">
+                            <xsl:call-template name="HL7element2Zibroot"/>
+                        </xsl:variable>
+                        <xsl:call-template name="zib-Lichaamsgewicht-3.1">
+                            <xsl:with-param name="zibroot" select="$zibroot"/>                            
+                        </xsl:call-template>
                     </xsl:for-each>
                     <!-- labuitslag -->
                     <xsl:for-each select="//*[hl7:templateId/@root = $templateId-labuitslag]">
                         <xsl:variable name="zibroot" as="element()?">
-                            <xsl:call-template name="HL7element2Zibroot4Lab"/>
+                            <xsl:call-template name="HL7element2Zibroot"/>
                         </xsl:variable>
                         <xsl:call-template name="zib-LaboratoryTestResult-Observation-4.1">
                             <xsl:with-param name="zibroot" select="$zibroot"/>
@@ -131,7 +141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Handle HL7 stuff to create an ada zibRoot HCIM</xd:desc>
         <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada parent of zibroot</xd:param>
     </xd:doc>
-    <xsl:template name="HL7element2Zibroot4Lab" match="hl7:*" mode="HL7element2Zibroot4Lab">
+    <xsl:template name="HL7element2Zibroot" match="hl7:*" mode="HL7element2Zibroot">
         <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
 
         <!-- multi language support for ada element names -->
@@ -228,6 +238,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
         </xsl:element>
     </xsl:template>
-
 
 </xsl:stylesheet>

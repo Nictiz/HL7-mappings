@@ -13,9 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../../2_hl7_mp_include_90.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
-     <xsl:include href="../../../2_hl7_mp_include.xsl"/>
-     <xsl:template match="/">
+      <xsl:template match="/">
         <xsl:call-template name="VoorstelVerstrekkingsverzoek_90">
             <xsl:with-param name="patient" select="//sturen_voorstel_verstrekkingsverzoek/patient"/>
             <xsl:with-param name="mbh" select="//sturen_voorstel_verstrekkingsverzoek//medicamenteuze_behandeling"/>
@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Patient -->
             <xsl:for-each select="$patient">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000">
-                    <xsl:with-param name="patient" select="."/>
+                    <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
             </xsl:for-each>
             
