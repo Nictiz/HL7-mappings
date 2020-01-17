@@ -641,7 +641,21 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         </destination>
     </xsl:template>
     
-    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="UCUMvalue"/>
+        <xd:param name="UCUMunit"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000">
+        <!--DoseQuantity and translation(s)-->
+        <xsl:param name="UCUMvalue"/>
+        <xsl:param name="UCUMunit"/>
+        <xsl:attribute name="value" select="$UCUMvalue"/>
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000">
+            <xsl:with-param name="UCUMvalue" select="$UCUMvalue"/>
+            <xsl:with-param name="UCUMunit" select="$UCUMunit"/>
+        </xsl:call-template>
+    </xsl:template>
     
     
   
