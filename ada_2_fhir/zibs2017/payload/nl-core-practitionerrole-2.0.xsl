@@ -107,6 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:sequence select="$theDisplay"/>
                     </valueReference>
                 </extension>
+                <xsl:sequence select="$theDisplay"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:sequence select="$referenceOrIdentifier"/>
