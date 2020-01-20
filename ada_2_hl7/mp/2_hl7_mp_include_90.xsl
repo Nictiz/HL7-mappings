@@ -125,6 +125,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:if>
     </xsl:template>
+   
+    <xd:doc>
+        <xd:desc>Reden voor toedieningsafspraak 9.0.7</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9083_20160621100220">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9083"/>
+            <code code="3" displayName="Reden toedieningsafspraak" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+            <text>
+                <xsl:value-of select="@value"/>
+            </text>
+        </observation>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc> Verstrekkingsverzoek </xd:desc>
@@ -381,6 +394,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <value xsi:type="CE">
                 <xsl:call-template name="makeCodeAttribs"/>
             </value>
+        </observation>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Volgens afspraak indicator</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9117_20160710194752">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9117"/>
+            <code displayName="Volgens afspraak indicator" code="8" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+                <xsl:with-param name="xsiType">BL</xsl:with-param>
+            </xsl:call-template>
         </observation>
     </xsl:template>
     
@@ -716,6 +743,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Reden van voorschrijven</xd:desc>
+        <xd:param name="originalText"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9160_20161109134526">
+        <xsl:param name="originalText" as="element()"/>
+        
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9160"/>
+            <code code="10" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties" displayName="Reden van voorschrijven."/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>MP CDA Medication Information (Proposal)</xd:desc>
@@ -2725,6 +2765,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template> 
       
+    <xd:doc>
+        <xd:desc> Reden voor medicatieafspraak vanaf 9.0.7 </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9270_20181218111500" match="reden_afspraak" mode="HandleRedenAfspraak907">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+            <code code="2" displayName="Reden medicatieafspraak" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
+    
     
     
     </xsl:stylesheet>

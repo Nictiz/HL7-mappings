@@ -4389,7 +4389,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- stoptype -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067']/hl7:value[@code | @nullFlavor]">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067' or hl7:code[@code='274512008'][@codeSystem=$oidSNOMEDCT]]/hl7:value[@code | @nullFlavor]">
                     <xsl:variable name="elemName">stoptype</xsl:variable>
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="elemName" select="$elemName"/>
@@ -4441,7 +4441,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- reden_wijzigen_of_staken -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:code[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:value">
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:code[(@code = '2' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2') or (@code='112241000146101' and @codeSystem=$oidSNOMEDCT)]]/hl7:value">
                     <xsl:variable name="elemName">reden_wijzigen_of_staken</xsl:variable>
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="elemName" select="$elemName"/>
@@ -4582,7 +4582,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- volgens_afspraak_indicator -->
-                <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '8'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:value">
+                <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '8'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2'] or hl7:code[@code='112221000146107'][@codeSystem=$oidSNOMEDCT]]/hl7:value">
                     <xsl:variable name="elemName">volgens_afspraak_indicator</xsl:variable>
                     <xsl:call-template name="handleBL">
                         <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
@@ -4591,7 +4591,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- stoptype -->
-                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067']/hl7:value[@code | @nullFlavor]">
+                <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067' or hl7:code[@code='274512008'][@codeSystem=$oidSNOMEDCT]]/hl7:value[@code | @nullFlavor]">
                     <xsl:variable name="elemName">stoptype</xsl:variable>
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="elemName" select="$elemName"/>
@@ -4940,7 +4940,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- reden afspraak -->
-                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9083']/hl7:text">
+                <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9083' or hl7:code[@code='112231000146109'][@codeSystem=$oidSNOMEDCT]]/hl7:text">
                     <xsl:variable name="elemName">reden_afspraak</xsl:variable>
                     <xsl:element name="{$elemName}">
                         <xsl:attribute name="value" select="./text()"/>
