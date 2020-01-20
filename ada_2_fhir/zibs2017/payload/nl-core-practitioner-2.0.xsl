@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
-<!--    <xsl:import href="_zib2017.xsl"/>-->
+    <xsl:import href="all-zibs.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
@@ -34,12 +34,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reference-display>
                         <xsl:value-of select="nf:get-practitioner-display(current-group()[1])"/>
                     </reference-display>
-                    <!--<xsl:apply-templates select="current-group()[1]" mode="doPractitionerEntry-2.0">
+                    <xsl:call-template name="practitionerEntry">
                         <xsl:with-param name="uuid" select="$uuid"/>
-                    </xsl:apply-templates>-->
-                     <xsl:call-template name="practitionerEntry">
-                        <xsl:with-param name="uuid" select="$uuid"/>
-                     </xsl:call-template>
+                    </xsl:call-template>
                 </unieke-zorgverlener>
             </xsl:for-each-group>
         </xsl:for-each-group>
@@ -138,6 +135,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
                 </meta>
+                
                 <!-- zorgverlener_identificatie_nummer -->
                 <xsl:for-each select="zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number">
                     <identifier>
@@ -146,12 +144,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </identifier>
                 </xsl:for-each>
+                
                 <!-- naamgegevens -->
                 <xsl:for-each select=".//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)]">
                     <xsl:call-template name="nl-core-humanname-2.0">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
+                
+                <!-- telecom is mapped on the resource PractitionerRole -->
+                
+                <!-- address -->
+                <xsl:call-template name="nl-core-address-2.0">
+                    <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
+                </xsl:call-template> 
+                
             </Practitioner>
         </xsl:for-each>
     </xsl:template>
@@ -180,7 +187,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="healthProfessional" as="element()?"/>
         <xsl:if test="$healthProfessional">
             <xsl:variable name="personIdentifier" select="nf:getValueAttrDefault($healthProfessional/zorgverlener_identificatienummer | $healthProfessional/zorgverlener_identificatie_nummer | $healthProfessional/health_professional_identification_number)"/>
-            <xsl:variable name="personName" select="nf:getValueAttrDefault($healthProfessional/zorgverlener_naam  | $healthProfessional/naamgegevens/geslachtsnaam/achternaam  | $healthProfessional/name_information/last_name/last_name)"/>
+            <xsl:variable name="personName" select="nf:getValueAttrDefault($healthProfessional/zorgverlener_naam | $healthProfessional/naamgegevens/geslachtsnaam/achternaam | $healthProfessional/name_information/last_name/last_name)"/>
 
             <xsl:value-of select="concat($personIdentifier, $personName)"/>
         </xsl:if>

@@ -177,13 +177,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of a PractitionerRole resource</xd:param>
         <xd:param name="practitionerRef">Optional. Reference datatype elements for the Practitioner that holds the person data</xd:param>
         <xd:param name="organizationRef">Optional. Reference datatype elements for the Organization that holds the organization data</xd:param>
-    </xd:doc>
+       </xd:doc>
     <xsl:template name="nl-core-practitionerrole-2.0" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="practitionerRef" as="element()*"/>
         <xsl:param name="organizationRef" as="element()*"/>
-
+      
         <xsl:for-each select="$in">
             <PractitionerRole>
                 <xsl:if test="string-length($logicalId) gt 0">
@@ -223,6 +223,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </specialty>
                 </xsl:for-each>
+                <!-- telecom -->
+                <xsl:call-template name="nl-core-contactpoint-1.0">
+                    <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
+                </xsl:call-template>  
             </PractitionerRole>
         </xsl:for-each>
     </xsl:template>
