@@ -2698,6 +2698,20 @@
                                 </xsl:call-template>
                             </td>
                         </tr>
+                        <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/flag-detail']">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Detail</xsl:with-param>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_Reference">
+                                        <xsl:with-param name="in" select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/flag-detail']/f:*[starts-with(local-name(), 'value')]"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
                         <xsl:if test="f:period">
                             <tr>
                                 <th>
@@ -5321,7 +5335,7 @@
                                                     <xsl:when test="self::f:*[starts-with(local-name(), 'reason')]">
                                                         <xsl:call-template name="doDT">
                                                             <xsl:with-param name="baseName">reason</xsl:with-param>
-                                                            <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'reason')]"/>
+                                                            <xsl:with-param name="in" select="."/>
                                                         </xsl:call-template>
                                                     </xsl:when>
                                                     <xsl:otherwise>
@@ -8803,7 +8817,7 @@
                                 <xsl:with-param name="post" select="': '"/>
                             </xsl:call-template>
                             <xsl:call-template name="doDT_Reference">
-                                <xsl:with-param name="in" select="f:requester/f:onBehalfOf"/>
+                                <xsl:with-param name="in" select="f:onBehalfOf"/>
                             </xsl:call-template>
                             <xsl:text>)</xsl:text>
                         </xsl:if>
@@ -9266,6 +9280,11 @@
         <xsl:for-each select="$in">
             <xsl:variable name="str">
                 <xsl:choose>
+                    <xsl:when test="f:text and f:coding[f:system/@value = 'http://hl7.org/fhir/v3/NullFlavor']">
+                        <xsl:call-template name="doDT_String">
+                            <xsl:with-param name="in" select="f:text"/>
+                        </xsl:call-template>
+                    </xsl:when>
                     <xsl:when test="f:coding[f:display]">
                         <xsl:call-template name="doDT_Coding">
                             <xsl:with-param name="in" select="f:coding[f:display][1]"/>
