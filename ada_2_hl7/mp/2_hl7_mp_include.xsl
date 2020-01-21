@@ -1730,7 +1730,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9317_20200120141110">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
-            <code displayName="patient takes medication as prescribed (finding)" code="112221000146107" codeSystem="{$oidSNOMEDCT}6" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <code displayName="patient takes medication as prescribed (finding)" code="112221000146107" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="xsiType">BL</xsl:with-param>
@@ -2505,26 +2505,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </representedOrganization>
         </xsl:for-each>
     </xsl:template>
-    <!--   <xd:doc>
+       <xd:doc>
         <xd:desc>MP CDA Organization Medicatieoverzicht</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9169_20170521195457">
-        <!-\-Zorgaanbieder identificatie-\->
+        <!--Zorgaanbieder identificatie-->
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9089_20160621134042"/>
 
-        <!-\- Telecom gegevens -\->
+        <!-- Telecom gegevens -->
         <xsl:for-each select="telefoon_email | contactgegevens">
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9172_20170522143706"/>
         </xsl:for-each>
 
-        <!-\- Adres -\->
+        <!-- Adres -->
         <xsl:for-each select="adres | adresgegevens">
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.2_20141106000000">
                 <xsl:with-param name="adres" select="."/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
--->
+
     <!--<xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9171_20170522091920">
       <!-\-MP CDA author medicatieoverzicht - obsolete sinds MP 9.0.5 -\->
       <author>
@@ -2545,7 +2545,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    </xsl:template>
    -->
 
-    <!--  <xd:doc>
+      <xd:doc>
         <xd:desc>MP CDA author medicatieoverzicht - vanaf versie 9.0.5 </xd:desc>
         <xd:param name="auteur"/>
     </xd:doc>
@@ -2556,14 +2556,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <time nullFlavor="NI"/>
                 <assignedAuthor>
                     <xsl:for-each select="auteur_is_zorgaanbieder/zorgaanbieder">
-                        <!-\-identificatie-\->
+                        <!--identificatie-->
                         <id nullFlavor="NI"/>
-                        <!-\-Zorgaanbieder-\->
+                        <!--Zorgaanbieder-->
                         <representedOrganization>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9169_20170521195457"/>
                         </representedOrganization>
                     </xsl:for-each>
-                    <!-\-Patient-\->
+                    <!--Patient-->
                     <xsl:if test="auteur_is_patient">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9188_20170825000000"/>
                     </xsl:if>
@@ -2571,7 +2571,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </author>
         </xsl:for-each>
     </xsl:template>
--->
+
     <!-- <xd:doc>
         <xd:desc>MP CDA author medicatieoverzicht - vanaf versie 9.0.7 </xd:desc>
         <xd:param name="auteur"/>
@@ -2666,10 +2666,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    <!-- <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9179_20170523115538">
-        <!-\- MP organizer verifier patiënt-\->
+     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9179_20170523115538">
+        <!-- MP organizer verifier patiënt-->
 
-        <!-\- Als er niet geverifieerd is, dan ook niet opnemen. -\->
+        <!-- Als er niet geverifieerd is, dan ook niet opnemen. -->
         <xsl:if test="./geverifieerd_met_patientq/@value = 'true'">
             <participant typeCode="VRF">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9179"/>
@@ -2682,14 +2682,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </participant>
         </xsl:if>
     </xsl:template>
--->
-    <!-- <xd:doc>
-        <xd:desc/>
+
+     <xd:doc>
+         <xd:desc>MP organizer verifier zorgverlener, used in medication overview</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9180_20170523115753">
-        <!-\-MP organizer verifier zorgverlener-\->
-
-        <!-\- Als er niet geverifieerd is, dan ook niet opnemen. -\->
+         <!-- Als er niet geverifieerd is, dan ook niet opnemen. -->
         <xsl:if test="./geverifieerd_met_zorgverlenerq/@value = 'true'">
             <participant typeCode="VRF">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9180"/>
@@ -2702,7 +2700,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </participant>
         </xsl:if>
     </xsl:template>
--->
+
 
     <xd:doc>
         <xd:desc> MP CDA (proposition) medication agreement ( (voorstel) Medicatieafspraak) reusable part from 9.1.0</xd:desc>

@@ -12,10 +12,10 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#default" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="nf xd xs xsl" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../../2_hl7_mp_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
-     <xsl:include href="../../../2_hl7_mp_include.xsl"/>
-    <xsl:template match="/">
+     <xsl:template match="/">
         <xsl:call-template name="Medicatiegebruik_90">
             <xsl:with-param name="patient" select="//sturen_medicatiegebruik/patient"/>
             <xsl:with-param name="mbh" select="//sturen_medicatiegebruik/medicamenteuze_behandeling"/>
