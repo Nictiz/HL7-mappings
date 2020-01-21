@@ -90,171 +90,177 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         <xsl:for-each select="$in">
-            <MedicationRequest xsl:exclude-result-prefixes="#all">
-                <xsl:for-each select="$logicalId[string-length(.) gt 0]">
-                    <id value="{$logicalId}"/>
-                </xsl:for-each>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-                </meta>
-                <!-- gebruiksperiode_start /eind -->
-                <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
-                    <xsl:call-template name="ext-zib-Medication-PeriodOfUse-2.0">
-                        <xsl:with-param name="start" select="gebruiksperiode_start"/>
-                        <xsl:with-param name="end" select="gebruiksperiode_eind"/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- gebruiksperiode - duur -->
-                <xsl:for-each select="gebruiksperiode[@value]">
-                    <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
-                </xsl:for-each>
-                <!-- aanvullende_informatie -->
-                <xsl:for-each select="aanvullende_informatie[@code]">
-                    <xsl:call-template name="ext-zib-Medication-AdditionalInformation-2.0"/>
-                </xsl:for-each>
-                <!-- relatie naar medicamenteuze behandeling -->
-                <xsl:for-each select="../identificatie[@value]">
-                    <xsl:call-template name="ext-zib-medication-medication-treatment-2.0"/>
-                </xsl:for-each>
-                <!-- kopie indicator -->
-                <!-- het ada concept zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
-                <xsl:for-each select="kopie_indicator[@value]">
-                    <xsl:call-template name="ext-zib-Medication-CopyIndicator-2.0"/>
-                </xsl:for-each>
-                <!-- herhaalperiode cyclisch schema -->
-                <xsl:for-each select="gebruiksinstructie/herhaalperiode_cyclisch_schema[.//(@value | @code)]">
-                    <xsl:call-template name="ext-zib-Medication-RepeatPeriodCyclicalSchedule-2.0"/>
-                </xsl:for-each>
-                <!-- relatie naar medicatieafspraak of gebruik -->
-                <xsl:for-each select="relatie_naar_afspraak_of_gebruik/(identificatie | identificatie_23288 | identificatie_23289)[@value]">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-                        <valueReference>
+            <xsl:variable name="resource">
+                <MedicationRequest xsl:exclude-result-prefixes="#all">
+                    <xsl:for-each select="$logicalId[string-length(.) gt 0]">
+                        <id value="{$logicalId}"/>
+                    </xsl:for-each>
+                    <meta>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                    </meta>
+                    <!-- gebruiksperiode_start /eind -->
+                    <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
+                        <xsl:call-template name="ext-zib-Medication-PeriodOfUse-2.0">
+                            <xsl:with-param name="start" select="gebruiksperiode_start"/>
+                            <xsl:with-param name="end" select="gebruiksperiode_eind"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <!-- gebruiksperiode - duur -->
+                    <xsl:for-each select="gebruiksperiode[@value]">
+                        <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
+                    </xsl:for-each>
+                    <!-- aanvullende_informatie -->
+                    <xsl:for-each select="aanvullende_informatie[@code]">
+                        <xsl:call-template name="ext-zib-Medication-AdditionalInformation-2.0"/>
+                    </xsl:for-each>
+                    <!-- relatie naar medicamenteuze behandeling -->
+                    <xsl:for-each select="../identificatie[@value]">
+                        <xsl:call-template name="ext-zib-medication-medication-treatment-2.0"/>
+                    </xsl:for-each>
+                    <!-- kopie indicator -->
+                    <!-- het ada concept zit niet in alle transacties, eigenlijk alleen in medicatieoverzicht -->
+                    <xsl:for-each select="kopie_indicator[@value]">
+                        <xsl:call-template name="ext-zib-Medication-CopyIndicator-2.0"/>
+                    </xsl:for-each>
+                    <!-- herhaalperiode cyclisch schema -->
+                    <xsl:for-each select="gebruiksinstructie/herhaalperiode_cyclisch_schema[.//(@value | @code)]">
+                        <xsl:call-template name="ext-zib-Medication-RepeatPeriodCyclicalSchedule-2.0"/>
+                    </xsl:for-each>
+                    <!-- relatie naar medicatieafspraak of gebruik -->
+                    <xsl:for-each select="relatie_naar_afspraak_of_gebruik/(identificatie | identificatie_23288 | identificatie_23289)[@value]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                            <valueReference>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                                <display>
+                                    <xsl:attribute name="value">
+                                        <xsl:choose>
+                                            <xsl:when test="./name() = 'identificatie'">relatie naar medicatieafspraak: </xsl:when>
+                                            <xsl:when test="./name() = 'identificatie_23288'">relatie naar toedieningsafspraak: </xsl:when>
+                                            <xsl:when test="./name() = 'identificatie_23289'">relatie naar medicatiegebruik: </xsl:when>
+                                        </xsl:choose>
+                                        <xsl:value-of select="./string-join((@value, @root), ' || ')"/>
+                                    </xsl:attribute>
+                                </display>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>
+                    <!-- stoptype -->
+                    <xsl:for-each select="stoptype[@code]">
+                        <xsl:call-template name="ext-zib-Medication-StopType-2.0"/>
+                    </xsl:for-each>
+                    <!-- MA id -->
+                    <xsl:for-each select="identificatie[@value]">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    <!-- geannuleerd_indicator, in status -->
+                    <xsl:for-each select="geannuleerd_indicator[@value = 'true']">
+                        <status value="entered-in-error"/>
+                    </xsl:for-each>
+                    <intent value="order"/>
+                    <!-- type bouwsteen, hier een medicatieafspraak -->
+                    <category>
+                        <coding>
+                            <system value="http://snomed.info/sct"/>
+                            <code value="16076005"/>
+                            <display value="Prescription (procedure)"/>
+                        </coding>
+                        <text value="Medicatieafspraak"/>
+                    </category>
+                    <!-- geneesmiddel -->
+                    <xsl:apply-templates select="afgesproken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReference"/>
+                    <!-- patiënt -->
+                    <subject>
+                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
+                    </subject>
+                    <!-- relaties_ketenzorg -->
+                    <!-- We would love to tell you more about the encounter, but alas an id is all we have... based on R4 we will only support Encounter here. -->
+                    <xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
+                        <context>
+                            <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
                             <identifier>
                                 <xsl:call-template name="id-to-Identifier">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </identifier>
-                            <display>
-                                <xsl:attribute name="value">
-                                    <xsl:choose>
-                                        <xsl:when test="./name() = 'identificatie'">relatie naar medicatieafspraak: </xsl:when>
-                                        <xsl:when test="./name() = 'identificatie_23288'">relatie naar toedieningsafspraak: </xsl:when>
-                                        <xsl:when test="./name() = 'identificatie_23289'">relatie naar medicatiegebruik: </xsl:when>
-                                    </xsl:choose>
-                                    <xsl:value-of select="./string-join((@value, @root), ' || ')"/>
-                                </xsl:attribute>
-                            </display>
-                        </valueReference>
-                    </extension>
-                </xsl:for-each>
-                <!-- stoptype -->
-                <xsl:for-each select="stoptype[@code]">
-                    <xsl:call-template name="ext-zib-Medication-StopType-2.0"/>
-                </xsl:for-each>
-                <!-- MA id -->
-                <xsl:for-each select="identificatie[@value]">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:for-each>
-                <!-- geannuleerd_indicator, in status -->
-                <xsl:for-each select="geannuleerd_indicator[@value = 'true']">
-                    <status value="entered-in-error"/>
-                </xsl:for-each>
-                <intent value="order"/>
-                <!-- type bouwsteen, hier een medicatieafspraak -->
-                <category>
-                    <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="16076005"/>
-                        <display value="Prescription (procedure)"/>
-                    </coding>
-                    <text value="Medicatieafspraak"/>
-                </category>
-                <!-- geneesmiddel -->
-                <xsl:apply-templates select="afgesproken_geneesmiddel/product[.//(@value | @code)]" mode="doMedicationReference"/>
-                <!-- patiënt -->
-                <subject>
-                    <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
-                </subject>
-                <!-- relaties_ketenzorg -->
-                <!-- We would love to tell you more about the encounter, but alas an id is all we have... based on R4 we will only support Encounter here. -->
-                <xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
-                    <context>
-                        <!--<reference value="{nf:getUriFromAdaId(.)}"/>-->
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
+                            <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
+                        </context>
+                    </xsl:for-each>
+                    <!-- AWE: Not sure why this is commented out or even here -->
+                    <!--<xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
+                        <context>
+                            <identifier>
+                                <xsl:call-template name="id-to-Identifier">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </identifier>
+                            <display value="Relatie naar {replace(./local-name(),'identificatie_', '')} met identificatie {./@value} in identificerend systeem {./@root}."/>
+                        </context>
+                    </xsl:for-each>-->
+                    <!-- lichaamslengte -->
+                    <xsl:for-each select="lichaamslengte[.//@value]">
+                        <supportingInformation>
+                            <xsl:call-template name="bodyHeightReference"/>
+                        </supportingInformation>
+                    </xsl:for-each>
+                    <!-- lichaamsgewicht -->
+                    <xsl:for-each select="lichaamsgewicht[.//@value]">
+                        <supportingInformation>
+                            <xsl:call-template name="bodyWeightReference"/>
+                        </supportingInformation>
+                    </xsl:for-each>
+                    <!-- afspraakdatum -->
+                    <xsl:for-each select="afspraakdatum[@value]">
+                        <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                    </xsl:for-each>
+                    <!-- voorschrijver -->
+                    <xsl:for-each select="voorschrijver/zorgverlener[.//(@value | @code)]">
+                        <requester>
+                            <agent>
+                                <xsl:call-template name="practitionerRoleReference">
+                                    <xsl:with-param name="useExtension" select="true()"/>
+                                    <xsl:with-param name="addDisplay" select="false()"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="practitionerReference"/>
+                            </agent>
+                        </requester>
+                    </xsl:for-each>
+    
+                    <!-- reden afspraak -->
+                    <xsl:for-each select="(reden_afspraak | reden_wijzigen_of_staken)[@code]">
+                        <reasonCode>
+                            <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
                             </xsl:call-template>
-                        </identifier>
-                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
-                    </context>
-                </xsl:for-each>
-                <!-- AWE: Not sure why this is commented out or even here -->
-                <!--<xsl:for-each select="relaties_ketenzorg/identificatie_contactmoment[@value]">
-                    <context>
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
-                        <display value="Relatie naar {replace(./local-name(),'identificatie_', '')} met identificatie {./@value} in identificerend systeem {./@root}."/>
-                    </context>
-                </xsl:for-each>-->
-                <!-- lichaamslengte -->
-                <xsl:for-each select="lichaamslengte[.//@value]">
-                    <supportingInformation>
-                        <xsl:call-template name="bodyHeightReference"/>
-                    </supportingInformation>
-                </xsl:for-each>
-                <!-- lichaamsgewicht -->
-                <xsl:for-each select="lichaamsgewicht[.//@value]">
-                    <supportingInformation>
-                        <xsl:call-template name="bodyWeightReference"/>
-                    </supportingInformation>
-                </xsl:for-each>
-                <!-- afspraakdatum -->
-                <xsl:for-each select="afspraakdatum[@value]">
-                    <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
-                </xsl:for-each>
-                <!-- voorschrijver -->
-                <xsl:for-each select="voorschrijver/zorgverlener[.//(@value | @code)]">
-                    <requester>
-                        <agent>
-                            <xsl:call-template name="practitionerRoleReference">
-                                <xsl:with-param name="useExtension" select="true()"/>
-                            </xsl:call-template>
-                            <xsl:call-template name="practitionerReference"/>
-                        </agent>
-                    </requester>
-                </xsl:for-each>
-
-                <!-- reden afspraak -->
-                <xsl:for-each select="(reden_afspraak | reden_wijzigen_of_staken)[@code]">
-                    <reasonCode>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="treatNullFlavorAsCoding" select="@code = 'OTH' and @codeSystem = $oidHL7NullFlavor"/>
-                        </xsl:call-template>
-                    </reasonCode>
-                </xsl:for-each>
-                <!-- reden van voorschrijven -->
-                <xsl:for-each select="reden_van_voorschrijven/probleem[.//@code]">
-                    <reasonReference>
-                        <xsl:call-template name="problemReference"/>
-                    </reasonReference>
-                </xsl:for-each>
-                <!-- toelichting -->
-                <xsl:for-each select="toelichting[@value]">
-                    <note>
-                        <text value="{./@value}"/>
-                    </note>
-                </xsl:for-each>
-                <!-- gebruiksinstructie -->
-                <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
-            </MedicationRequest>
+                        </reasonCode>
+                    </xsl:for-each>
+                    <!-- reden van voorschrijven -->
+                    <xsl:for-each select="reden_van_voorschrijven/probleem[.//@code]">
+                        <reasonReference>
+                            <xsl:call-template name="problemReference"/>
+                        </reasonReference>
+                    </xsl:for-each>
+                    <!-- toelichting -->
+                    <xsl:for-each select="toelichting[@value]">
+                        <note>
+                            <text value="{./@value}"/>
+                        </note>
+                    </xsl:for-each>
+                    <!-- gebruiksinstructie -->
+                    <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
+                </MedicationRequest>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 

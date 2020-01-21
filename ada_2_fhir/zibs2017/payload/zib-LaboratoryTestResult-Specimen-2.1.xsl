@@ -272,143 +272,148 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             
             <!--NL-CM:13.1.2		Monster	0..1	Container van het concept Monster. Deze container bevat alle gegevenselementen van het concept Monster.	123038009 monster-->
-            <Specimen>
-                <xsl:if test="$referById">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
+            <xsl:variable name="resource">
+                <Specimen>
+                    <xsl:if test="$referById">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <xsl:choose>
+                            <xsl:when test="microorganism | microorganisme">
+                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen-Isolate"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </meta>
+                    
+                    <!--CD	NL-CM:13.1.22			Microorganisme	0..1	Bij met name microbiologische bepalingen is soms geen sprake materiaal maar van een isolaat met daarop een bepaald micro-organisme. Dit concept biedt de mogelijkheid informatie omtrent dit micro-organisme vast te leggen.		MicroorganismeCodelijst-->
+                    <!--Assumptions when there is a micro-organism:
+                        - collection info is about original specimen, not about the derived specimen (micro-organism)
+                        - specimen_id and coontainer info are about the derived specimen
+                    -->
+                    <xsl:if test="microorganism | microorganisme">
+                        <contained>
+                            <Specimen>
+                                <id value="{$containedSpecimenId}"/>
+                                <meta>
+                                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+                                </meta>
+                                <xsl:if test="specimen_material | monstermateriaal">
+                                    <type>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="specimen_material | monstermateriaal"/>
+                                        </xsl:call-template>
+                                    </type>
+                                </xsl:if>
+                                <xsl:copy-of select="$specimenSubject/self::f:subject"/>
+                                <xsl:copy-of select="$receivedDateTime"/>
+                                <xsl:copy-of select="$collectionDetails"/>
+                            </Specimen>
+                        </contained>
+                    </xsl:if>
+                    <!--ST	NL-CM:13.1.29			BronMonster	0..1	Indien het materiaal niet rechtstreeks bij de patiënt afgenomen, maar afkomstig is van een aan de patiënt gerelateerd voorwerp, zoals b.v een cathetertip, kan deze bron van het materiaal hier vastgelegd worden.	118170007 Specimen source identity-->
+                    <xsl:if test="$specimenSubject[self::f:Device]">
+                        <contained>
+                            <xsl:copy-of select="$specimenSubject/self::f:Device"/>
+                        </contained>
+                    </xsl:if>
+                    
+                    <!--NL-CM:0.0.6   Identificatienummer-->
+                    <!--II	NL-CM:13.1.15			Monsternummer	0..*	Identificerend nummer van het afgenomen materiaal, ter referentie voor navraag bij bronorganisatie. In de transmurale setting bestaat dit nummer uit een monsternummer inclusief de identificatie van de uitgevende organisatie, om uniek te zijn buiten de grenzen van een organisatie.-->
+                    <!-- https://bits.nictiz.nl/browse/ZIB-1016 -->
+                    <xsl:for-each select="specimen_id | monsternummer">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
+                    <!--CD	NL-CM:13.1.16			Monstermateriaal	0..1	Monstermateriaal beschrijft het afgenomen materiaal. Indien de LOINC testcode impliciet ook een materiaal beschrijft, mag dit element daar niet mee in strijd zijn. Indien gewenst kan dit gegeven wel een meer gedetailleerde beschrijving van het materiaal geven: LOINC codes bevatten de materialen alleen op hoofdniveau.
+                    Dit is in lijn met de afspraken die gemaakt zijn in het IHE/Nictiz programma e-Lab. Indien de test uitgevoerd is op een afgeleid materiaal (bijv. plasma) bevat dit element toch het afgenomen materiaal (in dit geval bloed). De LOINC code zal in het algemeen in dit geval wel naar plasma wijzen.
+                    370133003 Specimen substance	MonstermateriaalCodelijst-->
                     <xsl:choose>
                         <xsl:when test="microorganism | microorganisme">
-                            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen-Isolate"/>
+                            <type>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="microorganism | microorganisme"/>
+                                </xsl:call-template>
+                            </type>
                         </xsl:when>
                         <xsl:otherwise>
-                            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+                            <type>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="specimen_material | monstermateriaal"/>
+                                </xsl:call-template>
+                            </type>
                         </xsl:otherwise>
                     </xsl:choose>
-                </meta>
-                
-                <!--CD	NL-CM:13.1.22			Microorganisme	0..1	Bij met name microbiologische bepalingen is soms geen sprake materiaal maar van een isolaat met daarop een bepaald micro-organisme. Dit concept biedt de mogelijkheid informatie omtrent dit micro-organisme vast te leggen.		MicroorganismeCodelijst-->
-                <!--Assumptions when there is a micro-organism:
-                    - collection info is about original specimen, not about the derived specimen (micro-organism)
-                    - specimen_id and coontainer info are about the derived specimen
-                -->
-                <xsl:if test="microorganism | microorganisme">
-                    <contained>
-                        <Specimen>
-                            <id value="{$containedSpecimenId}"/>
-                            <meta>
-                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
-                            </meta>
-                            <xsl:if test="specimen_material | monstermateriaal">
+                    
+                    <xsl:copy-of select="$specimenSubject/self::f:subject"/>
+                    
+                    <xsl:if test="not(microorganism | microorganisme)">
+                        <xsl:copy-of select="$receivedDateTime"/>
+                    </xsl:if>
+                    <xsl:if test="microorganism | microorganisme">
+                        <parent>
+                            <reference value="#{$containedSpecimenId}"/>
+                            <xsl:if test="(specimen_material | monstermateriaal)[@code | @displayName]">
+                                <display value="{string-join((specimen_material | monstermateriaal)/(@code, @displayName), ': ')}"/>
+                            </xsl:if>
+                        </parent>
+                    </xsl:if>
+                    <xsl:if test="not(microorganism | microorganisme)">
+                        <xsl:copy-of select="$collectionDetails"/>
+                    </xsl:if>
+                    
+                    <xsl:if test="specimen_number_extension | monstervolgnummer | container_type | containertype">
+                        <container>
+                            <!--INT	NL-CM:13.1.20			Monstervolgnummer	0..1	Het monstervolgnummer wordt toegepast, als het verzamelde materiaal uit de oorspronkelijke buis of container verdeeld wordt over meerdere buizen. In combinatie met het monsternummer biedt het volgnummer de mogelijkheid de buis of container uniek te identificeren.		-->
+                            <!-- https://bits.nictiz.nl/browse/ZIB-1016 Er kan logisch gezien maar 1 monsternummer zijn -->
+                            <xsl:variable name="specimenNumber" select="specimen_id | monsternummer" as="element()?"/>
+                            <xsl:for-each select="specimen_number_extension | monstervolgnummer">
+                                <xsl:variable name="specimenNumberExtension" select="@value"/>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" as="element()">
+                                            <xsl:copy copy-namespaces="no">
+                                                <xsl:copy-of select="@*"/>
+                                                <xsl:copy-of select="$specimenNumber/@root"/>
+                                                <xsl:attribute name="value" select="string-join(($specimenNumber/@value, $specimenNumberExtension), '-')"/>
+                                            </xsl:copy>
+                                        </xsl:with-param>
+                                    </xsl:call-template>
+                                </identifier>
+                            </xsl:for-each>
+                            
+                            <!--CD	NL-CM:13.1.21			Containertype	0..1	Containertype beschrijft het omhulsel waarin het materiaal verzameld of verstuurd is. Voorbeelden zijn bloedbuizen, transportcontainer evt incl. kweekmedium.		ContainerTypeCodelijst-->
+                            <xsl:if test="container_type | containertype">
                                 <type>
                                     <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="specimen_material | monstermateriaal"/>
+                                        <xsl:with-param name="in" select="container_type | containertype"/>
                                     </xsl:call-template>
                                 </type>
                             </xsl:if>
-                            <xsl:copy-of select="$specimenSubject/self::f:subject"/>
-                            <xsl:copy-of select="$receivedDateTime"/>
-                            <xsl:copy-of select="$collectionDetails"/>
-                        </Specimen>
-                    </contained>
-                </xsl:if>
-                <!--ST	NL-CM:13.1.29			BronMonster	0..1	Indien het materiaal niet rechtstreeks bij de patiënt afgenomen, maar afkomstig is van een aan de patiënt gerelateerd voorwerp, zoals b.v een cathetertip, kan deze bron van het materiaal hier vastgelegd worden.	118170007 Specimen source identity-->
-                <xsl:if test="$specimenSubject[self::f:Device]">
-                    <contained>
-                        <xsl:copy-of select="$specimenSubject/self::f:Device"/>
-                    </contained>
-                </xsl:if>
-                
-                <!--NL-CM:0.0.6   Identificatienummer-->
-                <!--II	NL-CM:13.1.15			Monsternummer	0..*	Identificerend nummer van het afgenomen materiaal, ter referentie voor navraag bij bronorganisatie. In de transmurale setting bestaat dit nummer uit een monsternummer inclusief de identificatie van de uitgevende organisatie, om uniek te zijn buiten de grenzen van een organisatie.-->
-                <!-- https://bits.nictiz.nl/browse/ZIB-1016 -->
-                <xsl:for-each select="specimen_id | monsternummer">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:for-each>
-                
-                <!--CD	NL-CM:13.1.16			Monstermateriaal	0..1	Monstermateriaal beschrijft het afgenomen materiaal. Indien de LOINC testcode impliciet ook een materiaal beschrijft, mag dit element daar niet mee in strijd zijn. Indien gewenst kan dit gegeven wel een meer gedetailleerde beschrijving van het materiaal geven: LOINC codes bevatten de materialen alleen op hoofdniveau.
-                Dit is in lijn met de afspraken die gemaakt zijn in het IHE/Nictiz programma e-Lab. Indien de test uitgevoerd is op een afgeleid materiaal (bijv. plasma) bevat dit element toch het afgenomen materiaal (in dit geval bloed). De LOINC code zal in het algemeen in dit geval wel naar plasma wijzen.
-                370133003 Specimen substance	MonstermateriaalCodelijst-->
-                <xsl:choose>
-                    <xsl:when test="microorganism | microorganisme">
-                        <type>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="microorganism | microorganisme"/>
-                            </xsl:call-template>
-                        </type>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <type>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="specimen_material | monstermateriaal"/>
-                            </xsl:call-template>
-                        </type>
-                    </xsl:otherwise>
-                </xsl:choose>
-                
-                <xsl:copy-of select="$specimenSubject/self::f:subject"/>
-                
-                <xsl:if test="not(microorganism | microorganisme)">
-                    <xsl:copy-of select="$receivedDateTime"/>
-                </xsl:if>
-                <xsl:if test="microorganism | microorganisme">
-                    <parent>
-                        <reference value="#{$containedSpecimenId}"/>
-                        <xsl:if test="(specimen_material | monstermateriaal)[@code | @displayName]">
-                            <display value="{string-join((specimen_material | monstermateriaal)/(@code, @displayName), ': ')}"/>
-                        </xsl:if>
-                    </parent>
-                </xsl:if>
-                <xsl:if test="not(microorganism | microorganisme)">
-                    <xsl:copy-of select="$collectionDetails"/>
-                </xsl:if>
-                
-                <xsl:if test="specimen_number_extension | monstervolgnummer | container_type | containertype">
-                    <container>
-                        <!--INT	NL-CM:13.1.20			Monstervolgnummer	0..1	Het monstervolgnummer wordt toegepast, als het verzamelde materiaal uit de oorspronkelijke buis of container verdeeld wordt over meerdere buizen. In combinatie met het monsternummer biedt het volgnummer de mogelijkheid de buis of container uniek te identificeren.		-->
-                        <!-- https://bits.nictiz.nl/browse/ZIB-1016 Er kan logisch gezien maar 1 monsternummer zijn -->
-                        <xsl:variable name="specimenNumber" select="specimen_id | monsternummer" as="element()?"/>
-                        <xsl:for-each select="specimen_number_extension | monstervolgnummer">
-                            <xsl:variable name="specimenNumberExtension" select="@value"/>
-                            <identifier>
-                                <xsl:call-template name="id-to-Identifier">
-                                    <xsl:with-param name="in" as="element()">
-                                        <xsl:copy copy-namespaces="no">
-                                            <xsl:copy-of select="@*"/>
-                                            <xsl:copy-of select="$specimenNumber/@root"/>
-                                            <xsl:attribute name="value" select="string-join(($specimenNumber/@value, $specimenNumberExtension), '-')"/>
-                                        </xsl:copy>
-                                    </xsl:with-param>
+                        </container>
+                    </xsl:if>
+                    
+                    <!--ST	NL-CM:13.1.19			Toelichting	0..1	Opmerking over de afname, bijv. afname na (glucose)stimulus of medicijn inname.	48767-8 Annotation comment-->
+                    <xsl:for-each select="(comment | toelichting)[@value]">
+                        <note>
+                            <text>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </identifier>
-                        </xsl:for-each>
-                        
-                        <!--CD	NL-CM:13.1.21			Containertype	0..1	Containertype beschrijft het omhulsel waarin het materiaal verzameld of verstuurd is. Voorbeelden zijn bloedbuizen, transportcontainer evt incl. kweekmedium.		ContainerTypeCodelijst-->
-                        <xsl:if test="container_type | containertype">
-                            <type>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="container_type | containertype"/>
-                                </xsl:call-template>
-                            </type>
-                        </xsl:if>
-                    </container>
-                </xsl:if>
-                
-                <!--ST	NL-CM:13.1.19			Toelichting	0..1	Opmerking over de afname, bijv. afname na (glucose)stimulus of medicijn inname.	48767-8 Annotation comment-->
-                <xsl:for-each select="(comment | toelichting)[@value]">
-                    <note>
-                        <text>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </text>
-                    </note>
-                </xsl:for-each>
-            </Specimen>
+                            </text>
+                        </note>
+                    </xsl:for-each>
+                </Specimen>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
     

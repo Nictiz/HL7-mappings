@@ -105,63 +105,68 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:for-each select="$in">
-            <RelatedPerson>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
-                </meta>
-                <xsl:for-each select="(rol_of_functie | rol | role)[@code]">
-                    <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
-                        <valueCodeableConcept>
+            <xsl:variable name="resource">
+                <RelatedPerson>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+                    </meta>
+                    <xsl:for-each select="(rol_of_functie | rol | role)[@code]">
+                        <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
+                        </extension>
+                    </xsl:for-each>
+                    <patient>
+                        <xsl:copy-of select="$patientRef[self::f:extension]"/>
+                        <xsl:copy-of select="$patientRef[self::f:reference]"/>
+                        <xsl:copy-of select="$patientRef[self::f:identifier]"/>
+                        <xsl:copy-of select="$patientRef[self::f:display]"/>
+                    </patient>
+                    
+                    <!-- relatie -->
+                    <xsl:for-each select="(relatie | relationship)[@code]">
+                        <relationship>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </valueCodeableConcept>
-                    </extension>
-                </xsl:for-each>
-                <patient>
-                    <xsl:copy-of select="$patientRef[self::f:extension]"/>
-                    <xsl:copy-of select="$patientRef[self::f:reference]"/>
-                    <xsl:copy-of select="$patientRef[self::f:identifier]"/>
-                    <xsl:copy-of select="$patientRef[self::f:display]"/>
-                </patient>
-                
-                <!-- relatie -->
-                <xsl:for-each select="(relatie | relationship)[@code]">
-                    <relationship>
-                        <xsl:call-template name="code-to-CodeableConcept">
+                        </relationship>
+                    </xsl:for-each>
+                    
+                    <!-- naamgegevens -->
+                    <xsl:for-each select="naamgegevens | name_information">
+                        <xsl:call-template name="nl-core-humanname-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </relationship>
-                </xsl:for-each>
-                
-                <!-- naamgegevens -->
-                <xsl:for-each select="naamgegevens | name_information">
-                    <xsl:call-template name="nl-core-humanname-2.0">
-                        <xsl:with-param name="in" select="."/>
+                    </xsl:for-each>
+                    
+                    <!-- telecom -->
+                    <xsl:call-template name="nl-core-contactpoint-1.0">
+                        <xsl:with-param name="in" select="contactgegevens | contact_information"/>
                     </xsl:call-template>
-                </xsl:for-each>
-                
-                <!-- telecom -->
-                <xsl:call-template name="nl-core-contactpoint-1.0">
-                    <xsl:with-param name="in" select="contactgegevens | contact_information"/>
-                </xsl:call-template>
-                
-                <!-- gender -->
-                
-                <!-- birthDate -->
-                
-                <!-- address -->
-                <xsl:call-template name="nl-core-address-2.0">
-                    <xsl:with-param name="in" select="adresgegevens | address_information"/>
-                </xsl:call-template>
-                
-                <!-- photo -->
-                
-                <!-- period -->
-            </RelatedPerson>
+                    
+                    <!-- gender -->
+                    
+                    <!-- birthDate -->
+                    
+                    <!-- address -->
+                    <xsl:call-template name="nl-core-address-2.0">
+                        <xsl:with-param name="in" select="adresgegevens | address_information"/>
+                    </xsl:call-template>
+                    
+                    <!-- photo -->
+                    
+                    <!-- period -->
+                </RelatedPerson>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

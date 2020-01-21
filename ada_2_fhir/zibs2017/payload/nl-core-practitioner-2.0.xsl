@@ -128,38 +128,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <!-- zorgverlener -->
         <xsl:for-each select="$in">
-            <Practitioner>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
-                </meta>
-                
-                <!-- zorgverlener_identificatie_nummer -->
-                <xsl:for-each select="zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
+            <xsl:variable name="resource">
+                <Practitioner>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+                    </meta>
+                    
+                    <!-- zorgverlener_identificatie_nummer -->
+                    <xsl:for-each select="zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
+                    <!-- naamgegevens -->
+                    <xsl:for-each select=".//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)]">
+                        <xsl:call-template name="nl-core-humanname-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </identifier>
-                </xsl:for-each>
-                
-                <!-- naamgegevens -->
-                <xsl:for-each select=".//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)]">
-                    <xsl:call-template name="nl-core-humanname-2.0">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-                
-                <!-- telecom is mapped on the resource PractitionerRole -->
-                
-                <!-- address -->
-                <xsl:call-template name="nl-core-address-2.0">
-                    <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
-                </xsl:call-template> 
-                
-            </Practitioner>
+                    </xsl:for-each>
+                    
+                    <!-- telecom is mapped on the resource PractitionerRole -->
+                    
+                    <!-- address -->
+                    <xsl:call-template name="nl-core-address-2.0">
+                        <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
+                    </xsl:call-template> 
+                    
+                </Practitioner>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 

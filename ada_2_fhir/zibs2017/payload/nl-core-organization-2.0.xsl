@@ -137,44 +137,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$in">
-            <Organization>
-                <xsl:if test="$referById">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-                </meta>
-                <xsl:for-each select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:for-each>
-                <!-- type -->
-                <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
-                    <type>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </type>
-                </xsl:for-each>
-                <!-- name -->
-                <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value"/>
-                <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value"/>
-                <xsl:if test="$organizationName | $organizationLocation">
-                    <!-- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -->
-                    <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
-                </xsl:if>
-                <!-- contactgegevens -->
-                <xsl:call-template name="nl-core-contactpoint-1.0">
-                    <xsl:with-param name="in" select="contactgegevens | contact_information"/>
-                </xsl:call-template>
-                <!-- address -->
-                <xsl:call-template name="nl-core-address-2.0">
-                    <xsl:with-param name="in" select="adresgegevens | address_information"/>
-                </xsl:call-template>
-            </Organization>
+            <xsl:variable name="resource">
+                <Organization>
+                    <xsl:if test="$referById">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                    </meta>
+                    <xsl:for-each select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    <!-- type -->
+                    <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
+                        <type>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </type>
+                    </xsl:for-each>
+                    <!-- name -->
+                    <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value"/>
+                    <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value"/>
+                    <xsl:if test="$organizationName | $organizationLocation">
+                        <!-- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -->
+                        <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
+                    </xsl:if>
+                    <!-- contactgegevens -->
+                    <xsl:call-template name="nl-core-contactpoint-1.0">
+                        <xsl:with-param name="in" select="contactgegevens | contact_information"/>
+                    </xsl:call-template>
+                    <!-- address -->
+                    <xsl:call-template name="nl-core-address-2.0">
+                        <xsl:with-param name="in" select="adresgegevens | address_information"/>
+                    </xsl:call-template>
+                </Organization>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
