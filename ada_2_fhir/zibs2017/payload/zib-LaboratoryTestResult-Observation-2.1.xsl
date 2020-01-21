@@ -283,7 +283,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             
             <!-- Add resource.text -->
-            <xsl:apply-templates select="$resource" mode="createNarrative"/>
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 
