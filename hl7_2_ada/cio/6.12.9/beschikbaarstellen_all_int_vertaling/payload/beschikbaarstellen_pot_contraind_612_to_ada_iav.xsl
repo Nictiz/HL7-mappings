@@ -66,9 +66,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <data>
                     <xsl:for-each select="$transactionResult/beschikbaarstellen_allergie_intolerantie_vertaling">
                         <xsl:copy>
+                            <!-- attributen kopiëren -->
+                            <xsl:apply-templates select="@*" mode="adaOutput"/>
                             <!-- patient is first element in dataset, output the HCIM first -->
                             <xsl:apply-templates select="patient" mode="adaOutputHcim"/>
-                            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
+                            <xsl:apply-templates select="node()" mode="adaOutput"/>
                             <!-- output other HCIMs in the correct order -->
                             <!-- output healthprofessionals -->
                             <xsl:apply-templates select="
