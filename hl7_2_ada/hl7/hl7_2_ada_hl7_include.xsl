@@ -658,18 +658,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmFirstNames)))"/>
                             </xsl:element>
                         </xsl:if>
-                        <xsl:if test="string-length($givenName) gt 0">
-                            <xsl:element name="{$elmGivenName}">
-                                <xsl:attribute name="value" select="$givenName"/>
-
-                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmGivenName)))"/>
-                            </xsl:element>
-                        </xsl:if>
-                        <xsl:if test="not(empty($initials))">
+                         <xsl:if test="not(empty($initials))">
                             <xsl:element name="{$elmInitials}">
                                 <xsl:attribute name="value" select="string-join($initials, '')"/>
 
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmInitials)))"/>
+                            </xsl:element>
+                        </xsl:if>
+                        <xsl:if test="string-length($givenName) gt 0">
+                            <xsl:element name="{$elmGivenName}">
+                                <xsl:attribute name="value" select="$givenName"/>
+                                
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmGivenName)))"/>
                             </xsl:element>
                         </xsl:if>
                         <xsl:if test="$outputNaamgebruik">
