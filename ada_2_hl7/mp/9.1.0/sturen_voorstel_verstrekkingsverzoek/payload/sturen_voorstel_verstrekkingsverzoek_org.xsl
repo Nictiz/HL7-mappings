@@ -12,38 +12,43 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="nf xd xs xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication"  xmlns:nf="http://www.nictiz.nl/functions"  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="nf xd xs xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_hl7_mp_include.xsl"/>
-    <xsl:output method="xml" indent="yes" />
-    
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
+    <!--    <xsl:param name="schematronBaseDir">file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/</xsl:param>-->
+    <xsl:param name="schematronBaseDir">../</xsl:param>
+
     <xd:doc>
         <xd:desc>Default template</xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="VoorstelVerstrekkingsverzoek_91">
             <xsl:with-param name="in" select="//sturen_voorstel_verstrekkingsverzoek"/>
-         </xsl:call-template>
+        </xsl:call-template>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Voorstel Verstrekkingsverzoek</xd:desc>
         <xd:param name="in">The input ada transaction</xd:param>
     </xd:doc>
     <xsl:template name="VoorstelVerstrekkingsverzoek_91">
         <xsl:param name="in"/>
-        
+
         <xsl:variable name="patient" select="$in/patient"/>
         <xsl:variable name="theVoorstel" select="$in/voorstelgegevens/voorstel"/>
         <xsl:variable name="mbh" select="$theVoorstel/medicamenteuze_behandeling"/>
-        
-        <!-- phase="#ALL" achteraan de volgende regel zorgt dat oXygen niet met een phase chooser dialoog komt elke keer dat je de HL7 XML opent --> 
-        <xsl:processing-instruction name="xml-model">href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_vvv.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+
+        <xsl:if test="$schematron-ref">
+            <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
+            <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="$schematronBaseDir"/>schematron_closed_warnings/mp-MP90_vvv.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+        </xsl:if>
 
         <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9130"/>
             <xsl:for-each select="$theVoorstel/identificatie[@value]">
                 <xsl:call-template name="makeIIid"/>
-            </xsl:for-each>            
+            </xsl:for-each>
             <code code="104" displayName="Voorstel verstrekkingsverzoek" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
             <statusCode nullFlavor="NI"/>
             <!-- Patient -->
@@ -52,18 +57,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
             </xsl:for-each>
-            
+
             <xsl:for-each select="$mbh">
                 <!-- Voorstel Verstrekkingsverzoek -->
                 <xsl:for-each select="verstrekkingsverzoek">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9131_20160714202241"> 
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9131_20160714202241">
                             <xsl:with-param name="vvv" select="."/>
                         </xsl:call-template>
                     </component>
                 </xsl:for-each>
             </xsl:for-each>
-            
+
             <!-- Voorstel toelichtig -->
             <xsl:for-each select="$theVoorstel/toelichting">
                 <component typeCode="COMP">
@@ -74,5 +79,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </organizer>
     </xsl:template>
-        
+
 </xsl:stylesheet>

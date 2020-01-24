@@ -16,6 +16,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../2_hl7_mp_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:param name="dateT" as="xs:date?" select="current-date()"/>
+    <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
+    <!--    <xsl:param name="schematronBaseDir">file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/</xsl:param>-->
+    <xsl:param name="schematronBaseDir">../</xsl:param>
 
     <xsl:template match="/">
         <xsl:call-template name="Medicatieoverzicht_90">
@@ -29,8 +32,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="mbh"/>
         <xsl:param name="docGeg"/>
 
-        <!-- phase="#ALL" achteraan de volgende regel zorgt dat oXygen niet met een phase chooser dialoog komt elke keer dat je de HL7 XML opent -->
-        <xsl:processing-instruction name="xml-model">href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_mo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+        <xsl:if test="$schematron-ref">
+            <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
+            <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="$schematronBaseDir"/>schematron_closed_warnings/mp-MP90_mo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+        </xsl:if>
 
         <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9286"/>
