@@ -51,11 +51,11 @@
         <xsl:param name="post" select="''"/>
         <xsl:param name="textLang">
             <xsl:choose>
-                <xsl:when test="/hl7:ClinicalDocument/hl7:languageCode/@code">
-                    <xsl:value-of select="/hl7:ClinicalDocument/hl7:languageCode/@code"/>
+                <xsl:when test="ancestor-or-self::hl7:ClinicalDocument/hl7:languageCode/@code">
+                    <xsl:value-of select="ancestor-or-self::hl7:ClinicalDocument/hl7:languageCode/@code"/>
                 </xsl:when>
-                <xsl:when test="//fhir:*/fhir:language/@value">
-                    <xsl:value-of select="(//fhir:*/fhir:language/@value)[1]"/>
+                <xsl:when test="ancestor-or-self::fhir:*/fhir:language/@value">
+                    <xsl:value-of select="(ancestor-or-self::fhir:*/fhir:language/@value)[1]"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$util:textlangDefault"/>

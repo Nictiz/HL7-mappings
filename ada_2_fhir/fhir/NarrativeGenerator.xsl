@@ -1,27 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © Nictiz
+
+This program is free software; you can redistribute it and/or modify it under the terms of the
+GNU Lesser General Public License as published by the Free Software Foundation; either version
+2.1 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+-->
+<!-- Purpose: add Narrative to a FHIR resource. Returns the FHIR resource as-is with DomainResource.text inserted in the supported places
+
+    1. Processes all resources in Bundles and Lists too
+    2. Skips any contained resource (invariant dom-1) - https://www.hl7.org/fhir/STU3/domainresource-definitions.html#DomainResource.text
+    3. Leaves any pre-existing text alone unless they are of type generated or extensions AND parameter $override = 'true'
+    4. Known extensions and modifierExtensions are processed
+    5. No external calls are made to resolve anything. This means that references should have a display and codes a display. Fallback is implemented
+    6. For a number of FHIR code systems on required bindings, translations have been added, otherwise fallback to the code
+    
+    TODO: build more generic support for (modifier)Extensions
+-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:util="urn:hl7:utilities" version="2.0" exclude-result-prefixes="#all">
     <xsl:import href="utilities.xsl"/>
-    <xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:param name="override" select="'true'"/>
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
-    <!--<xsl:template match="f:AllergyIntolerance | f:Appointment | f:Binary | f:CarePlan | f:CareTeam | f:Composition | f:Condition | f:Consent | f:Coverage | f:Device | f:DeviceUseStatement | f:DiagnosticReport | f:Encounter | f:EpisodeOfCare | f:Flag | f:Goal | f:Immunization | f:ImmunizationRecommendation | f:List | f:Location | f:Media | f:Medication | f:MedicationAdministration | f:MedicationDispense | f:MedicationRequest | f:MedicationStatement | f:NutritionOrder | f:Observation | f:Organization | f:Patient | f:Person | f:Practitioner | f:PractitionerRole | f:Procedure | f:ProcedureRequest | f:QuestionnaireResponse | f:RelatedPerson | f:Slot | f:Specimen | f:Task">
-        <xsl:apply-templates select="." mode="addNarrative"/>
+    
+    <!-- Uncomment if you want to test this transform directly -->
+    <!--<xsl:output omit-xml-declaration="yes" indent="yes"/>
+    <xsl:template match="/">
+        <xsl:apply-templates mode="addNarrative"/>
     </xsl:template>-->
+    
+    <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
         <xsl:choose>
-            <xsl:when test="f:text[f:status/@value = ('generated', 'extensions')] and not($override = 'true')">
+            <!-- Don't generate text on anything contained and assume it was not done before us, soo just copy as-is
+                https://www.hl7.org/fhir/STU3/domainresource-definitions.html#DomainResource.text
+                dom-1: If the resource is contained in another resource, it SHALL NOT contain any narrative (expression : contained.text.empty(), xpath: not(parent::f:contained and f:text))
+            -->
+            <xsl:when test="ancestor-or-self::f:contained">
                 <xsl:copy-of select="."/>
             </xsl:when>
-            <xsl:otherwise>
+            <!-- These are the resources we know we support. Copy the elements before text, create text, copy the elements after text -->
+            <xsl:when test="self::f:AllergyIntolerance | self::f:Appointment | self::f:Binary | self::f:CarePlan | self::f:CareTeam | 
+                            self::f:Composition | self::f:Condition | self::f:Consent | self::f:Coverage | self::f:Device | 
+                            self::f:DeviceUseStatement | self::f:DiagnosticReport | self::f:Encounter | self::f:EpisodeOfCare | 
+                            self::f:Flag | self::f:Goal | self::f:Immunization | self::f:ImmunizationRecommendation | self::f:List | 
+                            self::f:Location | self::f:Media | self::f:Medication | self::f:MedicationAdministration | self::f:MedicationDispense | 
+                            self::f:MedicationRequest | self::f:MedicationStatement | self::f:NutritionOrder | self::f:Observation | 
+                            self::f:Organization | self::f:Patient | self::f:Person | self::f:Practitioner | self::f:PractitionerRole | 
+                            self::f:Procedure | self::f:ProcedureRequest | self::f:QuestionnaireResponse | self::f:RelatedPerson | self::f:Slot | 
+                            self::f:Specimen | self::f:Task">
                 <xsl:copy>
-                    <xsl:apply-templates select="@*"/>
-                    <xsl:apply-templates select="f:id | f:meta | f:implicitRules | f:language | f:id/preceding-sibling::node() | f:meta/preceding-sibling::node() | f:implicitRules/preceding-sibling::node() | f:language/preceding-sibling::node()"/>
-                    <xsl:apply-templates select="." mode="createNarrative"/>
-                    <xsl:apply-templates select="node() except (f:id | f:meta | f:implicitRules | f:language | f:text | f:id/preceding-sibling::node() | f:meta/preceding-sibling::node() | f:implicitRules/preceding-sibling::node() | f:language/preceding-sibling::node() | f:text/preceding-sibling::node())"/>
+                    <xsl:apply-templates select="@*" mode="addNarrative"/>
+                    <xsl:apply-templates select="f:id | f:meta | f:implicitRules | f:language | f:id/preceding-sibling::node() | f:meta/preceding-sibling::node() | f:implicitRules/preceding-sibling::node() | f:language/preceding-sibling::node()" mode="addNarrative"/>
+                    <xsl:choose>
+                        <!-- If text with status other than generated or extensions, e.i. additional or empty, then just copy -->
+                        <xsl:when test="f:text[not(f:status/@value = ('generated', 'extensions'))]">
+                            <xsl:copy-of select="f:text"/>
+                        </xsl:when>
+                        <!-- If text with status generated or extensions, and $override != true, then just copy -->
+                        <xsl:when test="f:text[f:status/@value = ('generated', 'extensions')] and not($override = 'true')">
+                            <xsl:copy-of select="."/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:apply-templates select="." mode="createNarrative"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:apply-templates select="node() except (f:id | f:meta | f:implicitRules | f:language | f:text | f:id/preceding-sibling::node() | f:meta/preceding-sibling::node() | f:implicitRules/preceding-sibling::node() | f:language/preceding-sibling::node() | f:text/preceding-sibling::node())" mode="addNarrative"/>
+                </xsl:copy>
+            </xsl:when>
+            <!-- This is any other element. It might be a resource or a child of one that potentially leads to a supported resource like in a Bundle or List -->
+            <xsl:otherwise>
+                <xsl:if test="matches(local-name(), '^[A-Z]') and not(local-name() = ('Bundle'))">
+                    <xsl:message>TODO Resource Type <xsl:value-of select="local-name()"/></xsl:message>
+                </xsl:if>
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
                 </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    <!-- Helper template for attributes, text, proocessing-instructions and comment. Copy as-is -->
+    <xsl:template match="@* | text() | processing-instruction() | comment()" mode="addNarrative">
+        <xsl:copy xml:space="preserve"/>
+    </xsl:template>
+    
+    <!-- ***************** -->
+    <!-- Resources Section -->
+    <!-- ***************** -->
     <xsl:template match="f:AllergyIntolerance" mode="createNarrative">
         <text xmlns="http://hl7.org/fhir">
             <status value="generated"/>
@@ -8881,17 +8951,10 @@
             </div>
         </xsl:for-each>
     </xsl:template>
-    <xsl:template match="text() | processing-instruction() | comment()">
-        <xsl:copy xml:space="preserve"/>
-    </xsl:template>
-    <xsl:template match="@* | *">
-        <xsl:if test="matches(local-name(), '^[A-Z]') and not(local-name() = ('Bundle'))">
-            <xsl:message>TODO Resource Type <xsl:value-of select="local-name()"/></xsl:message>
-        </xsl:if>
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()"/>
-        </xsl:copy>
-    </xsl:template>
+    
+    <!-- ***************** -->
+    <!-- Datatypes Section -->
+    <!-- ***************** -->
     <xsl:template name="doDT">
         <xsl:param name="baseName" select="'value'" as="xs:string"/>
         <xsl:param name="in" as="element()*"/>
