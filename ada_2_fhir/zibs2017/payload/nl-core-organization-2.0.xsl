@@ -19,11 +19,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
     <xsl:variable name="organizations" as="element()*">
+        <xsl:variable name="healthProvider" select="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])"/>
+        
         <!-- Zorgaanbieders -->
-        <xsl:for-each-group select="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+        <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
+        <!-- This causes two entries with an identical grouping-key, causing problems when attempting to retrieve references... -->
+       <!-- <xsl:for-each-group select="$healthProvider[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
             string-join(for $att in nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/(@root, @value)
             return
-            $att, '')">
+            $att, '')">-->
+            <xsl:for-each-group select="$healthProvider[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+                concat(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@root,
+                nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -64,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                <reference value="{nf:getFullUrlOrId(($theGroupElement/f:entry)[1])}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>

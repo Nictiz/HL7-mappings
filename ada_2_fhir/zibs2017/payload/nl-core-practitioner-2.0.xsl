@@ -19,12 +19,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xsl:variable name="practitioners" as="element()*">
+        <xsl:variable name="healthProfessional" select="//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])"/>
         <!-- Zorgverleners in Practitioners -->
-        <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+        <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
+        <!-- This causes two or more entries with an identical grouping-key, causing problems with identical practitioners with same fullUrl in a Bundle... -->
+       <!-- <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
                 string-join(for $att in nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/(@root, @value)
                 return
-                    $att, '')">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
+                    $att, '')">-->
+            <xsl:for-each-group select="$healthProfessional[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+                concat(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
+                nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@value)">
+                <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <unieke-zorgverlener xmlns="">

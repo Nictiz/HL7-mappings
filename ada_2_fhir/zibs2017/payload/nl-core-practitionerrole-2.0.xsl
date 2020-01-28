@@ -148,8 +148,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
-            <!-- input the node above this node, otherwise the fullUrl / fhir resource id will be identical to that of Practitioner.... -->
-            <fullUrl value="{$entryFullUrl}"/>
+             <fullUrl value="{$entryFullUrl}"/>
             <resource>
                 <xsl:call-template name="nl-core-practitionerrole-2.0">
                     <xsl:with-param name="in" select="."/>
