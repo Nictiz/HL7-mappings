@@ -29,10 +29,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
     
     <!-- Uncomment if you want to test this transform directly -->
-    <!--<xsl:output omit-xml-declaration="yes" indent="yes"/>
+    <xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">
         <xsl:apply-templates mode="addNarrative"/>
-    </xsl:template>-->
+    </xsl:template>
     
     <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="."/>
             </xsl:when>
             <!-- These are the resources we know we support. Copy the elements before text, create text, copy the elements after text -->
-            <xsl:when test="self::f:AllergyIntolerance | self::f:Appointment | self::f:Binary | self::f:CarePlan | self::f:CareTeam | 
+            <xsl:when test="self::f:AllergyIntolerance | self::f:Appointment | self::f:CarePlan | self::f:CareTeam | 
                             self::f:Composition | self::f:Condition | self::f:Consent | self::f:Coverage | self::f:Device | 
                             self::f:DeviceUseStatement | self::f:DiagnosticReport | self::f:Encounter | self::f:EpisodeOfCare | 
                             self::f:Flag | self::f:Goal | self::f:Immunization | self::f:ImmunizationRecommendation | self::f:List | 
@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- This is any other element. It might be a resource or a child of one that potentially leads to a supported resource like in a Bundle or List -->
             <xsl:otherwise>
-                <xsl:if test="matches(local-name(), '^[A-Z]') and not(local-name() = ('Bundle'))">
+                <xsl:if test="matches(local-name(), '^[A-Z]') and not(local-name() = ('Bundle', 'Binary'))">
                     <xsl:message>TODO Resource Type <xsl:value-of select="local-name()"/></xsl:message>
                 </xsl:if>
                 <xsl:copy>
@@ -100,6 +100,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                        <xsl:with-param name="sep" select="'div'"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <th>
@@ -237,18 +249,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                        <xsl:with-param name="sep" select="'div'"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -261,6 +261,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                        <xsl:with-param name="sep" select="'div'"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:created">
                             <tr>
@@ -544,23 +556,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                        <xsl:with-param name="sep" select="'div'"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
     </xsl:template>
-    <xsl:template match="f:Binary" mode="createNarrative">
+    <!-- Binary derives from Resource, not DomainResource-->
+    <!--<xsl:template match="f:Binary" mode="createNarrative">
         <text xmlns="http://hl7.org/fhir">
             <status value="generated"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
@@ -584,7 +585,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </div>
         </text>
-    </xsl:template>
+    </xsl:template>-->
     <xsl:template match="f:CarePlan" mode="createNarrative">
         <text xmlns="http://hl7.org/fhir">
             <status value="generated"/>
@@ -600,6 +601,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:context">
                             <tr>
@@ -802,7 +814,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </th>
                                 <td>
                                     <table>
-                                        <tfoot>
+                                        <tbody>
                                             <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/Comment']">
                                                 <tr>
                                                     <th>
@@ -932,37 +944,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                                 <xsl:call-template name="util:getLocalizedString">
                                                                     <xsl:with-param name="key">Details</xsl:with-param>
                                                                 </xsl:call-template>
-                                                                <div>
+                                                                <xsl:if test="f:category | f:status">
+                                                                    <br/>
+                                                                </xsl:if>
+                                                                <xsl:if test="f:category">
+                                                                    <xsl:call-template name="util:getLocalizedString">
+                                                                        <xsl:with-param name="key">Category</xsl:with-param>
+                                                                        <xsl:with-param name="post" select="': '"/>
+                                                                    </xsl:call-template>
+                                                                    <xsl:call-template name="doDT_CodeableConcept">
+                                                                        <xsl:with-param name="in" select="f:category"/>
+                                                                    </xsl:call-template>
+                                                                </xsl:if>
+                                                                <xsl:if test="f:status">
                                                                     <xsl:if test="f:category">
-                                                                        <xsl:call-template name="util:getLocalizedString">
-                                                                            <xsl:with-param name="key">Category</xsl:with-param>
-                                                                            <xsl:with-param name="post" select="': '"/>
-                                                                        </xsl:call-template>
+                                                                        <xsl:text>, </xsl:text>
+                                                                    </xsl:if>
+                                                                    <xsl:call-template name="util:getLocalizedString">
+                                                                        <xsl:with-param name="key">Status</xsl:with-param>
+                                                                        <xsl:with-param name="post" select="': '"/>
+                                                                    </xsl:call-template>
+                                                                    <xsl:call-template name="getLocalizedStatus">
+                                                                        <xsl:with-param name="in" select="f:status"/>
+                                                                    </xsl:call-template>
+                                                                    <xsl:if test="f:statusReason">
+                                                                        <xsl:text> (</xsl:text>
                                                                         <xsl:call-template name="doDT_CodeableConcept">
-                                                                            <xsl:with-param name="in" select="f:category"/>
+                                                                            <xsl:with-param name="in" select="f:statusReason"/>
                                                                         </xsl:call-template>
+                                                                        <xsl:text>)</xsl:text>
                                                                     </xsl:if>
-                                                                    <xsl:if test="f:status">
-                                                                        <xsl:if test="f:category">
-                                                                            <xsl:text>, </xsl:text>
-                                                                        </xsl:if>
-                                                                        <xsl:call-template name="util:getLocalizedString">
-                                                                            <xsl:with-param name="key">Status</xsl:with-param>
-                                                                            <xsl:with-param name="post" select="': '"/>
-                                                                        </xsl:call-template>
-                                                                        <xsl:call-template name="getLocalizedStatus">
-                                                                            <xsl:with-param name="in" select="f:status"/>
-                                                                        </xsl:call-template>
-                                                                        <xsl:if test="f:statusReason">
-                                                                            <xsl:text> (</xsl:text>
-                                                                            <xsl:call-template name="doDT_CodeableConcept">
-                                                                                <xsl:with-param name="in" select="f:statusReason"/>
-                                                                            </xsl:call-template>
-                                                                            <xsl:text>)</xsl:text>
-                                                                        </xsl:if>
-                                                                    </xsl:if>
-                                                                </div>
+                                                                </xsl:if>
                                                                 <xsl:if test="f:prohibited[@value = 'true']">
+                                                                    <br/>
                                                                     <b>
                                                                         <xsl:call-template name="util:getLocalizedString">
                                                                             <xsl:with-param name="key">Do NOT do</xsl:with-param>
@@ -970,7 +984,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                                     </b>
                                                                 </xsl:if>
                                                             </caption>
-                                                            <tfoot>
+                                                            <tbody>
                                                                 <xsl:if test="f:code">
                                                                     <tr>
                                                                         <th>
@@ -1183,28 +1197,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                                         </td>
                                                                     </tr>
                                                                 </xsl:if>
-                                                            </tfoot>
+                                                            </tbody>
                                                         </table>
                                                     </td>
                                                 </tr>
                                             </xsl:for-each>
-                                        </tfoot>
+                                        </tbody>
                                     </table>
                                 </td>
                             </tr>
                         </xsl:for-each>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -1217,6 +1220,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:created">
                             <tr>
@@ -1347,17 +1361,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -1538,6 +1541,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                        <xsl:with-param name="sep" select="'div'"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <th>
@@ -1744,18 +1759,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:for-each>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                        <xsl:with-param name="sep" select="'div'"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -2308,6 +2311,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                        <xsl:with-param name="sep" select="'div'"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <th>
@@ -2385,18 +2400,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                        <xsl:with-param name="sep" select="'div'"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -2409,6 +2412,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                        <xsl:with-param name="sep" select="'div'"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <th>
@@ -2545,18 +2560,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                        <xsl:with-param name="sep" select="'div'"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -2569,6 +2572,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:context">
                             <tr>
@@ -2732,17 +2746,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:for-each>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -2755,6 +2758,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                        <xsl:with-param name="sep" select="'div'"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <th>
@@ -2811,18 +2826,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                        <xsl:with-param name="sep" select="'div'"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -2835,6 +2838,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                        <xsl:with-param name="sep" select="'div'"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <th>
@@ -2933,18 +2948,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                        <xsl:with-param name="sep" select="'div'"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -3230,6 +3233,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <th>
@@ -3600,17 +3614,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -3839,6 +3842,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
+                        <tfoot>
+                            <xsl:if test="f:note">
+                                <tr>
+                                    <td>
+                                        <xsl:if test="$doExtraItemInfo">
+                                            <xsl:attribute name="colspan" select="2"/>
+                                        </xsl:if>
+                                        <xsl:call-template name="doDT_Annotation">
+                                            <xsl:with-param name="in" select="f:note"/>
+                                        </xsl:call-template>
+                                    </td>
+                                </tr>
+                            </xsl:if>
+                            <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
+                                <tr>
+                                    <td>
+                                        <xsl:if test="$doExtraItemInfo">
+                                            <xsl:attribute name="colspan" select="2"/>
+                                        </xsl:if>
+                                        <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
+                                            <div>
+                                                <xsl:call-template name="util:getLocalizedString">
+                                                    <xsl:with-param name="key">Recipient</xsl:with-param>
+                                                    <xsl:with-param name="post" select="': '"/>
+                                                </xsl:call-template>
+                                                <xsl:call-template name="doDT_Reference">
+                                                    <xsl:with-param name="in" select="f:valueReference"/>
+                                                </xsl:call-template>
+                                            </div>
+                                        </xsl:for-each>
+                                    </td>
+                                </tr>
+                            </xsl:if>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <th>
@@ -3899,14 +3938,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:for-each>
                     </tbody>
+                </table>
+            </div>
+        </text>
+    </xsl:template>
+    <xsl:template match="f:Media" mode="createNarrative">
+        <text xmlns="http://hl7.org/fhir">
+            <status value="generated"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <table>
+                    <xsl:call-template name="doTableCaption">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
                     <xsl:if test="f:note | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
                         <tfoot>
                             <xsl:if test="f:note">
                                 <tr>
-                                    <td>
-                                        <xsl:if test="$doExtraItemInfo">
-                                            <xsl:attribute name="colspan" select="2"/>
-                                        </xsl:if>
+                                    <td colspan="2">
                                         <xsl:call-template name="doDT_Annotation">
                                             <xsl:with-param name="in" select="f:note"/>
                                         </xsl:call-template>
@@ -3915,10 +3963,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                             <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
                                 <tr>
-                                    <td>
-                                        <xsl:if test="$doExtraItemInfo">
-                                            <xsl:attribute name="colspan" select="2"/>
-                                        </xsl:if>
+                                    <td colspan="2">
                                         <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
                                             <div>
                                                 <xsl:call-template name="util:getLocalizedString">
@@ -3935,18 +3980,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </tfoot>
                     </xsl:if>
-                </table>
-            </div>
-        </text>
-    </xsl:template>
-    <xsl:template match="f:Media" mode="createNarrative">
-        <text xmlns="http://hl7.org/fhir">
-            <status value="generated"/>
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <table>
-                    <xsl:call-template name="doTableCaption">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
                     <tbody>
                         <tr>
                             <td colspan="2">
@@ -4008,36 +4041,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
-                        <tfoot>
-                            <xsl:if test="f:note">
-                                <tr>
-                                    <td colspan="2">
-                                        <xsl:call-template name="doDT_Annotation">
-                                            <xsl:with-param name="in" select="f:note"/>
-                                        </xsl:call-template>
-                                    </td>
-                                </tr>
-                            </xsl:if>
-                            <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
-                                <tr>
-                                    <td colspan="2">
-                                        <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/images-recipient']">
-                                            <div>
-                                                <xsl:call-template name="util:getLocalizedString">
-                                                    <xsl:with-param name="key">Recipient</xsl:with-param>
-                                                    <xsl:with-param name="post" select="': '"/>
-                                                </xsl:call-template>
-                                                <xsl:call-template name="doDT_Reference">
-                                                    <xsl:with-param name="in" select="f:valueReference"/>
-                                                </xsl:call-template>
-                                            </div>
-                                        </xsl:for-each>
-                                    </td>
-                                </tr>
-                            </xsl:if>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -4122,6 +4125,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:with-param>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator']/f:valueBoolean/@value = 'true'">
                             <tr>
@@ -4527,17 +4541,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -4550,6 +4553,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator']/f:valueBoolean/@value = 'true'">
                             <tr>
@@ -5162,17 +5176,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -5191,6 +5194,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:with-param>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator']/f:valueBoolean/@value = 'true'">
                             <tr>
@@ -5684,17 +5698,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -5713,6 +5716,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:with-param>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator']/f:valueBoolean/@value = 'true'">
                             <tr>
@@ -6089,17 +6103,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -6539,6 +6542,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="captionAuthorPerformer" select="f:performer"/>
                     </xsl:call-template>
+                    <xsl:if test="f:comment">
+                        <tfoot>
+                            <tr>
+                                <td colspan="{$colspan}">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:comment"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:context">
                             <tr>
@@ -6743,17 +6757,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:for-each>
                     </tbody>
-                    <xsl:if test="f:comment">
-                        <tfoot>
-                            <tr>
-                                <td colspan="{$colspan}">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:comment"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -7428,6 +7431,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <td>
@@ -7635,17 +7649,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:for-each>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -7664,6 +7667,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:with-param>
                     </xsl:call-template>
+                    <xsl:if test="f:note | f:relevantHistory">
+                        <tfoot>
+                            <xsl:if test="f:note">
+                                <tr>
+                                    <td colspan="2">
+                                        <xsl:call-template name="doDT_Annotation">
+                                            <xsl:with-param name="in" select="f:note"/>
+                                        </xsl:call-template>
+                                    </td>
+                                </tr>
+                            </xsl:if>
+                            <xsl:if test="f:relevantHistory">
+                                <tr>
+                                    <td colspan="2">
+                                        <xsl:call-template name="doDT_Annotation">
+                                            <xsl:with-param name="in" select="f:relevantHistory"/>
+                                        </xsl:call-template>
+                                    </td>
+                                </tr>
+                            </xsl:if>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <tr>
                             <td>
@@ -7791,28 +7816,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note | f:relevantHistory">
-                        <tfoot>
-                            <xsl:if test="f:note">
-                                <tr>
-                                    <td colspan="2">
-                                        <xsl:call-template name="doDT_Annotation">
-                                            <xsl:with-param name="in" select="f:note"/>
-                                        </xsl:call-template>
-                                    </td>
-                                </tr>
-                            </xsl:if>
-                            <xsl:if test="f:relevantHistory">
-                                <tr>
-                                    <td colspan="2">
-                                        <xsl:call-template name="doDT_Annotation">
-                                            <xsl:with-param name="in" select="f:relevantHistory"/>
-                                        </xsl:call-template>
-                                    </td>
-                                </tr>
-                            </xsl:if>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -7911,6 +7914,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:type">
                             <tr>
@@ -8097,17 +8111,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:for-each>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td>
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -8120,6 +8123,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
+                    <xsl:if test="f:note">
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                    <xsl:call-template name="doDT_Annotation">
+                                        <xsl:with-param name="in" select="f:note"/>
+                                        <xsl:with-param name="sep" select="'div'"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </xsl:if>
                     <tbody>
                         <xsl:if test="f:context">
                             <tr>
@@ -8608,18 +8623,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </tr>
                         </xsl:if>
                     </tbody>
-                    <xsl:if test="f:note">
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                    <xsl:call-template name="doDT_Annotation">
-                                        <xsl:with-param name="in" select="f:note"/>
-                                        <xsl:with-param name="sep" select="'div'"/>
-                                    </xsl:call-template>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </xsl:if>
                 </table>
             </div>
         </text>
@@ -8732,166 +8735,163 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                 </xsl:choose>
                 <xsl:if test="f:identifier | f:category | f:status | f:clinicalStatus | f:verificationStatus | f:intent | f:priority">
-                    <div>
+                    <xsl:if test="f:identifier">
+                        <xsl:call-template name="util:getLocalizedString">
+                            <xsl:with-param name="key">id</xsl:with-param>
+                            <xsl:with-param name="post" select="': '"/>
+                        </xsl:call-template>
+                        <xsl:call-template name="doDT_Identifier">
+                            <xsl:with-param name="in" select="f:identifier"/>
+                        </xsl:call-template>
+                    </xsl:if>
+                    <xsl:if test="f:category">
                         <xsl:if test="f:identifier">
+                            <xsl:text>, </xsl:text>
+                        </xsl:if>
+                        <xsl:call-template name="util:getLocalizedString">
+                            <xsl:with-param name="key">Category</xsl:with-param>
+                            <xsl:with-param name="post" select="': '"/>
+                        </xsl:call-template>
+                        <xsl:choose>
+                            <xsl:when test="f:category[@value]">
+                                <xsl:call-template name="doDT_Code">
+                                    <xsl:with-param name="in" select="f:category"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:when test="f:category[f:coding | f:text]">
+                                <xsl:call-template name="doDT_CodeableConcept">
+                                    <xsl:with-param name="in" select="f:category"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="doDT_Coding">
+                                    <xsl:with-param name="in" select="f:category"/>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:if>
+                    <xsl:if test="f:status | f:clinicalStatus | f:verificationStatus | f:intent | f:priority">
+                        <xsl:if test="f:identifier | f:category">
+                            <xsl:text>, </xsl:text>
+                        </xsl:if>
+                        <xsl:if test="f:status | f:clinicalStatus | f:verificationStatus">
                             <xsl:call-template name="util:getLocalizedString">
-                                <xsl:with-param name="key">id</xsl:with-param>
+                                <xsl:with-param name="key">Status</xsl:with-param>
                                 <xsl:with-param name="post" select="': '"/>
                             </xsl:call-template>
-                            <xsl:call-template name="doDT_Identifier">
-                                <xsl:with-param name="in" select="f:identifier"/>
+                        </xsl:if>
+                        <xsl:if test="f:status">
+                            <xsl:call-template name="getLocalizedStatus">
+                                <xsl:with-param name="in" select="f:status"/>
+                            </xsl:call-template>
+                            <xsl:if test="f:statusDate | f:statusReason">
+                                <xsl:text> (</xsl:text>
+                                <xsl:if test="f:statusDate and f:statusReason">
+                                    <xsl:call-template name="doDT_Date">
+                                        <xsl:with-param name="in" select="f:statusDate"/>
+                                    </xsl:call-template>
+                                    <xsl:text> - </xsl:text>
+                                </xsl:if>
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">typeCode-RSON</xsl:with-param>
+                                    <xsl:with-param name="post" select="': '"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="doDT_String">
+                                    <xsl:with-param name="in" select="f:statusReason"/>
+                                </xsl:call-template>
+                                <xsl:text>)</xsl:text>
+                            </xsl:if>
+                        </xsl:if>
+                        <xsl:if test="f:clinicalStatus">
+                            <xsl:if test="f:status">
+                                <xsl:text> / </xsl:text>
+                            </xsl:if>
+                            <xsl:call-template name="getLocalizedStatus">
+                                <xsl:with-param name="in" select="f:clinicalStatus"/>
                             </xsl:call-template>
                         </xsl:if>
-                        <xsl:if test="f:category">
-                            <xsl:if test="f:identifier">
-                                <xsl:text>, </xsl:text>
+                        <xsl:if test="f:verificationStatus">
+                            <xsl:if test="f:status | f:clinicalStatus">
+                                <xsl:text> / </xsl:text>
                             </xsl:if>
+                            <xsl:call-template name="getLocalizedStatus">
+                                <xsl:with-param name="in" select="f:verificationStatus"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="f:intent">
+                            <br/>
                             <xsl:call-template name="util:getLocalizedString">
-                                <xsl:with-param name="key">Category</xsl:with-param>
+                                <xsl:with-param name="key">Intent</xsl:with-param>
+                                <xsl:with-param name="post" select="': '"/>
+                            </xsl:call-template>
+                            <xsl:call-template name="getLocalizedIntent">
+                                <xsl:with-param name="in" select="f:intent"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="f:priority">
+                            <br/>
+                            <xsl:call-template name="util:getLocalizedString">
+                                <xsl:with-param name="key">Priority</xsl:with-param>
                                 <xsl:with-param name="post" select="': '"/>
                             </xsl:call-template>
                             <xsl:choose>
-                                <xsl:when test="f:category[@value]">
-                                    <xsl:call-template name="doDT_Code">
-                                        <xsl:with-param name="in" select="f:category"/>
+                                <xsl:when test="f:priority[@value]">
+                                    <xsl:call-template name="getLocalizedRequestPriority">
+                                        <xsl:with-param name="in" select="f:priority"/>
                                     </xsl:call-template>
                                 </xsl:when>
-                                <xsl:when test="f:category[f:coding | f:text]">
+                                <xsl:when test="f:priority[f:text | f:coding]">
                                     <xsl:call-template name="doDT_CodeableConcept">
-                                        <xsl:with-param name="in" select="f:category"/>
+                                        <xsl:with-param name="in" select="f:priority"/>
                                     </xsl:call-template>
                                 </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:call-template name="doDT_Coding">
-                                        <xsl:with-param name="in" select="f:category"/>
-                                    </xsl:call-template>
-                                </xsl:otherwise>
                             </xsl:choose>
                         </xsl:if>
-                        <xsl:if test="f:status | f:clinicalStatus | f:verificationStatus | f:intent | f:priority">
-                            <xsl:if test="f:identifier | f:category">
-                                <xsl:text>, </xsl:text>
-                            </xsl:if>
-                            <xsl:if test="f:status | f:clinicalStatus | f:verificationStatus">
-                                <xsl:call-template name="util:getLocalizedString">
-                                    <xsl:with-param name="key">Status</xsl:with-param>
-                                    <xsl:with-param name="post" select="': '"/>
-                                </xsl:call-template>
-                            </xsl:if>
-                            <xsl:if test="f:status">
-                                <xsl:call-template name="getLocalizedStatus">
-                                    <xsl:with-param name="in" select="f:status"/>
-                                </xsl:call-template>
-                                <xsl:if test="f:statusDate | f:statusReason">
-                                    <xsl:text> (</xsl:text>
-                                    <xsl:if test="f:statusDate and f:statusReason">
-                                        <xsl:call-template name="doDT_Date">
-                                            <xsl:with-param name="in" select="f:statusDate"/>
-                                        </xsl:call-template>
-                                        <xsl:text> - </xsl:text>
-                                    </xsl:if>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">typeCode-RSON</xsl:with-param>
-                                        <xsl:with-param name="post" select="': '"/>
-                                    </xsl:call-template>
-                                    <xsl:call-template name="doDT_String">
-                                        <xsl:with-param name="in" select="f:statusReason"/>
-                                    </xsl:call-template>
-                                    <xsl:text>)</xsl:text>
-                                </xsl:if>
-                            </xsl:if>
-                            <xsl:if test="f:clinicalStatus">
-                                <xsl:if test="f:status">
-                                    <xsl:text> / </xsl:text>
-                                </xsl:if>
-                                <xsl:call-template name="getLocalizedStatus">
-                                    <xsl:with-param name="in" select="f:clinicalStatus"/>
-                                </xsl:call-template>
-                            </xsl:if>
-                            <xsl:if test="f:verificationStatus">
-                                <xsl:if test="f:status | f:clinicalStatus">
-                                    <xsl:text> / </xsl:text>
-                                </xsl:if>
-                                <xsl:call-template name="getLocalizedStatus">
-                                    <xsl:with-param name="in" select="f:verificationStatus"/>
-                                </xsl:call-template>
-                            </xsl:if>
-                            <xsl:if test="f:intent">
-                                <br/>
-                                <xsl:call-template name="util:getLocalizedString">
-                                    <xsl:with-param name="key">Intent</xsl:with-param>
-                                    <xsl:with-param name="post" select="': '"/>
-                                </xsl:call-template>
-                                <xsl:call-template name="getLocalizedIntent">
-                                    <xsl:with-param name="in" select="f:intent"/>
-                                </xsl:call-template>
-                            </xsl:if>
-                            <xsl:if test="f:priority">
-                                <br/>
-                                <xsl:call-template name="util:getLocalizedString">
-                                    <xsl:with-param name="key">Priority</xsl:with-param>
-                                    <xsl:with-param name="post" select="': '"/>
-                                </xsl:call-template>
-                                <xsl:choose>
-                                    <xsl:when test="f:priority[@value]">
-                                        <xsl:call-template name="getLocalizedRequestPriority">
-                                            <xsl:with-param name="in" select="f:priority"/>
-                                        </xsl:call-template>
-                                    </xsl:when>
-                                    <xsl:when test="f:priority[f:text | f:coding]">
-                                        <xsl:call-template name="doDT_CodeableConcept">
-                                            <xsl:with-param name="in" select="f:priority"/>
-                                        </xsl:call-template>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </xsl:if>
-                        </xsl:if>
-                    </div>
+                    </xsl:if>
                 </xsl:if>
                 <xsl:for-each select="$captionAuthorPerformer | .[self::f:ProcedureRequest][f:authoredOn]">
-                    <div>
-                        <xsl:copy-of select="$captionAuthorPerformerLabel"/>
-                        <xsl:if test="f:role">
-                            <xsl:text> (</xsl:text>
-                            <xsl:call-template name="doDT_CodeableConcept">
-                                <xsl:with-param name="in" select="f:role"/>
-                            </xsl:call-template>
-                            <xsl:text>)</xsl:text>
-                        </xsl:if>
-                        <xsl:text>: </xsl:text>
-                        <xsl:if test=".[self::f:ProcedureRequest]/f:authoredOn">
-                            <xsl:call-template name="doDT_DateTime">
-                                <xsl:with-param name="in" select="f:authoredOn"/>
-                            </xsl:call-template>
-                            <xsl:text> </xsl:text>
-                        </xsl:if>
-                        <xsl:call-template name="doDT_Reference">
-                            <xsl:with-param name="in" as="element()*">
-                                <xsl:choose>
-                                    <xsl:when test="f:actor">
-                                        <xsl:copy-of select="f:actor"/>
-                                    </xsl:when>
-                                    <xsl:when test="f:agent">
-                                        <xsl:copy-of select="f:agent"/>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:copy-of select="."/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:with-param>
+                    <br/>
+                    <xsl:copy-of select="$captionAuthorPerformerLabel"/>
+                    <xsl:if test="f:role">
+                        <xsl:text> (</xsl:text>
+                        <xsl:call-template name="doDT_CodeableConcept">
+                            <xsl:with-param name="in" select="f:role"/>
                         </xsl:call-template>
-                        <xsl:if test="f:onBehalfOf">
-                            <xsl:text> (</xsl:text>
-                            <xsl:call-template name="util:getLocalizedString">
-                                <xsl:with-param name="key">on behalf of</xsl:with-param>
-                                <xsl:with-param name="post" select="': '"/>
-                            </xsl:call-template>
-                            <xsl:call-template name="doDT_Reference">
-                                <xsl:with-param name="in" select="f:onBehalfOf"/>
-                            </xsl:call-template>
-                            <xsl:text>)</xsl:text>
-                        </xsl:if>
-                    </div>
+                        <xsl:text>)</xsl:text>
+                    </xsl:if>
+                    <xsl:text>: </xsl:text>
+                    <xsl:if test=".[self::f:ProcedureRequest]/f:authoredOn">
+                        <xsl:call-template name="doDT_DateTime">
+                            <xsl:with-param name="in" select="f:authoredOn"/>
+                        </xsl:call-template>
+                        <xsl:text> </xsl:text>
+                    </xsl:if>
+                    <xsl:call-template name="doDT_Reference">
+                        <xsl:with-param name="in" as="element()*">
+                            <xsl:choose>
+                                <xsl:when test="f:actor">
+                                    <xsl:copy-of select="f:actor"/>
+                                </xsl:when>
+                                <xsl:when test="f:agent">
+                                    <xsl:copy-of select="f:agent"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:copy-of select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:if test="f:onBehalfOf">
+                        <xsl:text> (</xsl:text>
+                        <xsl:call-template name="util:getLocalizedString">
+                            <xsl:with-param name="key">on behalf of</xsl:with-param>
+                            <xsl:with-param name="post" select="': '"/>
+                        </xsl:call-template>
+                        <xsl:call-template name="doDT_Reference">
+                            <xsl:with-param name="in" select="f:onBehalfOf"/>
+                        </xsl:call-template>
+                        <xsl:text>)</xsl:text>
+                    </xsl:if>
                 </xsl:for-each>
             </caption>
         </xsl:for-each>
@@ -8902,7 +8902,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="$in"/>
         </xsl:call-template>
         <xsl:for-each select="$in/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier']">
-            <div>
+            <div xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:call-template name="doDT_CodeableConcept">
                     <xsl:with-param name="in" select="f:valueCodeableConcept"/>
                 </xsl:call-template>
@@ -9597,7 +9597,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </li>
                         </xsl:for-each>
                     </xsl:variable>
-                    <div>
+                    <div xmlns="http://www.w3.org/1999/xhtml">
                         <xsl:call-template name="util:getLocalizedString">
                             <xsl:with-param name="key">Instruction</xsl:with-param>
                             <xsl:with-param name="post" select="': '"/>
@@ -10161,15 +10161,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                         <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']">
-                            <div xmlns="http://www.w3.org/1999/xhtml">
-                                <xsl:call-template name="util:getLocalizedString">
-                                    <xsl:with-param name="key">PractitionerRole</xsl:with-param>
-                                    <xsl:with-param name="post" select="': '"/>
-                                </xsl:call-template>
-                                <xsl:call-template name="doDT_Reference">
-                                    <xsl:with-param name="in" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']/f:valueReference"/>
-                                </xsl:call-template>
-                            </div>
+                            <br xmlns="http://www.w3.org/1999/xhtml"/>
+                            <xsl:call-template name="util:getLocalizedString">
+                                <xsl:with-param name="key">PractitionerRole</xsl:with-param>
+                                <xsl:with-param name="post" select="': '"/>
+                            </xsl:call-template>
+                            <xsl:call-template name="doDT_Reference">
+                                <xsl:with-param name="in" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']/f:valueReference"/>
+                            </xsl:call-template>
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
