@@ -29,10 +29,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
     
     <!-- Uncomment if you want to test this transform directly -->
-    <!--<xsl:output omit-xml-declaration="yes" indent="yes"/>
+    <xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">
         <xsl:apply-templates mode="addNarrative"/>
-    </xsl:template>-->
+    </xsl:template>
     
     <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
@@ -9669,14 +9669,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </div>
                 </xsl:if>
-                <xsl:if test="f:dose">
+                <xsl:if test="f:*[starts-with(local-name(), 'dose')]">
                     <div xmlns="http://www.w3.org/1999/xhtml">
                         <xsl:call-template name="util:getLocalizedString">
                             <xsl:with-param name="key">doseQuantity</xsl:with-param>
                             <xsl:with-param name="post" select="': '"/>
                         </xsl:call-template>
-                        <xsl:call-template name="doDT_Quantity">
-                            <xsl:with-param name="in" select="f:dose"/>
+                        <xsl:call-template name="doDT">
+                            <xsl:with-param name="baseName">dose</xsl:with-param>
+                            <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'dose')]"/>
                         </xsl:call-template>
                     </div>
                 </xsl:if>
