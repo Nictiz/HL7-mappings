@@ -1,4 +1,4 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../projects/perinatologie/schemas/ada_kernset_neonatologie.xsd">
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_kernset_neonatologie.xsd">
     <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2019-09-13T17:05:22.782+02:00" last-update-date="2019-09-15T13:27:55.233+02:00"/>
     <data>
         <kernset_neonatologie app="perinatologie" shortName="kernset_neonatologie" formName="kernset_neonatologie_30" transactionRef="2.16.840.1.113883.2.4.3.11.60.90.77.4.2446" transactionEffectiveDate="2018-06-01T15:07:24" versionDate="" prefix="peri20-" language="nl-NL" title="LNR voorbeeld" id="c0d038e4-ae37-4e5c-9ede-3883c271541e">
@@ -73,7 +73,7 @@
                         <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90713" value="1" code="57485005" codeSystem="2.16.840.1.113883.6.96" displayName="Oxygen therapy (procedure)"/>
                     </verrichting>
                     <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90706">
-                        <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90713" value="22" code="33631000146101" codeSystem="2.16.840.1.113883.6.96" displayName="mechanische thoraxcompressies (verrichting)"/>
+                        <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90713" code="33631000146101" codeSystem="2.16.840.1.113883.6.96" displayName="mechanische thoraxcompressies (verrichting)"/>
                     </verrichting>
                 </ondersteuning_opvang>
                 <opname_gegevens conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90493">
@@ -182,11 +182,7 @@
                         <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90374">
                             <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90381" value="1" code="175212004" codeSystem="2.16.840.1.113883.6.96" displayName="Ligation of ductus arteriosus (procedure)"/>
                         </verrichting>
-                        <hypotensie_indien_minimaal_inotropie value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90514"/>
-                        <medicatie_bij_pda value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90517"/>
-                        <ritmestoornissen_waarvoor_behandeling value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90519"/>
-                        <cor_vitium_waarvoor_prostin value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90520"/>
-                    </circulatoir>
+                            </circulatoir>
                     <infectieus conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90321">
                         <problemen_aanwezigq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91087"/>
                         <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90401">
@@ -228,26 +224,23 @@
                     </gastrointestinaal>
                     <hematologisch conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90323">
                         <problemen_aanwezigq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91097"/>
-                        <polycythemie_waarvoor_partiele_wisseltransfusie value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90521"/>
-                        <anemie_waarvoor_transfusie value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90522"/>
-                        <trombocytopenie_waarvoor_behandeling nullFlavor="UNK" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90523"/>
-                        <veneuze_trombose_waarvoor_behandeling value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90524"/>
-                        <arteriele_trombose_waarvoor_behandeling value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90525"/>
-
+                        <verrichting_hematologische_problemen conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91200">
+                            <verrichting_type code="58931000146101" codeSystem="2.16.840.1.113883.6.96" displayName="Neonatal partial exchange transfusion for polycythemia (procedure)" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91207" />
+                        </verrichting_hematologische_problemen>                   
                     </hematologisch>
                     <metabool_en_endocrien conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90324">
                         <problemen_aanwezigq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91098"/>
-                        <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90756">
+                        <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90756" id="hem-probl-01">
                             <probleem_naam conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90760" value="1" code="80006005" codeSystem="2.16.840.1.113883.6.96" displayName="Disorder of bilirubin metabolism (disorder)"/>
                             <verificatie_status conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90764" value="1" code="415684004" codeSystem="2.16.840.1.113883.6.96" displayName="Werk"/>
                         </probleem>
-                        <verrichting_weg_svp conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90766">
-                            <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90773" value="1" code="35683002" codeSystem="2.16.840.1.113883.6.96" displayName="Phototherapy of newborn (procedure)"/>
-                        </verrichting_weg_svp>
-                        <hyperglycemie_waarvoor_insuline value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90528"/>
-                        <hypo_of_hyperthyreoidie_waarvoor_medicatie value="UNK" nullFlavor="UNK" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90529"/>
-                        <hypoglycemie_waarvoor_glucose_infuus value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90999"/>
-                    </metabool_en_endocrien>
+                        <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91266">
+                            <indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91271">
+                                <probleem value="hem-probl-01" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91272"/>
+                            </indicatie>
+                            <verrichting_type conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91273" code="35683002" codeSystem="2.16.840.1.113883.6.96" displayName="Phototherapy of newborn (procedure)"/>
+                        </verrichting>
+                         </metabool_en_endocrien>
                     <neurologisch conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90325">
                         <problemen_aanwezigq value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91099"/>
                         <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90690">

@@ -1073,6 +1073,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
 
+                        <!-- Verrichting -->
+                        <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
+                            <component>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
+                            </component>
+                        </xsl:for-each>
+                        
                         <!-- Polycythemie waarvoor partiële wisseltransfusie -->
                         <xsl:for-each select="polycythemie_waarvoor_partiele_wisseltransfusie[@value | @nullFlavor]">
                             <component>
@@ -1148,6 +1155,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
 
+                        <!-- Verrichting -->
+                        <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
+                            <component>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
+                            </component>
+                        </xsl:for-each>
+                        
                         <!-- Hyperglycemie waarvoor insuline - Géén -->
                         <xsl:for-each select="hyperglycemie_waarvoor_insuline[@value | @nullFlavor]">
                             <component>

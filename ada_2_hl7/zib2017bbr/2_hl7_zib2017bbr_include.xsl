@@ -396,10 +396,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000" match="verrichting | procedure" mode="HandleProcedureActivity">
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-            <!-- VerrichtingType -->
+            
+            <!-- verrichting_type -->
             <xsl:for-each select="verrichting_type | procedure_type">
                 <xsl:call-template name="makeCode"/>
             </xsl:for-each>
+            
+            <!-- verrichting_start_datum en verrichting_eind_datum -->
             <xsl:variable name="theStartDate" select="verrichting_start_datum | procedure_start_date"/>
             <xsl:variable name="theEndDate" select="verrichting_eind_datum | procedure_end_date"/>
             <xsl:if test="$theStartDate[@value | @nullFlavor] or $theEndDate[@value | @nullFlavor]">
@@ -416,6 +419,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                 </effectiveTime>
             </xsl:if>
+            
+            <!-- indicatie -->
+            <xsl:for-each select="indicatie | indication">
+                <!-- we may need to find the appropriate problem in the ada instance -->
+                <xsl:variable name="adaProblem" as="element()*">
+                    <xsl:variable name="theProblem" select="problem | probleem"/>
+                    <xsl:choose>
+                        <xsl:when test="$theProblem/*">
+                            <xsl:sequence select="$theProblem"/>
+                        </xsl:when>
+                        <xsl:when test="$theProblem[not(@datatype) or @datatype = 'reference'][@value]">
+                            <xsl:sequence select="ancestor::data//(problem | probleem)[@id = $theProblem/@value]"/>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:for-each select="$adaProblem">
+                    <entryRelationship typeCode="RSON">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000"/>
+                    </entryRelationship>
+                </xsl:for-each>
+            </xsl:for-each>
+            
         </procedure>
 
     </xsl:template>
@@ -607,7 +632,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </participantRole>
         </xsl:for-each>
     </xsl:template>
- 
+
     <xd:doc>
         <xd:desc> part Encounter reference </xd:desc>
     </xd:doc>

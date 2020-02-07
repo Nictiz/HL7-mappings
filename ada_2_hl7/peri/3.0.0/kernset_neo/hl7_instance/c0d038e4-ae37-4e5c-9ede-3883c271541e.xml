@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model phase="#ALL" href="../../../../../../../../../AORTA/trunk/Zorgtoepassing/PerinataleZorg/DECOR/peri20-runtime-develop/peri20-ksneo-alg-30.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" ?>
-
 <ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../AORTA/trunk/XML/schemas/CDANL_extended.xsd">
     <realmCode code="NL"/>
     <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
@@ -13,13 +12,13 @@
     <languageCode code="nl-NL"/>
     <recordTarget>
         <patientRole>
-            <id extension="90009999" root="2.16.840.1.113883.2.4.6.3"/>
+            <id extension="090009999" root="2.16.840.1.113883.2.4.6.3"/>
             <patient>
                 <administrativeGenderCode code="UN" codeSystem="2.16.840.1.113883.5.1" displayName="Ongedifferentieerd"/>
                 <birthTime value="20190909120000"/>
                 <deceasedInd xmlns="urn:hl7-org:sdtc" value="false"/>
                 <deceasedTime xmlns="urn:hl7-org:sdtc" nullFlavor="NA"/>
-                <multipleBirthInd xmlns="urn:hl7-org:sdtc" value="false"/>
+                <sdtc:multipleBirthInd value="false"/>
                 <multipleBirthOrderNumber xmlns="urn:hl7-org:sdtc" nullFlavor="NA"/>
             </patient>
         </patientRole>
@@ -567,31 +566,6 @@
                                     <code code="175212004" codeSystem="2.16.840.1.113883.6.96" displayName="Ligation of ductus arteriosus (procedure)"/>
                                 </procedure>
                             </component>
-                            <component>
-                                <observation classCode="OBS" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
-                                    <code code="282291009" displayName="Diagnose" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                                    <value xsi:type="CD" code="58871000146106" codeSystem="2.16.840.1.113883.6.96" displayName="Inotropic therapy for hypotension (finding)" codeSystemName="SNOMED CT"/>
-                                </observation>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="58801000146104" codeSystem="2.16.840.1.113883.6.96" displayName="Drug therapy for patent ductus arteriosus (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="233154000" codeSystem="2.16.840.1.113883.6.96" displayName="Procedure for arrhythmia (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="59011000146103" codeSystem="2.16.840.1.113883.6.96" displayName="Prostin therapy for congenital heart disease (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
                         </organizer>
                     </entry>
                     <entry>
@@ -756,36 +730,6 @@
                                     <value xsi:type="CD" code="21401000146106" codeSystem="2.16.840.1.113883.6.96" displayName="Hematological disorder (disorder)" codeSystemName="SNOMED CT"/>
                                 </observation>
                             </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="58931000146101" codeSystem="2.16.840.1.113883.6.96" displayName="Neonatal partial exchange transfusion for polycythemia (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN" negationInd="true">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="59071000146107" codeSystem="2.16.840.1.113883.6.96" displayName="Transfusion for anemia (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN" nullFlavor="UNK">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="59091000146106" codeSystem="2.16.840.1.113883.6.96" displayName="Treatment for trombocytopenia (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="59101000146104" codeSystem="2.16.840.1.113883.6.96" displayName="Treatment for venous thrombosis (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN" negationInd="true">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="59111000146102" codeSystem="2.16.840.1.113883.6.96" displayName="Treatment for arterial thrombosis (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
                         </organizer>
                     </entry>
                     <entry>
@@ -817,19 +761,21 @@
                             <component>
                                 <procedure classCode="PROC" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="109101000146103" codeSystem="2.16.840.1.113883.6.96" displayName="Administration of insulin in hyperglycemia (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN" nullFlavor="UNK">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="58791000146103" codeSystem="2.16.840.1.113883.6.96" displayName="Drug therapy for hypothyroidism or hyperthyroidism (procedure)" codeSystemName="SNOMED CT"/>
-                                </procedure>
-                            </component>
-                            <component>
-                                <procedure classCode="PROC" moodCode="EVN" negationInd="true">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                                    <code code="109091000146105" codeSystem="2.16.840.1.113883.6.96" displayName="Intravenous infusion of glucose in hypoglycemia (procedure)" codeSystemName="SNOMED CT"/>
+                                    <code code="35683002" codeSystem="2.16.840.1.113883.6.96" displayName="Phototherapy of newborn (procedure)"/>
+                                    <entryRelationship typeCode="RSON">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
+                                            <code code="282291009" displayName="Diagnose" codeSystem="2.16.840.1.113883.6.96"/>
+                                            <value xsi:type="CD" code="80006005" codeSystem="2.16.840.1.113883.6.96" displayName="Disorder of bilirubin metabolism (disorder)"/>
+                                            <entryRelationship typeCode="SPRT">
+                                                <observation classCode="OBS" moodCode="EVN">
+                                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.54"/>
+                                                    <code code="408729009" displayName="Finding context (attribute)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                                                    <value xsi:type="CD" code="415684004" displayName="Werk" codeSystem="2.16.840.1.113883.6.96"/>
+                                                </observation>
+                                            </entryRelationship>
+                                        </observation>
+                                    </entryRelationship>
                                 </procedure>
                             </component>
                         </organizer>
