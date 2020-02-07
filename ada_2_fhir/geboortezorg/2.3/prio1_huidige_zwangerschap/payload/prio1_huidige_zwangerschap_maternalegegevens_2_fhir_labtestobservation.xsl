@@ -79,10 +79,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <test_result_status value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>      
             </laboratory_test>
         </xsl:for-each>
-        <!-- TODO hb toevoegen -->
-        <!--<xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
-            <xsl:with-param name="in" select="$adaLabTest"/>
-        </xsl:call-template>-->
     </xsl:template>
     
     <!--
