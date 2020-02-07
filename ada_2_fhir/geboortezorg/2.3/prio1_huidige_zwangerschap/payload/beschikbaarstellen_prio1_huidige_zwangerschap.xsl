@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
    
     <xsl:template name="get-patient" match="vrouw" mode="vrouw-fhir">
-        <xsl:result-document href="vrouw.xml" indent="yes" method="xml" omit-xml-declaration="yes">
+        <xsl:result-document href="../fhir_instance/vrouw.xml" indent="yes" method="xml" omit-xml-declaration="yes">
             <xsl:call-template name="nl-core-patient-2.1">
                 <xsl:with-param name="in" select="$patient-ada"/>
             </xsl:call-template>    
@@ -60,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="convertMoToADAlabtest"/>
         </xsl:variable>  
         <xsl:for-each select="$labtest-ada | $labtest-mo-ada">
-            <xsl:result-document href="{concat(name(.),'-',test_code/@code,'-zwangerschap-',$pregnancyNo,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
+            <xsl:result-document href="{concat('../fhir_instance/',name(.),'-',test_code/@code,'-zwangerschap-',$pregnancyNo,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                 <xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
                     <xsl:with-param name="in" select="." as="element()*"/> 
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template name="get-pregnancy-observations" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum" mode="pregnancy-obs-fhir">
-        <xsl:result-document href="{concat(name(.),'-zwangerschap-',$pregnancyNo,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
+        <xsl:result-document href="{concat('../fhir_instance/',name(.),'-zwangerschap-',$pregnancyNo,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
             <xsl:call-template name="bc-pregnancy-observation">
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-',$pregnancyNo)"/>
