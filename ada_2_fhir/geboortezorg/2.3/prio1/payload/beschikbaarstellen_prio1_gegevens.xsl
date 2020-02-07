@@ -16,9 +16,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->    
     <xsl:import href="../../../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="../../../../zibs2017/payload/zib-LaboratoryTestResult-Observation-2.1.xsl"/>
-    <xsl:import href="../../prio1_huidige_zwangerschap/payload/prio1_huidige_zwangerschap_vrouw_2_fhir_patient.xsl"/>
-    <xsl:import href="../../prio1_huidige_zwangerschap/payload/prio1_huidige_zwangerschap_maternalegegevens_2_fhir_labtestobservation.xsl"/>
-    <xsl:import href="../../prio1_huidige_zwangerschap/payload/prio1_huidige_zwangerschap_zwangerschapgegevens_2_fhir_observation.xsl"/>
+    <xsl:import href="gebz_prio1_2_fhir_nl-core-patient.xsl"/>
+    <xsl:import href="gebz_prio1_2_fhir_bc-observation.xsl"/>
+    <xsl:import href="gebz_prio1_2_fhir_zib-laboratory-testresult-observation.xsl"/>
+    <xsl:import href="gebz_prio1_mappings.xsl"/>
    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -74,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="$pregnancyNo"/>
     </xsl:template>
     
-    <xsl:template name="get-pregnancy-observations" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" mode="pregnancy-obs-fhir">
+    <xsl:template name="get-pregnancy-observations" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum" mode="pregnancy-obs-fhir">
         <xsl:result-document href="{concat('../fhir_instance/',name(.),'-zwangerschap-',$pregnancyNo,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
             <xsl:call-template name="bc-pregnancy-observation">
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>

@@ -13,8 +13,10 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="gebz_prio1_mappings.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>  
+   
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
    
     <xd:doc>
@@ -23,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of an Observation resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-pregnancy-observation" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">
+    <xsl:template name="bc-pregnancy-observation" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
@@ -31,6 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="pregnancyId"/>
         
         <xsl:variable name="elementName" select="name(.)"/>
+        <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
                 
         <xsl:for-each select="$in">            
             <Observation>
@@ -38,23 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
-                    <xsl:choose>
-                        <xsl:when test="$elementName='graviditeit'">
-                            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Gravidity"/>
-                        </xsl:when>
-                        <xsl:when test="$elementName='pariteit' or $elementName='pariteit_voor_deze_zwangerschap'">
-                            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Parity"/>
-                        </xsl:when>
-                        <xsl:when test="$elementName='a_terme_datum'">
-                            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-TermDate"/>
-                        </xsl:when>
-                        <xsl:when test="$elementName='wijze_einde_zwangerschap'">
-                            <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-WayEndPregnancy"/>
-                        </xsl:when>
-                        <xsl:when test="$elementName='datum_einde_zwangerschap'">
-                            <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DateEndPregnancy"/>
-                        </xsl:when>
-                    </xsl:choose>
+                    <xsl:call-template name="bc-profile"/>
                 </meta>
                 <xsl:if test="$dossierId!=''">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
@@ -66,41 +53,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$pregnancyId!=''">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
                         <valueReference>
-                            <reference value="Condition/{$pregnancyId}"/>
+                            <xsl:if test="$parentElemName='zwangerschap'">
+                                <reference value="Condition/{$pregnancyId}"/>
+                            </xsl:if>
+                            <xsl:if test="$parentElemName='bevalling'">
+                                <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
+                            </xsl:if>
                         </valueReference>
                     </extension>
                 </xsl:if>
                 <status value="final"/>
                 <code>
-                    <coding>
-                    <xsl:choose>
-                        <xsl:when test="$elementName='graviditeit'">
-                            <system value="http://loinc.org"/>
-                            <code value="11996-6"/>
-                            <display value="Gravidity"/>
-                        </xsl:when>
-                        <xsl:when test="$elementName='pariteit' or $elementName='pariteit_voor_deze_zwangerschap'">
-                            <system value="http://loinc.org"/>
-                            <code value="11977-6"/>
-                            <display value="Parity"/>
-                        </xsl:when>
-                        <xsl:when test="$elementName='a_terme_datum'">
-                            <system value="http://loinc.org"/>
-                            <code value="11778-8"/>
-                            <display value="Deliv date Clin est"/>
-                        </xsl:when>
-                        <xsl:when test="$elementName='wijze_einde_zwangerschap'">
-                            <system value="urn:oid:2.16.840.1.113883.2.4.4.13"/>
-                            <code value="EindeZw"/>
-                            <display value="Wijze einde zwangerschap"/>
-                        </xsl:when>
-                        <xsl:when test="$elementName='datum_einde_zwangerschap'">
-                            <system value="http://snomed.info/sct"/>
-                            <code value="118185001"/>
-                            <display value="Finding related to pregnancy (finding)"/>
-                        </xsl:when>
-                    </xsl:choose>
-                    </coding>
+                    <xsl:call-template name="bc-observation-coding"/>
                 </code>
                 <xsl:for-each select="$adaPatient">
                     <subject>
