@@ -807,19 +807,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </component>
                         </xsl:for-each>
-                        <xsl:for-each select="ademhaling[.//(@value | @code | @nullFlavor)]">
-                            <component>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901239_20190917000000"/>
-                            </component>
-                        </xsl:for-each>
+
                         <!-- Ademhalingsondersteuning - Verrichting -->
                         <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
                             <component>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                             </component>
                         </xsl:for-each>
+
                         <!-- O2 op dag 28 -->
-                        <xsl:for-each select="o2_op_dag_28[@value | @nullFlavor]">
+                        <xsl:for-each select="(o2_op_dag_28 | o2_op_dag_28q)[@value | @nullFlavor]">
                             <component>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901148_20181106144851"/>
                             </component>
@@ -1079,7 +1076,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                             </component>
                         </xsl:for-each>
-                        
+
                         <!-- Polycythemie waarvoor partiële wisseltransfusie -->
                         <xsl:for-each select="polycythemie_waarvoor_partiele_wisseltransfusie[@value | @nullFlavor]">
                             <component>
@@ -1161,7 +1158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                             </component>
                         </xsl:for-each>
-                        
+
                         <!-- Hyperglycemie waarvoor insuline - Géén -->
                         <xsl:for-each select="hyperglycemie_waarvoor_insuline[@value | @nullFlavor]">
                             <component>
@@ -1502,25 +1499,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </supply>
             </component>
         </organizer>
-
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Make respiration</xd:desc>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901239_20190917000000" match="ademhaling" mode="HandleRespiration">
-        <!-- local template in peri because underlying medisch hulpmiddel also needs specific template due to missing enddate in 2017 zib publication -->
-        <procedure classCode="PROC" moodCode="EVN" negationInd="false">
-            <templateId root="2.16.840.1.113883.2.4.6.10.90.901239"/>
-            <code code="422834003" displayName="Respiratory assessment (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-            <!-- medisch hulpmiddel, 90232, zib medisch hulpmiddel -->
-            <!-- local template in peri because the zib 2017 publication does not allow for enddate in medisch hulpmiddel -->
-            <xsl:for-each select="toegediende_zuurstof/toediening_hulpmiddel/medisch_hulpmiddel[.//(@value | @code | @nullFlavor)]">
-                <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901224_20190704110142"/>
-                </entryRelationship>
-            </xsl:for-each>
-        </procedure>
 
     </xsl:template>
 
