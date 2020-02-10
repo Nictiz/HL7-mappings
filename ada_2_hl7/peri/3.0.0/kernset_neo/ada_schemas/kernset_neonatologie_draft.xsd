@@ -204,6 +204,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90001"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string"/>
    </xs:complexType>
    <xs:complexType name="zorgverlener_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90012">
@@ -244,6 +245,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90012"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string"/>
    </xs:complexType>
    <xs:complexType name="naamgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90014">
@@ -612,6 +614,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90247"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string"/>
    </xs:complexType>
    <xs:complexType name="demografische_gegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90274">
@@ -1584,7 +1587,7 @@
          <xs:element name="infuus"
                      type="infuus_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91057"
                      minOccurs="0"
-                     maxOccurs="1"/>
+                     maxOccurs="unbounded"/>
          <xs:element name="gastrointestinaal-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90322"/>
@@ -2152,6 +2155,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90391"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string"/>
    </xs:complexType>
    <xs:complexType name="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90374">
@@ -2392,7 +2396,7 @@
          <xs:element name="infuuskatheter"
                      type="infuuskatheter_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91058"
                      minOccurs="0"
-                     maxOccurs="unbounded"/>
+                     maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -2667,16 +2671,14 @@
                      type="problemen_aanwezigq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91097"
                      minOccurs="0"
                      maxOccurs="1"/>
-         <xs:element name="verrichting_hematologische_problemen-start"
-                     minOccurs="0"
-                     maxOccurs="1">
+         <xs:element name="verrichting-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91200"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="verrichting_hematologische_problemen"
-                     type="verrichting_hematologische_problemen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91200"
+         <xs:element name="verrichting"
+                     type="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91200"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
@@ -2692,9 +2694,9 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90323"/>
       <xs:attribute name="comment" type="xs:string"/>
    </xs:complexType>
-   <xs:complexType name="verrichting_hematologische_problemen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91200">
+   <xs:complexType name="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91200">
       <xs:annotation>
-         <xs:documentation>Type for concept group: Verrichting (hematologische problemen)</xs:documentation>
+         <xs:documentation>Type for concept group: Verrichting</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:element name="verrichting_type-start" minOccurs="0" maxOccurs="1">
@@ -2804,6 +2806,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90756"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string"/>
    </xs:complexType>
    <xs:complexType name="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91266">
@@ -2870,24 +2873,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91271"/>
-      <xs:attribute name="comment" type="xs:string"/>
-   </xs:complexType>
-   <xs:complexType name="probleem_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91272">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Probleem</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91272"/>
       <xs:attribute name="comment" type="xs:string"/>
    </xs:complexType>
    <xs:complexType name="neurologisch_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90325">
@@ -7742,6 +7727,15 @@
       <xs:attribute name="codeSystemVersion" type="xs:string"/>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Probleem - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="probleem_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91272">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91272"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: VerrichtingType - 0..1 R</xs:documentation>
