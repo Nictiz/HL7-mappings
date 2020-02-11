@@ -506,6 +506,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </entryRelationship>
                     </xsl:for-each>
+                    
                     <!-- heropname -->
                     <xsl:for-each select="opname/heropname[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
@@ -527,6 +528,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </observation>
                         </entryRelationship>
                     </xsl:for-each>
+                    
                     <!-- opname indicaties -->
                     <xsl:for-each select="opname/opname_indicatie[@code | @nullFlavor]">
                         <entryRelationship typeCode="RSON">
@@ -678,12 +680,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901133"/>
             <templateId root="2.16.840.1.113883.10.12.806"/>
             <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            
             <!-- lichaamslengte -->
             <xsl:for-each select="lichaamslengte[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000"/>
                 </entryRelationship>
             </xsl:for-each>
+           
             <!-- lichaamsgewicht -->
             <xsl:for-each select="lichaamsgewicht[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
@@ -948,6 +952,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
+            
             <!-- Infectieus -->
             <xsl:for-each select="infectieus[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -992,6 +997,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
+            
             <!-- Infuus -->
             <xsl:for-each select="infuus[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1017,6 +1023,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
+          
             <!-- Gastrointestinaal -->
             <xsl:for-each select="gastrointestinaal[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1052,6 +1059,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
+         
             <!-- Hematologisch -->
             <xsl:for-each select="hematologisch[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1129,6 +1137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
+         
             <!-- Metabool en Endocrien -->
             <xsl:for-each select="metabool_en_endocrien[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1192,6 +1201,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
+       
             <!-- Neurologisch -->
             <xsl:for-each select="neurologisch[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1223,12 +1233,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
+         
             <!-- Zintuigen -->
             <xsl:for-each select="zintuigen[.//(@value | @code | @nullFlavor)]">
                 <entry>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901186_20181107000000"/>
                 </entry>
             </xsl:for-each>
+          
             <!-- congenitale_aandoeningen  -->
             <xsl:for-each select="congenitale_aandoeningen[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1286,7 +1298,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901181_20181107170819" match="kernset_neonatologie" mode="HandleCDAKernsetNeo">
 
-        <ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../AORTA/trunk/XML/schemas/CDANL_extended.xsd">
+        <ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Geboortezorg_v30/Publicaties/20190926/peri20-xml-20190926T163541/XML/schemas/CDANL_extended.xsd">
             <realmCode code="NL"/>
             <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>

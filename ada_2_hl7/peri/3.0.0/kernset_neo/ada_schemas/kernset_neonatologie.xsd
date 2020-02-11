@@ -2039,7 +2039,7 @@
          <xs:element name="problemen_aanwezigq"
                      type="problemen_aanwezigq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91095"
                      minOccurs="0"
-                     maxOccurs="unbounded"/>
+                     maxOccurs="1"/>
          <xs:element name="probleem-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90391"/>
@@ -2060,52 +2060,6 @@
                      type="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90374"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
-         <xs:element name="hypotensie_indien_minimaal_inotropie-start"
-                     minOccurs="0"
-                     maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90514"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="hypotensie_indien_minimaal_inotropie"
-                     type="hypotensie_indien_minimaal_inotropie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90514"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="medicatie_bij_pda-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90517"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="medicatie_bij_pda"
-                     type="medicatie_bij_pda_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90517"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="ritmestoornissen_waarvoor_behandeling-start"
-                     minOccurs="0"
-                     maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90519"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="ritmestoornissen_waarvoor_behandeling"
-                     type="ritmestoornissen_waarvoor_behandeling_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90519"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="cor_vitium_waarvoor_prostin-start"
-                     minOccurs="0"
-                     maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90520"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="cor_vitium_waarvoor_prostin"
-                     type="cor_vitium_waarvoor_prostin_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90520"
-                     minOccurs="0"
-                     maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -2163,16 +2117,6 @@
          <xs:documentation>Type for concept group: Verrichting</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="indicatie-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90379"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="indicatie"
-                     type="indicatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90379"
-                     minOccurs="0"
-                     maxOccurs="1"/>
          <xs:element name="verrichting_type-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90381"/>
@@ -2194,34 +2138,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90374"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="indicatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90379">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Indicatie</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="probleem-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90380"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="probleem"
-                     type="probleem_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90380"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90379"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="infectieus_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90321">
@@ -2329,16 +2245,30 @@
                      type="aanvang_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90830"
                      minOccurs="0"
                      maxOccurs="1"/>
-         <xs:element name="microorganisme-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="microorganisme_sepsis_meningitis-start"
+                     minOccurs="0"
+                     maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91043"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="microorganisme"
-                     type="microorganisme_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91043"
+         <xs:element name="microorganisme_sepsis_meningitis"
+                     type="microorganisme_sepsis_meningitis_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91043"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
+         <xs:element name="microorganisme_congenitale_infectie-start"
+                     minOccurs="0"
+                     maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91365"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="microorganisme_congenitale_infectie"
+                     type="microorganisme_congenitale_infectie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91365"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="lijnsepsisq-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91265"/>
@@ -2357,16 +2287,6 @@
          </xs:element>
          <xs:element name="onset"
                      type="onset_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91088"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="late_onsetq-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91264"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="late_onsetq"
-                     type="late_onsetq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91264"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
@@ -3025,34 +2945,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91335"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="probleem_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91336">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Probleem</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="probleem_naam-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91350"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="probleem_naam"
-                     type="probleem_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91350"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91336"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="zintuigen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90326">
@@ -6240,7 +6132,7 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Problemen aanwezig? - 0..* R</xs:documentation>
+      <xs:documentation>Type for concept item: Problemen aanwezig? - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="problemen_aanwezigq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91095">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91095"/>
@@ -6396,15 +6288,6 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Probleem - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="probleem_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90380">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90380"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
       <xs:documentation>Type for concept item: VerrichtingType - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="verrichting_type_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90381">
@@ -6470,154 +6353,6 @@
       <xs:attribute name="codeSystemVersion" type="xs:string"/>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Hypotensie (indien minimaal inotropie) - 0..1 C</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="hypotensie_indien_minimaal_inotropie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90514">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90514"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>non-mandatory boolean</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="true">
-                  <xs:annotation>
-                     <xs:documentation>Yes</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="false">
-                  <xs:annotation>
-                     <xs:documentation>No</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="UNK">
-                  <xs:annotation>
-                     <xs:documentation>Unknown</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="boolean"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Medicatie bij PDA - 0..1 C</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="medicatie_bij_pda_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90517">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90517"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>non-mandatory boolean</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="true">
-                  <xs:annotation>
-                     <xs:documentation>Yes</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="false">
-                  <xs:annotation>
-                     <xs:documentation>No</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="UNK">
-                  <xs:annotation>
-                     <xs:documentation>Unknown</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="boolean"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Ritmestoornissen waarvoor behandeling - 0..1 C</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="ritmestoornissen_waarvoor_behandeling_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90519">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90519"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>non-mandatory boolean</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="true">
-                  <xs:annotation>
-                     <xs:documentation>Yes</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="false">
-                  <xs:annotation>
-                     <xs:documentation>No</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="UNK">
-                  <xs:annotation>
-                     <xs:documentation>Unknown</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="boolean"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Cor vitium waarvoor Prostin - 0..1 C</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="cor_vitium_waarvoor_prostin_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90520">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90520"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>non-mandatory boolean</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="true">
-                  <xs:annotation>
-                     <xs:documentation>Yes</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="false">
-                  <xs:annotation>
-                     <xs:documentation>No</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="UNK">
-                  <xs:annotation>
-                     <xs:documentation>Unknown</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="boolean"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Problemen aanwezig? - 0..1 R</xs:documentation>
@@ -6876,9 +6611,9 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Microorganisme - 0..* C</xs:documentation>
+      <xs:documentation>Type for concept item: MicroorganismeSepsisMeningitis - 0..* C</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="microorganisme_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91043">
+   <xs:complexType name="microorganisme_sepsis_meningitis_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91043">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91043"/>
       <xs:attribute name="value">
          <xs:simpleType>
@@ -6893,170 +6628,192 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>MicroorganismeSepsisMeningCodelijst_LNR</xs:documentation>
+                     <xs:documentation>Streptococcus agalactiae (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Streptococcus agalactiae (organism)</xs:documentation>
+                     <xs:documentation>Staphylococcus aureus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Staphylococcus aureus (organism)</xs:documentation>
+                     <xs:documentation>Enterococcus faecalis (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Enterococcus faecalis (organism)</xs:documentation>
+                     <xs:documentation>Listeria monocytogenes (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Listeria monocytogenes (organism)</xs:documentation>
+                     <xs:documentation>Escherichia coli (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
                   <xs:annotation>
-                     <xs:documentation>Escherichia coli (organism)</xs:documentation>
+                     <xs:documentation>Klebsiella pneumoniae (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Klebsiella pneumoniae (organism)</xs:documentation>
+                     <xs:documentation>Pseudomonas aeruginosa (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Pseudomonas aeruginosa (organism)</xs:documentation>
+                     <xs:documentation>Haemophilus influenzae (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
                   <xs:annotation>
-                     <xs:documentation>Haemophilus influenzae (organism)</xs:documentation>
+                     <xs:documentation>Neisseria meningitidis (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>Neisseria meningitidis (organism)</xs:documentation>
+                     <xs:documentation>Streptococcus pneumoniae (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Streptococcus pneumoniae (organism)</xs:documentation>
+                     <xs:documentation>Enterobacter cloacae (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Enterobacter cloacae (organism)</xs:documentation>
+                     <xs:documentation>Proteus mirabilis (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Proteus mirabilis (organism)</xs:documentation>
+                     <xs:documentation>Serratia marcescens (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
                   <xs:annotation>
-                     <xs:documentation>Serratia marcescens (organism)</xs:documentation>
+                     <xs:documentation>Genus Salmonella (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="15">
                   <xs:annotation>
-                     <xs:documentation>Genus Salmonella (organism)</xs:documentation>
+                     <xs:documentation>Genus Citrobacter (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="16">
                   <xs:annotation>
-                     <xs:documentation>Genus Citrobacter (organism)</xs:documentation>
+                     <xs:documentation>Staphylococcus, coagulase negative (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="17">
                   <xs:annotation>
-                     <xs:documentation>Staphylococcus, coagulase negative (organism)</xs:documentation>
+                     <xs:documentation>Ureaplasma urealyticum (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="18">
                   <xs:annotation>
-                     <xs:documentation>Ureaplasma urealyticum (organism)</xs:documentation>
+                     <xs:documentation>Genus Chlamydia (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="19">
                   <xs:annotation>
-                     <xs:documentation>Genus Chlamydia (organism)</xs:documentation>
+                     <xs:documentation>Pneumocystis carinii (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="20">
                   <xs:annotation>
-                     <xs:documentation>Pneumocystis carinii (organism)</xs:documentation>
+                     <xs:documentation>Genus Candida (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="21">
                   <xs:annotation>
-                     <xs:documentation>Genus Candida (organism)</xs:documentation>
+                     <xs:documentation>Human herpes simplex virus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="22">
                   <xs:annotation>
-                     <xs:documentation>Human herpes simplex virus (organism)</xs:documentation>
+                     <xs:documentation>Genus Enterovirus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="23">
                   <xs:annotation>
-                     <xs:documentation>Genus Enterovirus (organism)</xs:documentation>
+                     <xs:documentation>Genus Parechovirus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="24">
                   <xs:annotation>
-                     <xs:documentation>Genus Parechovirus (organism)</xs:documentation>
+                     <xs:documentation>Human parvovirus B19 (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="25">
                   <xs:annotation>
-                     <xs:documentation>Human parvovirus B19 (organism)</xs:documentation>
+                     <xs:documentation>Other, specify</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="27">
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: MicroorganismeCongenitaleInfectie - 0..1 C</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="microorganisme_congenitale_infectie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91365">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91365"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
                   <xs:annotation>
-                     <xs:documentation>MicroorganismeCongInfectCodelijst_LNR</xs:documentation>
+                     <xs:documentation>Empty</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="28">
+               <xs:enumeration value="1">
                   <xs:annotation>
                      <xs:documentation>Toxoplasma gondii (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="29">
+               <xs:enumeration value="2">
                   <xs:annotation>
                      <xs:documentation>Rubella virus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="30">
+               <xs:enumeration value="3">
                   <xs:annotation>
                      <xs:documentation>Genus Cytomegalovirus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="31">
+               <xs:enumeration value="4">
                   <xs:annotation>
                      <xs:documentation>Human herpes simplex virus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="32">
+               <xs:enumeration value="5">
                   <xs:annotation>
                      <xs:documentation>Treponema pallidum (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="33">
+               <xs:enumeration value="6">
                   <xs:annotation>
                      <xs:documentation>Human immunodeficiency virus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="34">
+               <xs:enumeration value="7">
                   <xs:annotation>
                      <xs:documentation>B19 virus (organism)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
-               <xs:enumeration value="35">
+               <xs:enumeration value="8">
                   <xs:annotation>
                      <xs:documentation>Other, specify</xs:documentation>
                   </xs:annotation>
@@ -7145,43 +6902,6 @@
       <xs:attribute name="codeSystemVersion" type="xs:string"/>
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="originalText" type="xs:string"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: Late onset? - 0..1 C</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="late_onsetq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91264">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91264"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>non-mandatory boolean</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="true">
-                  <xs:annotation>
-                     <xs:documentation>Yes</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="false">
-                  <xs:annotation>
-                     <xs:documentation>No</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="UNK">
-                  <xs:annotation>
-                     <xs:documentation>Unknown</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="boolean"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Antibiotica eerste 3 dagen? - 0..1 R</xs:documentation>
@@ -8038,121 +7758,13 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: ProbleemNaam - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Probleem - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="probleem_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91350">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91350"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="1">
-                  <xs:annotation>
-                     <xs:documentation>Hypoxic ischemic encephalopathy (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="2">
-                  <xs:annotation>
-                     <xs:documentation>Neonatal encephalopathy (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="3">
-                  <xs:annotation>
-                     <xs:documentation>Birth asphyxia (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="4">
-                  <xs:annotation>
-                     <xs:documentation>Convulsions in the newborn (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="5">
-                  <xs:annotation>
-                     <xs:documentation>Imaging of brain abnormal (finding)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="6">
-                  <xs:annotation>
-                     <xs:documentation>Perinatal intraventricular hemorrhage (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="7">
-                  <xs:annotation>
-                     <xs:documentation>Intraventricular (nontraumatic) hemorrhage, grade 1, of fetus and newborn (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="8">
-                  <xs:annotation>
-                     <xs:documentation>Intraventricular (nontraumatic) hemorrhage, grade 2, of fetus and newborn (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="9">
-                  <xs:annotation>
-                     <xs:documentation>Intraventricular (nontraumatic) hemorrhage, grade 3, of fetus and newborn (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="10">
-                  <xs:annotation>
-                     <xs:documentation>Fetal or neonatal intraventricular non-traumatic hemorrhage grade 4 (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="11">
-                  <xs:annotation>
-                     <xs:documentation>Posthemorrhagic hydrocephalus (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="12">
-                  <xs:annotation>
-                     <xs:documentation>Cerebral ischemia in anterior cerebral artery territory (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="13">
-                  <xs:annotation>
-                     <xs:documentation>Cerebral ischemia in posterior cerebral artery territory (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="14">
-                  <xs:annotation>
-                     <xs:documentation>Cerebral infarction (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="15">
-                  <xs:annotation>
-                     <xs:documentation>Cerebrovascular accident (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="16">
-                  <xs:annotation>
-                     <xs:documentation>Periventricular leucomalacia (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="17">
-                  <xs:annotation>
-                     <xs:documentation>Perinatal cerebellar hemorrhage (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="18">
-                  <xs:annotation>
-                     <xs:documentation>Cerebellar hemorrhage (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
-      <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="displayName" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+   <xs:complexType name="probleem_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91336">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91336"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Problemen aanwezig? - 0..1 R</xs:documentation>

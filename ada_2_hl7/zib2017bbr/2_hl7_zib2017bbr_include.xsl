@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
-    <!--    <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>-->
+    <xsl:import href="../zib2017bbr/payload/hl7-toelichting-20180611.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
 
@@ -396,12 +396,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000" match="verrichting | procedure" mode="HandleProcedureActivity">
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-            
+
             <!-- verrichting_type -->
             <xsl:for-each select="verrichting_type | procedure_type">
                 <xsl:call-template name="makeCode"/>
             </xsl:for-each>
-            
+
             <!-- verrichting_start_datum en verrichting_eind_datum -->
             <xsl:variable name="theStartDate" select="verrichting_start_datum | procedure_start_date"/>
             <xsl:variable name="theEndDate" select="verrichting_eind_datum | procedure_end_date"/>
@@ -419,7 +419,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                 </effectiveTime>
             </xsl:if>
-            
+
             <!-- indicatie -->
             <xsl:for-each select="indicatie | indication">
                 <!-- we may need to find the appropriate problem in the ada instance -->
@@ -439,8 +439,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000"/>
                     </entryRelationship>
                 </xsl:for-each>
+                
             </xsl:for-each>
-            
+
         </procedure>
 
     </xsl:template>
@@ -484,6 +485,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="probleem_naam[.//(@value | @code | @nullFlavor)]">
                 <xsl:call-template name="makeCDValue"/>
             </xsl:for-each>
+
             <!--  verificatiestatus -->
             <xsl:for-each select="verificatie_status[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="SPRT">
@@ -534,24 +536,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
 
-            <!-- early onset (infectieus probleem neonatologie) -->
-            <xsl:for-each select="early_onset[@value | @nullFlavor]">
+            <!-- onset -->
+            <xsl:for-each select="onset[@value | @code | @nullFlavor]">
                 <entryRelationship typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901223"/>
-                        <code code="303114002" displayName="Early neonatal period (qualifier value)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                        <xsl:call-template name="makeBLValue"/>
-                    </observation>
-                </entryRelationship>
-            </xsl:for-each>
-
-            <!-- early onset (infectieus probleem neonatologie) -->
-            <xsl:for-each select="late_onset[@value | @nullFlavor]">
-                <entryRelationship typeCode="COMP">
-                    <observation classCode="OBS" moodCode="EVN">
-                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901240"/>
-                        <code code="303115001" displayName="Late neonatal period (qualifier value)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                        <xsl:call-template name="makeBLValue"/>
+                        <code code="450426006" displayName="foetale of neonatale periode (kwalificatiewaarde)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeCDValue"/>
                     </observation>
                 </entryRelationship>
             </xsl:for-each>
@@ -566,6 +557,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </observation>
                 </entryRelationship>
             </xsl:for-each>
+       
+            <!-- microorganisme_sepsis_meningitis, TODO nieuw template -->
+            <xsl:for-each select="microorganisme_sepsis_meningitis[@code | @nullFlavor]">
+                <entryRelationship typeCode="CAUS">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
+                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeCDValue"/>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+            
+            <!-- microorganisme_congenitale_infectie, TODO nieuw template -->
+            <xsl:for-each select="microorganisme_sepsis_meningitis[@code | @nullFlavor]">
+                <entryRelationship typeCode="CAUS">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
+                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <xsl:call-template name="makeCDValue"/>
+                    </observation>
+                </entryRelationship>
+            </xsl:for-each>
+        
         </observation>
     </xsl:template>
 
