@@ -98,20 +98,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:result-document>
     </xsl:template>
     
-    <xsl:template name="get-child-observations" match="uitkomst_per_kind" mode="child-obs-fhir">
+    <xsl:template name="get-child-observations" match="uitkomst_per_kind" mode="kind-obs-fhir">
         <xsl:variable name="childNo" select="count(preceding-sibling::*[name()=name(current())])+1"/>
-        <kind value="{$childNo}"/>
         <xsl:for-each select="baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht))">
-            <element value="{name(.)}"/>
             <xsl:result-document href="{concat('../fhir_instance/',name(.),'-zwangerschap-',$pregnancyNo,'-kind-',$childNo,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                 <xsl:call-template name="bc-observation">
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
                     <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-',$pregnancyNo)"/>
                     <xsl:with-param name="pregnancyId" select="concat('zwangerschap-',$pregnancyNo)"/>
-                    <xsl:with-param name="childId" select="concat('kind-',$childNo)"/>
+                    <xsl:with-param name="childId" select="concat('zwangerschap-',$pregnancyNo,'-kind-',$childNo)"/>
                 </xsl:call-template>      
             </xsl:result-document>        
         </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template name="get-child" match="uitkomst_per_kind" mode="kind-fhir">
+        <xsl:variable name="childNo" select="count(preceding-sibling::*[name()=name(current())])+1"/>
+        <xsl:variable name="kind-ada" as="element()*">
+            <xsl:call-template name="convert-kind-ada">
+               <xsl:with-param name="theIdentifier" select="concat('zwangerschap-',$pregnancyNo,'-kind-',$childNo)"/>              
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:result-document href="{concat('../fhir_instance/','zwangerschap-',$pregnancyNo,'-kind-',$childNo,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
+            <xsl:call-template name="nl-core-patient-2.1">
+              <xsl:with-param name="in" select="$kind-ada"/>
+            </xsl:call-template>    
+        </xsl:result-document>
     </xsl:template>
     
     <xsl:template match="/">
@@ -120,7 +132,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates mode="lab-fhir"/>    
         <xsl:apply-templates mode="pregnancy-fhir"/>
         <xsl:apply-templates mode="bc-obs-fhir"/>   
-        <xsl:apply-templates mode="child-obs-fhir"/> 
+        <xsl:apply-templates mode="kind-obs-fhir"/> 
+        <xsl:apply-templates mode="kind-fhir"/> 
     </xsl:template>
     
     <xsl:template match="@*|node()">

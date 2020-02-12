@@ -18,6 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="xsl xs xd"
     version="2.0">
     <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
+    <xsl:import href="gebz_prio1_mappings.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -30,6 +31,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>   
         <patient>
             <patient_identification_number value="{$theIdentifier}"/>
+        </patient>
+    </xsl:template>
+  
+    <xsl:template name="convert-kind-ada" mode="kind-ada" match="uitkomst_per_kind" as="element()*">
+        <xsl:param name="theIdentifier"/>   
+        <xsl:variable name="birthDate" select="baring/demografische_gegevens/geboortedatum/@value"/>
+        <patient>
+            <xsl:if test="$theIdentifier!=''">
+                <patient_identification_number value="{$theIdentifier}"/>
+            </xsl:if>
+            <xsl:if test="$birthDate!=''">
+                <geboortedatum value="{current-date()-xs:dayTimeDuration(concat('P',substring-after($birthDate,'-')))}"/>
+            </xsl:if>
         </patient>
     </xsl:template>
   
