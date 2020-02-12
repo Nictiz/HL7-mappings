@@ -1,15 +1,15 @@
 <Observation xmlns="http://hl7.org/fhir">
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-OnsetOfPushing"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ParturitionType"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
       <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-2"/>
+         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
       </valueReference>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
-         <reference value="Procedure/bevalling-zwangerschap-2"/>
+         <reference value="Procedure/bevalling-zwangerschap-3"/>
       </valueReference>
    </extension>
    <extension url="http://hl7.org/fhir/StructureDefinition/Observation-focus-stu3">
@@ -19,15 +19,15 @@
    </extension>
    <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
       <valueReference>
-         <reference value="Observation/uitdrijvingsfase-zwangerschap-2"/>
+         <reference value="Observation/uitdrijvingsfase-zwangerschap-3"/>
       </valueReference>
    </extension>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="249163006"/>
-         <display value="Onset of pushing (in labor) (observable entity)"/>
+         <code value="364336006"/>
+         <display value="Pattern of delivery (observable entity)"/>
       </coding>
    </code>
    <subject>
@@ -35,5 +35,11 @@
          <value value="999910413"/>
       </identifier>
    </subject>
-   <valueDateTime value="2-12-2020T16:39:00+01:00"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="177184002"/>
+         <display value="Spontaan"/>
+      </coding>
+   </valueCodeableConcept>
 </Observation>

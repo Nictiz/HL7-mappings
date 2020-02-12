@@ -101,7 +101,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="get-child-observations" match="uitkomst_per_kind" mode="child-obs-fhir">
         <xsl:variable name="childNo" select="count(preceding-sibling::*[name()=name(current())])+1"/>
         <kind value="{$childNo}"/>
-        <xsl:for-each select="baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5min | geboortegewicht)">
+        <xsl:for-each select="baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht))">
             <element value="{name(.)}"/>
             <xsl:result-document href="{concat('../fhir_instance/',name(.),'-zwangerschap-',$pregnancyNo,'-kind-',$childNo,'.xml')}" indent="yes" method="xml" omit-xml-declaration="yes">
                 <xsl:call-template name="bc-observation">

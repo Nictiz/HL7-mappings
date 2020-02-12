@@ -51,15 +51,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueReference>
                     </extension>
                 </xsl:if>
-                <xsl:if test="$pregnancyId!=''">
+                <xsl:if test="$pregnancyId!='' and $parentElemName!='lichamelijk_onderzoek_kind'">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
                         <valueReference>
-                            <xsl:if test="$parentElemName='zwangerschap'">
-                                <reference value="Condition/{$pregnancyId}"/>
-                            </xsl:if>
-                            <xsl:if test="$parentElemName='bevalling'">
-                                <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
-                            </xsl:if>
+                            <xsl:choose>
+                                <xsl:when test="$parentElemName='zwangerschap'">
+                                    <reference value="Condition/{$pregnancyId}"/>
+                                </xsl:when>
+                                <!-- gaat nu nog goed, maar niet meer als er observaties zijn die niet aan zwangerschap of bevalling gekoppeld zijn -->
+                                <xsl:otherwise>
+                                    <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
+                                </xsl:otherwise>                   
+                            </xsl:choose>
                         </valueReference>
                     </extension>
                 </xsl:if>
@@ -77,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueReference>
                     </extension>
                 </xsl:if>
-                <xsl:if test="$elementName='hoeveelheid_bloedverlies'">
+                <xsl:if test="$elementName='hoeveelheid_bloedverlies' or $elementName='tijdstip_actief_meepersen' or $elementName='type_partus'">
                     <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
                         <valueReference>
                             <reference value="Observation/uitdrijvingsfase-{$pregnancyId}" />
