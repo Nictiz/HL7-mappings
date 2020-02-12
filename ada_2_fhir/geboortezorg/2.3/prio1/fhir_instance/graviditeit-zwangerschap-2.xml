@@ -1,21 +1,23 @@
 <Observation xmlns="http://hl7.org/fhir">
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-TermDate"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Gravidity"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
       <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-4"/>
+         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-2"/>
       </valueReference>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
-      <valueReference/>
+      <valueReference>
+         <reference value="Condition/zwangerschap-2"/>
+      </valueReference>
    </extension>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://loinc.org"/>
-         <code value="11778-8"/>
-         <display value="Deliv date Clin est"/>
+         <code value="11996-6"/>
+         <display value="Gravidity"/>
       </coding>
    </code>
    <subject>
@@ -23,5 +25,5 @@
          <value value="999910413"/>
       </identifier>
    </subject>
-   <valueDate value="2020-02-09+01:00"/>
+   <valueString value="2"/>
 </Observation>

@@ -1,0 +1,39 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BloodLoss"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
+      <valueReference>
+         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-2"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+      <valueReference>
+         <reference value="Procedure/bevalling-zwangerschap-2"/>
+      </valueReference>
+   </extension>
+   <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
+      <valueReference>
+         <reference value="Observation/uitdrijvingsfase-zwangerschap-2"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="64332008"/>
+         <display value="Blood loss in labour"/>
+      </coding>
+   </code>
+   <subject>
+      <identifier>
+         <value value="999910413"/>
+      </identifier>
+   </subject>
+   <valueQuantity>
+      <value value="400"/>
+      <unit value="ml"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="ml"/>
+   </valueQuantity>
+</Observation>

@@ -25,12 +25,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of an Observation resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-pregnancy-observation" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum" as="element()">
+    <xsl:template name="bc-observation" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum | tijdstip_actief_meepersen | type_partus | apgarscore_na_5min | geboortegewicht" as="element()">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="dossierId"/>
         <xsl:param name="pregnancyId"/>
+        <xsl:param name="childId"/>
         
         <xsl:variable name="elementName" select="name(.)"/>
         <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
@@ -62,26 +63,69 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueReference>
                     </extension>
                 </xsl:if>
+                <xsl:if test="$childId!='' and $parentElemName!='lichamelijk_onderzoek_kind'">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/Observation-focus-stu3">
+                        <valueReference>
+                            <reference value="Patient/{$childId}" />
+                        </valueReference>
+                     </extension>               
+                </xsl:if>
+                <xsl:if test="$elementName='tijdstip_begin_actieve_ontsluiting'">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
+                        <valueReference>
+                            <reference value="Observation/ontsluitingsfase-{$pregnancyId}" />
+                        </valueReference>
+                    </extension>
+                </xsl:if>
+                <xsl:if test="$elementName='hoeveelheid_bloedverlies'">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
+                        <valueReference>
+                            <reference value="Observation/uitdrijvingsfase-{$pregnancyId}" />
+                        </valueReference>
+                    </extension>
+                </xsl:if>
+                <xsl:if test="$elementName='conditie_perineum_postpartum'">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
+                        <valueReference>
+                            <reference value="Observation/nageboortefase-{$pregnancyId}" />
+                        </valueReference>
+                    </extension>
+                </xsl:if>
                 <status value="final"/>
                 <code>
                     <xsl:call-template name="bc-observation-coding"/>
                 </code>
-                <xsl:for-each select="$adaPatient">
-                    <subject>
-                        <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                    </subject>
-                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="$childId!='' and $parentElemName='lichamelijk_onderzoek_kind'">
+                        <subject>
+                            <reference value="Patient/{$childId}"/>
+                        </subject>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="$adaPatient">
+                            <subject>
+                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                            </subject>
+                        </xsl:for-each>                 
+                    </xsl:otherwise>
+                </xsl:choose>
                 <xsl:for-each select=".">
-                    <xsl:call-template name="any-to-value">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="elemName">value</xsl:with-param>
-                    </xsl:call-template>
+                    <xsl:choose>
+                        <xsl:when test="@datatype='datetime'">
+                            <xsl:call-template name="format-date"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="any-to-value">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="elemName">value</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>   
-                <!-- obv datatype aanroepen -->
             </Observation>
         </xsl:for-each>
     </xsl:template>
-
+    
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>

@@ -51,11 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <test_result_status value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>      
             </laboratory_test>
         </xsl:for-each>
-        <!-- TODO hb toevoegen -->
-        <!--<xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
-            <xsl:with-param name="in" select="$adaLabTest"/>
-        </xsl:call-template>-->
-    </xsl:template>
+     </xsl:template>
     
     <xsl:template name="convertMoToADAlabtest" match="medisch_onderzoek">
         <xsl:variable name="datum" select="datum_onderzoek/@value"/>
@@ -70,10 +66,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                 </xsl:choose>
                 <xsl:if test="$datum!=''">
+                    <!-- TODO: dit omzetten naar aanroepen date-format template -->
                     <xsl:variable name="x" select="substring-after($datum,'T-')"/>
                     <xsl:variable name="pattern" select="substring($x,string-length($x),1)"/>
                     <xsl:variable name="n" select="substring-before($x,$pattern)"/>
-                    <test_date_time value="{current-dateTime()-xs:dayTimeDuration(concat('P',$n,$pattern))}"/>
+                    <test_date_time value="{current-date()-xs:dayTimeDuration(concat('P',$n,$pattern))}"/>
                 </xsl:if>
                 <test_result value="{$value}" unit="{$unit}"/>
                 <test_result_status value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>      
