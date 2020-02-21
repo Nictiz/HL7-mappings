@@ -29,11 +29,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada maternale gegevens to ada labtest</xd:desc>
     </xd:doc>
                             
-    <xsl:template name="convertToADAlabtest" match="vrouw">
-        <xsl:for-each select="bloedgroep_vrouw|rhesus_d_factor_vrouw|rhesus_c_factor">
+    <xsl:template name="convertToADAlabtest" match="bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb">
             <xsl:variable name="code" select="@code"/>  
             <xsl:variable name="codeSystem" select="@codeSystem"/> 
             <xsl:variable name="display" select="@displayName"/>
+            <xsl:variable name="datum" select="ancestor::node()/datum_onderzoek/@value"/>
             <xsl:variable name="elementName" select="name(.)"/>
             <laboratory_test>
                 <xsl:choose>
@@ -46,13 +46,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$elementName='rhesus_c_factor'">
                         <test_code code="1159-3" codeSystem="2.16.840.1.113883.6.1" displayName="little c Ag [Presence] on Red Blood Cells"/>
                     </xsl:when>
+                    <xsl:when test="$elementName='hb'">
+                        <test_code code="718-7" codeSystem="2.16.840.1.113883.6.1" displayName="Hemoglobin (Bld) [Mass/Vol]"/>
+                    </xsl:when>
                 </xsl:choose>
-                <test_result code="{$code}" codeSystem="{$codeSystem}" displayName="{$display}"/>
+                <xsl:if test="$datum!=''">
+                    <!-- TODO omzetten naar aanroepen format datetime-->
+                    <xsl:variable name="x" select="substring-after($datum,'T-')"/>
+                    <xsl:variable name="pattern" select="substring($x,string-length($x),1)"/>
+                    <xsl:variable name="n" select="substring-before($x,$pattern)"/>
+                    <test_date_time value="{current-date()-xs:dayTimeDuration(concat('P',$n,$pattern))}"/>
+                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$elementName='hb'">
+                        <test_result value="{@value}" unit="{@unit}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <test_result code="{$code}" codeSystem="{$codeSystem}" displayName="{$display}"/>
+                    </xsl:otherwise>
+                </xsl:choose>              
                 <test_result_status value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>      
-            </laboratory_test>
-        </xsl:for-each>
+            </laboratory_test>     
      </xsl:template>
     
+    <!--
     <xsl:template name="convertMoToADAlabtest" match="medisch_onderzoek">
         <xsl:variable name="datum" select="datum_onderzoek/@value"/>
         <xsl:for-each select="maternale_onderzoeksgegevens/urine_bloed_en_aanvullende_onderzoeken/hb">
@@ -66,7 +83,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                 </xsl:choose>
                 <xsl:if test="$datum!=''">
-                    <!-- TODO: dit omzetten naar aanroepen date-format template -->
                     <xsl:variable name="x" select="substring-after($datum,'T-')"/>
                     <xsl:variable name="pattern" select="substring($x,string-length($x),1)"/>
                     <xsl:variable name="n" select="substring-before($x,$pattern)"/>
@@ -77,6 +93,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </laboratory_test>
         </xsl:for-each>
     </xsl:template>
+    -->
     
     <!--
     <xsl:template match="/">

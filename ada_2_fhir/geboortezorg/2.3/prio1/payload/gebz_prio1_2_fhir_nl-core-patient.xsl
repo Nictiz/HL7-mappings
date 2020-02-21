@@ -12,11 +12,8 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    exclude-result-prefixes="xsl xs xd"
-    version="2.0">
+
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
     <xsl:import href="gebz_prio1_mappings.xsl"/>
 
@@ -27,15 +24,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vrouw to ada patient</xd:desc>
     </xd:doc>
               
+    <xsl:variable name='vrouwId' select="'van-der-wouden'"/> <!-- todo: moet in ada voorbeeld komen en daaruit uitlezen -->
+                      
     <xsl:template name="convert-vrouw-ada" mode="vrouw-ada" match="vrouw" as="element()*">
         <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>   
         <patient>
-            <patient_identification_number value="{$theIdentifier}"/>
+            <identificatienummer value="{$theIdentifier}"/>
+            <naamgegevens>
+                <geslachtsnaam value="van der Wouden"/> <!-- todo: moet in ada voorbeeld komen en daaruit uitlezen -->
+            </naamgegevens>
         </patient>
     </xsl:template>
-  
+       
     <xsl:template name="convert-kind-ada" mode="kind-ada" match="uitkomst_per_kind" as="element()*">
-        <xsl:param name="theIdentifier"/>   
+        <xsl:param name="theIdentifier" select="string(count(preceding-sibling::*[name()=name(current())])+1)"/>   
         <xsl:variable name="birthDate" select="baring/demografische_gegevens/geboortedatum/@value"/>
         <patient>
             <xsl:if test="$theIdentifier!=''">
@@ -47,19 +49,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </patient>
     </xsl:template>
   
-    <xd:doc>
-        <xd:desc>Converts ada vrouw to fhir patient</xd:desc>
-    </xd:doc>
-
-    <xsl:template name="convert-vrouw-fhir" mode="vrouw-fhir" match="vrouw">
-        <xsl:variable name="ADApatient" as="element()*">
-            <xsl:call-template name="convert-vrouw-ada"/>
-        </xsl:variable>
-        <xsl:call-template name="nl-core-patient-2.1">
-            <xsl:with-param name="in" select="$ADApatient"/>
-        </xsl:call-template>       
-    </xsl:template>
-    
+    <xsl:template name="patients" as="element()*">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each-group select="//$in[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+            string-join(for $att in nf:ada-pat-id(identificatienummer)/@value
+            return
+            $att, '')">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
+                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <unieke-patient xmlns="">
+                    <group-key>
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <reference-display>
+                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '))"/>
+                    </reference-display>
+                    <xsl:apply-templates select="current-group()[1]" mode="doPatientResource-2.1">
+                        <xsl:with-param name="in" select="$in"/>
+                        <xsl:with-param name="uuid" select="$uuid"/>
+                    </xsl:apply-templates> 
+                </unieke-patient>
+            </xsl:for-each-group>
+        </xsl:for-each-group>
+    </xsl:template>  
+  
     <xsl:template match="/">
         <xsl:variable name="x" select="'test'"/>
         <xsl:apply-templates mode="vrouw-fhir"/>

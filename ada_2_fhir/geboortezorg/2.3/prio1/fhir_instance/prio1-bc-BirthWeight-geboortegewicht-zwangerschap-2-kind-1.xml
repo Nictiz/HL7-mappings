@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="geboortegewicht-zwangerschap-2-kind-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthWeight"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
+      <valueReference>
+         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-2"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="8339-4"/>
+         <display value="Birth weight Measured"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/zwangerschap-2-kind-1"/>
+   </subject>
+   <valueQuantity>
+      <value value="2845"/>
+      <unit value="gram"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="g"/>
+   </valueQuantity>
+</Observation>

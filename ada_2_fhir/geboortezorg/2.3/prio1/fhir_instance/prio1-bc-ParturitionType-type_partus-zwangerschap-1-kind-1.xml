@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="type_partus-zwangerschap-1-kind-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ParturitionType"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
+      <valueReference>
+         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+      <valueReference>
+         <reference value="Procedure/bevalling-zwangerschap-1"/>
+      </valueReference>
+   </extension>
+   <extension url="http://hl7.org/fhir/StructureDefinition/Observation-focus-stu3">
+      <valueReference>
+         <reference value="Patient/zwangerschap-1-kind-1"/>
+      </valueReference>
+   </extension>
+   <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
+      <valueReference>
+         <reference value="Observation/uitdrijvingsfase-zwangerschap-1"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364336006"/>
+         <display value="Pattern of delivery (observable entity)"/>
+      </coding>
+   </code>
+   <subject/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3311000146109"/>
+         <display value="Vaginale kunstverlossing"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>
