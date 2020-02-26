@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:when>
                 <!-- Observation//value does not do valueDecimal, hence quantity without unit -->
-                <xsl:when test="$theDatatype = ('quantity', 'duration', 'currency', 'decimal') or @unit">
+                <xsl:when test="$theDatatype = ('quantity', 'duration', 'currency', 'decimal','integer') or @unit">
                     <xsl:element name="{concat($elemName, 'Quantity')}" namespace="http://hl7.org/fhir">
                         <xsl:call-template name="hoeveelheid-to-Quantity">
                             <xsl:with-param name="in" select="."/>

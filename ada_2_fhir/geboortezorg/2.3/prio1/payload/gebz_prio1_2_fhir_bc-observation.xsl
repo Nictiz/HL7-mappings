@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="format-date"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:call-template name="any-to-value">
+                            <xsl:call-template name="any-to-value"> <!-- TODO: case when gravidity etc: hoeveelheid-to-Quantity when terme date datetime etc...-->
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="elemName">value</xsl:with-param>
                             </xsl:call-template>
