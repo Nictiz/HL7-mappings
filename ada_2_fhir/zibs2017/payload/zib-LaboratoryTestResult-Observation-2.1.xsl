@@ -189,7 +189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:for-each>
                     <!-- NL-CM:0.0.12			Patient -->
-                    <xsl:for-each select="ancestor::*[bundle]/bundle/subject">
+                    <xsl:for-each select="$adaPatient">
                         <subject>
                             <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                         </subject>
