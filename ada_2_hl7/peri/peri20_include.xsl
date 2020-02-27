@@ -17,8 +17,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="peri20_30_shared.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
 
-
-
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20110128000000">
         <!-- Graviditeit -->
         <observation classCode="OBS" moodCode="EVN">
@@ -3001,8 +2999,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </outboundRelationship>
             </xsl:for-each>
             <!-- Kindspecifieke kraamzorggegevens -->
-            <xsl:variable name="var_rangnummer_kind" select="./ancestor-or-self::*/rangnummer_kind/@value"/>
-            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens | kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep">
+            <xsl:variable name="var_rangnummer_kind" select=".//rangnummer_kind/@value"/>
+            <xsl:for-each select="../../postnatale_fase/(kindspecifieke_kraamzorggegevens | kindspecifieke_gegevens)[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind[@value])]/voeding_kind_groep">
                 <xsl:comment>Item: 70010 - Voeding kind</xsl:comment>
                 <outboundRelationship typeCode="COMP" contextConductionInd="true">
                     <!-- Item: 70010 - Voeding kind -->
@@ -4369,8 +4367,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <!-- Baring Kernset -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440">
-        <xsl:variable name="var_rangnummer_kind" select="./demografische_gegevens/rangnummer_kind/@value"/>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440" match="baring" mode="template_901102_20180226151440"> 
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901102"/>
             <id nullFlavor="NI"/>
@@ -4407,6 +4404,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- Item(s) :: ziekenhuisnummer_lvrid -->
                         <xsl:for-each select="./ziekenhuis_baring/ziekenhuisnummer_lvrid">
                             <xsl:call-template name="makeIIValue">
+                                <!-- Root LVR-id is '2.16.840.1.113883.2.4.3.22.96.6' -->
+                                <xsl:with-param name="root">2.16.840.1.113883.2.4.3.22.96.6</xsl:with-param>
                                 <xsl:with-param name="xsiType" select="''"/>
                                 <xsl:with-param name="elemName">id</xsl:with-param>
                             </xsl:call-template>
@@ -4523,6 +4522,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900425_20161206135217"/>
                 </outboundRelationship>
             </xsl:for-each>
+            <!-- MdG: null bij geen data -->
+            <xsl:if test="not(./kindspecifieke_uitkomstgegevens/lichamelijk_onderzoek_kind/geboortegewicht)">
+                <outboundRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                        <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+                        <value xsi:type="PQ" nullFlavor="NI"/>
+                    </observation>
+                </outboundRelationship>
+            </xsl:if>
             <xsl:for-each select="./kindspecifieke_uitkomstgegevens/congenitale_afwijkingenq">
                 <xsl:variable name="cong_afw_question" select="."/>
                 <xsl:choose>
@@ -4571,7 +4579,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901020_20161206135638"/>
                 </outboundRelationship>
             </xsl:for-each>
-            <xsl:for-each select="//postnatale_fase/kindspecifieke_gegevens[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind)]/voeding_kind_groep[voeding_kind_datum | substantie_voeding_kind]">
+            <xsl:variable name="var_rangnummer_kind" select="./demografische_gegevens/rangnummer_kind/@value"/>
+            <xsl:for-each select="//postnatale_fase/kindspecifieke_gegevens[rangnummer_kind/@value = $var_rangnummer_kind or not(rangnummer_kind[@value])]/voeding_kind_groep[voeding_kind_datum | substantie_voeding_kind]">
                 <outboundRelationship typeCode="COMP">
                     <!-- Template :: Voeding kind -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900724_20161206135654"/>
@@ -4648,7 +4657,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="xsiType">CE</xsl:with-param>
                 <!-- TEDOEN originalText nullFlavor OTH -->
-                <xsl:with-param name="originalText"/>
             </xsl:call-template>
         </observation>
     </xsl:template>
@@ -4662,7 +4670,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="xsiType">CE</xsl:with-param>
                 <!-- TEDOEN originalText nullFlavor OTH -->
-                <xsl:with-param name="originalText"/>
             </xsl:call-template>
         </observation>
     </xsl:template>
@@ -7105,7 +7112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </procedure>
     </xsl:template>
-       <!-- Chromosomale afwijkingen (ja nee) -->
+    <!-- Chromosomale afwijkingen (ja nee) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900981_20161206103540">
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr"/>
@@ -8066,7 +8073,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="observation_code"/>
         <xsl:param name="observation_codeSystem"/>
         <xsl:param name="observation_displayName"/>
-        <xsl:param name="observation_overig_toelichting"/>
+        <xsl:param name="observation_overig_toelichting" as="element()*"/>
         <xsl:param name="observation_text"/>
 
         <observation classCode="OBS" moodCode="EVN" negationInd="false">
@@ -8147,7 +8154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="observation_code"/>
         <xsl:param name="observation_codeSystem"/>
         <xsl:param name="observation_displayName"/>
-        <xsl:param name="observation_overig_toelichting"/>
+        <xsl:param name="observation_overig_toelichting" as="element()*"/>
         <xsl:param name="observation_text"/>
 
         <xsl:if test="$question[1] instance of element() and (($observation[1] instance of element() and not($observation)) or not($observation[1] instance of element()))">
@@ -8366,7 +8373,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </procedure>
     </xsl:template>
 
- 
+
     <xd:doc>
         <xd:desc>Make observation for gravidity based on ada graviditeit</xd:desc>
     </xd:doc>
@@ -8392,44 +8399,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
 
-    <xd:doc>
-        <xd:desc>Top level template for CDA for Kernset Neonatology</xd:desc>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901181_20181107170819" match="kernset_neonatologie" mode="HandleCDAKernsetNeo">
-
-        <ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 ../../../../../../../../../AORTA/trunk/XML/schemas/CDANL_extended.xsd">
-            <realmCode code="NL"/>
-            <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
-            <id extension="someUniqueID" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
-            <code code="TODO" displayName="Document met Kernset Neonatologie" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-            <title>Kernset Neonatologie</title>
-            <effectiveTime value="20181023141518"/>
-            <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
-            <languageCode code="nl-NL"/>
-            <!-- recordTarget - patient - kind -->
-            <xsl:for-each select="kind/demografische_gegevens/patient[.//(@value | @code | @nullFlavor)]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000"/>
-            </xsl:for-each>
-
-            <!-- author - zorgaanbieder -->
-            <xsl:for-each select="zorgaanbieder[.//(@value | @code | @nullFlavor)]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.51_20181218141008_za">
-                    <!-- no dataset item available for authorTime... https://bits.nictiz.nl/browse/GZ-9 -->
-                    <!--                <xsl:with-param name="authorTime"/>-->
-                </xsl:call-template>
-            </xsl:for-each>
-
-            <!-- custodian - zorgaanbieder -->
-            <xsl:for-each select="zorgaanbieder[.//(@value | @code | @nullFlavor)]">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.50_20181217000000"/>
-            </xsl:for-each>
-
-            <!-- structured body -->
-            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901109_20181102113603"/>
-
-        </ClinicalDocument>
-
-
-    </xsl:template>
 </xsl:stylesheet>
