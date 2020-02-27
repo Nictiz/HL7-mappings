@@ -1,5 +1,5 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../projects/cio/schemas/ada_beschikbaarstellen_allergie_intolerantie_vertaling.xsd">
-    <meta status="new" created-by="camielreijnders" last-update-by="camielreijnders" creation-date="2019-10-10T14:53:02.025+02:00" last-update-date="2020-01-20T13:36:04.713+01:00"/>
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../projects/cio/schemas/ada_beschikbaarstellen_allergie_intolerantie_vertaling.xsd">
+    <meta status="new" created-by="camielreijnders" last-update-by="camielreijnders" creation-date="2019-10-10T14:53:02.025+02:00" last-update-date="2020-01-23T16:07:22.285+01:00"/>
     <data>
         <beschikbaarstellen_allergie_intolerantie_vertaling app="cio" shortName="beschikbaarstellen_allergie_intolerantie_vertaling" formName="beschikbaarstellen_allergie_intolerantie_vertaling" transactionRef="2.16.840.1.113883.2.4.3.11.60.26.4.6" transactionEffectiveDate="2019-08-28T13:33:41" versionDate="" prefix="cio-" language="nl-NL" title="1.1" desc="Alle AllergieIntolerantieVertaling gegevens van een persoon" id="CIO-01-AlleOnderdelen">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.98" id="CIO_Patient_01">
@@ -27,7 +27,7 @@
                     <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.132">
                         <telefoonnummer value="06-12345678" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.133"/>
                         <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.134" value="3" code="MC" codeSystem="2.16.840.1.113883.5.1119" displayName="Mobiel telefoonnummer"/>
-                        <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.135" value="2" code="TMP" codeSystem="2.16.840.1.113883.5.1119" displayName="Tijdelijk telefoonnummer"/>
+                        <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.135" value="1" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Telefoonnummer thuis"/>
                     </telefoonnummers>
                     <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.136">
                         <email_adres value="XXX_Stalewska@123mail.com" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.137"/>
@@ -88,7 +88,7 @@
                 <allergie_categorie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.3" value="2" code="419511003" codeSystem="2.16.840.1.113883.6.96" displayName="Medicijn"/>
                 <allergie_status conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.4" value="1" code="active" codeSystem="2.16.840.1.113883.5.14" displayName="Actief"/>
                 <begin_datum_tijd value="T-100D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.5"/>
-            <toelichting value="Overgevoeligheid leidt tot paarse vlekjes op de huid en jeuk." conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.8"/>
+                <toelichting value="Overgevoeligheid leidt tot paarse vlekjes op de huid en jeuk." conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.8"/>
             </allergie_intolerantie>
             <allergie_intolerantie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.1">
                 <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.54">
@@ -162,10 +162,21 @@
                     <land code="6030" codeSystem="2.16.840.1.113883.2.4.4.16.34" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.188" displayName="Nederland"/>
                     <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.190" value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
                 </adresgegevens>
+                <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.104">
+                    <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.132">
+                        <telefoonnummer value="06-12345678" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.133"/>
+                        <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.134" value="3" code="MC" codeSystem="2.16.840.1.113883.5.1119" displayName="Mobiel telefoonnummer"/>
+                        <nummer_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.135" value="1" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Telefoonnummer thuis"/>
+                    </telefoonnummers>
+                    <email_adressen conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.136">
+                        <email_adres value="XXX_Stalewska@123mail.com" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.137"/>
+                        <email_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.138" value="1" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Privé e-mailadres"/>
+                    </email_adressen>
+                </contactgegevens>
                 <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.148">
                     <zorgaanbieder value="CIO_Zorgaanbieder_01" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.149"/>
                 </zorgaanbieder>
-                </zorgverlener>
+            </zorgverlener>
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.139" id="CIO_Zorgverlener_02">
                 <zorgverlener_identificatienummer value="222222222" root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.140"/>
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.142">
@@ -188,7 +199,7 @@
                 <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.148">
                     <zorgaanbieder value="CIO_Zorgaanbieder_01" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.149"/>
                 </zorgaanbieder>
-                </zorgverlener>
+            </zorgverlener>
             <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.139" id="CIO_Zorgverlener_03">
                 <zorgverlener_identificatienummer value="333333333" root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.140"/>
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.142">
@@ -211,14 +222,13 @@
                 <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.148">
                     <zorgaanbieder value="CIO_Zorgaanbieder_01" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.149"/>
                 </zorgaanbieder>
-                </zorgverlener>
+            </zorgverlener>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.205" id="CIO_Zorgaanbieder_01">
                 <zorgaanbieder_identificatienummer value="03999999" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.206"/>
                 <organisatie_naam value="Test Medisch Centrum" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.207"/>
                 <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.213">
                     <straat value="Valkendael" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.222"/>
                     <huisnummer value="45" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.223"/>
-                    <huisnummertoevoeging value="huis" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.225"/>
                     <postcode value="6245 HK" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.227"/>
                     <woonplaats value="Maastricht" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.228"/>
                     <land code="6030" codeSystem="2.16.840.1.113883.2.4.4.16.34" displayName="Nederland" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.230"/>
@@ -262,7 +272,7 @@
                     <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.253" value="3" code="PHYS" codeSystem="2.16.840.1.113883.5.1119" displayName="Woon-/verblijfadres"/>
                 </adresgegevens>
                 <rol conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.168" value="1" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.22.472" displayName="Eerste relatie/contactpersoon"/>
-                </contactpersoon>
+            </contactpersoon>
         </beschikbaarstellen_allergie_intolerantie_vertaling>
     </data>
 </adaxml>
