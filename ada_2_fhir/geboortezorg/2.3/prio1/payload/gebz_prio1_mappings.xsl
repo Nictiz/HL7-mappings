@@ -33,13 +33,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Parity"/>
                 </xsl:when>
                 <xsl:when test="$elementName='a_terme_datum'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-TermDate"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-DueDate"/>
                 </xsl:when>
                 <xsl:when test="$elementName='wijze_einde_zwangerschap'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-WayEndPregnancy"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Pregnancy-EndType"/>
                 </xsl:when>
                 <xsl:when test="$elementName='datum_einde_zwangerschap'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DateEndPregnancy"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Pregnancy-EndDate"/>
                 </xsl:when>
                 <xsl:when test="$elementName='tijdstip_begin_actieve_ontsluiting'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-OnsetOfLaborFirstStage"/>

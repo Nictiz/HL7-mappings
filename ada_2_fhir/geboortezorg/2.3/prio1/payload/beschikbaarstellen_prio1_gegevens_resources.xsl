@@ -49,11 +49,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="ConversiePrio1Gegevens" match="prio1_huidig | prio1_vorig">     
         <!-- <xsl:copy-of select="$patients"></xsl:copy-of> --> <!-- unieke patienten ipv onderstaande var -->
         <xsl:variable name="patients" as="element(f:Patient)*"> <!--  as="element()*"> -->
-            <!--
-            <xsl:call-template name="patients">
-                <xsl:with-param name="in" select="$patient-ada"/>
-            </xsl:call-template>
-            -->
             <xsl:apply-templates mode="doVrouwToFhir"/>
             <xsl:apply-templates mode="doKindToFhir"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, relatedpersons -->

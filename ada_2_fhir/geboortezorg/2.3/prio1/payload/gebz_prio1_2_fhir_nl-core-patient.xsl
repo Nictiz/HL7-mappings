@@ -24,14 +24,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vrouw to ada patient</xd:desc>
     </xd:doc>
               
-    <xsl:variable name='vrouwId' select="'van-der-wouden'"/> <!-- todo: moet in ada voorbeeld komen en daaruit uitlezen -->
+    <xsl:variable name='vrouwId' select="replace(lower-case((prio1_huidig | prio1_vorig)/vrouw/naamgegevens/achternaam/achternaam/@value),' ','-')"/>
                       
     <xsl:template name="convert-vrouw-ada" mode="vrouw-ada" match="vrouw" as="element()*">
         <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>   
+        <xsl:variable name="familyName" select="naamgegevens/achternaam/achternaam/@value"/>  
+        <xsl:variable name="familyPrefix" select="naamgegevens/achternaam/voorvoegsel/@value"/>  
         <patient>
             <identificatienummer value="{$theIdentifier}"/>
             <naamgegevens>
-                <geslachtsnaam value="van der Wouden"/> <!-- todo: moet in ada voorbeeld komen en daaruit uitlezen -->
+                <geslachtsnaam>
+                    <achternaam value="{$familyName}"/>
+                    <voorvoegsels value="{$familyPrefix}"/>
+                </geslachtsnaam> 
             </naamgegevens>
         </patient>
     </xsl:template>
