@@ -308,18 +308,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-    <xd:doc>
-        <xd:desc>Zwangerschapsduur bij geboorte</xd:desc>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900200_20120808000000">
-        <observation classCode="OBS" moodCode="EVN">
-            <code code="412726003" displayName="Length of gestation at birth" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
-            <!-- moet in dagen -->
-            <value xsi:type="PQ" unit="d">
-                <xsl:attribute name="value" select="@value"/>
-            </value>
-        </observation>
-    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20091001000000">
         <!--Geboorte placenta -->
         <observation classCode="OBS" moodCode="EVN">
