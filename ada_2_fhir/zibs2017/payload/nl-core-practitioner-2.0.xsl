@@ -14,17 +14,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
-<!--    <xsl:import href="_zib2017.xsl"/>-->
+<!--    <xsl:import href="all-zibs.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xsl:variable name="practitioners" as="element()*">
+        <xsl:variable name="healthProfessional" select="//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])"/>
         <!-- Zorgverleners in Practitioners -->
-        <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+        <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
+        <!-- This causes two or more entries with an identical grouping-key, causing problems with identical practitioners with same fullUrl in a Bundle... -->
+       <!-- <xsl:for-each-group select="//(zorgverlener[not(zorgverlener)][not(@datatype = 'reference')] | health_professional[not(health_professional)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
                 string-join(for $att in nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/(@root, @value)
                 return
-                    $att, '')">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
+                    $att, '')">-->
+            <xsl:for-each-group select="$healthProfessional[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+                concat(nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@root,
+                nf:ada-zvl-id(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)/@value)">
+                <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPractitioner(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
                 <unieke-zorgverlener xmlns="">
@@ -34,9 +40,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reference-display>
                         <xsl:value-of select="nf:get-practitioner-display(current-group()[1])"/>
                     </reference-display>
-                     <xsl:call-template name="practitionerEntry">
+                    <xsl:call-template name="practitionerEntry">
                         <xsl:with-param name="uuid" select="$uuid"/>
-                     </xsl:call-template>
+                    </xsl:call-template>
                 </unieke-zorgverlener>
             </xsl:for-each-group>
         </xsl:for-each-group>
@@ -158,7 +164,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- address -->
                     <xsl:call-template name="nl-core-address-2.0">
                         <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
-                    </xsl:call-template>
+                    </xsl:call-template> 
+                    
                 </Practitioner>
             </xsl:variable>
             
