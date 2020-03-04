@@ -1725,9 +1725,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="@value and $vagueDate">
                         <xsl:value-of select="nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))"/>
                     </xsl:when>
-                    <xsl:otherwise>
+                    <xsl:when test="@value">
                         <xsl:value-of select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
-                    </xsl:otherwise>
+                    </xsl:when>
                 </xsl:choose>
             </xsl:variable>
 
