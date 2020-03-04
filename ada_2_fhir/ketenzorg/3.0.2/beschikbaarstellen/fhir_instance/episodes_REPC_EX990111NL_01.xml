@@ -10,6 +10,34 @@
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgepisode. Patiënt: Joris HansmanStatus: actief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Type</th>
+                           <td>
+                              <span title="Condition (64572001 - SNOMED CT)">Condition</span>
+                              <br/>COPD</td>
+                        </tr>
+                        <tr>
+                           <th>Periode</th>
+                           <td>Vanaf 2015-08-10</td>
+                        </tr>
+                        <tr>
+                           <th>Zorgmanager</th>
+                           <td>, Bester</td>
+                        </tr>
+                        <tr>
+                           <th>Diagnose</th>
+                           <td>Emfyseem/COPD</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title">
                <valueString value="COPD"/>
             </extension>
@@ -33,13 +61,13 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="urn:uuid:5ac5bf1c-fb16-11e9-1299-020000000000"/>
+                  <reference value="urn:uuid:60d0036f-5e5a-11ea-1041-020000000000"/>
                   <display value="Emfyseem/COPD"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="urn:uuid:5ac5bf0e-fb16-11e9-1299-020000000000"/>
-               <display value="Joris J. Hansman"/>
+               <reference value="urn:uuid:60d00362-5e5a-11ea-1041-020000000000"/>
+               <display value="Joris Hansman"/>
             </patient>
             <managingOrganization>
                <reference value="urn:oid:2.16.528.1.1007.3.3.2234567"/>
@@ -55,12 +83,18 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5ac5bf0e-fb16-11e9-1299-020000000000"/>
+      <fullUrl value="urn:uuid:60d00362-5e5a-11ea-1041-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Joris Hansman, Man</div>
+               </div>
+            </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                <value>
@@ -83,11 +117,6 @@
                      <valueCode value="BR"/>
                   </extension>
                </given>
-               <given value="J.">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="IN"/>
-                  </extension>
-               </given>
             </name>
             <gender value="male"/>
          </Patient>
@@ -103,6 +132,20 @@
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>OrganisatieId: 02234567 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Bester</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="02234567"/>
@@ -115,12 +158,32 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5ac5bf1c-fb16-11e9-1299-020000000000"/>
+      <fullUrl value="urn:uuid:60d0036f-5e5a-11ea-1041-020000000000"/>
       <resource>
          <Condition>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Conditie. Subject: Joris HansmanCategorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="Emfyseem/COPD (R95 - sid/icpc-1-nl)">Emfyseem/COPD</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>Vanaf 2015-08-10</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
             <clinicalStatus value="active"/>
             <category>
                <coding>
@@ -137,8 +200,8 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:5ac5bf0e-fb16-11e9-1299-020000000000"/>
-               <display value="Joris J. Hansman"/>
+               <reference value="urn:uuid:60d00362-5e5a-11ea-1041-020000000000"/>
+               <display value="Joris Hansman"/>
             </subject>
             <onsetPeriod>
                <start value="2015-08-10"/>
