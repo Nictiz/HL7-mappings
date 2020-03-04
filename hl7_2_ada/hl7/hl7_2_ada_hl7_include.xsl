@@ -939,17 +939,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:attribute>
                                     </xsl:element>
                                 </xsl:when>
-                                  </xsl:choose>
-                        </xsl:for-each>                        
+                            </xsl:choose>
+                        </xsl:for-each>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:element name="{$elmAddressType}">
                             <xsl:attribute name="nullFlavor">NI</xsl:attribute>
                         </xsl:element>
                     </xsl:otherwise>
-                    
+
                 </xsl:choose>
-              </xsl:variable>
+            </xsl:variable>
 
             <xsl:variable name="currentAddress" select="."/>
             <!-- output an address for each type, but also one address when there is no type, which is why we put a nullFlavor in that variable -->
@@ -2522,6 +2522,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- ada output for patient -->
         <xsl:element name="{$elmPatient}">
             <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
+
             <xsl:if test="nf:existsADAComplexTypeId($schemaFragment)">
                 <xsl:attribute name="id" select="generate-id(.)"/>
             </xsl:if>
@@ -2778,7 +2779,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-<xd:doc>
+
+
+    <xd:doc>
         <xd:desc>Copy template with specific mode adaOutput, to output the actual ada xml</xd:desc>
     </xd:doc>
     <xsl:template match="@* | node()" mode="adaOutput">
