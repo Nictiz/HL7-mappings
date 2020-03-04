@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="bouwstenen" as="element(f:entry)*">
         <!-- Labuitslagen -->
-        <xsl:for-each select="//*[bundle]/laboratory_test_result/laboratory_test">
+        <!--<xsl:for-each select="//*[bundle]/laboratory_test_result/laboratory_test">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number)}"/>
                 <resource>
@@ -68,7 +68,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <mode value="match"/>
                 </search>
             </entry>
-        </xsl:for-each>
+        </xsl:for-each>-->
+        <xsl:copy-of select="$labObservations/f:entry"/>
         <!-- Algemene Metingen -->
         <xsl:for-each select="//*[bundle]/general_measurement/measurement_result">
             <entry xmlns="http://hl7.org/fhir">
