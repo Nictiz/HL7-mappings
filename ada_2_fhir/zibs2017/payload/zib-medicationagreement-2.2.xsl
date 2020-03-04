@@ -226,6 +226,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <agent>
                                 <xsl:call-template name="practitionerRoleReference">
                                     <xsl:with-param name="useExtension" select="true()"/>
+                                    <xsl:with-param name="addDisplay" select="false()"/>
                                 </xsl:call-template>
                                 <xsl:call-template name="practitionerReference"/>
                             </agent>
