@@ -257,6 +257,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
+        <xd:desc>Returns whether an @id attribute exists for a certain complexType in a schemaFragment</xd:desc>
+        <xd:param name="schemaFragment">XSD SchemaFragment with complexType to evaluate</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:existsADAComplexTypeId" as="xs:boolean?">
+        <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
+        <xsl:value-of select="exists($schemaFragment/xs:attribute[@name = 'id'])"/>
+    </xsl:function>
+
+    <xd:doc>
         <xd:desc>Returns the type value for a named XSD element</xd:desc>
         <xd:param name="schemaFragment">XSD Schema to retrieve the typed element from</xd:param>
         <xd:param name="elementName">Name of the element to retrieve the type for</xd:param>
@@ -390,6 +399,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:INT'">
+                    <xsl:call-template name="handleINT">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">count</xsl:if>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:PQ'">
                     <xsl:call-template name="handlePQ">
                         <xsl:with-param name="in" select="."/>
@@ -397,6 +416,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="elemName" select="$elemName"/>
                         <xsl:with-param name="datatype">
                             <xsl:if test="$dodatatype">quantity</xsl:if>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:REAL'">
+                    <xsl:call-template name="handleINT">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="conceptId" select="$conceptId"/>
+                        <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="datatype">
+                            <xsl:if test="$dodatatype">decimal</xsl:if>
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:when>
@@ -1404,9 +1433,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
                         <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
                     </xsl:when>
-                    <xsl:when test="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]">
-                        <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
-                    </xsl:when>
                     <xsl:otherwise>
                         <xsl:copy-of select="."/>
                     </xsl:otherwise>
@@ -1699,9 +1725,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="@value and $vagueDate">
                         <xsl:value-of select="nf:formatHL72VagueAdaDate(@value, nf:determine_date_precision(@value))"/>
                     </xsl:when>
-                    <xsl:otherwise>
+                    <xsl:when test="@value">
                         <xsl:value-of select="nf:formatHL72XMLDate(@value, nf:determine_date_precision(@value))"/>
-                    </xsl:otherwise>
+                    </xsl:when>
                 </xsl:choose>
             </xsl:variable>
 
@@ -2452,7 +2478,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">hl7 patient to be converted</xd:param>
         <xd:param name="language">optional, defaults to nl-NL</xd:param>
         <xd:param name="schema">Optional. Used to find conceptId attributes values for elements. Should contain the whole ADA schema</xd:param>
-        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for parent of patient</xd:param>
+        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for patient</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180601000000" match="hl7:patient | hl7:patientRole">
         <xsl:param name="in" as="node()?" select="."/>
@@ -2496,7 +2522,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- ada output for patient -->
         <xsl:element name="{$elmPatient}">
             <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-            <!--            <xsl:attribute name="id" select="generate-id(.)"/>-->
+            <xsl:if test="nf:existsADAComplexTypeId($schemaFragment)">
+                <xsl:attribute name="id" select="generate-id(.)"/>
+            </xsl:if>
 
             <!-- naamgegevens -->
             <xsl:for-each select="$current-patient/(hl7:Person | hl7:patient)/hl7:name">
@@ -2749,5 +2777,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
+    </xsl:template>
+<xd:doc>
+        <xd:desc>Copy template with specific mode adaOutput, to output the actual ada xml</xd:desc>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="adaOutput">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
+        </xsl:copy>
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Do not copy elements with id, they should be copied by other template/mode, for example mode adaOutputHcim</xd:desc>
+    </xd:doc>
+    <xsl:template match="*[@id]" mode="adaOutput">
+        <!-- this is the actual ada hcim do nothing here -->
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Copy template with specific mode adaOutputHcim, to output the Hcim's being referred to at the correct place in the transaction</xd:desc>
+    </xd:doc>
+    <xsl:template match="*[@id]" mode="adaOutputHcim">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
+        </xsl:copy>
     </xsl:template>
 </xsl:stylesheet>
