@@ -80,7 +80,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="entryFullUrl">
+            <xsl:choose>
+                <xsl:when test="not($uuid) and (zibroot/identificatienummer | hcimroot/identification_number)/@value">
+                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id((zibroot/identificatienummer | hcimroot/identification_number)[1]))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
         <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>
