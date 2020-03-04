@@ -1415,8 +1415,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:for-each select="hl7nl:phase/hl7nl:low">
                                                 <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedientijd']/@type"/>
                                                 <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(./@value), nf:determine_date_precision(./@value))}" conceptId="{$schema//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
-                                                </xsl:for-each>
-                                        <!-- is_flexibel -->
+                                            </xsl:for-each>
+                                            <!-- is_flexibel -->
                                             <xsl:variable name="elemName">is_flexibel</xsl:variable>
                                             <xsl:element name="{$elemName}">
                                                 <xsl:choose>
@@ -4835,7 +4835,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                     </xsl:call-template>
                 </xsl:for-each>
-                      
+
                 <!-- toelichting -->
                 <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9069']/hl7:text">
                     <xsl:variable name="elemName">toelichting</xsl:variable>
@@ -4852,7 +4852,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
                     <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $ada-elemName)))"/>
                 </xsl:call-template>
-                
+
                 <!-- relatie_naar_medicatieafspraak -->
                 <xsl:for-each select="./hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9086']/hl7:id">
                     <xsl:variable name="elemName">relatie_naar_medicatieafspraak</xsl:variable>
