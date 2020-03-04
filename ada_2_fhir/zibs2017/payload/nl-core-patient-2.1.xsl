@@ -14,7 +14,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:import href="_zib2017.xsl"/>
+    <xsl:import href="nl-core-address-2.0.xsl"/>
+    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xd:doc>
@@ -105,113 +110,118 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="generalPractitionerRef" as="element()*"/>
         <xsl:param name="managingOrganizationRef" as="element()*"/>
         <xsl:for-each select="$in">
-            <Patient>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
-                </meta>
-                <!-- patient_identificatienummer  -->
-                <xsl:for-each select="identificatienummer[@value] | patient_identificatienummer[@value] | patient_identification_number[@value]">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:for-each>
-                <!-- naamgegevens -->
-                <xsl:call-template name="nl-core-humanname-2.0">
-                    <xsl:with-param name="in" select="naamgegevens | name_information" as="element()*"/>
-                </xsl:call-template>
-                <!-- contactgegevens -->
-                <xsl:call-template name="nl-core-contactpoint-1.0">
-                    <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
-                </xsl:call-template>
-                <!-- geslacht -->
-                <xsl:for-each select="geslacht[@value | @code] | gender[@value | @code]">
-                    <gender>
-                        <xsl:call-template name="code-to-code">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="codeMap" as="element()*">
-                                <map inCode="M" inCodeSystem="2.16.840.1.113883.5.1" code="male"/>
-                                <map inCode="F" inCodeSystem="2.16.840.1.113883.5.1" code="female"/>
-                                <map inCode="UN" inCodeSystem="2.16.840.1.113883.5.1" code="other"/>
-                                <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </gender>
-                </xsl:for-each>
-                <!-- geboortedatum -->
-                <xsl:for-each select="geboortedatum[@value] | date_of_birth[./@value]">
-                    <birthDate value="{./@value}">
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="@value"/>
-                                <xsl:with-param name="precision" select="'DAY'"/>
-                            </xsl:call-template>
-                        </xsl:attribute>
-                    </birthDate>
-                </xsl:for-each>
-                <!-- deceased -->
-                <xsl:choose>
-                    <xsl:when test="datum_overlijden | date_of_death">
-                        <deceasedDateTime>
-                            <xsl:call-template name="date-to-datetime">
+            <xsl:variable name="resource">
+                <Patient>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+                    </meta>
+                    <!-- patient_identificatienummer  -->
+                    <xsl:for-each select="identificatienummer[@value] | patient_identificatienummer[@value] | patient_identification_number[@value]">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </deceasedDateTime>
-                    </xsl:when>
-                    <xsl:when test="overlijdens_indicator | death_indicator">
-                        <deceasedBoolean>
+                        </identifier>
+                    </xsl:for-each>
+                    <!-- naamgegevens -->
+                    <xsl:call-template name="nl-core-humanname-2.0">
+                        <xsl:with-param name="in" select="naamgegevens | name_information" as="element()*"/>
+                    </xsl:call-template>
+                    <!-- contactgegevens -->
+                    <xsl:call-template name="nl-core-contactpoint-1.0">
+                        <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
+                    </xsl:call-template>
+                    <!-- geslacht -->
+                    <xsl:for-each select="geslacht[@value | @code] | gender[@value | @code]">
+                        <gender>
+                            <xsl:call-template name="code-to-code">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="codeMap" as="element()*">
+                                    <map inCode="M" inCodeSystem="2.16.840.1.113883.5.1" code="male"/>
+                                    <map inCode="F" inCodeSystem="2.16.840.1.113883.5.1" code="female"/>
+                                    <map inCode="UN" inCodeSystem="2.16.840.1.113883.5.1" code="other"/>
+                                    <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unknown"/>
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </gender>
+                    </xsl:for-each>
+                    <!-- geboortedatum -->
+                    <xsl:for-each select="geboortedatum[@value] | date_of_birth[./@value]">
+                        <birthDate value="{./@value}">
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="precision" select="'DAY'"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </birthDate>
+                    </xsl:for-each>
+                    <!-- deceased -->
+                    <xsl:choose>
+                        <xsl:when test="datum_overlijden | date_of_death">
+                            <deceasedDateTime>
+                                <xsl:call-template name="date-to-datetime">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </deceasedDateTime>
+                        </xsl:when>
+                        <xsl:when test="overlijdens_indicator | death_indicator">
+                            <deceasedBoolean>
+                                <xsl:call-template name="boolean-to-boolean">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </deceasedBoolean>
+                        </xsl:when>
+                    </xsl:choose>
+                    <!-- address -->
+                    <xsl:call-template name="nl-core-address-2.0">
+                        <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
+                    </xsl:call-template>
+                    <!-- maritalStatus -->
+    
+                    <!-- multipleBirth -->
+                    <xsl:for-each select="meerling_indicator | multiple_birth_indicator">
+                        <multipleBirthBoolean>
                             <xsl:call-template name="boolean-to-boolean">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </deceasedBoolean>
-                    </xsl:when>
-                </xsl:choose>
-                <!-- address -->
-                <xsl:call-template name="nl-core-address-2.0">
-                    <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
-                </xsl:call-template>
-                <!-- maritalStatus -->
-
-                <!-- multipleBirth -->
-                <xsl:for-each select="meerling_indicator | multiple_birth_indicator">
-                    <multipleBirthBoolean>
-                        <xsl:call-template name="boolean-to-boolean">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </multipleBirthBoolean>
-                </xsl:for-each>
-                <!-- photo -->
-
-                <!-- contact -->
-
-                <!-- animal -->
-
-                <!-- communication -->
-
-                <!-- generalPractitioner -->
-                <xsl:if test="$generalPractitionerRef">
-                    <generalPractitioner>
-                        <xsl:copy-of select="$generalPractitionerRef[self::f:extension]"/>
-                        <xsl:copy-of select="$generalPractitionerRef[self::f:reference]"/>
-                        <xsl:copy-of select="$generalPractitionerRef[self::f:identifier]"/>
-                        <xsl:copy-of select="$generalPractitionerRef[self::f:display]"/>
-                    </generalPractitioner>
-                </xsl:if>
-                <!-- managingOrganization -->
-                <xsl:if test="$managingOrganizationRef">
-                    <generalPractitioner>
-                        <xsl:copy-of select="$managingOrganizationRef[self::f:extension]"/>
-                        <xsl:copy-of select="$managingOrganizationRef[self::f:reference]"/>
-                        <xsl:copy-of select="$managingOrganizationRef[self::f:identifier]"/>
-                        <xsl:copy-of select="$managingOrganizationRef[self::f:display]"/>
-                    </generalPractitioner>
-                </xsl:if>
-                <!-- link -->
-            </Patient>
+                        </multipleBirthBoolean>
+                    </xsl:for-each>
+                    <!-- photo -->
+    
+                    <!-- contact -->
+    
+                    <!-- animal -->
+    
+                    <!-- communication -->
+    
+                    <!-- generalPractitioner -->
+                    <xsl:if test="$generalPractitionerRef">
+                        <generalPractitioner>
+                            <xsl:copy-of select="$generalPractitionerRef[self::f:extension]"/>
+                            <xsl:copy-of select="$generalPractitionerRef[self::f:reference]"/>
+                            <xsl:copy-of select="$generalPractitionerRef[self::f:identifier]"/>
+                            <xsl:copy-of select="$generalPractitionerRef[self::f:display]"/>
+                        </generalPractitioner>
+                    </xsl:if>
+                    <!-- managingOrganization -->
+                    <xsl:if test="$managingOrganizationRef">
+                        <generalPractitioner>
+                            <xsl:copy-of select="$managingOrganizationRef[self::f:extension]"/>
+                            <xsl:copy-of select="$managingOrganizationRef[self::f:reference]"/>
+                            <xsl:copy-of select="$managingOrganizationRef[self::f:identifier]"/>
+                            <xsl:copy-of select="$managingOrganizationRef[self::f:display]"/>
+                        </generalPractitioner>
+                    </xsl:if>
+                    <!-- link -->
+                </Patient>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 

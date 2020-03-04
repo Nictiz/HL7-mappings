@@ -107,69 +107,74 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:for-each select="$in">
-            <Flag>
-                <xsl:if test="exists($logicalId)">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-    
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
-                </meta>
-    
-                <xsl:for-each select="nf:ada-resolve-reference(conditie/probleem | condition/problem)">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
-                        <valueReference>
-                            <xsl:call-template name="_doReference">
-                                <xsl:with-param name="ResourceType">Condition</xsl:with-param>
-                            </xsl:call-template>
-                        </valueReference>
-                    </extension>
-                </xsl:for-each>
-                <!-- status does not exist in zib but is 1..1 in FHIR profile -->
-                <status>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                        <valueCode value="unknown"/>
-                    </extension>
-                </status>
-                
-                <xsl:for-each select="alert_type[@code]">
-                    <category>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </category>
-                </xsl:for-each>
-                
-                <!-- code is 1..1 in FHIR profile, in zib either alert_naam or reference to problem should exist -->
-                <code>
-                    <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
-                    <xsl:choose>
-                        <xsl:when test="alert_naam[@code]">
+            <xsl:variable name="resource">
+                <Flag>
+                    <xsl:if test="exists($logicalId)">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+        
+                    <meta>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
+                    </meta>
+        
+                    <xsl:for-each select="nf:ada-resolve-reference(conditie/probleem | condition/problem)">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+                            <valueReference>
+                                <xsl:call-template name="_doReference">
+                                    <xsl:with-param name="ResourceType">Condition</xsl:with-param>
+                                </xsl:call-template>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>
+                    <!-- status does not exist in zib but is 1..1 in FHIR profile -->
+                    <status>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <valueCode value="unknown"/>
+                        </extension>
+                    </status>
+                    
+                    <xsl:for-each select="alert_type[@code]">
+                        <category>
                             <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="alert_naam[@code]"/>
-                                <xsl:with-param name="treatNullFlavorAsCoding" select="alert_naam/@code = $nullFlavorsInValueset and alert_naam/@codeSystem = $oidHL7NullFlavor"/>
+                                <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                            <xsl:if test="alert_naam[@displayName]">
-                                <text value="{alert_naam/@displayName}"/>
-                            </xsl:if>
-                        </xsl:when>
-                        <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
-                        <xsl:otherwise>
-                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                <valueCode value="unknown"/>
-                            </extension>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </code>
-                
-                <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
-                <subject>
-                    <xsl:copy-of select="$patientRef[self::f:extension]"/>
-                    <xsl:copy-of select="$patientRef[self::f:reference]"/>
-                    <xsl:copy-of select="$patientRef[self::f:identifier]"/>
-                    <xsl:copy-of select="$patientRef[self::f:display]"/>
-                </subject>
-            </Flag>
+                        </category>
+                    </xsl:for-each>
+                    
+                    <!-- code is 1..1 in FHIR profile, in zib either alert_naam or reference to problem should exist -->
+                    <code>
+                        <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                        <xsl:choose>
+                            <xsl:when test="alert_naam[@code]">
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="alert_naam[@code]"/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="alert_naam/@code = $nullFlavorsInValueset and alert_naam/@codeSystem = $oidHL7NullFlavor"/>
+                                </xsl:call-template>
+                                <xsl:if test="alert_naam[@displayName]">
+                                    <text value="{alert_naam/@displayName}"/>
+                                </xsl:if>
+                            </xsl:when>
+                            <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
+                            <xsl:otherwise>
+                                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </code>
+                    
+                    <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
+                    <subject>
+                        <xsl:copy-of select="$patientRef[self::f:extension]"/>
+                        <xsl:copy-of select="$patientRef[self::f:reference]"/>
+                        <xsl:copy-of select="$patientRef[self::f:identifier]"/>
+                        <xsl:copy-of select="$patientRef[self::f:display]"/>
+                    </subject>
+                </Flag>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

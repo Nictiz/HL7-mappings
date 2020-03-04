@@ -133,51 +133,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:for-each select="$in">
-            <Observation>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
-                </meta>
-                <status value="final"/>
-                <category>
-                    <coding>
-                        <system value="{local:getUri($oidFHIRObservationCategory)}"/>
-                        <code value="vital-signs"/>
-                        <display value="Vital Signs"/>
-                    </coding>
-                </category>
-                <code>
-                    <coding>
-                        <system value="http://loinc.org"/>
-                        <code value="29463-7"/>
-                        <display value="lichaamsgewicht"/>
-                    </coding>
-                </code>
-                <!-- patient reference -->
-                <subject>
-                    <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
-                </subject>
-                <xsl:for-each select="gewicht_datum_tijd[@value]">
-                    <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(@value)}"/>
-                </xsl:for-each>
-                <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
-                <!-- https://bits.nictiz.nl/browse/MM-434 -->
-                <performer>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                        <valueCode value="unknown"/>
-                    </extension>
-                    <display value="onbekend"/>
-                </performer>
-                <xsl:for-each select="gewicht_waarde[@value]">
-                    <valueQuantity>
-                        <xsl:call-template name="hoeveelheid-to-Quantity">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </valueQuantity>
-                </xsl:for-each>
-            </Observation>
+            <xsl:variable name="resource">
+                <Observation>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
+                    </meta>
+                    <status value="final"/>
+                    <category>
+                        <coding>
+                            <system value="{local:getUri($oidFHIRObservationCategory)}"/>
+                            <code value="vital-signs"/>
+                            <display value="Vital Signs"/>
+                        </coding>
+                    </category>
+                    <code>
+                        <coding>
+                            <system value="http://loinc.org"/>
+                            <code value="29463-7"/>
+                            <display value="lichaamsgewicht"/>
+                        </coding>
+                    </code>
+                    <!-- patient reference -->
+                    <subject>
+                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
+                    </subject>
+                    <xsl:for-each select="gewicht_datum_tijd[@value]">
+                        <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(@value)}"/>
+                    </xsl:for-each>
+                    <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
+                    <!-- https://bits.nictiz.nl/browse/MM-434 -->
+                    <performer>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <valueCode value="unknown"/>
+                        </extension>
+                        <display value="onbekend"/>
+                    </performer>
+                    <xsl:for-each select="gewicht_waarde[@value]">
+                        <valueQuantity>
+                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueQuantity>
+                    </xsl:for-each>
+                </Observation>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
           </xsl:for-each>
     </xsl:template>
 

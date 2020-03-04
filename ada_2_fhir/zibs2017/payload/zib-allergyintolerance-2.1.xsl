@@ -110,353 +110,361 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <!-- NL-CM:8.2.1    AllergieIntolerantie -->
-            <AllergyIntolerance>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
-                </meta>
-                
-                <!-- text narrative -->
-                <xsl:for-each select="omschrijving[@value]">
-                    <text>
-                        <status value="additional"/>
-                        <div xmlns="http://www.w3.org/1999/xhtml">
-                            <xsl:value-of select="@value"/>
-                        </div>
-                    </text>
-                </xsl:for-each>
-                
-                <!-- identifier -->
-                <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:for-each>
-                
-                <!-- CD    NL-CM:8.2.5        AllergieStatus            0..1    AllergieStatusCodelijst -->
-                <!-- http://hl7.org/fhir/STU3/valueset-allergy-clinical-status.html -->
-                <xsl:for-each select="(allergie_status | allergy_status)[@code]">
-                    <clinicalStatus>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test="@code = 'active'">active</xsl:when>
-                                <xsl:when test="@code = 'completed'">resolved</xsl:when>
-                                <xsl:otherwise>inactive</xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                        <xsl:call-template name="ext-code-specification-1.0">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </clinicalStatus>
-                </xsl:for-each>
-                
-                <!-- see https://bits.nictiz.nl/browse/MM-492 on how top map allergy_status to verificationStatus -->
-                <!-- we don't know, but still a required element, data-absent-reason -->
-                <verificationStatus>
-                    <xsl:choose>
-                        <xsl:when test="allergy_status[@code = 'nullified'][@codeSystem]">
-                            <xsl:attribute name="value" select="'entered-in-error'"/>
-                        </xsl:when>
-                        <!--<xsl:when test="start_date_time[@value]">
-                            <verificationStatus value="confirmed"/>
-                        </xsl:when>-->
-                        <xsl:otherwise>
-                            <!-- we don't know, but still a required element, data-absent-reason -->
-                            <extension url="{$urlExtHL7DataAbsentReason}">
-                                <valueCode value="unknown"/>
-                            </extension>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </verificationStatus>
-                
-                <!-- CD    NL-CM:8.2.4        AllergieCategorie        0..1 AllergieCategorieCodelijst-->
-                <!-- The ZIB prescribes an (optional) value list for the allergy category, which is mapped onto
-                     AllergyIntolerance.category. However, .category defines its own required coding, which can't be
-                     always translated from the zib value set. In case we can't make the translation, we have no other
-                     option than to exclude .category altogether, even if it means we also exclude the ZIB value - we
-                     can't produce a valid FHIR instance otherwise. -->
-                <xsl:for-each select="(allergie_categorie | allergy_category)[@code]">
-                    <xsl:variable name="fhirCategory">
+            <xsl:variable name="resource">
+                <AllergyIntolerance>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+                    </meta>
+                    
+                    <!-- text narrative 
+                        https://decor.nictiz.nl/art-decor/decor-datasets-\-cio-?id=2.16.840.1.113883.2.4.3.11.60.26.1.1&effectiveDate=2019-07-01T11%3A11%3A01&conceptId=2.16.840.1.113883.2.4.3.11.60.26.2.277&conceptEffectiveDate=2019-10-01T17%3A42%3A12&language=nl-NL
+                    -->
+                    <xsl:for-each select="omschrijving[@value]">
+                        <text>
+                            <status value="additional"/>
+                            <div xmlns="http://www.w3.org/1999/xhtml">
+                                <xsl:value-of select="@value"/>
+                            </div>
+                        </text>
+                    </xsl:for-each>
+                    
+                    <!-- identifier -->
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
+                    <!-- CD    NL-CM:8.2.5        AllergieStatus            0..1    AllergieStatusCodelijst -->
+                    <!-- http://hl7.org/fhir/STU3/valueset-allergy-clinical-status.html -->
+                    <xsl:for-each select="(allergie_status | allergy_status)[@code]">
+                        <clinicalStatus>
+                            <xsl:attribute name="value">
+                                <xsl:choose>
+                                    <xsl:when test="@code = 'active'">active</xsl:when>
+                                    <xsl:when test="@code = 'completed'">resolved</xsl:when>
+                                    <xsl:otherwise>inactive</xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:attribute>
+                            <xsl:call-template name="ext-code-specification-1.0">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </clinicalStatus>
+                    </xsl:for-each>
+                    
+                    <!-- see https://bits.nictiz.nl/browse/MM-492 on how top map allergy_status to verificationStatus -->
+                    <!-- we don't know, but still a required element, data-absent-reason -->
+                    <verificationStatus>
                         <xsl:choose>
-                            <!-- SEE https://bits.nictiz.nl/browse/MM-498 for the mapping discussion -->
-                            <!-- Propensity to adverse reactions to food    418471000    SNOMED CT    2.16.840.1.113883.6.96    Voeding-->
-                            <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">food</xsl:when>
-                            <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
-                            <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">medication</xsl:when>
-                            <!--Environmental allergy    426232007    SNOMED CT    2.16.840.1.113883.6.96    Omgeving-->
-                            <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">environment</xsl:when>
-                            <!--Allergy to substance    419199007    SNOMED CT    2.16.840.1.113883.6.96    Stof of product-->
-                            <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">biologic</xsl:when>
-                            <xsl:when test="@codeSystem = $oidHL7NullFlavor"/>
-                            <xsl:otherwise>
-                                <xsl:message>Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:message>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
-                    <!-- valueset binding in FHIR is required, so only one of the four options in the valueSet is permitted, otherwise do not output category -->
-                    <category>
-                        <xsl:choose>
-                            <xsl:when test="string-length($fhirCategory) gt 0">
-                                <xsl:attribute name="value" select="$fhirCategory"/>
+                            <xsl:when test="allergy_status[@code = 'nullified'][@codeSystem]">
+                                <xsl:attribute name="value" select="'entered-in-error'"/>
                             </xsl:when>
-                            <xsl:when test="@codeSystem = $oidHL7NullFlavor">
-                                <xsl:call-template name="NullFlavor-to-DataAbsentReason">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </xsl:when>
+                            <!-- this is too optimistic -->
+                            <!--<xsl:when test="start_date_time[@value]">
+                                <verificationStatus value="confirmed"/>
+                            </xsl:when>-->
                             <xsl:otherwise>
-                                <!-- should not reach this, but safe than sorry because we are missing a @value without dataAbsentReason -->
+                                <!-- we don't know, but still a required element, data-absent-reason -->
                                 <extension url="{$urlExtHL7DataAbsentReason}">
                                     <valueCode value="unknown"/>
                                 </extension>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <!-- And now for the actual thing: -->
-                        <xsl:call-template name="ext-code-specification-1.0">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </category>
-                </xsl:for-each>
-                
-                <!-- CD    NL-CM:8.2.7        MateVanKritiekZijn        0..1 MateVanKritiekZijnCodelijst -->
-                <!--http://hl7.org/fhir/STU3/valueset-allergy-intolerance-criticality.html-->
-                <xsl:for-each select="(mate_van_kritiek_zijn | criticality)[@code]">
-                    <criticality>
-                        <xsl:attribute name="value">
+                    </verificationStatus>
+                    
+                    <!-- CD    NL-CM:8.2.4        AllergieCategorie        0..1 AllergieCategorieCodelijst-->
+                    <!-- The ZIB prescribes an (optional) value list for the allergy category, which is mapped onto
+                         AllergyIntolerance.category. However, .category defines its own required coding, which can't be
+                         always translated from the zib value set. In case we can't make the translation, we have no other
+                         option than to exclude .category altogether, even if it means we also exclude the ZIB value - we
+                         can't produce a valid FHIR instance otherwise. -->
+                    <xsl:for-each select="(allergie_categorie | allergy_category)[@code]">
+                        <xsl:variable name="fhirCategory">
                             <xsl:choose>
-                                <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
-                                <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">low</xsl:when>
-                                <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
-                                <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
-                                <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
-                                <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
-                                <!--Fatal    399166001    SNOMED CT    2.16.840.1.113883.6.96    Fataal-->
-                                <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                <!-- SEE https://bits.nictiz.nl/browse/MM-498 for the mapping discussion -->
+                                <!-- Propensity to adverse reactions to food    418471000    SNOMED CT    2.16.840.1.113883.6.96    Voeding-->
+                                <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">food</xsl:when>
+                                <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
+                                <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">medication</xsl:when>
+                                <!--Environmental allergy    426232007    SNOMED CT    2.16.840.1.113883.6.96    Omgeving-->
+                                <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">environment</xsl:when>
+                                <!--Allergy to substance    419199007    SNOMED CT    2.16.840.1.113883.6.96    Stof of product-->
+                                <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">biologic</xsl:when>
+                                <xsl:when test="@codeSystem = $oidHL7NullFlavor"/>
                                 <xsl:otherwise>
-                                    <xsl:message>Unsupported AllergyIntolerance criticality code "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                                    <xsl:message>Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:message>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </xsl:attribute>
-                        <xsl:call-template name="ext-code-specification-1.0">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </criticality>
-                </xsl:for-each>
-                
-                <!-- CD    NL-CM:8.2.2        VeroorzakendeStof        1..1 VeroorzakendeStofAllergeneStoffenCodelijst, VeroorzakendeStofHPKCodelijst, VeroorzakendeStofSNKCodelijst, VeroorzakendeStofSSKCodelijst, VeroorzakendeStofThesaurus122Codelijst-->
-                <xsl:for-each select="veroorzakende_stof | causative_agent">
-                    <code>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </code>
-                </xsl:for-each>
-                
-                <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
-                <patient>
-                    <xsl:copy-of select="$patientRef[self::f:extension]"/>
-                    <xsl:copy-of select="$patientRef[self::f:reference]"/>
-                    <xsl:copy-of select="$patientRef[self::f:identifier]"/>
-                    <xsl:copy-of select="$patientRef[self::f:display]"/>
-                </patient>
-                
-                <!--TS    NL-CM:0.0.14    DatumTijd    0..1-->
-                <!-- onsetDateTime -->
-                <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
-                    <onsetDateTime>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="@value"/>
-                                <xsl:with-param name="dateT" select="$dateT"/>
-                            </xsl:call-template>
-                        </xsl:attribute>
-                    </onsetDateTime>
-                </xsl:for-each>
-                
-                <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
-                <!-- assertedDate -->
-                <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
-                    <assertedDate>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="@value"/>
-                                <xsl:with-param name="dateT" select="$dateT"/>
-                            </xsl:call-template>
-                        </xsl:attribute>
-                    </assertedDate>
-                </xsl:for-each>
-                
-                <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
-                <!-- recorder -->
-                <xsl:variable name="zibrootAuteur" select="zibroot/auteur/((patient_als_auteur | patient_as_author)/patient | zorgverlener_als_auteur/zorgverlener | health_professional_as_author/health_professional | betrokkene_als_auteur/contactpersoon | related_person_as_author/contact_person)"/>
-                <xsl:variable name="adaAuteur" as="element()*">
-                    <xsl:choose>
-                        <xsl:when test="$zibrootAuteur/*">
-                            <xsl:sequence select="$zibrootAuteur"/>
-                        </xsl:when>
-                        <xsl:when test="$zibrootAuteur[not(@datatype) or @datatype = 'reference'][@value]">
-                            <xsl:sequence select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootAuteur/@value]"/>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:variable>
-                
-                <xsl:variable name="authorRef" as="element()*">
-                    <xsl:for-each select="$adaAuteur[self::zorgverlener]">
-                        <xsl:call-template name="practitionerRoleReference">
-                            <xsl:with-param name="useExtension" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="$adaAuteur[self::patient]">
-                        <xsl:sequence select="$patientRef"/>
-                    </xsl:for-each>
-                    <xsl:for-each select="$adaAuteur[self::contactpersoon or self::contact_person]">
-                        <xsl:call-template name="relatedPersonReference"/>
-                    </xsl:for-each>
-                </xsl:variable>
-                
-                <xsl:if test="$authorRef">
-                    <recorder>
-                        <xsl:copy-of select="$authorRef[self::f:extension]"/>
-                        <xsl:copy-of select="$authorRef[self::f:reference]"/>
-                        <xsl:copy-of select="$authorRef[self::f:identifier]"/>
-                        <xsl:copy-of select="$authorRef[self::f:display]"/>
-                    </recorder>
-                </xsl:if>
-                
-                <!-- >     NL-CM:0.0.2        Informatiebron via nl.zorg.part.basiselementen -->
-                <xsl:variable name="zibrootInformant" select="(zibroot/informatiebron | hcimroot/information_source)/((patient_als_bron | patient_as_information_source)/patient | zorgverlener/zorgverlener | health_professional/health_professional | betrokkene_als_bron/contactpersoon | related_person_as_information_source/contact_person)"/>
-                <xsl:variable name="adaInformant" as="element()*">
-                    <xsl:choose>
-                        <xsl:when test="$zibrootInformant/*">
-                            <xsl:sequence select="$zibrootInformant"/>
-                        </xsl:when>
-                        <xsl:when test="$zibrootInformant[not(@datatype) or @datatype = 'reference'][@value]">
-                            <xsl:variable name="resolved1" select="parent::*[parent::data]"/>
-                            <xsl:variable name="resolved" select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
-                            <xsl:variable name="bal" select="'ba'"/>
-                            <xsl:sequence select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:variable>
-                
-                <xsl:variable name="informantRef" as="element()*">
-                    <xsl:for-each select="$adaInformant[self::zorgverlener or self::health_professional]">
-                        <xsl:call-template name="practitionerRoleReference">
-                            <xsl:with-param name="useExtension" select="true()"/>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <xsl:for-each select="$adaInformant[self::patient]">
-                        <xsl:sequence select="$patientRef"/>
-                    </xsl:for-each>
-                    <xsl:for-each select="$adaInformant[self::contactpersoon or self::contact_person]">
-                        <xsl:call-template name="relatedPersonReference"/>
-                    </xsl:for-each>
-                </xsl:variable>
-                
-                <xsl:if test="$informantRef">
-                    <asserter>
-                        <xsl:copy-of select="$informantRef[self::f:extension]"/>
-                        <xsl:copy-of select="$informantRef[self::f:reference]"/>
-                        <xsl:copy-of select="$informantRef[self::f:identifier]"/>
-                        <xsl:copy-of select="$informantRef[self::f:display]"/>
-                    </asserter>
-                </xsl:if>
-                
-                <!-- TS    NL-CM:8.2.8        LaatsteReactieDatumTijd    0..1 -->
-                <xsl:for-each select="(laatste_reactie_datum_tijd | last_reaction_date_time)[@value]">
-                    <lastOccurrence>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="@value"/>
-                            </xsl:call-template>
-                        </xsl:attribute>
-                    </lastOccurrence>
-                </xsl:for-each>
-                
-                <!-- ST    NL-CM:8.2.9        Toelichting                0..1 -->
-                <xsl:for-each select="(toelichting | comment)[@value]">
-                    <note>
-                        <text value="{@value}"/>
-                    </note>
-                </xsl:for-each>
-                
-                <!-- >    NL-CM:8.2.10    Reactie                    0..* -->
-                <xsl:for-each select="(reactie | reaction)[.//@code | .//@value]">
-                    <reaction>
-                        <!--CD    NL-CM:8.2.12            SpecifiekeStof    0..1 SpecifiekeStofAllergeneStoffenCodelijst, SpecifiekeStofHPKCodelijst, SpecifiekeStofSNKCodelijst, SpecifiekeStofSSKCodelijst, SpecifiekeStofThesaurus122Codelijst-->
-                        <xsl:for-each select="(specifieke_stof | specific_substance)[@code]">
-                            <substance>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </substance>
-                        </xsl:for-each>
-                        
-                        <!--CD    NL-CM:8.2.11            Symptoom    1..* SymptoomCodelijst-->
-                        <xsl:for-each select="(symptoom | symptom)[@code]">
-                            <manifestation>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </manifestation>
-                        </xsl:for-each>
-                        
-                        <!--TS    NL-CM:8.2.13            ReactieBeschrijving    0..1-->
-                        <xsl:for-each select="(reactie_beschrijving | reaction_description)[@value]">
-                            <description value="{@value}"/>
-                        </xsl:for-each>
-                        
-                        <!--TS    NL-CM:8.2.17            ReactieTijdstip    0..1-->
-                        <xsl:for-each select="(reactie_tijdstip | reaction_time)[@value]">
-                            <onset>
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="@value"/>
+                        </xsl:variable>
+                        <!-- valueset binding in FHIR is required, so only one of the four options in the valueSet is permitted, otherwise do not output category -->
+                        <category>
+                            <xsl:choose>
+                                <xsl:when test="string-length($fhirCategory) gt 0">
+                                    <xsl:attribute name="value" select="$fhirCategory"/>
+                                </xsl:when>
+                                <xsl:when test="@codeSystem = $oidHL7NullFlavor">
+                                    <xsl:call-template name="NullFlavor-to-DataAbsentReason">
+                                        <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
-                                </xsl:attribute>
-                            </onset>
-                        </xsl:for-each>
-                        
-                        <!--CD    NL-CM:8.2.14            Ernst    0..1 ErnstCodelijst-->
-                        <!-- http://hl7.org/fhir/STU3/valueset-reaction-event-severity.html -->
-                        <xsl:for-each select="(ernst | severity)[@code]">
-                            <severity>
-                                <xsl:attribute name="value">
-                                    <xsl:choose>
-                                        <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
-                                        <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">mild</xsl:when>
-                                        <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
-                                        <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">moderate</xsl:when>
-                                        <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
-                                        <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">severe</xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:message>Unsupported AllergyIntolerance reaction severity "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:attribute>
-                                <xsl:call-template name="ext-code-specification-1.0">
-                                    <xsl:with-param name="in" select="."/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <!-- should not reach this, but safe than sorry because we are missing a @value without dataAbsentReason -->
+                                    <extension url="{$urlExtHL7DataAbsentReason}">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <!-- And now for the actual thing: -->
+                            <xsl:call-template name="ext-code-specification-1.0">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </category>
+                    </xsl:for-each>
+                    
+                    <!-- CD    NL-CM:8.2.7        MateVanKritiekZijn        0..1 MateVanKritiekZijnCodelijst -->
+                    <!--http://hl7.org/fhir/STU3/valueset-allergy-intolerance-criticality.html-->
+                    <xsl:for-each select="(mate_van_kritiek_zijn | criticality)[@code]">
+                        <criticality>
+                            <xsl:attribute name="value">
+                                <xsl:choose>
+                                    <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
+                                    <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">low</xsl:when>
+                                    <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
+                                    <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                    <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
+                                    <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                    <!--Fatal    399166001    SNOMED CT    2.16.840.1.113883.6.96    Fataal-->
+                                    <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:message>Unsupported AllergyIntolerance criticality code "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:attribute>
+                            <xsl:call-template name="ext-code-specification-1.0">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </criticality>
+                    </xsl:for-each>
+                    
+                    <!-- CD    NL-CM:8.2.2        VeroorzakendeStof        1..1 VeroorzakendeStofAllergeneStoffenCodelijst, VeroorzakendeStofHPKCodelijst, VeroorzakendeStofSNKCodelijst, VeroorzakendeStofSSKCodelijst, VeroorzakendeStofThesaurus122Codelijst-->
+                    <xsl:for-each select="veroorzakende_stof | causative_agent">
+                        <code>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </code>
+                    </xsl:for-each>
+                    
+                    <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
+                    <patient>
+                        <xsl:copy-of select="$patientRef[self::f:extension]"/>
+                        <xsl:copy-of select="$patientRef[self::f:reference]"/>
+                        <xsl:copy-of select="$patientRef[self::f:identifier]"/>
+                        <xsl:copy-of select="$patientRef[self::f:display]"/>
+                    </patient>
+                    
+                    <!--TS    NL-CM:0.0.14    DatumTijd    0..1-->
+                    <!-- onsetDateTime -->
+                    <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
+                        <onsetDateTime>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
                                 </xsl:call-template>
-                            </severity>
-                        </xsl:for-each>
-                        
-                        <!--CD    NL-CM:8.2.15            WijzeVanBlootstelling    0..1 WijzeVanBlootstellingCodelijst-->
-                        <xsl:for-each select="(wijze_van_blootstelling | route_of_exposure)[@code]">
-                            <exposureRoute>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
+                            </xsl:attribute>
+                        </onsetDateTime>
+                    </xsl:for-each>
+                    
+                    <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
+                    <!-- assertedDate -->
+                    <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
+                        <assertedDate>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
                                 </xsl:call-template>
-                            </exposureRoute>
+                            </xsl:attribute>
+                        </assertedDate>
+                    </xsl:for-each>
+                    
+                    <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
+                    <!-- recorder -->
+                    <xsl:variable name="zibrootAuteur" select="zibroot/auteur/((patient_als_auteur | patient_as_author)/patient | zorgverlener_als_auteur/zorgverlener | health_professional_as_author/health_professional | betrokkene_als_auteur/contactpersoon | related_person_as_author/contact_person)"/>
+                    <xsl:variable name="adaAuteur" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="$zibrootAuteur/*">
+                                <xsl:sequence select="$zibrootAuteur"/>
+                            </xsl:when>
+                            <xsl:when test="$zibrootAuteur[not(@datatype) or @datatype = 'reference'][@value]">
+                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootAuteur/@value]"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    
+                    <xsl:variable name="authorRef" as="element()*">
+                        <xsl:for-each select="$adaAuteur[self::zorgverlener]">
+                            <xsl:call-template name="practitionerRoleReference">
+                                <xsl:with-param name="useExtension" select="true()"/>
+                            </xsl:call-template>
                         </xsl:for-each>
-                        
-                    </reaction>
-                </xsl:for-each>
-                
-            </AllergyIntolerance>
+                        <xsl:for-each select="$adaAuteur[self::patient]">
+                            <xsl:sequence select="$patientRef"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaAuteur[self::contactpersoon or self::contact_person]">
+                            <xsl:call-template name="relatedPersonReference"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:if test="$authorRef">
+                        <recorder>
+                            <xsl:copy-of select="$authorRef[self::f:extension]"/>
+                            <xsl:copy-of select="$authorRef[self::f:reference]"/>
+                            <xsl:copy-of select="$authorRef[self::f:identifier]"/>
+                            <xsl:copy-of select="$authorRef[self::f:display]"/>
+                        </recorder>
+                    </xsl:if>
+                    
+                    <!-- >     NL-CM:0.0.2        Informatiebron via nl.zorg.part.basiselementen -->
+                    <xsl:variable name="zibrootInformant" select="(zibroot/informatiebron | hcimroot/information_source)/((patient_als_bron | patient_as_information_source)/patient | zorgverlener/zorgverlener | health_professional/health_professional | betrokkene_als_bron/contactpersoon | related_person_as_information_source/contact_person)"/>
+                    <xsl:variable name="adaInformant" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="$zibrootInformant/*">
+                                <xsl:sequence select="$zibrootInformant"/>
+                            </xsl:when>
+                            <xsl:when test="$zibrootInformant[not(@datatype) or @datatype = 'reference'][@value]">
+                                <xsl:variable name="resolved1" select="parent::*[parent::data]"/>
+                                <xsl:variable name="resolved" select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
+                                <xsl:variable name="bal" select="'ba'"/>
+                                <xsl:sequence select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    
+                    <xsl:variable name="informantRef" as="element()*">
+                        <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">
+                            <xsl:call-template name="practitionerRoleReference">
+                                <xsl:with-param name="useExtension" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaInformant[self::patient]">
+                            <xsl:sequence select="$patientRef"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaInformant[self::contactpersoon | self::contact_person]">
+                            <xsl:call-template name="relatedPersonReference"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:if test="$informantRef">
+                        <asserter>
+                            <xsl:copy-of select="$informantRef[self::f:extension]"/>
+                            <xsl:copy-of select="$informantRef[self::f:reference]"/>
+                            <xsl:copy-of select="$informantRef[self::f:identifier]"/>
+                            <xsl:copy-of select="$informantRef[self::f:display]"/>
+                        </asserter>
+                    </xsl:if>
+                    
+                    <!-- TS    NL-CM:8.2.8        LaatsteReactieDatumTijd    0..1 -->
+                    <xsl:for-each select="(laatste_reactie_datum_tijd | last_reaction_date_time)[@value]">
+                        <lastOccurrence>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="@value"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </lastOccurrence>
+                    </xsl:for-each>
+                    
+                    <!-- ST    NL-CM:8.2.9        Toelichting                0..1 -->
+                    <xsl:for-each select="(toelichting | comment)[@value]">
+                        <note>
+                            <text value="{@value}"/>
+                        </note>
+                    </xsl:for-each>
+                    
+                    <!-- >    NL-CM:8.2.10    Reactie                    0..* -->
+                    <xsl:for-each select="(reactie | reaction)[.//@code | .//@value]">
+                        <reaction>
+                            <!--CD    NL-CM:8.2.12            SpecifiekeStof    0..1 SpecifiekeStofAllergeneStoffenCodelijst, SpecifiekeStofHPKCodelijst, SpecifiekeStofSNKCodelijst, SpecifiekeStofSSKCodelijst, SpecifiekeStofThesaurus122Codelijst-->
+                            <xsl:for-each select="(specifieke_stof | specific_substance)[@code]">
+                                <substance>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </substance>
+                            </xsl:for-each>
+                            
+                            <!--CD    NL-CM:8.2.11            Symptoom    1..* SymptoomCodelijst-->
+                            <xsl:for-each select="(symptoom | symptom)[@code]">
+                                <manifestation>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </manifestation>
+                            </xsl:for-each>
+                            
+                            <!--TS    NL-CM:8.2.13            ReactieBeschrijving    0..1-->
+                            <xsl:for-each select="(reactie_beschrijving | reaction_description)[@value]">
+                                <description value="{@value}"/>
+                            </xsl:for-each>
+                            
+                            <!--TS    NL-CM:8.2.17            ReactieTijdstip    0..1-->
+                            <xsl:for-each select="(reactie_tijdstip | reaction_time)[@value]">
+                                <onset>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="@value"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </onset>
+                            </xsl:for-each>
+                            
+                            <!--CD    NL-CM:8.2.14            Ernst    0..1 ErnstCodelijst-->
+                            <!-- http://hl7.org/fhir/STU3/valueset-reaction-event-severity.html -->
+                            <xsl:for-each select="(ernst | severity)[@code]">
+                                <severity>
+                                    <xsl:attribute name="value">
+                                        <xsl:choose>
+                                            <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
+                                            <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">mild</xsl:when>
+                                            <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
+                                            <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">moderate</xsl:when>
+                                            <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
+                                            <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">severe</xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:message>Unsupported AllergyIntolerance reaction severity "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:attribute>
+                                    <xsl:call-template name="ext-code-specification-1.0">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </severity>
+                            </xsl:for-each>
+                            
+                            <!--CD    NL-CM:8.2.15            WijzeVanBlootstelling    0..1 WijzeVanBlootstellingCodelijst-->
+                            <xsl:for-each select="(wijze_van_blootstelling | route_of_exposure)[@code]">
+                                <exposureRoute>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </exposureRoute>
+                            </xsl:for-each>
+                            
+                        </reaction>
+                    </xsl:for-each>
+                    
+                </AllergyIntolerance>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
