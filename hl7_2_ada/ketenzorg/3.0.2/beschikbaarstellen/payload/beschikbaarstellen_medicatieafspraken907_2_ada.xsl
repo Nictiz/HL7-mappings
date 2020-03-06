@@ -31,19 +31,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="doGeneratedComment"/>
-        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9265']">
-            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatieafspraken.xsd">
-                <meta status="new" created-by="generated" last-update-by="generated">
-                    <xsl:attribute name="creation-date" select="current-dateTime()"/>
-                    <xsl:attribute name="last-update-date" select="current-dateTime()"/>
-                </meta>
-                <data>
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatieafspraken.xsd">
+            <meta status="new" created-by="generated" last-update-by="generated">
+                <xsl:attribute name="creation-date" select="current-dateTime()"/>
+                <xsl:attribute name="last-update-date" select="current-dateTime()"/>
+            </meta>
+            <data>
+                <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9265']">
                     <xsl:call-template name="BeschikbaarstellenMedicatieafspraken-ADA">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
-                </data>
-            </adaxml>
-        </xsl:for-each>
+                </xsl:for-each>
+            </data>
+        </adaxml>
     </xsl:template>
     <xd:doc>
         <xd:desc/>

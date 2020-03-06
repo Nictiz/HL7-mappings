@@ -25,20 +25,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="doGeneratedComment"/>
-        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerEncounters]">
-            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_encounters_response.xsd">
-                <meta status="new" created-by="generated" last-update-by="generated">
-                    <xsl:attribute name="creation-date" select="current-dateTime()"/>
-                    <xsl:attribute name="last-update-date" select="current-dateTime()"/>
-                </meta>
-                <data>
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_encounters_response.xsd">
+            <meta status="new" created-by="generated" last-update-by="generated">
+                <xsl:attribute name="creation-date" select="current-dateTime()"/>
+                <xsl:attribute name="last-update-date" select="current-dateTime()"/>
+            </meta>
+            <data>
+                <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerEncounters]">
                     <xsl:call-template name="BeschikbaarstellenEncounters-ADA">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="author" select="(ancestor::hl7:ControlActProcess/hl7:authorOrPerformer//*[hl7:id])[1]"/>
                     </xsl:call-template>
-                </data>
-            </adaxml>
-        </xsl:for-each>
+                </xsl:for-each>
+            </data>
+        </adaxml>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
