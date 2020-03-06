@@ -13,12 +13,13 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:uuid="http://www.uuid.org" exclude-result-prefixes="#all" version="2.0">
+    <xsl:import href="../../../../mp/hl7_2_ada_mp_include.xsl"/>
+    <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
     <xd:doc>
         <xd:desc>Conversie van <xd:a href="https://decor.nictiz.nl/ketenzorg/kz-html-20190110T164948/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9265-2018-12-13T000000.html">Organizer Medicatieafspraken</xd:a> id: 2.16.840.1.113883.2.4.3.11.60.20.77.10.9265 versie 2018-12-13T00:00:00 naar ADA formaat </xd:desc>
         <xd:desc>Documentatie voor deze mapping staat op de wikipagina <xd:a href="https://informatiestandaarden.nictiz.nl/wiki/Mappings/KZ302BeschikbaarstellenMedicatieafsprakenCDA_2_ADA">https://informatiestandaarden.nictiz.nl/wiki/Mappings/KZ302BeschikbaarstellenMedicatieafsprakenCDA_2_ADA</xd:a></xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes"/>
-    <xsl:include href="../../../../mp/hl7_2_ada_mp_include.xsl"/>
 
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:param name="xsd-ada" select="document('../ada_schemas/beschikbaarstellen_medicatieafspraken.xsd')"/>
@@ -30,19 +31,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="doGeneratedComment"/>
-        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9265']">
-            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatieafspraken.xsd">
-                <meta status="new" created-by="generated" last-update-by="generated">
-                    <xsl:attribute name="creation-date" select="current-dateTime()"/>
-                    <xsl:attribute name="last-update-date" select="current-dateTime()"/>
-                </meta>
-                <data>
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatieafspraken.xsd">
+            <meta status="new" created-by="generated" last-update-by="generated">
+                <xsl:attribute name="creation-date" select="current-dateTime()"/>
+                <xsl:attribute name="last-update-date" select="current-dateTime()"/>
+            </meta>
+            <data>
+                <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9265']">
                     <xsl:call-template name="BeschikbaarstellenMedicatieafspraken-ADA">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
-                </data>
-            </adaxml>
-        </xsl:for-each>
+                </xsl:for-each>
+            </data>
+        </adaxml>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
