@@ -15,6 +15,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="cda xd xsl xs" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_hl7_mp_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
+    
+    <!-- only give dateT a value if you want conversion of relative T dates, only used for testing -->
+    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-01-01')"/>
+    
+    <!-- whether to output a schematron reference, must be false() in production environment -->
     <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
     <!--    <xsl:param name="schematronBaseDir">file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/</xsl:param>-->
     <xsl:param name="schematronBaseDir">../</xsl:param>
@@ -37,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="/">
         <xsl:if test="$schematron-ref">
             <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-            <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="$schematronBaseDir"/>schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+            <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="$schematronBaseDir"/>schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         </xsl:if>
         <xsl:choose>
             <xsl:when test="count(//beschikbaarstellen_medicatiegegevens) gt 1">
