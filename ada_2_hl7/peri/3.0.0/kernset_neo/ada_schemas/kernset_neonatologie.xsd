@@ -989,7 +989,7 @@
          <xs:element name="verrichting"
                      type="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90706"
                      minOccurs="0"
-                     maxOccurs="1"/>
+                     maxOccurs="unbounded"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="hidden" fixed="true"/>
@@ -1947,6 +1947,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90293"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90832">
@@ -2480,6 +2481,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90446"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90456">
@@ -2546,34 +2548,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90461"/>
-      <xs:attribute name="comment" type="xs:string" use="optional"/>
-   </xs:complexType>
-   <xs:complexType name="probleem_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90462">
-      <xs:annotation>
-         <xs:documentation>Type for concept group: Probleem</xs:documentation>
-      </xs:annotation>
-      <xs:sequence>
-         <xs:element name="probleem_naam-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91316"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="probleem_naam"
-                     type="probleem_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91316"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90462"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="hematologisch_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90323">
@@ -2889,6 +2863,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90690"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91010">
@@ -3091,6 +3066,7 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90725"/>
+      <xs:attribute name="id" type="xs:ID"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="verrichting_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90735">
@@ -3596,7 +3572,7 @@
          <xs:documentation>Type for concept group: Mortaliteit</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="overlijden_lt12_uur_na_opname_nicu-start"
+         <xs:element name="overlijden_lt12_uur_na_opname_nicuq-start"
                      minOccurs="0"
                      maxOccurs="1">
             <xs:complexType>
@@ -3604,18 +3580,18 @@
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="overlijden_lt12_uur_na_opname_nicu"
-                     type="overlijden_lt12_uur_na_opname_nicu_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90474"
+         <xs:element name="overlijden_lt12_uur_na_opname_nicuq"
+                     type="overlijden_lt12_uur_na_opname_nicuq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90474"
                      minOccurs="0"
                      maxOccurs="1"/>
-         <xs:element name="overleden_op_verloskamer-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="overleden_op_verloskamerq-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90705"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="overleden_op_verloskamer"
-                     type="overleden_op_verloskamer_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90705"
+         <xs:element name="overleden_op_verloskamerq"
+                     type="overleden_op_verloskamerq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90705"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="oorzaak_overlijden-start" minOccurs="0" maxOccurs="1">
@@ -3628,14 +3604,14 @@
                      type="oorzaak_overlijden_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90475"
                      minOccurs="0"
                      maxOccurs="1"/>
-         <xs:element name="staken_icbehandeling-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="staken_icbehandelingq-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90476"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="staken_icbehandeling"
-                     type="staken_icbehandeling_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90476"
+         <xs:element name="staken_icbehandelingq"
+                     type="staken_icbehandelingq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90476"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
@@ -7105,51 +7081,13 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: ProbleemNaam - 0..1 C</xs:documentation>
+      <xs:documentation>Type for concept item: Probleem - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="probleem_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91316">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91316"/>
-      <xs:attribute name="value">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:annotation>
-                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
-               </xs:annotation>
-               <xs:enumeration value="">
-                  <xs:annotation>
-                     <xs:documentation>Empty</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="1">
-                  <xs:annotation>
-                     <xs:documentation>Necrotizing enterocolitis in fetus OR newborn - Bell stage IIA (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="2">
-                  <xs:annotation>
-                     <xs:documentation>Necrotizing enterocolitis in fetus OR newborn - Bell stage IIB (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="3">
-                  <xs:annotation>
-                     <xs:documentation>Necrotizing enterocolitis in fetus OR newborn - Bell stage IIIA (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-               <xs:enumeration value="4">
-                  <xs:annotation>
-                     <xs:documentation>Necrotizing enterocolitis in fetus OR newborn - Bell stage IIIB (disorder)</xs:documentation>
-                  </xs:annotation>
-               </xs:enumeration>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
-      <xs:attribute name="code" type="xs:string"/>
-      <xs:attribute name="codeSystem" type="xs:string"/>
-      <xs:attribute name="codeSystemName" type="xs:string"/>
-      <xs:attribute name="codeSystemVersion" type="xs:string"/>
-      <xs:attribute name="displayName" type="xs:string"/>
-      <xs:attribute name="originalText" type="xs:string"/>
+   <xs:complexType name="probleem_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90462">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90462"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: VerrichtingType - 0..1 R</xs:documentation>
@@ -9517,9 +9455,9 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Overlijden &lt;12 uur na opname NICU - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Overlijden &lt;12 uur na opname NICU? - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="overlijden_lt12_uur_na_opname_nicu_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90474">
+   <xs:complexType name="overlijden_lt12_uur_na_opname_nicuq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90474">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90474"/>
       <xs:attribute name="value">
          <xs:simpleType>
@@ -9554,9 +9492,9 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Overleden op verloskamer - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Overleden op verloskamer? - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="overleden_op_verloskamer_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90705">
+   <xs:complexType name="overleden_op_verloskamerq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90705">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90705"/>
       <xs:attribute name="value">
          <xs:simpleType>
@@ -9748,9 +9686,9 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Staken IC-behandeling - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Staken IC-behandeling? - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="staken_icbehandeling_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90476">
+   <xs:complexType name="staken_icbehandelingq_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90476">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90476"/>
       <xs:attribute name="value">
          <xs:simpleType>
@@ -10400,12 +10338,12 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeDate">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T[+\-]\d+(\.\d+)?[YMD]"/>
+         <xs:pattern value="T([+\-]\d+(\.\d+)?[YMD])?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="RelativeDateTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T[+\-]\d+(\.\d+)?[YMD](\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
+         <xs:pattern value="T([+\-]\d+(\.\d+)?[YMD](\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="DateYear">

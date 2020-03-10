@@ -17,6 +17,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="peri20_30_shared.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
 
+    <!-- whether to output a schema/schematron reference, must be false() in production environment -->
+    <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
+    
     <xd:doc>
         <xd:desc>Helper template to handle a Yes/No question for an observation or procedure, context is the ada boolean element</xd:desc>
     </xd:doc>
@@ -454,15 +457,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                 </entry>
-            </xsl:for-each>
-            <entry>
-                <!-- zib template -->
-                <procedure classCode="PROC" moodCode="EVN">
-                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
-                    <!-- VerrichtingType -->
-                    <code code="408853006" displayName="Intermittent positive pressure ventilation via endotracheal tube (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-                </procedure>
-            </entry>
+            </xsl:for-each>            
         </section>
     </xsl:template>
 
@@ -1295,15 +1290,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Top level template for CDA for Kernset Neonatology</xd:desc>
+        <xd:param name="cda-id">The element containing the id for this CDA document. XML element with attributes @value and @root. @root defaults to a test nictiz oid. </xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901181_20181107170819" match="kernset_neonatologie" mode="HandleCDAKernsetNeo">
+        <xsl:param name="cda-id" as="element()?">
+            <id value="someUniqueID" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
+        </xsl:param>
 
-        <ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Geboortezorg_v30/Publicaties/20190926/peri20-xml-20190926T163541/XML/schemas/CDANL_extended.xsd">
+        <ClinicalDocument>
+            <xsl:if test="$schematron-ref">
+                <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Geboortezorg_v30/Publicaties/20190926/peri20-xml-20190926T163541/XML/schemas/CDANL_extended.xsd</xsl:attribute>
+            </xsl:if>
             <realmCode code="NL"/>
             <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
-            <id extension="someUniqueID" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
-            <code code="59268-3" displayName="Neonatal care report" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+            <id extension="{$cda-id/@value}" root="{$cda-id/@root}"/>
+            <code code="118761000146105" displayName="rapport voor kwaliteitsregistratie over neonaten (gegevensobject)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <title>Kernset Neonatologie</title>
             <xsl:for-each select="documentgegevens/document_datum[@value | @nullFlavor]">
                 <xsl:call-template name="makeTSValue">
@@ -1332,7 +1334,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:for-each select="documentgegevens/verificatie_zorgverlener[geverifieerd_door_zorgverlenerq/@value = 'true']">
                 <participant typeCode="VRF">
-                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9180"/>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9174"/>
                     <xsl:for-each select="verificatie_datum[@value | @nullFlavor]">
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="elemName">time</xsl:with-param>
