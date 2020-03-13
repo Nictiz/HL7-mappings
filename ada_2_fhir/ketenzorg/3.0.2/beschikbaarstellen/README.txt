@@ -22,6 +22,10 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-03-13 - 1.3.0
+* All resources now contain narrative Resource.text. This is a FHIR SHOULD
+* Improved handling of CodeableConcept.display. Now normalizes space to avoid leading/trailing spaces.
+* Improved accuracy of display value on Practitioner reference
 2019-10-30 - 1.2.0
 * Large refactoring efforts have led to a more centralized approach for HCIM conversion to FHIR. Name, Address, ContactData, Patient and more now have a central place in the folder zib2017
 * (!!) There is a new XSL level parameter for masking of Burgerservicenummers (BSNs), as not all use cases require this. If you want to mask, please use paramater mask-ids with value 2.16.840.1.113883.2.4.6.3 rather than relyiing on the defaults
