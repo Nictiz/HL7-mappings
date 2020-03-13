@@ -72,12 +72,12 @@
         
         <xsl:choose>
             <xsl:when test="(string-length($in) gt 0) and exists($inputDateT)">
-                <xsl:variable name="sign" select="replace($in, 'T([+\-]).*', '$1')"/>
-                <xsl:variable name="amount" select="replace($in, 'T[+\-](\d+(\.\d+)?)[YMD].*', '$1')"/>
-                <xsl:variable name="yearMonthDay" select="replace($in, 'T[+\-]\d+(\.\d+)?([YMD]).*', '$2')"/>
-                <xsl:variable name="xsDurationString" select="replace($in, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
-                <xsl:variable name="timePart" select="replace($in, 'T[+\-]\d+(\.\d+)?[YMD](\{(.*)})?', '$3')"/>
-                <xsl:variable name="time">
+                <xsl:variable name="sign" select="replace($in, 'T([+\-])?.*', '$1')"/>
+                <xsl:variable name="amount" select="replace($in, 'T([+\-](\d+(\.\d+)?)[YMD])?.*', '$2')"/>
+                <xsl:variable name="yearMonthDay" select="replace($in, 'T([+\-]\d+(\.\d+)?([YMD]))?.*', '$3')"/>
+                <xsl:variable name="xsDurationString" select="replace($in, 'T([+\-](\d+(\.\d+)?)([YMD]))?.*', 'P$2$4')"/>
+                <xsl:variable name="timePart" select="replace($in, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)})?', '$4')"/>
+                <xsl:variable name="time" as="xs:string?">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 5">
                             <!-- time given in minutes, let's add 0 seconds -->
@@ -88,8 +88,12 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:variable name="newDate">
+                <xsl:variable name="newDate" as="xs:date?">
                     <xsl:choose>
+                        <xsl:when test="matches($in, 'T(\{(.*)})?')">
+                            <!-- Only T and (optional) time, new date equals input Date T -->
+                            <xsl:value-of select="xs:date($inputDateT)"/>
+                        </xsl:when>
                         <xsl:when test="$sign = '-'">
                             <xsl:choose>
                                 <xsl:when test="$yearMonthDay = ('Y', 'M')">
@@ -118,9 +122,9 @@
                             <xsl:value-of select="xs:dateTime(concat(format-date($newDate, '[Y0001]-[M01]-[D01]'), 'T', $time))"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <!-- we get a timezone, which is the current timezone of the system which does not make sense -->
+                            <!-- we sometimes get a timezone, which is the current timezone of the system which does not make sense -->
                             <!-- so we strip the timezone -->
-                            <xsl:value-of select="substring($newDate,1, 10)"/>
+                            <xsl:value-of select="substring(xs:string($newDate), 1, 10)"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
