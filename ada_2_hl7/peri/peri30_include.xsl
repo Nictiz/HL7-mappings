@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- whether to output a schema/schematron reference, must be false() in production environment -->
     <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
-    
+
     <xd:doc>
         <xd:desc>Helper template to handle a Yes/No question for an observation or procedure, context is the ada boolean element</xd:desc>
     </xd:doc>
@@ -210,7 +210,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <code code="406194006" displayName="Death characteristics (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
 
                                     <!-- Overlijden binnen 12 uur na opname NICU -->
-                                    <xsl:for-each select="overlijden_lt12_uur_na_opname_nicu[@value | @nullFlavor]">
+                                    <xsl:for-each select="(overlijden_lt12_uur_na_opname_nicu | overlijden_lt12_uur_na_opname_nicuq)[@value | @nullFlavor]">
                                         <entryRelationship typeCode="COMP">
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
@@ -221,7 +221,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
 
                                     <!-- Overleden op verloskamer 	peri30-dataelement-90705 -->
-                                    <xsl:for-each select="overleden_op_verloskamer[@value | @nullFlavor]">
+                                    <xsl:for-each select="(overleden_op_verloskamer | overleden_op_verloskamerq)[@value | @nullFlavor]">
                                         <entryRelationship typeCode="COMP">
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
@@ -243,7 +243,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
 
                                     <!-- Staken IC-behandeling -->
-                                    <xsl:for-each select="staken_icbehandeling[@value | @nullFlavor]">
+                                    <xsl:for-each select="(staken_icbehandeling | staken_icbehandelingq)[@value | @nullFlavor]">
                                         <entryRelationship typeCode="COMP">
                                             <observation classCode="OBS" moodCode="EVN">
                                                 <xsl:call-template name="_BooleanAttribute"/>
@@ -275,7 +275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <code code="406151001" displayName="Post-discharge follow-up (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                                         <statusCode code="completed"/>
                                         <!-- O2 op dag 28 -->
-                                        <xsl:for-each select="o2_op_dag_28[@value | @nullFlavor]">
+                                        <xsl:for-each select="(o2_op_dag_28|o2_op_dag_28q)[@value | @nullFlavor]">
                                             <component>
                                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901148_20181106144851"/>
                                             </component>
@@ -380,7 +380,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </participant>
                     </xsl:for-each>
                     <!-- ziekenhuis baring -->
-                    <xsl:for-each select="ziekenhuis_baring//zorgaanbieder[not(zorgaanbieder)][.//(@value | @code | @nullFlavor)]">
+                    <xsl:for-each select=".//zorgaanbieder[not(zorgaanbieder)][.//(@value | @code | @nullFlavor)]">
                         <participant typeCode="LOC">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901125_20181102172304"/>
                         </participant>
@@ -392,9 +392,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </entryRelationship>
                     </xsl:for-each>
                     <!-- aantal geboren kinderen -->
-                    <xsl:for-each select="omvang_meerlingzwangerschap[@value | @nullFlavor]">
+                    <xsl:for-each select="(aantal_geboren_kinderen | omvang_meerlingzwangerschap)[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900358_20161206130005"/>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901246_20200312122852"/>
                         </entryRelationship>
                     </xsl:for-each>
                     <!-- Type partus -->
@@ -457,7 +457,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entry>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                 </entry>
-            </xsl:for-each>            
+            </xsl:for-each>
         </section>
     </xsl:template>
 
@@ -492,7 +492,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </effectiveTime>
 
                     <!-- IC opname -->
-                    <xsl:for-each select="opname/ic_opname[@value | @nullFlavor]">
+                    <xsl:for-each select="opname/(ic_opname|ic_opnameq)[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
                                 <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.901131</xsl:with-param>
@@ -501,9 +501,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </entryRelationship>
                     </xsl:for-each>
-                    
+
                     <!-- heropname -->
-                    <xsl:for-each select="opname/heropname[@value | @nullFlavor]">
+                    <xsl:for-each select="opname/(heropname|heropnameq)[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
                                 <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.901132</xsl:with-param>
@@ -523,12 +523,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </observation>
                         </entryRelationship>
                     </xsl:for-each>
-                    
+
                     <!-- opname indicaties -->
                     <xsl:for-each select="opname/opname_indicatie[@code | @nullFlavor]">
                         <entryRelationship typeCode="RSON">
                             <observation classCode="OBS" moodCode="EVN">
-                                <templateId root="2.16.840.1.113883.2.4.6.10.90.901130"/>
                                 <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
                                 <code code="59021000146108" displayName="Reason for admission (observable entity)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                                 <xsl:call-template name="makeCDValue"/>
@@ -675,14 +674,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901133"/>
             <templateId root="2.16.840.1.113883.10.12.806"/>
             <code code="5880005" displayName="lichamelijk onderzoek (verrichting)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
-            
+
             <!-- lichaamslengte -->
             <xsl:for-each select="lichaamslengte[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000"/>
                 </entryRelationship>
             </xsl:for-each>
-           
+
             <!-- lichaamsgewicht -->
             <xsl:for-each select="lichaamsgewicht[.//(@value | @code | @nullFlavor)]">
                 <entryRelationship typeCode="COMP">
@@ -947,7 +946,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
-            
+
             <!-- Infectieus -->
             <xsl:for-each select="infectieus[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -971,7 +970,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
                         <!-- lijnsepsis -->
-                        <xsl:for-each select="probleem/lijnsepsis[.//(@value | @code | @nullFlavor)]">
+                        <xsl:for-each select="probleem/(lijnsepsis | lijnsepsisq)[.//(@value | @code | @nullFlavor)]">
                             <component>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000_YN">
                                     <xsl:with-param name="code">736152001</xsl:with-param>
@@ -980,7 +979,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
                         <!--  Antibiotica eerste 3 dagen peri30-dataelement-91045 -->
-                        <xsl:for-each select="antibiotica_eerste_3_dagen[@value | @nullFlavor]">
+                        <xsl:for-each select="(antibiotica_eerste_3_dagen|antibiotica_eerste_3_dagenq)[@value | @nullFlavor]">
                             <component>
                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901238"/>
@@ -992,7 +991,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
-            
+
             <!-- Infuus -->
             <xsl:for-each select="infuus[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1018,7 +1017,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
-          
+
             <!-- Gastrointestinaal -->
             <xsl:for-each select="gastrointestinaal[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1054,7 +1053,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
-         
+
             <!-- Hematologisch -->
             <xsl:for-each select="hematologisch[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1132,7 +1131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
-         
+
             <!-- Metabool en Endocrien -->
             <xsl:for-each select="metabool_en_endocrien[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1196,7 +1195,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
-       
+
             <!-- Neurologisch -->
             <xsl:for-each select="neurologisch[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1228,14 +1227,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </organizer>
                 </entry>
             </xsl:for-each>
-         
+
             <!-- Zintuigen -->
             <xsl:for-each select="zintuigen[.//(@value | @code | @nullFlavor)]">
                 <entry>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901186_20181107000000"/>
                 </entry>
             </xsl:for-each>
-          
+
             <!-- congenitale_aandoeningen  -->
             <xsl:for-each select="congenitale_aandoeningen[.//(@value | @code | @nullFlavor)]">
                 <entry>
@@ -1265,7 +1264,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                         <!-- Chirurgische ingrepen-->
                         <!-- verrichting -->
-                        <xsl:for-each select="verrichting[.//(@value | @code | @nullFlavor)]">
+                        <xsl:for-each select=".//verrichting[.//(@value | @code | @nullFlavor)]">
                             <component>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                             </component>
@@ -1280,7 +1279,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Make observation for Requires oxygen on 28th day of life</xd:desc>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901148_20181106144851" match="o2_op_dag_28" mode="HandleO2Day28">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901148_20181106144851" match="o2_op_dag_28 | o2_op_dag_28q" mode="HandleO2Day28">
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="_BooleanAttribute"/>
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901148"/>
@@ -1381,7 +1380,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000"/>
                 </component>
             </xsl:for-each>
-            <!-- ROP Screening verricht: NEE -->
+            <!-- ROP Screening verricht? -->
             <xsl:for-each select="rop_screening_verrichtq[@value | @nullFlavor]">
                 <component>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
@@ -1499,21 +1498,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                         </effectiveTime>
                     </xsl:if>
-                    <xsl:for-each select="product[.//(@value | @code | @nullFlavor)]">
-                        <participant typeCode="PRD">
-                            <xsl:for-each select="product_type[@code]">
-                                <participantRole classCode="MANU">
-                                    <playingDevice>
-                                        <xsl:call-template name="makeCode"/>
-                                    </playingDevice>
-                                </participantRole>
+                    <xsl:choose>
+                        <xsl:when test="not(product[.//(@value | @code | @nullFlavor)])">
+                            <!-- participant is 1..1 R in zib-template from which this template is derived, so must appear here -->
+                            <participant typeCode="PRD">
+                                <participantRole classCode="MANU" nullFlavor="NI"/>
+                            </participant>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:for-each select="product[.//(@value | @code | @nullFlavor)]">
+                                <participant typeCode="PRD">
+                                    <xsl:for-each select="product_type[@code]">
+                                        <participantRole classCode="MANU">
+                                            <playingDevice>
+                                                <xsl:call-template name="makeCode"/>
+                                            </playingDevice>
+                                        </participantRole>
+                                    </xsl:for-each>
+                                </participant>
                             </xsl:for-each>
-                        </participant>
-                    </xsl:for-each>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </supply>
             </component>
         </organizer>
 
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Aantal geboren kinderen </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901246_20200312122852" match="aantal_geboren_kinderen" mode="HandleAantalGeborenKinderen">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.90.901246"/>
+            <code code="118861000146102" codeSystem="2.16.840.1.113883.6.96" displayName="aantal geboren kinderen uit zwangerschap (waarneembare entiteit)"/>
+            <!-- Item(s) :: aantal_geboren_kinderen-->
+            <xsl:call-template name="makeINTValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </observation>
+    </xsl:template>
 </xsl:stylesheet>
