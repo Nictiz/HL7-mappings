@@ -23,7 +23,7 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 
 ===Release Notes===
 2020-03-13 - 1.3.0
-* Add support for MCCI_IN200101 with multiple interactions with contents
+* MM-959 - Add support for MCCI_IN200101 with multiple interactions with contents (https://bits.nictiz.nl/browse/MM-959)
 * Fixed handling of Period where start or end don't have a value
 * Fixed omission of observation reference range
 * Improved timezone handling for dateTime without seconds
