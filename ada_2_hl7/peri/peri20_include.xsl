@@ -1555,12 +1555,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000">
         <xsl:param name="inputValue" select="@value"/>
+        <xsl:variable name="input-ns" select="normalize-space($inputValue)"/>
         <!-- Adres vrouw (PRN) -->
         <addr>
             <postalCode>
                 <xsl:choose>
-                    <xsl:when test="string-length($inputValue) gt 0">
-                        <xsl:value-of select="$inputValue"/>
+                    <xsl:when test="string-length($input-ns) gt 0">
+                        <xsl:choose>
+                            <xsl:when test="matches($input-ns, '^[0-9]{4}[A-Z]{2}$')">
+                                <xsl:value-of select="replace($input-ns, '([0-9]{4})([A-Z]{2})', '$1 $2')"/>
+                              </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$input-ns"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:attribute name="nullFlavor">NI</xsl:attribute>
