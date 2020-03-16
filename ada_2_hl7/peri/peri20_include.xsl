@@ -13,9 +13,11 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="xs xsl sdtc nf xd" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
+    <xsl:import href="../zib2017bbr/2_hl7_zib2017bbr_include.xsl"/>
     <xsl:import href="peri20_30_shared.xsl"/>
     <xsl:output method="xml" indent="yes"/>
+
+
 
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900004_20110128000000">
         <!-- Graviditeit -->
@@ -305,7 +307,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <code code="38386-9" codeSystem="{$oidLOINC}" displayName="Kleur en consistentie vruchtwater"/>
             <xsl:call-template name="makeCEValue"/>
         </observation>
-    </xsl:template>   
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900214_20091001000000">
         <!--Geboorte placenta -->
         <observation classCode="OBS" moodCode="EVN">
@@ -1304,7 +1306,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                    <xsl:for-each select="$vrouw/taalvaardigheid_vrouw_nederlandse_taal">
+                      <xsl:for-each select="$vrouw/taalvaardigheid_vrouw_nederlandse_taal">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900727_20120503000000"/>
                     </xsl:for-each>
                 </patientPerson>
@@ -1453,11 +1455,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000">
                     <xsl:with-param name="inputValue" select="$vrouw/adres/postcode/@value"/>
                 </xsl:call-template>
-                <patientPerson classCode="PSN" determinerCode="INSTANCE">
+                 <patientPerson classCode="PSN" determinerCode="INSTANCE">
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                    <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
+                      <!--<xsl:for-each select="$zwangerschap/maternale_sterfteq">-->
                     <!-- Altijd aanroepen, bij geen gegeven maternale_sterfte (0..1 R) in ADA deceasedInd='false' opnemen -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
                         <!-- AvdW, 20200228 added input parameter, otherwise the mother may never be deceased -->
@@ -1488,7 +1490,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$vrouw/geboortedatum">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000"/>
                     </xsl:for-each>
-                    <xsl:for-each select="$zwangerschap/maternale_sterfteq">
+                       <xsl:for-each select="$zwangerschap/maternale_sterfteq">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000"/>
                     </xsl:for-each>
                     <xsl:for-each select="$vrouw/etniciteit">
@@ -1515,7 +1517,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900031_20091001000000">
                         <xsl:with-param name="inputValue" select="$vrouw/geboortedatum/@value"/>
                     </xsl:call-template>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
+                       <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.900230_20091001000000">
                         <xsl:with-param name="inputValue" select="$zwangerschap/maternale_sterfteq/@value"/>
                     </xsl:call-template>
                     <xsl:for-each select="$vrouw/etniciteit">
@@ -1553,12 +1555,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900875_20121207000000">
         <xsl:param name="inputValue" select="@value"/>
+        <xsl:variable name="input-ns" select="normalize-space($inputValue)"/>
         <!-- Adres vrouw (PRN) -->
         <addr>
             <postalCode>
                 <xsl:choose>
-                    <xsl:when test="string-length($inputValue) gt 0">
-                        <xsl:value-of select="$inputValue"/>
+                    <xsl:when test="string-length($input-ns) gt 0">
+                        <xsl:choose>
+                            <xsl:when test="matches($input-ns, '^[0-9]{4}[A-Z]{2}$')">
+                                <xsl:value-of select="replace($input-ns, '([0-9]{4})([A-Z]{2})', '$1 $2')"/>
+                              </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$input-ns"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:attribute name="nullFlavor">NI</xsl:attribute>
@@ -4359,7 +4369,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <!-- Baring Kernset -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440" match="baring" mode="template_901102_20180226151440"> 
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901102_20180226151440" match="baring" mode="template_901102_20180226151440">
         <procedure classCode="PROC" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.90.901102"/>
             <id nullFlavor="NI"/>
@@ -4673,7 +4683,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="xsiType">CE</xsl:with-param>
                 <!-- TEDOEN originalText nullFlavor OTH -->
-            </xsl:call-template>
+</xsl:call-template>
         </observation>
     </xsl:template>
 
@@ -4686,7 +4696,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="xsiType">CE</xsl:with-param>
                 <!-- TEDOEN originalText nullFlavor OTH -->
-            </xsl:call-template>
+</xsl:call-template>
         </observation>
     </xsl:template>
 
@@ -7149,7 +7159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </procedure>
     </xsl:template>
-    <!-- Chromosomale afwijkingen (ja nee) -->
+       <!-- Chromosomale afwijkingen (ja nee) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.900981_20161206103540">
         <observation classCode="OBS" moodCode="EVN">
             <xsl:call-template name="makeNegationAttr"/>
@@ -8415,7 +8425,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </procedure>
     </xsl:template>
 
-
+ 
     <xd:doc>
         <xd:desc>Make observation for gravidity based on ada graviditeit</xd:desc>
     </xd:doc>
@@ -8441,4 +8451,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
 
-</xsl:stylesheet>
+    </xsl:stylesheet>
