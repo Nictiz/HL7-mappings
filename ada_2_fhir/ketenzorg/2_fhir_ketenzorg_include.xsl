@@ -291,6 +291,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="zib-Alert" as="element()">
         <xsl:variable name="resource">
             <Flag xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
+                </meta>
                 <identifier>
                     <xsl:call-template name="id-to-Identifier">
                         <xsl:with-param name="in" select="hcimroot/identification_number"/>
@@ -400,6 +403,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="gp-Encounter" as="element()">
         <xsl:variable name="resource">
             <Encounter xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
+                </meta>
                 <identifier>
                     <xsl:call-template name="id-to-Identifier">
                         <xsl:with-param name="in" select="hcimroot/identification_number"/>
@@ -593,7 +599,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$labresult">
             <!--NL-CM:13.1.3	LaboratoryTest	0..*	Container of the LaboratoryTest concept. This container contains all data elements of the LaboratoryTest concept.-->
             <xsl:variable name="resource">
-                <Observation>
+                <Observation xmlns="http://hl7.org/fhir">
                     <xsl:if test="$referById">
                         <id value="{$labresult-id}"/>
                     </xsl:if>
@@ -749,7 +755,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="gp-DiagnosticResult">
         <!--NL-CM:13.3.1 	GeneralMeasurement 		Root concept of the GeneralMeasurement information model. This root concept contains all data elements of the GeneralMeasurement information model.-->
         <xsl:variable name="resource">
-            <Observation>
+            <Observation xmlns="http://hl7.org/fhir">
                 <xsl:if test="$referById">
                     <id value="{nf:removeSpecialCharacters(hcimroot/identification_number/@value)}"/>
                 </xsl:if>
@@ -914,6 +920,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$referById">
                     <id value="{$observation-id}"/>
                 </xsl:if>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
+                </meta>
                 <status value="final"/>
                 <code>
                     <xsl:call-template name="code-to-CodeableConcept">

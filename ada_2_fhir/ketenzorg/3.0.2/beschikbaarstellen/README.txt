@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-03-16 - 1.3.1
+* MM-992 Fixed missing Resource.meta.profile indicators on EncounterReport inclusions (gp-JournalEntry), Encounters (gp-Encounter) and Episodes (zib-Alert) - https://bits.nictiz.nl/browse/MM-992
 2020-03-13 - 1.3.0
 * All resources now contain narrative Resource.text. This is a FHIR SHOULD
 * Improved handling of CodeableConcept.display. Now normalizes space to avoid leading/trailing spaces.
