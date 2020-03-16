@@ -44,8 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="./schematron_href">
                 <xsl:processing-instruction name="xml-model">phase="#ALL" href="<xsl:value-of select="./@value"/>" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:for-each>
-            <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/art_decor/branches/peri20-qual-20180320/test_xslt/scenario1-23-20200101.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-            
+               
             <!--<ABCD>-->
             <xsl:element name="{./root_xml_element/@value}">
                 <xsl:namespace name="hl7" select="'urn:hl7-org:v3'"/>
