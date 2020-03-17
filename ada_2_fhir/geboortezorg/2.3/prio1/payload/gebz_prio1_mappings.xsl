@@ -93,8 +93,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$elementName='datum_einde_zwangerschap'">
                     <system value="http://snomed.info/sct"/>
-                    <code value="118185001"/>
-                    <display value="Finding related to pregnancy (finding)"/>
+                    <code value="118951000146109"/>
+                    <display value="Date of end of pregnancy (observable entity)"/>
                 </xsl:when>
                 <xsl:when test="$elementName='tijdstip_begin_actieve_ontsluiting'">
                     <system value="http://snomed.info/sct"/>
