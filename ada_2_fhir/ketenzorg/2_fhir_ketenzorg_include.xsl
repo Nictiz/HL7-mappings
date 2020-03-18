@@ -564,7 +564,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="dateTime" select="end_date_time/@value"/>
                                 </xsl:call-template>
                             </xsl:attribute>
-                        </end>                    
+                        </end>
                     </xsl:if>
                 </period>
                 <!-- Encounter.reason is a codeableconcept with a binding on a valueset containing all SNOMED codes. The ADA model doesn't support this coding, but it does support the contact_reason/deviating_result string, which can be mapped to the text field of the .reason. -->
@@ -1036,7 +1036,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </encounter>
                 </xsl:for-each>
-                <date value="{normalize-space(hcimroot/date_time/@value)}"/>
+                <date>
+                    <xsl:attribute name="value">
+                        <xsl:call-template name="format2FHIRDate">
+                            <xsl:with-param name="dateTime" select="hcimroot/date_time/@value"/>
+                        </xsl:call-template>
+                    </xsl:attribute>
+                </date>
                 <xsl:for-each select="$author">
                     <author>
                         <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
@@ -1098,7 +1104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <resource>
                 <xsl:call-template name="gp-JournalEntry">
                     <xsl:with-param name="author" select="../bundle/author"/>
-                    <xsl:with-param name="subject" select="../bundle/subject"/>
+                    <xsl:with-param name="subject" select="ancestor::*[bundle]/bundle/subject"/>
                     <xsl:with-param name="observation-id" select="replace($ada-id, '^urn:[^:]+:', '')"/>
                 </xsl:call-template>
             </resource>

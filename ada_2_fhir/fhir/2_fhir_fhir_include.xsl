@@ -759,10 +759,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
-                <xsl:value-of select="format-dateTime(xs:dateTime($dateTime), $picture)"/>
+                <xsl:value-of select="nf:add-Amsterdam-timezone-to-dateTimeString(normalize-space($dateTime))"/>
             </xsl:when>
             <xsl:when test="normalize-space($dateTime) castable as xs:date">
-                <xsl:value-of select="format-date(xs:date($dateTime), '[Y0001]-[M01]-[D01]')"/>
+                <xsl:value-of select="normalize-space($dateTime)"/>
             </xsl:when>
             <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
             <xsl:when test="matches($dateTime, 'T[+\-]\d+(\.\d+)?[YMD]')">
@@ -793,7 +793,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:otherwise>
                                 <xsl:value-of select="$newDate"/>
                             </xsl:otherwise>
-                        </xsl:choose>                        
+                        </xsl:choose>
                       </xsl:when>
                     <xsl:otherwise>
                         <!-- output a relative date for Touchstone -->
