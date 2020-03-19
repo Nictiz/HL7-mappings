@@ -951,7 +951,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
                     </performer>
                 </xsl:for-each>
-                <valueString value="{text/@value}"/>
+                <valueString>
+                    <xsl:call-template name="string-to-string">
+                        <xsl:with-param name="in" select="text"/>
+                    </xsl:call-template>
+                </valueString>
     
                 <!-- If ICPC coding is present and we're dealing with an 'S' or 'E'
                      entry, include it as a component -->

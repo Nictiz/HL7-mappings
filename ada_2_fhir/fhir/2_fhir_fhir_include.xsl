@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:choose>
             <xsl:when test="$in/@value">
-                <xsl:attribute name="value" select="$in/@value"/>
+                <xsl:attribute name="value" select="replace($in/@value, '(^\s+)|(\s+$)', '')"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
                 <extension url="{$urlExtHL7NullFlavor}">
@@ -286,7 +286,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
         <xsl:if test="$in[@originalText]">
-            <text value="{$in/@originalText}"/>
+            <text value="{replace($in/@originalText, '(^\s+)|(\s+$)', '')}"/>
         </xsl:if>
     </xsl:template>
     <xd:doc>
@@ -310,7 +310,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <system value="{local:getUri($in/@codeSystem)}"/>
                 <code value="{$in/@code}"/>
                 <xsl:if test="$in/@displayName">
-                    <display value="{normalize-space($in/@displayName)}"/>
+                    <display value="{replace($in/@displayName, '(^\s+)|(\s+$)', '')}"/>
                 </xsl:if>
                 <xsl:if test="exists($userSelected)">
                     <userSelected value="{$userSelected}"/>
@@ -327,9 +327,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="unit-UCUM" select="$in/nf:convertTime_ADA_unit2UCUM_FHIR(@unit)"/>
         <xsl:choose>
             <xsl:when test="$in[@value]">
-                <value value="{$in/@value}"/>
+                <value value="{replace($in/@value, '(^\s+)|(\s+$)', '')}"/>
                 <xsl:if test="$unit-UCUM">
-                    <unit value="{$in/@unit}"/>
+                    <unit value="{replace($in/@unit, '(^\s+)|(\s+$)', '')}"/>
                     <system value="{local:getUri($oidUCUM)}"/>
                     <code value="{$unit-UCUM}"/>
                 </xsl:if>
@@ -376,14 +376,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$in[not(@value) or @nullFlavor]">
                 <extension url="{$urlExtHL7NullFlavor}">
-                    <xsl:variable name="valueCode" as="xs:string">
-                        <xsl:choose>
-                            <xsl:when test="$in[@nullFlavor]">
-                                <xsl:value-of select="$in/@nullFlavor"/>
-                            </xsl:when>
-                            <xsl:otherwise>NI</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
+                    <xsl:variable name="valueCode" select="($in/@nullFlavor, 'NI')[1]"/>
                     <valueCode value="{$valueCode}"/>
                 </extension>
             </xsl:when>
@@ -416,11 +409,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$waarde[not(@value) or @nullFlavor]">
                 <extension url="{$urlExtHL7NullFlavor}">
-                    <xsl:variable name="valueCode" select="
-                            if ($waarde[@nullFlavor]) then
-                                ($waarde/@nullFlavor)
-                            else
-                                ('NI')"/>
+                    <xsl:variable name="valueCode" select="($waarde/@nullFlavor, 'NI')[1]"/>
                     <valueCode value="{$valueCode}"/>
                 </extension>
             </xsl:when>
@@ -428,7 +417,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <value value="{$waarde/@value}"/>
                 <xsl:for-each select="$eenheid[@code]">
                     <xsl:for-each select="./@displayName">
-                        <unit value="{.}"/>
+                        <unit value="{replace(., '(^\s+)|(\s+$)', '')}"/>
                     </xsl:for-each>
                     <xsl:for-each select="./@codeSystem">
                         <system value="{local:getUri(.)}"/>
@@ -463,7 +452,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <system value="{local:getUri(.)}"/>
                 </xsl:for-each>
                 <xsl:for-each select="$in/@value">
-                    <value value="{.}"/>
+                    <value value="{replace(., '(^\s+)|(\s+$)', '')}"/>
                 </xsl:for-each>
             </xsl:when>
         </xsl:choose>
