@@ -8722,6 +8722,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="doDT_Reference">
                             <xsl:with-param name="in" select="f:patient"/>
                         </xsl:call-template>
+                        <xsl:text>. </xsl:text>
                     </xsl:when>
                     <xsl:when test="f:subject">
                         <xsl:text>. </xsl:text>
@@ -8732,6 +8733,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="doDT_Reference">
                             <xsl:with-param name="in" select="f:subject"/>
                         </xsl:call-template>
+                        <xsl:text>. </xsl:text>
                     </xsl:when>
                 </xsl:choose>
                 <xsl:if test="f:identifier | f:category | f:status | f:clinicalStatus | f:verificationStatus | f:intent | f:priority">
