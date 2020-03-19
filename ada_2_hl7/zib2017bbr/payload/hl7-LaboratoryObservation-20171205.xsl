@@ -35,6 +35,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="(zibroot | hcimroot)/(identificatienummer | identification_number)[@value | @nullFlavor | @root]">
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
+                <!-- id is required in het template, als we helemaal niets hebben toch nullFlavor NI in output -->
+                <xsl:if test="not((zibroot | hcimroot)/(identificatienummer | identification_number)[@value | @nullFlavor | @root])">
+                    <id nullFlavor="NI"/>
+                </xsl:if>
                 <!-- code -->
                 <xsl:for-each select="test_code[@code]">
                     <xsl:call-template name="makeCode"/>
