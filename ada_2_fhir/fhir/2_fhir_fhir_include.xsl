@@ -477,7 +477,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </start>
             </xsl:when>
             <xsl:when test="$start[@value]">
-                <start value="{nf:add-Amsterdam-timezone($start/@value)}"/>
+                <start>
+                    <xsl:attribute name="value">
+                        <xsl:call-template name="format2FHIRDate">
+                            <xsl:with-param name="dateTime" select="$start/@value"/>
+                        </xsl:call-template>
+                    </xsl:attribute>
+                </start>
             </xsl:when>
         </xsl:choose>
         <xsl:choose>
@@ -489,7 +495,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </end>
             </xsl:when>
             <xsl:when test="$end[@value]">
-                <end value="{nf:add-Amsterdam-timezone($end/@value)}"/>
+                <end>
+                    <xsl:attribute name="value">
+                        <xsl:call-template name="format2FHIRDate">
+                            <xsl:with-param name="dateTime" select="$end/@value"/>
+                        </xsl:call-template>
+                    </xsl:attribute>
+                </end>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
@@ -742,16 +754,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D')">[Y0001]-[M01]-[D01]</xsl:when>
-                <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001]-[M01]-[D01]T[H01]:[m01]:00Z</xsl:when>
-                <xsl:otherwise>[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]Z</xsl:otherwise>
+                <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001]-[M01]-[D01]T[H01]:[m01]:00[Z]</xsl:when>
+                <xsl:otherwise>[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01][Z]</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="normalize-space($dateTime) castable as xs:dateTime">
-                <xsl:value-of select="nf:add-Amsterdam-timezone-to-dateTimeString(normalize-space($dateTime))"/>
+                <xsl:value-of select="format-dateTime(xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(normalize-space($dateTime))), $picture)"/>
+            </xsl:when>
+            <xsl:when test="concat(normalize-space($dateTime), ':00') castable as xs:dateTime">
+                <xsl:value-of select="format-dateTime(xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(concat(normalize-space($dateTime), ':00'))), $picture)"/>
             </xsl:when>
             <xsl:when test="normalize-space($dateTime) castable as xs:date">
-                <xsl:value-of select="normalize-space($dateTime)"/>
+                <xsl:value-of select="format-date(xs:date(normalize-space($dateTime)), '[Y0001]-[M01]-[D01]')"/>
             </xsl:when>
             <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
             <xsl:when test="matches($dateTime, 'T[+\-]\d+(\.\d+)?[YMD]')">
@@ -803,7 +818,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="format-dateTime(xs:dateTime($newDateTime), $picture)"/>
                     </xsl:when>
                     <xsl:when test="$newDate castable as xs:date">
-                        <xsl:value-of select="format-date(xs:date($newDateTime), $picture)"/>
+                        <xsl:value-of select="format-date(xs:date($newDateTime), '[Y0001]-[M01]-[D01]')"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="$dateTime"/>

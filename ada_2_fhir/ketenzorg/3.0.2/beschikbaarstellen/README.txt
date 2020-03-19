@@ -24,6 +24,7 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 ===Release Notes===
 2020-03-18 - 1.3.3
 * MM-1018 Fixed trailing/leading spaces by adjusting the central datatype functions. This affects any mapping part that calls them
+* MM-1009 Fixed missing timezone on Bundle.entry.resource.period.start
 2020-03-17 - 1.3.2
 * MM-1009 Fixed missing Observation.subject on gp-JournalEntry
 * MM-1009 Fixed missing timezone when date stamp includes time

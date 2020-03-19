@@ -264,12 +264,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <xsl:if test="start_date | end_date">
                         <period>
-                            <xsl:if test="start_date[@value]">
-                                <start value="{start_date/@value}"/>
-                            </xsl:if>
-                            <xsl:if test="end_date[@value]">
-                                <end value="{end_date/@value}"/>
-                            </xsl:if>
+                            <xsl:call-template name="startend-to-Period">
+                                <xsl:with-param name="start" select="start_date"/>
+                                <xsl:with-param name="end" select="end_date"/>
+                            </xsl:call-template>
                         </period>
                     </xsl:if>
                     <xsl:for-each select="$author/health_professional">
@@ -346,37 +344,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:otherwise>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="alert_name"/>
-                            </xsl:call-template> 
+                            </xsl:call-template>
                         </xsl:otherwise>
                     </xsl:choose>
                 </code>
                 <subject>
                     <xsl:apply-templates select="../bundle/subject/patient" mode="doPatientReference-2.1"/>
                 </subject>
-                <xsl:variable name="period_parts" as="element()*">
-                    <xsl:if test="start_date_time">
-                        <start>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="start_date_time/@value"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </start>
-                    </xsl:if>
-                    <!-- The end date should only be included if the status is completed -->
-                    <xsl:if test="$is_completed and end_date_time">
-                        <end>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="end_date_time/@value"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </end>
-                    </xsl:if>
-                </xsl:variable>
-                <xsl:if test="count($period_parts) > 0">
+                <xsl:if test="start_date_time | end_date_time[$is_completed]">
                     <period>
-                        <xsl:copy-of select="$period_parts"/>
+                        <xsl:call-template name="startend-to-Period">
+                            <xsl:with-param name="start" select="start_date_time"/>
+                            <!-- The end date should only be included if the status is completed -->
+                            <xsl:with-param name="end" select="end_date_time[$is_completed]"/>
+                        </xsl:call-template>
                     </period>
                 </xsl:if>
                 
