@@ -167,7 +167,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$dataType = 'quantity'">
                     <xsl:call-template name="makePQValue">
                         <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="xsiType" select="if ($outputXsiType) then () else ''"></xsl:with-param>
+                        <!-- AWE: fix for xsiType, entering empty in parameter overrides the default with an empty value -->
+                        <xsl:with-param name="xsiType" select="if ($outputXsiType) then ('PQ') else ''"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'reference'">
