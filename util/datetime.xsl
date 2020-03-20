@@ -90,7 +90,7 @@
                 </xsl:variable>
                 <xsl:variable name="newDate" as="xs:date?">
                     <xsl:choose>
-                        <xsl:when test="matches($in, 'T(\{(.*)})?')">
+                        <xsl:when test="matches($in, 'T(\{(.*)})?') and string-length($sign) = 0">
                             <!-- Only T and (optional) time, new date equals input Date T -->
                             <xsl:value-of select="xs:date($inputDateT)"/>
                         </xsl:when>
