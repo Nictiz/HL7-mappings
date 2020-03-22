@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Generates a HL7 message based on ADA input -->
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- only give dateT a value if you want conversion of relative T dates -->
-    <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
+    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>
     <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
 
     <xsl:template match="/">

@@ -2950,7 +2950,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="kopie_indicator">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
@@ -3099,17 +3099,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="isKopie"/>
+        <xd:desc>Creates the observation fo kopie-indicator</xd:desc>
+        <xd:param name="kopie-ind">ada kopie-indicator</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-        <xsl:param name="isKopie"/>
-        <!-- Kopie-indicator  -->
+        <xsl:param name="kopie-ind" as="element()?" select="."/>
+        
+        <xsl:for-each select="$kopie-ind">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
             <code displayName="Kopie-indicator" code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
-            <value xsi:type="BL" value="{$isKopie}"/>
+            <xsl:call-template name="makeBLValue"/>
         </observation>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
@@ -3250,7 +3252,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="kopie_indicator">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
@@ -3460,7 +3462,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="kopie_indicator[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
@@ -3596,17 +3598,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- verbruiksperiode -->
                 <xsl:for-each select="verbruiksperiode[.//(@value | @code)]">
                     <expectedUseTime>
-                        <xsl:for-each select="./ingangsdatum">
+                        <xsl:for-each select="ingangsdatum">
                             <low>
                                 <xsl:call-template name="makeTSValueAttr"/>
                             </low>
                         </xsl:for-each>
-                        <xsl:for-each select="./duur">
+                        <xsl:for-each select="duur">
                             <width>
                                 <xsl:call-template name="makeTimePQValueAttribs"/>
                             </width>
                         </xsl:for-each>
-                        <xsl:for-each select="./einddatum">
+                        <xsl:for-each select="einddatum">
                             <high>
                                 <xsl:call-template name="makeTSValueAttr"/>
                             </high>

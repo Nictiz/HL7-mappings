@@ -493,7 +493,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="./kopie_indicator[@value]">
                     <entryRelationship typeCode="COMP">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                            <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                            <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                         </xsl:call-template>
                     </entryRelationship>
                 </xsl:if>
@@ -708,7 +708,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="./kopie_indicator">
                     <entryRelationship typeCode="COMP">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                            <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                            <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                         </xsl:call-template>
                     </entryRelationship>
                 </xsl:if>
@@ -1194,7 +1194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="./kopie_indicator">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
@@ -1273,7 +1273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="./kopie_indicator">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
@@ -1426,7 +1426,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="./kopie_indicator">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
@@ -1636,7 +1636,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="./kopie_indicator[.//(@value | @code)]">
             <entryRelationship typeCode="COMP">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                    <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                    <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                 </xsl:call-template>
             </entryRelationship>
         </xsl:if>
@@ -1905,7 +1905,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="./kopie_indicator">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
@@ -2314,7 +2314,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="./kopie_indicator[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
@@ -2587,7 +2587,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="kopie_indicator">
                 <entryRelationship typeCode="COMP">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
-                        <xsl:with-param name="isKopie" select="./kopie_indicator/@value"/>
+                        <xsl:with-param name="kopie-ind" select="kopie_indicator"/>
                     </xsl:call-template>
                 </entryRelationship>
             </xsl:if>
