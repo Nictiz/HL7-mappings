@@ -15,7 +15,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
     <xsl:import href="../naw/2_hl7_naw_include.xsl"/>
+    <xsl:import href="../../util/mp-functions.xsl"/>
     <!--     <xsl:import href="../../util/datetime.xsl"/>-->
+
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -27,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Generates the contents of quantity</xd:desc>
         <xd:param name="hoeveelheid-ada"/>
     </xd:doc>
     <xsl:template name="makeHoeveelheidContent">
@@ -72,6 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </xsl:for-each>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -102,6 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
+ 
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -383,7 +389,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </assignedAuthor>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc>Stoptype</xd:desc>
         <xd:param name="in">Optional. Input ada element, defaults to context.</xd:param>
@@ -485,6 +490,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </denominator>
         </xsl:for-each>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc>MP CDA Ingredient Material Kind</xd:desc>
         <xd:param name="ingredientCode">ada element ingredient_code</xd:param>
@@ -497,6 +503,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </pharm:ingredient>
     </xsl:template>
+
     <xd:doc>
         <xd:desc>MP CDA Material Code Ext</xd:desc>
         <xd:param name="ingredientCode">ada element ingredient_code</xd:param>
@@ -1136,7 +1143,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1166,6 +1172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </hl7nl:denominator>
         </hl7nl:frequency>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc>HL7NL PIVL_TS Frequency</xd:desc>
     </xd:doc>
@@ -1185,6 +1192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339"/>
     </xsl:template>
+   
     <xd:doc>
         <xd:desc/>
         <xd:param name="operator"/>
@@ -1206,6 +1214,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </hl7nl:phase>
         <hl7nl:period unit="d" value="1"/>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1230,8 +1239,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
-
     <xd:doc>
         <xd:desc>Reden voor toedieningsafspraak vanaf 9.1</xd:desc>
     </xd:doc>
@@ -1244,6 +1251,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </text>
         </observation>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
         <xd:param name="MBHroot"/>
@@ -1267,6 +1275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
         </procedure>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
         <xd:param name="ada-aanvullende-instructie"/>
@@ -1283,6 +1292,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </act>
         </xsl:for-each>
     </xsl:template>
+ 
     <xd:doc>
         <xd:desc/>
         <xd:param name="identificatieElement"/>
@@ -1312,6 +1322,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9089_20160621134042"/>
         </representedOrganization>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1335,6 +1346,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1352,6 +1364,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </addr>
         </participantRole>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc>Aanvullende wens</xd:desc>
         <xd:param name="in">Optional. Input element, defaults to context.</xd:param>
@@ -1498,7 +1511,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc>Relatie naar verstrekkingsverzoek vanaf 9.1.0</xd:desc>
     </xd:doc>
@@ -1511,6 +1523,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <code code="52711000146108" displayName="Request to dispense medication to patient" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
         </supply>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc>Distributievorm</xd:desc>
     </xd:doc>
@@ -1522,6 +1535,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </code>
         </act>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
         <xd:param name="identificatieElement"/>
@@ -1540,6 +1554,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <consumable xsi:nil="true"/>
         </substanceAdministration>
     </xsl:template>
+   
     <xd:doc>
         <xd:desc/>
         <xd:param name="identificatieElement"/>
@@ -1557,6 +1572,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <code code="373784005" displayName="Verstrekking" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
         </supply>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1569,6 +1585,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </relatedPerson>
     </xsl:template>
+ 
     <xd:doc>
         <xd:desc>MP CDA Ingredient</xd:desc>
     </xd:doc>
@@ -1631,6 +1648,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:if>
     </xsl:template>
+ 
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1697,6 +1715,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.5_20180611000000"/>
         </xsl:for-each>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1724,7 +1743,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
 
-       <xd:doc>
+    <xd:doc>
         <xd:desc>Volgens afspraak indicator from 9.1</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9317_20200120141110">
@@ -1756,6 +1775,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </hl7nl:frequency>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -1811,8 +1831,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
-
     <xd:doc>
         <xd:desc>Voorstel Verstrekkingsverzoek</xd:desc>
         <xd:param name="vvv"/>
@@ -1823,7 +1841,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <supply classCode="SPLY" moodCode="PRP">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9131"/>
-            <code code="52711000146108" displayName="Verstrekkingsverzoek" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" />
+            <code code="52711000146108" displayName="Verstrekkingsverzoek" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <!-- aantal herhalingen -->
             <xsl:for-each select="aantal_herhalingen[@value]">
                 <repeatNumber>
@@ -1985,6 +2003,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </substanceAdministration>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc>MP CDA Toedieningssnelheid</xd:desc>
     </xd:doc>
@@ -2042,7 +2061,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </rateQuantity>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc>Voorstel Medicatieafspraak</xd:desc>
@@ -2198,6 +2216,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </hl7nl:period>
     </xsl:template>
+ 
     <xd:doc>
         <xd:desc/>
         <xd:param name="operator"/>
@@ -2231,6 +2250,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </hl7nl:period>
     </xsl:template>
+ 
     <xd:doc>
         <xd:desc/>
         <xd:param name="operator"/>
@@ -2264,6 +2284,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </hl7nl:period>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
         <xd:param name="operator"/>
@@ -2297,6 +2318,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </hl7nl:period>
     </xsl:template>
+ 
     <xd:doc>
         <xd:desc/>
         <xd:param name="operator"/>
@@ -2414,6 +2436,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </hl7nl:frequency>
     </xsl:template>
+ 
     <xd:doc>
         <xd:desc>MP CDA Medication Information (Proposal) vanaf 9.0.7 </xd:desc>
         <xd:param name="product"/>
@@ -2428,7 +2451,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </manufacturedProduct>
         </xsl:for-each>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc>DoseQuantity and translation(s)obv Gstd input</xd:desc>
@@ -2505,7 +2527,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </representedOrganization>
         </xsl:for-each>
     </xsl:template>
-       <xd:doc>
+    <xd:doc>
         <xd:desc>MP CDA Organization Medicatieoverzicht</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9169_20170521195457">
@@ -2545,7 +2567,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    </xsl:template>
    -->
 
-      <xd:doc>
+    <xd:doc>
         <xd:desc>MP CDA author medicatieoverzicht - vanaf versie 9.0.5 </xd:desc>
         <xd:param name="auteur"/>
     </xd:doc>
@@ -2666,9 +2688,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeCEValue"/>
         </observation>
     </xsl:template>
-     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9179_20170523115538">
-        <!-- MP organizer verifier patiënt-->
 
+    <xd:doc>
+        <xd:desc>MP organizer verifier patiënt</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9179_20170523115538">
         <!-- Als er niet geverifieerd is, dan ook niet opnemen. -->
         <xsl:if test="./geverifieerd_met_patientq/@value = 'true'">
             <participant typeCode="VRF">
@@ -2683,11 +2707,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
 
-     <xd:doc>
-         <xd:desc>MP organizer verifier zorgverlener, used in medication overview</xd:desc>
+    <xd:doc>
+        <xd:desc>MP organizer verifier zorgverlener, used in medication overview</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9180_20170523115753">
-         <!-- Als er niet geverifieerd is, dan ook niet opnemen. -->
+        <!-- Als er niet geverifieerd is, dan ook niet opnemen. -->
         <xsl:if test="./geverifieerd_met_zorgverlenerq/@value = 'true'">
             <participant typeCode="VRF">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9180"/>
@@ -2700,7 +2724,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </participant>
         </xsl:if>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc> MP CDA (proposition) medication agreement ( (voorstel) Medicatieafspraak) reusable part from 9.1.0</xd:desc>
@@ -2842,7 +2865,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc> Zo nodig criterium </xd:desc>
         <xd:param name="code"/>
@@ -2882,7 +2904,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </act>
     </xsl:template>-->
 
-
     <xd:doc>
         <xd:desc>Mapping of medicatieafspraak concept in ADA ('eigen of ongedefinieerde MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9275</xd:desc>
         <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
@@ -2892,23 +2913,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9275"/>
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9276_20191121115616">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
-            </substanceAdministration>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Mapping of zib nl.zorg.Medicatieafspraak concept in ADA ('andermans MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9277</xd:desc>
-        <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9277_20191121123918">
-        <xsl:param name="in" select="."/>
-        <xsl:for-each select="$in">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9277"/>
-                <!-- inhoud medicatieafspraak -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9276_20191121115616">
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
@@ -2973,70 +2977,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template for Medicatieafspraak resuable parts 1 for MP 9.0.8 due to https://bits.nictiz.nl/browse/MP-57: 
-            cancelled indicator (geannuleerd indicator) has been removed</xd:desc>
+        <xd:desc>Mapping of zib nl.zorg.Medicatieafspraak concept in ADA ('andermans MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9277</xd:desc>
+        <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9184_20191121170300" match="medicatieafspraak | medication_agreement">
-        <!-- MP CDA Medicatieafspraak onderdelen 1 -->
-        <xsl:for-each select="identificatie[.//(@value | @code)]">
-            <xsl:call-template name="makeIIid"/>
-        </xsl:for-each>
-        <code code="16076005" displayName="Medicatieafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
-        <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
-            <text mediaType="text/plain">
-                <xsl:value-of select="nf:replaceTDateString(@value, $dateT)"/>
-            </text>
-        </xsl:for-each>
-        <!-- statusCode: voor foutcorrectie -->
-        <!-- uitgefaseerd in 9.1.0, maar voor backwards compatibility hier nog niet verwijderd -->
-        <xsl:if test="geannuleerd_indicator/@value = 'true'">
-            <statusCode code="nullified"/>
-        </xsl:if>
-        <!-- Gebruiksperiode -->
-        <effectiveTime xsi:type="IVL_TS">
-            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
-                <xsl:with-param name="low" select="gebruiksperiode_start"/>
-                <xsl:with-param name="high" select="gebruiksperiode_eind"/>
-                <xsl:with-param name="width" select="gebruiksperiode"/>
-            </xsl:call-template>
-        </effectiveTime>
-        <xsl:for-each select="./gebruiksinstructie/toedieningsweg[.//(@value | @code)]">
-            <routeCode>
-                <xsl:call-template name="makeCodeAttribs"/>
-            </routeCode>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9277_20191121123918">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9277"/>
+                <!-- inhoud medicatieafspraak -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9276_20191121115616">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </substanceAdministration>
         </xsl:for-each>
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>MP CDA author zorgverlener of patient</xd:desc>
-        <xd:param name="ada-auteur"/>
-        <xd:param name="authorTime"/>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20181205180828">
-        <xsl:param name="ada-auteur" as="element()*" select="."/>
-        <xsl:param name="authorTime"/>
-
-        <author>
-            <!-- Voorstel- of Registratiedatum -->
-            <xsl:for-each select="$authorTime">
-                <time>
-                    <xsl:call-template name="makeTSValueAttr"/>
-                </time>
-            </xsl:for-each>
-            <!-- auteur -->
-            <xsl:for-each select="$ada-auteur/auteur_is_zorgverlener/zorgverlener[.//(@value | @code)]">
-                <assignedAuthor>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20181205174044"/>
-                </assignedAuthor>
-            </xsl:for-each>
-            <xsl:if test="$ada-auteur/auteur_is_patient/@value = 'true'">
-                <assignedAuthor>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000"/>
-                </assignedAuthor>
-            </xsl:if>
-        </author>
-    </xsl:template>
-
     <xd:doc>
         <xd:desc>MP CDA author zorgverlener of patient vanaf 9.0.7 </xd:desc>
         <xd:param name="ada-auteur"/>
@@ -3074,6 +3029,81 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Template for Medicatieafspraak resuable parts 1 for MP 9.0.8 due to https://bits.nictiz.nl/browse/MP-57: 
+            cancelled indicator (geannuleerd indicator) has been removed</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9184_20191121170300" match="medicatieafspraak | medication_agreement">
+        <!-- MP CDA Medicatieafspraak onderdelen 1 -->
+        <xsl:for-each select="identificatie[.//(@value | @code)]">
+            <xsl:call-template name="makeIIid"/>
+        </xsl:for-each>
+        <code code="16076005" displayName="Medicatieafspraak" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+        <xsl:choose>
+            <xsl:when test="$generateInstructionText">
+                <text mediaType="text/plain">
+                    <xsl:value-of select="nf:gebruiksintructie-string(gebruiksinstructie)"/>
+                </text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                    <text mediaType="text/plain">
+                        <xsl:value-of select="nf:replaceTDateString(@value, $dateT)"/>
+                    </text>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
+
+        <!-- statusCode: voor foutcorrectie -->
+        <!-- uitgefaseerd in 9.1.0, maar voor backwards compatibility hier nog niet verwijderd -->
+        <xsl:if test="geannuleerd_indicator/@value = 'true'">
+            <statusCode code="nullified"/>
+        </xsl:if>
+        <!-- Gebruiksperiode -->
+        <effectiveTime xsi:type="IVL_TS">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20160701155001">
+                <xsl:with-param name="low" select="gebruiksperiode_start"/>
+                <xsl:with-param name="high" select="gebruiksperiode_eind"/>
+                <xsl:with-param name="width" select="gebruiksperiode"/>
+            </xsl:call-template>
+        </effectiveTime>
+        <xsl:for-each select="gebruiksinstructie/toedieningsweg[.//(@value | @code)]">
+            <routeCode>
+                <xsl:call-template name="makeCodeAttribs"/>
+            </routeCode>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>MP CDA author zorgverlener of patient</xd:desc>
+        <xd:param name="ada-auteur"/>
+        <xd:param name="authorTime"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9187_20181205180828">
+        <xsl:param name="ada-auteur" as="element()*" select="."/>
+        <xsl:param name="authorTime"/>
+
+        <author>
+            <!-- Voorstel- of Registratiedatum -->
+            <xsl:for-each select="$authorTime">
+                <time>
+                    <xsl:call-template name="makeTSValueAttr"/>
+                </time>
+            </xsl:for-each>
+            <!-- auteur -->
+            <xsl:for-each select="$ada-auteur/auteur_is_zorgverlener/zorgverlener[.//(@value | @code)]">
+                <assignedAuthor>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20181205174044"/>
+                </assignedAuthor>
+            </xsl:for-each>
+            <xsl:if test="$ada-auteur/auteur_is_patient/@value = 'true'">
+                <assignedAuthor>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000"/>
+                </assignedAuthor>
+            </xsl:if>
+        </author>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc> MP CDA author of informant patient </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9188_20170825000000">
@@ -3082,6 +3112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <code code="ONESELF" displayName="Self" codeSystem="{$oidHL7RoleCode}" codeSystemName="HL7 Role code"/>
     </xsl:template>
+  
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -3097,20 +3128,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </observation>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc>Creates the observation fo kopie-indicator</xd:desc>
         <xd:param name="kopie-ind">ada kopie-indicator</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9200_20180112101847">
         <xsl:param name="kopie-ind" as="element()?" select="."/>
-        
+
         <xsl:for-each select="$kopie-ind">
-        <observation classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
-            <code displayName="Kopie-indicator" code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
-            <xsl:call-template name="makeBLValue"/>
-        </observation>
+            <observation classCode="OBS" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+                <code displayName="Kopie-indicator" code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+                <xsl:call-template name="makeBLValue"/>
+            </observation>
         </xsl:for-each>
     </xsl:template>
 
@@ -3507,7 +3537,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc> andermans Medicatiegebruik - vanaf MP 9.1.0 </xd:desc>
         <xd:param name="in"/>
@@ -3579,7 +3608,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="identificatie[@value]">
                     <xsl:call-template name="makeIIid"/>
                 </xsl:for-each>
-                <code code="52711000146108" displayName="Verstrekkingsverzoek" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" />
+                <code code="52711000146108" displayName="Verstrekkingsverzoek" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
 
                 <!-- aantal herhalingen -->
                 <xsl:for-each select="aantal_herhalingen[@value]">
@@ -3768,36 +3797,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="startdatum-dosering-1"/>
-        <xd:param name="dosering"/>
-        <xd:param name="doseerinstructies"/>
-    </xd:doc>
-    <xsl:function name="nf:calculate_Doseerinstructie_Startdate" as="xs:date?">
-        <xsl:param name="startdatum-dosering-1" as="xs:date?"/>
-        <xsl:param name="dosering"/>
-        <xsl:param name="doseerinstructies"/>
-        <xsl:choose>
-            <xsl:when test="count($doseerinstructies) gt 1">
-                <xsl:variable name="current-volgnummer" select="$dosering/../volgnummer/@value"/>
-                <xsl:variable name="offset-in-days">
-                    <!-- doseerduur mag in uur, dag, week, jaar in MP 9-->
-                    <!-- uur kan niet vertaald naar 6.12, want in 6.12 moet het vertaald worden naar hele dagen bij een cyclisch schema, 
-              uur moet daarom uitgesloten zijn in de aanroepende template(s)! -->
-                    <xsl:variable name="weeks2days" select="sum($doseerinstructies[volgnummer/@value lt $current-volgnummer]/doseerduur[@unit = $ada-unit-week]/@value) * 7"/>
-                    <xsl:variable name="years2days" select="sum($doseerinstructies[volgnummer/@value lt $current-volgnummer]/doseerduur[@unit = $ada-unit-year]/@value) * 365"/>
-                    <xsl:value-of select="sum($doseerinstructies[volgnummer/@value lt $current-volgnummer]/doseerduur[@unit = $ada-unit-day]/@value) + $weeks2days + $years2days"/>
-                </xsl:variable>
-                <xsl:variable name="string-add-days" select="concat('P', $offset-in-days, 'D')"/>
-                <xsl:value-of select="$startdatum-dosering-1 + xs:dayTimeDuration($string-add-days)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <!-- als er maar één doseerinstructie is dan wordt deze begrensd door de gebruiksperiode en hoeft er geen volgorde bepaald te worden,
-                 een doseerstartdatum is dan dus niet nodig -->
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
     <xd:doc>
         <xd:desc/>
         <xd:param name="inputDuur"/>

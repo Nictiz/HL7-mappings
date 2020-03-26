@@ -14,11 +14,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="nf xd xs xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:nf="http://www.nictiz.nl/functions" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_hl7_mp_include.xsl"/>
-    <!-- Generates a HL7 message based on ADA input -->
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-    <!-- only give dateT a value if you want conversion of relative T dates -->
-    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>
-    <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
+    <!-- Generates a HL7 message based on ADA input -->
+
+    <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
+<!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
+    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
+    <!-- param to influence whether to output schematron references, typically only needed for test instances -->
+    <xsl:param name="schematronRef" as="xs:boolean" select="true()"/>
 
     <xsl:template match="/">
         <xsl:call-template name="Voorschrift_90">
@@ -32,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="patient" select="$in/patient"/>
         <xsl:variable name="mbh" select="$in/medicamenteuze_behandeling"/>
 
-        <xsl:if test="$schematron-ref">
+        <xsl:if test="$schematronRef">
             <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
             <!--            <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>-->
             <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_vo.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
