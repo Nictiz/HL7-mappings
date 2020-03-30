@@ -212,6 +212,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <valueString value="{@value}"/>
                         </extension>
                     </xsl:for-each>
+                    <xsl:for-each select="identifier">
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
                     <xsl:for-each select="status[@code]">
                         <status>
                             <xsl:attribute name="value">
@@ -292,11 +297,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Alert"/>
                 </meta>
-                <identifier>
+                <!--<identifier>
                     <xsl:call-template name="id-to-Identifier">
                         <xsl:with-param name="in" select="hcimroot/identification_number"/>
                     </xsl:call-template>
-                </identifier>
+                </identifier>-->
     
                 <!-- The status should active, unless an end date is specified AND it is in the past -->
                 <xsl:variable name="is_completed" as="xs:boolean">
@@ -904,6 +909,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-JournalEntry"/>
                 </meta>
+                <xsl:for-each select="identifier">
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 <status value="final"/>
                 <code>
                     <xsl:call-template name="code-to-CodeableConcept">
