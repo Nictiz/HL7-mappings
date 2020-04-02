@@ -1272,7 +1272,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:variable name="emailType" as="element()?">
                                 <xsl:choose>
                                     <xsl:when test="$theUse = 'HP'">
-                                        <xsl:element name="{$elmTelecomType}">
+                                        <xsl:element name="{$elmEmailAddressType}">
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Primary Home</xsl:attribute>
@@ -1280,7 +1280,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:element>
                                     </xsl:when>
                                     <xsl:when test="$theUse = 'WP'">
-                                        <xsl:element name="{$elmTelecomType}">
+                                        <xsl:element name="{$elmEmailAddressType}">
                                             <xsl:attribute name="code">HP</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
                                             <xsl:attribute name="displayName">Work place</xsl:attribute>
