@@ -13,16 +13,16 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--     <xsl:import href="all-zibs.xsl"/>-->
+    <!--    <xsl:import href="all-zibs.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    
+
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
     <xsl:template name="allergyintoleranceReference" match="allergie_intolerantie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | allergy_intolerance[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAllergyIntoleranceReference-2.1">
-        <xsl:variable name="theIdentifier" select="(identificatie_nummer | zibroot/identificatienummer | identification_number | hcimroot/identification_number)[@value] "/>
+        <xsl:variable name="theIdentifier" select="(identificatie_nummer | zibroot/identificatienummer | identification_number | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$allergyIntolerances[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
@@ -37,12 +37,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </identifier>
             </xsl:when>
         </xsl:choose>
-        
+
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an AllergyIntolerance resource</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
-        
+
         <entry>
             <fullUrl value="{$entryFullUrl}"/>
             <resource>
@@ -88,7 +88,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </entry>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.AllergieIntolerantie concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">zib-AllergyIntolerance</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
@@ -101,13 +101,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-        
+
         <xsl:variable name="patientRef" as="element()*">
             <xsl:for-each select="$adaPatient">
                 <xsl:call-template name="patientReference"/>
             </xsl:for-each>
         </xsl:variable>
-        
+
         <xsl:for-each select="$in">
             <!-- NL-CM:8.2.1    AllergieIntolerantie -->
             <xsl:variable name="resource">
@@ -118,7 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <meta>
                         <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
                     </meta>
-                    
+
                     <!-- text narrative 
                         https://decor.nictiz.nl/art-decor/decor-datasets-\-cio-?id=2.16.840.1.113883.2.4.3.11.60.26.1.1&effectiveDate=2019-07-01T11%3A11%3A01&conceptId=2.16.840.1.113883.2.4.3.11.60.26.2.277&conceptEffectiveDate=2019-10-01T17%3A42%3A12&language=nl-NL
                     -->
@@ -130,7 +130,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </div>
                         </text>
                     </xsl:for-each>
-                    
+
                     <!-- identifier -->
                     <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
                         <identifier>
@@ -139,35 +139,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </identifier>
                     </xsl:for-each>
-                    
+
                     <!-- CD    NL-CM:8.2.5        AllergieStatus            0..1    AllergieStatusCodelijst -->
                     <!-- http://hl7.org/fhir/STU3/valueset-allergy-clinical-status.html -->
-                    <xsl:for-each select="(allergie_status | allergy_status)[@code]">
+                    <!-- Conceptmap: https://simplifier.net/NictizSTU3-Zib2017/AllergieStatusCodelijst-to-allergy-status -->
+                    <xsl:for-each select="(allergie_status | allergy_status)[@code = ('active', 'completed', 'obsolete')]">
+                        <!-- the display is required in FHIR/MedMij, but is not necessarily present in ada
+                        especially when this was converted from HL7v3-->
+                        <xsl:variable name="clinicalStatusValue">
+                            <xsl:choose>
+                                <xsl:when test="@code = 'active'">active</xsl:when>
+                                <xsl:when test="@code = 'completed'">resolved</xsl:when>
+                                <xsl:otherwise>inactive</xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
                         <clinicalStatus>
-                            <xsl:attribute name="value">
-                                <xsl:choose>
-                                    <xsl:when test="@code = 'active'">active</xsl:when>
-                                    <xsl:when test="@code = 'completed'">resolved</xsl:when>
-                                    <xsl:otherwise>inactive</xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:attribute>
+                            <xsl:attribute name="value" select="$clinicalStatusValue"/>
                             <xsl:call-template name="ext-code-specification-1.0">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </clinicalStatus>
                     </xsl:for-each>
-                    
-                    <!-- see https://bits.nictiz.nl/browse/MM-492 on how top map allergy_status to verificationStatus -->
-                    <!-- we don't know, but still a required element, data-absent-reason -->
+
+                    <!-- Conceptmap: https://simplifier.net/NictizSTU3-Zib2017/AllergieStatusCodelijst-to-allergy-status -->
                     <verificationStatus>
                         <xsl:choose>
-                            <xsl:when test="allergy_status[@code = 'nullified'][@codeSystem]">
-                                <xsl:attribute name="value" select="'entered-in-error'"/>
+                            <xsl:when test="allergy_status[@code = 'nullified']">
+                                <xsl:attribute name="value">entered-in-error</xsl:attribute>
                             </xsl:when>
-                            <!-- this is too optimistic -->
-                            <!--<xsl:when test="start_date_time[@value]">
-                                <verificationStatus value="confirmed"/>
-                            </xsl:when>-->
                             <xsl:otherwise>
                                 <!-- we don't know, but still a required element, data-absent-reason -->
                                 <extension url="{$urlExtHL7DataAbsentReason}">
@@ -176,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                     </verificationStatus>
-                    
+
                     <!-- CD    NL-CM:8.2.4        AllergieCategorie        0..1 AllergieCategorieCodelijst-->
                     <!-- The ZIB prescribes an (optional) value list for the allergy category, which is mapped onto
                          AllergyIntolerance.category. However, .category defines its own required coding, which can't be
@@ -225,7 +224,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </category>
                     </xsl:for-each>
-                    
+
                     <!-- CD    NL-CM:8.2.7        MateVanKritiekZijn        0..1 MateVanKritiekZijnCodelijst -->
                     <!--http://hl7.org/fhir/STU3/valueset-allergy-intolerance-criticality.html-->
                     <xsl:for-each select="(mate_van_kritiek_zijn | criticality)[@code]">
@@ -250,7 +249,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </criticality>
                     </xsl:for-each>
-                    
+
                     <!-- CD    NL-CM:8.2.2        VeroorzakendeStof        1..1 VeroorzakendeStofAllergeneStoffenCodelijst, VeroorzakendeStofHPKCodelijst, VeroorzakendeStofSNKCodelijst, VeroorzakendeStofSSKCodelijst, VeroorzakendeStofThesaurus122Codelijst-->
                     <xsl:for-each select="veroorzakende_stof | causative_agent">
                         <code>
@@ -259,7 +258,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </code>
                     </xsl:for-each>
-                    
+
                     <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
                     <patient>
                         <xsl:copy-of select="$patientRef[self::f:extension]"/>
@@ -267,7 +266,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="$patientRef[self::f:identifier]"/>
                         <xsl:copy-of select="$patientRef[self::f:display]"/>
                     </patient>
-                    
+
                     <!--TS    NL-CM:0.0.14    DatumTijd    0..1-->
                     <!-- onsetDateTime -->
                     <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
@@ -280,7 +279,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:attribute>
                         </onsetDateTime>
                     </xsl:for-each>
-                    
+
                     <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
                     <!-- assertedDate -->
                     <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
@@ -293,7 +292,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:attribute>
                         </assertedDate>
                     </xsl:for-each>
-                    
+
                     <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
                     <!-- recorder -->
                     <xsl:variable name="zibrootAuteur" select="zibroot/auteur/((patient_als_auteur | patient_as_author)/patient | zorgverlener_als_auteur/zorgverlener | health_professional_as_author/health_professional | betrokkene_als_auteur/contactpersoon | related_person_as_author/contact_person)"/>
@@ -307,9 +306,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
-                    
+
                     <xsl:variable name="authorRef" as="element()*">
-                        <xsl:for-each select="$adaAuteur[self::zorgverlener]">
+                        <xsl:for-each select="$adaAuteur[self::zorgverlener | self::health_professional]">
                             <xsl:call-template name="practitionerRoleReference">
                                 <xsl:with-param name="useExtension" select="true()"/>
                                 <xsl:with-param name="addDisplay" select="true()"/>
@@ -318,11 +317,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="$adaAuteur[self::patient]">
                             <xsl:sequence select="$patientRef"/>
                         </xsl:for-each>
-                        <xsl:for-each select="$adaAuteur[self::contactpersoon or self::contact_person]">
+                        <xsl:for-each select="$adaAuteur[self::contactpersoon | self::contact_person]">
                             <xsl:call-template name="relatedPersonReference"/>
                         </xsl:for-each>
                     </xsl:variable>
-                    
+
                     <xsl:if test="$authorRef">
                         <recorder>
                             <xsl:copy-of select="$authorRef[self::f:extension]"/>
@@ -331,7 +330,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:copy-of select="$authorRef[self::f:display]"/>
                         </recorder>
                     </xsl:if>
-                    
+
                     <!-- >     NL-CM:0.0.2        Informatiebron via nl.zorg.part.basiselementen -->
                     <xsl:variable name="zibrootInformant" select="(zibroot/informatiebron | hcimroot/information_source)/((patient_als_bron | patient_as_information_source)/patient | zorgverlener/zorgverlener | health_professional/health_professional | betrokkene_als_bron/contactpersoon | related_person_as_information_source/contact_person)"/>
                     <xsl:variable name="adaInformant" as="element()*">
@@ -340,14 +339,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:sequence select="$zibrootInformant"/>
                             </xsl:when>
                             <xsl:when test="$zibrootInformant[not(@datatype) or @datatype = 'reference'][@value]">
-                                <xsl:variable name="resolved1" select="parent::*[parent::data]"/>
-                                <xsl:variable name="resolved" select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
-                                <xsl:variable name="bal" select="'ba'"/>
-                                <xsl:sequence select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
+                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
                             </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
-                    
+
                     <xsl:variable name="informantRef" as="element()*">
                         <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">
                             <xsl:call-template name="practitionerRoleReference">
@@ -362,7 +358,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="relatedPersonReference"/>
                         </xsl:for-each>
                     </xsl:variable>
-                    
+
                     <xsl:if test="$informantRef">
                         <asserter>
                             <xsl:copy-of select="$informantRef[self::f:extension]"/>
@@ -371,7 +367,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:copy-of select="$informantRef[self::f:display]"/>
                         </asserter>
                     </xsl:if>
-                    
+
                     <!-- TS    NL-CM:8.2.8        LaatsteReactieDatumTijd    0..1 -->
                     <xsl:for-each select="(laatste_reactie_datum_tijd | last_reaction_date_time)[@value]">
                         <lastOccurrence>
@@ -382,14 +378,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:attribute>
                         </lastOccurrence>
                     </xsl:for-each>
-                    
+
                     <!-- ST    NL-CM:8.2.9        Toelichting                0..1 -->
                     <xsl:for-each select="(toelichting | comment)[@value]">
                         <note>
                             <text value="{@value}"/>
                         </note>
                     </xsl:for-each>
-                    
+
                     <!-- >    NL-CM:8.2.10    Reactie                    0..* -->
                     <xsl:for-each select="(reactie | reaction)[.//@code | .//@value]">
                         <reaction>
@@ -401,7 +397,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </substance>
                             </xsl:for-each>
-                            
+
                             <!--CD    NL-CM:8.2.11            Symptoom    1..* SymptoomCodelijst-->
                             <xsl:for-each select="(symptoom | symptom)[@code]">
                                 <manifestation>
@@ -410,12 +406,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </manifestation>
                             </xsl:for-each>
-                            
+
                             <!--TS    NL-CM:8.2.13            ReactieBeschrijving    0..1-->
                             <xsl:for-each select="(reactie_beschrijving | reaction_description)[@value]">
                                 <description value="{@value}"/>
                             </xsl:for-each>
-                            
+
                             <!--TS    NL-CM:8.2.17            ReactieTijdstip    0..1-->
                             <xsl:for-each select="(reactie_tijdstip | reaction_time)[@value]">
                                 <onset>
@@ -426,7 +422,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </onset>
                             </xsl:for-each>
-                            
+
                             <!--CD    NL-CM:8.2.14            Ernst    0..1 ErnstCodelijst-->
                             <!-- http://hl7.org/fhir/STU3/valueset-reaction-event-severity.html -->
                             <xsl:for-each select="(ernst | severity)[@code]">
@@ -449,7 +445,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </severity>
                             </xsl:for-each>
-                            
+
                             <!--CD    NL-CM:8.2.15            WijzeVanBlootstelling    0..1 WijzeVanBlootstellingCodelijst-->
                             <xsl:for-each select="(wijze_van_blootstelling | route_of_exposure)[@code]">
                                 <exposureRoute>
@@ -458,13 +454,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </exposureRoute>
                             </xsl:for-each>
-                            
+
                         </reaction>
                     </xsl:for-each>
-                    
+
                 </AllergyIntolerance>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>

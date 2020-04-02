@@ -24,6 +24,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
     <xsl:param name="xsdAda" as="node()*" select="document('../ada_schemas/beschikbaarstellen_allergie_intolerantie_vertaling.xsd')"/>
+    
+    <!-- debug parameter whether to output the $transactionResult variable in a debug dir -->
+    <xsl:param name="debug" as="xs:boolean?" select="false()"/>
+    
     <xsl:variable name="ada-formname">beschikbaarstellen_allergie_intolerantie_vertaling</xsl:variable>
     <xsl:variable name="transaction-name" select="$ada-formname"/>
     <xsl:variable name="xsdTransaction" select="nf:getADAComplexType($xsdAda, nf:getADAComplexTypeName($xsdAda, $transaction-name))"/>
@@ -58,6 +62,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:if test="$ica612Root">
+            <xsl:if test="$debug">
+                <xsl:result-document href="{concat('../debug/', $ica612Root/hl7:id/@extension, '.xml')}">
+                    <xsl:copy-of select="$transactionResult"/>
+                </xsl:result-document>
+            </xsl:if>
             <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_allergie_intolerantie_vertaling.xsd">
                 <meta status="new" created-by="generated" last-update-by="generated">
                     <xsl:attribute name="creation-date" select="current-dateTime()"/>
