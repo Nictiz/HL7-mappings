@@ -142,32 +142,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- CD    NL-CM:8.2.5        AllergieStatus            0..1    AllergieStatusCodelijst -->
                     <!-- http://hl7.org/fhir/STU3/valueset-allergy-clinical-status.html -->
-                    <xsl:for-each select="(allergie_status | allergy_status)[@code]">
+                    <!-- Conceptmap: https://simplifier.net/NictizSTU3-Zib2017/AllergieStatusCodelijst-to-allergy-status -->
+                    
+                    <xsl:for-each select="(allergie_status | allergy_status)[@code = ('active', 'completed', 'obsolete')]">
+                        <!-- the display is required in FHIR/MedMij, but is not necessarily present in ada
+                        especially when this was converted from HL7v3-->
+                        <xsl:variable name="clinicalStatusValue">
+                            <xsl:choose>
+                                <xsl:when test="@code = 'active'">active</xsl:when>
+                                <xsl:when test="@code = 'completed'">resolved</xsl:when>
+                                <xsl:otherwise>inactive</xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
                         <clinicalStatus>
-                            <xsl:attribute name="value">
-                                <xsl:choose>
-                                    <xsl:when test="@code = 'active'">active</xsl:when>
-                                    <xsl:when test="@code = 'completed'">resolved</xsl:when>
-                                    <xsl:otherwise>inactive</xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:attribute>
+                            <xsl:attribute name="value" select="$clinicalStatusValue"/>
                             <xsl:call-template name="ext-code-specification-1.0">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </clinicalStatus>
                     </xsl:for-each>
-                    
-                    <!-- see https://bits.nictiz.nl/browse/MM-492 on how top map allergy_status to verificationStatus -->
-                    <!-- we don't know, but still a required element, data-absent-reason -->
+                    <!-- Conceptmap: https://simplifier.net/NictizSTU3-Zib2017/AllergieStatusCodelijst-to-allergy-status -->
                     <verificationStatus>
                         <xsl:choose>
-                            <xsl:when test="allergy_status[@code = 'nullified'][@codeSystem]">
-                                <xsl:attribute name="value" select="'entered-in-error'"/>
+                            <xsl:when test="allergy_status[@code = 'nullified']">
+                                <xsl:attribute name="value">entered-in-error</xsl:attribute>
                             </xsl:when>
-                            <!-- this is too optimistic -->
-                            <!--<xsl:when test="start_date_time[@value]">
-                                <verificationStatus value="confirmed"/>
-                            </xsl:when>-->
                             <xsl:otherwise>
                                 <!-- we don't know, but still a required element, data-absent-reason -->
                                 <extension url="{$urlExtHL7DataAbsentReason}">
@@ -309,7 +308,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     
                     <xsl:variable name="authorRef" as="element()*">
-                        <xsl:for-each select="$adaAuteur[self::zorgverlener]">
+                        <xsl:for-each select="$adaAuteur[self::zorgverlener | self::health_professional]">
                             <xsl:call-template name="practitionerRoleReference">
                                 <xsl:with-param name="useExtension" select="true()"/>
                                 <xsl:with-param name="addDisplay" select="true()"/>
@@ -318,7 +317,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="$adaAuteur[self::patient]">
                             <xsl:sequence select="$patientRef"/>
                         </xsl:for-each>
-                        <xsl:for-each select="$adaAuteur[self::contactpersoon or self::contact_person]">
+                        <xsl:for-each select="$adaAuteur[self::contactpersoon | self::contact_person]">
                             <xsl:call-template name="relatedPersonReference"/>
                         </xsl:for-each>
                     </xsl:variable>
@@ -340,11 +339,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:sequence select="$zibrootInformant"/>
                             </xsl:when>
                             <xsl:when test="$zibrootInformant[not(@datatype) or @datatype = 'reference'][@value]">
-                                <xsl:variable name="resolved1" select="parent::*[parent::data]"/>
-                                <xsl:variable name="resolved" select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
-                                <xsl:variable name="bal" select="'ba'"/>
-                                <xsl:sequence select="parent::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
-                            </xsl:when>
+                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
+                                </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
                     

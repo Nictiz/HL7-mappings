@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="inputDateT">Optional. For test instances with relative T date</xd:param>
     </xd:doc>
     <xsl:template name="format2HL7Date">
-        <xsl:param name="dateTime" as="xs:string?"/>
+        <xsl:param name="dateTime" as="xs:string?" select="."/>
         <xsl:param name="precision" as="xs:string?">second</xsl:param>
         <xsl:param name="inputDateT" as="xs:date?" select="$dateT"/>
         <xsl:variable name="picture" as="xs:string?">
@@ -81,6 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- return the normalize space of whatever was the input -->
             <xsl:otherwise>
+                <xsl:message terminate="no">Encountered an ada dateTime '<xsl:value-of select="$inputDateTime"/>' which could not be converted to HL7 date(time). Input = output.</xsl:message>
                 <xsl:value-of select="$processedDateTime"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -135,7 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Generates an element with a boolean value. Also handles nullFlavors. Expected context is ada element.</xd:desc>
-        <xd:param name="xsiType">The xsi type to be included. Defaults to BL.</xd:param>
+        <xd:param name="xsiType">The xsi type to be included. Defaults to BL. Input empty string if no xsi:type should be outputted.</xd:param>
         <xd:param name="elemName">The hl7 element name to be outputted</xd:param>
         <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
     </xd:doc>
@@ -317,7 +318,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Makes code attributes</xd:desc>
         <xd:param name="code"/>
         <xd:param name="codeSystem"/>
         <xd:param name="codeSystemName"/>
@@ -442,11 +443,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:element>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="effectiveTime"/>
+        <xd:desc>Make HL7 effectiveTime based on ada input element</xd:desc>
+        <xd:param name="effectiveTime">ada input element with date(time), defaults to context element</xd:param>
     </xd:doc>
     <xsl:template name="makeEffectiveTime">
-        <xsl:param name="effectiveTime"/>
+        <xsl:param name="effectiveTime" as="element()?" select="."/>
         <xsl:if test="$effectiveTime[1] instance of element()">
             <xsl:for-each select="$effectiveTime[@value | @nullFlavor]">
                 <effectiveTime>
@@ -456,15 +457,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="xsiType"/>
-        <xd:param name="elemName"/>
-        <xd:param name="qualifier"/>
+        <xd:desc>make ENXP Value</xd:desc>
+        <xd:param name="xsiType">Optional. The xsi:type to be outputted. Defaults to ENXP. However: is not used in this template.</xd:param>
+        <xd:param name="elemName">Optional. The element name to be outputted. Defaults to value.</xd:param>
+        <xd:param name="qualifier">Optional. Not used in this template.</xd:param>
     </xd:doc>
     <xsl:template name="makeENXPValue">
-        <xsl:param name="xsiType">ENXP</xsl:param>
-        <xsl:param name="elemName">value</xsl:param>
-        <xsl:param name="qualifier"/>
+        <xsl:param name="xsiType" as="xs:string?">ENXP</xsl:param>
+        <xsl:param name="elemName" as="xs:string?">value</xsl:param>
+        <xsl:param name="qualifier" as="xs:string*"/>
         <xsl:element name="{$elemName}">
             <!-- ENXP never occurs outside AD and never needs xsi:type -->
             <xsl:value-of select="@value"/>
@@ -847,7 +848,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Makes HL7 text type element</xd:desc>
     </xd:doc>
     <xsl:template name="makeText">
         <text>
@@ -1031,7 +1032,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="concat('unknown ada unit: ', $ADAunit)"/>
+                    <!-- let's assume it is a valid UCUM code -->
+                <xsl:value-of select="$ADAunit"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>

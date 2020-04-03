@@ -27,13 +27,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="utilities.xsl"/>
     <xsl:param name="override" select="'true'"/>
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
-    
+
     <!-- Uncomment if you want to test this transform directly -->
     <xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">
         <xsl:apply-templates mode="addNarrative"/>
     </xsl:template>
-    
+
     <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
         <xsl:choose>
@@ -45,15 +45,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="."/>
             </xsl:when>
             <!-- These are the resources we know we support. Copy the elements before text, create text, copy the elements after text -->
-            <xsl:when test="self::f:AllergyIntolerance | self::f:Appointment | self::f:CarePlan | self::f:CareTeam | 
-                            self::f:Composition | self::f:Condition | self::f:Consent | self::f:Coverage | self::f:Device | 
-                            self::f:DeviceUseStatement | self::f:DiagnosticReport | self::f:Encounter | self::f:EpisodeOfCare | 
-                            self::f:Flag | self::f:Goal | self::f:Immunization | self::f:ImmunizationRecommendation | self::f:List | 
-                            self::f:Location | self::f:Media | self::f:Medication | self::f:MedicationAdministration | self::f:MedicationDispense | 
-                            self::f:MedicationRequest | self::f:MedicationStatement | self::f:NutritionOrder | self::f:Observation | 
-                            self::f:Organization | self::f:Patient | self::f:Person | self::f:Practitioner | self::f:PractitionerRole | 
-                            self::f:Procedure | self::f:ProcedureRequest | self::f:QuestionnaireResponse | self::f:RelatedPerson | self::f:Slot | 
-                            self::f:Specimen | self::f:Task">
+            <xsl:when
+                test="
+                    self::f:AllergyIntolerance | self::f:Appointment | self::f:CarePlan | self::f:CareTeam |
+                    self::f:Composition | self::f:Condition | self::f:Consent | self::f:Coverage | self::f:Device |
+                    self::f:DeviceUseStatement | self::f:DiagnosticReport | self::f:Encounter | self::f:EpisodeOfCare |
+                    self::f:Flag | self::f:Goal | self::f:Immunization | self::f:ImmunizationRecommendation | self::f:List |
+                    self::f:Location | self::f:Media | self::f:Medication | self::f:MedicationAdministration | self::f:MedicationDispense |
+                    self::f:MedicationRequest | self::f:MedicationStatement | self::f:NutritionOrder | self::f:Observation |
+                    self::f:Organization | self::f:Patient | self::f:Person | self::f:Practitioner | self::f:PractitionerRole |
+                    self::f:Procedure | self::f:ProcedureRequest | self::f:QuestionnaireResponse | self::f:RelatedPerson | self::f:Slot |
+                    self::f:Specimen | self::f:Task">
                 <xsl:copy>
                     <xsl:apply-templates select="@*" mode="addNarrative"/>
                     <xsl:apply-templates select="f:id | f:meta | f:implicitRules | f:language | f:id/preceding-sibling::node() | f:meta/preceding-sibling::node() | f:implicitRules/preceding-sibling::node() | f:language/preceding-sibling::node()" mode="addNarrative"/>
@@ -88,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="@* | text() | processing-instruction() | comment()" mode="addNarrative">
         <xsl:copy xml:space="preserve"/>
     </xsl:template>
-    
+
     <!-- ***************** -->
     <!-- Resources Section -->
     <!-- ***************** -->
@@ -4737,7 +4739,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        
+
                         <xsl:if test="f:partOf">
                             <tr>
                                 <th>
@@ -4955,8 +4957,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'] |
-                            f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']">
+                        <xsl:if test="
+                                f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'] |
+                                f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']">
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
@@ -4966,8 +4969,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <td>
                                     <xsl:variable name="contents" as="element()*">
                                         <xsl:for-each select="
-                                            f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'] |
-                                            f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']">
+                                                f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'] |
+                                                f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']">
                                             <li>
                                                 <xsl:call-template name="doDT">
                                                     <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'value')]"/>
@@ -5048,7 +5051,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:with-param name="key">typeCode-RESP</xsl:with-param>
                                                     <xsl:with-param name="post" select="': '"/>
                                                 </xsl:call-template>
-                                                
+
                                                 <xsl:variable name="contents" as="element()*">
                                                     <xsl:for-each select="f:responsible">
                                                         <li>
@@ -5272,7 +5275,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:basedOn |
+                        <xsl:if test="
+                                f:basedOn |
                                 f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'] |
                                 f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement']">
                             <tr>
@@ -5283,7 +5287,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </th>
                                 <td>
                                     <xsl:variable name="contents" as="element()*">
-                                        <xsl:for-each select="f:basedOn | 
+                                        <xsl:for-each select="
+                                                f:basedOn |
                                                 f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse']/f:*[starts-with(local-name(), 'value')] |
                                                 f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement']/f:*[starts-with(local-name(), 'value')]">
                                             <li>
@@ -5349,7 +5354,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:supportingInformation |
+                        <xsl:if test="
+                                f:supportingInformation |
                                 f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation']">
                             <tr>
                                 <th>
@@ -5412,8 +5418,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </th>
                                 <td>
                                     <xsl:variable name="contents" as="element()*">
-                                        <xsl:for-each select="f:*[starts-with(local-name(), 'reason')] | 
-                                                              f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AgreementReason']">
+                                        <xsl:for-each select="
+                                                f:*[starts-with(local-name(), 'reason')] |
+                                                f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AgreementReason']">
                                             <li>
                                                 <xsl:choose>
                                                     <xsl:when test="self::f:*[starts-with(local-name(), 'reason')]">
@@ -5474,7 +5481,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
-                        <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'] | 
+                        <xsl:if test="
+                                f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'] |
                                 f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']">
                             <tr>
                                 <th>
@@ -5484,7 +5492,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </th>
                                 <td>
                                     <xsl:variable name="contents" as="element()*">
-                                        <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'] | 
+                                        <xsl:for-each select="
+                                                f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'] |
                                                 f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']">
                                             <li>
                                                 <xsl:call-template name="doDT">
@@ -8953,7 +8962,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </div>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- ***************** -->
     <!-- Datatypes Section -->
     <!-- ***************** -->
@@ -9583,7 +9592,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </div>
                 </xsl:if>
                 <xsl:if test="f:additionalInstruction | f:patientInstruction">
-                    <xsl:variable name="contents" as="element()">
+                    <xsl:variable name="contents" as="element()*">
                         <xsl:for-each select="f:additionalInstruction">
                             <li xmlns="http://www.w3.org/1999/xhtml">
                                 <xsl:call-template name="doDT_CodeableConcept">
@@ -10463,16 +10472,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </xsl:if>
                         <xsl:if test="f:dayOfWeek">
-                            <xsl:if test="f:dayOfWeek/preceding-sibling::f:*">
-                                <xsl:call-template name="util:getLocalizedString">
-                                    <xsl:with-param name="pre" select="', '"/>
-                                    <xsl:with-param name="key">on</xsl:with-param>
-                                    <xsl:with-param name="post" select="' '"/>
+                            <!-- day of week may appear more then once -->
+                            <xsl:for-each select="f:dayOfWeek">
+                                <xsl:if test="./preceding-sibling::f:*">
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="pre" select="', '"/>
+                                        <xsl:with-param name="key">on</xsl:with-param>
+                                        <xsl:with-param name="post" select="' '"/>
+                                    </xsl:call-template>
+                                </xsl:if>
+                                <xsl:call-template name="getLocalizedDaysOfWeek">
+                                    <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </xsl:if>
-                            <xsl:call-template name="getLocalizedDaysOfWeek">
-                                <xsl:with-param name="in" select="f:dayOfWeek"/>
-                            </xsl:call-template>
+                            </xsl:for-each>
                         </xsl:if>
                         <xsl:if test="f:timeOfDay">
                             <xsl:if test="f:timeOfWeek/preceding-sibling::f:*">

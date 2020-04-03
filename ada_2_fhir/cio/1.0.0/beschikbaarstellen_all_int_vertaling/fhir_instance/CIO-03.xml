@@ -4,12 +4,21 @@
    <type value="searchset"/>
    <total value="0"/>
    <entry>
-      <fullUrl value="urn:uuid:dd9f5393-fa60-11e9-1894-020000000000"/>
+      <fullUrl value="urn:uuid:3a8c326f-74ff-11ea-1189-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999911247 (BSN), M van de XXX_Daalen (Martin), Man, 1964-08-01</div>
+                  <div>
+                     <a href="tel:0595-987654">0595-987654</a> (Tel Privé)</div>
+                  <div>Knolweg 1002, 9999 ZZ Stitswerd (Post)</div>
+               </div>
+            </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                <value value="999911247"/>
@@ -50,13 +59,13 @@
                   </extension>
                </system>
                <value value="0595-987654"/>
-               <use value="temp">
+               <use value="home">
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                      <valueCodeableConcept>
                         <coding>
                            <system value="http://hl7.org/fhir/v3/AddressUse"/>
-                           <code value="TMP"/>
-                           <display value="Tijdelijk telefoonnummer"/>
+                           <code value="HP"/>
+                           <display value="Telefoonnummer thuis"/>
                         </coding>
                      </valueCodeableConcept>
                   </extension>

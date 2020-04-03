@@ -1,12 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <MedicationStatement xmlns="http://hl7.org/fhir">
    <id value="MBH-213-1-MGB-4"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationStatement. Subject: <a href="Patient/XXX-GOBEE">R. XXX_Gobee</a>. Id: MBH_213_1_MGB_4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+               <br/>Auteur: <a href="Patient/XXX-GOBEE">R. XXX_Gobee</a>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Voorschrijver</th>
+                  <td>
+                     <a href="PractitionerRole/5fcc591a-7597-11ea-1506-020000000000">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>
+                     <a href="Medication/48291-2-16-840-1-113883-2-4-4-10">MIZOLASTINE TABLET MGA  10MG</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Datum/tijd</th>
+                  <td>Vanaf 2018-07-31T00:00:00+02:00, 19 dag</td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>2018-08-18T11:25:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Ondersteunende informatie</th>
+                  <td>relatie naar medicatieafspraak (Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf 31 jul 2018, gedurende 19 dagen, 2 maal per dag 1 tablet, oraal</div>
+                     <div>Timing: <div>2 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 1 stuk</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie gebruikt</th>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
       <valueReference>
-         <reference value="PractitionerRole/c531ceba-11d9-11ea-1402-020000000000"/>
+         <reference value="PractitionerRole/5fcc591a-7597-11ea-1506-020000000000"/>
          <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
    </extension>
@@ -26,7 +81,11 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
       <value value="MBH_213_1_MGB_4"/>
    </identifier>
-   <status value="active"/>
+   <status>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </status>
    <category>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

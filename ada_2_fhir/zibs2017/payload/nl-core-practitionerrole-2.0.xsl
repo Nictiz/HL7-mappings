@@ -76,7 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="practitionerRoleReference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" as="element()*" mode="doPractitionerRoleReference-2.0">
         <xsl:param name="useExtension" as="xs:boolean?" select="false()"/>
         <xsl:param name="addDisplay" as="xs:boolean?" select="false()"/>
-        <xsl:variable name="theIdentifier" select="zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
+        <xsl:variable name="theIdentifier" select="zorgverlener_identificatienummer[@value] | zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$practitionerRoles[group-key = $theGroupKey]" as="element()?"/>
 
@@ -247,7 +247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:get-practitioner-role-display" as="xs:string?">
         <xsl:param name="healthProfessional" as="element()?"/>
         <xsl:for-each select="$healthProfessional">
-            <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])/@value"/>
+            <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1] | zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])"/>
             <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
             <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
             <xsl:variable name="specialty" select=".//specialisme/@displayName | .//specialty/@displayName"/>
@@ -260,9 +260,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$role">
                     <xsl:value-of select="normalize-space($role)"/>
                 </xsl:when>
-                <xsl:when test="$personIdentifier">
-                    <xsl:value-of select="normalize-space($personIdentifier)"/>
+                <xsl:when test="$personIdentifier[@value]">
+                    <xsl:variable name="codesystemDisplay" as="xs:string?">
+                        <xsl:choose>
+                            <xsl:when test="string-length($oidMap[@oid = $personIdentifier/@root]/@displayName) gt 0">
+                                <xsl:value-of select="$oidMap[@oid = $personIdentifier/@root]/@displayName"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$personIdentifier/@root"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                <xsl:variable name="idDisplay" as="xs:string*">
+                        <xsl:if test="string-length($personIdentifier/@value) gt 0">Persoonsidentificatie: <xsl:value-of select="normalize-space($personIdentifier/@value)"/></xsl:if>
+                        <xsl:if test="string-length($codesystemDisplay) gt 0">(uit codesysteem <xsl:value-of select="$codesystemDisplay"/>).</xsl:if>
+                    </xsl:variable>
+                    <xsl:value-of select="normalize-space(string-join($idDisplay, ' '))"/>
                 </xsl:when>
+            <!-- display is required in FHIR / MedMij, this is not so nice, but we want to output something still -->
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
     </xsl:function>

@@ -3,6 +3,13 @@
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 333333333 (UZI-NR-PERS), S. Calpel</div>
+         <div>Valkendael 45 3 hoog, 6245 HK Maastricht (Werk)</div>
+      </div>
+   </text>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
       <value value="333333333"/>
@@ -22,4 +29,20 @@
          </extension>
       </given>
    </name>
+   <address>
+      <use value="work"/>
+      <line value="Valkendael 45 3 hoog">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Valkendael"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="45"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="3 hoog"/>
+         </extension>
+      </line>
+      <city value="Maastricht"/>
+      <postalCode value="6245 HK"/>
+   </address>
 </Practitioner>

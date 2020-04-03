@@ -1,9 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <MedicationStatement xmlns="http://hl7.org/fhir">
    <id value="MBH-MO-123-3-MGB-1"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationStatement. Subject: <a href="Patient/XXX-JANGI">I. XXX_Jangi</a>. Id: MBH_MO_123_3_MGB_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+               <br/>Auteur: <a href="Patient/XXX-JANGI">I. XXX_Jangi</a>
+            </caption>
+            <tbody>
+               <tr>
+                  <th colspan="2">Deze informatie is gekopieerd van een derde partij</th>
+               </tr>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_MO_123_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>
+                     <a href="Medication/6563b913-7597-11ea-1894-020000000000">Glimepiride</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Datum/tijd</th>
+                  <td>[Language: en]06 August 2018 00:00:00 - [Language: en]17 August 2018 23:59:59</td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>2018-08-16T12:58:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Tekst: Vanaf T - 10, t/m T+1, 1 maal per dag 1 tablet</div>
+                     <div>Timing: <div>eenmalig per dag</div>
+                     </div>
+                     <div>Dosering: 1 stuk</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie gebruikt</th>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
       <valueReference>
          <reference value="Patient/XXX-JANGI"/>
@@ -23,7 +68,11 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
       <value value="MBH_MO_123_3_MGB_1"/>
    </identifier>
-   <status value="active"/>
+   <status>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </status>
    <category>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -33,7 +82,7 @@
       <text value="Medicatiegebruik"/>
    </category>
    <medicationReference>
-      <reference value="Medication/0ca9b1cb-fa61-11e9-4676-28f10e481d92"/>
+      <reference value="Medication/6563b913-7597-11ea-1894-020000000000"/>
       <display value="Glimepiride"/>
    </medicationReference>
    <effectivePeriod>
