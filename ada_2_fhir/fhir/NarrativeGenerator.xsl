@@ -9583,7 +9583,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </div>
                 </xsl:if>
                 <xsl:if test="f:additionalInstruction | f:patientInstruction">
-                    <xsl:variable name="contents" as="element()">
+                    <xsl:variable name="contents" as="element()*">
                         <xsl:for-each select="f:additionalInstruction">
                             <li xmlns="http://www.w3.org/1999/xhtml">
                                 <xsl:call-template name="doDT_CodeableConcept">
