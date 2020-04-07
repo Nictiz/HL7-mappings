@@ -24,6 +24,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 ===Release Notes===
 2020-04-07 -
 * MM-1057 Add Composition.type.display
+2020-03-30 - 
+* Add support for identifier on EpisodeOfCare, remove identifier from Flag. Path would not have data and if it did it would have been incorrect
 2020-03-18 - 1.3.3
 * MM-1018 Fixed trailing/leading spaces by adjusting the central datatype functions. This affects any mapping part that calls them
 * MM-1009 Fixed missing timezone on Bundle.entry.resource.period.start
