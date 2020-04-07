@@ -187,13 +187,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:choose>
                                 <!-- SEE https://bits.nictiz.nl/browse/MM-498 for the mapping discussion -->
                                 <!-- Propensity to adverse reactions to food    418471000    SNOMED CT    2.16.840.1.113883.6.96    Voeding-->
-                                <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">food</xsl:when>
+                                <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">neiging tot ongewenste reactie op voedsel</xsl:when>
                                 <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
-                                <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">medication</xsl:when>
+                                <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">neiging tot ongewenste reactie op geneesmiddel</xsl:when>
                                 <!--Environmental allergy    426232007    SNOMED CT    2.16.840.1.113883.6.96    Omgeving-->
-                                <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">environment</xsl:when>
+                                <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">omgevingsgerelateerde allergie</xsl:when>
                                 <!--Allergy to substance    419199007    SNOMED CT    2.16.840.1.113883.6.96    Stof of product-->
-                                <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">biologic</xsl:when>
+                                <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">allergie voor substantie</xsl:when>
                                 <xsl:when test="@codeSystem = $oidHL7NullFlavor"/>
                                 <xsl:otherwise>
                                     <xsl:message>Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:message>
@@ -232,13 +232,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:attribute name="value">
                                 <xsl:choose>
                                     <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
-                                    <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">low</xsl:when>
+                                    <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">licht</xsl:when>
                                     <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
-                                    <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                    <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">matig</xsl:when>
                                     <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
-                                    <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                    <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">ernstig</xsl:when>
                                     <!--Fatal    399166001    SNOMED CT    2.16.840.1.113883.6.96    Fataal-->
-                                    <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
+                                    <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">fataal</xsl:when>
                                     <xsl:otherwise>
                                         <xsl:message>Unsupported AllergyIntolerance criticality code "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
                                     </xsl:otherwise>
