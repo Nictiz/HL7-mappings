@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-04-07 -
+* MM-1057 Add Composition.type.display
 2020-03-18 - 1.3.3
 * MM-1018 Fixed trailing/leading spaces by adjusting the central datatype functions. This affects any mapping part that calls them
 * MM-1009 Fixed missing timezone on Bundle.entry.resource.period.start
