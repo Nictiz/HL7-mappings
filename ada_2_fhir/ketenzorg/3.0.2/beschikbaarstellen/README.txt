@@ -23,6 +23,7 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 
 ===Release Notes===
 2020-04-07 -
+* MM-1056 Improved display on codes in AllergyIntolerance.category and .criticality
 * MM-1057 Add Composition.type.display
 2020-03-30 - 
 * Add support for identifier on EpisodeOfCare, remove identifier from Flag. Path would not have data and if it did it would have been incorrect
