@@ -470,12 +470,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="originalText"/>
         <xd:param name="strOriginalText"/>
         <xd:param name="value"/>
-  </xd:doc>
+    </xd:doc>
     <xsl:template name="makeCodeAttribs">
         <xsl:param name="code" as="xs:string?" select="@code"/>
         <xsl:param name="codeSystem" as="xs:string?" select="@codeSystem"/>
         <xsl:param name="codeSystemName" as="xs:string?" select="@codeSystemName"/>
-        <xsl:param name="codeSystemVersion" as="xs:string?" select="@codeSystemVersion"/>        
+        <xsl:param name="codeSystemVersion" as="xs:string?" select="@codeSystemVersion"/>
         <xsl:param name="displayName" as="xs:string?" select="@displayName"/>
         <xsl:param name="originalText"/>
         <xsl:param name="strOriginalText" as="xs:string?"/>
@@ -1054,7 +1054,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                    <xsl:copy-of select="@nullFlavor"/>
                </xsl:when>
            </xsl:choose>
-            
         </xsl:element>
     </xsl:template>
 
