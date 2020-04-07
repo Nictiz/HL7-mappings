@@ -1009,6 +1009,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://loinc.org"/>
                         <code value="67781-5"/>
+                    <display value="Summarization of encounter note Narrative"/>
                     </coding>
                 </type>
                 <xsl:variable name="patient">
