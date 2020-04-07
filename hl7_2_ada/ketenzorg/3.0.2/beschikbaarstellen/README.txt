@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-04-07
+* MM-1057 Smarter looking up of Practitioner name, address, organization. now checks whole instance as some data might be added elsewhere
 2020-03-13 - 1.3.0
 * MM-959 - Add support for MCCI_IN200101 with multiple interactions with contents (https://bits.nictiz.nl/browse/MM-959)
 * Fixed handling of Period where start or end don't have a value
