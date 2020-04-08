@@ -1166,16 +1166,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- gebruiksperiode_start /eind -->
                     <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
                         <xsl:call-template name="ext-zib-Medication-PeriodOfUse-2.0">
-                            <xsl:with-param name="start" select="./gebruiksperiode_start"/>
-                            <xsl:with-param name="end" select="./gebruiksperiode_eind"/>
+                            <xsl:with-param name="start" select="gebruiksperiode_start"/>
+                            <xsl:with-param name="end" select="gebruiksperiode_eind"/>
                         </xsl:call-template>
                     </xsl:for-each>
                     <!-- gebruiksperiode - duur -->
-                    <xsl:for-each select="./gebruiksperiode[.//@value]">
+                    <xsl:for-each select="gebruiksperiode[.//@value]">
                         <xsl:call-template name="ext-zib-Medication-Use-Duration"/>
                     </xsl:for-each>
                     <!-- relatie naar medicamenteuze behandeling -->
-                    <xsl:for-each select="./../identificatie[.//(@value)]">
+                    <xsl:for-each select="../identificatie[.//(@value)]">
                         <xsl:call-template name="ext-zib-medication-medication-treatment-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
@@ -1216,7 +1216,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="TA-afspraakdatum" match="afspraakdatum | afspraak_datum_tijd" mode="TA-afspraakdatum">
         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-            <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}">
+            <valueDateTime>
                 <xsl:attribute name="value">
                     <xsl:call-template name="format2FHIRDate">
                         <xsl:with-param name="dateTime" select="@value"/>
@@ -1372,7 +1372,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- aanschrijfdatum -->
                     <xsl:for-each select="./aanschrijfdatum[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
-                            <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                            <valueDateTime>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="@value"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </valueDateTime>
                         </extension>
                     </xsl:for-each>
                     <!-- relatie naar medicamenteuze behandeling -->
