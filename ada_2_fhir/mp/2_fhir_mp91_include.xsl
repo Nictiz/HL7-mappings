@@ -1162,7 +1162,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
                     </meta>
                     <!-- afspraakdatum -->
-                    <xsl:apply-templates select="afspraakdatum[@value]" mode="TA-afspraakdatum"/>
+                    <xsl:apply-templates select="(afspraakdatum | afspraak_datum_tijd)[@value]" mode="TA-afspraakdatum"/>
                     <!-- gebruiksperiode_start /eind -->
                     <xsl:for-each select=".[(gebruiksperiode_start | gebruiksperiode_eind)//(@value)]">
                         <xsl:call-template name="ext-zib-Medication-PeriodOfUse-2.0">
@@ -1214,9 +1214,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates the FHIR element for TA afspraakdatum, context should be ada afspraakdatum</xd:desc>
     </xd:doc>
-    <xsl:template name="TA-afspraakdatum" match="afspraakdatum" mode="TA-afspraakdatum">
+    <xsl:template name="TA-afspraakdatum" match="afspraakdatum | afspraak_datum_tijd" mode="TA-afspraakdatum">
         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-            <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+            <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}">
+                <xsl:attribute name="value">
+                    <xsl:call-template name="format2FHIRDate">
+                        <xsl:with-param name="dateTime" select="@value"/>
+                    </xsl:call-template>
+                </xsl:attribute>
+            </valueDateTime>
         </extension>
     </xsl:template>
 
