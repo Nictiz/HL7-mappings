@@ -768,9 +768,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
             <xsl:when test="matches($dateTime, 'T([+\-]\d+(\.\d+)?[YMD])?')">
-                <xsl:variable name="sign" select="replace($dateTime, 'T(([+\-]).*)?', '$2')"/>
-                <xsl:variable name="amount" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)[YMD].*)?', '$2')"/>
-                <xsl:variable name="yearMonthDay" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?([YMD]).*)?', '$3')"/>
+                <xsl:variable name="sign" >
+                    <xsl:variable name="temp" select="replace($dateTime, 'T(([+\-]).*)?', '$2')"/>
+                    <xsl:choose>
+                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <!-- default -->
+                        <xsl:otherwise>+</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="amount">
+                    <xsl:variable name="temp" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)[YMD].*)?', '$2')"/>
+                    <xsl:choose>
+                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <!-- default -->
+                        <xsl:otherwise>0</xsl:otherwise>
+                    </xsl:choose>                    
+                </xsl:variable>
+                <xsl:variable name="yearMonthDay">
+                    <xsl:variable name="temp" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?([YMD]).*)?', '$3')"/>
+                    <xsl:choose>
+                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <!-- default -->
+                        <xsl:otherwise>D</xsl:otherwise>
+                    </xsl:choose>      
+                </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)([YMD]).*)?', 'P$2$4')"/>
                 <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)})?)?', '$4')"/>
                 <xsl:variable name="time">
