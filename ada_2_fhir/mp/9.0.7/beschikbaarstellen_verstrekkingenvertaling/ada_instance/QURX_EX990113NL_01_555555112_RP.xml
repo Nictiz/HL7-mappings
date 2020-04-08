@@ -2,7 +2,7 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
     <meta status="new" created-by="generated" last-update-by="generated" creation-date="2019-02-28T11:57:34.615+01:00" last-update-date="2019-02-28T11:57:34.615+01:00"/>
     <data>
-        <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907" shortName="beschikbaarstellen_verstrekkingenvertaling" formName="uitwisselen_verstrekkingenvertaling" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" prefix="mp-" language="nl-NL" title="Generated from HL7v3 verstrekkingenlijst 6.12 xml" id="QURX_EX990113NL_01_555555112_RP.xml">
+        <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907" shortName="beschikbaarstellen_verstrekkingenvertaling" formName="uitwisselen_verstrekkingenvertaling" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" prefix="mp-" language="nl-NL" title="Generated from HL7v3 verstrekkingenlijst 6.12 xml" id="QURX_EX990113NL_01_555555112_RP">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19798">
                 <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19799">
                     <voornamen value="Richard" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19800"/>
@@ -21,11 +21,11 @@
                 <!--MBH id copied from 6.12 dispense identifier-->
                 <identificatie value="38129f10-100a-11e5-b939-0800200c9a66" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22093"/>
                 <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20132">
-                    <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
-                    <afspraakdatum conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133" value="2007-12-08"/>
+                    <!--afspraak_datum_tijd is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+                    <afspraak_datum_tijd conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20133" value="T"/>
                     <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22097">
                         <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20210">
-                            <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20211"/>
+                            <zorgaanbieder_identificatienummer value="01234567" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20211"/>
                             <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20212" nullFlavor="NI"/>
                         </zorgaanbieder>
                     </verstrekker>
@@ -40,6 +40,7 @@
                     <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22098">
                         <omschrijving value="Gebruik bekend" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22619"/>
                         <toedieningsweg conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22620" code="NI" codeSystem="2.16.840.1.113883.5.1008" displayName="geen informatie"/>
+                        <aanvullende_instructie code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="overig" originalText="Gebruik bekend" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22621" />
                         <!--mp9-doseerinstructie-from-mp612-freq-->
                         <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22623">
                             <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22626">
@@ -53,10 +54,10 @@
                 <verstrekking conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20270">
                     <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1" value="38129f10-100a-11e5-b939-0800200c9a66" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20271"/>
                     <datum nullFlavor="NI" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20272"/>
-                    <aanschrijfdatum value="2007-12-08" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"/>
+                    <aanschrijfdatum value="T" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.22500"/>
                     <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.20858">
                         <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19791">
-                            <zorgaanbieder_identificatie_nummer value="01234567" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19792"/>
+                            <zorgaanbieder_identificatienummer value="01234567" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19792"/>
                             <organisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.19793" nullFlavor="NI"/>
                         </zorgaanbieder>
                     </verstrekker>
