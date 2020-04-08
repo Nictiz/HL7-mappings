@@ -23,15 +23,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../util/units.xsl"/>
     <xsl:import href="NarrativeGenerator.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-    
+
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-    
+
     <xsl:param name="logLevel" select="'warn'"/>
-    
+
     <xd:doc>
         <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
     </xd:doc>
@@ -467,7 +467,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="start" as="element()?"/>
         <xsl:param name="end" as="element()?"/>
         <xsl:param name="inputDateT" as="xs:date?"/>
-        
+
         <xsl:choose>
             <xsl:when test="$start[@nullFlavor]">
                 <start>
@@ -743,14 +743,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="dateTime">Input ada or HL7 date(Time)</xd:param>
         <xd:param name="precision">Determines the precision of the output. Precision of minutes outputs seconds as '00'</xd:param>
         <xd:param name="dateT">Optional parameter. The T-date for which a relativeDate must be calculated. If not given a Touchstone like parameterised string is outputted</xd:param>
-        
     </xd:doc>
     <xsl:template name="format2FHIRDate">
         <xsl:param name="dateTime" as="xs:string?"/>
-        <!-- precision determines the picture of the date format, currently only use case for day, minute or second. Seconds is the default. -->
         <xsl:param name="precision">second</xsl:param>
         <xsl:param name="dateT" as="xs:date?"/>
-        
+
         <xsl:variable name="picture" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D')">[Y0001]-[M01]-[D01]</xsl:when>
@@ -769,12 +767,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="format-date(xs:date(normalize-space($dateTime)), '[Y0001]-[M01]-[D01]')"/>
             </xsl:when>
             <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
-            <xsl:when test="matches($dateTime, 'T[+\-]\d+(\.\d+)?[YMD]')">
-                <xsl:variable name="sign" select="replace($dateTime, 'T([+\-]).*', '$1')"/>
-                <xsl:variable name="amount" select="replace($dateTime, 'T[+\-](\d+(\.\d+)?)[YMD].*', '$1')"/>
-                <xsl:variable name="yearMonthDay" select="replace($dateTime, 'T[+\-]\d+(\.\d+)?([YMD]).*', '$2')"/>
-                <xsl:variable name="xsDurationString" select="replace($dateTime, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
-                <xsl:variable name="timePart" select="replace($dateTime, 'T[+\-]\d+(\.\d+)?[YMD](\{(.*)})?', '$3')"/>
+            <xsl:when test="matches($dateTime, 'T([+\-]\d+(\.\d+)?[YMD])?')">
+                <xsl:variable name="sign" select="replace($dateTime, 'T(([+\-]).*)?', '$2')"/>
+                <xsl:variable name="amount" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)[YMD].*)?', '$2')"/>
+                <xsl:variable name="yearMonthDay" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?([YMD]).*)?', '$3')"/>
+                <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)([YMD]).*)?', 'P$2$4')"/>
+                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)})?)?', '$4')"/>
                 <xsl:variable name="time">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 5">
@@ -798,7 +796,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="$newDate"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                      </xsl:when>
+                    </xsl:when>
                     <xsl:otherwise>
                         <!-- output a relative date for Touchstone -->
                         <xsl:value-of select="concat('${DATE, T, ', $yearMonthDay, ', ', $sign, $amount, '}')"/>
@@ -872,7 +870,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor. Else return empty</xd:desc>
         <xd:param name="in"/>
@@ -883,7 +881,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:value-of select="upper-case(string-join(($in//@value, $in//@root, $in//@unit, $in//@code[not(../@codeSystem = $oidHL7NullFlavor)], $in//@codeSystem[not(. = $oidHL7NullFlavor)])/normalize-space(), ''))"/>
         </xsl:if>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value. Else return empty</xd:desc>
         <xd:param name="in"/>
@@ -906,7 +904,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:function>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc/>
         <xd:param name="healthcareProviderIdentification">ADA element containing the healthcare provider organization identification</xd:param>
     </xd:doc>
@@ -996,7 +994,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:text disable-output-escaping="yes">--&gt;
 </xsl:text>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> copy without comments </xd:desc>
     </xd:doc>
@@ -1007,7 +1005,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Default copy template for outputting the results </xd:desc>
     </xd:doc>
@@ -1016,39 +1014,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="@* | node()" mode="ResultOutput"/>
         </xsl:copy>
     </xsl:template>
-    
-   <xd:doc>
-       <xd:desc>Log a warning i.e. a recovarable error. What happens depends on the value of the global $logLevel parameter:
-           <xd:ul>
-               <xd:li>silent: don't do anything.</xd:li>
-               <xd:li>warn: output the warning as message.</xd:li>
-               <xd:li>fatal: output the warning as message.</xd:li>
-           </xd:ul>
-       </xd:desc>
-       <xd:param name="message">The warning message to log.</xd:param>
-   </xd:doc>
-   <xsl:template name="LogWarning">
-       <xsl:param name="message" as="xs:string"/>
-       <xsl:if test="$logLevel = ('warn', 'fatal')">
-           <xsl:message terminate="no" select="concat('WARNING: ', $message)"/>
-       </xsl:if>
-   </xsl:template>
 
-   <xd:doc>
-       <xd:desc>Log a non-recovarable error. What happens depends on the value of the global $logLevel parameter:
+    <xd:doc>
+        <xd:desc>Log a warning i.e. a recovarable error. What happens depends on the value of the global $logLevel parameter:
            <xd:ul>
-               <xd:li>silent: don't do anything, the error will be silently ignored.</xd:li>
-               <xd:li>warn: output the error as message but continue processing.</xd:li>
-               <xd:li>fatal: output the error and terminate processing.</xd:li>
-           </xd:ul>
-       </xd:desc>
-       <xd:param name="message">The error message to log.</xd:param>
-   </xd:doc>
-   <xsl:template name="LogError">
-       <xsl:param name="message" as="xs:string"/>
-       <xsl:if test="$logLevel = ('warn', 'fatal')">
-           <xsl:message terminate="{$logLevel = 'fatal'}" select="concat('ERROR: ', $message)"/>
-       </xsl:if>
-   </xsl:template>
+                <xd:li>silent: don't do anything.</xd:li>
+                <xd:li>warn: output the warning as message.</xd:li>
+                <xd:li>fatal: output the warning as message.</xd:li>
+            </xd:ul>
+        </xd:desc>
+        <xd:param name="message">The warning message to log.</xd:param>
+    </xd:doc>
+    <xsl:template name="LogWarning">
+        <xsl:param name="message" as="xs:string"/>
+        <xsl:if test="$logLevel = ('warn', 'fatal')">
+            <xsl:message terminate="no" select="concat('WARNING: ', $message)"/>
+        </xsl:if>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Log a non-recovarable error. What happens depends on the value of the global $logLevel parameter:
+           <xd:ul>
+                <xd:li>silent: don't do anything, the error will be silently ignored.</xd:li>
+                <xd:li>warn: output the error as message but continue processing.</xd:li>
+                <xd:li>fatal: output the error and terminate processing.</xd:li>
+            </xd:ul>
+        </xd:desc>
+        <xd:param name="message">The error message to log.</xd:param>
+    </xd:doc>
+    <xsl:template name="LogError">
+        <xsl:param name="message" as="xs:string"/>
+        <xsl:if test="$logLevel = ('warn', 'fatal')">
+            <xsl:message terminate="{$logLevel = 'fatal'}" select="concat('ERROR: ', $message)"/>
+        </xsl:if>
+    </xsl:template>
 
 </xsl:stylesheet>
