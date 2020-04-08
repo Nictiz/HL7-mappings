@@ -4,14 +4,44 @@
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:0d6540c4-fa61-11e9-2032-020000000000"/>
+      <fullUrl value="urn:uuid:14ad55cc-79b6-11ea-9836-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationDispense. Subject: Richard R. van Henegouwen. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+                        <br/>Uitvoerende: Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'.</caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>38129f10-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt op</th>
+                           <td>${DATE, T, , }</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MEBENDAZOL SAN TABLET 100MG</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: Gebruik bekend</div>
+                              <div>Instructie: Gebruik bekend</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-               <valueDateTime value="2007-12-08"/>
+               <valueDateTime value="${DATE, T, , }"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
@@ -32,7 +62,7 @@
                <display value="MEBENDAZOL SAN TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d6539ae-fa61-11e9-2032-020000000000"/>
+               <reference value="urn:uuid:14ad46fa-79b6-11ea-9836-020000000000"/>
                <display value="Richard R. van Henegouwen"/>
             </subject>
             <performer>
@@ -43,6 +73,14 @@
             </performer>
             <dosageInstruction>
                <text value="Gebruik bekend"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="Gebruik bekend"/>
+               </additionalInstruction>
             </dosageInstruction>
          </MedicationDispense>
       </resource>
@@ -57,8 +95,41 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationDispense. Subject: Richard R. van Henegouwen. Id: 38129f10-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
+                        <br/>Uitvoerende: Organisatie met id '01234567' in identificerend systeem '2.16.528.1.1007.3.3'.</caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>38129f10-100a-11e5-b939-0800200c9a66 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Aanvraagdatum</th>
+                           <td>T</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MEBENDAZOL SAN TABLET 100MG</td>
+                        </tr>
+                        <tr>
+                           <th>Hoeveelheid</th>
+                           <td>2 Stuk</td>
+                        </tr>
+                        <tr>
+                           <th>Datum overhandigd</th>
+                           <td>
+                              <i>geen informatie (ontbrekend gegeven)</i>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
-               <valueDateTime value="2007-12-08"/>
+               <valueDateTime value="T"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
@@ -83,7 +154,7 @@
                <display value="MEBENDAZOL SAN TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0d6539ae-fa61-11e9-2032-020000000000"/>
+               <reference value="urn:uuid:14ad46fa-79b6-11ea-9836-020000000000"/>
                <display value="Richard R. van Henegouwen"/>
             </subject>
             <performer>
@@ -110,15 +181,25 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0d6539ae-fa61-11e9-2032-020000000000"/>
+      <fullUrl value="urn:uuid:14ad46fa-79b6-11ea-9836-020000000000"/>
       <resource>
          <Patient>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Patient"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), Richard R. van Henegouwen, Man, 1950-02-20</div>
+               </div>
+            </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="555555112"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -158,6 +239,20 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>OrganisatieId: 01234567 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="01234567"/>
@@ -175,6 +270,21 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
             </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="MEBENDAZOL SAN TABLET 100MG (14234785 - G-Standaard ZI_nummer)">MEBENDAZOL SAN TABLET 100MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
