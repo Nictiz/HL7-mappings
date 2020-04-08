@@ -280,7 +280,7 @@
         <xsl:param name="start-date"/>
         <xsl:param name="periode"/>
         <xsl:param name="end-date"/>
-
+        
         <xsl:for-each select="$current-bouwsteen">
             <xsl:variable name="waarde" as="xs:string*">
                 <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
@@ -290,73 +290,87 @@
                 <xsl:if test="$periode/@value">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
                   <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
                 </xsl:if>
-                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>
+                <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
+                <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
             </xsl:variable>
             <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
         </xsl:for-each>
-    </xsl:function>
-
+    </xsl:function>    
+    
     <xd:doc>
         <xd:desc>Generates omschrijving based on structured fields</xd:desc>
         <xd:param name="gebruiksinstructie">Input ada element for usage instruction</xd:param>
     </xd:doc>
     <xsl:function name="nf:gebruiksintructie-string" as="xs:string?">
         <xsl:param name="gebruiksinstructie" as="element()?"/>
-
+        
         <xsl:for-each select="$gebruiksinstructie">
             <xsl:variable name="amount-doseerinstructies" select="count(doseerinstructie[.//(@value | @code)])" as="xs:integer"/>
             <xsl:variable name="non-parallel-doseerinstructie">
                 <xsl:value-of select="exists(doseerinstructie[volgnummer/@value != preceding-sibling::doseerinstructie/volgnummer/@value])"/>
             </xsl:variable>
-
+            
             <!-- generate omschrijving using structured fields -->
             <xsl:variable name="theOmschrijving" as="xs:string*">
-
+                
                 <!-- gebruiksperiode -->
-                <xsl:value-of select="nf:periode-string(., ../gebruiksperiode_start, ../gebruiksperiode, ../gebruiksperiode_eind)"/>
-
+                <xsl:variable name="periodeString" select="nf:periode-string(., ../gebruiksperiode_start, ../gebruiksperiode, ../gebruiksperiode_eind)"/>
+                <xsl:if test="string-length($periodeString) gt 0">
+                    <xsl:value-of select="$periodeString"/>
+                </xsl:if>
+                
+                <!-- Herhaalperiode cyclisch schema -->
+                <xsl:variable name="herhaalperiodeString" as="xs:string*">
+                    <xsl:for-each select="herhaalperiode_cyclisch_schema[@value | @unit]">
+                        <xsl:value-of select="concat('cyclus van ', concat(./@value, ' ', nwf:unit-string(./@value, ./@unit)), ': steeds ')"/>
+                    </xsl:for-each>
+                </xsl:variable>
+                
                 <!-- doseerinstructie(s) (schema) -->
                 <xsl:variable name="doseerinstructieText" as="xs:string*">
                     <xsl:for-each select="doseerinstructie">
                         <xsl:value-of select="nf:dosering-string(., $amount-doseerinstructies, $non-parallel-doseerinstructie)"/>
-                    </xsl:for-each>                    
+                    </xsl:for-each>
                 </xsl:variable>
-                 <xsl:for-each select="$doseerinstructieText">
-                    <xsl:value-of select="concat(', ', .)"/>
-                </xsl:for-each>
-
+                <xsl:if test="string-length(string-join($doseerinstructieText, '')) gt 0">
+                    <xsl:value-of select="concat(string-join($herhaalperiodeString, ' '), string-join($doseerinstructieText, ', '))"/>
+                </xsl:if>
+                
                 <!-- aanvullende instructie(s) -->
                 <xsl:for-each select="aanvullende_instructie">
                     <xsl:choose>
                         <xsl:when test="string-length(@originalText) gt 0">
-                            <xsl:value-of select="concat(', ', @originalText)"/>
+                            <xsl:value-of select="@originalText"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="concat(', ', @displayName)"/>
+                            <xsl:if test="string-length(@displayName) gt 0">
+                                <xsl:value-of select="@displayName"/>
+                            </xsl:if>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
-
+                
                 <!-- toedieningsweg -->
-                <xsl:for-each select="toedieningsweg">
+                <xsl:for-each select="toedieningsweg[not(@code = 'NI' and @codeSystem = $oidHL7NullFlavor)]">
                     <xsl:choose>
                         <xsl:when test="@code = '1'">
                             <!-- toedieningsweg niet van toepassing, don't output -->
                         </xsl:when>
                         <xsl:when test="string-length(@originalText) gt 0">
-                            <xsl:value-of select="concat(', ', @originalText)"/>
+                            <xsl:value-of select="@originalText"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="concat(', ', @displayName)"/>
+                            <xsl:if test="string-length(@displayName) gt 0">
+                                <xsl:value-of select="@displayName"/>
+                            </xsl:if>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
-
             </xsl:variable>
-            <xsl:value-of select="string-join($theOmschrijving, '')"/>
+            <xsl:value-of select="string-join($theOmschrijving, ', ')"/>
         </xsl:for-each>
     </xsl:function>
-
+    
     <xd:doc>
         <xd:desc>Returns a unit string for display purposes, depending on the given unit ánd whether the value is singular or plural</xd:desc>
         <xd:param name="value">Input param to determine whether to return the singular or plural form for display</xd:param>
