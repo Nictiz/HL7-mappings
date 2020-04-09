@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--    <xsl:import href="all-zibs.xsl"/>-->
+    <!--<xsl:import href="all-zibs.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -187,18 +187,54 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:choose>
                                 <!-- SEE https://bits.nictiz.nl/browse/MM-498 for the mapping discussion -->
                                 <!-- Propensity to adverse reactions to food    418471000    SNOMED CT    2.16.840.1.113883.6.96    Voeding-->
-                                <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">neiging tot ongewenste reactie op voedsel</xsl:when>
+                                <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">food</xsl:when>
                                 <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
-                                <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">neiging tot ongewenste reactie op geneesmiddel</xsl:when>
+                                <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">medication</xsl:when>
                                 <!--Environmental allergy    426232007    SNOMED CT    2.16.840.1.113883.6.96    Omgeving-->
-                                <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">omgevingsgerelateerde allergie</xsl:when>
+                                <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">environment</xsl:when>
                                 <!--Allergy to substance    419199007    SNOMED CT    2.16.840.1.113883.6.96    Stof of product-->
-                                <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">allergie voor substantie</xsl:when>
+                                <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">biologic</xsl:when>
                                 <xsl:when test="@codeSystem = $oidHL7NullFlavor"/>
                                 <xsl:otherwise>
                                     <xsl:message>Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:message>
                                 </xsl:otherwise>
                             </xsl:choose>
+                        </xsl:variable>
+                        <!-- Make sure displayNames represent SNOMED CT. Move original displayName to originalText if it is not 'up to snuff', unless originalText already has a value? Seems overdoing it -->
+                        <xsl:variable name="in" as="element()">
+                            <xsl:copy>
+                                <xsl:copy-of select="@*"/>
+                                <xsl:choose>
+                                    <!-- Propensity to adverse reactions to food    418471000    SNOMED CT    2.16.840.1.113883.6.96    Voeding-->
+                                    <xsl:when test="@code = '418471000' and @codeSystem = $oidSNOMEDCT">
+                                        <xsl:attribute name="displayName">neiging tot ongewenste reactie op voedsel</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'neiging tot ongewenste reactie op voedsel')">
+                                            <xsl:attribute name="originalText" select="@displayName"/>
+                                        </xsl:if>-->
+                                    </xsl:when>
+                                    <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
+                                    <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">
+                                        <xsl:attribute name="displayName">neiging tot ongewenste reactie op geneesmiddel</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'neiging tot ongewenste reactie op geneesmiddel')">
+                                            <xsl:attribute name="originalText" select="@displayName"/>
+                                        </xsl:if>-->
+                                    </xsl:when>
+                                    <!--Environmental allergy    426232007    SNOMED CT    2.16.840.1.113883.6.96    Omgeving-->
+                                    <xsl:when test="@code = '426232007' and @codeSystem = $oidSNOMEDCT">
+                                        <xsl:attribute name="displayName">omgevingsgerelateerde allergie</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'omgevingsgerelateerde allergie')">
+                                            <xsl:attribute name="originalText" select="@displayName"/>
+                                        </xsl:if>-->
+                                    </xsl:when>
+                                    <!--Allergy to substance    419199007    SNOMED CT    2.16.840.1.113883.6.96    Stof of product-->
+                                    <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">
+                                        <xsl:attribute name="displayName">allergie voor substantie</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'allergie voor substantie')">
+                                            <xsl:attribute name="originalText" select="@displayName"/>
+                                        </xsl:if>-->
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:copy>
                         </xsl:variable>
                         <!-- valueset binding in FHIR is required, so only one of the four options in the valueSet is permitted, otherwise do not output category -->
                         <category>
@@ -220,7 +256,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                             <!-- And now for the actual thing: -->
                             <xsl:call-template name="ext-code-specification-1.0">
-                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="in" select="$in"/>
                             </xsl:call-template>
                         </category>
                     </xsl:for-each>
@@ -228,24 +264,60 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- CD    NL-CM:8.2.7        MateVanKritiekZijn        0..1 MateVanKritiekZijnCodelijst -->
                     <!--http://hl7.org/fhir/STU3/valueset-allergy-intolerance-criticality.html-->
                     <xsl:for-each select="(mate_van_kritiek_zijn | criticality)[@code]">
+                        <!-- Make sure displayNames represent SNOMED CT. Move original displayName to originalText if it is not 'up to snuff', unless originalText already has a value? Seems overdoing it -->
+                        <xsl:variable name="in" as="element()">
+                            <xsl:copy>
+                                <xsl:copy-of select="@*"/>
+                                <xsl:choose>
+                                    <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
+                                    <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">
+                                        <xsl:attribute name="displayName">licht</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'licht')">
+                                            <xsl:attribute name="originalText" select="@displayName"/>
+                                        </xsl:if>-->
+                                    </xsl:when>
+                                    <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
+                                    <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">
+                                        <xsl:attribute name="displayName">matig</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'matig')">
+                                            <xsl:attribute name="originalText" select="@displayName"/>
+                                        </xsl:if>-->
+                                    </xsl:when>
+                                    <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
+                                    <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">
+                                        <xsl:attribute name="displayName">ernstig</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'ernstig')">
+                                            <xsl:attribute name="originalText" select="@displayName"/>
+                                        </xsl:if>-->
+                                    </xsl:when>
+                                    <!--Fatal    399166001    SNOMED CT    2.16.840.1.113883.6.96    Fataal-->
+                                    <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">
+                                        <xsl:attribute name="displayName">fataal</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'fataal')">
+                                            <xsl:attribute name="originalText" select="@displayName"/>
+                                        </xsl:if>-->
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:copy>
+                        </xsl:variable>
                         <criticality>
                             <xsl:attribute name="value">
                                 <xsl:choose>
                                     <!--Mild    255604002    SNOMED CT    2.16.840.1.113883.6.96    Licht-->
-                                    <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">licht</xsl:when>
+                                    <xsl:when test="@code = '255604002' and @codeSystem = $oidSNOMEDCT">low</xsl:when>
                                     <!--Moderate    6736007    SNOMED CT    2.16.840.1.113883.6.96    Matig-->
-                                    <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">matig</xsl:when>
+                                    <xsl:when test="@code = '6736007' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
                                     <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
-                                    <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">ernstig</xsl:when>
+                                    <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
                                     <!--Fatal    399166001    SNOMED CT    2.16.840.1.113883.6.96    Fataal-->
-                                    <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">fataal</xsl:when>
+                                    <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
                                     <xsl:otherwise>
                                         <xsl:message>Unsupported AllergyIntolerance criticality code "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:attribute>
                             <xsl:call-template name="ext-code-specification-1.0">
-                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="in" select="$in"/>
                             </xsl:call-template>
                         </criticality>
                     </xsl:for-each>
