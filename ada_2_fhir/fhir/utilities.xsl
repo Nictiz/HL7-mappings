@@ -6,7 +6,7 @@
     xmlns:fhir="http://hl7.org/fhir"
     xmlns:util="urn:hl7:utilities"
     exclude-result-prefixes="xs xd util hl7 fhir"
-    version="1.0">
+    version="2.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> May 11, 2017</xd:p>
@@ -27,7 +27,7 @@
             <xd:p>Cache language dependant strings</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:variable name="util:vocMessages" select="document($util:vocFile)"/>
+    <xsl:variable name="util:vocMessages" select="doc($util:vocFile)"/>
     
     <xd:doc>
         <xd:desc>
@@ -35,6 +35,11 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="util:textlangDefault" select="'en-US'"/>
+    
+    <xd:doc>
+        <xd:desc>Index the translation file for performance</xd:desc>
+    </xd:doc>
+    <xsl:key name="util-i18nkey" match="translation" use="@key"/>
     
     <xd:doc>
         <xd:desc>
@@ -80,25 +85,27 @@
         <!-- Do lowercase compare of language (assume alpha2 not alpha3) -->
         <xsl:variable name="textLangPartLowerCase" select="substring($textLangLowerCase,1,2)"/>
         
+        <xsl:variable name="translation" select="$util:vocMessages/*/key('util-i18nkey', $key)"/>
+        
         <xsl:choose>
             <!-- compare 'de-CH' -->
-            <xsl:when test="$util:vocMessages/*/translation[@key = $key]/value[@lang = $textLangLowerCase]">
-                <xsl:value-of select="concat($pre,$util:vocMessages/*/translation[@key = $key]/value[@lang=$textLangLowerCase]/text(),$post)"/>
+            <xsl:when test="$translation/value[@lang = $textLangLowerCase]">
+                <xsl:value-of select="concat($pre,$translation/value[@lang=$textLangLowerCase]/text(),$post)"/>
             </xsl:when>
             <!-- compare 'de' in 'de-CH' -->
-            <xsl:when test="$util:vocMessages/*/translation[@key = $key]/value[substring(@lang, 1, 2)=$textLangPartLowerCase]">
-                <xsl:value-of select="concat($pre,$util:vocMessages/*/translation[@key = $key]/value[substring(@lang, 1, 2)=$textLangPartLowerCase]/text(),$post)"/>
+            <xsl:when test="$translation/value[substring(@lang, 1, 2)=$textLangPartLowerCase]">
+                <xsl:value-of select="concat($pre,$translation/value[substring(@lang, 1, 2)=$textLangPartLowerCase]/text(),$post)"/>
             </xsl:when>
             <!-- compare 'en-US' -->
-            <xsl:when test="$util:vocMessages/*/translation[@key = $key]/value[@lang=$textLangDefaultLowerCase]">
-                <xsl:value-of select="concat($pre,$util:vocMessages/*/translation[@key = $key]/value[@lang=$textLangDefaultLowerCase]/text(),$post)"/>
+            <xsl:when test="$translation/value[@lang=$textLangDefaultLowerCase]">
+                <xsl:value-of select="concat($pre,$translation/value[@lang=$textLangDefaultLowerCase]/text(),$post)"/>
             </xsl:when>
             <!-- compare 'en' in 'en-US' -->
-            <xsl:when test="$util:vocMessages/*/translation[@key = $key]/value[substring(@lang, 1, 2)=$textLangDefaultPartLowerCase]">
-                <xsl:value-of select="concat($pre,$util:vocMessages/*/translation[@key = $key]/value[substring(@lang, 1, 2)=$textLangDefaultPartLowerCase]/text(),$post)"/>
+            <xsl:when test="$translation/value[substring(@lang, 1, 2)=$textLangDefaultPartLowerCase]">
+                <xsl:value-of select="concat($pre,$translation/value[substring(@lang, 1, 2)=$textLangDefaultPartLowerCase]/text(),$post)"/>
             </xsl:when>
-            <xsl:when test="$util:vocMessages/*/translation[@key = $key]/value[@lang='en-us']">
-                <xsl:value-of select="concat($pre,$util:vocMessages/*/translation[@key = $key]/value[@lang='en-us']/text(),$post)"/>
+            <xsl:when test="$translation/value[@lang='en-us']">
+                <xsl:value-of select="concat($pre,$translation/value[@lang='en-us']/text(),$post)"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:message>util:getLocalizedString Key not found: <xsl:value-of select="$key"/></xsl:message>
@@ -116,7 +123,7 @@
     <xsl:template name="util:caseDown">
         <xsl:param name="data"/>
         <xsl:if test="$data">
-            <xsl:value-of select="translate($data, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
+            <xsl:value-of select="lower-case($data)"/>
         </xsl:if>
     </xsl:template>
     
