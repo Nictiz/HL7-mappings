@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns="http://hl7.org/fhir">
+    <action>
+        <assert>
+            <description value="Confirm that HTTP header Authorization contains the patient token {$patient-token-id}"/>
+            <direction value="request"/>
+            <headerField value="Authorization"/>
+            <value value="${patient-token-id}"/>
+        </assert>
+    </action>
+</actions>
+
