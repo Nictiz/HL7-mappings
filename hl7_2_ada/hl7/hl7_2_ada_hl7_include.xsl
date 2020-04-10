@@ -273,7 +273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getADAComplexTypeName" as="xs:string?">
         <xsl:param name="schemaFragment" as="node()*"/>
         <xsl:param name="elementName" as="xs:string?"/>
-        <xsl:value-of select="$schemaFragment//xs:element[@name = $elementName]/@type"/>
+        <xsl:value-of select="$schemaFragment/xs:sequence/xs:element[@name = $elementName]/@type"/>
     </xsl:function>
 
     <xd:doc>
@@ -284,7 +284,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getADAComplexType" as="element()?">
         <xsl:param name="schema" as="node()*"/>
         <xsl:param name="complexTypeName" as="xs:string?"/>
-        <xsl:copy-of select="$schema//xs:complexType[@name = $complexTypeName]"/>
+        <xsl:copy-of select="$schema/xs:schema/xs:complexType[@name = $complexTypeName]"/>
     </xsl:function>
 
     <xd:doc>
