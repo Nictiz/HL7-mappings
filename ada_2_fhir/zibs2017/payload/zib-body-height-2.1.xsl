@@ -19,10 +19,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-
+    <!-- ada input -->
+    <xsl:param name="adaInput" select="."/>
+    
     <xsl:variable name="bodyHeights" as="element()*">
         <!-- lichaamslengte body-heights -->
-        <xsl:for-each-group select="//(lichaamslengte | body_height)" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="$adaInput//(lichaamslengte | body_height)" group-by="nf:getGroupingKeyDefault(.)">
             <unieke-observatie xmlns="">
                 <group-key xmlns="">
                     <xsl:value-of select="current-grouping-key()"/>

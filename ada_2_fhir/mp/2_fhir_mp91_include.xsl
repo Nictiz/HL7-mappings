@@ -21,7 +21,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
-
+    <!-- ada input -->
+    <xsl:param name="adaInput" select="."/>
+    
     <xsl:variable name="gstd-coderingen">
         <code rootoid="{$oidGStandaardGPK}"/>
         <code rootoid="{$oidGStandaardHPK}"/>
@@ -31,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="products" as="element()*">
         <!-- Products -->
-        <xsl:for-each-group select="//product" group-by="nf:getProductGroupingKey(./product_code)">
+        <xsl:for-each-group select="$adaInput//product" group-by="nf:getProductGroupingKey(./product_code)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -95,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="locations" as="element()*">
         <!-- Locaties -->
-        <xsl:for-each-group select="//afleverlocatie" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="$adaInput//afleverlocatie" group-by="nf:getGroupingKeyDefault(.)">
             <unieke-locatie xmlns="">
                 <group-key xmlns="">
                     <xsl:value-of select="current-grouping-key()"/>
@@ -135,14 +137,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="searchMode" as="xs:string">match</xsl:variable>
 
         <!-- medicatieafspraken -->
-        <xsl:for-each select="//medicatieafspraak">
+        <xsl:for-each select="$adaInput//medicatieafspraak">
             <!-- entry for MedicationRequest -->
             <xsl:call-template name="MedicationAgreementEntry-3.0">
                 <xsl:with-param name="searchMode" select="$searchMode"/>
             </xsl:call-template>
         </xsl:for-each>
         <!-- verstrekkingsverzoeken -->
-        <xsl:for-each select="//verstrekkingsverzoek">
+        <xsl:for-each select="$adaInput//verstrekkingsverzoek">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -158,7 +160,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- toedieningsafspraken -->
-        <xsl:for-each select="//toedieningsafspraak">
+        <xsl:for-each select="$adaInput//toedieningsafspraak">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -179,7 +181,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- verstrekkingen -->
-        <xsl:for-each select="//verstrekking">
+        <xsl:for-each select="$adaInput//verstrekking">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -200,7 +202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- medicatie_gebruik -->
-        <xsl:for-each select="//medicatie_gebruik">
+        <xsl:for-each select="$adaInput//medicatie_gebruik">
             <!-- entry for MedicationRequest -->
             <xsl:call-template name="MedicationUseEntry-3.0">
                 <xsl:with-param name="searchMode" select="$searchMode"/>
@@ -212,7 +214,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="searchMode" as="xs:string">match</xsl:variable>
 
         <!-- toedieningsafspraken -->
-        <xsl:for-each select="//toedieningsafspraak">
+        <xsl:for-each select="$adaInput//toedieningsafspraak">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:get-fhir-uuid(.)}"/>
                 <resource>
@@ -242,7 +244,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
         <!-- verstrekkingen -->
-        <xsl:for-each select="//verstrekking">
+        <xsl:for-each select="$adaInput//verstrekking">
             <entry xmlns="http://hl7.org/fhir">
                 <fullUrl value="{nf:getUriFromAdaId(./identificatie)}"/>
                 <resource>
@@ -263,7 +265,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
     </xsl:variable>
-
 
     <xd:doc>
         <xd:desc> Template based on FHIR Profile https://simplifier.net/NictizSTU3-Zib2017/ZIB-AdministrationAgreement/ </xd:desc>
@@ -427,8 +428,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
-
-
 
     <xd:doc>
         <xd:desc/>

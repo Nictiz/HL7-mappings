@@ -17,9 +17,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- ada input -->
+    <xsl:param name="adaInput" select="."/>
     
     <xsl:variable name="organizations" as="element()*">
-        <xsl:variable name="healthProvider" select="//zorgaanbieder[not(zorgaanbieder)] | //healthcare_provider[not(healthcare_provider)]"/>
+        <xsl:variable name="healthProvider" select="$adaInput//zorgaanbieder[not(zorgaanbieder)] | //healthcare_provider[not(healthcare_provider)]"/>
         
         <!-- Zorgaanbieders -->
         <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->

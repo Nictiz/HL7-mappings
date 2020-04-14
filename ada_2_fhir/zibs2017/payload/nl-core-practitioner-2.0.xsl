@@ -17,9 +17,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <!--    <xsl:import href="all-zibs.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-
+    <!-- ada input -->
+    <xsl:param name="adaInput" select="."/>
+    
     <xsl:variable name="practitioners" as="element()*">
-        <xsl:variable name="healthProfessional" select="//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])"/>
+        <xsl:variable name="healthProfessional" select="$adaInput//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])"/>
         <!-- Zorgverleners in Practitioners -->
         <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
         <!-- This causes two or more entries with an identical grouping-key, causing problems with identical practitioners with same fullUrl in a Bundle... -->
