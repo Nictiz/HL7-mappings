@@ -19,26 +19,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="../../../hl7_2_ada_ketenzorg_include.xsl"/>
-    
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="doGeneratedComment"/>
-            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_encounter_notes_response.xsd">
-                <meta status="new" created-by="generated" last-update-by="generated">
-                    <xsl:attribute name="creation-date" select="current-dateTime()"/>
-                    <xsl:attribute name="last-update-date" select="current-dateTime()"/>
-                </meta>
-                <data>
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_encounter_notes_response.xsd">
+            <meta status="new" created-by="generated" last-update-by="generated">
+                <xsl:attribute name="creation-date" select="current-dateTime()"/>
+                <xsl:attribute name="last-update-date" select="current-dateTime()"/>
+            </meta>
+            <data>
                 <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerContactReports]">
                     <xsl:call-template name="BeschikbaarstellenContactverslagen-ADA">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="author" select="(ancestor::hl7:ControlActProcess/hl7:authorOrPerformer//*[hl7:id])[1]"/>
                     </xsl:call-template>
                 </xsl:for-each>
-                </data>
-            </adaxml>
+            </data>
+        </adaxml>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="BeschikbaarstellenContactverslagen-ADA">
         <xsl:param name="in" as="element()"/>
         <xsl:param name="author" as="element()?"/>
-        
+
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
         <encounter_notes_response app="ketenzorg3.0" shortName="encounter_notes_response" formName="encounter_notes_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.526" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <!-- Bundle stuff -->
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="custodian" select="(hl7:participant[@typeCode = 'CST']/hl7:participantRole[hl7:scopingEntity], $author)[1]"/>
                 <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
-            
+
             <xsl:variable name="organizerComponents" select="$in//*[hl7:templateId/@root = $oidContactReport]"/>
             <xsl:for-each select="$organizerComponents">
                 <encounter_note>
@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="elemName">identification_number</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:if>
-                            
+
                             <xsl:for-each select="hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
                                 <author>
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
@@ -79,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </author>
                             </xsl:for-each>
-                            
+
                             <!-- Date and if relevant the time the event to which the information relates took place . -->
                             <xsl:for-each select="(hl7:effectiveTime[@value] | hl7:effectiveTime/hl7:low)[1]">
                                 <xsl:call-template name="handleTS">
@@ -123,9 +123,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </encounter_note>
             </xsl:for-each>
         </encounter_notes_response>
-        <xsl:comment>Input HL7 xml below</xsl:comment>
-        <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="in" select="./*"/>
-        </xsl:call-template>
     </xsl:template>
 </xsl:stylesheet>

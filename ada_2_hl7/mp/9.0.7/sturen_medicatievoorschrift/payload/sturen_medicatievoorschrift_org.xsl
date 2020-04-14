@@ -70,9 +70,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				</xsl:for-each>
 			</xsl:for-each>
 		</organizer>
-		<!--<xsl:comment>Input ada xml below</xsl:comment>
-		<xsl:call-template name="copyElementInComment">
-			<xsl:with-param name="element" select="$mbh/.."/>
-		</xsl:call-template>-->
-	</xsl:template>
+		</xsl:template>
 </xsl:stylesheet>

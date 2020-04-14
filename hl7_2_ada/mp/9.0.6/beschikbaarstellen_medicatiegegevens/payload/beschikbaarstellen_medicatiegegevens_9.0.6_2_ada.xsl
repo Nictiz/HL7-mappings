@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <!-- todo, add CDA-variant to xpath -->
-        <xsl:variable name="medicatiegegevens-lijst-90" select="//hl7:organizer[hl7:code[@code='102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
+        <xsl:variable name="medicatiegegevens-lijst-90" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
         <xsl:call-template name="Medicatiegegevens-90-ADA">
             <xsl:with-param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-90"/>
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="xsd-mbh"/>
     </xd:doc>
     <xsl:template name="Medicatiegegevens-90-ADA">
-        <xsl:param name="medicatiegegevens-lijst" select="//hl7:organizer[hl7:code[@code='102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
+        <xsl:param name="medicatiegegevens-lijst" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
         <xsl:param name="xsd-mbh" select="$xsd-mbh"/>
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="$medicatiegegevens-lijst/ancestor::*[hl7:ControlActProcess]"/>
@@ -88,9 +88,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </data>
         </adaxml>
-        <!--<xsl:comment>Input HL7 xml below</xsl:comment>
-		<xsl:call-template name="copyElementInComment">
-			<xsl:with-param name="in" select="./*"/>
-		</xsl:call-template>-->
     </xsl:template>
 </xsl:stylesheet>

@@ -1002,32 +1002,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc> copy an element with all of it's contents in comments </xd:desc>
-        <xd:param name="element"/>
-    </xd:doc>
-    <xsl:template name="copyElementInComment">
-        <xsl:param name="element"/>
-        <xsl:text disable-output-escaping="yes">
-                       &lt;!--</xsl:text>
-        <xsl:for-each select="$element">
-            <xsl:call-template name="copyWithoutComments"/>
-        </xsl:for-each>
-        <xsl:text disable-output-escaping="yes">--&gt;
-</xsl:text>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc> copy without comments </xd:desc>
-    </xd:doc>
-    <xsl:template name="copyWithoutComments">
-        <xsl:copy>
-            <xsl:for-each select="@* | *">
-                <xsl:call-template name="copyWithoutComments"/>
-            </xsl:for-each>
-        </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Default copy template for outputting the results </xd:desc>
     </xd:doc>
     <xsl:template match="@* | node()" mode="ResultOutput">

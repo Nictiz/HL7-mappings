@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="../../../hl7_2_ada_ketenzorg_include.xsl"/>
-    
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="BeschikbaarstellenAlerts-ADA">
         <xsl:param name="in" as="element()"/>
         <xsl:param name="author" as="element()?"/>
-        
+
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
         <alerts_response app="ketenzorg3.0" shortName="alerts_response" formName="alerts_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.532" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <!-- Bundle stuff -->
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="custodian" select="(hl7:participant[@typeCode = 'CST']/hl7:participantRole[hl7:scopingEntity], $author)[1]"/>
                 <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
-            
+
             <xsl:variable name="organizerComponents" select="//*[hl7:templateId/@root = $oidAlert]"/>
             <xsl:for-each select="$organizerComponents">
                 <alert>
@@ -89,7 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="hl7:text"/>
                         <xsl:with-param name="elemName">episode_title</xsl:with-param>
                     </xsl:call-template>
-                    
+
                     <!-- Do episode association -->
                     <xsl:for-each select="hl7:entryRelationship[@typeCode = 'REFR']/hl7:act[hl7:code[@code = 'CONC'][@codeSystem = $oidHL7ActClass]]">
                         <xsl:call-template name="handleII">
@@ -97,13 +97,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">episode</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <!-- alert_name -->
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="in" select="hl7:value"/>
                         <xsl:with-param name="elemName">alert_name</xsl:with-param>
                     </xsl:call-template>
-                    
+
                     <!-- start_date_time -->
                     <xsl:for-each select="hl7:effectiveTime/hl7:low">
                         <xsl:call-template name="handleTS">
@@ -111,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">start_date_time</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <!-- end_date_time -->
                     <xsl:for-each select="hl7:effectiveTime/hl7:high">
                         <xsl:call-template name="handleTS">
@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">end_date_time</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <!-- alert_type -->
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="in" select="hl7:code"/>
@@ -128,9 +128,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </alert>
             </xsl:for-each>
         </alerts_response>
-        <xsl:comment>Input HL7 xml below</xsl:comment>
-        <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="in" select="./*"/>
-        </xsl:call-template>
     </xsl:template>
 </xsl:stylesheet>

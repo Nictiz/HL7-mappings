@@ -126,7 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$dataType = 'boolean'">
                     <xsl:call-template name="makeBLValue">
-                        <xsl:with-param name="elemName" select="$elemName"/>                        
+                        <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'code'">
@@ -168,7 +168,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makePQValue">
                         <xsl:with-param name="elemName" select="$elemName"/>
                         <!-- AWE: fix for xsiType, entering empty in parameter overrides the default with an empty value -->
-                        <xsl:with-param name="xsiType" select="if ($outputXsiType) then ('PQ') else ''"/>
+                        <xsl:with-param name="xsiType" select="
+                                if ($outputXsiType) then
+                                    ('PQ')
+                                else
+                                    ''"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'reference'">
@@ -450,11 +454,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             $originalText
                         else
                             ()"/>
-             </xsl:call-template>
+            </xsl:call-template>
             <!-- make translation with code from ADA, if it differs due to codemap -->
             <xsl:if test="$codeMap[@inCode = $theCode]">
                 <translation>
-                    <xsl:call-template name="makeCodeAttribs"/>                    
+                    <xsl:call-template name="makeCodeAttribs"/>
                 </translation>
             </xsl:if>
         </xsl:element>
@@ -684,12 +688,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Makes a HL7 id element (datatype II) based on ada identification element</xd:desc>
+        <xd:param name="in">Optional. Defaults to context. The ada element which contains the id. </xd:param>
     </xd:doc>
     <xsl:template name="makeIIid">
-        <xsl:call-template name="makeIIValue">
-            <xsl:with-param name="xsiType" select="''"/>
-            <xsl:with-param name="elemName">id</xsl:with-param>
-        </xsl:call-template>
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <xsl:call-template name="makeIIValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">id</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
@@ -1048,12 +1056,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="makeText">
         <xsl:param name="elemName" as="xs:string?">text</xsl:param>
         <xsl:element name="{$elemName}">
-           <xsl:choose>
-               <xsl:when test="string-length(@value) gt 0"><xsl:value-of select="@value"/></xsl:when>
-               <xsl:when test="@nullFlavor">
-                   <xsl:copy-of select="@nullFlavor"/>
-               </xsl:when>
-           </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="string-length(@value) gt 0">
+                    <xsl:value-of select="@value"/>
+                </xsl:when>
+                <xsl:when test="@nullFlavor">
+                    <xsl:copy-of select="@nullFlavor"/>
+                </xsl:when>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 

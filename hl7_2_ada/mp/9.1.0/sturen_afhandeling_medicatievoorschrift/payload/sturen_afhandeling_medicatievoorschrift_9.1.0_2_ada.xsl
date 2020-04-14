@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="templateId-toedieningsafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9299', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9259'"/>
     <xsl:variable name="templateId-verstrekking" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9294', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9255'"/>
     <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
-    
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -76,14 +76,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'patient'))"/>
                             </xsl:call-template>
                         </xsl:for-each>
-                        
+
                         <xsl:variable name="component" select=".//*[hl7:templateId/@root = ($templateId-toedieningsafspraak, $templateId-verstrekking)]"/>
                         <xsl:for-each-group select="$component" group-by="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id/concat(@root, @extension)">
                             <!-- medicamenteuze_behandeling -->
                             <xsl:variable name="elemName">medicamenteuze_behandeling</xsl:variable>
                             <xsl:element name="{$elemName}">
                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
-                                
+
                                 <!-- identificatie -->
                                 <xsl:for-each select="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id">
                                     <xsl:variable name="elemName">identificatie</xsl:variable>
@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="elemName" select="$elemName"/>
                                     </xsl:call-template>
                                 </xsl:for-each>
-                                
+
                                 <!-- toedieningsafspraak -->
                                 <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-toedieningsafspraak]">
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9299_20191125140232">
@@ -101,7 +101,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                     </xsl:call-template>
                                 </xsl:for-each>
-                                
+
                                 <!-- verstrekking -->
                                 <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-verstrekking]">
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9294_20191121175237">
@@ -116,9 +116,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </data>
         </adaxml>
-        <!--<xsl:comment>Input HL7 xml below</xsl:comment>
-		<xsl:call-template name="copyElementInComment">
-			<xsl:with-param name="in" select="./*"/>
-		</xsl:call-template>-->
     </xsl:template>
 </xsl:stylesheet>
