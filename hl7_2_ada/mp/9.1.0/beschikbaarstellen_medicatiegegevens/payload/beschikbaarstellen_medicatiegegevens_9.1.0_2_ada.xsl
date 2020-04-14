@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:param name="schema" select="document('../ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
-    
+
     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'medicamenteuze_behandeling'))"/>
 
     <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235'"/>
@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="templateId-verstrekking" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9294', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9255'"/>
     <xsl:variable name="templateId-medicatiegebruik" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9279', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9208'"/>
     <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
-    
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="theId" select="replace($filename, concat('.', $extension, '$'), '')"/>
                         <xsl:attribute name="title" select="$theId"/>
                         <xsl:attribute name="id" select="$theId"/>
-                           
+
                         <xsl:for-each select="$patient">
                             <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'beschikbaarstellen_medicatiegegevens'))"/>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180601000000">
@@ -94,12 +94,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:for-each select="@root">
                                             <xsl:attribute name="root" select="."/>
                                         </xsl:for-each>
-                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema,nf:getADAComplexTypeName($schemaFragment, $elemName)))"></xsl:copy-of>
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                     </xsl:element>
-<!--                                    <identificatie value="{./@extension}" root="{./@root}" conceptId="{$schema//xs:complexType[@name=$identificatie-complexType]/xs:attribute[@name='conceptId']/@fixed}">
+                                    <!--                                    <identificatie value="{./@extension}" root="{./@root}" conceptId="{$schema//xs:complexType[@name=$identificatie-complexType]/xs:attribute[@name='conceptId']/@fixed}">
                                         
                                     </identificatie>
--->   
+-->
                                 </xsl:for-each>
                                 <!-- medicatieafspraak -->
                                 <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-medicatieafspraak]">
@@ -147,9 +147,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </data>
         </adaxml>
-        <!--<xsl:comment>Input HL7 xml below</xsl:comment>
-		<xsl:call-template name="copyElementInComment">
-			<xsl:with-param name="in" select="./*"/>
-		</xsl:call-template>-->
     </xsl:template>
 </xsl:stylesheet>

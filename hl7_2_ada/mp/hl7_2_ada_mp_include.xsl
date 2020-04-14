@@ -14,6 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../hl7/hl7_2_ada_hl7_include.xsl"/>
+    <xsl:import href="../../util/comment.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
@@ -632,7 +633,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:when>
                 <!-- variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel -->
-                <xsl:when test="count($mar-sorted) = 2 and count($mar-sorted[hl7:precondition/hl7:observationEventCriterion/hl7:code[@code = $NHGZoNodigNumeriek and @codeSystem = $oidNHGTabel25BCodesNumeriek]]) = 1 and $parallel">
+                <!-- fix for MP-176 : extra check on only one precondition in one of the MAR's -->
+                <xsl:when test="$parallel and count($mar-sorted) = 2 and count($mar-sorted[hl7:precondition]) = 1 and count($mar-sorted[hl7:precondition/hl7:observationEventCriterion/hl7:code[@code = $NHGZoNodigNumeriek and @codeSystem = $oidNHGTabel25BCodesNumeriek]]) = 1">
                     <xsl:choose>
                         <xsl:when test="deep-equal($mar-sorted[1]/hl7:doseQuantity, $mar-sorted[2]/hl7:doseQuantity)">
                             <!-- x à y maal per tijdseenheid een bepaalde keerdosis, bijv. 1 à 2 maal per dag 1 stuk -->
@@ -658,9 +660,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <!-- variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel -->
+                <!-- variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel -->
                 <xsl:when test="count($mar-sorted) = 2 and (count($mar-sorted[hl7:precondition]) gt 0 or $mar-sorted[hl7:precondition/hl7:observationEventCriterion/hl7:code[not(@code = $NHGZoNodigNumeriek and @codeSystem = $oidNHGTabel25BCodesNumeriek)]]) and $parallel">
-                    <xsl:comment>variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, meer dan één zo nodig, parallel, verschillende keerdosis</xsl:comment>
+                    <xsl:comment>variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel</xsl:comment>
                     <xsl:for-each select="$mar-sorted">
                         <xsl:variable name="hl7-pivl" select=".//*[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')]"/>
                         <xsl:call-template name="mp9-doseerinstructie-from-mp612-freq">
@@ -1065,7 +1067,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:comment>The dosage schedule does not comply to MP-9 datamodel, please refer to text for the correct dosage information.</xsl:comment>
                                                     <xsl:comment>Found (illegal) structure:</xsl:comment>
                                                     <xsl:call-template name="copyElementInComment">
-                                                        <xsl:with-param name="in" select="$day-with-times"/>
+                                                        <xsl:with-param name="element" select="$day-with-times"/>
                                                     </xsl:call-template>
                                                 </xsl:otherwise>
                                             </xsl:choose>
@@ -1689,7 +1691,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:comment>The dosage schedule does not comply to MP-9 datamodel, please refer to text for the correct dosage information.</xsl:comment>
                                                     <xsl:comment>Found (illegal) structure:</xsl:comment>
                                                     <xsl:call-template name="copyElementInComment">
-                                                        <xsl:with-param name="in" select="$day-with-times"/>
+                                                        <xsl:with-param name="element" select="$day-with-times"/>
                                                     </xsl:call-template>
                                                 </xsl:otherwise>
                                             </xsl:choose>

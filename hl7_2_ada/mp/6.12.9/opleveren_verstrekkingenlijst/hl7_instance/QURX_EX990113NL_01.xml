@@ -1536,6 +1536,114 @@
 						</responsibleParty>
 					</medicationDispenseEvent>
 				</component>
+			<!-- added component for MP-176 -->
+			    <component>
+			        <medicationDispenseEvent>
+			            <id root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3" extension="00244159705"/>
+			            <statusCode code="completed"/>
+			            <effectiveTime value="20190927"/>
+			            <quantity value="1.0000">
+			                <translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="ST" value="1.0000"/>
+			            </quantity>
+			            <expectedUseTime>
+			                <width value="80" unit="d"/>
+			            </expectedUseTime>
+			            <performer>
+			                <assignedPerson>
+			                    <id nullFlavor="MSK"/>
+			                </assignedPerson>
+			            </performer>
+			            <product>
+			                <dispensedMedication>
+			                    <!-- Deze dispensedMedication faalt in XSLT -->
+			                    <MedicationKind>
+			                        <code code="15572056" codeSystem="2.16.840.1.113883.2.4.4.8" displayName="SALBUTAMOL 100 REDIHALER 100MCG/DO SPB 200D+INH">
+			                            <translation code="2095246" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+			                            <translation code="121061" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+			                            <translation code="83704" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+			                        </code>
+			                    </MedicationKind>
+			                    <directTargetOf>
+			                        <prescription>
+			                            <id nullFlavor="UNK"/>
+			                            <statusCode code="active"/>
+			                            <author>
+			                                <time nullFlavor="UNK"/>
+			                                <AssignedPerson>
+			                                    <id root="2.16.528.1.1007.3.1" extension="000118880"/>
+			                                    <id root="2.16.840.1.113883.2.4.6.1" extension="01027022"/>
+			                                </AssignedPerson>
+			                            </author>
+			                        </prescription>
+			                    </directTargetOf>
+			                    <therapeuticAgentOf>
+			                        <medicationAdministrationRequest>
+			                            <id root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.14" extension="0024415970500000"/>
+			                            <text>1-4 maal per dag 1 inhalatie zo nodig</text>
+			                            <statusCode code="active"/>
+			                            <effectiveTime xsi:type="SXPR_TS">
+			                                <comp xsi:type="IVL_TS">
+			                                    <width value="80" unit="d"/>
+			                                </comp>
+			                                <comp xsi:type="PIVL_TS" operator="A">
+			                                    <period value="1" unit="d"/>
+			                                </comp>
+			                            </effectiveTime>
+			                            <doseQuantity>
+			                                <center value="1">
+			                                    <translation code="36" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="inhalatie" value="1"/>
+			                                    <translation code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="DO" value="1"/>
+			                                </center>
+			                            </doseQuantity>
+			                            <precondition>
+			                                <observationEventCriterion>
+			                                    <code code="1137" codeSystem="2.16.840.1.113883.2.4.4.5" displayName="zo nodig"/>
+			                                </observationEventCriterion>
+			                            </precondition>
+			                        </medicationAdministrationRequest>
+			                    </therapeuticAgentOf>
+			                    <therapeuticAgentOf>
+			                        <medicationAdministrationRequest>
+			                            <id root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.14" extension="0024415970500001"/>
+			                            <text>1-4 maal per dag 1 inhalatie zo nodig</text>
+			                            <statusCode code="active"/>
+			                            <effectiveTime xsi:type="SXPR_TS">
+			                                <comp xsi:type="IVL_TS">
+			                                    <width value="80" unit="d"/>
+			                                </comp>
+			                                <comp xsi:type="PIVL_TS" operator="A">
+			                                    <period value="0.3333" unit="d"/>
+			                                </comp>
+			                            </effectiveTime>
+			                            <doseQuantity>
+			                                <center value="1">
+			                                    <translation code="36" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="inhalatie" value="1"/>
+			                                    <translation code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="DO" value="1"/>
+			                                </center>
+			                            </doseQuantity>
+			                            <precondition>
+			                                <observationEventCriterion>
+			                                    <code nullFlavor="OTH">
+			                                        <originalText>zo nodig</originalText>
+			                                    </code>
+			                                </observationEventCriterion>
+			                            </precondition>
+			                        </medicationAdministrationRequest>
+			                    </therapeuticAgentOf>
+			                </dispensedMedication>
+			            </product>
+			            <responsibleParty>
+			                <assignedCareProvider>
+			                    <id extension="012345679" root="2.16.528.1.1007.3.1"/>
+			                    <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+			                    <representedOrganization>
+			                        <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+			                    </representedOrganization>
+			                </assignedCareProvider>
+			            </responsibleParty>
+			        </medicationDispenseEvent>
+			    </component>
+			    
 			</MedicationDispenseList>
 		</subject>
 		<queryAck>
