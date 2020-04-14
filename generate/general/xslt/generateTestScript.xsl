@@ -8,20 +8,62 @@
     
     <xsl:param name="fixtureBase" select="'../_reference/'"/>
     
-    <xsl:template name="generate" match="TestScript">
+    <xsl:template name="generate" match="f:TestScript" xmlns="http://hl7.org/fhir">
         <xsl:param name="fixtureBase" as="xs:string" select="'../_reference/'"/>
                
-        <TestScript>
-            <xsl:apply-templates select="."/>
-        </TestScript>
+        <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
+        <xsl:variable name="expanded">
+            <xsl:apply-templates mode="expand" select="."/>
+        </xsl:variable>
+        
+        <!-- Gather all fixture elements that now might be scattered throughout the document -->
+        <xsl:variable name="fixtures" as="element(f:fixture)*">
+            <xsl:copy-of select="$expanded//f:fixture"/>
+            <xsl:if test="nictiz:patientTokenFixture">
+                <fixture id="patient-token-fixture">
+                    <resource>
+                        <reference value="{concat($fixtureBase, nictiz:patientTokenFixture/@href)}"/>
+                    </resource>
+                </fixture>
+            </xsl:if>
+        </xsl:variable>
+
+        <!-- Gather all variable elements that now might be scattered throughout the document -->
+        <xsl:variable name="variables" as="element(f:variable)*">
+            <xsl:copy-of select="$expanded//f:variable"/>
+            <xsl:if test="nictiz:patientTokenFixture">
+                <variable>
+                    <name value="patient-token-id"/>
+                    <expression value="Patient.id"/>
+                    <sourceId value="patient-token-fixture"/>
+                </variable>
+            </xsl:if>
+            <xsl:if test="nictiz:includeDateT[@value='yes']">
+                <variable>
+                    <name value="T"/>
+                    <defaultValue value="${{CURRENTDATE}}"/>
+                    <description value="Date that data and queries are expected to be relative to."/>
+                </variable>
+            </xsl:if>
+        </xsl:variable>
+        
+        <!-- Filter the expanded TestScript. This will add the required elements and put everything in the right
+             position --> 
+        <xsl:apply-templates mode="filter" select="$expanded">
+            <xsl:with-param name="fixtures" select="$fixtures" tunnel="yes"/>
+            <xsl:with-param name="profiles" select="$expanded//f:profile" tunnel="yes"/>
+            <xsl:with-param name="variables" select="$variables" tunnel="yes"/>
+        </xsl:apply-templates>
     </xsl:template>
 
-    <xsl:template match="f:TestScript/f:id" xmlns="http://hl7.org/fhir">
+    <!-- Use the id element as hook to include a matching url -->
+    <xsl:template match="f:TestScript/f:id" xmlns="http://hl7.org/fhir" mode="filter">
         <xsl:copy-of select="."/>
         <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value)}"/>
     </xsl:template>
 
-    <xsl:template match="f:TestScript/f:name" xmlns="http://hl7.org/fhir">
+    <!-- Use the name element as hook to include status. date, publisher and contact information --> 
+    <xsl:template match="f:TestScript/f:name" xmlns="http://hl7.org/fhir" mode="filter">
         <xsl:copy-of select="."/>
         
         <xsl:choose>
@@ -44,29 +86,8 @@
         </contact>
     </xsl:template>
     
-    <xsl:template match="f:TestScript/f:status"/>
-    
-    <xsl:template match="(f:TestScript/f:setup | f:TestScript/f:test)[1]" xmlns="http://hl7.org/fhir">
-        <xsl:if test="../nictiz:patientTokenFixture">
-            <variable>
-                <name value="patient-token-id"/>
-                <expression value="Patient.id"/>
-                <sourceId value="patient-token-fixture"/>
-            </variable>
-        </xsl:if>
-        <xsl:if test="../nictiz:includeDateT[@value='yes']">
-            <variable>
-                <name value="T"/>
-                <defaultValue value="${{CURRENTDATE}}"/>
-                <description value="Date that data and queries are expected to be relative to."/>
-            </variable>
-        </xsl:if>
-        <xsl:element name="{local-name()}">
-            <xsl:apply-templates select="./*"/>
-        </xsl:element>
-    </xsl:template>
-    
-    <xsl:template match="f:TestScript/f:description" xmlns="http://hl7.org/fhir">
+    <!-- Use description element as hook to include the origin and destination elements -->
+    <xsl:template match="f:TestScript/f:description" mode="filter" xmlns="http://hl7.org/fhir">
         <xsl:copy-of select="."/>
         <origin>
             <index value="1"/>
@@ -84,21 +105,44 @@
         </destination>
     </xsl:template>
     
-    <xsl:template match="nictiz:patientTokenFixture" xmlns="http://hl7.org/fhir">
-        <fixture id="patient-token-fixture">
-            <resource>
-                <reference value="{concat($fixtureBase, @href)}"/>
-            </resource>
-        </fixture>
+    <!-- Silence status, fixture, profile and variable elements, because they are already handled elsewhere -->
+    <xsl:template match="f:TestScript/f:status" mode="filter" />
+    <xsl:template match="f:TestScript//f:fixture" mode="filter" />
+    <xsl:template match="f:TestScript//f:profile" mode="filter" />
+    <xsl:template match="f:TestScript//f:variable" mode="filter" />
+
+    <!-- Silence all remaining nictiz: elements (that have been read but are not transformed) -->
+    <xsl:template match="nictiz:*" mode="filter"/>
+    
+    <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile and variable elements -->  
+    <xsl:template match="(f:TestScript/f:setup | f:TestScript/f:test)[1]" mode="filter" xmlns="http://hl7.org/fhir">
+        <xsl:param name="fixtures" tunnel="yes"/>
+        <xsl:param name="profiles" tunnel="yes"/>
+        <xsl:param name="variables" tunnel="yes"/>
+
+        <xsl:for-each-group select="$fixtures" group-by="@id">
+            <xsl:copy-of select="."/>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="$profiles" group-by="@id">
+            <xsl:copy-of select="."/>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="$variables" group-by="f:name/@value">
+            <xsl:copy-of select="."/>
+        </xsl:for-each-group>
+        <xsl:element name="{local-name()}">
+            <xsl:apply-templates select="./(*|comment())" mode="filter"/>
+        </xsl:element>
     </xsl:template>
     
-    <xsl:template match="nictiz:profile" xmlns="http://hl7.org/fhir">
+    <!-- Expand a nictiz:profile element to a FHIR profile element -->
+    <xsl:template match="nictiz:profile" mode="expand" xmlns="http://hl7.org/fhir">
         <profile id="{@id}">
             <reference value="{@value}"/>
         </profile>
     </xsl:template>
     
-    <xsl:template match="nictiz:fixture[@id and @href]" xmlns="http://hl7.org/fhir">
+    <!-- Expand a nictiz:fixture element to a FHIR fixture element -->
+    <xsl:template match="nictiz:fixture[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <fixture id="{@id}">
             <resource>
                 <reference value="{concat($fixtureBase, @href)}"/>
@@ -106,26 +150,33 @@
         </fixture>
     </xsl:template>
     
-    <xsl:template match="nictiz:variables[@href]" xmlns="http://hl7.org/fhir">
+    <!-- Epand a nictiz:variables element; read all f:variable elements in the referenced file and further process them --> 
+    <xsl:template match="nictiz:variables[@href]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:variable name="loadedVariables" as="node()*">
             <xsl:copy-of select="document(@href)/f:variables/(element()|comment())"/>
         </xsl:variable>
-        <xsl:apply-templates select="$loadedVariables"/>
+        <xsl:apply-templates select="$loadedVariables" mode="expand"/>
     </xsl:template>
     
-    <xsl:template match="nictiz:actions[@href]" xmlns="http://hl7.org/fhir">
+    <!-- Epand a nictiz:variables element; read all f:actopms elements in the referenced file and further process them -->
+    <xsl:template match="nictiz:actions[@href]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:variable name="loadedActions" as="node()*">
             <xsl:copy-of select="document(@href)/f:actions/(element()|comment())"/>
         </xsl:variable>
-        <xsl:apply-templates select="$loadedActions"/>
+        <xsl:apply-templates select="$loadedActions" mode="expand"/>
     </xsl:template>
     
-    <xsl:template match="nictiz:*"/>
-    
-    <xsl:template match="@*|node()">
+    <!-- Default template in the expand mode -->
+    <xsl:template match="@*|node()" mode="expand">
         <xsl:copy>
-            <xsl:apply-templates select="@*|node()"/>
+            <xsl:apply-templates select="@*|node()" mode="expand"/>
         </xsl:copy>
     </xsl:template>
-   
+
+    <!-- Default template in the filter mode -->
+    <xsl:template match="@*|node()" mode="filter">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()" mode="filter"/>
+        </xsl:copy>
+    </xsl:template>
 </xsl:stylesheet>
