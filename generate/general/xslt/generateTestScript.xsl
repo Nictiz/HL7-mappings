@@ -8,12 +8,16 @@
     
     <xsl:param name="fixtureBase" select="'../_reference/'"/>
     
+    <!-- The main template, which will call the remaining templates.
+         param testscriptBase is an optional base (as unerstood by xsl:document()) to include the components from. -->
     <xsl:template name="generate" match="f:TestScript" xmlns="http://hl7.org/fhir">
-        <xsl:param name="fixtureBase" as="xs:string" select="'../_reference/'"/>
-               
+        <xsl:param name="testscriptBase"/>
+        
         <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
         <xsl:variable name="expanded">
-            <xsl:apply-templates mode="expand" select="."/>
+            <xsl:apply-templates mode="expand" select=".">
+                <xsl:with-param name="testscriptBase" select="$testscriptBase"/>
+            </xsl:apply-templates>
         </xsl:variable>
         
         <!-- Gather all fixture elements that now might be scattered throughout the document -->
@@ -159,24 +163,43 @@
     
     <!-- Epand a nictiz:variables element; read all f:variable elements in the referenced file and further process them --> 
     <xsl:template match="nictiz:variables[@href]" mode="expand" xmlns="http://hl7.org/fhir">
+        <xsl:param name="testscriptBase"/>
         <xsl:variable name="loadedVariables" as="node()*">
-            <xsl:copy-of select="document(@href)/f:variables/(element()|comment())"/>
+            <xsl:choose>
+                <xsl:when test="$testscriptBase">
+                    <xsl:copy-of select="document(@href, $testscriptBase)/f:variables/(element()|comment())"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="document(@href)/f:variables/(element()|comment())"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
         <xsl:apply-templates select="$loadedVariables" mode="expand"/>
     </xsl:template>
     
     <!-- Epand a nictiz:variables element; read all f:actopms elements in the referenced file and further process them -->
     <xsl:template match="nictiz:actions[@href]" mode="expand" xmlns="http://hl7.org/fhir">
+        <xsl:param name="testscriptBase"/>
         <xsl:variable name="loadedActions" as="node()*">
-            <xsl:copy-of select="document(@href)/f:actions/(element()|comment())"/>
+            <xsl:choose>
+                <xsl:when test="$testscriptBase">
+                    <xsl:copy-of select="document(@href, $testscriptBase)/f:actions/(element()|comment())"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="document(@href)/f:actions/(element()|comment())"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
         <xsl:apply-templates select="$loadedActions" mode="expand"/>
     </xsl:template>
     
     <!-- Default template in the expand mode -->
     <xsl:template match="@*|node()" mode="expand">
+        <xsl:param name="testscriptBase"/>
         <xsl:copy>
-            <xsl:apply-templates select="@*|node()" mode="expand"/>
+            <xsl:apply-templates select="@*|node()" mode="expand">
+                <xsl:with-param name="testscriptBase" select="$testscriptBase"/>
+            </xsl:apply-templates>
         </xsl:copy>
     </xsl:template>
 
