@@ -51,7 +51,7 @@
              position --> 
         <xsl:apply-templates mode="filter" select="$expanded">
             <xsl:with-param name="fixtures" select="$fixtures" tunnel="yes"/>
-            <xsl:with-param name="profiles" select="$expanded//f:profile" tunnel="yes"/>
+            <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" tunnel="yes"/>
             <xsl:with-param name="variables" select="$variables" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
@@ -129,7 +129,14 @@
         <xsl:for-each-group select="$variables" group-by="f:name/@value">
             <xsl:copy-of select="."/>
         </xsl:for-each-group>
+        
+        <!-- Write back the element we matched on -->
         <xsl:element name="{local-name()}">
+            <xsl:for-each select="@*">
+                <xsl:attribute name="{local-name()}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
+            </xsl:for-each>
             <xsl:apply-templates select="./(*|comment())" mode="filter"/>
         </xsl:element>
     </xsl:template>
