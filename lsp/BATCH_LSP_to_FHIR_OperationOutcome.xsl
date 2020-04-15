@@ -12,20 +12,16 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../hl7_2_ada/mp/6.12.9/opleveren_verstrekkingenlijst/payload/opleveren_verstrekkingenlijst_612_to_ada_vv.xsl"/>
     <xsl:import href="../ada_2_fhir/mp/9.0.7/beschikbaarstellen_verstrekkingenvertaling/payload/beschikbaarstellen_verstrekkingenvertaling_2_fhir.xsl"/>
     <xsl:output method="xml" indent="yes"/>
 
     <!-- hl7 input, defaults to context  -->
     <xsl:param name="hl7Input" select="."/>
-
-    <!-- '//' used here because not sure if preceding SOAP stuff is still part of input? -->
-    <xsl:variable name="verstrekkingslijst-612" select="$hl7Input//hl7:MCCI_IN200101/hl7:QURX_IN990113NL/hl7:ControlActProcess/hl7:subject/hl7:MedicationDispenseList"/>
-
-
-    <!-- ada input parameter for ada2fhir-->
-    <!-- does hl72ada -->
+    
+    <!-- ada input parameter for ada2fhir, overrides adaInput parameter for imported stylesheets, do not change parameter name! -->
+    <!-- executes hl72ada en stores ada result in this parameter -->
     <xsl:param name="adaInput">
         <xsl:choose>
             <!-- alleen inhoudelijke conversie als er ook een verstrekkingenlijst is -->
@@ -40,10 +36,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:param>
-
+    
+     <!-- '//' used here because not sure if preceding SOAP stuff is still part of input? -->
+    <xsl:variable name="verstrekkingslijst-612" select="$hl7Input//hl7:MCCI_IN200101/hl7:QURX_IN990113NL/hl7:ControlActProcess/hl7:subject/hl7:MedicationDispenseList"/>
 
     <xd:doc>
-        <xd:desc> Dit is een conversie van query response batches van het LSP naar FHIR </xd:desc>
+        <xd:desc>Conversie van query response batches met 6.12 verstrekkingenlijst van het LSP naar FHIR</xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <!-- ada2fhir -->
@@ -54,50 +52,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:variable>
-
-        <!--        <xsl:copy-of select="$fhir-result"></xsl:copy-of>-->
-
-        <!-- output the FHIR result and add operationOutcome - if necessary -->
+        
+       <!-- output the FHIR result and add operationOutcome - if necessary -->
         <xsl:apply-templates select="$fhir-result" mode="lsp-copy-for-operationoutcome"/>
 
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Copy template for possible adding of operation outcome</xd:desc>
+        <xd:desc>Copy template for possible adding of operation outcome entries at the end of the Bundle</xd:desc>
     </xd:doc>
     <xsl:template match="f:Bundle" mode="lsp-copy-for-operationoutcome">
         <xsl:copy>
             <!-- copy everything in this Bundle -->
             <xsl:apply-templates select="@* | node()" mode="lsp-copy-for-operationoutcome"/>
 
-            <!-- then - if necessary - add an entry at the end with response-outcome-OperationOutcome -->
+            <!-- then - if necessary - add entry's at the end with response-outcome-OperationOutcome -->
+            <!-- FIXME, '//' should be avoided as much as possible -->
+            <!-- variable to store the HL7 errors from input -->
             <xsl:variable name="Control_error" select="$hl7Input//hl7:justifiedDetectedIssue"/>
             <xsl:variable name="Transmission_error" select="$hl7Input//hl7:acknowledgementDetail"/>
             <!-- alleen conversie naar OperationOutcome als er ook fouten zijn -->
             <xsl:for-each select="$Transmission_error">
                 <entry>
-                    <response>
-                        <!-- status 200, klopt dat? -->
-                        <status value="200"/>
-                        <outcome>
-                            <xsl:call-template name="Transmission_error_translate">
-                                <xsl:with-param name="Transmission_error_list" select="."/>
-                            </xsl:call-template>
-                        </outcome>
-                    </response>
+                    <fullUrl value="{uuid:get-uuid(.)}"/>
+                    <resource>
+                         <xsl:call-template name="Transmission_error_translate">
+                            <xsl:with-param name="Transmission_error_list" select="."/>
+                        </xsl:call-template>
+                    </resource>
                 </entry>
             </xsl:for-each>
             <xsl:for-each select="$Control_error">
                 <entry>
-                    <response>
-                        <!-- status 200, klopt dat? -->
-                        <status value="200"/>
-                        <outcome>
-                            <xsl:call-template name="Control_error_translate">
-                                <xsl:with-param name="Control_error_list" select="."/>
-                            </xsl:call-template>
-                        </outcome>
-                    </response>
+                    <fullUrl value="{uuid:get-uuid(.)}"/>
+                    <resource>
+                         <xsl:call-template name="Control_error_translate">
+                            <xsl:with-param name="Control_error_list" select="."/>
+                        </xsl:call-template>
+                    </resource>
                 </entry>
             </xsl:for-each>
         </xsl:copy>
