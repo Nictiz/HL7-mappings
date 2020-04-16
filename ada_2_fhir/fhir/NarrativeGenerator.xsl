@@ -8677,7 +8677,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$captionAuthorPerformer[self::f:consentingParty]">
                     <xsl:call-template name="util:getLocalizedString">
                         <xsl:with-param name="key">Consenting Party</xsl:with-param>
-                        <xsl:with-param name="post" select="': '"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$captionAuthorPerformer[self::f:recorder]">
