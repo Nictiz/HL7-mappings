@@ -90,11 +90,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="Control_error_list" select="."/>
                         </xsl:call-template>
                     </resource>
+                    <search>
+                        <mode value="outcome"/>
+                    </search>
                 </entry>
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="Transmission_error_list"/>
+    </xd:doc>
     <xsl:template name="Transmission_error_translate">
         <xsl:param name="Transmission_error_list" as="element()*"/>
 
@@ -130,6 +137,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="Control_error_list"/>
+    </xd:doc>
     <xsl:template name="Control_error_translate">
         <xsl:param name="Control_error_list" as="element()*"/>
 
