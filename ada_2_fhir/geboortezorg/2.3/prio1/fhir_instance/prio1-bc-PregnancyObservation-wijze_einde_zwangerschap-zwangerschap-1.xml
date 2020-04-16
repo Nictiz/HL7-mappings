@@ -2,13 +2,8 @@
 <Observation xmlns="http://hl7.org/fhir">
    <id value="wijze_einde_zwangerschap-zwangerschap-1"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-WayEndPregnancy"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
          <reference value="Condition/zwangerschap-1"/>
@@ -22,7 +17,11 @@
          <display value="Wijze einde zwangerschap"/>
       </coding>
    </code>
-   <subject/>
+   <subject>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
    <valueCodeableConcept>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.13.46"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="graviditeit-zwangerschap-3"/>
+   <id value="wijze_einde_zwangerschap-zwangerschap-3"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Gravidity"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Pregnancy-EndType"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
@@ -12,9 +12,9 @@
    <status value="final"/>
    <code>
       <coding>
-         <system value="http://loinc.org"/>
-         <code value="11996-6"/>
-         <display value="Gravidity"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.13"/>
+         <code value="EindeZw"/>
+         <display value="Wijze einde zwangerschap"/>
       </coding>
    </code>
    <subject>
@@ -23,7 +23,11 @@
       </identifier>
    </subject>
    <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
-   <valueQuantity>
-      <value value="3"/>
-   </valueQuantity>
+   <valueCodeableConcept>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.13.46"/>
+         <code value="1"/>
+         <display value="Partus"/>
+      </coding>
+   </valueCodeableConcept>
 </Observation>

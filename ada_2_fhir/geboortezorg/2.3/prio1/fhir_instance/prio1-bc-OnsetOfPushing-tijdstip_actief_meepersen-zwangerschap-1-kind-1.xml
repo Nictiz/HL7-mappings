@@ -4,24 +4,9 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-OnsetOfPushing"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
-         <reference value="Procedure/bevalling-zwangerschap-1"/>
-      </valueReference>
-   </extension>
-   <extension url="http://hl7.org/fhir/StructureDefinition/Observation-focus-stu3">
-      <valueReference>
-         <reference value="Patient/zwangerschap-1-kind-1"/>
-      </valueReference>
-   </extension>
-   <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
-      <valueReference>
-         <reference value="Observation/uitdrijvingsfase-zwangerschap-1"/>
+         <reference value="Observation/geboorte-zwangerschap-1-kind-1-zwangerschap-1"/>
       </valueReference>
    </extension>
    <status value="final"/>
@@ -32,6 +17,10 @@
          <display value="Onset of pushing (in labor) (observable entity)"/>
       </coding>
    </code>
-   <subject/>
-   <valueDateTime value="2-21-2020T01:01:00+01:00"/>
+   <subject>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
+   <valueDateTime value="4-16-2020T01:01:00+01:00"/>
 </Observation>

@@ -4,11 +4,6 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Parity"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
          <reference value="Condition/zwangerschap-3"/>
@@ -22,6 +17,13 @@
          <display value="Parity"/>
       </coding>
    </code>
-   <subject/>
-   <valueBoolean value="1"/>
+   <subject>
+      <identifier>
+         <value value="999910413"/>
+      </identifier>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
+   <valueQuantity>
+      <value value="1"/>
+   </valueQuantity>
 </Observation>

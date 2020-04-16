@@ -22,6 +22,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="2.3/prio1/payload/gebz_prio1_2_fhir_bc-maternalrecord.xsl"/>
     <xsl:import href="2.3/prio1/payload/gebz_prio1_2_fhir_bc-observation.xsl"/>
     <xsl:import href="2.3/prio1/payload/gebz_prio1_2_fhir_zib-laboratory-testresult-observation.xsl"/>
+    <xsl:import href="2.3/prio1/payload/gebz_prio1_2_fhir_bc-procedure.xsl"/>
+    <xsl:import href="2.3/prio1/payload/gebz_prio1_mappings.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
@@ -36,7 +38,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:param>  
     
     <xsl:variable name="kind-ada" as="element()*">
-        <xsl:call-template name="convert-kind-ada"/>
+        <xsl:for-each select="(prio1_huidig | prio1_vorig)/uitkomst_per_kind">
+            <xsl:call-template name="convert-kind-ada"/>
+        </xsl:for-each>
     </xsl:variable>
     
     <xsl:param name="zorginstelling-ada" as="element()*">
@@ -54,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="vrouw" as="element(f:Patient)*" match="vrouw" mode="doVrouwToFhir">
         <xsl:call-template name="nl-core-patient-2.1">
             <xsl:with-param name="in" select="$patient-ada"/>
-            <xsl:with-param name="logicalId" select="$vrouwId"/>
+<!--            <xsl:with-param name="logicalId" select="$vrouwId"/>-->
         </xsl:call-template>        
     </xsl:template>
               
@@ -124,6 +128,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                <xsl:with-param name="pregnancyId" select="concat('zwangerschap-',$pregnancyNo)"/>
                <xsl:with-param name="childId" select="concat('zwangerschap-',$pregnancyNo,'-kind-',$childNo)"/>
              </xsl:call-template>             
+        </xsl:for-each>
+    </xsl:template>
+    
+    <!-- geboorte -->
+    
+    <!-- bevalling -->
+    <xsl:template name="bevalling" as="element(f:Procedure)*" match="bevalling" mode="doDeliveryToFhir">
+        <xsl:call-template name="bc-procedure">
+            <xsl:with-param name="logicalId" select="concat(name(.),'-zwangerschap-',$pregnancyNo)"/>
+            <xsl:with-param name="adaPatient" select="$patient-ada"/>
+            <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-',$pregnancyNo)"/>
+            <xsl:with-param name="pregnancyId" select="concat('zwangerschap-',$pregnancyNo)"/>
+        </xsl:call-template>             
+    </xsl:template>
+    
+    <!-- obstetrische verrichtingen -->
+    <xsl:template name="verrichtingen" as="element(f:Procedure)*" match="uitkomst_per_kind" mode="doObstetricProceduresToFhir">
+        <xsl:variable name="childNo" select="string(count(preceding-sibling::*[name()=name(current())])+1)"/>
+        <xsl:for-each select="baring/kindspecifieke_uitkomstgegevens/vaginale_kunstverlossing_groep/vaginale_kunstverlossing">
+            <xsl:call-template name="bc-procedure">
+                <xsl:with-param name="logicalId" select="concat(name(.),'-zwangerschap-',$pregnancyNo,'-kind-',$childNo)"/>
+                <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-',$pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat('zwangerschap-',$pregnancyNo)"/>
+                <xsl:with-param name="childId" select="concat('zwangerschap-',$pregnancyNo,'-kind-',$childNo)"/>
+            </xsl:call-template>    
         </xsl:for-each>
     </xsl:template>
     

@@ -45,13 +45,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <xsl:call-template name="bc-profile"/>
                 </meta>
-                <xsl:if test="$dossierId!=''">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-                        <valueReference>
-                            <reference value="EpisodeOfCare/{$dossierId}"/>
-                        </valueReference>
-                    </extension>
-                </xsl:if>
                 <xsl:if test="$pregnancyId!='' and $parentElemName!='lichamelijk_onderzoek_kind'">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
                         <valueReference>
@@ -59,39 +52,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="$parentElemName='zwangerschap'">
                                     <reference value="Condition/{$pregnancyId}"/>
                                 </xsl:when>
-                                <!-- gaat nu nog goed, maar niet meer als er observaties zijn die niet aan zwangerschap of bevalling gekoppeld zijn -->
-                                <xsl:otherwise>
+                                <xsl:when test="$parentElemName='bevalling'">
                                     <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
-                                </xsl:otherwise>                   
+                                </xsl:when>   
+                                <xsl:when test="($parentElemName='kindspecifieke_maternale_gegevens' or $parentElemName='kindspecifieke_uitkomst_gegevens') and $childId!=''">
+                                    <reference value="Observation/{concat('geboorte-',$childId,'-',$pregnancyId)}"/>
+                                </xsl:when>
                             </xsl:choose>
-                        </valueReference>
-                    </extension>
-                </xsl:if>
-                <xsl:if test="$childId!='' and $parentElemName!='lichamelijk_onderzoek_kind'">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/Observation-focus-stu3">
-                        <valueReference>
-                            <reference value="Patient/{$childId}" />
-                        </valueReference>
-                     </extension>               
-                </xsl:if>
-                <xsl:if test="$elementName='tijdstip_begin_actieve_ontsluiting'">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
-                        <valueReference>
-                            <reference value="Observation/ontsluitingsfase-{$pregnancyId}" />
-                        </valueReference>
-                    </extension>
-                </xsl:if>
-                <xsl:if test="$elementName='hoeveelheid_bloedverlies' or $elementName='tijdstip_actief_meepersen' or $elementName='type_partus'">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
-                        <valueReference>
-                            <reference value="Observation/uitdrijvingsfase-{$pregnancyId}" />
-                        </valueReference>
-                    </extension>
-                </xsl:if>
-                <xsl:if test="$elementName='conditie_perineum_postpartum'">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
-                        <valueReference>
-                            <reference value="Observation/nageboortefase-{$pregnancyId}" />
                         </valueReference>
                     </extension>
                 </xsl:if>
@@ -113,13 +80,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>                 
                     </xsl:otherwise>
                 </xsl:choose>
+                <xsl:if test="$dossierId!=''">
+                    <context value="EpisodeOfCare/{$dossierId}"/>
+                </xsl:if>
                 <xsl:for-each select=".">
                     <xsl:choose>
                         <xsl:when test="@datatype='datetime'">
-                            <xsl:call-template name="format-date"/>
+                            <xsl:call-template name="any-to-date"/>
+                        </xsl:when>
+                        <xsl:when test="not(@code) and @value castable as xs:integer">
+                            <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">
+                                <xsl:call-template name="hoeveelheid-to-Quantity">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:element>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:call-template name="any-to-value"> <!-- TODO: case when gravidity etc: hoeveelheid-to-Quantity when terme date datetime etc...-->
+                            <xsl:call-template name="any-to-value"> 
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="elemName">value</xsl:with-param>
                             </xsl:call-template>

@@ -4,19 +4,9 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-OnsetOfLaborFirstStage"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
          <reference value="Procedure/bevalling-zwangerschap-1"/>
-      </valueReference>
-   </extension>
-   <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
-      <valueReference>
-         <reference value="Observation/ontsluitingsfase-zwangerschap-1"/>
       </valueReference>
    </extension>
    <status value="final"/>
@@ -27,6 +17,10 @@
          <display value="Onset of labor first stage (observable entity)"/>
       </coding>
    </code>
-   <subject/>
-   <valueDateTime value="2-21-2020T21:46:00+01:00"/>
+   <subject>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
+   <valueDateTime value="4-16-2020T21:46:00+01:00"/>
 </Observation>

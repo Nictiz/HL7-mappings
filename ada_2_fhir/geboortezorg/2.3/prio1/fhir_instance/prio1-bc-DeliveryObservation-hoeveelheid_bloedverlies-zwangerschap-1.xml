@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="type_partus-zwangerschap-1-kind-1"/>
+   <id value="hoeveelheid_bloedverlies-zwangerschap-1"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ParturitionType"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
-      <valueReference/>
+      <valueReference>
+         <reference value="Procedure/bevalling-zwangerschap-1"/>
+      </valueReference>
    </extension>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="364336006"/>
-         <display value="Pattern of delivery (observable entity)"/>
+         <code value="364332008"/>
+         <display value="Blood loss in labour"/>
       </coding>
    </code>
    <subject>
@@ -20,11 +22,10 @@
       <display value="van der Wouden"/>
    </subject>
    <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
-   <valueCodeableConcept>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="3311000146109"/>
-         <display value="Vaginale kunstverlossing"/>
-      </coding>
-   </valueCodeableConcept>
+   <valueQuantity>
+      <value value="600"/>
+      <unit value="ml"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="ml"/>
+   </valueQuantity>
 </Observation>

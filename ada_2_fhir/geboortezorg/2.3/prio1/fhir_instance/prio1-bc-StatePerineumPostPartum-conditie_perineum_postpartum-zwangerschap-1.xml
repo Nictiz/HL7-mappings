@@ -4,19 +4,9 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-StatePerineumPostPartum"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
          <reference value="Procedure/bevalling-zwangerschap-1"/>
-      </valueReference>
-   </extension>
-   <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
-      <valueReference>
-         <reference value="Observation/nageboortefase-zwangerschap-1"/>
       </valueReference>
    </extension>
    <status value="final"/>
@@ -27,7 +17,11 @@
          <display value="Female perineum observable (observable entity)"/>
       </coding>
    </code>
-   <subject/>
+   <subject>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>

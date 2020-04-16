@@ -4,11 +4,6 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Gravidity"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
          <reference value="Condition/zwangerschap-1"/>
@@ -22,6 +17,12 @@
          <display value="Gravidity"/>
       </coding>
    </code>
-   <subject/>
-   <valueBoolean value="1"/>
+   <subject>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
+   <valueQuantity>
+      <value value="1"/>
+   </valueQuantity>
 </Observation>

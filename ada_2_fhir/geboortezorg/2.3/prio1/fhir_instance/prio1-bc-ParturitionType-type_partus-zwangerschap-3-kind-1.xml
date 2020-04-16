@@ -4,11 +4,6 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ParturitionType"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
          <reference value="Procedure/bevalling-zwangerschap-3"/>
@@ -19,11 +14,6 @@
          <reference value="Patient/zwangerschap-3-kind-1"/>
       </valueReference>
    </extension>
-   <extension url="http://hl7.org/fhir/StructureDefinition/event-partOf">
-      <valueReference>
-         <reference value="Observation/uitdrijvingsfase-zwangerschap-3"/>
-      </valueReference>
-   </extension>
    <status value="final"/>
    <code>
       <coding>
@@ -32,7 +22,12 @@
          <display value="Pattern of delivery (observable entity)"/>
       </coding>
    </code>
-   <subject/>
+   <subject>
+      <identifier>
+         <value value="999910413"/>
+      </identifier>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>

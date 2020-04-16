@@ -2,13 +2,8 @@
 <Observation xmlns="http://hl7.org/fhir">
    <id value="datum_einde_zwangerschap-zwangerschap-3"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DateEndPregnancy"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Pregnancy-EndDate"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
          <reference value="Condition/zwangerschap-3"/>
@@ -18,10 +13,15 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="118185001"/>
-         <display value="Finding related to pregnancy (finding)"/>
+         <code value="118951000146109"/>
+         <display value="Date of end of pregnancy (observable entity)"/>
       </coding>
    </code>
-   <subject/>
-   <valueDate value="2017-07-20+01:00"/>
+   <subject>
+      <identifier>
+         <value value="999910413"/>
+      </identifier>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
+   <valueDate value="2017-09-13+02:00"/>
 </Observation>

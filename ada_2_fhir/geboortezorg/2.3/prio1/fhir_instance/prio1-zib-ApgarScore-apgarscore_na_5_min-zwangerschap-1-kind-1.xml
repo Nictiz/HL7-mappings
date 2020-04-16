@@ -4,11 +4,6 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
-      </valueReference>
-   </extension>
    <status value="final"/>
    <code>
       <coding>
@@ -20,5 +15,8 @@
    <subject>
       <reference value="Patient/zwangerschap-1-kind-1"/>
    </subject>
-   <valueString value="6"/>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
+   <valueQuantity>
+      <value value="6"/>
+   </valueQuantity>
 </Observation>

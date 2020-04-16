@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="wijze_einde_zwangerschap-zwangerschap-3"/>
+   <id value="wijze_einde_zwangerschap-zwangerschap-2"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-WayEndPregnancy"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Pregnancy-EndType"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/workflow-episodeOfCare">
-      <valueReference>
-         <reference value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
-      </valueReference>
-   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
-         <reference value="Condition/zwangerschap-3"/>
+         <reference value="Condition/zwangerschap-2"/>
       </valueReference>
    </extension>
    <status value="final"/>
@@ -22,12 +17,17 @@
          <display value="Wijze einde zwangerschap"/>
       </coding>
    </code>
-   <subject/>
+   <subject>
+      <identifier>
+         <value value="999910413"/>
+      </identifier>
+   </subject>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-2"/>
    <valueCodeableConcept>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.13.46"/>
-         <code value="1"/>
-         <display value="Partus"/>
+         <code value="4"/>
+         <display value="EUG"/>
       </coding>
    </valueCodeableConcept>
 </Observation>
