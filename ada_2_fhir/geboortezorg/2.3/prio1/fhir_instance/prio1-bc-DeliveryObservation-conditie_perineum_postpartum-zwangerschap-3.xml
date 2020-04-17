@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="tijdstip_begin_actieve_ontsluiting-zwangerschap-3"/>
+   <id value="conditie_perineum_postpartum-zwangerschap-3"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-OnsetOfLaborFirstStage"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
@@ -13,15 +13,20 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="249120008"/>
-         <display value="Onset of labor first stage (observable entity)"/>
+         <code value="364297003"/>
+         <display value="Female perineum observable (observable entity)"/>
       </coding>
    </code>
    <subject>
-      <identifier>
-         <value value="999910413"/>
-      </identifier>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
    </subject>
    <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
-   <valueDateTime value="4-16-2020T12:41:00+01:00"/>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="289854007"/>
+         <display value="Gaaf"/>
+      </coding>
+   </valueCodeableConcept>
 </Observation>

@@ -67,23 +67,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates mode="doObstetricProceduresToFhir"/> 
         </xsl:variable>
         
-        <xsl:apply-templates select="$patients" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$children" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$organizations" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$conditions" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$episodesofcare" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$observations" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$procedures" mode="doResourceInResultdoc"/>
-
+        <xsl:variable name="entries" select="$patients | $children | $organizations | $episodesofcare | $conditions | $procedures | $observations"/>
+        
+        <xsl:variable name="composition" as="element(f:Composition)">
+            <xsl:call-template name="composition">
+                <xsl:with-param name="logicalId"><xsl:value-of select="concat('samenvatting-zwangerschap',$pregnancyNo)"/></xsl:with-param>
+                <xsl:with-param name="entries"><xsl:copy-of select="$entries"></xsl:copy-of></xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
+        
+        <xsl:variable name="transactionBundle" as="element(f:Bundle)*">
+            <Bundle xmlns="http://hl7.org/fhir">
+                <id value="{concat('samenvatting-zwangerschap',$pregnancyNo)}"/>
+                <type value="transaction"/>   
+                <xsl:apply-templates select="$composition" mode="doCreateTransactionBundleEntry"/>
+                <xsl:for-each select="$entries">
+                    <xsl:apply-templates select="." mode="doCreateTransactionBundleEntry"/>
+                </xsl:for-each>
+            </Bundle>
+        </xsl:variable>
+        
+        <xsl:apply-templates select="$transactionBundle" mode="doResourceInResultdoc"/>     
     </xsl:template>
       
     <xd:doc>
+        <xd:desc>Creates transaction bundle entry for a FHIR resource</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:Resource/* | f:Patient | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Composition" mode="doCreateTransactionBundleEntry">
+        <entry xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
+            <fullUrl value="{concat(name(.),'/',f:id/@value)}"/>
+            <resource>
+                <xsl:apply-templates select="." mode="ResultOutput"/>
+            </resource>
+            <request>
+                <method value="PUT"/>
+                <url value="{concat(name(.),'/',f:id/@value)}"/>
+            </request>
+        </entry>
+    </xsl:template>   
+          
+    <xd:doc>
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
     </xd:doc>
-    <xsl:template match="f:Resource/* | f:Patient | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, './')[last()]"/>
-        <!--<xsl:variable name="obs-code" select="f:code/f:coding/f:code/@value"/>-->
-        <xsl:result-document href="../fhir_instance/{$usecase}-{$zib-name}-{f:id/@value}.xml"> 
+    <xsl:template match="f:Bundle" mode="doResourceInResultdoc">
+        <xsl:result-document href="../fhir_instance/{$usecase}-transaction-{f:id/@value}.xml"> 
             <xsl:apply-templates select="." mode="ResultOutput"/>
         </xsl:result-document>
     </xsl:template>   

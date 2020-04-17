@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="type_partus-zwangerschap-2-kind-1"/>
+   <id value="conditie_perineum_postpartum-zwangerschap-2"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ParturitionType"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
          <reference value="Procedure/bevalling-zwangerschap-2"/>
       </valueReference>
    </extension>
-   <extension url="http://hl7.org/fhir/StructureDefinition/Observation-focus-stu3">
-      <valueReference>
-         <reference value="Patient/zwangerschap-2-kind-1"/>
-      </valueReference>
-   </extension>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="364336006"/>
-         <display value="Pattern of delivery (observable entity)"/>
+         <code value="364297003"/>
+         <display value="Female perineum observable (observable entity)"/>
       </coding>
    </code>
    <subject>
-      <identifier>
-         <value value="999910413"/>
-      </identifier>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
    </subject>
    <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-2"/>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="177184002"/>
-         <display value="Spontaan"/>
+         <code value="289854007"/>
+         <display value="Gaaf"/>
       </coding>
    </valueCodeableConcept>
 </Observation>

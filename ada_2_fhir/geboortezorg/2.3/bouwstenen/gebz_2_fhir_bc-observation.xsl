@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="gebz_prio1_mappings.xsl"/>
+    <xsl:import href="gebz_mappings.xsl"/>
     <!--<xsl:import href="../../../../zibs2017/payload/nl-core-patient-2.1.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>  
@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="$parentElemName='zwangerschap'">
                                     <reference value="Condition/{$pregnancyId}"/>
                                 </xsl:when>
-                                <xsl:when test="$parentElemName='bevalling'">
+                                <xsl:when test="$parentElemName='bevalling' or $elementName='baring'">
                                     <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
                                 </xsl:when>   
                                 <xsl:when test="($parentElemName='kindspecifieke_maternale_gegevens' or $parentElemName='kindspecifieke_uitkomst_gegevens') and $childId!=''">
@@ -61,6 +61,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                         </valueReference>
                     </extension>
+                </xsl:if>
+                <xsl:if test="$childId!='' and $elementName='baring'">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+                        <valueReference>
+                            <reference value="Patient/{$childId}"/>
+                        </valueReference>
+                    </extension>                 
                 </xsl:if>
                 <status value="final"/>
                 <code>
@@ -85,6 +92,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <xsl:for-each select=".">
                     <xsl:choose>
+                        <xsl:when test="$elementName='baring'">
+                            <valueCodeableConcept>
+                                <coding>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="3950001"/>
+                                    <display value="Birth (finding)"/>
+                                </coding>
+                            </valueCodeableConcept>
+                        </xsl:when>
                         <xsl:when test="@datatype='datetime'">
                             <xsl:call-template name="any-to-date"/>
                         </xsl:when>
@@ -106,7 +122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
-    
+      
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>

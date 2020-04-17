@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="conditie_perineum_postpartum-zwangerschap-1"/>
+   <id value="baring-zwangerschap-3-kind-1"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-StatePerineumPostPartum"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
-         <reference value="Procedure/bevalling-zwangerschap-1"/>
+         <reference value="Procedure/bevalling-zwangerschap-3"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+      <valueReference>
+         <reference value="Patient/zwangerschap-3-kind-1"/>
       </valueReference>
    </extension>
    <status value="final"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="364297003"/>
-         <display value="Female perineum observable (observable entity)"/>
+         <code value="3950001"/>
+         <display value="Birth (finding)"/>
       </coding>
    </code>
    <subject>
       <reference value="Patient/VANDERWOUDEN"/>
       <display value="van der Wouden"/>
    </subject>
-   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-1"/>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="609344008"/>
-         <display value="Episiotomiewond"/>
+         <code value="3950001"/>
+         <display value="Birth (finding)"/>
       </coding>
    </valueCodeableConcept>
 </Observation>

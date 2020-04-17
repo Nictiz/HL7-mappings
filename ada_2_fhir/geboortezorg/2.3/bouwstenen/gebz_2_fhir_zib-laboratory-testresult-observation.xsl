@@ -18,8 +18,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="xsl xs xd"
     version="2.0">
     
-    <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
-    <xsl:import href="../../../../zibs2017/payload/zib-LaboratoryTestResult-Observation-2.1.xsl"/>
+    <xsl:import href="../../../zibs2017/payload/all-zibs.xsl"/>
+    <xsl:import href="../../../zibs2017/payload/zib-LaboratoryTestResult-Observation-2.1.xsl"/>
     <!--<xsl:import href="../../../2_fhir_geboortezorg_include.xsl"/>-->
     <!--<xsl:import href="prio1_huidige_zwangerschap_vrouw_2_fhir_patient2.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>

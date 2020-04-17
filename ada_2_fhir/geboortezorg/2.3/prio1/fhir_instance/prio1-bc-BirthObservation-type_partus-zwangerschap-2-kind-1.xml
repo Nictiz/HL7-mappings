@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="type_partus-zwangerschap-3-kind-1"/>
+   <id value="type_partus-zwangerschap-2-kind-1"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ParturitionType"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
-      <valueReference>
-         <reference value="Procedure/bevalling-zwangerschap-3"/>
-      </valueReference>
-   </extension>
-   <extension url="http://hl7.org/fhir/StructureDefinition/Observation-focus-stu3">
-      <valueReference>
-         <reference value="Patient/zwangerschap-3-kind-1"/>
-      </valueReference>
+      <valueReference/>
    </extension>
    <status value="final"/>
    <code>
@@ -23,11 +16,10 @@
       </coding>
    </code>
    <subject>
-      <identifier>
-         <value value="999910413"/>
-      </identifier>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
    </subject>
-   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-2"/>
    <valueCodeableConcept>
       <coding>
          <system value="http://snomed.info/sct"/>

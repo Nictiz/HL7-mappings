@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="hoeveelheid_bloedverlies-zwangerschap-3"/>
+   <id value="hoeveelheid_bloedverlies-zwangerschap-2"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BloodLoss"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
       <valueReference>
-         <reference value="Procedure/bevalling-zwangerschap-3"/>
+         <reference value="Procedure/bevalling-zwangerschap-2"/>
       </valueReference>
    </extension>
    <status value="final"/>
@@ -18,11 +18,10 @@
       </coding>
    </code>
    <subject>
-      <identifier>
-         <value value="999910413"/>
-      </identifier>
+      <reference value="Patient/VANDERWOUDEN"/>
+      <display value="van der Wouden"/>
    </subject>
-   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-3"/>
+   <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-2"/>
    <valueQuantity>
       <value value="400"/>
       <unit value="ml"/>

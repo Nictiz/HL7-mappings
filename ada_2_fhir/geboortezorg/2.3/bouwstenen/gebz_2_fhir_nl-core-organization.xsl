@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     exclude-result-prefixes="xsl xs xd"
     version="2.0">
-    <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
+    <xsl:import href="../../../zibs2017/payload/all-zibs.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>

@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping of ADA geboortezorg concepts to profiles.</xd:desc>
         <xd:param name="in">Node to consider in the creation of an Observation resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-profile" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">      
+    <xsl:template name="bc-profile" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">      
         <xsl:variable name="elementName" select="name(.)"/>
                 
         <xsl:for-each select=".">            
@@ -50,6 +50,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$elementName='geboortegewicht'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthWeight"/>
                 </xsl:when> 
+                <xsl:when test="$elementName='baring'">
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
+                </xsl:when> 
                 <xsl:when test="$elementName='bevalling'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryProcedure"/>
                 </xsl:when> 
@@ -60,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template name="bc-observation-coding" match="graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">      
+    <xsl:template name="bc-observation-coding" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">      
         <xsl:variable name="elementName" select="name(.)"/>
         <xsl:for-each select="."> 
             <coding>
@@ -115,6 +118,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <code value="364336006"/>
                     <display value="Pattern of delivery (observable entity)"/>
                 </xsl:when> 
+                <xsl:when test="$elementName='baring'">
+                    <system value="http://snomed.info/sct"/>
+                    <code value="3950001"/>
+                    <display value="Birth (finding)"/>
+                </xsl:when>
                 <xsl:when test="$elementName='apgarscore_na_5_min'">
                     <system value="http://loinc.org"/>
                     <code value="9274-2"/>
@@ -165,7 +173,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template name="format-date" match="/">
-<!--        <xsl:param name="fhirType" select="'choice[x]'"/>-->
         <xsl:variable name="operator" select="substring(@value,2,1)"/>
         <xsl:variable name="time" select="substring-before(substring-after(@value,'{'),'}')"/>
         <xsl:variable name="pattern">
@@ -187,18 +194,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="$date"/>
                 </xsl:otherwise>            
             </xsl:choose>
-        
-<!--        <xsl:choose>
-            <xsl:when test="$time!='' and $fhirType='choice[x]'"> 
-                <valueDateTime value="{$value}"/>
-            </xsl:when>
-            <xsl:when test="$time!='' and $fhirType='period.start'"> 
-                <start value = "{$value}"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <valueDate value="{$date}"/>
-            </xsl:otherwise>
-        </xsl:choose>-->
     </xsl:template>
 
     <xsl:template match="/">
