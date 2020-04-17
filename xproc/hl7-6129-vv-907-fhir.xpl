@@ -63,6 +63,13 @@
             <p:uuid match="/f:Bundle/foo:Dummy/f:entry/f:fullUrl/@value"/>
             <p:unwrap match="/f:Bundle/foo:Dummy"/>
         </p:when>
+        <p:otherwise>
+            <p:identity>
+                <p:input port="source">
+                    <p:pipe port="result" step="ada2fhir"/>
+                </p:input>
+            </p:identity>
+        </p:otherwise>
     </p:choose>
 
     <p:store href="result.xml" indent="true" method="xml" name="last-step"/>
