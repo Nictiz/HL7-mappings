@@ -7505,6 +7505,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:with-param name="in" select="f:type"/>
                                                     <xsl:with-param name="textLang" select="$textLang"/>
                                                 </xsl:call-template>
+                                                <xsl:text> </xsl:text>
                                                 <xsl:call-template name="doDT_Range">
                                                     <xsl:with-param name="in" select="."/>
                                                     <xsl:with-param name="textLang" select="$textLang"/>
