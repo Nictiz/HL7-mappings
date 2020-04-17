@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- alleen conversie naar OperationOutcome als er ook fouten zijn -->
             <xsl:for-each select="$Transmission_error">
                 <entry>
-                    <fullUrl value="{uuid:get-uuid(.)}"/>
+                    <fullUrl value="urn:uuid:{uuid:get-uuid(.)}"/>
                     <resource>
                          <xsl:call-template name="Transmission_error_translate">
                             <xsl:with-param name="Transmission_error_list" select="."/>
@@ -84,7 +84,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="$Control_error">
                 <entry>
-                    <fullUrl value="{uuid:get-uuid(.)}"/>
+                    <fullUrl value="urn:uuid:{uuid:get-uuid(.)}"/>
                     <resource>
                          <xsl:call-template name="Control_error_translate">
                             <xsl:with-param name="Control_error_list" select="."/>
