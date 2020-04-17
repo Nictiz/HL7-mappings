@@ -1,7 +1,7 @@
 <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" name="lsp-hl72fhir" version="1" xmlns:foo="dummy" xmlns:f="http://hl7.org/fhir">
 
     <p:input port="source" primary="true" sequence="false">
-        <p:document href="../hl7_2_ada/mp/6.12.9/opleveren_verstrekkingenlijst/hl7_instance/QURX_EX990113NL_01.xml"/>
+        <p:document href="../hl7_2_ada/mp/6.12.9/opleveren_verstrekkingenlijst/hl7_instance_vzvz/QURX_BATCH_IN.xml"/>
     </p:input>
 
     <p:output port="result" sequence="true">
