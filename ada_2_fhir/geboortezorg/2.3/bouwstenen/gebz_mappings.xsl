@@ -172,7 +172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template name="format-date" match="/">
+    <xsl:template name="format-date" match="*">
         <xsl:variable name="operator" select="substring(@value,2,1)"/>
         <xsl:variable name="time" select="substring-before(substring-after(@value,'{'),'}')"/>
         <xsl:variable name="pattern">

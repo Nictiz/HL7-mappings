@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="samenvatting-zwangerschap4"/>
+    <type value="transaction"/>
+    <entry>
+        <fullUrl value="Composition/samenvatting-zwangerschap4"/>
+        <resource>
+            <Composition>
+                <id value="samenvatting-zwangerschap4"/>
+                <status value="final"/>
+                <type>
+                    <coding>
+                        <system value="http://loinc.org"/>
+                        <code value="15508-5"/>
+                        <display value="Labor and delivery records"/>
+                    </coding>
+                </type>
+                <subject>
+                    <reference value="Patient?identifier=123"/>
+                </subject>
+                <date value="2012-01-04T09:10:14Z"/>
+                <author>
+                    <reference value="Practitioner?identifier=00001111"/>
+                </author>
+                <title value="Example Prio 1 Huidige Zwangerschap"/>
+                <section>
+                    <entry>
+                        <reference value="Organization/"/>
+                    </entry>
+                    <entry>
+                        <reference value="Condition/zwangerschap-4"/>
+                    </entry>999910413Wouden van der<entry>
+                        <reference value="Patient/WOUDENVANDER"/>
+                    </entry>
+                    <entry>
+                        <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-4"/>
+                    </entry>
+                    <entry>
+                        <reference value="Observation/bloedgroep_vrouw-zwangerschap-4"/>
+                    </entry>
+                    <entry>
+                        <reference value="Observation/rhesus_d_factor_vrouw-zwangerschap-4"/>
+                    </entry>
+                    <entry>
+                        <reference value="Observation/rhesus_c_factor-zwangerschap-4"/>
+                    </entry>
+                    <entry>
+                        <reference value="Observation/hb-zwangerschap-4"/>
+                    </entry>
+                    <entry>
+                        <reference value="Observation/graviditeit-zwangerschap-4"/>
+                    </entry>
+                    <entry>
+                        <reference value="Observation/pariteit-zwangerschap-4"/>
+                    </entry>
+                    <entry>
+                        <reference value="Observation/a_terme_datum-zwangerschap-4"/>
+                    </entry>
+                </section>
+            </Composition>
+        </resource>
+        <request>
+            <method value="PUT"/>
+            <url value="Composition/samenvatting-zwangerschap4"/>
+        </request>
+    </entry>
+    <entry>
+        <fullUrl value="Patient/WOUDENVANDER"/>
+        <resource>
+            <Patient>
+                <id value="WOUDENVANDER"/>
+                <meta>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+                </meta>
+                <identifier>
+                    <value value="999910413"/>
+                </identifier>
+                <name>
+                    <family value="van der Wouden">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                            <valueString value="van der"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                            <valueString value="Wouden"/>
+                        </extension>
+                    </family>
+                </name>
+            </Patient>
+        </resource>
+        <request>
+            <method value="PUT"/>
+            <url value="Patient/WOUDENVANDER"/>
+        </request>
+    </entry>
+</Bundle>

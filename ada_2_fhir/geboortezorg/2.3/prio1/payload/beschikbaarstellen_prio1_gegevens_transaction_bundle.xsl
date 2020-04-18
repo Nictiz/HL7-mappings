@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../2_fhir_gebz_include.xsl"/>
    
     <xsl:output method="xml" indent="yes"/>
@@ -41,6 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="/">
         <xsl:apply-templates select="//prio1_huidig | prio1_vorig"/>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
     </xd:doc>
@@ -81,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <id value="{concat('samenvatting-zwangerschap',$pregnancyNo)}"/>
                 <type value="transaction"/>   
                 <xsl:apply-templates select="$composition" mode="doCreateTransactionBundleEntry"/>
-                <xsl:for-each select="$entries">
+                <xsl:for-each select="$entries/f:entry">
                     <xsl:apply-templates select="." mode="doCreateTransactionBundleEntry"/>
                 </xsl:for-each>
             </Bundle>
@@ -94,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Creates transaction bundle entry for a FHIR resource</xd:desc>
     </xd:doc>
     <xsl:template match="f:Resource/* | f:Patient | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Composition" mode="doCreateTransactionBundleEntry">
-        <entry xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
+        <entry>
             <fullUrl value="{concat(name(.),'/',f:id/@value)}"/>
             <resource>
                 <xsl:apply-templates select="." mode="ResultOutput"/>
