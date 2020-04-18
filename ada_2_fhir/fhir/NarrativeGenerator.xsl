@@ -7501,11 +7501,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <td>
                                         <xsl:for-each select="f:referenceRange">
                                             <div>
-                                                <xsl:call-template name="doDT_CodeableConcept">
-                                                    <xsl:with-param name="in" select="f:type"/>
-                                                    <xsl:with-param name="textLang" select="$textLang"/>
-                                                </xsl:call-template>
-                                                <xsl:text> </xsl:text>
+                                                <xsl:if test="f:type">
+                                                    <xsl:call-template name="doDT_CodeableConcept">
+                                                        <xsl:with-param name="in" select="f:type"/>
+                                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                                    </xsl:call-template>
+                                                    <xsl:text> </xsl:text>
+                                                </xsl:if>
                                                 <xsl:call-template name="doDT_Range">
                                                     <xsl:with-param name="in" select="."/>
                                                     <xsl:with-param name="textLang" select="$textLang"/>
