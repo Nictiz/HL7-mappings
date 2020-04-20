@@ -51,7 +51,9 @@
                             </xsl:when>
                         </xsl:choose>
                     </system>
-                    <value value="{telefoonnummer/@value | telephone_number/@value}"/>
+                    <xsl:for-each select="telefoonnummer/@value | telephone_number/@value">
+                        <value value="{normalize-space(.)}"/>
+                    </xsl:for-each>
                     <xsl:if test="$numberTypeValue">
                         <use value="{$numberTypeValue}">
                             <xsl:choose>
@@ -75,7 +77,9 @@
                 </xsl:variable>
                 <telecom>
                     <system value="email"/>
-                    <value value="{email_adres/@value | email_address/@value}"/>
+                    <xsl:for-each select="email_adres/@value | email_address/@value">
+                        <value value="{normalize-space(.)}"/>
+                    </xsl:for-each>
                     <xsl:if test="$emailTypeValue">
                         <use value="{$emailTypeValue}">
                             <xsl:choose>
