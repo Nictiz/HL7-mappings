@@ -7306,7 +7306,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <tfoot>
                             <tr>
                                 <td colspan="{$colspan}">
-                                    <xsl:call-template name="doDT_Annotation">
+                                    <xsl:call-template name="doDT_String">
                                         <xsl:with-param name="in" select="f:comment"/>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
