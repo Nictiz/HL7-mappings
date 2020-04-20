@@ -11082,9 +11082,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="h-Match" select="hours-from-dateTime($start) = hours-from-dateTime($end)"/>
                         <xsl:variable name="m-Match" select="minutes-from-dateTime($start) = minutes-from-dateTime($end)"/>
                         <xsl:variable name="s-Match" select="seconds-from-dateTime($start) = seconds-from-dateTime($end)"/>
+                        <xsl:variable name="monthNameStart" as="xs:string?">
+                            <xsl:call-template name="getLocalizedMonthOfTheYear">
+                                <xsl:with-param name="in" select="month-from-dateTime(f:start/@value)"/>
+                                <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:variable name="monthNameEnd" as="xs:string?">
+                            <xsl:call-template name="getLocalizedMonthOfTheYear">
+                                <xsl:with-param name="in" select="month-from-dateTime(f:end/@value)"/>
+                                <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                            </xsl:call-template>
+                        </xsl:variable>
                         <xsl:choose>
                             <xsl:when test="$start = $end">
-                                <xsl:value-of select="format-dateTime($start, '[H01]:[m01]:[s01], [D01] [MNn] [Y0001]', 'nl', (), 'nl')"/>
+                                <xsl:value-of select="format-dateTime($start, concat('[H01]:[m01]:[s01], [D] ',$monthNameStart,' [Y0001]'))"/>
                             </xsl:when>
                             <xsl:when test="$Y-Match and $M-Match and $D-Match">
                                 <xsl:variable name="starttime" select="format-dateTime($start, $i18n_timepicture)"/>
@@ -11099,11 +11111,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             $endtime
                                         else
                                             replace($endtime, '^(\d{2}:\d{2}):00(.*)', '$1$2')"/>
-                                <xsl:value-of select="concat($st, ' - ', $et, $i18n_on, format-dateTime($start, '[D01] [MNn] [Y0001]', 'nl', (), 'nl'))"/>
+                                <xsl:value-of select="concat($st, ' - ', $et, $i18n_on, format-dateTime($start, concat('[D] ',$monthNameEnd,' [Y0001]')))"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:variable name="startdate" select="format-dateTime($start, '[D01] [MNn] [Y0001]', 'nl', (), 'nl')"/>
-                                <xsl:variable name="enddate" select="format-dateTime($end, '[D01] [MNn] [Y0001]', 'nl', (), 'nl')"/>
+                                <xsl:variable name="startdate" select="format-dateTime($start, concat('[D] ',$monthNameStart,' [Y0001]'))"/>
+                                <xsl:variable name="enddate" select="format-dateTime($end, concat('[D] ',$monthNameEnd,' [Y0001]'))"/>
                                 <xsl:variable name="starttime" select="format-dateTime($start, $i18n_timepicture)"/>
                                 <xsl:variable name="endtime" select="format-dateTime($end, $i18n_timepicture)"/>
                                 <xsl:value-of select="concat($startdate, ' ', $starttime, ' - ', $enddate, ' ', $endtime)"/>
@@ -11116,13 +11128,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="Y-Match" select="year-from-date($start) = year-from-date($end)"/>
                         <xsl:variable name="M-Match" select="month-from-date($start) = month-from-date($end)"/>
                         <xsl:variable name="D-Match" select="day-from-date($start) = day-from-date($end)"/>
+                        <xsl:variable name="monthNameStart" as="xs:string?">
+                            <xsl:call-template name="getLocalizedMonthOfTheYear">
+                                <xsl:with-param name="in" select="month-from-date(f:start/@value)"/>
+                                <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:variable name="monthNameEnd" as="xs:string?">
+                            <xsl:call-template name="getLocalizedMonthOfTheYear">
+                                <xsl:with-param name="in" select="month-from-date(f:end/@value)"/>
+                                <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                            </xsl:call-template>
+                        </xsl:variable>
                         <xsl:choose>
                             <xsl:when test="$start = $end">
-                                <xsl:value-of select="format-date($start, '[D01] [MNn] [Y0001]', 'nl', (), 'nl')"/>
+                                <xsl:value-of select="format-date($start, '[D] [MNn] [Y0001]', 'nl', (), 'nl')"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:variable name="startdate" select="format-date($start, '[D01] [MNn] [Y0001]', 'nl', (), 'nl')"/>
-                                <xsl:variable name="enddate" select="format-date($end, '[D01] [MNn] [Y0001]', 'nl', (), 'nl')"/>
+                                <xsl:variable name="startdate" select="format-date($start, concat('[D] ',$monthNameStart,' [Y0001]'))"/>
+                                <xsl:variable name="enddate" select="format-date($end, concat('[D] ',$monthNameEnd,' [Y0001]'))"/>
                                 <xsl:value-of select="concat($startdate, ' - ', $enddate)"/>
                             </xsl:otherwise>
                         </xsl:choose>
@@ -11857,6 +11881,88 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$in"/>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- Take month number 1, 2, 3, ... and return localized month name January, February, March, ... format-dateTime() and format-date() usually don't have those -->
+    <xsl:template name="getLocalizedMonthOfTheYear" as="xs:string?">
+        <xsl:param name="in" as="xs:integer?"/>
+        <xsl:param name="textLang" as="xs:string" required="yes"/>
+        <xsl:choose>
+            <xsl:when test="$in = 1">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">January</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 2">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">February</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 3">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">March</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 4">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">April</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 5">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">May</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 6">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">June</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 7">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">July</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 8">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">August</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 9">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">September</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 10">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">October</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 11">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">November</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in = 12">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">December</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$in"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
