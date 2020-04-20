@@ -262,7 +262,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:existsADAComplexTypeId" as="xs:boolean?">
         <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
-        <xsl:value-of select="exists($schemaFragment/xs:attribute[@name = 'id'])"/>
+        <xsl:sequence select="exists($schemaFragment/xs:attribute[@name = 'id'])"/>
     </xsl:function>
 
     <xd:doc>
