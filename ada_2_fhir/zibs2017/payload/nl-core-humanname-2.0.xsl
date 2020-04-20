@@ -51,7 +51,7 @@
                         </xsl:attribute>
                         <xsl:for-each select=".//geslachtsnaam/voorvoegsels/@value | ./last_name/prefix/@value">
                             <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                                <valueString value="{.}"/>
+                                <valueString value="{normalize-space(.)}"/>
                             </extension>
                         </xsl:for-each>
                         <xsl:for-each select=".//geslachtsnaam/achternaam/@value | ./last_name/last_name/@value">
@@ -94,10 +94,10 @@
                 </xsl:for-each>
             </name>
         </xsl:for-each>
-        <xsl:if test="$in[not(.//@value)] and string-length($unstructuredName/@value) gt 0">
+        <xsl:if test="$in[not(.//@value)] and string-length($unstructuredName/normalize-space(@value)) gt 0">
             <name>
                 <text>
-                    <xsl:copy-of select="$unstructuredName/@value"/>
+                    <xsl:copy-of select="$unstructuredName/normalize-space(@value)"/>
                 </text>
             </name>
         </xsl:if>
