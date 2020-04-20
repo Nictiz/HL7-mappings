@@ -24,6 +24,7 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
 ===Release Notes===
 2020-04-20 -
 * HL7-123 Normalize-space() on Address, Name and Contact parts. FHIR does not allow leading or trailing spaces
+* HL7-123 NarrativeGenerator will use div instead of br tags to avoid conversion to JSON issues in some reference frameworks
 2020-04-09 -
 * MM-1056 Improved display on codes in AllergyIntolerance.category and .criticality. The previous fix introduced an error which is now fixed
 2020-04-07 -
