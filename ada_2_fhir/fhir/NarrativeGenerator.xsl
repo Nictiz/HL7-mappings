@@ -302,7 +302,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Created_on</xsl:with-param>
+                                        <xsl:with-param name="key">Created</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -1362,7 +1362,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Created_on</xsl:with-param>
+                                        <xsl:with-param name="key">Created</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -1567,7 +1567,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Created_on</xsl:with-param>
+                                        <xsl:with-param name="key">Created</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -1988,7 +1988,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Created_on</xsl:with-param>
+                                        <xsl:with-param name="key">Created</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -2926,7 +2926,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Created_on</xsl:with-param>
+                                        <xsl:with-param name="key">Created</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -4084,7 +4084,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Created_on</xsl:with-param>
+                                        <xsl:with-param name="key">Created</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                         <xsl:with-param name="post" select="': '"/>
                                     </xsl:call-template>
@@ -4380,7 +4380,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Created_on</xsl:with-param>
+                                        <xsl:with-param name="key">Created</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -5183,7 +5183,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Authored_on</xsl:with-param>
+                                        <xsl:with-param name="key">Authored</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -6016,7 +6016,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Authored_on</xsl:with-param>
+                                        <xsl:with-param name="key">Authored</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -9228,7 +9228,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Created_on</xsl:with-param>
+                                        <xsl:with-param name="key">Created</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
