@@ -9969,12 +9969,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="textLang" select="$textLang"/>
         </xsl:call-template>
         <xsl:for-each select="$in/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier']">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <xsl:call-template name="doDT_CodeableConcept">
-                    <xsl:with-param name="in" select="f:valueCodeableConcept"/>
-                    <xsl:with-param name="textLang" select="$textLang"/>
-                </xsl:call-template>
-            </div>
+            <xsl:text> </xsl:text>
+            <xsl:call-template name="doDT_CodeableConcept">
+                <xsl:with-param name="in" select="f:valueCodeableConcept"/>
+                <xsl:with-param name="textLang" select="$textLang"/>
+            </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
     <xsl:template name="doDevice">
