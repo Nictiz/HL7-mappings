@@ -49,18 +49,25 @@
             <p:empty/>
         </p:input>
     </p:xslt>
-
+    
     <p:choose>
         <p:when test="/foo:Dummy/f:entry">
+            <p:for-each>
+                <p:iteration-source select="/foo:Dummy/f:entry"/>
+                <p:uuid match="f:entry/f:fullUrl/@value"/>
+                <p:add-attribute match="f:entry/f:fullUrl" attribute-name="value">
+                    <p:with-option name="attribute-value" select="concat('urn:uuid:',f:entry/f:fullUrl/@value)"/>
+                </p:add-attribute>
+            </p:for-each>
+            <p:wrap-sequence wrapper="foo:Dummy" name="re-add-dummy"/>
             <p:insert position="last-child" match="/f:Bundle">
                 <p:input port="insertion">
-                    <p:pipe port="result" step="operationoutcome"/>
+                    <p:pipe port="result" step="re-add-dummy"/>
                 </p:input>
                 <p:input port="source">
                     <p:pipe port="result" step="ada2fhir"/>
                 </p:input>
             </p:insert>
-            <p:uuid match="/f:Bundle/foo:Dummy/f:entry/f:fullUrl/@value"/>
             <p:unwrap match="/f:Bundle/foo:Dummy"/>
         </p:when>
         <p:otherwise>
