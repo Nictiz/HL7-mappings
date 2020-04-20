@@ -2391,7 +2391,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:for-each>
-                        <xsl:if test="f:*[starts-with(local-name(), 'source')]">
+                        <xsl:variable name="additionalSources" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/consent-additionalSources']" as="element()*"/>
+                        <xsl:if test="f:*[starts-with(local-name(), 'source')] | $additionalSources">
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
@@ -2411,6 +2412,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                         <xsl:with-param name="sep">div</xsl:with-param>
                                     </xsl:call-template>
+                                    <xsl:if test="$additionalSources">
+                                        <div>
+                                            <xsl:call-template name="doDT">
+                                                <xsl:with-param name="baseName">value</xsl:with-param>
+                                                <xsl:with-param name="in" select="$additionalSources/f:*[starts-with(local-name(), 'value')]"/>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                                <xsl:with-param name="sep">div</xsl:with-param>
+                                            </xsl:call-template>
+                                        </div>
+                                    </xsl:if>
                                 </td>
                             </tr>
                         </xsl:if>
