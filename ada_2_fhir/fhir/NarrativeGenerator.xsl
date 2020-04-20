@@ -11142,7 +11142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:variable>
                         <xsl:choose>
                             <xsl:when test="$start = $end">
-                                <xsl:value-of select="format-date($start, '[D] [MNn] [Y0001]', 'nl', (), 'nl')"/>
+                                <xsl:value-of select="format-date($start, concat('[D] ',$monthNameStart,' [Y0001]'), 'nl', (), 'nl')"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:variable name="startdate" select="format-date($start, concat('[D] ',$monthNameStart,' [Y0001]'))"/>
