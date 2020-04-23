@@ -51,12 +51,15 @@
             </xsl:if>
         </xsl:variable>
         
+        <xsl:variable name="rules" as="element(f:rule)*" select="$expanded//f:rule[@id]"/>
+        
         <!-- Filter the expanded TestScript. This will add the required elements and put everything in the right
              position --> 
         <xsl:apply-templates mode="filter" select="$expanded">
             <xsl:with-param name="fixtures" select="$fixtures" tunnel="yes"/>
             <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" tunnel="yes"/>
             <xsl:with-param name="variables" select="$variables" tunnel="yes"/>
+            <xsl:with-param name="rules" select="$rules" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
 
@@ -109,20 +112,22 @@
         </destination>
     </xsl:template>
     
-    <!-- Silence status, fixture, profile and variable elements, because they are already handled elsewhere -->
+    <!-- Silence status, fixture, profile, variable and rule elements, because they are already handled elsewhere -->
     <xsl:template match="f:TestScript/f:status" mode="filter" />
     <xsl:template match="f:TestScript//f:fixture" mode="filter" />
     <xsl:template match="f:TestScript//f:profile" mode="filter" />
     <xsl:template match="f:TestScript//f:variable" mode="filter" />
+    <xsl:template match="f:TestScript//f:rule[@id]" mode="filter" />
 
     <!-- Silence all remaining nts: elements (that have been read but are not transformed) -->
     <xsl:template match="nts:*" mode="filter"/>
     
-    <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile and variable elements -->  
+    <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile, variable and rule elements -->  
     <xsl:template match="(f:TestScript/f:setup | f:TestScript/f:test)[1]" mode="filter" xmlns="http://hl7.org/fhir">
         <xsl:param name="fixtures" tunnel="yes"/>
         <xsl:param name="profiles" tunnel="yes"/>
         <xsl:param name="variables" tunnel="yes"/>
+        <xsl:param name="rules" tunnel="yes"/>
 
         <xsl:for-each-group select="$fixtures" group-by="@id">
             <xsl:copy-of select="."/>
@@ -131,6 +136,9 @@
             <xsl:copy-of select="."/>
         </xsl:for-each-group>
         <xsl:for-each-group select="$variables" group-by="f:name/@value">
+            <xsl:copy-of select="."/>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="$rules" group-by="@id">
             <xsl:copy-of select="."/>
         </xsl:for-each-group>
         
@@ -175,6 +183,15 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:apply-templates select="$loadedVariables" mode="expand"/>
+    </xsl:template>
+    
+    <xsl:template match="nictiz:rule[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
+        <rule id="{@id}">
+            <resource>
+                <reference value="{concat($fixtureBase, @href)}"/>
+            </resource>
+            <xsl:copy-of select="./*"/>
+        </rule>
     </xsl:template>
     
     <!-- Epand a nts:variables element; read all f:actopms elements in the referenced file and further process them -->
