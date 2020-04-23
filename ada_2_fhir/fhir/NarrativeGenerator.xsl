@@ -7876,6 +7876,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="generated"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:if test="f:active[@value = 'false']">
+                    <div>
+                        <b>
+                            <xsl:call-template name="util:getLocalizedString">
+                                <xsl:with-param name="key">Inactive record</xsl:with-param>
+                                <xsl:with-param name="textLang" select="$textLang"/>
+                            </xsl:call-template>
+                        </b>
+                    </div>
+                </xsl:if>
                 <div>
                     <xsl:for-each select="f:identifier">
                         <xsl:call-template name="util:getLocalizedString">
