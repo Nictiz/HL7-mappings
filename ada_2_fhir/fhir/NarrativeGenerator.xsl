@@ -7569,6 +7569,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:choose>
                                         <xsl:text>)</xsl:text>
                                     </xsl:for-each>
+                                    <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild-RelatedPerson']">
+                                        <xsl:if test="../f:*[starts-with(local-name(), 'value')]">
+                                            <xsl:text> (</xsl:text>
+                                        </xsl:if>
+                                        <xsl:call-template name="doDT">
+                                            <xsl:with-param name="baseName">value</xsl:with-param>
+                                            <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'value')]"/>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                        </xsl:call-template>
+                                        <xsl:if test="../f:*[starts-with(local-name(), 'value')]">
+                                            <xsl:text>)</xsl:text>
+                                        </xsl:if>
+                                    </xsl:for-each>
                                 </td>
                                 <xsl:if test="$doInterpretation">
                                     <td>
