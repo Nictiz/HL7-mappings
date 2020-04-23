@@ -9,31 +9,38 @@
     </xd:doc>
     
     <xsl:output indent="yes" omit-xml-declaration="yes"/>
-        
-    <!--identity transformation-->
+    
+    <xd:doc>
+        <xd:desc>identity transformation</xd:desc>
+    </xd:doc>
     <xsl:template match="node() | @*">
         <xsl:copy>
             <xsl:apply-templates select="node() | @*"/>
         </xsl:copy>
     </xsl:template>
     
-    <!-- replace all accept headers with json -->
+    <xd:doc>
+        <xd:desc>replace all accept headers with json</xd:desc>
+    </xd:doc>
     <xsl:template match="/f:TestScript/f:test/f:action/f:operation/f:accept/@value">
         <xsl:attribute name="value">
             <xsl:text>json</xsl:text>
         </xsl:attribute>
     </xsl:template>
     
-    <!-- find and replace xml or XML with json/JSOn in the following elements:
-    1.   .id
-    2.   .url
-    3.   .name
-    4.   .description
-    5.   .test.description
-    6.   .test.action.operation.description
-    -->
+    <xd:doc>
+        <xd:desc>find and replace xml or XML with json/JSON in the following elements:
+            1.   /id
+            2.   /url
+            3.   /name
+            4.   /description
+            5.   /test/description
+            6.   /test/action/operation/description</xd:desc>
+    </xd:doc>
     
-    <!-- 1. .id -->
+    <xd:doc>
+        <xd:desc>1. /id</xd:desc>
+    </xd:doc>
     <xsl:template match="/f:TestScript/f:id/@value">
         <xsl:choose>
             <xsl:when test="matches(.,'xml')">
@@ -47,7 +54,9 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- 2. .url -->
+    <xd:doc>
+        <xd:desc>2. /url</xd:desc>
+    </xd:doc>
     <xsl:template match="/f:TestScript/f:url/@value">
         <xsl:choose>
             <xsl:when test="matches(.,'xml')">
@@ -61,7 +70,9 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- 3. .name -->
+    <xd:doc>
+        <xd:desc>3. /name</xd:desc>
+    </xd:doc>
     <xsl:template match="/f:TestScript/f:name/@value">
         <xsl:choose>
             <xsl:when test="matches(.,'(xml|XML)')">
@@ -75,7 +86,9 @@
         </xsl:choose>
     </xsl:template>
     
-    <!-- 4. .description -->
+    <xd:doc>
+        <xd:desc>4. /description</xd:desc>
+    </xd:doc>
     <xsl:template match="/f:TestScript/f:description/@value">
         <xsl:choose>
             <xsl:when test="matches(.,'(xml|XML)')">
@@ -89,7 +102,9 @@
         </xsl:choose>
     </xsl:template>
     
-    <!-- 5. .test.description -->
+    <xd:doc>
+        <xd:desc>5. /test/description</xd:desc>
+    </xd:doc>
     <xsl:template match="/f:TestScript/f:test/f:description/@value">
         <xsl:choose>
             <xsl:when test="matches(.,'(xml|XML)')">
@@ -102,8 +117,10 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-      
-    <!-- 6. .test.action.operation.description -->
+    
+    <xd:doc>
+        <xd:desc>6. /test/action/operation/description</xd:desc>
+    </xd:doc>
     <xsl:template match="/f:TestScript/f:test/f:action/f:operation/f:description/@value">
         <xsl:choose>
             <xsl:when test="matches(.,'(xml|XML)')">
