@@ -1,7 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
     xmlns:f="http://hl7.org/fhir"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:nictiz="http://nictiz.nl/xsl/testscript"
+    xmlns:nts="http://nictiz.nl/xsl/testscript"
     exclude-result-prefixes="#all">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -23,10 +23,10 @@
         <!-- Gather all fixture elements that now might be scattered throughout the document -->
         <xsl:variable name="fixtures" as="element(f:fixture)*">
             <xsl:copy-of select="$expanded//f:fixture"/>
-            <xsl:if test="nictiz:patientTokenFixture">
+            <xsl:if test="nts:patientTokenFixture">
                 <fixture id="patient-token-fixture">
                     <resource>
-                        <reference value="{concat($fixtureBase, nictiz:patientTokenFixture/@href)}"/>
+                        <reference value="{concat($fixtureBase, nts:patientTokenFixture/@href)}"/>
                     </resource>
                 </fixture>
             </xsl:if>
@@ -35,14 +35,14 @@
         <!-- Gather all variable elements that now might be scattered throughout the document -->
         <xsl:variable name="variables" as="element(f:variable)*">
             <xsl:copy-of select="$expanded//f:variable"/>
-            <xsl:if test="nictiz:patientTokenFixture">
+            <xsl:if test="nts:patientTokenFixture">
                 <variable>
                     <name value="patient-token-id"/>
                     <expression value="Patient.id"/>
                     <sourceId value="patient-token-fixture"/>
                 </variable>
             </xsl:if>
-            <xsl:if test="nictiz:includeDateT[@value='yes']">
+            <xsl:if test="nts:includeDateT[@value='yes']">
                 <variable>
                     <name value="T"/>
                     <defaultValue value="${{CURRENTDATE}}"/>
@@ -115,8 +115,8 @@
     <xsl:template match="f:TestScript//f:profile" mode="filter" />
     <xsl:template match="f:TestScript//f:variable" mode="filter" />
 
-    <!-- Silence all remaining nictiz: elements (that have been read but are not transformed) -->
-    <xsl:template match="nictiz:*" mode="filter"/>
+    <!-- Silence all remaining nts: elements (that have been read but are not transformed) -->
+    <xsl:template match="nts:*" mode="filter"/>
     
     <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile and variable elements -->  
     <xsl:template match="(f:TestScript/f:setup | f:TestScript/f:test)[1]" mode="filter" xmlns="http://hl7.org/fhir">
@@ -145,15 +145,15 @@
         </xsl:element>
     </xsl:template>
     
-    <!-- Expand a nictiz:profile element to a FHIR profile element -->
-    <xsl:template match="nictiz:profile" mode="expand" xmlns="http://hl7.org/fhir">
+    <!-- Expand a nts:profile element to a FHIR profile element -->
+    <xsl:template match="nts:profile" mode="expand" xmlns="http://hl7.org/fhir">
         <profile id="{@id}">
             <reference value="{@value}"/>
         </profile>
     </xsl:template>
     
-    <!-- Expand a nictiz:fixture element to a FHIR fixture element -->
-    <xsl:template match="nictiz:fixture[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
+    <!-- Expand a nts:fixture element to a FHIR fixture element -->
+    <xsl:template match="nts:fixture[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <fixture id="{@id}">
             <resource>
                 <reference value="{concat($fixtureBase, @href)}"/>
@@ -161,8 +161,8 @@
         </fixture>
     </xsl:template>
     
-    <!-- Epand a nictiz:variables element; read all f:variable elements in the referenced file and further process them --> 
-    <xsl:template match="nictiz:variables[@href]" mode="expand" xmlns="http://hl7.org/fhir">
+    <!-- Epand a nts:variables element; read all f:variable elements in the referenced file and further process them --> 
+    <xsl:template match="nts:variables[@href]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:param name="testscriptBase"/>
         <xsl:variable name="loadedVariables" as="node()*">
             <xsl:choose>
@@ -177,8 +177,8 @@
         <xsl:apply-templates select="$loadedVariables" mode="expand"/>
     </xsl:template>
     
-    <!-- Epand a nictiz:variables element; read all f:actopms elements in the referenced file and further process them -->
-    <xsl:template match="nictiz:actions[@href]" mode="expand" xmlns="http://hl7.org/fhir">
+    <!-- Epand a nts:variables element; read all f:actopms elements in the referenced file and further process them -->
+    <xsl:template match="nts:actions[@href]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:param name="testscriptBase"/>
         <xsl:variable name="loadedActions" as="node()*">
             <xsl:choose>
