@@ -9996,7 +9996,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:if>
                         <xsl:if test="f:intent">
-                            <div>
+                            <span style="display: block;">
                                 <xsl:call-template name="util:getLocalizedString">
                                     <xsl:with-param name="key">Intent</xsl:with-param>
                                     <xsl:with-param name="textLang" select="$textLang"/>
@@ -10006,10 +10006,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="in" select="f:intent"/>
                                     <xsl:with-param name="textLang" select="$textLang"/>
                                 </xsl:call-template>
-                            </div>
+                            </span>
                         </xsl:if>
                         <xsl:if test="f:priority">
-                            <div>
+                            <span style="display: block;">
                                 <xsl:call-template name="util:getLocalizedString">
                                     <xsl:with-param name="key">Priority</xsl:with-param>
                                     <xsl:with-param name="textLang" select="$textLang"/>
@@ -10029,12 +10029,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:call-template>
                                     </xsl:when>
                                 </xsl:choose>
-                            </div>
+                            </span>
                         </xsl:if>
                     </xsl:if>
                 </xsl:if>
                 <xsl:for-each select="$captionAuthorPerformer | .[self::f:ProcedureRequest][f:authoredOn]">
-                    <div>
+                    <span style="display: block;">
                         <xsl:copy-of select="$captionAuthorPerformerLabel"/>
                         <xsl:if test="f:role">
                             <xsl:text> (</xsl:text>
@@ -10081,7 +10081,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                             <xsl:text>)</xsl:text>
                         </xsl:if>
-                    </div>
+                    </span>
                 </xsl:for-each>
             </caption>
         </xsl:for-each>
@@ -10109,7 +10109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="textLang" select="$textLang"/>
         </xsl:call-template>
         <xsl:for-each select="$in/f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-medicaldevice']">
-            <div xmlns="http://www.w3.org/1999/xhtml">
+            <span xmlns="http://www.w3.org/1999/xhtml">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">Medical Device</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
@@ -10120,7 +10120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="textLang" select="$textLang"/>
                     <xsl:with-param name="sep">div</xsl:with-param>
                 </xsl:call-template>
-            </div>
+            </span>
         </xsl:for-each>
         <xsl:for-each select="$in[1]/../f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-FeedingTubeSystem-EnteralNutrition']">
             <div xmlns="http://www.w3.org/1999/xhtml">
