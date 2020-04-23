@@ -7545,6 +7545,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </i>
                                         </div>
                                     </xsl:if>
+                                    <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituation-LivingAtHomeIndicator']">
+                                        <xsl:text> (</xsl:text>
+                                        <xsl:choose>
+                                            <xsl:when test="f:valueBoolean/@value = 'true'">
+                                                <xsl:call-template name="util:getLocalizedString">
+                                                    <xsl:with-param name="key">Living at home</xsl:with-param>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                </xsl:call-template>
+                                            </xsl:when>
+                                            <xsl:when test="f:valueBoolean/@value = 'false'">
+                                                <xsl:call-template name="util:getLocalizedString">
+                                                    <xsl:with-param name="key">Living away from home</xsl:with-param>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                </xsl:call-template>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:call-template name="util:getLocalizedString">
+                                                    <xsl:with-param name="key">Living at home unknown</xsl:with-param>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                </xsl:call-template>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                        <xsl:text>)</xsl:text>
+                                    </xsl:for-each>
                                 </td>
                                 <xsl:if test="$doInterpretation">
                                     <td>
