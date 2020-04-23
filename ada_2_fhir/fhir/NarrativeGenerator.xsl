@@ -8007,10 +8007,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                     </div>
                 </xsl:for-each>
-                <xsl:if test="f:relationship">
+                <xsl:if test="f:relationship | f:extension[@url = 'http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role']">
                     <div>
                         <xsl:call-template name="doDT_CodeableConcept">
-                            <xsl:with-param name="in" select="f:relationship"/>
+                            <xsl:with-param name="in" select="f:relationship | f:extension[@url = 'http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role']/f:valueCodeableConcept"/>
                             <xsl:with-param name="textLang" select="$textLang"/>
                         </xsl:call-template>
                         <xsl:call-template name="util:getLocalizedString">
