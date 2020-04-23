@@ -8602,7 +8602,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:variable name="contentUsed">
                                         <xsl:call-template name="doDT">
                                             <xsl:with-param name="baseName">used</xsl:with-param>
-                                            <xsl:with-param name="in" select="$used"/>
+                                            <xsl:with-param name="in" select="$used[f:reference | f:identifier]"/>
                                             <xsl:with-param name="textLang" select="$textLang"/>
                                             <xsl:with-param name="sep">div</xsl:with-param>
                                         </xsl:call-template>
@@ -8616,7 +8616,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:call-template>
                                     </xsl:variable>
                                     <xsl:choose>
-                                        <xsl:when test="count($used) = 1 and $usedExtension">
+                                        <xsl:when test="count($used[f:reference | f:identifier]) = 1 and $usedExtension">
                                             <div>
                                                 <xsl:copy-of select="$contentUsed"/>
                                             </div>
@@ -10737,6 +10737,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <xsl:variable name="str">
                 <xsl:choose>
+                    <xsl:when test="@value castable as xs:date">
+                        <xsl:variable name="date" select="xs:date(@value)"/>
+                        <xsl:variable name="monthName" as="xs:string?">
+                            <xsl:call-template name="getLocalizedMonthOfTheYear">
+                                <xsl:with-param name="in" select="month-from-date($date)"/>
+                                <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:value-of select="format-date($date, concat('[D] ',$monthName,' [Y0001]'))"/>
+                    </xsl:when>
                     <xsl:when test="@value">
                         <xsl:value-of select="@value"/>
                     </xsl:when>
@@ -10767,6 +10777,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <xsl:variable name="str">
                 <xsl:choose>
+                    <xsl:when test="@value castable as xs:dateTime">
+                        <xsl:variable name="date" select="xs:dateTime(@value)"/>
+                        <xsl:variable name="monthName" as="xs:string?">
+                            <xsl:call-template name="getLocalizedMonthOfTheYear">
+                                <xsl:with-param name="in" select="month-from-dateTime($date)"/>
+                                <xsl:with-param name="textLang" select="$util:textlangDefault"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:value-of select="format-dateTime($date, concat('[H01]:[m01]:[s01], [D] ',$monthName,' [Y0001]'))"/>
+                    </xsl:when>
                     <xsl:when test="@value">
                         <xsl:value-of select="@value"/>
                     </xsl:when>
@@ -10924,20 +10944,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </div>
                 </xsl:if>
-                <xsl:if test="f:*[starts-with(local-name(), 'dose')]">
-                    <div xmlns="http://www.w3.org/1999/xhtml">
-                        <xsl:call-template name="util:getLocalizedString">
-                            <xsl:with-param name="key">doseQuantity</xsl:with-param>
-                            <xsl:with-param name="textLang" select="$textLang"/>
-                            <xsl:with-param name="post" select="': '"/>
-                        </xsl:call-template>
-                        <xsl:call-template name="doDT">
-                            <xsl:with-param name="baseName">dose</xsl:with-param>
-                            <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'dose')]"/>
-                            <xsl:with-param name="textLang" select="$textLang"/>
-                        </xsl:call-template>
-                    </div>
-                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="f:dose">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                            <xsl:call-template name="util:getLocalizedString">
+                                <xsl:with-param name="key">doseQuantity</xsl:with-param>
+                                <xsl:with-param name="textLang" select="$textLang"/>
+                                <xsl:with-param name="post" select="': '"/>
+                            </xsl:call-template>
+                            <xsl:call-template name="doDT_Quantity">
+                                <xsl:with-param name="in" select="f:dose"/>
+                                <xsl:with-param name="textLang" select="$textLang"/>
+                            </xsl:call-template>
+                        </div>
+                    </xsl:when>
+                    <xsl:when test="f:*[starts-with(local-name(), 'dose')]">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                            <xsl:call-template name="util:getLocalizedString">
+                                <xsl:with-param name="key">doseQuantity</xsl:with-param>
+                                <xsl:with-param name="textLang" select="$textLang"/>
+                                <xsl:with-param name="post" select="': '"/>
+                            </xsl:call-template>
+                            <xsl:call-template name="doDT">
+                                <xsl:with-param name="baseName">dose</xsl:with-param>
+                                <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'dose')]"/>
+                                <xsl:with-param name="textLang" select="$textLang"/>
+                            </xsl:call-template>
+                        </div>
+                    </xsl:when>
+                </xsl:choose>
                 <xsl:if test="f:maxDosePerPeriod | f:maxDosePerAdministration | f:maxDosePerLifetime">
                     <div xmlns="http://www.w3.org/1999/xhtml">
                         <xsl:call-template name="util:getLocalizedString">
@@ -11174,13 +11209,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="s-Match" select="seconds-from-dateTime($start) = seconds-from-dateTime($end)"/>
                         <xsl:variable name="monthNameStart" as="xs:string?">
                             <xsl:call-template name="getLocalizedMonthOfTheYear">
-                                <xsl:with-param name="in" select="month-from-dateTime(f:start/@value)"/>
+                                <xsl:with-param name="in" select="month-from-dateTime($start)"/>
                                 <xsl:with-param name="textLang" select="$util:textlangDefault"/>
                             </xsl:call-template>
                         </xsl:variable>
                         <xsl:variable name="monthNameEnd" as="xs:string?">
                             <xsl:call-template name="getLocalizedMonthOfTheYear">
-                                <xsl:with-param name="in" select="month-from-dateTime(f:end/@value)"/>
+                                <xsl:with-param name="in" select="month-from-dateTime($end)"/>
                                 <xsl:with-param name="textLang" select="$util:textlangDefault"/>
                             </xsl:call-template>
                         </xsl:variable>
@@ -11220,19 +11255,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="D-Match" select="day-from-date($start) = day-from-date($end)"/>
                         <xsl:variable name="monthNameStart" as="xs:string?">
                             <xsl:call-template name="getLocalizedMonthOfTheYear">
-                                <xsl:with-param name="in" select="month-from-date(f:start/@value)"/>
+                                <xsl:with-param name="in" select="month-from-date($start)"/>
                                 <xsl:with-param name="textLang" select="$util:textlangDefault"/>
                             </xsl:call-template>
                         </xsl:variable>
                         <xsl:variable name="monthNameEnd" as="xs:string?">
                             <xsl:call-template name="getLocalizedMonthOfTheYear">
-                                <xsl:with-param name="in" select="month-from-date(f:end/@value)"/>
+                                <xsl:with-param name="in" select="month-from-date($end)"/>
                                 <xsl:with-param name="textLang" select="$util:textlangDefault"/>
                             </xsl:call-template>
                         </xsl:variable>
                         <xsl:choose>
                             <xsl:when test="$start = $end">
-                                <xsl:value-of select="format-date($start, concat('[D] ',$monthNameStart,' [Y0001]'), 'nl', (), 'nl')"/>
+                                <xsl:value-of select="format-date($start, concat('[D] ',$monthNameStart,' [Y0001]'))"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:variable name="startdate" select="format-date($start, concat('[D] ',$monthNameStart,' [Y0001]'))"/>
@@ -11241,16 +11276,59 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:when>
-                    <xsl:when test="empty(f:end/@value)">
-                        <xsl:copy-of select="$i18n_from"/>
-                        <xsl:value-of select="f:start/@value"/>
-                    </xsl:when>
-                    <xsl:when test="empty(f:start/@value)">
-                        <xsl:copy-of select="$i18n_to"/>
-                        <xsl:value-of select="f:end/@value"/>
-                    </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="concat(f:start/@value, ' - ', f:end/@value)"/>
+                        <xsl:variable name="start" as="xs:string?">
+                            <xsl:choose>
+                                <xsl:when test="f:start/@value castable as xs:dateTime">
+                                    <xsl:call-template name="doDT_DateTime">
+                                        <xsl:with-param name="in" select="f:start"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="f:start/@value castable as xs:date">
+                                    <xsl:call-template name="doDT_Date">
+                                        <xsl:with-param name="in" select="f:start"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="f:start/@value"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <xsl:variable name="end" as="xs:string?">
+                            <xsl:choose>
+                                <xsl:when test="f:end/@value castable as xs:dateTime">
+                                    <xsl:call-template name="doDT_DateTime">
+                                        <xsl:with-param name="in" select="f:end"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="f:end/@value castable as xs:date">
+                                    <xsl:call-template name="doDT_Date">
+                                        <xsl:with-param name="in" select="f:end"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="f:end/@value"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        
+                        <xsl:choose>
+                            <xsl:when test="empty(f:end/@value)">
+                                <xsl:copy-of select="$i18n_from"/>
+                                <xsl:value-of select="$start"/>
+                            </xsl:when>
+                            <xsl:when test="empty(f:start/@value)">
+                                <xsl:copy-of select="$i18n_to"/>
+                                <xsl:value-of select="$end"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="concat($start, ' - ', $end)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']">
@@ -11391,7 +11469,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:message>TODO doDT_Reference without reference, display or identifier</xsl:message>
-                        <xsl:text>TODO Reference without reference, display or identifier</xsl:text>
+                        <!--<xsl:text>TODO Reference without reference, display or identifier</xsl:text>-->
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
