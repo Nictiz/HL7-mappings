@@ -7623,6 +7623,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="in" select="f:code"/>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
+                                    <xsl:for-each select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/observation-eventTiming']">
+                                        <div>
+                                            <xsl:call-template name="doDT_Quantity">
+                                                <xsl:with-param name="in" select="f:extension[@url = 'offset']/f:valueQuantity"/>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                            <xsl:text> - </xsl:text>
+                                            <xsl:call-template name="getLocalizedTimingEvent">
+                                                <xsl:with-param name="in" select="f:extension[@url = 'code']/f:valueCodeableConcept"/>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                        </div>
+                                    </xsl:for-each>
                                 </td>
                                 <td>
                                     <xsl:call-template name="doDT">
@@ -12859,6 +12872,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- http://hl7.org/fhir/STU3/v3/TimingEvent/cs.html -->
+    <xsl:template name="getLocalizedTimingEvent">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="textLang" as="xs:string" required="yes"/>
+        
+        <xsl:variable name="codeSystem" select="$in/f:coding/f:system/@value"/>
+        <xsl:variable name="code" select="$in/f:coding/f:code/@value"/>
+        <xsl:variable name="displayName" as="xs:string?">
+            <xsl:if test="count($codeSystem) = 1 and count($code) = 1">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key" select="concat('eventtiming-', $code)"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="string-length($displayName) gt 0">
+                <xsl:value-of select="$displayName"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_CodeableConcept">
                     <xsl:with-param name="in" select="$in"/>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
