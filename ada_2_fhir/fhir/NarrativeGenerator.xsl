@@ -3599,16 +3599,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </th>
                                 <td>
                                     <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:careManager"/>
+                                        <xsl:with-param name="in" select="f:careManager, f:managingOrganization"/>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
-                                    <xsl:if test="f:managingOrganization">
-                                        <xsl:text>, </xsl:text>
-                                        <xsl:call-template name="doDT_Reference">
-                                            <xsl:with-param name="in" select="f:managingOrganization"/>
-                                            <xsl:with-param name="textLang" select="$textLang"/>
-                                        </xsl:call-template>
-                                    </xsl:if>
                                 </td>
                             </tr>
                         </xsl:if>
