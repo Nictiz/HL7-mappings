@@ -4637,10 +4637,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:if test="f:*[starts-with(local-name(), 'occurrence')]">
                             <tr>
                                 <th>
-                                    <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Occurrence</xsl:with-param>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
+                                    <xsl:choose>
+                                        <xsl:when test="f:occurrenceDateTime">
+                                            <xsl:call-template name="util:getLocalizedString">
+                                                <xsl:with-param name="key">Media Collected DateTime</xsl:with-param>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                        </xsl:when>
+                                        <xsl:when test="f:occurrencePeriod">
+                                            <xsl:call-template name="util:getLocalizedString">
+                                                <xsl:with-param name="key">Media Collected Period</xsl:with-param>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:call-template name="util:getLocalizedString">
+                                                <xsl:with-param name="key">Occurrence</xsl:with-param>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </th>
                                 <td>
                                     <xsl:call-template name="doDT">
@@ -7744,6 +7760,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="textLang" select="$textLang"/>
                     </xsl:call-template>
                     <tbody>
+                        <xsl:if test="f:active[@value = 'false']">
+                            <tr>
+                                <th colspan="2">
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Inactive record</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                            </tr>
+                        </xsl:if>
                         <tr>
                             <th>
                                 <xsl:call-template name="util:getLocalizedString">
@@ -10633,10 +10659,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="f:contentType[starts-with(@value, 'image')]">
                         <img xmlns="http://www.w3.org/1999/xhtml">
                             <xsl:choose>
+                                <xsl:when test="f:url[starts-with(@value, 'urn:uuid:') or starts-with(@value, 'urn:oid:')]">
+                                    <xsl:variable name="theUrl" select="f:url/@value"/>
+                                    <xsl:variable name="base64" select="$in/ancestor-or-self::f:Bundle/f:entry[f:fullUrl/@value = $theUrl]/f:resource/f:Binary/f:content/@value"/>
+                                    
+                                    <!-- is this smart? It could duplicate many megabytes... -->
+                                    <xsl:attribute name="src" select="concat('data:', f:contentType/@value, ';base64,', $base64)"/>
+                                </xsl:when>
                                 <xsl:when test="f:url">
                                     <xsl:attribute name="src" select="f:url/@value"/>
                                 </xsl:when>
                                 <xsl:when test="f:data">
+                                    <!-- is this smart? It could duplicate many megabytes... -->
                                     <xsl:attribute name="src" select="concat('data:', f:contentType/@value, ';base64,', f:data/@value)"/>
                                 </xsl:when>
                             </xsl:choose>
