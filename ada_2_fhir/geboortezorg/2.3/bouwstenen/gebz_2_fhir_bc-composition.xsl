@@ -28,6 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="bc-composition" match="/" as="element()">
         <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="adaPatient"/>
         <xsl:param name="entries"/>
         
         <Composition xmlns="http://hl7.org/fhir">
@@ -40,12 +41,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <display value="Labor and delivery records"/> 
                 </coding> 
             </type> 
-            <subject> 
-                <reference value="Patient?identifier=123"/>
-            </subject>
+            <xsl:for-each select="$adaPatient">
+                <subject>
+                    <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                </subject>
+            </xsl:for-each> 
             <date value="2012-01-04T09:10:14Z"/> 
             <author> 
-                <reference value="Practitioner?identifier=00001111"/>
+                <reference value="Practitioner/XXXTODOTOEVOEGENPRACTITIONER"/>
             </author> 
             <title value="Example Prio 1 Huidige Zwangerschap"/> 
             <section> 
@@ -56,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </Composition> 
     </xsl:template>
     
-    <xsl:template match="f:Resource/* | f:Patient | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure" mode="doCreateCompositionEntry">
+    <xsl:template match="f:Resource/* | f:Patient | f:Organization | f:Practitioner | f:PractitionerRole | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure" mode="doCreateCompositionEntry">
         <entry> 
             <reference value="{concat(name(.),'/',f:id/@value)}"/>
         </entry>   

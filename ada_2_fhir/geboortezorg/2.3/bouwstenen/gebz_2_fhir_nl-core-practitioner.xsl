@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:template name="convert-zorgverlener-fhir" mode="zorgverlener-fhir" match="zorgverlenerzorginstelling">
         <xsl:variable name="ADAzorgverlener" as="element()*">
-            <xsl:call-template name="convert-zorgverlener-fhir"/>
+            <xsl:call-template name="convert-zorgverlener-ada"/>
         </xsl:variable>
         <xsl:call-template name="nl-core-practitioner-2.0">
             <xsl:with-param name="in" select="$ADAzorgverlener"/>

@@ -56,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
                                 </xsl:when>   
                                 <xsl:when test="($parentElemName='kindspecifieke_maternale_gegevens' or $parentElemName='kindspecifieke_uitkomst_gegevens') and $childId!=''">
-                                    <reference value="Observation/{concat('geboorte-',$childId,'-',$pregnancyId)}"/>
+                                    <reference value="Observation/{concat('baring-',$childId)}"/>
                                 </xsl:when>
                             </xsl:choose>
                         </valueReference>

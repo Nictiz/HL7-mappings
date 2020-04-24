@@ -25,15 +25,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="mask-ids"/>
          
     <xsl:variable name="usecase">prio1</xsl:variable>
-<!--    <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $relatedPersons/f:entry"/>
-    </xsl:variable>  -->
-    
-<!--    <xsl:variable name="patients" as="element()*">
-        <xsl:call-template name="patients">
-            <xsl:with-param name="in" select="$patient-ada"/>
-        </xsl:call-template>
-    </xsl:variable> -->
      
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen prio 1 gegevens".</xd:desc>
@@ -44,37 +35,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
     </xd:doc>
-    <xsl:template name="ConversiePrio1Gegevens" match="prio1_huidig | prio1_vorig">        
-        <xsl:variable name="children" as="element()*">
-            <xsl:apply-templates mode="doKindToFhir"/>
-        </xsl:variable>   
-        <xsl:variable name="organizations" as="element(f:Organization)*">
-            <xsl:apply-templates mode="doZorginstellingToFhir"/>
-        </xsl:variable>
-        <xsl:variable name="conditions" as="element(f:Condition)*">
-            <xsl:apply-templates mode="doZwangerschapToFhir"/>
-        </xsl:variable>
-        <xsl:variable name="episodesofcare" as="element(f:EpisodeOfCare)*">
-            <xsl:call-template name="zwangerschapsdossier"/>
-        </xsl:variable>
-        <xsl:variable name="observations" as="element(f:Observation)*">
-            <xsl:apply-templates mode="doMaternaleOnderzoeksgegevensToFhir"/>
-            <xsl:apply-templates mode="doZwangerschapEnBevallingGegevensToFhir"/>
-            <xsl:apply-templates mode="doKindGegevensToFhir"/>
-        </xsl:variable>
-        <xsl:variable name="procedures" as="element(f:Procedure)*">
-            <xsl:apply-templates mode="doDeliveryToFhir"/>
-            <xsl:apply-templates mode="doObstetricProceduresToFhir"/> 
-        </xsl:variable>
-        
-        <xsl:apply-templates select="$patients" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$children" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$organizations" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$conditions" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$episodesofcare" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$observations" mode="doResourceInResultdoc"/>
-        <xsl:apply-templates select="$procedures" mode="doResourceInResultdoc"/>
-
+    <xsl:template name="ConversiePrio1Gegevens" match="prio1_huidig | prio1_vorig">             
+        <xsl:apply-templates select="$bouwstenen" mode="doResourceInResultdoc"/>
     </xsl:template>
       
     <xd:doc>

@@ -34,7 +34,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="childId"/>
         
         <xsl:variable name="elementName" select="name(.)"/>
-        <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
         <xsl:variable name="startDelivery">
             <xsl:for-each select="tijdstip_begin_actieve_ontsluiting">
                 <xsl:call-template name="format-date"/>
@@ -49,10 +48,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <xsl:call-template name="bc-profile"/>
                 </meta>
-                <xsl:if test="$parentElemName='kindspecifieke_uitkomst_gegevens' and $childId!='' and $pregnancyId!=''">
+                <xsl:if test="ancestor::kindspecifieke_uitkomstgegevens and $childId">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/event-partOf">
                         <valueReference>
-                            <reference value="Observation/{concat('geboorte-',$childId,'-',$pregnancyId)}"/>
+                            <reference value="Observation/{concat('baring-',$childId)}"/>
                         </valueReference>
                     </extension>
                 </xsl:if>

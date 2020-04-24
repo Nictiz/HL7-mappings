@@ -16,17 +16,17 @@
                </coding>
             </type>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <date value="2012-01-04T09:10:14Z"/>
             <author>
-               <reference value="Practitioner/XXXTODOTOEVOEGENPRACTITIONER"/>
+               <reference value="urn:uuid:f087e8bc-8629-11ea-3978-020000000000"/>
             </author>
             <title value="Example Prio 1 Huidige Zwangerschap"/>
             <section>
                <entry>
-                  <reference value="Patient/WOUDENVANDER"/>
+                  <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                </entry>
                <entry>
                   <reference value="Observation/bloedgroep_vrouw-zwangerschap-4"/>
@@ -50,13 +50,13 @@
                   <reference value="Observation/a_terme_datum-zwangerschap-4"/>
                </entry>
                <entry>
-                  <reference value="Practitioner/"/>
+                  <reference value="urn:uuid:f087e97a-8629-11ea-3978-020000000000"/>
                </entry>
                <entry>
                   <reference value="PractitionerRole/-"/>
                </entry>
                <entry>
-                  <reference value="Organization/"/>
+                  <reference value="urn:uuid:f087e97a-8629-11ea-3978-020000000000"/>
                </entry>
                <entry>
                   <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-4"/>
@@ -76,7 +76,6 @@
       <fullUrl value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
       <resource>
          <Patient>
-            <id value="WOUDENVANDER"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
@@ -97,7 +96,7 @@
       </resource>
       <request>
          <method value="PUT"/>
-         <url value="Patient/WOUDENVANDER"/>
+         <url value="Patient?identifier=999910413"/>
       </request>
    </entry>
    <entry>
@@ -133,7 +132,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <valueCodeableConcept>
@@ -183,7 +182,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <valueCodeableConcept>
@@ -233,7 +232,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <valueCodeableConcept>
@@ -283,7 +282,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <effectiveDateTime value="2020-02-12"/>
@@ -322,7 +321,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-4"/>
@@ -358,7 +357,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-4"/>
@@ -392,7 +391,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <context value="EpisodeOfCare/zwangerschapsdossier-zwangerschap-4"/>
@@ -411,11 +410,14 @@
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
+            <identifier>
+               <value value="00001111"/>
+            </identifier>
          </Practitioner>
       </resource>
       <request>
          <method value="PUT"/>
-         <url value="Practitioner/"/>
+         <url value="Practitioner?identifier=00001111"/>
       </request>
    </entry>
    <entry>
@@ -426,6 +428,12 @@
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
             </meta>
+            <practitioner>
+               <reference value="urn:uuid:f087e8bc-8629-11ea-3978-020000000000"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:f087e97a-8629-11ea-3978-020000000000"/>
+            </organization>
          </PractitionerRole>
       </resource>
       <request>
@@ -437,7 +445,6 @@
       <fullUrl value="urn:uuid:f087e97a-8629-11ea-3978-020000000000"/>
       <resource>
          <Organization>
-            <id value=""/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -448,7 +455,7 @@
       </resource>
       <request>
          <method value="PUT"/>
-         <url value="Organization/"/>
+         <url value="Organization?identifier=1504"/>
       </request>
    </entry>
    <entry>
@@ -469,11 +476,11 @@
             </type>
             <diagnosis>
                <condition>
-                  <reference value="zwangerschap-4"/>
+                  <reference value="urn:uuid:f087e97a-8629-11ea-3978-020000000000"/>
                </condition>
             </diagnosis>
             <patient>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </patient>
          </EpisodeOfCare>
@@ -500,7 +507,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="Patient/WOUDENVANDER"/>
+               <reference value="urn:uuid:f087e54c-8629-11ea-3978-020000000000"/>
                <display value="Wouden van der"/>
             </subject>
             <context>
