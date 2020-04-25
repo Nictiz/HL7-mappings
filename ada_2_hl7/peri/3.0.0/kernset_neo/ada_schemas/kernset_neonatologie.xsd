@@ -103,6 +103,16 @@
          <xs:documentation>Type for concept group: Documentgegevens</xs:documentation>
       </xs:annotation>
       <xs:sequence>
+         <xs:element name="identificatie-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91448"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="identificatie"
+                     type="identificatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91448"
+                     minOccurs="1"
+                     maxOccurs="1"/>
          <xs:element name="document_datum-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91227"/>
@@ -111,6 +121,36 @@
          </xs:element>
          <xs:element name="document_datum"
                      type="document_datum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91227"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="set_identificatie-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91449"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="set_identificatie"
+                     type="set_identificatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91449"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="versienummer-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91450"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="versienummer"
+                     type="versienummer_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91450"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="software_naam-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91461"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="software_naam"
+                     type="software_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91461"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="verificatie_zorgverlener-start" minOccurs="0" maxOccurs="1">
@@ -253,14 +293,64 @@
          <xs:documentation>Type for concept group: Naamgegevens</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="naamgegevens-start" minOccurs="0" maxOccurs="1">
+         <xs:element name="voornamen-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90015"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91451"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="naamgegevens"
-                     type="naamgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90015"
+         <xs:element name="voornamen"
+                     type="voornamen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91451"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="initialen-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91452"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="initialen"
+                     type="initialen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91452"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="roepnaam-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91453"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="roepnaam"
+                     type="roepnaam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91453"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="naamgebruik-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91454"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="naamgebruik"
+                     type="naamgebruik_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91454"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="geslachtsnaam-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91455"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="geslachtsnaam"
+                     type="geslachtsnaam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91455"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="geslachtsnaam_partner-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91458"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="geslachtsnaam_partner"
+                     type="geslachtsnaam_partner_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91458"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
@@ -274,6 +364,82 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90014"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="geslachtsnaam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91455">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: Geslachtsnaam</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="voorvoegsels-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91456"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="voorvoegsels"
+                     type="voorvoegsels_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91456"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="achternaam-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91457"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="achternaam"
+                     type="achternaam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91457"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91455"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="geslachtsnaam_partner_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91458">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: GeslachtsnaamPartner</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="voorvoegsels_partner-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91459"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="voorvoegsels_partner"
+                     type="voorvoegsels_partner_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91459"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="achternaam_partner-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91460"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="achternaam_partner"
+                     type="achternaam_partner_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91460"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91458"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="vrouw_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90000">
@@ -1683,7 +1849,7 @@
    </xs:complexType>
    <xs:complexType name="ademhalingsondersteuning_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90363">
       <xs:annotation>
-         <xs:documentation>Type for concept group: Ademhalingsondersteuning </xs:documentation>
+         <xs:documentation>Type for concept group: Ademhalingsondersteuning</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:element name="ademhalingsondersteuningq-start" minOccurs="0" maxOccurs="1">
@@ -3593,7 +3759,7 @@
    </xs:complexType>
    <xs:complexType name="follow_up_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90290">
       <xs:annotation>
-         <xs:documentation>Type for concept group: Follow up </xs:documentation>
+         <xs:documentation>Type for concept group: Follow up</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:element name="na_ontslag-start" minOccurs="0" maxOccurs="1">
@@ -3880,6 +4046,25 @@
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:annotation>
+      <xs:documentation>Type for concept item: Identificatie - 1..1 M</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="identificatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91448">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91448"/>
+      <xs:attribute name="value" use="required">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>@conformance='M'</xs:documentation>
+               </xs:annotation>
+               <xs:minLength value="1"/>
+               <xs:pattern value=".*[^\s].*"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="identifier"/>
+      <xs:attribute name="root" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
       <xs:documentation>Type for concept item: DocumentDatum - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="document_datum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91227">
@@ -3894,6 +4079,42 @@
    <xs:simpleType name="document_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91227">
       <xs:restriction base="xs:string"/>
    </xs:simpleType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: SetIdentificatie - 1..1 M</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="set_identificatie_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91449">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91449"/>
+      <xs:attribute name="value" use="required">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>@conformance='M'</xs:documentation>
+               </xs:annotation>
+               <xs:minLength value="1"/>
+               <xs:pattern value=".*[^\s].*"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="identifier"/>
+      <xs:attribute name="root" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Versienummer - 1..1 M</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="versienummer_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91450">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91450"/>
+      <xs:attribute name="value" use="required" type="xs:nonNegativeInteger"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: SoftwareNaam - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="software_naam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91461">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91461"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geverifieerd door zorgverlener? - 1..1 R</xs:documentation>
    </xs:annotation>
@@ -3967,12 +4188,118 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Naamgegevens - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Voornamen - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="naamgegevens_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90015">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90015"/>
+   <xs:complexType name="voornamen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91451">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91451"/>
       <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="reference"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Initialen - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="initialen_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91452">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91452"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Roepnaam - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="roepnaam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91453">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91453"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Naamgebruik - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="naamgebruik_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91454">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91454"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>Eigen geslachtsnaam</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>Geslachtsnaam partner</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>Geslachtsnaam partner gevolgd door eigen geslachtsnaam</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>Eigen geslachtsnaam gevolgd door geslachtsnaam partner</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="5">
+                  <xs:annotation>
+                     <xs:documentation>Unknown</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Voorvoegsels - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="voorvoegsels_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91456">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91456"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Achternaam - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="achternaam_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91457">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91457"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: VoorvoegselsPartner - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="voorvoegsels_partner_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91459">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91459"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: AchternaamPartner - 1..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="achternaam_partner_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_91460">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.91460"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
@@ -5041,7 +5368,7 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: Ontslag datum  - 0..1 R</xs:documentation>
+      <xs:documentation>Type for concept item: Ontslag datum - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="ontslag_datum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90504">
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.10.90504"/>
@@ -5050,7 +5377,7 @@
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>simpleType for valueDomain: Ontslag datum : string</xs:documentation>
+      <xs:documentation>simpleType for valueDomain: Ontslag datum: string</xs:documentation>
    </xs:annotation>
    <xs:simpleType name="ontslag_datum_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_10_90504">
       <xs:restriction base="xs:string"/>
@@ -9347,7 +9674,7 @@
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Patient transfer, in-hospital, unit-to-unit (procedure)</xs:documentation>
+                     <xs:documentation>Discharge to other location within hospital premises (procedure)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -10417,6 +10744,7 @@
          <xs:enumeration value="identifier"/>
          <xs:enumeration value="date"/>
          <xs:enumeration value="datetime"/>
+         <xs:enumeration value="time"/>
          <xs:enumeration value="quantity"/>
          <xs:enumeration value="duration"/>
          <xs:enumeration value="boolean"/>
@@ -10454,7 +10782,7 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeDateTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T([+\-]\d+(\.\d+)?[YMD](\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
+         <xs:pattern value="T(([+\-]\d+(\.\d+)?[YMD])?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="DateYear">
