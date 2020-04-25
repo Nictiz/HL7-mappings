@@ -1,0 +1,116 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="MBH-907-toedieningssnelheid-MA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: <a href="Patient/N-XXX-MAASZ">N. XXX_Maasz</a>. Id: MBH_907_toedieningssnelheid_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001111010000001111">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_907_toedieningssnelheid (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>
+                     <a href="Medication/94692-2-16-840-1-113883-2-4-4-10">MORFINE INFVLST 5MG/ML CAS 100ML</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>T+0D{08:47:00}</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>${DATE, T, D, +0}T00:00:00+02:00 - ${DATE, T, D, +8}T23:59:59+02:00</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+8D{23:59:59}&gt;, 0.2 a 0.5 ml per uur parenteraal</div>
+                     <div>Toedieningsweg: <span title="parenteraal (10 - G-Standaard thesaurus subtabel 0007)">parenteraal</span>
+                     </div>
+                     <div>Doseerverhouding: 0.2 ml/h - 0.5 ml/h</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +8}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_907_toedieningssnelheid"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_907_toedieningssnelheid_MA"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/94692-2-16-840-1-113883-2-4-4-10"/>
+      <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/N-XXX-MAASZ"/>
+      <display value="N. XXX_Maasz"/>
+   </subject>
+   <authoredOn value="T+0D{08:47:00}"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/000001111010000001111"/>
+               <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
+         <display value="Peter van Pulver"/>
+      </agent>
+   </requester>
+   <dosageInstruction>
+      <text value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+8D{23:59:59}&gt;, 0.2 a 0.5 ml per uur parenteraal"/>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="10"/>
+            <display value="parenteraal"/>
+         </coding>
+      </route>
+      <rateRange>
+         <low>
+            <value value="0.2"/>
+            <unit value="ml/h"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="ml/h"/>
+         </low>
+         <high>
+            <value value="0.5"/>
+            <unit value="ml/h"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="ml/h"/>
+         </high>
+      </rateRange>
+   </dosageInstruction>
+</MedicationRequest>

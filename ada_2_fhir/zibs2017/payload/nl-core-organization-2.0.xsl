@@ -91,7 +91,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an Organization resource</xd:desc>
-        <xd:param name="uuid">If false and (zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:param name="uuid">
+            If false and (zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number) generate from that. 
+            Otherwise generate uuid from scratch. 
+            Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.
+        </xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Organization.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
@@ -114,9 +118,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$uuid">
                         <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                     </xsl:when>
-                    <xsl:otherwise>
+                        <xsl:when test="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]">
+                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[1]/(@value | @root), ''))))"/>
+                    </xsl:when>
+                    <!-- AWE, in some rare cases this does not give a unique resource id -->
+                    <!--<xsl:otherwise>
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
-                    </xsl:otherwise>
+                    </xsl:otherwise>-->
+                    <!-- so fall back on entryFullUrl instead -->
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                    </xsl:otherwise>                    
                 </xsl:choose>
             </xsl:if>
         </xsl:param>

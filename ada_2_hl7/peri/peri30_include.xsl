@@ -19,6 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- whether to output a schema/schematron reference, must be false() in production environment -->
     <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
+    <xsl:param name="schemaLocation">urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Geboortezorg_v30/Publicaties/20190926/peri20-xml-20190926T163541/XML/schemas/CDANL_extended.xsd</xsl:param>
 
     <xd:doc>
         <xd:desc>Helper template to handle a Yes/No question for an observation or procedure, context is the ada boolean element</xd:desc>
@@ -275,7 +276,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <code code="406151001" displayName="Post-discharge follow-up (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                                         <statusCode code="completed"/>
                                         <!-- O2 op dag 28 -->
-                                        <xsl:for-each select="(o2_op_dag_28|o2_op_dag_28q)[@value | @nullFlavor]">
+                                        <xsl:for-each select="(o2_op_dag_28 | o2_op_dag_28q)[@value | @nullFlavor]">
                                             <component>
                                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.90.901148_20181106144851"/>
                                             </component>
@@ -492,10 +493,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </effectiveTime>
 
                     <!-- IC opname -->
-                    <xsl:for-each select="opname/(ic_opname|ic_opnameq)[@value | @nullFlavor]">
+                    <xsl:for-each select="opname/(ic_opname | ic_opnameq)[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.901131</xsl:with-param>
                                 <xsl:with-param name="code">305351004</xsl:with-param>
                                 <xsl:with-param name="displayName">Admission to intensive care unit (procedure)</xsl:with-param>
                             </xsl:call-template>
@@ -503,10 +503,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
 
                     <!-- heropname -->
-                    <xsl:for-each select="opname/(heropname|heropnameq)[@value | @nullFlavor]">
+                    <xsl:for-each select="opname/(heropname | heropnameq)[@value | @nullFlavor]">
                         <entryRelationship typeCode="COMP">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3.23_20171025000000_YN">
-                                <xsl:with-param name="templateId">2.16.840.1.113883.2.4.6.10.90.901132</xsl:with-param>
                                 <xsl:with-param name="code">417005</xsl:with-param>
                                 <xsl:with-param name="displayName">Hospital re-admission (procedure)</xsl:with-param>
                             </xsl:call-template>
@@ -612,7 +611,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             </xsl:for-each>
             <!-- antenatale steroïden -->
-            <xsl:for-each select="complicaties_tijdens_zwangerschap/antenatale_steroiden[@value | @code]">
+            <xsl:for-each select="complicaties_tijdens_zwangerschap/antenatale_steroiden[@code]">
                 <entryRelationship typeCode="COMP">
                     <procedure classCode="PROC" moodCode="EVN">
                         <xsl:choose>
@@ -625,7 +624,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:attribute name="nullFlavor" select="@code"/>
                             </xsl:when>
                         </xsl:choose>
-                        <templateId root="2.16.840.1.113883.2.4.6.10.90.901120"/>
                         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3.23"/>
                         <code code="434601000124108" displayName="Steroid therapy for fetal lung maturation (procedure)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                         <xsl:choose>
@@ -979,7 +977,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </component>
                         </xsl:for-each>
                         <!--  Antibiotica eerste 3 dagen peri30-dataelement-91045 -->
-                        <xsl:for-each select="(antibiotica_eerste_3_dagen|antibiotica_eerste_3_dagenq)[@value | @nullFlavor]">
+                        <xsl:for-each select="(antibiotica_eerste_3_dagen | antibiotica_eerste_3_dagenq)[@value | @nullFlavor]">
                             <component>
                                 <observation classCode="OBS" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.90.901238"/>
@@ -1292,9 +1290,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="cda-id">The element containing the id for this CDA document. XML element with attributes @value and @root. @root defaults to a test nictiz oid. </xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.90.901181_20181107170819" match="kernset_neonatologie" mode="HandleCDAKernsetNeo">
-        <xsl:param name="cda-id" as="element()?">
-            <id value="someUniqueID" root="2.16.840.1.113883.2.4.3.11.999.60.1"/>
-        </xsl:param>
 
         <ClinicalDocument>
             <xsl:if test="$schematron-ref">
@@ -1303,9 +1298,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <realmCode code="NL"/>
             <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9222"/>
-            <id extension="{$cda-id/@value}" root="{$cda-id/@root}"/>
+            <!-- documentgegevens/identificatie -->
+            <xsl:choose>
+                <xsl:when test="documentgegevens/identificatie[@value | @root]">
+                    <xsl:call-template name="makeIIid">
+                        <xsl:with-param name="in" select="documentgegevens/identificatie"/>
+                    </xsl:call-template>
+                </xsl:when>
+            </xsl:choose>
             <code code="118761000146105" displayName="rapport voor kwaliteitsregistratie over neonaten (gegevensobject)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
             <title>Kernset Neonatologie</title>
+            <!-- documentgegevens/document_datum -->
             <xsl:for-each select="documentgegevens/document_datum[@value | @nullFlavor]">
                 <xsl:call-template name="makeTSValue">
                     <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
@@ -1313,6 +1316,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
             <languageCode code="nl-NL"/>
+
+            <!-- documentgegevens/set_identificatie -->
+            <xsl:for-each select="documentgegevens/set_identificatie[@value | @root]">
+                <xsl:call-template name="makeIIValue">
+                    <xsl:with-param name="elemName">setId</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+
+            <!-- documentgegevens/versienummer -->
+            <xsl:for-each select="documentgegevens/versienummer[@value]">
+                <xsl:call-template name="makeINTValue">
+                    <xsl:with-param name="elemName">versionNumber</xsl:with-param>
+                    <xsl:with-param name="xsiType" select="()"/>
+                </xsl:call-template>
+            </xsl:for-each>
+
             <!-- recordTarget - patient - kind -->
             <xsl:for-each select="kind/demografische_gegevens/patient[.//(@value | @code | @nullFlavor)]">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3_20170602000000"/>
@@ -1324,6 +1343,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- no dataset item available for authorTime... https://bits.nictiz.nl/browse/GZ-9 -->
                     <!--                <xsl:with-param name="authorTime"/>-->
                 </xsl:call-template>
+            </xsl:for-each>
+
+            <!-- author - softwareName -->
+            <xsl:for-each select="documentgegevens/software_naam[@value]">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.51_20181218141008_dev"/>
             </xsl:for-each>
 
             <!-- custodian - zorgaanbieder -->
