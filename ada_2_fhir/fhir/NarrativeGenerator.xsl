@@ -12362,47 +12362,51 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <!-- https://www.hl7.org/fhir/STU3/valueset-days-of-week.html -->
+    <!-- AWE, allow for more than one input -->
     <xsl:template name="getLocalizedDaysOfWeek">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()*"/>
         <xsl:param name="textLang" as="xs:string" required="yes"/>
+
+        <xsl:variable name="out" as="xs:string*">
+            <xsl:for-each select="$in">
         <xsl:choose>
-            <xsl:when test="$in/@value = 'mon'">
+                    <xsl:when test="@value = 'mon'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">Monday</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/@value = 'tue'">
+                    <xsl:when test="@value = 'tue'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">Tuesday</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/@value = 'wed'">
+                    <xsl:when test="@value = 'wed'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">Wednesday</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/@value = 'thu'">
+                    <xsl:when test="@value = 'thu'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">Thursday</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/@value = 'fri'">
+                    <xsl:when test="@value = 'fri'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">Friday</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/@value = 'sat'">
+                    <xsl:when test="@value = 'sat'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">Saturday</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/@value = 'sun'">
+                    <xsl:when test="@value = 'sun'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">Sunday</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
@@ -12415,6 +12419,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:value-of select="string-join($out, ', ')"/>
     </xsl:template>
     <!-- https://www.hl7.org/fhir/STU3/valueset-days-of-week.html -->
     <xsl:template name="getLocalizedEventTiming">
