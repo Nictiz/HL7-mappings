@@ -158,8 +158,26 @@
                         
                         <!-- toedientijd -->
                         <xsl:for-each select="toedientijd[@value]">
-                            <timeOfDay value="{format-dateTime(./@value, '[H01]:[m01]:[s01]')}"/>
-                        </xsl:for-each>
+                            <xsl:choose>
+                                <xsl:when test="@value castable as xs:dateTime">
+                                    <timeOfDay value="{format-dateTime(xs:dateTime(@value), '[H01]:[m01]:[s01]')}"/>                                    
+                                </xsl:when>
+                                <xsl:when test="@value castable as xs:time">
+                                    <timeOfDay value="{format-time(xs:time(@value), '[H01]:[m01]:[s01]')}"/>                                    
+                                </xsl:when>
+                                <!-- not a dateTime or Time as input, let's check for an ada T date -->
+                                <xsl:when test="nf:calculate-t-date(@value, xs:date('1970-01-01')) castable as xs:dateTime">
+                                    <!-- ada T date as input (T+0D{08:00:00}), lets convert it to a proper dateTime using date 1 Jan 1970, 
+                                        this date is not relevant for toedientijd -->
+                                    <timeOfDay value="{format-dateTime(xs:dateTime(nf:calculate-t-date(@value, xs:date('1970-01-01'))), '[H01]:[m01]:[s01]')}"/>                                    
+                                 </xsl:when>
+                                <xsl:otherwise>
+                                    <!-- Should not happen, let's at least make it visible and output the unexpected ada value in FHIR timeOfDay -->
+                                    <!-- Will most likely cause invalid FHIR, but at least that will be noticed -->
+                                    <timeOfDay value="{@value}"/> 
+                                </xsl:otherwise>
+                            </xsl:choose>
+                          </xsl:for-each>
                         
                         <!-- dagdeel -->
                         <xsl:for-each select="dagdeel[@code][not(@codeSystem = $oidHL7NullFlavor)]">
