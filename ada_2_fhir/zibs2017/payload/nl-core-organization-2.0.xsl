@@ -112,9 +112,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$uuid">
                         <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                     </xsl:when>
-                    <xsl:otherwise>
+                    <xsl:when test="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]">
+                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[1]/(@value | @root), ''))))"/>
+                    </xsl:when>
+                <!-- AWE, in some rare cases this does not give a unique resource id -->
+                    <!--<xsl:otherwise>
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
-                    </xsl:otherwise>
+                    </xsl:otherwise>-->
+                    <!-- so fall back on entryFullUrl instead -->
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                    </xsl:otherwise>                    
                 </xsl:choose>
             </xsl:if>
         </xsl:param>
