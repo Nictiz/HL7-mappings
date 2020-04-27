@@ -45,17 +45,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="medicatieoverzicht_90">
-            <xsl:with-param name="adaTransaction" select="//beschikbaarstellen_medicatieoverzicht"/>
+            <xsl:with-param name="adaTransaction" select="adaxml/data/beschikbaarstellen_medicatieoverzicht"/>
         </xsl:call-template>
     </xsl:template>
     <xd:doc>
         <xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
-        <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
-        <xd:param name="adaTransaction"/>
+          <xd:param name="adaTransaction">The ada transaction</xd:param>
     </xd:doc>
     <xsl:template name="medicatieoverzicht_90">
         <xsl:param name="adaTransaction" as="element()*"/>
-        <xsl:param name="mbh" as="element()*" select="$adaTransaction/medicamenteuze_behandeling"/>
         
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:copy-of select="$bouwstenen-907"/>

@@ -47,31 +47,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="medicatieoverzicht_90_resources">
-            <xsl:with-param name="mbh" select="//beschikbaarstellen_medicatieoverzicht/medicamenteuze_behandeling"/>
+            <xsl:with-param name="adaTransaction" select="adaxml/data/beschikbaarstellen_medicatieoverzicht"/>
         </xsl:call-template>
     </xsl:template>
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
-        <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
+        <xd:param name="adaTransaction">The ada transaction</xd:param>
     </xd:doc>
     <xsl:template name="medicatieoverzicht_90_resources">
-        <xsl:param name="mbh"/>
-        
+        <xsl:param name="adaTransaction" as="element()*"/>
+        <!--        <xsl:param name="mbh"/>-->
+
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:for-each select="$bouwstenen-907, $commonEntries">
                 <xsl:apply-templates select="." mode="doSearchModeInclude"/>
             </xsl:for-each>
         </xsl:variable>
-        
+
         <xsl:variable name="medicatieoverzicht-list" as="element(f:entry)*">
-            <xsl:for-each select="$mbh[1]/../documentgegevens">
+            <xsl:for-each select="$adaTransaction/documentgegevens">
                 <xsl:call-template name="medicatieoverzicht-9.0.6">
                     <xsl:with-param name="documentgegevens" select="."/>
                     <xsl:with-param name="entries" select="$entries"/>
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:variable>
-        
+
         <xsl:apply-templates select="($medicatieoverzicht-list, $entries)/f:resource/*" mode="doResourceInResultdoc"/>
         <!-- also create a Bundle that can be returned as answer to a medication overview query -->
         <xsl:call-template name="create-mo-bundle">
@@ -99,7 +100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Bundle>
         </xsl:result-document>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Overwrite Bundle/entry/search/mode/@value with 'include'</xd:desc>
     </xd:doc>
@@ -113,9 +114,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Overwrite Bundle/entry/search/mode/@value with 'include'</xd:desc>
     </xd:doc>
-    <xsl:template match="node()|@*" mode="doSearchModeInclude">
+    <xsl:template match="node() | @*" mode="doSearchModeInclude">
         <xsl:copy>
-            <xsl:apply-templates select="node()|@*" mode="#current"/>
+            <xsl:apply-templates select="node() | @*" mode="#current"/>
         </xsl:copy>
     </xsl:template>
 

@@ -32,14 +32,33 @@
 
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <property name="usecase" value="beschikbaarstellen_medicatiegegevens"/>
+        <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
+        <!-- MA -->
         <antcall target="setup_sub">
-            <param name="build.dir" value="${build.dir}/${usecase}"/>
-            <param name="schema.string" value="*${usecase}*"/>
+            <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
+            <param name="schema.string" value="*${usecase-mg}*"/>
             <param name="fileset.dir" value="ada_instance_MA"/>
             <param name="fileset.include" value="*MA*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase}"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
         </antcall>
+        <!-- VV -->
+        <antcall target="setup_sub">
+            <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
+            <param name="schema.string" value="*${usecase-mg}*"/>
+            <param name="fileset.dir" value="ada_instance_VV"/>
+            <param name="fileset.include" value="*VV*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
+        </antcall>
+        
+        <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
+         <antcall target="setup_sub">
+            <param name="build.dir" value="${build.dir}/${usecase-mo}"/>
+            <param name="schema.string" value="*${usecase-mo}*"/>
+            <param name="fileset.dir" value="ada_instance_mp"/>
+             <param name="fileset.include" value="*output*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase-mo}"/>
+        </antcall>
+        
         
         <!-- let's convert to fhir too while we're at it -->
         <antcall target="convert_ada_2_fhir"/>
@@ -57,7 +76,7 @@
         <antcall target="setup_sub_instances">
             <param name="build.dir" value="${build.dir}"/>
             <param name="fileset.dir" value="${fileset.dir}"/>
-            <param name="fileset.include" value="${fileset.include}"/>
+             <param name="fileset.include" value="${fileset.include}"/>
             <param name="refs.dir" value="${refs.dir}"/>
         </antcall>
 
@@ -91,12 +110,25 @@
 
     <target name="convert_ada_2_fhir">
 
-        <property name="usecase" value="beschikbaarstellen_medicatiegegevens"/>
+        <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase}"/>
+            <param name="build.dir" value="${usecase-mg}"/>
             <param name="xsl.in" value="ada_instance_MA"/>
             <param name="xsl.out" value="fhir_instance_MA"/>
         </antcall>
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="build.dir" value="${usecase-mg}"/>
+            <param name="xsl.in" value="ada_instance_VV"/>
+            <param name="xsl.out" value="fhir_instance_VV"/>
+        </antcall>
+        
+        <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="build.dir" value="${usecase-mo}"/>
+            <param name="xsl.in" value="ada_instance_mp"/>
+            <param name="xsl.out" value="fhir_instance_mp"/>
+        </antcall>
+        
         <!--<antcall target="convert_ada_2_fhir_sub">
             <param name="build.dir" value="beschikbaarstellen_medicatieoverzicht"/>
         </antcall>

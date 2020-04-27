@@ -1,0 +1,368 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:12b523dd-886e-11ea-1327-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toedieningsverzoek. Subject: N. XXX-Incident-A. Id: MBH_907_logistiekeverbruiksperiode_eind_VV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_907_logistiekeverbruiksperiode_eind (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>Relatie naar medicatieafspraak, id = MBH_907_logistiekeverbruiksperiode_eind_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_logistiekeverbruiksperiode_eind_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>MIZOLASTINE TABLET MGA  10MG</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>T-9D{11:01:00}</td>
+                        </tr>
+                        <tr>
+                           <th>Toedieningsverzoek</th>
+                           <td>
+                              <div>Geldigheidsperiode:  tot T+200D{23:59:59}</div>
+                              <div>Uitvoerende: Huisartsenpraktijk Pulver &amp; Partners</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_907_logistiekeverbruiksperiode_eind_MA"/>
+                  </identifier>
+                  <display value="Relatie naar medicatieafspraak, id = MBH_907_logistiekeverbruiksperiode_eind_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_907_logistiekeverbruiksperiode_eind"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_907_logistiekeverbruiksperiode_eind_VV"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="Request to dispense medication to patient (situation)"/>
+               </coding>
+               <text value="Verstrekkingsverzoek"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+               <display value="MIZOLASTINE TABLET MGA  10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:12b51aac-886e-11ea-1327-020000000000"/>
+               <display value="N. XXX-Incident-A"/>
+            </subject>
+            <authoredOn value="T-9D{11:01:00}"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:12b523df-886e-11ea-1327-020000000000"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
+                  <display value="Bertine van Doorn"/>
+               </agent>
+            </requester>
+            <dispenseRequest>
+               <validityPeriod>
+                  <end value="T+200D{23:59:59}"/>
+               </validityPeriod>
+               <performer>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                  <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               </performer>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:12b51aac-886e-11ea-1327-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), N. XXX-Incident-A, Vrouw, 1 januari 1950</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX-Incident-A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX-Incident-A"/>
+                  </extension>
+               </family>
+               <given value="N.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female"/>
+            <birthDate value="1950-01-01"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1112"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 000001112 (UZI-NR-PERS), Bertine van Doorn</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001112"/>
+            </identifier>
+            <name>
+               <family value="van Doorn">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Doorn"/>
+                  </extension>
+               </family>
+               <given value="Bertine">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>OrganisatieId: 00001111 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <address>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>OrganisatieId: 01236578 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:12b523df-886e-11ea-1327-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol</caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Bertine van Doorn</div>
+                              <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
+               <display value="Bertine van Doorn"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.48291"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="MIZOLASTINE TABLET MGA  10MG (48291 - G-Standaard PRK)">MIZOLASTINE TABLET MGA  10MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="48291"/>
+                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="102164"/>
+                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
+               </coding>
+               <text value="MIZOLASTINE TABLET MGA  10MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
