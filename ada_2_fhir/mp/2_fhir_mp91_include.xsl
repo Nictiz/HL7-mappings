@@ -1960,10 +1960,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="documentgegevens"/>
-        <xd:param name="entries"/>
-        <xd:param name="searchMode"/>
+        <xd:desc>Makes the List entry for MP 9.0.6, still valid for 9.0.7</xd:desc>
+        <xd:param name="documentgegevens">Document data for medication overview. Defaults to context.</xd:param>
+        <xd:param name="entries">FHIR entries for the List</xd:param>
+        <xd:param name="searchMode">The search mode, defaults to 'match'</xd:param>
     </xd:doc>
     <xsl:template name="medicatieoverzicht-9.0.6">
         <xsl:param name="documentgegevens" select="." as="element()?"/>
@@ -2017,7 +2017,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <subject>
                             <xsl:apply-templates select="./ancestor::*[ancestor::data]/patient" mode="doPatientReference-2.1"/>
                         </subject>
-                        <date value="{nf:add-Amsterdam-timezone-to-dateTimeString(./document_datum/@value)}"/>
+                        <xsl:for-each select="document_datum/@value">
+                            <date>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="."/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </date>
+                        </xsl:for-each>
                         <xsl:for-each select="./auteur">
                             <xsl:for-each select="./auteur_is_zorgaanbieder/zorgaanbieder[.//(@value | @code)]">
                                 <source>
