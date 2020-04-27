@@ -13,8 +13,10 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-   <xsl:import href="2_fhir_mp91_include.xsl"/>
+    <xsl:import href="2_fhir_mp91_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
+    
+    <!-- all the stuff only relevant for 9.0 or before and no longer for 9.1 is in this xsl, goal is to eventually phase out this xsl  -->
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
@@ -23,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="bouwstenen-907" as="element(f:entry)*">
         <xsl:variable name="searchMode" as="xs:string">match</xsl:variable>
-        
+
         <!-- medicatieafspraken -->
         <xsl:for-each select="//medicatieafspraak">
             <!-- entry for MedicationRequest -->
@@ -55,10 +57,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="zib-AdministrationAgreement-2.0">
                         <xsl:with-param name="toedieningsafspraak" select="."/>
                         <xsl:with-param name="medicationdispense-id" select="
-                            if ($referById) then
-                            nf:removeSpecialCharacters(./identificatie/@value)
-                            else
-                            ()"/>
+                                if ($referById) then
+                                    nf:removeSpecialCharacters(./identificatie/@value)
+                                else
+                                    ()"/>
                     </xsl:call-template>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
@@ -76,10 +78,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="zib-Dispense-2.0">
                         <xsl:with-param name="verstrekking" select="."/>
                         <xsl:with-param name="medicationdispense-id" select="
-                            if ($referById) then
-                            nf:removeSpecialCharacters(./identificatie/@value)
-                            else
-                            ()"/>
+                                if ($referById) then
+                                    nf:removeSpecialCharacters(./identificatie/@value)
+                                else
+                                    ()"/>
                     </xsl:call-template>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
@@ -97,10 +99,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
-    
+
     <xsl:variable name="bouwstenen" as="element(f:entry)*">
         <xsl:variable name="searchMode" as="xs:string">match</xsl:variable>
-        
+
         <!-- medicatieafspraken -->
         <xsl:for-each select="//medicatieafspraak">
             <!-- entry for MedicationRequest -->
@@ -142,10 +144,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="zib-AdministrationAgreement-2.0">
                         <xsl:with-param name="toedieningsafspraak" select="."/>
                         <xsl:with-param name="medicationdispense-id" select="
-                            if ($referById) then
-                            nf:removeSpecialCharacters(./identificatie/@value)
-                            else
-                            ()"/>
+                                if ($referById) then
+                                    nf:removeSpecialCharacters(./identificatie/@value)
+                                else
+                                    ()"/>
                     </xsl:call-template>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
@@ -163,10 +165,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="zib-Dispense-2.0">
                         <xsl:with-param name="verstrekking" select="."/>
                         <xsl:with-param name="medicationdispense-id" select="
-                            if ($referById) then
-                            nf:removeSpecialCharacters(./identificatie/@value)
-                            else
-                            ()"/>
+                                if ($referById) then
+                                    nf:removeSpecialCharacters(./identificatie/@value)
+                                else
+                                    ()"/>
                     </xsl:call-template>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
@@ -184,10 +186,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="zib-MedicationUse-2.0">
                         <xsl:with-param name="medicatiegebruik" select="."/>
                         <xsl:with-param name="medicationstatement-id" select="
-                            if ($referById) then
-                            nf:removeSpecialCharacters(./identificatie/@value)
-                            else
-                            ()"/>
+                                if ($referById) then
+                                    nf:removeSpecialCharacters(./identificatie/@value)
+                                else
+                                    ()"/>
                     </xsl:call-template>
                 </resource>
                 <xsl:if test="string-length($searchMode) gt 0">
@@ -198,7 +200,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
     </xsl:variable>
-    
+
     <xd:doc>
         <xd:desc>Template based on FHIR Profile http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement </xd:desc>
         <xd:param name="toedieningsafspraak"/>
@@ -207,7 +209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="zib-AdministrationAgreement-2.0">
         <xsl:param name="toedieningsafspraak" as="element()?"/>
         <xsl:param name="medicationdispense-id" as="xs:string?"/>
-        
+
         <xsl:for-each select="$toedieningsafspraak">
             <xsl:variable name="resource">
                 <MedicationDispense>
@@ -307,15 +309,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <text value="{./@value}"/>
                         </note>
                     </xsl:for-each>
-                    
+
                     <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
                 </MedicationDispense>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
-    
+
 
 </xsl:stylesheet>

@@ -1,0 +1,334 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="2"/>
+   <entry>
+      <fullUrl value="urn:uuid:013ce35e-8886-11ea-6916-020000000000"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationDispense. Subject: J.J. le Noble van Son. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Kringapotheek Asten</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>00240703301 (urn:oid:2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3)</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>2019-06-28</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: 1 maal per dag 1 tablet 's avonds</div>
+                              <div>Timing: <div>21:00:00</div>
+                              </div>
+                              <div>Dosering: 1 ST</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+               <valueDateTime value="2019-06-28"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"/>
+                  <value value="00240703301"/>
+               </valueIdentifier>
+            </extension>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="422037009"/>
+                  <display value="Provider medication administration instructions (procedure)"/>
+               </coding>
+               <text value="Toedieningsafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.8.14899337"/>
+               <display value="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:013cd48a-8886-11ea-6916-020000000000"/>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.23639"/>
+                  <display value="Kringapotheek Asten"/>
+               </actor>
+            </performer>
+            <dosageInstruction>
+               <text value="1 maal per dag 1 tablet 's avonds"/>
+               <timing>
+                  <repeat>
+                     <timeOfDay value="21:00:00"/>
+                  </repeat>
+               </timing>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="ST"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3.240703301"/>
+      <resource>
+         <MedicationDispense>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>MedicationDispense. Subject: J.J. le Noble van Son. Id: 00240703301 (urn:oid:2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
+                        <span style="display: block;">Uitvoerende: Kringapotheek Asten</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>00240703301 (urn:oid:2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3)</td>
+                        </tr>
+                        <tr>
+                           <th>Aanvraagdatum</th>
+                           <td>2019-06-28</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG</td>
+                        </tr>
+                        <tr>
+                           <th>Hoeveelheid</th>
+                           <td>16.0000 ST</td>
+                        </tr>
+                        <tr>
+                           <th>Dagen voorraad</th>
+                           <td>16 dag</td>
+                        </tr>
+                        <tr>
+                           <th>Datum overhandigd</th>
+                           <td>
+                              <i>geen informatie (ontbrekend gegeven)</i>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
+               <valueDateTime value="2019-06-28"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"/>
+                  <value value="00240703301"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"/>
+               <value value="00240703301"/>
+            </identifier>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="373784005"/>
+                  <display value="Dispensing medication (procedure)"/>
+               </coding>
+               <text value="Medicatieverstrekking"/>
+            </category>
+            <medicationReference>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.8.14899337"/>
+               <display value="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:013cd48a-8886-11ea-6916-020000000000"/>
+               <display value="J.J. le Noble van Son"/>
+            </subject>
+            <performer>
+               <actor>
+                  <reference value="urn:oid:2.16.528.1.1007.3.3.23639"/>
+                  <display value="Kringapotheek Asten"/>
+               </actor>
+            </performer>
+            <quantity>
+               <value value="16.0000"/>
+               <unit value="ST"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+               <code value="245"/>
+            </quantity>
+            <daysSupply>
+               <value value="16"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </daysSupply>
+            <whenHandedOver>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="NI"/>
+               </extension>
+            </whenHandedOver>
+         </MedicationDispense>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:013cd48a-8886-11ea-6916-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Patient"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), J.J. van Son-le Noble, Vrouw, 18 december 1972</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL3"/>
+               </extension>
+               <family value="van Son-le Noble">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="le"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Noble"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                     <valueString value="van "/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Son"/>
+                  </extension>
+               </family>
+               <given value="J.J.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female"/>
+            <birthDate value="1972-12-18"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.23639"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>OrganisatieId: 00023639 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Kringapotheek Asten</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00023639"/>
+            </identifier>
+            <name value="Kringapotheek Asten"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.14899337"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG (14899337 - G-Standaard ZI_nummer)">TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                  <code value="14899337"/>
+                  <display value="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1632108"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="50431"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="104213"/>
+               </coding>
+               <text value="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
