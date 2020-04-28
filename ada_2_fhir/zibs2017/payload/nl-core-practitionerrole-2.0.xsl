@@ -13,13 +13,14 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="nl-core-organization-2.0.xsl"/>
     <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
     <xsl:import href="nl-core-humanname-2.0.xsl"/>
     <xsl:import href="nl-core-address-2.0.xsl"/>
     <xsl:import href="ext-code-specification-1.0.xsl"/>-->
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -68,10 +69,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="nf:get-practitioner-role-display(current-group()[1])"/>
                     </reference-display>
                     <xsl:for-each select="current-group()[1]">
-                         <xsl:call-template name="practitionerRole-entry">
+                        <xsl:call-template name="practitionerRole-entry">
                             <xsl:with-param name="uuid" select="$uuid"/>
                             <xsl:with-param name="entryFullUrl" select="nf:get-fhir-uuid($input-node-for-uuid)"/>
-                         </xsl:call-template>
+                        </xsl:call-template>
                     </xsl:for-each>
                 </unieke-practitionerRole>
             </xsl:for-each-group>
@@ -159,7 +160,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
-             <fullUrl value="{$entryFullUrl}"/>
+            <fullUrl value="{$entryFullUrl}"/>
             <resource>
                 <xsl:call-template name="nl-core-practitionerrole-2.0">
                     <xsl:with-param name="in" select="."/>
@@ -192,13 +193,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of a PractitionerRole resource</xd:param>
         <xd:param name="practitionerRef">Optional. Reference datatype elements for the Practitioner that holds the person data</xd:param>
         <xd:param name="organizationRef">Optional. Reference datatype elements for the Organization that holds the organization data</xd:param>
-       </xd:doc>
+    </xd:doc>
     <xsl:template name="nl-core-practitionerrole-2.0" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerRoleResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="practitionerRef" as="element()*"/>
         <xsl:param name="organizationRef" as="element()*"/>
-      
+
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <PractitionerRole>
@@ -245,13 +246,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </PractitionerRole>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc>Create display for practitionerRole</xd:desc>
         <xd:param name="healthProfessional">ada element for hcim health_professional</xd:param>
     </xd:doc>
@@ -282,13 +283,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
-                <xsl:variable name="idDisplay" as="xs:string*">
+                    <xsl:variable name="idDisplay" as="xs:string*">
                         <xsl:if test="string-length($personIdentifier/@value) gt 0">Persoonsidentificatie: <xsl:value-of select="normalize-space($personIdentifier/@value)"/></xsl:if>
                         <xsl:if test="string-length($codesystemDisplay) gt 0">(uit codesysteem <xsl:value-of select="$codesystemDisplay"/>).</xsl:if>
                     </xsl:variable>
                     <xsl:value-of select="normalize-space(string-join($idDisplay, ' '))"/>
                 </xsl:when>
-            <!-- display is required in FHIR / MedMij, this is not so nice, but we want to output something still -->
+                <!-- display is required in FHIR / MedMij, this is not so nice, but we want to output something still -->
                 <xsl:otherwise>
                     <xsl:value-of select="."/>
                 </xsl:otherwise>

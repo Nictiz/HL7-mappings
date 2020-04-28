@@ -10,7 +10,7 @@
     <ant antfile="../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
-
+    
     <property name="echo.label.in" value="ADA"/>
     <property name="echo.label.out" value="FHIR"/>
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
@@ -24,7 +24,7 @@
     <property name="project.status" value="beta"/>
     <property name="project.license" value="GNU-LGPL"/>
     <property name="project.copyright" value="true"/>
-
+    
     <target name="convert_ada_2_fhir">
         <antcall target="convert_ada_2_fhir_sub">
             <param name="build.dir" value="beschikbaarstellen_medicatiegegevens"/>
@@ -36,9 +36,9 @@
             <param name="build.dir" value="beschikbaarstellen_verstrekkingenvertaling"/>
         </antcall>
     </target>
-
+    
     <target name="convert_ada_2_fhir_sub">
-
+        
         <echo>Copying ADA result files from ${build.dir}</echo>
         <copy todir="${build.dir}/ada_instance" failonerror="true">
             <fileset dir="${build.dir}/ada_instance">
@@ -46,19 +46,19 @@
                 <exclude name="*bundle*"/>
             </fileset>
         </copy>
-
+        
         <property name="xsl_mp" value="${build.dir}/payload/${build.dir}_2_fhir.xsl"/>
         <property name="xsl_mp_resources" value="${build.dir}/payload/${build.dir}_2_fhir_resources.xsl"/>
-
+        
         <property name="xsl.input" value="${build.dir}/ada_instance"/>
         <property name="xsl.output" value="${build.dir}/fhir_instance"/>
-
+        
         <echo>Deleting previous results, if any</echo>
         <delete dir="${xsl.output}"/>
-
+        
         <sequential>
             <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
-
+            
             <echo/>
             <echo>${echo.label} ${xsl_mp_resources}</echo>
             <xslt force="true" style="${xsl_mp_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
@@ -66,7 +66,7 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-
+            
             <echo/>
             <echo>${echo.label} ${xsl_mp}</echo>
             <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
@@ -76,10 +76,10 @@
             </xslt>
         </sequential>
     </target>
-
+    
     <target name="setup" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project">
         <mkdir dir="${build.dir}"/>
-
+        
         <!--<delete dir="${build.dir}/ada_new"/>
         <delete dir="${build.dir}/ada_schemas"/>
         
@@ -93,7 +93,7 @@
                 <include name="**"/>
             </fileset>
         </copy>-->
-
+        
         <mkdir dir="${build.dir}/ada_instance"/>
         <mkdir dir="${build.dir}/fhir_instance"/>
         <mkdir dir="${build.dir}/payload"/>
