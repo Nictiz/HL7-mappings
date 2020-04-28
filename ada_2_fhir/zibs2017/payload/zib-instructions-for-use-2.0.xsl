@@ -70,39 +70,49 @@
         <xsl:param name="toedieningsschema" as="element()?" select="."/>
         <xsl:for-each select="$toedieningsschema">
             <timing>
-                <xsl:if test="./../../doseerduur or ./../toedieningsduur or .//*[@value or @code]">
+                <xsl:if test="../../doseerduur or ../toedieningsduur or .//*[@value or @code]">
                     <repeat>
                         <!-- doseerduur -->
-                        <xsl:for-each select="./../../doseerduur[@value]">
+                        <xsl:for-each select="../../doseerduur[@value]">
                             <boundsDuration>
                                 <xsl:call-template name="hoeveelheid-to-Duration">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </boundsDuration>
                         </xsl:for-each>
+                        <!-- doseerduur -->
+                        <xsl:for-each select="../../doseerduur[@value]">
+                            <boundsDuration>
+                                <xsl:call-template name="hoeveelheid-to-Duration">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </boundsDuration>
+                        </xsl:for-each>
+                        
                         <!-- toedieningsduur -->
-                        <xsl:for-each select="./../toedieningsduur[@value]">
+                        <xsl:for-each select="../toedieningsduur[@value]">
                             <duration value="{./@value}"/>
                             <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:for-each>
                         <!-- frequentie -->
-                        <xsl:for-each select="./frequentie/aantal/(vaste_waarde | min)[@value]">
+                        <xsl:for-each select="frequentie/aantal/(vaste_waarde | min)[@value]">
                             <frequency value="{./@value}"/>
                         </xsl:for-each>
-                        <xsl:for-each select="./frequentie/aantal/(max)[@value]">
+                        <xsl:for-each select="frequentie/aantal/(max)[@value]">
                             <frequencyMax value="{./@value}"/>
                         </xsl:for-each>
-                        <!-- ./frequentie/tijdseenheid -->
-                        <xsl:for-each select="./frequentie/tijdseenheid">
+                        <!-- frequentie/tijdseenheid -->
+                        <xsl:for-each select="frequentie/tijdseenheid">
                             <period value="{./@value}"/>
                             <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:for-each>
                         <!-- interval -->
-                        <xsl:for-each select="./interval">
+                        <xsl:for-each select="interval">
                             <period value="{./@value}"/>
                             <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:for-each>
-                        <xsl:for-each select="./weekdag">
+                        <!-- weekdag -->
+                        <xsl:for-each select="weekdag">
                             <dayOfWeek>
                                 <xsl:attribute name="value">
                                     <xsl:choose>
@@ -118,11 +128,29 @@
                             </dayOfWeek>
                         </xsl:for-each>
                         <!-- toedientijd -->
-                        <xsl:for-each select="./toedientijd[@value]">
-                            <timeOfDay value="{format-dateTime(./@value, '[H01]:[m01]:[s01]')}"/>
+                        <xsl:for-each select="toedientijd[@value]">
+                            <xsl:choose>
+                                <xsl:when test="nf:add-Amsterdam-timezone-to-dateTimeString(@value) castable as xs:dateTime">
+                                    <timeOfDay value="{format-dateTime(xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>                                    
+                                </xsl:when>
+                                <xsl:when test="nf:add-Amsterdam-timezone-to-dateTimeString(@value) castable as xs:time">
+                                    <timeOfDay value="{format-time(xs:time(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>                                    
+                                </xsl:when>
+                                <!-- not a dateTime or Time as input, let's check for an ada T date -->
+                                <xsl:when test="nf:calculate-t-date(@value, xs:date('1970-01-01')) castable as xs:dateTime">
+                                    <!-- ada T date as input (T+0D{08:00:00}), lets convert it to a proper dateTime using date 1 Jan 1970, 
+                                        this date is not relevant for toedientijd -->
+                                    <timeOfDay value="{format-dateTime(xs:dateTime(nf:calculate-t-date(@value, xs:date('1970-01-01'))), '[H01]:[m01]:[s01]')}"/>                                    
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <!-- Should not happen, let's at least make it visible and output the unexpected ada value in FHIR timeOfDay -->
+                                    <!-- Will most likely cause invalid FHIR, but at least that will be noticed -->
+                                    <timeOfDay value="{@value}"/> 
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:for-each>
                         <!-- dagdeel -->
-                        <xsl:for-each select="./dagdeel[@code][not(@codeSystem = $oidHL7NullFlavor)]">
+                        <xsl:for-each select="dagdeel[@code][not(@codeSystem = $oidHL7NullFlavor)]">
                             <when>
                                 <xsl:attribute name="value">
                                     <xsl:choose>
