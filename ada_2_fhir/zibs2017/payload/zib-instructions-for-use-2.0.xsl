@@ -80,15 +80,6 @@
                                 </xsl:call-template>
                             </boundsDuration>
                         </xsl:for-each>
-                        <!-- doseerduur -->
-                        <xsl:for-each select="../../doseerduur[@value]">
-                            <boundsDuration>
-                                <xsl:call-template name="hoeveelheid-to-Duration">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </boundsDuration>
-                        </xsl:for-each>
-                        
                         <!-- toedieningsduur -->
                         <xsl:for-each select="../toedieningsduur[@value]">
                             <duration value="{./@value}"/>
