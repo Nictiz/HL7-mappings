@@ -8,6 +8,9 @@
 -->
 <project basedir="../../ada_2_fhir/ketenzorg/3.0.2" default="convert_ada_2_fhir" name="ada_2_fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <ant antfile="../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <!-- call with -DlogLevel=INFO to override. Other values available: ALL, FATAL, DEBUG, ERROR, WARN, OFF -->
+    <property name="logLevel" value="DEBUG"/>
+    
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
     
@@ -69,6 +72,7 @@
             <echo>${echo.label} ${xsl_allergyintolerance}</echo>
             <xslt force="true" style="${xsl_allergyintolerance}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesAllergieIntoleranties"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -78,6 +82,7 @@
             <echo>${echo.label} ${xsl_episodes}</echo>
             <xslt force="true" style="${xsl_episodes}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesEpisodes"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -88,6 +93,7 @@
             <xslt force="true" style="${xsl_contactverslagen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <!--<param name="dojournalentries" expression="SOEP"/>-->
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesContactverslagen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -97,6 +103,7 @@
             <echo>${echo.label} ${xsl_labbepalingen}</echo>
             <xslt force="true" style="${xsl_labbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesLabBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -106,6 +113,7 @@
             <echo>${echo.label} ${xsl_algemene_bepalingen}</echo>
             <xslt force="true" style="${xsl_algemene_bepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesAlgemeneBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -115,6 +123,7 @@
             <echo>${echo.label} ${xsl_alerts}</echo>
             <xslt force="true" style="${xsl_alerts}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesAlerts"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -124,6 +133,7 @@
             <echo>${echo.label} ${xsl_encounters}</echo>
             <xslt force="true" style="${xsl_encounters}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesEncounters"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -133,6 +143,7 @@
             <echo>${echo.label} ${xsl_medicationagreements}</echo>
             <xslt force="true" style="${xsl_medicationagreements}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesMedicationAgreements"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
