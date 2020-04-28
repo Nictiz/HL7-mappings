@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="BeschikbaarstellenMedicatieafspraken-ADA">
         <xsl:param name="in" as="element()"/>
         <xsl:param name="xsd-mbh" select="$xsd-mbh"/>
-        
+
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
         <beschikbaarstellen_medicatieafspraken app="ketenzorg3.0" shortName="beschikbaarstellen_medicatieafspraken" formName="beschikbaarstellen_medicatieafspraken" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.523" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="nl-NL" title="Generated Through Conversion" id="{uuid:get-uuid(.)}">
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.2_20170602000000">
@@ -100,9 +100,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:for-each-group>
         </beschikbaarstellen_medicatieafspraken>
-        <!--<xsl:comment>Input HL7 xml below</xsl:comment>
-        <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="in" select="./*"/>
-        </xsl:call-template>-->
     </xsl:template>
 </xsl:stylesheet>

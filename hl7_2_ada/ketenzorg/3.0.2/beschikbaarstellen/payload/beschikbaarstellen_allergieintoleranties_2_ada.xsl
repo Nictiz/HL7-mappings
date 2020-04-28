@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="../../../hl7_2_ada_ketenzorg_include.xsl"/>
-    
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="BeschikbaarstellenAllergieIntolerantie-ADA">
         <xsl:param name="in" as="element()"/>
         <xsl:param name="author" as="element()?"/>
-        
+
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
         <allergyintolerances_response app="ketenzorg3.0" shortName="allergyintolerances_response" formName="allergyintolerances_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.535" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <!-- Bundle stuff -->
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="custodian" select="(hl7:participant[@typeCode = 'CST']/hl7:participantRole[hl7:scopingEntity], $author)[1]"/>
                 <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
-            
+
             <xsl:variable name="organizerComponents" select="//*[hl7:templateId/@root = $oidAllergyIntoleranceAct]/hl7:entryRelationship/*[hl7:templateId/@root = $oidAllergyIntoleranceObservation]"/>
             <xsl:for-each select="$organizerComponents">
                 <allergy_intolerance>
@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="elemName">identification_number</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:if>
-                            
+
                             <xsl:for-each select="hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
                                 <author>
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9025_20140403162802">
@@ -79,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </author>
                             </xsl:for-each>
-                            
+
                             <!-- Date and if relevant the time the event to which the information relates took place . -->
                             <!--<xsl:for-each select="hl7:effectiveTime/hl7:low">
                                 <xsl:call-template name="handleTS">
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">causative_agent</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <!-- Ketenzorg codes match those found in the HCIM -->
                     <xsl:for-each select="hl7:value">
                         <xsl:call-template name="handleCV">
@@ -103,14 +103,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">allergy_category</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <!-- 1-to-1 match value set -->
                     <xsl:call-template name="handleCS">
                         <xsl:with-param name="in" select="ancestor::hl7:act[1]/hl7:statusCode"/>
                         <xsl:with-param name="codeSystem" select="$oidHL7ActStatus"/>
                         <xsl:with-param name="elemName">allergy_status</xsl:with-param>
                     </xsl:call-template>
-                    
+
                     <!-- The date and time at which the allergy or undesired reaction was determined.  -->
                     <xsl:for-each select="ancestor::hl7:act[1]/hl7:effectiveTime/hl7:low">
                         <xsl:call-template name="handleTS">
@@ -118,7 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">start_date_time</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <!-- criticality -->
                     <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidCriticalityObservation]">
                         <xsl:call-template name="handleCV">
@@ -131,7 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <xsl:variable name="reactions" select="hl7:entryRelationship/*[hl7:templateId/@root = $oidReactionObservation]"/>
                     <xsl:variable name="reactionDateTimes" select="$reactions/hl7:effectiveTime/@value | $reactions/hl7:effectiveTime/hl7:low/@value | $reactions/hl7:effectiveTime/hl7:high/@value"/>
                     <xsl:variable name="reactionDateTimesText" as="xs:string*">
@@ -141,7 +141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     <!-- Don't invent more precision than there was, but leave the date alone -->
                     <xsl:variable name="lastRectionDateTime" select="replace(max($reactionDateTimesText), '000000$', '')"/>
-                    
+
                     <xsl:if test="$lastRectionDateTime">
                         <xsl:call-template name="handleTS">
                             <xsl:with-param name="in" as="element()">
@@ -150,7 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">last_reaction_date_time</xsl:with-param>
                         </xsl:call-template>
                     </xsl:if>
-                    
+
                     <!-- comment -->
                     <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $oidNoteObservation]">
                         <xsl:call-template name="handleST">
@@ -215,9 +215,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </allergy_intolerance>
             </xsl:for-each>
         </allergyintolerances_response>
-        <xsl:comment>Input HL7 xml below</xsl:comment>
-        <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="in" select="./*"/>
-        </xsl:call-template>
     </xsl:template>
 </xsl:stylesheet>
