@@ -22,16 +22,33 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-04-28 -
+* Wrapped all xsl:message calls into util:logMessage that accepts a log level. If the requested logLevel for the message to emit is smaller than/equal the parameter logLevel, the message is emitted, otherwise it is not. Options:
+  * ALL, DEBUG, INFO, WARN, ERROR. FATAL, OFF where ALL shows all messages, DEBUG shows everything but ALL, INFO everything but ALL/DEBUG etc.
+  * default is INFO
 2020-04-20 -
 * HL7-123 Normalize-space() on Address, Name and Contact parts. FHIR does not allow leading or trailing spaces
 * HL7-123 NarrativeGenerator will use div instead of br tags to avoid conversion to JSON issues in some reference frameworks
 * NarrativeGenerator
+  * Replaced table.caption.div with equivalent span style="diplay: block;"
   * Fixed separator usage when calling DoDT
   * Fixed Observation.comment - used wrong datatype and would thus not be rendered
+  * Add support for Observation.specimen and Observation.issued
+  * Add support for Observation extension http://hl7.org/fhir/StructureDefinition/observation-eventTiming
   * Add support for zib-NursingIntervention Procedure.usedReference extension http://nictiz.nl/fhir/StructureDefinition/extension-medicaldevice
   * Add support for zib-NursingIntervention Procedure.extension http://hl7.org/fhir/StructureDefinition/goal-pertainsToGoal
   * Add support for zib-NursingIntervention Procedure.extension http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention-Requester
   * Add support for zib-NursingIntervention Procedure.extension http://hl7.org/fhir/StructureDefinition/procedure-schedule
+  * Add support for zib-FamilySituationChild extension http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild-RelatedPerson
+  * Add support for zib-FamilySituation extension http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituation-LivingAtHomeIndicator
+  * Add support for Encounter.class and Encounter.serviceProvider
+  * Add support for Consent.consentingParty and .organization
+  * Add support for Consent.extension http://nictiz.nl/fhir/StructureDefinition/Comment
+  * Add support for Consent.extension http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective-Disorder
+  * Add support for RelatedPerson http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role
+  * Add support for Patient.active (only if false)
+  * Harmonized date handling. Now always emits dd mmm yyyy
+  
 2020-04-09 -
 * MM-1056 Improved display on codes in AllergyIntolerance.category and .criticality. The previous fix introduced an error which is now fixed
 2020-04-07 -

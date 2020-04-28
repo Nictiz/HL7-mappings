@@ -76,7 +76,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- This is any other element. It might be a resource or a child of one that potentially leads to a supported resource like in a Bundle or List -->
             <xsl:otherwise>
                 <xsl:if test="matches(local-name(), '^[A-Z]') and not(local-name() = ('Bundle', 'Binary'))">
-                    <xsl:message>TODO Resource Type <xsl:value-of select="local-name()"/></xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">
+                            <xsl:text>TODO Resource Type: </xsl:text>
+                            <xsl:value-of select="local-name()"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()" mode="#current"/>
@@ -10522,7 +10528,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:message>TODO Datatype <xsl:value-of select="local-name()"/></xsl:message>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logWARN"/>
+                            <xsl:with-param name="msg">
+                                <xsl:text>TODO Datatype: </xsl:text>
+                                <xsl:value-of select="local-name()"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
                         <xsl:value-of select="concat(local-name(), ' TODO')"/>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -11695,8 +11707,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:message>TODO doDT_Reference without reference, display or identifier</xsl:message>
-                        <!--<xsl:text>TODO Reference without reference, display or identifier</xsl:text>-->
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logWARN"/>
+                            <xsl:with-param name="msg">
+                                <xsl:text>TODO doDT_Reference without reference, display or identifier</xsl:text>
+                            </xsl:with-param>
+                        </xsl:call-template>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
@@ -11744,7 +11760,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:message>TODO doDT_Reference PractitionerRole without reference, display or identifier</xsl:message>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">
+                                    <xsl:text>TODO doDT_Reference without reference, display or identifier</xsl:text>
+                                </xsl:with-param>
+                            </xsl:call-template>
                             <xsl:text>TODO Reference PractitionerRole without reference, display or identifier</xsl:text>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -11813,7 +11834,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="textLang" as="xs:string" required="yes"/>
         <xsl:param name="sep" select="', '" as="xs:string?"/>
-        <xsl:message>TODO doDT_SampledData</xsl:message>
+        <xsl:call-template name="util:logMessage">
+            <xsl:with-param name="level" select="$logWARN"/>
+            <xsl:with-param name="msg">
+                <xsl:text>TODO doDT_SampledData</xsl:text>
+            </xsl:with-param>
+        </xsl:call-template>
         <xsl:for-each select="$in">
             <xsl:variable name="str">TODO doDT_SampledData</xsl:variable>
             <xsl:call-template name="doSeparator">
