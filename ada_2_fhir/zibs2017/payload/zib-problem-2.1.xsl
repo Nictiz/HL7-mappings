@@ -276,6 +276,97 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </abatementDateTime>
                     </xsl:if>-->
                     
+                    <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
+                    <!-- assertedDate -->
+                    <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
+                        <assertedDate>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </assertedDate>
+                    </xsl:for-each>
+                    
+                    <!-- Condition.asserter is Person who asserts this condition. For a complaint, this is the informant. 
+                        For a diagnosis this is normally the author. If we have an informant, let it prevail. If we have an author, use that as fallback -->
+                    <!-- >     NL-CM:0.0.2        Informatiebron via nl.zorg.part.basiselementen -->
+                    <xsl:variable name="zibrootInformant" select="(zibroot/informatiebron | hcimroot/information_source)/((patient_als_bron | patient_as_information_source)/patient | zorgverlener/zorgverlener | health_professional/health_professional | betrokkene_als_bron/contactpersoon | related_person_as_information_source/contact_person)"/>
+                    <xsl:variable name="adaInformant" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="$zibrootInformant/*">
+                                <xsl:sequence select="$zibrootInformant"/>
+                            </xsl:when>
+                            <xsl:when test="$zibrootInformant[not(@datatype) or @datatype = 'reference'][@value]">
+                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    
+                    <xsl:variable name="informantRef" as="element()*">
+                        <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">
+                            <xsl:call-template name="practitionerRoleReference">
+                                <xsl:with-param name="useExtension" select="true()"/>
+                                <xsl:with-param name="addDisplay" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaInformant[self::patient]">
+                            <xsl:sequence select="$patientRef"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaInformant[self::contactpersoon | self::contact_person]">
+                            <xsl:call-template name="relatedPersonReference"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
+                    <!-- asserter -->
+                    <xsl:variable name="zibrootAuteur" select="zibroot/auteur/((patient_als_auteur | patient_as_author)/patient | zorgverlener_als_auteur/zorgverlener | health_professional_as_author/health_professional | betrokkene_als_auteur/contactpersoon | related_person_as_author/contact_person)"/>
+                    <xsl:variable name="adaAuteur" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="$zibrootAuteur/*">
+                                <xsl:sequence select="$zibrootAuteur"/>
+                            </xsl:when>
+                            <xsl:when test="$zibrootAuteur[not(@datatype) or @datatype = 'reference'][@value]">
+                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootAuteur/@value]"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    
+                    <xsl:variable name="authorRef" as="element()*">
+                        <xsl:for-each select="$adaAuteur[self::zorgverlener | self::health_professional]">
+                            <xsl:call-template name="practitionerRoleReference">
+                                <xsl:with-param name="useExtension" select="true()"/>
+                                <xsl:with-param name="addDisplay" select="true()"/>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaAuteur[self::patient]">
+                            <xsl:sequence select="$patientRef"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaAuteur[self::contactpersoon | self::contact_person]">
+                            <xsl:call-template name="relatedPersonReference"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:choose>
+                        <xsl:when test="$informantRef">
+                            <asserter>
+                                <xsl:copy-of select="$informantRef[self::f:extension]"/>
+                                <xsl:copy-of select="$informantRef[self::f:reference]"/>
+                                <xsl:copy-of select="$informantRef[self::f:identifier]"/>
+                                <xsl:copy-of select="$informantRef[self::f:display]"/>
+                            </asserter>
+                        </xsl:when>
+                        <xsl:when test="$authorRef">
+                            <asserter>
+                                <xsl:copy-of select="$authorRef[self::f:extension]"/>
+                                <xsl:copy-of select="$authorRef[self::f:reference]"/>
+                                <xsl:copy-of select="$authorRef[self::f:identifier]"/>
+                                <xsl:copy-of select="$authorRef[self::f:display]"/>
+                            </asserter>
+                        </xsl:when>
+                    </xsl:choose>
+                    
                     <!-- Comment (.note) -->
                     <xsl:if test="(comment | toelichting)[@value]">
                         <note>
