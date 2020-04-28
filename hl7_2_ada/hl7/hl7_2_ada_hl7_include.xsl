@@ -31,18 +31,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>
-            Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision. <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
+        <xd:desc>Returns an ISO 8601 date or dateTime string based on HL7v3 ts input string, and requested precision. 
+            <xd:p>Example nf:formatHL72XMLDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
             <xd:p><xd:b>return</xd:b> date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and <xd:ref type="parameter" name="input-hl7-date"/> is returned as-is</xd:p>
         </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
-        <xd:param name="precision">Coded string indicator for requested precision. Use DAY for date and SECOND for dateTime. Note that if the input does not allow for dateTime, fallback to date is applied.</xd:param>
+        <xd:param name="precision">Coded string indicator for requested precision. Use DAY for date and SECOND for dateTime. 
+            Note that if the input does not allow for dateTime, fallback to date is applied.</xd:param>
     </xd:doc>
     <xsl:function name="nf:formatHL72XMLDate" as="xs:string">
         <xsl:param name="input-hl7-date" as="xs:string?"/>
-        <!-- precision determines the picture of the date format, currently only use case for day or second. -->
-        <!--             Don't implement Year, day, hour or minute, because ada needs proper date(time) -->
-        
+        <!-- precision determines the picture of the date format, only use case for day or second. -->
+        <!-- Use formatHL72VagueAdaDate for other formats, such as year / month / hour / minute -->
         <xsl:param name="precision"/>
 
         <xsl:variable name="yyyy">
@@ -99,21 +99,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="upper-case($precision) = ('DAY', 'DAG', 'DAYS', 'DAGEN', 'D') and $str_date castable as xs:date">
                 <xsl:value-of select="$str_date"/>
             </xsl:when>
-            <xsl:when test="$str_date castable as xs:dateTime">
-                <xsl:value-of select="$str_date"/>
+            <xsl:when test="$str_datetime castable as xs:dateTime">
+                <xsl:value-of select="$str_datetime"/>
             </xsl:when>
             <xsl:when test="$str_date castable as xs:date">
                 <xsl:value-of select="$str_date"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="$input-hl7-date"/>
-                <xsl:message terminate="no">Could not determine xml date from input: '<xsl:value-of select="$input-hl7-date"/>' with precision: '<xsl:value-of select="$precision"/>'.</xsl:message>
+                <!-- let's do a best effort and fall back on vague date time, even though that is unexpected here -->
+                <xsl:value-of select="nf:formatHL72VagueAdaDate($input-hl7-date, $precision)"/>
+                <xsl:message terminate="no">Could not determine a proper xml date (time) from input: '<xsl:value-of select="$input-hl7-date"/>' with precision: '<xsl:value-of select="$precision"/>'. Falling back on vague date time.</xsl:message>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Returns possibly vague date or dateTime string based on HL7v3 ts input string, and requested precision. <xd:p>Example nf:formatHL72VagueAdaDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
+        <xd:desc>Returns possibly vague date or dateTime string based on HL7v3 ts input string, and requested precision. 
+            <xd:p>Example nf:formatHL72VagueAdaDate(hl7:effectiveTime/@value, nf:determine_date_precision(hl7:effectiveTime/@value))</xd:p>
             <xd:p><xd:b>return</xd:b> date or dateTime. If no date or dateTime can be produced, a non-fatal error is issued and <xd:ref type="parameter" name="input-hl7-date"/> is returned as-is</xd:p>
         </xd:desc>
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
@@ -216,11 +218,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="input-hl7-date">HL7 ts date/time string expected format yyyymmddHHMMSS.sssss[+-]ZZzz</xd:param>
     </xd:doc>
     <xsl:function name="nf:determine_date_precision">
-        <!--             Don't implement Year, day, hour or minute, because ada needs proper date(time) -->
         <xsl:param name="input-hl7-date"/>
         <xsl:choose>
+            <xsl:when test="string-length($input-hl7-date) le 4">YEAR</xsl:when>
+            <xsl:when test="string-length($input-hl7-date) le 6">MONTH</xsl:when>
             <xsl:when test="string-length($input-hl7-date) le 8">DAY</xsl:when>
-            <xsl:when test="string-length($input-hl7-date) gt 8">SECOND</xsl:when>
+            <xsl:when test="string-length($input-hl7-date) = 10">HOUR</xsl:when>
+            <xsl:when test="string-length($input-hl7-date) = 12">MINUTE</xsl:when>
             <xsl:otherwise>SECOND</xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -258,7 +262,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:existsADAComplexTypeId" as="xs:boolean?">
         <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
-        <xsl:value-of select="exists($schemaFragment/xs:attribute[@name = 'id'])"/>
+        <xsl:sequence select="exists($schemaFragment/xs:attribute[@name = 'id'])"/>
     </xsl:function>
 
     <xd:doc>
@@ -269,7 +273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getADAComplexTypeName" as="xs:string?">
         <xsl:param name="schemaFragment" as="node()*"/>
         <xsl:param name="elementName" as="xs:string?"/>
-        <xsl:value-of select="$schemaFragment//xs:element[@name = $elementName]/@type"/>
+        <xsl:value-of select="$schemaFragment/xs:sequence/xs:element[@name = $elementName]/@type"/>
     </xsl:function>
 
     <xd:doc>
