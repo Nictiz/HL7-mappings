@@ -2739,54 +2739,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> copy an element with all of it's contents in comments </xd:desc>
-        <xd:param name="in"/>
-    </xd:doc>
-    <xsl:template name="copyElementInComment">
-        <xsl:param name="in"/>
-        <xsl:text disable-output-escaping="yes">
-                       &lt;!--</xsl:text>
-        <xsl:for-each select="$in">
-            <xsl:call-template name="copyInstance"/>
-        </xsl:for-each>
-        <xsl:text disable-output-escaping="yes">--&gt;
-</xsl:text>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc> copy an element with all of it's contents in comments </xd:desc>
-        <xd:param name="in"/>
-    </xd:doc>
-    <xsl:template name="copyInstance">
-        <xsl:param name="in" select="."/>
-        <xsl:for-each select="$in">
-            <xsl:choose>
-                <xsl:when test="self::text()">
-                    <xsl:value-of select="replace(., '--', '-\\-')"/>
-                </xsl:when>
-                <xsl:when test="self::comment()">
-                    <xsl:text disable-output-escaping="yes">&lt;!-\-</xsl:text>
-                    <xsl:value-of select="replace(., '--', '-\\-')"/>
-                    <xsl:text disable-output-escaping="yes">-\-></xsl:text>
-                </xsl:when>
-                <xsl:when test="self::processing-instruction()">
-                    <xsl:text disable-output-escaping="yes">&lt;?</xsl:text>
-                    <xsl:value-of select="replace(., '--', '-\\-')"/>
-                    <xsl:text disable-output-escaping="yes">?></xsl:text>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy>
-                        <xsl:for-each select="node()">
-                            <xsl:call-template name="copyInstance"/>
-                        </xsl:for-each>
-                    </xsl:copy>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each>
-    </xsl:template>
-
-
-    <xd:doc>
         <xd:desc>Copy template with specific mode adaOutput, to output the actual ada xml</xd:desc>
     </xd:doc>
     <xsl:template match="@* | node()" mode="adaOutput">
