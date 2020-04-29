@@ -130,15 +130,35 @@
         <xsl:param name="rules" tunnel="yes"/>
 
         <xsl:for-each-group select="$fixtures" group-by="@id">
+            <xsl:for-each select="subsequence(current-group(), 2)">
+                <xsl:if test="not(deep-equal(current-group()[1], .))">
+                    <xsl:message terminate="yes" select="concat('Encountered different fixture inclusions using the same id ''', @id, '''')"/>
+                </xsl:if>
+            </xsl:for-each>
             <xsl:copy-of select="."/>
         </xsl:for-each-group>
         <xsl:for-each-group select="$profiles" group-by="@id">
+            <xsl:for-each select="subsequence(current-group(), 2)">
+                <xsl:if test="not(deep-equal(current-group()[1], .))">
+                    <xsl:message terminate="yes" select="concat('Encountered different profile declarations using the id ''', @id, '''')"/>
+                </xsl:if>
+            </xsl:for-each>
             <xsl:copy-of select="."/>
         </xsl:for-each-group>
         <xsl:for-each-group select="$variables" group-by="f:name/@value">
+            <xsl:for-each select="subsequence(current-group(), 2)">
+                <xsl:if test="not(deep-equal(current-group()[1], .))">
+                    <xsl:message terminate="yes" select="concat('Encountered different variables using the name ''', f:name/@value, '''')"/>
+                </xsl:if>
+            </xsl:for-each>
             <xsl:copy-of select="."/>
         </xsl:for-each-group>
         <xsl:for-each-group select="$rules" group-by="@id">
+            <xsl:for-each select="subsequence(current-group(), 2)">
+                <xsl:if test="not(deep-equal(current-group()[1], .))">
+                    <xsl:message terminate="yes" select="concat('Encountered different rules using the id ''', @id, '''')"/>
+                </xsl:if>
+            </xsl:for-each>
             <xsl:copy-of select="."/>
         </xsl:for-each-group>
         
@@ -194,7 +214,7 @@
         </rule>
     </xsl:template>
     
-    <!-- Epand a nts:variables element; read all f:actopms elements in the referenced file and further process them -->
+    <!-- Expand a nts:actions element; read all f:actions elements in the referenced file and further process them -->
     <xsl:template match="nts:actions[@href]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:param name="testscriptBase"/>
         <xsl:variable name="loadedActions" as="node()*">
