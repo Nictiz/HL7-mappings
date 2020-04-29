@@ -185,7 +185,7 @@
         <xsl:apply-templates select="$loadedVariables" mode="expand"/>
     </xsl:template>
     
-    <xsl:template match="nictiz:rule[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
+    <xsl:template match="nts:rule[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <rule id="{@id}">
             <resource>
                 <reference value="{concat($fixtureBase, @href)}"/>
