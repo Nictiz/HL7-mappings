@@ -208,25 +208,25 @@
             </resource>
         </fixture>
     </xsl:template>
-    
+
     <!-- Epand a nts:variables element; read all f:variable elements in the referenced file and further process them --> 
-    <xsl:template match="nts:variables[@href]" mode="expand" xmlns="http://hl7.org/fhir">
+    <xsl:template match="nts:include[@href]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:param name="testscriptBase"/>
-        <xsl:variable name="loadedVariables" as="node()*">
+        <xsl:variable name="parts" as="node()*">
             <xsl:choose>
                 <xsl:when test="$testscriptBase">
-                    <xsl:copy-of select="document(@href, $testscriptBase)/f:variables/(element()|comment())"/>
+                    <xsl:copy-of select="document(@href, $testscriptBase)/nts:parts/(element()|comment())"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:copy-of select="document(@href)/f:variables/(element()|comment())"/>
+                    <xsl:copy-of select="document(@href)/nts:parts/(element()|comment())"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <!-- Note: don't pass testscriptBase here, because recursive includes are relative to the including file,
              not to testscriptBase -->
-        <xsl:apply-templates select="$loadedVariables" mode="expand"/>
+        <xsl:apply-templates select="$parts" mode="expand"/>
     </xsl:template>
-    
+        
     <xsl:template match="nts:rule[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <rule id="{@id}">
             <resource>
@@ -235,25 +235,7 @@
             <xsl:copy-of select="./*"/>
         </rule>
     </xsl:template>
-    
-    <!-- Expand a nts:actions element; read all f:actions elements in the referenced file and further process them -->
-    <xsl:template match="nts:actions[@href]" mode="expand" xmlns="http://hl7.org/fhir">
-        <xsl:param name="testscriptBase"/>
-        <xsl:variable name="loadedActions" as="node()*">
-            <xsl:choose>
-                <xsl:when test="$testscriptBase">
-                    <xsl:copy-of select="document(@href, $testscriptBase)/f:actions/(element()|comment())"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy-of select="document(@href)/f:actions/(element()|comment())"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <!-- Note: don't pass testscriptBase here, because recursive includes are relative to the including file,
-             not to testscriptBase -->
-        <xsl:apply-templates select="$loadedActions" mode="expand"/>
-    </xsl:template>
-    
+        
     <!-- Default template in the expand mode -->
     <xsl:template match="@*|node()" mode="expand">
         <xsl:param name="testscriptBase"/>
