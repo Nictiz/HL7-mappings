@@ -5,14 +5,14 @@
     exclude-result-prefixes="#all">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+        
     <xsl:param name="fixtureBase" select="'../_reference/'"/>
     
     <!-- The main template, which will call the remaining templates.
          param testscriptBase is an optional base (as unerstood by xsl:document()) to include the components from. -->
     <xsl:template name="generate" match="f:TestScript" xmlns="http://hl7.org/fhir">
-        <xsl:param name="testscriptBase"/>
-        
+        <xsl:param name="testscriptBase" select="current()"/>
+                
         <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
         <xsl:variable name="expanded">
             <xsl:apply-templates mode="expand" select=".">
@@ -23,7 +23,7 @@
         <!-- Gather all fixture elements that now might be scattered throughout the document -->
         <xsl:variable name="fixtures" as="element(f:fixture)*">
             <xsl:copy-of select="$expanded//f:fixture"/>
-            <xsl:if test="nts:patientTokenFixture">
+            <xsl:if test="nts:patientTokenFixture[@type = 'PHR']">
                 <fixture id="patient-token-fixture">
                     <resource>
                         <reference value="{concat($fixtureBase, nts:patientTokenFixture/@href)}"/>
@@ -35,11 +35,28 @@
         <!-- Gather all variable elements that now might be scattered throughout the document -->
         <xsl:variable name="variables" as="element(f:variable)*">
             <xsl:copy-of select="$expanded//f:variable"/>
-            <xsl:if test="nts:patientTokenFixture">
+            <xsl:if test="nts:patientTokenFixture[@type = 'PHR']">
                 <variable>
                     <name value="patient-token-id"/>
                     <expression value="Patient.id"/>
                     <sourceId value="patient-token-fixture"/>
+                </variable>
+            </xsl:if>
+            <xsl:if test="nts:patientTokenFixture[@type = 'XIS']">
+                <xsl:variable name="patientTokenFixture">
+                    <xsl:choose>
+                        <xsl:when test="$testscriptBase">
+                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href), $testscriptBase)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href))"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <variable>
+                    <name value="patient-token-id"/>
+                    <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
+                    <description value="OAuth Token for current patient"/>
                 </variable>
             </xsl:if>
             <xsl:if test="nts:includeDateT[@value='yes']">
@@ -202,6 +219,8 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        <!-- Note: don't pass testscriptBase here, because recursive includes are relative to the including file,
+             not to testscriptBase -->
         <xsl:apply-templates select="$loadedVariables" mode="expand"/>
     </xsl:template>
     
@@ -227,6 +246,8 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        <!-- Note: don't pass testscriptBase here, because recursive includes are relative to the including file,
+             not to testscriptBase -->
         <xsl:apply-templates select="$loadedActions" mode="expand"/>
     </xsl:template>
     
