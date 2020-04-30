@@ -23,7 +23,7 @@
         <!-- Gather all fixture elements that now might be scattered throughout the document -->
         <xsl:variable name="fixtures" as="element(f:fixture)*">
             <xsl:copy-of select="$expanded//f:fixture"/>
-            <xsl:if test="nts:patientTokenFixture[@type = 'PHR']">
+            <xsl:if test="nts:patientTokenFixture[@type = 'phr']">
                 <fixture id="patient-token-fixture">
                     <resource>
                         <reference value="{concat($fixtureBase, nts:patientTokenFixture/@href)}"/>
@@ -35,14 +35,14 @@
         <!-- Gather all variable elements that now might be scattered throughout the document -->
         <xsl:variable name="variables" as="element(f:variable)*">
             <xsl:copy-of select="$expanded//f:variable"/>
-            <xsl:if test="nts:patientTokenFixture[@type = 'PHR']">
+            <xsl:if test="nts:patientTokenFixture[@type = 'phr']">
                 <variable>
                     <name value="patient-token-id"/>
                     <expression value="Patient.id"/>
                     <sourceId value="patient-token-fixture"/>
                 </variable>
             </xsl:if>
-            <xsl:if test="nts:patientTokenFixture[@type = 'XIS']">
+            <xsl:if test="nts:patientTokenFixture[@type = 'xis']">
                 <xsl:variable name="patientTokenFixture">
                     <xsl:choose>
                         <xsl:when test="$testscriptBase">
