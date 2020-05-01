@@ -4,89 +4,90 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:fdd1aa82-8bb0-11ea-1602-020000000000"/>
+      <fullUrl value="urn:uuid:eca19358-8bc2-11ea-1221-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
             <text>
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Toedieningsverzoek. Subject: A. XXX_Bals. Id: MBH_907_magistraalactieveingredient_VV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: N. XXX_Maasz. Id: MBH_907_bijzonderekeerdosis_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_magistraalactieveingredient (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
-                        </tr>
-                        <tr>
-                           <th>Gebaseerd op</th>
-                           <td>Relatie naar medicatieafspraak, id = MBH_907_magistraalactieveingredient_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_magistraalactieveingredient_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                           <td>MBH_907_bijzonderekeerdosis (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>Vaseline 20% in cetomacrogolcrème FNA</td>
+                           <td>NAPROXEN 500MG TABLET</td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>${DATE, T, D, +0}T12:05:00+02:00</td>
+                           <td>${DATE, T, D, +0}T08:15:00+02:00</td>
                         </tr>
                         <tr>
-                           <th>Toedieningsverzoek</th>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, D, +0}T00:00:00+02:00 - ${DATE, T, D, +28}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
                            <td>
-                              <div>Hoeveelheid: </div>
-                              <div>Uitvoerende: Apotheek De Gulle Gaper</div>
+                              <div>Tekst: Vanaf &lt;T+0D{18:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 0.5 tablet</div>
+                              <div>Timing: <div>2 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              </div>
+                              <div>Dosering: 0.5 stuk</div>
                            </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_907_magistraalactieveingredient_MA"/>
-                  </identifier>
-                  <display value="Relatie naar medicatieafspraak, id = MBH_907_magistraalactieveingredient_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </valueReference>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +28}T23:59:59+02:00"/>
+               </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_magistraalactieveingredient"/>
+                  <value value="MBH_907_bijzonderekeerdosis"/>
                </valueIdentifier>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_907_magistraalactieveingredient_VV"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_907_bijzonderekeerdosis_MA"/>
             </identifier>
             <intent value="order"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
-                  <code value="52711000146108"/>
-                  <display value="Request to dispense medication to patient (situation)"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
                </coding>
-               <text value="Verstrekkingsverzoek"/>
+               <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:fdd1aa9c-8bb0-11ea-1602-020000000000"/>
-               <display value="Vaseline 20% in cetomacrogolcrème FNA"/>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.20850"/>
+               <display value="NAPROXEN 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:fdd1b47f-8bb0-11ea-1602-020000000000"/>
-               <display value="A. XXX_Bals"/>
+               <reference value="urn:uuid:eca188a2-8bc2-11ea-1221-020000000000"/>
+               <display value="N. XXX_Maasz"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T12:05:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T08:15:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:fdd1aa84-8bb0-11ea-1602-020000000000"/>
+                        <reference value="urn:uuid:eca1935d-8bc2-11ea-1221-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -94,18 +95,29 @@
                   <display value="Peter van Pulver"/>
                </agent>
             </requester>
-            <dispenseRequest>
-               <quantity>
-                  <value value="100"/>
-                  <unit value="gram"/>
+            <dosageInstruction>
+               <text value="Vanaf &lt;T+0D{18:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 0.5 tablet"/>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="0.5"/>
+                  <unit value="stuk"/>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="215"/>
-               </quantity>
-               <performer>
-                  <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-                  <display value="Apotheek De Gulle Gaper"/>
-               </performer>
-            </dispenseRequest>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
          </MedicationRequest>
       </resource>
       <search>
@@ -113,7 +125,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fdd1b47f-8bb0-11ea-1602-020000000000"/>
+      <fullUrl value="urn:uuid:eca188a2-8bc2-11ea-1221-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -122,7 +134,7 @@
             <text>
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), A. XXX_Bals, Man, 2 augustus 1954</div>
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), N. XXX_Maasz, Vrouw, 10 augustus 1954</div>
                </div>
             </text>
             <identifier>
@@ -137,19 +149,19 @@
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
-               <family value="XXX_Bals">
+               <family value="XXX_Maasz">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Bals"/>
+                     <valueString value="XXX_Maasz"/>
                   </extension>
                </family>
-               <given value="A.">
+               <given value="N.">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="IN"/>
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
-            <birthDate value="1954-08-02"/>
+            <gender value="female"/>
+            <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
       <search>
@@ -244,39 +256,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-            </meta>
-            <text>
-               <status value="generated"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <caption>OrganisatieId: 01236578 (URA)</caption>
-                     <tbody>
-                        <tr>
-                           <th>Naam</th>
-                           <td>Apotheek De Gulle Gaper</td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="01236578"/>
-            </identifier>
-            <name value="Apotheek De Gulle Gaper"/>
-         </Organization>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:fdd1aa84-8bb0-11ea-1602-020000000000"/>
+      <fullUrl value="urn:uuid:eca1935d-8bc2-11ea-1221-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -327,7 +307,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fdd1aa9c-8bb0-11ea-1602-020000000000"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.20850"/>
       <resource>
          <Medication>
             <meta>
@@ -340,52 +320,28 @@
                      <tbody>
                         <tr>
                            <th>Code</th>
-                           <td>Vaseline 20% in cetomacrogolcrème FNA</td>
-                           <th>Ingredients</th>
                            <td>
-                              <ul>
-                                 <li>
-                                    <span title="CETOMACROGOLCREME FNA (457590 - G-Standaard HPK)">CETOMACROGOLCREME FNA</span> 
-                                 </li>
-                              </ul>
+                              <span title="NAPROXEN 500MG TABLET (20850 - G-Standaard PRK)">NAPROXEN 500MG TABLET</span>
                            </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
-               <valueString value="Titel: Vaseline 20% in cetomacrogolcrème FNA Regel 1: cetomacrogolcreme 80 gr"/>
-            </extension>
             <code>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
-               <text value="Vaseline 20% in cetomacrogolcrème FNA"/>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="20850"/>
+                  <display value="NAPROXEN 500MG TABLET"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="51233"/>
+                  <display value="NAPROXEN 500MG TABLET"/>
+               </coding>
+               <text value="NAPROXEN 500MG TABLET"/>
             </code>
-            <ingredient>
-               <itemCodeableConcept>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                     <code value="457590"/>
-                     <display value="CETOMACROGOLCREME FNA"/>
-                  </coding>
-               </itemCodeableConcept>
-               <amount>
-                  <numerator>
-                     <value value="80"/>
-                     <unit value="gram"/>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                     <code value="215"/>
-                  </numerator>
-                  <denominator>
-                     <value value="100"/>
-                     <unit value="gram"/>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                     <code value="215"/>
-                  </denominator>
-               </amount>
-            </ingredient>
          </Medication>
       </resource>
       <search>

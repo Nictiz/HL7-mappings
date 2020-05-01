@@ -7,7 +7,7 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:0068867a-8bb1-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:f05d9a1a-8bc2-11ea-1784-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -32,14 +32,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:00689c0b-8bb1-11ea-1291-020000000000"/>
+               <reference value="urn:uuid:f05dafab-8bc2-11ea-1784-020000000000"/>
                <display value="A. XXX_Herweijer"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="urn:uuid:0068867e-8bb1-11ea-1291-020000000000"/>
+                     <reference value="urn:uuid:f05d9a1e-8bc2-11ea-1784-020000000000"/>
                      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
@@ -47,7 +47,7 @@
             </source>
             <entry>
                <item>
-                  <reference value="urn:uuid:0068864b-8bb1-11ea-1291-020000000000"/>
+                  <reference value="urn:uuid:f05d99eb-8bc2-11ea-1784-020000000000"/>
                   <display value="Medicatieafspraak identifier: value='MBH_907_aanvullendeinformatiewensen_MA_onderbreken', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
@@ -58,7 +58,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0068864b-8bb1-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:f05d99eb-8bc2-11ea-1784-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -69,7 +69,7 @@
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
                      <caption>Medicatieafspraak. Subject: A. XXX_Herweijer. Id: MBH_907_aanvullendeinformatiewensen_MA_onderbreken (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-                        <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsenpraktijk Pulver &amp; Partners</span>
+                        <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -182,7 +182,7 @@
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:00689c0b-8bb1-11ea-1291-020000000000"/>
+               <reference value="urn:uuid:f05dafab-8bc2-11ea-1784-020000000000"/>
                <display value="A. XXX_Herweijer"/>
             </subject>
             <authoredOn value="${DATE, T, D, -1}T18:12:00+02:00"/>
@@ -190,8 +190,8 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:00688653-8bb1-11ea-1291-020000000000"/>
-                        <display value="Bertine van Doorn || Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <reference value="urn:uuid:f05d99f3-8bc2-11ea-1784-020000000000"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
                   <reference value="urn:oid:2.16.528.1.1007.3.1.1112"/>
@@ -235,7 +235,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:00689c0b-8bb1-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:f05dafab-8bc2-11ea-1784-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -362,7 +362,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0068867e-8bb1-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:f05d9a1e-8bc2-11ea-1784-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -420,7 +420,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:00688653-8bb1-11ea-1291-020000000000"/>
+      <fullUrl value="urn:uuid:f05d99f3-8bc2-11ea-1784-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -442,7 +442,7 @@
                         <tr>
                            <th>Specialisme</th>
                            <td>
-                              <i>onbekend (ontbrekend gegeven)</i>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
                            </td>
                         </tr>
                      </tbody>
@@ -458,9 +458,11 @@
                <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
             <specialty>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="UNK"/>
-               </extension>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
             </specialty>
          </PractitionerRole>
       </resource>
