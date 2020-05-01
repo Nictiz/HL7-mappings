@@ -541,7 +541,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <entryRelationship typeCode="COMP">
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901223"/>
-                        <code code="450426006" displayName="foetale of neonatale periode (kwalificatiewaarde)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <code code="246454002" displayName="levensperiode (attribuut)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                         <xsl:call-template name="makeCDValue"/>
                     </observation>
                 </entryRelationship>
