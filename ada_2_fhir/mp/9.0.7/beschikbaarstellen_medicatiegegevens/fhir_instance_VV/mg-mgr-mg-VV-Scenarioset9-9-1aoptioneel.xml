@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:a9ea29a2-8b8e-11ea-1602-020000000000"/>
+      <fullUrl value="urn:uuid:6d6c2cc2-8ba8-11ea-1602-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -37,7 +37,7 @@
                         <tr>
                            <th>Toedieningsverzoek</th>
                            <td>
-                              <div>Geldigheidsperiode: T+10D{00:00:00} - T+6M{00:00:00}</div>
+                              <div>Geldigheidsperiode: ${DATE, T, D, +10}T00:00:00+02:00 - ${DATE, T, M, +6}T00:00:00+02:00</div>
                               <div>Uitvoerende: Apotheek De Gulle Gaper</div>
                            </td>
                         </tr>
@@ -78,7 +78,7 @@
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:a9ea3f07-8b8e-11ea-1602-020000000000"/>
+               <reference value="urn:uuid:6d6c4227-8ba8-11ea-1602-020000000000"/>
                <display value="N. XXX-Incident-A"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T11:00:00+02:00"/>
@@ -86,7 +86,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:a9ea29a4-8b8e-11ea-1602-020000000000"/>
+                        <reference value="urn:uuid:6d6c2cc4-8ba8-11ea-1602-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -96,8 +96,8 @@
             </requester>
             <dispenseRequest>
                <validityPeriod>
-                  <start value="T+10D{00:00:00}"/>
-                  <end value="T+6M{00:00:00}"/>
+                  <start value="${DATE, T, D, +10}T00:00:00+02:00"/>
+                  <end value="${DATE, T, M, +6}T00:00:00+02:00"/>
                </validityPeriod>
                <performer>
                   <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
@@ -111,7 +111,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a9ea3f07-8b8e-11ea-1602-020000000000"/>
+      <fullUrl value="urn:uuid:6d6c4227-8ba8-11ea-1602-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -274,7 +274,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a9ea29a4-8b8e-11ea-1602-020000000000"/>
+      <fullUrl value="urn:uuid:6d6c2cc4-8ba8-11ea-1602-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

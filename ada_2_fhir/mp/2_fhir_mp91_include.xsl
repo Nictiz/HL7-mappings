@@ -970,10 +970,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="./verbruiksperiode[(ingangsdatum | einddatum)/@value]">
                             <validityPeriod>
                                 <xsl:for-each select="./ingangsdatum[@value]">
-                                    <start value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                                    <start>
+                                        <xsl:attribute name="value">
+                                            <xsl:call-template name="format2FHIRDate">
+                                                <xsl:with-param name="dateTime" select="@value"/>
+                                            </xsl:call-template>
+                                        </xsl:attribute>
+                                    </start>
                                 </xsl:for-each>
                                 <xsl:for-each select="./einddatum[@value]">
-                                    <end value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                                    <end>
+                                        <xsl:attribute name="value">
+                                            <xsl:call-template name="format2FHIRDate">
+                                                <xsl:with-param name="dateTime" select="@value"/>
+                                            </xsl:call-template>
+                                        </xsl:attribute>
+                                    </end>
                                 </xsl:for-each>
                             </validityPeriod>
                         </xsl:for-each>
