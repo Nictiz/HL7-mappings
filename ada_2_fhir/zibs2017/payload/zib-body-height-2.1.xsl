@@ -160,9 +160,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
-                    <xsl:for-each select="(lengte_datum_tijd | height_date_time)[@value]">
-                        <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(@value)}"/>
-                    </xsl:for-each>
+                    <!-- effectiveDateTime is required in the FHIR profile, so always output effectiveDateTime, data-absent-reason if no actual value -->
+                    <effectiveDateTime>
+                        <xsl:choose>
+                            <xsl:when test="(lengte_datum_tijd | height_date_time)[@value]">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="(lengte_datum_tijd | height_date_time)/@value"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </effectiveDateTime>
                     <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
                     <!-- https://bits.nictiz.nl/browse/MM-434 -->
                     <performer>
