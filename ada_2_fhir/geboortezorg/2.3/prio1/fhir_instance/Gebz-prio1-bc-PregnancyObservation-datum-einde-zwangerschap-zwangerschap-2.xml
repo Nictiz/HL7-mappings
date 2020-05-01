@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="datum-einde-zwangerschap-zwangerschap-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+      <valueReference>
+         <reference value="Condition/wouden-zwangerschap-2"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="118951000146109"/>
+         <display value="Date of end of pregnancy (observable entity)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WOUDENVANDER"/>
+      <display value="Wouden van der"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-2"/>
+   </context>
+   <valueDateTime value="2016-09-08"/>
+</Observation>

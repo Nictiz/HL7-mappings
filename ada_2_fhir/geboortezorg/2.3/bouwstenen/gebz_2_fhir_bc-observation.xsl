@@ -49,25 +49,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
                         <valueReference>
                             <xsl:choose>
-                                <xsl:when test="$parentElemName='zwangerschap'">
+                                <xsl:when test="ancestor::zwangerschap">
                                     <reference value="Condition/{$pregnancyId}"/>
                                 </xsl:when>
-                                <xsl:when test="$parentElemName='bevalling' or $elementName='baring'">
+                                <xsl:when test="ancestor::bevalling">
                                     <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
                                 </xsl:when>   
-                                <xsl:when test="($parentElemName='kindspecifieke_maternale_gegevens' or $parentElemName='kindspecifieke_uitkomst_gegevens') and $childId!=''">
-                                    <reference value="Observation/{concat('baring-',$childId)}"/>
+                                <xsl:when test="(ancestor::kindspecifieke_maternale_gegevens or ancestor::kindspecifieke_uitkomstgegevens) and $childId!=''">
+                                    <reference value="Procedure/{concat('baring-',$childId)}"/>
                                 </xsl:when>
                             </xsl:choose>
                         </valueReference>
                     </extension>
-                </xsl:if>
-                <xsl:if test="$childId!='' and $elementName='baring'">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
-                        <valueReference>
-                            <reference value="Patient/{$childId}"/>
-                        </valueReference>
-                    </extension>                 
                 </xsl:if>
                 <status value="final"/>
                 <code>
@@ -88,21 +81,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:if test="$dossierId!=''">
-                    <context value="EpisodeOfCare/{$dossierId}"/>
+                    <context>
+                        <reference value="EpisodeOfCare/{$dossierId}"/>
+                    </context> 
                 </xsl:if>
                 <xsl:for-each select=".">
                     <xsl:choose>
-                        <xsl:when test="$elementName='baring'">
-                            <valueCodeableConcept>
-                                <coding>
-                                    <system value="http://snomed.info/sct"/>
-                                    <code value="3950001"/>
-                                    <display value="Birth (finding)"/>
-                                </coding>
-                            </valueCodeableConcept>
-                        </xsl:when>
                         <xsl:when test="@datatype='datetime'">
-                            <xsl:call-template name="any-to-date"/>
+                            <xsl:variable name="dateValue" select="nf:calculate-t-date(@value,current-date())"/>
+                            <valueDateTime value="{$dateValue}"/>
                         </xsl:when>
                         <xsl:when test="not(@code) and @value castable as xs:integer">
                             <xsl:element name="valueQuantity" namespace="http://hl7.org/fhir">

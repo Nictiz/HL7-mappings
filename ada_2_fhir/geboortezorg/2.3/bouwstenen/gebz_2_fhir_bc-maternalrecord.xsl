@@ -44,7 +44,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
                 </meta>
-                <status value="finished"/>
+                <xsl:choose>
+                    <xsl:when test="ancestor::prio1_huidig">
+                        <status value="active"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <status value="finished"/>        
+                    </xsl:otherwise>
+                </xsl:choose>
                 <type>
                     <coding>
                         <system value="http://snomed.info/sct"/>
@@ -55,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$pregnancyId!=''">
                     <diagnosis>
                         <condition>
-                            <reference value="{$pregnancyId}"/>
+                            <reference value="Condition/{$pregnancyId}"/>
                         </condition>
                     </diagnosis>                 
                 </xsl:if>

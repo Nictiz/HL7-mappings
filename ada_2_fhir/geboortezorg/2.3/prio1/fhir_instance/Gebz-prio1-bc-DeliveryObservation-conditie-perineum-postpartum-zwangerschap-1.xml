@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="conditie-perineum-postpartum-zwangerschap-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+      <valueReference>
+         <reference value="Procedure/bevalling-wouden-zwangerschap-1"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="364297003"/>
+         <display value="Female perineum observable (observable entity)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WOUDENVANDER"/>
+      <display value="Wouden van der"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+   </context>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="609344008"/>
+         <display value="Episiotomiewond"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>

@@ -60,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:Bundle" mode="doResourceInResultdoc">
         <xsl:param name="postfix"></xsl:param>
-        <xsl:result-document href="../fhir_instance/{$usecase}-transaction-{f:id/@value}{$postfix}.xml"> 
+        <xsl:result-document href="../fhir_instance/Gebz-{$usecase}-transaction-{f:id/@value}{$postfix}.xml"> 
             <xsl:apply-templates select="." mode="ResultOutput"/>
         </xsl:result-document>
     </xsl:template>   

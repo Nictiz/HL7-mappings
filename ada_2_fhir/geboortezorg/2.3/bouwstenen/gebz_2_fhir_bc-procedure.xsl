@@ -34,12 +34,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="childId"/>
         
         <xsl:variable name="elementName" select="name(.)"/>
-        <xsl:variable name="startDelivery">
-            <xsl:for-each select="tijdstip_begin_actieve_ontsluiting">
-                <xsl:call-template name="format-date"/>
-            </xsl:for-each>
-        </xsl:variable> 
- 
+        <xsl:variable name="startDelivery" select="nf:calculate-t-date(tijdstip_begin_actieve_ontsluiting/@value,current-date())"/>
+         
         <xsl:for-each select="$in">            
             <Procedure>
                 <xsl:if test="$referById">
@@ -49,12 +45,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="bc-profile"/>
                 </meta>
                 <xsl:if test="ancestor::kindspecifieke_uitkomstgegevens and $childId">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/event-partOf">
-                        <valueReference>
-                            <reference value="Observation/{concat('baring-',$childId)}"/>
-                        </valueReference>
-                    </extension>
+                    <partOf>
+                        <reference value="Procedure/{concat('baring-',$childId)}"/>
+                    </partOf> 
                 </xsl:if>
+                <xsl:if test="$elementName='baring' and $childId and $pregnancyId!=''">
+                    <partOf>
+                        <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
+                    </partOf>    
+                </xsl:if>                
                 <status value="completed"/>
                 <category>
                     <coding>
@@ -66,13 +65,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <xsl:call-template name="bc-procedure-coding"/>
                 </code>
-                <xsl:for-each select="$adaPatient">
-                    <subject>
-                        <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                    </subject>
-                </xsl:for-each>                 
+                <xsl:choose>
+                    <xsl:when test="$elementName='baring'">
+                        <subject>
+                            <reference value="Patient/{$childId}"/>
+                        </subject>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="$adaPatient">
+                            <subject>
+                                <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                            </subject>
+                        </xsl:for-each>  
+                    </xsl:otherwise>
+                </xsl:choose>
                 <xsl:if test="$dossierId!=''">
-                    <context value="EpisodeOfCare/{$dossierId}"/>
+                    <context>
+                        <reference value="EpisodeOfCare/{$dossierId}"/>
+                    </context> 
                 </xsl:if>
                 <xsl:if test="$startDelivery!=''">
                     <performedPeriod>

@@ -148,6 +148,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code value='236973005'/>
                         <display value='Delivery procedure (procedure)'/>
                     </xsl:when>
+                    <xsl:when test="$elementName='baring'">
+                        <system value="http://snomed.info/sct"/>
+                        <code value="3950001"/>
+                        <display value="Birth (finding)"/>
+                    </xsl:when>
                     <xsl:when test="$elementName='vaginale_kunstverlossing'">
                         <system value='http://snomed.info/sct'/>
                         <code value='3311000146109'/>
@@ -159,43 +164,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template name="any-to-date" match="/">
-        <xsl:variable name="dateValue">
-            <xsl:call-template name="format-date"></xsl:call-template>
-        </xsl:variable>
-        <xsl:choose>
-            <xsl:when test="not(string(.) castable as xs:dateTime)">
-                <valueDateTime value="{$dateValue}"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <valueDate value="{$dateValue}"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="dateValue" select="nf:calculate-t-date(@value,current-date())"/>
+         <valueDateTime value="{$dateValue}"/>
     </xsl:template>
-    
-    <xsl:template name="format-date" match="*">
-        <xsl:variable name="operator" select="substring(@value,2,1)"/>
-        <xsl:variable name="time" select="substring-before(substring-after(@value,'{'),'}')"/>
-        <xsl:variable name="pattern">
-            <xsl:choose>
-                <xsl:when test="$time!=''">        
-                    <xsl:value-of select="substring-after(substring-before(@value,'{'),$operator)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="substring-after(@value,$operator)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="date" select="current-date()-xs:dayTimeDuration(concat('P',$pattern))"/>
-            <xsl:choose>
-                <xsl:when test="$time!=''">        
-                    <xsl:value-of select="concat(format-date($date,'[M]-[D]-[Y]'),'T',$time,':00+01:00')"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$date"/>
-                </xsl:otherwise>            
-            </xsl:choose>
-    </xsl:template>
-
+  
     <xsl:template match="/">
         <xsl:apply-templates/>
     </xsl:template>

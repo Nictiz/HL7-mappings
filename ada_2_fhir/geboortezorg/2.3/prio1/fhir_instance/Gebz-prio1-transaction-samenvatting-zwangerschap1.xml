@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="samenvatting-zwangerschap1"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f266c-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Composition>
+            <id value="samenvatting-zwangerschap1"/>
+            <status value="final"/>
+            <type>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="15508-5"/>
+                  <display value="Labor and delivery records"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <date value="2012-01-04T09:10:14Z"/>
+            <author>
+               <reference value="Practitioner/XXXTODOTOEVOEGENPRACTITIONER"/>
+            </author>
+            <title value="Example Prio 1 Huidige Zwangerschap"/>
+            <section>
+               <entry>
+                  <reference value="Observation/graviditeit-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Patient/WOUDENVANDER"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/pariteit-voor-deze-zwangerschap-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/wijze-einde-zwangerschap-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/datum-einde-zwangerschap-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/tijdstip-begin-actieve-ontsluiting-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/hoeveelheid-bloedverlies-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/conditie-perineum-postpartum-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/tijdstip-actief-meepersen-zwangerschap-1-kind-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/type-partus-zwangerschap-1-kind-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/apgarscore-na-5-min-zwangerschap-1-kind-1"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/geboortegewicht-zwangerschap-1-kind-1"/>
+               </entry>
+               <entry>
+                  <reference value="Practitioner/Janssen"/>
+               </entry>
+               <entry>
+                  <reference value="PractitionerRole/Janssen-Verloskundigenpraktijk-B"/>
+               </entry>
+               <entry>
+                  <reference value="Patient/zwangerschap-1-kind-1"/>
+               </entry>
+               <entry>
+                  <reference value="Organization/Verloskundigenpraktijk-B"/>
+               </entry>
+               <entry>
+                  <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Condition/wouden-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Procedure/bevalling-zwangerschap-1"/>
+               </entry>
+               <entry>
+                  <reference value="Procedure/baring-zwangerschap-1-kind-1"/>
+               </entry>
+               <entry>
+                  <reference value="Procedure/vaginale-kunstverlossing-zwangerschap-1-kind-1"/>
+               </entry>
+            </section>
+         </Composition>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Composition/samenvatting-zwangerschap1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f22f2-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="WOUDENVANDER"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <value value="999910413"/>
+            </identifier>
+            <name>
+               <family value="van der Wouden">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van der"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Wouden"/>
+                  </extension>
+               </family>
+            </name>
+         </Patient>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Patient/WOUDENVANDER"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f22fc-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="graviditeit-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Gravidity"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Condition/wouden-zwangerschap-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="11996-6"/>
+                  <display value="Gravidity"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueQuantity>
+               <value value="1"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/graviditeit-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f231a-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="pariteit-voor-deze-zwangerschap-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Parity"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Condition/wouden-zwangerschap-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="11977-6"/>
+                  <display value="Parity"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueQuantity>
+               <value value="0"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/pariteit-voor-deze-zwangerschap-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2324-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="wijze-einde-zwangerschap-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Condition/wouden-zwangerschap-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.13"/>
+                  <code value="EindeZw"/>
+                  <display value="Wijze einde zwangerschap"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.13.46"/>
+                  <code value="1"/>
+                  <display value="Partus"/>
+               </coding>
+            </valueCodeableConcept>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/wijze-einde-zwangerschap-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f24e6-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="datum-einde-zwangerschap-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Condition/wouden-zwangerschap-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="118951000146109"/>
+                  <display value="Date of end of pregnancy (observable entity)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueDateTime value="2016-05-31"/>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/datum-einde-zwangerschap-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f24f0-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="tijdstip-begin-actieve-ontsluiting-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Procedure/bevalling-wouden-zwangerschap-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="249120008"/>
+                  <display value="Onset of labor first stage (observable entity)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueDateTime value="2016-05-30T21:46:00+02:00"/>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/tijdstip-begin-actieve-ontsluiting-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f24fa-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="hoeveelheid-bloedverlies-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Procedure/bevalling-wouden-zwangerschap-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="364332008"/>
+                  <display value="Blood loss in labour"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueQuantity>
+               <value value="600"/>
+               <unit value="ml"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/hoeveelheid-bloedverlies-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f250e-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="conditie-perineum-postpartum-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Procedure/bevalling-wouden-zwangerschap-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="364297003"/>
+                  <display value="Female perineum observable (observable entity)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="609344008"/>
+                  <display value="Episiotomiewond"/>
+               </coding>
+            </valueCodeableConcept>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/conditie-perineum-postpartum-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2518-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="tijdstip-actief-meepersen-zwangerschap-1-kind-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Procedure/baring-zwangerschap-1-kind-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="249163006"/>
+                  <display value="Onset of pushing (in labor) (observable entity)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueDateTime value="2016-05-31T01:01:00+02:00"/>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/tijdstip-actief-meepersen-zwangerschap-1-kind-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2522-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="type-partus-zwangerschap-1-kind-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+               <valueReference>
+                  <reference value="Procedure/baring-zwangerschap-1-kind-1"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="364336006"/>
+                  <display value="Pattern of delivery (observable entity)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="3311000146109"/>
+                  <display value="Vaginale kunstverlossing"/>
+               </coding>
+            </valueCodeableConcept>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/type-partus-zwangerschap-1-kind-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f252c-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="apgarscore-na-5-min-zwangerschap-1-kind-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore"/>
+            </meta>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="9274-2"/>
+                  <display value="5 minute Apgar Score"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/zwangerschap-1-kind-1"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueQuantity>
+               <value value="6"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/apgarscore-na-5-min-zwangerschap-1-kind-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2536-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="geboortegewicht-zwangerschap-1-kind-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthWeight"/>
+            </meta>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="8339-4"/>
+                  <display value="Birth weight Measured"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/zwangerschap-1-kind-1"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <valueQuantity>
+               <value value="4810"/>
+               <unit value="gram"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="g"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/geboortegewicht-zwangerschap-1-kind-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f254a-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Practitioner>
+            <id value="Janssen"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <identifier>
+               <value value="00001111"/>
+            </identifier>
+            <name>
+               <family value="Janssen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Janssen"/>
+                  </extension>
+               </family>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Practitioner/Janssen"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f25fe-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="Janssen-Verloskundigenpraktijk-B"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <practitioner>
+               <reference value="Practitioner/Janssen"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/Verloskundigenpraktijk-B"/>
+            </organization>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="PractitionerRole/Janssen-Verloskundigenpraktijk-B"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2626-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="zwangerschap-1-kind-1"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <birthDate value="2016-05-31"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Patient/zwangerschap-1-kind-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2630-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="Verloskundigenpraktijk-B"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <value value="1500"/>
+            </identifier>
+            <name value="Verloskundigenpraktijk B"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Organization/Verloskundigenpraktijk-B"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f263a-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <EpisodeOfCare>
+            <id value="dossier-wouden-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+            </meta>
+            <status value="finished"/>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="364320009"/>
+                  <display value="Pregnancy observable (observable entity)"/>
+               </coding>
+            </type>
+            <diagnosis>
+               <condition>
+                  <reference value="Condition/wouden-zwangerschap-1"/>
+               </condition>
+            </diagnosis>
+            <patient>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </patient>
+            <managingOrganization>
+               <reference value="Organization/Verloskundigenpraktijk-B"/>
+            </managingOrganization>
+            <careManager>
+               <reference value="Practitioner/Janssen"/>
+            </careManager>
+         </EpisodeOfCare>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2644-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Condition>
+            <id value="wouden-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy"/>
+            </meta>
+            <clinicalStatus value="inactive"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="364320009"/>
+                  <display value="Pregnancy observable (observable entity)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+         </Condition>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Condition/wouden-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f264e-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Procedure>
+            <id value="bevalling-zwangerschap-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryProcedure"/>
+            </meta>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="386637004"/>
+                  <display value="Obstetric procedure (procedure)"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="236973005"/>
+                  <display value="Delivery procedure (procedure)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <performedPeriod>
+               <start value="2016-05-30T21:46:00+02:00"/>
+            </performedPeriod>
+            <reasonReference>
+               <reference value="Condition/wouden-zwangerschap-1"/>
+            </reasonReference>
+         </Procedure>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Procedure/bevalling-zwangerschap-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2658-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Procedure>
+            <id value="baring-zwangerschap-1-kind-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
+            </meta>
+            <partOf>
+               <reference value="Procedure/bevalling-wouden-zwangerschap-1"/>
+            </partOf>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="386637004"/>
+                  <display value="Obstetric procedure (procedure)"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="3950001"/>
+                  <display value="Birth (finding)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/zwangerschap-1-kind-1"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <reasonReference>
+               <reference value="Condition/wouden-zwangerschap-1"/>
+            </reasonReference>
+         </Procedure>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Procedure/baring-zwangerschap-1-kind-1"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2b9f2662-8bb2-11ea-7898-020000000000"/>
+      <resource>
+         <Procedure>
+            <id value="vaginale-kunstverlossing-zwangerschap-1-kind-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
+            </meta>
+            <partOf>
+               <reference value="Procedure/baring-zwangerschap-1-kind-1"/>
+            </partOf>
+            <status value="completed"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="386637004"/>
+                  <display value="Obstetric procedure (procedure)"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="3311000146109"/>
+                  <display value="Vaginale kunstverlossing"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/WOUDENVANDER"/>
+               <display value="Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-1"/>
+            </context>
+            <reasonReference>
+               <reference value="Condition/wouden-zwangerschap-1"/>
+            </reasonReference>
+         </Procedure>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Procedure/vaginale-kunstverlossing-zwangerschap-1-kind-1"/>
+      </request>
+   </entry>
+</Bundle>

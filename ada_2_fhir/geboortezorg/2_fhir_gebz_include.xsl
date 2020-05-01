@@ -103,25 +103,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
-    
+              
     <!-- zorgverlener rollen -->
     <xsl:variable name="practitionerRoles" as="element(f:PractitionerRole)*">
         <xsl:for-each select="//zorgverlenerzorginstelling">
             <xsl:call-template name="nl-core-practitionerrole-2.0">
                 <xsl:with-param name="in" select="$zorgverlener-ada"/>
                 <xsl:with-param name="logicalId" select="replace(concat(zorgverlener/naam_zorgverlener/@value,'-',replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')), ' ', '-')"/>      
-<!--                <xsl:with-param name="organizationRef">
-                    <practitioner>
-                        <reference value="Practitioner/zorgverlener-delos" />
-                        <display value="Vera de Los" />
-                    </practitioner>
+                <xsl:with-param name="organizationRef" as="element(f:reference)">
+                    <reference xmlns="http://hl7.org/fhir" value="Organization/{replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')}" />                        
                 </xsl:with-param>
-                <xsl:with-param name="practitionerRef">
-                      <organization>
-                        <reference value="Organization/verloskundigenpraktijk-A" />
-                        <display value="Verloskundigenpraktijk A" />
-                    </organization>
-                </xsl:with-param>-->
+                <xsl:with-param name="practitionerRef" as="element(f:reference)*">
+                    <reference xmlns="http://hl7.org/fhir" value="Practitioner/{replace(zorgverlener/naam_zorgverlener/@value, ' ', '-')}" />                       
+                </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
@@ -132,7 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="bc-maternal-record">
                 <xsl:with-param name="logicalId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                <xsl:with-param name="pregnancyId" select="concat('zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="organizationId" select="$organizations/f:id/@value"/>
                 <xsl:with-param name="practitionerId" select="$practitioners/f:id/@value"/>
             </xsl:call-template>            
@@ -143,10 +137,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="conditions" as="element(f:Condition)*">
         <xsl:for-each select="//zwangerschap">
             <xsl:call-template name="zib-pregnancy">
-                <xsl:with-param name="logicalId" select="concat('zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="logicalId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat('zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
@@ -162,7 +156,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$labtest-ada">
                 <xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
                     <xsl:with-param name="in" select="." as="element()*"/>
-                    <xsl:with-param name="logicalId" select="concat($elementName, '-zwangerschap-', $pregnancyNo)"/>
+                    <xsl:with-param name="logicalId" select="concat(replace($elementName,'_','-'), '-zwangerschap-', $pregnancyNo)"/>
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -170,45 +164,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- zwangerschaps- en bevallingsgegevens -->
         <xsl:for-each select="//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum)">
             <xsl:call-template name="bc-observation">
-                <xsl:with-param name="logicalId" select="concat(name(.), '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat('zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
         <!-- kindspecifieke uitkomstgegevens -->
         <xsl:variable name="childNo" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
-        <xsl:for-each select="//(baring | baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht)))">
+        <xsl:for-each select="//(baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht)))">
             <xsl:call-template name="bc-observation">
-                <xsl:with-param name="logicalId" select="concat(name(.), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
+                <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat('zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="childId" select="concat('zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
      
-    <!-- bevalling en obstetrische verrichtingen -->
+    <!-- bevalling, geboorte en obstetrische verrichtingen -->
     <xsl:variable name="procedures" as="element(f:Procedure)*">
         <!-- bevalling -->
         <xsl:for-each select="//bevalling">
             <xsl:call-template name="bc-procedure">
-                <xsl:with-param name="logicalId" select="concat(name(.), '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat('zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
-        <!-- obstetrische verrichtingen -->
+        <!-- geboorte en obstetrische verrichtingen -->
         <xsl:for-each select="//uitkomst_per_kind">
             <xsl:variable name="childNo" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
-            <xsl:for-each select="baring/kindspecifieke_uitkomstgegevens/vaginale_kunstverlossing_groep/vaginale_kunstverlossing">
+            <xsl:for-each select="baring | baring/kindspecifieke_uitkomstgegevens/vaginale_kunstverlossing_groep/vaginale_kunstverlossing">
                 <xsl:call-template name="bc-procedure">
-                    <xsl:with-param name="logicalId" select="concat(name(.), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
+                    <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                    <xsl:with-param name="dossierId" select="concat('zwangerschapsdossier-zwangerschap-', $pregnancyNo)"/>
-                    <xsl:with-param name="pregnancyId" select="concat('zwangerschap-', $pregnancyNo)"/>
+                    <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
+                    <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
                     <xsl:with-param name="childId" select="concat('zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
                 </xsl:call-template>
             </xsl:for-each>
