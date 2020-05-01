@@ -56,6 +56,9 @@
                 <variable>
                     <name value="patient-token-id"/>
                     <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
+                    <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
+                        <xsl:comment>patientTokenFixture <xsl:value-of select="nts:patientTokenFixture/@href"/> not available</xsl:comment>
+                    </xsl:if>
                     <description value="OAuth Token for current patient"/>
                 </variable>
             </xsl:if>
