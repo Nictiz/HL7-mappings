@@ -927,7 +927,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </subject>
                     <!-- verstrekkingsverzoek datum -->
                     <xsl:for-each select="./datum[@value]">
-                        <authoredOn value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                        <authoredOn>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="@value"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </authoredOn>
                     </xsl:for-each>
                     <!-- auteur -->
                     <!-- todo -->
