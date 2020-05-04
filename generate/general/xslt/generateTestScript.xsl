@@ -153,7 +153,7 @@
     <xsl:template match="nts:*" mode="filter"/>
     
     <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile, variable and rule elements -->  
-    <xsl:template match="(f:TestScript/f:setup | f:TestScript/f:test)[1]" mode="filter" xmlns="http://hl7.org/fhir">
+    <xsl:template match="f:TestScript/f:setup | f:TestScript/f:test[1]" mode="filter" xmlns="http://hl7.org/fhir">
         <xsl:param name="fixtures" tunnel="yes"/>
         <xsl:param name="profiles" tunnel="yes"/>
         <xsl:param name="variables" tunnel="yes"/>
