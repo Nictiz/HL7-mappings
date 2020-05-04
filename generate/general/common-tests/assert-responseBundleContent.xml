@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns="http://hl7.org/fhir">
+    <action>
+        <assert>
+            <description value="Confirm that Bundle does not use Burgerservicenummer (BSN) anywhere."/>
+            <direction value="response"/>
+            <expression value="Bundle.descendants().select(identifier.where(system.toString() = 'http://fhir.nl/fhir/NamingSystem/bsn').where(value.empty())).count() = 0"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that Bundle does not use Burgerservicenummer (BSN) in the self link."/>
+            <direction value="response"/>
+            <expression value="Bundle.link.url.contains('http://fhir.nl/fhir/NamingSystem/bsn') = false"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that all returned resources except OperationOutcome contain a meta.profile tag."/>
+            <direction value="response"/>
+            <expression value="Bundle.entry.resource.where(is(OperationOutcome).not()).where(meta.profile.empty()).empty()"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that the returned Bundle conforms to the base FHIR specification and the resources to the stated profiles in the meta.profile tag."/>
+            <direction value="response"/>
+            <validateProfileId value="bundle-profile"/>
+        </assert>
+    </action>
+</actions>

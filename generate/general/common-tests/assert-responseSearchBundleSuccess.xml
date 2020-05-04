@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns="http://hl7.org/fhir">
+    <action>
+        <assert>
+            <description value="Confirm that the operation was succesful"/>
+            <operator value="in"/>
+            <responseCode value="200,201"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that the returned resource type is Bundle."/>
+            <direction value="response"/>
+            <resource value="Bundle"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that the returned Bundle type is searchset."/>
+            <direction value="response"/>
+            <expression value="Bundle.type"/>
+            <operator value="equals"/>
+            <value value="searchset"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that the returned Bundle total value matches or is less than the number of entries in the Bundle. The included resources should not be counted as entries in the Bundle.total."/>
+            <direction value="response"/>
+            <expression value="Bundle.total.toInteger() &lt;= Bundle.entry.where(search.empty() or search.mode = 'match').count()"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that the returned Bundle contains a self link."/>
+            <direction value="response"/>
+            <expression value="Bundle.link.relation.exists() and Bundle.link.relation = 'self' and Bundle.link.url.exists()"/>
+        </assert>
+    </action>
+</actions>
