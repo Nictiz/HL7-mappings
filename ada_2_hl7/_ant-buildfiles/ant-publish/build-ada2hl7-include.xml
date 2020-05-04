@@ -6,7 +6,7 @@
         
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
-<project basedir="." name="build-ada2test-xslt-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+<project basedir="." name="build-ada2hl7-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <ant antfile="../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
@@ -24,13 +24,6 @@
     <property name="project.prefix" value="${is.abbreviation}_${is.version}"/>
     <property name="dummy.output.dir" value="../../dummy"/>
     
-    <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
-    <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
-    <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
-    
-    <property name="testsuite.id.mg.ma" value="93"/>
-    <property name="testsuite.id.mg.vv" value="94"/>
-    <property name="testsuite.id.mv" value="92"/>   
     
 
     <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
