@@ -791,7 +791,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>      
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)([YMD]).*)?', 'P$2$4')"/>
-                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)})?)?', '$4')"/>
+                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)\})?)?', '$4')"/>
                 <xsl:variable name="time">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 5">
