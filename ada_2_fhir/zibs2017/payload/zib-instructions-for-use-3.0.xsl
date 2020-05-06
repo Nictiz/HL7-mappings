@@ -1,5 +1,5 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+    <!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
 
     <xd:doc>
         <xd:desc>does some processing for ada element 'toedieningsweg' based on whether it is in transaction for verstrekkingenvertaling (toedieningsweg 0..1 R) or other transactions (toedieningsweg 1..1 R)</xd:desc>
@@ -80,7 +80,7 @@
         <xd:desc>zib-Administration-Schedule-3.0</xd:desc>
         <xd:param name="toedieningsschema">ada toedieningsschema</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Administration-Schedule-2.0" match="toedieningsschema">
+    <xsl:template name="zib-Administration-Schedule-3.0" match="toedieningsschema">
         <xsl:param name="toedieningsschema" as="element()?" select="."/>
         <xsl:for-each select="$toedieningsschema">
             <timing>
@@ -159,13 +159,13 @@
                         <!-- toedientijd -->
                         <xsl:for-each select="toedientijd[@value]">
                             <xsl:choose>
-                                <xsl:when test="@value castable as xs:dateTime">
-                                    <timeOfDay value="{format-dateTime(xs:dateTime(@value), '[H01]:[m01]:[s01]')}"/>                                    
+                                <xsl:when test="nf:add-Amsterdam-timezone-to-dateTimeString(@value) castable as xs:dateTime">
+                                    <timeOfDay value="{format-dateTime(xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>                                    
                                 </xsl:when>
-                                <xsl:when test="@value castable as xs:time">
-                                    <timeOfDay value="{format-time(xs:time(@value), '[H01]:[m01]:[s01]')}"/>                                    
+                                <xsl:when test="nf:add-Amsterdam-timezone-to-dateTimeString(@value) castable as xs:time">
+                                    <timeOfDay value="{format-time(xs:time(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>                                    
                                 </xsl:when>
-                                <!-- not a dateTime or Time as input, let's check for an ada T date -->
+                                    <!-- not a dateTime or Time as input, let's check for an ada T date -->
                                 <xsl:when test="nf:calculate-t-date(@value, xs:date('1970-01-01')) castable as xs:dateTime">
                                     <!-- ada T date as input (T+0D{08:00:00}), lets convert it to a proper dateTime using date 1 Jan 1970, 
                                         this date is not relevant for toedientijd -->
@@ -245,7 +245,7 @@
         </xsl:if>
         <!-- dosering/toedieningsschema -->
         <xsl:for-each select="./toedieningsschema[.//(@code | @value | @nullFlavor)]">
-            <xsl:call-template name="zib-Administration-Schedule-2.0">
+            <xsl:call-template name="zib-Administration-Schedule-3.0">
                 <xsl:with-param name="toedieningsschema" select="."/>
             </xsl:call-template>
         </xsl:for-each>

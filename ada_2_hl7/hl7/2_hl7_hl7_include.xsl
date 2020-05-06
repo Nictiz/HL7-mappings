@@ -1109,13 +1109,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValue" match="element()" mode="MakeBLValue">
-        <xsl:param name="inputValue" as="xs:string?" select="./@value"/>
+        <xsl:param name="inputValue" as="xs:string?" select="@value"/>
         <!-- Do not supply default for xsiType. Due to the datatypes.xsd schema, you cannot always use xsi:type TS, 
             unless the base type is TS, QTY or ANY -->
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
         <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
-        <xsl:variable name="inputValue" select="@value" as="xs:string?"/>
         <xsl:variable name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
         <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">

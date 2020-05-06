@@ -108,7 +108,13 @@
                 <xsl:value-of select="concat($pre,$translation/value[@lang='en-us']/text(),$post)"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>util:getLocalizedString Key not found: <xsl:value-of select="$key"/></xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logDEBUG"/>
+                    <xsl:with-param name="msg">
+                        <xsl:text>util:getLocalizedString Key not found: </xsl:text>
+                        <xsl:value-of select="$key"/>
+                    </xsl:with-param>
+                </xsl:call-template>
                 <xsl:value-of select="concat($pre,$key,$post)"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -249,5 +255,57 @@
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
+    
+    <!-- provide a mapping from string logLevel to numeric value -->
+    <xsl:variable name="logALL" select="'ALL'"/>
+    <xsl:variable name="logDEBUG" select="'DEBUG'"/>
+    <xsl:variable name="logINFO" select="'INFO'"/>
+    <xsl:variable name="logWARN" select="'WARN'"/>
+    <xsl:variable name="logERROR" select="'ERROR'"/>
+    <xsl:variable name="logFATAL" select="'FATAL'"/>
+    <xsl:variable name="logOFF" select="'OFF'"/>
+    <xsl:variable name="logLevelMap" as="element(level)*">
+        <level name="{$logALL}" int="6" desc="The ALL has the lowest possible rank and is intended to turn on all logging."/>
+        <level name="{$logDEBUG}" int="5" desc="The DEBUG Level designates fine-grained informational events that are most useful to debug an application."/>
+        <level name="{$logINFO}" int="4" desc="The INFO level designates informational messages that highlight the progress of the application at coarse-grained level."/>
+        <level name="{$logWARN}" int="3" desc="The WARN level designates potentially harmful situations."/>
+        <level name="{$logERROR}" int="2" desc="The ERROR level designates error events that might still allow the application to continue running."/>
+        <level name="{$logFATAL}" int="1" desc="The FATAL level designates very severe error events that will presumably lead the application to abort."/>
+        <level name="{$logOFF}" int="0" desc="The OFF level has the highest possible rank and is intended to turn off logging."/>
+    </xsl:variable>
+    <xsl:variable name="util:chkdLogLevel" select="if ($logLevelMap[@name = $logLevel]) then $logLevel else $logINFO"/>
+    
+    <xd:doc>
+        <xd:desc>Emit message text if the level of the message is smaller than or equal to logLevel </xd:desc>
+        <xd:param name="msg">The message to emit</xd:param>
+        <xd:param name="level">The level this should be emitted at</xd:param>
+        <xd:param name="terminate">Terminate after emitting</xd:param>
+    </xd:doc>
+    <xsl:template name="util:logMessage">
+        <xsl:param name="msg" as="item()*"/>
+        <xsl:param name="level" select="$logINFO" as="xs:string"/>
+        <xsl:param name="terminate" select="false()" as="xs:boolean"/>
+        <xsl:variable name="term" select="if ($terminate) then 'yes' else 'no'"/>
+        <xsl:variable name="currLevel" select="$logLevelMap[@name = $level]/number(@int)"/>
+        <xsl:variable name="compLevel" select="$logLevelMap[@name = $util:chkdLogLevel]/number(@int)"/>
+        <!--<xsl:if test="$term='yes'">
+            <!-\- we'll gonna die anyway, write a survivor document for later post processing -\->
+            <xsl:result-document href="last-survivor-message.xml" format="xml" indent="yes">
+                <last level="{$level}">
+                    <xsl:copy-of select="$msg"/>
+                </last>
+            </xsl:result-document>
+        </xsl:if>-->
+        <xsl:if test="$terminate or ($currLevel le $compLevel)">
+            <!-- must die if to be terminated on message -->
+            <xsl:message terminate="{$term}">
+                <xsl:value-of select="substring(concat($level,'        '),1,7)"/>
+                <xsl:text>: </xsl:text>
+                <xsl:copy-of select="$msg"/>
+            </xsl:message>
+        </xsl:if>
     </xsl:template>
 </xsl:stylesheet>

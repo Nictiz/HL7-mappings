@@ -71,7 +71,7 @@
         <xsl:param name="inputDateT" as="xs:date?"/>
 
         <xsl:choose>
-            <xsl:when test="(string-length($in) gt 0) and exists($inputDateT)">
+            <xsl:when test="(string-length($in) gt 0) and exists($inputDateT) and matches($in, '^T([+\-]\d+(\.\d+)?[YMD])?(\{.*})?')">
                 <xsl:variable name="sign" select="replace($in, 'T([+\-])?.*', '$1')"/>
                 <xsl:variable name="amount" select="replace($in, 'T([+\-](\d+(\.\d+)?)[YMD])?.*', '$2')"/>
                 <xsl:variable name="yearMonthDay" select="replace($in, 'T([+\-]\d+(\.\d+)?([YMD]))?.*', '$3')"/>

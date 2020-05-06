@@ -22,23 +22,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes"/>
-    <xsl:param name="schematron-ref" as="xs:boolean">true</xsl:param>
-  
+    <!-- only give dateT a value if you want conversion of relative T dates -->
+    <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
+    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
+    <!-- param to influence whether to output schematron references, typically only needed for test instances -->
+    <xsl:param name="schematronRef" as="xs:boolean" select="true()"/>
+   
     <xd:doc>
         <xd:desc> 
             Base template puts a reference to schematron useful in development/testing phases. Then calls appropriate template to do the conversion. Puts a reference to schematron.
             phase="#ALL" achteraan de volgende regel zorgt dat oXygen niet met een phase chooser dialoog komt 
             elke keer dat je de HL7 XML opent 
         </xd:desc>
+        <xd:param name="in">The input ada transaction, may be more then one in case of a batch file</xd:param>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:if test="$schematron-ref">
-            <xsl:processing-instruction name="xml-model">href="file:../../../../../../../../../AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+        <xsl:param name="in" select="//beschikbaarstellen_medicatiegegevens" as="element()*"/>
+        <xsl:if test="$schematronRef">
+            <xsl:processing-instruction name="xml-model">href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20181220/mp-xml-20181220T121121/schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+            <xsl:processing-instruction name="xml-model">href="file:/C:/SVN/art_decor/trunk/ada-data/ada_2_test-xslt/mp/9.0.7/beschikbaarstellen_medicatiegegevens/test_xslt_instance/<xsl:value-of select="$in[1]/@id"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         </xsl:if>
         <xsl:choose>
-            <xsl:when test="count(//beschikbaarstellen_medicatiegegevens) gt 1">
+            <xsl:when test="count($in) gt 1">
                 <batch xmlns="">
-                    <xsl:for-each select="//beschikbaarstellen_medicatiegegevens">
+                    <xsl:for-each select="$in">
                         <xsl:call-template name="Medicatiegegevens_907">
                             <xsl:with-param name="patient" select="./patient"/>
                             <xsl:with-param name="mbh" select="./medicamenteuze_behandeling"/>
@@ -48,8 +57,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:call-template name="Medicatiegegevens_907">
-                    <xsl:with-param name="patient" select="//beschikbaarstellen_medicatiegegevens/patient"/>
-                    <xsl:with-param name="mbh" select="//beschikbaarstellen_medicatiegegevens/medicamenteuze_behandeling"/>
+                    <xsl:with-param name="patient" select="$in/patient"/>
+                    <xsl:with-param name="mbh" select="$in/medicamenteuze_behandeling"/>
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
