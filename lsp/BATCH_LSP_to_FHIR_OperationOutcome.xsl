@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:param>
     
      <!-- '//' used here because not sure if preceding SOAP stuff is still part of input? -->
-    <xsl:variable name="verstrekkingslijst-612" select="$hl7Input//hl7:MCCI_IN200101/hl7:QURX_IN990113NL/hl7:ControlActProcess/hl7:subject/hl7:MedicationDispenseList"/>
+    <xsl:variable name="verstrekkingslijst-612" select="$hl7Input/hl7:MCCI_IN200101/hl7:QURX_IN990113NL/hl7:ControlActProcess/hl7:subject/hl7:MedicationDispenseList"/>
 
     <xd:doc>
         <xd:desc>Conversie van query response batches met 6.12 verstrekkingenlijst van het LSP naar FHIR</xd:desc>
@@ -69,8 +69,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- then - if necessary - add entry's at the end with response-outcome-OperationOutcome -->
             <!-- FIXME, '//' should be avoided as much as possible -->
             <!-- variable to store the HL7 errors from input -->
-            <xsl:variable name="Control_error" select="$hl7Input//hl7:justifiedDetectedIssue"/>
-            <xsl:variable name="Transmission_error" select="$hl7Input//hl7:acknowledgementDetail"/>
+            <xsl:variable name="Control_error" select="$hl7Input/hl7:justifiedDetectedIssue"/>
+            <xsl:variable name="Transmission_error" select="$hl7Input/hl7:acknowledgementDetail"/>
             <!-- alleen conversie naar OperationOutcome als er ook fouten zijn -->
             <xsl:for-each select="$Transmission_error">
                 <entry>
