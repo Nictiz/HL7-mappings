@@ -46,12 +46,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen allergieintolerantievertaling".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:apply-templates select="//beschikbaarstellen_allergie_intolerantie_vertaling"/>
-    </xsl:template>
-    <xd:doc>
-        <xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
-      </xd:doc>
-    <xsl:template name="AllIntConversion_10" match="beschikbaarstellen_allergie_intolerantie_vertaling">
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
             <type value="searchset"/>
@@ -61,6 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="$commonEntries" mode="ResultOutput"/>
         </Bundle>
     </xsl:template>
+  
     
     <xd:doc>
         <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
