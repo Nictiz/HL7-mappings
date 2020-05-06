@@ -31,15 +31,6 @@
                 </fixture>
             </xsl:if>
         </xsl:variable>
-        
-        <!-- Gather all profile elements that now might be scattered throughout the document -->
-        <xsl:variable name="profiles" as="element(f:profile)*">
-            <!-- add a bundle-profile reference in all TestScripts -->
-                <profile id="bundle-profile">
-                    <reference value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
-                </profile>
-        </xsl:variable>
-        
 
         <!-- Gather all variable elements that now might be scattered throughout the document -->
         <xsl:variable name="variables" as="element(f:variable)*">
@@ -68,7 +59,6 @@
                     <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
                         <xsl:comment>patientTokenFixture <xsl:value-of select="nts:patientTokenFixture/@href"/> not available</xsl:comment>
                     </xsl:if>
-                    <!-- AT: Can we add a Patient name in the description?-->
                     <description value="OAuth Token for current patient"/>
                 </variable>
             </xsl:if>
@@ -87,7 +77,7 @@
              position --> 
         <xsl:apply-templates mode="filter" select="$expanded">
             <xsl:with-param name="fixtures" select="$fixtures" tunnel="yes"/>
-            <xsl:with-param name="profiles" select="$profiles" tunnel="yes"/>
+            <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" tunnel="yes"/>
             <xsl:with-param name="variables" select="$variables" tunnel="yes"/>
             <xsl:with-param name="rules" select="$rules" tunnel="yes"/>
         </xsl:apply-templates>
