@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="bc-profile"/>
                 </meta>
                 <xsl:if test="$pregnancyId!='' and $parentElemName!='lichamelijk_onderzoek_kind'">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focus-stu3">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
                         <valueReference>
                             <xsl:choose>
                                 <xsl:when test="ancestor::zwangerschap">

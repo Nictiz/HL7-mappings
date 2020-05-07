@@ -30,9 +30,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="entries"/>
-        
+                
         <Composition xmlns="http://hl7.org/fhir">
             <id value="{$logicalId}"/>
+            <meta>
+                <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-TransactionComposition"/>
+            </meta>
             <status value="final"/> 
             <type> 
                 <coding> 
@@ -48,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each> 
             <date value="2012-01-04T09:10:14Z"/> 
             <author> 
-                <reference value="Practitioner/XXXTODOTOEVOEGENPRACTITIONER"/>
+                <reference value="Practitioner/{$entries/f:Practitioner/f:id/@value}"/>
             </author> 
             <title value="Example Prio 1 Huidige Zwangerschap"/> 
             <section> 
