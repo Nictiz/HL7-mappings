@@ -1,5 +1,4 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-    xmlns="http://hl7.org/fhir"
     xmlns:f="http://hl7.org/fhir"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:nts="http://nictiz.nl/xsl/testscript"
@@ -8,18 +7,18 @@
     <xsl:strip-space elements="*"/>
         
     <!-- The base of the folder where fixtures can be found, relative to the TestScript. -->
-    <xsl:param name="referenceFolder" select="'../_reference/'"/>
+    <xsl:param name="referenceBase" select="'../_reference/'"/>
     
     <!-- The folder where components for this project can be found, relative to the TestScript. -->
     <xsl:param name="projectComponentFolder" select="'components/'"/>
     
-    <!-- The folder where the common components for TestScript generation can be found, relative to the TestScript. -->
+    <!-- The folder where the general components for TestScript generation can be found, relative to the TestScript. -->
     <xsl:param name="commonComponentFolder" select="'../../general/common-tests/'"/>
     
     <!-- The main template, which will call the remaining templates.
          param testscriptBase is an optional base (as unerstood by xsl:document()) where the TestScript input resides.
                               Inclusions will start relative to this base. -->
-    <xsl:template name="generate" match="f:TestScript">
+    <xsl:template name="generate" match="f:TestScript" xmlns="http://hl7.org/fhir">
         <xsl:param name="testscriptBase" select="current()"/>
                 
         <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
@@ -36,7 +35,7 @@
             <xsl:if test="nts:patientTokenFixture[@type = 'phr']">
                 <fixture id="patient-token-fixture">
                     <resource>
-                        <reference value="{concat($referenceFolder, nts:patientTokenFixture/@href)}"/>
+                        <reference value="{concat($fixtureBase, nts:patientTokenFixture/@href)}"/>
                     </resource>
                 </fixture>
             </xsl:if>
@@ -56,10 +55,10 @@
                 <xsl:variable name="patientTokenFixture">
                     <xsl:choose>
                         <xsl:when test="$testscriptBase">
-                            <xsl:copy-of select="document(concat($referenceFolder, nts:patientTokenFixture/@href), $testscriptBase)"/>
+                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href), $testscriptBase)"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:copy-of select="document(concat($referenceFolder, nts:patientTokenFixture/@href))"/>
+                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href))"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
@@ -86,21 +85,21 @@
         <!-- Filter the expanded TestScript. This will add the required elements and put everything in the right
              position --> 
         <xsl:apply-templates mode="filter" select="$expanded">
-            <xsl:with-param name="fixtures" select="$expanded//f:fixture" tunnel="yes"/>
-            <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::f:origin | ancestor::f:destination)]" tunnel="yes"/>
-            <xsl:with-param name="variables" select="$expanded//f:variable" tunnel="yes"/>
-            <xsl:with-param name="rules" select="$expanded//f:rule[@id]" tunnel="yes"/>
+            <xsl:with-param name="fixtures" select="$fixtures" tunnel="yes"/>
+            <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" tunnel="yes"/>
+            <xsl:with-param name="variables" select="$variables" tunnel="yes"/>
+            <xsl:with-param name="rules" select="$rules" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
 
     <!-- Use the id element as hook to include a matching url -->
-    <xsl:template match="f:TestScript/f:id" mode="filter">
+    <xsl:template match="f:TestScript/f:id" xmlns="http://hl7.org/fhir" mode="filter">
         <xsl:copy-of select="."/>
         <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value)}"/>
     </xsl:template>
 
     <!-- Use the name element as hook to include status. date, publisher and contact information --> 
-    <xsl:template match="f:TestScript/f:name" mode="filter">
+    <xsl:template match="f:TestScript/f:name" xmlns="http://hl7.org/fhir" mode="filter">
         <xsl:copy-of select="."/>
         
         <xsl:choose>
@@ -124,7 +123,7 @@
     </xsl:template>
     
     <!-- Use description element as hook to include the origin and destination elements -->
-    <xsl:template match="f:TestScript/f:description" mode="filter">
+    <xsl:template match="f:TestScript/f:description" mode="filter" xmlns="http://hl7.org/fhir">
         <xsl:copy-of select="."/>
         <origin>
             <index value="1"/>
@@ -153,7 +152,7 @@
     <xsl:template match="nts:*" mode="filter"/>
     
     <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile, variable and rule elements -->  
-    <xsl:template match="f:TestScript/f:setup | f:TestScript/f:test[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)]" mode="filter">
+    <xsl:template match="(f:TestScript/f:setup | f:TestScript/f:test)[1]" mode="filter" xmlns="http://hl7.org/fhir">
         <xsl:param name="fixtures" tunnel="yes"/>
         <xsl:param name="profiles" tunnel="yes"/>
         <xsl:param name="variables" tunnel="yes"/>
@@ -204,25 +203,27 @@
     </xsl:template>
     
     <!-- Expand a nts:profile element to a FHIR profile element -->
-    <xsl:template match="nts:profile" mode="expand">
+    <xsl:template match="nts:profile" mode="expand" xmlns="http://hl7.org/fhir">
         <profile id="{@id}">
             <reference value="{@value}"/>
         </profile>
     </xsl:template>
     
     <!-- Expand a nts:fixture element to a FHIR fixture element -->
-    <xsl:template match="nts:fixture[@id and @href]" mode="expand">
+    <xsl:template match="nts:fixture[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <fixture id="{@id}">
             <resource>
-                <reference value="{concat($referenceFolder, @href)}"/>
+                <reference value="{concat($referenceBase, @href)}"/>
             </resource>
         </fixture>
     </xsl:template>
+<<<<<<< Updated upstream
+=======
     
-    <xsl:template match="nts:patientTokenFixture[@type = 'phr']" mode="expand">
+    <xsl:template match="nts:patientTokenFixture[@type = 'client']" mode="expand">
         <fixture id="patient-token-fixture">
             <resource>
-                <reference value="{concat($referenceFolder, @href)}"/>
+                <reference value="{concat($referenceBase, @href)}"/>
             </resource>
         </fixture>
         <variable>
@@ -232,15 +233,15 @@
         </variable>
     </xsl:template>
     
-    <xsl:template match="nts:patientTokenFixture[@type = 'xis']" mode="expand">
+    <xsl:template match="nts:patientTokenFixture[@type = 'server']" mode="expand">
         <xsl:param name="testscriptBase" tunnel="yes"/>
         <xsl:variable name="patientTokenFixture">
             <xsl:choose>
                 <xsl:when test="$testscriptBase">
-                    <xsl:copy-of select="document(concat($referenceFolder, @href), $testscriptBase)"/>
+                    <xsl:copy-of select="document(concat($referenceBase, @href), $testscriptBase)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:copy-of select="document(concat($referenceFolder, @href))"/>
+                    <xsl:copy-of select="document(concat($referenceBase, @href))"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -254,20 +255,21 @@
         </variable>
     </xsl:template>
     
-    <xsl:template match="nts:includeDateT[@value='yes']" mode="expand">
+    <xsl:template match="nts:includeDateT[not(@value) or @value='yes']" mode="expand">
         <variable>
             <name value="T"/>
             <defaultValue value="${{CURRENTDATE}}"/>
             <description value="Date that data and queries are expected to be relative to."/>
         </variable>
     </xsl:template>
+>>>>>>> Stashed changes
 
     <!-- Expand a nts:include element that uses absolute references with href.
          It will read all f:parts elements in the referenced file and process them further.
          param inclusionBase is the base (as understood by document()) to include files relative to. It is not passed
                              on in subsequent calls to this template, as nested nts:include's are always relative to
                              the including file. --> 
-    <xsl:template match="nts:include[@href]" mode="expand">
+    <xsl:template match="nts:include[@href]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:param name="inclusionBase"/>
         <xsl:variable name="document" as="node()*">
             <xsl:choose>
@@ -286,7 +288,7 @@
          It will convert value to a full file path, read all f:parts elements in the referenced file and process them
          further.
          param testscriptBase is the base (as understood by document()) to include files relative to. --> 
-    <xsl:template match="nts:include[@value]" mode="expand">
+    <xsl:template match="nts:include[@value]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:param name="testscriptBase" tunnel="yes"/>
         
         <xsl:variable name="filePath">
@@ -306,10 +308,10 @@
     </xsl:template>
     
     <!-- Expand a nts:rule element -->
-    <xsl:template match="nts:rule[@id and @href]" mode="expand">
+    <xsl:template match="nts:rule[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <rule id="{@id}">
             <resource>
-                <reference value="{concat($referenceFolder, @href)}"/>
+                <reference value="{concat($referenceBase, @href)}"/>
             </resource>
             <xsl:copy-of select="./*"/>
         </rule>
