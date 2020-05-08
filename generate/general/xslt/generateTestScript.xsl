@@ -7,7 +7,7 @@
     <xsl:strip-space elements="*"/>
         
     <!-- The base of the folder where fixtures can be found, relative to the TestScript. -->
-    <xsl:param name="fixtureBase" select="'../_reference/'"/>
+    <xsl:param name="referenceFolder" select="'../_reference/'"/>
     
     <!-- The folder where components for this project can be found, relative to the TestScript. -->
     <xsl:param name="projectComponentFolder" select="'components/'"/>
@@ -35,7 +35,7 @@
             <xsl:if test="nts:patientTokenFixture[@type = 'phr']">
                 <fixture id="patient-token-fixture">
                     <resource>
-                        <reference value="{concat($fixtureBase, nts:patientTokenFixture/@href)}"/>
+                        <reference value="{concat($referenceFolder, nts:patientTokenFixture/@href)}"/>
                     </resource>
                 </fixture>
             </xsl:if>
@@ -55,10 +55,10 @@
                 <xsl:variable name="patientTokenFixture">
                     <xsl:choose>
                         <xsl:when test="$testscriptBase">
-                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href), $testscriptBase)"/>
+                            <xsl:copy-of select="document(concat($referenceFolder, nts:patientTokenFixture/@href), $testscriptBase)"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href))"/>
+                            <xsl:copy-of select="document(concat($referenceFolder, nts:patientTokenFixture/@href))"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
@@ -213,7 +213,7 @@
     <xsl:template match="nts:fixture[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <fixture id="{@id}">
             <resource>
-                <reference value="{concat($fixtureBase, @href)}"/>
+                <reference value="{concat($referenceFolder, @href)}"/>
             </resource>
         </fixture>
     </xsl:template>
@@ -265,7 +265,7 @@
     <xsl:template match="nts:rule[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <rule id="{@id}">
             <resource>
-                <reference value="{concat($fixtureBase, @href)}"/>
+                <reference value="{concat($referenceFolder, @href)}"/>
             </resource>
             <xsl:copy-of select="./*"/>
         </rule>
