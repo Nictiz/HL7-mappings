@@ -1,4 +1,5 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
+    xmlns="http://hl7.org/fhir"
     xmlns:f="http://hl7.org/fhir"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:nts="http://nictiz.nl/xsl/testscript"
@@ -18,7 +19,7 @@
     <!-- The main template, which will call the remaining templates.
          param testscriptBase is an optional base (as unerstood by xsl:document()) where the TestScript input resides.
                               Inclusions will start relative to this base. -->
-    <xsl:template name="generate" match="f:TestScript" xmlns="http://hl7.org/fhir">
+    <xsl:template name="generate" match="f:TestScript">
         <xsl:param name="testscriptBase" select="current()"/>
                 
         <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
@@ -123,7 +124,7 @@
     </xsl:template>
     
     <!-- Use description element as hook to include the origin and destination elements -->
-    <xsl:template match="f:TestScript/f:description" mode="filter" xmlns="http://hl7.org/fhir">
+    <xsl:template match="f:TestScript/f:description" mode="filter">
         <xsl:copy-of select="."/>
         <origin>
             <index value="1"/>
@@ -152,7 +153,7 @@
     <xsl:template match="nts:*" mode="filter"/>
     
     <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile, variable and rule elements -->  
-    <xsl:template match="f:TestScript/f:setup[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)] | f:TestScript/f:test[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)]" mode="filter" xmlns="http://hl7.org/fhir">
+    <xsl:template match="f:TestScript/f:setup[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)] | f:TestScript/f:test[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)]" mode="filter">
         <xsl:param name="fixtures" tunnel="yes"/>
         <xsl:param name="profiles" tunnel="yes"/>
         <xsl:param name="variables" tunnel="yes"/>
@@ -203,14 +204,14 @@
     </xsl:template>
     
     <!-- Expand a nts:profile element to a FHIR profile element -->
-    <xsl:template match="nts:profile" mode="expand" xmlns="http://hl7.org/fhir">
+    <xsl:template match="nts:profile" mode="expand">
         <profile id="{@id}">
             <reference value="{@value}"/>
         </profile>
     </xsl:template>
     
     <!-- Expand a nts:fixture element to a FHIR fixture element -->
-    <xsl:template match="nts:fixture[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
+    <xsl:template match="nts:fixture[@id and @href]" mode="expand">
         <fixture id="{@id}">
             <resource>
                 <reference value="{concat($fixtureBase, @href)}"/>
@@ -223,7 +224,7 @@
          param inclusionBase is the base (as understood by document()) to include files relative to. It is not passed
                              on in subsequent calls to this template, as nested nts:include's are always relative to
                              the including file. --> 
-    <xsl:template match="nts:include[@href]" mode="expand" xmlns="http://hl7.org/fhir">
+    <xsl:template match="nts:include[@href]" mode="expand">
         <xsl:param name="inclusionBase"/>
         <xsl:variable name="document" as="node()*">
             <xsl:choose>
@@ -242,7 +243,7 @@
          It will convert value to a full file path, read all f:parts elements in the referenced file and process them
          further.
          param testscriptBase is the base (as understood by document()) to include files relative to. --> 
-    <xsl:template match="nts:include[@value]" mode="expand" xmlns="http://hl7.org/fhir">
+    <xsl:template match="nts:include[@value]" mode="expand">
         <xsl:param name="testscriptBase" tunnel="yes"/>
         
         <xsl:variable name="filePath">
@@ -262,7 +263,7 @@
     </xsl:template>
     
     <!-- Expand a nts:rule element -->
-    <xsl:template match="nts:rule[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
+    <xsl:template match="nts:rule[@id and @href]" mode="expand">
         <rule id="{@id}">
             <resource>
                 <reference value="{concat($fixtureBase, @href)}"/>
