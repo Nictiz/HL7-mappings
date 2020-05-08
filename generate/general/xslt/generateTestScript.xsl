@@ -100,7 +100,7 @@
     <xsl:template match="nts:*" mode="filter"/>
     
     <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile, variable and rule elements -->  
-    <xsl:template match="f:TestScript/f:setup[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)] | f:TestScript/f:test[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)]" mode="filter">
+    <xsl:template match="f:TestScript/f:setup | f:TestScript/f:test[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)]" mode="filter">
         <xsl:param name="fixtures" tunnel="yes"/>
         <xsl:param name="profiles" tunnel="yes"/>
         <xsl:param name="variables" tunnel="yes"/>
