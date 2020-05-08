@@ -111,11 +111,12 @@
     
     <xsl:template match="processing-instruction()" priority="1"/>
     
-    <!-- Silence fixture, profile, variable and rule elements, because they are already handled elsewhere -->
-    <xsl:template match="f:TestScript/f:fixture"/>
-    <xsl:template match="f:TestScript/f:profile"/>
-    <xsl:template match="f:TestScript/f:variable"/>
-    <xsl:template match="f:TestScript/f:rule[@id]"/>
+    <!-- Silence status, fixture, profile, variable and rule elements, because they are already handled elsewhere -->
+    <xsl:template match="f:TestScript/f:status"/>
+    <xsl:template match="f:TestScript//f:fixture"/>
+    <xsl:template match="f:TestScript//f:profile"/>
+    <xsl:template match="f:TestScript//f:variable"/>
+    <xsl:template match="f:TestScript//f:rule[@id]"/>
 
     <!-- Silence all remaining nts: elements (that have been read but are not transformed) -->
     <xsl:template match="nts:*">
