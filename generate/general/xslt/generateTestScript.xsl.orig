@@ -7,12 +7,12 @@
     <xsl:strip-space elements="*"/>
         
     <!-- The base of the folder where fixtures can be found, relative to the TestScript. -->
-    <xsl:param name="referenceFolder" select="'../_reference/'"/>
+    <xsl:param name="referenceBase" select="'../_reference/'"/>
     
     <!-- The folder where components for this project can be found, relative to the TestScript. -->
     <xsl:param name="projectComponentFolder" select="'components/'"/>
     
-    <!-- The folder where the common components for TestScript generation can be found, relative to the TestScript. -->
+    <!-- The folder where the general components for TestScript generation can be found, relative to the TestScript. -->
     <xsl:param name="commonComponentFolder" select="'../../general/common-tests/'"/>
     
     <!-- The main template, which will call the remaining templates.
@@ -35,7 +35,7 @@
             <xsl:if test="nts:patientTokenFixture[@type = 'phr']">
                 <fixture id="patient-token-fixture">
                     <resource>
-                        <reference value="{concat($referenceFolder, nts:patientTokenFixture/@href)}"/>
+                        <reference value="{concat($fixtureBase, nts:patientTokenFixture/@href)}"/>
                     </resource>
                 </fixture>
             </xsl:if>
@@ -55,10 +55,10 @@
                 <xsl:variable name="patientTokenFixture">
                     <xsl:choose>
                         <xsl:when test="$testscriptBase">
-                            <xsl:copy-of select="document(concat($referenceFolder, nts:patientTokenFixture/@href), $testscriptBase)"/>
+                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href), $testscriptBase)"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:copy-of select="document(concat($referenceFolder, nts:patientTokenFixture/@href))"/>
+                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href))"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
@@ -213,10 +213,56 @@
     <xsl:template match="nts:fixture[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <fixture id="{@id}">
             <resource>
-                <reference value="{concat($referenceFolder, @href)}"/>
+                <reference value="{concat($referenceBase, @href)}"/>
             </resource>
         </fixture>
     </xsl:template>
+<<<<<<< Updated upstream
+=======
+    
+    <xsl:template match="nts:patientTokenFixture[@type = 'client']" mode="expand">
+        <fixture id="patient-token-fixture">
+            <resource>
+                <reference value="{concat($referenceBase, @href)}"/>
+            </resource>
+        </fixture>
+        <variable>
+            <name value="patient-token-id"/>
+            <expression value="Patient.id"/>
+            <sourceId value="patient-token-fixture"/>
+        </variable>
+    </xsl:template>
+    
+    <xsl:template match="nts:patientTokenFixture[@type = 'server']" mode="expand">
+        <xsl:param name="testscriptBase" tunnel="yes"/>
+        <xsl:variable name="patientTokenFixture">
+            <xsl:choose>
+                <xsl:when test="$testscriptBase">
+                    <xsl:copy-of select="document(concat($referenceBase, @href), $testscriptBase)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="document(concat($referenceBase, @href))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <variable>
+            <name value="patient-token-id"/>
+            <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
+            <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
+                <xsl:comment>patientTokenFixture <xsl:value-of select="nts:patientTokenFixture/@href"/> not available</xsl:comment>
+            </xsl:if>
+            <description value="OAuth Token for current patient"/>
+        </variable>
+    </xsl:template>
+    
+    <xsl:template match="nts:includeDateT[not(@value) or @value='yes']" mode="expand">
+        <variable>
+            <name value="T"/>
+            <defaultValue value="${{CURRENTDATE}}"/>
+            <description value="Date that data and queries are expected to be relative to."/>
+        </variable>
+    </xsl:template>
+>>>>>>> Stashed changes
 
     <!-- Expand a nts:include element that uses absolute references with href.
          It will read all f:parts elements in the referenced file and process them further.
@@ -265,7 +311,7 @@
     <xsl:template match="nts:rule[@id and @href]" mode="expand" xmlns="http://hl7.org/fhir">
         <rule id="{@id}">
             <resource>
-                <reference value="{concat($referenceFolder, @href)}"/>
+                <reference value="{concat($referenceBase, @href)}"/>
             </resource>
             <xsl:copy-of select="./*"/>
         </rule>
