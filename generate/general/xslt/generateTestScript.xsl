@@ -112,7 +112,7 @@
                     <xsl:message terminate="yes" select="concat('Encountered different fixture inclusions using the same id ''', @id, '''')"/>
                 </xsl:if>
             </xsl:for-each>
-            <xsl:copy-of select="."/>
+            <xsl:copy-of select="current-group()[1]"/>
         </xsl:for-each-group>
         <xsl:for-each-group select="$profiles" group-by="@id">
             <xsl:for-each select="subsequence(current-group(), 2)">
@@ -120,7 +120,7 @@
                     <xsl:message terminate="yes" select="concat('Encountered different profile declarations using the id ''', @id, '''')"/>
                 </xsl:if>
             </xsl:for-each>
-            <xsl:copy-of select="."/>
+            <xsl:copy-of select="current-group()[1]"/>
         </xsl:for-each-group>
         <xsl:for-each-group select="$variables" group-by="f:name/@value">
             <xsl:for-each select="subsequence(current-group(), 2)">
@@ -128,7 +128,7 @@
                     <xsl:message terminate="yes" select="concat('Encountered different variables using the name ''', f:name/@value, '''')"/>
                 </xsl:if>
             </xsl:for-each>
-            <xsl:copy-of select="."/>
+            <xsl:copy-of select="current-group()[1]"/>
         </xsl:for-each-group>
         <xsl:for-each-group select="$rules" group-by="@id">
             <xsl:for-each select="subsequence(current-group(), 2)">
@@ -136,7 +136,7 @@
                     <xsl:message terminate="yes" select="concat('Encountered different rules using the id ''', @id, '''')"/>
                 </xsl:if>
             </xsl:for-each>
-            <xsl:copy-of select="."/>
+            <xsl:copy-of select="current-group()[1]"/>
         </xsl:for-each-group>
         
         <!-- Write back the element we matched on -->
