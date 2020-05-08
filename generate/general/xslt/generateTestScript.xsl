@@ -33,52 +33,11 @@
         <!-- Gather all fixture elements that now might be scattered throughout the document -->
         <xsl:variable name="fixtures" as="element(f:fixture)*">
             <xsl:copy-of select="$expanded//f:fixture"/>
-            <xsl:if test="nts:patientTokenFixture[@type = 'phr']">
-                <fixture id="patient-token-fixture">
-                    <resource>
-                        <reference value="{concat($fixtureBase, nts:patientTokenFixture/@href)}"/>
-                    </resource>
-                </fixture>
-            </xsl:if>
         </xsl:variable>
 
         <!-- Gather all variable elements that now might be scattered throughout the document -->
         <xsl:variable name="variables" as="element(f:variable)*">
             <xsl:copy-of select="$expanded//f:variable"/>
-            <xsl:if test="nts:patientTokenFixture[@type = 'phr']">
-                <variable>
-                    <name value="patient-token-id"/>
-                    <expression value="Patient.id"/>
-                    <sourceId value="patient-token-fixture"/>
-                </variable>
-            </xsl:if>
-            <xsl:if test="nts:patientTokenFixture[@type = 'xis']">
-                <xsl:variable name="patientTokenFixture">
-                    <xsl:choose>
-                        <xsl:when test="$testscriptBase">
-                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href), $testscriptBase)"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:copy-of select="document(concat($fixtureBase, nts:patientTokenFixture/@href))"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <variable>
-                    <name value="patient-token-id"/>
-                    <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
-                    <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
-                        <xsl:comment>patientTokenFixture <xsl:value-of select="nts:patientTokenFixture/@href"/> not available</xsl:comment>
-                    </xsl:if>
-                    <description value="OAuth Token for current patient"/>
-                </variable>
-            </xsl:if>
-            <xsl:if test="nts:includeDateT[@value='yes']">
-                <variable>
-                    <name value="T"/>
-                    <defaultValue value="${{CURRENTDATE}}"/>
-                    <description value="Date that data and queries are expected to be relative to."/>
-                </variable>
-            </xsl:if>
         </xsl:variable>
         
         <xsl:variable name="rules" as="element(f:rule)*" select="$expanded//f:rule[@id]"/>
@@ -217,6 +176,49 @@
                 <reference value="{concat($fixtureBase, @href)}"/>
             </resource>
         </fixture>
+    </xsl:template>
+    
+    <xsl:template match="nts:patientTokenFixture[@type = 'phr']" mode="expand">
+        <fixture id="patient-token-fixture">
+            <resource>
+                <reference value="{concat($fixtureBase, @href)}"/>
+            </resource>
+        </fixture>
+        <variable>
+            <name value="patient-token-id"/>
+            <expression value="Patient.id"/>
+            <sourceId value="patient-token-fixture"/>
+        </variable>
+    </xsl:template>
+    
+    <xsl:template match="nts:patientTokenFixture[@type = 'xis']" mode="expand">
+        <xsl:param name="testscriptBase" tunnel="yes"/>
+        <xsl:variable name="patientTokenFixture">
+            <xsl:choose>
+                <xsl:when test="$testscriptBase">
+                    <xsl:copy-of select="document(concat($fixtureBase, @href), $testscriptBase)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="document(concat($fixtureBase, @href))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <variable>
+            <name value="patient-token-id"/>
+            <defaultValue value="{$patientTokenFixture/f:Patient/f:id/@value}"/>
+            <xsl:if test="not($patientTokenFixture/f:Patient/f:id/@value)">
+                <xsl:comment>patientTokenFixture <xsl:value-of select="nts:patientTokenFixture/@href"/> not available</xsl:comment>
+            </xsl:if>
+            <description value="OAuth Token for current patient"/>
+        </variable>
+    </xsl:template>
+    
+    <xsl:template match="nts:includeDateT[@value='yes']" mode="expand">
+        <variable>
+            <name value="T"/>
+            <defaultValue value="${{CURRENTDATE}}"/>
+            <description value="Date that data and queries are expected to be relative to."/>
+        </variable>
     </xsl:template>
 
     <!-- Expand a nts:include element that uses absolute references with href.
