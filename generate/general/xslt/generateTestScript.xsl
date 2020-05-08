@@ -219,6 +219,7 @@
         </fixture>
     </xsl:template>
     
+    <!-- Expand the nts:patientTokenFixture element for 'phr' type scripts -->
     <xsl:template match="nts:patientTokenFixture[@type = 'phr']" mode="expand">
         <fixture id="patient-token-fixture">
             <resource>
@@ -232,6 +233,7 @@
         </variable>
     </xsl:template>
     
+    <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
     <xsl:template match="nts:patientTokenFixture[@type = 'xis']" mode="expand">
         <xsl:param name="testscriptBase" tunnel="yes"/>
         <xsl:variable name="patientTokenFixture">
@@ -254,6 +256,7 @@
         </variable>
     </xsl:template>
     
+    <!-- Expand the nts:includeDateT element -->
     <xsl:template match="nts:includeDateT[@value='yes']" mode="expand">
         <variable>
             <name value="T"/>
