@@ -34,7 +34,7 @@
              position --> 
         <xsl:apply-templates mode="filter" select="$expanded">
             <xsl:with-param name="fixtures" select="$expanded//f:fixture" tunnel="yes"/>
-            <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" tunnel="yes"/>
+            <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::f:origin | ancestor::f:destination)]" tunnel="yes"/>
             <xsl:with-param name="variables" select="$expanded//f:variable" tunnel="yes"/>
             <xsl:with-param name="rules" select="$expanded//f:rule[@id]" tunnel="yes"/>
         </xsl:apply-templates>
