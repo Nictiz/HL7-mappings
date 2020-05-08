@@ -67,7 +67,7 @@
                     <code value="FHIR-Server"/>
                 </profile>
             </destination>
-            <xsl:for-each-group select="$expanded//f:fixture" group-by="@id">
+            <xsl:for-each-group select="$expanded/f:TestScript/f:fixture" group-by="@id">
                 <xsl:for-each select="subsequence(current-group(), 2)">
                     <xsl:if test="not(deep-equal(current-group()[1], .))">
                         <xsl:message terminate="yes" select="concat('Encountered different fixture inclusions using the same id ''', @id, '''')"/>
@@ -75,7 +75,7 @@
                 </xsl:for-each>
                 <xsl:copy-of select="."/>
             </xsl:for-each-group>
-            <xsl:for-each-group select="$expanded//f:profile[not(ancestor::f:origin | ancestor::f:destination)]" group-by="@id">
+            <xsl:for-each-group select="$expanded/f:TestScript/f:profile" group-by="@id">
                 <xsl:for-each select="subsequence(current-group(), 2)">
                     <xsl:if test="not(deep-equal(current-group()[1], .))">
                         <xsl:message terminate="yes" select="concat('Encountered different profile declarations using the id ''', @id, '''')"/>
@@ -83,7 +83,7 @@
                 </xsl:for-each>
                 <xsl:copy-of select="."/>
             </xsl:for-each-group>
-            <xsl:for-each-group select="$expanded//f:variable" group-by="f:name/@value">
+            <xsl:for-each-group select="$expanded/f:TestScript/f:variable" group-by="f:name/@value">
                 <xsl:for-each select="subsequence(current-group(), 2)">
                     <xsl:if test="not(deep-equal(current-group()[1], .))">
                         <xsl:message terminate="yes" select="concat('Encountered different variables using the name ''', f:name/@value, '''')"/>
@@ -91,7 +91,7 @@
                 </xsl:for-each>
                 <xsl:copy-of select="."/>
             </xsl:for-each-group>
-            <xsl:for-each-group select="$expanded//f:rule[@id]" group-by="@id">
+            <xsl:for-each-group select="$expanded/f:TestScript/f:rule[@id]" group-by="@id">
                 <xsl:for-each select="subsequence(current-group(), 2)">
                     <xsl:if test="not(deep-equal(current-group()[1], .))">
                         <xsl:message terminate="yes" select="concat('Encountered different rules using the id ''', @id, '''')"/>
