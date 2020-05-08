@@ -29,26 +29,14 @@
                 <xsl:with-param name="testscriptBase" select="$testscriptBase" tunnel="yes"/>
             </xsl:apply-templates>
         </xsl:variable>
-        
-        <!-- Gather all fixture elements that now might be scattered throughout the document -->
-        <xsl:variable name="fixtures" as="element(f:fixture)*">
-            <xsl:copy-of select="$expanded//f:fixture"/>
-        </xsl:variable>
 
-        <!-- Gather all variable elements that now might be scattered throughout the document -->
-        <xsl:variable name="variables" as="element(f:variable)*">
-            <xsl:copy-of select="$expanded//f:variable"/>
-        </xsl:variable>
-        
-        <xsl:variable name="rules" as="element(f:rule)*" select="$expanded//f:rule[@id]"/>
-        
         <!-- Filter the expanded TestScript. This will add the required elements and put everything in the right
              position --> 
         <xsl:apply-templates mode="filter" select="$expanded">
-            <xsl:with-param name="fixtures" select="$fixtures" tunnel="yes"/>
+            <xsl:with-param name="fixtures" select="$expanded//f:fixture" tunnel="yes"/>
             <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" tunnel="yes"/>
-            <xsl:with-param name="variables" select="$variables" tunnel="yes"/>
-            <xsl:with-param name="rules" select="$rules" tunnel="yes"/>
+            <xsl:with-param name="variables" select="$expanded//f:variable" tunnel="yes"/>
+            <xsl:with-param name="rules" select="$expanded//f:rule[@id]" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
 
