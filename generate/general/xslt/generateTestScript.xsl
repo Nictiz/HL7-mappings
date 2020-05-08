@@ -75,7 +75,7 @@
                 </xsl:for-each>
                 <xsl:copy-of select="."/>
             </xsl:for-each-group>
-            <xsl:for-each-group select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" group-by="@id">
+            <xsl:for-each-group select="$expanded//f:profile[not(ancestor::f:origin | ancestor::f:destination)]" group-by="@id">
                 <xsl:for-each select="subsequence(current-group(), 2)">
                     <xsl:if test="not(deep-equal(current-group()[1], .))">
                         <xsl:message terminate="yes" select="concat('Encountered different profile declarations using the id ''', @id, '''')"/>
