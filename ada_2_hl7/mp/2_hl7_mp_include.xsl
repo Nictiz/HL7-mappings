@@ -372,11 +372,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
         <xsl:param name="authorTime"/>
+        <!-- time is needed for authorTime, but we sometimes get a date 'T' in ada instance without time, we add time 00:00:00 here -->
         <xsl:choose>
             <xsl:when test="$authorTime[1] instance of element()">
                 <xsl:for-each select="$authorTime">
+                    <xsl:variable name="improvedTTime" as="xs:string?">
+                        <xsl:choose>
+                            <xsl:when test="matches(@value, '^T([+\-]\d+(\.\d+)?[YMD])?$')">
+                                <xsl:value-of select="replace(@value, '(^T([+\-]\d+(\.\d+)?[YMD])?)', '$1{00:00:00}')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@value"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
                     <time>
-                        <xsl:call-template name="makeTSValueAttr"/>
+                        <xsl:call-template name="makeTSValueAttr">
+                            <xsl:with-param name="inputValue" select="$improvedTTime"/>
+                            <xsl:with-param name="inputNullFlavor" select="@nullFlavor"/>
+                        </xsl:call-template>
                     </time>
                 </xsl:for-each>
             </xsl:when>

@@ -1890,9 +1890,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </consumable>
             </xsl:for-each>
             <xsl:for-each select="./voorschrijver/zorgverlener[.//(@value | @code)]">
-                <author>
+                 <author>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
-                        <xsl:with-param name="authorTime" select="./../../afspraakdatum"/>
+                        <xsl:with-param name="authorTime" select="../../afspraakdatum"/>
                     </xsl:call-template>
                 </author>
             </xsl:for-each>
@@ -1977,7 +1977,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="toelichting[.//(@value | @code)]">
                 <entryRelationship typeCode="SUBJ" inversionInd="true">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9069_20160617163405"/>
                 </entryRelationship>
             </xsl:for-each>
             <!--Doseerinstructie-->
