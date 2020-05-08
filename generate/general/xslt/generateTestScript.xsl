@@ -99,9 +99,7 @@
                 </xsl:for-each>
                 <xsl:copy-of select="."/>
             </xsl:for-each-group>
-            <xsl:apply-templates select="$expanded/f:TestScript/f:setup"/>
-            <xsl:apply-templates select="$expanded/f:TestScript/f:test"/>
-            <xsl:apply-templates select="$expanded/f:TestScript/f:teardown"/>
+            <xsl:apply-templates select="$expanded/f:TestScript/*[preceding-sibling::f:description]"/>
         </xsl:copy>
     </xsl:template>
     
