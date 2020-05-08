@@ -29,125 +29,100 @@
                 <xsl:with-param name="testscriptBase" select="$testscriptBase" tunnel="yes"/>
             </xsl:apply-templates>
         </xsl:variable>
-
-        <!-- Filter the expanded TestScript. This will add the required elements and put everything in the right
-             position --> 
-        <xsl:apply-templates mode="filter" select="$expanded">
-            <xsl:with-param name="fixtures" select="$expanded//f:fixture" tunnel="yes"/>
-            <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" tunnel="yes"/>
-            <xsl:with-param name="variables" select="$expanded//f:variable" tunnel="yes"/>
-            <xsl:with-param name="rules" select="$expanded//f:rule[@id]" tunnel="yes"/>
-        </xsl:apply-templates>
-    </xsl:template>
-
-    <!-- Use the id element as hook to include a matching url -->
-    <xsl:template match="f:TestScript/f:id" mode="filter">
-        <xsl:copy-of select="."/>
-        <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value)}"/>
-    </xsl:template>
-
-    <!-- Use the name element as hook to include status. date, publisher and contact information --> 
-    <xsl:template match="f:TestScript/f:name" mode="filter">
-        <xsl:copy-of select="."/>
-        
-        <xsl:choose>
-            <xsl:when test="../f:status">
-                <xsl:copy-of select="../f:status"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <status value="active"/>
-            </xsl:otherwise>
-        </xsl:choose>
-        <date value="{format-date(current-date(), '[Y0001]-[M01]-[D01]')}"/>
-        <publisher value="Nictiz"/>
-        <contact>
-            <name value="Nictiz"/>
-            <telecom>
-                <system value="email"/>
-                <value value="kwalificatie@nictiz.nl"/>
-                <use value="work"/>
-            </telecom>
-        </contact>
+       
+        <xsl:copy>
+            <xsl:apply-templates select="$expanded/f:TestScript/f:id"/>
+            <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', $expanded/f:TestScript/f:id/@value)}"/>
+            <xsl:apply-templates select="$expanded/f:TestScript/f:name"/>
+            <xsl:choose>
+                <xsl:when test="$expanded/f:TestScript/f:status">
+                    <xsl:apply-templates select="$expanded/f:TestScript/f:status"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <status value="active"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <date value="{format-date(current-date(), '[Y0001]-[M01]-[D01]')}"/>
+            <publisher value="Nictiz"/>
+            <contact>
+                <name value="Nictiz"/>
+                <telecom>
+                    <system value="email"/>
+                    <value value="kwalificatie@nictiz.nl"/>
+                    <use value="work"/>
+                </telecom>
+            </contact>
+            <xsl:apply-templates select="$expanded/f:TestScript/f:description"/>
+            <origin>
+                <index value="1"/>
+                <profile>
+                    <system value="http://hl7.org/fhir/testscript-profile-origin-types"/>
+                    <code value="FHIR-Client"/>
+                </profile>
+            </origin>
+            <destination>
+                <index value="1"/>
+                <profile>
+                    <system value="http://hl7.org/fhir/testscript-profile-destination-types"/>
+                    <code value="FHIR-Server"/>
+                </profile>
+            </destination>
+            <xsl:for-each-group select="$expanded//f:fixture" group-by="@id">
+                <xsl:for-each select="subsequence(current-group(), 2)">
+                    <xsl:if test="not(deep-equal(current-group()[1], .))">
+                        <xsl:message terminate="yes" select="concat('Encountered different fixture inclusions using the same id ''', @id, '''')"/>
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:copy-of select="."/>
+            </xsl:for-each-group>
+            <xsl:for-each-group select="$expanded//f:profile[not(ancestor::origin | ancestor::destination)]" group-by="@id">
+                <xsl:for-each select="subsequence(current-group(), 2)">
+                    <xsl:if test="not(deep-equal(current-group()[1], .))">
+                        <xsl:message terminate="yes" select="concat('Encountered different profile declarations using the id ''', @id, '''')"/>
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:copy-of select="."/>
+            </xsl:for-each-group>
+            <xsl:for-each-group select="$expanded//f:variable" group-by="f:name/@value">
+                <xsl:for-each select="subsequence(current-group(), 2)">
+                    <xsl:if test="not(deep-equal(current-group()[1], .))">
+                        <xsl:message terminate="yes" select="concat('Encountered different variables using the name ''', f:name/@value, '''')"/>
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:copy-of select="."/>
+            </xsl:for-each-group>
+            <xsl:for-each-group select="$expanded//f:rule[@id]" group-by="@id">
+                <xsl:for-each select="subsequence(current-group(), 2)">
+                    <xsl:if test="not(deep-equal(current-group()[1], .))">
+                        <xsl:message terminate="yes" select="concat('Encountered different rules using the id ''', @id, '''')"/>
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:copy-of select="."/>
+            </xsl:for-each-group>
+            <xsl:apply-templates select="$expanded/f:TestScript/f:setup"/>
+            <xsl:apply-templates select="$expanded/f:TestScript/f:test"/>
+            <xsl:apply-templates select="$expanded/f:TestScript/f:teardown"/>
+        </xsl:copy>
     </xsl:template>
     
-    <!-- Use description element as hook to include the origin and destination elements -->
-    <xsl:template match="f:TestScript/f:description" mode="filter">
-        <xsl:copy-of select="."/>
-        <origin>
-            <index value="1"/>
-            <profile>
-                <system value="http://hl7.org/fhir/testscript-profile-origin-types"/>
-                <code value="FHIR-Client"/>
-            </profile>
-        </origin>
-        <destination>
-            <index value="1"/>
-            <profile>
-                <system value="http://hl7.org/fhir/testscript-profile-destination-types"/>
-                <code value="FHIR-Server"/>
-            </profile>
-        </destination>
+    <xsl:template match="node()|@*" mode="#default">
+        <xsl:copy>
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:copy>
     </xsl:template>
+    
+    <xsl:template match="processing-instruction()" priority="1"/>
     
     <!-- Silence status, fixture, profile, variable and rule elements, because they are already handled elsewhere -->
-    <xsl:template match="f:TestScript/f:status" mode="filter" />
-    <xsl:template match="f:TestScript//f:fixture" mode="filter" />
-    <xsl:template match="f:TestScript//f:profile" mode="filter" />
-    <xsl:template match="f:TestScript//f:variable" mode="filter" />
-    <xsl:template match="f:TestScript//f:rule[@id]" mode="filter" />
+    <xsl:template match="f:TestScript/f:status"/>
+    <xsl:template match="f:TestScript//f:fixture"/>
+    <xsl:template match="f:TestScript//f:profile"/>
+    <xsl:template match="f:TestScript//f:variable"/>
+    <xsl:template match="f:TestScript//f:rule[@id]"/>
 
     <!-- Silence all remaining nts: elements (that have been read but are not transformed) -->
-    <xsl:template match="nts:*" mode="filter"/>
-    
-    <!-- Use the setup or (if absent) first test as a hook to inject the fixture, profile, variable and rule elements -->  
-    <xsl:template match="f:TestScript/f:setup[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)] | f:TestScript/f:test[not(preceding-sibling::f:setup) and not(preceding-sibling::f:test)]" mode="filter">
-        <xsl:param name="fixtures" tunnel="yes"/>
-        <xsl:param name="profiles" tunnel="yes"/>
-        <xsl:param name="variables" tunnel="yes"/>
-        <xsl:param name="rules" tunnel="yes"/>
-
-        <xsl:for-each-group select="$fixtures" group-by="@id">
-            <xsl:for-each select="subsequence(current-group(), 2)">
-                <xsl:if test="not(deep-equal(current-group()[1], .))">
-                    <xsl:message terminate="yes" select="concat('Encountered different fixture inclusions using the same id ''', @id, '''')"/>
-                </xsl:if>
-            </xsl:for-each>
-            <xsl:copy-of select="."/>
-        </xsl:for-each-group>
-        <xsl:for-each-group select="$profiles" group-by="@id">
-            <xsl:for-each select="subsequence(current-group(), 2)">
-                <xsl:if test="not(deep-equal(current-group()[1], .))">
-                    <xsl:message terminate="yes" select="concat('Encountered different profile declarations using the id ''', @id, '''')"/>
-                </xsl:if>
-            </xsl:for-each>
-            <xsl:copy-of select="."/>
-        </xsl:for-each-group>
-        <xsl:for-each-group select="$variables" group-by="f:name/@value">
-            <xsl:for-each select="subsequence(current-group(), 2)">
-                <xsl:if test="not(deep-equal(current-group()[1], .))">
-                    <xsl:message terminate="yes" select="concat('Encountered different variables using the name ''', f:name/@value, '''')"/>
-                </xsl:if>
-            </xsl:for-each>
-            <xsl:copy-of select="."/>
-        </xsl:for-each-group>
-        <xsl:for-each-group select="$rules" group-by="@id">
-            <xsl:for-each select="subsequence(current-group(), 2)">
-                <xsl:if test="not(deep-equal(current-group()[1], .))">
-                    <xsl:message terminate="yes" select="concat('Encountered different rules using the id ''', @id, '''')"/>
-                </xsl:if>
-            </xsl:for-each>
-            <xsl:copy-of select="."/>
-        </xsl:for-each-group>
-        
-        <!-- Write back the element we matched on -->
-        <xsl:element name="{local-name()}">
-            <xsl:for-each select="@*">
-                <xsl:attribute name="{local-name()}">
-                    <xsl:value-of select="."/>
-                </xsl:attribute>
-            </xsl:for-each>
-            <xsl:apply-templates select="./(*|comment())" mode="filter"/>
-        </xsl:element>
+    <xsl:template match="nts:*">
+        <xsl:message>Unhandled element in the nts namespace: <xsl:value-of select="local-name()"/></xsl:message>
     </xsl:template>
     
     <!-- Expand a nts:profile element to a FHIR profile element -->
