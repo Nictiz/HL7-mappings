@@ -70,14 +70,15 @@ The `href` attribute should point to the `Patient` instance containing the token
 
 The second element is to indicate that the "date T" variable should be defined for the testscript:
 
-   <nts:includeDateT value="yes|no">
+    <nts:includeDateT value="yes|no">
 
 If this element is present, and `value` is absent or set to "yes", a variable for setting date T will be included in the TestScript.
 
 ### Scenario: server (xis) or client (phr)
 
 There may be differences for xis and phr scenarios in how a TestScript is transformed. The scenario must therefore be indicated using the following attribute on the `TestScript` root:
-  nts:scenario="server|client"
+
+    nts:scenario="server|client"
 
 ## Running the transformation
 
@@ -85,7 +86,7 @@ The transformation is performed with the `generateTestScript.xsl` stylesheet, wh
 
 Parameters:
 
- *`testscriptBase` is an alternative base `node()` of the TestScript from which inclusions are done (see XSLT's `document()` for more information). It can be used when the TestScript content is stored in a variable, to indicate where inclusions should be made from. Note that recursive includes are relative to their parent file, not to this base.
+* `testscriptBase` is an alternative base `node()` of the TestScript from which inclusions are done (see XSLT's `document()` for more information). It can be used when the TestScript content is stored in a variable, to indicate where inclusions should be made from. Note that recursive includes are relative to their parent file, not to this base.
 
 ## Building
 
