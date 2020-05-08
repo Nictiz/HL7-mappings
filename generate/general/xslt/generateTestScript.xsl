@@ -94,13 +94,13 @@
     </xsl:template>
 
     <!-- Use the id element as hook to include a matching url -->
-    <xsl:template match="f:TestScript/f:id" xmlns="http://hl7.org/fhir" mode="filter">
+    <xsl:template match="f:TestScript/f:id" mode="filter">
         <xsl:copy-of select="."/>
         <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value)}"/>
     </xsl:template>
 
     <!-- Use the name element as hook to include status. date, publisher and contact information --> 
-    <xsl:template match="f:TestScript/f:name" xmlns="http://hl7.org/fhir" mode="filter">
+    <xsl:template match="f:TestScript/f:name" dmode="filter">
         <xsl:copy-of select="."/>
         
         <xsl:choose>
