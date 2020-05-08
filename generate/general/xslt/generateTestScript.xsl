@@ -100,7 +100,7 @@
     </xsl:template>
 
     <!-- Use the name element as hook to include status. date, publisher and contact information --> 
-    <xsl:template match="f:TestScript/f:name" dmode="filter">
+    <xsl:template match="f:TestScript/f:name" mode="filter">
         <xsl:copy-of select="."/>
         
         <xsl:choose>
