@@ -236,7 +236,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:apply-templates select="$document/nts:parts/(element()|comment())" mode="expand">
-            <xsl:with-param name="inclusionParameters" select="./nts:parameter" />
+            <xsl:with-param name="inclusionParameters" select="./nts:variable" />
         </xsl:apply-templates>
     </xsl:template>
 
@@ -246,12 +246,11 @@
          param testscriptBase is the base (as understood by document()) to include files relative to. --> 
     <xsl:template match="nts:include[@value]" mode="expand" xmlns="http://hl7.org/fhir">
         <xsl:param name="testscriptBase" tunnel="yes"/>
-        <xsl:param name="inclusionParameters"/>
+        <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:variable)*"/>
         
-        <xsl:variable name="newInclusionParameters" as="element(nts:parameter)*">
-            <xsl:apply-templates select="nts:parameter" mode="expand">
-                <xsl:with-param name="inclusionParameters" select="$inclusionParameters"/>
-            </xsl:apply-templates>
+        <xsl:variable name="newInclusionParameters" as="element(nts:variable)*">
+            <xsl:copy-of select="$inclusionParameters"/>
+            <xsl:copy-of select="nts:variable"/>
         </xsl:variable>
         
         <xsl:variable name="filePath">
@@ -268,7 +267,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:apply-templates select="document($filePath, $testscriptBase)/nts:parts/(element()|comment())" mode="expand">
-            <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" />
+            <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
     
@@ -281,25 +280,35 @@
             <xsl:copy-of select="./*"/>
         </rule>
     </xsl:template>
-        
+    
+    <xsl:variable name="parameterChars" select="'[a-zA-Z_0-9-]'"/>
+    
     <xsl:template match="@*" mode="expand">
         <xsl:param name="inclusionBase"/>
-        <xsl:param name="inclusionParameters" as="element(nts:parameter)*"/>
+        <xsl:param name="inclusionParameters" as="element(nts:variable)*" tunnel="yes"/>
         
         <xsl:variable name="value">
+            <xsl:variable name="regexString" select="concat('\{\$(',$parameterChars,'*)}')"/>
             <xsl:choose>
-                <xsl:when test="matches(., '\{\$.*\}')">
-                    <!-- TODO: Handle the case when there are multiple parameters to be replaced -->
-                    <xsl:variable name="paramName" select="replace(., '.*\{\$(.*?)\}.*', '$1')"/>
-                    <xsl:variable name="replacement" select="$inclusionParameters[@name = $paramName]"/>
-                    <xsl:choose>
-                        <xsl:when test="$paramName != '' and count($replacement) = 1">
-                            <xsl:value-of select="replace(., '\{\$.*\}', $replacement/@value, 'q')"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:message terminate="yes">You used parameter '<xsl:value-of select="$paramName"/>' but didn't define it. Not cool.</xsl:message>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                <xsl:when test="matches(., $regexString)">
+                    <xsl:analyze-string select="." regex="{$regexString}">
+                        <xsl:matching-substring>
+                            <xsl:variable name="paramName" select="regex-group(1)"/>
+                            <xsl:variable name="replacement" select="$inclusionParameters[@name = $paramName]"/>
+                            <xsl:choose>
+                                <xsl:when test="$paramName != '' and count($replacement) = 1">
+                                    <xsl:value-of select="$replacement/@value"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <!-- More error handling needed -->
+                                    <xsl:message terminate="yes">You used parameter '<xsl:value-of select="$paramName"/>' but didn't define it. Not cool.</xsl:message>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:matching-substring>
+                        <xsl:non-matching-substring>
+                            <xsl:value-of select="."/>
+                        </xsl:non-matching-substring>
+                    </xsl:analyze-string>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="."/>
