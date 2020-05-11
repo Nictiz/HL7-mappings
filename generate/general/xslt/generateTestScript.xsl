@@ -229,7 +229,9 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:apply-templates select="$document/nts:parts/(element()|comment())" mode="expand"/>
+        <xsl:apply-templates select="$document/nts:parts/(element()|comment())" mode="expand">
+            <xsl:with-param name="inclusionParameters" select="./nts:variable" />
+        </xsl:apply-templates>
     </xsl:template>
 
     <!-- Expand a nts:include element that uses relative references with value and scope.
@@ -238,6 +240,12 @@
          param testscriptBase is the base (as understood by document()) to include files relative to. --> 
     <xsl:template match="nts:include[@value]" mode="expand">
         <xsl:param name="testscriptBase" tunnel="yes"/>
+        <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:variable)*"/>
+        
+        <xsl:variable name="newInclusionParameters" as="element(nts:variable)*">
+            <xsl:copy-of select="$inclusionParameters"/>
+            <xsl:copy-of select="nts:variable"/>
+        </xsl:variable>
         
         <xsl:variable name="filePath">
             <xsl:choose>
@@ -252,7 +260,9 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:apply-templates select="document($filePath, $testscriptBase)/nts:parts/(element()|comment())" mode="expand"/>
+        <xsl:apply-templates select="document($filePath, $testscriptBase)/nts:parts/(element()|comment())" mode="expand">
+            <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
+        </xsl:apply-templates>
     </xsl:template>
     
     <!-- Expand a nts:rule element -->
@@ -264,13 +274,53 @@
             <xsl:copy-of select="./*"/>
         </rule>
     </xsl:template>
-        
-    <!-- Default template in the expand mode -->
-    <xsl:template match="@*|node()" mode="expand">
+    
+    <xsl:variable name="parameterChars" select="'[a-zA-Z_0-9-]'"/>
+    
+    <xsl:template match="@*" mode="expand">
         <xsl:param name="inclusionBase"/>
+        <xsl:param name="inclusionParameters" as="element(nts:variable)*" tunnel="yes"/>
+        
+        <xsl:variable name="value">
+            <xsl:variable name="regexString" select="concat('\{\$(',$parameterChars,'*)}')"/>
+            <xsl:choose>
+                <xsl:when test="matches(., $regexString)">
+                    <xsl:analyze-string select="." regex="{$regexString}">
+                        <xsl:matching-substring>
+                            <xsl:variable name="paramName" select="regex-group(1)"/>
+                            <xsl:variable name="replacement" select="$inclusionParameters[@name = $paramName]"/>
+                            <xsl:choose>
+                                <xsl:when test="$paramName != '' and count($replacement) = 1">
+                                    <xsl:value-of select="$replacement/@value"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:message terminate="yes">You used parameter '<xsl:value-of select="$paramName"/>' but didn't define it. Not cool.</xsl:message>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:matching-substring>
+                        <xsl:non-matching-substring>
+                            <xsl:value-of select="."/>
+                        </xsl:non-matching-substring>
+                    </xsl:analyze-string>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:attribute name="{name()}">
+            <xsl:value-of select="$value"/>
+        </xsl:attribute>
+    </xsl:template>
+    
+    <!-- Default template in the expand mode -->
+    <xsl:template match="node()" mode="expand">
+        <xsl:param name="inclusionBase"/>
+        <xsl:param name="inclusionParameters" as="element(nts:parameter)*"/>
         <xsl:copy>
-            <xsl:apply-templates select="@*|node()" mode="expand">
+            <xsl:apply-templates select="node()|@*" mode="expand">
                 <xsl:with-param name="inclusionBase" select="$inclusionBase"/>
+                <xsl:with-param name="inclusionParameters" select="$inclusionParameters"/>
             </xsl:apply-templates>
         </xsl:copy>
     </xsl:template>
