@@ -294,7 +294,6 @@
                                     <xsl:value-of select="$replacement/@value"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <!-- More error handling needed -->
                                     <xsl:message terminate="yes">You used parameter '<xsl:value-of select="$paramName"/>' but didn't define it. Not cool.</xsl:message>
                                 </xsl:otherwise>
                             </xsl:choose>
