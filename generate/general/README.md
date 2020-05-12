@@ -40,6 +40,29 @@ to refer to a file directly.
 
 *Note*: the transformation will take care of putting all included variables, fixtures, etc. in the right place in the resulting TestScript. If different components define the same variable, fixture, etc., it will be deduplicated. If they define a different variable, fixture, etc. with the same id, an error will be thrown.
 
+#### Passing parameters
+
+It is possible to pass parameters to included components, using the `nts:variable` element. The syntax is:
+
+    <nts:include value="..">
+        <nts:variable name="param1" value="...">
+        <nts:variable name="param2" value="...">
+        ...
+    </nts:include>
+
+In the corresponding component, the variable can be used with the XSL syntax for variables:
+
+    <nts:parts ...>
+        <variable>
+            <name value="foo"/>
+            <defaultValue value="{$param1}/>
+        </variable>
+    </nts:parts>
+
+It is also possible to recursively pass along parameters to other includes, simply by using the `{$...}` expansion in the `value` attribute of the next `<nts:variable ...>` element.
+
+If you use a parameter in a component without passing it from the caller, an error will be thrown.
+
 ### Fixtures, profiles and rules
 
 For fixtures, profiles and rules, custom elements have been made that are a bit more concise than their FHIR equivalents.
