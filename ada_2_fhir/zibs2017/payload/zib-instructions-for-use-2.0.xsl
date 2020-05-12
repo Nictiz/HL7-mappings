@@ -171,7 +171,7 @@
             </xsl:for-each>
             <!-- gebruiksinstructie/omschrijving  -->
             <xsl:for-each select="../../omschrijving[@value]">
-                <text value="{./@value}"/>
+                <text value="{nf:removeTrailingSpace(@value)}"/>
             </xsl:for-each>
             <!-- gebruiksinstructie/aanvullende_instructie  -->
             <xsl:for-each select="../../aanvullende_instructie[@code]">
@@ -238,10 +238,10 @@
                     </xsl:choose>
                     <xsl:choose>
                         <xsl:when test="./../omschrijving[@value]">
-                            <text value="{./../omschrijving/@value}"/>
+                            <text value="{nf:removeTrailingSpace(omschrijving/@value)}"/>
                         </xsl:when>
                         <xsl:when test="$in[@originalText]">
-                            <text value="{$in/@originalText}"/>
+                            <text value="{nf:removeTrailingSpace($in/@originalText)}"/>
                         </xsl:when>
                     </xsl:choose>
                 </asNeededCodeableConcept>
@@ -324,7 +324,7 @@
     <xsl:template name="zib-InstructionsForUse-2.0-di" match="doseerinstructie" mode="doDosageContents">
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:for-each select="../omschrijving[@value]">
-            <text value="{./@value}"/>
+            <text value="{nf:removeTrailingSpace(@value)}"/>
         </xsl:for-each>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
         <xsl:for-each select="../aanvullende_instructie[@code]">
@@ -365,7 +365,7 @@
     <xsl:template name="zib-InstructionsForUse-2.0-gi" match="gebruiksinstructie" mode="doDosageContents">
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:for-each select="omschrijving[@value]">
-            <text value="{./@value}"/>
+            <text value="{nf:removeTrailingSpace(@value)}"/>
         </xsl:for-each>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
         <xsl:for-each select="aanvullende_instructie[@code]">

@@ -715,6 +715,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Removes trailing spaces from the string in parameter in</xd:desc>
+        <xd:param name="in">The string to remove trailing spaces from</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:removeTrailingSpace" as="xs:string?">
+        <xsl:param name="in" as="xs:string?"/>
+        
+        <xsl:value-of select="replace($in, '\s+$', '')"/>
+        
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Try to interpret the value of complex type in ADA as a quantity string with value and unit</xd:desc>
@@ -791,7 +802,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>      
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)([YMD]).*)?', 'P$2$4')"/>
-                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)})?)?', '$4')"/>
+                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)\})?)?', '$4')"/>
                 <xsl:variable name="time">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 5">
