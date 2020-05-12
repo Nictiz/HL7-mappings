@@ -216,7 +216,7 @@
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:if test="$outputText">
             <xsl:for-each select="../../omschrijving[@value]">
-                <text value="{./@value}"/>
+                <text value="{nf:removeTrailingSpace(@value)}"/>
             </xsl:for-each>
         </xsl:if>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
@@ -283,11 +283,11 @@
                     </xsl:when>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="./../omschrijving[@value]">
-                        <text value="{./../omschrijving/@value}"/>
+                    <xsl:when test="../omschrijving[@value]">
+                        <text value="{nf:removeTrailingSpace(../omschrijving/@value)}"/>
                     </xsl:when>
                     <xsl:when test="$in[@originalText]">
-                        <text value="{$in/@originalText}"/>
+                        <text value="{nf:removeTrailingSpace($in/@originalText)}"/>
                     </xsl:when>
                 </xsl:choose>
             </asNeededCodeableConcept>
