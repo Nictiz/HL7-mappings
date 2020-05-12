@@ -12,15 +12,15 @@ All the custom elements use the following namespace:
 
     xmlns:nts="http://nictiz.nl/xsl/testscript"
 
-### Recursive inclusion of parts
+### Recursive inclusion of components
 
 One of the core principles in this method is that it should be possible to easily include other files as reusable components. Such a component includes everything that is needed for performing part of a test: the actions, the asserts, but also variables, fixtures, rules _and_ possibly other components.
 
 To define a component, simply create an .xml file with the necessary content enclosed in the following tags:
 
-    <nts:parts xmlns="http://hl7.org/fhir" xmlns:nts="http://nictiz.nl/xsl/testscript">
+    <nts:component xmlns="http://hl7.org/fhir" xmlns:nts="http://nictiz.nl/xsl/testscript">
         ...
-    </nts:parts>
+    </nts:component>
 
 Normally, these components are collected in a subdirectory called "components" relative to the TestScript. This location may be overridden using the `projectComponentFolder` parameter of the stylesheet when applying the transformation.
 
@@ -52,12 +52,12 @@ It is possible to pass parameters to included components, using the `nts:variabl
 
 In the corresponding component, the variable can be used with the XSL syntax for variables:
 
-    <nts:parts ...>
+    <nts:component ...>
         <variable>
             <name value="foo"/>
             <defaultValue value="{$param1}/>
         </variable>
-    </nts:parts>
+    </nts:component>
 
 It is also possible to recursively pass along parameters to other includes, simply by using the `{$...}` expansion in the `value` attribute of the next `<nts:variable ...>` element.
 

@@ -229,7 +229,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:apply-templates select="$document/nts:parts/(element()|comment())" mode="expand">
+        <xsl:apply-templates select="$document/nts:component/(element()|comment())" mode="expand">
             <xsl:with-param name="inclusionParameters" select="./nts:variable" />
         </xsl:apply-templates>
     </xsl:template>
@@ -260,7 +260,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:apply-templates select="document($filePath, $testscriptBase)/nts:parts/(element()|comment())" mode="expand">
+        <xsl:apply-templates select="document($filePath, $testscriptBase)/nts:component/(element()|comment())" mode="expand">
             <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
