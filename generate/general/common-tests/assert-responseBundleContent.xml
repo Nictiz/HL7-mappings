@@ -31,18 +31,46 @@
     </action>
     <action>
         <assert>
-            <description value="The fullUrl SHALL NOT disagree with the id in the resource, see http://hl7.org/fhir/stu3/bundle-definitions.html#Bundle.entry.fullUrl"/>
+            <description value="Confirm that the fullUrl does not disagree with the id in the resource, see http://hl7.org/fhir/stu3/bundle-definitions.html#Bundle.entry.fullUrl"/>
             <direction value="response"/>
             <expression value="Bundle.entry.all($this.fullUrl.endsWith($this.resource.id))"/>
         </assert>
     </action>
     <action>
         <assert>
-            <description value="The fullUrl needs to be a absolute URL. "/>
+            <description value="Confirm that the fullUrl is an absolute URL."/>
             <direction value="response"/>
             <expression value="Bundle.entry.fullUrl.all(startsWith('http') or startsWith('urn:oid') or startsWith('urn:uuid'))"/>
         </assert>
+    </action>   
+    <action>
+        <assert>
+            <description value="Confirm that literal References (Reference.reference) are an absolute URL, a relative URL or an internal fragment refrene (contained), see: http://hl7.org/fhir/stu3/references.html#literal."/>
+            <direction value="response"/>
+            <expression value="Bundle.descendants().reference.all(startsWith('http') or startsWith('urn:oid') or startsWith('urn:uuid') or startsWith('#')  or matches('[a-zA-Z]{3,}\/.+') )"/>
+        </assert>
     </action>
+    <action>
+        <assert>
+            <description value="Confirm that all References have a display value, see https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2019.01_FHIR_IG#Use_of_the_reference_datatype."/>
+            <direction value="response"/>
+            <expression value="Bundle.descendants().where($this.is(Reference)).all(display.exists())"/>
+        </assert>
+    </action> 
+    <action>
+        <assert>
+            <description value="Confrim that all CodeableConcept contain a coding.display or a text value, see https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2019.01_FHIR_IG#Use_of_coded_concepts."/>
+            <direction value="response"/>
+            <expression value="Bundle.descendants().where($this.is(CodeableConcept)).all(coding.display.exists() or text.exists())"/>
+        </assert>
+    </action>   
+    <action>
+        <assert>
+            <description value="Confirm that all Coding contain a display value, see https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2019.01_FHIR_IG#Use_of_coded_concepts."/>
+            <direction value="response"/>
+            <expression value="Bundle.descendants().coding.all(display.exists())"/>
+        </assert>
+    </action>   
     <action>
         <assert>
             <description value="Confirm that the returned Bundle conforms to the base FHIR specification and the resources to the stated profiles in the meta.profile tag."/>
