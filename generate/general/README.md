@@ -42,11 +42,11 @@ to refer to a file directly.
 
 #### Passing parameters
 
-It is possible to pass parameters to included components, using the `nts:variable` element. The syntax is:
+It is possible to pass parameters to included components, using the `nts:with-parameter` element. The syntax is:
 
     <nts:include value="..">
-        <nts:variable name="param1" value="...">
-        <nts:variable name="param2" value="...">
+        <nts:with-parameter name="param1" value="...">
+        <nts:with-parameter name="param2" value="...">
         ...
     </nts:include>
 
@@ -59,9 +59,33 @@ In the corresponding component, the variable can be used with the XSL syntax for
         </variable>
     </nts:component>
 
-It is also possible to recursively pass along parameters to other includes, simply by using the `{$...}` expansion in the `value` attribute of the next `<nts:variable ...>` element.
+In a component, a default value for a variable can be added using the `nts:parameter` element. This way, a component can be included without specifying a parameter value, while the parameter value can be overridden by specifying an `nts:with-parameter` element while including. 
 
-If you use a parameter in a component without passing it from the caller, an error will be thrown.
+Compare the following two examples (the first wil result in a value of 'foo' for `{$param1}`, the second will result in a value of 'bar' for `{$param1}`):
+
+    <nts:include value="..">
+        <nts:with-parameter name="param1" value="foo">
+    </nts:include>    
+    <nts:component ...>
+        <nts:parameter name="param1" value="bar"/>    
+        <variable>
+            <name value="foo"/>
+            <defaultValue value="{$param1}/>
+        </variable>
+    </nts:component>
+
+    <nts:include value=".."/> 
+    <nts:component ...>
+        <nts:parameter name="param1" value="bar"/>    
+        <variable>
+            <name value="foo"/>
+            <defaultValue value="{$param1}/>
+        </variable>
+    </nts:component>    
+
+It is also possible to recursively pass along parameters to other includes, simply by using the `{$...}` expansion in the `value` attribute of the next `<nts:with-parameter ...>` element.
+
+If you use a parameter in a component without passing it from the caller or without specifying a default value, an error will be thrown.
 
 ### Fixtures, profiles and rules
 
