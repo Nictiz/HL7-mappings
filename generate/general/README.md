@@ -139,6 +139,8 @@ Parameters:
 
 TBD.
 
-## Schema(tron)
+## Schematron
 
-TBD.
+A schematron is available that can be used to check both the input TestScript files and the component files. It is reasonably complete and covers everything on the root level of the input files.
+
+It can be found at `schematron/NictizTestScript.sch` relative to this README.
