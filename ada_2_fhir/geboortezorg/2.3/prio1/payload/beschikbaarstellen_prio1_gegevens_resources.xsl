@@ -42,8 +42,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
     </xd:doc>
-    <xsl:template match="f:Resource/* | f:Patient | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure" mode="doResourceInResultdoc">
-        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, './')[last()]"/>
+    <xsl:template match="f:Resource/* | f:Patient | f:Practitioner | f:PractitionerRole | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure" mode="doResourceInResultdoc">
+        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile[last()]/@value, './')[last()]"/>
         <!--<xsl:variable name="obs-code" select="f:code/f:coding/f:code/@value"/>-->
         <xsl:result-document href="../fhir_instance/Gebz-{$usecase}-{$zib-name}-{f:id/@value}.xml"> 
             <xsl:apply-templates select="." mode="ResultOutput"/>

@@ -43,6 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
                     <xsl:call-template name="bc-profile"/>
                 </meta>
                 <xsl:if test="$pregnancyId!='' and $parentElemName!='lichamelijk_onderzoek_kind'">
@@ -88,7 +89,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select=".">
                     <xsl:choose>
                         <xsl:when test="@datatype='datetime'">
-                            <xsl:variable name="dateValue" select="nf:calculate-t-date(@value,current-date())"/>
+                            <xsl:variable name="dateValue">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="@value"></xsl:with-param>
+                                    <xsl:with-param name="dateT" select="current-date()"></xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:variable>
                             <valueDateTime value="{$dateValue}"/>
                         </xsl:when>
                         <xsl:when test="not(@code) and @value castable as xs:integer">

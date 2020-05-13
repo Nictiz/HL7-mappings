@@ -34,7 +34,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="childId"/>
         
         <xsl:variable name="elementName" select="name(.)"/>
-        <xsl:variable name="startDelivery" select="nf:calculate-t-date(tijdstip_begin_actieve_ontsluiting/@value,current-date())"/>
+        <xsl:variable name="startDelivery">
+            <xsl:call-template name="format2FHIRDate">
+                <xsl:with-param name="dateTime" select="tijdstip_begin_actieve_ontsluiting/@value"></xsl:with-param>
+                <xsl:with-param name="dateT" select="current-date()"></xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
          
         <xsl:for-each select="$in">            
             <Procedure>
@@ -42,6 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
                     <xsl:call-template name="bc-profile"/>
                 </meta>
                 <xsl:if test="ancestor::kindspecifieke_uitkomstgegevens and $childId">

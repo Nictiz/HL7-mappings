@@ -42,6 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{$logicalId}"/>
                 </xsl:if>
                 <meta>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
                 </meta>
                 <xsl:choose>

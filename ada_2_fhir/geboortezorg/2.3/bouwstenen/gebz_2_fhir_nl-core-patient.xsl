@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vrouw to ada patient</xd:desc>
     </xd:doc>
               
-    <xsl:variable name='vrouwId' select="replace(lower-case((prio1_huidig | prio1_vorig)/vrouw/naamgegevens/achternaam/achternaam/@value),' ','-')"/>
+    <xsl:variable name='vrouwId' select="replace(lower-case((prio1_huidig | prio1_vorig | bevallingsgegevens_23)/vrouw/naamgegevens/achternaam/achternaam/@value),' ','-')"/>
        
     <xsl:template name="convert-vrouw-ada" mode="vrouw-ada" match="vrouw" as="element()*">
         <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>   
@@ -52,8 +52,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="birthDate" select="baring/demografische_gegevens/geboortedatum/@value"/>
         <patient>
             <xsl:if test="$birthDate!=''">
-                <geboortedatum value="{current-date()-xs:dayTimeDuration(concat('P',substring-after($birthDate,'-')))}"/>
-            </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="$birthDate castable as xs:date or $birthDate castable as xs:dateTime">
+                        <geboortedatum value="{$birthDate}"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <geboortedatum value="{current-date()-xs:dayTimeDuration(concat('P',substring-after($birthDate,'-')))}"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>           
         </patient>
     </xsl:template>
         

@@ -37,19 +37,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- ada instances -->
     <xsl:param name="patient-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig)/vrouw" mode="vrouw-ada"/>
+        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
     </xsl:param>
 
     <xsl:variable name="kind-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig)/uitkomst_per_kind" mode="kind-ada"/>
+        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/uitkomst_per_kind" mode="kind-ada"/>
     </xsl:variable>
 
     <xsl:param name="zorginstelling-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig)/zorgverlenerzorginstelling" mode="zorginstelling-ada"/>
+        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorginstelling-ada"/>
     </xsl:param>
 
     <xsl:param name="zorgverlener-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig)/zorgverlenerzorginstelling" mode="zorgverlener-ada"/>
+        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorgverlener-ada"/>
     </xsl:param>
 
     <!-- unique patients -->
@@ -79,8 +79,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- pregnancyNo -->
     <xsl:variable name="pregnancyNo">
-        <xsl:for-each select="(prio1_huidig | prio1_vorig)/zwangerschap | prio1_vorig/zwangerschap">
-            <xsl:value-of select="graviditeit/@value"/>
+        <xsl:for-each select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/zwangerschap">
+            <xsl:choose>
+                <xsl:when test="graviditeit">
+                    <xsl:value-of select="graviditeit/@value"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="1"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:for-each>
     </xsl:variable>
       
