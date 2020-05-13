@@ -227,6 +227,13 @@
                              the including file. --> 
     <xsl:template match="nts:include[@href]" mode="expand">
         <xsl:param name="inclusionBase"/>
+        <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
+        
+        <xsl:variable name="newInclusionParameters" as="element(nts:with-parameter)*">
+            <xsl:copy-of select="$inclusionParameters"/>
+            <xsl:copy-of select="nts:with-parameter"/>
+        </xsl:variable>
+        
         <xsl:variable name="document" as="node()*">
             <xsl:choose>
                 <xsl:when test="$inclusionBase">
@@ -238,7 +245,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:apply-templates select="$document/nts:component/(element()|comment())" mode="expand">
-            <xsl:with-param name="inclusionParameters" select="./nts:with-parameter" />
+            <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
 
