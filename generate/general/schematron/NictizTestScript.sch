@@ -70,7 +70,7 @@
         <sch:rule context="nts:parameter">
             <sch:assert test=".[parent::nts:component]">Element can only be used in a "nts:component" element.</sch:assert>
             <sch:assert test="not(preceding-sibling::*[not(self::nts:parameter)])">"nts:parameter" must be first child in "nts:component".</sch:assert>
-            <sch:assert test="not(@required) or @required = 'true' or @required = 'false'">Required may be 'false' (default) or 'true'.</sch:assert>
+            <sch:assert test="@name and @value">Both 'name' and 'value' attributes are required</sch:assert>
         </sch:rule>
         <sch:rule context="nts:*">
             <sch:assert test="false()">Unknown element in the Nictiz TestScript namespace</sch:assert>
