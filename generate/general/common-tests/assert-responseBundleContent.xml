@@ -24,6 +24,27 @@
     </action>
     <action>
         <assert>
+            <description value="Confirm that all returned resources contain an Resource.id. The only time that a resource does not have an id is when it is being submitted to the server using a create operation: https://www.hl7.org/fhir/STU3/resource-definitions.html#Resource.id "/>
+            <direction value="response"/>
+            <expression value="Bundle.entry.resource.id.count() = Bundle.entry.resource.count()"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="The fullUrl SHALL NOT disagree with the id in the resource, see http://hl7.org/fhir/stu3/bundle-definitions.html#Bundle.entry.fullUrl"/>
+            <direction value="response"/>
+            <expression value="Bundle.entry.all($this.fullUrl.endsWith($this.resource.id))"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="The fullUrl needs to be a absolute URL. "/>
+            <direction value="response"/>
+            <expression value="Bundle.entry.fullUrl.all(startsWith('http') or startsWith('urn:oid') or startsWith('urn:uuid'))"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
             <description value="Confirm that the returned Bundle conforms to the base FHIR specification and the resources to the stated profiles in the meta.profile tag."/>
             <direction value="response"/>
             <validateProfileId value="bundle-profile"/>
