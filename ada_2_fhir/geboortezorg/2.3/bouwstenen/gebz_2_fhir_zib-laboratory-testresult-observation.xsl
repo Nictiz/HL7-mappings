@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada maternale gegevens to ada labtest</xd:desc>
     </xd:doc>
                             
-    <xsl:template name="convertToADAlabtest" match="bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb">
+    <xsl:template name="convertToADAlabtest" mode="doConvertToADAlabtest" match="bloedgroep_vrouw | rhesus_d_factor_vrouw | rhesus_c_factor | hb">
             <xsl:variable name="code" select="@code"/>  
             <xsl:variable name="codeSystem" select="@codeSystem"/> 
             <xsl:variable name="display" select="@displayName"/>
@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
      </xsl:template>
     
     <!--
-    <xsl:template name="convertMoToADAlabtest" match="medisch_onderzoek">
+    <xsl:template name="convertMoToADAlabtest" mode="doConvertMoToADAlabtest" match="medisch_onderzoek">
         <xsl:variable name="datum" select="datum_onderzoek/@value"/>
         <xsl:for-each select="maternale_onderzoeksgegevens/urine_bloed_en_aanvullende_onderzoeken/hb">
             <xsl:variable name="value" select="@value"/>

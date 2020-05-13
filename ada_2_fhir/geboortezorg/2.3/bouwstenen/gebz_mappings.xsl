@@ -20,7 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg concepts to profiles.</xd:desc>
     </xd:doc>
-    <xsl:template name="bc-profile" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">      
+    <xsl:template name="bc-profile" mode="doProfileMapping" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">      
         <xsl:variable name="elementName" select="name(.)"/>
                 
         <xsl:for-each select=".">            
@@ -65,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg terminology for Observations.</xd:desc>
     </xd:doc>
-    <xsl:template name="bc-observation-coding" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">      
+    <xsl:template name="bc-observation-coding" mode="doObservationTerminologyMapping" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">      
         <xsl:variable name="elementName" select="name(.)"/>
         <xsl:for-each select="."> 
             <coding>
@@ -143,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg terminology for Procedures.</xd:desc>
     </xd:doc>
-    <xsl:template name="bc-procedure-coding" match="bevalling | vaginale_kunstverlossing" as="element()">      
+    <xsl:template name="bc-procedure-coding" mode="doProcedureTerminologyMapping" match="bevalling | vaginale_kunstverlossing" as="element()">      
         <xsl:variable name="elementName" select="name(.)"/>
         <xsl:for-each select="."> 
             <coding>
