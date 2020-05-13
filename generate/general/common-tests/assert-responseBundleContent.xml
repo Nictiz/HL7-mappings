@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <nts:component xmlns="http://hl7.org/fhir" xmlns:nts="http://nictiz.nl/xsl/testscript">
+    <nts:parameter name="warningOnly" value="false"/>
     <action>
         <assert>
             <description value="Confirm that Bundle does not use Burgerservicenummer (BSN) anywhere."/>
@@ -26,6 +27,7 @@
             <description value="Confirm that the returned Bundle conforms to the base FHIR specification and the resources to the stated profiles in the meta.profile tag."/>
             <direction value="response"/>
             <validateProfileId value="bundle-profile"/>
+            <warningOnly value="{$warningOnly}"/>
         </assert>
     </action>
 </nts:component>
