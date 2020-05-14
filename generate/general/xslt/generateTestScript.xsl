@@ -44,10 +44,11 @@
 
     <!-- Use the id element as hook to include a matching url -->
     <xsl:template match="f:TestScript/f:id" mode="filter">
+        <xsl:param name="accept" tunnel="yes"/>
         <xsl:copy>
             <xsl:apply-templates select="node()|@*" mode="#current"/>
         </xsl:copy>
-        <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value)}"/>
+        <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value,'-',$accept)}"/>
     </xsl:template>
 
     <!-- Use the name element as hook to include status. date, publisher and contact information --> 
