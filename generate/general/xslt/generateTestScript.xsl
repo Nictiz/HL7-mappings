@@ -292,10 +292,10 @@
         <xsl:variable name="filePath">
             <xsl:choose>
                 <xsl:when test="@scope = 'common'">
-                    <xsl:value-of select="nts:constructFilePath($commonComponentFolder, @value)"/>
+                    <xsl:value-of select="nts:constructXMLFilePath($commonComponentFolder, @value)"/>
                 </xsl:when>
                 <xsl:when test="@scope = 'project' or not(@scope)">
-                    <xsl:value-of select="nts:constructFilePath($projectComponentFolder, @value)"/>
+                    <xsl:value-of select="nts:constructXMLFilePath($projectComponentFolder, @value)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:message terminate="yes" select="concat('Unknown inclusion scope ''', @scope, '''')"/>
@@ -375,27 +375,17 @@
     
     <!-- === Here be functions ==================================================================================== -->
     
-    <!-- Construct a file path from the elements.
-         param base is the folder where the file resides
-         param filename is the name of the file in the folder
+    <!-- Construct an XML file path from the elements.
+         param base is the folder where the XML file resides
+         param filename is the name of the XML file in the folder
          return the full path to the file, optionally appending the .xml extension to the filename if it doesn't
                 already have it. -->
-    <xsl:function name="nts:constructFilePath" as="xs:string">
+    <xsl:function name="nts:constructXMLFilePath" as="xs:string">
         <xsl:param name="base" as="xs:string" />
         <xsl:param name="filename" as="xs:string" />
         
         <xsl:variable name="fullFilename" select="nts:addXMLExtension($filename)"/>
-        <xsl:variable name="separator">
-            <xsl:choose>
-                <xsl:when test="ends-with($base, '/')">
-                    <xsl:value-of select="''"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="'/'"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:value-of select="string-join(($base, $fullFilename), $separator)"/>
+        <xsl:value-of select="nts:constructFilePath($base,$fullFilename)"/>
     </xsl:function>
 
     <!-- Add .xml to the filename if it doesn't have it already.
@@ -408,18 +398,34 @@
                 <xsl:when test="ends-with(lower-case($filename), '.xml')">
                     <xsl:value-of select="$filename"/>
                 </xsl:when>
-                <xsl:when test="ends-with(lower-case($filename), '.json')">
-                    <xsl:value-of select="$filename"/>
-                </xsl:when>
-                <xsl:when test="ends-with(lower-case($filename), '.groovy')">
-                    <xsl:value-of select="$filename"/>
-                </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="concat($filename, '.xml')"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:value-of select="$fullFilename"/>
+    </xsl:function>
+    
+    
+    <!-- Construct a file path from the elements.
+         param base is the folder where the file resides
+         param filename is the name of the file in the folder including the extension
+         return the full path to the file -->
+    <xsl:function name="nts:constructFilePath" as="xs:string">
+        <xsl:param name="base" as="xs:string" />
+        <xsl:param name="filename" as="xs:string" />
+        
+        <xsl:variable name="separator">
+            <xsl:choose>
+                <xsl:when test="ends-with($base, '/')">
+                    <xsl:value-of select="''"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="'/'"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:value-of select="string-join(($base, $filename), $separator)"/>
     </xsl:function>
     
     <xsl:function name="nts:substring-before-last" as="xs:string">
