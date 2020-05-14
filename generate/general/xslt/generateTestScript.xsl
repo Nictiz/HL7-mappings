@@ -7,7 +7,7 @@
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
         
-    <!-- The base of the folder where fixtures can be found, relative to the XIS or PHR input dir. -->
+    <!-- The base of the folder where fixtures can be found, relative to the folder where the output TestScript will reside. -->
     <xsl:param name="referenceFolder" select="'../_reference'"/>
     
     <!-- The folder where components for this project can be found, relative to the XIS or PHR input dir. -->
@@ -19,10 +19,11 @@
     <!-- The main template, which will call the remaining templates.
          param inputDir is a required string where the XIS or PHR input dir resides. Inclusions will start relative to this base. -->
     <xsl:template name="generate" match="f:TestScript">
-        <xsl:param name="inputDir" required="yes"/>
+        <!--inputDir fallback assumes the input file is placed directly in the XIS or PHR input dir.-->
+        <xsl:param name="inputDir" select="nts:substring-before-last(string(base-uri(current())),'/')"/>
         <xsl:param name="accept" select="'xml'"/>
         <xsl:variable name="scenario" select="@nts:scenario"/>
-        
+
         <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
         <xsl:variable name="expanded">
             <xsl:apply-templates mode="expand" select=".">
@@ -419,6 +420,14 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:value-of select="$fullFilename"/>
+    </xsl:function>
+    
+    <xsl:function name="nts:substring-before-last" as="xs:string">
+        <xsl:param name="arg" as="xs:string?"/>
+        <xsl:param name="delim" as="xs:string"/>
+        
+        <xsl:variable name="tokens" select="tokenize($arg,$delim)"/>
+        <xsl:value-of select="$tokens[not(.=$tokens[last()])]" separator="{$delim}"/>
     </xsl:function>
 
 </xsl:stylesheet>
