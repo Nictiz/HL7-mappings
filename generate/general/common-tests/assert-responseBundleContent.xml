@@ -33,21 +33,34 @@
         <assert>
             <description value="Confirm that the fullUrl does not disagree with the id in the resource, see http://hl7.org/fhir/stu3/bundle-definitions.html#Bundle.entry.fullUrl"/>
             <direction value="response"/>
-            <expression value="Bundle.entry.all($this.fullUrl.endsWith($this.resource.id))"/>
+            <expression value="Bundle.entry.all($this.fullUrl.endsWith($this.resource.id) or 
+                $this.fullUrl.startsWith('urn:'))"/>
         </assert>
     </action>
     <action>
         <assert>
-            <description value="Confirm that the fullUrl is an absolute URL."/>
+            <description value="Confirm that the fullUrl is an absolute URL, an uuid or an oid."/>
             <direction value="response"/>
-            <expression value="Bundle.entry.fullUrl.all(startsWith('http') or startsWith('urn:oid') or startsWith('urn:uuid'))"/>
+            <expression value="Bundle.entry.fullUrl.all(
+                startsWith('http://') or
+                startsWith('https://') or
+                matches('^urn:oid:[0-2](\\.(0|[1-9]\\d*))*$') or
+                matches('^urn:uuid:[A-Fa-f\\d]{8}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{12}$')
+                )"/>
         </assert>
     </action>   
     <action>
         <assert>
-            <description value="Confirm that literal References (Reference.reference) are an absolute URL, a relative URL or an internal fragment refrene (contained), see: http://hl7.org/fhir/stu3/references.html#literal."/>
+            <description value="Confirm that literal References (Reference.reference) are an absolute URL, a relative URL or an internal fragment reference (contained), see: http://hl7.org/fhir/stu3/references.html#literal."/>
             <direction value="response"/>
-            <expression value="Bundle.descendants().reference.all(startsWith('http') or startsWith('urn:oid') or startsWith('urn:uuid') or startsWith('#')  or matches('[a-zA-Z]{3,}\/.+') )"/>
+            <expression value="Bundle.descendants().reference.all(
+                startsWith('http://') or
+                startsWith('https://') or
+                startsWith('#') or
+                matches('^urn:oid:[0-2](\\.(0|[1-9]\\d*))*$') or
+                matches('^urn:uuid:[A-Fa-f\\d]{8}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{12}$') or
+                (startsWith('urn:').not() and startsWith('#').not() and matches('^[A-Za-z]{3,}/[^/]+$'))
+                )"/>
         </assert>
     </action>
     <action>
@@ -59,16 +72,11 @@
     </action> 
     <action>
         <assert>
-            <description value="Confrim that all CodeableConcept contain a coding.display or a text value, see https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2019.01_FHIR_IG#Use_of_coded_concepts."/>
+            <description value="Confirm that all CodeableConcept elements contain a coding.display or a text value if no Coding exists, see https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2019.01_FHIR_IG#Use_of_coded_concepts."/>
             <direction value="response"/>
-            <expression value="Bundle.descendants().where($this.is(CodeableConcept)).all(coding.display.exists() or text.exists())"/>
-        </assert>
-    </action>   
-    <action>
-        <assert>
-            <description value="Confirm that all Coding contain a display value, see https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2019.01_FHIR_IG#Use_of_coded_concepts."/>
-            <direction value="response"/>
-            <expression value="Bundle.descendants().coding.all(display.exists())"/>
+            <expression value="Bundle.descendants().where($this.is(CodeableConcept)).all(
+                coding.display.exists() or 
+                (coding.exists().not() and text.exists())))"/>
         </assert>
     </action>   
     <action>
