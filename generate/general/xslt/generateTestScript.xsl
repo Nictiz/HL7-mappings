@@ -20,6 +20,7 @@
          param inputDir is a required string where the XIS or PHR input dir resides. Inclusions will start relative to this base. -->
     <xsl:template name="generate" match="f:TestScript">
         <xsl:param name="inputDir" required="yes"/>
+        <xsl:param name="accept" select="'xml'"/>
         <xsl:variable name="scenario" select="@nts:scenario"/>
         
         <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
@@ -37,18 +38,23 @@
             <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::f:origin | ancestor::f:destination)]" tunnel="yes"/>
             <xsl:with-param name="variables" select="$expanded//f:variable" tunnel="yes"/>
             <xsl:with-param name="rules" select="$expanded//f:rule[@id]" tunnel="yes"/>
+            <xsl:with-param name="accept" select="$accept" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
 
     <!-- Use the id element as hook to include a matching url -->
     <xsl:template match="f:TestScript/f:id" mode="filter">
-        <xsl:copy-of select="."/>
+        <xsl:copy>
+            <xsl:apply-templates select="node()|@*" mode="#current"/>
+        </xsl:copy>
         <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value)}"/>
     </xsl:template>
 
     <!-- Use the name element as hook to include status. date, publisher and contact information --> 
     <xsl:template match="f:TestScript/f:name" mode="filter">
-        <xsl:copy-of select="."/>
+        <xsl:copy>
+            <xsl:apply-templates select="node()|@*" mode="#current"/>
+        </xsl:copy>
         
         <xsl:choose>
             <xsl:when test="../f:status">
@@ -149,6 +155,41 @@
             </xsl:for-each>
             <xsl:apply-templates select="./(*|comment())" mode="filter"/>
         </xsl:element>
+    </xsl:template>
+    
+    <!--Add the accept format to TestScript id-->
+    <xsl:template match="f:TestScript/f:id/@value" mode="filter">
+        <xsl:param name="accept" tunnel="yes"/>
+        <xsl:attribute name="value">
+            <xsl:value-of select="."/>
+            <xsl:if test="not(ends-with(.,'-xml'))">
+                <xsl:text>-</xsl:text>
+                <xsl:value-of select="lower-case($accept)"/>
+            </xsl:if>
+        </xsl:attribute>
+    </xsl:template>
+    
+    <!--Add the accept format to TestScript name-->
+    <xsl:template match="f:TestScript/f:name/@value" mode="filter">
+        <xsl:param name="accept" tunnel="yes"/>
+        <xsl:attribute name="value">
+            <xsl:value-of select="."/>
+            <xsl:if test="not(ends-with(.,'Format'))">
+                <xsl:text> - </xsl:text>
+                <xsl:value-of select="upper-case($accept)"/>
+                <xsl:text> Format</xsl:text>
+            </xsl:if>
+        </xsl:attribute>
+    </xsl:template>
+    
+    <!--Use the test operation description to add the accept format-->
+    <xsl:template match="f:TestScript/f:test/f:action/f:operation/f:description" mode="filter">
+        <xsl:param name="accept" tunnel="yes"/>
+        <!--What if no description can be found?-->
+        <xsl:copy>
+            <xsl:apply-templates select="node()|@*" mode="#current"/>
+        </xsl:copy>
+        <accept value="{lower-case($accept)}"/>
     </xsl:template>
     
     <!-- Expand a nts:profile element to a FHIR profile element -->
