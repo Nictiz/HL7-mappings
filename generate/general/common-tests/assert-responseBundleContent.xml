@@ -24,9 +24,12 @@
     </action>
     <action>
         <assert>
-            <description value="Confirm that all returned resources contain an Resource.id. The only time that a resource does not have an id is when it is being submitted to the server using a create operation: https://www.hl7.org/fhir/STU3/resource-definitions.html#Resource.id "/>
+            <description value="Confirm that all returned resources contain an Resource.id except when temporary ids are used in the Bundle. The only time that a resource does not have an id is when it is being submitted to the server using a create operation: https://www.hl7.org/fhir/STU3/resource-definitions.html#Resource.id "/>
             <direction value="response"/>
-            <expression value="Bundle.entry.resource.id.count() = Bundle.entry.resource.count()"/>
+            <expression value="Bundle.entry.all(
+                $this.fullUrl.matches('^urn:oid:[0-2](\\.(0|[1-9]\\d*))*$') or
+                $this.fullUrl.matches('^urn:uuid:[A-Fa-f\\d]{8}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{12}$') or
+                $this.resource.id.exists())"/>
         </assert>
     </action>
     <action>
