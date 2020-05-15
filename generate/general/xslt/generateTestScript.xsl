@@ -17,10 +17,12 @@
     <xsl:param name="commonComponentFolder" select="'../../general/common-tests'"/>
     
     <!-- The main template, which will call the remaining templates.
-         param inputDir is a required string where the XIS or PHR input dir resides. Inclusions will start relative to this base. -->
+         param inputDir is a string describing the direcory where the input file resides. The 
+                        'project/commonComponentFolder' template parameters are relative to this directory.
+                        This parameter is only needed when applying this template on a document that's not read from 
+                        disk (i.e. a generated/rewritten document). -->
     <xsl:template name="generate" match="f:TestScript">
-        <!--inputDir fallback assumes the input file is placed directly in the XIS or PHR input dir.-->
-        <xsl:param name="inputDir" select="nts:substring-before-last(string(base-uri(current())),'/')"/>
+        <xsl:param name="inputDir" as="xs:string" select="replace(base-uri(current()), '(.*)/[^/]+', '$1')"/>
         <xsl:param name="accept" select="'xml'"/>
         <xsl:variable name="scenario" select="@nts:scenario"/>
 
@@ -210,6 +212,14 @@
         </fixture>
     </xsl:template>
     
+    <!-- Expand an nts:patientTokenFixture element to create a variable called 'patient-token-id'. How this is handled
+         is different for server and client scripts:
+         - for a server script, it will be provided with a default value read from the fixture, which can be overridden
+           by the TestScript executor.
+         - for a client script, the fixture will be included as TestScript fixture and the variable will be read from
+           it using a FHIRPath experssion.
+         
+         param inputDir is the base to include files relative to. --> 
     <xsl:template match="nts:patientTokenFixture" mode="expand">
         <xsl:param name="scenario" tunnel="yes"/>
         <xsl:param name="inputDir" tunnel="yes"/>
@@ -231,7 +241,7 @@
             <!-- Expand the nts:patientTokenFixture element for 'xis' type scripts -->
             <xsl:when test="$scenario='server'">
                 <xsl:variable name="patientTokenFixture">
-                    <xsl:copy-of select="document(string-join(($inputDir,$referenceFolder,@href),'/'))"/>
+                    <xsl:copy-of select="document(string-join(($inputDir, $referenceFolder, @href), '/'))"/>
                 </xsl:variable>
                 <variable>
                     <name value="patient-token-id"/>
@@ -256,9 +266,7 @@
 
     <!-- Expand a nts:include element that uses absolute references with href.
          It will read all f:parts elements in the referenced file and process them further.
-         param inclusionBase is the base (as understood by document()) to include files relative to. It is not passed
-                             on in subsequent calls to this template, as nested nts:include's are always relative to
-                             the including file. --> 
+         param inputDir is the base to include files relative to. --> 
     <xsl:template match="nts:include[@href]" mode="expand">
         <xsl:param name="inputDir" tunnel="yes"/>
         <xsl:param name="inclusionParameters" tunnel="yes" as="element(nts:with-parameter)*"/>
@@ -269,7 +277,7 @@
         </xsl:variable>
         
         <xsl:variable name="document" as="node()*">
-            <xsl:copy-of select="document(string-join(($inputDir,$inputDir,@href),'/'))"/>
+            <xsl:copy-of select="document(string-join(($inputDir, $inputDir, @href), '/'))"/>
         </xsl:variable>
         <xsl:apply-templates select="$document/nts:component/(element()|comment())" mode="expand">
             <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
@@ -302,7 +310,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:apply-templates select="document(string-join(($inputDir,$filePath),'/'))/nts:component/(element()|comment())" mode="expand">
+        <xsl:apply-templates select="document(string-join(($inputDir, $filePath), '/'))/nts:component/(element()|comment())" mode="expand">
             <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
@@ -426,14 +434,6 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:value-of select="string-join(($base, $filename), $separator)"/>
-    </xsl:function>
-    
-    <xsl:function name="nts:substring-before-last" as="xs:string">
-        <xsl:param name="arg" as="xs:string?"/>
-        <xsl:param name="delim" as="xs:string"/>
-        
-        <xsl:variable name="tokens" select="tokenize($arg,$delim)"/>
-        <xsl:value-of select="$tokens[not(.=$tokens[last()])]" separator="{$delim}"/>
     </xsl:function>
 
 </xsl:stylesheet>
