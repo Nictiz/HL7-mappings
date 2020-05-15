@@ -17,6 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../zibs2017/payload/all-zibs.xsl"/>
     <xsl:import href="../zibs2017/payload/zib-LaboratoryTestResult-Observation-2.1.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-patient.xsl"/>
+    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-relatedperson.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-organization.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-practitioner.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_zib-pregnancy.xsl"/>
@@ -38,6 +39,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- ada instances -->
     <xsl:param name="patient-ada" as="element()*">
         <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
+    </xsl:param>
+
+    <xsl:param name="partner-ada" as="element()*">
+        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/vrouw/partner" mode="partner-ada"/>
     </xsl:param>
 
     <xsl:variable name="kind-ada" as="element()*">
@@ -75,6 +80,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </unieke-patient>
             </xsl:for-each-group>
         </xsl:for-each-group>
+    </xsl:variable>
+    
+    <!-- partner -->
+    <xsl:variable name="relatedPersons" as="element(f:RelatedPerson)*">
+        <xsl:for-each select="//partner">
+            <xsl:call-template name="nl-core-relatedperson-2.0">
+                <xsl:with-param name="in" select="$partner-ada"/>
+                <xsl:with-param name="logicalId" select="replace(persoonsnaam/achternamen/@value, ' ', '-')"/>     
+                <xsl:with-param name="adaPatient" select="$patient-ada"/>
+            </xsl:call-template>
+        </xsl:for-each>
     </xsl:variable>
 
     <!-- pregnancyNo -->
@@ -169,7 +185,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:for-each>
         <!-- zwangerschaps- en bevallingsgegevens -->
-        <xsl:for-each select="//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum)">
+        <xsl:for-each select="//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum)">
             <xsl:call-template name="bc-observation">
                 <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
@@ -257,7 +273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </request>
             </entry>
         </xsl:for-each>
-        <xsl:for-each select="$children | $organizations | $practitioners | $practitionerRoles | $episodesofcare | $conditions | $procedures | $observations">
+        <xsl:for-each select="$relatedPersons | $children | $organizations | $practitioners | $practitionerRoles | $episodesofcare | $conditions | $procedures | $observations">
             <xsl:apply-templates select="." mode="doCreateTransactionBundleEntry"/>
         </xsl:for-each>
     </xsl:variable>
@@ -265,7 +281,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates transaction bundle entry for a FHIR resource</xd:desc>
     </xd:doc>
-    <xsl:template name="createTransactionBundleEntry" match="f:Resource/* | f:Patient | f:Organization | f:Practitioner | f:PractitionerRole | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Composition" mode="doCreateTransactionBundleEntry">
+    <xsl:template name="createTransactionBundleEntry" match="f:Resource/* | f:Patient | f:RelatedPerson | f:Organization | f:Practitioner | f:PractitionerRole | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Composition" mode="doCreateTransactionBundleEntry">
         <entry xmlns="http://hl7.org/fhir">
             <fullUrl value="{nf:get-fhir-uuid(.)}"/>
             <resource>

@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$elementName='pariteit' or $elementName='pariteit_voor_deze_zwangerschap'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Parity"/>
                 </xsl:when>
-                <xsl:when test="$elementName='a_terme_datum'">
+                <xsl:when test="$elementName='a_terme_datum' or $elementName='definitieve_a_terme_datum'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-TermDate"/>
                 </xsl:when>
                 <xsl:when test="$elementName='wijze_einde_zwangerschap' or $elementName='datum_einde_zwangerschap'">
