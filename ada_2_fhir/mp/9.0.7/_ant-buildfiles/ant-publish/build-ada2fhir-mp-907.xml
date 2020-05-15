@@ -41,6 +41,27 @@
             <param name="fileset.include" value="*MA*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
         </antcall>
+
+        <!-- we need to do some preprocessing because Touchstone cannot filter on periodofuse -->
+        <property name="xsl.preprocess" value="${build.dir}/${usecase-mg}/payload/preprocess_4_Touchstone.xsl"/>
+        <property name="ada.dir" value="${build.dir}/${usecase-mg}/ada_instance_MA"/>
+        <property name="dest.dir" value="${ada.dir}/temp"/>
+        <sequential>
+            <fileset id="inputfilesPreProcess" dir="${build.dir}/${usecase-mg}/ada_instance_MA" includes="mg-mgr-mg-MA-Scenarioset0*.xml"/>
+            <echo/>
+            <echo>${echo.label} ${xsl.preprocess}</echo>
+            <xslt force="true" style="${xsl.preprocess}" destdir="${dest.dir}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesPreProcess"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>        
+         
+        <copy todir="${ada.dir}" failonerror="true">
+            <fileset dir="${dest.dir}" includes="*.xml"/>               
+        </copy>
+        <delete dir="${dest.dir}"/>  
+
         <!-- VV -->
         <antcall target="setup_sub">
             <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
@@ -49,17 +70,16 @@
             <param name="fileset.include" value="*VV*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
         </antcall>
-        
+
         <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
-         <antcall target="setup_sub">
+        <antcall target="setup_sub">
             <param name="build.dir" value="${build.dir}/${usecase-mo}"/>
             <param name="schema.string" value="*${usecase-mo}*"/>
             <param name="fileset.dir" value="ada_instance_mp"/>
-             <param name="fileset.include" value="*output*.xml"/>
+            <param name="fileset.include" value="*output*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase-mo}"/>
         </antcall>
-        
-        
+
         <!-- let's convert to fhir too while we're at it -->
         <antcall target="convert_ada_2_fhir"/>
 
@@ -76,7 +96,7 @@
         <antcall target="setup_sub_instances">
             <param name="build.dir" value="${build.dir}"/>
             <param name="fileset.dir" value="${fileset.dir}"/>
-             <param name="fileset.include" value="${fileset.include}"/>
+            <param name="fileset.include" value="${fileset.include}"/>
             <param name="refs.dir" value="${refs.dir}"/>
         </antcall>
 
@@ -121,14 +141,14 @@
             <param name="xsl.in" value="ada_instance_VV"/>
             <param name="xsl.out" value="fhir_instance_VV"/>
         </antcall>
-        
+
         <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
         <antcall target="convert_ada_2_fhir_sub">
             <param name="build.dir" value="${usecase-mo}"/>
             <param name="xsl.in" value="ada_instance_mp"/>
             <param name="xsl.out" value="fhir_instance_mp"/>
         </antcall>
-        
+
         <!--<antcall target="convert_ada_2_fhir_sub">
             <param name="build.dir" value="beschikbaarstellen_medicatieoverzicht"/>
         </antcall>
