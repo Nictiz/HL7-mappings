@@ -193,6 +193,13 @@
         <accept value="{lower-case($accept)}"/>
     </xsl:template>
     
+    <!--Remove unwanted space from FHIRPath expressions-->
+    <xsl:template match="f:TestScript/f:test/f:action/f:assert/f:expression/@value" mode="filter">
+        <xsl:attribute name="value">
+            <xsl:value-of select="normalize-space(.)"/>
+        </xsl:attribute>
+    </xsl:template>
+    
     <!-- Expand a nts:profile element to a FHIR profile element -->
     <xsl:template match="nts:profile" mode="expand">
         <profile id="{@id}">
