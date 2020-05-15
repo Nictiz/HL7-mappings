@@ -47,11 +47,20 @@
 
     <!-- Use the id element as hook to include a matching url -->
     <xsl:template match="f:TestScript/f:id" mode="filter">
+        <xsl:param name="scenario" tunnel="yes"/>
         <xsl:param name="accept" tunnel="yes"/>
+        <xsl:variable name="url">
+            <xsl:text>'http://nictiz.nl/fhir/fhir3-0-1/TestScript/</xsl:text>
+            <xsl:value-of select="@value"/>
+            <xsl:if test="$scenario='server'">
+                <xsl:text>-</xsl:text>
+                <xsl:value-of select="$accept"/>
+            </xsl:if>
+        </xsl:variable>
         <xsl:copy>
             <xsl:apply-templates select="node()|@*" mode="#current"/>
         </xsl:copy>
-        <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value,'-',$accept)}"/>
+        <url value="{$value}"/>
     </xsl:template>
 
     <!-- Use the name element as hook to include status. date, publisher and contact information --> 
@@ -163,10 +172,11 @@
     
     <!--Add the accept format to TestScript id-->
     <xsl:template match="f:TestScript/f:id/@value" mode="filter">
+        <xsl:param name="scenario" tunnel="yes"/>
         <xsl:param name="accept" tunnel="yes"/>
         <xsl:attribute name="value">
             <xsl:value-of select="."/>
-            <xsl:if test="not(ends-with(.,'-xml'))">
+            <xsl:if test="$scenario='server' and not(ends-with(.,'xml')) and not(ends-with(.,'json'))">
                 <xsl:text>-</xsl:text>
                 <xsl:value-of select="lower-case($accept)"/>
             </xsl:if>
@@ -175,10 +185,11 @@
     
     <!--Add the accept format to TestScript name-->
     <xsl:template match="f:TestScript/f:name/@value" mode="filter">
+        <xsl:param name="scenario" tunnel="yes"/>
         <xsl:param name="accept" tunnel="yes"/>
         <xsl:attribute name="value">
             <xsl:value-of select="."/>
-            <xsl:if test="not(ends-with(.,'Format'))">
+            <xsl:if test="$scenario='server' and not(ends-with(.,'Format'))">
                 <xsl:text> - </xsl:text>
                 <xsl:value-of select="upper-case($accept)"/>
                 <xsl:text> Format</xsl:text>
@@ -186,14 +197,21 @@
         </xsl:attribute>
     </xsl:template>
     
-    <!--Use the test operation description to add the accept format-->
-    <xsl:template match="f:TestScript/f:test/f:action/f:operation/f:description" mode="filter">
+    <!--Add the accept format if necessary-->
+    <xsl:template match="f:TestScript/f:test/f:action/f:operation" mode="filter">
+        <xsl:param name="scenario" tunnel="yes"/>
         <xsl:param name="accept" tunnel="yes"/>
-        <!--What if no description can be found?-->
+        
+        <!--All elements that can exist before the accept element following the FHIR spec.-->
+        <xsl:variable name="pre-accept" select="('type','resource','label','description')"/>
         <xsl:copy>
-            <xsl:apply-templates select="node()|@*" mode="#current"/>
+            <xsl:apply-templates select="@*" mode="#current"/>
+            <xsl:apply-templates select="f:*[local-name()=$pre-accept]" mode="#current"/>
+            <xsl:if test="$scenario='server' and not(following-sibling::f:accept)">
+                <accept value="{lower-case($accept)}"/>
+            </xsl:if>
+            <xsl:apply-templates select="f:*[not(local-name()=$pre-accept)]" mode="#current"/>
         </xsl:copy>
-        <accept value="{lower-case($accept)}"/>
     </xsl:template>
     
     <!--Remove unwanted space from FHIRPath expressions-->
