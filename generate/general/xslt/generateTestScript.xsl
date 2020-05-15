@@ -41,6 +41,7 @@
             <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::f:origin | ancestor::f:destination)]" tunnel="yes"/>
             <xsl:with-param name="variables" select="$expanded//f:variable" tunnel="yes"/>
             <xsl:with-param name="rules" select="$expanded//f:rule[@id]" tunnel="yes"/>
+            <xsl:with-param name="scenario" select="$scenario" tunnel="yes"/>
             <xsl:with-param name="accept" select="$accept" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
@@ -50,7 +51,7 @@
         <xsl:param name="scenario" tunnel="yes"/>
         <xsl:param name="accept" tunnel="yes"/>
         <xsl:variable name="url">
-            <xsl:text>'http://nictiz.nl/fhir/fhir3-0-1/TestScript/</xsl:text>
+            <xsl:text>http://nictiz.nl/fhir/fhir3-0-1/TestScript/</xsl:text>
             <xsl:value-of select="@value"/>
             <xsl:if test="$scenario='server'">
                 <xsl:text>-</xsl:text>
@@ -60,7 +61,7 @@
         <xsl:copy>
             <xsl:apply-templates select="node()|@*" mode="#current"/>
         </xsl:copy>
-        <url value="{$value}"/>
+        <url value="{$url}"/>
     </xsl:template>
 
     <!-- Use the name element as hook to include status. date, publisher and contact information --> 
