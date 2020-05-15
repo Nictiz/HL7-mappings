@@ -207,7 +207,7 @@
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:apply-templates select="f:*[local-name()=$pre-accept]" mode="#current"/>
-            <xsl:if test="$scenario='server' and not(following-sibling::f:accept)">
+            <xsl:if test="$scenario='server' and not(f:accept)">
                 <accept value="{lower-case($accept)}"/>
             </xsl:if>
             <xsl:apply-templates select="f:*[not(local-name()=$pre-accept)]" mode="#current"/>
