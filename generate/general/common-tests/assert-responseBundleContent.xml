@@ -81,12 +81,14 @@
                 coding.display.exists() or 
                 (coding.exists().not() and text.exists()))"/>
         </assert>
-    </action>   
+    </action>
+    
+    <nts:profile id="Bundle-profile" value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
     <action>
         <assert>
             <description value="Confirm that the returned Bundle conforms to the base FHIR specification and the resources to the stated profiles in the meta.profile tag."/>
             <direction value="response"/>
-            <validateProfileId value="bundle-profile"/>
+            <validateProfileId value="Bundle-profile"/>
             <warningOnly value="{$warningOnly}"/>
         </assert>
     </action>
