@@ -190,7 +190,7 @@
         <xsl:param name="expectedResponseFormat" tunnel="yes"/>
         <xsl:attribute name="value">
             <xsl:value-of select="."/>
-            <xsl:if test="$scenario='server' and not(ends-with(.,'xml')) and not(ends-with(.,'json'))">
+            <xsl:if test="$scenario='server'  and not(ancestor::f:TestScript/f:test/f:action/f:operation/f:accept) and not(contains(lower-case(.),$expectedResponseFormat))">
                 <xsl:text>-</xsl:text>
                 <xsl:value-of select="lower-case($expectedResponseFormat)"/>
             </xsl:if>
@@ -203,7 +203,7 @@
         <xsl:param name="expectedResponseFormat" tunnel="yes"/>
         <xsl:attribute name="value">
             <xsl:value-of select="."/>
-            <xsl:if test="$scenario='server' and not(ends-with(.,'Format'))">
+            <xsl:if test="$scenario='server' and not(ancestor::f:TestScript/f:test/f:action/f:operation/f:accept) and not(contains(lower-case(.),$expectedResponseFormat))">
                 <xsl:text> - </xsl:text>
                 <xsl:value-of select="upper-case($expectedResponseFormat)"/>
                 <xsl:text> Format</xsl:text>
