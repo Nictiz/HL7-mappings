@@ -129,11 +129,7 @@ There may be differences for xis and phr scenarios in how a TestScript is transf
 
 ## Running the transformation
 
-The transformation is performed with the `generateTestScript.xsl` stylesheet, which may be found in the `xslt` folder.
-
-Parameters:
-
-* `testscriptBase` is an alternative base `node()` of the TestScript from which inclusions are done (see XSLT's `document()` for more information). It can be used when the TestScript content is stored in a variable, to indicate where inclusions should be made from. Note that recursive includes are relative to their parent file, not to this base.
+The transformation is performed with the `generateTestScript.xsl` stylesheet, which may be found in the `xslt` folder. See the stylesheet documentation for the available parameters.
 
 ## Building
 
