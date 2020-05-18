@@ -12,6 +12,7 @@
             <sch:assert test="f:description[@value]">element 'description' with a value is required</sch:assert>
             <sch:assert test="f:test">At least one 'test' element is required</sch:assert>
             <sch:assert test="not(nts:patientTokenFixture) or @nts:scenario = 'server' or @nts:scenario = 'client'">Set the scenario to either 'server' or 'client' using the nts:scenario attribute</sch:assert>
+            <sch:assert test="not(@nts:accept) or @nts:accept=('xml','json','xml json','json xml')">Set the accept output value to either 'xml', 'json' or both ('xml json') using the nts:accept attribute</sch:assert>
             
             <!-- These FHIR TestScript elements are automatically added and shouldn't be included here -->
             <sch:report test="f:date" subject="f:date">Element 'date' not allowed; it will be created during transformation</sch:report>
