@@ -268,7 +268,7 @@
             <xsl:when test="$scenario='client'">
                 <fixture id="patient-token-fixture">
                     <resource>
-                        <reference value="{nts:constructFilePath($referenceFolder, @href)}"/><xsl:value-of select="$scenario"/>
+                        <reference value="{nts:constructFilePath($referenceFolder, @href)}"/>
                     </resource>
                 </fixture>
                 <variable>
