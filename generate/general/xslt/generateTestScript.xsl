@@ -35,7 +35,7 @@
         <xsl:if test="$expectedResponseFormat != '' and $scenario != 'server'">
             <xsl:message terminate="yes" select="'Parameter ''expectedResponseFormat'' only has a meaning when nts:scenario is ''server'''"></xsl:message>
         </xsl:if>
-        <xsl:if test="$expectedResponseFormat != 'xml' and $expectedResponseFormat != 'json'">
+        <xsl:if test="$scenario = 'server' and not($expectedResponseFormat = ('xml', 'json'))">
             <xsl:message terminate="yes" select="concat('Invalid value ''', $expectedResponseFormat, ''' for parameter ''expectedResponseFormat''; should be either ''xml'' or ''json''')"></xsl:message>
         </xsl:if>
         
