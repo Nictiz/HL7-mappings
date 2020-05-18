@@ -277,7 +277,7 @@
         </xsl:variable>
         
         <xsl:variable name="document" as="node()*">
-            <xsl:copy-of select="document(string-join(($inputDir, $inputDir, @href), '/'))"/>
+            <xsl:copy-of select="document(string-join(($inputDir, @href), '/'))"/>
         </xsl:variable>
         <xsl:apply-templates select="$document/nts:component/(element()|comment())" mode="expand">
             <xsl:with-param name="inclusionParameters" select="$newInclusionParameters" tunnel="yes"/>
