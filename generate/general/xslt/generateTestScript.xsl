@@ -20,12 +20,25 @@
          param inputDir is a string describing the direcory where the input file resides. The 
                         'project/commonComponentFolder' template parameters are relative to this directory.
                         This parameter is only needed when applying this template on a document that's not read from 
-                        disk (i.e. a generated/rewritten document). -->
+                        disk (i.e. a generated/rewritten document).
+         param expectedResponseFormat is the format for responses (either 'xml' (default) or 'json') that this 
+                                      TestScript expects when it tests a server (i.e. it has no meaning when 
+                                      nts:scenario is set to 'client'). This value is added as 'Accept' header on all
+                                      requests and to the name and id of the TestScript.
+    -->
     <xsl:template name="generate" match="f:TestScript">
         <xsl:param name="inputDir" as="xs:string" select="replace(base-uri(current()), '(.*)/[^/]+', '$1')"/>
-        <xsl:param name="accept" select="'xml'"/>
+        <xsl:param name="expectedResponseFormat" select="if(@nts:scenario = 'server') then 'xml' else ''"/>
         <xsl:variable name="scenario" select="@nts:scenario"/>
-
+        
+        <!-- Sanity check the expectedResponseFormat parameter -->
+        <xsl:if test="$expectedResponseFormat != '' and $scenario != 'server'">
+            <xsl:message terminate="yes" select="'Parameter ''expectedResponseFormat'' only has a meaning when nts:scenario is ''server'''"></xsl:message>
+        </xsl:if>
+        <xsl:if test="$expectedResponseFormat != 'xml' and $expectedResponseFormat != 'json'">
+            <xsl:message terminate="yes" select="concat('Invalid value ''', $expectedResponseFormat, ''' for parameter ''expectedResponseFormat''; should be either ''xml'' or ''json''')"></xsl:message>
+        </xsl:if>
+        
         <!-- Expand all the Nictiz inclusion elements to their FHIR representation --> 
         <xsl:variable name="expanded">
             <xsl:apply-templates mode="expand" select=".">
@@ -41,17 +54,27 @@
             <xsl:with-param name="profiles" select="$expanded//f:profile[not(ancestor::f:origin | ancestor::f:destination)]" tunnel="yes"/>
             <xsl:with-param name="variables" select="$expanded//f:variable" tunnel="yes"/>
             <xsl:with-param name="rules" select="$expanded//f:rule[@id]" tunnel="yes"/>
-            <xsl:with-param name="accept" select="$accept" tunnel="yes"/>
+            <xsl:with-param name="scenario" select="$scenario" tunnel="yes"/>
+            <xsl:with-param name="expectedResponseFormat" select="$expectedResponseFormat" tunnel="yes"/>
         </xsl:apply-templates>
     </xsl:template>
 
     <!-- Use the id element as hook to include a matching url -->
     <xsl:template match="f:TestScript/f:id" mode="filter">
-        <xsl:param name="accept" tunnel="yes"/>
+        <xsl:param name="scenario" tunnel="yes"/>
+        <xsl:param name="expectedResponseFormat" tunnel="yes"/>
+        <xsl:variable name="url">
+            <xsl:text>http://nictiz.nl/fhir/fhir3-0-1/TestScript/</xsl:text>
+            <xsl:value-of select="@value"/>
+            <xsl:if test="$scenario='server'">
+                <xsl:text>-</xsl:text>
+                <xsl:value-of select="$expectedResponseFormat"/>
+            </xsl:if>
+        </xsl:variable>
         <xsl:copy>
             <xsl:apply-templates select="node()|@*" mode="#current"/>
         </xsl:copy>
-        <url value="{concat('http://nictiz.nl/fhir/fhir3-0-1/TestScript/', @value,'-',$accept)}"/>
+        <url value="{$url}"/>
     </xsl:template>
 
     <!-- Use the name element as hook to include status. date, publisher and contact information --> 
@@ -161,39 +184,48 @@
         </xsl:element>
     </xsl:template>
     
-    <!--Add the accept format to TestScript id-->
+    <!-- Add the format for requests to the TestScript id, if specified -->
     <xsl:template match="f:TestScript/f:id/@value" mode="filter">
-        <xsl:param name="accept" tunnel="yes"/>
+        <xsl:param name="scenario" tunnel="yes"/>
+        <xsl:param name="expectedResponseFormat" tunnel="yes"/>
         <xsl:attribute name="value">
             <xsl:value-of select="."/>
-            <xsl:if test="not(ends-with(.,'-xml'))">
+            <xsl:if test="$scenario='server' and not(ancestor::f:TestScript/f:test/f:action/f:operation/f:accept) and not(contains(lower-case(.),$expectedResponseFormat))">
                 <xsl:text>-</xsl:text>
-                <xsl:value-of select="lower-case($accept)"/>
+                <xsl:value-of select="lower-case($expectedResponseFormat)"/>
             </xsl:if>
         </xsl:attribute>
     </xsl:template>
     
-    <!--Add the accept format to TestScript name-->
+    <!--Add the format for requests to the TestScript name, if specified -->
     <xsl:template match="f:TestScript/f:name/@value" mode="filter">
-        <xsl:param name="accept" tunnel="yes"/>
+        <xsl:param name="scenario" tunnel="yes"/>
+        <xsl:param name="expectedResponseFormat" tunnel="yes"/>
         <xsl:attribute name="value">
             <xsl:value-of select="."/>
-            <xsl:if test="not(ends-with(.,'Format'))">
+            <xsl:if test="$scenario='server' and not(ancestor::f:TestScript/f:test/f:action/f:operation/f:accept) and not(contains(lower-case(.),$expectedResponseFormat))">
                 <xsl:text> - </xsl:text>
-                <xsl:value-of select="upper-case($accept)"/>
+                <xsl:value-of select="upper-case($expectedResponseFormat)"/>
                 <xsl:text> Format</xsl:text>
             </xsl:if>
         </xsl:attribute>
     </xsl:template>
     
-    <!--Use the test operation description to add the accept format-->
-    <xsl:template match="f:TestScript/f:test/f:action/f:operation/f:description" mode="filter">
-        <xsl:param name="accept" tunnel="yes"/>
-        <!--What if no description can be found?-->
+    <!--Add the Accept header, if necessary-->
+    <xsl:template match="f:TestScript/f:test/f:action/f:operation" mode="filter">
+        <xsl:param name="scenario" tunnel="yes"/>
+        <xsl:param name="expectedResponseFormat" tunnel="yes"/>
+        
+        <!--All elements that can exist before the accept element following the FHIR spec.-->
+        <xsl:variable name="pre-accept" select="('type','resource','label','description')"/>
         <xsl:copy>
-            <xsl:apply-templates select="node()|@*" mode="#current"/>
+            <xsl:apply-templates select="@*" mode="#current"/>
+            <xsl:apply-templates select="f:*[local-name()=$pre-accept]" mode="#current"/>
+            <xsl:if test="not(f:accept) and $expectedResponseFormat != ''">
+                <accept value="{lower-case($expectedResponseFormat)}"/>
+            </xsl:if>
+            <xsl:apply-templates select="f:*[not(local-name()=$pre-accept)]" mode="#current"/>
         </xsl:copy>
-        <accept value="{lower-case($accept)}"/>
     </xsl:template>
     
     <!--Remove unwanted space from FHIRPath expressions-->

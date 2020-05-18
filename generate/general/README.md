@@ -127,19 +127,9 @@ There may be differences for xis and phr scenarios in how a TestScript is transf
 
     nts:scenario="server|client"
 
-### Accepted return format
-
-By adding an `nts:accept` attribute to the `TestScript` root, xml, json or both xml and json outputs (space separated) can be generated. If no `nts:accept` attribute is present, only an xml variant will be generated.
-
-    nts:accept="xml|json|xml json"
-
 ## Running the transformation
 
-The transformation is performed with the `generateTestScript.xsl` stylesheet, which may be found in the `xslt` folder.
-
-Parameters:
-
-* `testscriptBase` is an alternative base `node()` of the TestScript from which inclusions are done (see XSLT's `document()` for more information). It can be used when the TestScript content is stored in a variable, to indicate where inclusions should be made from. Note that recursive includes are relative to their parent file, not to this base.
+The transformation is performed with the `generateTestScript.xsl` stylesheet, which may be found in the `xslt` folder. See the stylesheet documentation for the available parameters.
 
 ## Building
 
