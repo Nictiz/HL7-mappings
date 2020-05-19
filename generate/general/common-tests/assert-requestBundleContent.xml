@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nts:component xmlns="http://hl7.org/fhir" xmlns:nts="http://nictiz.nl/xsl/testscript">
+    <nts:parameter name="warningOnly" value="false"/>
+    <action>
+        <assert>
+            <description value="Confirm that Bundle does not use Burgerservicenummer (BSN) anywhere."/>
+            <direction value="request"/>
+            <expression value="Bundle.descendants().select(identifier.where(system.toString() = 'http://fhir.nl/fhir/NamingSystem/bsn').where(value.empty())).count() = 0"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that all posted resources contain a meta.profile tag."/>
+            <direction value="request"/>
+            <expression value="Bundle.entry.resource.where(meta.profile.empty()).empty()"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that all resources that are updated contain a Resource.id and a fullUrl."/>
+            <direction value="request"/>
+            <expression value="Bundle.entry.where(request.method='PUT').all(
+                $this.fullUrl.exists() and
+                $this.resource.id.exists())"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that all resources that are created don't contain a Resource.id."/>
+            <direction value="request"/>
+            <expression value="Bundle.entry.where(request.method='POST').all($this.resource.id.exists().not())"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that all resources that are created don't have a RESTful fullUrl."/>
+            <direction value="request"/>
+            <expression value="Bundle.entry.where(request.method='POST').all(
+                $this.fullUrl.startsWith('http://').not() and 
+                $this.fullUrl.startsWith('https://').not()
+            )"/>
+        </assert>
+    </action>    <action>
+        <assert>
+            <description value="Confirm that all resources that are created contain no fullUrl or a UUID or OID based fullUrl."/>
+            <direction value="request"/>
+            <expression value="Bundle.entry.where(request.method='POST').fullUrl.all(
+                exists().not or 
+                matches('^urn:oid:[0-2](\\.(0|[1-9]\\d*))*$') or
+                matches('^urn:uuid:[A-Fa-f\\d]{8}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{12}$')
+            )"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that the fullUrl does not disagree with the id in the resource, see http://hl7.org/fhir/stu3/bundle-definitions.html#Bundle.entry.fullUrl"/>
+            <direction value="request"/>
+            <expression value="Bundle.entry.where(fullUrl.exists() and resource.id.exists()).all($this.fullUrl.endsWith($this.resource.id))"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that the fullUrl is an absolute URL, an uuid or an oid."/>
+            <direction value="request"/>
+            <expression value="Bundle.entry.fullUrl.all(
+                startsWith('http://') or
+                startsWith('https://') or
+                matches('^urn:oid:[0-2](\\.(0|[1-9]\\d*))*$') or
+                matches('^urn:uuid:[A-Fa-f\\d]{8}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{12}$')
+                )"/>
+        </assert>
+    </action>   
+    <action>
+        <assert>
+            <description value="Confirm that literal References (Reference.reference) are an absolute URL, a relative URL or an internal fragment reference (contained), see: http://hl7.org/fhir/stu3/references.html#literal."/>
+            <direction value="request"/>
+            <expression value="Bundle.descendants().reference.all(
+                startsWith('http://') or
+                startsWith('https://') or
+                startsWith('#') or
+                matches('^urn:oid:[0-2](\\.(0|[1-9]\\d*))*$') or
+                matches('^urn:uuid:[A-Fa-f\\d]{8}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{4}-[A-Fa-f\\d]{12}$') or
+                (startsWith('urn:').not() and startsWith('#').not() and matches('^[A-Za-z]{3,}/[^/]+$'))
+                )"/>
+        </assert>
+    </action>
+    <action>
+        <assert>
+            <description value="Confirm that all References have a display value, see https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2019.01_FHIR_IG#Use_of_the_reference_datatype."/>
+            <direction value="request"/>
+            <expression value="Bundle.descendants().where($this.is(Reference)).all(display.exists())"/>
+        </assert>
+    </action> 
+    <action>
+        <assert>
+            <description value="Confirm that all CodeableConcept elements contain a coding.display or a text value if no Coding exists, see https://informatiestandaarden.nictiz.nl/wiki/MedMij:V2019.01_FHIR_IG#Use_of_coded_concepts."/>
+            <direction value="request"/>
+            <expression value="Bundle.descendants().where($this.is(CodeableConcept)).all(
+                coding.display.exists() or 
+                (coding.exists().not() and text.exists()))"/>
+        </assert>
+    </action>
+    
+    <nts:profile id="Bundle-profile" value="http://hl7.org/fhir/StructureDefinition/Bundle"/>
+    <action>
+        <assert>
+            <description value="Confirm that the returned Bundle conforms to the base FHIR specification and the resources to the stated profiles in the meta.profile tag."/>
+            <direction value="request"/>
+            <validateProfileId value="Bundle-profile"/>
+            <warningOnly value="{$warningOnly}"/>
+        </assert>
+    </action>
+</nts:component>
