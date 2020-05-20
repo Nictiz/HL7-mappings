@@ -55,7 +55,7 @@ In the corresponding component, the variable can be used with the XSL syntax for
     <nts:component ...>
         <variable>
             <name value="foo"/>
-            <defaultValue value="{$param1}/>
+            <defaultValue value="{$param1}"/>
         </variable>
     </nts:component>
 
@@ -70,7 +70,7 @@ Compare the following two examples (the first wil result in a value of 'foo' for
         <nts:parameter name="param1" value="bar"/>    
         <variable>
             <name value="foo"/>
-            <defaultValue value="{$param1}/>
+            <defaultValue value="{$param1}"/>
         </variable>
     </nts:component>
 
@@ -79,7 +79,7 @@ Compare the following two examples (the first wil result in a value of 'foo' for
         <nts:parameter name="param1" value="bar"/>    
         <variable>
             <name value="foo"/>
-            <defaultValue value="{$param1}/>
+            <defaultValue value="{$param1}"/>
         </variable>
     </nts:component>    
 
