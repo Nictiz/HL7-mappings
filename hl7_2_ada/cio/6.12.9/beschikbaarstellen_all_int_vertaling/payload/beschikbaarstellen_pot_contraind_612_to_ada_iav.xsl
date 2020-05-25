@@ -24,11 +24,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
     <xsl:param name="xsdAda" as="node()*" select="document('../ada_schemas/beschikbaarstellen_allergie_intolerantie_vertaling.xsd')"/>
-    <xsl:variable name="ada-formname">beschikbaarstellen_allergie_intolerantie_vertaling</xsl:variable>
-    <xsl:variable name="transaction-name" select="$ada-formname"/>
-    <xsl:variable name="xsdTransaction" select="nf:getADAComplexType($xsdAda, nf:getADAComplexTypeName($xsdAda, $transaction-name))"/>
-    <xsl:variable name="transaction-oid">2.16.840.1.113883.2.4.3.11.60.26.4.6</xsl:variable>
-    <xsl:variable name="transaction-effectiveDate" as="xs:dateTime">2019-08-28T13:33:41</xsl:variable>
+    <xsl:variable name="adaFormname">beschikbaarstellen_allergie_intolerantie_vertaling</xsl:variable>
+    <xsl:variable name="transactionName" select="$adaFormname"/>
+    <xsl:variable name="xsdTransaction" select="nf:getADAComplexType($xsdAda, nf:getADAComplexTypeName($xsdAda, $transactionName))"/>
+    <xsl:variable name="transactionOid">2.16.840.1.113883.2.4.3.11.60.26.4.6</xsl:variable>
+    <xsl:variable name="transactionEffectiveDate" as="xs:dateTime">2019-08-28T13:33:41</xsl:variable>
     <xsl:variable name="ica612Root" select="//hl7:REPC_IN000024NL"/>
 
     <!-- Variable to hold all information to create actual ada instance -->
@@ -41,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:comment>Generated from HL7v3 ica 6.12 xml with message id (<xsl:value-of select="./local-name()"/>/id) <xsl:value-of select="concat('root: ', ./hl7:id/@root, ' and extension: ', ./hl7:id/@extension)"/>.</xsl:comment>
             <xsl:text>
 </xsl:text>
-            <beschikbaarstellen_allergie_intolerantie_vertaling app="cio" shortName="{$transaction-name}" formName="{$ada-formname}" transactionRef="{$transaction-oid}" transactionEffectiveDate="{$transaction-effectiveDate}" prefix="cio-" language="nl-NL">
+            <beschikbaarstellen_allergie_intolerantie_vertaling app="cio" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="cio-" language="nl-NL">
                 <xsl:attribute name="title">Generated from HL7v3 potentiële contraindicaties 6.12 xml</xsl:attribute>
                 <xsl:attribute name="id" select="tokenize(base-uri(), '/')[last()]"/>
                 <xsl:copy-of select="$patients/patient_information/*[local-name() = $elmPatient]"/>

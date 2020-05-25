@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
   
     
     <xd:doc>
-        <xd:desc>Exceptions for results output in verstrekkingenvertaling</xd:desc>
+        <xd:desc>Exceptions for results output in allergie-intolerantie vertaling</xd:desc>
     </xd:doc>
     <xsl:template match="f:AllergyIntolerance/f:meta/f:profile" mode="ResultOutput">
         <xsl:copy>
