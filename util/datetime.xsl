@@ -71,12 +71,12 @@
         <xsl:param name="inputDateT" as="xs:date?"/>
 
         <xsl:choose>
-            <xsl:when test="(string-length($in) gt 0) and exists($inputDateT) and matches($in, '^T([+\-]\d+(\.\d+)?[YMD])?(\{.*})?')">
+            <xsl:when test="(string-length($in) gt 0) and exists($inputDateT) and matches($in, '^T([+\-]\d+(\.\d+)?[YMD])?(\{.*\})?')">
                 <xsl:variable name="sign" select="replace($in, 'T([+\-])?.*', '$1')"/>
                 <xsl:variable name="amount" select="replace($in, 'T([+\-](\d+(\.\d+)?)[YMD])?.*', '$2')"/>
                 <xsl:variable name="yearMonthDay" select="replace($in, 'T([+\-]\d+(\.\d+)?([YMD]))?.*', '$3')"/>
                 <xsl:variable name="xsDurationString" select="replace($in, 'T([+\-](\d+(\.\d+)?)([YMD]))?.*', 'P$2$4')"/>
-                <xsl:variable name="timePart" select="replace($in, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)})?', '$4')"/>
+                <xsl:variable name="timePart" select="replace($in, 'T([+\-]\d+(\.\d+)?[YMD])?(\{(.*)\})?', '$4')"/>
                 <xsl:variable name="time" as="xs:string?">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 5">
@@ -90,7 +90,7 @@
                 </xsl:variable>
                 <xsl:variable name="newDate" as="xs:date?">
                     <xsl:choose>
-                        <xsl:when test="matches($in, 'T(\{(.*)})?') and string-length($sign) = 0">
+                        <xsl:when test="matches($in, 'T(\{(.*)\})?') and string-length($sign) = 0">
                             <!-- Only T and (optional) time, new date equals input Date T -->
                             <xsl:value-of select="xs:date($inputDateT)"/>
                         </xsl:when>
