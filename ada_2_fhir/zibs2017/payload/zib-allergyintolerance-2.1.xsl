@@ -374,7 +374,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:sequence select="$zibrootAuteur"/>
                             </xsl:when>
                             <xsl:when test="$zibrootAuteur[not(@datatype) or @datatype = 'reference'][@value]">
-                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootAuteur/@value]"/>
+                                <xsl:sequence select="(ancestor::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootAuteur/@value])[1]"/>
                             </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
@@ -411,7 +411,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:sequence select="$zibrootInformant"/>
                             </xsl:when>
                             <xsl:when test="$zibrootInformant[not(@datatype) or @datatype = 'reference'][@value]">
-                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
+                                <xsl:sequence select="(ancestor::*[parent::data]//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value])[1]"/>
                             </xsl:when>
                         </xsl:choose>
                     </xsl:variable>
