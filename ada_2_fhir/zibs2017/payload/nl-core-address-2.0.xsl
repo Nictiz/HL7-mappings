@@ -40,11 +40,6 @@
                         <!-- Postadres -->
                         <xsl:when test="@code = 'PST'">
                             <!-- AWE, no use to be outputted for postal address, see https://simplifier.net/NictizSTU3-Zib2017/AdresSoortCodelijst-to-AddressUse -->
-                            <!--     <use>
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="PST"/>
-                                </extension>
-                            </use>-->
                             <type value="postal"/>
                         </xsl:when>
                         <!-- Officieel adres -->
@@ -52,20 +47,18 @@
                             <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
                                 <valueCode value="true"/>
                             </extension>
-                            <use value="home">
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="HP"/>
-                                </extension>
-                            </use>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                                <valueCode value="HP"/>
+                            </extension>
+                            <use value="home"/>
                             <type value="physical"/>
                         </xsl:when>
                         <!-- Woon-/verblijfadres -->
                         <xsl:when test="@code = 'PHYS'">
-                            <use value="home">
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="PHYS"/>
-                                </extension>
-                            </use>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                                <valueCode value="PHYS"/>
+                            </extension>
+                            <use value="home"/>
                             <type value="physical"/>
                         </xsl:when>
                         <!-- Tijdelijk adres -->
@@ -78,11 +71,10 @@
                         </xsl:when>
                         <!-- Vakantie adres -->
                         <xsl:when test="@code = 'HV'">
-                            <use value="temp">
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="HV"/>
-                                </extension>
-                            </use>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                                <valueCode value="HV"/>
+                            </extension>
+                            <use value="temp"/>
                         </xsl:when>
                     </xsl:choose>
                 </xsl:for-each>
