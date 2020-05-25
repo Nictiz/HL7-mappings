@@ -55,12 +55,12 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-        </sequential>        
-         
+        </sequential>
+
         <copy todir="${ada.dir}" failonerror="true">
-            <fileset dir="${dest.dir}" includes="*.xml"/>               
+            <fileset dir="${dest.dir}" includes="*.xml"/>
         </copy>
-        <delete dir="${dest.dir}"/>  
+        <delete dir="${dest.dir}"/>
 
         <!-- VV -->
         <antcall target="setup_sub">
@@ -104,8 +104,10 @@
 
     <target name="setup_sub_schemas" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project">
 
-        <delete dir="${build.dir}/ada_schemas"/>
-
+        <delete>
+            <fileset dir="${build.dir}/ada_schemas" includes="*.*"/>
+        </delete>
+    
         <copy todir="${build.dir}/ada_schemas" failonerror="true">
             <fileset dir="${project.source.dir}/schemas">
                 <include name="${schema.string}"/>
@@ -119,8 +121,10 @@
 
         <echo>Copying ADA instances from ${refs.dir}/ada_instance to ${build.dir}/${fileset.dir}</echo>
 
-        <delete dir="${build.dir}/${fileset.dir}"/>
-        <copy todir="${build.dir}/${fileset.dir}" failonerror="true">
+        <delete>
+            <fileset dir="${build.dir}/${fileset.dir}" includes="*.*"/>
+        </delete>
+          <copy todir="${build.dir}/${fileset.dir}" failonerror="true">
             <fileset dir="${refs.dir}/ada_instance">
                 <include name="${fileset.include}"/>
             </fileset>
@@ -166,7 +170,9 @@
         <property name="xsl.output" value="${build.dir}/${xsl.out}"/>
 
         <echo>Deleting previous results, if any</echo>
-        <delete dir="${xsl.output}"/>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.*"/>
+        </delete>
 
         <sequential>
             <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
