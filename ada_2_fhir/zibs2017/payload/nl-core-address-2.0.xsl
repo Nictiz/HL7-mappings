@@ -39,6 +39,9 @@
                     <xsl:choose>
                         <!-- Postadres -->
                         <xsl:when test="@code = 'PST'">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                                <valueCode value="PST"/>
+                            </extension>
                             <!-- AWE, no use to be outputted for postal address, see https://simplifier.net/NictizSTU3-Zib2017/AdresSoortCodelijst-to-AddressUse -->
                             <type value="postal"/>
                         </xsl:when>
