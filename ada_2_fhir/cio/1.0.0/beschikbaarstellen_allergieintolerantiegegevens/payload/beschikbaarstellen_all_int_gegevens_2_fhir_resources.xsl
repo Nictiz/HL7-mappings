@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen allergie intolerantie gegevens".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:apply-templates select="//beschikbaarstellen_allergie_intolerantie"/>
+        <xsl:apply-templates select="adaxml/data/beschikbaarstellen_allergie_intolerantie"/>
     </xsl:template>
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
@@ -75,16 +75,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:result-document>
     </xsl:template>   
     
-    <xd:doc>
-        <xd:desc>
-            Temporary template due to issue KT-144, where a verificationStatus with a dataAbsentReason is rejected in Touchstone/WildFHIR upload
-            extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason"
-         </xd:desc>
-    </xd:doc>
-    <xsl:template match="f:verificationStatus[f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason']" mode="ResultOutput">
-         <xsl:copy>
-            <xsl:attribute name="value">confirmed</xsl:attribute>
-        </xsl:copy>
-    </xsl:template>  
-
 </xsl:stylesheet>

@@ -3,6 +3,55 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: <a href="Patient/VRONIQUEV-VRONIQUEXXX-TEST-D">Véronique V. Véronique XXX-TEST-D</a>. Id: AI_01_03 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Ingevoerd door: <a href="PractitionerRole/33333333301-002">M. Boot || Allergoloog (gesloten register)</a>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Prednisolon oraal (3158 - G-Standaard Bestand 725)">Prednisolon oraal</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>
+                     <a href="PractitionerRole/33333333301-002">M. Boot || Allergoloog (gesloten register)</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -150}</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>${DATE, T, D, -150}</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
+                           </div>
+                           <div>
+                              <span title="Exantheem (271807003 - SNOMED CT)">Exantheem</span>
+                           </div>
+                           <div>Vlekken en bultjes op de huid</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
       <value value="AI_01_03"/>
@@ -18,14 +67,18 @@
          </valueCodeableConcept>
       </extension>
    </clinicalStatus>
-   <verificationStatus value="confirmed"/>
+   <verificationStatus>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </verificationStatus>
    <category value="medication">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
                <code value="419511003"/>
-               <display value="Medicijn"/>
+               <display value="neiging tot ongewenste reactie op geneesmiddel"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -36,7 +89,7 @@
             <coding>
                <system value="http://snomed.info/sct"/>
                <code value="24484000"/>
-               <display value="Ernstig"/>
+               <display value="ernstig"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -49,8 +102,8 @@
       </coding>
    </code>
    <patient>
-      <reference value="Patient/YYY-Yong20"/>
-      <display value="Kendrick K. Ken YYY_Yong20"/>
+      <reference value="Patient/VRONIQUEV-VRONIQUEXXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
    </patient>
    <onsetDateTime value="${DATE, T, D, -150}"/>
    <recorder>
@@ -60,6 +113,7 @@
             <display value="M. Boot || Allergoloog (gesloten register)"/>
          </valueReference>
       </extension>
+      <display value="M. Boot || Allergoloog (gesloten register)"/>
    </recorder>
    <asserter>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -68,6 +122,7 @@
             <display value="M. Boot || Allergoloog (gesloten register)"/>
          </valueReference>
       </extension>
+      <display value="M. Boot || Allergoloog (gesloten register)"/>
    </asserter>
    <lastOccurrence value="${DATE, T, D, -150}"/>
    <reaction>

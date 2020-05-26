@@ -3,6 +3,18 @@
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Abraham B.M.H. Pasveer (Bram)</div>
+         <div>
+            <a href="tel:06-12345670">06-12345670</a> (Tel Mobiel), <a href="mailto:brampasveer_123@hotmail.com">brampasveer_123@hotmail.com</a> (E-mail Privé)</div>
+         <div>Bolweg 99, 9999 XX Stitswerd (Privé Bezoek)</div>
+         <div>
+            <span title="Vriend(in)/kennis (20 - RoleCodeLijst (COD472-VEKT))">Vriend(in)/kennis</span>, Boezemvriend van <a href="Patient/VRONIQUEV-VRONIQUEXXX-TEST-D">Véronique V. Véronique XXX-TEST-D</a>
+         </div>
+      </div>
+   </text>
    <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
       <valueCodeableConcept>
          <coding>
@@ -13,8 +25,8 @@
       </valueCodeableConcept>
    </extension>
    <patient>
-      <reference value="Patient/YYY-Yong20"/>
-      <display value="Kendrick K. Ken YYY_Yong20"/>
+      <reference value="Patient/VRONIQUEV-VRONIQUEXXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
    </patient>
    <relationship>
       <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
@@ -78,11 +90,10 @@
       </use>
    </telecom>
    <address>
-      <use value="home">
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-            <valueCode value="PHYS"/>
-         </extension>
-      </use>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+         <valueCode value="PHYS"/>
+      </extension>
+      <use value="home"/>
       <type value="physical"/>
       <line value="Bolweg 99">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">

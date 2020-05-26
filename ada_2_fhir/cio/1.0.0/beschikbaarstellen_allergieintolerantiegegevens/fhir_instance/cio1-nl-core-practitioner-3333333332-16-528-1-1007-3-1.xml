@@ -3,6 +3,13 @@
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id 333333333 (UZI-NR-PERS), M. Boot</div>
+         <div>Kamerlingh Onnesstraat 2 huis, 2999 AZ Leiderdorp (Werk)</div>
+      </div>
+   </text>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
       <value value="333333333"/>
@@ -22,4 +29,20 @@
          </extension>
       </given>
    </name>
+   <address>
+      <use value="work"/>
+      <line value="Kamerlingh Onnesstraat 2 huis">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Kamerlingh Onnesstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="2"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="huis"/>
+         </extension>
+      </line>
+      <city value="Leiderdorp"/>
+      <postalCode value="2999 AZ"/>
+   </address>
 </Practitioner>

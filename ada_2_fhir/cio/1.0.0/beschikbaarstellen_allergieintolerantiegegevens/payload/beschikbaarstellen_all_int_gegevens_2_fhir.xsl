@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen allergieintolerantiegegevens".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:apply-templates select="//beschikbaarstellen_allergie_intolerantie"/>
+        <xsl:apply-templates select="adaxml/data/beschikbaarstellen_allergie_intolerantie"/>
     </xsl:template>
     <xd:doc>
         <xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
