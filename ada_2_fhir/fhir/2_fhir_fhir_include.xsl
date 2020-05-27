@@ -37,8 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="mask-ids-var" select="tokenize($mask-ids, ',')" as="xs:string*"/>
 
     <xd:doc>
-        <xd:desc>Returns an array of FHIR elements based on an array of ADA that a @datatype attribute to determine the type with. 
-            <xd:p>After the type is determined, the element is handed off for further processing. Failure to determine type is a fatal error.</xd:p>
+        <xd:desc>Returns an array of FHIR elements based on an array of ADA that a @datatype attribute to determine the type with. <xd:p>After the type is determined, the element is handed off for further processing. Failure to determine type is a fatal error.</xd:p>
             <xd:p>Supported values for @datatype are ADA/DECOR datatypes boolean, code, identifier, quantity, string, text, blob, date, datetime</xd:p>
             <xd:p>FIXME: ‘ordinal’, ‘ratio' support</xd:p>
         </xd:desc>
@@ -187,9 +186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#code">@value</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation.
-            
-            <xd:p>Example. if you only want to translate ActStatus completed into a FHIR ObservationStatus final, this would suffice:</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. See handleCV for more documentation. <xd:p>Example. if you only want to translate ActStatus completed into a FHIR ObservationStatus final, this would suffice:</xd:p>
             <xd:p><code>&lt;map inCode="completed" inCodeSystem="$codeSystem" code="final"/&gt;</code>
                 <div>to produce</div>
                 <code>&lt;$elemName value="final"/&gt;</code></xd:p>
@@ -248,8 +245,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="elementName">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
         <xd:param name="userSelected">Optionally provide a user selected boolean.</xd:param>
-        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. 
-            Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
+        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-CodeableConcept" as="element()*">
         <xsl:param name="in" as="element()?"/>
@@ -291,11 +287,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Transforms ada code element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Coding">Coding contents</xd:a></xd:desc>
         <xd:param name="in">the ada code element, may have any name but should have ada datatype code</xd:param>
         <xd:param name="userSelected">Optionally provide a user selected boolean.</xd:param>
-        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. 
-            Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
+        <xd:param name="treatNullFlavorAsCoding">Optionally provide a boolean to treat an input NullFlavor as coding. Needed for when the nullFlavor is part of the valueSet. Defaults to false, which puts the NullFlavor in an extension.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-Coding" as="element()*">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="userSelected" as="xs:boolean?"/>
         <xsl:param name="treatNullFlavorAsCoding" as="xs:boolean?" select="false()"/>
         <xsl:choose>
@@ -305,7 +300,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
             </xsl:when>
             <xsl:when test="$in[not(@codeSystem = $oidHL7NullFlavor) or $treatNullFlavorAsCoding]">
-                <system value="{local:getUri($in/@codeSystem)}"/>
+                <!-- system is 0..1 in FHIR, let's not output an empty string in case the codeSystem is absent -->
+                <xsl:for-each select="$in/@codeSystem">
+                    <system value="{local:getUri(.)}"/>
+                </xsl:for-each>
                 <code value="{$in/@code}"/>
                 <xsl:if test="$in/@displayName">
                     <display value="{replace($in/@displayName, '(^\s+)|(\s+$)', '')}"/>
@@ -715,16 +713,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Removes trailing spaces from the string in parameter in</xd:desc>
         <xd:param name="in">The string to remove trailing spaces from</xd:param>
     </xd:doc>
     <xsl:function name="nf:removeTrailingSpace" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
-        
+
         <xsl:value-of select="replace($in, '\s+$', '')"/>
-        
+
     </xsl:function>
 
     <xd:doc>
@@ -777,10 +775,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
             <xsl:when test="matches($dateTime, 'T([+\-]\d+(\.\d+)?[YMD])?')">
-                <xsl:variable name="sign" >
+                <xsl:variable name="sign">
                     <xsl:variable name="temp" select="replace($dateTime, 'T(([+\-]).*)?', '$2')"/>
                     <xsl:choose>
-                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <xsl:when test="string-length($temp) gt 0">
+                            <xsl:value-of select="$temp"/>
+                        </xsl:when>
                         <!-- default -->
                         <xsl:otherwise>+</xsl:otherwise>
                     </xsl:choose>
@@ -788,18 +788,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="amount">
                     <xsl:variable name="temp" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)[YMD].*)?', '$2')"/>
                     <xsl:choose>
-                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <xsl:when test="string-length($temp) gt 0">
+                            <xsl:value-of select="$temp"/>
+                        </xsl:when>
                         <!-- default -->
                         <xsl:otherwise>0</xsl:otherwise>
-                    </xsl:choose>                    
+                    </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="yearMonthDay">
                     <xsl:variable name="temp" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?([YMD]).*)?', '$3')"/>
                     <xsl:choose>
-                        <xsl:when test="string-length($temp) gt 0"><xsl:value-of select="$temp"/></xsl:when>
+                        <xsl:when test="string-length($temp) gt 0">
+                            <xsl:value-of select="$temp"/>
+                        </xsl:when>
                         <!-- default -->
                         <xsl:otherwise>D</xsl:otherwise>
-                    </xsl:choose>      
+                    </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)([YMD]).*)?', 'P$2$4')"/>
                 <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)\})?)?', '$4')"/>

@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
 
-    <xsl:variable name="usecase">mp9</xsl:variable>
+    <xsl:variable name="usecase">vl1</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
     </xsl:variable>

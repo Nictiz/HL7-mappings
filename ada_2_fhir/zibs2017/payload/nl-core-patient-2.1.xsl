@@ -129,7 +129,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!-- naamgegevens -->
                     <xsl:call-template name="nl-core-humanname-2.0">
-                        <xsl:with-param name="in" select="naamgegevens | name_information" as="element()*"/>
+                        <!-- in some datasets the name_information is unfortunately unnecessary nested in an extra group, hence the extra predicate -->
+                        <xsl:with-param name="in" select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])" as="element()*"/>
                     </xsl:call-template>
                     <!-- contactgegevens -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
