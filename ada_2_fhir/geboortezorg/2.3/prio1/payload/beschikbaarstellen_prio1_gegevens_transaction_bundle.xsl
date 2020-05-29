@@ -30,13 +30,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen prio 1 gegevens".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:apply-templates select="//prio1_huidig | prio1_vorig"/>
+        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap)"/>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Build the individual FHIR resources.</xd:desc>
+        <xd:desc>Build the Bundle with FHIR resources.</xd:desc>
     </xd:doc>
-    <xsl:template name="ConversiePrio1Gegevens" match="prio1_huidig | prio1_vorig">              
+    <xsl:template name="ConversiePrio1Gegevens" match="prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap">              
         <xsl:variable name="transactionBundle"> <!--as="element(f:Bundle)*"-->
             <Bundle xmlns="http://hl7.org/fhir">
                 <id value="{concat('samenvatting-zwangerschap',$pregnancyNo)}"/>

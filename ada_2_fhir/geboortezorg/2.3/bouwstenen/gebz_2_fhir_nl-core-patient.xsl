@@ -19,39 +19,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc>
         <xd:desc>Converts ada vrouw to ada patient</xd:desc>
     </xd:doc>
-              
-    <xsl:variable name='vrouwId' select="replace(lower-case((prio1_huidig | prio1_vorig | bevallingsgegevens_23)/vrouw/naamgegevens/achternaam/achternaam/@value),' ','-')"/>
-       
+
+    <xsl:variable name="vrouwId" select="replace(lower-case(//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/naamgegevens/achternaam/achternaam/@value), ' ', '-')"/>
+
     <xsl:template name="convert-vrouw-ada" mode="vrouw-ada" match="vrouw" as="element()*">
-        <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>   
-        <xsl:variable name="familyName" select="naamgegevens/achternaam/achternaam/@value"/>  
-        <xsl:variable name="familyPrefix" select="naamgegevens/achternaam/voorvoegsel/@value"/>  
+        <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>
+        <xsl:variable name="familyName" select="naamgegevens/achternaam/achternaam/@value"/>
+        <xsl:variable name="familyPrefix" select="naamgegevens/achternaam/voorvoegsel/@value"/>
         <patient>
-            <identificatienummer value="{$theIdentifier}"/>
+            <identificatienummer value="{$theIdentifier}" root="{$oidBurgerservicenummer}"/>
             <xsl:if test="$familyName or $familyPrefix">
-            <naamgegevens>
-                <geslachtsnaam>
-                    <xsl:if test="$familyName">
-                        <achternaam value="{$familyName}"/>
-                    </xsl:if>
-                    <xsl:if test="$familyPrefix">
-                        <voorvoegsels value="{$familyPrefix}"/>
-                    </xsl:if>
-                </geslachtsnaam> 
-            </naamgegevens>
+                <naamgegevens>
+                    <geslachtsnaam>
+                        <xsl:if test="$familyName">
+                            <achternaam value="{$familyName}"/>
+                        </xsl:if>
+                        <xsl:if test="$familyPrefix">
+                            <voorvoegsels value="{$familyPrefix}"/>
+                        </xsl:if>
+                    </geslachtsnaam>
+                </naamgegevens>
             </xsl:if>
         </patient>
     </xsl:template>
-       
+
     <xsl:template name="convert-kind-ada" mode="kind-ada" match="uitkomst_per_kind" as="element()*">
-        <xsl:param name="theIdentifier" select="string(count(preceding-sibling::*[name()=name(current())])+1)"/>   
+        <xsl:param name="theIdentifier" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
         <xsl:variable name="birthDate" select="baring/demografische_gegevens/geboortedatum/@value"/>
         <patient>
-            <xsl:if test="$birthDate!=''">
+            <xsl:if test="$birthDate != ''">
                 <xsl:choose>
                     <xsl:when test="$birthDate castable as xs:date or $birthDate castable as xs:dateTime">
                         <geboortedatum value="{$birthDate}"/>
@@ -60,13 +60,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <geboortedatum value="{current-date()-xs:dayTimeDuration(concat('P',substring-after($birthDate,'-')))}"/>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:if>           
+            </xsl:if>
         </patient>
     </xsl:template>
-        
+
     <xsl:template match="/">
         <xsl:variable name="x" select="'test'"/>
         <xsl:apply-templates mode="vrouw-fhir"/>
     </xsl:template>
-       
+
 </xsl:stylesheet>

@@ -38,23 +38,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- ada instances -->
     <xsl:param name="patient-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
+        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
     </xsl:param>
 
     <xsl:param name="partner-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/vrouw/partner" mode="partner-ada"/>
+        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/partner" mode="partner-ada"/>
     </xsl:param>
 
     <xsl:variable name="kind-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/uitkomst_per_kind" mode="kind-ada"/>
+        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/uitkomst_per_kind" mode="kind-ada"/>
     </xsl:variable>
 
     <xsl:param name="zorginstelling-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorginstelling-ada"/>
+        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorginstelling-ada"/>
     </xsl:param>
 
     <xsl:param name="zorgverlener-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorgverlener-ada"/>
+        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorgverlener-ada"/>
     </xsl:param>
 
     <!-- unique patients -->
@@ -81,13 +81,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
-    
+
     <!-- partner -->
     <xsl:variable name="relatedPersons" as="element(f:RelatedPerson)*">
         <xsl:for-each select="//partner">
             <xsl:call-template name="nl-core-relatedperson-2.0">
                 <xsl:with-param name="in" select="$partner-ada"/>
-                <xsl:with-param name="logicalId" select="replace(persoonsnaam/achternamen/@value, ' ', '-')"/>     
+                <xsl:with-param name="logicalId" select="replace(persoonsnaam/achternamen/@value, ' ', '-')"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
             </xsl:call-template>
         </xsl:for-each>
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- pregnancyNo -->
     <xsl:variable name="pregnancyNo">
-        <xsl:for-each select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/zwangerschap">
+        <xsl:for-each select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zwangerschap">
             <xsl:choose>
                 <xsl:when test="graviditeit">
                     <xsl:value-of select="graviditeit/@value"/>
@@ -106,13 +106,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:variable>
-      
+
     <!-- zorginstelling -->
     <xsl:variable name="organizations" as="element(f:Organization)*">
         <xsl:for-each select="//zorgverlenerzorginstelling">
             <xsl:call-template name="nl-core-organization-2.0">
                 <xsl:with-param name="in" select="$zorginstelling-ada"/>
-                <xsl:with-param name="logicalId" select="replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')"/>           
+                <xsl:with-param name="logicalId" select="nf:removeSpecialCharacters(replace(zorginstelling/naam_zorginstelling/@value, ' ', '-'))"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
@@ -122,22 +122,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//zorgverlenerzorginstelling">
             <xsl:call-template name="nl-core-practitioner-2.0">
                 <xsl:with-param name="in" select="$zorgverlener-ada"/>
-                <xsl:with-param name="logicalId" select="replace(zorgverlener/naam_zorgverlener/@value, ' ', '-')"/>           
+                <xsl:with-param name="logicalId" select="replace(zorgverlener/naam_zorgverlener/@value, ' ', '-')"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
-              
+
     <!-- zorgverlener rollen -->
     <xsl:variable name="practitionerRoles" as="element(f:PractitionerRole)*">
         <xsl:for-each select="//zorgverlenerzorginstelling">
             <xsl:call-template name="nl-core-practitionerrole-2.0">
                 <xsl:with-param name="in" select="$zorgverlener-ada"/>
-                <xsl:with-param name="logicalId" select="replace(concat(zorgverlener/naam_zorgverlener/@value,'-',replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')), ' ', '-')"/>      
+                <xsl:with-param name="logicalId" select="replace(concat(zorgverlener/naam_zorgverlener/@value, '-', replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')), ' ', '-')"/>
                 <xsl:with-param name="organizationRef" as="element(f:reference)">
-                    <reference xmlns="http://hl7.org/fhir" value="Organization/{replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')}" />                        
+                    <reference xmlns="http://hl7.org/fhir" value="Organization/{replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')}"/>
                 </xsl:with-param>
                 <xsl:with-param name="practitionerRef" as="element(f:reference)*">
-                    <reference xmlns="http://hl7.org/fhir" value="Practitioner/{replace(zorgverlener/naam_zorgverlener/@value, ' ', '-')}" />                       
+                    <reference xmlns="http://hl7.org/fhir" value="Practitioner/{replace(zorgverlener/naam_zorgverlener/@value, ' ', '-')}"/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
@@ -149,25 +149,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="bc-maternal-record">
                 <xsl:with-param name="logicalId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="organizationId" select="$organizations/f:id/@value"/>
                 <xsl:with-param name="practitionerId" select="$practitioners/f:id/@value"/>
-            </xsl:call-template>            
+            </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
-    
+
     <!-- zwangerschap -->
     <xsl:variable name="conditions" as="element(f:Condition)*">
         <xsl:for-each select="//zwangerschap">
             <xsl:call-template name="zib-pregnancy">
-                <xsl:with-param name="logicalId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="logicalId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
-    
+
     <!-- observations -->
     <xsl:variable name="observations" as="element(f:Observation)*">
         <!-- maternale onderzoekgegevens -->
@@ -179,7 +179,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$labtest-ada">
                 <xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
                     <xsl:with-param name="in" select="." as="element()*"/>
-                    <xsl:with-param name="logicalId" select="concat(replace($elementName,'_','-'), '-zwangerschap-', $pregnancyNo)"/>
+                    <xsl:with-param name="logicalId" select="concat(replace($elementName, '_', '-'), '-zwangerschap-', $pregnancyNo)"/>
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -187,34 +187,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- zwangerschaps- en bevallingsgegevens -->
         <xsl:for-each select="//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum)">
             <xsl:call-template name="bc-observation">
-                <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="logicalId" select="concat(replace(name(.), '_', '-'), '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
         <!-- kindspecifieke uitkomstgegevens -->
         <xsl:variable name="childNo" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
         <xsl:for-each select="//(baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht)))">
             <xsl:call-template name="bc-observation">
-                <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
+                <xsl:with-param name="logicalId" select="concat(replace(name(.), '_', '-'), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="childId" select="concat('zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
-     
+
     <!-- bevalling, geboorte en obstetrische verrichtingen -->
     <xsl:variable name="procedures" as="element(f:Procedure)*">
         <!-- bevalling -->
         <xsl:for-each select="//bevalling">
             <xsl:call-template name="bc-procedure">
-                <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="logicalId" select="concat(replace(name(.), '_', '-'), '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
         <!-- geboorte en obstetrische verrichtingen -->
@@ -222,39 +222,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="childNo" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
             <xsl:for-each select="baring | baring/kindspecifieke_uitkomstgegevens/vaginale_kunstverlossing_groep/vaginale_kunstverlossing">
                 <xsl:call-template name="bc-procedure">
-                    <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
+                    <xsl:with-param name="logicalId" select="concat(replace(name(.), '_', '-'), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
                     <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                    <xsl:with-param name="pregnancyId" select="concat($vrouwId,'-zwangerschap-', $pregnancyNo)"/>
+                    <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                     <xsl:with-param name="childId" select="concat('zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:for-each>
     </xsl:variable>
-      
+
     <!-- Kind -->
     <xsl:variable name="children" as="element(f:Patient)*">
         <xsl:for-each select="//uitkomst_per_kind">
-        <xsl:variable name="childNo" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
+            <xsl:variable name="childNo" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
             <xsl:call-template name="nl-core-patient-2.1">
                 <xsl:with-param name="in" select="$kind-ada"/>
                 <xsl:with-param name="logicalId" select="concat('zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
-    
+
     <!-- Composition -->
     <xsl:variable name="composition" as="element(f:Composition)*">
         <xsl:for-each select=".">
-        <xsl:call-template name="bc-composition">
-            <xsl:with-param name="logicalId">
-                <xsl:value-of select="concat('samenvatting-zwangerschap',$pregnancyNo)"/>
-            </xsl:with-param>
-            <xsl:with-param name="adaPatient" select="$patient-ada"/>
-            <xsl:with-param name="entries">
-                <xsl:copy-of select="$patients/f:entry | $children | $organizations | $practitioners | $practitionerRoles | $episodesofcare | $conditions | $procedures | $observations"/>
-            </xsl:with-param>
-        </xsl:call-template>
+            <xsl:call-template name="bc-composition">
+                <xsl:with-param name="logicalId">
+                    <xsl:value-of select="concat('samenvatting-zwangerschap', $pregnancyNo)"/>
+                </xsl:with-param>
+                <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                <xsl:with-param name="entries">
+                    <xsl:copy-of select="$patients/f:entry | $children | $organizations | $practitioners | $practitionerRoles | $episodesofcare | $conditions | $procedures | $observations"/>
+                </xsl:with-param>
+            </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
 
@@ -265,8 +265,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <xsl:for-each select="$patients">
             <entry xmlns="http://hl7.org/fhir">
-                <xsl:copy-of select="f:entry/f:fullUrl"></xsl:copy-of>
-                <xsl:copy-of select="f:entry/f:resource"></xsl:copy-of>
+                <xsl:copy-of select="f:entry/f:fullUrl"/>
+                <xsl:copy-of select="f:entry/f:resource"/>
                 <request>
                     <method value="PUT"/>
                     <url value="{concat('Patient/', f:entry/f:resource/f:Patient/f:id/@value)}"/>
@@ -292,20 +292,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <url value="{concat(name(.),'/',f:id/@value)}"/>
             </request>
         </entry>
-    </xsl:template> 
-       
+    </xsl:template>
+
     <xsl:variable name="conditionalIDs">
         <xsl:copy-of select="($patients/f:entry/f:resource/f:Patient | $organizations | $practitioners)/f:id"/>
-    </xsl:variable>   
-       
-    <xsl:template name="conditionalTransform" match="node()|@*" mode="doConditionalTransform doConditionalTransformElements">
+    </xsl:variable>
+
+    <xsl:template name="conditionalTransform" match="node() | @*" mode="doConditionalTransform doConditionalTransformElements">
         <xsl:copy>
-            <xsl:apply-templates  select="node()|@*" mode="doConditionalTransformElements">
-                <xsl:with-param name="resourceID"><xsl:copy-of select="$conditionalIDs"/></xsl:with-param>
+            <xsl:apply-templates select="node() | @*" mode="doConditionalTransformElements">
+                <xsl:with-param name="resourceID">
+                    <xsl:copy-of select="$conditionalIDs"/>
+                </xsl:with-param>
             </xsl:apply-templates>
         </xsl:copy>
     </xsl:template>
-    
+
     <xsl:template name="setConditionalURL" match="f:Bundle/f:entry/f:request/f:url" mode="doConditionalTransformElements">
         <xsl:param name="resourceID"/>
         <xsl:variable name="resource" select="ancestor::f:entry/f:resource/*"/>
@@ -316,41 +318,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <url xmlns="http://hl7.org/fhir" value="{concat(substring-before($node/@value,'/'),'?identifier=',$resource/f:identifier/f:value/@value)}"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:copy-of select="$node"></xsl:copy-of>
+                    <xsl:copy-of select="$node"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-       
+
     <xsl:template name="removeConditionalID" match="f:reference" mode="doConditionalTransformElements">
         <xsl:param name="resourceID"/>
         <xsl:variable name="bundle" select="ancestor::f:Bundle"/>
         <xsl:variable name="node" select="."/>
-        <xsl:variable name="referenceID" select="substring-after($node/@value,'/')"/>
+        <xsl:variable name="referenceID" select="substring-after($node/@value, '/')"/>
         <xsl:for-each select="$resourceID">
-        <xsl:choose>
-            <xsl:when test="$referenceID = $resourceID/f:id/@value">
-                <reference xmlns="http://hl7.org/fhir" value="{$bundle/f:entry[f:resource/*/f:id/@value=$referenceID]/f:fullUrl/@value}"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:copy-of select="$node"></xsl:copy-of>
-            </xsl:otherwise>
-        </xsl:choose>
+            <xsl:choose>
+                <xsl:when test="$referenceID = $resourceID/f:id/@value">
+                    <reference xmlns="http://hl7.org/fhir" value="{$bundle/f:entry[f:resource/*/f:id/@value=$referenceID]/f:fullUrl/@value}"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$node"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xsl:template name="setConditionalReference" match="f:id" mode="doConditionalTransformElements">
         <xsl:param name="resourceID"/>
         <xsl:variable name="node" select="."/>
         <xsl:for-each select="$resourceID">
             <xsl:choose>
-                <xsl:when test="$node/@value = $resourceID/f:id/@value">
-                </xsl:when>
+                <xsl:when test="$node/@value = $resourceID/f:id/@value"> </xsl:when>
                 <xsl:otherwise>
-                    <xsl:copy-of select="$node"></xsl:copy-of>
+                    <xsl:copy-of select="$node"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
-    
+
 </xsl:stylesheet>
