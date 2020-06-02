@@ -12,22 +12,22 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:Patient" name="nl-core-patient-2.1" mode="doPatientResource">
+    <xsl:template match="f:Patient" mode="nl-core-patient-2.1">
         <patient>
             <!-- Additional narrative as @comment? -->
             <!-- FHIR spec: meta, text, extension, identifier, active, name, telecom, gender, birthDate, deceased, address, maritalStatus, multipleBirth, contact, communication, generalPractitioner -->
-            <xsl:apply-templates select="node() except (f:meta|f:text|f:identifier|f:name|f:birthDate|f:gender)"/>
-            <xsl:apply-templates select="f:name"/>
-            <xsl:apply-templates select="f:identifier"/>
-            <xsl:apply-templates select="f:birthDate"/>
-            <xsl:apply-templates select="f:gender"/>
+            <xsl:apply-templates select="node() except (f:meta|f:text|f:identifier|f:name|f:birthDate|f:gender)" mode="#current"/>
+            <xsl:apply-templates select="f:name" mode="nl-core-humanname-2.0"/>
+            <xsl:apply-templates select="f:identifier" mode="#current"/>
+            <xsl:apply-templates select="f:birthDate" mode="#current"/>
+            <xsl:apply-templates select="f:gender" mode="#current"/>
         </patient>
     </xsl:template>
     
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:Patient[f:meta/f:profile/@value=$nl-core-patient]/f:identifier">
+    <xsl:template match="f:identifier" mode="nl-core-patient-2.1">
         <identificatienummer>
             <xsl:choose>
                 <xsl:when test="f:value/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason'">
@@ -44,21 +44,14 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:Patient[f:meta/f:profile/@value=$nl-core-patient]/f:name">
-        <xsl:call-template name="nl-core-humanname-2.0"/>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc></xd:desc>
-    </xd:doc>
-    <xsl:template match="f:Patient[f:meta/f:profile/@value=$nl-core-patient]/f:birthDate">
+    <xsl:template match="f:birthDate" mode="nl-core-patient-2.1">
         <geboortedatum></geboortedatum>
     </xsl:template>
     
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:Patient[f:meta/f:profile/@value=$nl-core-patient]/f:gender">
+    <xsl:template match="f:gender" mode="nl-core-patient-2.1">
         <gender></gender>
     </xsl:template>
     

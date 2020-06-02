@@ -11,31 +11,31 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name" name="nl-core-humanname-2.0" mode="doHumanname">
+    <xsl:template match="f:name" mode="nl-core-humanname-2.0">
         <xsl:variable name="nameUsage" select="f:extension[@url=$humanname-assembly-order]/f:valueCode/@value"/>
         <naamgegevens>
             <xsl:if test="f:extension/@url=$humanname-assembly-order">
                 <xsl:attribute name="code"><xsl:value-of select="f:extension[@url=$humanname-assembly-order]/f:valueCode/@value"/></xsl:attribute>
             </xsl:if>
-            <xsl:apply-templates select="f:text"/>
-            <xsl:apply-templates select="f:given"/>
-            <xsl:apply-templates select="f:extension[@url=$humanname-assembly-order]">
+            <xsl:apply-templates select="f:text" mode="#current"/>
+            <xsl:apply-templates select="f:given" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url=$humanname-assembly-order]" mode="#current">
                 <xsl:with-param name="nameUsage" select="$nameUsage"/>
             </xsl:apply-templates>
-            <xsl:apply-templates select="f:family">
+            <xsl:apply-templates select="f:family" mode="#current">
                 <xsl:with-param name="nameUsage" select="$nameUsage"/>
             </xsl:apply-templates>
             <!-- to do: geslachtsnaam_partner -->
             
             <!-- for debugging: -->
-            <xsl:apply-templates select="node() except (f:extension[@url=$humanname-assembly-order]|f:text|f:given|f:family)"/>
+            <xsl:apply-templates select="node() except (f:extension[@url=$humanname-assembly-order]|f:text|f:given|f:family)" mode="#current"/>
         </naamgegevens>
     </xsl:template>
     
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name/f:text">
+    <xsl:template match="f:name/f:text" mode="nl-core-humanname-2.0">
         <ongestructureerde_naam>
             <xsl:attribute name="value" select="f:text//text()"/>
         </ongestructureerde_naam>
@@ -44,7 +44,7 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name/f:given">
+    <xsl:template match="f:name/f:given" mode="nl-core-humanname-2.0">
         <xsl:variable name="iso21090-EN-qualifier" select="f:extension[@url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier']/f:valueCode/@value"/>
         <xsl:variable name="elementName">
             <xsl:choose>
@@ -61,7 +61,7 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name/f:extension[@url=$humanname-assembly-order]">
+    <xsl:template match="f:name/f:extension[@url=$humanname-assembly-order]" mode="nl-core-humanname-2.0">
         <xsl:param name="nameUsage" required="yes"/>
         <naamgebruik>
             <xsl:choose>
@@ -104,11 +104,11 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name/f:family">
+    <xsl:template match="f:name/f:family" mode="nl-core-humanname-2.0">
         <geslachtsnaam>
             <xsl:choose>
                 <xsl:when test="f:extension">
-                    <xsl:apply-templates select="node()"/>
+                    <xsl:apply-templates select="node()" mode="#current"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:message terminate="yes">No Patient family name extensions found.</xsl:message><!--To do: @value verwerken.-->
@@ -120,7 +120,7 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name/f:family/f:extension">
+    <xsl:template match="f:name/f:family/f:extension" mode="nl-core-humanname-2.0">
         <xsl:variable name="extensionUrl" select="@url"/>
         <xsl:variable name="elementName">
             <xsl:choose>
