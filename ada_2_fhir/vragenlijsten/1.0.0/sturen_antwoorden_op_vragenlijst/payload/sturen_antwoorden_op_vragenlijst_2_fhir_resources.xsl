@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:param name="adaQuestionnaires" select="collection('../../beschikbaarstellen_vragenlijst/ada_instance/?select=*.xml')"/>
     
-    <xsl:variable name="usecase">mp9</xsl:variable>
+    <xsl:variable name="usecase">vla</xsl:variable>
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$practitioners/f:entry | $organizations/f:entry | $practitionerRoles/f:entry"/>
     </xsl:variable>
@@ -59,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="entries" as="element(f:entry)*">
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations, bouwstenen -->
-            <xsl:copy-of select="$vragenlijst-antwoord"/>
+            <xsl:copy-of select="$vragenlijst-antwoord/f:entry"/>
             <xsl:copy-of select="$vragenlijst-verwijzing"/>
             <xsl:copy-of select="$commonEntries"/>
           </xsl:variable>
