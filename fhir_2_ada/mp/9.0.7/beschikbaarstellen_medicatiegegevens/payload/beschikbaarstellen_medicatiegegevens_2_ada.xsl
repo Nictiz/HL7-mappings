@@ -15,16 +15,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:f="http://hl7.org/fhir"
+    xmlns:local="urn:fhir:stu3:functions"
     exclude-result-prefixes="#all"
     version="2.0">
     
     <xsl:import href="../../../fhir_2_ada_mp_include.xsl"/>
+    <xsl:output indent="yes"/>
     
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <foo>bar</foo>
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+            <meta status="new" created-by="generated" last-update-by="generated">
+                <xsl:attribute name="creation-date" select="current-dateTime()"/>
+                <xsl:attribute name="last-update-date" select="current-dateTime()"/>
+            </meta>
+            <data>
+                <beschikbaarstellen_medicatiegegevens app="mp-mp907" 
+                    shortName="beschikbaarstellen_medicatiegegevens"
+                    formName="uitwisselen_medicatiegegevens"
+                    transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                    transactionEffectiveDate="2016-03-23T16:32:43"
+                    prefix="mp-"
+                    language="nl-NL">
+                    <xsl:attribute name="title">Generated from HL7 FHIR medicatiegegevens 9.0.7 xml</xsl:attribute>
+                    <xsl:attribute name="id">DUMMY</xsl:attribute>
+                    
+                    <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-patient-2.1"/>
+                    <xsl:apply-templates select="f:Bundle/f:entry/f:resource/(node() except f:Patient)"/>
+                </beschikbaarstellen_medicatiegegevens>
+            </data>
+        </adaxml>
     </xsl:template>
     
 </xsl:stylesheet>
