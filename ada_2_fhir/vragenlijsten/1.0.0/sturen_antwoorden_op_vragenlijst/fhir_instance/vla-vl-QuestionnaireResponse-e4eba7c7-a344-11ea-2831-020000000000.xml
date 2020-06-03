@@ -1,0 +1,179 @@
+<QuestionnaireResponse xmlns="http://hl7.org/fhir">
+   <id value="e4eba7c7-a344-11ea-2831-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireResponse"/>
+   </meta>
+   <questionnaire>
+      <reference value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
+      <display value="Intake nieuwe patiënt"/>
+   </questionnaire>
+   <status value="completed"/>
+   <subject>
+      <reference value="Patient/VERKEULEN"/>
+      <display value="Jan Verkeulen"/>
+   </subject>
+   <authored value="${DATE, T, D, -1}T11:30:00+02:00"/>
+   <author>
+      <reference value="Patient/VERKEULEN"/>
+      <display value="Jan Verkeulen"/>
+   </author>
+   <item>
+      <linkId value="algemeen"/>
+      <item>
+         <linkId value="gewicht"/>
+         <answer>
+            <valueDecimal value="89.5"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="lengte"/>
+         <answer>
+            <valueInteger value="183"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="roken"/>
+         <answer>
+            <valueBoolean value="false"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="ooitgerookt"/>
+         <answer>
+            <valueBoolean value="true"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="jarensindsroken"/>
+         <answer>
+            <valueDecimal value="10"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="drinken"/>
+         <answer>
+            <valueBoolean value="true"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="hoevaakdrinken"/>
+         <answer>
+            <valueCoding>
+               <code value="AFT"/>
+               <display value="Af en toe"/>
+            </valueCoding>
+         </answer>
+      </item>
+      <item>
+         <linkId value="lichamelijkegezondheid"/>
+         <answer>
+            <valueString value="De laatste jaren krijg ik wat kwaaltjes "/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="opstaan"/>
+         <answer>
+            <valueTime value="06:30:00"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="sport"/>
+         <answer>
+            <valueBoolean value="true"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="welkesport"/>
+         <answer>
+            <valueCoding>
+               <code value="AND"/>
+               <display value="Anders, namelijk"/>
+            </valueCoding>
+         </answer>
+      </item>
+      <item>
+         <linkId value="welkeanderesport"/>
+         <answer>
+            <valueString value="Schaken"/>
+         </answer>
+      </item>
+   </item>
+   <item>
+      <linkId value="voorgeschiedenis"/>
+      <item>
+         <linkId value="onderbehandeling"/>
+         <answer>
+            <valueBoolean value="true"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="datumlaatstebehandeling"/>
+         <answer>
+            <valueDate value="${DATE, T, D, -30}"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="geneesmiddelen"/>
+         <answer>
+            <valueBoolean value="true"/>
+         </answer>
+      </item>
+   </item>
+   <item>
+      <linkId value="socialemedia"/>
+      <item>
+         <linkId value="facebook"/>
+         <answer>
+            <valueBoolean value="false"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="instagram"/>
+         <answer>
+            <valueBoolean value="false"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="linkedin"/>
+         <answer>
+            <valueBoolean value="false"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="anderplatform"/>
+         <answer>
+            <valueBoolean value="false"/>
+         </answer>
+      </item>
+   </item>
+   <item>
+      <linkId value="contactgegevens"/>
+      <item>
+         <linkId value="mobiel"/>
+         <answer>
+            <valueString value="06-12121212"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="mail"/>
+         <answer>
+            <valueString value="jverkeu@durftevragen.nl"/>
+         </answer>
+      </item>
+   </item>
+   <item>
+      <linkId value="belafspraak"/>
+      <item>
+         <linkId value="toestemmingbelafspraak"/>
+         <answer>
+            <valueBoolean value="true"/>
+         </answer>
+      </item>
+      <item>
+         <linkId value="datumtijdbelafspraak"/>
+         <answer>
+            <valueDateTime value="${DATE, T, D, +5}T14:00:00+02:00"/>
+         </answer>
+      </item>
+   </item>
+</QuestionnaireResponse>

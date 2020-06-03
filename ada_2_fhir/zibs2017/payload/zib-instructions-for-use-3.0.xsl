@@ -216,7 +216,9 @@
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:if test="$outputText">
             <xsl:for-each select="../../omschrijving[@value]">
-                <text value="{nf:removeTrailingSpace(@value)}"/>
+                <text>
+                    <xsl:call-template name="string-to-string"/>
+                </text>
             </xsl:for-each>
         </xsl:if>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
@@ -284,10 +286,14 @@
                 </xsl:choose>
                 <xsl:choose>
                     <xsl:when test="../omschrijving[@value]">
-                        <text value="{nf:removeTrailingSpace(../omschrijving/@value)}"/>
+                        <text>
+                            <xsl:call-template name="string-to-string"/>
+                        </text>
                     </xsl:when>
                     <xsl:when test="$in[@originalText]">
-                        <text value="{nf:removeTrailingSpace($in/@originalText)}"/>
+                        <text>
+                            <xsl:call-template name="string-to-string"/>
+                        </text>
                     </xsl:when>
                 </xsl:choose>
             </asNeededCodeableConcept>

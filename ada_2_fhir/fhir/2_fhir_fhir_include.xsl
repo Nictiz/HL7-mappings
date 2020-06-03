@@ -133,16 +133,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="string-to-string" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:variable name="inNoLeadTrailSpace" select="replace($in/@value, '(^\s+)|(\s+$)', '')"/>
 
         <xsl:choose>
-            <xsl:when test="$in/@value">
-                <xsl:attribute name="value" select="replace($in/@value, '(^\s+)|(\s+$)', '')"/>
+            <xsl:when test="string-length($inNoLeadTrailSpace) gt 0">
+                <xsl:attribute name="value" select="$inNoLeadTrailSpace"/>
             </xsl:when>
             <xsl:when test="$in/@nullFlavor">
                 <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
+            <xsl:otherwise>
+                <!-- value attribute may not be empty in FHIR, but it really is empty, let's stick a nbsp in it ;-) -->
+                <xsl:attribute name="value" select="'&#160;'"/>                
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <xd:doc>
@@ -715,17 +721,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
 
     <xd:doc>
-        <xd:desc>Removes trailing spaces from the string in parameter in</xd:desc>
-        <xd:param name="in">The string to remove trailing spaces from</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:removeTrailingSpace" as="xs:string?">
-        <xsl:param name="in" as="xs:string?"/>
-
-        <xsl:value-of select="replace($in, '\s+$', '')"/>
-
-    </xsl:function>
-
-    <xd:doc>
         <xd:desc>Try to interpret the value of complex type in ADA as a quantity string with value and unit</xd:desc>
         <xd:param name="value_string">The input text (like 12 mmol/l). Any comma in the value will be replaced with a dot, e.g. 1,05 will be returned as 1.05</xd:param>
         <xd:return>
@@ -934,7 +929,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:getGroupingKeyPatient" as="xs:string?">
         <xsl:param name="patient" as="element()?"/>
         <xsl:if test="$patient">
-            <xsl:value-of select="concat(nf:getGroupingKeyDefault($patient/identificatienummer[not(@root = $oidBurgerservicenummer)] | $patient/patient_identificatie_nummer[not(@root = $oidBurgerservicenummer)] | $patient/patient_identification_number[not(@root = $oidBurgerservicenummer)]), nf:getGroupingKeyDefault($patient/patient_naam | $patient/name_information), nf:getGroupingKeyDefault($patient/adres | $patient/address_information), nf:getGroupingKeyDefault($patient/telefoon_email | $patient/contact_information))"/>
+            <xsl:value-of select="concat(nf:getGroupingKeyDefault($patient/(identificatienummer | patient_identificatie_nummer | patient_identification_number)[not(@root = $oidBurgerservicenummer)]), nf:getGroupingKeyDefault($patient/(patient_naam | .//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)])), nf:getGroupingKeyDefault($patient/(adres | .//adresgegevens[not(adresgegevens)] | .//address_information[not(address_information)])), nf:getGroupingKeyDefault($patient/(telefoon_email | .//contactgegevens[not(contactgegevens)] | .//contact_information[not(contact_information)])))"/>
         </xsl:if>
     </xsl:function>
 

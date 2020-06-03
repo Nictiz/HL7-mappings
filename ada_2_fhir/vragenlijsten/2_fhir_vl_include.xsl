@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:naf="http://www.nictiz.nl/ada-functions" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <xsl:import href="../zibs2017/payload/all-zibs.xsl"/>
     <xsl:output method="xml" indent="yes"/>
@@ -72,31 +72,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
     </xsl:variable>
-    <xsl:variable name="vragenlijst-antwoord" as="element(f:entry)*">
+    <xsl:variable name="vragenlijst-antwoord" as="element()*">
         <!-- vragenlijst -->
         <xsl:for-each select="adaxml/data/*/questionnaire_response[.//(@value | @code | @nullFlavor)]">
-            <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:get-fhir-uuid(.)}"/>
-                <resource>
-                    <xsl:call-template name="vl-vragenlijst-antwoord-1.0.0">
-                        <xsl:with-param name="vragenlijst-antwoord" select="."/>
-                        <xsl:with-param name="vragenlijst-antwoord-id">
-                            <xsl:choose>
-                                <xsl:when test="$referById">
-                                    <xsl:choose>
-                                        <xsl:when test="string-length(nf:removeSpecialCharacters(./identifier/@value)) gt 0">
-                                            <xsl:value-of select="nf:removeSpecialCharacters(./identifier/@value)"/>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:value-of select="uuid:get-uuid(.)"/>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                </resource>
-            </entry>
+            <uniek-vragenlijst-antwoord xmlns="">
+                <group-key>
+                    <xsl:value-of select="nf:getGroupingKeyDefault(.)"/>
+                </group-key>
+                <reference-display>
+                    <xsl:value-of select="nf:get-qr-display(.)"/>
+                </reference-display>
+                <entry xmlns="http://hl7.org/fhir">
+                    <fullUrl value="{nf:get-fhir-uuid(.)}"/>
+                    <resource>
+                        <xsl:call-template name="vl-vragenlijst-antwoord-1.0.0">
+                            <xsl:with-param name="vragenlijst-antwoord" select="."/>
+                            <xsl:with-param name="vragenlijst-antwoord-id">
+                                <xsl:choose>
+                                    <xsl:when test="$referById">
+                                        <xsl:choose>
+                                            <xsl:when test="string-length(nf:removeSpecialCharacters(./identifier/@value)) gt 0">
+                                                <xsl:value-of select="nf:removeSpecialCharacters(./identifier/@value)"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="uuid:get-uuid(.)"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </resource>
+                </entry>
+            </uniek-vragenlijst-antwoord>
         </xsl:for-each>
     </xsl:variable>
     <xsl:variable name="vragenlijst-verwijzing" as="element(f:entry)*">
@@ -260,7 +268,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- TODO: no idea what to do with basedOn -->
                     <!-- TODO: no idea what to do with parent, since this information is not in the Task -->
                     <xsl:for-each select="questionnaire/questionnaire[url/@value]">
-                        <xsl:call-template name="makeQuestionnaireRef"/>
+                        <questionnaire>
+                            <xsl:call-template name="makeQuestionnaireRef"/>
+                        </questionnaire>
                     </xsl:for-each>
                     <xsl:for-each select="status[@code]">
                         <status value="{@code}"/>
@@ -329,19 +339,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:copy-of select="$resource"/>
         </xsl:for-each>
     </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Returns contents of Reference datatype element</xd:desc>
+        <xd:param name="in">input ada questionnare_response, defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="QRReference" match="questionnaire_response" mode="doQRReference-1.0" as="element()*">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:for-each select="$in">
+            <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+            <xsl:variable name="theGroupElement" select="$vragenlijst-antwoord[group-key = $theGroupKey]" as="element()?"/>
+            <xsl:choose>
+                <xsl:when test="$theGroupElement">
+                    <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                </xsl:when>
+            </xsl:choose>
+
+            <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+                <display value="{$theGroupElement/reference-display}"/>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+
+
+
     <xd:doc>
         <xd:desc>Makes a questionnaire reference attempting to find questionnaire</xd:desc>
         <xd:param name="in">questionnaire ada element containing url</xd:param>
     </xd:doc>
     <xsl:template name="makeQuestionnaireRef">
         <xsl:param name="in" select="."/>
-        <xsl:variable name="inputUrl" select="url/@value" as="xs:string?"/>
+        <xsl:variable name="inputUrl" select="$in/url/@value" as="xs:string?"/>
         <xsl:for-each select="$in">
             <xsl:variable name="adaQuestionnaire" select="$adaQuestionnaires/adaxml/data/*/questionnaire[url/@value = $inputUrl]"/>
-            <questionnaire>
-                <reference value="{$inputUrl}"/>
-                <display value="{$adaQuestionnaire/name/@value}"/>
-            </questionnaire>
+            <reference value="{$inputUrl}"/>
+            <display value="{$adaQuestionnaire/title/value/@value}"/>
         </xsl:for-each>
     </xsl:template>
 
@@ -822,7 +855,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <id value="{.}"/>
                     </xsl:for-each>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/QuestionnaireReferenceTask"/>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireProvisioningTask"/>
                     </meta>
                     <xsl:for-each select="identifier[@value | @nullFlavor]">
                         <identifier>
@@ -835,7 +868,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <status value="{@code}"/>
                     </xsl:for-each>
                     <intent value="order"/>
-                    <priority value="routine"/>
                     <code>
                         <coding>
                             <system value="http://loinc.org"/>
@@ -848,19 +880,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <xsl:for-each select="focus/questionnaire[.//(@value | @code | @nullFlavor)]">
                         <focus>
-                            <xsl:for-each select="url[@value]">
-                                <reference value="{@value}"/>
-                            </xsl:for-each>
-                            <xsl:for-each select="text[@value]">
-                                <display value="{@value}"/>
-                            </xsl:for-each>
+                            <xsl:call-template name="makeQuestionnaireRef"/>
                         </focus>
                     </xsl:for-each>
-                    <xsl:for-each select="../patient[.//(@value | @code | @nullFlavor)]">
+                    <!--<xsl:for-each select="../patient[.//(@value | @code | @nullFlavor)]">
                         <for>
                             <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                         </for>
-                    </xsl:for-each>
+                    </xsl:for-each>-->
                     <xsl:for-each select="authored_on[@value]">
                         <authoredOn>
                             <xsl:attribute name="value">
@@ -881,15 +908,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:attribute>
                         </lastModified>
                     </xsl:for-each>
-                    <xsl:for-each select="aanvrager/zorgverlener[.//(@value | @code | @nullFlavor)]">
+                    <!-- to do support for requester/zorgaanbieder -->
+                    <xsl:for-each select="naf:resolve-ada-reference((aanvrager | requester)/(zorgverlener | health_professional))[.//(@value | @code | @nullFlavor)]">
                         <requester>
                             <agent>
-                                <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
+                                <xsl:call-template name="practitionerRoleReference">
+                                    <xsl:with-param name="useExtension" select="true()"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="practitionerReference"/>
                             </agent>
                         </requester>
                     </xsl:for-each>
                     <!-- owner -->
-                    <xsl:for-each select="../patient[.//(@value | @code | @nullFlavor)]">
+                    <xsl:for-each select="naf:resolve-ada-reference(owner/patient)[.//(@value | @code | @nullFlavor)]">
                         <owner>
                             <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                         </owner>
@@ -919,11 +950,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </period>
                         </restriction>
                     </xsl:for-each>
+                    <xsl:for-each select="input[*]">
+                        <input>
+                            <xsl:for-each select="questionnaire">
+                                <type>
+                                    <text value="Questionnaire"/>
+                                </type>
+                                <valueReference>
+                                    <xsl:call-template name="makeQuestionnaireRef"/>
+                                </valueReference>
+                            </xsl:for-each>
+                        </input>
+                        <input>
+                            <xsl:for-each select="subject">
+                                <type>
+                                    <text value="Subject"/>
+                                </type>
+                                <valueReference>
+                                    <xsl:for-each select="naf:resolve-ada-reference(patient)">
+                                        <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
+                                    </xsl:for-each>
+                                </valueReference>
+                            </xsl:for-each>
+                        </input>
+                    </xsl:for-each>
+                    <xsl:for-each select="output">
+                        <output>
+                            <xsl:for-each select="naf:resolve-ada-reference(questionnaire_response)">
+                                <type>
+                                    <text value="QuestionnaireResponse"/>
+                                </type>
+                                <valueReference>
+                                    <xsl:call-template name="QRReference"/>
+                                </valueReference>
+                            </xsl:for-each>
+                        </output>
+                    </xsl:for-each>
                 </Task>
             </xsl:variable>
 
             <!-- Add resource.text -->
-            <xsl:apply-templates select="$resource" mode="addNarrative"/>
+            <!--            <xsl:apply-templates select="$resource" mode="addNarrative"/>-->
+            <xsl:copy-of select="$resource"/>
 
         </xsl:for-each>
     </xsl:template>
@@ -1004,19 +1072,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="(weergavetekst | weergave_tekst)[@value]">
             <display value="{normalize-space(@value)}"/>
         </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Helper template to create extension with FHIR PractitionerRole reference, context should be ada zorgverlener element</xd:desc>
-    </xd:doc>
-    <xsl:template name="reference-practitionerrole" match="zorgverlener" mode="doPractitionerRoleReference-907">
-        <xsl:variable name="display" as="xs:string?" select="normalize-space(concat(string-join((.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value), ' '), ' || ', string-join(.//organisatie_naam/@value | .//specialisme/@displayName, ' || ')))"/>
-        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-            <valueReference>
-                <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
-            </valueReference>
-        </extension>
-        <display value="{nf:get-practitioner-role-display(.)}"/>
     </xsl:template>
 
     <xd:doc>
@@ -1108,6 +1163,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             )
                         )
                     )"/>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Returns display for questionnaire response</xd:desc>
+        <xd:param name="in">the ada questionnaire_response element to create a display for</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:get-qr-display" as="xs:string?">
+        <xsl:param name="in" as="element()?"/>
+
+        <xsl:for-each select="$in">
+            <xsl:variable name="questionnaireRef">
+                <xsl:call-template name="makeQuestionnaireRef">
+                    <xsl:with-param name="in" select="./questionnaire/questionnaire"/>
+                </xsl:call-template>
+            </xsl:variable>
+            <xsl:value-of select="concat('Antwoord op vragenlijst: ''', $questionnaireRef/f:display/@value, '''.')"/>
+        </xsl:for-each>
+
     </xsl:function>
 
     <xd:doc>

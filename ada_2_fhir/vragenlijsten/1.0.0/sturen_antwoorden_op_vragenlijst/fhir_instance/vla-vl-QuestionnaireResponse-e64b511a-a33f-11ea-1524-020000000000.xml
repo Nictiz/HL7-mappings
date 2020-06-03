@@ -1,20 +1,20 @@
 <QuestionnaireResponse xmlns="http://hl7.org/fhir">
-   <id value="4ad51026-a05c-11ea-1219-020000000000"/>
+   <id value="e64b511a-a33f-11ea-1524-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-QuestionnaireResponse"/>
    </meta>
    <questionnaire>
       <reference value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
-      <display value="intake-nieuwe-patient"/>
+      <display value="Intake nieuwe patiënt"/>
    </questionnaire>
    <status value="completed"/>
    <subject>
-      <reference value="Patient/JANJ-JANVERKEULEN"/>
+      <reference value="Patient/VERKEULEN"/>
       <display value="Jan J. Jan Verkeulen"/>
    </subject>
    <authored value="${DATE, T, D, -1}T11:30:00+02:00"/>
    <author>
-      <reference value="Patient/JANJ-JANVERKEULEN"/>
+      <reference value="Patient/VERKEULEN"/>
       <display value="Jan J. Jan Verkeulen"/>
    </author>
    <item>
@@ -109,7 +109,7 @@
       <item>
          <linkId value="datumlaatstebehandeling"/>
          <answer>
-            <valueDate>${DATE, T, D, -30}</valueDate>
+            <valueDate value="${DATE, T, D, -30}"/>
          </answer>
       </item>
       <item>
@@ -172,7 +172,7 @@
       <item>
          <linkId value="datumtijdbelafspraak"/>
          <answer>
-            <valueDateTime>${DATE, T, D, +5}T14:00:00+02:00</valueDateTime>
+            <valueDateTime value="${DATE, T, D, +5}T14:00:00+02:00"/>
          </answer>
       </item>
    </item>

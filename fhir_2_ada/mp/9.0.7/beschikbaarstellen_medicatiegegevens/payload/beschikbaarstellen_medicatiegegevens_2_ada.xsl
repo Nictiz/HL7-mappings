@@ -44,6 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="id">DUMMY</xsl:attribute>
                     
                     <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-patient-2.1"/>
+                    <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:MedicationRequest" mode="zib-MedicationAgreement-2.2"/>
                     <xsl:apply-templates select="f:Bundle/f:entry/f:resource/(node() except f:Patient)"/>
                 </beschikbaarstellen_medicatiegegevens>
             </data>
