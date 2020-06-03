@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../nl-core-humanname-2.0.xsl">
+    
+    <x:scenario label="nl-core-humanname-2.0">
+        <x:scenario label="Scenario for testing template with match 'f:name' and mode 'nl-core-humanname-2.0'">
+            <x:context mode="nl-core-humanname-2.0">
+                <f:name>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <f:valueCode value="NL1"/>
+                    </f:extension>
+                    <f:family value="XXX_Jankie">
+                        <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                            <f:valueString value="XXX_Jankie"/>
+                        </f:extension>
+                    </f:family>
+                    <f:given value="S.">
+                        <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <f:valueCode value="IN"/>
+                        </f:extension>
+                    </f:given>
+                </f:name>
+            </x:context>
+            <x:expect label="'naamgegevens' element with 'initialen', 'naamgebruik' and 'geslachtsnaam' child elements">
+                <naamgegevens>
+                    <initialen value="..."/>
+                    <naamgebruik value="..."
+                        code="..."
+                        codeSystem="..."
+                        displayName="..."/>
+                    <geslachtsnaam>...</geslachtsnaam>
+                </naamgegevens>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Scenario for testing template with match 'f:text' and mode 'nl-core-humanname-2.0'" pending="">
+            <x:context mode="nl-core-humanname-2.0">
+                
+            </x:context>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="Scenario for testing template with match 'f:given' and mode 'nl-core-humanname-2.0'">
+            <x:context mode="nl-core-humanname-2.0">
+                <f:given value="Paulus Leonardus">
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                        <f:valueCode value="BR"/>
+                    </f:extension>
+                </f:given>
+                <f:given value="S.">
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                        <f:valueCode value="IN"/>
+                    </f:extension>
+                </f:given>
+                <f:given value="Paul">
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                        <f:valueCode value="CL"/>
+                    </f:extension>
+                </f:given>
+            </x:context>
+            <x:expect label="'voornamen' element with @value" test="/*[1]">
+                <voornamen value="Paulus Leonardus"/>
+            </x:expect>
+            <x:expect label="'initialen' element with @value" test="/*[2]">
+                <initialen value="S."/>
+            </x:expect>
+            <x:expect label="'roepnaam' element with @value" test="/*[3]">
+                <roepnaam value="Paul"/>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Scenarios for testing template with match 'f:extension[@url=$humanname-assembly-order]' and mode 'nl-core-humanname-2.0'">
+            <x:scenario label="$nameUsage = NL1">
+                <x:context mode="nl-core-humanname-2.0">
+                    <x:param name="nameUsage" select="'NL1'"/>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <f:valueCode value="NL1"/>
+                    </f:extension>
+                </x:context>
+                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL1">
+                    <naamgebruik value="1" 
+                        code="NL1"
+                        codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                        displayName="Eigen geslachtsnaam"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="$nameUsage = NL1">
+                <x:context mode="nl-core-humanname-2.0">
+                    <x:param name="nameUsage" select="'NL1'"/>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <f:valueCode value="NL1"/>
+                    </f:extension>
+                </x:context>
+                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL1">
+                    <naamgebruik value="1" 
+                        code="NL1"
+                        codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                        displayName="Eigen geslachtsnaam"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="$nameUsage = NL2">
+                <x:context mode="nl-core-humanname-2.0">
+                    <x:param name="nameUsage" select="'NL2'"/>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <f:valueCode value="NL2"/>
+                    </f:extension>
+                </x:context>
+                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL2">
+                    <naamgebruik value="2" 
+                        code="NL2"
+                        codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                        displayName="Geslachtsnaam partner"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="$nameUsage = NL3">
+                <x:context mode="nl-core-humanname-2.0">
+                    <x:param name="nameUsage" select="'NL3'"/>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <f:valueCode value="NL3"/>
+                    </f:extension>
+                </x:context>
+                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL3">
+                    <naamgebruik value="3" 
+                        code="NL3"
+                        codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                        displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="$nameUsage = NL4">
+                <x:context mode="nl-core-humanname-2.0">
+                    <x:param name="nameUsage" select="'NL4'"/>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <f:valueCode value="NL4"/>
+                    </f:extension>
+                </x:context>
+                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL4">
+                    <naamgebruik value="4" 
+                        code="NL4"
+                        codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                        displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="$nameUsage = otherwise">
+                <x:context mode="nl-core-humanname-2.0">
+                    <x:param name="nameUsage" select="'no-value'"/>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <f:valueCode value="NL4"/>
+                    </f:extension>
+                </x:context>
+                <x:expect label="'naamgebruik' element with @value, @code, @codeSystem and @displayName following NL4">
+                    <naamgebruik value="4" 
+                        code="NL4"
+                        codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                        displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="Scenario for testing template with match 'f:family' and mode 'nl-core-humanname-2.0'">
+            <x:context mode="nl-core-humanname-2.0">
+                <f:family value="XXX_Jankie">
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                        <f:valueString value="van der "/>
+                    </f:extension>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                        <f:valueString value="XXX_Jankie"/>
+                    </f:extension>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                        <f:valueString value="van der "/>
+                    </f:extension>
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                        <f:valueString value="XXX_Jankie"/>
+                    </f:extension>
+                </f:family>
+                <f:family value="XXX_Jankie"/>
+            </x:context>
+            <x:expect label="'geslachtsnaam' element with child elements from extension" test="/*[1]">
+                <geslachtsnaam>
+                    <voorvoegsels value="van der "/>
+                    <achternaam value="XXX_Jankie"/>
+                    <voorvoegsels_partner value="van der "/>
+                    <achternaam_partner value="XXX_Jankie"/>
+                </geslachtsnaam>
+            </x:expect>
+            <x:expect label="'geslachtsnaam' element with child element from @value" test="/*[2]">
+                <geslachtsnaam>
+                    <achternaam value="XXX_Jankie"/>
+                </geslachtsnaam>
+            </x:expect>
+        </x:scenario>
+    </x:scenario>
+    
+</x:description>

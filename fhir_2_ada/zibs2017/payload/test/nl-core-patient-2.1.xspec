@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../nl-core-patient-2.1.xsl">
+    
+    <x:scenario label="nl-core-patient-2.1">
+        <x:scenario label="Scenario for testing template with match 'f:Patient' and mode 'nl-core-patient-2.1'">
+            <x:context mode="nl-core-patient-2.1">
+                <Patient xmlns="http://hl7.org/fhir">
+                    <meta>
+                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+                    </meta>
+                    <text>
+                        <status value="generated"/>
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                            <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), S. XXX_Jankie, Vrouw, 8 mei 1954</div>
+                        </div>
+                    </text>
+                    <identifier>
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value value="999910437"/>
+                    </identifier>
+                    <name>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                            <valueCode value="NL1"/>
+                        </extension>
+                        <family value="XXX_Jankie">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                <valueString value="XXX_Jankie"/>
+                            </extension>
+                        </family>
+                        <given value="S.">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                <valueCode value="IN"/>
+                            </extension>
+                        </given>
+                    </name>
+                    <gender value="female"/>
+                    <birthDate value="1954-05-08"/>
+                </Patient>
+            </x:context>
+            <x:expect label="'patient' element with 'naamgegevens', 'identificatienummer', 'geboortedatum' and 'geslacht' child elements.">
+                <patient>
+                    <naamgegevens>...</naamgegevens>
+                    <identificatienummer value="..." root="..."/>
+                    <geboortedatum value="..." datatype="..."/>
+                    <geslacht code="..." codeSystem="..." displayName="..."/>
+                </patient>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Scenario for testing template with match 'f:identifier' and mode 'nl-core-patient-2.1'">
+            <x:context mode="nl-core-patient-2.1">
+                <f:identifier>
+                    <f:system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                    <f:value value="999910437"/>
+                </f:identifier>
+            </x:context>
+            <x:expect label="'identificatienummer' element with @value and @root">
+                <identificatienummer value="999910437"
+                    root="2.16.840.1.113883.2.4.6.3"/>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Scenario for testing template with match 'f:birthDate' and mode 'nl-core-patient-2.1'">
+            <x:context mode="nl-core-patient-2.1">
+                <f:birthDate value="1954-05-08"/>
+            </x:context>
+            <x:expect label="'geboortedatum' element with @value and @datatype">
+                <geboortedatum value="1954-05-08"
+                    datatype="datetime"/>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="Scenario for testing template with match 'f:gender' and mode 'nl-core-patient-2.1'">
+            <x:context mode="nl-core-patient-2.1">
+                <f:gender value="female"/>
+            </x:context>
+            <x:expect label="'geslacht' element with @code, @codeSystem and @displayName">
+                <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            </x:expect>
+        </x:scenario>
+    </x:scenario>
+    
+</x:description>
