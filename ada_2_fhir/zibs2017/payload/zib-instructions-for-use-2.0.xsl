@@ -171,7 +171,9 @@
             </xsl:for-each>
             <!-- gebruiksinstructie/omschrijving  -->
             <xsl:for-each select="../../omschrijving[@value]">
-                <text value="{nf:removeTrailingSpace(@value)}"/>
+                <text>
+                    <xsl:call-template name="string-to-string"/>
+                </text>
             </xsl:for-each>
             <!-- gebruiksinstructie/aanvullende_instructie  -->
             <xsl:for-each select="../../aanvullende_instructie[@code]">
@@ -238,10 +240,14 @@
                     </xsl:choose>
                     <xsl:choose>
                         <xsl:when test="./../omschrijving[@value]">
-                            <text value="{nf:removeTrailingSpace(omschrijving/@value)}"/>
+                            <text>
+                                <xsl:call-template name="string-to-string"/>
+                            </text>
                         </xsl:when>
                         <xsl:when test="$in[@originalText]">
-                            <text value="{nf:removeTrailingSpace($in/@originalText)}"/>
+                            <text>
+                                <xsl:call-template name="string-to-string"/>
+                            </text>
                         </xsl:when>
                     </xsl:choose>
                 </asNeededCodeableConcept>
@@ -324,7 +330,9 @@
     <xsl:template name="zib-InstructionsForUse-2.0-di" match="doseerinstructie" mode="doDosageContents">
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:for-each select="../omschrijving[@value]">
-            <text value="{nf:removeTrailingSpace(@value)}"/>
+            <text>
+                <xsl:call-template name="string-to-string"/>
+            </text>
         </xsl:for-each>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
         <xsl:for-each select="../aanvullende_instructie[@code]">
@@ -365,7 +373,9 @@
     <xsl:template name="zib-InstructionsForUse-2.0-gi" match="gebruiksinstructie" mode="doDosageContents">
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:for-each select="omschrijving[@value]">
-            <text value="{nf:removeTrailingSpace(@value)}"/>
+            <text>
+                <xsl:call-template name="string-to-string"/>
+            </text>
         </xsl:for-each>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
         <xsl:for-each select="aanvullende_instructie[@code]">

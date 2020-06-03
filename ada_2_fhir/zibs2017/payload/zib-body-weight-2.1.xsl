@@ -160,9 +160,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
-                    <xsl:for-each select="gewicht_datum_tijd[@value]">
-                        <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(@value)}"/>
-                    </xsl:for-each>
+                    <!-- effectiveDateTime is required in the FHIR profile, so always output effectiveDateTime, data-absent-reason if no actual value -->
+                    <effectiveDateTime>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="gewicht_datum_tijd[@value]">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="gewicht_datum_tijd/@value"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <extension url="{$urlExtHL7DataAbsentReason}">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </effectiveDateTime>
                     <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
                     <!-- https://bits.nictiz.nl/browse/MM-434 -->
                     <performer>
@@ -201,7 +215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             format-date((gewicht_datum_tijd | weight_date_time)/@value, '[D01] [MN,*-3], [Y0001]')
                         else
                             (gewicht_datum_tijd | weight_date_time)/@value"/>
-            <xsl:value-of select="concat('Gewicht: ', (gewicht_waarde | weight_value)/@value, ' ', (gewicht_waarde | weight_value)/@unit,'. Datum/tijd gemeten: ', $datum-string)"/>
+            <xsl:value-of select="concat('Gewicht: ', (gewicht_waarde | weight_value)/@value, ' ', (gewicht_waarde | weight_value)/@unit, '. Datum/tijd gemeten: ', $datum-string)"/>
         </xsl:for-each>
     </xsl:function>
 
