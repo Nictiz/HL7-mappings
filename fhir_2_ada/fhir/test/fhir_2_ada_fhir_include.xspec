@@ -1,49 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:local="urn:fhir:stu3:functions" stylesheet="../fhir_2_ada_fhir_include.xsl">
-    <x:scenario label="Scenario for testing function code-to-code" pending="Not yet implemented">
-        <x:call template="code-to-code">
-            <x:param name="value" select="'no_value'"/>
-            <x:param name="codeMap" select="'no_value'"/>
-        </x:call>
-        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
-    </x:scenario>
-
-    <x:scenario label="Scenario for testing function format2ADADate" pending="Not yet implemented">
-        <x:call template="format2ADADate">
-            <x:param name="dateTime" select="'no_value'"/>
-            <x:param name="precision" select="'no_value'"/>
-            <x:param name="dateT" select="'no_value'"/>
-        </x:call>
-        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
-    </x:scenario>
-
-    <x:scenario label="Scenario for testing function getOid">
-        <x:scenario label="uri = 'http://fhir.nl/fhir/NamingSystem/bsn'">
-            <x:call function="local:getOid">
-                <x:param name="uri" select="'http://fhir.nl/fhir/NamingSystem/bsn'"/>
+    
+    <x:scenario label="fhir_2_ada_fhire_include">
+        <x:scenario label="Scenario for testing function code-to-code" pending="Not yet implemented">
+            <x:call template="code-to-code">
+                <x:param name="value" select="'no_value'"/>
+                <x:param name="codeMap" select="'no_value'"/>
             </x:call>
-            <x:expect label="Return bsn oid." select="'2.16.840.1.113883.2.4.6.3'"/>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
         </x:scenario>
-        <x:scenario label="uri = 'urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1'">
-            <x:call function="local:getOid">
-                <x:param name="uri" select="'urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1'"/>
+        
+        <x:scenario label="Scenario for testing function format2ADADate" pending="Not yet implemented">
+            <x:call template="format2ADADate">
+                <x:param name="dateTime" select="'no_value'"/>
+                <x:param name="precision" select="'no_value'"/>
+                <x:param name="dateT" select="'no_value'"/>
             </x:call>
-            <x:expect label="Remove urn:oid:" select="'2.16.840.1.113883.2.4.3.11.999.77.1.1'"/>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
         </x:scenario>
+        
+        <x:scenario label="Scenario for testing function getOid">
+            <x:scenario label="uri = 'http://fhir.nl/fhir/NamingSystem/bsn'">
+                <x:call function="local:getOid">
+                    <x:param name="uri" select="'http://fhir.nl/fhir/NamingSystem/bsn'"/>
+                </x:call>
+                <x:expect label="Return bsn oid." select="'2.16.840.1.113883.2.4.6.3'"/>
+            </x:scenario>
+            <x:scenario label="uri = 'urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1'">
+                <x:call function="local:getOid">
+                    <x:param name="uri" select="'urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1'"/>
+                </x:call>
+                <x:expect label="Remove urn:oid:" select="'2.16.840.1.113883.2.4.3.11.999.77.1.1'"/>
+            </x:scenario>
+        </x:scenario>
+        
     </x:scenario>
-
-    <!--<x:scenario label="Scenario for testing template with match 'node()|@*">
-        <x:context/>
-        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
-    </x:scenario>
-
-    <x:scenario label="Scenario for testing template with match 'comment()">
-        <x:context/>
-        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
-    </x:scenario>
-
-    <x:scenario label="Scenario for testing template with match 'f:*' and mode '#all'">
-        <x:context/>
-        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
-    </x:scenario>-->
+    
 </x:description>
