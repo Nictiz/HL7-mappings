@@ -6,6 +6,11 @@
     exclude-result-prefixes="#all"
     version="2.0">
     
+    <xd:doc>
+        <xd:desc>Uncomment imports for standalone use and testing.</xd:desc>
+    </xd:doc>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/-->
+    
     <xsl:variable name="humanname-assembly-order" select="'http://hl7.org/fhir/StructureDefinition/humanname-assembly-order'"/>
     
     <xd:doc>
@@ -14,9 +19,6 @@
     <xsl:template match="f:name" mode="nl-core-humanname-2.0">
         <xsl:variable name="nameUsage" select="f:extension[@url=$humanname-assembly-order]/f:valueCode/@value"/>
         <naamgegevens>
-            <xsl:if test="f:extension/@url=$humanname-assembly-order">
-                <xsl:attribute name="code"><xsl:value-of select="f:extension[@url=$humanname-assembly-order]/f:valueCode/@value"/></xsl:attribute>
-            </xsl:if>
             <xsl:apply-templates select="f:text" mode="#current"/>
             <xsl:apply-templates select="f:given" mode="#current"/>
             <xsl:apply-templates select="f:extension[@url=$humanname-assembly-order]" mode="#current">
@@ -35,7 +37,7 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name/f:text" mode="nl-core-humanname-2.0">
+    <xsl:template match="f:text" mode="nl-core-humanname-2.0">
         <ongestructureerde_naam>
             <xsl:attribute name="value" select="f:text//text()"/>
         </ongestructureerde_naam>
@@ -44,7 +46,7 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name/f:given" mode="nl-core-humanname-2.0">
+    <xsl:template match="f:given" mode="nl-core-humanname-2.0">
         <xsl:variable name="iso21090-EN-qualifier" select="f:extension[@url='http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier']/f:valueCode/@value"/>
         <xsl:variable name="elementName">
             <xsl:choose>
@@ -60,8 +62,9 @@
     
     <xd:doc>
         <xd:desc></xd:desc>
+        <xd:param name="nameUsage"></xd:param>
     </xd:doc>
-    <xsl:template match="f:name/f:extension[@url=$humanname-assembly-order]" mode="nl-core-humanname-2.0">
+    <xsl:template match="f:extension[@url=$humanname-assembly-order]" mode="nl-core-humanname-2.0">
         <xsl:param name="nameUsage" required="yes"/>
         <naamgebruik>
             <xsl:choose>
@@ -89,14 +92,13 @@
                     <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
                     <xsl:attribute name="displayName">Eigen geslachtsnaam gevolgd door geslachtsnaam partner</xsl:attribute>
                 </xsl:when>
-                
-                <!--<xsl:element name="{$elemNameUsage}">
-                        <xsl:attribute name="code">UNK</xsl:attribute>
-                        <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                        <xsl:attribute name="displayName">Unknown</xsl:attribute>
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemNameUsage)))"/>
-                    </xsl:element>-->
-                
+                <!-- otherwise: we nemen aan NL4 - Eigen geslachtsnaam gevolgd door geslachtsnaam partner zodat iig geen informatie 'verdwijnt' -->
+                <xsl:otherwise>
+                    <xsl:attribute name="value">4</xsl:attribute>
+                    <xsl:attribute name="code">NL4</xsl:attribute>
+                    <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:attribute>
+                    <xsl:attribute name="displayName">Eigen geslachtsnaam gevolgd door geslachtsnaam partner</xsl:attribute>
+                </xsl:otherwise>
             </xsl:choose>
         </naamgebruik>
     </xsl:template>
@@ -104,35 +106,28 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    <xsl:template match="f:name/f:family" mode="nl-core-humanname-2.0">
+    <xsl:template match="f:family" mode="nl-core-humanname-2.0">
         <geslachtsnaam>
             <xsl:choose>
                 <xsl:when test="f:extension">
-                    <xsl:apply-templates select="node()" mode="#current"/>
+                    <xsl:for-each select="f:extension">
+                        <xsl:variable name="extensionUrl" select="@url"/>
+                        <xsl:variable name="elementName">
+                            <xsl:choose>
+                                <xsl:when test="$extensionUrl='http://hl7.org/fhir/StructureDefinition/humanname-own-prefix'">voorvoegsels</xsl:when>
+                                <xsl:when test="$extensionUrl='http://hl7.org/fhir/StructureDefinition/humanname-own-name'">achternaam</xsl:when>
+                                <xsl:when test="$extensionUrl='http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix'">voorvoegsels_partner</xsl:when>
+                                <xsl:when test="$extensionUrl='http://hl7.org/fhir/StructureDefinition/humanname-partner-name'">achternaam_partner</xsl:when>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <xsl:element name="{$elementName}">
+                            <xsl:attribute name="value" select="f:valueString/@value"/>
+                        </xsl:element>
+                    </xsl:for-each>
                 </xsl:when>
-                <xsl:otherwise>
-                    <xsl:message terminate="yes">No Patient family name extensions found.</xsl:message><!--To do: @value verwerken.-->
-                </xsl:otherwise>
+                <xsl:otherwise/>
             </xsl:choose>            
         </geslachtsnaam>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc></xd:desc>
-    </xd:doc>
-    <xsl:template match="f:name/f:family/f:extension" mode="nl-core-humanname-2.0">
-        <xsl:variable name="extensionUrl" select="@url"/>
-        <xsl:variable name="elementName">
-            <xsl:choose>
-                <xsl:when test="$extensionUrl='http://hl7.org/fhir/StructureDefinition/humanname-own-prefix'">voorvoegsels</xsl:when>
-                <xsl:when test="$extensionUrl='http://hl7.org/fhir/StructureDefinition/humanname-own-name'">achternaam</xsl:when>
-                <xsl:when test="$extensionUrl='http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix'">voorvoegsels_partner</xsl:when>
-                <xsl:when test="$extensionUrl='http://hl7.org/fhir/StructureDefinition/humanname-partner-name'">achternaam_partner</xsl:when>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:element name="{$elementName}">
-            <xsl:attribute name="value" select="f:valueString/@value"/>
-        </xsl:element>
     </xsl:template>
     
 </xsl:stylesheet>

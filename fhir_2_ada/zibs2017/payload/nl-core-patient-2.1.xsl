@@ -7,6 +7,12 @@
     exclude-result-prefixes="#all"
     version="2.0">
     
+    <xd:doc>
+        <xd:desc>Uncomment imports for standalone use and testing.</xd:desc>
+    </xd:doc>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
+        
     <xsl:variable name="nl-core-patient" select="'http://fhir.nl/fhir/StructureDefinition/nl-core-patient'"/>
     
     <xd:doc>
@@ -52,6 +58,7 @@
                     <xsl:with-param name="precision" select="'DAY'"/>
                 </xsl:call-template>
             </xsl:attribute>
+            <xsl:attribute name="datatype">datetime</xsl:attribute>
         </geboortedatum>
     </xsl:template>
     
@@ -59,7 +66,7 @@
         <xd:desc></xd:desc>
     </xd:doc>
     <xsl:template match="f:gender" mode="nl-core-patient-2.1">
-        <gender>
+        <geslacht>
             <xsl:call-template name="code-to-code">
                 <xsl:with-param name="value" select="@value"/>
                 <xsl:with-param name="codeMap" as="element()*">
@@ -70,7 +77,7 @@
                 </xsl:with-param>
             </xsl:call-template>
             <!-- displayName attribute? -->
-        </gender>
+        </geslacht>
     </xsl:template>
     
 </xsl:stylesheet>
