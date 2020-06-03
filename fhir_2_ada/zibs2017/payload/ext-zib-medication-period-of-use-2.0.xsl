@@ -12,7 +12,9 @@
             <xsl:if test="$start">
                 <gebruiksperiode_start>
                     <xsl:attribute name="value">
-                        <xsl:value-of select="$start"/>                            
+                        <xsl:call-template name="format2ADADate">
+                            <xsl:with-param name="dateTime" select="$start"/>
+                        </xsl:call-template>               
                     </xsl:attribute>
                     <xsl:attribute name="dataype">datetime</xsl:attribute>
                 </gebruiksperiode_start>  
@@ -21,7 +23,9 @@
             <xsl:if test="$end">
                 <gebruiksperiode_eind>
                     <xsl:attribute name="value">
-                        <xsl:value-of select="$end"/>                          
+                        <xsl:call-template name="format2ADADate">
+                            <xsl:with-param name="dateTime" select="$end"/>
+                        </xsl:call-template>                          
                     </xsl:attribute>
                     <xsl:attribute name="dataype">datetime</xsl:attribute>
                 </gebruiksperiode_eind>  

@@ -82,10 +82,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="normalize-space($dateTime) castable as xs:date">
                 <xsl:value-of select="format-date(xs:date(normalize-space($dateTime)), '[Y0001]-[M01]-[D01]')"/>
             </xsl:when>
-            <!-- there may be a relative date(time) like "T-50D{12:34:56}" in the input -->
-            <xsl:when test="matches($dateTime, 'T([+\-]\d+(\.\d+)?[YMD])?')">
+            <!-- there may be a relative date(time) like "${DATE, T, D, -20}T12:34:45+02:00" in the input -->
+            <xsl:when test="matches($dateTime, '\$\{DATE, T, [YMD], ([+\-]\d+(\.\d+)?)\}')">
                 <xsl:variable name="sign">
-                    <xsl:variable name="temp" select="replace($dateTime, 'T(([+\-]).*)?', '$2')"/>
+                    <xsl:variable name="temp" select="replace($dateTime, '\$\{DATE, T, [YMD], (([+\-])\d+(\.\d+)?)\}.*', '$2')"/>
                     <xsl:choose>
                         <xsl:when test="string-length($temp) gt 0">
                             <xsl:value-of select="$temp"/>
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="amount">
-                    <xsl:variable name="temp" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)[YMD].*)?', '$2')"/>
+                    <xsl:variable name="temp" select="replace($dateTime, '\$\{DATE, T, [YMD], ([+\-](\d+(\.\d+)?))\}.*', '$2')"/>
                     <xsl:choose>
                         <xsl:when test="string-length($temp) gt 0">
                             <xsl:value-of select="$temp"/>
@@ -105,7 +105,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="yearMonthDay">
-                    <xsl:variable name="temp" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?([YMD]).*)?', '$3')"/>
+                    <xsl:variable name="temp" select="replace($dateTime, '\$\{DATE, T, ([YMD]), ([+\-](\d+(\.\d+)?))\}.*', '$1')"/>
                     <xsl:choose>
                         <xsl:when test="string-length($temp) gt 0">
                             <xsl:value-of select="$temp"/>
@@ -114,8 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:otherwise>D</xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:variable name="xsDurationString" select="replace($dateTime, 'T([+\-](\d+(\.\d+)?)([YMD]).*)?', 'P$2$4')"/>
-                <xsl:variable name="timePart" select="replace($dateTime, 'T([+\-]\d+(\.\d+)?[YMD](\{(.*)\})?)?', '$4')"/>
+                <xsl:variable name="timePart" select="replace($dateTime, '\$\{DATE, T, ([YMD]), ([+\-](\d+(\.\d+)?))\}T(.+)[+\-].*', '$5')"/>
                 <xsl:variable name="time">
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 5">
@@ -141,11 +140,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
-                        <!-- output a relative date for Touchstone -->
-                        <xsl:value-of select="concat('${DATE, T, ', $yearMonthDay, ', ', $sign, $amount, '}')"/>
+                        <xsl:value-of select="concat('T',$sign,$amount,$yearMonthDay)"/>
                         <xsl:if test="$time castable as xs:time">
-                            <!-- we'll assume the timezone (required in FHIR) because there is no way of knowing the T-date -->
-                            <xsl:value-of select="concat('T', $time, '+02:00')"/>
+                            <!-- Neglects timezone. Impact? -->
+                            <xsl:value-of select="concat('{', $time, '}')"/>
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
