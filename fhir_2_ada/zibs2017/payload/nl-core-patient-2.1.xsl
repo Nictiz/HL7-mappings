@@ -45,14 +45,32 @@
         <xd:desc></xd:desc>
     </xd:doc>
     <xsl:template match="f:birthDate" mode="nl-core-patient-2.1">
-        <geboortedatum></geboortedatum>
+        <geboortedatum>
+            <xsl:attribute name="value">
+                <xsl:call-template name="format2ADADate">
+                    <xsl:with-param name="dateTime" select="@value"/>
+                    <xsl:with-param name="precision" select="'DAY'"/>
+                </xsl:call-template>
+            </xsl:attribute>
+        </geboortedatum>
     </xsl:template>
     
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
     <xsl:template match="f:gender" mode="nl-core-patient-2.1">
-        <gender></gender>
+        <gender>
+            <xsl:call-template name="code-to-code">
+                <xsl:with-param name="value" select="@value"/>
+                <xsl:with-param name="codeMap" as="element()*">
+                    <map code="M" codeSystem="2.16.840.1.113883.5.1" inValue="male" displayName="Man"/>
+                    <map code="F" codeSystem="2.16.840.1.113883.5.1" inValue="female" displayName="Vrouw"/>
+                    <map code="UN" codeSystem="2.16.840.1.113883.5.1" inValue="other" displayName="Ongedifferentieerd"/>
+                    <map code="UNK" codeSystem="2.16.840.1.113883.5.1008" inValue="unknown" displayName="Onbekend"/>
+                </xsl:with-param>
+            </xsl:call-template>
+            <!-- displayName attribute? -->
+        </gender>
     </xsl:template>
     
 </xsl:stylesheet>
