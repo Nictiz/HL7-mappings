@@ -17,11 +17,19 @@
         <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
     </x:scenario>
 
-    <x:scenario label="Scenario for testing function getOid" pending="Not yet implemented">
-        <x:call function="local:getOid">
-            <x:param name="uri" select="''"/>
-        </x:call>
-        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+    <x:scenario label="Scenario for testing function getOid">
+        <x:scenario label="uri = 'http://fhir.nl/fhir/NamingSystem/bsn'">
+            <x:call function="local:getOid">
+                <x:param name="uri" select="'http://fhir.nl/fhir/NamingSystem/bsn'"/>
+            </x:call>
+            <x:expect label="Return bsn oid." select="'2.16.840.1.113883.2.4.6.3'"/>
+        </x:scenario>
+        <x:scenario label="uri = 'urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1'">
+            <x:call function="local:getOid">
+                <x:param name="uri" select="'urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1'"/>
+            </x:call>
+            <x:expect label="Remove urn:oid:" select="'2.16.840.1.113883.2.4.3.11.999.77.1.1'"/>
+        </x:scenario>
     </x:scenario>
 
     <!--<x:scenario label="Scenario for testing template with match 'node()|@*">

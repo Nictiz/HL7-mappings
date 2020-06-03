@@ -21,11 +21,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:output indent="yes"/>
-    <xsl:strip-space elements="*"/>
-    
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
+    
+    <xsl:output indent="yes"/>
+    <xsl:strip-space elements="*"/>
     
     <xd:doc>
         <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#code">@value</xd:a> to ada code element</xd:desc>
@@ -176,6 +176,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$oidMap[@uri = $uri][@oid]">
                 <xsl:value-of select="$oidMap[@uri = $uri]/@oid"/>
+            </xsl:when>
+            <xsl:when test="starts-with($uri,'urn:oid:')">
+                <xsl:value-of select="substring-after($uri,'urn:oid:')"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$uri"/>

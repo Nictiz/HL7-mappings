@@ -55,9 +55,21 @@
                     <f:system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                     <f:value value="999910437"/>
                 </f:identifier>
+                <f:identifier>
+                    <f:system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                    <f:value>
+                        <f:extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <f:valueCode value="masked"/>
+                        </f:extension>
+                    </f:value>
+                </f:identifier>
             </x:context>
-            <x:expect label="'identificatienummer' element with @value and @root">
+            <x:expect label="'identificatienummer' element with @value and @root" test="/*[1]">
                 <identificatienummer value="999910437"
+                    root="2.16.840.1.113883.2.4.6.3"/>
+            </x:expect>
+            <x:expect label="'identificatienummer' element with @nullValue and @root" test="/*[1]">
+                <identificatienummer nullValue="MSK"
                     root="2.16.840.1.113883.2.4.6.3"/>
             </x:expect>
         </x:scenario>

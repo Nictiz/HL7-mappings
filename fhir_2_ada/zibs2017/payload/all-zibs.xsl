@@ -23,9 +23,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xsl:import href="ext-code-specification-1.0.xsl"/>
     <xsl:import href="ext-zib-medication-additional-information-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-copy-indicator-2.0.xsl"/>
-    <xsl:import href="ext-zib-medication-instructions-for-use-description-1.0.xsl"/>
+    <xsl:import href="ext-zib-medication-instructions-for-use-description-1.0.xsl"/>-->
     <xsl:import href="ext-zib-medication-medication-treatment-2.0.xsl"/>
-    <xsl:import href="ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
+    <!--<xsl:import href="ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>-->
     <xsl:import href="nl-core-patient-2.1.xsl"/>

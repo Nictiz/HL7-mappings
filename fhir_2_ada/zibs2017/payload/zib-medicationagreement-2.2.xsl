@@ -39,18 +39,6 @@
         </xsl:for-each>       
     </xsl:template>
     
-    <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']" mode="zib-MedicationAgreement-2.2">
-        <xsl:for-each select="f:valueIdentifier">
-            <identificatie>
-                <xsl:attribute name="value">
-                    <xsl:value-of select="f:value/@value"/>
-                </xsl:attribute>
-                <xsl:attribute name="root">
-                    <xsl:value-of select="f:system/@value"/>
-                </xsl:attribute>
-            </identificatie>
-        </xsl:for-each>
-    </xsl:template>
- 
+    <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']" mode="zib-MedicationAgreement-2.2"/>
  
 </xsl:stylesheet>

@@ -37,7 +37,7 @@
         <identificatienummer>
             <xsl:choose>
                 <xsl:when test="f:value/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason'">
-                    <xsl:attribute name="nullVlue" select="'MSK'"/>
+                    <xsl:attribute name="nullValue" select="'MSK'"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:attribute name="value" select="f:value/@value"/>

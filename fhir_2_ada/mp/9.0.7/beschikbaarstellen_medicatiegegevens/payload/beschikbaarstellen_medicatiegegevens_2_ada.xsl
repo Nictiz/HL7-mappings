@@ -44,8 +44,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="id">DUMMY</xsl:attribute>
                     
                     <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-patient-2.1"/>
-                    <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:MedicationRequest" mode="zib-MedicationAgreement-2.2"/>
-                    <xsl:apply-templates select="f:Bundle/f:entry/f:resource/(node() except f:Patient)"/>
+                    <xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest|f:MedicationDispense|f:MedicationStatement)" group-by="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']/f:valueIdentifier/concat(f:system/@value,f:value/@value)">
+                        
+                            <medicamenteuze_behandeling>
+                                <identificatie>
+                                    <xsl:attribute name="value" select="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']/f:valueIdentifier/f:value/@value"/>
+                                    <xsl:attribute name="root" select="local:getOid(f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']/f:valueIdentifier/f:system/@value)"/>
+                                </identificatie>
+                                <xsl:apply-templates select="current-group()" mode="zib-MedicationAgreement-2.2"/>
+                            </medicamenteuze_behandeling>
+                        
+                    </xsl:for-each-group>
+                    <xsl:apply-templates select="f:Bundle/f:entry/f:resource/(node() except (f:Patient|f:MedicationRequest|f:MedicationDispense|f:MedicationStatement))"/>
                 </beschikbaarstellen_medicatiegegevens>
             </data>
         </adaxml>
