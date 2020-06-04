@@ -3,31 +3,63 @@
  
     <xsl:template match="f:Medication" mode="zib-PharmaceuticalProduct-2.0">  
         <product>
-            <xsl:apply-templates select="node() except (f:meta|f:text|f:code)" mode="#current"/>
+<!--        <xsl:apply-templates select="node() except (f:meta|f:text|f:code|f:extension|f:ingredient/f:amount|f:ingredient/f:itemCodeableConcept)" mode="#current"/>-->
             <xsl:apply-templates select="f:code" mode="#current"/>
         </product>
+        <product_specificatie>
+            <xsl:apply-templates select="f:extension" mode="#current"/>
+            <xsl:apply-templates select="f:ingredient" mode="#current"/>
+        </product_specificatie>
     </xsl:template>
         
-        <xsl:template match="f:code" mode="zib-PharmaceuticalProduct-2.0">           
-            
-            <xsl:call-template name="CodeableConcept-to-code">
-                <xsl:with-param name="in" select="."/>
-                <xsl:with-param name="adaElementName" select="'product_code'"/>
-            </xsl:call-template>
-            
-        <!--<xsl:for-each select="f:coding">
-            <product_code>
-                <xsl:call-template name="Coding-to-code">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>                
-            </product_code>            
-        </xsl:for-each>-->
-        
-          <!--  code="17469"
-            codeSystem="2.16.840.1.113883.2.4.4.10"
-            displayName="IBUPROFEN TABLET 600MG"
-            codeSystemName="G-Standaard PRK" -->
+    <xsl:template match="f:code" mode="zib-PharmaceuticalProduct-2.0">           
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="adaElementName" select="'product_code'"/>
+        </xsl:call-template>
+    </xsl:template>
     
-             </xsl:template>
+    <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description']" mode="zib-PharmaceuticalProduct-2.0">
+        <omschrijving>
+            <xsl:attribute name="value" select="f:valueString/@value"/>
+        </omschrijving>
+    </xsl:template>
         
+    <xsl:template match="f:ingredient" mode="zib-PharmaceuticalProduct-2.0">
+            <ingredient>                 
+                <xsl:apply-templates select="f:itemCodeableConcept" mode="zib-PharmaceuticalProduct-2.0"/>
+                <xsl:apply-templates select="f:amount" mode="zib-PharmaceuticalProduct-2.0"/>      
+            </ingredient>
+    </xsl:template>
+
+    <xsl:template match="f:Medication/f:ingredient/f:itemCodeableConcept" mode="zib-PharmaceuticalProduct-2.0">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="adaElementName" select="'ingredient_code'"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <!-- WORK in PROGRESS -> needs to become a function -->
+    <xsl:template match="f:amount" mode="zib-PharmaceuticalProduct-2.0">
+        <sterkte>
+            <hoeveelheid_ingredient>
+                <waarde>
+                    <xsl:attribute name="value" select="f:numerator/f:value/@value"/>
+                    <xsl:attribute name="code" select="f:numerator/f:code/@value"/>
+                    <xsl:attribute name="codeSystem" select="f:numerator/f:system/@value"/>
+                    <xsl:attribute name="displayName" select="f:numerator/f:unit/@value"/>
+                </waarde>
+            </hoeveelheid_ingredient>
+            <hoeveelheid_product>
+                <waarde>
+                    <xsl:attribute name="value" select="f:denominator/f:value/@value"/>
+                    <xsl:attribute name="code" select="f:denominator/f:code/@value"/>
+                    <xsl:attribute name="codeSystem" select="f:denominator/f:system/@value"/>
+                    <xsl:attribute name="displayName" select="f:denominator/f:unit/@value"/>
+                </waarde>
+            </hoeveelheid_product>   
+        </sterkte>
+    </xsl:template>          
+
+
 </xsl:stylesheet>
