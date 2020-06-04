@@ -15,14 +15,14 @@
     
     <xsl:template match="f:MedicationRequest" mode="zib-MedicationAgreement-2.2"> 
         <medicatieafspraak>
-            <xsl:apply-templates select="node() except (f:meta|f:text|f:identifier|intent|f:category)" mode="#current"/>
-            
+            <xd:doc>
+                <xd:desc>meta, text, intent, category are elements in FHIR that are not mapped to concepts in MP9</xd:desc>
+            </xd:doc>
+            <xsl:apply-templates select="node() except (f:meta|f:text|f:intent|f:category)" mode="#current"/>
             <xsl:apply-templates select="f:extension" mode="#current"/>
-            <!-- <xsl:apply-templates select="f:identifier"/>
-            
-              
-            <xsl:apply-templates select="f:intent"/>
-            <xsl:apply-templates select="f:category"/>-->
+            <xsl:apply-templates select="f:identifier" mode="#current"/>
+            <xsl:apply-templates select="f:intent" mode="#current"/>              
+            <xsl:apply-templates select="f:medicationReference" mode="#current"/> 
         </medicatieafspraak>
     </xsl:template>
     
@@ -39,6 +39,22 @@
         </xsl:for-each>       
     </xsl:template>
     
-    <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']" mode="zib-MedicationAgreement-2.2"/>
- 
+    <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']" mode="zib-MedicationAgreement-2.2">
+        <!-- do nothing - MedicationTreatment identifier is used at a higher level -->
+    </xsl:template>
+    
+    <xsl:template match="f:identifier" mode="zib-MedicationAgreement-2.2">
+        <identificatie>
+            <xsl:attribute name="value" select="f:value/@value"/>
+            <xsl:attribute name="root" select="local:getOid(f:system/@value)"/>
+        </identificatie>   
+    </xsl:template>
+    
+    <xsl:template match="f:medicationReference" mode="zib-MedicationAgreement-2.2">
+        <xsl:variable name="referenceValue" select="f:reference/@value"/>
+        <afgesproken_geneesmiddel>
+            <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:Medication" mode="zib-PharmaceuticalProduct-2.0"/>
+        </afgesproken_geneesmiddel>        
+    </xsl:template>
+    
 </xsl:stylesheet>

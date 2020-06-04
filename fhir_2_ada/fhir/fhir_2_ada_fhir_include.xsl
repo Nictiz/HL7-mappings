@@ -59,16 +59,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">the FHIR CodeableConcept element</xd:param>
         <xd:param name="inElementName">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
     </xd:doc>
-    <xsl:template name="CodeableConcept-to-code" as="attribute()*">
+    <xsl:template name="CodeableConcept-to-code" as="element()*">
         <xsl:param name="in" as="element()?"/>
+        <xsl:param name="adaElementName" as="xs:string"/>
         <xsl:param name="inElementName" as="xs:string?">coding</xsl:param>
         
-        <xsl:call-template name="Coding-to-code">
-            <xsl:with-param name="in" select="$in/f:*[local-name()=$inElementName]"/>
-        </xsl:call-template>
-        <xsl:if test="normalize-space($in/f:text//text())">
-            <xsl:attribute name="originalText" select="$in/f:text//text()"/>
-        </xsl:if>
+        <xsl:for-each select="$in/f:*[local-name()=$inElementName]">
+            <xsl:element name="{$adaElementName}">
+                <xsl:call-template name="Coding-to-code">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+                <xsl:if test="normalize-space($in/f:text/@value)">
+                    <xsl:attribute name="originalText" select="$in/f:text/@value"/>
+                </xsl:if>
+            </xsl:element>
+        </xsl:for-each>
+        
     </xsl:template>
     
     <xd:doc>

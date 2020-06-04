@@ -29,11 +29,10 @@
     </xsl:template>
     
     <xsl:template match="f:route" mode="zib-instructions-for-use-2.0">
-        <toedieningsweg>
             <xsl:call-template name="CodeableConcept-to-code">
                 <xsl:with-param name="in" select="."/>
+                <xsl:with-param name="adaElementName" select="'toedieningsweg'"/>
             </xsl:call-template>
-        </toedieningsweg>
     </xsl:template>
     
 </xsl:stylesheet>
