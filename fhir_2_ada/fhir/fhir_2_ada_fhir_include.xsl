@@ -55,6 +55,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#CodeableConcept">CodeableConcept contents</xd:a> to ada code element.</xd:desc>
+        <xd:param name="in">the FHIR CodeableConcept element</xd:param>
+        <xd:param name="inElementName">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
+    </xd:doc>
+    <xsl:template name="CodeableConcept-to-code" as="attribute()*">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="inElementName" as="xs:string?">coding</xsl:param>
+        
+        <xsl:call-template name="Coding-to-code">
+            <xsl:with-param name="in" select="$in/f:*[local-name()=$inElementName]"/>
+        </xsl:call-template>
+        <xsl:if test="normalize-space($in/f:text//text())">
+            <xsl:attribute name="originalText" select="$in/f:text//text()"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Coding">Coding contents</xd:a> to ada code element</xd:desc>
+        <xd:param name="in">the FHIR Coding contents</xd:param>
+    </xd:doc>
+    <xsl:template name="Coding-to-code" as="attribute()*">
+        <xsl:param name="in" as="element()?" select="."/>
+
+        <xsl:variable name="oid" select="local:getOid($in/f:system/@value)"/>
+        <xsl:variable name="codeSystemName" select="local:getDisplayName($oid)"/>
+        <xsl:attribute name="code" select="$in/f:code/@value"/>
+        <xsl:if test="$oid">
+            <xsl:attribute name="codeSystem" select="$oid"/>
+        </xsl:if>
+        <xsl:if test="not($codeSystemName=$oid)">
+            <xsl:attribute name="codeSystemName" select="$codeSystemName"/>
+        </xsl:if>
+        <xsl:if test="$in/f:display/@value">
+            <xsl:attribute name="displayName" select="replace($in/f:display/@value, '(^\s+)|(\s+$)', '')"></xsl:attribute>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Formats FHIR date(Time) or ada normal or relativeDate(time) based on input precision</xd:desc>
         <xd:param name="dateTime">Input FHIR date(Time)</xd:param>
         <xd:param name="precision">Determines the precision of the output. Precision of minutes outputs seconds as '00'</xd:param>
@@ -183,6 +221,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <xsl:value-of select="$uri"/>
                 <xsl:message>WARNING: local:getOid() expects a FHIR System URI, but got "<xsl:value-of select="$uri"/>"</xsl:message>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Get the ada displayName from input OID</xd:desc>
+        <xd:param name="oid">input OID from ada</xd:param>
+    </xd:doc>
+    <xsl:function name="local:getDisplayName" as="xs:string?">
+        <xsl:param name="oid" as="xs:string?"/>
+        <xsl:choose>
+            <xsl:when test="$oidMap[@oid = $oid][@displayName]">
+                <xsl:value-of select="$oidMap[@oid = $oid]/@displayName"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$oid"/>
+                <xsl:message>WARNING: local:getDisplayName() expects an OID, but got "<xsl:value-of select="$oid"/>" OR cannot find the matching displayName</xsl:message>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
