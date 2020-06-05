@@ -64,17 +64,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaElementName" as="xs:string"/>
         <xsl:param name="inElementName" as="xs:string?">coding</xsl:param>
         
-        <xsl:for-each select="$in/f:*[local-name()=$inElementName]">
-            <xsl:element name="{$adaElementName}">
-                <xsl:call-template name="Coding-to-code">
-                    <xsl:with-param name="in" select="."/>
-                </xsl:call-template>
-                <xsl:if test="normalize-space($in/f:text/@value)">
-                    <xsl:attribute name="originalText" select="$in/f:text/@value"/>
-                </xsl:if>
-            </xsl:element>
-        </xsl:for-each>
-        
+        <xsl:choose>
+            <xsl:when test="$in/f:extension/@url=$urlExtHL7NullFlavor">
+                <xsl:variable name="nullFlavorValue" select="$in/f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value"/>
+                <xsl:variable name="nullFlavorDisplayName" select="$hl7NullFlavorMap[@hl7NullFlavor=$nullFlavorValue]/@displayName"/>
+                <xsl:element name="{$adaElementName}">
+                    <xsl:call-template name="Coding-to-code">
+                        <xsl:with-param name="in" as="element()">
+                            <f:coding>
+                                <f:system value="{$oidHL7NullFlavor}"/>
+                                <f:code value="{$nullFlavorValue}"/>
+                                <f:display value="{$nullFlavorDisplayName}"/>
+                            </f:coding>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </xsl:element>
+            </xsl:when>
+            <xsl:when test="$in/f:*[local-name()=$inElementName]">
+                <xsl:for-each select="$in/f:*[local-name()=$inElementName]">
+                    <xsl:element name="{$adaElementName}">
+                        <xsl:call-template name="Coding-to-code">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                        <xsl:if test="normalize-space($in/f:text/@value)">
+                            <xsl:attribute name="originalText" select="$in/f:text/@value"/>
+                        </xsl:if>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     
     <xd:doc>
@@ -83,7 +101,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="Coding-to-code" as="attribute()*">
         <xsl:param name="in" as="element()?" select="."/>
-
+        
         <xsl:variable name="oid" select="local:getOid($in/f:system/@value)"/>
         <xsl:variable name="codeSystemName" select="local:getDisplayName($oid)"/>
         <xsl:attribute name="code" select="$in/f:code/@value"/>
@@ -96,6 +114,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="$in/f:display/@value">
             <xsl:attribute name="displayName" select="replace($in/f:display/@value, '(^\s+)|(\s+$)', '')"></xsl:attribute>
         </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transforms FHIR Quantity to ada waarde and eenheid elements</xd:desc>
+        <xd:param name="quantity">FHIR Quantity element</xd:param>
+        
+        <!--<xd:param name="waarde">ada element may have any name but should have datatype aantal (count)</xd:param>
+        <xd:param name="eenheid">ada element may have any name but should have datatype code</xd:param>-->
+    </xd:doc>
+    <xsl:template name="hoeveelheid-Quantity-to-complex" as="element()*">
+        <xsl:param name="quantity" as="element()"/>
+        <xsl:param name="adaWaarde">vaste_waarde</xsl:param>
+        <xsl:param name="adaEenheid">eenheid</xsl:param>
+        
+        <xsl:choose>
+            <xsl:when test="f:extension/@url=$urlExtHL7NullFlavor">
+                <aantal>
+                    <xsl:element name="{$adaWaarde}">
+                        <xsl:attribute name="nullFlavor" select="(f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"></xsl:attribute>
+                    </xsl:element>
+                </aantal>
+            </xsl:when>
+            <xsl:otherwise>
+                <aantal>
+                    <xsl:element name="{$adaWaarde}">
+                        <xsl:attribute name="value" select="f:value/@value"/>
+                    </xsl:element>
+                </aantal>
+                <xsl:element name="{$adaEenheid}">
+                    <xsl:variable name="oid" select="local:getOid(f:system/@value)"/>
+                    <xsl:attribute name="code" select="f:code/@value"/>
+                    <xsl:attribute name="codeSystem" select="$oid"></xsl:attribute>
+                    <xsl:attribute name="codeSystemName" select="local:getDisplayName($oid)"></xsl:attribute>
+                    <xsl:attribute name="displayName" select="f:unit/@value"></xsl:attribute>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
+        <!--
+                <value value="{$waarde/@value}"/>
+                <xsl:for-each select="$eenheid[@code]">
+                    <xsl:for-each select="./@displayName">
+                        <unit value="{replace(., '(^\s+)|(\s+$)', '')}"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="./@codeSystem">
+                        <system value="{local:getUri(.)}"/>
+                    </xsl:for-each>
+                    <code value="{if (@codeSystem = $oidUCUM) then nf:convert_ADA_unit2UCUM_FHIR($eenheid/@code) else $eenheid/@code}"/>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>-->
     </xsl:template>
     
     <xd:doc>
@@ -249,13 +317,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Identity transformation</xd:desc>
+        <xd:desc>Converts an UCUM unit as used in FHIR to ada time unit</xd:desc>
+        <xd:param name="UCUMFHIR">The UCUM unit string</xd:param>
     </xd:doc>
-    <xsl:template match="node()|@*">
-        <xsl:copy>
-            <xsl:apply-templates select="node()|@*"/>
-        </xsl:copy>
-    </xsl:template>
+    <xsl:function name="nf:convertTime_UCUM_FHIR2ADA_unit" as="xs:string?">
+        <xsl:param name="UCUMFHIR" as="xs:string?"/>
+        <xsl:if test="$UCUMFHIR">
+            <xsl:choose>
+                <xsl:when test="$UCUMFHIR = 's'"><xsl:value-of select="$ada-unit-second[1]"/></xsl:when>
+                <xsl:when test="$UCUMFHIR = 'min'"><xsl:value-of select="$ada-unit-minute[1]"/></xsl:when>
+                <xsl:when test="$UCUMFHIR = 'h'"><xsl:value-of select="$ada-unit-hour[1]"/></xsl:when>
+                <xsl:when test="$UCUMFHIR = 'd'"><xsl:value-of select="$ada-unit-day[1]"/></xsl:when>
+                <xsl:when test="$UCUMFHIR = 'wk'"><xsl:value-of select="$ada-unit-week[1]"/></xsl:when>
+                <xsl:when test="$UCUMFHIR = 'mo'"><xsl:value-of select="$ada-unit-month[1]"/></xsl:when>
+                <xsl:when test="$UCUMFHIR = 'a'"><xsl:value-of select="$ada-unit-year[1]"/></xsl:when>
+                <!--<xsl:otherwise>
+                    <!-\- If all else fails: wrap in {} to make it an annotation -\->
+                    <xsl:value-of select="concat('{', $ADAtime, '}')"/>
+                </xsl:otherwise>-->
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
     
     <xd:doc>
         <xd:desc>Remove comments</xd:desc>
@@ -263,10 +345,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="comment()"/>
     
     <xd:doc>
+        <xd:desc>Remove unhandled text nodes</xd:desc>
+    </xd:doc>
+    <xsl:template match="text()"/>
+    
+    <!--<xd:doc>
+        <xd:desc>Identity transformation</xd:desc>
+    </xd:doc>
+    <xsl:template match="node()|@*" priority="-1">
+        <xsl:copy>
+            <xsl:apply-templates select="node()|@*"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    
+    
+    <xd:doc>
         <xd:desc>Throw process if an unhandled FHIR element is matched.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:*" mode="#all">
+    <xsl:template match="f:*" mode="#all" priority="-1">
         <xsl:message terminate="yes">Unhandled FHIR element: <xsl:value-of select="local-name()"/></xsl:message>
-    </xsl:template>
+    </xsl:template>-->
     
 </xsl:stylesheet>

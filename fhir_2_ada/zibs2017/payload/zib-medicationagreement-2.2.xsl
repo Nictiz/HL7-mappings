@@ -12,16 +12,10 @@
     <xd:doc>
         <xd:desc></xd:desc>
     </xd:doc>
-    
     <xsl:template match="f:MedicationRequest" mode="zib-MedicationAgreement-2.2"> 
         <medicatieafspraak>
-            <xd:doc>
-                <xd:desc>meta, text, intent, category are elements in FHIR that are not mapped to concepts in MP9</xd:desc>
-            </xd:doc>
-            <xsl:apply-templates select="node() except (f:meta|f:text|f:intent|f:category)" mode="#current"/>
             <xsl:apply-templates select="f:extension" mode="#current"/>
             <xsl:apply-templates select="f:identifier" mode="#current"/>
-            <xsl:apply-templates select="f:intent" mode="#current"/>              
             <xsl:apply-templates select="f:medicationReference" mode="#current"/> 
         </medicatieafspraak>
     </xsl:template>

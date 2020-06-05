@@ -1,15 +1,18 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:uuid="http://www.uuid.org" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+    
+    <xd:doc>
+        <xd:desc>Uncomment imports for standalone use and testing.</xd:desc>
+    </xd:doc>
+    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
  
     <xsl:template match="f:Medication" mode="zib-PharmaceuticalProduct-2.0">  
         <product>
-<!--        <xsl:apply-templates select="node() except (f:meta|f:text|f:code|f:extension|f:ingredient/f:amount|f:ingredient/f:itemCodeableConcept)" mode="#current"/>-->
             <xsl:apply-templates select="f:code" mode="#current"/>
+            <product_specificatie>
+                <xsl:apply-templates select="f:extension" mode="#current"/>
+                <xsl:apply-templates select="f:ingredient" mode="#current"/>
+            </product_specificatie>
         </product>
-        <product_specificatie>
-            <xsl:apply-templates select="f:extension" mode="#current"/>
-            <xsl:apply-templates select="f:ingredient" mode="#current"/>
-        </product_specificatie>
     </xsl:template>
         
     <xsl:template match="f:code" mode="zib-PharmaceuticalProduct-2.0">           
