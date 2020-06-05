@@ -1,2 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="zib-medicationagreement-2.2.xspec"> </x:description>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../zib-medicationagreement-2.2.xsl">
+    
+    <x:scenario label="zib-MedicationAgreement-2.2">
+        <x:context mode="zib-MedicationAgreement-2.2">
+            <MedicationRequest xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+                </meta>
+                <text/>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+                    <valuePeriod>
+                        <start value="${{DATE, T, D, -20}}T00:00:00+02:00"/>
+                        <end value="${{DATE, T, D, +9}}T23:59:59+02:00"/>
+                    </valuePeriod>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                        <value value="MBH_907_QA1"/>
+                    </valueIdentifier>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <value value="MBH_907_QA1_MA"/>
+                </identifier>
+                <intent value="order"/>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="16076005"/>
+                        <display value="Prescription (procedure)"/>
+                    </coding>
+                    <text value="Medicatieafspraak"/>
+                </category>
+                <medicationReference>
+                    <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.17469"/>
+                    <display value="IBUPROFEN TABLET 600MG"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:de1819ac-9e98-11ea-2050-020000000000"/>
+                    <display value="S. XXX_Jankie"/>
+                </subject>
+                <authoredOn value="${{DATE, T, D, -20}}T08:00:00+02:00"/>
+                <requester>
+                    <agent>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                            <valueReference>
+                                <reference value="urn:uuid:de182881-9e98-11ea-2050-020000000000"/>
+                                <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                            </valueReference>
+                        </extension>
+                        <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                        <display value="Peter van Pulver"/>
+                    </agent>
+                </requester>
+                <dosageInstruction>
+                    <text value="Vanaf &lt;T-20D{{00:00:00}}&gt;t/m &lt;T+9D{{23:59:59}}&gt;, 1 maal per dag 2 stuks, oraal"/>
+                    <timing>
+                        <repeat>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="Oraal"/>
+                        </coding>
+                    </route>
+                    <doseQuantity>
+                        <value value="2"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                    </doseQuantity>
+                </dosageInstruction>
+            </MedicationRequest>
+        </x:context>
+        <x:expect label="...">
+            <medicatieafspraak>
+                <gebruiksperiode_start value="T-20D{{00:00:00}}"
+                    datatype="datetime"/>
+                <gebruiksperiode_eind value="T+9D{{23:59:59}}"
+                    datatype="datetime"/>
+                <identificatie
+                    value="MBH_907_QA1_MA"
+                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                <afspraakdatum value="T-20D{{08:00:00}}"
+                    datatype="datetime"/>
+                <voorschrijver/>
+                <afgesproken_geneesmiddel/>
+                <gebruiksinstructie>
+                    <omschrijving
+                        value="Vanaf &lt;T-20D{{00:00:00}}&gt;t/m &lt;T+9D{{23:59:59}}&gt;, 1 maal per dag 2 stuks, oraal"/>
+                    <toedieningsweg
+                        code="9"
+                        codeSystem="2.16.840.1.113883.2.4.4.9"
+                        codeSystemName="G-Standaard TH007 Toedieningswegen"
+                        displayName="Oraal"/>
+                    <doseerinstructie>
+                        <dosering>
+                            <keerdosis>
+                                <aantal>
+                                    <vaste_waarde value="2"/>
+                                </aantal>
+                                <eenheid
+                                    code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                                    displayName="stuk"/>
+                            </keerdosis>
+                            <toedieningsschema>
+                                <frequentie>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <tijdseenheid unit="dag"
+                                        value="1"/>
+                                </frequentie>
+                            </toedieningsschema>
+                        </dosering>
+                    </doseerinstructie>
+                </gebruiksinstructie>
+            </medicatieafspraak>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>

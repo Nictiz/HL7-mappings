@@ -3,7 +3,7 @@
     <xd:doc>
         <xd:desc>Uncomment imports for standalone use and testing.</xd:desc>
     </xd:doc>
-    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
  
     <xsl:template match="f:Medication" mode="zib-PharmaceuticalProduct-2.0">  
         <product>
