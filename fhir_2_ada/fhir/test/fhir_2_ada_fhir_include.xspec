@@ -112,13 +112,28 @@
             
         </x:scenario>
         
-        <x:scenario label="template name Coding-to-code" pending="">
-            <x:scenario label="nullFlavor Coding">
+        <x:scenario label="template name Coding-to-code">
+            <x:scenario label="nullFlavor Coding" pending="">
                 <x:call template="Coding-to-code">
                     <x:param name="in" select="'no_value'"/>
                 </x:call>
                 <x:expect label="Not yet implemented"/>
             </x:scenario>
+            
+            <x:scenario label="userSelected">
+                <x:call template="Coding-to-code">
+                    <x:param name="in">
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                            <code value="17469"/>
+                            <display value="IBUPROFEN TABLET 600MG"/>
+                            <userSelected value="true"/>
+                        </coding>                               
+                    </x:param>
+                </x:call>
+                <x:expect label="@code" test="@code"/>
+            </x:scenario>
+            
         </x:scenario>
         
         

@@ -114,6 +114,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="$in/f:display/@value">
             <xsl:attribute name="displayName" select="replace($in/f:display/@value, '(^\s+)|(\s+$)', '')"></xsl:attribute>
         </xsl:if>
+        <xsl:if test="$in/f:userSelected/@value">
+            <xsl:attribute name="preferred" select="'true'"></xsl:attribute>
+        </xsl:if>
     </xsl:template>
     
     <xd:doc>
