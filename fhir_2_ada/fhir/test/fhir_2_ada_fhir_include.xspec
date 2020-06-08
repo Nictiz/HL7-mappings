@@ -33,12 +33,13 @@
                     <x:param name="adaElementName" select="'product_code'"/>
                     <x:param name="inElementName" select="'coding'"/>
                 </x:call>
-                <x:expect label="Not yet implemented">
+                <x:expect label="2 'product_code' elements with code attributes">
                     <product_code
                         code="17469"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         codeSystemName="G-Standaard PRK"
-                        displayName="IBUPROFEN TABLET 600MG"/>
+                        displayName="IBUPROFEN TABLET 600MG"
+                        preferred="true"/>
                     <product_code
                         code="42080"
                         codeSystem="2.16.840.1.113883.2.4.4.1"
@@ -123,7 +124,7 @@
             <x:scenario label="userSelected">
                 <x:call template="Coding-to-code">
                     <x:param name="in">
-                        <coding>
+                        <coding xmlns="http://hl7.org/fhir">
                             <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
                             <code value="17469"/>
                             <display value="IBUPROFEN TABLET 600MG"/>
@@ -131,9 +132,14 @@
                         </coding>                               
                     </x:param>
                 </x:call>
-                <x:expect label="@code" test="@code"/>
-            </x:scenario>
-            
+                <x:expect label="code with preferred boolean" select="product_code/@*">
+                    <product_code code="17469" 
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        codeSystemName="G-Standaard PRK"
+                        displayName="IBUPROFEN TABLET 600MG"
+                        preferred="true"/>
+                </x:expect>
+            </x:scenario>            
         </x:scenario>
         
         
