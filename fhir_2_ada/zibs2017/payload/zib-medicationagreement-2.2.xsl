@@ -10,9 +10,7 @@
     <xsl:variable name="zib-MedicationAgreement" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement'"/>
     <xsl:variable name="zib-Medication-PeriodOfUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
     
-    <xd:doc>
-        <xd:desc>Uncomment imports for standalone use and testing.</xd:desc>
-    </xd:doc>
+    <!--Uncomment imports for standalone use and testing.-->
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
     <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>

@@ -130,6 +130,61 @@
                 </product>
             </x:expect>
         </x:scenario>
+    
+        <x:scenario label="match 'f:ingredient' mode 'zib-PharmaceuticalProduct-2.0">
+            <x:context mode="zib-PharmaceuticalProduct-2.0">
+                <ingredient xmlns="http://hl7.org/fhir">
+                    <itemCodeableConcept>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                            <code value="14740877"/>
+                            <display value="EUCERINE MET WATER FAGRON"/>
+                        </coding>
+                    </itemCodeableConcept>
+                    <amount>
+                        <numerator>
+                            <value value="90"/>
+                            <unit value="gram"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="215"/>
+                        </numerator>
+                        <denominator>
+                            <value value="100"/>
+                            <unit value="gram"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="215"/>
+                        </denominator>
+                    </amount>
+                </ingredient>
+            </x:context>
+            <x:expect label="'ingredient' element">
+                <ingredient>
+                    <sterkte>
+                        <hoeveelheid_ingredient>
+                            <waarde value="90"/>
+                            <eenheid
+                                code="215"
+                                codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                codeSystemName="G-Standaard thesaurus basiseenheden"
+                                displayName="gram"/>
+                        </hoeveelheid_ingredient>
+                        <hoeveelheid_product>
+                            <waarde value="100"/>
+                            <eenheid
+                                code="215"
+                                codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                codeSystemName="G-Standaard thesaurus basiseenheden"
+                                displayName="gram"/>
+                        </hoeveelheid_product>
+                    </sterkte>
+                    <ingredient_code
+                        code="14740877"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        codeSystemName="G-Standaard HPK"
+                        displayName="EUCERINE MET WATER FAGRON"/>
+                </ingredient>
+            </x:expect>
+        </x:scenario>
     </x:scenario>
     
 

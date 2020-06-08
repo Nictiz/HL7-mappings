@@ -3,7 +3,7 @@
     
     <x:scenario label="fhir_2_ada_fhir_include">
         
-        <x:scenario label="function code-to-code" pending="">
+        <x:scenario label="template name code-to-code" pending="">
             <x:call template="code-to-code">
                 <x:param name="value" select="'no_value'"/>
                 <x:param name="codeMap" select="'no_value'"/>
@@ -11,7 +11,7 @@
             <x:expect label="Not yet implemented"/>
         </x:scenario>
         
-        <x:scenario label="function CodeableConcept-to-code">
+        <x:scenario label="template name CodeableConcept-to-code">
             <x:scenario label="CodeableConcept with 2 Codings and text">
                 <x:call template="CodeableConcept-to-code">
                     <x:param name="in">
@@ -64,7 +64,55 @@
             </x:scenario>
         </x:scenario>
         
-        <x:scenario label="function Coding-to-code" pending="">
+        <x:scenario label="template name Quantity-to-hoeveelheid-complex">
+            <x:scenario label="No params">
+                <x:context>
+                    <numerator xmlns="http://hl7.org/fhir">
+                        <value value="90"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </numerator>
+                </x:context>
+                <x:call template="Quantity-to-hoeveelheid-complex"/>
+                <x:expect label="'waarde' and 'eenheid' elements">
+                    <waarde value="90"/>
+                    <eenheid code="215"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                        displayName="gram"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="withRange=true()">
+                <x:context>
+                    <doseQuantity xmlns="http://hl7.org/fhir">
+                        <value value="2"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                    </doseQuantity>
+                </x:context>
+                <x:call template="Quantity-to-hoeveelheid-complex">
+                    <x:param name="withRange" select="true()"/>
+                    
+                </x:call>
+                <x:expect label="'aantal' and 'eenheid' elements">
+                    <aantal>
+                        <vaste_waarde value="2"/>
+                    </aantal>
+                    <eenheid code="245"
+                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                        codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                        displayName="stuk"/>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="template name Ratio-to-hoeveelheid-complex">
+            
+        </x:scenario>
+        
+        <x:scenario label="template name Coding-to-code" pending="">
             <x:scenario label="nullFlavor Coding">
                 <x:call template="Coding-to-code">
                     <x:param name="in" select="'no_value'"/>
@@ -72,6 +120,8 @@
                 <x:expect label="Not yet implemented"/>
             </x:scenario>
         </x:scenario>
+        
+        
         
         <x:scenario label="function format2ADADate">
             <!--<x:call template="format2ADADate">

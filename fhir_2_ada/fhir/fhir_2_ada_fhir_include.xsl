@@ -123,25 +123,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--<xd:param name="waarde">ada element may have any name but should have datatype aantal (count)</xd:param>
         <xd:param name="eenheid">ada element may have any name but should have datatype code</xd:param>-->
     </xd:doc>
-    <xsl:template name="hoeveelheid-Quantity-to-complex" as="element()*">
-        <xsl:param name="quantity" as="element()"/>
-        <xsl:param name="adaWaarde">vaste_waarde</xsl:param>
+    <xsl:template name="Quantity-to-hoeveelheid-complex" as="element()*">
+        <!--<xsl:param name="quantity" as="element()"/>-->
+        <xsl:param name="adaWaarde"/>
         <xsl:param name="adaEenheid">eenheid</xsl:param>
+        <xsl:param name="withRange" select="false()"/>
+        <xsl:variable name="adaWaardeElementName">
+            <xsl:choose>
+                <xsl:when test="not($adaWaarde='')">
+                    <xsl:value-of select="$adaWaarde"/>
+                </xsl:when>
+                <xsl:when test="$withRange=true()">vaste_waarde</xsl:when>
+                <xsl:otherwise>waarde</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         
         <xsl:choose>
             <xsl:when test="f:extension/@url=$urlExtHL7NullFlavor">
                 <aantal>
-                    <xsl:element name="{$adaWaarde}">
+                    <xsl:element name="{$adaWaardeElementName}">
                         <xsl:attribute name="nullFlavor" select="(f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"></xsl:attribute>
                     </xsl:element>
                 </aantal>
             </xsl:when>
             <xsl:otherwise>
-                <aantal>
-                    <xsl:element name="{$adaWaarde}">
-                        <xsl:attribute name="value" select="f:value/@value"/>
-                    </xsl:element>
-                </aantal>
+                <xsl:choose>
+                    <xsl:when test="$withRange=true()">
+                        <aantal>
+                            <xsl:element name="{$adaWaardeElementName}">
+                                <xsl:attribute name="value" select="f:value/@value"/>
+                            </xsl:element>
+                        </aantal>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:element name="{$adaWaardeElementName}">
+                            <xsl:attribute name="value" select="f:value/@value"/>
+                        </xsl:element>
+                    </xsl:otherwise>
+                </xsl:choose>
+                
                 <xsl:element name="{$adaEenheid}">
                     <xsl:variable name="oid" select="local:getOid(f:system/@value)"/>
                     <xsl:attribute name="code" select="f:code/@value"/>
@@ -164,6 +184,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>-->
+    </xsl:template>
+    
+    <xsl:template name="Ratio-to-hoeveelheid-complex" as="element()*">
+        <!--<xsl:param name="numerator" as="element()"/>
+        <xsl:param name="denominator" as="element()"/>-->
+        <xsl:param name="numeratorAdaName" as="xs:string"/>
+        <xsl:param name="denominatorAdaName" as="xs:string"/>
+        
+        <xsl:for-each select="f:numerator">
+            <xsl:element name="{$numeratorAdaName}">
+                <xsl:call-template name="Quantity-to-hoeveelheid-complex">
+                    <!--<xsl:with-param name="quantity" select="f:numerator"/>-->
+                </xsl:call-template>
+            </xsl:element>
+        </xsl:for-each>
+        
+        <xsl:for-each select="f:denominator">
+            <xsl:element name="{$denominatorAdaName}">
+                <xsl:call-template name="Quantity-to-hoeveelheid-complex">
+                    <!--<xsl:with-param name="quantity" select="f:denominator"/>-->
+                </xsl:call-template>
+            </xsl:element>
+        </xsl:for-each>
+        
+        <!--<xsl:for-each select="$numerator">
+            <numerator>
+                <xsl:call-template name="hoeveelheid-complex-to-Quantity">
+                    <xsl:with-param name="eenheid" select="./eenheid"/>
+                    <xsl:with-param name="waarde" select="./waarde"/>
+                </xsl:call-template>
+            </numerator>
+        </xsl:for-each>
+        <xsl:for-each select="$denominator">
+            <denominator>
+                <xsl:call-template name="hoeveelheid-complex-to-Quantity">
+                    <xsl:with-param name="eenheid" select="./eenheid"/>
+                    <xsl:with-param name="waarde" select="./waarde"/>
+                </xsl:call-template>
+            </denominator>
+        </xsl:for-each>-->
     </xsl:template>
     
     <xd:doc>

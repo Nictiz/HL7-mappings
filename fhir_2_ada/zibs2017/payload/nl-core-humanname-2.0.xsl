@@ -6,9 +6,7 @@
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xd:doc>
-        <xd:desc>Uncomment imports for standalone use and testing.</xd:desc>
-    </xd:doc>
+    <!--Uncomment imports for standalone use and testing.-->
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/-->
     
     <xsl:variable name="humanname-assembly-order" select="'http://hl7.org/fhir/StructureDefinition/humanname-assembly-order'"/>
@@ -28,9 +26,6 @@
                 <xsl:with-param name="nameUsage" select="$nameUsage"/>
             </xsl:apply-templates>
             <!-- to do: geslachtsnaam_partner -->
-            
-            <!-- for debugging: -->
-            <xsl:apply-templates select="node() except (f:extension[@url=$humanname-assembly-order]|f:text|f:given|f:family)" mode="#current"/>
         </naamgegevens>
     </xsl:template>
     

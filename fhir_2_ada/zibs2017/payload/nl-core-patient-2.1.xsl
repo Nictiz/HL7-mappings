@@ -7,11 +7,9 @@
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xd:doc>
-        <xd:desc>Uncomment imports for standalone use and testing.</xd:desc>
-    </xd:doc>
-    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
-    <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
+    <!--Uncomment imports for standalone use and testing.-->
+    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>
         
     <xsl:variable name="nl-core-patient" select="'http://fhir.nl/fhir/StructureDefinition/nl-core-patient'"/>
     
@@ -21,8 +19,6 @@
     <xsl:template match="f:Patient" mode="nl-core-patient-2.1">
         <patient>
             <!-- Additional narrative as @comment? -->
-            <!-- FHIR spec: meta, text, extension, identifier, active, name, telecom, gender, birthDate, deceased, address, maritalStatus, multipleBirth, contact, communication, generalPractitioner -->
-            <xsl:apply-templates select="node() except (f:meta|f:text|f:identifier|f:name|f:birthDate|f:gender)" mode="#current"/>
             <xsl:apply-templates select="f:name" mode="nl-core-humanname-2.0"/>
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <xsl:apply-templates select="f:birthDate" mode="#current"/>

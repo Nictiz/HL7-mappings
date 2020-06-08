@@ -6,11 +6,9 @@
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xd:doc>
-        <xd:desc>Uncomment imports for standalone use and testing.</xd:desc>
-    </xd:doc>
-    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
-    <xsl:import href="./zib-AdministrationSchedule-2.1.xsl"/>
+    <!--Uncomment imports for standalone use and testing.-->
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="./zib-AdministrationSchedule-2.1.xsl"/>-->
     
     <xsl:template match="f:dosageInstruction" mode="zib-instructions-for-use-2.0">
         <gebruiksinstructie>
@@ -49,8 +47,8 @@
     
     <xsl:template match="f:doseQuantity" mode="zib-instructions-for-use-2.0">
         <keerdosis>
-            <xsl:call-template name="hoeveelheid-Quantity-to-complex">
-                <xsl:with-param name="quantity" select="."/>
+            <xsl:call-template name="Quantity-to-hoeveelheid-complex">
+                <xsl:with-param name="withRange" select="true()"/>
             </xsl:call-template>
         </keerdosis>
     </xsl:template>
