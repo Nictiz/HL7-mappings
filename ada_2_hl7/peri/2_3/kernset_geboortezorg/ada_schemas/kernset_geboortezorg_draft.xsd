@@ -94,7 +94,7 @@
          <xs:element name="medisch_onderzoek"
                      type="medisch_onderzoek_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_14"
                      minOccurs="0"
-                     maxOccurs="unbounded"/>
+                     maxOccurs="1"/>
          <xs:element name="postnatale_fase-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.16"/>
@@ -4345,7 +4345,7 @@
          <xs:documentation>Type for concept group: Postnatale fase</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="diagnoseinterventie_postpartum-start"
+         <xs:element name="diagnoseinterventie_postnataal-start"
                      minOccurs="0"
                      maxOccurs="1">
             <xs:complexType>
@@ -4353,8 +4353,8 @@
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
-         <xs:element name="diagnoseinterventie_postpartum"
-                     type="diagnoseinterventie_postpartum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82297"
+         <xs:element name="diagnoseinterventie_postnataal"
+                     type="diagnoseinterventie_postnataal_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82297"
                      minOccurs="0"
                      maxOccurs="unbounded"/>
          <xs:element name="kindspecifieke_gegevens-start" minOccurs="0" maxOccurs="1">
@@ -4380,9 +4380,9 @@
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.16"/>
       <xs:attribute name="comment" type="xs:string"/>
    </xs:complexType>
-   <xs:complexType name="diagnoseinterventie_postpartum_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82297">
+   <xs:complexType name="diagnoseinterventie_postnataal_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_82297">
       <xs:annotation>
-         <xs:documentation>Type for concept group: Diagnose/interventie postpartum</xs:documentation>
+         <xs:documentation>Type for concept group: Diagnose/interventie postnataal</xs:documentation>
       </xs:annotation>
       <xs:sequence>
          <xs:element name="datum-start" minOccurs="0" maxOccurs="1">
@@ -4425,12 +4425,12 @@
       <xs:sequence>
          <xs:element name="rangnummer_kind-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.60.5.6.161.1"/>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.83377"/>
                <xs:attribute name="hidden" fixed="true"/>
             </xs:complexType>
          </xs:element>
          <xs:element name="rangnummer_kind"
-                     type="rangnummer_kind_type_2_16_840_1_113883_2_4_3_11_999_60_5_6_161_1"
+                     type="rangnummer_kind_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_83377"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="voeding_kind_groep-start" minOccurs="0" maxOccurs="1">
@@ -5022,6 +5022,11 @@
                <xs:enumeration value="3">
                   <xs:annotation>
                      <xs:documentation>Chronic renal impairment (disorder)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>chronisch nierfalen (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -6188,10 +6193,15 @@
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Overig</xs:documentation>
+                     <xs:documentation>infectieziekte van tractus gastrointestinalis (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>Overig</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
                   <xs:annotation>
                      <xs:documentation>Geen informatie</xs:documentation>
                   </xs:annotation>
@@ -6751,10 +6761,15 @@
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Overig</xs:documentation>
+                     <xs:documentation>infectieziekte van tractus gastrointestinalis (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>Overig</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
                   <xs:annotation>
                      <xs:documentation>Geen informatie</xs:documentation>
                   </xs:annotation>
@@ -8297,6 +8312,11 @@
                      <xs:documentation>Chronic renal impairment (disorder)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>chronisch nierfalen (aandoening)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
@@ -9425,17 +9445,17 @@
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Spontaan</xs:documentation>
+                     <xs:documentation>Miskraam - Spontaan</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Medicamenteus</xs:documentation>
+                     <xs:documentation>Miskraam - Medicamenteus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Instrumenteel</xs:documentation>
+                     <xs:documentation>Miskraam - Instrumenteel</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
@@ -9445,12 +9465,12 @@
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Medicamenteus</xs:documentation>
+                     <xs:documentation>APLA - Medicamenteus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Instrumenteel</xs:documentation>
+                     <xs:documentation>APLA - Instrumenteel</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -9653,10 +9673,15 @@
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Overig</xs:documentation>
+                     <xs:documentation>infectieziekte van tractus gastrointestinalis (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>Overig</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
                   <xs:annotation>
                      <xs:documentation>Geen informatie</xs:documentation>
                   </xs:annotation>
@@ -10984,10 +11009,15 @@
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Overig</xs:documentation>
+                     <xs:documentation>infectieziekte van tractus gastrointestinalis (aandoening)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>Overig</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
                   <xs:annotation>
                      <xs:documentation>Geen informatie</xs:documentation>
                   </xs:annotation>
@@ -11533,6 +11563,11 @@
                      <xs:documentation>Overig</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
+               <xs:enumeration value="7">
+                  <xs:annotation>
+                     <xs:documentation>Geen informatie</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
@@ -11609,17 +11644,17 @@
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Spontaan</xs:documentation>
+                     <xs:documentation>Miskraam - Spontaan</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Medicamenteus</xs:documentation>
+                     <xs:documentation>Miskraam - Medicamenteus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Instrumenteel</xs:documentation>
+                     <xs:documentation>Miskraam - Instrumenteel</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
@@ -11629,12 +11664,12 @@
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Medicamenteus</xs:documentation>
+                     <xs:documentation>APLA - Medicamenteus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Instrumenteel</xs:documentation>
+                     <xs:documentation>APLA - Instrumenteel</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
@@ -12240,17 +12275,17 @@
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Acuut levensbedreigend</xs:documentation>
+                     <xs:documentation>Conditie moeder - acuut levensbedreigend</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Niet levensbedreigend</xs:documentation>
+                     <xs:documentation>Conditie moeder - niet levensbedreigend</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Onbekend</xs:documentation>
+                     <xs:documentation>Conditie moeder - Onbekend</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
@@ -12265,7 +12300,7 @@
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Niet levensbedreigend</xs:documentation>
+                     <xs:documentation>Conditie kind - niet levensbedreigend</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
@@ -12275,7 +12310,7 @@
                </xs:enumeration>
                <xs:enumeration value="9">
                   <xs:annotation>
-                     <xs:documentation>Onbekend</xs:documentation>
+                     <xs:documentation>Conditie kind - onbekend</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="10">
@@ -15692,11 +15727,11 @@
    <xs:annotation>
       <xs:documentation>Type for concept item: Rangnummer kind - 0..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="rangnummer_kind_type_2_16_840_1_113883_2_4_3_11_999_60_5_6_161_1">
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.60.5.6.161.1"/>
+   <xs:complexType name="rangnummer_kind_type_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_83377">
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.90.77.2.6.83377"/>
       <xs:attribute name="value">
          <xs:simpleType>
-            <xs:union memberTypes="rangnummer_kind_1_datatype_2_16_840_1_113883_2_4_3_11_999_60_5_6_161_1 empty_string"/>
+            <xs:union memberTypes="rangnummer_kind_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_83377 empty_string"/>
          </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="count"/>
@@ -15705,7 +15740,7 @@
    <xs:annotation>
       <xs:documentation>simpleType for valueDomain: Rangnummer kind: count</xs:documentation>
    </xs:annotation>
-   <xs:simpleType name="rangnummer_kind_1_datatype_2_16_840_1_113883_2_4_3_11_999_60_5_6_161_1">
+   <xs:simpleType name="rangnummer_kind_1_datatype_2_16_840_1_113883_2_4_3_11_60_90_77_2_6_83377">
       <xs:restriction base="xs:nonNegativeInteger">
          <xs:minInclusive value="1"/>
          <xs:maxInclusive value="9"/>
@@ -15800,6 +15835,7 @@
          <xs:enumeration value="identifier"/>
          <xs:enumeration value="date"/>
          <xs:enumeration value="datetime"/>
+         <xs:enumeration value="time"/>
          <xs:enumeration value="quantity"/>
          <xs:enumeration value="duration"/>
          <xs:enumeration value="boolean"/>
@@ -15832,12 +15868,12 @@
    </xs:simpleType>
    <xs:simpleType name="RelativeDate">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T[+\-]\d+(\.\d+)?[YMD]"/>
+         <xs:pattern value="T([+\-]\d+(\.\d+)?[YMD])?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="RelativeDateTime">
       <xs:restriction base="xs:string">
-         <xs:pattern value="T[+\-]\d+(\.\d+)?[YMD](\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?"/>
+         <xs:pattern value="T(([+\-]\d+(\.\d+)?[YMD])?(\{([01]\d|2[0-3]):(0\d|[1-5]\d)(:(0\d|[1-5]\d))?\})?)?"/>
       </xs:restriction>
    </xs:simpleType>
    <xs:simpleType name="DateYear">
