@@ -86,9 +86,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="Coding-to-code">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                        <xsl:if test="normalize-space($in/f:text/@value)">
-                            <xsl:attribute name="originalText" select="$in/f:text/@value"/>
-                        </xsl:if>
                     </xsl:element>
                 </xsl:for-each>
             </xsl:when>
@@ -227,6 +224,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </denominator>
         </xsl:for-each>-->
+    </xsl:template>
+    
+    <xsl:template name="Identifier-to-identificatie" as="element()">
+        <xsl:param name="adaElementName">identificatie</xsl:param>
+        <xsl:element name="{$adaElementName}">
+            <xsl:choose>
+                <xsl:when test="f:value/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason'">
+                    <xsl:attribute name="nullValue" select="'MSK'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="value" select="f:value/@value"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:attribute name="root" select="local:getOid(f:system/@value)"/>
+        </xsl:element>
     </xsl:template>
     
     <xd:doc>

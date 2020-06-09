@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:local="urn:fhir:stu3:functions" stylesheet="../fhir_2_ada_fhir_include.xsl">
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    xmlns:local="urn:fhir:stu3:functions" stylesheet="../fhir_2_ada_fhir_include.xsl">
     
     <x:scenario label="fhir_2_ada_fhir_include">
         
-        <x:scenario label="template name code-to-code" pending="">
+        <x:scenario label="template name code-to-code">
             <x:call template="code-to-code">
-                <x:param name="value" select="'no_value'"/>
-                <x:param name="codeMap" select="'no_value'"/>
+                <x:param name="value" select="f:gender/@value">
+                    <f:gender value="female"/>
+                </x:param>
+                <x:param name="codeMap">
+                    <map code="M" codeSystem="2.16.840.1.113883.5.1" inValue="male" displayName="Man"/>
+                    <map code="F" codeSystem="2.16.840.1.113883.5.1" inValue="female" displayName="Vrouw"/>
+                    <map code="UN" codeSystem="2.16.840.1.113883.5.1" inValue="other" displayName="Ongedifferentieerd"/>
+                    <map code="UNK" codeSystem="2.16.840.1.113883.5.1008" inValue="unknown" displayName="Onbekend"/>
+                </x:param>
             </x:call>
-            <x:expect label="Not yet implemented"/>
+            <x:expect label="attributes" select="geslacht/@*">
+                <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            </x:expect>
         </x:scenario>
         
         <x:scenario label="template name CodeableConcept-to-code">
@@ -65,6 +76,28 @@
             </x:scenario>
         </x:scenario>
         
+        <x:scenario label="template name Coding-to-code">
+            <x:scenario label="userSelected">
+                <x:call template="Coding-to-code">
+                    <x:param name="in">
+                        <coding xmlns="http://hl7.org/fhir">
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                            <code value="17469"/>
+                            <display value="IBUPROFEN TABLET 600MG"/>
+                            <userSelected value="true"/>
+                        </coding>                               
+                    </x:param>
+                </x:call>
+                <x:expect label="code with @preferred attribute" select="product_code/@*">
+                    <product_code code="17469" 
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        codeSystemName="G-Standaard PRK"
+                        displayName="IBUPROFEN TABLET 600MG"
+                        preferred="true"/>
+                </x:expect>
+            </x:scenario>            
+        </x:scenario>
+        
         <x:scenario label="template name Quantity-to-hoeveelheid-complex">
             <x:scenario label="No params">
                 <x:context>
@@ -110,39 +143,79 @@
         </x:scenario>
         
         <x:scenario label="template name Ratio-to-hoeveelheid-complex">
-            
+            <x:context>
+                <amount xmlns="http://hl7.org/fhir">
+                    <numerator>
+                        <value value="90"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </numerator>
+                    <denominator>
+                        <value value="100"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </denominator>
+                </amount>
+            </x:context>
+            <x:call template="Ratio-to-hoeveelheid-complex">
+                <x:param name="numeratorAdaName" select="'hoeveelheid_ingredient'"/>
+                <x:param name="denominatorAdaName" select="'hoeveelheid_product'"/>
+            </x:call>
+            <x:expect label="'hoeveelheid_ingredient' and 'hoeveelheid_product' elements">
+                <hoeveelheid_ingredient>...</hoeveelheid_ingredient>
+                <hoeveelheid_product>...</hoeveelheid_product>
+            </x:expect>
         </x:scenario>
         
-        <x:scenario label="template name Coding-to-code">
-            <x:scenario label="nullFlavor Coding" pending="">
-                <x:call template="Coding-to-code">
-                    <x:param name="in" select="'no_value'"/>
+        <x:scenario label="template name 'Identifier-to-identificatie'">
+            <x:scenario label="No params">
+                <x:context>
+                    <identifier xmlns="http://hl7.org/fhir">
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value value="999910437"/>
+                    </identifier>
+                </x:context>
+                <x:call template="Identifier-to-identificatie"/>
+                <x:expect label="'identificatie' element">
+                    <identificatie value="999910437" root="2.16.840.1.113883.2.4.6.3"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="adaElementName='zorgverlener_identificatienummer'">
+                <x:context>
+                    <identifier xmlns="http://hl7.org/fhir">
+                        <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                        <value value="000001111"/>
+                    </identifier>
+                </x:context>
+                <x:call template="Identifier-to-identificatie">
+                    <x:param name="adaElementName" select="'zorgverlener_identificatienummer'"/>
                 </x:call>
-                <x:expect label="Not yet implemented"/>
+                <x:expect label="'zorgverlener_identificatienummer' element">
+                    <zorgverlener_identificatienummer
+                        value="000001111"
+                        root="2.16.528.1.1007.3.1"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="data-absent-reason masked">
+                <x:context>
+                    <identifier xmlns="http://hl7.org/fhir">
+                        <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                        <value>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                <valueCode value="masked"/>
+                            </extension>
+                        </value>
+                    </identifier>
+                </x:context>
+                <x:call template="Identifier-to-identificatie"/>
+                <x:expect label="'identificatie' element with @nullFlavor">
+                    <identificatie nullValue="MSK" root="2.16.840.1.113883.2.4.6.3"/>
+                </x:expect>
             </x:scenario>
             
-            <x:scenario label="userSelected">
-                <x:call template="Coding-to-code">
-                    <x:param name="in">
-                        <coding xmlns="http://hl7.org/fhir">
-                            <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                            <code value="17469"/>
-                            <display value="IBUPROFEN TABLET 600MG"/>
-                            <userSelected value="true"/>
-                        </coding>                               
-                    </x:param>
-                </x:call>
-                <x:expect label="code with preferred boolean" select="product_code/@*">
-                    <product_code code="17469" 
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        codeSystemName="G-Standaard PRK"
-                        displayName="IBUPROFEN TABLET 600MG"
-                        preferred="true"/>
-                </x:expect>
-            </x:scenario>            
         </x:scenario>
-        
-        
         
         <x:scenario label="function format2ADADate">
             <!--<x:call template="format2ADADate">
