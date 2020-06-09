@@ -7,10 +7,10 @@
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:e1c34e72-9e98-11ea-6026-020000000000"/>
+      <fullUrl value="urn:uuid:d69b8353-aa62-11ea-7839-020000000000"/>
       <resource>
          <List>
-            <id value="d42e242"/>
+            <id value="d464e291"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
             </meta>
@@ -33,14 +33,14 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="Patient/XXX-JANKIE"/>
-               <display value="S. XXX_Jankie"/>
+               <reference value="Patient/XXX-KLOKGIETERS"/>
+               <display value="A. XXX_Klokgieters"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
             <source>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
                   <valueReference>
-                     <reference value="Organization/e1c34e76-9e98-11ea-6026-020000000000"/>
+                     <reference value="Organization/d69b8357-aa62-11ea-7839-020000000000"/>
                      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
                   </valueReference>
                </extension>
@@ -48,32 +48,38 @@
             </source>
             <entry>
                <item>
-                  <reference value="MedicationRequest/MBH-907-QA1-MA"/>
-                  <display value="Medicatieafspraak identifier: value='MBH_907_QA1_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+                  <reference value="MedicationRequest/MBH-907-aanvullendeinstructie-MA-staken"/>
+                  <display value="Medicatieafspraak identifier: value='MBH_907_aanvullendeinstructie_MA_staken', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="MedicationRequest/MBH-907-QA3-MA"/>
-                  <display value="Medicatieafspraak identifier: value='MBH_907_QA3_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+                  <reference value="MedicationRequest/MBH-907-toelichting-MA-wijzigingmetVV"/>
+                  <display value="Medicatieafspraak identifier: value='MBH_907_toelichting_MA_wijzigingmetVV', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="MedicationRequest/MBH-907-QA4-MA"/>
-                  <display value="Medicatieafspraak identifier: value='MBH_907_QA4_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+                  <reference value="MedicationRequest/MBH-907-redenvanvoorschrijven-MA-wijzigingzonderVV"/>
+                  <display value="Medicatieafspraak identifier: value='MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="MedicationRequest/MBH-907-QA5-MA"/>
-                  <display value="Medicatieafspraak identifier: value='MBH_907_QA5_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+                  <reference value="MedicationRequest/MBH-907-chronisch-MA"/>
+                  <display value="Medicatieafspraak identifier: value='MBH_907_chronisch_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
             <entry>
                <item>
-                  <reference value="MedicationRequest/MBH-907-QA6-MA"/>
-                  <display value="Medicatieafspraak identifier: value='MBH_907_QA6_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+                  <reference value="MedicationRequest/MBH-907-logistiekeverbruiksperiode-start-eind-MA"/>
+                  <display value="Medicatieafspraak identifier: value='MBH_907_logistiekeverbruiksperiode_start_eind_MA', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
+               </item>
+            </entry>
+            <entry>
+               <item>
+                  <reference value="MedicationRequest/MBH-907-logistiekeverbruiksperiode-start-eind-MA-1"/>
+                  <display value="Medicatieafspraak identifier: value='MBH_907_logistiekeverbruiksperiode_start_eind_MA_1', system='urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1'"/>
                </item>
             </entry>
          </List>
@@ -83,10 +89,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1c3562b-9e98-11ea-6026-020000000000"/>
+      <fullUrl value="urn:uuid:d69b8ba3-aa62-11ea-7839-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="MBH-907-QA1-MA"/>
+            <id value="MBH-907-aanvullendeinstructie-MA-staken"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
@@ -94,33 +100,216 @@
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-JANKIE">S. XXX_Jankie</a>. Id: MBH_907_QA1_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001111010000001111">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-KLOKGIETERS">A. XXX_Klokgieters</a>. Id: MBH_907_aanvullendeinstructie_MA_staken (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001112010000001111">Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+                        </span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th colspan="2">Medicatie is gestopt: <span title="Definitief (2 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1)">Definitief</span>
+                           </th>
+                        </tr>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_907_aanvullendeinstructie (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_aanvullendeinstructie_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>
+                              <a href="Medication/49484-2-16-840-1-113883-2-4-4-10">Acetylsalicylzuur tabletmsr 100mg</a>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, -10}T18:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>
+                              <span title="Interactie (79899007 - SNOMED CT)">Interactie</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, M, -4}T00:00:00+02:00 - ${DATE, T, D, -10}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: Vanaf &lt;T-4M{00:00:00}&gt; t/m &lt;T-10D{23:59:59}&gt;, 1 maal per dag 1 stuk, Bij het eten innemen, oraal</div>
+                              <div>Instructie: Bij het eten innemen</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 1 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, M, -4}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -10}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_907_aanvullendeinstructie"/>
+               </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_907_aanvullendeinstructie_MA"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                     <code value="2"/>
+                     <display value="Definitief"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_907_aanvullendeinstructie_MA_staken"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="Medication/49484-2-16-840-1-113883-2-4-4-10"/>
+               <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+            </medicationReference>
+            <subject>
+               <reference value="Patient/XXX-KLOKGIETERS"/>
+               <display value="A. XXX_Klokgieters"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -10}T18:00:00+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/000001112010000001111"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/0000011122-16-528-1-1007-3-1"/>
+                  <display value="Bertine van Doorn"/>
+               </agent>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="79899007"/>
+                  <display value="Interactie"/>
+               </coding>
+            </reasonCode>
+            <dosageInstruction>
+               <text value="Vanaf &lt;T-4M{00:00:00}&gt; t/m &lt;T-10D{23:59:59}&gt;, 1 maal per dag 1 stuk, Bij het eten innemen, oraal"/>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="Bij het eten innemen"/>
+               </additionalInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d69b8bd5-aa62-11ea-7839-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="MBH-907-toelichting-MA-wijzigingmetVV"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-KLOKGIETERS">A. XXX_Klokgieters</a>. Id: MBH_907_toelichting_MA_wijzigingmetVV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001112010000001111">Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
                         </span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_QA1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_907_toelichting (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Gebaseerd op</th>
+                           <td>relatie naar medicatieafspraak: MBH_907_toelichting_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_toelichting_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
                            <td>
-                              <a href="Medication/17469-2-16-840-1-113883-2-4-4-10">IBUPROFEN TABLET 600MG</a>
+                              <a href="Medication/5967-2-16-840-1-113883-2-4-4-10">FUROSEMIDE 40MG TABLET</a>
                            </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>${DATE, T, D, -20}T08:00:00+02:00</td>
+                           <td>${DATE, T, D, -2}T08:02:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>
+                              <span title="Geen of onvoldoende effect (5 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Geen of onvoldoende effect</span>
+                           </td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -20}T00:00:00+02:00 - ${DATE, T, D, +9}T23:59:59+02:00</td>
+                           <td>Vanaf ${DATE, T, D, -2}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 1 maal per dag 2 stuks, oraal</div>
+                              <div>Tekst: Vanaf &lt;T-2D{00:00:00}&gt; 1 maal daags 2 stuk, oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
@@ -134,19 +323,27 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +9}T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, -2}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_QA1"/>
+                  <value value="MBH_907_toelichting"/>
                </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                     <value value="MBH_907_toelichting_MA"/>
+                  </identifier>
+                  <display value="relatie naar medicatieafspraak: MBH_907_toelichting_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </valueReference>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_QA1_MA"/>
+               <value value="MBH_907_toelichting_MA_wijzigingmetVV"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -158,28 +355,35 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="Medication/17469-2-16-840-1-113883-2-4-4-10"/>
-               <display value="IBUPROFEN TABLET 600MG"/>
+               <reference value="Medication/5967-2-16-840-1-113883-2-4-4-10"/>
+               <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="Patient/XXX-JANKIE"/>
-               <display value="S. XXX_Jankie"/>
+               <reference value="Patient/XXX-KLOKGIETERS"/>
+               <display value="A. XXX_Klokgieters"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -2}T08:02:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="PractitionerRole/000001111010000001111"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <reference value="PractitionerRole/000001112010000001111"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
-                  <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
-                  <display value="Peter van Pulver"/>
+                  <reference value="Practitioner/0000011122-16-528-1-1007-3-1"/>
+                  <display value="Bertine van Doorn"/>
                </agent>
             </requester>
+            <reasonCode>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                  <code value="5"/>
+                  <display value="Geen of onvoldoende effect"/>
+               </coding>
+            </reasonCode>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 1 maal per dag 2 stuks, oraal"/>
+               <text value="Vanaf &lt;T-2D{00:00:00}&gt; 1 maal daags 2 stuk, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -208,10 +412,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1c35658-9e98-11ea-6026-020000000000"/>
+      <fullUrl value="urn:uuid:d69b82a4-aa62-11ea-7839-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="MBH-907-QA3-MA"/>
+            <id value="MBH-907-redenvanvoorschrijven-MA-wijzigingzonderVV"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
@@ -219,38 +423,44 @@
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-JANKIE">S. XXX_Jankie</a>. Id: MBH_907_QA3_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001111010000001111">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-KLOKGIETERS">A. XXX_Klokgieters</a>. Id: MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001112010000001111">Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
                         </span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_QA3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_907_redenvanvoorschrijven (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
                            <td>
-                              <a href="Medication/88749-2-16-840-1-113883-2-4-4-10">VLOEIBARE VOEDING MET O.A. VITAMINE K</a>
+                              <a href="Medication/6009-2-16-840-1-113883-2-4-4-10">Methotrexaat tablet 2,5mg</a>
                            </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>${DATE, T, D, -50}T08:10:00+02:00</td>
+                           <td>${DATE, T, D, -1}T08:10:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>
+                              <span title="Te sterk effect (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Te sterk effect</span>
+                           </td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -11}T23:59:59+02:00</td>
+                           <td>${DATE, T, D, -1}T00:00:00+02:00 - ${DATE, T, D, +14}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-50D{00:00:00}&gt;t/m &lt;T-11D{23:59:59}&gt;, 2 maal per dag 50 ml, oraal</div>
-                              <div>Timing: <div>2 maal per dag</div>
+                              <div>Tekst: Vanaf &lt;T-1D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 4 stuks, oraal</div>
+                              <div>Timing: <div>eenmalig per week</div>
                               </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
-                              <div>Dosering: 50 milliliter</div>
+                              <div>Dosering: 4 stuk</div>
                            </td>
                         </tr>
                      </tbody>
@@ -259,19 +469,19 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, -11}T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, -1}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +14}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_QA3"/>
+                  <value value="MBH_907_redenvanvoorschrijven"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_QA3_MA"/>
+               <value value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -283,169 +493,51 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="Medication/88749-2-16-840-1-113883-2-4-4-10"/>
-               <display value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
+               <reference value="Medication/6009-2-16-840-1-113883-2-4-4-10"/>
+               <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="Patient/XXX-JANKIE"/>
-               <display value="S. XXX_Jankie"/>
+               <reference value="Patient/XXX-KLOKGIETERS"/>
+               <display value="A. XXX_Klokgieters"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -50}T08:10:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="PractitionerRole/000001111010000001111"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <reference value="PractitionerRole/000001112010000001111"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
-                  <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
-                  <display value="Peter van Pulver"/>
+                  <reference value="Practitioner/0000011122-16-528-1-1007-3-1"/>
+                  <display value="Bertine van Doorn"/>
                </agent>
             </requester>
-            <dosageInstruction>
-               <text value="Vanaf &lt;T-50D{00:00:00}&gt;t/m &lt;T-11D{23:59:59}&gt;, 2 maal per dag 50 ml, oraal"/>
-               <timing>
-                  <repeat>
-                     <frequency value="2"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="50"/>
-                  <unit value="milliliter"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="233"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:e1c34ded-9e98-11ea-6026-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <id value="MBH-907-QA4-MA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <text>
-               <status value="generated"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-JANKIE">S. XXX_Jankie</a>. Id: MBH_907_QA4_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001111010000001111">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
-                        </span>
-                     </caption>
-                     <tbody>
-                        <tr>
-                           <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_QA4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
-                        </tr>
-                        <tr>
-                           <th>Medicatie</th>
-                           <td>
-                              <a href="Medication/3956-2-16-840-1-113883-2-4-4-10">ACETYLSALICYLZUUR TABLET 100MG</a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <th>Gemaakt</th>
-                           <td>${DATE, T, D, -10}T08:12:00+02:00</td>
-                        </tr>
-                        <tr>
-                           <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -10}T00:00:00+02:00 - ${DATE, T, D, +19}T23:59:59+02:00</td>
-                        </tr>
-                        <tr>
-                           <th>Doseerinstructie</th>
-                           <td>
-                              <div>Tekst: Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+19D{23:59:59}&gt;, 1 keer per dag 3 stuks, oraal</div>
-                              <div>Timing: <div>eenmalig per dag</div>
-                              </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
-                              </div>
-                              <div>Dosering: 3 stuk</div>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +19}T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_QA4"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_QA4_MA"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
+            <reasonCode>
                <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                  <code value="6"/>
+                  <display value="Te sterk effect"/>
                </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="Medication/3956-2-16-840-1-113883-2-4-4-10"/>
-               <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="Patient/XXX-JANKIE"/>
-               <display value="S. XXX_Jankie"/>
-            </subject>
-            <authoredOn value="${DATE, T, D, -10}T08:12:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="PractitionerRole/000001111010000001111"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
-                  <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
-                  <display value="Peter van Pulver"/>
-               </agent>
-            </requester>
+            </reasonCode>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+19D{23:59:59}&gt;, 1 keer per dag 3 stuks, oraal"/>
+               <text value="Vanaf &lt;T-1D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 4 stuks, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
-                     <periodUnit value="d"/>
+                     <periodUnit value="wk"/>
                   </repeat>
                </timing>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
                      <code value="9"/>
-                     <display value="oraal"/>
+                     <display value="Oraal"/>
                   </coding>
                </route>
                <doseQuantity>
-                  <value value="3"/>
+                  <value value="4"/>
                   <unit value="stuk"/>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                   <code value="245"/>
@@ -458,10 +550,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1c34e1a-9e98-11ea-6026-020000000000"/>
+      <fullUrl value="urn:uuid:d69b82d2-aa62-11ea-7839-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="MBH-907-QA5-MA"/>
+            <id value="MBH-907-chronisch-MA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
@@ -469,41 +561,36 @@
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-JANKIE">S. XXX_Jankie</a>. Id: MBH_907_QA5_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-KLOKGIETERS">A. XXX_Klokgieters</a>. Id: MBH_907_chronisch_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001111010000001111">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
                         </span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_QA5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_907_chronisch (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
                            <td>
-                              <a href="Medication/7323-2-16-840-1-113883-2-4-4-10">ACENOCOUMAROL TABLET 1MG</a>
+                              <a href="Medication/3891-2-16-840-1-113883-2-4-4-10">APACOF 250/250/50MG TABLET</a>
                            </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>${DATE, T, D, -50}T08:15:00+02:00</td>
+                           <td>${DATE, T, D, -30}T11:32:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>
-                              <ul>
-                                 <li>Vanaf ${DATE, T, D, -50}T00:00:00+02:00</li>
-                                 <li>7 dag</li>
-                              </ul>
-                           </td>
+                           <td>Vanaf ${DATE, T, D, -30}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk</div>
+                              <div>Tekst: Vanaf &lt;T-30D{00:00:00}&gt;, 1 maal per dag 1 stuk, oraal</div>
                               <div>Timing: <div>eenmalig per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
                               <div>Dosering: 1 stuk</div>
                            </td>
@@ -514,26 +601,18 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
                </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
-               <valueDuration>
-                  <value value="7"/>
-                  <unit value="dag"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="d"/>
-               </valueDuration>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_QA5"/>
+                  <value value="MBH_907_chronisch"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_QA5_MA"/>
+               <value value="MBH_907_chronisch_MA"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -545,14 +624,14 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="Medication/7323-2-16-840-1-113883-2-4-4-10"/>
-               <display value="ACENOCOUMAROL TABLET 1MG"/>
+               <reference value="Medication/3891-2-16-840-1-113883-2-4-4-10"/>
+               <display value="APACOF 250/250/50MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="Patient/XXX-JANKIE"/>
-               <display value="S. XXX_Jankie"/>
+               <reference value="Patient/XXX-KLOKGIETERS"/>
+               <display value="A. XXX_Klokgieters"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -50}T08:15:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -30}T11:32:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -566,7 +645,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk"/>
+               <text value="Vanaf &lt;T-30D{00:00:00}&gt;, 1 maal per dag 1 stuk, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
@@ -578,7 +657,7 @@
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
                      <code value="9"/>
-                     <display value="oraal"/>
+                     <display value="Oraal"/>
                   </coding>
                </route>
                <doseQuantity>
@@ -595,10 +674,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1c34e48-9e98-11ea-6026-020000000000"/>
+      <fullUrl value="urn:uuid:d69b82ff-aa62-11ea-7839-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="MBH-907-QA6-MA"/>
+            <id value="MBH-907-logistiekeverbruiksperiode-start-eind-MA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
             </meta>
@@ -606,38 +685,38 @@
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-JANKIE">S. XXX_Jankie</a>. Id: MBH_907_QA6_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001111010000001111">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-KLOKGIETERS">A. XXX_Klokgieters</a>. Id: MBH_907_logistiekeverbruiksperiode_start_eind_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001112010000001111">Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
                         </span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_QA6 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_907_logistiekeverbruiksperiode_start_eind (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
                            <td>
-                              <a href="Medication/353-2-16-840-1-113883-2-4-4-10">OXAZEPAM TABLET 10MG</a>
+                              <a href="Medication/49484-2-16-840-1-113883-2-4-4-10">Acetylsalicylzuur tabletmsr 100mg</a>
                            </td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>${DATE, T, D, -5}T08:18:00+02:00</td>
+                           <td>${DATE, T, D, +0}T11:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -5}T00:00:00+02:00 - ${DATE, T, D, +1}T23:59:59+02:00</td>
+                           <td>${DATE, T, D, +10}T00:00:00+02:00 - ${DATE, T, M, +12}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+1D{23:59:59}&gt;, 2 maal per dag 2 stuk</div>
-                              <div>Timing: <div>2 maal per dag</div>
+                              <div>Tekst: Vanaf &lt;T+10D{00:00:00}&gt; t/m &lt;T+12M{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
                               </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
-                              <div>Dosering: 2 stuk</div>
+                              <div>Dosering: 1 stuk</div>
                            </td>
                         </tr>
                      </tbody>
@@ -646,19 +725,19 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +1}T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, +10}T00:00:00+02:00"/>
+                  <end value="${DATE, T, M, +12}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_QA6"/>
+                  <value value="MBH_907_logistiekeverbruiksperiode_start_eind"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_QA6_MA"/>
+               <value value="MBH_907_logistiekeverbruiksperiode_start_eind_MA"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -670,31 +749,31 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="Medication/353-2-16-840-1-113883-2-4-4-10"/>
-               <display value="OXAZEPAM TABLET 10MG"/>
+               <reference value="Medication/49484-2-16-840-1-113883-2-4-4-10"/>
+               <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="Patient/XXX-JANKIE"/>
-               <display value="S. XXX_Jankie"/>
+               <reference value="Patient/XXX-KLOKGIETERS"/>
+               <display value="A. XXX_Klokgieters"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -5}T08:18:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T11:00:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="PractitionerRole/000001111010000001111"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <reference value="PractitionerRole/000001112010000001111"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
-                  <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
-                  <display value="Peter van Pulver"/>
+                  <reference value="Practitioner/0000011122-16-528-1-1007-3-1"/>
+                  <display value="Bertine van Doorn"/>
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+1D{23:59:59}&gt;, 2 maal per dag 2 stuk"/>
+               <text value="Vanaf &lt;T+10D{00:00:00}&gt; t/m &lt;T+12M{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
                <timing>
                   <repeat>
-                     <frequency value="2"/>
+                     <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
@@ -703,7 +782,132 @@
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
                      <code value="9"/>
-                     <display value="oraal"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d69b8329-aa62-11ea-7839-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="MBH-907-logistiekeverbruiksperiode-start-eind-MA-1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: <a href="Patient/XXX-KLOKGIETERS">A. XXX_Klokgieters</a>. Id: MBH_907_logistiekeverbruiksperiode_start_eind_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: <a href="PractitionerRole/000001112010000001111">Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+                        </span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Medicamenteuze behandel-id</th>
+                           <td>MBH_907_logistiekeverbruiksperiode_start_eind (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>
+                              <a href="Medication/49484-2-16-840-1-113883-2-4-4-10">Acetylsalicylzuur tabletmsr 100mg</a>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>${DATE, T, D, +0}T10:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>${DATE, T, D, +0}T00:00:00+02:00 - ${DATE, T, D, +9}T23:59:59+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Tekst: Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+9D{23:59:59}&gt;, 1 maal per dag 2 stuks, oraal</div>
+                              <div>Timing: <div>eenmalig per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                              </div>
+                              <div>Dosering: 2 stuk</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +9}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_907_logistiekeverbruiksperiode_start_eind"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_907_logistiekeverbruiksperiode_start_eind_MA_1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="Medication/49484-2-16-840-1-113883-2-4-4-10"/>
+               <display value="Acetylsalicylzuur tabletmsr 100mg"/>
+            </medicationReference>
+            <subject>
+               <reference value="Patient/XXX-KLOKGIETERS"/>
+               <display value="A. XXX_Klokgieters"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, +0}T10:59:59+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="PractitionerRole/000001112010000001111"/>
+                        <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="Practitioner/0000011122-16-528-1-1007-3-1"/>
+                  <display value="Bertine van Doorn"/>
+               </agent>
+            </requester>
+            <dosageInstruction>
+               <text value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+9D{23:59:59}&gt;, 1 maal per dag 2 stuks, oraal"/>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
                   </coding>
                </route>
                <doseQuantity>
@@ -720,41 +924,80 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1c3475b-9e98-11ea-6026-020000000000"/>
+      <fullUrl value="urn:uuid:d69b84b7-aa62-11ea-7839-020000000000"/>
       <resource>
          <Patient>
-            <id value="XXX-JANKIE"/>
+            <id value="XXX-KLOKGIETERS"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
             </meta>
             <text>
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999910437 (BSN), S. XXX_Jankie, Vrouw, 8 mei 1954</div>
+                  <div>Id 999910668 (BSN), A. XXX_Klokgieters, Vrouw, 10 augustus 1954</div>
                </div>
             </text>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999910437"/>
+               <value value="999910668"/>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
-               <family value="XXX_Jankie">
+               <family value="XXX_Klokgieters">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Jankie"/>
+                     <valueString value="XXX_Klokgieters"/>
                   </extension>
                </family>
-               <given value="S.">
+               <given value="A.">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="IN"/>
                   </extension>
                </given>
             </name>
             <gender value="female"/>
-            <birthDate value="1954-05-08"/>
+            <birthDate value="1954-08-10"/>
          </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1112"/>
+      <resource>
+         <Practitioner>
+            <id value="0000011122-16-528-1-1007-3-1"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 000001112 (UZI-NR-PERS), Bertine van Doorn</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001112"/>
+            </identifier>
+            <name>
+               <family value="van Doorn">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Doorn"/>
+                  </extension>
+               </family>
+               <given value="Bertine">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
       </resource>
       <search>
          <mode value="include"/>
@@ -850,10 +1093,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1c34e76-9e98-11ea-6026-020000000000"/>
+      <fullUrl value="urn:uuid:d69b8357-aa62-11ea-7839-020000000000"/>
       <resource>
          <Organization>
-            <id value="e1c34e76-9e98-11ea-6026-020000000000"/>
+            <id value="d69b8357-aa62-11ea-7839-020000000000"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -909,7 +1152,63 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e1c35630-9e98-11ea-6026-020000000000"/>
+      <fullUrl value="urn:uuid:d69b8bab-aa62-11ea-7839-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="000001112010000001111"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol</caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>
+                                 <a href="Practitioner/0000011122-16-528-1-1007-3-1">Bertine van Doorn</a>
+                              </div>
+                              <div>
+                                 <a href="Organization/000011112-16-528-1-1007-3-3">Huisartsenpraktijk Pulver &amp; Partners</a>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="Practitioner/0000011122-16-528-1-1007-3-1"/>
+               <display value="Bertine van Doorn"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/000011112-16-528-1-1007-3-3"/>
+               <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d69b82d6-aa62-11ea-7839-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="000001111010000001111"/>
@@ -965,10 +1264,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.17469"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.49484"/>
       <resource>
          <Medication>
-            <id value="17469-2-16-840-1-113883-2-4-4-10"/>
+            <id value="49484-2-16-840-1-113883-2-4-4-10"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -980,7 +1279,7 @@
                         <tr>
                            <th>Code</th>
                            <td>
-                              <span title="IBUPROFEN TABLET 600MG (17469 - G-Standaard PRK)">IBUPROFEN TABLET 600MG</span>
+                              <span title="Acetylsalicylzuur tabletmsr 100mg (49484 - G-Standaard PRK)">Acetylsalicylzuur tabletmsr 100mg</span>
                            </td>
                         </tr>
                      </tbody>
@@ -990,16 +1289,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="17469"/>
-                  <display value="IBUPROFEN TABLET 600MG"/>
+                  <code value="49484"/>
+                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="42080"/>
-                  <display value="IBUPROFEN TABLET 600MG"/>
+                  <code value="103039"/>
+                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
                </coding>
-               <text value="IBUPROFEN TABLET 600MG"/>
+               <text value="Acetylsalicylzuur tabletmsr 100mg"/>
             </code>
          </Medication>
       </resource>
@@ -1008,10 +1307,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.88749"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
       <resource>
          <Medication>
-            <id value="88749-2-16-840-1-113883-2-4-4-10"/>
+            <id value="5967-2-16-840-1-113883-2-4-4-10"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -1023,7 +1322,7 @@
                         <tr>
                            <th>Code</th>
                            <td>
-                              <span title="VLOEIBARE VOEDING MET O.A. VITAMINE K (88749 - G-Standaard PRK)">VLOEIBARE VOEDING MET O.A. VITAMINE K</span>
+                              <span title="FUROSEMIDE 40MG TABLET (5967 - G-Standaard PRK)">FUROSEMIDE 40MG TABLET</span>
                            </td>
                         </tr>
                      </tbody>
@@ -1033,16 +1332,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="88749"/>
-                  <display value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
+                  <code value="5967"/>
+                  <display value="FUROSEMIDE 40MG TABLET"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="130575"/>
-                  <display value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
+                  <code value="16810"/>
+                  <display value="FUROSEMIDE 40MG TABLET"/>
                </coding>
-               <text value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
+               <text value="FUROSEMIDE 40MG TABLET"/>
             </code>
          </Medication>
       </resource>
@@ -1051,10 +1350,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.3956"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
       <resource>
          <Medication>
-            <id value="3956-2-16-840-1-113883-2-4-4-10"/>
+            <id value="6009-2-16-840-1-113883-2-4-4-10"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -1066,7 +1365,7 @@
                         <tr>
                            <th>Code</th>
                            <td>
-                              <span title="ACETYLSALICYLZUUR TABLET 100MG (3956 - G-Standaard PRK)">ACETYLSALICYLZUUR TABLET 100MG</span>
+                              <span title="Methotrexaat tablet 2,5mg (6009 - G-Standaard PRK)">Methotrexaat tablet 2,5mg</span>
                            </td>
                         </tr>
                      </tbody>
@@ -1076,16 +1375,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="3956"/>
-                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+                  <code value="6009"/>
+                  <display value="Methotrexaat tablet 2,5mg"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="12548"/>
-                  <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
+                  <code value="42609"/>
+                  <display value="Methotrexaat tablet 2,5mg"/>
                </coding>
-               <text value="ACETYLSALICYLZUUR TABLET 100MG"/>
+               <text value="Methotrexaat tablet 2,5mg"/>
             </code>
          </Medication>
       </resource>
@@ -1094,10 +1393,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.7323"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.3891"/>
       <resource>
          <Medication>
-            <id value="7323-2-16-840-1-113883-2-4-4-10"/>
+            <id value="3891-2-16-840-1-113883-2-4-4-10"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>
@@ -1109,7 +1408,7 @@
                         <tr>
                            <th>Code</th>
                            <td>
-                              <span title="ACENOCOUMAROL TABLET 1MG (7323 - G-Standaard PRK)">ACENOCOUMAROL TABLET 1MG</span>
+                              <span title="APACOF 250/250/50MG TABLET (3891 - G-Standaard PRK)">APACOF 250/250/50MG TABLET</span>
                            </td>
                         </tr>
                      </tbody>
@@ -1119,59 +1418,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="7323"/>
-                  <display value="ACENOCOUMAROL TABLET 1MG"/>
+                  <code value="3891"/>
+                  <display value="APACOF 250/250/50MG TABLET"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="20303"/>
-                  <display value="ACENOCOUMAROL TABLET 1MG"/>
+                  <code value="61433"/>
+                  <display value="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
                </coding>
-               <text value="ACENOCOUMAROL TABLET 1MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.353"/>
-      <resource>
-         <Medication>
-            <id value="353-2-16-840-1-113883-2-4-4-10"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <text>
-               <status value="generated"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <tbody>
-                        <tr>
-                           <th>Code</th>
-                           <td>
-                              <span title="OXAZEPAM TABLET 10MG (353 - G-Standaard PRK)">OXAZEPAM TABLET 10MG</span>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="353"/>
-                  <display value="OXAZEPAM TABLET 10MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="1023"/>
-                  <display value="OXAZEPAM TABLET 10MG"/>
-               </coding>
-               <text value="OXAZEPAM TABLET 10MG"/>
+               <text value="APACOF 250/250/50MG TABLET"/>
             </code>
          </Medication>
       </resource>
