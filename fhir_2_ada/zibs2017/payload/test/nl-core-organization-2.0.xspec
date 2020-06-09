@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../nl-core-organization-2.0.xsl">
+    
+    <x:scenario label="nl-core-organization-2.0">
+        <x:context mode="nl-core-organization-2.0">
+            <Organization xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                </meta>
+                <text/>
+                <identifier>
+                    <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                    <value value="00001111"/>
+                </identifier>
+                <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                <address>
+                    <use value="work"/>
+                    <line value="Dorpsstraat 1">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                            <valueString value="Dorpsstraat"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                            <valueString value="1"/>
+                        </extension>
+                    </line>
+                    <city value="Ons Dorp"/>
+                    <postalCode value="1234AA"/>
+                </address>
+            </Organization>
+        </x:context>
+        <x:expect label="'zorgaanbieder' element">
+            <zorgaanbieder>
+                <zorgaanbieder_identificatienummer
+                    value="00001111"
+                    root="2.16.528.1.1007.3.3"/>
+                <organisatie_naam
+                    value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                <adresgegevens>
+                    <straat value="Dorpsstraat"/>
+                    <huisnummer value="1"/>
+                    <postcode value="1234AA"/>
+                    <woonplaats value="Ons Dorp"/>
+                    <adres_soort
+                        value="5"
+                        code="WP"
+                        codeSystem="2.16.840.1.113883.5.1119"
+                        displayName="Werkadres"/>
+                </adresgegevens>
+            </zorgaanbieder>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>

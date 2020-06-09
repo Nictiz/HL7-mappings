@@ -8,8 +8,8 @@
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
-    <xsl:import href="nl-core-humanname-2.0.xsl"/>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
         
     <xsl:variable name="nl-core-patient" select="'http://fhir.nl/fhir/StructureDefinition/nl-core-patient'"/>
     
@@ -30,17 +30,9 @@
         <xd:desc></xd:desc>
     </xd:doc>
     <xsl:template match="f:identifier" mode="nl-core-patient-2.1">
-        <identificatienummer>
-            <xsl:choose>
-                <xsl:when test="f:value/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason'">
-                    <xsl:attribute name="nullValue" select="'MSK'"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="value" select="f:value/@value"/>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:attribute name="root" select="local:getOid(f:system/@value)"/>
-        </identificatienummer>
+        <xsl:call-template name="Identifier-to-identificatie">
+            <xsl:with-param name="adaElementName">identificatienummer</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
     
     <xd:doc>

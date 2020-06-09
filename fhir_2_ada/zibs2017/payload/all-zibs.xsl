@@ -29,10 +29,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>-->
     <xsl:import href="nl-core-patient-2.1.xsl"/>
-    <!--<xsl:import href="nl-core-relatedperson-2.0.xsl"/>
-    <xsl:import href="nl-core-practitioner-2.0.xsl"/>-->
+    <!--<xsl:import href="nl-core-relatedperson-2.0.xsl"/>-->
+    <xsl:import href="nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
-    <!--<xsl:import href="nl-core-organization-2.0.xsl"/>-->
+    <xsl:import href="nl-core-organization-2.0.xsl"/>
     <xsl:import href="nl-core-humanname-2.0.xsl"/>
     <xsl:import href="zib-medicationagreement-2.2.xsl"/>
     <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>

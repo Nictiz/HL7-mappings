@@ -28,10 +28,7 @@
     </xsl:template>
     
     <xsl:template match="f:identifier" mode="zib-MedicationAgreement-2.2">
-        <identificatie>
-            <xsl:attribute name="value" select="f:value/@value"/>
-            <xsl:attribute name="root" select="local:getOid(f:system/@value)"/>
-        </identificatie>   
+        <xsl:call-template name="Identifier-to-identificatie"/>
     </xsl:template>
     
     <xsl:template match="f:medicationReference" mode="zib-MedicationAgreement-2.2">
@@ -67,7 +64,7 @@
     
     <xsl:template match="f:extension[@url=$practitionerrole-reference]/f:valueReference" mode="zib-MedicationAgreement-2.2">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
-        <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitioner"/>
+        <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitionerRole"/>
     </xsl:template>
     
 </xsl:stylesheet>
