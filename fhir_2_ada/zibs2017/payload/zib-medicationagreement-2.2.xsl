@@ -127,32 +127,4 @@
         <xsl:call-template name="Identifier-to-identificatie"/>
     </xsl:template>
     
-<!--        
-        <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
-                  <identificatie value="MBH_907_aanvullendeinstructie_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
-               </relatie_naar_afspraak_of_gebruik>
-               
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_907_aanvullendeinstructie_MA"/>
-                  </identifier>
-                  <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </valueReference>
-            </extension>
-            
-            
-            
-               
-               
-        
-    
-    -->
-    
-   
-    
-    
 </xsl:stylesheet>
