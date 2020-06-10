@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../zib-pharmaceuticalproduct-2.0.xsl">
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:f="http://hl7.org/fhir" stylesheet="../zib-pharmaceuticalproduct-2.0.xsl">
     
     <x:scenario label="zib-pharmaceuticalproduct-2.0">
         <x:scenario label="match 'f:Medication' mode 'zib-PharmaceuticalProduct-2.0'">
@@ -168,6 +168,40 @@
                 </ingredient>
             </x:expect>
         </x:scenario>
+   
+        <x:scenario label="match 'f:form' mode 'zib-PharmaceuticalProduct-2.0">
+            <x:context mode="zib-PharmaceuticalProduct-2.0">
+                <form xmlns="http://hl7.org/fhir">
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.11"/>
+                        <code value="434"/>
+                        <display value="vloeistof"/>
+                    </coding>
+                </form>
+            </x:context>
+            <x:expect label="'farmaceutische_vorm' element">
+                <farmaceutische_vorm 
+                    code="434"
+                    codeSystem="2.16.840.1.113883.2.4.4.11"
+                    codeSystemName="G-Standaard Farmaceutische vormen (tabel 6)"
+                    displayName="vloeistof"/>
+            </x:expect>
+        </x:scenario>
+    
+        <x:scenario label="match 'f:code/f:text' mode 'zib-PharmaceuticalProduct-2.0">
+            <x:context mode="zib-PharmaceuticalProduct-2.0" select="f:code/f:text">
+                <code xmlns="http://hl7.org/fhir">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                        <valueCode value="OTH"/>
+                    </extension>
+                    <text value="Ureum 10% in eucerine cum aqua 100gr"/>
+                </code>
+            </x:context>
+            <x:expect label="'product_naam' element">
+                <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+            </x:expect>
+          </x:scenario>  
+    
     </x:scenario>
     
 

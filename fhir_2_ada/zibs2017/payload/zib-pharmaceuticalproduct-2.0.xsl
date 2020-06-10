@@ -7,7 +7,9 @@
         <product>
             <xsl:apply-templates select="f:code" mode="#current"/>
             <product_specificatie>
+                <xsl:apply-templates select="f:code/f:text" mode="#current"/>
                 <xsl:apply-templates select="f:extension" mode="#current"/>
+                <xsl:apply-templates select="f:form" mode="#current"/>
                 <xsl:apply-templates select="f:ingredient" mode="#current"/>
             </product_specificatie>
         </product>
@@ -20,6 +22,15 @@
         </xsl:call-template>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>ProductNaam (NL-CM:9.7.19929) is mapped to Medication.code.text</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:code/f:text" mode="zib-PharmaceuticalProduct-2.0">
+        <product_naam>
+            <xsl:attribute name="value" select="@value"/>
+        </product_naam>
+    </xsl:template>
+    
     <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description']" mode="zib-PharmaceuticalProduct-2.0">
         <omschrijving>
             <xsl:attribute name="value" select="f:valueString/@value"/>
@@ -28,19 +39,26 @@
         
     <xsl:template match="f:ingredient" mode="zib-PharmaceuticalProduct-2.0">
             <ingredient>                 
+                <xsl:apply-templates select="f:amount" mode="zib-PharmaceuticalProduct-2.0"/>
                 <xsl:apply-templates select="f:itemCodeableConcept" mode="zib-PharmaceuticalProduct-2.0"/>
-                <xsl:apply-templates select="f:amount" mode="zib-PharmaceuticalProduct-2.0"/>      
             </ingredient>
     </xsl:template>
+    
+    <xsl:template match="f:form" mode="zib-PharmaceuticalProduct-2.0">
+            <xsl:call-template name="CodeableConcept-to-code">
+                <xsl:with-param name="in" select="."/>
+                <xsl:with-param name="adaElementName" select="'farmaceutische_vorm'"/>
+            </xsl:call-template>                
+    </xsl:template>
 
-    <xsl:template match="f:Medication/f:ingredient/f:itemCodeableConcept" mode="zib-PharmaceuticalProduct-2.0">
+    <xsl:template match="f:ingredient/f:itemCodeableConcept" mode="zib-PharmaceuticalProduct-2.0">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
             <xsl:with-param name="adaElementName" select="'ingredient_code'"/>
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="f:amount" mode="zib-PharmaceuticalProduct-2.0">
+    <xsl:template match="f:ingredient/f:amount" mode="zib-PharmaceuticalProduct-2.0">
         <sterkte>
             <xsl:call-template name="Ratio-to-hoeveelheid-complex">
                 <xsl:with-param name="numeratorAdaName" select="'hoeveelheid_ingredient'"/>

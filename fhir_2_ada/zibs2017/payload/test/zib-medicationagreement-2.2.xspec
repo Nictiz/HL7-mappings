@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../zib-medicationagreement-2.2.xsl">
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../zib-medicationagreement-2.2.xsl"
+    xmlns:f="http://hl7.org/fhir">
     
     <x:scenario label="zib-MedicationAgreement-2.2">
         <x:context mode="zib-MedicationAgreement-2.2">
@@ -96,5 +97,285 @@
             </medicatieafspraak>
         </x:expect>
     </x:scenario>
+    
+    <x:scenario label="match 'f:identifier' mode 'zib-MedicationAgreement-2.2">
+        <x:context mode="zib-MedicationAgreement-2.2">
+            <identifier xmlns="http://hl7.org/fhir">
+                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                <value value="MBH_907_magistraalalleingredienten_MA"/>
+            </identifier>
+        </x:context>
+        <x:expect label="'identificatie' element">
+            <identificatie value="MBH_907_magistraalalleingredienten_MA"
+                root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+        </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="match 'f:authoredOn' mode 'zib-MedicationAgreement-2.2">
+        <x:context mode="zib-MedicationAgreement-2.2">
+            <authoredOn xmlns="http://hl7.org/fhir" value="${{DATE, T, D, +0}}T12:00:00+02:00"/>
+        </x:context>
+        <x:expect label="'afspraakdatum' element">
+            <afspraakdatum value="T+0D{{12:00:00}}" datatype="datetime"/>
+        </x:expect>
+    </x:scenario>
+  
+    <x:scenario label="match 'f:requester' mode 'zib-MedicationAgreement-2.2">
+        <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest/f:requester">
+            <Bundle xmlns="http://hl7.org/fhir">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="urn:uuid:dec711d5-9e98-11ea-1223-020000000000"/>
+                <resource>
+                    <MedicationRequest>
+                        <requester>
+                            <agent>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                    <valueReference>
+                                        <reference value="urn:uuid:dec711da-9e98-11ea-1223-020000000000"/>
+                                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+                                    </valueReference>
+                                </extension>
+                                <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                                <display value="Peter van Pulver"/>
+                            </agent>
+                        </requester>
+                    </MedicationRequest>
+                </resource>
+                <search>
+                    <mode value="match"/>
+                </search>
+            </entry>
+            <entry>
+                <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                <resource>
+                    <Practitioner>                     
+                        <identifier>
+                            <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                            <value value="000001111"/>
+                        </identifier>
+                        <name>
+                            <family value="van Pulver">
+                                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                    <valueString value="van"/>
+                                </extension>
+                                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                    <valueString value="Pulver"/>
+                                </extension>
+                            </family>
+                            <given value="Peter">
+                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                    <valueCode value="BR"/>
+                                </extension>
+                            </given>
+                        </name>
+                    </Practitioner>
+                </resource>
+                <search>
+                    <mode value="include"/>
+                </search>
+            </entry>
+            <entry>
+                <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                <resource>
+                    <Organization> 
+                        <identifier>
+                            <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                            <value value="00001111"/>
+                        </identifier>
+                        <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <address>
+                            <use value="work"/>
+                            <line value="Dorpsstraat 1">
+                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                                    <valueString value="Dorpsstraat"/>
+                                </extension>
+                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                                    <valueString value="1"/>
+                                </extension>
+                            </line>
+                            <city value="Ons Dorp"/>
+                            <postalCode value="1234AA"/>
+                        </address>
+                    </Organization>
+                </resource>
+                <search>
+                    <mode value="include"/>
+                </search>
+            </entry>
+            <entry>
+                <fullUrl value="urn:uuid:dec711da-9e98-11ea-1223-020000000000"/>
+                <resource>
+                    <PractitionerRole>
+                        <practitioner>
+                            <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                            <display value="Peter van Pulver"/>
+                        </practitioner>
+                        <organization>
+                            <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                            <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        </organization>
+                        <specialty>
+                            <coding>
+                                <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                                <code value="0100"/>
+                                <display value="Huisartsen, niet nader gespecificeerd"/>
+                            </coding>
+                        </specialty>
+                    </PractitionerRole>
+                </resource>
+                <search>
+                    <mode value="include"/>
+                </search>
+            </entry>
+         </Bundle>
+        </x:context>
+        <x:expect label="'voorschrijver' element">
+            <voorschrijver>
+                <zorgverlener>
+                    <zorgverlener_identificatienummer
+                        value="000001111"
+                        root="2.16.528.1.1007.3.1"/>
+                    <naamgegevens>...</naamgegevens>
+                    <specialisme
+                        code="0100"
+                        codeSystem="2.16.840.1.113883.2.4.6.7"
+                        codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                        codeSystemVersion="2017-12-14T00:00:00"
+                        displayName="Huisartsen, niet nader gespecificeerd"/>
+                    <zorgaanbieder>...</zorgaanbieder>
+                </zorgverlener>
+            </voorschrijver>
+        </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="match 'f:requester' without practitionerrole extension mode 'zib-MedicationAgreement-2.2">
+        <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest/f:requester">
+            <Bundle xmlns="http://hl7.org/fhir">
+                <entry xmlns="http://hl7.org/fhir">
+                    <fullUrl value="urn:uuid:dec711d5-9e98-11ea-1223-020000000000"/>
+                    <resource>
+                        <MedicationRequest>
+                            <requester>
+                                <agent>
+                                    <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                                    <display value="Peter van Pulver"/>
+                                </agent>
+                            </requester>
+                        </MedicationRequest>
+                    </resource>
+                    <search>
+                        <mode value="match"/>
+                    </search>
+                </entry>
+                <entry>
+                    <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                    <resource>
+                        <Practitioner>                     
+                            <identifier>
+                                <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                                <value value="000001111"/>
+                            </identifier>
+                            <name>
+                                <family value="van Pulver">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                        <valueString value="van"/>
+                                    </extension>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                        <valueString value="Pulver"/>
+                                    </extension>
+                                </family>
+                                <given value="Peter">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                        <valueCode value="BR"/>
+                                    </extension>
+                                </given>
+                            </name>
+                        </Practitioner>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
+                <entry>
+                    <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                    <resource>
+                        <Organization> 
+                            <identifier>
+                                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                                <value value="00001111"/>
+                            </identifier>
+                            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                            <address>
+                                <use value="work"/>
+                                <line value="Dorpsstraat 1">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                                        <valueString value="Dorpsstraat"/>
+                                    </extension>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                                        <valueString value="1"/>
+                                    </extension>
+                                </line>
+                                <city value="Ons Dorp"/>
+                                <postalCode value="1234AA"/>
+                            </address>
+                        </Organization>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
+            </Bundle>
+        </x:context>
+        <x:expect label="'voorschrijver' element">
+            <voorschrijver>
+                <zorgverlener>
+                    <zorgverlener_identificatienummer
+                        value="000001111"
+                        root="2.16.528.1.1007.3.1"/>
+                    <naamgegevens>...</naamgegevens>
+                </zorgverlener>
+            </voorschrijver>
+        </x:expect>
+    </x:scenario>
+    
+    
+    <x:scenario label="match 'f:reasonCode' mode 'zib-MedicationAgreement-2.2">
+        <x:context mode="zib-MedicationAgreement-2.2">
+                <reasonCode xmlns="http://hl7.org/fhir">
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="79899007"/>
+                        <display value="Interactie"/>
+                    </coding>
+                </reasonCode>    
+        </x:context>
+        <x:expect label="'reden_wijzigen_of_staken' element">
+            <reden_wijzigen_of_staken
+                code="79899007"
+                codeSystem="2.16.840.1.113883.6.96"
+                codeSystemName="SNOMED CT"
+                displayName="Interactie"/>    
+        </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="match 'f:modifierExtension' mode 'ext-zib-Medication-Stop-Type-2.0'">
+        <x:context mode="ext-zib-Medication-Stop-Type-2.0">
+            <modifierExtension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+                <valueCodeableConcept>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                        <code value="2"/>
+                        <display value="Definitief"/>
+                    </coding>
+                </valueCodeableConcept>
+            </modifierExtension>
+        </x:context>
+        <x:expect label="'stoptype' element">
+            <stoptype code="2"
+                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                displayName="Definitief"/>
+        </x:expect>
+    </x:scenario>
+    
     
 </x:description>
