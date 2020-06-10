@@ -7,6 +7,7 @@
     
     <!--Uncomment imports for standalone use and testing.-->
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <!--<xsl:import href="nl-core-address-2.0.xsl"/>-->
     
     <xsl:template match="f:Organization" mode="nl-core-organization-2.0">
         <zorgaanbieder>

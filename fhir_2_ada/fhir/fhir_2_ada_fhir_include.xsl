@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="codeMap">Array of map elements to be used to map input FHIR codes to output ADA codes.</xd:param>
     </xd:doc>
     <xsl:template name="code-to-code" as="attribute()+">
-        <xsl:param name="value" as="attribute(value)" select="."/>
+        <xsl:param name="value" as="xs:string" select="."/>
         <xsl:param name="codeMap" as="element()*"/>
                
         <xsl:variable name="out" as="element()">

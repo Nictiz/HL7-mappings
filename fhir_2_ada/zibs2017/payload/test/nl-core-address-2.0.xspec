@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../nl-core-address-2.0.xsl">
+    
+    <x:scenario label="nl-core-address-2.0">
+        <x:scenario label="match 'f:address' mode 'nl-core-address-2.0">
+            <x:context mode="nl-core-address-2.0">
+                <address xmlns="http://hl7.org/fhir">
+                    <use value="work"/>
+                    <line value="Dorpsstraat 1">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                            <valueString value="Dorpsstraat"/>
+                        </extension>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                            <valueString value="1"/>
+                        </extension>
+                    </line>
+                    <city value="Ons Dorp"/>
+                    <postalCode value="1234AA"/>
+                </address>
+            </x:context>
+            <x:expect label="'adresgegevens' element">
+                <adresgegevens>
+                    <straat value="Dorpsstraat"/>
+                    <huisnummer value="1"/>
+                    <postcode value="1234AA"/>
+                    <woonplaats value="Ons Dorp"/>
+                    <adres_soort
+                        code="WP"
+                        codeSystem="2.16.840.1.113883.5.1119"
+                        displayName="Werkadres"/>
+                </adresgegevens>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="match 'f:extension' mode 'nl-core-address-2.0'">
+            <x:context mode="nl-core-address-2.0">
+                <extension xmlns="http://hl7.org/fhir" url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                    <valueString value="Dorpsstraat"/>
+                </extension>
+                <extension xmlns="http://hl7.org/fhir" url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                    <valueString value="1"/>
+                </extension>
+                <extension xmlns="http://hl7.org/fhir" url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                    <valueString value="A"/>
+                </extension>
+                <extension xmlns="http://hl7.org/fhir" url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+                    <valueString value="Huis op de hoek"/>
+                </extension>
+            </x:context>
+            <x:expect label="various elements">
+                <straat value="Dorpsstraat"/>
+                <huisnummer value="1"/>
+                <huisnummertoevoeging value="A"/>
+                <aanduiding_bij_nummer value="Huis op de hoek"/>
+            </x:expect>
+        </x:scenario>
+    </x:scenario>
+    
+    <x:scenario label="name 'address-use-type' mode 'nl-code-address-2.0">
+        <x:context>
+            <address xmlns="http://hl7.org/fhir">
+                <use value="work"/>
+            </address>
+            
+        </x:context>
+        <x:call template="address-use-type"/>
+        <x:expect label="work address">
+            <adres_soort
+                code="WP"
+                codeSystem="2.16.840.1.113883.5.1119"
+                displayName="Werkadres"/>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>

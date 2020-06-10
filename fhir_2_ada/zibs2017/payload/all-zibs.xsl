@@ -37,8 +37,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="zib-medicationagreement-2.2.xsl"/>
     <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
-    <!--<xsl:import href="nl-core-address-2.0.xsl"/>
-    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
+    <xsl:import href="nl-core-address-2.0.xsl"/>
+    <!--<xsl:import href="nl-core-contactpoint-1.0.xsl"/>
     <!-\-<xsl:import href="zib-alert-2.1.xsl"/>-\->
     <!-\-<xsl:import href="zib-allergyintolerance-2.1.xsl"/>-\->
     <xsl:import href="zib-body-height-2.1.xsl"/>
