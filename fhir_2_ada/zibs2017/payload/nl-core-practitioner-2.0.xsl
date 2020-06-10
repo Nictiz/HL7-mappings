@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:f="http://hl7.org/fhir"
-    exclude-result-prefixes="xs"
+    exclude-result-prefixes="#all"
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->

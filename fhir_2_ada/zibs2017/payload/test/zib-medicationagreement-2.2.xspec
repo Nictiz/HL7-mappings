@@ -377,5 +377,61 @@
         </x:expect>
     </x:scenario>
     
+    <x:scenario label="match 'f:extension/f:valueReference/f:identifier' BasedOnAgreementOrUse mode= 'zib-MedicationAgreement-2.2'">
+        <x:context mode="zib-MedicationAgreement-2.2" >
+                <extension xmlns="http://hl7.org/fhir" url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                    <valueReference>
+                        <identifier>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                            <value value="MBH_907_aanvullendeinstructie_MA"/>
+                        </identifier>
+                        <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </valueReference>
+                </extension>    
+        </x:context>
+        <x:expect label="'relatie_naar_afspraak_of_gebruik' element">
+            <relatie_naar_afspraak_of_gebruik>
+                <identificatie value="MBH_907_aanvullendeinstructie_MA"
+                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_naar_afspraak_of_gebruik>
+        </x:expect>
+     </x:scenario>
+    
+    <x:scenario label="match 'f:extension/f:valueReference/f:reference' BasedOnAgreementOrUse mode= 'zib-MedicationAgreement-2.2'">
+        <x:context mode="zib-MedicationAgreement-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest/f:extension">
+            <Bundle xmlns="http://hl7.org/fhir">
+               <entry>
+                <fullUrl value="urn:uuid:446587cc-aa6b-11ea-1876-020000000000"/>
+                <resource>
+                   <MedicationRequest>
+                      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+                         <valueReference>
+                            <reference value="urn:uuid:446587cc-aa6b-11ea-1876-0200000000001111"/>                  
+                            <display value="relatie naar medicatieafspraak: MBH_907_aanvullendeinstructie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                         </valueReference>
+                      </extension>
+                   </MedicationRequest>
+                </resource>
+             </entry>
+             <entry>
+                <fullUrl value="urn:uuid:446587cc-aa6b-11ea-1876-0200000000001111"/>
+                <resource>
+                   <MedicationRequest>
+                      <identifier>
+                         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                         <value value="MBH_907_aanvullendeinstructie_TEST"/>
+                      </identifier>
+                   </MedicationRequest>
+                </resource>
+             </entry>
+           </Bundle>        
+        </x:context>
+        <x:expect label="'relatie_naar_afspraak_of_gebruik' element">
+            <relatie_naar_afspraak_of_gebruik>
+                <identificatie value="MBH_907_aanvullendeinstructie_TEST"
+                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </relatie_naar_afspraak_of_gebruik>
+        </x:expect>
+    </x:scenario>
     
 </x:description>

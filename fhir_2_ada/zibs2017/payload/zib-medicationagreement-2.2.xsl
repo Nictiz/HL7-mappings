@@ -20,6 +20,7 @@
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
     <xsl:variable name="stoptype-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType'"/>
     <xsl:variable name="periodofuse-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
+    <xsl:variable name="basedonagreementoruse-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'"/>
             
     <xd:doc>
         <xd:desc>Template for converting f:MedicationRequest to medicatieafspraak</xd:desc>
@@ -30,6 +31,7 @@
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <xsl:apply-templates select="f:authoredOn" mode="#current"/>
             <xsl:apply-templates select="f:modifierExtension[@url=$stoptype-url]" mode="ext-zib-Medication-Stop-Type-2.0"/>
+            <xsl:apply-templates select="f:extension[@url=$basedonagreementoruse-url]" mode="#current"/>
             <xsl:apply-templates select="f:requester" mode="#current"/>
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
@@ -100,13 +102,33 @@
             <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_staken'"/>
         </xsl:call-template>    
     </xsl:template>
+        
     
-   
+    <xsl:template match="f:extension[@url=$basedonagreementoruse-url]" mode="zib-MedicationAgreement-2.2">
+        <relatie_naar_afspraak_of_gebruik>
+            <xsl:choose>
+                <xsl:when test="f:valueReference/f:identifier">
+                    <xsl:apply-templates select="f:valueReference/f:identifier" mode="#current"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
+                    <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:*)[1]"/>
+                    <xsl:choose>
+                        <xsl:when test="$resource[local-name()=('MedicationRequest','MedicationDispense','MedicationUse')]/f:identifier">
+                            <xsl:apply-templates select="$resource[local-name()=('MedicationRequest','MedicationDispense','MedicationUse')]/f:identifier" mode="resolveBasedOnReference"/>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
+        </relatie_naar_afspraak_of_gebruik>
+    </xsl:template>
     
-<!--      
+    <xsl:template match="f:MedicationRequest/f:identifier | f:MedicationDispense/f:identifier | f:MedicationUse/f:identifier" mode="resolveBasedOnReference">
+        <xsl:call-template name="Identifier-to-identificatie"/>
+    </xsl:template>
     
-    
-        relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
+<!--        
+        <relatie_naar_afspraak_of_gebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23238" comment="">
                   <identificatie value="MBH_907_aanvullendeinstructie_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23239"/>
