@@ -7,7 +7,7 @@
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/-->
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xsl:variable name="humanname-assembly-order" select="'http://hl7.org/fhir/StructureDefinition/humanname-assembly-order'"/>
     
@@ -34,7 +34,7 @@
     </xd:doc>
     <xsl:template match="f:text" mode="nl-core-humanname-2.0">
         <ongestructureerde_naam>
-            <xsl:attribute name="value" select="f:text//text()"/>
+            <xsl:attribute name="value" select="@value"/>
         </ongestructureerde_naam>
     </xsl:template>
     
@@ -120,7 +120,11 @@
                         </xsl:element>
                     </xsl:for-each>
                 </xsl:when>
-                <xsl:otherwise/>
+                <xsl:otherwise>
+                    <xsl:if test="@value">
+                        <achternaam value="{@value}"/>
+                    </xsl:if>
+                </xsl:otherwise>
             </xsl:choose>            
         </geslachtsnaam>
     </xsl:template>

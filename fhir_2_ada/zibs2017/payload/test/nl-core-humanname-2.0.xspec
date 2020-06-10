@@ -34,14 +34,16 @@
             </x:expect>
         </x:scenario>
         
-        <x:scenario label="Scenario for testing template with match 'f:text' and mode 'nl-core-humanname-2.0'" pending="">
+        <x:scenario label="template match 'f:text' mode 'nl-core-humanname-2.0'">
             <x:context mode="nl-core-humanname-2.0">
-                
+                <f:text value="Lorem ipsum dolor sit amet."/>
             </x:context>
-            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+            <x:expect label="'ongestructureerde_naam' element">
+                <ongestructureerde_naam value="Lorem ipsum dolor sit amet."/>
+            </x:expect>
         </x:scenario>
         
-        <x:scenario label="Scenario for testing template with match 'f:given' and mode 'nl-core-humanname-2.0'">
+        <x:scenario label="template match 'f:given' mode 'nl-core-humanname-2.0'">
             <x:context mode="nl-core-humanname-2.0">
                 <f:given value="Paulus Leonardus">
                     <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">

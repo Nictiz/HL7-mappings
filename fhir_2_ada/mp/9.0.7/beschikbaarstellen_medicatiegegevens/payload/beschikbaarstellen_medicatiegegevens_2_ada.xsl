@@ -43,7 +43,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="title">Generated from HL7 FHIR medicatiegegevens 9.0.7 xml</xsl:attribute>
                     <xsl:attribute name="id">DUMMY</xsl:attribute>
                     
-                    <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-patient-2.1"/>
+                    <xsl:choose>
+                        <xsl:when test="count(f:Bundle/f:entry/f:resource/f:Patient) ge 2 or count(distinct-values(f:Bundle/f:entry/f:resource/(f:MedicationRequest|f:MedicationDispense|f:MedicationStatement)/f:subject/f:reference/@value)) ge 2">
+                            <xsl:message terminate="yes">Multiple Patients and/or subject references found. Please check.</xsl:message>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-patient-2.1"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest|f:MedicationDispense|f:MedicationStatement)" group-by="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']/f:valueIdentifier/concat(f:system/@value,f:value/@value)">
                         
                             <medicamenteuze_behandeling>
@@ -55,7 +62,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </medicamenteuze_behandeling>
                         
                     </xsl:for-each-group>
-                    <xsl:apply-templates select="f:Bundle/f:entry/f:resource/(node() except (f:Patient|f:MedicationRequest|f:MedicationDispense|f:MedicationStatement))"/>
                 </beschikbaarstellen_medicatiegegevens>
             </data>
         </adaxml>

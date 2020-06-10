@@ -6,7 +6,7 @@
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xsl:template match="f:address" mode="nl-core-address-2.0">
         <adresgegevens>
@@ -69,7 +69,7 @@
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-                <land value="{@value}"/>
+                <land displayName="{@value}"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
