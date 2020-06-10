@@ -224,6 +224,18 @@
                 <x:param name="dateT" select="'no_value'"/>
             </x:call>
             <x:expect label="Not yet implemented"/>-->
+            <x:scenario label="dateTime = '1954'">
+                <x:call template="format2ADADate">
+                    <x:param name="dateTime" select="'1954'"/>
+                </x:call>
+                <x:expect label="Return same">1954</x:expect>
+            </x:scenario>            
+            <x:scenario label="dateTime = '1954-05'">
+                <x:call template="format2ADADate">
+                    <x:param name="dateTime" select="'1954-05'"/>
+                </x:call>
+                <x:expect label="Return same">1954-05</x:expect>
+            </x:scenario>
             <x:scenario label="dateTime = '1954-05-08'">
                 <x:call template="format2ADADate">
                     <x:param name="dateTime" select="'1954-05-08'"/>
