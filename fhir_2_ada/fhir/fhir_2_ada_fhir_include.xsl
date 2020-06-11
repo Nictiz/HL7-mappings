@@ -231,7 +231,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:element name="{$adaElementName}">
             <xsl:choose>
                 <xsl:when test="f:value/f:extension/@url='http://hl7.org/fhir/StructureDefinition/data-absent-reason'">
-                    <xsl:attribute name="nullValue" select="'MSK'"/>
+                    <xsl:attribute name="nullFlavor" select="'MSK'"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:attribute name="value" select="f:value/@value"/>
