@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:param name="mask-ids"/>
          
-    <xsl:variable name="usecase">prio1</xsl:variable>
+    <xsl:variable name="usecase">prio1-vorige-zwangerschap</xsl:variable>
      
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen prio 1 gegevens".</xd:desc>

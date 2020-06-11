@@ -93,7 +93,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//partner">
             <xsl:call-template name="nl-core-relatedperson-2.0">
                 <xsl:with-param name="in" select="$partner-ada"/>
-                <xsl:with-param name="logicalId" select="replace(persoonsnaam/achternamen/@value, ' ', '-')"/>
+                <xsl:with-param name="logicalId" select="nf:removeSpecialCharacters(replace(persoonsnaam/achternamen/@value, ' ', '-'))"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
             </xsl:call-template>
         </xsl:for-each>
@@ -128,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//verwijzing_naar">
             <xsl:call-template name="nl-core-organization-2.0">
                 <xsl:with-param name="in" select="$verwijzing-zorginstelling-ada"/>
-                <xsl:with-param name="logicalId" select="replace(zorginstelling/zorgaanbieder_identificatie_nummer/@value, ' ', '-')"/>           
+                <xsl:with-param name="logicalId" select="nf:removeSpecialCharacters(replace(zorginstelling/zorgaanbieder_identificatie_nummer/@value, ' ', '-'))"/>           
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
@@ -138,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//zorgverlenerzorginstelling">
             <xsl:call-template name="nl-core-practitioner-2.0">
                 <xsl:with-param name="in" select="$zorgverlener-ada"/>
-                <xsl:with-param name="logicalId" select="replace(zorgverlener/naam_zorgverlener/@value, ' ', '-')"/>
+                <xsl:with-param name="logicalId" select="nf:removeSpecialCharacters(replace(zorgverlener/naam_zorgverlener/@value, ' ', '-'))"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
@@ -148,12 +148,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//zorgverlenerzorginstelling">
             <xsl:call-template name="nl-core-practitionerrole-2.0">
                 <xsl:with-param name="in" select="$zorgverlener-ada"/>
-                <xsl:with-param name="logicalId" select="replace(concat(zorgverlener/naam_zorgverlener/@value, '-', replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')), ' ', '-')"/>
+                <xsl:with-param name="logicalId" select="nf:removeSpecialCharacters(replace(concat(zorgverlener/naam_zorgverlener/@value, '-', replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')), ' ', '-'))"/>
                 <xsl:with-param name="organizationRef" as="element(f:reference)">
-                    <reference xmlns="http://hl7.org/fhir" value="Organization/{replace(zorginstelling/naam_zorginstelling/@value, ' ', '-')}"/>
+                    <reference xmlns="http://hl7.org/fhir" value="Organization/{nf:removeSpecialCharacters(replace(zorginstelling/naam_zorginstelling/@value, ' ', '-'))}"/>
                 </xsl:with-param>
                 <xsl:with-param name="practitionerRef" as="element(f:reference)*">
-                    <reference xmlns="http://hl7.org/fhir" value="Practitioner/{replace(zorgverlener/naam_zorgverlener/@value, ' ', '-')}"/>
+                    <reference xmlns="http://hl7.org/fhir" value="Practitioner/{nf:removeSpecialCharacters(replace(zorgverlener/naam_zorgverlener/@value, ' ', '-'))}"/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
@@ -209,7 +209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$labtest-ada">
                 <xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
                     <xsl:with-param name="in" select="." as="element()*"/>
-                    <xsl:with-param name="logicalId" select="concat(replace($elementName, '_', '-'), '-zwangerschap-', $pregnancyNo)"/>
+                    <xsl:with-param name="logicalId" select="concat(nf:removeSpecialCharacters(replace($elementName, '_', '-')), '-zwangerschap-', $pregnancyNo)"/>
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 </xsl:call-template>
             </xsl:for-each>
@@ -217,7 +217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- zwangerschaps- en bevallingsgegevens -->
         <xsl:for-each select="//(graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | definitieve_a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | tijdstip_begin_actieve_ontsluiting | hoeveelheid_bloedverlies | conditie_perineum_postpartum)">
             <xsl:call-template name="bc-observation">
-                <xsl:with-param name="logicalId" select="concat(replace(name(.), '_', '-'), '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="logicalId" select="concat(nf:removeSpecialCharacters(replace(name(.), '_', '-')), '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
@@ -226,7 +226,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- voornemens tijdens zwangerschap (apart aangeroepen, want hier geen zwangerschaps id meegegeven, omdat dit niet in de focus extensie moet komen -->
         <xsl:for-each select="//(voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding)">
             <xsl:call-template name="bc-observation">
-                <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="logicalId" select="concat(nf:removeSpecialCharacters(replace(name(.),'_','-')), '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
@@ -235,7 +235,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="childNo" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
         <xsl:for-each select="//(baring/(kindspecifieke_maternale_gegevens | kindspecifieke_uitkomstgegevens)/(tijdstip_actief_meepersen | type_partus | lichamelijk_onderzoek_kind/(apgarscore_na_5_min | geboortegewicht)))">
             <xsl:call-template name="bc-observation">
-                <xsl:with-param name="logicalId" select="concat(replace(name(.), '_', '-'), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
+                <xsl:with-param name="logicalId" select="concat(nf:removeSpecialCharacters(replace(name(.), '_', '-')), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
@@ -294,7 +294,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- Composition -->
     <xsl:variable name="composition" as="element(f:Composition)*">
-        <xsl:for-each select=".">
+        <xsl:for-each select="//prio1_huidige_zwangerschap | //prio1_vorige_zwangerschap">
             <xsl:call-template name="bc-composition">
                 <xsl:with-param name="logicalId">
                     <xsl:value-of select="concat('samenvatting-zwangerschap', $pregnancyNo)"/>
@@ -330,11 +330,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates transaction bundle entry for a FHIR resource</xd:desc>
     </xd:doc>
-    <xsl:template name="createTransactionBundleEntry" match="f:Resource/* | f:Patient | f:RelatedPerson | f:Organization | f:Practitioner | f:PractitionerRole | f:ReferralRequest | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:List | f:Composition" mode="doCreateTransactionBundleEntry">
+    <xsl:template name="createTransactionBundleEntry" match="f:resource/* | f:Patient | f:RelatedPerson | f:Organization | f:Practitioner | f:PractitionerRole | f:ReferralRequest | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:List | f:Composition" mode="doCreateTransactionBundleEntry">
         <entry xmlns="http://hl7.org/fhir">
             <fullUrl value="{nf:get-fhir-uuid(.)}"/>
             <resource>
-                <xsl:apply-templates select="." mode="ResultOutput"/>
+                <xsl:copy-of select="."/>
             </resource>
             <request>
                 <method value="PUT"/>

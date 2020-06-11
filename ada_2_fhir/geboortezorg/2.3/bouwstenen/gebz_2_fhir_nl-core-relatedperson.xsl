@@ -25,23 +25,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xsl:template name="convert-partner-ada" mode="partner-ada" match="partner" as="element()*">
-        <xsl:variable name="givenName" select="persoonsnaam/voornamen/@value"/>  
-        <xsl:variable name="familyName" select="persoonsnaam/achternamen/@value"/>  
-        <xsl:variable name="familyPrefix" select="persoonsnaam/voorvoegsel/@value"/>  
         <contactpersoon>
             <relatie value="DOMPART"/>
-            <xsl:if test="$familyName or $familyPrefix">
+            <xsl:for-each select="persoonsnaam">
                 <naamgegevens>
+                <xsl:copy-of select="voornamen"/>
+                <xsl:if test = "achternamen or voorvoegsel">
                     <geslachtsnaam>
-                        <xsl:if test="$familyName">
-                            <achternaam value="{$familyName}"/>
-                        </xsl:if>
-                        <xsl:if test="$familyPrefix">
-                            <voorvoegsels value="{$familyPrefix}"/>
-                        </xsl:if>
-                    </geslachtsnaam> 
+                        <xsl:for-each select="achternamen">
+                            <achternaam value="{@value}"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="voorvoegsel">
+                            <voorvoegsels value="{@value}"/>
+                        </xsl:for-each>
+                    </geslachtsnaam>                        
+                </xsl:if>
                 </naamgegevens>
-            </xsl:if>
+            </xsl:for-each>
         </contactpersoon>     
     </xsl:template>
     

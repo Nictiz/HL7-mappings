@@ -27,22 +27,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="convert-vrouw-ada" mode="vrouw-ada" match="vrouw" as="element()*">
         <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>
-        <xsl:variable name="familyName" select="naamgegevens/achternaam/achternaam/@value"/>
-        <xsl:variable name="familyPrefix" select="naamgegevens/achternaam/voorvoegsel/@value"/>
         <patient>
             <identificatienummer value="{$theIdentifier}" root="{$oidBurgerservicenummer}"/>
-            <xsl:if test="$familyName or $familyPrefix">
+            <xsl:for-each select="naamgegevens">
                 <naamgegevens>
-                    <geslachtsnaam>
-                        <xsl:if test="$familyName">
-                            <achternaam value="{$familyName}"/>
-                        </xsl:if>
-                        <xsl:if test="$familyPrefix">
-                            <voorvoegsels value="{$familyPrefix}"/>
-                        </xsl:if>
-                    </geslachtsnaam>
+                    <xsl:copy-of select="voornamen"/>
+                    <xsl:copy-of select="initialen"/>
+                    <xsl:copy-of select="roepnaam"/>
+                    <xsl:for-each select="achternaam">
+                        <xsl:choose>
+                            <xsl:when test="soort_naam = 'SP'">
+                                <geslachtsnaam_partner>
+                                    <xsl:for-each select="voorvoegsel">
+                                        <voorvoegsels_partner value="{@value}"/>
+                                    </xsl:for-each>  
+                                    <xsl:for-each select="achternaam"> 
+                                        <achternaam_partner value="{@value}"/>
+                                    </xsl:for-each>
+                                </geslachtsnaam_partner>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <geslachtsnaam>
+                                    <xsl:for-each select="achternaam"> 
+                                        <achternaam value="{@value}"/>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="voorvoegsel">
+                                        <voorvoegsels value="{@value}"/>
+                                    </xsl:for-each>  
+                                </geslachtsnaam>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
                 </naamgegevens>
-            </xsl:if>
+            </xsl:for-each>        
         </patient>
     </xsl:template>
     

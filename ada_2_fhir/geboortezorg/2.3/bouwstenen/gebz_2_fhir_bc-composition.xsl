@@ -26,10 +26,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of an Composition resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-composition" mode="doCompositionResource" match="/" as="element()">
+    <xsl:template name="bc-composition" match="prio1_huidige_zwangerschap | prio1_vorige_zwangerschap" mode="doCompositionResource" as="element()">
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="entries"/>
+        <xsl:variable name="elementName" select="name(.)"/>
                 
         <Composition xmlns="http://hl7.org/fhir">
             <id value="{$logicalId}"/>
@@ -49,11 +50,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                 </subject>
             </xsl:for-each> 
-            <date value="2012-01-04T09:10:14Z"/> 
+            <!-- TODO: ophalen datum uit transactie -->
+            <!--<date value="2012-01-04T09:10:14Z"/> -->
             <author> 
                 <reference value="Practitioner/{$entries/f:Practitioner/f:id/@value}"/>
             </author> 
-            <title value="Example Prio 1 Huidige Zwangerschap"/> 
+            <title value="Example {replace($elementName,'_',' ')}"/> 
             <section> 
                 <xsl:for-each select="$entries">
                     <xsl:apply-templates select="." mode="doCreateCompositionEntry"/>
