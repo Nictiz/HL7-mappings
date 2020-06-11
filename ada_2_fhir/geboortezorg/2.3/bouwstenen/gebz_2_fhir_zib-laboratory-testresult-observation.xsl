@@ -68,31 +68,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <test_result_status value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>      
             </laboratory_test>     
      </xsl:template>
-    
-    <!--
-    <xsl:template name="convertMoToADAlabtest" mode="doConvertMoToADAlabtest" match="medisch_onderzoek">
-        <xsl:variable name="datum" select="datum_onderzoek/@value"/>
-        <xsl:for-each select="maternale_onderzoeksgegevens/urine_bloed_en_aanvullende_onderzoeken/hb">
-            <xsl:variable name="value" select="@value"/>
-            <xsl:variable name="unit" select="@unit"/>       
-            <xsl:variable name="elementName" select="name(.)"/>
-            <laboratory_test>
-                <xsl:choose>
-                    <xsl:when test="$elementName='hb'">
-                        <test_code code="718-7" codeSystem="2.16.840.1.113883.6.1" displayName="Hemoglobin (Bld) [Mass/Vol]"/>
-                    </xsl:when>
-                </xsl:choose>
-                <xsl:if test="$datum!=''">
-                    <xsl:variable name="x" select="substring-after($datum,'T-')"/>
-                    <xsl:variable name="pattern" select="substring($x,string-length($x),1)"/>
-                    <xsl:variable name="n" select="substring-before($x,$pattern)"/>
-                    <test_date_time value="{current-date()-xs:dayTimeDuration(concat('P',$n,$pattern))}"/>
-                </xsl:if>
-                <test_result value="{$value}" unit="{$unit}"/>
-                <test_result_status value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>      
-            </laboratory_test>
-        </xsl:for-each>
-    </xsl:template>
-    -->
-           
+               
 </xsl:stylesheet>

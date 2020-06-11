@@ -51,9 +51,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="$ADAzorginstelling"/>
         </xsl:call-template>       
     </xsl:template>
-    
-    <xsl:template match="/">
-        <xsl:apply-templates mode="zorginstelling-fhir"/>
-    </xsl:template>
-       
+          
 </xsl:stylesheet>

@@ -21,9 +21,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
    
     <xd:doc>
-        <xd:desc>Mapping of ADA geboortezorg concept to FHIR Observation <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation">zib-LaboratoryTestResult-Observation</xd:a>.</xd:desc>
+        <xd:desc>Mapping of ADA geboortezorg concept to FHIR Composition <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation">zib-LaboratoryTestResult-Observation</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of an Observation resource</xd:param>
+        <xd:param name="in">Node to consider in the creation of an Composition resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
     <xsl:template name="bc-composition" mode="doCompositionResource" match="/" as="element()">
@@ -68,12 +68,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </entry>   
     </xsl:template>   
          
-    <xsl:template match="/">
-        <xsl:apply-templates/>
-    </xsl:template>
-    
-    <xsl:template match="@*|node()">
-        <xsl:apply-templates/>
-    </xsl:template>
-
 </xsl:stylesheet>

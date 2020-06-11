@@ -19,13 +19,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xsl:variable name="vrouwId" select="replace(lower-case(//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/naamgegevens/achternaam/achternaam/@value), ' ', '-')"/>
 
     <xd:doc>
         <xd:desc>Converts ada vrouw to ada patient</xd:desc>
     </xd:doc>
-
-    <xsl:variable name="vrouwId" select="replace(lower-case(//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/naamgegevens/achternaam/achternaam/@value), ' ', '-')"/>
-
     <xsl:template name="convert-vrouw-ada" mode="vrouw-ada" match="vrouw" as="element()*">
         <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>
         <xsl:variable name="familyName" select="naamgegevens/achternaam/achternaam/@value"/>
@@ -46,7 +45,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </patient>
     </xsl:template>
-
+    
+    <xd:doc>
+        <xd:desc>Converts ada kind to ada patient</xd:desc>
+    </xd:doc>
     <xsl:template name="convert-kind-ada" mode="kind-ada" match="uitkomst_per_kind" as="element()*">
         <xsl:param name="theIdentifier" select="string(count(preceding-sibling::*[name() = name(current())]) + 1)"/>
         <xsl:variable name="birthDate" select="baring/demografische_gegevens/geboortedatum/@value"/>
@@ -62,11 +64,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </xsl:if>
         </patient>
-    </xsl:template>
-
-    <xsl:template match="/">
-        <xsl:variable name="x" select="'test'"/>
-        <xsl:apply-templates mode="vrouw-fhir"/>
     </xsl:template>
 
 </xsl:stylesheet>

@@ -185,12 +185,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <valueDateTime value="{$dateValue}"/>
     </xsl:template>
 
-    <xsl:template match="/">
-        <xsl:apply-templates/>
-    </xsl:template>
-
-    <xsl:template match="@* | node()">
-        <xsl:apply-templates/>
-    </xsl:template>
-
 </xsl:stylesheet>

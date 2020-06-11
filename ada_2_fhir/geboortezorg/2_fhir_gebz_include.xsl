@@ -346,7 +346,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="conditionalIDs">
         <xsl:copy-of select="($patients/f:entry/f:resource/f:Patient | $organizations | $practitioners)/f:id"/>
     </xsl:variable>
-
+    
+    <xd:doc>
+        <xd:desc>Transforms Bundle entries to support conditional updates for the resources with given IDs</xd:desc>
+    </xd:doc>
     <xsl:template name="conditionalTransform" match="node() | @*" mode="doConditionalTransform doConditionalTransformElements">
         <xsl:copy>
             <xsl:apply-templates select="node() | @*" mode="doConditionalTransformElements">
@@ -357,6 +360,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:copy>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Transforms the request.url of resources that are conditionally updated to conditional ones</xd:desc>
+        <xd:param name="resourceID">ID of resource to update entry for.</xd:param>
+    </xd:doc>
     <xsl:template name="setConditionalURL" match="f:Bundle/f:entry/f:request/f:url" mode="doConditionalTransformElements">
         <xsl:param name="resourceID"/>
         <xsl:variable name="resource" select="ancestor::f:entry/f:resource/*"/>
@@ -373,6 +380,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Transforms all references to resources that are conditionally updated to fullUrls</xd:desc>
+        <xd:param name="resourceID">ID of resource to update references for</xd:param>
+    </xd:doc>
     <xsl:template name="removeConditionalID" match="f:reference" mode="doConditionalTransformElements">
         <xsl:param name="resourceID"/>
         <xsl:variable name="bundle" select="ancestor::f:Bundle"/>
@@ -390,6 +401,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Removes the id from the body for resources that are conditionally updated</xd:desc>
+        <xd:param name="resourceId">ID of resource to remove id for</xd:param>
+    </xd:doc>
     <xsl:template name="setConditionalReference" match="f:id" mode="doConditionalTransformElements">
         <xsl:param name="resourceID"/>
         <xsl:variable name="node" select="."/>
