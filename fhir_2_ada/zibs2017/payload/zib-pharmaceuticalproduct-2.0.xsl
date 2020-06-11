@@ -6,12 +6,14 @@
     <xsl:template match="f:Medication" mode="zib-PharmaceuticalProduct-2.0">  
         <product>
             <xsl:apply-templates select="f:code" mode="#current"/>
-            <product_specificatie>
-                <xsl:apply-templates select="f:code/f:text" mode="#current"/>
-                <xsl:apply-templates select="f:extension" mode="#current"/>
-                <xsl:apply-templates select="f:form" mode="#current"/>
-                <xsl:apply-templates select="f:ingredient" mode="#current"/>
-            </product_specificatie>
+            <xsl:if test="f:extension|f:form|f:ingredient or not(f:code/f:coding)"><!-- What about nullFlavor? -->
+                <product_specificatie>
+                    <xsl:apply-templates select="f:code/f:text" mode="#current"/>
+                    <xsl:apply-templates select="f:extension" mode="#current"/>
+                    <xsl:apply-templates select="f:form" mode="#current"/>
+                    <xsl:apply-templates select="f:ingredient" mode="#current"/>
+                </product_specificatie>
+            </xsl:if>
         </product>
     </xsl:template>
         

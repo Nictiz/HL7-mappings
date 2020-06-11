@@ -101,15 +101,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:variable name="oid" select="local:getOid($in/f:system/@value)"/>
         <xsl:variable name="codeSystemName" select="local:getDisplayName($oid)"/>
-        <xsl:attribute name="code" select="$in/f:code/@value"/>
+        <xsl:if test="$in/f:code/@value">
+            <xsl:attribute name="code" select="$in/f:code/@value"/>
+        </xsl:if>
         <xsl:if test="$oid">
             <xsl:attribute name="codeSystem" select="$oid"/>
         </xsl:if>
         <xsl:if test="not($codeSystemName=$oid)">
             <xsl:attribute name="codeSystemName" select="$codeSystemName"/>
         </xsl:if>
+        <xsl:if test="$in/f:version/@value">
+            <xsl:attribute name="codeSystemVersion" select="$in/f:version/@value"/>
+        </xsl:if>
         <xsl:if test="$in/f:display/@value">
-            <xsl:attribute name="displayName" select="replace($in/f:display/@value, '(^\s+)|(\s+$)', '')"></xsl:attribute>
+            <xsl:attribute name="displayName" select="$in/f:display/@value"></xsl:attribute>
         </xsl:if>
         <xsl:if test="$in/f:userSelected/@value">
             <xsl:attribute name="preferred" select="'true'"></xsl:attribute>
