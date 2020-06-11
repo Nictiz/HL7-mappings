@@ -2,9 +2,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
    <type value="searchset"/>
-   <total value="6"/>
+   <total value="4"/>
    <entry>
-      <fullUrl value="urn:uuid:07af4510-abe3-11ea-1625-020000000000"/>
+      <fullUrl value="urn:uuid:07d418cc-abe3-11ea-4671-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -79,7 +79,7 @@
                <display value="IBUPROFEN TABLET 600MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:07af35e6-abe3-11ea-1625-020000000000"/>
+               <reference value="urn:uuid:07d414c4-abe3-11ea-4671-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
@@ -87,7 +87,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:07af4515-abe3-11ea-1625-020000000000"/>
+                        <reference value="urn:uuid:07d418d1-abe3-11ea-4671-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -125,128 +125,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07af453d-abe3-11ea-1625-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <text>
-               <status value="generated"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_907_QA2_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-                        <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
-                     </caption>
-                     <tbody>
-                        <tr>
-                           <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_QA2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
-                        </tr>
-                        <tr>
-                           <th>Medicatie</th>
-                           <td>SENNOSIDEN A+B 2MG/ML</td>
-                        </tr>
-                        <tr>
-                           <th>Gemaakt</th>
-                           <td>${DATE, T, D, -100}T08:04:00+02:00</td>
-                        </tr>
-                        <tr>
-                           <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -100}T00:00:00+02:00 - ${DATE, T, D, -72}T23:59:59+02:00</td>
-                        </tr>
-                        <tr>
-                           <th>Doseerinstructie</th>
-                           <td>
-                              <div>Tekst: Vanaf &lt;T-100D{00:00:00}&gt; t/m T-72D{23:59:59}, 1 maal per dag 10 ml</div>
-                              <div>Timing: <div>eenmalig per dag</div>
-                              </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
-                              </div>
-                              <div>Dosering: 10 milliliter</div>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="${DATE, T, D, -100}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, -72}T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_QA2"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_QA2_MA"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.3379"/>
-               <display value="SENNOSIDEN A+B 2MG/ML"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:07af35e6-abe3-11ea-1625-020000000000"/>
-               <display value="S. XXX_Jankie"/>
-            </subject>
-            <authoredOn value="${DATE, T, D, -100}T08:04:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:07af4515-abe3-11ea-1625-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
-                  <display value="Peter van Pulver"/>
-               </agent>
-            </requester>
-            <dosageInstruction>
-               <text value="Vanaf &lt;T-100D{00:00:00}&gt; t/m T-72D{23:59:59}, 1 maal per dag 10 ml"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="10"/>
-                  <unit value="milliliter"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="233"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <search>
-         <mode value="match"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07af4056-abe3-11ea-1625-020000000000"/>
+      <fullUrl value="urn:uuid:07d418f9-abe3-11ea-4671-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -321,7 +200,7 @@
                <display value="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:07af35e6-abe3-11ea-1625-020000000000"/>
+               <reference value="urn:uuid:07d414c4-abe3-11ea-4671-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <authoredOn value="${DATE, T, D, -50}T08:10:00+02:00"/>
@@ -329,7 +208,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:07af4515-abe3-11ea-1625-020000000000"/>
+                        <reference value="urn:uuid:07d418d1-abe3-11ea-4671-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -367,7 +246,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07af4083-abe3-11ea-1625-020000000000"/>
+      <fullUrl value="urn:uuid:07d419ee-abe3-11ea-4671-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -442,7 +321,7 @@
                <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:07af35e6-abe3-11ea-1625-020000000000"/>
+               <reference value="urn:uuid:07d414c4-abe3-11ea-4671-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <authoredOn value="${DATE, T, D, -10}T08:12:00+02:00"/>
@@ -450,7 +329,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:07af4515-abe3-11ea-1625-020000000000"/>
+                        <reference value="urn:uuid:07d418d1-abe3-11ea-4671-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -488,128 +367,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07af40b1-abe3-11ea-1625-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
-            </meta>
-            <text>
-               <status value="generated"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <caption>Medicatieafspraak. Subject: S. XXX_Jankie. Id: MBH_907_QA5_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
-                        <span style="display: block;">Aangevraagd door: Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
-                     </caption>
-                     <tbody>
-                        <tr>
-                           <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_QA5 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
-                        </tr>
-                        <tr>
-                           <th>Medicatie</th>
-                           <td>ACENOCOUMAROL TABLET 1MG</td>
-                        </tr>
-                        <tr>
-                           <th>Gemaakt</th>
-                           <td>${DATE, T, D, -50}T08:15:00+02:00</td>
-                        </tr>
-                        <tr>
-                           <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -50}T00:00:00+02:00 - ${DATE, T, D, -44}T23:59:59+02:00</td>
-                        </tr>
-                        <tr>
-                           <th>Doseerinstructie</th>
-                           <td>
-                              <div>Tekst: Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk</div>
-                              <div>Timing: <div>eenmalig per dag</div>
-                              </div>
-                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
-                              </div>
-                              <div>Dosering: 1 stuk</div>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
-               <valuePeriod>
-                  <start value="${DATE, T, D, -50}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, -44}T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_QA5"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_QA5_MA"/>
-            </identifier>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="16076005"/>
-                  <display value="Prescription (procedure)"/>
-               </coding>
-               <text value="Medicatieafspraak"/>
-            </category>
-            <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.7323"/>
-               <display value="ACENOCOUMAROL TABLET 1MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:07af35e6-abe3-11ea-1625-020000000000"/>
-               <display value="S. XXX_Jankie"/>
-            </subject>
-            <authoredOn value="${DATE, T, D, -50}T08:15:00+02:00"/>
-            <requester>
-               <agent>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <reference value="urn:uuid:07af4515-abe3-11ea-1625-020000000000"/>
-                        <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
-                     </valueReference>
-                  </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
-                  <display value="Peter van Pulver"/>
-               </agent>
-            </requester>
-            <dosageInstruction>
-               <text value="Vanaf &lt;T-50D{00:00:00}&gt;, gedurende 7 dagen, 1 maal per dag 1 stuk"/>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <doseQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </doseQuantity>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <search>
-         <mode value="match"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:07af40de-abe3-11ea-1625-020000000000"/>
+      <fullUrl value="urn:uuid:07d41a1b-abe3-11ea-4671-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -684,7 +442,7 @@
                <display value="OXAZEPAM TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:07af35e6-abe3-11ea-1625-020000000000"/>
+               <reference value="urn:uuid:07d414c4-abe3-11ea-4671-020000000000"/>
                <display value="S. XXX_Jankie"/>
             </subject>
             <authoredOn value="${DATE, T, D, -5}T08:18:00+02:00"/>
@@ -692,7 +450,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:07af4515-abe3-11ea-1625-020000000000"/>
+                        <reference value="urn:uuid:07d418d1-abe3-11ea-4671-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -730,7 +488,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07af35e6-abe3-11ea-1625-020000000000"/>
+      <fullUrl value="urn:uuid:07d414c4-abe3-11ea-4671-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -861,7 +619,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:07af4515-abe3-11ea-1625-020000000000"/>
+      <fullUrl value="urn:uuid:07d418d1-abe3-11ea-4671-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -955,48 +713,6 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.3379"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <text>
-               <status value="generated"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <tbody>
-                        <tr>
-                           <th>Code</th>
-                           <td>
-                              <span title="SENNOSIDEN A+B 2MG/ML (3379 - G-Standaard PRK)">SENNOSIDEN A+B 2MG/ML</span>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="3379"/>
-                  <display value="SENNOSIDEN A+B 2MG/ML"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="10960"/>
-                  <display value="SENNOSIDEN A+B 2MG/ML"/>
-               </coding>
-               <text value="SENNOSIDEN A+B 2MG/ML"/>
-            </code>
-         </Medication>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.88749"/>
       <resource>
          <Medication>
@@ -1073,48 +789,6 @@
                   <display value="ACETYLSALICYLZUUR TABLET 100MG"/>
                </coding>
                <text value="ACETYLSALICYLZUUR TABLET 100MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.7323"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-            </meta>
-            <text>
-               <status value="generated"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <tbody>
-                        <tr>
-                           <th>Code</th>
-                           <td>
-                              <span title="ACENOCOUMAROL TABLET 1MG (7323 - G-Standaard PRK)">ACENOCOUMAROL TABLET 1MG</span>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="7323"/>
-                  <display value="ACENOCOUMAROL TABLET 1MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="20303"/>
-                  <display value="ACENOCOUMAROL TABLET 1MG"/>
-               </coding>
-               <text value="ACENOCOUMAROL TABLET 1MG"/>
             </code>
          </Medication>
       </resource>

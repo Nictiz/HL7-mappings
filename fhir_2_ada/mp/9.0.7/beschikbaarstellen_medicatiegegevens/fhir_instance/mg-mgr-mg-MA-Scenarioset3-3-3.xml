@@ -4,7 +4,7 @@
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:084c641d-abe3-11ea-1345-020000000000"/>
+      <fullUrl value="urn:uuid:0850f2e9-abe3-11ea-1448-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -14,45 +14,41 @@
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_toelichting_MA_wijzigingmetVV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_toelichting (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
-                        </tr>
-                        <tr>
-                           <th>Gebaseerd op</th>
-                           <td>relatie naar medicatieafspraak: MBH_907_toelichting_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_toelichting_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                           <td>MBH_907_redenvanvoorschrijven (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>FUROSEMIDE 40MG TABLET</td>
+                           <td>Methotrexaat tablet 2,5mg</td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>${DATE, T, D, -2}T08:02:00+02:00</td>
+                           <td>${DATE, T, D, -1}T08:10:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Reden</th>
                            <td>
-                              <span title="Geen of onvoldoende effect (5 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Geen of onvoldoende effect</span>
+                              <span title="Te sterk effect (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2)">Te sterk effect</span>
                            </td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>Vanaf ${DATE, T, D, -2}T00:00:00+02:00</td>
+                           <td>${DATE, T, D, -1}T00:00:00+02:00 - ${DATE, T, D, +14}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-2D{00:00:00}&gt; 1 maal daags 2 stuk, oraal</div>
-                              <div>Timing: <div>eenmalig per dag</div>
+                              <div>Tekst: Vanaf &lt;T-1D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 4 stuks, oraal</div>
+                              <div>Timing: <div>eenmalig per week</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
-                              <div>Dosering: 2 stuk</div>
+                              <div>Dosering: 4 stuk</div>
                            </td>
                         </tr>
                      </tbody>
@@ -61,27 +57,19 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="${DATE, T, D, -2}T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -1}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +14}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_toelichting"/>
+                  <value value="MBH_907_redenvanvoorschrijven"/>
                </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
-               <valueReference>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_907_toelichting_MA"/>
-                  </identifier>
-                  <display value="relatie naar medicatieafspraak: MBH_907_toelichting_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               </valueReference>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_toelichting_MA_wijzigingmetVV"/>
+               <value value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -93,19 +81,19 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
-               <display value="FUROSEMIDE 40MG TABLET"/>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.141631"/>
+               <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:084c5f25-abe3-11ea-1345-020000000000"/>
+               <reference value="urn:uuid:0850fa53-abe3-11ea-1448-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -2}T08:02:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:084c6423-abe3-11ea-1345-020000000000"/>
+                        <reference value="urn:uuid:0850f2ee-abe3-11ea-1448-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -116,17 +104,17 @@
             <reasonCode>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
-                  <code value="5"/>
-                  <display value="Geen of onvoldoende effect"/>
+                  <code value="6"/>
+                  <display value="Te sterk effect"/>
                </coding>
             </reasonCode>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-2D{00:00:00}&gt; 1 maal daags 2 stuk, oraal"/>
+               <text value="Vanaf &lt;T-1D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 4 stuks, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
-                     <periodUnit value="d"/>
+                     <periodUnit value="wk"/>
                   </repeat>
                </timing>
                <route>
@@ -137,7 +125,7 @@
                   </coding>
                </route>
                <doseQuantity>
-                  <value value="2"/>
+                  <value value="4"/>
                   <unit value="stuk"/>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                   <code value="245"/>
@@ -150,7 +138,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:084c6449-abe3-11ea-1345-020000000000"/>
+      <fullUrl value="urn:uuid:0850f314-abe3-11ea-1448-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -160,7 +148,7 @@
                <status value="generated"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_toelichting_MA_techstaken (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                     <caption>Medicatieafspraak. Subject: C. XXX_Vonker. Id: MBH_907_redenvanvoorschrijven_MA_techstaken (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
                         <span style="display: block;">Aangevraagd door: Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
                      </caption>
                      <tbody>
@@ -170,33 +158,33 @@
                         </tr>
                         <tr>
                            <th>Medicamenteuze behandel-id</th>
-                           <td>MBH_907_toelichting (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+                           <td>MBH_907_redenvanvoorschrijven (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                         </tr>
                         <tr>
                            <th>Gebaseerd op</th>
-                           <td>relatie naar medicatieafspraak: MBH_907_toelichting_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_toelichting_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+                           <td>relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_redenvanvoorschrijven_MA (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
                         </tr>
                         <tr>
                            <th>Medicatie</th>
-                           <td>FUROSEMIDE 40MG TABLET</td>
+                           <td>Methotrexaat tablet 2,5mg</td>
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>${DATE, T, D, -2}T08:02:00+02:00</td>
+                           <td>${DATE, T, D, -1}T08:10:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>${DATE, T, D, -21}T00:00:00+02:00 - ${DATE, T, D, -3}T23:59:59+02:00</td>
+                           <td>${DATE, T, D, -13}T00:00:00+02:00 - ${DATE, T, D, -2}T23:59:59+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf &lt;T-21D{00:00:00}&gt; t/m &lt;T-3D{23:59:59}&gt;, 1 maal daags 1 stuk, oraal</div>
-                              <div>Timing: <div>eenmalig per dag</div>
+                              <div>Tekst: Vanaf &lt;T-13D{00:00:00}&gt; t/m &lt;T-2D{23:59:59}&gt;, 1 maal per week 5 stuks, oraal</div>
+                              <div>Timing: <div>eenmalig per week</div>
                               </div>
                               <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
                               </div>
-                              <div>Dosering: 1 stuk</div>
+                              <div>Dosering: 5 stuk</div>
                            </td>
                         </tr>
                      </tbody>
@@ -205,23 +193,23 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="${DATE, T, D, -21}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, -3}T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, -13}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -2}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_907_toelichting"/>
+                  <value value="MBH_907_redenvanvoorschrijven"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
                <valueReference>
                   <identifier>
                      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                     <value value="MBH_907_toelichting_MA"/>
+                     <value value="MBH_907_redenvanvoorschrijven_MA"/>
                   </identifier>
-                  <display value="relatie naar medicatieafspraak: MBH_907_toelichting_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <display value="relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </valueReference>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
@@ -235,7 +223,7 @@
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_907_toelichting_MA_techstaken"/>
+               <value value="MBH_907_redenvanvoorschrijven_MA_techstaken"/>
             </identifier>
             <intent value="order"/>
             <category>
@@ -247,19 +235,19 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
-               <display value="FUROSEMIDE 40MG TABLET"/>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.141631"/>
+               <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:084c5f25-abe3-11ea-1345-020000000000"/>
+               <reference value="urn:uuid:0850fa53-abe3-11ea-1448-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -2}T08:02:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -1}T08:10:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:084c6423-abe3-11ea-1345-020000000000"/>
+                        <reference value="urn:uuid:0850f2ee-abe3-11ea-1448-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -268,12 +256,12 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf &lt;T-21D{00:00:00}&gt; t/m &lt;T-3D{23:59:59}&gt;, 1 maal daags 1 stuk, oraal"/>
+               <text value="Vanaf &lt;T-13D{00:00:00}&gt; t/m &lt;T-2D{23:59:59}&gt;, 1 maal per week 5 stuks, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
-                     <periodUnit value="d"/>
+                     <periodUnit value="wk"/>
                   </repeat>
                </timing>
                <route>
@@ -284,7 +272,7 @@
                   </coding>
                </route>
                <doseQuantity>
-                  <value value="1"/>
+                  <value value="5"/>
                   <unit value="stuk"/>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                   <code value="245"/>
@@ -297,7 +285,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:084c5f25-abe3-11ea-1345-020000000000"/>
+      <fullUrl value="urn:uuid:0850fa53-abe3-11ea-1448-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -428,7 +416,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:084c6423-abe3-11ea-1345-020000000000"/>
+      <fullUrl value="urn:uuid:0850f2ee-abe3-11ea-1448-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -480,7 +468,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.141631"/>
       <resource>
          <Medication>
             <meta>
@@ -494,7 +482,7 @@
                         <tr>
                            <th>Code</th>
                            <td>
-                              <span title="FUROSEMIDE 40MG TABLET (5967 - G-Standaard PRK)">FUROSEMIDE 40MG TABLET</span>
+                              <span title="Methotrexaat tablet 2,5mg (141631 - G-Standaard PRK)">Methotrexaat tablet 2,5mg</span>
                            </td>
                         </tr>
                      </tbody>
@@ -504,16 +492,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="5967"/>
-                  <display value="FUROSEMIDE 40MG TABLET"/>
+                  <code value="141631"/>
+                  <display value="Methotrexaat tablet 2,5mg"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="16810"/>
-                  <display value="FUROSEMIDE 40MG TABLET"/>
+                  <code value="16918"/>
+                  <display value="Methotrexaat tablet 2,5mg"/>
                </coding>
-               <text value="FUROSEMIDE 40MG TABLET"/>
+               <text value="Methotrexaat tablet 2,5mg"/>
             </code>
          </Medication>
       </resource>
