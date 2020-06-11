@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg concepts to profiles.</xd:desc>
     </xd:doc>
-    <xsl:template name="bc-profile" mode="doProfileMapping" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">
+    <xsl:template name="bc-profile" mode="doProfileMapping" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">
         <xsl:variable name="elementName" select="name(.)"/>
 
         <xsl:for-each select=".">
@@ -57,6 +57,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$elementName = 'vaginale_kunstverlossing'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
                 </xsl:when>
+                <xsl:when test="$elementName = 'voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie' or $elementName = 'voorgenomen_voeding'">
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalPreference"/>
+                </xsl:when> 
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
@@ -64,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg terminology for Observations.</xd:desc>
     </xd:doc>
-    <xsl:template name="bc-observation-coding" mode="doObservationTerminologyMapping" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap" as="element()">
+    <xsl:template name="bc-observation-coding" mode="doObservationTerminologyMapping" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">      
         <xsl:variable name="elementName" select="name(.)"/>
         <xsl:for-each select=".">
             <coding>
@@ -133,6 +136,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <system value="http://loinc.org"/>
                         <code value="8339-4"/>
                         <display value="Birth weight Measured"/>
+                    </xsl:when>
+                    <xsl:when test="$elementName='voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie'">
+                        <system value="PerinatologyProcedurePRN" />
+                        <code value="PRN4209"/>
+                        <display value="Voorgenomen plaats baring tijdens zwangerschap"/>
+                    </xsl:when>
+                    <xsl:when test="$elementName='voorgenomen_voeding'">
+                        <system value="https://snomed.info/sct" />
+                        <code value="169740003"/>
+                        <display value="Infant feeding method (observable entity)"/>
                     </xsl:when>
                 </xsl:choose>
             </coding>

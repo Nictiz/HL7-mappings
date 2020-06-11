@@ -40,27 +40,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- ada instances -->
     <xsl:param name="patient-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
+        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw" mode="vrouw-ada"/>
     </xsl:param>
 
     <xsl:param name="partner-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/partner" mode="partner-ada"/>
+        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/partner" mode="partner-ada"/>
     </xsl:param>
 
     <xsl:variable name="kind-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/uitkomst_per_kind" mode="kind-ada"/>
+        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/uitkomst_per_kind" mode="kind-ada"/>
     </xsl:variable>
 
     <xsl:param name="zorginstelling-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorginstelling-ada"/>
+        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorginstelling-ada"/>
     </xsl:param>
     
     <xsl:param name="verwijzing-zorginstelling-ada" as="element()*">
-        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/zorgverlening/verwijsdetails/verwijzing_naar" mode="zorginstelling-ada"/>
+        <xsl:apply-templates select="(prio1_huidige_zwangerschap | bevallingsgegevens_23)/zorgverlening/verwijsdetails/verwijzing_naar" mode="zorginstelling-ada"/>
     </xsl:param>
 
     <xsl:param name="zorgverlener-ada" as="element()*">
-        <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorgverlener-ada"/>
+        <xsl:apply-templates select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorgverlener-ada"/>
     </xsl:param>
 
     <!-- unique patients -->
@@ -101,7 +101,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- pregnancyNo -->
     <xsl:variable name="pregnancyNo">
-        <xsl:for-each select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zwangerschap">
+        <xsl:for-each select="//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zwangerschap">
             <xsl:choose>
                 <xsl:when test="graviditeit">
                     <xsl:value-of select="graviditeit/@value"/>
@@ -280,6 +280,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
+    
+    <!-- List (maternal preferences) -->
+    <xsl:variable name="lists" as="element(f:List)*">
+        <xsl:for-each select="//voornemens">
+            <xsl:call-template name="bc-list">
+                <xsl:with-param name="in" select="."/>
+                <xsl:with-param name="logicalId" select="'test'"/>
+                <xsl:with-param name="adaPatient" select="$patient-ada"/>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:variable>
 
     <!-- Composition -->
     <xsl:variable name="composition" as="element(f:Composition)*">
@@ -290,7 +301,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:with-param>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="entries">
-                    <xsl:copy-of select="$patients/f:entry | $children | $organizations | $practitioners | $practitionerRoles | $episodesofcare | $conditions | $procedures | $observations"/>
+                    <xsl:copy-of select="$patients/f:entry | $children | $organizations | $organizations-referral | $practitioners | $practitionerRoles | $referralRequests | $episodesofcare | $conditions | $procedures | $observations"/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
