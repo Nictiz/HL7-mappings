@@ -43,10 +43,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy"/>
                 </meta>
-                <xsl:if test="$parentElemName='prio1_vorig'">
+                <xsl:if test="$parentElemName='prio1_vorige_zwangerschap'">
                     <clinicalStatus value="inactive"/>
                 </xsl:if>
-                <xsl:if test="$parentElemName='prio1_huidig'">
+                <xsl:if test="$parentElemName='prio1_huidige_zwangerschap'">
                     <clinicalStatus value="active"/>
                 </xsl:if>
                 <code>

@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vrouw to ada patient</xd:desc>
     </xd:doc>
 
-    <xsl:variable name="vrouwId" select="replace(lower-case(//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/naamgegevens/achternaam/achternaam/@value), ' ', '-')"/>
+    <xsl:variable name="vrouwId" select="replace(lower-case(//(prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23)/vrouw/naamgegevens/achternaam/achternaam/@value), ' ', '-')"/>
 
     <xsl:template name="convert-vrouw-ada" mode="vrouw-ada" match="vrouw" as="element()*">
         <xsl:variable name="theIdentifier" select="burgerservicenummer/@value"/>
