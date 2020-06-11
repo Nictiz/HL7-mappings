@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="geboortegewicht-zwangerschap-2-kind-1"/>
+   <id value="geboortegewicht-zwangerschap-1-kind-1"/>
    <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthWeight"/>
    </meta>
    <status value="final"/>
@@ -13,15 +14,14 @@
       </coding>
    </code>
    <subject>
-      <reference value="Patient/zwangerschap-2-kind-1"/>
+      <reference value="Patient/zwangerschap-1-kind-1"/>
    </subject>
    <context>
-      <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-2"/>
+      <reference value="EpisodeOfCare/dossier-jong-zwangerschap-1"/>
    </context>
    <valueQuantity>
-      <value value="2845"/>
-      <unit value="gram"/>
-      <system value="http://unitsofmeasure.org"/>
-      <code value="g"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="NI"/>
+      </extension>
    </valueQuantity>
 </Observation>

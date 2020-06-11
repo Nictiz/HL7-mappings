@@ -26,8 +26,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada organization</xd:desc>
     </xd:doc>
               
-    <xsl:template name="convert-zorginstelling-ada" mode="zorginstelling-ada" match="zorgverlenerzorginstelling" as="element()*">
-        <xsl:variable name="organizationId" select="zorginstelling/zorginstelling_lvrid/@value"/>
+    <xsl:template name="convert-zorginstelling-ada" mode="zorginstelling-ada" match="zorgverlenerzorginstelling | verwijzing_naar" as="element()*">
+        <xsl:variable name="organizationId" select="zorginstelling/(zorginstelling_lvrid/@value | zorgaanbieder_identificatie_nummer)"/>
         <xsl:variable name="organizationName" select="zorginstelling/naam_zorginstelling/@value"/>   
         <healthcare_provider>
             <xsl:if test="$organizationId!=''">

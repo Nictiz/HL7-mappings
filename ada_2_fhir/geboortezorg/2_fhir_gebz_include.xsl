@@ -20,11 +20,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-relatedperson.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-organization.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_nl-core-practitioner.xsl"/>
+    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-referralrequest.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_zib-pregnancy.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-maternalrecord.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-observation.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_zib-laboratory-testresult-observation.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-procedure.xsl"/>
+    <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-list.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_2_fhir_bc-composition.xsl"/>
     <xsl:import href="2.3/bouwstenen/gebz_mappings.xsl"/>
     <xsl:output method="xml" indent="yes"/>
@@ -51,6 +53,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:param name="zorginstelling-ada" as="element()*">
         <xsl:apply-templates select="//(prio1_huidig | prio1_vorig | prio1_vorige_zwangerschap | bevallingsgegevens_23)/zorgverlenerzorginstelling" mode="zorginstelling-ada"/>
+    </xsl:param>
+    
+    <xsl:param name="verwijzing-zorginstelling-ada" as="element()*">
+        <xsl:apply-templates select="(prio1_huidig | prio1_vorig | bevallingsgegevens_23)/zorgverlening/verwijsdetails/verwijzing_naar" mode="zorginstelling-ada"/>
     </xsl:param>
 
     <xsl:param name="zorgverlener-ada" as="element()*">
@@ -117,6 +123,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:variable>
 
+    <!-- verwijzing zorginstelling -->
+    <xsl:variable name="organizations-referral" as="element(f:Organization)*">
+        <xsl:for-each select="//verwijzing_naar">
+            <xsl:call-template name="nl-core-organization-2.0">
+                <xsl:with-param name="in" select="$verwijzing-zorginstelling-ada"/>
+                <xsl:with-param name="logicalId" select="replace(zorginstelling/zorgaanbieder_identificatie_nummer/@value, ' ', '-')"/>           
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:variable>
+
     <!-- zorgverlener -->
     <xsl:variable name="practitioners" as="element(f:Practitioner)*">
         <xsl:for-each select="//zorgverlenerzorginstelling">
@@ -142,6 +158,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
+    
+    <!-- verwijzingen -->
+    <xsl:variable name="referralRequests" as="element(f:ReferralRequest)*">
+        <xsl:for-each select="//verwijsdetails">
+            <xsl:call-template name="bc-referral-request">
+                <xsl:with-param name="in" select="."/>
+                <xsl:with-param name="logicalId" select="concat($vrouwId,'-verwijzing-',verwijzing_naar/zorginstelling/zorgaanbieder_identificatie_nummer/@value)"/>    <!-- todo: datum erbij? -->  
+                <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="organizationId" select="$organizations/f:id/@value"/>
+                <xsl:with-param name="refOrganizationId" select="$organizations-referral/f:id/@value"/>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:variable>    
 
     <!-- zwangerschapsdossier -->
     <xsl:variable name="episodesofcare" as="element(f:EpisodeOfCare)*">
@@ -191,6 +221,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
+            </xsl:call-template>
+        </xsl:for-each>
+        <!-- voornemens tijdens zwangerschap (apart aangeroepen, want hier geen zwangerschaps id meegegeven, omdat dit niet in de focus extensie moet komen -->
+        <xsl:for-each select="//(voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding)">
+            <xsl:call-template name="bc-observation">
+                <xsl:with-param name="logicalId" select="concat(replace(name(.),'_','-'), '-zwangerschap-', $pregnancyNo)"/>
+                <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
         <!-- kindspecifieke uitkomstgegevens -->
@@ -273,7 +311,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </request>
             </entry>
         </xsl:for-each>
-        <xsl:for-each select="$relatedPersons | $children | $organizations | $practitioners | $practitionerRoles | $episodesofcare | $conditions | $procedures | $observations">
+        <xsl:for-each select="$relatedPersons | $children | $organizations | $organizations-referral | $practitioners | $practitionerRoles | $referralRequests | $episodesofcare | $conditions | $procedures | $observations | $lists">
             <xsl:apply-templates select="." mode="doCreateTransactionBundleEntry"/>
         </xsl:for-each>
     </xsl:variable>
@@ -281,7 +319,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates transaction bundle entry for a FHIR resource</xd:desc>
     </xd:doc>
-    <xsl:template name="createTransactionBundleEntry" match="f:Resource/* | f:Patient | f:RelatedPerson | f:Organization | f:Practitioner | f:PractitionerRole | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Composition" mode="doCreateTransactionBundleEntry">
+    <xsl:template name="createTransactionBundleEntry" match="f:Resource/* | f:Patient | f:RelatedPerson | f:Organization | f:Practitioner | f:PractitionerRole | f:ReferralRequest | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:List | f:Composition" mode="doCreateTransactionBundleEntry">
         <entry xmlns="http://hl7.org/fhir">
             <fullUrl value="{nf:get-fhir-uuid(.)}"/>
             <resource>
