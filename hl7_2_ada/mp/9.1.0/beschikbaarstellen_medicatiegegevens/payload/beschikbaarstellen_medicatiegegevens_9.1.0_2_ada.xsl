@@ -19,6 +19,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Dit is een conversie van MP 9.1.0 naar ADA 9.1 beschikbaarstellen medicatiegegevens</xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
+    <xsl:param name="outputSchemaRef" as="xs:boolean" select="false()"/>
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:param name="schema" select="document('../ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
 
@@ -54,7 +56,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="$medicatiegegevens-lijst/ancestor::*[hl7:ControlActProcess]"/>
         </xsl:call-template>
-        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <xsl:if test="$outputSchemaRef">
+                <xsl:attribute name="xsi:noNamespaceSchemaLocation">../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd</xsl:attribute>
+            </xsl:if>
             <meta status="new" created-by="generated" last-update-by="generated">
                 <xsl:attribute name="creation-date" select="current-dateTime()"/>
                 <xsl:attribute name="last-update-date" select="current-dateTime()"/>

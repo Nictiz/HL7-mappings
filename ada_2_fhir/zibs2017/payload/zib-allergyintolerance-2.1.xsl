@@ -345,7 +345,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <onsetDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                     <xsl:with-param name="dateT" select="$dateT"/>
                                 </xsl:call-template>
                             </xsl:attribute>
@@ -358,7 +358,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <assertedDate>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                     <xsl:with-param name="dateT" select="$dateT"/>
                                 </xsl:call-template>
                             </xsl:attribute>
@@ -445,7 +445,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <lastOccurrence>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                 </xsl:call-template>
                             </xsl:attribute>
                         </lastOccurrence>
@@ -489,7 +489,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <onset>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="@value"/>
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                         </xsl:call-template>
                                     </xsl:attribute>
                                 </onset>

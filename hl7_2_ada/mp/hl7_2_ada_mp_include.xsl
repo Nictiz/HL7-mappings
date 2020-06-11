@@ -840,7 +840,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <toedieningsschema>
                                         <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-toedieningsschema)"/>
                                         <!-- eenvoudig doseerschema met alleen één frequentie -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][@isFlexible = 'true'][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
+                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][xs:string(@isFlexible) = 'true'][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
                                                 <xsl:with-param name="schema" select="$xsd-ada"/>
                                                 <xsl:with-param name="schemaFragment" select="$xsd-toedieningsschema"/>
@@ -882,7 +882,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </frequentie>
                                         </xsl:for-each>
                                         <!-- Eenvoudig doseerschema met alleen één interval.-->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][(@isFlexible = 'false' or not(@isFlexible))][not(@alignment)][hl7nl:frequency[hl7nl:numerator/@value]]">
+                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][(xs:string(@isFlexible) = 'false' or not(@isFlexible))][not(@alignment)][hl7nl:frequency[hl7nl:numerator/@value]]">
                                             <xsl:variable name="xsd-complexType" select="$xsd-toedieningsschema//xs:element[@name = 'interval']/@type"/>
                                             <xsl:variable name="interval-value" select="format-number(number(./hl7nl:frequency/hl7nl:denominator/@value) div number(./hl7nl:frequency/hl7nl:numerator/@value), '0.####')"/>
                                             <interval value="{$interval-value}" unit="{nf:convertTime_UCUM2ADA_unit(./hl7nl:frequency/hl7nl:denominator/@unit)}" conceptId="{$xsd-ada//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
@@ -4036,7 +4036,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="xsd-ma" select="$xsd-ada//xs:complexType[@name = $ma-complexType]"/>
         <xsl:for-each select="$ma_hl7_90">
             <medicatieafspraak conceptId="{$xsd-ma/xs:attribute[@name='conceptId']/@fixed}">
-                <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[@xsi:type = 'IVL_TS']"/>
+                <xsl:variable name="IVL_TS" select="./hl7:effectiveTime[local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'IVL_TS']"/>
                 <xsl:for-each select="$IVL_TS/hl7:low[@value]">
                     <xsl:call-template name="mp9-gebruiksperiode-start">
                         <xsl:with-param name="inputValue" select="./@value"/>
