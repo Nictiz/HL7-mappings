@@ -154,7 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <birthDate value="{./@value}">
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                     <xsl:with-param name="precision" select="'DAY'"/>
                                 </xsl:call-template>
                             </xsl:attribute>

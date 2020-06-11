@@ -13,15 +13,16 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xd:doc>
         <xd:desc>Dit is een conversie van MP 9.0.6 naar ADA 9.0 beschikbaarstellen medicatiegegevens
   		vooralsnog alleen ondersteuning voor MA's, gemaakt voor POC MP voor 13 november 2018
   	</xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
-    <xsl:include href="../../../hl7_2_ada_mp_include.xsl"/>
-    <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
-
+    <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
+    <xsl:param name="outputSchemaRef" as="xs:boolean" select="false()"/>
+    <!-- de xsd-ada parameter wordt gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:param name="xsd-ada" select="document('../ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
     <xsl:variable name="mbh-complexType" select="$xsd-ada//xs:schema/xs:complexType[@name = 'beschikbaarstellen_medicatiegegevens_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
     <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
@@ -33,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <!-- todo, add CDA-variant to xpath -->
-        <xsl:variable name="medicatiegegevens-lijst-90" select="//hl7:organizer[hl7:code[@code='102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
+        <xsl:variable name="medicatiegegevens-lijst-90" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
         <xsl:call-template name="Medicatiegegevens-90-ADA">
             <xsl:with-param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-90"/>
             <xsl:with-param name="xsd-mbh" select="$xsd-mbh"/>
@@ -46,12 +47,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="xsd-mbh"/>
     </xd:doc>
     <xsl:template name="Medicatiegegevens-90-ADA">
-        <xsl:param name="medicatiegegevens-lijst" select="//hl7:organizer[hl7:code[@code='102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
+        <xsl:param name="medicatiegegevens-lijst" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]"/>
         <xsl:param name="xsd-mbh" select="$xsd-mbh"/>
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="$medicatiegegevens-lijst/ancestor::*[hl7:ControlActProcess]"/>
         </xsl:call-template>
-        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <xsl:if test="$outputSchemaRef">
+                <xsl:attribute name="xsi:noNamespaceSchemaLocation">../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd</xsl:attribute>
+            </xsl:if>
             <meta status="new" created-by="generated" last-update-by="generated">
                 <xsl:attribute name="creation-date" select="current-dateTime()"/>
                 <xsl:attribute name="last-update-date" select="current-dateTime()"/>
@@ -88,9 +92,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </data>
         </adaxml>
-        <!--<xsl:comment>Input HL7 xml below</xsl:comment>
-		<xsl:call-template name="copyElementInComment">
-			<xsl:with-param name="in" select="./*"/>
-		</xsl:call-template>-->
-    </xsl:template>
+        </xsl:template>
 </xsl:stylesheet>
