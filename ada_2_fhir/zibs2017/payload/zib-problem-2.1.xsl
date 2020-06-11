@@ -232,7 +232,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <start>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="(problem_start_date | probleem_begin_datum)/@value"/>
+                                            <xsl:with-param name="dateTime" select="xs:string((problem_start_date | probleem_begin_datum)/@value)"/>
                                         </xsl:call-template>
                                     </xsl:attribute>
                                 </start>
@@ -243,7 +243,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <end>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="(problem_end_date | probleem_eind_datum)/@value"/>
+                                            <xsl:with-param name="dateTime" select="xs:string((problem_end_date | probleem_eind_datum)/@value)"/>
                                         </xsl:call-template>
                                     </xsl:attribute>
                                 </end>
@@ -258,7 +258,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
                                     <xsl:with-param name="dateTime"
-                                        select="(problem_start_date | probleem_start_datum)/@value"/>
+                                        select="xs:string((problem_start_date | probleem_start_datum)/@value)"/>
                                 </xsl:call-template>
                             </xsl:attribute>
                         </onsetDateTime>
@@ -270,7 +270,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
                                     <xsl:with-param name="dateTime"
-                                        select="(problem_end_date | probleem_eind_datum)/@value"/>
+                                        select="xs:string((problem_end_date | probleem_eind_datum)/@value)"/>
                                 </xsl:call-template>
                             </xsl:attribute>
                         </abatementDateTime>
@@ -282,7 +282,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <assertedDate>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="@value"/>
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                     <xsl:with-param name="dateT" select="$dateT"/>
                                 </xsl:call-template>
                             </xsl:attribute>

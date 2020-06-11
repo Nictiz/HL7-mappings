@@ -13,9 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="_zib2017.xsl"/>
+    <!--    <xsl:import href="_zib2017.xsl"/>
     <xsl:import href="nl-core-patient-2.1.xsl"/>-->
-    
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -112,7 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </entry>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc>Mapping of HCIM Body weight concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight">zib-BodyWeight</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
         <xd:param name="in">Node to consider in the creation of the Observation resource for Body weight</xd:param>
@@ -162,20 +162,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </subject>
                     <!-- effectiveDateTime is required in the FHIR profile, so always output effectiveDateTime, data-absent-reason if no actual value -->
                     <effectiveDateTime>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test="gewicht_datum_tijd[@value]">
+                        <xsl:choose>
+                            <xsl:when test="gewicht_datum_tijd[@value]">
+                                <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="gewicht_datum_tijd/@value"/>
+                                        <xsl:with-param name="dateTime" select="xs:string((gewicht_datum_tijd | weight_date_time)/@value)"/>
                                     </xsl:call-template>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <extension url="{$urlExtHL7DataAbsentReason}">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
+                                </xsl:attribute>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </effectiveDateTime>
                     <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
                     <!-- https://bits.nictiz.nl/browse/MM-434 -->
@@ -194,10 +194,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                 </Observation>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
-          </xsl:for-each>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>

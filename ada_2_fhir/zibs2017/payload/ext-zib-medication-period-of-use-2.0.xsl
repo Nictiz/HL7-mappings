@@ -14,7 +14,7 @@
                     <start>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="@value"/>
+                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                             </xsl:call-template>
                         </xsl:attribute>
                     </start>
@@ -23,7 +23,7 @@
                      <end>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="@value"/>
+                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                             </xsl:call-template>
                         </xsl:attribute>
                     </end>

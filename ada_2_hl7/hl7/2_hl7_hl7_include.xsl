@@ -777,6 +777,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Generates an element with a real value. Also handles nullFlavors. Expected context is ada element.</xd:desc>
+        <xd:param name="xsiType">The xsi type to be included. Defaults to REAL.</xd:param>
+        <xd:param name="elemName">The hl7 element name to be outputted. Defaults to value.</xd:param>
+    <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
+    </xd:doc>
+    <xsl:template name="makeREALValue">
+        <xsl:param name="xsiType">REAL</xsl:param>
+        <xsl:param name="elemName">value</xsl:param>
+        <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
+
+        <xsl:variable name="inputValue" select="@value" as="xs:string?"/>
+        <xsl:variable name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
+
+        <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
+            <xsl:if test="string-length($xsiType) gt 0">
+                <xsl:attribute name="xsi:type" select="$xsiType"/>
+            </xsl:if>
+            <xsl:if test="string-length($inputNullFlavor) gt 0">
+                <xsl:attribute name="nullFlavor" select="$inputNullFlavor"/>
+            </xsl:if>
+            <xsl:if test="string-length($inputValue) gt 0">
+                <xsl:attribute name="value" select="$inputValue"/>
+            </xsl:if>
+        </xsl:element>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc/>
         <xd:param name="xsiType"/>
         <xd:param name="elemName"/>
@@ -849,11 +876,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Makes HL7 text type element</xd:desc>
+    <xd:param name="elemName">Optional. The element name to be created, defaults to text.</xd:param>
     </xd:doc>
     <xsl:template name="makeText">
-        <text>
-            <xsl:value-of select="@value"/>
-        </text>
+        <xsl:param name="elemName" as="xs:string?">text</xsl:param>
+        <xsl:element name="{$elemName}">
+            <xsl:choose>
+                <xsl:when test="string-length(@value) gt 0">
+                    <xsl:value-of select="@value"/>
+                </xsl:when>
+                <xsl:when test="@nullFlavor">
+                    <xsl:copy-of select="@nullFlavor"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:element>
     </xsl:template>
 
     <xd:doc>
@@ -898,13 +934,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValue" match="element()" mode="MakeBLValue">
-        <xsl:param name="inputValue" as="xs:string?" select="./@value"/>
+        <xsl:param name="inputValue" as="xs:string?" select="@value"/>
         <!-- Do not supply default for xsiType. Due to the datatypes.xsd schema, you cannot always use xsi:type TS, 
             unless the base type is TS, QTY or ANY -->
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
         <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
-        <xsl:variable name="inputValue" select="@value" as="xs:string?"/>
         <xsl:variable name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
         <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">
