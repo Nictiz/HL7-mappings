@@ -63,6 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="adaElementName" as="xs:string"/>
         <xsl:param name="inElementName" as="xs:string?">coding</xsl:param>
+        <xsl:param name="originalText" as="xs:string?"/>
         
         <xsl:choose>
             <xsl:when test="$in/f:extension/@url=$urlExtHL7NullFlavor">
@@ -78,6 +79,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </f:coding>
                         </xsl:with-param>
                     </xsl:call-template>
+                    <xsl:if test="string-length($originalText) gt 0">
+                        <xsl:attribute name="originalText" select="$originalText"/>
+                    </xsl:if>
                 </xsl:element>
             </xsl:when>
             <xsl:when test="$in/f:*[local-name()=$inElementName]">

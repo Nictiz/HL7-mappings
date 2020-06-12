@@ -58,20 +58,35 @@
                         displayName="IBUPROFEN TABLET 600MG"/>
                 </x:expect>
             </x:scenario>
-            <x:scenario label="CodeableConcept with nullFlavor Coding and text">
+            <x:scenario label="CodeableConcept with nullFlavor Coding">
                 <x:call template="CodeableConcept-to-code">
                     <x:param name="in">
                         <code xmlns="http://hl7.org/fhir">
                             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
                                 <valueCode value="OTH"/>
                             </extension>
-                            <text value="Ureum 10% in eucerine cum aqua 100gr"/>
                         </code>
                     </x:param>
                     <x:param name="adaElementName" select="'product_code'"/>
                 </x:call>
                 <x:expect label="Return product_code @code='OTH'">
                     <product_code code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="CodeableConcept with nullFlavor Coding and originalText">
+                <x:call template="CodeableConcept-to-code">
+                    <x:param name="in">
+                        <code xmlns="http://hl7.org/fhir">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <valueCode value="OTH"/>
+                            </extension>
+                        </code>
+                    </x:param>
+                    <x:param name="adaElementName" select="'product_code'"/>
+                    <x:param name="originalText" select="'Ureum 10% in eucerine cum aqua 100gr'"/>
+                </x:call>
+                <x:expect label="Return product_code @code='OTH'">
+                    <product_code code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig" originalText="Ureum 10% in eucerine cum aqua 100gr"/>
                 </x:expect>
             </x:scenario>
         </x:scenario>

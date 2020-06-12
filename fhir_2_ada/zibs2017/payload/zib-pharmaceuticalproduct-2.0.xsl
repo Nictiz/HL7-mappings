@@ -2,14 +2,16 @@
     
     <!--Uncomment imports for standalone use and testing.-->
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
+    
+    <xsl:variable name="zib-Product-Description" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description'"/>
  
     <xsl:template match="f:Medication" mode="zib-PharmaceuticalProduct-2.0">  
         <product>
             <xsl:apply-templates select="f:code" mode="#current"/>
-            <xsl:if test="f:extension|f:form|f:ingredient or not(f:code/f:coding)"><!-- What about nullFlavor? -->
+            <xsl:if test="f:extension|f:form|f:ingredient or (f:code/f:extension/@url=$urlExtHL7NullFlavor and (f:extension|f:form|f:ingredient))">
                 <product_specificatie>
                     <xsl:apply-templates select="f:code/f:text" mode="#current"/>
-                    <xsl:apply-templates select="f:extension" mode="#current"/>
+                    <xsl:apply-templates select="f:extension[@url =$zib-Product-Description]" mode="#current"/>
                     <xsl:apply-templates select="f:form" mode="#current"/>
                     <xsl:apply-templates select="f:ingredient" mode="#current"/>
                 </product_specificatie>
@@ -17,10 +19,13 @@
         </product>
     </xsl:template>
         
-    <xsl:template match="f:code" mode="zib-PharmaceuticalProduct-2.0">           
+    <xsl:template match="f:code" mode="zib-PharmaceuticalProduct-2.0">
+        <xsl:variable name="addOriginalText" select="f:extension/@url=$urlExtHL7NullFlavor and not(preceding-sibling::f:extension[@url=$zib-Product-Description]) and not(following-sibling::f:form|following-sibling::f:ingredient)"/>   
+        <xsl:variable name="addOriginalTextValue" select="if ($addOriginalText) then f:text/@value else ''"/>
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
             <xsl:with-param name="adaElementName" select="'product_code'"/>
+            <xsl:with-param name="originalText" select="$addOriginalTextValue"/>
         </xsl:call-template>
     </xsl:template>
     
@@ -33,7 +38,7 @@
         </product_naam>
     </xsl:template>
     
-    <xsl:template match="f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description']" mode="zib-PharmaceuticalProduct-2.0">
+    <xsl:template match="f:extension[@url=$zib-Product-Description]" mode="zib-PharmaceuticalProduct-2.0">
         <omschrijving>
             <xsl:attribute name="value" select="f:valueString/@value"/>
         </omschrijving>
