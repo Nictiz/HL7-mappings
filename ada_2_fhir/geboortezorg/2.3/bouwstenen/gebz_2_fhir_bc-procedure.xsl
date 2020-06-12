@@ -95,11 +95,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <start value ="{$startDelivery}"/>
                     </performedPeriod>
                 </xsl:if>
-                <xsl:if test="$pregnancyId!=''">
+                <xsl:for-each select="../zwangerschap | ../../zwangerschap">
                     <reasonReference>
-                        <reference value = "Condition/{$pregnancyId}"/>
+                        <xsl:call-template name="pregnancyReference"/>
                     </reasonReference>
-                </xsl:if>
+                </xsl:for-each>
             </Procedure>
         </xsl:for-each>
     </xsl:template>

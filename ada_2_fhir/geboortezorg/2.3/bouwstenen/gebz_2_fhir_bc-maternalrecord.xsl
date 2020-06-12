@@ -31,8 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="pregnancyId"/>
-        <xsl:param name="organizationId"/>
-        <xsl:param name="practitionerId"/>
+        <xsl:param name="adaZorginstelling"/>
+        <xsl:param name="adaZorgverlener"/>
         
         <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
         
@@ -72,17 +72,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                     </xsl:for-each>
                 </patient>             
-                <!-- todo: toevoegen display (hergebruik nl-core-reference code?)-->
-                <xsl:if test="$organizationId!=''">
+                <xsl:for-each select="$adaZorginstelling">
                     <managingOrganization>
-                        <reference value="Organization/{$organizationId}"/>
+                        <xsl:call-template name="organizationReference"/>
                     </managingOrganization>
-                </xsl:if>   
-                <xsl:if test="$practitionerId!=''">
+                </xsl:for-each>   
+                <!-- TODO: deze blijft nog leeg -->
+                <xsl:for-each select="$adaZorgverlener">
                     <careManager>
-                        <reference value="Practitioner/{$practitionerId}"/>
+                        <xsl:call-template name="practitionerReference"/>
                     </careManager>
-                </xsl:if>                
+                </xsl:for-each>                
             </EpisodeOfCare>
         </xsl:for-each>
     </xsl:template>

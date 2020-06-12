@@ -211,7 +211,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="organizationRef" as="element(f:reference)">
 <!--                <xsl:for-each select="$zorgverlener-ada/healthcare_provider">
                         <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>    
-                    </xsl:for-each>-->
+                </xsl:for-each>-->
                     <reference xmlns="http://hl7.org/fhir" value="Organization/{nf:removeSpecialCharacters(replace(zorginstelling/naam_zorginstelling/@value, ' ', '-'))}"/>
                 </xsl:with-param>
                 <xsl:with-param name="practitionerRef" as="element(f:reference)*">
@@ -275,8 +275,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="logicalId" select="concat($vrouwId,'-verwijzing-',verwijzing_naar/zorginstelling/zorgaanbieder_identificatie_nummer/@value)"/>    <!-- todo: datum erbij? -->  
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="organizationId" select="$organizations/f:id/@value"/>
-                <xsl:with-param name="refOrganizationId" select="$organizations-referral/f:id/@value"/>
+                <xsl:with-param name="adaZorginstelling" select="$zorginstelling-ada"/>
+                <xsl:with-param name="adaVerwijzingZorginstelling" select="$verwijzing-zorginstelling-ada"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>    
@@ -288,14 +288,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="logicalId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="organizationId" select="$organizations/f:id/@value"/>
-                <xsl:with-param name="practitionerId" select="$practitioners/f:id/@value"/>
+                <xsl:with-param name="adaZorginstelling" select="$zorginstelling-ada"/>
+                <xsl:with-param name="adaZorgverlener" select="$zorgverlener-ada"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:variable>
 
     <!-- zwangerschap -->
-    <xsl:variable name="conditions" as="element(f:Condition)*">
+<!--    <xsl:variable name="conditions" as="element(f:Condition)*">
         <xsl:for-each select="//zwangerschap">
             <xsl:call-template name="zib-pregnancy">
                 <xsl:with-param name="logicalId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
@@ -304,7 +304,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
-    </xsl:variable>
+    </xsl:variable>-->
+    
+    <!-- unieke zwangerschappen -->
+    <xsl:variable name="conditions" as="element()*">
+        <xsl:for-each-group select="//zwangerschap" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <unieke-problem xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display xmlns="">
+                    <xsl:value-of select="concat('Zwangerschap ',$pregnancyNo,' ',$vrouwId)"/>
+                </reference-display>
+                <xsl:call-template name="pregnancyEntry">
+                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                    <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
+                </xsl:call-template>
+            </unieke-problem>
+        </xsl:for-each-group>
+    </xsl:variable>    
 
     <!-- observations -->
     <xsl:variable name="observations" as="element(f:Observation)*">
@@ -328,7 +349,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="logicalId" select="concat(nf:removeSpecialCharacters(replace(name(.), '_', '-')), '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
             </xsl:call-template>
         </xsl:for-each>
         <!-- voornemens tijdens zwangerschap (apart aangeroepen, want hier geen zwangerschaps id meegegeven, omdat dit niet in de focus extensie moet komen -->
@@ -347,7 +367,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="logicalId" select="concat(nf:removeSpecialCharacters(replace(name(.), '_', '-')), '-zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="dossierId" select="concat('dossier-', $vrouwId, '-zwangerschap-', $pregnancyNo)"/>
-                <xsl:with-param name="pregnancyId" select="concat($vrouwId, '-zwangerschap-', $pregnancyNo)"/>
                 <xsl:with-param name="childId" select="concat('zwangerschap-', $pregnancyNo, '-kind-', $childNo)"/>
             </xsl:call-template>
         </xsl:for-each>
@@ -410,7 +429,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$composition">
             <xsl:apply-templates select="." mode="doCreateTransactionBundleEntry"/>
         </xsl:for-each>
-        <xsl:for-each select="$patients | $relatedPersons | $organizations | $organizations-referral | $practitioners">
+        <xsl:for-each select="$patients | $relatedPersons | $organizations | $organizations-referral | $practitioners | $conditions">
             <entry xmlns="http://hl7.org/fhir">
                 <xsl:copy-of select="f:entry/f:fullUrl"/>
                 <xsl:copy-of select="f:entry/f:resource"/>
@@ -420,7 +439,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </request>
             </entry>
         </xsl:for-each>
-        <xsl:for-each select="$children | $practitionerRoles | $referralRequests | $episodesofcare | $conditions | $procedures | $observations">
+        <xsl:for-each select="$children | $practitionerRoles | $referralRequests | $episodesofcare | $procedures | $observations">
             <xsl:apply-templates select="." mode="doCreateTransactionBundleEntry"/>
         </xsl:for-each>
     </xsl:variable>

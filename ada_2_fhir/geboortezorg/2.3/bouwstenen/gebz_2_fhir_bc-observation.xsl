@@ -14,12 +14,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="gebz_mappings.xsl"/>
+    <xsl:import href="gebz_2_fhir_zib-pregnancy.xsl"/>
 <!--    <xsl:import href="../../../../zibs2017/payload/nl-core-patient-2.1.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>  
    
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-   
+    
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg concept to FHIR Observation <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation">zib-LaboratoryTestResult-Observation</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
@@ -31,7 +32,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="dossierId"/>
-        <xsl:param name="pregnancyId"/>
         <xsl:param name="childId"/>
         
         <xsl:variable name="elementName" select="name(.)"/>
@@ -46,15 +46,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
                     <xsl:call-template name="bc-profile"/>
                 </meta>
-                <xsl:if test="$pregnancyId!='' and $parentElemName!='lichamelijk_onderzoek_kind'">
+                <xsl:if test="$parentElemName!='lichamelijk_onderzoek_kind'">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
                         <valueReference>
+                            <xsl:for-each select="ancestor::zwangerschap">
+                                <xsl:call-template name="pregnancyReference"/>
+                            </xsl:for-each>
                             <xsl:choose>
-                                <xsl:when test="ancestor::zwangerschap">
-                                    <reference value="Condition/{$pregnancyId}"/>
-                                </xsl:when>
                                 <xsl:when test="ancestor::bevalling">
-                                    <reference value="Procedure/{concat('bevalling-',$pregnancyId)}"/>
+                                    <reference value="Procedure/{concat('bevalling-','TODO')}"/>
                                 </xsl:when>   
                                 <xsl:when test="(ancestor::kindspecifieke_maternale_gegevens or ancestor::kindspecifieke_uitkomstgegevens) and $childId!=''">
                                     <reference value="Procedure/{concat('baring-',$childId)}"/>
@@ -76,6 +76,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>
                         <xsl:for-each select="$adaPatient">
                             <subject>
+                                <xsl:variable name="test">
+                                    <xsl:apply-templates select="." mode="doPatientReference-2.1"/>    
+                                </xsl:variable>
                                 <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
                             </subject>
                         </xsl:for-each>                 

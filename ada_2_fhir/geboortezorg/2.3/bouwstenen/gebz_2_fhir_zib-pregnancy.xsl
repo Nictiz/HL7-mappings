@@ -14,11 +14,79 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="../../../zibs2017/payload/all-zibs.xsl"/>
-    <xsl:import href="gebz_mappings.xsl"/>-->
+    <xsl:import href="../../../zibs2017/payload/all-zibs.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xd:doc>
+        <xd:desc>Returns contents of Reference datatype element</xd:desc>
+    </xd:doc>
+    <xsl:template name="pregnancyReference" match="zwangerschap" mode="doPregnancyReference" as="element()*">
+        <xsl:variable name="theIdentifier" select="graviditeit"/> <!-- TODO zwangerschapsidentifier toevoegen -->
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:variable name="theGroupElement" select="$conditions[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$theGroupElement">
+                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+            </xsl:when>
+            <xsl:when test="$theIdentifier">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+            <display value="{$theGroupElement/reference-display}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Produces a FHIR entry element with a Condition resource</xd:desc>
+        <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
+        <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Patient.id</xd:param>
+        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
+    </xd:doc>
+    <xsl:template name="pregnancyEntry" match="patient" mode="doPregnancyEntry" as="element(f:entry)">
+        <xsl:param name="adaPatient"/>
+        <xsl:param name="dossierId"/>
+          <xsl:param name="uuid" select="true()" as="xs:boolean"/>
+        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="fhirResourceId">
+            <xsl:if test="$referById">
+                <xsl:choose>
+                    <xsl:when test="not($uuid) and false">
+                        <!-- TODO: vullen met zinnige checks/data -->
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:param>
+        <xsl:param name="searchMode">include</xsl:param>
+        <entry>
+            <fullUrl value="{$entryFullUrl}"/>
+            <resource>
+                <xsl:call-template name="zib-pregnancy">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
+                    <xsl:with-param name="adaPatient" select="$adaPatient"/>
+                    <xsl:with-param name="dossierId" select="$dossierId"/>
+                </xsl:call-template>
+            </resource>
+            <xsl:if test="string-length($searchMode) gt 0">
+                <search>
+                    <mode value="{$searchMode}"/>
+                </search>
+            </xsl:if>
+        </entry>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg zwangerschap to FHIR Condition <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation">zib-LaboratoryTestResult-Observation</xd:a>.</xd:desc>
@@ -31,7 +99,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="dossierId"/>
-        <xsl:param name="pregnancyId"/>
         
         <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
         

@@ -13,6 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../../zibs2017/payload/all-zibs.xsl"/>
     <xsl:import href="gebz_mappings.xsl"/>
     <!--<xsl:import href="../../../../zibs2017/payload/nl-core-patient-2.1.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
@@ -31,8 +32,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
         <xsl:param name="dossierId"/>
-        <xsl:param name="organizationId"/>
-        <xsl:param name="refOrganizationId"/>
+        <xsl:param name="adaZorginstelling"/>
+        <xsl:param name="adaVerwijzingZorginstelling"/>
         
         <xsl:for-each select="$in">     
             <xsl:variable name="referralDate">
@@ -69,11 +70,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </context> 
                 </xsl:if>
                 <authoredOn value="{$referralDate}"/>
-                <requester>
-                    <agent>
-                        <reference value="Organization/{$organizationId}"/>
-                    </agent>
-                </requester>
+                <xsl:for-each select="$adaZorginstelling">
+                    <requester>
+                        <agent>
+                            <xsl:call-template name="organizationReference"/>
+                        </agent>
+                    </requester>                    
+                </xsl:for-each>
                 <xsl:for-each select="verwijzing_naar">
                     <xsl:if test="zorginstelling/specialisme">
                         <specialty>
@@ -84,9 +87,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </coding>
                         </specialty>                        
                     </xsl:if>
-                    <recipient>
-                        <reference value="Organization/{$refOrganizationId}"/>
-                    </recipient>
+                    <xsl:for-each select="$adaVerwijzingZorginstelling">
+                        <recipient>
+                            <xsl:call-template name="organizationReference"/>
+                        </recipient>                        
+                    </xsl:for-each>
                 </xsl:for-each>
 <!--                <reasonCode>
                     <system value=""/>

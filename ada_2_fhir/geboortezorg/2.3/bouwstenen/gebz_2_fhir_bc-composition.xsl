@@ -67,6 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:Resource/* | f:Patient | f:Organization | f:Practitioner | f:PractitionerRole | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure" mode="doCreateCompositionEntry">
         <entry> 
             <reference value="{concat(name(.),'/',f:id/@value)}"/>
+            <!-- TODO: hier doReferenceX aanroepen per type evt aparte templates per type maken -->
         </entry>   
     </xsl:template>   
          
