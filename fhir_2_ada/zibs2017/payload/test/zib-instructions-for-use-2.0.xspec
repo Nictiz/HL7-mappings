@@ -6,13 +6,15 @@
             <x:context mode="zib-instructions-for-use-2.0">
                 <dosageInstruction xmlns="http://hl7.org/fhir">
                     <text value="Vanaf &lt;T-20D{{00:00:00}}&gt;t/m &lt;T+9D{{23:59:59}}&gt;, 1 maal per dag 2 stuks, oraal"/>
-                    <timing>
-                        <repeat>
-                            <frequency value="1"/>
-                            <period value="1"/>
-                            <periodUnit value="d"/>
-                        </repeat>
-                    </timing>
+                    <additionalInstruction>
+                        <coding>
+                            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+                            <code value="OTH"/>
+                            <display value="overig"/>
+                        </coding>
+                        <text value="Bij het eten innemen"/>
+                    </additionalInstruction>
+                    <timing/>
                     <route>
                         <coding>
                             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -36,6 +38,12 @@
                         codeSystem="2.16.840.1.113883.2.4.4.9"
                         codeSystemName="G-Standaard TH007 Toedieningswegen"
                         displayName="Oraal"/>
+                    <aanvullende_instructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23243"
+                        originalText="Bij het eten innemen"
+                        value="1"
+                        code="OTH"
+                        codeSystem="2.16.840.1.113883.5.1008"
+                        displayName="overig"/>
                     <doseerinstructie>
                         <dosering>
                             <keerdosis>
@@ -48,15 +56,7 @@
                                     codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
                                     displayName="stuk"/>
                             </keerdosis>
-                            <toedieningsschema>
-                                <frequentie>
-                                    <aantal>
-                                        <vaste_waarde value="1"/>
-                                    </aantal>
-                                    <tijdseenheid unit="dag"
-                                        value="1"/>
-                                </frequentie>
-                            </toedieningsschema>
+                            <toedieningsschema/>
                         </dosering>
                     </doseerinstructie>
                 </gebruiksinstructie>

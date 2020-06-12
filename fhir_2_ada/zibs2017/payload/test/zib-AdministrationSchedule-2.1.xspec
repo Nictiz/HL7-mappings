@@ -3,4 +3,40 @@
     
     <x:scenario label="zib-AdministrationSchedule-2.1"/>
     
+    <timing>
+        <repeat>
+            <timeOfDay value="08:00:00"/>
+            <timeOfDay value="14:00:00"/>
+            <timeOfDay value="20:00:00"/>
+        </repeat>
+    </timing>
+    <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23256">
+        <toedientijd value="T+0D{08:00:00}"
+            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23264"
+            datatype="datetime"/>
+        <toedientijd value="T+0D{14:00:00}"
+            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23264"
+            datatype="datetime"/>
+        <toedientijd value="T+0D{20:00:00}"
+            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23264"
+            datatype="datetime"/>
+    </toedieningsschema>
+    
+    <timing>
+        <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+        </repeat>
+    </timing>
+    <toedieningsschema>
+        <frequentie>
+            <aantal>
+                <vaste_waarde value="1"/>
+            </aantal>
+            <tijdseenheid unit="dag"
+                value="1"/>
+        </frequentie>
+    </toedieningsschema>
+    
 </x:description>
