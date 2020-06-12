@@ -515,7 +515,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="patient-payload">
         <!-- patient_identificatienummer  -->
-        <xsl:for-each select="(patient_identificatienummer | identificatienummer)[.//(@value)]">
+        <xsl:for-each select="(patient_identificatienummer | identificatienummer)[.//(@value|@nullFlavor)]">
             <identifier>
                 <xsl:call-template name="id-to-Identifier">
                     <xsl:with-param name="in" select="."/>

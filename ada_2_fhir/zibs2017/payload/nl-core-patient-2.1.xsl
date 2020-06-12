@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
     <xsl:template name="patientReference" match="patient" mode="doPatientReference-2.1" as="element()*">
-        <xsl:variable name="theIdentifier" select="identificatienummer[@value] | patient_identificatie_nummer[@value] | patient_identification_number[@value]"/>
+        <xsl:variable name="theIdentifier" select="(identificatienummer|patient_identificatie_nummer|patient_identification_number)[@value|@nullFlavor]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPatient(.)"/>
         <xsl:variable name="theGroupElement" select="$patients[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
@@ -120,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
                     </meta>
                     <!-- patient_identificatienummer  -->
-                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number)[@value]">
+                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number)[@value|@nullFlavor]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>

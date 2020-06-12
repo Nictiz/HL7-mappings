@@ -130,11 +130,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms ada string element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#string">@value</xd:a></xd:desc>
         <xd:param name="in">the ada string element, may have any name but should have ada datatype string</xd:param>
+        <xd:param name="inAttributeName">name of the attribute to use as input (as string), optional, defaults to 'value'</xd:param>
     </xd:doc>
     <xsl:template name="string-to-string" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="inAttributeName" as="xs:string">value</xsl:param>
         
-        <xsl:variable name="inNoLeadTrailSpace" select="replace($in/@value, '(^\s+)|(\s+$)', '')"/>
+        <xsl:variable name="inNoLeadTrailSpace" select="replace($in/@*[local-name()=$inAttributeName], '(^\s+)|(\s+$)', '')"/>
 
         <xsl:choose>
             <xsl:when test="string-length($inNoLeadTrailSpace) gt 0">
@@ -310,9 +312,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$in/@codeSystem">
                     <system value="{local:getUri(.)}"/>
                 </xsl:for-each>
+                <xsl:if test="$in/@codeSystemVersion">
+                    <version>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="$in"/>
+                            <xsl:with-param name="inAttributeName" select="'codeSystemVersion'"/>
+                        </xsl:call-template>
+                    </version>
+                </xsl:if>
                 <code value="{$in/@code}"/>
                 <xsl:if test="$in/@displayName">
-                    <display value="{replace($in/@displayName, '(^\s+)|(\s+$)', '')}"/>
+                    <display>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="$in"/>
+                            <xsl:with-param name="inAttributeName" select="'displayName'"/>
+                        </xsl:call-template>
+                    </display>
                 </xsl:if>
                 <xsl:if test="exists($userSelected)">
                     <userSelected value="{$userSelected}"/>
@@ -436,12 +451,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="id-to-Identifier" as="element()*">
         <xsl:param name="in" as="element()?"/>
         <xsl:choose>
-            <xsl:when test="$in[@nullFlavor]">
+            <xsl:when test="$in[@nullFlavor and not(string-length(@root) gt 0 and @nullFlavor='MSK')]">
                 <extension url="{$urlExtHL7NullFlavor}">
                     <valueCode value="{$in/@nullFlavor}"/>
                 </extension>
             </xsl:when>
-            <xsl:when test="$in[string-length(@root) gt 0][@root = $mask-ids-var]">
+            <xsl:when test="$in[string-length(@root) gt 0][@root = $mask-ids-var] or $in[@nullFlavor='MSK' and string-length(@root) gt 0]">
                 <system value="{local:getUri($in/@root)}"/>
                 <value>
                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
