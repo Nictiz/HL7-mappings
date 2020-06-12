@@ -20,13 +20,31 @@
     </xsl:template>
         
     <xsl:template match="f:code" mode="zib-PharmaceuticalProduct-2.0">
-        <xsl:variable name="addOriginalText" select="f:extension/@url=$urlExtHL7NullFlavor and not(preceding-sibling::f:extension[@url=$zib-Product-Description]) and not(following-sibling::f:form|following-sibling::f:ingredient)"/>   
+        <xsl:variable name="addOriginalText" select="(:f:extension/@url=$urlExtHL7NullFlavor and:) not(preceding-sibling::f:extension[@url=$zib-Product-Description]) and not(following-sibling::f:form|following-sibling::f:ingredient)"/>   
         <xsl:variable name="addOriginalTextValue" select="if ($addOriginalText) then f:text/@value else ''"/>
-        <xsl:call-template name="CodeableConcept-to-code">
-            <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="adaElementName" select="'product_code'"/>
-            <xsl:with-param name="originalText" select="$addOriginalTextValue"/>
-        </xsl:call-template>
+        <xsl:choose>
+            <xsl:when test="$addOriginalText and not(f:coding/f:display) and not(f:extension/@url=$urlExtHL7NullFlavor)">
+                <xsl:call-template name="CodeableConcept-to-code">
+                    <xsl:with-param name="in" as="element()">
+                        <f:code>
+                            <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <f:valueCode value="OTH"/>
+                            </f:extension>
+                            <xsl:copy-of select="*"/>
+                        </f:code>
+                    </xsl:with-param>
+                    <xsl:with-param name="adaElementName" select="'product_code'"/>
+                    <xsl:with-param name="originalText" select="$addOriginalTextValue"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="CodeableConcept-to-code">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="adaElementName" select="'product_code'"/>
+                    <xsl:with-param name="originalText" select="$addOriginalTextValue"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xd:doc>
