@@ -18,6 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="xsl xs xd"
     version="2.0">
     <xsl:import href="../../../zibs2017/payload/all-zibs.xsl"/>
+    <xsl:import href="gebz_2_fhir_nl-core-organization.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -42,6 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </geslachtsnaam>
                 </naamgegevens>
             </xsl:if>
+            <xsl:for-each select="zorginstelling">
+                <xsl:call-template name="convert-zorginstelling-ada"/>
+            </xsl:for-each>
         </zorgverlener>
     </xsl:template>
   

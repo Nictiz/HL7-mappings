@@ -33,20 +33,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$elementName = 'a_terme_datum' or $elementName = 'definitieve_a_terme_datum'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-TermDate"/>
                 </xsl:when>
-                <xsl:when test="$elementName = 'wijze_einde_zwangerschap' or $elementName = 'datum_einde_zwangerschap'">
+                <xsl:when test="$elementName = 'wijze_einde_zwangerschap' or $elementName = 'datum_einde_zwangerschap' or $elementName = 'voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie' or $elementName = 'voorgenomen_voeding'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
                 </xsl:when>
                 <xsl:when test="$elementName = 'tijdstip_begin_actieve_ontsluiting' or $elementName = 'hoeveelheid_bloedverlies' or $elementName = 'conditie_perineum_postpartum'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-DeliveryObservation"/>
                 </xsl:when>
-                <xsl:when test="$elementName = 'tijdstip_actief_meepersen' or $elementName = 'type_partus'">
+                <xsl:when test="$elementName = 'tijdstip_actief_meepersen' or $elementName = 'type_partus' or $elementName = 'geboortegewicht'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthObservation"/>
                 </xsl:when>
                 <xsl:when test="$elementName = 'apgarscore_na_5_min'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ApgarScore"/>
-                </xsl:when>
-                <xsl:when test="$elementName = 'geboortegewicht'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-BirthWeight"/>
                 </xsl:when>
                 <xsl:when test="$elementName = 'baring'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-Birth"/>
@@ -57,9 +54,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$elementName = 'vaginale_kunstverlossing'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
                 </xsl:when>
-                <xsl:when test="$elementName = 'voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie' or $elementName = 'voorgenomen_voeding'">
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalPreference"/>
-                </xsl:when> 
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>

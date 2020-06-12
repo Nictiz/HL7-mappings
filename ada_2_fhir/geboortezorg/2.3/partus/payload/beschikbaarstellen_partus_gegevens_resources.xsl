@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Build the individual FHIR resources.</xd:desc>
     </xd:doc>
-    <xsl:template name="ConversiePrio1Gegevens" match="bevallingsgegevens_23">             
+    <xsl:template name="ConversiePartusGegevens" match="bevallingsgegevens_23">             
         <xsl:apply-templates select="$bouwstenen" mode="doResourceInResultdoc"/>
     </xsl:template>
       

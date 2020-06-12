@@ -26,9 +26,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada organization</xd:desc>
     </xd:doc>
               
-    <xsl:template name="convert-zorginstelling-ada" mode="zorginstelling-ada" match="zorgverlenerzorginstelling | verwijzing_naar" as="element()*">
-        <xsl:variable name="organizationId" select="zorginstelling/(zorginstelling_lvrid/@value | zorgaanbieder_identificatie_nummer)"/>
-        <xsl:variable name="organizationName" select="zorginstelling/naam_zorginstelling/@value"/>   
+    <xsl:template name="convert-zorginstelling-ada" mode="zorginstelling-ada" match="zorginstelling" as="element()*">
+        <xsl:variable name="organizationId" select="zorginstelling_lvrid/@value | zorgaanbieder_identificatie_nummer/@value"/>
+        <xsl:variable name="organizationName" select="naam_zorginstelling/@value"/>   
         <healthcare_provider>
             <xsl:if test="$organizationId!=''">
                 <healthcare_provider_identification_number value="{$organizationId}"/>
@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada organization to fhir organization</xd:desc>
     </xd:doc>
 
-    <xsl:template name="convert-zorginstelling-fhir" mode="zorginstelling-fhir" match="zorgverlenerzorginstelling">
+    <xsl:template name="convert-zorginstelling-fhir" mode="zorginstelling-fhir" match="zorginstelling">
         <xsl:variable name="ADAzorginstelling" as="element()*">
             <xsl:call-template name="convert-zorginstelling-ada"/>
         </xsl:variable>
