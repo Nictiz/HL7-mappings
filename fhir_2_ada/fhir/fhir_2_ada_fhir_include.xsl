@@ -23,6 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
+    <xsl:import href="../../util/units.xsl"/>
     
     <xsl:output indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -60,8 +61,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="inElementName">Optionally provide the element name, default = coding. In extensions it is valueCoding.</xd:param>
     </xd:doc>
     <xsl:template name="CodeableConcept-to-code" as="element()*">
-        <xsl:param name="in" as="element()?"/>
-        <xsl:param name="adaElementName" as="xs:string"/>
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="adaElementName" as="xs:string">code</xsl:param>
         <xsl:param name="inElementName" as="xs:string?">coding</xsl:param>
         <xsl:param name="originalText" as="xs:string?"/>
         
@@ -90,6 +91,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="Coding-to-code">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
+                        <xsl:if test="string-length($originalText) gt 0">
+                            <xsl:attribute name="originalText" select="$originalText"/>
+                        </xsl:if>
                     </xsl:element>
                 </xsl:for-each>
             </xsl:when>
@@ -123,6 +127,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="$in/f:userSelected/@value">
             <xsl:attribute name="preferred" select="'true'"></xsl:attribute>
         </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transforms FHIR Duration to ada 'hoeveelheid' element</xd:desc>
+        <!--<xd:param name="in">the ada 'hoeveelheid' element, may have any name but should have ada datatype hoeveelheid (quantity)</xd:param>-->
+    </xd:doc>
+    <xsl:template name="Duration-to-hoeveelheid" as="element()*">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="adaElementName">tijdseenheid</xsl:param>
+        <xsl:variable name="unit" select="nf:convertTime_UCUM_FHIR2ADA_unit($in/f:code/@value)"/>
+        <xsl:choose>
+            <xsl:when test="$in/f:value/@value">
+                <xsl:element name="{$adaElementName}">
+                    <xsl:attribute name="unit" select="$unit"/>
+                    <xsl:attribute name="value" select="$in/f:value/@value"/>
+                </xsl:element>
+            </xsl:when>
+            <!--<xsl:when test="$in[@nullFlavor]">
+                <extension url="{$urlExtHL7NullFlavor}">
+                    <valueCode value="{$in/@nullFlavor}"/>
+                </extension>
+            </xsl:when>-->
+        </xsl:choose>
     </xsl:template>
     
     <xd:doc>
@@ -248,6 +275,75 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
             <xsl:attribute name="root" select="local:getOid(f:system/@value)"/>
         </xsl:element>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transforms ada element to FHIR Range</xd:desc>
+        <xd:param name="in">ada element with sub ada elements min and max (both with datatype aantal/count) and a sibling ada element eenheid (datatype code)</xd:param>
+    </xd:doc>
+    <xsl:template name="Range-to-minmax" as="element()*">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <!--<xsl:choose>
+            <xsl:when test="$in/f:low/f:extension/@url=$urlExtHL7NullFlavor">
+                
+            </xsl:when>
+            <xsl:otherwise>-->
+        <xsl:variable name="intermediate">
+            <xsl:for-each select="(f:low|f:high)">
+                <xsl:variable name="adaWaarde">
+                    <xsl:choose>
+                        <xsl:when test="self::f:low">min</xsl:when>
+                        <xsl:when test="self::f:high">max</xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:call-template name="Quantity-to-hoeveelheid-complex">
+                    <xsl:with-param name="adaWaarde" select="$adaWaarde"/>
+                    <xsl:with-param name="withRange" select="true()"/>
+                </xsl:call-template>
+            </xsl:for-each>
+        </xsl:variable>
+        
+        <xsl:if test="$intermediate/aantal">
+            <aantal>
+                <xsl:copy-of select="$intermediate/aantal/*"/>
+            </aantal>
+        </xsl:if>
+        <xsl:for-each-group select="$intermediate/eenheid" group-by="concat(@code,'|',@codeSystem,'|',@dislayName)">
+            <xsl:copy-of select="current-group()[1]"/>
+        </xsl:for-each-group>
+                        
+            <!--</xsl:otherwise>
+        </xsl:choose>-->
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Transforms ada element numerator-aantal, -eenheid and denominator to FHIR Ratio</xd:desc>
+        <xd:param name="numeratorAantal">ada element of datatype aantal (count)</xd:param>
+        <xd:param name="numeratorEenheid">ada element of datatype code</xd:param>
+        <xd:param name="denominator">ada element of datatype hoeveelheid (quantity)</xd:param>
+    </xd:doc>
+    <xsl:template name="Ratio-to-quotient" as="element()*">
+        <xsl:param name="in" select="."/>
+        <!--<xsl:param name="numeratorAantal" as="element()?"/>
+        <xsl:param name="numeratorEenheid" as="element()?"/>
+        <xsl:param name="denominator" as="element()?"/>-->
+        <!--<xsl:if test="$numeratorAantal | $numeratorEenheid">
+            <numerator>
+                <xsl:call-template name="hoeveelheid-complex-to-Quantity">
+                    <xsl:with-param name="eenheid" select="$numeratorEenheid"/>
+                    <xsl:with-param name="waarde" select="$numeratorAantal"/>
+                </xsl:call-template>
+            </numerator>
+        </xsl:if>-->
+        <xsl:for-each select="$in/f:numerator">
+            <xsl:call-template name="Quantity-to-hoeveelheid-complex">
+                <xsl:with-param name="adaWaarde">aantal</xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+        <xsl:for-each select="$in/f:denominator">
+            <xsl:call-template name="Duration-to-hoeveelheid"/>
+        </xsl:for-each>
     </xsl:template>
     
     <xd:doc>

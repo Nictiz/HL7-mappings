@@ -38,12 +38,7 @@
                         codeSystem="2.16.840.1.113883.2.4.4.9"
                         codeSystemName="G-Standaard TH007 Toedieningswegen"
                         displayName="Oraal"/>
-                    <aanvullende_instructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23243"
-                        originalText="Bij het eten innemen"
-                        value="1"
-                        code="OTH"
-                        codeSystem="2.16.840.1.113883.5.1008"
-                        displayName="overig"/>
+                    <aanvullende_instructie code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig" originalText="Bij het eten innemen"/>
                     <doseerinstructie>
                         <dosering>
                             <keerdosis>
@@ -62,6 +57,410 @@
                 </gebruiksinstructie>
             </x:expect>
         </x:scenario>
+        
+        <x:scenario label="multiple 'f:dosageInstruction's">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <dosageInstruction xmlns="http://hl7.org/fhir">
+                    <sequence value="1"/>
+                    <text value="Vanaf &lt;T+0D{{00:00:00}}&gt; t/m &lt;T+41D{{23:59:59}}&gt;, eerst gedurende 2 weken 3gram per dag, dan gedurende 3 weken 2gram per dag, dan gedurende 6 dagen 1gram per dag, dun aanbrengen, cutaan"/>
+                    <timing>
+                        <repeat>
+                            <boundsDuration>
+                                <value value="2"/>
+                                <unit value="week"/>
+                                <system value="http://unitsofmeasure.org"/>
+                                <code value="wk"/>
+                            </boundsDuration>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="7"/>
+                            <display value="cutaan"/>
+                        </coding>
+                    </route>
+                    <doseQuantity>
+                        <value value="3"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </doseQuantity>
+                </dosageInstruction>
+                <dosageInstruction xmlns="http://hl7.org/fhir">
+                    <sequence value="2"/>
+                    <text value="Vanaf &lt;T+0D{{00:00:00}}&gt; t/m &lt;T+41D{{23:59:59}}&gt;, eerst gedurende 2 weken 3gram per dag, dan gedurende 3 weken 2gram per dag, dan gedurende 6 dagen 1gram per dag, dun aanbrengen, cutaan"/>
+                    <timing>
+                        <repeat>
+                            <boundsDuration>
+                                <value value="3"/>
+                                <unit value="week"/>
+                                <system value="http://unitsofmeasure.org"/>
+                                <code value="wk"/>
+                            </boundsDuration>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="7"/>
+                            <display value="cutaan"/>
+                        </coding>
+                    </route>
+                    <doseQuantity>
+                        <value value="2"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </doseQuantity>
+                </dosageInstruction>
+                <dosageInstruction xmlns="http://hl7.org/fhir">
+                    <sequence value="3"/>
+                    <text value="Vanaf &lt;T+0D{{00:00:00}}&gt; t/m &lt;T+41D{{23:59:59}}&gt;, eerst gedurende 2 weken 3gram per dag, dan gedurende 3 weken 2gram per dag, dan gedurende 6 dagen 1gram per dag, dun aanbrengen, cutaan"/>
+                    <timing>
+                        <repeat>
+                            <boundsDuration>
+                                <value value="6"/>
+                                <unit value="dag"/>
+                                <system value="http://unitsofmeasure.org"/>
+                                <code value="d"/>
+                            </boundsDuration>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="7"/>
+                            <display value="cutaan"/>
+                        </coding>
+                    </route>
+                    <doseQuantity>
+                        <value value="1"/>
+                        <unit value="gram"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="215"/>
+                    </doseQuantity>
+                </dosageInstruction>
+            </x:context>
+            <x:expect label="one 'gebruiksinstructie' element with multiple 'doseerinstructie' children">
+                <gebruiksinstructie>
+                    <omschrijving
+                        value="Vanaf &lt;T+0D{{00:00:00}}&gt; t/m &lt;T+41D{{23:59:59}}&gt;, eerst gedurende 2 weken 3gram per dag, dan gedurende 3 weken 2gram per dag, dan gedurende 6 dagen 1gram per dag, dun aanbrengen, cutaan"/>
+                    <toedieningsweg code="7" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard TH007 Toedieningswegen" displayName="cutaan"/>
+                    <doseerinstructie>
+                        <volgnummer value="1"/>
+                        <doseerduur unit="week" value="2"/>
+                        <dosering>
+                            <keerdosis>
+                                <aantal>
+                                    <vaste_waarde value="3"/>
+                                </aantal>
+                                <eenheid code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="gram"/>
+                            </keerdosis>
+                            <toedieningsschema>
+                                <frequentie>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <tijdseenheid unit="dag" value="1"/>
+                                </frequentie>
+                            </toedieningsschema>
+                        </dosering>
+                    </doseerinstructie>
+                    <doseerinstructie>
+                        <volgnummer value="2"/>
+                        <doseerduur unit="week" value="3"/>
+                        <dosering>
+                            <keerdosis>
+                                <aantal>
+                                    <vaste_waarde value="2"/>
+                                </aantal>
+                                <eenheid code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="gram"/>
+                            </keerdosis>
+                            <toedieningsschema>
+                                <frequentie>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <tijdseenheid unit="dag" value="1"/>
+                                </frequentie>
+                            </toedieningsschema>
+                        </dosering>
+                    </doseerinstructie>
+                    <doseerinstructie>
+                        <volgnummer value="3"/>
+                        <doseerduur unit="dag" value="6"/>
+                        <dosering>
+                            <keerdosis>
+                                <aantal>
+                                    <vaste_waarde value="1"/>
+                                </aantal>
+                                <eenheid code="215" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="gram"/>
+                            </keerdosis>
+                            <toedieningsschema>
+                                <frequentie>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <tijdseenheid unit="dag" value="1"/>
+                                </frequentie>
+                            </toedieningsschema>
+                        </dosering>
+                    </doseerinstructie>
+                </gebruiksinstructie>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="2">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <dosageInstruction xmlns="http://hl7.org/fhir">
+                    <text value="Vanaf &lt;T+0D{{00:00:00}}&gt; t/m &lt;T+21D{{23:59:59}}&gt;, 1 a 2 stuks bij hoest, maximaal 6 stuks per dag, oraal"/>
+                    <asNeededCodeableConcept>
+                        <coding>
+                            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+                            <code value="1387"/>
+                            <display value="bij hoest"/>
+                        </coding>
+                    </asNeededCodeableConcept>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="oraal"/>
+                        </coding>
+                    </route>
+                    <doseRange>
+                        <low>
+                            <value value="1"/>
+                            <unit value="stuk"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="245"/>
+                        </low>
+                        <high>
+                            <value value="2"/>
+                            <unit value="stuk"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="245"/>
+                        </high>
+                    </doseRange>
+                    <maxDosePerPeriod>
+                        <numerator>
+                            <value value="6"/>
+                            <unit value="stuk"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="245"/>
+                        </numerator>
+                        <denominator>
+                            <value value="1"/>
+                            <unit value="dag"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="d"/>
+                        </denominator>
+                    </maxDosePerPeriod>
+                </dosageInstruction>
+            </x:context>
+            <x:expect label="2">
+                <gebruiksinstructie>
+                    <omschrijving value="Vanaf &lt;T+0D{{00:00:00}}&gt; t/m &lt;T+21D{{23:59:59}}&gt;, 1 a 2 stuks bij hoest, maximaal 6 stuks per dag, oraal"/>
+                    <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard TH007 Toedieningswegen" displayName="oraal"/>
+                    <doseerinstructie>
+                        <dosering>
+                            <keerdosis>
+                                <aantal>
+                                    <min value="1"/>
+                                    <max value="2"/>
+                                </aantal>
+                                <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+                            </keerdosis>
+                            <zo_nodig>
+                                <criterium>
+                                    <code code="1387" codeSystem="2.16.840.1.113883.2.4.4.5" codeSystemName="NHG Tabel 25 B Codes (numeriek)" displayName="bij hoest"/>
+                                </criterium>
+                                <maximale_dosering>
+                                    <aantal value="6"/>
+                                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+                                    <tijdseenheid unit="dag" value="1"/>
+                                </maximale_dosering>
+                            </zo_nodig>
+                        </dosering>
+                    </doseerinstructie>
+                </gebruiksinstructie>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="3">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <dosageInstruction xmlns="http://hl7.org/fhir">
+                    <text value="Vanaf &lt;T+0D{{00:00:00}}&gt; t/m &lt;T+8D{{23:59:59}}&gt;, 0.2 a 0.5 ml per uur parenteraal"/>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="10"/>
+                            <display value="parenteraal"/>
+                        </coding>
+                    </route>
+                    <rateRange>
+                        <low>
+                            <value value="0.2"/>
+                            <unit value="ml/h"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="ml/h"/>
+                        </low>
+                        <high>
+                            <value value="0.5"/>
+                            <unit value="ml/h"/>
+                            <system value="http://unitsofmeasure.org"/>
+                            <code value="ml/h"/>
+                        </high>
+                    </rateRange>
+                </dosageInstruction>
+            </x:context>
+            <x:expect label="3">
+                <gebruiksinstructie>
+                    <omschrijving
+                        value="Vanaf &lt;T+0D{{00:00:00}}&gt; t/m &lt;T+8D{{23:59:59}}&gt;, 0.2 a 0.5 ml per uur parenteraal"/>
+                    <toedieningsweg code="10" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard TH007 Toedieningswegen" displayName="parenteraal"/>
+                    <doseerinstructie>
+                        <dosering>
+                            <toedieningssnelheid>
+                                <waarde>
+                                    <min value="0.2"/>
+                                    <max value="0.5"/>
+                                </waarde>
+                                <eenheid
+                                    code="233"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="milliliter"/>
+                                <tijdseenheid value="1"
+                                    unit="uur"/>
+                            </toedieningssnelheid>
+                        </dosering>
+                    </doseerinstructie>
+                </gebruiksinstructie>
+            </x:expect>
+        </x:scenario>
+        <x:scenario label="4">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <dosageInstruction xmlns="http://hl7.org/fhir">
+                    <text value="Vanaf &lt;T+0D{{00:00:00}}&gt;, eenmaal daags 1 pleister aanbrengen gedurende 16 uur, transdermaal"/>
+                    <timing>
+                        <repeat>
+                            <duration value="16"/>
+                            <durationUnit value="h"/>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="58"/>
+                            <display value="transdermaal"/>
+                        </coding>
+                    </route>
+                    <doseQuantity>
+                        <value value="1"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                    </doseQuantity>
+                </dosageInstruction>
+            </x:context>
+            <x:expect label="4">
+                <gebruiksinstructie>
+                    <omschrijving value="Vanaf &lt;T+0D{{00:00:00}}&gt;, eenmaal daags 1 pleister aanbrengen gedurende 16 uur, transdermaal"/>
+                    <toedieningsweg code="58" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard TH007 Toedieningswegen" displayName="transdermaal"/>
+                    <doseerinstructie>
+                        <dosering>
+                            <keerdosis>
+                                <aantal>
+                                    <vaste_waarde value="1"/>
+                                </aantal>
+                                <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
+                            </keerdosis>
+                            <toedieningsschema>
+                                <frequentie>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <tijdseenheid unit="dag" value="1"/>
+                                </frequentie>
+                            </toedieningsschema>
+                            <toedieningsduur value="16"
+                                unit="uur"/>
+                        </dosering>
+                    </doseerinstructie>
+                </gebruiksinstructie>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template match 'f:timing' mode 'zib-instructions-for-use-2.0'">
+            <x:context mode="zib-instructions-for-use-2.0">
+                <timing xmlns="http://hl7.org/fhir"/>
+            </x:context>
+            <x:expect label="'toedieningsschema' element">
+                <toedieningsschema/>
+            </x:expect>
+        </x:scenario>
+        
+        <x:scenario label="template match 'f:repeat' mode 'zib-instructions-for-use-2.0">
+            <x:scenario label="f:frequency, f:period, f:periodUnit, f:timeOfDay">
+                <x:context mode="zib-instructions-for-use-2.0">
+                    <timing xmlns="http://hl7.org/fhir">
+                        <repeat>
+                            <duration value="16"/>
+                            <durationUnit value="h"/>
+                            <frequency value="1"/>
+                            <!--<frequencyMax/>-->
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                            <!--<dayOfWeek/>-->
+                            <timeOfDay value="08:00:00"/>
+                            <!--<when/>-->
+                        </repeat>
+                    </timing>
+                </x:context>
+                <x:expect label="'frequentie' and 'toedientijd'">
+                    <toedieningsschema>
+                        <frequentie>
+                            <aantal>
+                                <!--<min/>-->
+                                <vaste_waarde value="1"/>
+                                <!--<max/>-->
+                            </aantal>
+                            <tijdseenheid unit="dag" value="1"/><!--datatype-->
+                        </frequentie>
+                        <!--<interval/>-->
+                        <toedientijd value="08:00:00" datatype="datetime"/>
+                        <!--<weekdag/>
+                <dagdeel/>  -->   
+                    </toedieningsschema>
+                    <!-- zo nodig -->
+                    <!-- toedieningssnelheid -->
+                    <toedieningsduur value="16" unit="uur"/>      
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+
+        
+        <!--<repeat>
+            <duration value="16"/>
+            <durationUnit value="h"/>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+        </repeat>
+        -->
     </x:scenario>
     
 </x:description>
