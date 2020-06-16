@@ -16,7 +16,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA MP9-transaction</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping for ADA MP9-transaction</xd:p>
+            <xd:p>Do some preprocessing in ada files, because Touchstone cannot interpret duration use properly</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
                 <xd:ul>
