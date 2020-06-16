@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" exclude-result-prefixes="#all">
-    <xsl:import href="../../../util/constants.xsl"/>
+    <xsl:import href="../../util/constants.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -13,6 +13,17 @@
                 </xsl:when>
             </xsl:choose>
             <xsl:apply-templates select="@* | node()"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- update ada app -->
+    <xsl:template match="beschikbaarstellen_medicatiegegevens">
+        <xsl:copy>
+            <!-- bestaande attributen kopiëren -->
+            <xsl:apply-templates select="@*"/>
+            <!-- app attribuut alsnog overschrijven -->
+            <xsl:attribute name="app">mp-mp907</xsl:attribute>
+            <xsl:apply-templates select="node()"/>            
         </xsl:copy>
     </xsl:template>
 

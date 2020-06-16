@@ -177,11 +177,23 @@
 
             <!-- author -->
             <xsl:choose>
+                <!-- organizer author, should be present in transaction medicatieoverzicht -->
                 <xsl:when test="hl7:author">
                     <xsl:copy-of select="hl7:author" copy-namespaces="no"/>
                 </xsl:when>
+                <!-- use the author of verstrekkingsverzoek (if present) for transaction voorschrift -->
+                <xsl:when test=".[hl7:code[@code='95' and @codeSystem='2.16.840.1.113883.2.4.3.11.60.20.77.4']]/hl7:component/hl7:supply">
+                    <xsl:variable name="vvAuthor" select="hl7:component/hl7:supply[hl7:code[@code='52711000146108'][@codeSystem='2.16.840.1.113883.6.96']]/hl7:author"/>
+                    <xsl:copy-of select="($vvAuthor[hl7:time[@value = $vvAuthor/hl7:time/max(@value)]])[1]" copy-namespaces="no"/>
+                </xsl:when>
+                <!-- otherwise use the author of most recent medicatieafspraak for transaction voorschrift -->
+                <xsl:when test=".[hl7:code[@code='95' and @codeSystem='2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
+                    <xsl:variable name="maAuthor" select="hl7:component/hl7:substanceAdministration[hl7:code[@code='16076005'][@codeSystem='2.16.840.1.113883.6.96']]/hl7:author"/>
+                    <xsl:copy-of select="($maAuthor[hl7:time[@value = $maAuthor/hl7:time/max(@value)]])[1]" copy-namespaces="no"/>
+                </xsl:when>
+                
                 <xsl:otherwise>
-                    <!-- should not happen but let's use the first author we encounter -->
+                    <!-- don't know which author to use, CDA still requires one, let's use the first author we encounter -->
                     <xsl:copy-of select="(hl7:component/*/hl7:author)[1]" copy-namespaces="no"/>
                 </xsl:otherwise>
             </xsl:choose>
