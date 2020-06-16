@@ -31,12 +31,18 @@
     <property name="prodinst.dir" value="C:\SVN\art_decor\trunk\ada-data\production-ada-instances\cio\1.0.0\data"/>
 
     <property name="usecase-bsai" value="beschikbaarstellen_allergie_intolerantie"/>
+    <property name="usecase-bsaiv" value="beschikbaarstellen_allergie_intolerantie_vertaling"/>
 
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir -->
         <antcall target="setup_sub_schemas">
             <param name="build.dir" value="${build.dir}/${usecase-bsai}"/>
             <param name="schema.string" value="*${usecase-bsai}.*"/>
+        </antcall>
+        
+        <antcall target="setup_sub_schemas">
+            <param name="build.dir" value="${build.dir}/${usecase-bsaiv}"/>
+            <param name="schema.string" value="*${usecase-bsaiv}.*"/>
         </antcall>
 
         <!-- copy cio instances beschikbaarstellen_allergie_intolerantie-->
@@ -49,6 +55,19 @@
         <copy todir="${build.dir}/${usecase-bsai}/ada_instance" failonerror="true">
             <fileset dir="${prodinst.dir}">
                 <include name="bs*.xml"/>
+            </fileset>
+        </copy>
+        
+        <!-- copy cio instances beschikbaarstellen_allergie_intolerantie-->
+        <echo>CIO instances from ${prodinst.dir} to ${build.dir}/${usecase-bsaiv}/ada_instance</echo>
+        <delete>
+            <fileset dir="${build.dir}/${usecase-bsaiv}/ada_instance">
+                <include name="*.xml"/>
+            </fileset>
+        </delete>
+        <copy todir="${build.dir}/${usecase-bsaiv}/ada_instance" failonerror="true">
+            <fileset dir="${prodinst.dir}">
+                <include name="CIO-*.xml"/>
             </fileset>
         </copy>
 
@@ -79,6 +98,12 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
+        
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="build.dir" value="${usecase-bsaiv}"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="fhir_instance"/>
+        </antcall>
     </target>
 
     <target name="convert_ada_2_fhir_sub">
@@ -95,12 +120,12 @@
         </delete>
 
         <sequential>
-            <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+            <fileset id="inputfiles" dir="${xsl.input}" includes="*.xml"/>
 
             <echo/>
             <echo>${echo.label} ${xsl.cio.resources}</echo>
             <xslt force="true" style="${xsl.cio.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesMP"/>
+                <fileset refid="inputfiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
@@ -108,7 +133,7 @@
             <echo/>
             <echo>${echo.label} ${xsl.cio}</echo>
             <xslt force="true" style="${xsl.cio}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesMP"/>
+                <fileset refid="inputfiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
