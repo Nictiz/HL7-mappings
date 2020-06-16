@@ -1,5 +1,5 @@
 <PractitionerRole xmlns="http://hl7.org/fhir">
-   <id value="33333333301-002"/>
+   <id value="1111111210100"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
    </meta>
@@ -13,23 +13,26 @@
                   <th>Zorgverlener</th>
                   <td>
                      <div>
-                        <a href="Practitioner/3333333332-16-528-1-1007-3-1">M. Boot</a>
+                        <a href="Practitioner/1111111212-16-528-1-1007-3-1">A.B. Comenius de Vries</a>
+                     </div>
+                     <div>
+                        <a href="Organization/010579992-16-840-1-113883-2-4-6-1">Huisartsenpraktijk 'de Test'</a>
                      </div>
                   </td>
                </tr>
                <tr>
                   <th>Specialisme</th>
                   <td>
-                     <span title="Allergoloog (gesloten register) (01.002 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Allergoloog (gesloten register)</span>
+                     <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
                   </td>
                </tr>
                <tr>
                   <th>Contactgegevens</th>
                   <td>
                      <div>
-                        <a href="tel:0800-654321">0800-654321</a> (Tel Werk)</div>
+                        <a href="tel:+3143321654">+3143321654</a> (Tel Werk)</div>
                      <div>
-                        <a href="mailto:m.boot@deallergoloog.nl">m.boot@deallergoloog.nl</a> (E-mail Werk)</div>
+                        <a href="mailto:comenius@hpdetest.nl">comenius@hpdetest.nl</a> (E-mail Werk)</div>
                   </td>
                </tr>
             </tbody>
@@ -37,14 +40,19 @@
       </div>
    </text>
    <practitioner>
-      <reference value="Practitioner/3333333332-16-528-1-1007-3-1"/>
-      <display value="M. Boot"/>
+      <reference value="Practitioner/1111111212-16-528-1-1007-3-1"/>
+      <display value="A.B. Comenius de Vries"/>
    </practitioner>
+   <organization>
+      <reference value="Organization/010579992-16-840-1-113883-2-4-6-1"/>
+      <display value="Huisartsenpraktijk 'de Test'"/>
+   </organization>
    <specialty>
       <coding>
-         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
-         <code value="01.002"/>
-         <display value="Allergoloog (gesloten register)"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <version value="2017-12-14T00:00:00"/>
+         <code value="0100"/>
+         <display value="Huisartsen, niet nader gespecificeerd"/>
       </coding>
    </specialty>
    <telecom>
@@ -59,7 +67,7 @@
             </valueCodeableConcept>
          </extension>
       </system>
-      <value value="0800-654321"/>
+      <value value="+3143321654"/>
       <use value="work">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
@@ -74,7 +82,7 @@
    </telecom>
    <telecom>
       <system value="email"/>
-      <value value="m.boot@deallergoloog.nl"/>
+      <value value="comenius@hpdetest.nl"/>
       <use value="work">
          <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
             <valueCodeableConcept>
