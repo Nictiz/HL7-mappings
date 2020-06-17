@@ -16,6 +16,7 @@
     <!-- The folder where the common components for TestScript generation can be found, relative to the XIS or PHR input dir. -->
     <xsl:param name="commonComponentFolder" select="'../../general/common-tests'"/>
     
+    <xsl:param name="inputDir" as="xs:string"/>
     <!-- The main template, which will call the remaining templates.
          param inputDir is a string describing the direcory where the input file resides. The 
                         'project/commonComponentFolder' template parameters are relative to this directory.
@@ -27,7 +28,7 @@
                                       requests and to the name and id of the TestScript.
     -->
     <xsl:template name="generate" match="f:TestScript">
-        <xsl:param name="inputDir" as="xs:string" select="replace(base-uri(current()), '(.*)/[^/]+', '$1')"/>
+        
         <xsl:param name="expectedResponseFormat" select="if(@nts:scenario = 'server') then 'xml' else ''"/>
         <xsl:variable name="scenario" select="@nts:scenario"/>
         
@@ -371,7 +372,7 @@
         <xsl:param name="defaultParameters" as="element(nts:parameter)*" select="ancestor::nts:component[1]/nts:parameter"/>
         
         <xsl:variable name="value">
-            <xsl:variable name="regexString" select="concat('\{\$(',$parameterChars,'*)}')"/>
+            <xsl:variable name="regexString" select="concat('\{\$(',$parameterChars,'*)\}')"/>
             <xsl:choose>
                 <xsl:when test="matches(., $regexString)">
                     <xsl:analyze-string select="." regex="{$regexString}">

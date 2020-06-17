@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
+    <property name="project" value="Medication-9-0-7"/>
+    <!--<property name="expectedResponseFormatList" value="xml,json"/>-->
+    
+    <property name="ivy.install.version" value="2.5.0-rc1" />
+    <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
+    
+    <property name="build.dir" value="build" />
+    <property name="src.dir" value="general" />
+    <property name="lib.dir" value="lib"/>
+    <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
+    
+    <!-- IVY -->
+    
+    <target name="ivy.check">
+        <condition property="ivy.exists" else="false">
+            <or>
+                <available file="${ivy.jar.file}" type="file"/>
+                <available file="${ivy.local.jar.file}" type="file"/>
+            </or>
+        </condition>
+        <!--<echo message="${ivy.exists}"/>-->
+    </target>
+    
+    <target name="download-ivy" depends="ivy.check" unless="${ivy.exists}">
+        <echo message="${ivy.exists}"></echo>
+        <mkdir dir="${lib.dir}"/>
+        <echo message="installing ivy..."/>
+        <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+            dest="${ivy.local.jar.file}" usetimestamp="true"/>
+    </target>
+    
+    <target name="install-ivy" depends="download-ivy" unless="${ivy.exists}">
+        <path id="ivy.lib.path">
+            <fileset dir="${lib.dir}" includes="*.jar"/>
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml"
+            uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+    </target>
+    
+    <!-- SAXON -->
+    
+    <target name="resolve" depends="ivy.check, install-ivy">
+        <ivy:retrieve/>
+    </target>
+    
+    <!-- BUILD XML -->
+    
+    <target name="build" depends="resolve">
+        <path id="basedir.path">
+            <pathelement path="${basedir}\..\${project}" />
+        </path>
+        <pathconvert targetos="unix" property="basedir.unix" refid="basedir.path"/>
+        
+        <fileset id="input" dir="../${project}">
+            <include name="**/*.xml"/>
+            <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
+        </fileset>
+        
+        <xslt force="true" style="../${src.dir}/xslt/generateTestScript.xsl" destdir="${build.dir}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="input"/>
+            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+            <classpath location="${lib.dir}/Saxon-HE-9.9.1-7.jar"/>
+            <param name="inputDir" expression="file:/${basedir.unix}"/>
+            <param name="referenceFolder" expression="_reference"/>
+            <param name="commonComponentFolder" expression="../${src.dir}/common-asserts"/>
+            <param name="projectComponentFolder" expression="_components"/>
+            <!--<param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>-->
+        </xslt>
+    </target>
+    
+</project>
