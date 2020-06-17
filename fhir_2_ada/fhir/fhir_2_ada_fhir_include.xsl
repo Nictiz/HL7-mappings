@@ -164,32 +164,51 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaWaarde"/>
         <xsl:param name="adaEenheid">eenheid</xsl:param>
         <xsl:param name="withRange" select="false()"/>
+        <xsl:param name="withMinMax"/>
         <xsl:variable name="adaWaardeElementName">
             <xsl:choose>
                 <xsl:when test="not($adaWaarde='')">
                     <xsl:value-of select="$adaWaarde"/>
                 </xsl:when>
-                <xsl:when test="$withRange=true()">vaste_waarde</xsl:when>
+                <xsl:when test="$withRange=true()">aantal</xsl:when>
                 <xsl:otherwise>waarde</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         
         <xsl:choose>
             <xsl:when test="f:extension/@url=$urlExtHL7NullFlavor">
-                <aantal>
-                    <xsl:element name="{$adaWaardeElementName}">
-                        <xsl:attribute name="nullFlavor" select="(f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"></xsl:attribute>
-                    </xsl:element>
-                </aantal>
+                <xsl:element name="{$adaWaardeElementName}">
+                    <xsl:choose>
+                        <xsl:when test="not($withMinMax='')">
+                            <xsl:element name="{$withMinMax}">
+                                <xsl:attribute name="nullFlavor" select="(f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"></xsl:attribute>
+                            </xsl:element>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <vaste_waarde>
+                                <xsl:attribute name="nullFlavor" select="(f:extension[@url=$urlExtHL7NullFlavor]/f:valueCode/@value,'NI')[1]"></xsl:attribute>
+                            </vaste_waarde>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:element>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:choose>
                     <xsl:when test="$withRange=true()">
-                        <aantal>
-                            <xsl:element name="{$adaWaardeElementName}">
-                                <xsl:attribute name="value" select="f:value/@value"/>
-                            </xsl:element>
-                        </aantal>
+                        <xsl:element name="{$adaWaardeElementName}">
+                            <xsl:choose>
+                                <xsl:when test="not($withMinMax='')">
+                                    <xsl:element name="{$withMinMax}">
+                                        <xsl:attribute name="value" select="f:value/@value"/>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <vaste_waarde>
+                                        <xsl:attribute name="value" select="f:value/@value"/>
+                                    </vaste_waarde>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:element>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:element name="{$adaWaardeElementName}">
@@ -298,8 +317,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:call-template name="Quantity-to-hoeveelheid-complex">
-                    <xsl:with-param name="adaWaarde" select="$adaWaarde"/>
                     <xsl:with-param name="withRange" select="true()"/>
+                    <xsl:with-param name="withMinMax">
+                        <xsl:choose>
+                            <xsl:when test="self::f:low">min</xsl:when>
+                            <xsl:when test="self::f:high">max</xsl:when>
+                        </xsl:choose>
+                    </xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:variable>
@@ -325,6 +349,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="Ratio-to-quotient" as="element()*">
         <xsl:param name="in" select="."/>
+        <xsl:param name="withRange" select="false()"/>
+        <xsl:param name="adaWaarde">aantal</xsl:param>
         <!--<xsl:param name="numeratorAantal" as="element()?"/>
         <xsl:param name="numeratorEenheid" as="element()?"/>
         <xsl:param name="denominator" as="element()?"/>-->
@@ -338,7 +364,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>-->
         <xsl:for-each select="$in/f:numerator">
             <xsl:call-template name="Quantity-to-hoeveelheid-complex">
-                <xsl:with-param name="adaWaarde">aantal</xsl:with-param>
+                <xsl:with-param name="adaWaarde" select="$adaWaarde"/>
+                <xsl:with-param name="withRange" select="$withRange"/>
             </xsl:call-template>
         </xsl:for-each>
         <xsl:for-each select="$in/f:denominator">

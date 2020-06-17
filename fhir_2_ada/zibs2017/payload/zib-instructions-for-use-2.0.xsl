@@ -4,11 +4,14 @@
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:f="http://hl7.org/fhir"
     xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:local="urn:fhir:stu3:functions"
     exclude-result-prefixes="#all"
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    
+    <xsl:variable name="zib-Medication-RepeatPeriodCyclicalSchedule" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule'"/>
     
     <xsl:template match="f:dosageInstruction" mode="zib-instructions-for-use-2.0">
         <xsl:choose>
@@ -17,6 +20,7 @@
                     <xsl:apply-templates select="f:text" mode="#current"/>
                     <xsl:apply-templates select="f:route" mode="#current"/>
                     <xsl:apply-templates select="f:additionalInstruction" mode="#current"/>
+                    <xsl:apply-templates select="parent::f:MedicationRequest/f:modifierExtension[@url=$zib-Medication-RepeatPeriodCyclicalSchedule]" mode="#current"/>
                     <xsl:for-each select="(.|following-sibling::f:dosageInstruction)">
                         <xsl:if test="f:sequence|f:asNeededCodeableConcept|f:doseQuantity|f:doseRange|f:timing|f:asNeededCodeableConcept|f:maxDosePerPeriod|f:rateRatio|f:rateRange|f:rateQuantity">
                             <doseerinstructie>
@@ -57,7 +61,6 @@
     <xsl:template match="f:text" mode="zib-instructions-for-use-2.0">
         <omschrijving>
             <xsl:attribute name="value" select="@value"/>
-            <xsl:apply-templates mode="#current"/>
         </omschrijving>
     </xsl:template>
     
@@ -66,6 +69,13 @@
             <xsl:with-param name="in" select="."/>
             <xsl:with-param name="originalText" select="f:text/@value"/>
             <xsl:with-param name="adaElementName" select="'aanvullende_instructie'"/>
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template match="f:modifierExtension[@url=$zib-Medication-RepeatPeriodCyclicalSchedule]" mode="zib-instructions-for-use-2.0">
+        <xsl:call-template name="Duration-to-hoeveelheid">
+            <xsl:with-param name="in" select="f:valueDuration"/>
+            <xsl:with-param name="adaElementName">herhaalperiode_cyclisch_schema</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
@@ -103,23 +113,31 @@
     </xsl:template>
     
     <xsl:template match="f:repeat" mode="zib-instructions-for-use-2.0">
-        <xsl:if test="f:frequency|f:frequencyMax|f:period|f:periodUnit">
-            <frequentie>
-                <xsl:if test="f:frequency|f:frequencyMax">
+        <xsl:choose>
+            <xsl:when test="f:frequency|f:frequencyMax">
+                <frequentie>
                     <aantal>
                         <xsl:apply-templates select="f:frequency" mode="#current"/>
                         <xsl:apply-templates select="f:frequencyMax" mode="#current"/>
                     </aantal>
-                </xsl:if>
-                <xsl:if test="f:period|f:periodUnit">
-                    <tijdseenheid>
-                        <xsl:apply-templates select="f:periodUnit" mode="#current"/>
-                        <xsl:apply-templates select="f:period" mode="#current"/>
-                    </tijdseenheid>
-                </xsl:if>
-            </frequentie>
-        </xsl:if>
+                    <xsl:if test="f:period|f:periodUnit">
+                        <tijdseenheid>
+                            <xsl:apply-templates select="f:periodUnit" mode="#current"/>
+                            <xsl:apply-templates select="f:period" mode="#current"/>
+                        </tijdseenheid>
+                    </xsl:if>
+                </frequentie>
+            </xsl:when>
+            <xsl:when test="f:period|f:periodUnit">
+                <interval>
+                    <xsl:apply-templates select="f:periodUnit" mode="#current"/>
+                    <xsl:apply-templates select="f:period" mode="#current"/>
+                </interval>
+            </xsl:when>
+        </xsl:choose>
         <xsl:apply-templates select="f:timeOfDay" mode="#current"/>
+        <xsl:apply-templates select="f:dayOfWeek" mode="#current"/>
+        <xsl:apply-templates select="f:when" mode="#current"/>
     </xsl:template>
     
     <xsl:template match="f:duration">
@@ -167,9 +185,44 @@
         </toedientijd>
     </xsl:template>
     
+    <xsl:template match="f:dayOfWeek" mode="zib-instructions-for-use-2.0">
+        <weekdag>
+            <xsl:call-template name="code-to-code">
+                <xsl:with-param name="value" select="@value"/>
+                <xsl:with-param name="codeMap" as="element()*">
+                    <map inValue="mon" code="307145004" codeSystem="2.16.840.1.113883.6.96" displayName="maandag"/>
+                    <map inValue="tue" code="307147007" codeSystem="2.16.840.1.113883.6.96" displayName="dinsdag"/>
+                    <map inValue="wed" code="307148002" codeSystem="2.16.840.1.113883.6.96" displayName="woensdag"/>
+                    <map inValue="thu" code="307149005" codeSystem="2.16.840.1.113883.6.96" displayName="donderdag"/>
+                    <map inValue="fri" code="307150005" codeSystem="2.16.840.1.113883.6.96" displayName="vrijdag"/>
+                    <map inValue="sat" code="307151009" codeSystem="2.16.840.1.113883.6.96" displayName="zaterdag"/>
+                    <map inValue="sun" code="307146003" codeSystem="2.16.840.1.113883.6.96" displayName="zondag"/>
+                </xsl:with-param>
+            </xsl:call-template>
+        </weekdag>
+    </xsl:template>
+    
+    <xsl:template match="f:when" mode="zib-instructions-for-use-2.0">
+        <dagdeel>
+            <xsl:call-template name="code-to-code">
+                <xsl:with-param name="value" select="@value"/>
+                <xsl:with-param name="codeMap" as="element()*">
+                    <map inValue="MORN" code="73775008" codeSystem="2.16.840.1.113883.6.96" displayName="'s ochtends"/>
+                    <map inValue="AFT" code="255213009" codeSystem="2.16.840.1.113883.6.96" displayName="'s middags"/>
+                    <map inValue="EVE" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                    <map inValue="NIGHT" code="2546009" codeSystem="2.16.840.1.113883.6.96" displayName="'s nachts"/>
+                </xsl:with-param>
+            </xsl:call-template>
+        </dagdeel>
+    </xsl:template>
+    
     <xsl:template match="f:asNeededCodeableConcept" mode="zib-instructions-for-use-2.0">
         <criterium>
             <xsl:call-template name="CodeableConcept-to-code"/>
+            <!-- criterium heeft een ./omschrijving als uitzondering. -->
+            <xsl:if test="f:text/@value">
+                <omschrijving value="{f:text/@value}"/>
+            </xsl:if>
         </criterium>
     </xsl:template>
     
@@ -180,8 +233,10 @@
     </xsl:template>
     
     <xsl:template match="f:rateRatio" mode="zib-instructions-for-use-2.0">
-        <!--<xsl:call-template name="Ratio-to-quotient"/>-->
-        <xsl:message terminate="yes"/>
+        <xsl:call-template name="Ratio-to-quotient">
+            <xsl:with-param name="withRange" select="true()"/>
+            <xsl:with-param name="adaWaarde">waarde</xsl:with-param>
+        </xsl:call-template>
     </xsl:template>
     
     <xsl:template match="f:rateRange" mode="zib-instructions-for-use-2.0">
@@ -196,6 +251,7 @@
             <xsl:call-template name="UCUM2GstdBasiseenheid">
                 <xsl:with-param name="UCUM" select="$unit-UCUM"/>
             </xsl:call-template>
+            <xsl:attribute name="codeSystemName" select="local:getDisplayName($oidGStandaardBST902THES2)"/>
         </eenheid>
         <xsl:variable name="ucum-tijdseenheid" select="substring-after($unit, '/')"/>
         <!-- tijdseenheid is usually of a format like: ml/h -->
