@@ -7,7 +7,7 @@
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
     
     <property name="build.dir" value="build" />
-    <property name="src.dir" value="general" />
+    <property name="src.dir" value="src" />
     <property name="lib.dir" value="lib"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
     
@@ -58,7 +58,7 @@
             <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
         </fileset>
         
-        <xslt force="true" style="../${src.dir}/xslt/generateTestScript.xsl" destdir="${build.dir}" extension=".xml" useImplicitFileset="false">
+        <xslt force="true" style="../${src.dir}/xslt/generateTestScript.xsl" destdir="${build.dir}/${project}" extension=".xml" useImplicitFileset="false">
             <fileset refid="input"/>
             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
             <classpath location="${lib.dir}/Saxon-HE-9.9.1-7.jar"/>
