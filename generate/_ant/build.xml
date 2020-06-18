@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
     <property name="project" value="Medication-9-0-7"/>
-    <!--<property name="expectedResponseFormatList" value="xml,json"/>-->
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
@@ -69,21 +68,42 @@
         
         <for param="file">
             <path>
-                <fileset refid="input-alt"/>
+                <fileset refid="input"/>
             </path>
             <sequential>
-                <!-- do stuff with @{file} -->
-                <echo message="@{file}"/>
-                <xslt force="true" style="../${src.dir}/xslt/generateTestScript.xsl" destdir="../${build.dir}/${project}" extension=".xml" useImplicitFileset="false">
-                    <fileset file="@{file}"/>
-                    <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-                    <classpath location="${net.sf.saxon.Saxon-HE}"/>
-                    <param name="inputDir" expression="file:/${basedir.unix}"/>
-                    <param name="referenceFolder" expression="_reference"/>
-                    <param name="commonComponentFolder" expression="../${src.dir}/common-asserts"/>
-                    <param name="projectComponentFolder" expression="_components"/>
-                    <!--<param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>-->
-                </xslt>
+                <local name="expectedResponseFormatList"/>
+                <local name="file.basename"/>
+                <!-- All variables extracted from xmlproperty should be declared local -->
+                <local name="TestScript.id(nts:scenario)"/>
+                
+                <basename property="file.basename" file="@{file}"/>
+                
+                <xmlproperty file="@{file}"/>
+                
+                <if>
+                    <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
+                    <then>
+                        <property name="expectedResponseFormatList" value="xml,json"/>
+                    </then>
+                    <else>
+                        <property name="expectedResponseFormatList" value="xml"/>
+                    </else>
+                </if>
+                
+                <for list="${expectedResponseFormatList}" param="expectedResponseFormat">
+                    <sequential>
+                        <xslt force="true" style="../${src.dir}/xslt/generateTestScript.xsl" in="@{file}" out="../${build.dir}/${project}/${file.basename}-@{expectedResponseFormat}.xml">                            
+                            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                            <classpath location="${net.sf.saxon.Saxon-HE}"/>
+                            <param name="inputDir" expression="file:/${basedir.unix}"/>
+                            <param name="referenceFolder" expression="_reference"/>
+                            <param name="commonComponentFolder" expression="../${src.dir}/common-asserts"/>
+                            <param name="projectComponentFolder" expression="_components"/>
+                            <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
+                        </xslt>
+                    </sequential>
+                </for>
+                
             </sequential>
         </for>
     </target>
