@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir=".." name="generateTestScripts" default="build">
     <!--<property name="project" value="Medication-9-0-7"/>-->
+    <property name="outputXisInternal" value="false"/>
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
@@ -114,6 +115,7 @@
                 <for list="${expectedResponseFormatList}" param="expectedResponseFormat">
                     <sequential>
                         <local name="file.newname"/>
+                        <local name="file.reldirXisInternal"/>
                         <property name="file.newname" value="${file.basename}-@{expectedResponseFormat}.xml"/>
                         
                         <xslt force="true" style="${src.dir}/xslt/generateTestScript.xsl" in="@{file}" out="${temp.dir}/${file.reldir}/${file.newname}">                            
@@ -128,6 +130,18 @@
                         <xslt force="true" style="${src.dir}/xslt/stripSetup.xsl" in="${temp.dir}/${file.reldir}/${file.newname}" out="${build.dir}/${project}/${file.reldir}/${file.newname}">                            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                             <classpath location="${net.sf.saxon.Saxon-HE}"/>
                         </xslt>
+                        
+                        <if>
+                            <and>
+                                <equals arg1="${TestScript(nts:scenario)}" arg2="server"/>
+                                <equals arg1="${outputXisInternal}" arg2="true"/>
+                            </and>
+                            <then>
+                                <propertyregex property="file.reldirXisInternal" input="${file.reldir}" regexp="XIS-Server" replace="XIS-Server-nictizintern"/>
+                                <echo message="${file.reldirXisInternal}"/>
+                                <copy file="${temp.dir}/${file.reldir}/${file.newname}" tofile="${build.dir}/${project}/${file.reldirXisInternal}/${file.basename}-@{expectedResponseFormat}.xml"/>
+                            </then>
+                        </if>
                     </sequential>
                 </for>
                 
