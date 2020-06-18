@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir=".." name="generateTestScripts" default="build">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir=".." name="generateTestScripts" default="clean">
     <!--<property name="project" value="Medication-9-0-7"/>-->
     <property name="outputXisInternal" value="false"/>
     
@@ -58,7 +58,23 @@
     
     <target name="check-input">
         <input message="Please input project name." addproperty="project"/><!-- Per definition only asks for input if project property is not set -->
-        <!-- Should be extended to check if input dir exists. -->
+        
+        <if>
+            <not>
+                <available file="${basedir}/${project}" type="dir"/>
+            </not>
+            <then>
+                <fail message="Project directory '${project}' does not exist."/>
+            </then>
+        </if>
+        <if>
+            <not>
+                <available file="${basedir}/${project}/_components" type="dir"/>
+            </not>
+            <then>
+                <echo message="WARNING: Project components directory '${project}/_components' does not exist."/>
+            </then>
+        </if>
     </target>
     
     <target name="prepare" depends="check-input">
@@ -138,7 +154,7 @@
                             </and>
                             <then>
                                 <propertyregex property="file.reldirXisInternal" input="${file.reldir}" regexp="XIS-Server" replace="XIS-Server-nictizintern"/>
-                                <echo message="${file.reldirXisInternal}"/>
+                                <!--<echo message="${file.reldirXisInternal}"/>-->
                                 <copy file="${temp.dir}/${file.reldir}/${file.newname}" tofile="${build.dir}/${project}/${file.reldirXisInternal}/${file.basename}-@{expectedResponseFormat}.xml"/>
                             </then>
                         </if>
@@ -149,8 +165,8 @@
         </for>
     </target>
     
-    <target name="clean">
-        <!-- Clean temp dir? -->
+    <target name="clean" depends="build">
+        <delete dir="${temp.dir}"/>
     </target>
     
 </project>
