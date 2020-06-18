@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir=".." name="generateTestScripts" default="build">
     <!--<property name="project" value="Medication-9-0-7"/>-->
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
+    <property name="ivy.dep.file" value="_ant/ivy.xml" />
     
-    <property name="build.dir" value="build" />
-    <property name="src.dir" value="src" />
-    <property name="lib.dir" value="lib"/>
+    <property name="build.dir" value="${basedir}/build" />
+    <property name="src.dir" value="${basedir}/src" />
+    <property name="lib.dir" value="${basedir}/lib"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
     
     <!-- IVY -->
@@ -19,10 +20,10 @@
                 <available file="${ivy.local.jar.file}" type="file"/>
             </or>
         </condition>
+        <mkdir dir="${lib.dir}"/>
     </target>
     
     <target name="download-ivy" depends="check-ivy" unless="ivy.exists">
-        <mkdir dir="${lib.dir}"/>
         <echo message="installing ivy..."/>
         <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
             dest="${ivy.local.jar.file}" usetimestamp="true"/>
@@ -32,8 +33,7 @@
         <path id="ivy.lib.path">
             <fileset dir="${lib.dir}" includes="*.jar"/>
         </path>
-        <taskdef resource="org/apache/ivy/ant/antlib.xml"
-            uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
         <property name="ivy.loaded" value="true" />
     </target>
     
@@ -60,13 +60,19 @@
         <!-- Should be extended to check if input dir exists. -->
     </target>
     
-    <target name="build" depends="load, check-input">
-        <path id="basedir.path">
-            <pathelement path="${basedir}\..\${project}" />
+    <target name="prepare" depends="check-input">
+        <tempfile property="temp.dir" destDir="${java.io.tmpdir}" prefix="generateTestScripts-${project}-"/>
+        <mkdir dir="${temp.dir}"/>
+        <!--<echo>${temp.dir}</echo>-->
+    </target>
+    
+    <target name="build" depends="load, prepare, check-input">
+        <path id="projectdir.path">
+            <pathelement path="${basedir}/${project}" />
         </path>
-        <pathconvert targetos="unix" property="basedir.unix" refid="basedir.path"/>
+        <pathconvert targetos="unix" property="projectdir.unix" refid="projectdir.path"/>
         
-        <fileset id="input" dir="../${project}">
+        <fileset id="input" dir="${basedir}/${project}">
             <include name="**/*.xml"/>
             <exclude name="**/_*/"/><!-- Exclude every dir that starts with '_' -->
         </fileset>
@@ -78,10 +84,20 @@
             <sequential>
                 <local name="expectedResponseFormatList"/>
                 <local name="file.basename"/>
+                <local name="file.dirname"/>
+                <local name="file.reldir"/>
+                
                 <!-- All variables extracted from xmlproperty should be declared local -->
                 <local name="TestScript.id(nts:scenario)"/>
                 
                 <basename property="file.basename" file="@{file}"/>
+                <dirname property="file.dirname" file="@{file}"/>
+                <pathconvert property="file.reldir">
+                    <path>
+                        <dirset dir="${file.dirname}"/>
+                    </path>
+                    <map from="${basedir}/${project}" to=""/>
+                </pathconvert>
                 
                 <xmlproperty file="@{file}"/>
                 
@@ -97,20 +113,30 @@
                 
                 <for list="${expectedResponseFormatList}" param="expectedResponseFormat">
                     <sequential>
-                        <xslt force="true" style="../${src.dir}/xslt/generateTestScript.xsl" in="@{file}" out="../${build.dir}/${project}/${file.basename}-@{expectedResponseFormat}.xml">                            
+                        <local name="file.newname"/>
+                        <property name="file.newname" value="${file.basename}-@{expectedResponseFormat}.xml"/>
+                        
+                        <xslt force="true" style="${src.dir}/xslt/generateTestScript.xsl" in="@{file}" out="${temp.dir}/${file.reldir}/${file.newname}">                            
                             <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                             <classpath location="${net.sf.saxon.Saxon-HE}"/>
-                            <param name="inputDir" expression="file:/${basedir.unix}"/>
+                            <param name="inputDir" expression="file:/${projectdir.unix}"/>
                             <param name="referenceFolder" expression="_reference"/>
                             <param name="commonComponentFolder" expression="../${src.dir}/common-asserts"/>
                             <param name="projectComponentFolder" expression="_components"/>
                             <param name="expectedResponseFormat" expression="@{expectedResponseFormat}"/>
+                        </xslt>
+                        <xslt force="true" style="${src.dir}/xslt/stripSetup.xsl" in="${temp.dir}/${file.reldir}/${file.newname}" out="${build.dir}/${project}/${file.reldir}/${file.newname}">                            <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+                            <classpath location="${net.sf.saxon.Saxon-HE}"/>
                         </xslt>
                     </sequential>
                 </for>
                 
             </sequential>
         </for>
+    </target>
+    
+    <target name="clean">
+        <!-- Clean temp dir? -->
     </target>
     
 </project>
