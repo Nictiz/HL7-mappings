@@ -25,7 +25,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="pregnancyReference" match="zwangerschap" mode="doPregnancyReference" as="element()*">
         <xsl:variable name="theIdentifier" select="graviditeit"/> <!-- TODO zwangerschapsidentifier toevoegen -->
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$conditions[group-key = $theGroupKey]" as="element()?"/>
+        <!-- todo: betere oplossing voor verzinnen, code is te afhankelijk -->
+        <!-- get id from zwangerschappen ipv conditions ivm circular references -->
+        <xsl:variable name="theGroupElement" select="$zwangerschappen[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
@@ -49,13 +51,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Patient.id</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Condition.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="pregnancyEntry" match="patient" mode="doPregnancyEntry" as="element(f:entry)">
+    <xsl:template name="pregnancyEntry" match="zwangerschap" mode="doPregnancyEntry" as="element(f:entry)">
         <xsl:param name="adaPatient"/>
-        <xsl:param name="dossierId"/>
-          <xsl:param name="uuid" select="true()" as="xs:boolean"/>
+        <xsl:param name="uuid" select="true()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
         <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
@@ -77,7 +78,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                     <xsl:with-param name="adaPatient" select="$adaPatient"/>
-                    <xsl:with-param name="dossierId" select="$dossierId"/>
                 </xsl:call-template>
             </resource>
             <xsl:if test="string-length($searchMode) gt 0">
@@ -98,7 +98,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
-        <xsl:param name="dossierId"/>
         
         <xsl:variable name="parentElemName" select="parent::node()/name(.)"/>
         
@@ -123,16 +122,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="Pregnancy observable (observable entity)"/>
                     </coding>
                 </code>
-                <subject>
-                    <xsl:for-each select="$adaPatient">
+                <xsl:for-each select="$adaPatient">
+                    <subject>
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                    </xsl:for-each>
-                </subject>
-                <xsl:if test="$dossierId!=''">
+                    </subject>
+                </xsl:for-each>
+                <xsl:for-each select=".">
                     <context>
-                        <reference value="EpisodeOfCare/{$dossierId}"/>
+                        <xsl:apply-templates select="." mode="doMaternalRecordReference"/>
                     </context>
-                </xsl:if>             
+                </xsl:for-each>      
             </Condition>
         </xsl:for-each>
     </xsl:template>

@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg concepts to profiles.</xd:desc>
     </xd:doc>
-    <xsl:template name="bc-profile" mode="doProfileMapping" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">
+    <xsl:template name="bc-profile" mode="doProfileMapping" match="bevalling | baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">
         <xsl:variable name="elementName" select="name(.)"/>
 
         <xsl:for-each select=".">
@@ -54,6 +54,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$elementName = 'vaginale_kunstverlossing'">
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-ObstetricProcedure"/>
                 </xsl:when>
+                <xsl:otherwise>
+                    <profile value=""/>
+                </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
     </xsl:template>
@@ -61,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg terminology for Observations.</xd:desc>
     </xd:doc>
-    <xsl:template name="bc-observation-coding" mode="doObservationTerminologyMapping" match="baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">      
+    <xsl:template name="bc-observation-coding" mode="doObservationTerminologyMapping" match="bevalling | baring | graviditeit | pariteit | pariteit_voor_deze_zwangerschap | a_terme_datum | wijze_einde_zwangerschap | datum_einde_zwangerschap | voorgenomen_plaats_baring_tijdens_zwangerschap_type_locatie | voorgenomen_voeding" as="element()">      
         <xsl:variable name="elementName" select="name(.)"/>
         <xsl:for-each select=".">
             <coding>

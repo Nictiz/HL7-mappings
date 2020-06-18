@@ -30,6 +30,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="convert-zorgverlener-ada" mode="zorgverlener-ada" match="zorgverlenerzorginstelling" as="element()*">
         <xsl:variable name="practitionerId" select="zorgverlener/zorgverlener_lvrid/@value"/>
         <xsl:variable name="practitionerName" select="zorgverlener/naam_zorgverlener/@value"/>   
+        <!-- TODO: ipv dit hier een unieke id aan zorgverlener toekennen?-->
+        <zorgverlener>
         <zorgverlener>
             <xsl:if test="$practitionerId!=''">
                 <zorgverlener_identificatienummer value="{$practitionerId}"/>
@@ -46,6 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="zorginstelling">
                 <xsl:call-template name="convert-zorginstelling-ada"/>
             </xsl:for-each>
+        </zorgverlener>
         </zorgverlener>
     </xsl:template>
   

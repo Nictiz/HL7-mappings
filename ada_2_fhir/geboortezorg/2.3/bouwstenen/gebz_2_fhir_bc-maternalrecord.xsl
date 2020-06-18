@@ -21,6 +21,77 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc>
+        <xd:desc>Returns contents of Reference datatype element</xd:desc>
+    </xd:doc>
+    <xsl:template name="maternalRecordReference" match="zwangerschap" mode="doMaternalRecordReference" as="element()*">
+        <xsl:variable name="theIdentifier" select="graviditeit | a_terme_datum | definitieve_a_terme_datum"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:variable name="theGroupElement" select="$episodesofcare[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$theGroupElement">
+                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+            </xsl:when>
+            <xsl:when test="$theIdentifier">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+            <display value="{$theGroupElement/reference-display}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Produces a FHIR entry element with a EpisodeOfCare resource</xd:desc>
+        <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
+        <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.EpisodeOfCare.id</xd:param>
+        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
+    </xd:doc>
+    <xsl:template name="maternalRecordEntry" match="zwangerschap" mode="doMaternalRecordEntry" as="element(f:entry)">
+        <xsl:param name="adaPatient"/>
+        <xsl:param name="adaZorginstelling"/>
+        <xsl:param name="adaZorgverlener"/>
+        <xsl:param name="uuid" select="true()" as="xs:boolean"/>
+        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="fhirResourceId">
+            <xsl:if test="$referById">
+                <xsl:choose>
+                    <xsl:when test="not($uuid) and false">
+                        <!-- TODO: vullen met zinnige checks/data -->
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:param>
+        <xsl:param name="searchMode">include</xsl:param>
+        <entry>
+            <fullUrl value="{$entryFullUrl}"/>
+            <resource>
+                <xsl:call-template name="bc-maternal-record">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
+                    <xsl:with-param name="adaPatient" select="$adaPatient"/>
+                    <xsl:with-param name="adaZorginstelling" select="$adaZorginstelling"/>
+                    <xsl:with-param name="adaZorgverlener" select="$adaZorgverlener"/>
+                </xsl:call-template>
+            </resource>
+            <xsl:if test="string-length($searchMode) gt 0">
+                <search>
+                    <mode value="{$searchMode}"/>
+                </search>
+            </xsl:if>
+        </entry>
+    </xsl:template>
+        
+    <xd:doc>
         <xd:desc>Mapping of ADA geboortezorg concept to FHIR EpisodeOfCare <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation">zib-LaboratoryTestResult-Observation</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
         <xd:param name="in">Node to consider in the creation of an EpisodeOfCare resource</xd:param>
@@ -30,7 +101,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
-        <xsl:param name="pregnancyId"/>
         <xsl:param name="adaZorginstelling"/>
         <xsl:param name="adaZorgverlener"/>
         
@@ -60,24 +130,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="Pregnancy observable (observable entity)"/>
                     </coding>
                 </type>
-                <xsl:if test="$pregnancyId!=''">
+                <xsl:for-each select=".">
                     <diagnosis>
                         <condition>
-                            <reference value="Condition/{$pregnancyId}"/>
+                            <xsl:apply-templates select="." mode="doPregnancyReference"/>
                         </condition>
                     </diagnosis>                 
-                </xsl:if>
-                <patient>
-                    <xsl:for-each select="$adaPatient">
+                </xsl:for-each>
+                <xsl:for-each select="$adaPatient">
+                    <patient>
                         <xsl:apply-templates select="." mode="doPatientReference-2.1"/>
-                    </xsl:for-each>
-                </patient>             
+                    </patient>
+                </xsl:for-each>          
                 <xsl:for-each select="$adaZorginstelling">
                     <managingOrganization>
                         <xsl:call-template name="organizationReference"/>
                     </managingOrganization>
                 </xsl:for-each>   
-                <!-- TODO: deze blijft nog leeg -->
                 <xsl:for-each select="$adaZorgverlener">
                     <careManager>
                         <xsl:call-template name="practitionerReference"/>

@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="ConversiePrio1Gegevens" match="bevallingsgegevens_23">              
         <xsl:variable name="transactionBundle"> <!--as="element(f:Bundle)*"-->
             <Bundle xmlns="http://hl7.org/fhir">
-                <id value="{concat('samenvatting-zwangerschap',$pregnancyNo)}"/>
+                <id value="{nf:removeSpecialCharacters(replace(nf:get-fhir-uuid(.), 'urn:[^i]*id:', ''))}"/>
                 <type value="transaction"/>   
                 <xsl:for-each select="$bouwstenen">
                     <xsl:copy-of select="."/>
