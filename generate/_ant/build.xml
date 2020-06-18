@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." name="generateTestScripts" default="build">
-    <property name="project" value="Medication-9-0-7"/>
+    <!--<property name="project" value="Medication-9-0-7"/>-->
     
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
@@ -55,7 +55,12 @@
     
     <!-- BUILD XML -->
     
-    <target name="build" depends="load">
+    <target name="check-input">
+        <input message="Please input project name." addproperty="project"/><!-- Per definition only asks for input if project property is not set -->
+        <!-- Should be extended to check if input dir exists. -->
+    </target>
+    
+    <target name="build" depends="load, check-input">
         <path id="basedir.path">
             <pathelement path="${basedir}\..\${project}" />
         </path>
