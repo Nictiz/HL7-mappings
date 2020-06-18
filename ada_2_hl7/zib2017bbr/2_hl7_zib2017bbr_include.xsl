@@ -19,6 +19,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
 
     <xd:doc>
+        <xd:desc>Helper template for name prefix trailing space</xd:desc>
+        <xd:param name="in">The ada element which has the prefix (voorvoegsel), defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="_prefix">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:for-each select="$in">
+            <prefix qualifier="VV">
+                <xsl:choose>
+                    <xsl:when test="@value = ('de', 'in ''t', 'te', 'ten', 'van', 'van den', 'den', 'van der', 'van de', 'van ''t')">
+                        <!-- let's add a trailing space when we know we should -->
+                        <xsl:value-of select="concat(@value, ' ')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="@value"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </prefix>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc>Creates HL7 performing healthcare provider (uitvoerende zorgaanbieder) </xd:desc>
         <xd:param name="deZorgaanbieder">ada zorgaanbieder, defaults to context element</xd:param>
     </xd:doc>
@@ -190,9 +211,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Eigen geslachtsnaam -->
                 <xsl:when test="naamgebruik/@code = 'NL1'">
                     <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
-                        <prefix qualifier="VV">
-                            <xsl:value-of select="./@value"/>
-                        </prefix>
+                             <xsl:call-template name="_prefix"/>
                     </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
                         <family qualifier="BR">
@@ -203,9 +222,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- 	Geslachtsnaam partner -->
                 <xsl:when test="naamgebruik/@code = 'NL2'">
                     <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
-                        <prefix qualifier="VV">
-                            <xsl:value-of select="./@value"/>
-                        </prefix>
+                              <xsl:call-template name="_prefix"/>
                     </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
                         <family qualifier="SP">
@@ -216,20 +233,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
                 <xsl:when test="naamgebruik/@code = 'NL3'">
                     <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
-                        <prefix qualifier="VV">
-                            <xsl:value-of select="./@value"/>
-                        </prefix>
-                    </xsl:for-each>
+          <xsl:call-template name="_prefix"/>
+       </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
                         <family qualifier="SP">
                             <xsl:value-of select="./@value"/>
                         </family>
                     </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
-                        <prefix qualifier="VV">
-                            <xsl:value-of select="./@value"/>
-                        </prefix>
-                    </xsl:for-each>
+                        <xsl:call-template name="_prefix"/>
+                      </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
                         <family qualifier="BR">
                             <xsl:value-of select="./@value"/>
@@ -239,9 +252,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
                 <xsl:when test="naamgebruik/@code = 'NL4'">
                     <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
-                        <prefix qualifier="VV">
-                            <xsl:value-of select="./@value"/>
-                        </prefix>
+                        <xsl:call-template name="_prefix"/>
                     </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
                         <family qualifier="BR">
@@ -249,9 +260,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </family>
                     </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
-                        <prefix qualifier="VV">
-                            <xsl:value-of select="./@value"/>
-                        </prefix>
+                        <xsl:call-template name="_prefix"/>
                     </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
                         <family qualifier="SP">
@@ -262,10 +271,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:otherwise>
                     <!-- we nemen aan NL1 - alleen de eigen naam -->
                     <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
-                        <prefix qualifier="VV">
-                            <xsl:value-of select="./@value"/>
-                        </prefix>
-                    </xsl:for-each>
+                        <xsl:call-template name="_prefix"/>
+                        </xsl:for-each>
                     <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
                         <family qualifier="BR">
                             <xsl:value-of select="./@value"/>

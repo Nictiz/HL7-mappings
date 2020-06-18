@@ -14,9 +14,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
-    <xsl:import href="../naw/2_hl7_naw_include.xsl"/>
     <xsl:import href="../../util/mp-functions.xsl"/>
-    <!--     <xsl:import href="../../util/datetime.xsl"/>-->
+    <!--         <xsl:import href="../../util/datetime.xsl"/>-->
 
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
@@ -1594,8 +1593,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:attribute name="classCode">AGNT</xsl:attribute>
         <code code="407542009" codeSystem="{$oidSNOMEDCT}" displayName="Informal carer (person)"/>
         <relatedPerson classCode="PSN" determinerCode="INSTANCE">
-            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
-                <xsl:with-param name="naamgegevens" select="./naamgegevens"/>
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
+                <xsl:with-param name="naamgegevens" select="naamgegevens"/>
             </xsl:call-template>
         </relatedPerson>
     </xsl:template>
@@ -1690,7 +1689,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <xsl:for-each select="(zorgverlener_naam | naamgegevens | .)[naamgegevens[not(naamgegevens)][.//(@value | @code | @nullFlavor)]]">
             <assignedPerson>
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
                     <xsl:with-param name="naamgegevens" select="naamgegevens"/>
                 </xsl:call-template>
             </assignedPerson>
@@ -1720,9 +1719,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <xsl:for-each select="((zorgverlener_naam/naamgegevens) | (.//naamgegevens[not(child::naamgegevens)]))[.//(@value | @code | @nullFlavor)]">
             <assignedPerson>
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
-                    <xsl:with-param name="naamgegevens" select="."/>
-                </xsl:call-template>
+                <name>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
+                        <xsl:with-param name="naamgegevens" select="."/>
+                    </xsl:call-template>
+                </name>
             </assignedPerson>
         </xsl:for-each>
         <xsl:for-each select="./(zorgaanbieder/zorgaanbieder | zorgaanbieder[not(zorgaanbieder)])[.//(@value | @code | @nullFlavor)]">
@@ -2382,8 +2383,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>HL7NL PIVL_TS Toedieningsduur. Creates contents of a PIVL_TS element (such as effectiveTime or effectiveTime/comp). Assumed context is toedieningsschema</xd:desc>
         <xd:param name="in">Input node (should be one ada element toedieningsschema). Defaults to context element.</xd:param>
-        <xd:param name="toedientijd">Optional. The administration time (toedientijd) belonging to this administration duration (toedieningsduur). 
-            This param is needed because in HL7 there may be one start time per PIVL_TS where the dataset allows for multiple.</xd:param>
+        <xd:param name="toedientijd">Optional. The administration time (toedientijd) belonging to this administration duration (toedieningsduur). This param is needed because in HL7 there may be one start time per PIVL_TS where the dataset allows for multiple.</xd:param>
         <xd:param name="operator"/>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9161_20161110085716" match="toedieningsschema" mode="HandleCDAToedieningsduur">
@@ -2529,7 +2529,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="zorgverlener_naam[naamgegevens] | naamgegevens[naamgegevens] | .[naamgegevens[not(naamgegevens)]]">
             <assignedPerson>
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.101.10.1_20141106000000">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
                     <xsl:with-param name="naamgegevens" select="naamgegevens"/>
                 </xsl:call-template>
             </assignedPerson>
@@ -3009,8 +3009,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template for Medicatieafspraak resuable parts 1 for MP 9.0.8 due to https://bits.nictiz.nl/browse/MP-57: 
-            cancelled indicator (geannuleerd indicator) has been removed</xd:desc>
+        <xd:desc>Template for Medicatieafspraak resuable parts 1 for MP 9.0.8 due to https://bits.nictiz.nl/browse/MP-57: cancelled indicator (geannuleerd indicator) has been removed</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9184_20191121170300" match="medicatieafspraak | medication_agreement">
         <!-- MP CDA Medicatieafspraak onderdelen 1 -->
@@ -3303,7 +3302,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> Medicatiegebruik inhoud  - vanaf MP 9.1.0</xd:desc>
+        <xd:desc> Medicatiegebruik inhoud - vanaf MP 9.1.0</xd:desc>
         <xd:param name="in">ada element voor medicatiegebruik</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9279_20191121141551" match="medicatie_gebruik" mode="HandleMGBContents910">
