@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?>
+<?xml-model href="../schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" phase="#ALL" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
+    <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
+    <statusCode nullFlavor="NI"/>
+    <recordTarget>
+        <patientRole>
+            <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+            <patient>
+                <name>
+                    <given>Joris</given>
+                    <family>Hansman</family>
+                </name>
+                <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                <birthTime value="19840512"/>
+                <!-- meerlingindicator -->
+                <multipleBirthInd xmlns="urn:hl7-org:sdtc" value="false"/>
+            </patient>
+        </patientRole>
+    </recordTarget>
+    <!-- Medicatieafspraak -->
+    <component typeCode="COMP">
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+            <!-- identificatie -->
+            <id extension="#MB_01h#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <!-- mp-9581 Omschrijving -->
+            <text mediaType="text/plain">Vanaf 30 juli 2016, tot nader order, 1 maal daags 1 stuk</text>
+            <!-- Gebruiksperiode -->
+            <effectiveTime xsi:type="IVL_TS">
+                <low value="20160730"/>
+                <high nullFlavor="NI"/>
+            </effectiveTime>
+            <!-- 19941 Toedieningsweg -->
+            <routeCode code="12" displayName="rectaal" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+            <!-- Afgesproken geneesmiddel -->
+            <consumable>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="6939" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="Metoclopramide zetpil 20mg">
+                            <translation code="63630" displayName="METOCLOPRAMIDE ZETPIL 20MG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </consumable>
+            <!-- voorschrijver -->
+            <author>
+                <!-- Afspraakdatum -->
+                <time value="20160623165423"/>
+                <assignedAuthor>
+                    <!-- Zorgverlener identificatie -->
+                    <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+                    <!-- Specialisme -->
+                    <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                    <assignedPerson>
+                        <!-- ZorgverlenerNaam -->
+                        <name>Dr Jansen</name>
+                    </assignedPerson>
+                    <!-- Zorgaanbieder -->
+                    <representedOrganization>
+                        <!-- Zorgaanbieder identificatie -->
+                        <id root="1.2.3.4" extension="URAnummer"/>
+                        <name>Ziekenhuis zus en zo</name>
+                        <addr use="WP">
+                            <streetName>Dorpsstraat</streetName>
+                            <houseNumber>10</houseNumber>
+                            <postalCode>1111 AA</postalCode>
+                            <city>Ons Dorp</city>
+                        </addr>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!-- Reden afspraak -->
+            <!--Doseerinstructie-->
+            <entryRelationship typeCode="COMP">
+                <sequenceNumber value="1"/>
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                    <effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+                        <hl7nl:frequency>
+                            <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                            <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                        </hl7nl:frequency>
+                    </effectiveTime>
+                    <doseQuantity>
+                        <center value="1" unit="1">
+                            <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                        </center>
+                    </doseQuantity>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!-- Relatie naar afspraak of gebruik -->
+            <entryRelationship typeCode="REFR">
+                <!-- Medicatieafspraak -->
+                <!--            <substanceAdministration moodCode="RQO" classCode="SBADM">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+               <id root="1.2.3.999" extension="MA_ID"/>
+               <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+-->
+                <!-- Toedieningsafspraak -->
+                <!--            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
+               <id extension="UniqueID" root="1.2.3.999"/>
+               <code displayName="Toedieningsafspraak" code="422037009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>-->
+                <!-- Medicatiegebruik -->
+                <substanceAdministration classCode="SBADM" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9176"/>
+                    <id extension="REF2GEBRUIK" root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+                    <code code="6" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" displayName="Medicatiegebruik"/>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_01h"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </substanceAdministration>
+    </component>
+    <!-- Verstrekkingsverzoek -->
+    <component typeCode="COMP">
+        <supply classCode="SPLY" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
+            <!-- identificatie -->
+            <id extension="#MB_01h#MA_01#VV_01" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            <code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="2.16.840.1.113883.6.96"/>
+            <!-- aantal herhalingen -->
+            <repeatNumber value="1"/>
+            <!-- te verstrekken hoeveelheid -->
+            <quantity value="40" unit="1">
+                <translation value="40" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+            </quantity>
+            <!-- verbruiksperiode -->
+            <expectedUseTime>
+                <width value="40" unit="d"/>
+            </expectedUseTime>
+            <!-- Te verstrekken geneesmiddel -->
+            <product>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="6939" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="Metoclopramide zetpil 20mg">
+                            <translation code="63630" displayName="METOCLOPRAMIDE ZETPIL 20MG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </product>
+            <!-- beoogd verstrekker -->
+            <performer>
+                <assignedEntity>
+                    <id nullFlavor="NI"/>
+                    <representedOrganization>
+                        <id root="2.16.528.1.1007.3.3" extension="01236578"/>
+                        <name>Apotheek De Gulle Gaper</name>
+                    </representedOrganization>
+                </assignedEntity>
+            </performer>
+            <!-- Auteur / zorgverlener -->
+            <author>
+                <!-- datum verstrekkingsverzoek -->
+                <time value="20160623165423"/>
+                <assignedAuthor>
+                    <!-- identificatie -->
+                    <id extension="006797896" root="2.16.528.1.1007.3.1"/>
+                    <!-- specialisme -->
+                    <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                    <assignedPerson>
+                        <!-- Naam -->
+                        <name>
+                            <given qualifier="IN">J.</given>
+                            <prefix qualifier="VV">van </prefix>
+                            <family>Beek</family>
+                        </name>
+                    </assignedPerson>
+                    <representedOrganization>
+                        <id root="1.2.3.999" extension="0126423"/>
+                        <name>Ziekenhuis Dorpstraat</name>
+                        <addr use="WP">
+                            <streetName>Dorpsstraat</streetName>
+                            <houseNumber>10</houseNumber>
+                            <postalCode>1111 AA</postalCode>
+                            <city>Ons Dorp</city>
+                        </addr>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!-- afleverlocatie -->
+            <participant typeCode="DST">
+                <participantRole classCode="SDLOC">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
+                    <addr>
+                        <desc>Let op! Werk aan de weg. Omleiding staat aangegeven.</desc>
+                        <streetName>Prikstraat</streetName>
+                        <houseNumber>12</houseNumber>
+                        <city>Amsterdam</city>
+                    </addr>
+                </participantRole>
+            </participant>
+            <entryRelationship typeCode="COMP">
+                <act classCode="ACT" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9093"/>
+                    <code nullFlavor="OTH">
+                        <originalText>aanvullende wens in vrije tekst</originalText>
+                    </code>
+                </act>
+            </entryRelationship>
+            <!-- Toelichting -->
+            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
+                    <code code="48767-8" displayName="Toelichting" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                    <text mediaType="text/plain">Toelichting bij verstrekkingsverzoek</text>
+                </act>
+            </entryRelationship>
+            <!-- relatie naar MA -->
+            <entryRelationship typeCode="REFR">
+                <substanceAdministration moodCode="RQO" classCode="SBADM">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                    <id extension="#MB_01h#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!-- nog een relatie naar MA -->
+            <entryRelationship typeCode="REFR">
+                <substanceAdministration moodCode="RQO" classCode="SBADM">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                    <id extension="#MB_01h#MA_01a" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <code code="16076005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medicatieafspraak"/>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_01h"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </supply>
+    </component>
+    <!-- Toedieningsafspraak -->
+    <component typeCode="COMP">
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9259"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9256"/>
+            <id extension="1546339-f6753t65r" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <code code="422037009" displayName="Toedieningsafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <text mediaType="text/plain">Vanaf 30 juli 2016, tot nader order, 1 maal daags 1 stuk. Voorzichtig inbrengen.</text>
+            <!-- Gebruiksperiode -->
+            <effectiveTime xsi:type="IVL_TS">
+                <low value="20160730"/>
+                <high nullFlavor="NI"/>
+            </effectiveTime>
+            <routeCode code="12" displayName="rectaal" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+            <consumable>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="14983265" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="PRIMPERAN ZETPIL 20MG">
+                            <translation code="229709" displayName="PRIMPERAN ZETPIL 20MG" codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK"/>
+                            <translation code="6939" displayName="METOCLOPRAMIDE ZETPIL 20MG" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK"/>
+                            <translation code="63630" displayName="METOCLOPRAMIDE ZETPIL 20MG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </consumable>
+            <!-- verstrekker -->
+            <author>
+                <!-- Afspraakdatum -->
+                <time value="20160723095412"/>
+                <assignedAuthor>
+                    <id nullFlavor="NI"/>
+                    <!-- Zorgaanbieder -->
+                    <representedOrganization>
+                        <!-- Zorgaanbieder identificatie -->
+                        <id root="2.16.528.1.1007.3.3" extension="22343221"/>
+                        <name>Apotheek Boomsma</name>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!-- Reden -->
+            <entryRelationship typeCode="RSON">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9083"/>
+                    <code code="3" displayName="Reden toedieningsafspraak" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+                    <text mediaType="text/plain">Reden in vrije tekst</text>
+                </observation>
+            </entryRelationship>
+            <!-- Aanvullende instructie -->
+            <entryRelationship typeCode="SPRT">
+                <act classCode="ACT" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
+                    <code nullFlavor="OTH">
+                        <originalText>Voorzichtig inbrengen</originalText>
+                    </code>
+                </act>
+            </entryRelationship>
+            <!-- Aanvullende informatie -->
+            <entryRelationship typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9175"/>
+                    <code code="12" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" displayName="Aanvullende informatie Toedieningsafspraak"/>
+                    <value xsi:type="CE" code="10" displayName="Gebruiksinstructie gegeven" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053"/>
+                </observation>
+            </entryRelationship>
+            <!-- Toelichting bij toedieningsafspraak -->
+            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
+                    <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Toelichting"/>
+                    <text>Tekstuele toelichting bij deze toedieningsafspraak</text>
+                </act>
+            </entryRelationship>
+            <!--Doseerinstructie-->
+            <entryRelationship typeCode="COMP">
+                <sequenceNumber value="1"/>
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                    <effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+                        <hl7nl:frequency>
+                            <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                            <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                        </hl7nl:frequency>
+                    </effectiveTime>
+                    <doseQuantity>
+                        <center value="1" unit="1">
+                            <translation value="1" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+                        </center>
+                    </doseQuantity>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!-- Relatie naar medicatieafspraak -->
+            <entryRelationship typeCode="REFR">
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                    <id extension="#MB_01h#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_01h"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </substanceAdministration>
+    </component>
+</organizer>

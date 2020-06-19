@@ -27,6 +27,7 @@
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
         
+        <!-- sturen_medicatievoorschrift -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="schema.string" value="*${usecase.mv}*"/>
@@ -44,6 +45,7 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>       
 
+        <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="schema.string" value="*${usecase.mo}*"/>
@@ -62,14 +64,14 @@
         <!-- hl7 2 ada first -->
         <antcall target="convert_hl7_2_ada"/>
         
-        <!-- let's start the roundtript, so ada 2 hl7 -->
+        <!-- medicatievoorschrift -->
+        <!-- let's start the roundtrip, so ada 2 hl7 -->
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="xsl.name" value="../../../../ada_2_hl7/mp/${is.version}/${usecase.mv}/payload/${usecase.mv}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
-        </antcall>
-        
+        </antcall>        
         <!-- convert the resulting medicatievoorschrift organizer to CDA -->
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
@@ -78,21 +80,27 @@
             <param name="xsl.out" value="cda_instance_roundtrip"/>
         </antcall>
         
+        <!-- let's start the roundtrip for beschikbaarstellen_medicatiegegevens, so ada 2 hl7 -->
+        <antcall target="convert_hl7_2_ada_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.name" value="../../../../ada_2_hl7/mp/${is.version}/${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance_roundtrip"/>
+        </antcall>
+        
     </target>
 
     <target name="convert_hl7_2_ada">
 
-        <!-- convert medicatievoorschrift to organizer -->
+        <!-- convert medicatievoorschrift to ada -->
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="xsl.name" value="payload/${usecase.mv}_hl7_2_ada.xsl"/>
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
-        </antcall>
-        
-       
+        </antcall>     
 
-<!--        <!-\- convert medicatiegegevens -\->
+        <!-- convert medicatiegegevens -->
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="xsl.name" value="payload/${usecase.mg}_hl7_2_ada.xsl"/>
@@ -100,7 +108,7 @@
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
-        <!-\- convert medicatieoverzicht -\->
+        <!--<!-\- convert medicatieoverzicht -\->
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="xsl.name" value="payload/${usecase.mo}_hl7_2_ada.xsl"/>
@@ -118,7 +126,9 @@
         <property name="xsl.output" value="${sub.build.dir}/${xsl.out}"/>
 
         <echo>Deleting previous results, if any</echo>
-        <delete dir="${xsl.output}"/>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.xml"/>
+        </delete>
 
         <sequential>
             <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>

@@ -7,8 +7,8 @@
     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9237"/>
     <id extension="someUniqueID" root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9240.1.2.3.999"/>
     <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medication section (record artifact)"/>
-    <title>Voorschrift Joris Hansman op 23 jun 2016</title>
-    <effectiveTime value="20160623165423"/>
+    <title>Voorschrift Joris Hansman op 23 juni 2016</title>
+    <effectiveTime value="20160623141518"/>
     <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
     <languageCode code="nl-NL"/>
     <recordTarget>
@@ -27,7 +27,7 @@
         </patientRole>
     </recordTarget>
     <author>
-        <time value="20160623165423"/>
+        <time value="20160613080000"/>
         <assignedAuthor>
             <!--identificatie-->
             <id extension="006797896" root="2.16.528.1.1007.3.1"/>
@@ -43,28 +43,18 @@
             </assignedPerson>
             <!--Zorgaanbieder-->
             <representedOrganization>
-                <id root="1.2.3.999" extension="0126423"/>
-                <name>Ziekenhuis Dorpstraat</name>
-                <addr use="WP">
-                    <streetName>Dorpsstraat</streetName>
-                    <houseNumber>10</houseNumber>
-                    <postalCode>1111 AA</postalCode>
-                    <city>Ons Dorp</city>
-                </addr>
+                <!--Zorgaanbieder identificatie-->
+                <id root="1.2.3.4" extension="URAnummer"/>
+                <name>Ziekenhuis zus en zo</name>
             </representedOrganization>
         </assignedAuthor>
     </author>
+    <!--Document wordt beheerd door de apotheker-->
     <custodian>
         <assignedCustodian>
             <representedCustodianOrganization>
                 <id root="1.2.3.4" extension="URAnummer"/>
                 <name>Ziekenhuis zus en zo</name>
-            <addr use="WP">
-                    <streetName>Dorpsstraat</streetName>
-                    <houseNumber>10</houseNumber>
-                    <postalCode>1111 AA</postalCode>
-                    <city>Ons Dorp</city>
-                </addr>
             </representedCustodianOrganization>
         </assignedCustodian>
     </custodian>
@@ -88,7 +78,7 @@
                             <routeCode code="12" displayName="rectaal" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
                             <!-- Afgesproken geneesmiddel -->
                             <consumable>
-                                <manufacturedProduct>
+                                <manufacturedProduct classCode="MANU">
                                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                                     <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
                                         <code code="6939" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="Metoclopramide zetpil 20mg">
@@ -143,7 +133,7 @@
                                     </doseQuantity>
                                     <consumable xsi:nil="true"/>
                                     <precondition>
-                                        <criterion>
+                                        <criterion classCode="OBS">
                                             <code code="1137" displayName="zo nodig" codeSystem="2.16.840.1.113883.2.4.4.5"/>
                                         </criterion>
                                     </precondition>
@@ -167,7 +157,7 @@
                             <id extension="#MB_01a#MA_01#VV_01" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                             <code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="2.16.840.1.113883.6.96"/>
                             <!-- aantal herhalingen -->
-                            <repeatNumber value="1"/>
+                            <repeatNumber value="0"/>
                             <!-- te verstrekken hoeveelheid -->
                             <quantity value="40" unit="1">
                                 <translation value="40" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
@@ -188,7 +178,7 @@
                                 </manufacturedProduct>
                             </product>
                             <!-- beoogd verstrekker -->
-                            <performer>
+                            <performer typeCode="PRF">
                                 <assignedEntity>
                                     <id nullFlavor="NI"/>
                                     <representedOrganization>

@@ -7,8 +7,8 @@
     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9237"/>
     <id extension="someUniqueID" root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9240.1.2.3.999"/>
     <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medication section (record artifact)"/>
-    <title>Voorschrift Joris Hansman op 23 jun 2016</title>
-    <effectiveTime value="20160623165423"/>
+    <title>Voorschrift Joris Hansman op 23 juni 2016</title>
+    <effectiveTime value="20160623141518"/>
     <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
     <languageCode code="nl-NL"/>
     <recordTarget>
@@ -27,7 +27,7 @@
         </patientRole>
     </recordTarget>
     <author>
-        <time value="20160623165423"/>
+        <time value="20160613080000"/>
         <assignedAuthor>
             <!--identificatie-->
             <id extension="006797896" root="2.16.528.1.1007.3.1"/>
@@ -38,20 +38,14 @@
                 <name>
                     <given qualifier="IN">J.</given>
                     <prefix qualifier="VV">van </prefix>
-                    <family qualifier="BR">Beek</family>
+                    <family>Beek</family>
                 </name>
             </assignedPerson>
             <!--Zorgaanbieder-->
             <representedOrganization>
                 <!--Zorgaanbieder identificatie-->
-                <id extension="0126423" root="1.2.3.999"/>
-                <name>Ziekenhuis Dorpstraat</name>
-                <addr use="WP">
-                    <streetName>Dorpsstraat</streetName>
-                    <houseNumber>10</houseNumber>
-                    <postalCode>1111 AA</postalCode>
-                    <city>Ons Dorp</city>
-                </addr>
+                <id root="1.2.3.4" extension="URAnummer"/>
+                <name>Ziekenhuis zus en zo</name>
             </representedOrganization>
         </assignedAuthor>
     </author>
@@ -61,12 +55,6 @@
             <representedCustodianOrganization>
                 <id root="1.2.3.4" extension="URAnummer"/>
                 <name>Ziekenhuis zus en zo</name>
-                <addr use="WP">
-                    <streetName>Dorpsstraat</streetName>
-                    <houseNumber>10</houseNumber>
-                    <postalCode>1111 AA</postalCode>
-                    <city>Ons Dorp</city>
-                </addr>
             </representedCustodianOrganization>
         </assignedCustodian>
     </custodian>
@@ -94,7 +82,7 @@
                             <routeCode code="12" displayName="rectaal" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
                             <!-- Afgesproken geneesmiddel -->
                             <consumable>
-                                <manufacturedProduct>
+                                <manufacturedProduct classCode="MANU">
                                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
                                     <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
                                         <code code="6939" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="Metoclopramide zetpil 20mg">
@@ -159,7 +147,7 @@
                                     </doseQuantity>
                                     <consumable xsi:nil="true"/>
                                     <precondition>
-                                        <criterion>
+                                        <criterion classCode="OBS">
                                             <code code="1137" displayName="zo nodig" codeSystem="2.16.840.1.113883.2.4.4.5"/>
                                         </criterion>
                                     </precondition>
@@ -204,7 +192,7 @@
                                 </manufacturedProduct>
                             </product>
                             <!-- beoogd verstrekker -->
-                            <performer>
+                            <performer typeCode="PRF">
                                 <assignedEntity>
                                     <id nullFlavor="NI"/>
                                     <representedOrganization>
@@ -262,13 +250,7 @@
                                     </code>
                                 </act>
                             </entryRelationship>
-                             <entryRelationship typeCode="SUBJ" inversionInd="true">
-                                <act classCode="ACT" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
-                                    <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Toelichting"/>
-                                    <text>Toelichting bij verstrekkingsverzoek</text>
-                                </act>
-                            </entryRelationship>
+                            <!-- relatie naar MA -->
                             <entryRelationship typeCode="REFR">
                                 <substanceAdministration classCode="SBADM" moodCode="RQO">
                                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
@@ -277,7 +259,15 @@
                                     <consumable xsi:nil="true"/>
                                 </substanceAdministration>
                             </entryRelationship>
-                             <entryRelationship typeCode="COMP" inversionInd="true">
+                            <!-- Toelichting -->
+                            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
+                                    <code code="48767-8" displayName="Toelichting" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                                    <text mediaType="text/plain">Toelichting bij verstrekkingsverzoek</text>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP" inversionInd="true">
                                 <procedure classCode="PROC" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                                     <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_01c"/>
@@ -315,7 +305,7 @@
                                 </manufacturedProduct>
                             </product>
                             <!-- beoogd verstrekker -->
-                            <performer>
+                            <performer typeCode="PRF">
                                 <assignedEntity>
                                     <id nullFlavor="NI"/>
                                     <representedOrganization>
@@ -371,13 +361,7 @@
                                     <code code="1" displayName="Spoed" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"/>
                                 </act>
                             </entryRelationship>
-                            <entryRelationship typeCode="SUBJ" inversionInd="true">
-                                <act classCode="ACT" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
-                                    <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Toelichting"/>
-                                    <text>Toelichting bij verstrekkingsverzoek</text>
-                                </act>
-                            </entryRelationship>
+                            <!-- relatie naar MA -->
                             <entryRelationship typeCode="REFR">
                                 <substanceAdministration classCode="SBADM" moodCode="RQO">
                                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
@@ -386,7 +370,15 @@
                                     <consumable xsi:nil="true"/>
                                 </substanceAdministration>
                             </entryRelationship>
-                             <entryRelationship typeCode="COMP" inversionInd="true">
+                            <!-- Toelichting -->
+                            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
+                                    <code code="48767-8" displayName="Toelichting" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                                    <text mediaType="text/plain">Toelichting bij verstrekkingsverzoek</text>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP" inversionInd="true">
                                 <procedure classCode="PROC" moodCode="EVN">
                                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                                     <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_01c"/>
