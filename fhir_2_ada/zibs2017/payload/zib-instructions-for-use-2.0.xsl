@@ -9,7 +9,7 @@
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xsl:variable name="zib-Medication-RepeatPeriodCyclicalSchedule" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule'"/>
     

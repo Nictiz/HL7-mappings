@@ -20,7 +20,7 @@
     </xsl:template>
         
     <xsl:template match="f:code" mode="zib-PharmaceuticalProduct-2.0">
-        <xsl:variable name="addOriginalText" select="(:f:extension/@url=$urlExtHL7NullFlavor and:) not(preceding-sibling::f:extension[@url=$zib-Product-Description]) and not(following-sibling::f:form|following-sibling::f:ingredient)"/>   
+        <xsl:variable name="addOriginalText" select="not(preceding-sibling::f:extension[@url=$zib-Product-Description]) and not(following-sibling::f:form|following-sibling::f:ingredient) and not(f:coding/f:display)"/>   
         <xsl:variable name="addOriginalTextValue" select="if ($addOriginalText) then f:text/@value else ''"/>
         <xsl:choose>
             <xsl:when test="$addOriginalText and not(f:coding/f:display) and not(f:extension/@url=$urlExtHL7NullFlavor)">
