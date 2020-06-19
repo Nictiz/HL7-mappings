@@ -406,14 +406,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    
     <!-- Composition (nu alleen nog prio1) -->
     <xsl:variable name="composition" as="element(f:Composition)*">
-        <xsl:for-each select="//prio1_huidige_zwangerschap | //prio1_vorige_zwangerschap">
+        <xsl:for-each select="//prio1_huidige_zwangerschap | //prio1_vorige_zwangerschap | //bevallingsgegevens_23">
             <xsl:call-template name="bc-composition">
                 <xsl:with-param name="logicalId">
                     <xsl:value-of select="concat('samenvatting-zwangerschap', $pregnancyId)"/>
                 </xsl:with-param>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                <xsl:with-param name="adaZorgverlener" select="$zorgverlener-ada"/>
                 <xsl:with-param name="entries">
-                    <xsl:copy-of select="$patients/f:entry | $organizations/f:entry | $practitioners/f:entry | $practitionerRoles/f:entry | $referralRequests/f:entry | $episodesofcare/f:entry | $conditions/f:entry | $procedures/f:entry | $observations/f:entry"/>
+                    <xsl:copy-of select="$patients | $organizations| $practitioners | $practitionerRoles | $referralRequests | $episodesofcare | $conditions | $procedures | $observations"/>
                 </xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>

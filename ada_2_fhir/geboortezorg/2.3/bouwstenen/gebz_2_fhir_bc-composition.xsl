@@ -26,9 +26,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of an Composition resource</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="bc-composition" match="prio1_huidige_zwangerschap | prio1_vorige_zwangerschap" mode="doCompositionResource" as="element()">
+    <xsl:template name="bc-composition" match="prio1_huidige_zwangerschap | prio1_vorige_zwangerschap | bevallingsgegevens_23" mode="doCompositionResource" as="element()">
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient"/>
+        <xsl:param name="adaZorgverlener"/>
         <xsl:param name="entries"/>
         <xsl:variable name="elementName" select="name(.)"/>
                 
@@ -52,9 +53,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each> 
             <!-- TODO: ophalen datum uit transactie -->
             <!--<date value="2012-01-04T09:10:14Z"/> -->
-            <author> 
-                <reference value="Practitioner/{$entries/f:Practitioner/f:id/@value}"/>
-            </author> 
+            <xsl:for-each select="$adaZorgverlener">
+                <author> 
+                    <xsl:call-template name="practitionerReference"/>
+                </author>                 
+            </xsl:for-each>
             <title value="Example {replace($elementName,'_',' ')}"/> 
             <section> 
                 <xsl:for-each select="$entries">
@@ -64,11 +67,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </Composition> 
     </xsl:template>
     
-    <xsl:template match="f:Resource/* | f:Patient | f:Organization | f:Practitioner | f:PractitionerRole | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure" mode="doCreateCompositionEntry">
-        <entry> 
-            <reference value="{concat(name(.),'/',f:id/@value)}"/>
-            <!-- TODO: hier doReferenceX aanroepen per type evt aparte templates per type maken -->
-        </entry>   
+    <xsl:template match="/*" mode="doCreateCompositionEntry"> <!--f:Resource/* | f:Patient | f:Organization | f:Practitioner | f:PractitionerRole | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure-->
+        <xsl:for-each select="f:entry">
+            <entry> 
+                <reference value="{concat(f:resource/*/name(.),'/',f:resource/*/f:id/@value)}"/>
+                <display value="{../reference-display}"/>
+            </entry>               
+        </xsl:for-each>
     </xsl:template>   
          
 </xsl:stylesheet>
