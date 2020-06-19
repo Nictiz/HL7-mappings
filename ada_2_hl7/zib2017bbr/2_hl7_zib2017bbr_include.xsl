@@ -138,9 +138,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc> name person NL - generic </xd:desc>
         <xd:param name="naamgegevens">ada naamgegevens element</xd:param>
+        <xd:param name="unstructuredNameElement">if your ada definition has an unstructuredNameElement, give the name of it, defaults to ongestructureerde_naam</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000" match="naamgegevens">
         <xsl:param name="naamgegevens" select="."/>
+        <xsl:param name="unstructuredNameElement" as="xs:string?">ongestructureerde_naam</xsl:param>
 
         <xsl:variable name="varNaamgegevens" select="
                 if ($naamgegevens/naamgegevens) then
@@ -149,135 +151,144 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     $naamgegevens"/>
 
         <xsl:for-each select="$varNaamgegevens[.//(@value | @code | @nullFlavor)]">
-            <xsl:for-each select="voornamen[.//(@value | @code | @nullFlavor)]">
-                <given qualifier="BR">
-                    <xsl:value-of select="@value"/>
-                </given>
-            </xsl:for-each>
-            <xsl:for-each select="initialen[.//(@value | @code | @nullFlavor)]">
-                <!-- in HL7v3 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
-                <!-- https://hl7.nl/wiki/index.php?title=DatatypesR1:PN -->
-                <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier verwijderen van de officiële voornamen -->
-                <!-- "Esther" "E.F.A." of "Esther" "E F A" wordt "Esther" "F.A.",
+            <xsl:variable name="structuredContent" as="xs:boolean" select="string-length(string-join(*[not(local-name() = $unstructuredNameElement)]//(@value|@code),'')) gt 0"/>
+            <xsl:choose>
+                <xsl:when test="not($structuredContent) and string-length(*[local-name() = $unstructuredNameElement]/@value) gt 0">
+                    <!-- we only have an unstructured name -->
+                    <xsl:value-of select="*[local-name() = $unstructuredNameElement]/@value"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="voornamen[.//(@value | @code | @nullFlavor)]">
+                        <given qualifier="BR">
+                            <xsl:value-of select="@value"/>
+                        </given>
+                    </xsl:for-each>
+                    <xsl:for-each select="initialen[.//(@value | @code | @nullFlavor)]">
+                        <!-- in HL7v3 mogen de initialen van officiële voornamen niet herhaald / gedupliceerd worden in het initialen veld -->
+                        <!-- https://hl7.nl/wiki/index.php?title=DatatypesR1:PN -->
+                        <!-- in de zib moeten de initialen juist compleet zijn, dus de initialen hier verwijderen van de officiële voornamen -->
+                        <!-- "Esther" "E.F.A." of "Esther" "E F A" wordt "Esther" "F.A.",
                      "Esther Feline" "E.F.A." wordt "Esther Feline" "A." -->
-                <!-- Een voornaam met een streepje wordt gezien als één naam met één bijbehorend initiaal
+                        <!-- Een voornaam met een streepje wordt gezien als één naam met één bijbehorend initiaal
                      "Albert-Jan" "A.D." wordt "Albert-Jan" "D.",
                      "Albert-Jan" "A.J.D." wordt "Albert-Jan" "J.D.", 
                      "Albert-Jan" "A.J." wordt "Albert-Jan" "J.",
                      "Albert-Jan" "A." wordt "Albert-Jan" ""
                 -->
-                <!-- Als de ada instance niet correct is gevuld en het initiaal van de ook doorgegeven voornamen niet in de juiste volgorde in de initialen staat, 
+                        <!-- Als de ada instance niet correct is gevuld en het initiaal van de ook doorgegeven voornamen niet in de juiste volgorde in de initialen staat, 
                      dan lukt het verwijderen van initialen niet goed. 
                      We zijn dus sterk afhankelijk van de kwaliteit van implementaties. -->
-                <xsl:variable name="adaFirstNameInitials" as="xs:string?">
-                    <xsl:variable name="init" as="xs:string*">
-                        <xsl:for-each select="../voornamen/tokenize(normalize-space(@value), '\s')">
-                            <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
-                        </xsl:for-each>
-                    </xsl:variable>
-                    <xsl:value-of select="string-join($init, '')"/>
-                </xsl:variable>
-                <xsl:variable name="adaInitials" as="xs:string">
-                    <xsl:variable name="init" as="xs:string*">
-                        <xsl:for-each select="tokenize(normalize-space(replace(@value, '\.', ' ')), '\s')">
-                            <xsl:value-of select="concat(., '.')"/>
-                        </xsl:for-each>
-                    </xsl:variable>
-                    <xsl:value-of select="string-join($init, '')"/>
-                </xsl:variable>
-                <xsl:variable name="hl7Initials">
+                        <xsl:variable name="adaFirstNameInitials" as="xs:string?">
+                            <xsl:variable name="init" as="xs:string*">
+                                <xsl:for-each select="../voornamen/tokenize(normalize-space(@value), '\s')">
+                                    <xsl:value-of select="concat(substring(., 1, 1), '.')"/>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <xsl:value-of select="string-join($init, '')"/>
+                        </xsl:variable>
+                        <xsl:variable name="adaInitials" as="xs:string">
+                            <xsl:variable name="init" as="xs:string*">
+                                <xsl:for-each select="tokenize(normalize-space(replace(@value, '\.', ' ')), '\s')">
+                                    <xsl:value-of select="concat(., '.')"/>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <xsl:value-of select="string-join($init, '')"/>
+                        </xsl:variable>
+                        <xsl:variable name="hl7Initials">
+                            <xsl:choose>
+                                <xsl:when test="string-length($adaFirstNameInitials) gt 0 and string-length($adaInitials) gt 0">
+                                    <xsl:value-of select="replace($adaInitials, concat('^', $adaFirstNameInitials), '')"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$adaInitials"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <xsl:if test="$hl7Initials">
+                            <given qualifier="IN">
+                                <xsl:value-of select="nf:addEnding($hl7Initials, '.')"/>
+                            </given>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:for-each select="roepnaam[.//(@value | @code | @nullFlavor)]">
+                        <given qualifier="CL">
+                            <xsl:value-of select="@value"/>
+                        </given>
+                    </xsl:for-each>
+
                     <xsl:choose>
-                        <xsl:when test="string-length($adaFirstNameInitials) gt 0 and string-length($adaInitials) gt 0">
-                            <xsl:value-of select="replace($adaInitials, concat('^', $adaFirstNameInitials), '')"/>
+                        <!-- Eigen geslachtsnaam -->
+                        <xsl:when test="naamgebruik/@code = 'NL1'">
+                            <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
+                                <xsl:call-template name="_prefix"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
+                                <family qualifier="BR">
+                                    <xsl:value-of select="./@value"/>
+                                </family>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <!-- 	Geslachtsnaam partner -->
+                        <xsl:when test="naamgebruik/@code = 'NL2'">
+                            <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
+                                <xsl:call-template name="_prefix"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
+                                <family qualifier="SP">
+                                    <xsl:value-of select="./@value"/>
+                                </family>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
+                        <xsl:when test="naamgebruik/@code = 'NL3'">
+                            <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
+                                <xsl:call-template name="_prefix"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
+                                <family qualifier="SP">
+                                    <xsl:value-of select="./@value"/>
+                                </family>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
+                                <xsl:call-template name="_prefix"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
+                                <family qualifier="BR">
+                                    <xsl:value-of select="./@value"/>
+                                </family>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
+                        <xsl:when test="naamgebruik/@code = 'NL4'">
+                            <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
+                                <xsl:call-template name="_prefix"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
+                                <family qualifier="BR">
+                                    <xsl:value-of select="./@value"/>
+                                </family>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
+                                <xsl:call-template name="_prefix"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
+                                <family qualifier="SP">
+                                    <xsl:value-of select="./@value"/>
+                                </family>
+                            </xsl:for-each>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:value-of select="$adaInitials"/>
+                            <!-- we nemen aan NL1 - alleen de eigen naam -->
+                            <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
+                                <xsl:call-template name="_prefix"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
+                                <family qualifier="BR">
+                                    <xsl:value-of select="./@value"/>
+                                </family>
+                            </xsl:for-each>
                         </xsl:otherwise>
                     </xsl:choose>
-                </xsl:variable>
-                <xsl:if test="$hl7Initials">
-                    <given qualifier="IN">
-                        <xsl:value-of select="nf:addEnding($hl7Initials, '.')"/>
-                    </given>
-                </xsl:if>
-            </xsl:for-each>
-            <xsl:for-each select="roepnaam[.//(@value | @code | @nullFlavor)]">
-                <given qualifier="CL">
-                    <xsl:value-of select="@value"/>
-                </given>
-            </xsl:for-each>
-
-            <xsl:choose>
-                <!-- Eigen geslachtsnaam -->
-                <xsl:when test="naamgebruik/@code = 'NL1'">
-                    <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
-                             <xsl:call-template name="_prefix"/>
-                    </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
-                        <family qualifier="BR">
-                            <xsl:value-of select="./@value"/>
-                        </family>
-                    </xsl:for-each>
-                </xsl:when>
-                <!-- 	Geslachtsnaam partner -->
-                <xsl:when test="naamgebruik/@code = 'NL2'">
-                    <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
-                              <xsl:call-template name="_prefix"/>
-                    </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
-                        <family qualifier="SP">
-                            <xsl:value-of select="./@value"/>
-                        </family>
-                    </xsl:for-each>
-                </xsl:when>
-                <!-- Geslachtsnaam partner gevolgd door eigen geslachtsnaam -->
-                <xsl:when test="naamgebruik/@code = 'NL3'">
-                    <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
-          <xsl:call-template name="_prefix"/>
-       </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
-                        <family qualifier="SP">
-                            <xsl:value-of select="./@value"/>
-                        </family>
-                    </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
-                        <xsl:call-template name="_prefix"/>
-                      </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
-                        <family qualifier="BR">
-                            <xsl:value-of select="./@value"/>
-                        </family>
-                    </xsl:for-each>
-                </xsl:when>
-                <!-- Eigen geslachtsnaam gevolgd door geslachtsnaam partner -->
-                <xsl:when test="naamgebruik/@code = 'NL4'">
-                    <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
-                        <xsl:call-template name="_prefix"/>
-                    </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
-                        <family qualifier="BR">
-                            <xsl:value-of select="./@value"/>
-                        </family>
-                    </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam_partner/voorvoegsels_partner[.//(@value | @code | @nullFlavor)]">
-                        <xsl:call-template name="_prefix"/>
-                    </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam_partner/achternaam_partner[.//(@value | @code | @nullFlavor)]">
-                        <family qualifier="SP">
-                            <xsl:value-of select="./@value"/>
-                        </family>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- we nemen aan NL1 - alleen de eigen naam -->
-                    <xsl:for-each select="geslachtsnaam/voorvoegsels[.//(@value | @code | @nullFlavor)]">
-                        <xsl:call-template name="_prefix"/>
-                        </xsl:for-each>
-                    <xsl:for-each select="geslachtsnaam/achternaam[.//(@value | @code | @nullFlavor)]">
-                        <family qualifier="BR">
-                            <xsl:value-of select="./@value"/>
-                        </family>
-                    </xsl:for-each>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>

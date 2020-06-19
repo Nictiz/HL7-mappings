@@ -1691,6 +1691,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <assignedPerson>
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.100_20170602000000">
                     <xsl:with-param name="naamgegevens" select="naamgegevens"/>
+                    <xsl:with-param name="unstructuredNameElement">ongestructureerde_naam</xsl:with-param>
                 </xsl:call-template>
             </assignedPerson>
         </xsl:for-each>
@@ -2482,11 +2483,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:call-template>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>verstrekte_hoeveelheid and te verstrekken hoeveelheid in verstrekking(sverzoek) </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9165_20170118000000" match="verstrekte_hoeveelheid | te_verstrekken_hoeveelheid" mode="handleLogisticQuantity">
-        <!-- verstrekte_hoeveelheid -->
-        <!-- te verstrekken hoeveelheid -->
         <xsl:attribute name="value" select="aantal/@value"/>
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000_2">
             <xsl:with-param name="Gstd_unit" select="eenheid"/>
