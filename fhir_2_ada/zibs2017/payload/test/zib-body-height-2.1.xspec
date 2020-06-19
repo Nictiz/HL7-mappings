@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../zib-body-height-2.1.xsl">
+    
+    <x:scenario label="zib-body-height-2.1">
+        <x:context mode="zib-body-height-2.1">
+            <Observation xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight"/>
+                </meta>
+                <text/>
+                <status value="final"/>
+                <category>
+                    <coding>
+                        <system value="http://hl7.org/fhir/observation-category"/>
+                        <code value="vital-signs"/>
+                        <display value="Vital Signs"/>
+                    </coding>
+                </category>
+                <code>
+                    <coding>
+                        <system value="http://loinc.org"/>
+                        <code value="8302-2"/>
+                        <display value="lichaamslengte"/>
+                    </coding>
+                </code>
+                <subject>
+                    <reference value="urn:uuid:085f3749-abe3-11ea-1427-020000000000"/>
+                    <display value="A. XXX_Molenaars"/>
+                </subject>
+                <effectiveDateTime value="${{DATE, T, Y, -1}}T07:05:00+02:00"/>
+                <performer>
+                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="unknown"/>
+                    </extension>
+                    <display value="onbekend"/>
+                </performer>
+                <valueQuantity>
+                    <value value="155"/>
+                    <unit value="cm"/>
+                    <system value="http://unitsofmeasure.org"/>
+                    <code value="cm"/>
+                </valueQuantity>
+            </Observation>
+        </x:context>
+        <x:expect label="'lichaamslengte' element">
+            <lichaamslengte>
+                <lengte_waarde value="155"
+                    unit="cm"/>
+                <lengte_datum_tijd value="T-1Y{{07:05:00}}"
+                    datatype="datetime"/>
+            </lichaamslengte>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>

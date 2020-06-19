@@ -8,19 +8,25 @@
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
+    <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
+    <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>
     <xsl:import href="zib-instructions-for-use-2.0.xsl"/>
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
-    <xsl:import href="nl-core-organization-2.0.xsl"/>-->
+    <xsl:import href="nl-core-organization-2.0.xsl"/>
+    <xsl:import href="zib-body-height-2.1.xsl"/>
+    <xsl:import href="zib-body-weight-2.1.xsl"/>
+    <xsl:import href="zib-problem-2.1.xsl"/>
     
     <xsl:variable name="zib-MedicationAgreement" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement'"/>
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
     <xsl:variable name="stoptype-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType'"/>
     <xsl:variable name="periodofuse-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
     <xsl:variable name="basedonagreementoruse-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'"/>
+    <xsl:variable name="zib-MedicationUse-Duration" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
             
     <xd:doc>
         <xd:desc>Template for converting f:MedicationRequest to medicatieafspraak</xd:desc>
@@ -30,12 +36,26 @@
             <xsl:apply-templates select="f:extension[@url=$periodofuse-url]" mode="ext-zib-Medication-PeriodOfUse-2.0"/>
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <xsl:apply-templates select="f:authoredOn" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url=$zib-MedicationUse-Duration]" mode="ext-zib-MedicationUse-Duration-2.0"/>
+            <xsl:apply-templates select="f:status" mode="#current"/>
             <xsl:apply-templates select="f:modifierExtension[@url=$stoptype-url]" mode="ext-zib-Medication-Stop-Type-2.0"/>
             <xsl:apply-templates select="f:extension[@url=$basedonagreementoruse-url]" mode="#current"/>
+            <xsl:apply-templates select="f:context" mode="#current"/>
             <xsl:apply-templates select="f:requester" mode="#current"/>
+            <!-- reden afspraak -->
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
+            <!-- reden van voorschrijven -->
+            <xsl:apply-templates select="f:reasonReference" mode="#current"/>
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <xsl:apply-templates select="f:dosageInstruction" mode="zib-instructions-for-use-2.0"/>
+            <!-- lichaamslengte -->
+            <xsl:apply-templates select="f:supportingInformation" mode="resolve-bodyHeight"/>
+            <!-- lichaamsgewicht -->
+            <xsl:apply-templates select="f:supportingInformation" mode="resolve-bodyWeight"/>
+            <!-- aanvullende_informatie -->
+            <xsl:apply-templates select="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation']" mode="ext-zib-Medication-AdditionalInformation-2.0"/>
+            <!-- toelichting -->
+            <xsl:apply-templates select="f:note" mode="#current"/>
         </medicatieafspraak>
     </xsl:template>
     
@@ -59,6 +79,12 @@
             </xsl:attribute>
             <xsl:attribute name="datatype">datetime</xsl:attribute>
         </afspraakdatum>        
+    </xsl:template>
+    
+    <xsl:template match="f:status" mode="zib-MedicationAgreement-2.2">
+        <xsl:if test="@value='entered-in-error'">
+            <geannuleerd_indicator value="true"/>
+        </xsl:if>
     </xsl:template>
     
     <xd:doc>
@@ -102,7 +128,14 @@
             <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_staken'"/>
         </xsl:call-template>    
     </xsl:template>
-        
+    
+    <xsl:template match="f:reasonReference" mode="zib-MedicationAgreement-2.2">
+        <xsl:variable name="reference" select="f:reference/@value"/>
+        <reden_van_voorschrijven>
+            <!--<xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$reference]/f:Observation" mode="general-observation"/>-->
+            <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$reference]/f:resource/f:Condition[f:meta/f:profile/@value='http://nictiz.nl/fhir/StructureDefinition/zib-Problem']" mode="zib-problem-2.1"/>
+        </reden_van_voorschrijven>
+    </xsl:template>
     
     <xsl:template match="f:extension[@url=$basedonagreementoruse-url]" mode="zib-MedicationAgreement-2.2">
         <relatie_naar_afspraak_of_gebruik>
@@ -123,8 +156,22 @@
         </relatie_naar_afspraak_of_gebruik>
     </xsl:template>
     
+    <xsl:template match="f:context" mode="zib-MedicationAgreement-2.2">
+        <relaties_ketenzorg>
+            <xsl:for-each select="f:identifier">
+                <xsl:call-template name="Identifier-to-identificatie">
+                    <xsl:with-param name="adaElementName">identificatie_contactmoment</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+        </relaties_ketenzorg>
+    </xsl:template>
+    
     <xsl:template match="f:MedicationRequest/f:identifier | f:MedicationDispense/f:identifier | f:MedicationUse/f:identifier" mode="resolveBasedOnReference">
         <xsl:call-template name="Identifier-to-identificatie"/>
+    </xsl:template>
+    
+    <xsl:template match="f:note" mode="zib-MedicationAgreement-2.2">
+        <toelichting value="{f:text/@value}"></toelichting>
     </xsl:template>
     
 </xsl:stylesheet>
