@@ -116,11 +116,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
                 </meta>
                 <xsl:choose>
-                    <xsl:when test="ancestor::prio1_huidige_zwangerschap">
-                        <status value="active"/>
+                    <xsl:when test="ancestor::prio1_vorige_zwangerschap">
+                        <status value="finished"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <status value="finished"/>        
+                        <status value="active"/>        
                     </xsl:otherwise>
                 </xsl:choose>
                 <type>
