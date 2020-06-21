@@ -48,10 +48,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <!-- relative Date when first character is 'T' -->
                 <xsl:when test="starts-with($inputDateTime, 'T')">
-                    <xsl:value-of select="normalize-space(nf:calculate-t-date($inputDateTime, $inputDateT))"/>
+                    <xsl:value-of select="nf:calculate-t-date($inputDateTime, $inputDateT)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="normalize-space($inputDateTime)"/>
+                    <xsl:value-of select="$inputDateTime"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
