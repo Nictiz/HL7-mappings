@@ -7,18 +7,18 @@
                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                  xsi:schemaLocation="urn:hl7-org:v3 file:/Users/ahenket/Documents/Nictiz/AORTA/branches/Onderhoud_JGZ_v612/XML/schemas/REPC_IN902120NL.xsd">
    <id extension="{$messageId}" root="{$messageIdRoot}"/>
-   <creationTime value="20200621184345"/>
+   <creationTime value="20200621222718"/>
    <versionCode code="NICTIZEd2005-Okt"/>
    <interactionId extension="REPC_IN902120NL" root="2.16.840.1.113883.1.6"/>
-   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
    <processingCode code="P"/>
    <processingModeCode code="T"/>
    <acceptAckCode code="AL"/>
    <attentionLine>
       <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
-             root="2.16.840.1.113883.2.4.6.3"
-             extension="123456789"/>
+             extension="123456789"
+             root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
    <receiver>
       <device>
@@ -58,7 +58,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent>
-                  <id root="2.16.528.1.1007.3.3.1111.999.2" extension="0tm3_dossier"/>
+                  <id extension="987654321" root="​2.16.840.1.113883.2.4.3.11.999.100.2.1"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
                         displayName="certified public health and general preventive medicine care"/>
@@ -195,7 +195,7 @@
                            </asCitizen>
                            <asMember classCode="MBR">
                               <group classCode="ORG" determinerCode="INSTANCE">
-                                 <id root="2.16.528.1.1007.3.3.1111.999.10" extension="9876543210"/>
+                                 <id extension="9876543210" root="2.16.528.1.1007.3.3.1111.999.10"/>
                                  <code xsi:type="CV"
                                        code="01"
                                        codeSystem="2.16.840.1.113883.2.4.4.40.262"
@@ -259,7 +259,7 @@
                                  </asEmployee>
                                  <asMember classCode="MBR">
                                     <group classCode="ORG" determinerCode="INSTANCE">
-                                       <id root="2.16.528.1.1007.3.3.1111.999.10" extension="987654310"/>
+                                       <id extension="987654310" root="2.16.528.1.1007.3.3.1111.999.10"/>
                                     </group>
                                  </asMember>
                               </relationshipHolder1>
@@ -290,7 +290,7 @@
                                  <birthTime value="20100628"/>
                                  <asMember classCode="MBR">
                                     <group classCode="ORG" determinerCode="INSTANCE">
-                                       <id root="2.16.528.1.1007.3.3.1111.999.10" extension="9876543210"/>
+                                       <id extension="9876543210" root="2.16.528.1.1007.3.3.1111.999.10"/>
                                     </group>
                                  </asMember>
                               </relationshipHolder1>
@@ -356,6 +356,74 @@
                                  <name xsi:type="PN">Graham</name>
                               </assignedPerson>
                            </assignedEntity1>
+                        </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="">
+                        <code code="1163"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Toestemming overdracht dossier binnen JGZ"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="">
+                        <code code="1395"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Bezwaar overdracht dossier binnen JGZ"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="">
+                        <code code="1398"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Toestemming aanmelding LSP"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="">
+                        <code code="1404"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Bezwaar wetenschappelijk onderzoek"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
                         </author>
                      </consentEvent>
                   </authorization>
