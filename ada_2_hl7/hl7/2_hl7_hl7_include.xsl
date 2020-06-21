@@ -577,19 +577,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:if test="$mediaType">
+            <xsl:if test="string-length($mediaType) gt 0">
                 <xsl:attribute name="mediaType" select="$mediaType"/>
             </xsl:if>
             <xsl:choose>
-                <xsl:when test="$representation">
+                <xsl:when test="string-length($representation) gt 0">
                     <xsl:attribute name="representation" select="$representation"/>
                 </xsl:when>
-                <xsl:when test="not($mediaType = 'text/plain')">
+                <xsl:when test="string-length($mediaType) gt 0 and not($mediaType = 'text/plain')">
                     <xsl:attribute name="representation" select="'B64'"/>
                 </xsl:when>
             </xsl:choose>
             <xsl:value-of select="@value"/>
-            <xsl:if test="$reference">
+            <xsl:if test="string-length($reference) gt 0">
                 <reference value="{$reference}"/>
             </xsl:if>
         </xsl:element>

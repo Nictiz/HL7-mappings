@@ -504,6 +504,17 @@
                     <xsl:call-template name="makeEDValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">text</xsl:with-param>
+                        <xsl:with-param name="mediaType" select="../bestand_mimetype/@value"/>
+                        <xsl:with-param name="reference">
+                            <xsl:choose>
+                                <xsl:when test="starts-with(../bestandsnaam/@value, 'file:/')">
+                                    <xsl:value-of select="../bestandsnaam/@value"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="concat('file:///', ../bestandsnaam/@value)"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- Item(s) :: datum_bestand-->
