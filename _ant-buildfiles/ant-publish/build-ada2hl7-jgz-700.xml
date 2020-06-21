@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apache ANT build file that sets up (target = setup) or by default converts all input to output (target = convert_ada_2_hl7v3)
+    Apache ANT is based on Java and may be found here: https://ant.apache.org/
+    run on command line: 
+        ant [-f build.xml] [target]
+        
+    If you just run ant, it expects a build.xml in the working dir and runs the default target.
+-->
+<project basedir="../../ada_2_hl7/jgz/7.0.0" default="convert_ada_2_hl7v3" name="ada_2_hl7v3_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <ant antfile="../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <property name="xsl.saxon" value="${saxon.path}"/>
+    <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
+    
+    <property name="echo.label.in" value="ADA"/>
+    <property name="echo.label.out" value="HL7v3"/>
+    <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
+
+    <property name="project.title" value="${echo.label} for jeugdgezondheidszorg 7.0.0"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.prefix" value="jeugdgezondheidszorg_7.0.0"/>
+    <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for jeugdgezondheidszorg building blocks to valid ${echo.label.out} instances"/>
+    <property name="project.author" value="Nictiz"/>
+    <property name="project.website" value="http://www.nictiz.nl/"/>
+    <property name="project.status" value="beta"/>
+    <property name="project.license" value="GNU-LGPL"/>
+    <property name="project.copyright" value="true"/>
+    
+    <property name="build.dir" value="bds326"/>
+    <property name="project.source.dir" value="${build.dir}/../../../../../../cloudforge_nictiz_art_decor/art_decor/trunk/ada-data/projects/jgz-7.0.0"/>
+    
+    <target name="convert_ada_2_hl7v3">
+        <property name="xsl_dossieroverdracht" value="${build.dir}/payload/versturen_dossieroverdracht_2_hl7v3.xsl"/>
+        <!--<property name="xsl_bericht2" value="${build.dir}/payload/opleveren_vaccinatiestatus_2_hl7v3.xsl"/>-->
+        <!--<property name="xsl_bericht3" value="${build.dir}/payload/versturen_geldige_partijnummers_2_hl7v3.xsl"/>-->
+        <!--<property name="xsl_bericht4" value="${build.dir}/payload/versturen_vaccinaties_2_hl7v3.xsl"/>-->
+        <!--<property name="xsl_bericht7" value="${build.dir}/payload/versturen_vaccinatieoproeplijst_2_hl7v3.xsl"/>-->
+        
+        <property name="xsl.input" value="${build.dir}/ada_instance"/>
+        <property name="xsl.output" value="${build.dir}/hl7v3_instance"/>
+        
+        <echo>Deleting previous results, if any</echo>
+        <delete dir="${xsl.output}"/>
+        
+        <sequential>
+            <fileset id="inputfilesDossieroverdracht" dir="${xsl.input}" includes="Dossier*.xml"/>
+            <!--<fileset id="inputfilesBericht2" dir="${xsl.input}" includes="*opleveren_vaccinatiestatus*.xml"/>
+            <fileset id="inputfilesBericht3" dir="${xsl.input}" includes="*versturen_geldige_partijnummers*.xml"/>
+            <fileset id="inputfilesBericht4" dir="${xsl.input}" includes="*versturen_vaccinatie*.xml"/>
+            <fileset id="inputfilesBericht7" dir="${xsl.input}" includes="*versturen_vaccinatieoproeplijst*.xml"/>-->
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_dossieroverdracht}</echo>
+            <xslt force="true" style="${xsl_dossieroverdracht}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="inputfilesDossieroverdracht"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <!--<echo/>
+            <echo>${echo.label} ${xsl_bericht2}</echo>
+            <xslt force="true" style="${xsl_bericht2}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!-\-<param name="allow-foreign" expression="true"/>-\->
+                <fileset refid="inputfilesBericht2"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>-->
+            
+            <!--<echo/>
+            <echo>${echo.label} ${xsl_bericht3}</echo>
+            <xslt force="true" style="${xsl_bericht3}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!-\-<param name="allow-foreign" expression="true"/>-\->
+                <fileset refid="inputfilesBericht3"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>-->
+            
+            <!--<echo/>
+            <echo>${echo.label} ${xsl_bericht4}</echo>
+            <xslt force="true" style="${xsl_bericht4}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!-\-<param name="allow-foreign" expression="true"/>-\->
+                <fileset refid="inputfilesBericht4"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>-->
+            
+            <!--<echo/>
+            <echo>${echo.label} ${xsl_bericht7}</echo>
+            <xslt force="true" style="${xsl_bericht7}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <!-\-<param name="allow-foreign" expression="true"/>-\->
+                <fileset refid="inputfilesBericht7"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>-->
+        </sequential>
+    </target>
+    
+    <target name="setup" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project">
+        <mkdir dir="${build.dir}"/>
+        
+        <!--<delete dir="${build.dir}/ada_new"/>
+        <delete dir="${build.dir}/ada_schemas"/>
+        
+        <copy todir="${build.dir}/ada_new" failonerror="true">
+            <fileset dir="${project.source.dir}/new">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <copy todir="${build.dir}/ada_schemas" failonerror="true">
+            <fileset dir="${project.source.dir}/schemas">
+                <include name="**"/>
+            </fileset>
+        </copy>-->
+        
+        <mkdir dir="${build.dir}/ada_instance"/>
+        <mkdir dir="${build.dir}/hl7v3_instance"/>
+        <mkdir dir="${build.dir}/payload"/>
+    </target>
+</project>

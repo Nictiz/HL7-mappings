@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/Users/ahenket/Development/cloudforge_nictiz_art_decor/art_decor/branches/jgz-qual-20191129T222107/test_xslt/jgz-dob-fase-1-dossier-0-3.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<REPC_IN902120NL xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+                 xsi:schemaLocation="urn:hl7-org:v3 file:/Users/ahenket/Documents/Nictiz/AORTA/branches/Onderhoud_JGZ_v612/XML/schemas/REPC_IN902120NL.xsd">
+   <id extension="{$messageId}" root="{$messageIdRoot}"/>
+   <creationTime value="20200621130931"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="REPC_IN902120NL" root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <attentionLine>
+      <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+      <value xsi:type="II"
+             root="2.16.840.1.113883.2.4.6.3"
+             extension="123456789"/>
+   </attentionLine>
+   <receiver>
+      <device>
+         <id extension="{$receiverId}" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="{$applicationId}" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess classCode="CACT" moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+               <Organization>
+                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <name>GGD Groningen</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <CareProvisionRequest>
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
+            <code code="CPHC"
+                  codeSystem="2.16.840.1.113883.5.4"
+                  displayName="certified public health and general preventive medicine care"/>
+            <statusCode code="active"/>
+            <author>
+               <time value="20200621"/>
+               <assignedEntity classCode="ASSIGNED">
+                  <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                  <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+               </assignedEntity>
+            </author>
+            <sequelTo>
+               <careProvisionEvent>
+                  <id root="2.16.528.1.1007.3.3.1111.999.2" extension="0tm3_dossier"/>
+                  <code code="CPHC"
+                        codeSystem="2.16.840.1.113883.5.4"
+                        displayName="certified public health and general preventive medicine care"/>
+                  <statusCode code="active"/>
+                  <subject typeCode="SBJ">
+                     <patient classCode="PAT">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
+                        <id extension="123456789" root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                           <streetName>Thorbeckelaan</streetName>
+                           <houseNumber>5</houseNumber>
+                           <buildingNumberSuffix/>
+                           <postalCode>2805 CA</postalCode>
+                           <city>Gouda</city>
+                           <country>Nederland</country>
+                           <useablePeriod xsi:type="IVL_TS"/>
+                        </addr>
+                        <addr use="HP">
+                           <streetName>Thorbeckelaan</streetName>
+                           <houseNumber>5</houseNumber>
+                           <buildingNumberSuffix/>
+                           <postalCode>2805 CA</postalCode>
+                           <city>Gouda</city>
+                           <country>Nederland</country>
+                           <useablePeriod xsi:type="IVL_TS"/>
+                        </addr>
+                        <telecom use="HP" value="tel:0182-999999"/>
+                        <telecom value="mailto:kayladezwart@internet.com"/>
+                        <statusCode code="active"/>
+                        <patientPerson>
+                           <name use="OR">
+                              <given>Kayla</given>
+                              <prefix>de</prefix>
+                              <family>Zwart</family>
+                           </name>
+                           <administrativeGenderCode xsi:type="CV"
+                                                     code="F"
+                                                     codeSystem="2.16.840.1.113883.5.1"
+                                                     displayName="Vrouwelijk"/>
+                           <birthTime value="20120723"/>
+                           <asPatientOfOtherProvider classCode="PAT">
+                              <subjectOf typeCode="SBJ">
+                                 <careProvision classCode="PCPR" moodCode="EVN" negationInd="false">
+                                    <code xsi:type="CV"
+                                          code="01"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.2"
+                                          displayName="Kinderdagopvang"/>
+                                    <effectiveTime xsi:type="IVL_TS">
+                                       <low value="20121123"/>
+                                    </effectiveTime>
+                                    <performer typeCode="PRF">
+                                       <assignedProvider classCode="ASSIGNED">
+                                          <id nullFlavor="NI"/>
+                                          <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                             <id nullFlavor="NI"/>
+                                          </representedOrganization>
+                                       </assignedProvider>
+                                    </performer>
+                                 </careProvision>
+                              </subjectOf>
+                           </asPatientOfOtherProvider>
+                           <asPatientOfOtherProvider classCode="PAT">
+                              <subjectOf typeCode="SBJ">
+                                 <careProvision classCode="PCPR" moodCode="EVN" negationInd="false">
+                                    <code xsi:type="CV"
+                                          code="05"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.2"
+                                          displayName="Peuterspeelzaal"/>
+                                    <effectiveTime xsi:type="IVL_TS">
+                                       <low value="20141223"/>
+                                       <high value="20160723"/>
+                                    </effectiveTime>
+                                    <performer typeCode="PRF">
+                                       <assignedProvider classCode="ASSIGNED">
+                                          <id nullFlavor="NI"/>
+                                          <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                             <id nullFlavor="NI"/>
+                                          </representedOrganization>
+                                       </assignedProvider>
+                                    </performer>
+                                 </careProvision>
+                              </subjectOf>
+                           </asPatientOfOtherProvider>
+                           <asPatientOfOtherProvider classCode="PAT">
+                              <subjectOf typeCode="SBJ">
+                                 <careProvision classCode="PCPR" moodCode="EVN" negationInd="false">
+                                    <code code="GENRL" codeSystem="2.16.840.1.113883.5.4"/>
+                                    <effectiveTime xsi:type="IVL_TS">
+                                       <low value="20120723"/>
+                                    </effectiveTime>
+                                    <performer typeCode="PRF">
+                                       <assignedProvider classCode="ASSIGNED">
+                                          <id nullFlavor="NI"/>
+                                          <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                             <id nullFlavor="NI"/>
+                                             <code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060"/>
+                                          </representedOrganization>
+                                       </assignedProvider>
+                                    </performer>
+                                 </careProvision>
+                              </subjectOf>
+                           </asPatientOfOtherProvider>
+                           <asPatientOfOtherProvider classCode="PAT">
+                              <subjectOf typeCode="SBJ">
+                                 <careProvision classCode="PCPR" moodCode="EVN" negationInd="false">
+                                    <code nullFlavor="OTH">
+                                       <originalText>Andere betrokken organisaties/hulpverleners</originalText>
+                                    </code>
+                                    <performer typeCode="PRF">
+                                       <assignedProvider classCode="ASSIGNED">
+                                          <id nullFlavor="NI"/>
+                                          <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                             <id nullFlavor="NI"/>
+                                          </representedOrganization>
+                                       </assignedProvider>
+                                    </performer>
+                                 </careProvision>
+                              </subjectOf>
+                           </asPatientOfOtherProvider>
+                           <asCitizen classCode="CIT">
+                              <code code="CN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="national"/>
+                              <politicalNation classCode="NAT" determinerCode="INSTANCE">
+                                 <code xsi:type="CV" nullFlavor="OTH">
+                                    <originalText>Nederlandse</originalText>
+                                 </code>
+                              </politicalNation>
+                           </asCitizen>
+                           <asMember classCode="MBR">
+                              <group classCode="ORG" determinerCode="INSTANCE">
+                                 <id root="2.16.528.1.1007.3.3.1111.999.10" extension="9876543210"/>
+                                 <code xsi:type="CV"
+                                       code="01"
+                                       codeSystem="2.16.840.1.113883.2.4.4.40.262"
+                                       displayName="Gezinsverband"/>
+                              </group>
+                           </asMember>
+                           <guardian classCode="GUARD">
+                              <code xsi:type="CV"
+                                    code="05"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.300"
+                                    displayName="Ouder2 en een derde hebben het gezag"/>
+                              <guardianPerson xsi:nil="true"/>
+                           </guardian>
+                           <personalRelationship classCode="PRS">
+                              <addr use="HP">
+                                 <streetName>Thorbeckelaan</streetName>
+                                 <houseNumber>5</houseNumber>
+                                 <buildingNumberSuffix/>
+                                 <postalCode>2805 CA</postalCode>
+                                 <city>Gouda</city>
+                                 <country>Nederland</country>
+                              </addr>
+                              <telecom value="mailto:beadezwart@internet.com"/>
+                              <relationshipHolder1 classCode="PSN" determinerCode="INSTANCE">
+                                 <id extension="111111110" root="2.16.840.1.113883.2.4.6.3"/>
+                                 <name use="L">
+                                    <given>Bea</given>
+                                    <prefix>de</prefix>
+                                    <family>Zwart-Wit</family>
+                                 </name>
+                                 <birthTime value="19801019"/>
+                                 <educationLevelCode xsi:type="CV"
+                                                     code="09"
+                                                     codeSystem="2.16.840.1.113883.2.4.4.40.410"
+                                                     displayName="WO"/>
+                                 <asEmployee classCode="EMP">
+                                    <occupationCode nullFlavor="OTH">
+                                       <originalText>Arts</originalText>
+                                    </occupationCode>
+                                    <employerOrganization classCode="ORG"
+                                                          determinerCode="INSTANCE"
+                                                          nullFlavor="NI"
+                                                          xsi:nil="true"/>
+                                 </asEmployee>
+                                 <asMember classCode="MBR">
+                                    <group classCode="ORG" determinerCode="INSTANCE">
+                                       <id root="2.16.528.1.1007.3.3.1111.999.10" extension="987654310"/>
+                                    </group>
+                                 </asMember>
+                              </relationshipHolder1>
+                              <subjectOf typeCode="SBJ">
+                                 <personalRelationshipObservation classCode="OBS" moodCode="EVN">
+                                    <code code="1367"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Bijzonderheden ouder/verzorger"/>
+                                    <value xsi:type="ST">Slechtziend</value>
+                                 </personalRelationshipObservation>
+                              </subjectOf>
+                           </personalRelationship>
+                           <personalRelationship classCode="PRS">
+                              <relationshipHolder1 classCode="PSN" determinerCode="INSTANCE">
+                                 <name use="L">
+                                    <given>Bart</given>
+                                    <prefix>de</prefix>
+                                    <family>Zwart</family>
+                                 </name>
+                                 <administrativeGenderCode xsi:type="CV"
+                                                           code="M"
+                                                           codeSystem="2.16.840.1.113883.5.1"
+                                                           displayName="Mannelijk"/>
+                                 <birthTime value="20100628"/>
+                                 <asMember classCode="MBR">
+                                    <group classCode="ORG" determinerCode="INSTANCE">
+                                       <id root="2.16.528.1.1007.3.3.1111.999.10" extension="9876543210"/>
+                                    </group>
+                                 </asMember>
+                              </relationshipHolder1>
+                           </personalRelationship>
+                           <birthPlace>
+                              <addr>
+                                 <county>Gouda</county>
+                                 <country>Nederland</country>
+                              </addr>
+                           </birthPlace>
+                        </patientPerson>
+                     </patient>
+                  </subject>
+                  <responsibleParty typeCode="RESP">
+                     <time xsi:type="IVL_TS">
+                        <low value="20120723"/>
+                     </time>
+                     <assignedEntity classCode="ASSIGNED">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                        <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                        <assignedOrganization classCode="ORG" determinerCode="INSTANCE">
+                           <name/>
+                        </assignedOrganization>
+                     </assignedEntity>
+                  </responsibleParty>
+                  <author typeCode="AUT">
+                     <time xsi:type="IVL_TS">
+                        <low value="20120723"/>
+                     </time>
+                     <assignedEntity classCode="ASSIGNED">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                        <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                        <assignedOrganization classCode="ORG" determinerCode="INSTANCE">
+                           <name/>
+                        </assignedOrganization>
+                     </assignedEntity>
+                  </author>
+                  <appendage typeCode="APND">
+                     <document classCode="DOC" moodCode="EVN">
+                        <code nullFlavor="OTH"/>
+                        <text representation="B64">Brief audiologisch centrum</text>
+                        <effectiveTime value="20160323"/>
+                        <author typeCode="AUT">
+                           <assignedEntity classCode="ASSIGNED">
+                              <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                                 <name>Audiologisch centrum</name>
+                              </assignedPerson>
+                           </assignedEntity>
+                        </author>
+                     </document>
+                  </appendage>
+                  <pertinentInformation>
+                     <annotationObsEvent classCode="OBS" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.41167"/>
+                        <code code="1167"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Papieren JGZ-dossier aanwezig"/>
+                        <value xsi:type="BL" value="false"/>
+                     </annotationObsEvent>
+                  </pertinentInformation>
+                  <pertinentInformation>
+                     <pregnancyCondition classCode="COND" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.121"/>
+                        <code code="R014"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                              displayName="Zwangerschap"/>
+                        <subject typeCode="SBJ">
+                           <personalRelationship classCode="PRS">
+                              <code code="NMTH"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="natural mother"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </subject>
+                        <outcome typeCode="OUTC">
+                           <delivery classCode="PROC" moodCode="EVN">
+                              <code code="R015"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Bevalling"/>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="97"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Duur bevalling"/>
+                                    <value xsi:type="PQ" value="360" unit="min"/>
+                                 </deliveryObservation>
+                              </component>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="98"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Duur uitdrijving"/>
+                                    <value xsi:type="PQ" value="15" unit="min"/>
+                                 </deliveryObservation>
+                              </component>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="100"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Ligging bij geboorte"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.167"
+                                           displayName="Achterhoofd voor"/>
+                                 </deliveryObservation>
+                              </component>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="38386-9"
+                                          codeSystem="2.16.840.1.113883.6.1"
+                                          displayName="Color of Amniotic fluid"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.13.18"
+                                           displayName="Kleurloos"/>
+                                 </deliveryObservation>
+                              </component>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="1323"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Stuitligging laatste trimester"/>
+                                    <value xsi:type="BL" value="true"/>
+                                 </deliveryObservation>
+                              </component>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="105"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="3 Navelvaten"/>
+                                    <value xsi:type="BL" value="true"/>
+                                 </deliveryObservation>
+                              </component>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="1324"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Wijze van geboorte"/>
+                                    <value xsi:type="ST">Vaginaal</value>
+                                 </deliveryObservation>
+                              </component>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="106"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Bijzonderheden bevalling"/>
+                                    <value xsi:type="ST">Veel bloedverlies moeder</value>
+                                 </deliveryObservation>
+                              </component>
+                              <component typeCode="COMP">
+                                 <deliveryObservation classCode="OBS" moodCode="EVN">
+                                    <code code="107"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Bijzonderheden kraamperiode/kraamverzorging"/>
+                                    <value xsi:type="ST">Erg moe door bloedverlies, bloedarmoede</value>
+                                 </deliveryObservation>
+                              </component>
+                           </delivery>
+                        </outcome>
+                        <component1 typeCode="COMP">
+                           <pregnancyObservations classCode="OBS" moodCode="EVN">
+                              <code code="82"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Zwangerschapsduur"/>
+                              <value xsi:type="PQ" value="285" unit="d"/>
+                           </pregnancyObservations>
+                        </component1>
+                        <component1 typeCode="COMP">
+                           <pregnancyObservations classCode="OBS" moodCode="EVN">
+                              <code code="91"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Roken tijdens de zwangerschap"/>
+                              <value xsi:type="BL" nullFlavor="2"/>
+                           </pregnancyObservations>
+                        </component1>
+                        <component1 typeCode="COMP">
+                           <pregnancyObservations classCode="OBS" moodCode="EVN">
+                              <code code="92"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Alcohol gebruik tijdens de zwangerschap"/>
+                              <value xsi:type="BL" nullFlavor="2"/>
+                           </pregnancyObservations>
+                        </component1>
+                        <component1 typeCode="COMP">
+                           <pregnancyObservations classCode="OBS" moodCode="EVN">
+                              <code code="93"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Drugsgebruik tijdens de zwangerschap"/>
+                              <value xsi:type="BL" nullFlavor="2"/>
+                           </pregnancyObservations>
+                        </component1>
+                        <component1 typeCode="COMP">
+                           <pregnancyObservations classCode="OBS" moodCode="EVN">
+                              <code code="619"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Bijzonderheden (vorige) zwangerschap"/>
+                              <value xsi:type="ST">Miskraam bij 7 wk in 2009</value>
+                           </pregnancyObservations>
+                        </component1>
+                        <component1 typeCode="COMP">
+                           <pregnancyObservations classCode="OBS" moodCode="EVN">
+                              <code code="740"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Graviditeit"/>
+                              <value xsi:type="INT" value="1"/>
+                           </pregnancyObservations>
+                        </component1>
+                        <component1 typeCode="COMP">
+                           <pregnancyObservations classCode="OBS" moodCode="EVN">
+                              <code code="741"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Pariteit"/>
+                              <value xsi:type="INT" value="1"/>
+                           </pregnancyObservations>
+                        </component1>
+                        <component2 typeCode="COMP">
+                           <substanceAdministrationEvent classCode="SBADM" moodCode="EVN">
+                              <consumable typeCode="CSM">
+                                 <medication classCode="ADMM">
+                                    <administrableMedicine classCode="MMAT" determinerCode="KIND">
+                                       <code code="01"
+                                             codeSystem="2.16.840.1.113883.2.4.4.40.162"
+                                             displayName="Antibiotica"/>
+                                    </administrableMedicine>
+                                 </medication>
+                              </consumable>
+                           </substanceAdministrationEvent>
+                        </component2>
+                        <component2 typeCode="COMP">
+                           <substanceAdministrationEvent classCode="SBADM" moodCode="EVN">
+                              <consumable typeCode="CSM">
+                                 <medication classCode="ADMM">
+                                    <administrableMedicine classCode="MMAT" determinerCode="KIND">
+                                       <code code="08"
+                                             codeSystem="2.16.840.1.113883.2.4.4.40.162"
+                                             displayName="NSAID's"/>
+                                    </administrableMedicine>
+                                 </medication>
+                              </consumable>
+                           </substanceAdministrationEvent>
+                        </component2>
+                        <component2 typeCode="COMP">
+                           <substanceAdministrationEvent classCode="SBADM" moodCode="EVN">
+                              <consumable typeCode="CSM">
+                                 <medication classCode="ADMM">
+                                    <administrableMedicine classCode="MMAT" determinerCode="KIND">
+                                       <code code="09"
+                                             codeSystem="2.16.840.1.113883.2.4.4.40.162"
+                                             displayName="Psychofarmaca"/>
+                                    </administrableMedicine>
+                                 </medication>
+                              </consumable>
+                           </substanceAdministrationEvent>
+                        </component2>
+                     </pregnancyCondition>
+                  </pertinentInformation>
+                  <component3>
+                     <patientCareProvision classCode="PCPR" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.119"/>
+                        <code code="02"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.63"
+                              displayName="Medische zorg: specialist"/>
+                        <text>Spraak- en gehoorproble</text>
+                        <statusCode nullFlavor="ASKU"/>
+                        <effectiveTime xsi:type="IVL_TS">
+                           <low value="20140423"/>
+                        </effectiveTime>
+                        <subject typeCode="SBJ">
+                           <patient classCode="PAT"/>
+                        </subject>
+                     </patientCareProvision>
+                  </component3>
+                  <component4>
+                     <carePlan classCode="PCPR" moodCode="INT">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.120"/>
+                        <code code="G081"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.393"
+                              displayName="Zorgplan"/>
+                        <effectiveTime xsi:type="IVL_TS">
+                           <low value="20121023"/>
+                           <high value="20121223"/>
+                        </effectiveTime>
+                        <finalGoal typeCode="OBJF">
+                           <observationGoal classCode="OBS" moodCode="GOL">
+                              <code code="1154"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Doelen"/>
+                              <value xsi:type="ST">Oorzaak huilen achterhalen, Moeder handvatten geven om ermee om te gaan</value>
+                           </observationGoal>
+                        </finalGoal>
+                        <subject typeCode="SUBJ" contextControlCode="AN" contextConductionInd="true">
+                           <problem classCode="OBS" moodCode="EVN">
+                              <code code="1151"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Probleemomschrijving"/>
+                              <text>Huilt erg veel, dag en nacht</text>
+                              <reasonOf>
+                                 <condition classCode="OBS" moodCode="EVN">
+                                    <code code="1152"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Oorzaak"/>
+                                    <text>Moeder denkt aan krampjes</text>
+                                 </condition>
+                              </reasonOf>
+                              <subjectOf typeCode="SUBJ">
+                                 <symptom classCode="OBS" moodCode="EVN">
+                                    <code code="1153"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Zich uitend in"/>
+                                    <text>Tranan</text>
+                                 </symptom>
+                              </subjectOf>
+                           </problem>
+                        </subject>
+                        <pertinentInformation typeCode="PERT">
+                           <evaluationEvent classCode="OBS" moodCode="EVN">
+                              <code code="1156"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Evaluatie"/>
+                              <value xsi:type="ST">Gaat goed nu. M geeft Kayla meer aandacht, heeft positief effect op huilen</value>
+                           </evaluationEvent>
+                        </pertinentInformation>
+                        <component typeCode="COMP">
+                           <observationIntent classCode="OBS" moodCode="INT">
+                              <code code="1155"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Interventies"/>
+                              <value xsi:type="ST">Huisbezoek 1x/week</value>
+                           </observationIntent>
+                        </component>
+                     </carePlan>
+                  </component4>
+                  <component5>
+                     <neonateData classCode="CATEGORY" moodCode="EVN">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.118"/>
+                        <code code="R016"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                              displayName="Pasgeborene en eerste levensweken"/>
+                        <component1 typeCode="COMP">
+                           <inPatientEncounter classCode="ENC" moodCode="EVN">
+                              <code code="IMP" codeSystem="2.16.840.1.113883.5.4"/>
+                           </inPatientEncounter>
+                        </component1>
+                        <component2 typeCode="COMP">
+                           <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
+                              <consumable typeCode="CSM">
+                                 <administerableMaterial classCode="ADMM">
+                                    <administrableMaterialKind classCode="MAT" determinerCode="KIND">
+                                       <code code="137"
+                                             codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                             displayName="Vitamine K toegediend/voorgeschreven"/>
+                                    </administrableMaterialKind>
+                                 </administerableMaterial>
+                              </consumable>
+                           </substanceAdministrationEvent>
+                        </component2>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="8339-4" codeSystem="2.16.840.1.113883.6.1"/>
+                              <value xsi:type="PQ" value="3950" unit="g"/>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="111"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Laagste gewicht"/>
+                              <value xsi:type="PQ" value="3750" unit="g"/>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="112"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Geboortelengte"/>
+                              <value xsi:type="PQ" value="520" unit="mm"/>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="113"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Hoofdomtrek bij geboorte"/>
+                              <value xsi:type="PQ" value="360" unit="mm"/>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="9272-6"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    displayName="1 minute Apgar Score"/>
+                              <value xsi:type="INT" value="7"/>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="9274-2"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    displayName="5 minute Apgar Score"/>
+                              <value xsi:type="INT" value="9"/>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="131"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Aangeboren afwijkingen"/>
+                              <value xsi:type="ST">Geen</value>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="145"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Bijzonderheden pasgeborene en eerste levensweken"/>
+                              <value xsi:type="ST">Prima gegaan</value>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="747"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Melkvoeding op geboortedag"/>
+                              <value xsi:type="CV"
+                                     code="01"
+                                     codeSystem="2.16.840.1.113883.2.4.4.40.307"
+                                     displayName="Borstvoeding"/>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="1340"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Melkvoeding op 8e dag"/>
+                              <value xsi:type="CV"
+                                     code="01"
+                                     codeSystem="2.16.840.1.113883.2.4.4.40.307"
+                                     displayName="Borstvoeding"/>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="139"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Geel zien"/>
+                              <value xsi:type="IVL_TS">
+                                 <low value="20120727"/>
+                                 <high value="20120730"/>
+                              </value>
+                           </neonateObservations>
+                        </component3>
+                        <component3 typeCode="COMP">
+                           <neonateObservations classCode="OBS" moodCode="EVN">
+                              <code code="140"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Oorzaak geel zien"/>
+                              <value xsi:type="CV"
+                                     code="01"
+                                     codeSystem="2.16.840.1.113883.2.4.4.40.174"
+                                     displayName="Fysiologisch"/>
+                           </neonateObservations>
+                        </component3>
+                     </neonateData>
+                  </component5>
+                  <component6 typeCode="COMP">
+                     <informationControlActEvent classCode="INFO" moodCode="EVN" negationInd="false">
+                        <code code="476"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Informatie verstrekt over werkwijze JGZ"/>
+                        <text xsi:type="ST">M wil kopie ivm mogelijke verhuizing buitenland</text>
+                        <effectiveTime value="20160101"/>
+                        <informationRecipient typeCode="IRCP">
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </informationRecipient>
+                     </informationControlActEvent>
+                  </component6>
+                  <subjectOf typeCode="SUBJ" contextConductionInd="false">
+                     <careStatus classCode="STC" moodCode="EVN">
+                        <code code="1197"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Status in zorg"/>
+                        <effectiveTime value="20120723"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.376"
+                                    displayName="Regulier"/>
+                        <author typeCode="AUT">
+                           <time xsi:type="IVL_TS">
+                              <low value="20120723"/>
+                           </time>
+                           <assignedEntity classCode="ASSIGNED">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                              <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                              <assignedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                 <name/>
+                              </assignedOrganization>
+                           </assignedEntity>
+                        </author>
+                     </careStatus>
+                  </subjectOf>
+                  <subjectOf typeCode="SUBJ" contextConductionInd="false">
+                     <careStatus classCode="STC" moodCode="EVN">
+                        <code code="487"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Zorgbeëindiging"/>
+                        <effectiveTime value="20160801"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.82"
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
+                        <author typeCode="AUT">
+                           <time xsi:type="IVL_TS">
+                              <high value="20160801"/>
+                           </time>
+                        </author>
+                     </careStatus>
+                  </subjectOf>
+               </careProvisionEvent>
+            </sequelTo>
+         </CareProvisionRequest>
+      </subject>
+   </ControlActProcess>
+</REPC_IN902120NL>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="20">
-    <include href="../../hl7/2_hl7_hl7_include.xsl"/>
+    <include href="../hl7/2_hl7_hl7_include.xsl"/>
     
     <!-- TransmissionWrapper Initiating -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.100_20140715000000">
@@ -262,9 +262,9 @@
                     <xsl:with-param name="elemName">id</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <code code="CPHC" codeSystem="2.16.840.1.113883.5.4"/>
+            <code code="CPHC" codeSystem="2.16.840.1.113883.5.4" displayName="certified public health and general preventive medicine care"/>
             <statusCode code="active"/>
-            <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_gba | groep_g085_uitvoerende_jgzorganisatie">
+            <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | groep_g085_uitvoerende_jgzorganisatie">
                 <author typeCode="AUT">
                     <time/>
                     <!-- Template :: R_AssignedEntityNL [identified] -->
@@ -285,7 +285,7 @@
         <careProvisionEvent xmlns="urn:hl7-org:v3">
             <!-- Dossiernummer -->
             <id root="{$gOIDBaseDossier}" extension="0tm3_dossier"/>
-            <code codeSystem="2.16.840.1.113883.5.4" code="CPHC"/>
+            <code codeSystem="2.16.840.1.113883.5.4" code="CPHC" displayName="certified public health and general preventive medicine care"/>
             <!-- Dossierstatus -->
             <statusCode code="{r002_dossierinformatie/dossier_status/@code}"/>
             <!-- Kindgegevens -->
@@ -298,9 +298,9 @@
             <!-- Zie ook subjectOf/careStatus voor volgordelijkheid -->
             <!-- Merk op dat hier alleen gebruik is gemaakt van element 603 Uitvoerende JGZ-organisatie ID. 
                                         Het is ook mogelijk om element 708 Uitvoerende JGZ-professional ID mee te sturen. Zie implementatiehandleiding voor instructies -->
-            <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_gba">
+            <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp">
                 <responsibleParty typeCode="RESP">
-                    <xsl:for-each select="groep_g099_periode">
+                    <xsl:for-each select="groep_g099_periode_geldigheid_verantwoordelijke_jgzorganisatie">
                         <time xsi:type="IVL_TS">
                             <!-- Item(s) :: startdatum_geldigheid_verantwoordelijke_jgzorganisatie-->
                             <xsl:for-each select="startdatum_geldigheid_verantwoordelijke_jgzorganisatie">
@@ -323,7 +323,7 @@
             </xsl:for-each>
             <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie">
                 <author typeCode="AUT">
-                    <xsl:for-each select="groep_g098_periode">
+                    <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
                         <time xsi:type="IVL_TS">
                             <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
                             <xsl:for-each select="startdatum_geldigheid_uitvoerende_jgzorganisatie">
@@ -345,632 +345,26 @@
                 </author>
             </xsl:for-each>
             <!-- Rubriek 9: Externe documenten -->
-            <xsl:for-each select="r009_externe_documenten/bestand">
-                <appendage typeCode="APND">
-                    <document classCode="DOC" moodCode="EVN">
-                        <!-- Item(s) :: soort_toegevoegd_bestand-->
-                        <xsl:for-each select="soort_toegevoegd_bestand">
-                            <xsl:call-template name="makeCVValue">
-                                <xsl:with-param name="elemName">code</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <!-- Item(s) :: bestand-->
-                        <xsl:for-each select="bestand">
-                            <xsl:call-template name="makeEDValue">
-                                <xsl:with-param name="elemName">text</xsl:with-param>
-                                <xsl:with-param name="mediaType" select="../bestand_mimetype/@value"/>
-                                <xsl:with-param name="reference" select="../bestandsnaam/@value"/>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <!-- Item(s) :: datum_bestand-->
-                        <xsl:for-each select="datum_bestand">
-                            <xsl:call-template name="makeTSValue">
-                                <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <!-- Item(s) :: afzender_bestand-->
-                        <xsl:for-each select="afzender_bestand">
-                            <author typeCode="AUT">
-                                <assignedEntity classCode="ASSIGNED">
-                                    <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                        <xsl:call-template name="makeTNValue">
-                                            <xsl:with-param name="elemName">name</xsl:with-param>
-                                        </xsl:call-template>
-                                    </assignedPerson>
-                                </assignedEntity>
-                            </author>
-                        </xsl:for-each>
-                    </document>
-                </appendage>
+            <xsl:for-each select="r009_externe_documenten/groep_g072_toegevoegd_bestand">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10008_20120801000000"/>
             </xsl:for-each>
-            <appendage>
-                <document>
-                    <code code="01" codeSystem="2.16.840.1.113883.2.4.4.40.303" displayName="Integraal dossier JGZ"/>
-                    <text mediaType="application/pdf" representation="B64"> 
-                        iVBORw0KGgoAAAANSUhEUgAAAfQAAABDCAYAAABqbvfzAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAX
-                        EgAAFxIBZ5/SUgAAZQ5JREFUeJzs3fffJFlZ9/Ex55xzzjlnBQEFBHPOWRYFBSOgYgYFE+asYAAF
-                        FQwgGIBdVNICm2fT7LIgmP6GfvZd93yaa+rp7r1nZpFdnR/q1d11qk68wvcK5/SJ//qv/9q88pWv
-                        3PzHf/zH5j//8z83r3jFK5ZPv93fV/7v//7v23L3Zrl7d4ZyV+WNuXLv3hnKz2bNzrf8jrBmF9b8
-                        wppfWPMLa35hzXev6Qk3Xvayl21e/vKXb/7t3/5tc8sttyyffru/r9y9yt2b5b1zZypvzHe28rNZ
-                        s/Mtv6Ot2YU1v7DmF9b8wppfWPNXlZ+g2d0IFSgIAbm/r1zFlbs3y0Mbd/RyV+WNuXLv3hnKz2bN
-                        zrf8jrBmF9b8wppfWPMLa35hzXev6YnMdjd72GcLu69cBZW7N8vduzOUuypvzJV7985QfjZrdr7l
-                        d4Q1u7DmF9b8wppfWPMLa757TReX+3RbvPSlL10+pwtgVznzvnL3Zrl7yk+dOrV87ivf9/6s3/eb
-                        b755ue/3cd533XTTTdt+9109u757vn66X5vV77t6fPb9uuuu27Y756z+eTcXSeXuabN7ja9+1Ife
-                        n/33uav+xtx6zTmvvD43bvd6zmUsvXPjjTdu66wNz3bv+uuv37bTM5U3P82Zd5tn7fdOY27N6p97
-                        2veez7OhmV3l9a0+KddG9HScNXt1liub/BHtrvlw35of4tPWtzW/Pfg8nljTnDltrWf/zmbNooNo
-                        Mvqda7V+P9psfPHv7EuyYNLZ2a5Z/bvhhhu27s5ovX6cD00kg+KJ6DSZcdw131WOj+L55q8563t9
-                        qH1lu2T3lI2tec/N8vWaT9naWJvTZEJ9Wa9Z/DrpuGcqr9+TptZznkyZfZmyO5rxjvq63zuvCTlx
-                        Lmt+4nwSJ3J3uKfcNSf12muv3S6c59eJC30PcbgSatXtikCahF2JEQ0owsR8KZom5/obrl/uRzAW
-                        q/41Od5R1zXXXLM8o/6I0Ls9f8UVVyzfc3U0Z77Xn1BYcxYx+T7BQcLHc42vsbfoza/6dyVOxBAx
-                        cIyqfM6D57q3MObNN23Hoh3jnnOiHQo/grvssss2V1999aLYY1bz1Ji8q3/No2fNm7qqx7Oei6Zi
-                        VnWiGe+ePHlyeXY9J70fza1patKEvqmnOVOubv1YI+Pe6f3jIOvWfPbP88dNhul3Y4w+pgWy6/1D
-                        fBpyT7imICZNxafNp2vy4T5rLbqYc+GztY72kw0L3770ljP4PDpuHWefEliThxJeCdr6kpwIYFau
-                        L/Pd+LyxTr5ar+m+OY8P8MacC7RqjNFdfFr7x6WJFIc1qy7jmPPf/E6X623Jbt/1Mf5sbfBEMjbg
-                        nJJrHhtbZXPt49XmNvkeT3sPz9f3aMS9CQo96/3kkzoDBsmMZHmysrr8js5n+aSpycfVvzaCpjzJ
-                        5V19vlvzxqcvrc/Z8Pm5lp+NPq78RAozJppM5f6hcgNv8AkkApzARDQxUgvY+zFXyn9azd674sor
-                        tlbjvvdDYYEA71E2CFHdPl/84hcvn66I4/LLLz8D2akrRJYit/DPfe5zl2f1SV8ovTXanYkNzQli
-                        q82JgrcC7vSz5k2fAx5rgT4THyZI8nxKflpJ+mbu1eXS95TzlVdeeYaVHIi46qqrNtddf90WCPh0
-                        Tz0TFPjdXKhrrdSruznVv6XuW+fNey95yUuWfk+vRoAmYaav9cHcqV9bCQ7vJ0Aa8y6aWtNMz06a
-                        q89ZWKHwfvd+a7qmuX3IujU79P6+8mkZ1KdA7OSvhNrZ8Gl9npYVep40uO/9aRns86RNC7r+Ro94
-                        OYHdPKcMJ5hNIe5a02gR3aEhvy+/4vIzAKVxoLnZF+NCV91LEUW30ezaK7JvzVrn5Ec8nicIvcaj
-                        yb7j0sR6zhtnIMXYa0vZfP+Q7J6AaNLZpP1+J4d9mst48dJLL93KkGhSuTLvJxfjUbRFftb3aOSF
-                        L3zh9l7GUfTnfWuVAeH+XC9tue+Z5z//+ds1nPVk7SubHpT4dPLRpNPmPOCincZEfvntqv95as6F
-                        z8+VJo7L5ydC0yHVXmqQ+8qrYBJ2KG8KV+8nUHq/OmOmaTW3GKGpXe83EbWJuBKAFjZXkHpf9KIX
-                        bZ73vOdtiS+lcvLak4vAidETLL2XAvfMZZdftnnpLUcCIOSYYJuL4qqNiC/hFcOsXYKNaQrchEvM
-                        ON1D5mW6p7siiMCEthfAdeMNW4s0wNJ8V3fCYypdDGwOEpQxorqbc4DJ8zGksixizyjrnZ4/derG
-                        LSN5doZGAojzu/4SKBjL+96ZhDxpqjHuo7nppQjEtF7TFdj78cGk2UOMGE0cev9QeYKmdUyoTFds
-                        NHdcPq08mqmOaLN16rl9fL4LWK8V/gQkWYE+m1/ArnlHX2tgt2tNo6to2rvoAh9MQdz4oqXkSQoq
-                        UBBgn27c6cqc3pJDa9Y4A9AZOPoXCD3Omk85Url75m0Z93XXbgF7YHnS+dnK7saZrAboyYjmKHng
-                        fvwfj+Dh5Ee8m6LNu9f9FLU6zEe8rKw1SI5M72B1Zq3P+tCP5yY95IEINPid7A7M7eLTruRwcmzy
-                        YcqbDknW0Qf6MQHb2fL5Wo4chyaOy+fnlRQXMjXQifImMtqXuBADhPiqLxdaimHX+33GUCbc4kWM
-                        uVwSztq5+pqrt0ivBZvW2hROuXzrS4jRcxa0CV8vmss7V151ZFki1om4smBrt7Eob06nkt+F3BHS
-                        tJSUXXPyCNk2/y6I3jj++7//e9u3Fn4CBu8YU+N29X5MZhz1L2VofIUj/M7VNa2d+qyu3EgxzRSc
-                        ExmrN5eweilziFydl98KrOpL8zRd5rnDDiXLzHldGPn6IzQ+QyvnmsxyHFfaofdbjxRpcx5gq/1z
-                        SZapnQRCXqu8aq3H2SRITZptPqMR6+R3Slh5LuvGVD+mh6P6m7OUDLpBR+Zo0nQyY4ZnEpi59gP7
-                        yupz1mQAZ46p9g+tefwXUMgwCbz6Xj2H1nzXmrpnTM1t3sqE/JStZyu782imUBg2tdVckSee8azf
-                        xpPFnOv51E2ntsqzsbcO7id/AljJJXV5LmCWvtDXjJQZDspTEIhSfmQ1X7+dC30LBCcH0XQ0totP
-                        m/MJBAJheQqnJf+KVx4Za8ZVP6vzXJLepsIu3DzlxDm73EMpKdaIPOGyr3xaYBY1N0iMF9qayLn3
-                        J4JuQbLIfI94ZrLUuv35vMULTWnXBUXpl8X3zL/8y79sHvGIR2we+MAHbh7+8IdvfuVXfmXrQkE0
-                        KcNAhjoBBQtHqTznOc/Z9i3BPy2D5iwLP/d3IKD+h+KzvkLfM95XPc1PRJ5bL4SbazxidD+0/Od/
-                        /uebH/3RH9382I/92Oanf/qnN89+9rO3axYDRpzG9/M///PLvHzP93zP5hd/8Re3YzVv6tVurqi/
-                        /du/3TzsYQ9b6n/oQx+6+dM//dOtEKr/6vbdOvzkT/7kUneXe9ML05rpy1/91V8tff7+7//+zXd/
-                        93cvbXkuBJ3lmjCYgKw1OERzCeC/+Iu/WNr5kR/5kc0P//APb570pCdt53G9pjNZKCs12ozhA1eH
-                        XPL7aKb6syoKPTXfL3jBC7ZekOlmPg6fVh7NBZyyuLKaD/H5TIYKENWm51OWuUf1vTXVTkobPyYz
-                        omnPJDynAqjNvHae/bM/+7NlvX78x39886hHPWqhzcXqPnnN1mqbRkZrEi3kls19Go/O+QsMTA/W
-                        rjXLap3eJu3jkxT6ofcnTa3XVJ+sebxPtupr4bApW89WdgfIybZf+qVf2vzQD/3QQv/4PxneOnlX
-                        P57//OdtnvjEJy784sL35Au3+j/+4z8ehUlPy1p95BG95JJLNr/6q7+68LvntUXOPPNZz1zKjSEZ
-                        oa2///u/X9bV+nr+j/7oj5Zn1JucU7d1u/jii2+VUY/ZPv8TP/ETi3z713/912VcnkcbybddfNqc
-                        xGO+t454opCfMTRm7ZiP+tI67lvTQ2sekEnfpFMy4AJwU45MT9I69FX5ebncu//Yxz5286AHPWjz
-                        tKc97QzL7JD7swkMLUeAT3/605cJREChxF0u99wwv/7rv74orH/+53/eEq/7l176wmWxLA53yXd+
-                        53du3u3d3m1z17vedfNhH/Zhmw/8wA9c3rNwCdoQ2T/8wz9snvGMZ2wFQQrl8Y9//ObRj370sshd
-                        2gcOfP7ar/3a5jGPecwCHH7nd35n6z5PuNRn9aWUZ5JF/TjkdulKaGZl5VXAAE95ylM2973vfTcf
-                        /MEfvLn3ve+9+aAP+qDNt3zLtyzjUh6xGDtGQKzv937vt/mkT/qkzSd+4icuz//CL/zCwhCe94lR
-                        1G+Nv/zLv3yZw7vd7W6bd3/3d1/acr84G8SYgDNf7/3e77351E/91M0nfMInbN7lXd5lmZ/c57lV
-                        tfOXf/mXmy/5ki9ZnrnHPe6x+aiP+qjld0q9WH5gp3H4nNtZDrncreczn/nMzb3uda/Ne7zHeyzt
-                        fMAHfMAyFvM2aW6XKywrL9rOkjiONbbLq7OuvzksHyRwuQ7znI0rbnpBCguZR2uckDrkcp/WbrQ6
-                        x1xsMrBUmAUvuIqNFjIKrEwXcvVH3zPujTYoc7T8kR/5kcuavdd7vdcCzimC+MZz1ZdLP5emz6OQ
-                        zxGfKM9Cm/OXtTS9GbvWLCGc5ek5vGQ+yQXjP1eXe+POi+k7/gOMyZmZjHe2srukuJ/6qZ9a+PzT
-                        Pu3TFr7Ho5Q7pWseMy48C2R/xmd8xuZ93ud9Np/zOZ+zfN797ndbxpscmwYJ2qJo3/d933fheW2o
-                        /5GPfOSWrvPaGBtQ8GVf9mWb93//91/Wliz6+I//+M2f/MmfHOVNXH8ELnhZ0c3P/uzPbt75nd95
-                        qZs89/37vu/7ljUFSnK1p/h28Wl8HLD0TGDJb9/JczKUTCQf3vVd33WRlfglnjxXl/saZEW3571t
-                        7Xws9O5RFm/2Zm+2CGoxnzJW91nYocSSSELoOgR5v+EbvuHm8z7v87Zu913vx+gW9K3f+q03v/mb
-                        v7m1bnK7QFEY4QEPeMCyGF/7tV+7oEoA5CM+4iM2H/IhH3LU59MEloV+0UUXLcLjqU996tbqtICf
-                        /umfvjlx4sTmtV7rtTav/dqvvXzO63Ve53W21z3vec9lfLkXE8wh09/93d9diAPKxFyIHcMSCH13
-                        X//c8+lyz3vmSf15SBAZYscElCdmhbo9A4G/7du+7eY+97nPohynoDTWd3qnd9p8/ud//qKU/+7v
-                        /m7zWZ/1Wcvz2jWH+mttlH32Z3/2onAJLXP7gz/4gwuDa/Ov//qvt1acOX3Uox+1KEvKkxLVtnY8
-                        zwIvQdEY/uZv/mbzKZ/yKQtTf+/3fu8CxH7v935vaUvdlD2BHDJuTtdu6phpF834bU0BEMqcENDO
-                        z/zMzywCBy3xNvR+wj6rfLoqzyWGHgrfhdyrn5URgFRGQAFFv/Ebv7G9l7VxHGtsxonjWXPHygGY
-                        jBuQmeWzfynLXTH0xrzOEfFpXj/mYz5m4U3898u//MsLjWb9lhsxFeqMf+eB8dwf/MEfLPz6oR/6
-                        oQtN4OH73e9+C41GW3Jcqs9VnFPf6m+JZcABzxKjofbnmrZm8cm+Ncu1W7wXeNEnCnKOdf1+67fP
-                        Qm/8yTD8gS7f8i3fclGOWYnrNZ9ek3V5380J2YLnP/dzP3fzrGc9a+Frivrt3/7tF2OqHAdzrwy/
-                        oBMyRx2AYMoX7WSgJN/IKUCfHGEYMbbwPVrA91m/xogfv+ALvmCZNyDAGqF38uvjPu7jFr4v0c5l
-                        jtECgKFvPKdf/dVfvYCAhzzkIYsFX6w/l/sE8zOGXog0lz75kuFALjMAyXx9VO9XfuVXLvNA3136
-                        okvP8OrM+nfR1JQfawt9GpPnHUNfE0Vur9B293LLzUST3Hhf93VftyixRz7yEctC5QZNAIWC5jv9
-                        LpGqbG/KjLKkELMm60tKN0Bg4hE4MIGwcs8Vz0H4BJf+fdd3fdfihkkJEgxf8RVfsbiEKJZci9pE
-                        IG/+5m++WIeERbF5dWACaO0d3uEdlrYRKmaw8K/7uq+7KHzX3e9+94VAUuQJPReX01d91VctDOqd
-                        Xdfrvd7rLdf69xu8wRssn4jaeIxZOwS/efyt3/qtpW5u8xJYCLcf+IEf2HzjN37j4irLUjJWyv5r
-                        vuZrFrTdXPOSmBvK2tyUN0AQImqMN92XgIM6CMhCCpiKW/6bv/mbFwSekKKwWFZc+wRwIQNtAlyE
-                        TUlL2gAqrMfv//7vb9tUv/XDdFx7WYgxxXQPr2n6CU94wuJh0I7xF6f7uZ/7ucVKMH8pdBfw51lr
-                        NoV7FtRxGHlaifFPdUWvMTzBkTLzHIHG0qEkrHPCIDA8+axxur+AgtM7GBLkubfVTxASygQ7oe6d
-                        lFNegsn7KfsUeuNPwS3x2NMeokJe1hmfoF/A7Bu+4RsWhQGUok+8mUCbIYtkhjbQHw8YugMi4220
-                        8+AHP3jzTd/0TYvATei35mgKrQWGfbJA8Tvgho8oDDSEriewmq765i+6C0Qu4b5rT54RYkNDb/zG
-                        b7z56I/+6AXsFlZqXWbyaDkM0zuYvPWMOZyW3B/+4R8uhg5FVvirZ5OLyZlooT5Pz4l5A2TJCDyX
-                        TOLpwH/mqHCJeswN/rNm8Ys2uNDxyx//8R8v9wp/Wi9gSRmZ3PyRAerB98lg76BvsiMLu7AkPlTH
-                        4x73uK1RpU9kj3qe/OQnb2U2WhOeQwtouXkgE629OqaHKhqZCt0YypOiN8wDvcE7kUcQkPyO7/iO
-                        RaGjrcK1AAtvL1rSXoZZn90T5kuHVmcZ85OPkiMzf2p6A5Jxu8pPTBN/ovCETtZGAqjYUOU69fVf
-                        //ULg+g4hDUJLZd6wqe4UALL5IestYUp1MUStMAh956PkFMaCJzyjamLrbeAueCLVQReEgzF95ak
-                        glcc7f+EAiExihOwQJieI2xdFhABIiwLj6gJHP2GNDELlKl/TXrM3XYdc0bxAwcIhOJzIUrKFJp9
-                        /dd//cVToZwyZpUAFBhbyEBfpvJKEKaMEk79Xojo5lcdbDOtgZ7NUzK36EVo1dVzvTO3vkRgE3VO
-                        QowJo4mJXGcm76TDYqhd3uVtAPyENnKfRcdzz3Ou3pRwymm6e7NgKssV6zc6tA7CLes41r5klkNJ
-                        caHvEPip0wmGxoTec6c29/gJALHeABKhptzOC8KG0iRcA8kTODeemZtSTJvgY0GjNQJRvwjsYsBZ
-                        Me18KM4412TGz0tqKlEqpUCBonXWHD7Ns8U7AJDe/NJX7faYSXfN2TQimvPk1LTkZ2ij7/jyTd/0
-                        TRc+1m7eMx4i7eMjoAYgjT5nWzP3YCrFZf5vXZc5N09/xtMXXuX5AfxLCvOMdeJ1ogwo5mLs0UMu
-                        1FzC0UVhOG2z0I3lLne5yxaoz8Rk/ealBHryDKQIGwdA2DasrNI1H8cLrUkyPvmSJZg+iE6ncon+
-                        Jh/P+qdMqP7mvDmZtNz7yfTWYK2v5hY0n+aMTOYpiN937VOPppJ9zVd9mHJitu+yFrytaAlt+SQv
-                        Mr7c8x3NA+V0yZR96lvLiejhnJLi5kRNZDy3RGH4mXQWcbfnnCLSeSgu5VnGcmizRUboWYcJAGgn
-                        lMT9aUIo0pLSitMQNlBSsR3lCJygIHCrP0aK2Wc2Zai12LlszRBd8e2rrjyy2DAggcmqrc/a1A+u
-                        JC6Zt3u7t1uE/pu8yZss31nCkGHKqb6W/OFd/YD+LDLrI6JuPlidBLhxQbDFj2552S2LkHqbt3mb
-                        JVzAamybTOg/5dc65l1o3G2pidmzsqe7NIWyi4CzpkLetdk8z/qn+3Z6derTuv3eb52qf65jNMjV
-                        ChBxRaewJwqvn4G/6kkxZTWVbDjBRsrdWlBELEyCOFAUn8w5mcks+5LipkKYh2zksiz+VyZw99Ef
-                        lyKwyMpljXzbt33bAmbNwRd/8Rdvw0YENhqL/tArcMn6wqeU67d+67cuIOE93/M9F3en3xfd/6KF
-                        3oVzyp2IRjqHQf9KTPQ7PkuoJwQpDnw6t/mwBvVbiOczP/Mzl74DxmUjp0CzTpqzaCEl0pzXVjKq
-                        dQh0eYd37YEPfMACks0b178x8g5QutYVEM+TZt7MX676xeq/8oqttdo2Lt4N4Nq8mdf73//+my/8
-                        wi9cZKDQHkBvrgFx4yWjWO4u90oGm/Q0PaVZ2+2U4WkRSiNjzJt75ILx/PZv//Z2CxdZxTugTXyh
-                        nfaLkxX6nbHTXGZk1W68Pz00Uw5MQ26C4CknZv2zfJ0UNutfeyj21R9trOufIYvmkaykTHlLSwae
-                        ijn6CsDUl8mnazkx+588l9dgbXnS0Jl8sm//9m9f1gEdoBUAknKn1HkMpn4IPNe/xnNOSXHzdLME
-                        UZVrECNiAvEJFgKF5btLx12SEyhh7mfuFtari3vFJ3TqefET9zB7rg6ExrVbOUENTYu9IlhC4PFP
-                        ePyShWxi9IVV7HlMyZKGigg1bUl+49ZDvJPRQ2VT4LZ4nWZWn8zJDAOEZotTe44wwtCUq7ETrPrs
-                        mRg1a6ttH3kGpoVuzozFvLrMj3ECBwQEgeG+eXjowx66CAvEI8ZUnG4i3BmPjVCmm3cSbSh7IvND
-                        yTTFasqR6PkpHGb9PducT6G7q/3ejzhn/2snACHMARDlIs8qC7GWLLLeShct7Ipxxxh5hfQLuicU
-                        CIdppaRwsggmH+1Lmkt4uh/Iat48R5mIU6J7dODiVqYw3vEd33ERCHgjxI/euCuBz7kXOCUsnyUL
-                        v1CQSx2UmTrU1X31SwBaspBPZ46zKFjZeQKaQ31NqM39u+0KkbiER8qmnzs/WE54nqKfe4Vn0l3W
-                        9kxsm3M613S6KrOmXhXSuG4b3w3UctdSsmQHq7aQRSGJQLi6mlf1t0WLMhVvNo9zTluf5talzBxL
-                        IrVWFHCu3elGLTlU+4ATYBUN4H/uZ/VQGmQuutSOtTXfxkc2JovI5LyW+myu5/azQ/HYyQfN6XHL
-                        13z06iqfuSq7yv0WXjMfQLl5TSbEt2s5MRXmpKldSW3ROprhFXmjN3qjBTgwxvIkz90elP6Hf/iH
-                        LzShP3KGkmlTTsw1mYmazfs8KXBX+TbLvUlKOCc4MTEFMgVCBJxrQSd9R9Alja2f72JliCWEenw3
-                        GZXnqpjvUNwIuzb31d1FGbLYp2U53SoJhKmI2iMNcekboca6SfB6huKlULm/v/RLv3RhJjHIEuK4
-                        ybkwoXDPiffMrTxZo1Ohn+3V3GJswCi3VYpvxpMj9On+3ofypnLap9ATlpOR1tbwWuHNBLEYYQLH
-                        2f58f13/RObmcCr0FEH1rRXqdPlPQbFPoTdn6GEq9Gg2Pmk8MzRxKCmuZ3OB9z6a85unCpLfxWtA
-                        KwEu2YjgBpJZYbnIs+iiNb/FeCll+QeeZzEACBQC7xIXbvFLYFoZQHEUBnvhQv/4kwDSD886oS0P
-                        V56Yuaed8JKXwcMEhCf0yq1phwqrOJqd9BPNTZA0aXIC87nmk86nNZlnbXp69M+a4t8lQeuqo9MP
-                        hbCK23eGRAq+jHPvW6fAFtnE1Z78w5eMiosuut/WI0BeEPrqndbeBKGuPDIAg9yDtSxV/5R/Mv3J
-                        Z7JK/+WVWFuKw3M8ITxLbU3MexM//V9S6OsEuduSE/P7oSx29ylrPEqht7ui56MZ8y8fQYgH7Ym3
-                        R/8zEXPGyM8pKe6Qyx2BQeisRNYoNx9l5fKbKwvyjNB8UsaSTigsbmXE7PI894NPyTC5XCVjcPep
-                        S5ntCuqCnqFSLjFC28Vy1YfqUT/BVMxdHfqKqMUIi5snMKaLYia8IPSSx0p+Isw6srQ9oOLdCdiY
-                        rfjcLqDB27AI1tPJQrko9UHfS54zluZ1HUNnwSvnypkxdNYZwTIF1XRPToU53WrHcdvsK18r7BRk
-                        FvS6fP1+a7Hu3y6FvsvDMMMSdiEcx+U+65/j3+USn/07jss911thgjwN+xR+cc1CO3knysql5Cib
-                        eMV6o2c8AMAAvly6gGLJij4JLkpE+KZtms973nO3MfnOWehERQmQXLPqImTal+7d+JKHK6UNzOBp
-                        iZgynLNkC70EJAq1CZdxD3MtlvFe2C2PWKd+zaSxXS739ZrtosnemW7s9lH7zMWtf3ZyGAulRxAL
-                        ZfFkADCsK/TEXcogmAfFFB5q3dvOaSxybvAkY4WSdw84UG6tWdzJmMWdf92r9sxPPmr+zD3AkNue
-                        zLP+ZI0wCXkqfwcI66S2TldTP++IcsrDM2RZ19z3fFw+P5vyfXz8P13utzW8LZf7Wg5MT95aNu4K
-                        rbnPy0MH0EFl41t7QLE97cvJoSevWXJ/yBMemBkinfS/DsMkR9Yu+V3lB5PiaghBT4FUBeI69oVS
-                        5DpJAbHmWTXt6Y1Qq7NDAjq2L7e2e+LSn/zJn7wIagOPEbeZ8DceHcOXYjRxUOhbvMVbbLegzJPc
-                        JqJaJ9vMLQPznPL2sh4JqOu31pQyCh2BABrQN2GLiV2sl4ALJUD4Qu4xW0gsYqOgEQEBEmGkCFje
-                        XOpi6Fwzyjt5igDm5reFx1xECLlys2xy/ea2bH2Pk1hx6A95ZtLZ3Au5q3zXn6dU177y9fvzhKsU
-                        vPXPQufC7Nno+FD7t5W0NsME2slCR+vR/eSTPDyT4fe53ANXrfVy1vlpNy4asZ6d2pUV1zaa9uqy
-                        qrl70Q9aYyHiATzDKmZh4xtKXd3Xnk6Ey4qXuPpFX/RFiwUogYs1OM9GCARl1RaPFHdGr/owky4T
-                        LvGoNu5617ssCl2yUPkj5iUgUD6Md/OI7UuKmzS7XtNornemJ6o+FqNv+5rwBDll/vKMBBo9U3hC
-                        SGBuZw2QJNDNb0edspKty8d+7McuZz0EjHN1a0dfc8Pm8ZsAerpSAye5da0Bb4c2gJHyBtpmNT1K
-                        3glA8Qo4oGXxVNxw/VZ235YcOA4f39HL/aYTstD3JcXtkgPJkUN/2BPNmVuJuWQRIyMXe9sNtyeO
-                        vuxI95FbwJ/s9+RBXprWJppYu9SnHNnlcvfO9u9TY4SSDFKa3QuhFoNBnFDkjOtB5pA/5S65bZ4G
-                        NZOS2rYRqiy5q1gEhoJ2CCadD/1jRvtZc6VRxLaLUXwySbN+5vm+McfMBDf4/syluHYHFnCVU84+
-                        oVyMRLhhEnE3BMLyhp5ta6NcWdOUNze89zxn0VjTmI6gnnPqOzBgnJJcWOt++9Q2gftWb/VWS1sI
-                        wH19IYTMMY9EFnpWXsI3AknhWN859hBdgnoqpKmwAh7RRwS3Vmi7XOITOfZ+BNl7Wd1rhVjIYF1/
-                        yiPamxb6BKG7+jfbXzNN7zXm2T/tTAu9OZ6Ctj27Kee5VTOhPpO+ok+0UPIZAAcgoqHWGThkmUcX
-                        LuCCUG8bI15BZxJtKCDWISu9sw6OBPvR3mCWmgQ4sfjCZFy2hF5hpcnfWZQlvfGkoWtAEx/mvu00
-                        OO+xSuV1UDp48rGPe+x2rJ5nqRbL9VuWu3cKjUUzrUkAeN+aznLvZe1Pr0EgHQ+KnQPljBDuaXNU
-                        kq53XvySFy+5OObnwQ9+0HY9AyszkSk3tnI0yJBhjODJkhq9x9rupD/f8/olW+PD6enyu903EuLU
-                        RTFbe/Iuz0kn/fU/CeZyAXGnk+Rc5lmMvbyKmVh4tnw++eiOXu43z1UWekm6u2hqlxzIAt9XXh/Q
-                        RRZ6W61nTlK85RPw41HGG7ZnT0/S1A/lOqQvkx0zkXDmgCVnPHNGUlwDnMI15VniTkJN52RalwxC
-                        uNhrB+ESMg4J4XJLadepGZOOMQzAoSQYIoAgNs39GKJlibEoxKRaFATbPnSWbKh8KvCpcCLWTgjq
-                        BCvoibChkAMUhQ+40wIfBJW+zcQkV3vDpxvedwod83HrpcAWgHPymmWeqqs4WVscZpKNMgJ8Jt34
-                        FOqQdGSMHaGapyOiDsU1D+t45K44zKHEi1k+65+xqXXsa+016P2zjZ1NhYzQD8XQ1++v2z8UQ698
-                        HUPPQg9cxGwSj4A4a82rJB6NqduymHu2NcriLl8Dff/TP/3TEjufBxa15iVYRRP6Yv25yylwSL9w
-                        QF6v4vIlnFFa+FFdgAHlTrDgJ0ouWgig5BFqi2gATWKmegDvrMBi+NOVDvACJg7fMD6AXSjJ/Dik
-                        BLCwfsCSUMF0R8+kxTnfu2jO93mmxTxiOeHIswEUAd+26Zk/QEY/eCtS+MZHoZMBlLO55RGkhDsg
-                        airgXJzaMB/qJb/IEQrU3AlVAGm8Gvhdm/IZypxPSAdksvgT7oFd9yh0nkgKXWjAPfkN5lJYzqf5
-                        9V0b5iLg2b/QBRjOh8/XfHxHLT/XGPrMa9gnJ5Iz6UsySDuAQ0fh8ojYQdU/RjIW5VfQFWSFZPMA
-                        bnSFD/ADOkE3Qj9AmrWLtuPnlHpnRnSd4XKfjDJRSlZTrnKoXoybgMC8rExCBnIXtyiuzlonMIoz
-                        Qq+5uGIGyNJ3Ay7Jzifh5TAKWfOeITgdBAFds5oTOFnoypv02f85ppk9a0La09uWKPXqB2CiHeMT
-                        Z0uAIwx9I9hYQuIg+sjlDnzwHgA6XKGEsIWLiZYJv/mmrfVmnrTDRWretMut6Z59sg6dkd2sTJ3a
-                        U79neD9sRWo7TX9IE2hqnNMlvv6jjbXL/DjHC8731/XPo1fPt/wQo7rWLvfqmoy4a83X9a9dWdPV
-                        lms/hU44KF+2D946z/JAWNJOsQMCPQPI8tZY//7qM8WawrHerMM8VYQ/piWwra1yNIAeoHj5IB1S
-                        gd7QA6YHeH3ajz4Ppsn6y5pUv5g7F3sJqfokV4WAERrL2sgan3twOwxI37nnZajnXSgumVfIONGs
-                        evGN9yTiAd2sy0JzFGbeBUoKX8nkLmF0sUzHVsvWZBdNB5DnfmYypoOKZO0D/OW9BIp8B4qsr4sy
-                        9ClGTQE7hayjRMsX6Ajndd4RgW5MxklWmScCmfwrmdGni2zUlmNF9TvPTtZWFldzkcvWAUdkgj5T
-                        HKxBmeztfy6PyW/gEO20NTfrMmMsPnlN8/mrs9w9tHrcLPddgOBQ6KxnzK/QkhAT7xddaG3uea97
-                        bu5173stbfuNrtCe3DIAHu9T4CVfA5BCZ9Y4AI9neOl4ePAxT14GtvfJEXrAOivDk2e43EPiIYb+
-                        lzph1KH6KtEgVx80yE2MQTt1DYF3cAOFDwAUI0wIlHTkt7gTdx5FlgAtJi+xg5XsOe24p13od1ro
-                        XO4lTs0Y2hzTjHO2NcXkYMKs+o7dxJAWgDtFvSbVYmHc9qVjev2j1AmQLGRKZir03Prtnedq1GZJ
-                        TWUoe8ZiSz4SJ33ik564oOtOVpoJMBawPe0lxWX5Nc5DySy3R1LcqyvZpVyCSZMzmWXtcl8nxe1b
-                        83X9KbJZ/wSx0+Velrs1lFSG0dCdtecuF8um4DGkXRbCJrZX9teLLkJWqIQgxjch7+gwGugQI/Xi
-                        H25gFh4rTJ3exewECFd7yVflpMx/ClTGgwBocDezINAccEzIUPBt6cr1nEdO/wBybQMTnfON73Il
-                        ZwV61m98j0dZ8nhIH60Tj0B/jGS3CE+GOTKHylm3828v53Gyh2jGZ0mFntUv80Y4AvrWh7DkMSCP
-                        8BYPxUMe+pDt4UR5QvTbJxBASPfHTuSesfenQln/fdomy/Iil8RTy7XhwTTO/lDGWnnGs/qY56/c
-                        icUaP/3vZ/E8QMFYkShLabQLSF/RkrlUvz7YydApeOQS0BB9TYCUl+E1zeevrvLGxKt2Nklxazmw
-                        T05MMGduyfsAq7kvJFZydL8ZnzzJbX2OZyQ9AtvWFK/iEbIEz5InLHa84+hsXlltOg4ZD6MxRkB/
-                        NnRiHeSf1k6Wa/GXzteGMqEOGaOe0bjOEFi9w93OyjUQySKs35J/OuLPRD374mcvihIgQIyI0wQQ
-                        DBiOQNOO5wGD9ryzYPRrWuihqJlANcc0k8VasNx2Cf7+/5vrSt8xRe4w/dQ3TKmvxoXJLCZLjRDB
-                        zISGhbQQxcyzYiwkQAS4IDRAJivBu8ZjETvmsUM4+vQ8JeNd1o9s/plxrK11UlxodCaT3B5Jca+u
-                        ZJdDyNtlLg8lxa3f31d/yHyN7DtBSjvTQo9u0HKeGdZz844/0Iv4NzphRVun1o0CLalSAmgxtJJN
-                        KRBKjasNjaXsEgo+Wdpcx23t9JuS7zCZhFTKHd2yVNXFyqfgKSi0awscUFoIrL3XeShcABP6ltNS
-                        gpk+p+yiu6NM8UsXy38KMTkmPFo8EHO3h/aAUoCZO57ip/RmAm5reFs0U56MOq2NUAJhSIGSV0IS
-                        +JPABYoW4H7D9Qu4IUesIa8Xni7s4U85CFDPBpQzEAqpmAfzB4wYqz8JoWQdAqReYcQ8DOVPMAas
-                        rfo7FGYqqmKm5ojwBorIEzKOMeE986S/GTUpofrTWPWF1yfDodPl/jcnxU2vw3S531ZSXHQ05cBx
-                        /vLWO2iMvKZcgUV8Zn2cQEgn5oUFjou7F5YpAZrMB846alw5LxcPNd5Qbl3xF1mCDuhMekGidP8n
-                        cMY+9NBNDJX7rb9DpaShV0QP9ZYoIkEMAWGMznH2DmLSWcKHokLg4j+XXfaSrRseAxI20Aa3MuSK
-                        obLsLUouKc9DMwQiq177M4Y+Y265DOeY1i75mUzVOyXWsYoQg0UJUcXwc4tece3i6ARZ+/GNoQSZ
-                        3HWYSh5ArrhCDBYHOFCP+owJA+fKnee85z4EADq9a/4dYeNcx6CPE0M/VH4oxn177j+9raQ2481C
-                        pxCqK5A4318j+0PJMDMGn1clCx3ary5zDkWjjbYO1i+CGJM6NZHyCLF3BCVL6slPefIZ+7jLE1Ev
-                        +pYQSYBD5Sy8FI42CQdAzjPRHIU9t4XNpDCegY5mBiTxja1QFJ6wWUKmU+UCt+295uql0NFyWd95
-                        wqal6jf6w8fonwDSLhlgXJ0cV8w9i1S/gSD9Y4VOkJDlf4hmsqxclzznkgUccEsLe/QfDdYJfwkF
-                        sLzNSX8LnGK2XjyE1srcu8gWFhOvmf4aX2BJ3deePNrjr73yWoTexNSNWf86XKQsem05Vc7z2iyb
-                        PbmZy50yJ+fwvvnPtU6oKwvAFR9v1482CHgeEu+gmfowj3i+I/D57VmenJge53lSXEmIU47E53kl
-                        5mE/U46s5URyJPkEmBV+ZnEvYPrGG7YgLvrEA3mf8qpZcyFV+Rx0YwmObYX1HX/Qi3iq8B4PDODf
-                        mfZ5svYq9GK9ZXiK+VLm/akBRaszJ09es1gkiMcB9WVaRqAsbpYApcW65oYuO1unufwwBEHn0Aqx
-                        tFBVx8NmDVgUA4BiioGfi0JvzGUyp7BnUp0kGhMHZGjfWIASfSN0oX8n5xEShCOXK2Hr4rGg+O97
-                        3/tsFyZ3qrq5SyAvQpoAMGZIDrqDqgkTgql/V8OUys0v9EfImG8ejARqIYRTp05dUOjj/QR+nyVd
-                        nYtCV38WZqGQwBQB7jf6792nPu2pyxp3EiAa3a7VtSe3CVkpCDQkpizcgrZY0j1Topd3WZZogcCH
-                        2MvADzjmHiwuLgRGAIjpGg+rmWDgotXfhFNu2WK37UEHNHnkUn4p9Jk42zYqisQYAGLu75RNR6qW
-                        +9KlHQpXG9ziZcXPLWiHaKYEQO+wfvEjoMJ4cI/nroRAALj57r+y6we5hLfxVCdh2hpqLNa+kFbu
-                        10WhO6b54ksWQGXLIMHrfv/5kLeyUyJLagL00K5QYucDtM2w7bssc3TgAuzInM74mCGW9p6r2zy0
-                        ZZEMIiPI3wBe8iGX9Guaz2/P8unVySV+XIVeqDHa794hhT51pjALsEUmddxuoZloBo2RERnH5asE
-                        zPxmlRda9dl6ahc90Rn0JF2A1nhnk2nx+16Xe4JThRAI9zmLkVKG2qvE0YoUDIaRtFUcLMSDwN3H
-                        aCxLBIrZEhiEHKDAckB0lFqT08EY8xjWGedYJ8Ud1+VeFvNMAGoRW1ACidATOyRYjaOkBfF670Fc
-                        3GHigxB/yNrhG8aKKbMwcq+W6ey7vsT0AANPB3BAqUPZEZU5aI200T8vcemXM5D754LL/cx98lO5
-                        pyTO1eWuHC1a65LPWtt57rm22yus7SxS9NIf6qCn/tu9s8+LvQKL/WlRdaqjjGjfgWICghIT008I
-                        pNjVOU+R8xzF1u4MSh0d68vksXZJBIYBeXxvvsu8Vt4BJfGMy3i0w71ujraW7OlYcZZEvJ+1C7hS
-                        6DwHCd4lnn/Tqf/PPbqmmfIdfBJw5Iws9iNX++MWEEMRCjHgqbZ7NZ/aZ1GbD14PALvMZHKLMgDA
-                        55avxvGylx99B1zINLIP/xfWSHlGe21do5TJOOB/WlcE/cUXP3uRG/oDvON19Urwsg5k0CILbzq1
-                        PcRknf/jYmTNE8mmBfq/zeXu91TuKVxA7LZc7s1Ha9T3Q6G56XL3yeuDpwK9Hb+cQi+slkc74J9n
-                        K0DdqYatYfysPBlSkqr3M0RPnd5uuljo00Uxk4l0oP/CxSSUprg2Zm2fXAkX/dEIpJ1FmjuxhBJu
-                        BYiX8uNmb3AUGWLtuEXWKGVIgGQBJaxixuJlyrmg+vvU4ybF5R3oNLwSy+Yfg0jYwXSQN2uIOxIj
-                        YirIb7HAbgUR5kRYgQDjObCoXHfGIA7fXx3Oc6Kbn9A7wSxeJxYnLgtEWDDzluLImjF+a9Ae9ba6
-                        5L78v5YUJ1aJhjorYDmh6dY5p9DaZ8wNhr4i/uMmxXVSHMFoztsykhDtFLQO+InBWuuSZvof7ulp
-                        yvukveqgPNDXEma68uifz0okzROQB+kFL3zBdg91KL/98OozZmXezy0rZIae8SpgGh9m6a2tZ30j
-                        FAHbaaHPLWLRcP3rtLkSN+e+62RGp9H5NFantpENvG/z1LOs/300E+hqTrgs8WL/dSCW3b9cMUIo
-                        08IEJQ1aByEwSh+Il9xaoqr5tO69V1v133d0Vjitfd8l9kVb0RVZyE0KtLfNl1eyUJk27Z6QIwFc
-                        mHt1kwN5SuRjZKEDs7wsBHze1P7QpURlHr5pnDWHdwQ+v73K8+TMP+yxXsAQOWnOzH1yIrmQnIj/
-                        yOHou7k4lBSXzLQOZBEeyarOGE32z+3a85z3trNmrctFyXhNDwNv/UFaeq8tr4055X8iF8J0b+Zi
-                        8BLXnwmBeCH6UEzHoapQrIzQ40Kax61mARdv40riYp9/EdmEtWhclBQpIKGNGdNoAYsDWQxKkEKf
-                        f28ZygpdZelmuWcZJITbSpeFgiktTvvKJdlw7ZoHzGge9KX/8W4PvMWh/CXHABplEGdZBTj0qZgc
-                        RM89RvhItDLfCcsEfifVJYCgbswNdFxyycULIUZ00ysxxxyqXSeO3NG3rU2ajHHn0a8AImXAUyKG
-                        2acEFYqCZUa4i8+2jee429bMNSVL2BMOxadD6yU7ofHmuTWozgBJCXWVZVUmNIyJ25cQJiDa2nL1
-                        6YNhvBPzq2sBt1dftf1LzKzmhEanggUilRMKwmXmjUIH2JvfdTwxoMBdv/zxxD3uvv1bVXXlep+A
-                        q7XRXv+kFuBM8OR+B4DNKW+U+gEn96pvnmp2iGaaF5/aZmGrs61xkod4DWaMWR0pwEKCYu4AwQwF
-                        FOZIpqzjrc1tsnPuia/P5gy48invqNwHFnSnXtam9xkF5AyDgPfRgT76LZ/ImJSZVwoebQsJOCK4
-                        g2Uof78ZYUIBPJ95tTot747C57dXeRb3Lpc7GmCMkgcusmJ+70peoMn46NC2tS7329XEm5dRlacu
-                        vdXzyY7qjJ/r/5RDyZRor77M+upT9f4/AAAA///s3c2rtWd1x/FO8g9EEAcxZGowmJlDqZMMBUGQ
-                        aCExmSiYDEwCYlIw4kzUGKgggg7yB1iw2EGlYrGYt1qreXl86dNG/4/Uz/0835PVu3vvc7JzXvYp
-                        e3Czz9nXvq+3dV3r5bfWta6TXO7TGkowesB58Pqc/GlJwWgJdJB79zLPG5amtZUV1Gcax8LQfn8L
-                        kuMfsJgxbHX4nQVcoICJLuc6YUpwsmrBZlm/BSI0cWs/TEwgn3abUvs2D1+FOgWjOIJkUSA631x5
-                        4glRG1W//J3fjNICcudXYaGUPzkiq9/vfvniLxc0gg9UWwS0ecQI9TU/IuanPd+rm2LFRcF1UV7t
-                        X//Hr5fxnOYDbyHsEvi7yuf7ayXpPBNGrH1j0wduXgg7vk5zYO4wNYySkPJQunzX3zY0ODtLuvqb
-                        k+mbm5YLASPQRTuCn4KDt70/ffCbyttTa80/1AgzYU1yb1FUoQ+EDAvMGrAXMWxrwtrzUCApgVNL
-                        z0pJqW4tGY8IWQLF/Pzghz9Y1qG1ZT+1hrVjjkGJmJx9QCEqiUUI1xTkzVnKp35SWO2NUDp1U4Yh
-                        S4SRus2tOBgBe/GMIsozDHatmfyT/VY79ohgPFY5FCKXWYiF8RL82oVYEJIQsnkELlpPa2zSLIQt
-                        Cwx9CGMC2NwlXDuqhp4Uffuc9Yx3hbyktHdvhCBIkc1B7E75UKw6TaNu/ZUEBzRPIfE9lwreQDhR
-                        Douyby5TPhvPVe/z8yr3/7TmM564WBhJ8QZrfttjHs15R/06EbBtn9eutrhmnGhhhIbmZPhue38a
-                        LpsUhk28+zTe7vutAn0u2qDvzub2Ts582iaruiCPfIoT3lzDp1nJJxD9f9+yRvnTKAcs5PwCKQ9+
-                        Z3ELWLNoBfogFKKZ1H4zU79ug21a3PkntEU4S9ZBSLD6BemAKW0qPmvCnSXtAat7aMJ99rAQ9M3f
-                        rGgMMh+IoIa0Q/WBhGxyWnW/Cz6SNMR8YxbgQAqFzYshY4YEPAbVla0xn12QegtgGyqzq3y+vy1o
-                        7TzKJ808041SMKTNylXj4eNkhWHeHmgN7VyCDzAu2NT3M9J3zsk6Cj5YrKBNx0cwUYrkPBq2fn9C
-                        9tvKNwmH/sZICPVuyyLsrC1CpzVl7fXpwYQgPMHOKcjt15k50ToxbwSMNcfXzMesHmvLp7a02Vqj
-                        zHYuOygzBCBrNAU+X6G2tcUXrE5996hbvQSVPU5xofgS8jObWe1MN8imNRPNWvfz+Kl6ML9iFIL8
-                        KUD65LifOWAFWz/xg8Z3mkCPp/ktxYHrzRjNnU9733gJcePVFuWyEzo3b6fDDZo3fgqQv60DxwXV
-                        QYibM0cezRkkw1qkKFH0WO7QBW3gC/gWXsIdGLoQEprCN+f0Kvf5eZVP1Cva5J7FA3rwCK7Z/ve3
-                        7+IR0GFKWbEIraVt+7i5ZbhRuPCY0BbrZxcfmJZ3vHdT0N1Z3aGV/9Uu+NUCT7MNlvZdsIf/fc8H
-                        ZZPQjFssadvbYJP1AtIxi5vPB8OiJAQx5uvIPwTidvTDIgepiQg3qfnHWqS7AqyajMYZY+KTUh9B
-                        zjpSp/b4+ljEGKB2tz3geYywhzZeGkb1i3bGSG12/jQb0mLQVgER+m2cQWRowJoPJeDLLwf3VHZi
-                        grtoeh2C4tblU3ONyQb/Bit7N2HdpsjaCA1K6KznZEJ5E0afUOUMKjotWGbf8iw1jIESweqypiiA
-                        KZHWTsqiv0VMU3JTTjcpaQXmdWSGALOGrEF1qSeh4ZNAso5BiPY0S6/YjOq/efs0RchAwjBryZqH
-                        bqhHG+rVDsif8q0PlK7cGBMdic9MOHXbmeMYfn8r9xQ8WAR8+9upFeM0b1C97oCYqaALmm39bKJZ
-                        AsR7hK+5VG/0aS7B3nzhBIdP1nsxDzOIUvrprqFVL1TBOojnqIth0TGljBDvQxwoFRRZCi4rsfih
-                        FOPo1PgOcZ/vWx7vmqhDAnNtwa6D4qax18mH+Ex7c9M+rl+1Ff+div0uPlDw7ex/44tG78YdWvlO
-                        Cz1Lu6i9gmCmn8v/tEWaTccv5nGKXRb6PNKV9UXrxKCKAszH1GeKhXJaFguKMG8Dd8RnbQ2t2795
-                        +3hAwrwnKD0LB0zJMjPJCG6cAld8spz9bZOyrj2gNP2nIdt8ne1N0wfDgeVY1wVXLYkffvubEyUo
-                        f2CX1pSZSzuOLOlTDKr0lDPJ/y6aXoeguHV5/Q9CzgoMqu67ArCaU/NZBqXWRxt2W1DcjHVAA2uh
-                        qNIQo23v77LmzloeGpFrgRXBorPeCB9ry98//ocfL9+XTnlGxW6C3Odnvlprd67l1pc2WPKUzPLB
-                        Zzm2Z5uLLOoUntA8/dF3yjCFQBvq7qxttCuQLjdYvGaec9+FtK0DGdv3oRKTh3jQ0diWIz9vvZOJ
-                        rnia2mhMu2jm+1yA4hHsfWONRtqwb9WbkjBzBUyUMCSqtjvlkMBWX3XFh0MSrNPiA8xDcQv6XGrZ
-                        kJvg4EPc5/uWK5v9b21N9Gu9z1N+y6o4kcCbt6PG2z/b9rHvQ7DRbDl18NpvT9bUrn1+GpK3iXef
-                        xtt9f3I5yzZ/qhe69cxTANCEcIO6dKaJ8I4FtssPEsSQhp+QSpNsA5qo2p9EmdpnPqh8F/1+kw+9
-                        etJapz8smKqAv4haP2eAzCaiRMypVFByyoCVKyK4zVNwTLC8+svXW8IPv0sBaME2BxQazPLm7XOU
-                        192Hvq28OW6uih5tzkN0olnzX3mJRnb50FszWf8pD50weC8+9Kzbbb6zUIQY/RRKa+ElpkV9oVe1
-                        s8lCry8F+6S4RO98333Xb60/dVdvymYWenW3/xOKU6A2/4ugufFOgpUYUW6Q9lTP3FNzzjb50JvL
-                        lIoi95vbFPoMlKk4pUCoq73V+JvLTTSLQc+Lp9rzvdsNdM1NGcLiLZNe9b010xqecUHz6C5eED2m
-                        wIg2oVZr+Lb1c8j7fJ/y/q68ddM6ao6nhR0S2p4rviZ67fKBT2VvPf/x5118YhcfqL97+dDXkHSV
-                        xoCCd9I48k3F/KYfoIXXJvL9jERcQ94J7jZ39U+ocG6WFrTyMmElaItKnf6tbQI9xhPhYnJt8KyM
-                        KTQTsurexbwjcJuqaNrg8aAyll/HFprflIvgY5p/1lY+3c4uJ8iahxjsWQT6mibRvN+sz1o2zvVG
-                        WsM+u+pfR6fOjdg728p7v/FNzXduvjZWazLmzUqZ2v6aZnMjTY23tZIG3x44baOumaPy5qfxreFb
-                        f0//9Dye+fIrL59EigfRvvXWn06OfbZmdm309b5ovRXo1p6tj+olfBJ8cx9N5WKiX0tQ15tvnOwb
-                        7RdnkzuhddvFQjG/lOv4SKjKLubuM5RwKtkx28Y/YwqmBTx9sOpqHhKKvb+N+bamokOBqfGs9r7+
-                        GzdkrayXja01VkxRfYg+EJj2d6d+Wqe1VfxMJ4zirc1rhkZJTg5dcX8v5fGu9T5dv98+nXtioiWT
-                        PtsU96lE53KqT2fhExci0LfBLi38IIm08BZPEHXaeH+3kGJOE/ZYT1QaY1BoGz2tfwa5TItlCrGp
-                        gdfnaR1vgm1SHOprDLR6q7tzvr3T+OrTJlglwnYncXORlZemHSNSh98FZ3a0KoWgOmNKKRwpITGn
-                        qTXWp8l011DaNpr33lSyNr0f7TYxp0nzCZVldUyapPz0XQrdNni1tTCD2+bVgs15ENiChvz2NyeI
-                        zKx/oirRtLFmRap3HrOcyusUHnN8k6HOuVi7sybN5viLnO4CntZGwTZzzEGpk+abFJ7qzh3W+slV
-                        4+/We8K5ujuT3vqPHxRsldIzg+Jy0RWg1Jiia5ZmY5vfTVRlzvmmfTytpOJOmvMJL2eYpFy0Diaa
-                        NvdUQU3bkLiE5TyDPwVr6Fv/p5A3b40lIR5Pak7nu5O31veCM197/bVFyV+v49ZXPCf6z/Fu4wOH
-                        BqnvU34WSLv5bc5TopMda964CRJvbyRP2ttnaf+08nX7p/Fu3+8Miosh9JLvvZQ1l3bQRpyDmgtr
-                        WvVtpDSMgoEmQjCttZkNKO2q9jcFTmhjn6xk1Ze1OC23rKpNgQubAjNCE+bmaRPWVlZ7ATwxoOaq
-                        ZPtBgQmJFkKfWfPTSs1fF/2a37UFvqZ5mmZWVNp6mmc0n5ZnfZ6a72Q4U5sOsagfzXeXgmTRTFRg
-                        kwU/+zzXTGt2nhFOyBOMMfdo7tMTI44G6iDcZqRz44vmc1P1t/eDevMHT+RlnftgWgdzTU3m7jNB
-                        ywps88bEE97ebXz6OvdU67w5ny6znpCy1qe6mtP61/izbLIWPdNSbs1N1GeunbmnskZm/TNAa9s+
-                        X+9jf8ePJp+ov2s+s97H66CwNU02BTCtkajJm6bl1fezT7Xf+3N809qs/dnmfL81sO7/rH+2f8jB
-                        r+dZvo1ma5pvQsp20Xy9JibvWfPWs7x/Wv/OSrPKd1roMYg07jSRmFjwccJjWk4xe2XTCijNZPUF
-                        e7XwtsGnF1EeI5v+xuk72ac8qK28ycFtt/Le3ziZzzT7EJAi3CeCkDApqKU6p//G92WnSiAmXNa+
-                        wzT0TTSPNhN+rf6JNMy0nc1hmdESQllL+UdbE1OxmRb8vDo02HKTNbYJdWks04L3OPKnDwIGu2mq
-                        JD8TCq1PBRh21WkWVopBSk40r/0UBtb0RF8S4Es9N948STDiKWNadCmAqf3V/KuryHxrAASe1V8m
-                        s4ngNP4Uk8aXQjh9tikf06qfY2L5tYda83MfRZMQqYlApFDtsqau+z6/7PK5zqNl5XPM51F+GTQ5
-                        0vxiaH5yOcvUotMqg44nPFEgxrQ4m9SYWcyhlJdBcgn4qdlfpR8m7W5q05VPzfbdlDd/XdgR1OhJ
-                        wBb8VNasrkCsLAs/ZShrLGUgYT2h01wHZZwqqKm4hiyq+rqmeQy3vxPQ640SU65t5cGCKSUTNUjg
-                        R+/qbyGuF3X963dZjgmqNOJiEmbQWIJ3LfASIr4rvzjaFAzZnFK6OrrUGJdsbX95z4mDAhun4K1/
-                        BWLNvlZ3ykTxJfrV3dqUB0I+hcEcLgrWn99JJTsRgCy6ycjqh34V8axNa9OnNlpX7YPmt3nvu7kW
-                        2uchAJMm1TURoPoxrfFtNL3u+/yyy6ePW/lE1eaYz6P8MmhypPnF0HxnlHtCfC2I26j9HXObmzaG
-                        loU4tY86HFxQPZvg1Yss95z3meLpbhCdznITDOPcuHO3zqOytLIGpw8139/U4Hxf9Ov6+5SphH9C
-                        uN/GdKe//7RFkQKWGyXUob4Fr2fl1o73UyymkpcAPMtGnDSbwiGh5tPxHccV5QlwRvoX//qLEwRo
-                        nlzwtzl2bMp5Xu84SogWKVGhHc2fsTki5LgVejkm5igiYV5AVwhMPll1ylHgXLVzwNqca78gN+Nx
-                        RMwxS33xW8eaUjK6hWlTgFMWR3touhxiBMHgHu04j6wdYzfmLOVNrrWYS3uz9TvP5NbOLuZ/Vfv4
-                        Kvb5ZZdvotlpZ5L3LT8Emh1pvh/Nd55Dj4ETTPkgO9oVTBrDmkdssgowK09nyguwiUFfh8CJd1se
-                        TPpvv7qVotPcuUVKsg6pJiWIkPXtpz/9p5MUg82fZ96HG3SZdaU8y3je7kVpKNgpv+0MwpkQ/wwm
-                        WtO84zAzOKvkHH0msHqqP2GuH11MUH8S/FPgT8VlHXTnu5kfIIWScHrggQeWfO1SuUrg8YUvfGE5
-                        P22eu/zE/BFqTzzxxJJFUGY0qUZl8yLoWp9Z1V3gIvGHDIXRSvIWqX67GrWzvvrobyk6/baUmzK8
-                        SR1ZfZ1qQB+KhT5LDiOpi77LRFjOc31J0dA3SsQcf8rKDJZpj86gSccX5Z9XvzSv1pvsZGUT3LTP
-                        U/g6wtU5ZuPQduNe0ywlY66pq9jHV7HPL7u8MVW+zXV2HuWHQLMjzS8oKE7F0685j1KVAa3fzGxR
-                        E6L3N41jpsRrQIceOLFPuXkgYCgyLmSQLctd146gyBOPybqJTRKKItuzwoLSszQ7AZAllD+6yPgs
-                        2OY4YTxjHjrqNDXbTTT3qS5/J9xn1H6KWEImqzxBkSKRYpcyUh6B0zTrtEyfCawQHrmrpb0kEOVV
-                        l1RFfnFCV+rLzvt639zLwkeoyWntt11mQSFgVbcW9Un9rH35tmVkk0OdQiDLF1p96UtfOrklLHhd
-                        ClHCXJ/ULzWq+j2ykXUJiD6x4N1N4Pcy/lFA9E9WMfdcs9RzwaRkZI137WhzMjX76QbxP/RCZkJz
-                        IuOiebD+zBnlxhxNSDx6ZG23bia9b94+LlUbu6y5q9rHV7XPL7N8nwCp65YR8kjzcwiKW8Pgayc9
-                        60KqRkxw+iXnMax5xEJ2NPAjJgbqk5XJ3135l1AoQGzC9PUl+GGT7+08y2NQk7lNf+C+5cowR/Pg
-                        KkRWZElJzIM7313K4j5kc5BVCyKV25qlyEKbiMaEcBPs+XYJEJandrOIWWoEX0efCpLaFViR8FS+
-                        5JL/S1+Vob0c+4ReqWaVeSc/tHdCXfxfqlxKTLeFpSD229l+PqD6lTJQ0J/LNMyluWs+fE/osqZB
-                        2SkaMna5AEQefcIyNAnMzZKWqrj59FBS3bolLemXv/zlk6xiXCOuBv7oRz+6KBT6aV7A8AS0VJzW
-                        d24KCAK6srxZxMZrnVMQKAvayA9vTlj/0ruiXy4An+oB+XeNZwpbWRBTpFIAO2qjHWlCXXA015t2
-                        jIFS0xxPJSxr22+lnFWP39743TvBe9F2vWYmTa9qH1/VPr/M8m1KWErseZYfAs2ONN+P5hsF+oRd
-                        5Ah2WYnbrTDn0qVmWXa3LAZBgGCuLkwBc7py1OUHYE/Cbfpds+y0n1DQfswx2KFBBwuuieopyrbf
-                        9XdMZyaMSHgUDa2ugroSJFk9QSDzhqLJUIsojzmmBMVog1y7HEI5ptwdvN1P7LeUH0Kiq/7kmZ5B
-                        Z+vLK7xPaBMebhMivDo94DcuaHBhA1h4BlYFX8fEJ82zrPOhFxBGyLnMwhoAERdw550UOvUU2AWi
-                        Bl27xYiCUpvRPDpPH31zNxWWTldktXa3fIJb/1mdhGdjSqEJvu50gE8CWt9SLKun0xpBy3N9+733
-                        ciU1jumH74ievkltWjR9bXeWPGu7OUf/sgAW1AgZIPzvuuuuRVmont7Jjz3XWes3F8+Mf7Au9aFT
-                        Fv2+rHrTpSF2QE5yF4LI426/mxP9K5vWXDNHgX7YzP0o0A+bphci0Dclg5+TRqC7acwGL1HHFFjB
-                        cqw4cKN7YfkqCXNMBBwK9mQ1BVcGFSawMML8ddWnow1sJnspwCgG7ndFKU+/cL49bdVOkwGiUFam
-                        Nsy2m7TyB8/jShjlPCuuziKUY/T1y2eQULBKhOi9iOcx51m1hKD5cxWfS1zU3zx3FjnYlxBzO5Db
-                        sLzj3bJQaU8Zny2rOsUpy3sm6UkpiuYJ1ZQs9AITu/3L9YC/+vdfnUTS5x4osj1lzOdTTz21tC+v
-                        dcLTeMu2VzveKxAsQWp+oktl5jFYagZw1efWVBu8z/xMUwhqc+27ipGl2M7yNs0UqJP5zYDP+dvp
-                        22rzthnX7VePNQkpcGuWfP+1UbBPUNzc8DMJi7rXSFuMIrqGQCjLPeQTrSjf7ksH04sHsPaLm0kZ
-                        2eQmOULuhwe/HiH3w6bphZ5Dj9nMiGabmG/Q1X8CbViRLKK0egwXNPfMM88szBsjIMxBx+XZzvLJ
-                        2spH198F4JTqtLSrMXP/g43VUcBTggYjikmlbEwLK8Wg89UzA5NyQpJFpY2CqhJWHf/RNkulyz48
-                        6mW1lbCk4K/6FzqQ0JkBg1nLQcqVa9ftVK6h9Xzwgx9cLLQuV6g/5r9zz26Mcnc8gY4+wbMJw84w
-                        l0Yz67VLbArKqy/NSxmTGh/lQp8oZq+8eusO+MZ/83Ya2oRRrpUs6nkmv7+13TyYoxlombUZffLj
-                        J6QTfvU3RaA1O8/eZ023DtblKX1nLW8NvZfy5qF1GtrR+M1ZAt2FH3PMc03N0wgpTCm2fV/7zVV7
-                        J1dAgh3SAxngb+d/h65R4rkUuCy6Rz6EYgbwzP4dA6QOK0Bq3/JDoNmR5u8xKC6tYFogfuieWPfs
-                        8km67efn//LzE6uUn/RjH/vYck+vAB8BR64SVPG8qjIIMCh9Rtsm6IOvE8ZFUycsY/YNPH9jjDLI
-                        fiZQadDzOFC+xeBP9SSUQwMSBgkijDDBskzcn/90YtEnJP2+dJzrowctuqyoIHvfVa4dAp1S5HFX
-                        OlRDPQnY5ku+bFHThH4C/eMf/+tlHLUTrFywoja7c7kArKzarNAF6v7DH09gVmP091e/+tVFoFsD
-                        nacPcm/+62d+35sjCU0bsIWaLzrLca0AhbqkYGgvC1W5OcvSnVDVGmqbsNRZoLjLgOoSsvPin1w6
-                        JfHhh+d6EWw3xzzXVBZ6+2Fu+G1QXfRIoLcntSlA093dfPrf/OY3FyWe+4wwn66hieCtaVLZ8QjT
-                        YRxh2rf8EGh2pPmex9b6cjKCqSWA3G1uzFwAVgydv5yvj59W9C4mMP2XwfHf//73l4hgEHGCXb2E
-                        z7e+9a0Fmic0WPUCr8C7Tz/99EkAVnmRWSsEi0e5M8JFVWfVu1dcW9pPeBpbVqRrS6EJ+fNFG3/j
-                        G99YgpASMOr9+te/vvTja1/72mK5ZEES7AK9nvnbZ5YAJ+Xf+c53lrFl2XaF4WTuE36d8G9MN4sU
-                        bE5wcl3woX7xi19c2gw5ScHxrjG8733vW35PARBtPQW/oCr+c/M2j78V7+BT343j2WefXaKiBWdR
-                        FgqIM49+y3KjtCXQKXbe612fuVQSVpAdAWwCyEInum3L33zTgrfQyzwKekPz0Jn6mbDf5ju7bgI9
-                        62GOLSGbGyiBbr1Ogdw+nYr31NJPE+ihITPIMgQIjSnuFPQf/f2PFsHulAAalYkwd1uKRErG9O1N
-                        w6DyqYRdRbmn8uDaypvTQy9vTJVPJWqO+TzKD4FmR5rvmVimzT9N+JgLRiOoif+UwMBkbWwwtTOu
-                        hIkALoKgfNwFeBFEmLaoYj5hCVU6l46hsAh8D6IXjPPwww8v7dxxxx3L54c//OFFQFMcCAaQsu8x
-                        HUE7n/rUp5aIetBvt5dhhIQc63VCgQU+QQ8wSmMheDEryooAMgKQYHJGmPAyNm1997t/dyuF51+E
-                        0XPPPbf0WbkyvyF4MUPKCeGfIAp+TTlqEQarJPx8FxQN4dAfSsa99967BCOaN3V2VtknIWn8/Jz3
-                        3Xff0h8xDhjvEuD1uxtL9Le5FNBWGlbzTilTh7Grnw/eYyxQAUpAiIRPdT755JPL3OsT37hz9P73
-                        eJdSp+8i7YP0CX9jobCVLY+1p+xnP/vn5RjfnXfeufzG+x5j8fvy3Hc0rwxrWflrqG1G6U8o691C
-                        cVcN1SVgg9wpSdPynj74GZSWwngWeDVYPhQKfcHq5t56cYyOguwEBvrYU934NZPdzLiFWX/MaB3X
-                        MOMKLrs8pj/34Yx7uA7laz7SmEO1zrP8EGh2pPmeqV9PC4ojUG10QjDrjPBNoD300EP/56pD9WEW
-                        BDqGQAhiTm+8ccsHrV5C9wMf+MDbd99999sPPvjgYg1ogyBgoRJS999//wL7acdZbj5cVuz73//+
-                        RQB88pOfXJQHbYu+dqxJhD0FYRK14C+WuPdYIYSowDGQNZ8hgWicrF2IAwHlOxa7d2Umo3z4PYYr
-                        qpySQSAVO+C301ry3jpwwd8FyqVxeaegOPV9+7lvL8JT9LqxFBwX/PzCCy8sEeR8nM5IE6r6OnOJ
-                        O4+sXwR6RwS1hyaOJukvgYw+5lwEuwQpzl1TTvKxoznhb97Mj8ccCJ4yfn1GGzTqbD2BoE71O/LY
-                        /HfBCIQFDSlmFD50ddxKHf6f0d3FYWRtTtjpOgbL7ILalBlvFjrf9oTaqv+9BkB5stC1LaCVcpgy
-                        bK1wp6GFqHdo0O9+/06E/hzTGgo8BkgdToDUMSjusGl6qUFx+ZwJMozWkSobn9DF3AlcAoNwL2Bt
-                        avE+E+gEE2F3Ehj0X7fOCt9zzz1LPQQ+6JawJ0RE9wqyIxAID3Ww3AgKFgXrgdAl1Cgc2iLQCVoC
-                        kUAoIMpnkLlzyOp0lE5brFGKScoJFwLLUZ3aYf13LzTmpm6Wbyk7tSlBiO+LTO+s8LTAZ7BJTHFe
-                        ZFIQG6Fsbp9//vm3H3vsscWCLmlKv/cprkGbhDBhaw7Rp3H6jX6iz1e+8pX/FZRnLAU9scYIDZaz
-                        cmetWWWOqLHKjc/3IHHzxlcv8cojjzyyREB3rAltIDWUKXOqv9aJd6yfAt0oJvzCaEd4QF46Bsc1
-                        kFIlliD//0xoM4+6XddgmX6zDXK3LqeFPpGm9xIsU3nrI/QDrT796U8virX1AOmy5vUDImVfyDT3
-                        x//84zEo7poFSO1bfgg0O9J8z6C4XT50PyI8MH8WI6FBeIiE9T+BQdhi2mXeKrgM48AsJLQg0Flu
-                        k4Fh4IJwCC3CiwDVuQLMwN8ErXbUX3RwTEmEt77w0esvJqQtjJCVkcsgH7a2QfSsQrC6vhI+BIjx
-                        QQgIcnUXqZ0ANA6+989//vOLkmLOuhyEomIM6uEmgBgU1ZzvN/9j8zv7FIKQha5/LHCCVqChwDcK
-                        ToF/IPNHH310QTfMUUwXbfJxqltClAR6x9bQxu8pUn4vUr5gJ+X6LumKdwlbbemjmALjY71DNeYt
-                        X52Ldx6eABdj4LuO4BlLiov6ZSwz1+aSQMnlEH0oWx/60IcWV0++244EpnRO31lzel18ayFY7bM2
-                        cgLbups+9NZKCnb0nfX3/nofh2r0W+Uphgl2iBu0xVrTXje7EejiZ6xHAl8bMRxPwZ2tn6M/9fD8
-                        qUcf+mHT9EJ86Lui3G16fmdWG6Fh02PIfNs2O+ia0CB0wbg2NwE4k6iAz1nSzrimPfkk0NUr//U8
-                        6hVzEiBHYLMa0kZ6HyMC77LeMX7fqwNsy3Lld05IxhDVy8eLQfH/KyOctKEPCaKswvpREFcoBGFP
-                        SBJgBKuz2VmvrFQWZ/7JeZFJ380+xXRDRlim+s+fz1KiOPmfS6Lc3lAGChKh6Dv0IWwJ0HklLeQE
-                        bQSbpe1RRoydsPBeFv88UidWAFM3jo6jCUTUBmjc76yZXBrm3ncJdMGRCXRrRta7Fhyaizngr2Xd
-                        t85mqlNBcuohRCgOoRlzDczo1tbsdY1+jf6t7XzoaDQt9BCnif4klGfK5V3M23dFuptzyAzFSluQ
-                        FwhcSmHZBrlOKFiyx3m3Y5utjQR649w056fR5KLLD43m+5Q3psobc4z/PMsPgWZHmu8Z5T5N/Am5
-                        57MFrRLILEIBUUHqIDuRzPzcBAehE8we/M6y5dfGMEqd2ZEyzINAx9wJr4RLVjirkLAlNLNOel/d
-                        hAshSqDrN0WC8gCyJhAT6CWGyS/I3wzOLyiO0AFPd3lFlrnxzYQyL7704hIJzjcNkibgOjMOSdAX
-                        Y2GF6k+WTuMKWfC98nzEzfW00EX8Y7ZSxgpUA0+Dqiktn/nMZ5YxUB7MtUh1CAPFouN56sxC569u
-                        /igAYhLQMz+5eYBuBG2/+uorS9CaAL9S+1IKSixTFH/zYlzGpF/mRECfesQgULggPEFgBATXBDoV
-                        F0CAGWtn0yEh5hPd53HBhNgaamvNXlcoLvq3ttEiN9VP/vEnJ7RLcSpvQArYPLu/3sehGrXV6YEl
-                        38Prry1rCupiDYtpoERxOXkgNYQ9pV05d8ikh8DLkKj27BF+PSz4dd/yQ6DZkeZ7Qu67guI84G4C
-                        QwBU10jOI1QCZljoLEaCqIQWQddZ6KyzrBGfrA+CinVMcOpoDEj7LLWibrNgpjXLQsdovve9W5Zm
-                        jJBFC3LPMslf6G9JcIyFf1cfCR9CDwMzMaVO9dslsv12shiM8Olnnl6UGsJGlDekgsB9/PHHF0Zo
-                        jIQspkeLan6mkjRhoRhvc619FjqBTiExfwQgGB+kj/lSgvipuSrEHBCkXA4dK+yMvTo/97nPLWNz
-                        /K45NxbKjDkg0GeSkWCsmbDn93+4dbe4tgjnLHRrpvWhXr/NQlev8WahQxSyFI3HHFoTHYkrmr2E
-                        PgQ6urt4xWmKiZa0BmYwTGv2ugbLRP/QCuuHhU7ZRfPe99us8phB72fBe7Zp7v4uEK7gSq4cwXDW
-                        SSc7yoPgb0oqmiqDrIjtKAlSFwN1jn62cwyQOowAqWNQ3GHT9EKC4mIkU+KnLXj4lW1qPteintPI
-                        S/ry2b/57MLw+T9B8UGAhOy00LNGfE4LnQDJkijoKcjd1aNZMNOaJdAxflHU/gfhEhSEm8hw7ecj
-                        9q5ANkIPk2J1YErawLyc9y5rV4llGiMhyTLH0PjnCS7HxgikfsvdQFBhjvyQznInzE14sHYwfIpG
-                        VpTvtUegF+hHGYI68GVTfPSRQkKgcy2woM1vmfxYUOUIUKfTB8ZGQM6z/wQ6pYRlX9xD5871OVjV
-                        3IUmcDGgLwvdd/ltPQmILHTQrDqz0PVZHeaJosV/D8L1d2eiSwakbQF4aCRGAtqRoJ+Qs/aL2m/N
-                        puyty9NoK0+5mcc9Km8fXGZ59G9tt2eKBfF+SmZzHsKTZp7FHly+TbP33XK08Y3X337p5ZeW4EYn
-                        FHyisRMRHqhOD1TO6QdrCY3LNVH8Q0cbd835aTS56PJDo/k+5Y2p8sacJXee5YdAsyPN9zy2ltU4
-                        fxBD8ANBTQQrC70LHvzmxo03F0i95DEC0lh+BAZLzG8IiQQ6AR7z8smnng9dvQ3Io09FbxPo9WUK
-                        PwK9oLjgXAJdWx17gihgNtABULn+YUyOe2FKBDqhI5Lc/yZr5oXHIL1PkBFWon21Q9B23pyv2RE2
-                        QpVAV96NZNN3bm5j2v6eUfAhGgl0QhCc7jeUBzA1hYKFrA1XsBpbEeYgeApXaW3VOQV684cJs9jB
-                        rI78uW5z3sWtv6xCt3M5DteNanzo5to8lKs+WqGJOZsCXT1ToGu7e9vRQfvgXHOVEqHcsULrjNB3
-                        OQ03CGVv3owWqpGV2prN0l2XtwEm6lR5vriJnlx2efRvbb/++mvLOibQBQn6fl5f3AYu0LGYkmJe
-                        djGC0umab3MPVYP2UBy8l2ujtVKfrCFrzFFHLriQrJlOeNecn0aTiy4/NJrvU96YKm/ME708r/JD
-                        oNmR5ntezrItKC4tp8tZwNSlO41BdwMYRoEpgAr9FjNWh/IJuddpn0HuH/nIR040/AilTwLWCAjC
-                        dmokMbBPfOITi8Ag0DEWgXApFYQ9hoV56RfkAEMCZ4MSCQ11OP7GGiT8WK/Bl1k1HsyKIPO+gK98
-                        zixxQqzjbAQeQdVlJH4Xc+xJsCYQI0awPIEuBkAgWVA0ga5eKAkBLWah6HOCDnrA4vZuN9mps6A4
-                        Arz50wYljB/dO+aBotXRPCcRQOXmMB89KAfkbnwUCvTfFRQHcp9BcSD3NFHvQmocWyOwKEhopN/i
-                        G6A16qAgdZRvXv3aGvj/HBRnvI4VitMQxInG3VOQayI0w9+QKYrP1PCbk6DJ2gr9oiRZH/aDtSVj
-                        ovYLmPO3toqxgG5FX3uhjITTomicm+b8NJpcdPmh0Xyf8mNQ3JHmZ6Hp/wAAAP//7N1bdltFEIXh
-                        WWZQCTOCMRBeCZdAXmAY5Bd8Zucs2QqOTRTQg5Zs9Tl9qequy67q7geT4vakuDwuB8hITOvb9aAJ
-                        gLzElGzHRiaMEhw89JSFxJ++E+xi6CkTCu8IuZccxcvlyUqKq60USEInwdaJbXkcGRBlcwfbgpjz
-                        bEsUayxB7gnK4vQpveL0Eotc5CIXoP5kNHTARvvUi5/3CeJOILblp6S6oPCUVL+/ePHitKUsxQvt
-                        oKBlbMtQRmuJZCnTPQI1YycPOQGf8ZHRlJKHAmSURCcH/zyUFEcRtHWt8USL0IrG0572aJZBkYfc
-                        lr5oWv/F0Hum9xkHUIbGVlLkJsVFh96xbS1F1bvVWf5B4yw3IOMrBZ4xZhtk7zjOt7lhn/z/JSku
-                        WsSHjKJ4E43K00Cr5ldzu/9TsCE20XWRrHNJcSD7QhmFbZqvQezNMdfB7oUxEDkJpPG39pz2qB3n
-                        BNwSpK4rQeqx5dfAsxvPP/FyltX4LPseKkabd5qyaYGDolvE/e2oz55tK1QCOUUBnks4Ba0npMHl
-                        tZGHnvKtnLKXuEPZlulbcldepX45OSzIOIVaG2KoQboplOKCKZMUnVPNOp42Lz4hlmdaGwmpxlZy
-                        214GwuvcPuUJ50FKHCr7PCgy5dte9NqorcpTVgnj0AE0NQnXGwOT1G4JYBkfGSP11da/xhXaUOJh
-                        bZQz4Mz4+ppCT/inbAnW6o1uGQAZFtrt4/CePOIOxWkroqNs+7RVTl5CAj6aayNhzvhyuUsHjlRf
-                        KEd9L3Eq2mXcpQDa4sgQo6TzyoPcy6yuj9GzORNaEz2jh4tuxNkljdxnmX8pyTL3WeYSJfOG89Cb
-                        S/FDklo8ilZ9HOrUp7kWWuUin0vemHP8a6MwTu/JHdnrb9/OhUqnXR7v11YGRAfQtOshXm68zzhv
-                        CVLXkyB1S4q7bp4+a1IcOPMYpE/A5AGU7Q7yI6Alj/Ha+k4gB/O+evXVSViknFKyeQUJATB9/6e0
-                        836Ddllarvb8+puvT+Up4X5jtbj4JYWUF5kitE3ONaopoDyPlHAxXWfN105KuK1UzpPvdLdg4T1l
-                        rfG7caw2G2PGTBn9tVn9IQNuocqDbB97vxcqCJqvzpCL6uJdQiDWa3LOeu1VR0lwxbbf/nVbWcI2
-                        g6b2Gkd1Rov63zvBpXnQKU63oPVOCEmCt1AHKBV9JPPFgxL62iKY1x6967urayXuhaaUHFUoZS/g
-                        aWxtX2oM7XCI3j1befMgenRwiTljG2Djbl5Fy/re/AiRyThzpeueif8xSW9fSmztoWSYvptnGUXN
-                        0+gSTUNoomV86rfmyctXL0/8isetITsczq1jfelbzkTzJZ43d2vTmsbzPfOdEZ7hGs/KdZAUKpSy
-                        xuotnnod8dTHll8Dz248f2QM/ZIL3/8UWws8hcDTbkHz1ghf+7gpHVdpVl9CoPeV8TIJEJ4/YbKK
-                        iMK2jUm79cPe2OpldCTgElSEGDha8pe2XfOasdEzxtI7lLyrXY1b/+UUVMfeNNazfVcHBbtxdKe+
-                        9ZxLUP5MNPz+rs+egYigY/3s2d6TtHai2c9/1rf3wfcsnuxd3PG3saKJE/Vqt7Hsvv/+L0YLMt9j
-                        Q6sHH+uHLU28av1xcIxsdWParPzGSrH0t33qaGbC3we1XVL4yh9SqLzN5yy/BLVF48buelr0q5zX
-                        XF3CDG5Lq449n/0+qA6kbh6rXxho57G5KuQFam+uWFN4qZ1zNL/Ek+cu/9w8f4ryh4y0S0bcPy2/
-                        Bp7deP7ILPeHguwEgszYntt4LG+2StfC7+8UwJvv39x5kjopO7a6F9YzAFZI5Q6x4Z1jVv3TjwRL
-                        23BYlq+/e31HHB6yA102zlK7FDYlQpARakv0vglNfbYn2LuUGs96z+uuz2CVU9zxpx/vxssIUjch
-                        X5t93D62ba7SJdD1L/rx8LW/whofWYQO4CHExU3x2Ylt4vrHbYRoxSBaw+Ldr+/uvD6W89GCrv71
-                        Cvt947IS8Vii/0XIXT/xFN+gU+a89eG41V3UkIpzkHt/m0PWIf4yUPHonHA/GY7v52xrbT1y9dzg
-                        1+uDX2+Q+3Xz9Fkgd0qOwt1kGp4sSJvSEFfzrDO999hUse5NNOtZimi93b0QxlnwLH/llFJCn0JS
-                        txPNeLIEFQShZ9we5ipOp9Kph+FAsK3ngT4UJi+Vl2nrlfeFIwhmyk0dffNiNx+BB227G6GuTz7q
-                        cagHFABczUAxNuP0/CbkHfvs41QxdZkP9qY3Xhno+JMBxXOP3hSIw4gWnt3ky8qNH39TZGLuvFUK
-                        vr+9b872zkMevPJLHvJzl/Modp3thTPmebRDE79Hj1XE3nevACPouI7RQn4KXppDMubXmD166Nba
-                        zk9GOcP+liB1XQlSjy2/Bp7deP6Jl7OwCngAYD1KDSS3AplHsEKKd1pDLvFYS56HDQqn/AkhkB6o
-                        m+em/T69rw8I4XKX6qUA/V0/1oPtd+Oi5BrvSXn88ObOazLWPpRjHsoK5FX4iMrrpewluGFg38ew
-                        Bk8KJIppkAHwKyPFKWtrdIC2ZdT3XDFup3qZ6LW1xgmDhndOCUgQJOz1O/pTNOrSB2iGA2MWbehd
-                        SMle7AKmF2bI4uzdfjOBWbDaRxtz9kvZzsKj2HVmTRCmFLHyczwzfgJsIbnjOl6amf/qqU5JrYTM
-                        xubMU0gbxIphDG25bWG6vi1Mjy2/Bp7deP7IbWsPBdlXGRMiRw9ebNvCX8+BFb+w+nqaezMbgbTH
-                        kYpH88B4LLbOsdR6jtKmfJ2jflTe2qLAeDcUx2b28qoX9qec14LKM9XXhefR6vTbb7+f2s4gWO+y
-                        drW157uDWxlJq/wJVePVNm+KwvcOLyqa1H/Cfcfgs57a1rWozDGOsxDsKTzw49/wfc9Q3Dy/E89/
-                        efvBPNEWyB29eYmXkmEuKXzllxTqc5cTQMd1pp/H8A70Z1EivMj4FA9fuPy4jtHC2jHnGHg8bh7A
-                        OYVODph35mm8ro/GeY7ml3jy3OWfm+dPUX6fkXafM/Yp5dfAsxvPH3nbGuVGwfC2KBXWOUGye51X
-                        +cl+5kHysAhrSnAVlo8YMOW10Gzf3QBGoFQnBaivG9e3Z3lhZRD5nt4mPHDyYgey38StbcvhHjLJ
-                        wcjqIej2OR4MYblQZs/t3ekMI0YS+JnXDAWhyDYuTRmiOyXub97YwqPrCW7IBE83xHKEvBk/kgol
-                        Vel7zwhvaH/5XRvfvv72A4iZwSUOf1Toxo4Oi4qcg9oWlqKojuWU1b9drv/oz/CBiqAZo9Z8EsIy
-                        L/Gnd6yX+9Yxw9p6EKY5bldDsyP8ClHDU3Np59TH0Pxzl38unj/FnNly7+D3U5ZfG89uPP94nv4B
-                        AAD//wMAhwPmsHkf2eEAAAAASUVORK5CYII=
-                        <reference value="file:///Bestandsnaam.pdf"/>
-                    </text>
-                    <effectiveTime value="{$gPDFDATE}"/>
-                    <author>
-                        <assignedEntity classCode="ASSIGNED">
-                            <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                <name>Dr. K.N. Otsen</name>
-                            </assignedPerson>
-                        </assignedEntity>
-                    </author>
-                </document>
-            </appendage>
             <!-- Toestemmingen -->
             <xsl:for-each select="
-                    r050_zorggegevens/toestemming_aan_verpleegkundige_vaccinaties |
-                    r010_informatie_over_werkwijze_jgz/toestemming_overdracht_dossier_binnen_jgz |
-                    r010_informatie_over_werkwijze_jgz/bezwaar_overdracht_dossier_binnen_jgz |
-                    r010_informatie_over_werkwijze_jgz/toestemming_aanmelding_lsp |
-                    r010_informatie_over_werkwijze_jgz/toestemming_verstrekking_informatie_aan_derden |
-                    r010_informatie_over_werkwijze_jgz/bezwaar_wetenschappelijk_onderzoek">
-                <authorization typeCode="AUTH" contextConductionInd="false">
-                    <consentEvent classCode="CONS" moodCode="EVN" negationInd="{(@code, @value)[1]}">
-                        <code>
-                            <xsl:attribute name="code">
-                                <xsl:choose>
-                                    <xsl:when test="self::toestemming_aan_verpleegkundige_vaccinaties">469</xsl:when>
-                                    <xsl:when test="self::toestemming_overdracht_dossier_binnen_jgz">1163</xsl:when>
-                                    <xsl:when test="self::bezwaar_overdracht_dossier_binnen_jgz">1395</xsl:when>
-                                    <xsl:when test="self::toestemming_aanmelding_lsp">1398</xsl:when>
-                                    <xsl:when test="self::toestemming_verstrekking_informatie_aan_derden">1165</xsl:when>
-                                    <xsl:when test="self::bezwaar_wetenschappelijk_onderzoek">1404</xsl:when>
-                                </xsl:choose>
-                            </xsl:attribute>
-                            <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.4.40.267</xsl:attribute>
-                        </code>
-                        <author typeCode="AUT">
-                            <!-- Item(s) :: datum_toestemming_aan_verpleegkundige_vaccinaties-->
-                            <xsl:for-each
-                                select="
-                                    self::toestemming_aan_verpleegkundige_vaccinaties/../datum_toestemming_aan_verpleegkundige_vaccinaties |
-                                    self::toestemming_overdracht_dossier_binnen_jgz/../datum_toestemming_overdracht_dossier_binnen_jgz |
-                                    self::bezwaar_overdracht_dossier_binnen_jgz/../datum_bezwaar_overdracht_dossier_binnen_jgz |
-                                    self::toestemming_aanmelding_lsp/../datum_toestemming_aanmelding_lsp |
-                                    self::toestemming_verstrekking_informatie_aan_derden/../datum_toestemming_verstrekking_informatie_aan_derden |
-                                    self::bezwaar_wetenschappelijk_onderzoek/../datum_bezwaar_wetenschappelijk_onderzoek">
-                                <xsl:call-template name="makeTSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">time</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <xsl:choose>
-                                <xsl:when
-                                    test="
-                                        self::toestemming_overdracht_dossier_binnen_jgz/../bron_toestemming_overdracht_dossier_binnen_jgz[@code = '01'] |
-                                        self::bezwaar_overdracht_dossier_binnen_jgz/../bron_bezwaar_overdracht_dossier_binnen_jgz[@code = '01'] |
-                                        self::toestemming_aanmelding_lsp/../bron_toestemming_aanmelding_lsp[@code = '01'] |
-                                        self::toestemming_verstrekking_informatie_aan_derden/../bron_toestemming_verstrekking_informatie_aan_derden[@code = '01'] |
-                                        self::bezwaar_wetenschappelijk_onderzoek/../bron_bezwaar_wetenschappelijk_onderzoek[@code = '01']">
-                                    <patient1 classCode="PAT"/>
-                                </xsl:when>
-                                <xsl:when
-                                    test="
-                                        self::toestemming_overdracht_dossier_binnen_jgz/../bron_toestemming_overdracht_dossier_binnen_jgz[@code = '02'] |
-                                        self::bezwaar_overdracht_dossier_binnen_jgz/../bron_bezwaar_overdracht_dossier_binnen_jgz[@code = '02'] |
-                                        self::toestemming_aanmelding_lsp/../bron_toestemming_aanmelding_lsp[@code = '02'] |
-                                        self::toestemming_verstrekking_informatie_aan_derden/../bron_toestemming_verstrekking_informatie_aan_derden[@code = '02'] |
-                                        self::bezwaar_wetenschappelijk_onderzoek/../bron_bezwaar_wetenschappelijk_onderzoek[@code = '02']">
-                                    <personalRelationship classCode="PRS">
-                                        <!-- Item(s) :: bron_toestemming_overdracht_dossier_binnen_jgz bron_bezwaar_overdracht_dossier_binnen_jgz bron_toestemming_aanmelding_lsp bron_toestemming_verstrekking_informatie_aan_derden bron_bezwaar_wetenschappelijk_onderzoek-->
-                                        <xsl:for-each
-                                            select="
-                                                self::toestemming_overdracht_dossier_binnen_jgz/../bron_toestemming_overdracht_dossier_binnen_jgz |
-                                                self::bezwaar_overdracht_dossier_binnen_jgz/../bron_bezwaar_overdracht_dossier_binnen_jgz |
-                                                self::toestemming_aanmelding_lsp/../bron_toestemming_aanmelding_lsp |
-                                                self::toestemming_verstrekking_informatie_aan_derden/../bron_toestemming_verstrekking_informatie_aan_derden |
-                                                self::bezwaar_wetenschappelijk_onderzoek/../bron_bezwaar_wetenschappelijk_onderzoek">
-                                            <xsl:call-template name="makeCVValue">
-                                                <xsl:with-param name="elemName">code</xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:for-each>
-                                        <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                    </personalRelationship>
-                                </xsl:when>
-                                <xsl:when test="
-                                        self::toestemming_aan_verpleegkundige_vaccinaties/../arts_id_toestemming_aan_verpleegkundige_vaccinaties |
-                                        self::toestemming_aan_verpleegkundige_vaccinaties/../arts_big_toestemming_aan_verpleegkundige_vaccinaties">
-                                    <assignedEntity1 classCode="ASSIGNED">
-                                        <!-- Item(s) :: arts_id_toestemming_aan_verpleegkundige_vaccinaties-->
-                                        <xsl:for-each select="self::toestemming_aan_verpleegkundige_vaccinaties/../arts_id_toestemming_aan_verpleegkundige_vaccinaties">
-                                            <xsl:call-template name="makeII.NL.UZIValue">
-                                                <xsl:with-param name="elemName">id</xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:for-each>
-                                        <xsl:for-each select="self::toestemming_aan_verpleegkundige_vaccinaties/../arts_big_toestemming_aan_verpleegkundige_vaccinaties">
-                                            <xsl:call-template name="makeII.NL.BIGValue">
-                                                <xsl:with-param name="elemName">id</xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:for-each>
-                                        <xsl:for-each select="self::toestemming_aan_verpleegkundige_vaccinaties/../arts_naam_toestemming_aan_verpleegkundige_vaccinaties">
-                                            <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                                <xsl:call-template name="makePNValue">
-                                                    <xsl:with-param name="elemName">name</xsl:with-param>
-                                                </xsl:call-template>
-                                            </assignedPerson>
-                                        </xsl:for-each>
-                                    </assignedEntity1>
-                                </xsl:when>
-                            </xsl:choose>
-                        </author>
-                        <!-- Item(s) :: toelichting_verstrekking_informatie_aan_derden-->
-                        <xsl:for-each select="self::toestemming_verstrekking_informatie_aan_derden/../toelichting_verstrekking_informatie_aan_derden">
-                            <subjectOf typeCode="SUBJ">
-                                <annotation>
-                                    <code code="1407" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
-                                    <xsl:call-template name="makeSTValue">
-                                        <xsl:with-param name="elemName">text</xsl:with-param>
-                                    </xsl:call-template>
-                                </annotation>
-                            </subjectOf>
-                        </xsl:for-each>
-                    </consentEvent>
-                </authorization>
+                r050_zorggegevens/toestemming_aan_verpleegkundige_vaccinaties |
+                r010_informatie_over_werkwijze_jgz/toestemming_overdracht_dossier_binnen_jgz |
+                r010_informatie_over_werkwijze_jgz/bezwaar_overdracht_dossier_binnen_jgz |
+                r010_informatie_over_werkwijze_jgz/toestemming_aanmelding_lsp |
+                r010_informatie_over_werkwijze_jgz/toestemming_verstrekking_informatie_aan_derden |
+                r010_informatie_over_werkwijze_jgz/bezwaar_wetenschappelijk_onderzoek">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10010_20120801000000"/>
             </xsl:for-each>
             <!-- Item(s) :: samenvatting_04-->
             <xsl:for-each select="r050_zorggegevens/samenvatting_04">
                 <summary>
                     <observationEvent classCode="OBS" moodCode="EVN">
-                        <code code="492" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="492" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '492'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -984,10 +378,10 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41167_20120801000000"/>
                 </pertinentInformation>
             </xsl:for-each>
-            <!-- Element pertinentInformation/R014  -->
-            <!-- <xsl:when test="self::r015_bevalling">
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11015_20120801000000"/>
-                                    </xsl:when> -->
+            <!-- Element pertinentInformation/R015  -->
+            <!--<xsl:for-each select="r015_bevalling">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11015_20120801000000"/>
+            </xsl:for-each>--> 
             <xsl:for-each select="r014_zwangerschap">
                 <pertinentInformation>
                     <!-- Template :: A_Zwangerschap [universal] -->
@@ -1019,7 +413,9 @@
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g088_afschrift_jgzdossier_verstrekt">
                 <component6>
                     <informationControlActEvent classCode="INFO" moodCode="EVN" negationInd="false">
-                        <code code="476" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="476" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '476'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <!-- Item(s) :: toelichting_verstrekking_afschrift_jgzdossier-->
                         <xsl:for-each select="toelichting_verstrekking_afschrift_jgzdossier">
                             <xsl:call-template name="makeSTValue">
@@ -1054,374 +450,13 @@
                 </component6>
             </xsl:for-each>
             <!-- Activiteiten -->
-            <xsl:for-each select="r018_activiteit">
-                <xsl:sort select="datum_activiteit/@value"/>
-                <xsl:variable name="activiteitId" select="activiteit_id/@value"/>
-                <xsl:variable name="activiteitType" select="soort_activiteit/@code"/>
-                <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
-                <xsl:variable name="activiteitElement">
-                    <xsl:choose>
-                        <xsl:when test="$activiteitType = ('29', '31', '32', '34')">nonEncounterCareActivity></xsl:when>
-                        <xsl:when test="$activiteitType = ('30', '33')">registrationEvent</xsl:when>
-                        <xsl:otherwise>encounter</xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:variable name="activiteitDate" as="xs:string">
-                    <xsl:choose>
-                        <xsl:when test="$activiteitType = '35'">
-                            <xsl:value-of select="$gContactNeotaal"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '02'">
-                            <xsl:value-of select="$gContact2Weken"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '03'">
-                            <xsl:value-of select="$gContact4Weken"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '04'">
-                            <xsl:value-of select="$gContact8Weken"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '05'">
-                            <xsl:value-of select="$gContact3Maanden"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '06'">
-                            <xsl:value-of select="$gContact4Maanden"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '07'">
-                            <xsl:value-of select="$gContact6Maanden"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '08'">
-                            <xsl:value-of select="$gContact7.5Maanden"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '09'">
-                            <xsl:value-of select="$gContact9Maanden"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '10'">
-                            <xsl:value-of select="$gContact11Maanden"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '11'">
-                            <xsl:value-of select="$gContact14Maanden"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '12'">
-                            <xsl:value-of select="$gContact18Maanden"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '13'">
-                            <xsl:value-of select="$gContact2Jaar"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '14'">
-                            <xsl:value-of select="$gContact3Jaar"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '15'">
-                            <xsl:value-of select="$gContact3.9Jaar"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '16'">
-                            <xsl:value-of select="$gContactGroep2"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '17'">
-                            <xsl:value-of select="$gContactGroep7"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '19'">
-                            <xsl:value-of select="$gContactKlas2"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '23'">
-                            <xsl:value-of select="$gContactOpVerzoek"/>
-                        </xsl:when>
-                        <xsl:when test="$activiteitType = '26'">
-                            <xsl:value-of select="$gContactGroepsbijeenkomst"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:message>Onbekend activiteitype gevonden: <xsl:value-of select="$activiteitType"/></xsl:message>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v02/*[@comment = concat('r018_activiteit=', $activiteitId)]"/>
-                <component7>
-                    <xsl:element name="{$activiteitElement}">
-                        <xsl:choose>
-                            <xsl:when test="$activiteitElement = 'encounter' and not($activiteitStatus = 'completed')">
-                                <xsl:attribute name="moodCode">INT</xsl:attribute>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:attribute name="moodCode">EVN</xsl:attribute>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        <id root="{$gOIDBaseEncounter}" extension="{$activiteitId}"/>
-                        <!-- Item(s) :: soort_activiteit-->
-                        <xsl:for-each select="soort_activiteit">
-                            <xsl:call-template name="makeCVValue">
-                                <xsl:with-param name="elemName">code</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <!-- Item(s) :: status_activiteit-->
-                        <xsl:for-each select="status_activiteit">
-                            <xsl:call-template name="makeCSValue">
-                                <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <effectiveTime value="{$activiteitDate}"/>
-                        <!-- Item(s) :: indicatie_activiteit-->
-                        <xsl:for-each select="indicatie_activiteit">
-                            <xsl:call-template name="makeCVValue">
-                                <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <performer>
-                            <assignedEntity classCode="ASSIGNED">
-                                <id nullFlavor="NI"/>
-                                <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                    <xsl:for-each select="uitvoerende_activiteit_naam">
-                                        <xsl:call-template name="makePNValue">
-                                            <xsl:with-param name="elemName">name</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                </assignedPerson>
-                            </assignedEntity>
-                        </performer>
-                        <!-- Item(s) :: contact_met-->
-                        <xsl:for-each select="contact_met">
-                            <consultant typeCode="CON">
-                                <assignedEntity classCode="ASSIGNED">
-                                    <code nullFlavor="OTH">
-                                        <xsl:call-template name="makeSTValue">
-                                            <xsl:with-param name="elemName">originalText</xsl:with-param>
-                                        </xsl:call-template>
-                                    </code>
-                                </assignedEntity>
-                            </consultant>
-                        </xsl:for-each>
-                        <!-- Item(s) :: begeleider-->
-                        <xsl:for-each select="begeleider">
-                            <escort typeCode="ESC">
-                                <responsibleParty classCode="ASSIGNED">
-                                    <xsl:call-template name="makeCVValue">
-                                        <xsl:with-param name="elemName">code</xsl:with-param>
-                                    </xsl:call-template>
-                                    <agentPerson nullFlavor="NI"/>
-                                </responsibleParty>
-                            </escort>
-                        </xsl:for-each>
-                        <xsl:if test="verzoeker_activiteit">
-                            <inFulfillmentOf typeCode="FLFS">
-                                <encounter classCode="ENC" moodCode="INT">
-                                    <!-- Item(s) :: soort_activiteit-->
-                                    <xsl:for-each select="soort_activiteit">
-                                        <xsl:call-template name="makeCVValue">
-                                            <xsl:with-param name="xsiType" select="''"/>
-                                            <xsl:with-param name="elemName">code</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    <!-- Item(s) :: status_activiteit-->
-                                    <xsl:for-each select="status_activiteit">
-                                        <xsl:call-template name="makeCSValue">
-                                            <xsl:with-param name="xsiType" select="''"/>
-                                            <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    <xsl:for-each select="verzoeker_activiteit">
-                                        <author typeCode="AUT">
-                                            <xsl:choose>
-                                                <xsl:when test="@code = '03'">
-                                                    <patient classCode="PAT"/>
-                                                </xsl:when>
-                                                <xsl:when test="@code = '02'">
-                                                    <personalRelationship classCode="PRS">
-                                                        <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                                                        <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                                    </personalRelationship>
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <assignedEntity1 classCode="ASSIGNED">
-                                                        <xsl:call-template name="makeCVValue">
-                                                            <xsl:with-param name="xsiType" select="''"/>
-                                                            <xsl:with-param name="elemName">code</xsl:with-param>
-                                                        </xsl:call-template>
-                                                    </assignedEntity1>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
-                                        </author>
-                                    </xsl:for-each>
-                                </encounter>
-                            </inFulfillmentOf>
-                        </xsl:if>
-                        <xsl:for-each select="$activiteitActies">
-                            <xsl:choose>
-                                <xsl:when test="self::r012_erfelijke_belasting_en_ouderkenmerken">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r013_bedreigingen_uit_de_directe_omgeving">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r052_meldingen">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r019_terugkerende_anamnese">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r020_algemene_indruk">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r021_functioneren">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r022_huidhaarnagels">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r023_hoofdhals">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r024_romp">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r025_bewegingsapparaat">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r026_genitaliapuberteitsontwikkeling">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r027_groei">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r030_psychosociale_en_cognitieve_ontwikkeling">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r031_neuromotorische_ontwikkeling">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r032_spraak_en_taalontwikkeling">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r034_inschatten_verhouding_draaglastdraagkracht">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r038_visus_en_oogonderzoek">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r039_hartonderzoek">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r040_gehooronderzoek">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r042_van_wiechen_ontwikkelingsonderzoek">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r043_bfmt">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r054_screening_psychosociale_problemen">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r045_sdq_712">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                                <xsl:when test="self::r049_screening_logopedie">
-                                    <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                    <pertinentInformation>
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000"/>
-                                    </pertinentInformation>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:for-each>
-                        <!-- Element component3/A_Rijksvaccinatie -->
-                        <xsl:for-each select="$activiteitActies[self::r041_rijksvaccinatieprogramma_en_andere_vaccinaties]/groep_g076_vaccinatie">
-                            <xsl:comment> Template :: A_Rijksvaccinatie [universal] </xsl:comment>
-                            <component3>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
-                            </component3>
-                        </xsl:for-each>
-                        <!-- Element component4/A_HeelPrick -->
-                        <xsl:for-each select="$activiteitActies[self::r037_hielprik_pasgeborene]">
-                            <xsl:comment> Template :: A_HeelPrick [universal] </xsl:comment>
-                            <component4>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000"/>
-                            </component4>
-                        </xsl:for-each>
-                        <!-- Element component5/Advice -->
-                        <xsl:for-each select="$activiteitActies[self::r036_voorlichting_advies_instructie_en_begeleiding]/groep_g042_voorlichting">
-                            <xsl:comment> Template :: Activities component5 Advice </xsl:comment>
-                            <component5>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000"/>
-                            </component5>
-                        </xsl:for-each>
-                        <xsl:for-each select="self::r047_conclusies_en_vervolgstappen">
-                            <xsl:comment> Template :: Activities component5 Advice </xsl:comment>
-                            <subjectOf1>
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
-                            </subjectOf1>
-                        </xsl:for-each>
-                    </xsl:element>
-                </component7>
-            </xsl:for-each>
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10018_20120801000000"/>
             <!-- 14-okt-2010 regulier in zorg gekomen bij organisatie met URA 00001111-->
-            <subjectOf>
+            <!-- CareStatus -->
+            <xsl:for-each select="r050_zorggegevens">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20120801000000"/>
+            </xsl:for-each>
+            <!--<subjectOf>
                 <careStatus>
                     <code code="1197" displayName="status in zorg" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
                     <effectiveTime value="{$gRESPSTART}"/>
@@ -1434,9 +469,9 @@
                         </assignedEntity>
                     </author>
                 </careStatus>
-            </subjectOf>
+            </subjectOf>-->
             <!-- 22-okt-2013 zorgbeëindiging vanwege overdracht naar andere organisatie vanuit organisatie met URA 00001111-->
-            <subjectOf>
+            <!--<subjectOf>
                 <careStatus>
                     <code code="487" displayName="zorgbeëindiging" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
                     <effectiveTime value="{$gRESPEND}"/>
@@ -1449,36 +484,36 @@
                         </assignedEntity>
                     </author>
                 </careStatus>
-            </subjectOf>
+            </subjectOf>-->
         </careProvisionEvent>
     </xsl:template>
     
     <!-- Care Provision Event Appendage -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10008_20120801000000">
-        <xsl:for-each select="r009_externe_documenten | groep_g072_toegevoegd_bestand">
-            <appendage xmlns="urn:hl7-org:v3" typeCode="APND">
-                <document classCode="DOC" moodCode="EVN">
-                    <!-- Item(s) :: soort_toegevoegd_bestand-->
-                    <xsl:for-each select="soort_toegevoegd_bestand">
-                        <xsl:call-template name="makeCVValue">
-                            <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">code</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- Item(s) :: bestand-->
-                    <xsl:for-each select="bestand">
-                        <xsl:call-template name="makeEDValue">
-                            <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">text</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- Item(s) :: datum_bestand-->
-                    <xsl:for-each select="datum_bestand">
-                        <xsl:call-template name="makeTSValue">
-                            <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
+        <appendage xmlns="urn:hl7-org:v3" typeCode="APND">
+            <document classCode="DOC" moodCode="EVN">
+                <!-- Item(s) :: soort_toegevoegd_bestand-->
+                <xsl:for-each select="soort_toegevoegd_bestand">
+                    <xsl:call-template name="makeCVValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">code</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: bestand-->
+                <xsl:for-each select="bestand">
+                    <xsl:call-template name="makeEDValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">text</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: datum_bestand-->
+                <xsl:for-each select="datum_bestand">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:if test="afzender_bestand">
                     <author typeCode="AUT">
                         <assignedEntity classCode="ASSIGNED">
                             <assignedPerson classCode="PSN" determinerCode="INSTANCE">
@@ -1492,16 +527,18 @@
                             </assignedPerson>
                         </assignedEntity>
                     </author>
-                </document>
-            </appendage>
-        </xsl:for-each>
+                </xsl:if>
+            </document>
+        </appendage>
     </xsl:template>
     
     <!-- Care Provision Event Summary -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10009_20120801000000">
         <summary xmlns="urn:hl7-org:v3">
             <observationEvent classCode="OBS" moodCode="EVN">
-                <code code="492" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                <code code="492" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '492'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                </code>
                 <!-- Item(s) :: samenvatting_04-->
                 <xsl:for-each select="samenvatting_04">
                     <xsl:call-template name="makeSTValue">
@@ -1606,7 +643,9 @@
                 <xsl:for-each select="self::toestemming_verstrekking_informatie_aan_derden/../toelichting_verstrekking_informatie_aan_derden">
                     <subjectOf typeCode="SUBJ">
                         <annotation>
-                            <code code="1407" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                            <code code="1407" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1407'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                            </code>
                             <xsl:call-template name="makeSTValue">
                                 <xsl:with-param name="elemName">text</xsl:with-param>
                             </xsl:call-template>
@@ -1678,43 +717,43 @@
     
     <!-- Care Provision Event component6 InformationControlActEvent -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10017_20120801000000">
-        <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g088_afschrift_jgzdossier_verstrekt">
-            <component6 xmlns="urn:hl7-org:v3" typeCode="COMP">
-                <informationControlActEvent classCode="INFO" moodCode="EVN" negationInd="false">
-                    <code code="476" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
-                    <!-- Item(s) :: toelichting_verstrekking_afschrift_jgzdossier-->
-                    <xsl:for-each select="toelichting_verstrekking_afschrift_jgzdossier">
-                        <xsl:call-template name="makeSTValue">
-                            <xsl:with-param name="elemName">text</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- Item(s) :: datum_verstrekking_afschrift_jgzdossier-->
-                    <xsl:for-each select="datum_verstrekking_afschrift_jgzdossier">
-                        <xsl:call-template name="makeTSValue">
-                            <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <informationRecipient typeCode="IRCP">
-                        <xsl:choose>
-                            <xsl:when test="afschrift_jgzdossier_verstrekt_aan[@code = '01']">
-                                <patient classCode="PAT"/>
-                            </xsl:when>
-                            <xsl:when test="afschrift_jgzdossier_verstrekt_aan[not(@code = '01')]">
-                                <personalRelationship classCode="PRS">
-                                    <!-- Item(s) :: afschrift_jgzdossier_verstrekt_aan-->
-                                    <xsl:for-each select="afschrift_jgzdossier_verstrekt_aan">
-                                        <xsl:call-template name="makeCVValue">
-                                            <xsl:with-param name="elemName">code</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                </personalRelationship>
-                            </xsl:when>
-                        </xsl:choose>
-                    </informationRecipient>
-                </informationControlActEvent>
-            </component6>
-        </xsl:for-each>
+        <component6 xmlns="urn:hl7-org:v3" typeCode="COMP">
+            <informationControlActEvent classCode="INFO" moodCode="EVN" negationInd="false">
+                <code code="476" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '476'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                </code>
+                <!-- Item(s) :: toelichting_verstrekking_afschrift_jgzdossier-->
+                <xsl:for-each select="toelichting_verstrekking_afschrift_jgzdossier">
+                    <xsl:call-template name="makeSTValue">
+                        <xsl:with-param name="elemName">text</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: datum_verstrekking_afschrift_jgzdossier-->
+                <xsl:for-each select="datum_verstrekking_afschrift_jgzdossier">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <informationRecipient typeCode="IRCP">
+                    <xsl:choose>
+                        <xsl:when test="afschrift_jgzdossier_verstrekt_aan[@code = '01']">
+                            <patient classCode="PAT"/>
+                        </xsl:when>
+                        <xsl:when test="afschrift_jgzdossier_verstrekt_aan[not(@code = '01')]">
+                            <personalRelationship classCode="PRS">
+                                <!-- Item(s) :: afschrift_jgzdossier_verstrekt_aan-->
+                                <xsl:for-each select="afschrift_jgzdossier_verstrekt_aan">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                            </personalRelationship>
+                        </xsl:when>
+                    </xsl:choose>
+                </informationRecipient>
+            </informationControlActEvent>
+        </component6>
     </xsl:template>
     
     <!-- Care Provision Event component7 Activiteiten -->
@@ -1798,7 +837,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v02/*[@comment = concat('r018_activiteit=', $activiteitId)]"/>
+            <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v02/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
             <component7 xmlns="urn:hl7-org:v3">
                 <xsl:element name="{$activiteitElement}">
                     <xsl:choose>
@@ -1809,7 +848,11 @@
                             <xsl:attribute name="moodCode">EVN</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                    <id root="{$gOIDBaseEncounter}" extension="{$activiteitId}"/>
+                    <xsl:for-each select="activiteit_id">
+                        <xsl:call-template name="makeIIValue">
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
                     <!-- Item(s) :: soort_activiteit-->
                     <xsl:for-each select="soort_activiteit">
                         <xsl:call-template name="makeCVValue">
@@ -1829,18 +872,51 @@
                             <xsl:with-param name="elemName">reasonCode</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    <performer>
-                        <assignedEntity classCode="ASSIGNED">
-                            <id nullFlavor="NI"/>
-                            <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                <xsl:for-each select="uitvoerende_activiteit_naam">
-                                    <xsl:call-template name="makePNValue">
-                                        <xsl:with-param name="elemName">name</xsl:with-param>
-                                    </xsl:call-template>
+                    <!-- Item(s) :: uitvoerende_activiteit -->
+                    <xsl:if test="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb | uitvoerende_activiteit_naam">
+                        <performer>
+                            <assignedEntity classCode="ASSIGNED">
+                                <xsl:for-each select="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb">
+                                    <id extension="{@value}" root="{@root}"/>
                                 </xsl:for-each>
-                            </assignedPerson>
-                        </assignedEntity>
-                    </performer>
+                                <xsl:if test="not(uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb)">
+                                    <id nullFlavor="NI"/>
+                                </xsl:if>
+                                <xsl:if test="uitvoerende_activiteit_naam">
+                                    <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                                        <xsl:for-each select="uitvoerende_activiteit_naam">
+                                            <xsl:call-template name="makePNValue">
+                                                <xsl:with-param name="elemName">name</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </assignedPerson>
+                                </xsl:if>
+                            </assignedEntity>
+                        </performer>
+                    </xsl:if>
+                    <xsl:for-each select="verzoeker_activiteit[not($activiteitStatus = 'completed')]">
+                        <author typeCode="AUT">
+                            <xsl:choose>
+                                <xsl:when test="@code = '03'">
+                                    <patient classCode="PAT"/>
+                                </xsl:when>
+                                <xsl:when test="@code = '02'">
+                                    <personalRelationship classCode="PRS">
+                                        <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
+                                        <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                                    </personalRelationship>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <assignedEntity1 classCode="ASSIGNED">
+                                        <xsl:call-template name="makeCVValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                        </xsl:call-template>
+                                    </assignedEntity1>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </author>
+                    </xsl:for-each>
                     <!-- Item(s) :: contact_met-->
                     <xsl:for-each select="contact_met">
                         <consultant typeCode="CON">
@@ -1864,6 +940,51 @@
                             </responsibleParty>
                         </escort>
                     </xsl:for-each>
+                    <xsl:if test="verzoeker_activiteit[$activiteitStatus = 'completed']">
+                        <inFulfillmentOf typeCode="FLFS">
+                            <encounter classCode="ENC" moodCode="INT">
+                                <!-- Mag niet van template, maar zonder mag niet van schema. Schema gaat voor -->
+                                <id nullFlavor="NI"/>
+                                <!-- Item(s) :: soort_activiteit-->
+                                <xsl:for-each select="soort_activiteit">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <!-- Item(s) :: status_activiteit-->
+                                <xsl:for-each select="status_activiteit">
+                                    <xsl:call-template name="makeCSValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <xsl:for-each select="verzoeker_activiteit">
+                                    <author typeCode="AUT">
+                                        <xsl:choose>
+                                            <xsl:when test="@code = '03'">
+                                                <patient classCode="PAT"/>
+                                            </xsl:when>
+                                            <xsl:when test="@code = '02'">
+                                                <personalRelationship classCode="PRS">
+                                                    <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
+                                                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                                                </personalRelationship>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <assignedEntity1 classCode="ASSIGNED">
+                                                    <xsl:call-template name="makeCVValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </assignedEntity1>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </author>
+                                </xsl:for-each>
+                            </encounter>
+                        </inFulfillmentOf>
+                    </xsl:if>
                     <xsl:for-each select="$activiteitActies">
                         <xsl:choose>
                             <xsl:when test="self::r012_erfelijke_belasting_en_ouderkenmerken">
@@ -2046,100 +1167,96 @@
     
     <!-- Care Provision Event subjectOf CareStatus -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20120801000000">
-        <subjectOf xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
-            <xsl:choose>
-                <xsl:when test="r050_zorggegevens | groep_g093_status_in_zorg">
-                    <xsl:for-each select="r050_zorggegevens | groep_g093_status_in_zorg">
-                        <careStatus classCode="STC" moodCode="EVN">
-                            <code code="1197" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
-                            <!-- Item(s) :: datum_start_zorg-->
-                            <xsl:for-each select="datum_start_zorg">
-                                <xsl:call-template name="makeTSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <!-- Item(s) :: status_in_zorg-->
-                            <xsl:for-each select="status_in_zorg">
-                                <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_gba | groep_g085_uitvoerende_jgzorganisatie | groep_g085_uitvoerende_jgzorganisatie">
-                                <author typeCode="AUT">
-                                    <xsl:for-each select="groep_g098_periode">
-                                        <time xsi:type="IVL_TS">
-                                            <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
-                                            <xsl:for-each select="startdatum_geldigheid_uitvoerende_jgzorganisatie">
-                                                <xsl:call-template name="makeTSValue">
-                                                    <xsl:with-param name="xsiType" select="''"/>
-                                                    <xsl:with-param name="elemName">low</xsl:with-param>
-                                                </xsl:call-template>
-                                            </xsl:for-each>
-                                            <!-- Item(s) :: einddatum_geldigheid_uitvoerende_jgzorganisatie-->
-                                            <xsl:for-each select="einddatum_geldigheid_uitvoerende_jgzorganisatie">
-                                                <xsl:call-template name="makeTSValue">
-                                                    <xsl:with-param name="xsiType" select="''"/>
-                                                    <xsl:with-param name="elemName">high</xsl:with-param>
-                                                </xsl:call-template>
-                                            </xsl:for-each>
-                                        </time>
-                                    </xsl:for-each>
-                                    <!-- Template :: R_AssignedEntityNL [identified] -->
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
-                                </author>
-                            </xsl:for-each>
-                        </careStatus>
+        <xsl:for-each select="groep_g093_status_in_zorg">
+            <xsl:variable name="datumStart" select="datum_start_zorg/@value"/>
+            <xsl:variable name="organisatie" select="
+                ../../r005_betrokken_jgzorganisaties/*[*/startdatum_geldigheid_uitvoerende_jgzorganisatie/@value = $datumStart],
+                ../../r005_betrokken_jgzorganisaties/*[*/startdatum_geldigheid_verantwoordelijke_jgzorganisatie/@value = $datumStart],
+                ../../r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie,
+                ../../r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp
+                " as="element()*"/>
+            
+            <subjectOf xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
+                <careStatus classCode="STC" moodCode="EVN">
+                    <code code="1197" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1197'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                    </code>
+                    <!-- Item(s) :: datum_start_zorg-->
+                    <xsl:for-each select="datum_start_zorg">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                        </xsl:call-template>
                     </xsl:for-each>
-                </xsl:when>
-                <xsl:when test="r050_zorggegevens | groep_g092_zorgbeeindiging">
-                    <xsl:for-each select="r050_zorggegevens | groep_g092_zorgbeeindiging">
-                        <careStatus classCode="STC" moodCode="EVN">
-                            <code code="487" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
-                            <!-- Item(s) :: datum_zorgbeeindiging-->
-                            <xsl:for-each select="datum_zorgbeeindiging">
-                                <xsl:call-template name="makeTSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <!-- Item(s) :: zorgbeeindiging-->
-                            <xsl:for-each select="zorgbeeindiging">
-                                <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_gba | groep_g085_uitvoerende_jgzorganisatie | groep_g085_uitvoerende_jgzorganisatie">
-                                <author typeCode="AUT">
-                                    <xsl:for-each select="groep_g099_periode">
-                                        <time xsi:type="IVL_TS">
-                                            <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
-                                            <xsl:for-each select="startdatum_geldigheid_uitvoerende_jgzorganisatie">
-                                                <xsl:call-template name="makeTSValue">
-                                                    <xsl:with-param name="xsiType" select="''"/>
-                                                    <xsl:with-param name="elemName">low</xsl:with-param>
-                                                </xsl:call-template>
-                                            </xsl:for-each>
-                                            <!-- Item(s) :: einddatum_geldigheid_uitvoerende_jgzorganisatie-->
-                                            <xsl:for-each select="einddatum_geldigheid_uitvoerende_jgzorganisatie">
-                                                <xsl:call-template name="makeTSValue">
-                                                    <xsl:with-param name="xsiType" select="''"/>
-                                                    <xsl:with-param name="elemName">high</xsl:with-param>
-                                                </xsl:call-template>
-                                            </xsl:for-each>
-                                        </time>
-                                    </xsl:for-each>
-                                    <!-- Template :: R_AssignedEntityNL [identified] -->
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
-                                </author>
-                            </xsl:for-each>
-                        </careStatus>
+                    <!-- Item(s) :: status_in_zorg-->
+                    <xsl:for-each select="status_in_zorg">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">reasonCode</xsl:with-param>
+                        </xsl:call-template>
                     </xsl:for-each>
-                </xsl:when>
-            </xsl:choose>
-        </subjectOf>
+                    <author typeCode="AUT">
+                        <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
+                        <time xsi:type="IVL_TS">
+                            <low>
+                                <xsl:call-template name="makeTSValueAttr">
+                                    <xsl:with-param name="inputValue" select="$datumStart"/>
+                                </xsl:call-template>
+                            </low>
+                        </time>
+                        <!-- Template :: R_AssignedEntityNL [identified] -->
+                        <xsl:for-each select="$organisatie[1]">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
+                        </xsl:for-each>
+                    </author>
+                </careStatus>
+            </subjectOf>
+        </xsl:for-each>
+        <xsl:for-each select="groep_g092_zorgbeeindiging">
+            <xsl:variable name="datumEind" select="datum_zorgbeeindiging/@value"/>
+            <xsl:variable name="organisatie" select="
+                ../../r005_betrokken_jgzorganisaties/*[*/einddatum_geldigheid_uitvoerende_jgzorganisatie/@value = $datumEind],
+                ../../r005_betrokken_jgzorganisaties/*[*/einddatum_geldigheid_verantwoordelijke_jgzorganisatie/@value = $datumEind],
+                ../../r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie,
+                ../../r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp
+                " as="element()*"/>
+            
+            <subjectOf xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
+                <careStatus classCode="STC" moodCode="EVN">
+                    <code code="487" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '487'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                    </code>
+                    <!-- Item(s) :: datum_zorgbeeindiging-->
+                    <xsl:for-each select="datum_zorgbeeindiging">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <!-- Item(s) :: zorgbeeindiging-->
+                    <xsl:for-each select="zorgbeeindiging">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">reasonCode</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <author typeCode="AUT">
+                        <!-- Item(s) :: einddatum_geldigheid_uitvoerende_jgzorganisatie-->
+                        <time xsi:type="IVL_TS">
+                            <high>
+                                <xsl:call-template name="makeTSValueAttr">
+                                    <xsl:with-param name="inputValue" select="$datumEind"/>
+                                </xsl:call-template>
+                            </high>
+                        </time>
+                        <!-- Template :: R_AssignedEntityNL [identified] -->
+                        <xsl:for-each select="$organisatie[1]">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
+                        </xsl:for-each>
+                    </author>
+                </careStatus>
+            </subjectOf>
+        </xsl:for-each>
     </xsl:template>
     
     <!-- Activiteit Contactmoment -->
@@ -2493,7 +1610,9 @@
                 </xsl:for-each>
                 <subjectOf typeCode="SUBJ">
                     <abortedEvent classCode="STC" moodCode="EVN">
-                        <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '495'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <!-- Item(s) :: toelichting_niet_verschenen-->
                         <xsl:for-each select="toelichting_niet_verschenen">
                             <xsl:call-template name="makeCVValue">
@@ -2893,7 +2012,9 @@
                 </xsl:for-each>
                 <subjectOf typeCode="SUBJ">
                     <abortedEvent classCode="STC" moodCode="EVN">
-                        <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '495'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <!-- Item(s) :: toelichting_niet_verschenen-->
                         <xsl:for-each select="toelichting_niet_verschenen">
                             <xsl:call-template name="makeCVValue">
@@ -3694,7 +2815,9 @@
             <xsl:for-each select="voorlichtingsmateriaal">
                 <component typeCode="COMP">
                     <act classCode="ACT" moodCode="EVN">
-                        <code code="1157" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1157" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1157'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">text</xsl:with-param>
@@ -3751,7 +2874,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000">
         <xsl:for-each select="r047_conclusies_en_vervolgstappen">
             <conclusion xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
-                <code code="482" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                <code code="482" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '482'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                </code>
                 <!-- Item(s) :: conclusie-->
                 <xsl:for-each select="conclusie">
                     <xsl:call-template name="makeSTValue">
@@ -3763,7 +2888,9 @@
                     <component typeCode="COMP">
                         <xsl:for-each select="groep_g058_indicatie_en_interventie">
                             <indication classCode="OBS" moodCode="EVN">
-                                <code code="485" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                <code code="485" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '485'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
                                 <!-- Item(s) :: indicatie-->
                                 <xsl:for-each select="indicatie">
                                     <xsl:call-template name="makeCVValue">
@@ -3826,7 +2953,9 @@
                                             <xsl:for-each select="verwijsbrief">
                                                 <component typeCode="COMP">
                                                     <additionalObservation classCode="OBS" moodCode="OBS">
-                                                        <code code="1494" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                                        <code code="1494" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1494'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                                        </code>
                                                         <xsl:call-template name="makeBLValue">
                                                             <xsl:with-param name="elemName">value</xsl:with-param>
                                                         </xsl:call-template>
@@ -3864,7 +2993,9 @@
                 <xsl:for-each select="notitieblad">
                     <subjectOf typeCode="SUBJ">
                         <annotation classCode="ACT" moodCode="EVN">
-                            <code code="493" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                            <code code="493" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '493'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                            </code>
                             <xsl:call-template name="makeSTValue">
                                 <xsl:with-param name="xsiType" select="''"/>
                                 <xsl:with-param name="elemName">text</xsl:with-param>
@@ -3910,7 +3041,7 @@
                         <xsl:with-param name="elemName">id</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="groep_g001_adres_kind">
+                <xsl:for-each select="groep_g001_adres_client">
                     <addr use="{soort_adres/(@code, @value)[1]}">
                         <!-- Item(s) :: straatnaam-->
                         <xsl:for-each select="straatnaam">
@@ -3974,7 +3105,7 @@
                                 <xsl:with-param name="elemName">desc</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <xsl:for-each select="groep_g096_periode">
+                        <xsl:for-each select="groep_g096_periode_geldigheid_adres_client">
                             <useablePeriod>
                                 <xsl:if test="startdatum_geldigheid_adres_kind">
                                     <!-- Item(s) :: startdatum_geldigheid_adres_kind-->
@@ -4043,7 +3174,7 @@
     
     <!-- Adres kind -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10222_20120801000000">
-        <xsl:for-each select="groep_g001_adres_kind">
+        <xsl:for-each select="groep_g001_adres_client">
             <addr xmlns="urn:hl7-org:v3" use="{soort_adres/(@code, @value)[1]}">
                 <!-- Item(s) :: straatnaam-->
                 <xsl:for-each select="straatnaam">
@@ -4107,7 +3238,7 @@
                         <xsl:with-param name="elemName">desc</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="groep_g096_periode">
+                <xsl:for-each select="groep_g096_periode_geldigheid_adres_client">
                     <useablePeriod>
                         <xsl:if test="startdatum_geldigheid_adres_kind">
                             <!-- Item(s) :: startdatum_geldigheid_adres_kind-->
@@ -4344,7 +3475,7 @@
     
     <!-- Periode geldigheid adres kind -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10251_20120801000000">
-        <xsl:for-each select="groep_g096_periode">
+        <xsl:for-each select="groep_g096_periode_geldigheid_adres_client">
             <useablePeriod xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_geldigheid_adres_kind">
                     <!-- Item(s) :: startdatum_geldigheid_adres_kind-->
@@ -4370,7 +3501,7 @@
     
     <!-- Periode geldigheid contactpersoon -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10252_20120801000000">
-        <xsl:for-each select="groep_g097_periode">
+        <xsl:for-each select="groep_g097_periode_geldigheid_contactpersoon">
             <effectiveTime xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_geldigheid_contactpersoon">
                     <!-- Item(s) :: startdatum_geldigheid_contactpersoon-->
@@ -4396,7 +3527,7 @@
     
     <!-- Periode geldigheid uitvoerende JGZ-organisatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10253_20120801000000">
-        <xsl:for-each select="groep_g098_periode">
+        <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
             <effectiveTime xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_geldigheid_uitvoerende_jgzorganisatie">
                     <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
@@ -4422,7 +3553,7 @@
     
     <!-- Periode geldigheid verantwoordelijke JGZ-organisatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10254_20120801000000">
-        <xsl:for-each select="groep_g099_periode">
+        <xsl:for-each select="groep_g099_periode_geldigheid_verantwoordelijke_jgzorganisatie">
             <effectiveTime xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_geldigheid_verantwoordelijke_jgzorganisatie">
                     <!-- Item(s) :: startdatum_geldigheid_verantwoordelijke_jgzorganisatie-->
@@ -4448,7 +3579,7 @@
     
     <!-- Periode geldigheid huisarts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10255_20120801000000">
-        <xsl:for-each select="groep_g100_periode">
+        <xsl:for-each select="groep_g100_periode_geldigheid_huisarts">
             <effectiveTime xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_geldigheid_huisarts">
                     <!-- Item(s) :: startdatum_geldigheid_huisarts-->
@@ -4474,7 +3605,7 @@
     
     <!-- Periode geldigheid andere betrokken organisaties/hulpverleners -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10256_20120801000000">
-        <xsl:for-each select="groep_g101_periode">
+        <xsl:for-each select="groep_g101_periode_geldigheid_andere_betrokken_organisatiehulpverlener">
             <effectiveTime xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_geldigheid_andere_betrokken_organisatieshulpverleners">
                     <!-- Item(s) :: startdatum_geldigheid_andere_betrokken_organisatieshulpverleners-->
@@ -4500,7 +3631,7 @@
     
     <!-- Periode geldigheid contactpersoon organisatie/hulpverlener -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10257_20120801000000">
-        <xsl:for-each select="groep_g102_periode">
+        <xsl:for-each select="groep_g102_periode_geldigheid_contactpersoonhulpverlener">
             <effectiveTime xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_geldigheid_contactpersoon_organisatiehulpverlener">
                     <!-- Item(s) :: startdatum_geldigheid_contactpersoon_organisatiehulpverlener-->
@@ -4526,7 +3657,7 @@
     
     <!-- Periode zorg -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10258_20120801000000">
-        <xsl:for-each select="groep_g103_periode">
+        <xsl:for-each select="groep_g103_periode_zorg">
             <effectiveTime xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_zorg">
                     <!-- Item(s) :: startdatum_zorg-->
@@ -4552,7 +3683,7 @@
     
     <!-- Periode geldigheid voor- of buitenschoolse voorzieningen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10259_20120801000000">
-        <xsl:for-each select="groep_g104_periode">
+        <xsl:for-each select="groep_g104_periode_geldigheid_voor_of_buitenschoolse_voorzieningen">
             <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="IVL_TS">
                 <xsl:if test="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
                     <!-- Item(s) :: startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
@@ -4578,7 +3709,7 @@
     
     <!-- Periode geldigheid contactpersoon voor- of buitenschoolse voorziening -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10260_20120801000000">
-        <xsl:for-each select="groep_g105_periode">
+        <xsl:for-each select="groep_g105_periode_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
             <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="IVL_TS">
                 <xsl:if test="startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
                     <!-- Item(s) :: startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening-->
@@ -4604,7 +3735,7 @@
     
     <!-- Periode geldigheid school -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10261_20120801000000">
-        <xsl:for-each select="groep_g106_periode">
+        <xsl:for-each select="groep_g106_periode_geldigheid_school">
             <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="IVL_TS">
                 <xsl:if test="startdatum_geldigheid_school">
                     <!-- Item(s) :: startdatum_geldigheid_school-->
@@ -4630,7 +3761,7 @@
     
     <!-- Periode geldigheid contactpersoon school -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10262_20120801000000">
-        <xsl:for-each select="groep_g107_periode">
+        <xsl:for-each select="groep_g107_periode_geldigheid_contactpersoon">
             <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="IVL_TS">
                 <xsl:if test="startdatum_geldigheid_contactpersoon_school">
                     <!-- Item(s) :: startdatum_geldigheid_contactpersoon_school-->
@@ -4656,7 +3787,7 @@
     
     <!-- Periode geel zien -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10263_20120801000000">
-        <xsl:for-each select="groep_g108_periode">
+        <xsl:for-each select="groep_g108_periode_geel_zien">
             <value xmlns="urn:hl7-org:v3">
                 <xsl:if test="startdatum_geel_zien">
                     <!-- Item(s) :: startdatum_geel_zien-->
@@ -4682,7 +3813,7 @@
     
     <!-- Periode opname kinderafdeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10264_20120801000000">
-        <xsl:for-each select="groep_g109_periode">
+        <xsl:for-each select="groep_g109_periode_opname_kinderafdeling">
             <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="IVL_TS">
                 <xsl:if test="startdatum_opname_kinderafdeling">
                     <!-- Item(s) :: startdatum_opname_kinderafdeling-->
@@ -4708,7 +3839,7 @@
     
     <!-- Periode zorg op maat -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10265_20120801000000">
-        <xsl:for-each select="groep_g110_periode">
+        <xsl:for-each select="groep_g110_periode_duur_zorg_op_maat">
             <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="IVL_TS">
                 <xsl:if test="startdatum_duur_zorg_op_maat">
                     <!-- Item(s) :: startdatum_duur_zorg_op_maat-->
@@ -4734,7 +3865,7 @@
     
     <!-- Periode reactie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10266_20120801000000">
-        <xsl:for-each select="groep_g111_periode">
+        <xsl:for-each select="groep_g111_periode_reactie">
             <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="IVL_TS">
                 <xsl:if test="startdatum_reactie">
                     <!-- Item(s) :: startdatum_reactie-->
@@ -4761,7 +3892,7 @@
     <!-- Periode geldigheid voor- of buitenschoolse voorzieningen met dagdelen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10267_20120801000000">
         <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="SXPR_TS">
-            <xsl:for-each select="groep_g104_periode">
+            <xsl:for-each select="groep_g104_periode_geldigheid_voor_of_buitenschoolse_voorzieningen">
                 <comp xsi:type="IVL_TS">
                     <!-- Item(s) :: startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
                     <xsl:for-each select="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
@@ -4807,7 +3938,7 @@
                         <xsl:with-param name="elemName">id</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="groep_g001_adres_kind">
+                <xsl:for-each select="groep_g001_adres_client">
                     <addr use="{soort_adres/(@code, @value)[1]}">
                         <!-- Item(s) :: straatnaam-->
                         <xsl:for-each select="straatnaam">
@@ -4871,7 +4002,7 @@
                                 <xsl:with-param name="elemName">desc</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <xsl:for-each select="groep_g096_periode">
+                        <xsl:for-each select="groep_g096_periode_geldigheid_adres_client">
                             <useablePeriod>
                                 <xsl:if test="startdatum_geldigheid_adres_kind">
                                     <!-- Item(s) :: startdatum_geldigheid_adres_kind-->
@@ -4958,7 +4089,7 @@
                                     <xsl:with-param name="elemName">telecom</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <xsl:for-each select="groep_g097_periode">
+                            <xsl:for-each select="groep_g097_periode_geldigheid_contactpersoon">
                                 <effectiveTime xsi:type="IVL_TS">
                                     <!-- Item(s) :: startdatum_geldigheid_contactpersoon-->
                                     <xsl:for-each select="startdatum_geldigheid_contactpersoon">
@@ -5088,18 +4219,22 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11012"/>
-            <code code="R012" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R012" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R012'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="erfelijke_belasting_en_ouderkenmerken_nagevraagd">
                 <component>
                     <!-- Template :: obs Erfelijke belasting en ouderkenmerken nagevraagd -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40079_20120801000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="groep_g019_erfelijke_ziekten">
+            <xsl:for-each select="groep_g019_erfelijke_factoren_in_de_familie">
                 <component>
                     <groupCluster>
-                        <code code="G019" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
-                        <xsl:for-each select="erfelijke_bepaalde_ziekte_in_de_familie">
+                        <code code="G019" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
+                        <xsl:for-each select="erfelijk_bepaalde_ziekte_in_de_familie">
                             <component>
                                 <!-- Template :: obs Erfelijke bepaalde ziekte in de familie -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40080_20120801000000"/>
@@ -5108,11 +4243,13 @@
                     </groupCluster>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="groep_g020_ouderkenmerken">
+            <xsl:for-each select="groep_g020_kenmerken_ouderverzorger">
                 <component>
                     <groupCluster>
-                        <code code="G020" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
-                        <xsl:for-each select="ouderkenmerken">
+                        <code code="G020" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G020'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
+                        <xsl:for-each select="kenmerken_ouderverzorger">
                             <component>
                                 <!-- Template :: obs Ouderkenmerken -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40070_20120801000000"/>
@@ -5146,7 +4283,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11013"/>
-            <code code="R013" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R013" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R013'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="bedreigingen_nagevraagd">
                 <component>
                     <!-- Template :: obs Bedreigingen nagevraagd -->
@@ -5196,7 +4335,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11019"/>
-            <code code="R019" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R019" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="anamnese_nagevraagd">
                 <component>
                     <!-- Template :: obs Anamnese nagevraagd -->
@@ -5308,7 +4449,9 @@
             <xsl:for-each select="groep_g087_opname_ziekenhuis">
                 <component>
                     <groupCluster>
-                        <code code="G087" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G087" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G087'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="reden_opname_ziekenhuis">
                             <component>
                                 <!-- Template :: obs Reden opname ziekenhuis -->
@@ -5373,7 +4516,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11020"/>
-            <code code="R020" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R020" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R020'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="algemene_indruk_verkregen">
                 <component>
                     <!-- Template :: obs Algemene indruk verkregen -->
@@ -5459,7 +4604,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11021"/>
-            <code code="R021" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R021" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R021'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="lichamelijk_functioneren_nagevraagd">
                 <component>
                     <!-- Template :: obs Lichamelijk functioneren nagevraagd -->
@@ -5623,7 +4770,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11022"/>
-            <code code="R022" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R022" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R022'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="huidhaarnagels_onderzocht">
                 <component>
                     <!-- Template :: obs Huid/haar/nagels onderzocht -->
@@ -5649,7 +4798,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11023"/>
-            <code code="R023" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R023" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R023'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="hoofdhals_onderzocht">
                 <component>
                     <!-- Template :: obs Hoofd/hals onderzocht -->
@@ -5659,7 +4810,9 @@
             <xsl:for-each select="groep_g023_hoofd">
                 <component>
                     <groupCluster>
-                        <code code="G023" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G023" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G023'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="bijzonderheden_hoofd">
                             <component>
                                 <!-- Template :: obs Bijzonderheden hoofd -->
@@ -5730,7 +4883,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11024"/>
-            <code code="R024" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R024" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R024'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="romp_onderzocht">
                 <component>
                     <!-- Template :: obs Romp onderzocht -->
@@ -5780,7 +4935,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11025"/>
-            <code code="R025" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R025" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R025'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="bewegingsapparaat_onderzocht">
                 <component>
                     <!-- Template :: obs Bewegingsapparaat onderzocht -->
@@ -5790,7 +4947,9 @@
             <xsl:for-each select="groep_g024_wervelkolom">
                 <component>
                     <groupCluster>
-                        <code code="G024" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G024" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G024'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="bijzonderheden_wervelkolom">
                             <component>
                                 <!-- Template :: obs Bijzonderheden wervelkolom -->
@@ -5815,7 +4974,9 @@
             <xsl:for-each select="groep_g026_heupen">
                 <component>
                     <groupCluster>
-                        <code code="G026" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G026" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G026'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="bijzonderheden_heupen">
                             <component>
                                 <!-- Template :: obs Bijzonderheden heupen -->
@@ -5852,7 +5013,9 @@
             <xsl:for-each select="groep_g028_onderste_extremiteiten">
                 <component>
                     <groupCluster>
-                        <code code="G028" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G028" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G028'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="bijzonderheden_onderste_extremiteiten">
                             <component>
                                 <!-- Template :: obs Bijzonderheden onderste extremiteiten -->
@@ -5887,7 +5050,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11026"/>
-            <code code="R026" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R026" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R026'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="genitaliapuberteitsontwikkeling_onderzocht">
                 <component>
                     <!-- Template :: obs Genitalia/puberteitsontwikkeling onderzocht -->
@@ -5991,7 +5156,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11027"/>
-            <code code="R027" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R027" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R027'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="bijzonderheden_groei">
                 <component>
                     <!-- Template :: obs Bijzonderheden groei -->
@@ -6035,7 +5202,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11030"/>
-            <code code="R030" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R030" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R030'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="psychosociale_en_cognitieve_ontwikkeling_onderzocht">
                 <component>
                     <!-- Template :: obs Psychosociale en cognitieve ontwikkeling onderzocht -->
@@ -6067,7 +5236,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11031"/>
-            <code code="R031" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R031" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R031'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="motorische_ontwikkeling_onderzocht">
                 <component>
                     <!-- Template :: obs Motorische ontwikkeling onderzocht -->
@@ -6123,7 +5294,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11032"/>
-            <code code="R032" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R032" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R032'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="spraak_en_taalontwikkeling_onderzocht">
                 <component>
                     <!-- Template :: obs Spraak- en taalontwikkeling onderzocht -->
@@ -6139,7 +5312,9 @@
             <xsl:for-each select="groep_g036_taal">
                 <component>
                     <groupCluster>
-                        <code code="G036" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G036" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G036'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="taal">
                             <component>
                                 <!-- Template :: obs Taal -->
@@ -6170,7 +5345,9 @@
             <xsl:for-each select="groep_g073_taalsignaleringsinstrument">
                 <component>
                     <groupCluster>
-                        <code code="G073" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G073" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G073'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="taalsignaleringsinstrument">
                             <component>
                                 <!-- Template :: obs Taalsignaleringsinstrument -->
@@ -6229,7 +5406,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11034"/>
-            <code code="R034" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R034" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R034'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="verhouding_draaglastdraagkracht_onderzocht">
                 <component>
                     <!-- Template :: obs Verhouding draaglast-draagkracht onderzocht -->
@@ -6255,7 +5434,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11038"/>
-            <code code="R038" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R038" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R038'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="oogonderzoek_uitgevoerd">
                 <component>
                     <!-- Template :: obs Oogonderzoek uitgevoerd -->
@@ -6497,7 +5678,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11039"/>
-            <code code="R039" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R039" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R039'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="hartonderzoek_uitgevoerd">
                 <component>
                     <!-- Template :: obs Hartonderzoek uitgevoerd -->
@@ -6507,7 +5690,9 @@
             <xsl:for-each select="groep_g044_geruis_intensiteit">
                 <component>
                     <groupCluster>
-                        <code code="G044" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G044" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G044'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="geruis_intensiteit">
                             <component>
                                 <!-- Template :: obs Geruis intensiteit -->
@@ -6596,7 +5781,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11040"/>
-            <code code="R040" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R040" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R040'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="gehooronderzoek_uitgevoerd">
                 <component>
                     <!-- Template :: obs Gehooronderzoek uitgevoerd -->
@@ -6850,7 +6037,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11042"/>
-            <code code="R042" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R042" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R042'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="gedragstoestand_van_wiechen">
                 <component>
                     <!-- Template :: obs Gedragstoestand Van Wiechen -->
@@ -7866,7 +7055,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11043"/>
-            <code code="R043" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R043" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R043'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="gebruikt_hand">
                 <component>
                     <!-- Template :: obs Gebruikt hand -->
@@ -8108,7 +7299,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11045"/>
-            <code code="R045" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R045" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R045'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="_1_houdt_rekening_met_gevoelens_van_anderen">
                 <component>
                     <!-- Template :: obs 1. Houdt rekening met gevoelens van anderen -->
@@ -8362,7 +7555,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11049"/>
-            <code code="R049" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R049" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R049'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="_0_stoornis">
                 <component>
                     <!-- Template :: obs 0. Stoornis -->
@@ -8430,11 +7625,15 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11052"/>
-            <code code="R052" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R052" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R052'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="groep_g074_melding_vir">
                 <component>
                     <groupCluster>
-                        <code code="G074" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G074" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G074'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="datum_aanmelding_vir">
                             <component>
                                 <!-- Template :: obs Afmelding VIR -->
@@ -8459,7 +7658,9 @@
             <xsl:for-each select="groep_g075_melding_amk">
                 <component>
                     <groupCluster>
-                        <code code="G075" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G075" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G075'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="datum_melding_amk">
                             <component>
                                 <!-- Template :: obs Melding AMK -->
@@ -8478,7 +7679,9 @@
             <xsl:for-each select="groep_g084_consultatie_amk">
                 <component>
                     <groupCluster>
-                        <code code="G084" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
+                        <code code="G084" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G084'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
                         <xsl:for-each select="datum_consultatie_amk">
                             <component>
                                 <!-- Template :: obs Consultatie AMK -->
@@ -8501,7 +7704,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11054"/>
-            <code code="R054" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R054" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R054'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <xsl:for-each select="bijzonderheden_spp">
                 <component>
                     <!-- Template :: obs Bijzonderheden SPP -->
@@ -8527,7 +7732,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000">
         <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN" negationInd="{exists(bezwaar)}">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
-            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"/>
+            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
             <!-- Item(s) :: datum_vaccinatie-->
             <xsl:for-each select="datum_vaccinatie">
                 <xsl:call-template name="makeTSValue">
@@ -8563,7 +7768,9 @@
             <xsl:for-each select="reden_van_enting">
                 <reason typeCode="RSON">
                     <vaccinationReason classCode="OBS" moodCode="EVN">
-                        <code code="686" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="686" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '686'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8574,7 +7781,9 @@
             <xsl:for-each select="uitslag_serologisch_onderzoek_hepatitis_b">
                 <causeOf1 typeCode="CAUS">
                     <serologyTest classCode="OBS" moodCode="EVN">
-                        <code code="869" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="869" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '869'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8584,8 +7793,10 @@
             <xsl:if test="verschijnselen">
                 <causeOf2 typeCode="CAUS">
                     <adverseReaction classCode="OBS" moodCode="EVN">
-                        <code code="874" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
-                        <xsl:for-each select="groep_g111_periode">
+                        <code code="874" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '874'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:for-each select="groep_g111_periode_reactie">
                             <effectiveTime xsi:type="IVL_TS">
                                 <xsl:if test="startdatum_reactie">
                                     <!-- Item(s) :: startdatum_reactie-->
@@ -8615,7 +7826,9 @@
                         </xsl:for-each>
                         <subjectOf typeCode="SUBJ">
                             <informationControlActEvent classCode="INFO" moodCode="EVN">
-                                <code code="875" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                <code code="875" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '875'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
                                 <!-- Item(s) :: reactie_gemeld_aan_bevoegde_instantie_datum-->
                                 <xsl:for-each select="reactie_gemeld_aan_bevoegde_instantie_datum">
                                     <xsl:call-template name="makeTSValue">
@@ -8649,10 +7862,12 @@
             <xsl:for-each select="bezwaar">
                 <authorization typeCode="AUTH">
                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
-                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"/>
+                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                         <reasonOf typeCode="RSON">
                             <observationEvent classCode="OBS" moodCode="EVN">
-                                <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
                                 <xsl:call-template name="makeCVValue">
                                     <xsl:with-param name="elemName">value</xsl:with-param>
                                 </xsl:call-template>
@@ -8665,7 +7880,9 @@
             <xsl:for-each select="type_oproepkaart">
                 <component typeCode="COMP">
                     <vaccinationObservation classCode="OBS" moodCode="EVN">
-                        <code code="608" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="608" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '608'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8676,7 +7893,9 @@
             <xsl:for-each select="toelichting_afwijkende_plaats_vaccinatie">
                 <component typeCode="COMP">
                     <vaccinationObservation classCode="OBS" moodCode="EVN">
-                        <code code="872" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="872" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '872'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8687,7 +7906,9 @@
             <xsl:for-each select="bcg_litteken">
                 <component typeCode="COMP">
                     <vaccinationObservation classCode="OBS" moodCode="EVN">
-                        <code code="5063" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="5063" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '5063'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8697,7 +7918,9 @@
             <xsl:if test="toelichting_afwijkend_schema | reden_afwijkend_schema">
                 <subjectOf typeCode="RSON">
                     <scheduleDeviation classCode="OBS" moodCode="EVN">
-                        <code code="870" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="870" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '870'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <!-- Item(s) :: toelichting_afwijkend_schema-->
                         <xsl:for-each select="toelichting_afwijkend_schema">
                             <xsl:call-template name="makeSTValue">
@@ -8721,7 +7944,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.117_20120801000000">
         <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN" negationInd="{exists(bezwaar)}">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.117"/>
-            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"/>
+            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
             <!-- Item(s) :: datum_vaccinatie-->
             <xsl:for-each select="datum_vaccinatie">
                 <xsl:call-template name="makeTSValue">
@@ -8757,10 +7980,12 @@
             <xsl:for-each select="bezwaar">
                 <authorization typeCode="AUTH">
                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
-                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"/>
+                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                         <reasonOf typeCode="RSON">
                             <observationEvent classCode="OBS" moodCode="EVN">
-                                <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
                                 <xsl:call-template name="makeCVValue">
                                     <xsl:with-param name="elemName">value</xsl:with-param>
                                 </xsl:call-template>
@@ -8776,11 +8001,13 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.118_20120801000000">
         <neonateData xmlns="urn:hl7-org:v3" classCode="CATEGORY" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.118"/>
-            <code code="R016" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R016" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R016'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <component1 typeCode="COMP">
                 <inPatientEncounter classCode="ENC" moodCode="EVN">
                     <code code="IMP" codeSystem="2.16.840.1.113883.5.4"/>
-                    <xsl:for-each select="groep_g109_periode">
+                    <xsl:for-each select="groep_g109_periode_opname_kinderafdeling">
                         <effectiveTime xsi:type="IVL_TS">
                             <!-- Item(s) :: startdatum_opname_kinderafdeling-->
                             <xsl:for-each select="startdatum_opname_kinderafdeling">
@@ -8804,7 +8031,9 @@
                                 <code code="PEDICU" codeSystem="2.16.840.1.113883.5.111"/>
                                 <locationOf typeCode="LOC">
                                     <incubatorAccommodation classCode="ACCM" moodCode="EVN" negationInd="">
-                                        <code code="144" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                        <code code="144" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '144'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                        </code>
                                     </incubatorAccommodation>
                                 </locationOf>
                             </serviceDeliveryLocation>
@@ -8819,7 +8048,9 @@
                         <consumable typeCode="CSM">
                             <administerableMaterial classCode="ADMM">
                                 <administrableMaterialKind classCode="MAT" determinerCode="KIND">
-                                    <code code="137" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="137" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '137'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                 </administrableMaterialKind>
                             </administerableMaterial>
                         </consumable>
@@ -8833,7 +8064,9 @@
                         <consumable typeCode="CSM">
                             <administerableMaterial classCode="ADMM">
                                 <administrableMaterialKind classCode="MAT" determinerCode="KIND">
-                                    <code code="138" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="138" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '138'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                 </administrableMaterialKind>
                             </administerableMaterial>
                         </consumable>
@@ -8847,7 +8080,9 @@
                         <consumable typeCode="CSM">
                             <administerableMaterial classCode="ADMM">
                                 <administrableMaterialKind classCode="MAT" determinerCode="KIND">
-                                    <code code="629" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="629" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '629'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                 </administrableMaterialKind>
                             </administerableMaterial>
                         </consumable>
@@ -8858,7 +8093,9 @@
             <xsl:for-each select="meerling">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="108" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="108" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '108'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeBLValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8869,7 +8106,9 @@
             <xsl:for-each select="volgnummer_bij_meerling">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="109" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="109" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '109'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeINTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8892,7 +8131,9 @@
             <xsl:for-each select="laagste_gewicht">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="111" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="111" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '111'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makePQValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                             <xsl:with-param name="unit">g</xsl:with-param>
@@ -8904,7 +8145,9 @@
             <xsl:for-each select="geboortelengte">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="112" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="112" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '112'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makePQValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                             <xsl:with-param name="unit">mm</xsl:with-param>
@@ -8916,7 +8159,9 @@
             <xsl:for-each select="hoofdomtrek_bij_geboorte">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="113" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="113" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '113'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makePQValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                             <xsl:with-param name="unit">mm</xsl:with-param>
@@ -8928,7 +8173,9 @@
             <xsl:for-each select="prematuurserotien">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="114" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="114" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '114'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeBLValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8939,7 +8186,9 @@
             <xsl:for-each select="dysmatuur">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="115" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="115" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '115'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeBLValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8950,7 +8199,7 @@
             <xsl:for-each select="apgar_score_na_1_min">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="9272-6" codeSystem="2.16.840.1.113883.6.1"/>
+                        <code code="9272-6" codeSystem="2.16.840.1.113883.6.1" displayName="1 minute Apgar Score"/>
                         <xsl:call-template name="makeINTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8961,7 +8210,7 @@
             <xsl:for-each select="apgar_score_na_5_min">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="9274-2" codeSystem="2.16.840.1.113883.6.1"/>
+                        <code code="9274-2" codeSystem="2.16.840.1.113883.6.1" displayName="5 minute Apgar Score"/>
                         <xsl:call-template name="makeINTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8972,7 +8221,9 @@
             <xsl:for-each select="toelichting_apgar_score">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="626" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="626" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '626'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8983,7 +8234,9 @@
             <xsl:for-each select="aangeboren_afwijkingen">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="131" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="131" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '131'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8994,7 +8247,9 @@
             <xsl:for-each select="bijzonderheden_temperatuurverloop">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="133" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="133" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '133'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9005,7 +8260,9 @@
             <xsl:for-each select="bijzonderheden_ademhaling">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="134" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="134" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '134'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9016,7 +8273,9 @@
             <xsl:for-each select="bijzonderheden_drinken">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="135" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="135" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '135'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9027,7 +8286,9 @@
             <xsl:for-each select="bijzonderheden_pasgeborene_en_eerste_levensweken">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="145" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="145" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '145'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9038,7 +8299,9 @@
             <xsl:for-each select="melkvoeding_op_geboortedag">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="747" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="747" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '747'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9049,17 +8312,21 @@
             <xsl:for-each select="melkvoeding_op_8e_dag">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="1340" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1340" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1340'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
                     </neonateObservations>
                 </component3>
             </xsl:for-each>
-            <xsl:for-each select="groep_g108_periode">
+            <xsl:for-each select="groep_g108_periode_geel_zien">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="139" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="139" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '139'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <value xsi:type="IVL_TS">
                             <xsl:if test="startdatum_geel_zien">
                                 <!-- Item(s) :: startdatum_geel_zien-->
@@ -9087,7 +8354,9 @@
             <xsl:for-each select="oorzaak_geel_zien">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="140" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="140" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '140'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9098,7 +8367,9 @@
             <xsl:for-each select="therapie">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="142" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="142" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '142'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9138,7 +8409,7 @@
                     <statusCode nullFlavor="ASKU"/>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:for-each select="groep_g103_periode">
+            <xsl:for-each select="groep_g103_periode_zorg">
                 <effectiveTime xsi:type="IVL_TS">
                     <xsl:if test="startdatum_zorg">
                         <!-- Item(s) :: startdatum_zorg-->
@@ -9185,7 +8456,9 @@
             <xsl:for-each select="doel">
                 <goal typeCode="COMP">
                     <observationGoal classCode="PCPR" moodCode="INT">
-                        <code code="829" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="829" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '829'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">text</xsl:with-param>
@@ -9197,7 +8470,9 @@
             <xsl:for-each select="reden">
                 <reasonOf typeCode="COMP">
                     <patientCareObservation classCode="OBS" moodCode="EVN">
-                        <code code="365" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="365" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '365'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9211,8 +8486,10 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.120_20120801000000">
         <carePlan xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="INT">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.120"/>
-            <code code="G081" codeSystem="2.16.840.1.113883.2.4.4.40.393"/>
-            <xsl:for-each select="groep_g110_periode">
+            <code code="G081" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G081'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+            </code>
+            <xsl:for-each select="groep_g110_periode_duur_zorg_op_maat">
                 <effectiveTime xsi:type="IVL_TS">
                     <xsl:if test="startdatum_duur_zorg_op_maat">
                         <!-- Item(s) :: startdatum_duur_zorg_op_maat-->
@@ -9238,7 +8515,9 @@
             <xsl:for-each select="doelen">
                 <finalGoal typeCode="OBJF">
                     <observationGoal classCode="OBS" moodCode="GOL">
-                        <code code="1154" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1154" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1154'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9249,7 +8528,9 @@
             <xsl:if test="probleemomschrijving | oorzaak">
                 <subject typeCode="SUBJ" contextControlCode="AN" contextConductionInd="true">
                     <problem classCode="OBS" moodCode="EVN">
-                        <code code="1151" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1151" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1151'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <!-- Item(s) :: probleemomschrijving-->
                         <xsl:for-each select="probleemomschrijving">
                             <xsl:call-template name="makeSTValue">
@@ -9259,7 +8540,9 @@
                         </xsl:for-each>
                         <reasonOf>
                             <condition classCode="OBS" moodCode="EVN">
-                                <code code="1152" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                <code code="1152" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1152'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
                                 <!-- Item(s) :: oorzaak-->
                                 <xsl:for-each select="oorzaak">
                                     <xsl:call-template name="makeSTValue">
@@ -9273,7 +8556,9 @@
                         <xsl:for-each select="zich_uitend_in">
                             <subjectOf typeCode="SUBJ">
                                 <symptom classCode="OBS" moodCode="EVN">
-                                    <code code="1153" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="1153" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1153'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeSTValue">
                                         <xsl:with-param name="xsiType" select="''"/>
                                         <xsl:with-param name="elemName">text</xsl:with-param>
@@ -9288,7 +8573,9 @@
             <xsl:for-each select="evaluatie">
                 <pertinentInformation typeCode="PERT">
                     <evaluationEvent classCode="OBS" moodCode="EVN">
-                        <code code="1156" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1156" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1156'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9299,7 +8586,9 @@
             <xsl:for-each select="interventies">
                 <component typeCode="COMP">
                     <observationIntent classCode="OBS" moodCode="INT">
-                        <code code="1155" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1155" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1155'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9313,22 +8602,28 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.121_20120801000000">
         <pregnancyCondition xmlns="urn:hl7-org:v3" classCode="COND" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.121"/>
-            <code code="R014" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+            <code code="R014" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R014'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
             <subject typeCode="SBJ">
                 <personalRelationship classCode="PRS">
-                    <code code="NMTH" codeSystem="2.16.840.1.113883.5.111"/>
+                    <code code="NMTH" codeSystem="2.16.840.1.113883.5.111" displayName="natural mother"/>
                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
                 </personalRelationship>
             </subject>
             <xsl:for-each select="../r015_bevalling">
                 <outcome typeCode="OUTC">
                     <delivery classCode="PROC" moodCode="EVN">
-                        <code code="R015" codeSystem="2.16.840.1.113883.2.4.4.40.391"/>
+                        <code code="R015" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R015'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+                        </code>
                         <!-- Item(s) :: duur_bevalling-->
                         <xsl:for-each select="duur_bevalling">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="97" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="97" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '97'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makePQValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                         <xsl:with-param name="unit">min</xsl:with-param>
@@ -9340,7 +8635,9 @@
                         <xsl:for-each select="duur_uitdrijving">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="98" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="98" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '98'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makePQValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                         <xsl:with-param name="unit">min</xsl:with-param>
@@ -9352,7 +8649,9 @@
                         <xsl:for-each select="ligging_bij_geboorte">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="100" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="100" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '100'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeCVValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -9363,7 +8662,7 @@
                         <xsl:for-each select="kleur_vruchtwater">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="38386-9" codeSystem="2.16.840.1.113883.6.1"/>
+                                    <code code="38386-9" codeSystem="2.16.840.1.113883.6.1" displayName="Color of Amniotic fluid"/>
                                     <xsl:call-template name="makeCVValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -9374,7 +8673,9 @@
                         <xsl:for-each select="stuitligging_laatste_trimester">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="1323" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="1323" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1323'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeBLValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -9385,7 +8686,9 @@
                         <xsl:for-each select="_3_navelvaten">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="105" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="105" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '105'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeBLValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -9396,7 +8699,9 @@
                         <xsl:for-each select="wijze_van_geboorte">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="1324" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="1324" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1324'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeSTValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -9407,7 +8712,9 @@
                         <xsl:for-each select="bijzonderheden_bevalling">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="106" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="106" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '106'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeSTValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -9418,7 +8725,9 @@
                         <xsl:for-each select="bijzonderheden_kraamperiodekraamverzorging">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="107" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="107" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '107'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeSTValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -9432,7 +8741,9 @@
             <xsl:for-each select="zwangerschapsduur">
                 <component1 typeCode="COMP">
                     <pregnancyObservations classCode="OBS" moodCode="EVN">
-                        <code code="82" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="82" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '82'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makePQValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                             <xsl:with-param name="unit">d</xsl:with-param>
@@ -9444,7 +8755,9 @@
             <xsl:for-each select="roken_tijdens_de_zwangerschap">
                 <component1 typeCode="COMP">
                     <pregnancyObservations classCode="OBS" moodCode="EVN">
-                        <code code="91" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="91" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '91'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeBLValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9455,7 +8768,9 @@
             <xsl:for-each select="alcohol_gebruik_tijdens_de_zwangerschap">
                 <component1 typeCode="COMP">
                     <pregnancyObservations classCode="OBS" moodCode="EVN">
-                        <code code="92" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="92" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '92'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeBLValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9466,7 +8781,9 @@
             <xsl:for-each select="drugsgebruik_tijdens_de_zwangerschap">
                 <component1 typeCode="COMP">
                     <pregnancyObservations classCode="OBS" moodCode="EVN">
-                        <code code="93" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="93" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '93'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeBLValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9474,7 +8791,9 @@
                         <xsl:for-each select="type_drugsgebruik_tijdens_de_zwangerschap">
                             <component typeCode="COMP">
                                 <detailPregnancyObservation classCode="OBS" moodCode="EVN">
-                                    <code code="745" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="745" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '745'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeCVValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -9488,7 +8807,9 @@
             <xsl:for-each select="bijzonderheden_vorige_zwangerschap">
                 <component1 typeCode="COMP">
                     <pregnancyObservations classCode="OBS" moodCode="EVN">
-                        <code code="619" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="619" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '619'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeSTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9499,7 +8820,9 @@
             <xsl:for-each select="graviditeit">
                 <component1 typeCode="COMP">
                     <pregnancyObservations classCode="OBS" moodCode="EVN">
-                        <code code="740" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="740" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '740'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeINTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9510,7 +8833,9 @@
             <xsl:for-each select="pariteit">
                 <component1 typeCode="COMP">
                     <pregnancyObservations classCode="OBS" moodCode="EVN">
-                        <code code="741" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="741" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '741'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeINTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -9541,35 +8866,27 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000">
         <assignedEntity classCode="ASSIGNED" xmlns="urn:hl7-org:v3">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-            <xsl:choose>
-                <xsl:when test="verantwoordelijke_jgzprofessional_id | uitvoerende_jgzprofessional_id">
-                    <!-- Item(s) :: verantwoordelijke_jgzprofessional_id uitvoerende_jgzprofessional_id-->
-                    <xsl:for-each select="verantwoordelijke_jgzprofessional_id | uitvoerende_jgzprofessional_id">
-                        <xsl:call-template name="makeII.NL.UZIValue">
-                            <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">id</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:when test="verantwoordelijke_jgzorganisatie_id | uitvoerende_jgzorganisatie_id">
-                    <!-- Item(s) :: verantwoordelijke_jgzorganisatie_id uitvoerende_jgzorganisatie_id-->
-                    <xsl:for-each select="verantwoordelijke_jgzorganisatie_id | uitvoerende_jgzorganisatie_id">
-                        <xsl:call-template name="makeII.NL.URAValue">
-                            <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">id</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </xsl:when>
-            </xsl:choose>
-            <xsl:if test="verantwoordelijke_jgzprofessional_id | uitvoerende_jgzprofessional_id">
-                <assignedOrganization>
-                    <!-- Item(s) :: verantwoordelijke_jgzorganisatie_id uitvoerende_jgzorganisatie_id-->
-                    <xsl:for-each select="verantwoordelijke_jgzorganisatie_id | uitvoerende_jgzorganisatie_id">
-                        <xsl:call-template name="makeII.NL.URAValue">
-                            <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">id</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
+            <!-- Item(s) :: uitvoerende_jgzorganisatie_ura | verantwoordelijke_jgzorganisatie_ura-->
+            <xsl:for-each select="uitvoerende_jgzorganisatie_ura | verantwoordelijke_jgzorganisatie_ura">
+                <xsl:call-template name="makeII.NL.URAValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">id</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <!-- Item(s) :: uitvoerende_jgzorganisatie_agb | verantwoordelijke_jgzorganisatie_agb-->
+            <xsl:for-each select="uitvoerende_jgzorganisatie_agb | verantwoordelijke_jgzorganisatie_agb">
+                <xsl:call-template name="makeII.NL.AGBValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">id</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <!-- Item(s) :: uitvoerende_jgzorganisatie_naam | verantwoordelijke_jgzorganisatie_naam-->
+            <xsl:if test="uitvoerende_jgzorganisatie_naam | verantwoordelijke_jgzorganisatie_naam">
+                <assignedOrganization classCode="ORG" determinerCode="INSTANCE">
+                    <xsl:call-template name="makeONValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">name</xsl:with-param>
+                    </xsl:call-template>
                 </assignedOrganization>
             </xsl:if>
         </assignedEntity>
@@ -9580,7 +8897,7 @@
         <xsl:for-each select="r041_rijksvaccinatieprogramma_en_andere_vaccinaties | groep_g076_vaccinatie | groep_g095_geplande_vaccinatie">
             <substanceAdministration xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="" negationInd="">
                 <templateId root="2.16.840.1.113883.2.4.6.10.100.123"/>
-                <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"/>
+                <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                 <!-- Item(s) :: datum_vaccinatie-->
                 <xsl:for-each select="datum_vaccinatie">
                     <xsl:call-template name="makeTSValue">
@@ -9614,10 +8931,12 @@
                 </performer>
                 <authorization typeCode="AUTH">
                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
-                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"/>
+                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                         <reasonOf typeCode="RSON">
                             <observationEvent classCode="OBS" moodCode="EVN">
-                                <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
                                 <!-- Item(s) :: bezwaar-->
                                 <xsl:for-each select="bezwaar">
                                     <xsl:call-template name="makeCVValue">
@@ -9761,7 +9080,9 @@
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">id</xsl:with-param>
                         </xsl:call-template>
-                        <code code="1432" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1432" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1432'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                     </act>
                 </pertinentInformation>
             </xsl:for-each>
@@ -9797,7 +9118,7 @@
                     <xsl:with-param name="elemName">id</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="groep_g001_adres_kind">
+            <xsl:for-each select="groep_g001_adres_client">
                 <addr use="{soort_adres/(@code, @value)[1]}"><!-- Item(s) :: straatnaam-->
                     <xsl:for-each select="straatnaam">
                         <xsl:call-template name="makeADXPValue">
@@ -9860,7 +9181,7 @@
                             <xsl:with-param name="elemName">desc</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    <xsl:for-each select="groep_g096_periode">
+                    <xsl:for-each select="groep_g096_periode_geldigheid_adres_client">
                         <useablePeriod xsi:type="IVL_TS">
                             <xsl:if test="startdatum_geldigheid_adres_kind"><!-- Item(s) :: startdatum_geldigheid_adres_kind-->
                                 <xsl:for-each select="startdatum_geldigheid_adres_kind">
@@ -9883,7 +9204,7 @@
                 </addr>
             </xsl:for-each>
             <!-- Item(s) :: groep_g002_telefoonnummer_kind soort_telefoonnummer telefoonnummer email-->
-            <xsl:for-each select="telefoonnummer">
+            <xsl:for-each select="groep_g002_telefoonnummer_client/telefoonnummer">
                 <telecom>
                     <xsl:if test="../soort_telefoonnummer">
                         <xsl:attribute name="use" select="../soort_telefoonnummer/(@code, @value)[1]"/>
@@ -9900,7 +9221,7 @@
                     </xsl:attribute>
                 </telecom>
             </xsl:for-each>
-            <xsl:for-each select="email">
+            <xsl:for-each select="email_client">
                 <telecom>
                     <xsl:attribute name="value">
                         <xsl:choose>
@@ -10015,9 +9336,9 @@
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <xsl:choose>
-                                    <xsl:when test="groep_g104_periode[aantal_dagdelen_voor_of_buitenschoolse_voorziening]">
+                                    <xsl:when test="groep_g104_periode_geldigheid_voor_of_buitenschoolse_voorzieningen[aantal_dagdelen_voor_of_buitenschoolse_voorziening]">
                                         <effectiveTime xsi:type="SXPR_TS">
-                                            <xsl:for-each select="groep_g104_periode">
+                                            <xsl:for-each select="groep_g104_periode_geldigheid_voor_of_buitenschoolse_voorzieningen">
                                                 <comp xsi:type="IVL_TS">
                                                     <!-- Item(s) :: startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
                                                     <xsl:for-each select="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
@@ -10050,7 +9371,7 @@
                                         </effectiveTime>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <xsl:for-each select="groep_g104_periode">
+                                        <xsl:for-each select="groep_g104_periode_geldigheid_voor_of_buitenschoolse_voorzieningen">
                                             <effectiveTime xsi:type="IVL_TS">
                                                 <xsl:if test="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
                                                     <!-- Item(s) :: startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
@@ -10122,7 +9443,7 @@
                                                             </xsl:attribute>
                                                         </telecom>
                                                     </xsl:for-each>
-                                                    <xsl:for-each select="groep_g105_periode[startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening | einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening]">
+                                                    <xsl:for-each select="groep_g105_periode_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening[startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening | einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening]">
                                                         <effectiveTime xsi:type="IVL_TS">
                                                             <xsl:if test="startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
                                                                 <!-- Item(s) :: startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening-->
@@ -10167,7 +9488,7 @@
                         <subjectOf typeCode="SBJ">
                             <careProvision classCode="PCPR" moodCode="EVN" negationInd="false">
                                 <code code="GENRL" codeSystem="2.16.840.1.113883.5.4"/>
-                                <xsl:for-each select="groep_g100_periode[startdatum_geldigheid_huisarts | einddatum_geldigheid_huisarts]">
+                                <xsl:for-each select="groep_g100_periode_geldigheid_huisarts[startdatum_geldigheid_huisarts | einddatum_geldigheid_huisarts]">
                                     <effectiveTime xsi:type="IVL_TS">
                                         <xsl:if test="startdatum_geldigheid_huisarts">
                                             <!-- Item(s) :: startdatum_geldigheid_huisarts-->
@@ -10242,7 +9563,7 @@
                                 <code nullFlavor="OTH">
                                     <originalText>Andere betrokken organisaties/hulpverleners</originalText>
                                 </code>
-                                <xsl:for-each select="groep_g101_periode[startdatum_geldigheid_andere_betrokken_organisatieshulpverleners | einddatum_geldigheid_andere_betrokken_organisatieshulpverleners]">
+                                <xsl:for-each select="groep_g101_periode_geldigheid_andere_betrokken_organisatiehulpverlener[startdatum_geldigheid_andere_betrokken_organisatieshulpverleners | einddatum_geldigheid_andere_betrokken_organisatieshulpverleners]">
                                     <effectiveTime xsi:type="IVL_TS">
                                         <xsl:if test="startdatum_geldigheid_andere_betrokken_organisatieshulpverleners">
                                             <!-- Item(s) :: startdatum_geldigheid_andere_betrokken_organisatieshulpverleners-->
@@ -10340,7 +9661,7 @@
                                                             </xsl:attribute>
                                                         </telecom>
                                                     </xsl:for-each>
-                                                    <xsl:for-each select="groep_g102_periode[startdatum_geldigheid_contactpersoon_organisatiehulpverlener | einddatum_geldigheid_contactpersoon_organisatiehulpverlener]">
+                                                    <xsl:for-each select="groep_g102_periode_geldigheid_contactpersoonhulpverlener[startdatum_geldigheid_contactpersoon_organisatiehulpverlener | einddatum_geldigheid_contactpersoon_organisatiehulpverlener]">
                                                         <effectiveTime xsi:type="IVL_TS">
                                                             <xsl:if test="startdatum_geldigheid_contactpersoon_organisatiehulpverlener">
                                                                 <!-- Item(s) :: startdatum_geldigheid_contactpersoon_organisatiehulpverlener-->
@@ -10407,7 +9728,7 @@
                                 <xsl:with-param name="elemName">id</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <xsl:for-each select="groep_g106_periode[startdatum_geldigheid_school | einddatum_geldigheid_school]">
+                        <xsl:for-each select="groep_g106_periode_geldigheid_school[startdatum_geldigheid_school | einddatum_geldigheid_school]">
                             <effectiveTime xsi:type="IVL_TS">
                                 <xsl:if test="startdatum_geldigheid_school">
                                     <!-- Item(s) :: startdatum_geldigheid_school-->
@@ -10479,7 +9800,7 @@
                                             </xsl:attribute>
                                         </telecom>
                                     </xsl:for-each>
-                                    <xsl:for-each select="groep_g107_periode[startdatum_geldigheid_contactpersoon_school | einddatum_geldigheid_contactpersoon_school]">
+                                    <xsl:for-each select="groep_g107_periode_geldigheid_contactpersoon[startdatum_geldigheid_contactpersoon_school | einddatum_geldigheid_contactpersoon_school]">
                                         <effectiveTime xsi:type="IVL_TS">
                                             <xsl:if test="startdatum_geldigheid_contactpersoon_school">
                                                 <!-- Item(s) :: startdatum_geldigheid_contactpersoon_school-->
@@ -10590,7 +9911,7 @@
                                 </xsl:attribute>
                             </telecom>
                         </xsl:for-each>
-                        <xsl:for-each select="groep_g097_periode[startdatum_geldigheid_contactpersoon | einddatum_geldigheid_contactpersoon]">
+                        <xsl:for-each select="groep_g097_periode_geldigheid_contactpersoon[startdatum_geldigheid_contactpersoon | einddatum_geldigheid_contactpersoon]">
                             <effectiveTime xsi:type="IVL_TS">
                                 <xsl:if test="startdatum_geldigheid_contactpersoon">
                                     <!-- Item(s) :: startdatum_geldigheid_contactpersoon-->
@@ -10842,7 +10163,9 @@
                         <xsl:for-each select="bijzonderheden_ouderverzorger">
                             <subjectOf typeCode="SBJ">
                                 <personalRelationshipObservation classCode="OBS" moodCode="EVN">
-                                    <code code="1367" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="1367" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1367'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeSTValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -10853,7 +10176,9 @@
                         <xsl:for-each select="doodsoorzaak_ouder">
                             <subjectOf typeCode="SBJ">
                                 <personalRelationshipObservation classCode="OBS" moodCode="EVN">
-                                    <code code="1322" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="1322" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1322'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeSTValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -10864,7 +10189,9 @@
                         <xsl:for-each select="bijzonderheden_broerzus">
                             <subjectOf typeCode="SBJ">
                                 <personalRelationshipObservation classCode="OBS" moodCode="EVN">
-                                    <code code="78" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="78" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '78'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeSTValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -10875,7 +10202,9 @@
                         <xsl:for-each select="bijzonderheden_zoondochter">
                             <subjectOf typeCode="SBJ">
                                 <personalRelationshipObservation classCode="OBS" moodCode="EVN">
-                                    <code code="1374" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="1374" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1374'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeSTValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -10886,7 +10215,9 @@
                         <xsl:for-each select="datum_vestiging_in_nederland_ouderverzorger">
                             <subjectOf typeCode="SBJ">
                                 <personalRelationshipObservation classCode="OBS" moodCode="EVN">
-                                    <code code="72" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="72" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '72'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeTSValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -10897,7 +10228,9 @@
                         <xsl:for-each select="datum_vertrek_uit_nederland_ouderverzorger">
                             <subjectOf typeCode="SBJ">
                                 <personalRelationshipObservation classCode="OBS" moodCode="EVN">
-                                    <code code="670" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                                    <code code="670" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '670'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                    </code>
                                     <xsl:call-template name="makeTSValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -10944,7 +10277,9 @@
             <xsl:for-each select="land_vanwaar_ingeschreven">
                 <subjectOf1 typeCode="SBJ">
                     <administrativeObservation classCode="OBS" moodCode="EVN">
-                        <code code="26" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="26" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '26'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -10955,7 +10290,9 @@
             <xsl:for-each select="datum_vestiging_in_nederland">
                 <subjectOf1 typeCode="SBJ">
                     <administrativeObservation classCode="OBS" moodCode="EVN">
-                        <code code="27" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="27" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '27'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -10966,7 +10303,9 @@
             <xsl:for-each select="datum_vertrek_uit_nederland">
                 <subjectOf1 typeCode="SBJ">
                     <administrativeObservation classCode="OBS" moodCode="EVN">
-                        <code code="29" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="29" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '29'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -10977,7 +10316,9 @@
             <xsl:for-each select="voor_of_buitenschoolse_voorzieningen">
                 <subjectOf1 typeCode="SBJ">
                     <administrativeObservation classCode="OBS" moodCode="EVN">
-                        <code code="714" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="714" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '714'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeBLValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -10988,7 +10329,9 @@
             <xsl:for-each select="deelname_vve">
                 <subjectOf1 typeCode="SBJ">
                     <administrativeObservation classCode="OBS" moodCode="EVN">
-                        <code code="1417" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1417" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1417'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeBLValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -10999,7 +10342,9 @@
             <xsl:for-each select="reden_geen_deelname_aan_vve">
                 <subjectOf1 typeCode="SBJ">
                     <administrativeObservation classCode="OBS" moodCode="EVN">
-                        <code code="1493" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1493" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1493'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -11010,7 +10355,9 @@
             <xsl:for-each select="reden_geen_deelname_aan_peuterspeelzaal">
                 <subjectOf1 typeCode="SBJ">
                     <administrativeObservation classCode="OBS" moodCode="EVN">
-                        <code code="716" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="716" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '716'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -11106,7 +10453,9 @@
             <xsl:for-each select="uitslag">
                 <outcome typeCode="OUTC" contextConductionInd="false">
                     <result>
-                        <code code="381" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="381" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '381'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                         <xsl:call-template name="makeCVValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -11157,7 +10506,9 @@
                                 <xsl:with-param name="elemName">id</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <code code="1432" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+                        <code code="1432" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1432'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
                     </act>
                 </pertinentInformation>
                 <subjectOf6 typeCode="SUBJ" contextConductionInd="false">
@@ -11205,7 +10556,7 @@
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:if>
-                <xsl:for-each select="groep_g001_adres_kind">
+                <xsl:for-each select="groep_g001_adres_client">
                     <addr use="{soort_adres/(@code, @value)[1]}">
                         <!-- Item(s) :: straatnaam-->
                         <xsl:for-each select="straatnaam">
@@ -11269,7 +10620,7 @@
                                 <xsl:with-param name="elemName">desc</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <xsl:for-each select="groep_g096_periode">
+                        <xsl:for-each select="groep_g096_periode_geldigheid_adres_client">
                             <useablePeriod>
                                 <xsl:if test="startdatum_geldigheid_adres_kind">
                                     <!-- Item(s) :: startdatum_geldigheid_adres_kind-->
@@ -11356,7 +10707,7 @@
                                     <xsl:with-param name="elemName">telecom</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <xsl:for-each select="groep_g097_periode">
+                            <xsl:for-each select="groep_g097_periode_geldigheid_contactpersoon">
                                 <effectiveTime xsi:type="IVL_TS">
                                     <!-- Item(s) :: startdatum_geldigheid_contactpersoon-->
                                     <xsl:for-each select="startdatum_geldigheid_contactpersoon">
@@ -11472,7 +10823,7 @@
                             <xsl:with-param name="elemName">telecom</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    <xsl:for-each select="groep_g097_periode">
+                    <xsl:for-each select="groep_g097_periode_geldigheid_contactpersoon">
                         <effectiveTime xsi:type="IVL_TS">
                             <!-- Item(s) :: startdatum_geldigheid_contactpersoon-->
                             <xsl:for-each select="startdatum_geldigheid_contactpersoon">
@@ -11634,7 +10985,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.160_20150629000000">
         <immunizationRequestList xmlns="urn:hl7-org:v3" classCode="LIST" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.160"/>
-            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"/>
+            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
             <component typeCode="COMP">
                 <organizer classCode="ACT" moodCode="EVN">
                     <xsl:for-each select="r003_persoonsgegevens">
@@ -11645,7 +10996,7 @@
                     </xsl:for-each>
                     <component typeCode="COMP">
                         <substanceAdministration classCode="SBADM" moodCode="INT" negationInd="false">
-                            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"/>
+                            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                             <effectiveTime/>
                             <consumable typeCode="CSM">
                                 <medication classCode="ADMM">
@@ -11726,7 +11077,7 @@
                             <xsl:with-param name="elemName">telecom</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    <xsl:for-each select="groep_g097_periode">
+                    <xsl:for-each select="groep_g097_periode_geldigheid_contactpersoon">
                         <effectiveTime xsi:type="IVL_TS">
                             <!-- Item(s) :: startdatum_geldigheid_contactpersoon-->
                             <xsl:for-each select="startdatum_geldigheid_contactpersoon">
@@ -11821,7 +11172,7 @@
                         <xsl:with-param name="elemName">id</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="groep_g001_adres_kind">
+                <xsl:for-each select="groep_g001_adres_client">
                     <addr use="{soort_adres/(@code, @value)[1]}">
                         <!-- Item(s) :: straatnaam-->
                         <xsl:for-each select="straatnaam">
@@ -11885,7 +11236,7 @@
                                 <xsl:with-param name="elemName">desc</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        <xsl:for-each select="groep_g096_periode">
+                        <xsl:for-each select="groep_g096_periode_geldigheid_adres_client">
                             <useablePeriod>
                                 <xsl:if test="startdatum_geldigheid_adres_kind">
                                     <!-- Item(s) :: startdatum_geldigheid_adres_kind-->
@@ -11972,7 +11323,7 @@
                                     <xsl:with-param name="elemName">telecom</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <xsl:for-each select="groep_g097_periode">
+                            <xsl:for-each select="groep_g097_periode_geldigheid_contactpersoon">
                                 <effectiveTime xsi:type="IVL_TS">
                                     <!-- Item(s) :: startdatum_geldigheid_contactpersoon-->
                                     <xsl:for-each select="startdatum_geldigheid_contactpersoon">
@@ -12085,7 +11436,7 @@
                         <xsl:with-param name="elemName">statusCode</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="groep_g103_periode">
+                <xsl:for-each select="groep_g103_periode_zorg">
                     <effectiveTime xsi:type="IVL_TS">
                         <xsl:if test="startdatum_zorg">
                             <!-- Item(s) :: startdatum_zorg-->
@@ -12113,13 +11464,13 @@
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.102_20120801000000"/>
                     </subject>
                 </xsl:for-each>
-                <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_gba | groep_g085_uitvoerende_jgzorganisatie | r005_betrokken_jgzorganisaties">
+                <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | groep_g085_uitvoerende_jgzorganisatie | r005_betrokken_jgzorganisaties">
                     <performer typeCode="PRF">
                         <!-- Template :: R_AssignedEntityNL [identified] -->
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
                     </performer>
                 </xsl:for-each>
-                <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_gba | groep_g085_uitvoerende_jgzorganisatie | r005_betrokken_jgzorganisaties">
+                <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | groep_g085_uitvoerende_jgzorganisatie | r005_betrokken_jgzorganisaties">
                     <author typeCode="AUT">
                         <!-- Template :: R_AssignedEntityNL [identified] -->
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
@@ -12425,7 +11776,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40070_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40070"/>
-            <code code="70" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="70" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '70'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: ouderkenmerken-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12461,7 +11814,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40079_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40079"/>
-            <code code="79" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="79" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '79'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: erfelijke_belasting_en_ouderkenmerken_nagevraagd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12485,7 +11840,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40080_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40080"/>
-            <code code="80" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="80" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '80'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: erfelijke_bepaalde_ziekte_in_de_familie-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12521,7 +11878,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40146_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40146"/>
-            <code code="146" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="146" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '146'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: a_femoralis_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12545,7 +11904,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40148_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40148"/>
-            <code code="148" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="148" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '148'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: anamnese_nagevraagd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12569,7 +11930,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40149_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40149"/>
-            <code code="149" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="149" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '149'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: duur_opname_ziekenhuis-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12594,7 +11957,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40150_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40150"/>
-            <code code="150" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="150" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '150'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: reden_opname_ziekenhuis-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12618,7 +11983,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40152_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40152"/>
-            <code code="152" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="152" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '152'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: kinderziekten-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12642,7 +12009,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40153_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40153"/>
-            <code code="153" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="153" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '153'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: operaties-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12666,7 +12035,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40154_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40154"/>
-            <code code="154" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="154" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '154'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: ongevallen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12690,7 +12061,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40155_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40155"/>
-            <code code="155" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="155" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '155'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: medicijn_gebruik-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12714,7 +12087,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40161_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40161"/>
-            <code code="161" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="161" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '161'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: huidhaarnagels_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12738,7 +12113,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40163_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40163"/>
-            <code code="163" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="163" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '163'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_huidhaarnagels-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12762,7 +12139,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40164_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40164"/>
-            <code code="164" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="164" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '164'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: toelichting_huidaandoening-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12786,7 +12165,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40167_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40167"/>
-            <code code="167" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="167" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '167'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: hoofdhals_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12810,7 +12191,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40170_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40170"/>
-            <code code="170" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="170" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '170'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_hoofd-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12841,7 +12224,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40174_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40174"/>
-            <code code="174" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="174" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '174'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_trommelvlies_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12865,7 +12250,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40175_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40175"/>
-            <code code="175" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="175" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '175'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_trommelvlies_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12889,7 +12276,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40176_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40176"/>
-            <code code="176" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="176" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '176'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_neus-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12913,7 +12302,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40179_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40179"/>
-            <code code="179" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="179" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '179'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_mondgedrag-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12937,7 +12328,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40184_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40184"/>
-            <code code="184" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="184" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '184'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_tonsillen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12961,7 +12354,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40188_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40188"/>
-            <code code="188" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="188" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '188'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: poetsen_gebit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -12985,7 +12380,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40190_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40190"/>
-            <code code="190" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="190" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '190'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: tandartsbezoek-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13009,7 +12406,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40193_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40193"/>
-            <code code="193" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="193" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '193'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_gebitkaak-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13033,7 +12432,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40196_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40196"/>
-            <code code="196" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="196" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '196'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: romp_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13057,7 +12458,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40201_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40201"/>
-            <code code="201" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="201" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '201'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_thorax-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13081,7 +12484,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40202_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40202"/>
-            <code code="202" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="202" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '202'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_longen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13105,7 +12510,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40206_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40206"/>
-            <code code="206" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="206" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '206'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lever-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13129,7 +12536,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40207_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40207"/>
-            <code code="207" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="207" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '207'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: milt-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13153,7 +12562,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40209_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40209"/>
-            <code code="209" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="209" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '209'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_navel-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13177,7 +12588,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40210_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40210"/>
-            <code code="210" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="210" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '210'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_lies_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13201,7 +12614,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40211_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40211"/>
-            <code code="211" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="211" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '211'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_lies_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13225,7 +12640,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40212_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40212"/>
-            <code code="212" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="212" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '212'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bewegingsapparaat_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13249,7 +12666,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40217_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40217"/>
-            <code code="217" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="217" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '217'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_wervelkolom-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13280,7 +12699,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40218_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40218"/>
-            <code code="218" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="218" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '218'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: scoliose_hoekmeting-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13311,7 +12732,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40219_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40219"/>
-            <code code="219" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="219" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '219'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_heupen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13342,7 +12765,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40221_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40221"/>
-            <code code="221" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="221" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '221'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_onderste_extremiteiten-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13373,7 +12798,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40223_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40223"/>
-            <code code="223" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="223" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '223'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_voet_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13397,7 +12824,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40225_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40225"/>
-            <code code="225" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="225" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '225'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: genitaliapuberteitsontwikkeling_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13421,7 +12850,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40228_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40228"/>
-            <code code="228" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="228" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '228'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_genitaliapuberteitsontwikkeling-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13445,7 +12876,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40230_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40230"/>
-            <code code="230" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="230" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '230'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_vulva-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13469,7 +12902,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40232_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40232"/>
-            <code code="232" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="232" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '232'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_penis-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13493,7 +12928,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40233_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40233"/>
-            <code code="233" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="233" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '233'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_scrotum_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13517,7 +12954,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40234_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40234"/>
-            <code code="234" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="234" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '234'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_groei-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13541,7 +12980,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40235_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40235"/>
-            <code code="235" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="235" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '235'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lengte-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13573,7 +13014,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40238_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40238"/>
-            <code code="238" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="238" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '238'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lengte_biologische_moeder-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13605,7 +13048,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40240_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40240"/>
-            <code code="240" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="240" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '240'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lengte_biologische_vader-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13637,7 +13082,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40245_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40245"/>
-            <code code="245" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="245" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '245'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: gewicht-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13669,7 +13116,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40247_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40247"/>
-            <code code="247" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="247" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '247'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: indruk_jgz_professional_gewichtlengte-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13693,7 +13142,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40252_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40252"/>
-            <code code="252" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="252" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '252'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: hoofdomtrek-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13718,7 +13169,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40259_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40259"/>
-            <code code="259" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="259" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '259'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: psychosociale_en_cognitieve_ontwikkeling_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13742,7 +13195,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40265_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40265"/>
-            <code code="265" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="265" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '265'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_psychische_en_sociale_ontwikkeling-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13766,7 +13221,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40268_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40268"/>
-            <code code="268" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="268" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '268'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: motorische_ontwikkeling_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13790,7 +13247,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40269_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40269"/>
-            <code code="269" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="269" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '269'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_tonus-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13814,7 +13273,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40271_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40271"/>
-            <code code="271" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="271" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '271'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_centraal_zenuwstelsel-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13838,7 +13299,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40276_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40276"/>
-            <code code="276" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="276" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '276'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_motorische_ontwikkeling-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13862,7 +13325,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40294_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40294"/>
-            <code code="294" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="294" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '294'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: spraak_en_taalontwikkeling_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13886,7 +13351,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40301_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40301"/>
-            <code code="301" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="301" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '301'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: meertaligheid-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13910,7 +13377,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40302_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40302"/>
-            <code code="302" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="302" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '302'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: taal-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13934,7 +13403,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40307_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40307"/>
-            <code code="307" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="307" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '307'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: eerstetweede_taal-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13958,7 +13429,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40312_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40312"/>
-            <code code="312" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="312" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '312'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: datum_menarche-->
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -13982,7 +13455,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40313_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40313"/>
-            <code code="313" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="313" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '313'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: ontwikkeling_genitalia_jongen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14013,7 +13488,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40315_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40315"/>
-            <code code="315" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="315" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '315'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: pubesbeharing_jongen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14044,7 +13521,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40317_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40317"/>
-            <code code="317" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="317" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '317'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: borstontwikkeling_meisje-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14075,7 +13554,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40321_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40321"/>
-            <code code="321" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="321" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '321'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lichamelijk_functioneren_nagevraagd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14099,7 +13580,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40322_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40322"/>
-            <code code="322" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="322" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '322'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_slapenwaken-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14123,7 +13606,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40323_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40323"/>
-            <code code="323" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="323" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '323'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_voedingeetgedrag-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14147,7 +13632,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40324_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40324"/>
-            <code code="324" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="324" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '324'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: zindelijkheid-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14171,7 +13658,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40325_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40325"/>
-            <code code="325" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="325" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '325'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_ontlastenplassenzindelijkheid-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14195,7 +13684,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40328_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40328"/>
-            <code code="328" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="328" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '328'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_gedragtemperament-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14219,7 +13710,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40330_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40330"/>
-            <code code="330" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="330" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '330'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_lichaamsbeweging-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14243,7 +13736,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40339_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40339"/>
-            <code code="339" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="339" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '339'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: verhouding_draaglastdraagkracht_onderzocht-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14267,7 +13762,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40348_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40348"/>
-            <code code="348" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="348" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '348'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: balans-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14291,7 +13788,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40349_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40349"/>
-            <code code="349" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="349" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '349'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_verhouding_draaglastdraagkracht-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14315,7 +13814,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40390_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40390"/>
-            <code code="390" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="390" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '390'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: reflexbeeldjes_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14339,7 +13840,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40391_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40391"/>
-            <code code="391" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="391" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '391'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: reflexbeeldjes_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14363,7 +13866,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40392_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40392"/>
-            <code code="392" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="392" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '392'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: afdektest_geen_instel_beweging_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14387,7 +13892,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40393_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40393"/>
-            <code code="393" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="393" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: afdektest_geen_instel_beweging_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14411,7 +13918,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40394_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40394"/>
-            <code code="394" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="394" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '394'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: afdektest_geen_herstel_beweging_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14435,7 +13944,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40395_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40395"/>
-            <code code="395" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="395" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '395'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: afdektest_geen_herstel_beweging_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14459,7 +13970,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40396_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40396"/>
-            <code code="396" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="396" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '396'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: volgbeweging_binoculair_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14483,7 +13996,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40397_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40397"/>
-            <code code="397" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="397" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '397'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: volgbeweging_binoculair_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14507,7 +14022,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40398_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40398"/>
-            <code code="398" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="398" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '398'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: volgbeweging_monoculair_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14531,7 +14048,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40399_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40399"/>
-            <code code="399" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="399" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '399'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: volgbeweging_monoculair_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14555,7 +14074,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40402_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40402"/>
-            <code code="402" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="402" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '402'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: pupil_zwart_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14579,7 +14100,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40403_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40403"/>
-            <code code="403" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="403" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '403'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: pupil_zwart_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14603,7 +14126,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40404_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40404"/>
-            <code code="404" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="404" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '404'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: pupil_rond_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14627,7 +14152,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40405_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40405"/>
-            <code code="405" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="405" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '405'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: pupil_rond_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14651,7 +14178,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40406_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40406"/>
-            <code code="406" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="406" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '406'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: pupilreactie_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14675,7 +14204,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40407_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40407"/>
-            <code code="407" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="407" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '407'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: pupilreactie_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14699,7 +14230,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40408_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40408"/>
-            <code code="408" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="408" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '408'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: conclusie_visusbepaling-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14723,7 +14256,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40422_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40422"/>
-            <code code="422" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="422" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '422'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_testis_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14747,7 +14282,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40428_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40428"/>
-            <code code="428" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="428" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '428'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: overige_bijzonderheden_hartonderzoek-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14771,7 +14308,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40438_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40438"/>
-            <code code="438" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="438" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '438'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: gehooronderzoek_uitgevoerd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14795,7 +14334,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40439_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40439"/>
-            <code code="439" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="439" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '439'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_1e_ngs_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14819,7 +14360,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40441_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40441"/>
-            <code code="441" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="441" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '441'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_1e_ngs_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14843,7 +14386,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40442_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40442"/>
-            <code code="442" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="442" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '442'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_2e_ngs_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14867,7 +14412,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40444_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40444"/>
-            <code code="444" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="444" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '444'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_2e_ngs_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14891,7 +14438,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40445_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40445"/>
-            <code code="445" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="445" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '445'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_3e_ngs_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14915,7 +14464,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40447_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40447"/>
-            <code code="447" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="447" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '447'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_3e_ngs_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14939,7 +14490,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40481_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40481"/>
-            <code code="481" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="481" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '481'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bedreiging_sociaal_milieu-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14963,7 +14516,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40496_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40496"/>
-            <code code="496" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="496" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '496'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: melkvoeding_op_dit_moment-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -14987,7 +14542,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40510_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40510"/>
-            <code code="510" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="510" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '510'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: passief_roken_in_huis-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15011,7 +14568,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40514_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40514"/>
-            <code code="514" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="514" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '514'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: ervaren_gezondheid-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15035,7 +14594,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40692_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40692"/>
-            <code code="692" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="692" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '692'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: apkkaart_uitslag_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15059,7 +14620,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40739_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40739"/>
-            <code code="739" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="739" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '739'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: risicoinventarisatie_vgv-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15083,7 +14646,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40746_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40746"/>
-            <code code="746" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="746" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '746'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: a_femoralis_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15107,7 +14672,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40748_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40748"/>
-            <code code="748" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="748" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '748'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: anamnese-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15131,7 +14698,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40752_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40752"/>
-            <code code="752" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="752" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '752'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_vrijetijdsbesteding-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15155,7 +14724,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40753_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40753"/>
-            <code code="753" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="753" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '753'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: zwemdiploma-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15179,7 +14750,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40754_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40754"/>
-            <code code="754" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="754" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '754'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: consult_huisartsspecialistderden-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15203,7 +14776,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40755_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40755"/>
-            <code code="755" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="755" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '755'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: ingrijpende_gebeurtenissen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15227,7 +14802,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40756_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40756"/>
-            <code code="756" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="756" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '756'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: algemene_indruk_verkregen-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15251,7 +14828,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40757_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40757"/>
-            <code code="757" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="757" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '757'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: interactie_ouderkind-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15275,7 +14854,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40758_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40758"/>
-            <code code="758" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="758" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '758'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: interactie_kindjgzprofessional-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15299,7 +14880,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40759_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40759"/>
-            <code code="759" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="759" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '759'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: gedrag-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15323,7 +14906,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40760_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40760"/>
-            <code code="760" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="760" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '760'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: stemming-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15347,7 +14932,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40761_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40761"/>
-            <code code="761" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="761" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '761'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: verzorginghygiene-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15371,7 +14958,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40762_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40762"/>
-            <code code="762" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="762" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '762'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: ziek-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15395,7 +14984,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40763_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40763"/>
-            <code code="763" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="763" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '763'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: voorkeurshouding-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15419,7 +15010,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40764_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40764"/>
-            <code code="764" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="764" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '764'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lichaamskant_voorkeurshouding-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15443,7 +15036,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40765_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40765"/>
-            <code code="765" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="765" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '765'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_kleur_huid-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15467,7 +15062,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40766_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40766"/>
-            <code code="766" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="766" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '766'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: snel_vermoeid-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15491,7 +15088,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40767_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40767"/>
-            <code code="767" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="767" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '767'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: snel_transpireren-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15515,7 +15114,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40768_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40768"/>
-            <code code="768" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="768" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '768'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: anders-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15539,7 +15140,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40770_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40770"/>
-            <code code="770" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="770" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '770'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: seksueel_actief-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15563,7 +15166,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40771_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40771"/>
-            <code code="771" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="771" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '771'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: anticonceptie-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15587,7 +15192,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40772_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40772"/>
-            <code code="772" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="772" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '772'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: adaptatiepersoonlijkheidsociaal_gedrag_nagevraagd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15611,7 +15218,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40773_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40773"/>
-            <code code="773" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="773" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '773'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_hechting-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15635,7 +15244,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40774_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40774"/>
-            <code code="774" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="774" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '774'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_ouderkind_relatie-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15659,7 +15270,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40775_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40775"/>
-            <code code="775" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="775" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '775'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_karakterpersoonlijkheid-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15683,7 +15296,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40776_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40776"/>
-            <code code="776" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="776" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '776'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_zelfbeeld-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15707,7 +15322,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40777_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40777"/>
-            <code code="777" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="777" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '777'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_stemmingangsten-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15731,7 +15348,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40778_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40778"/>
-            <code code="778" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="778" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '778'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_ontdekkingsdrang-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15755,7 +15374,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40779_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40779"/>
-            <code code="779" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="779" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '779'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_zelfstandigheid-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15779,7 +15400,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40780_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40780"/>
-            <code code="780" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="780" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '780'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_begrijpen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15803,7 +15426,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40781_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40781"/>
-            <code code="781" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="781" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '781'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_wilsontwikkeling-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15827,7 +15452,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40782_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40782"/>
-            <code code="782" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="782" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '782'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_contact_met_volwassenen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15851,7 +15478,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40783_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40783"/>
-            <code code="783" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="783" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '783'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_omgaan_met_nieuwe_situaties-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15875,7 +15504,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40784_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40784"/>
-            <code code="784" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="784" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '784'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_gewelddelinquent_gedrag-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15899,7 +15530,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40785_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40785"/>
-            <code code="785" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="785" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '785'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_verslavingsrisico-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15923,7 +15556,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40786_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40786"/>
-            <code code="786" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="786" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '786'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: toelichting_verslavingsrisico-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15947,7 +15582,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40787_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40787"/>
-            <code code="787" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="787" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '787'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: functioneren_op_school_nagevraagd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15971,7 +15608,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40790_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40790"/>
-            <code code="790" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="790" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '790'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_functioneren_in_de_klas-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -15995,7 +15634,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40791_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40791"/>
-            <code code="791" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="791" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '791'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_indruk_school-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16019,7 +15660,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40792_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40792"/>
-            <code code="792" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="792" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '792'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_schoolverzuim-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16043,7 +15686,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40794_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40794"/>
-            <code code="794" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="794" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '794'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_uiterlijk_oor_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16067,7 +15712,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40795_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40795"/>
-            <code code="795" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="795" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '795'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_uiterlijk_oor_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16091,7 +15738,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40796_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40796"/>
-            <code code="796" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="796" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '796'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_mondtong-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16115,7 +15764,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40797_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40797"/>
-            <code code="797" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="797" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '797'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_hals-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16139,7 +15790,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40798_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40798"/>
-            <code code="798" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="798" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '798'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_abdomen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16163,7 +15816,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40800_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40800"/>
-            <code code="800" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="800" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '800'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: hoogteverschil_gibbus_bij_scoliose-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16188,7 +15843,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40802_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40802"/>
-            <code code="802" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="802" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '802'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_bovenste_extremiteiten-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16212,7 +15869,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40804_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40804"/>
-            <code code="804" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="804" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '804'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: beenlengteverschil-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16237,7 +15896,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40805_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40805"/>
-            <code code="805" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="805" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '805'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_voet_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16261,7 +15922,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40806_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40806"/>
-            <code code="806" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="806" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '806'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: scrotale_testes-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16285,7 +15948,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40807_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40807"/>
-            <code code="807" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="807" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '807'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_anus-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16309,7 +15974,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40808_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40808"/>
-            <code code="808" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="808" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '808'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_lengte_ouders-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16333,7 +16000,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40814_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40814"/>
-            <code code="814" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="814" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '814'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_cognitieve_ontwikkeling-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16357,7 +16026,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40815_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40815"/>
-            <code code="815" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="815" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '815'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lateralisatie-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16381,7 +16052,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40816_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40816"/>
-            <code code="816" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="816" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '816'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: taalomgeving_stimulerend-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16405,7 +16078,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40817_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40817"/>
-            <code code="817" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="817" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '817'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: taalsignaleringsinstrument-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16429,7 +16104,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40818_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40818"/>
-            <code code="818" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="818" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '818'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: beoordeling_taalontwikkeling-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16453,7 +16130,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40819_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40819"/>
-            <code code="819" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="819" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '819'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_taalsignaleringsinstrument-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16477,7 +16156,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40820_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40820"/>
-            <code code="820" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="820" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '820'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: aard_bijzonderheden_spraak_en_taalontwikkeling-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16501,7 +16182,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40821_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40821"/>
-            <code code="821" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="821" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '821'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: toelichting_aard_bijzonderheden-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16525,7 +16208,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40822_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40822"/>
-            <code code="822" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="822" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '822'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: totaalscore_sls-->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16549,7 +16234,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40823_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40823"/>
-            <code code="823" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="823" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '823'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: beoordeling_spraak_en_taalontwikkeling_nederlands-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16573,7 +16260,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40824_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40824"/>
-            <code code="824" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="824" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '824'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_menstruatie-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16597,7 +16286,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40825_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40825"/>
-            <code code="825" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="825" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '825'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: pubesbeharing_meisje-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16628,7 +16319,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40827_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40827"/>
-            <code code="827" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="827" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '827'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bedreiging_fysiek_milieu-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16652,7 +16345,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40831_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40831"/>
-            <code code="831" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="831" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '831'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: brillenzen_dragend-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16676,7 +16371,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40832_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40832"/>
-            <code code="832" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="832" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '832'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: apkkaart_uitslag_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16700,7 +16397,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40833_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40833"/>
-            <code code="833" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="833" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '833'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: apktovkaart_3_meter_uitslag_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16724,7 +16423,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40834_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40834"/>
-            <code code="834" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="834" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '834'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: apktovkaart_3_meter_uitslag_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16748,7 +16449,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40835_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40835"/>
-            <code code="835" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="835" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '835'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lhkaart_uitslag_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16772,7 +16475,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40836_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40836"/>
-            <code code="836" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="836" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '836'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lhkaart_uitslag_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16796,7 +16501,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40837_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40837"/>
-            <code code="837" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="837" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '837'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: landoltckaart_uitslag_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16820,7 +16527,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40838_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40838"/>
-            <code code="838" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="838" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '838'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: landoltckaart_uitslag_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16844,7 +16553,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40839_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40839"/>
-            <code code="839" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="839" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '839'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_visusbepaling-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16868,7 +16579,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40840_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40840"/>
-            <code code="840" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="840" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '840'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: fundusreflex_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16892,7 +16605,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40841_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40841"/>
-            <code code="841" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="841" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '841'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: fundusreflex_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16916,7 +16631,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40842_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40842"/>
-            <code code="842" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="842" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '842'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_vovonderzoek-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16940,7 +16657,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40851_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40851"/>
-            <code code="851" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="851" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '851'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_inspectie_oog-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16964,7 +16683,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40852_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40852"/>
-            <code code="852" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="852" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '852'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: ishiharatest-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -16988,7 +16709,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40853_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40853"/>
-            <code code="853" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="853" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '853'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: dieptezien-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17012,7 +16735,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40854_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40854"/>
-            <code code="854" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="854" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '854'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_oogartsorthoptist-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17036,7 +16761,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40855_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40855"/>
-            <code code="855" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="855" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '855'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: hartonderzoek_uitgevoerd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17060,7 +16787,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40856_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40856"/>
-            <code code="856" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="856" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '856'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: geruis_intensiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17091,7 +16820,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40858_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40858"/>
-            <code code="858" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="858" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '858'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: geruis_timing-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17122,7 +16853,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40859_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40859"/>
-            <code code="859" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="859" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '859'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lokalisatie-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17146,7 +16879,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40860_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40860"/>
-            <code code="860" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="860" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '860'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: voortgeleiding-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17170,7 +16905,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40861_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40861"/>
-            <code code="861" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="861" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '861'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_harttonen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17194,7 +16931,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40862_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40862"/>
-            <code code="862" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="862" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '862'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_hartritme-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17218,7 +16957,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40863_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40863"/>
-            <code code="863" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="863" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '863'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_gehooronderzoek-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17242,7 +16983,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40864_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40864"/>
-            <code code="864" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="864" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '864'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_aangeboden-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17266,7 +17009,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40865_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40865"/>
-            <code code="865" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="865" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '865'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_gehoorscreening-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17290,7 +17035,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40877_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40877"/>
-            <code code="877" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="877" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '877'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: gedragstoestand_van_wiechen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17314,7 +17061,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40878_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40878"/>
-            <code code="878" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="878" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '878'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: interactie_van_wiechen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17338,7 +17087,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40879_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40879"/>
-            <code code="879" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="879" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '879'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _1_ogen_fixeren-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17362,7 +17113,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40880_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40880"/>
-            <code code="880" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="880" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '880'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_1-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17386,7 +17139,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40881_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40881"/>
-            <code code="881" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="881" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '881'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _2_volgt_met_ogen_en_hoofd_30030_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17410,7 +17165,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40882_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40882"/>
-            <code code="882" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="882" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '882'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_2-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17434,7 +17191,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40883_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40883"/>
-            <code code="883" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="883" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '883'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _2_volgt_met_ogen_en_hoofd_30030_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17458,7 +17217,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40884_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40884"/>
-            <code code="884" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="884" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '884'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _3_handen_af_en_toe_open_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17482,7 +17243,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40885_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40885"/>
-            <code code="885" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="885" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '885'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _3_handen_af_en_toe_open_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17506,7 +17269,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40886_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40886"/>
-            <code code="886" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="886" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '886'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _4_kijkt_naar_eigen_handen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17530,7 +17295,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40887_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40887"/>
-            <code code="887" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="887" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '887'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _5_speelt_met_handen_middenvoor-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17554,7 +17321,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40888_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40888"/>
-            <code code="888" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="888" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '888'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _6_pakt_in_rugligging_voorwerp_binnen_bereik_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17578,7 +17347,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40889_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40889"/>
-            <code code="889" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="889" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '889'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _6_pakt_in_rugligging_voorwerp_binnen_bereik_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17602,7 +17373,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40890_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40890"/>
-            <code code="890" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="890" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '890'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _7_pakt_blokje_over-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17626,7 +17399,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40891_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40891"/>
-            <code code="891" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="891" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '891'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _8_houdt_blokje_vast_pakt_er_nog_een_in_andere_hand-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17650,7 +17425,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40892_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40892"/>
-            <code code="892" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="892" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '892'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _9_speelt_met_beide_voeten_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17674,7 +17451,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40893_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40893"/>
-            <code code="893" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="893" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '893'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _9_speelt_met_beide_voeten_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17698,7 +17477,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40894_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40894"/>
-            <code code="894" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="894" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '894'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _10_pakt_propje_met_duim_en_wijsvinger_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17722,7 +17503,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40895_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40895"/>
-            <code code="895" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="895" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '895'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_10-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17746,7 +17529,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40896_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40896"/>
-            <code code="896" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="896" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '896'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _10_pakt_propje_met_duim_en_wijsvinger_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17770,7 +17555,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40897_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40897"/>
-            <code code="897" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="897" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '897'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _11_doet_blokje_inuit_doos_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17794,7 +17581,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40898_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40898"/>
-            <code code="898" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="898" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '898'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _11_doet_blokje_inuit_doos_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17818,7 +17607,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40899_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40899"/>
-            <code code="899" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="899" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '899'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_11-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17842,7 +17633,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40900_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40900"/>
-            <code code="900" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="900" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '900'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _12_speelt_geven_en_nemen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17866,7 +17659,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40901_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40901"/>
-            <code code="901" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="901" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '901'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_12-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17890,7 +17685,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40902_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40902"/>
-            <code code="902" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="902" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '902'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _13_stapelt_2_blokjes_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17914,7 +17711,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40903_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40903"/>
-            <code code="903" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="903" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '903'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _13_stapelt_2_blokjes_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17938,7 +17737,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40904_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40904"/>
-            <code code="904" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="904" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '904'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_13-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17962,7 +17763,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40905_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40905"/>
-            <code code="905" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="905" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '905'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _14_gaat_op_onderzoek_uit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -17986,7 +17789,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40906_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40906"/>
-            <code code="906" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="906" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '906'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _15_stapelt_3_blokjes_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18010,7 +17815,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40907_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40907"/>
-            <code code="907" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="907" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '907'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _15_stapelt_3_blokjes_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18034,7 +17841,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40908_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40908"/>
-            <code code="908" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="908" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '908'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_15-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18058,7 +17867,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40909_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40909"/>
-            <code code="909" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="909" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '909'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _16_doet_anderen_na-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18082,7 +17893,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40910_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40910"/>
-            <code code="910" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="910" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '910'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _17_stapelt_6_blokjes-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18106,7 +17919,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40911_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40911"/>
-            <code code="911" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="911" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '911'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_17-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18130,7 +17945,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40912_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40912"/>
-            <code code="912" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="912" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '912'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _18_plaatst_ronde_vorm_in_stoof-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18154,7 +17971,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40913_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40913"/>
-            <code code="913" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="913" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '913'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _19_trekt_kledingstuk_uit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18178,7 +17997,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40914_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40914"/>
-            <code code="914" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="914" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '914'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _20_bouwt_vrachtauto_na-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18202,7 +18023,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40915_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40915"/>
-            <code code="915" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="915" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '915'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_20-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18226,7 +18049,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40916_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40916"/>
-            <code code="916" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="916" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '916'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _21_plaatst_3_vormen_in_stoof-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18250,7 +18075,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40917_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40917"/>
-            <code code="917" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="917" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '917'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _22_tekent_verticale_lijn_na-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18274,7 +18101,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40918_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40918"/>
-            <code code="918" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="918" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '918'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _23_bouwt_brug_na-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18298,7 +18127,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40919_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40919"/>
-            <code code="919" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="919" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '919'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_23-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18322,7 +18153,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40920_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40920"/>
-            <code code="920" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="920" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '920'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _24_plaatst_4_vormen_in_stoof-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18346,7 +18179,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40921_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40921"/>
-            <code code="921" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="921" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '921'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _25_trekt_eigen_kledingstuk_aan-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18370,7 +18205,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40922_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40922"/>
-            <code code="922" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="922" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '922'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _26_tekent_cirkel_na-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18394,7 +18231,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40923_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40923"/>
-            <code code="923" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="923" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '923'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _27_houdt_potlood_met_vingers_vast-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18425,7 +18264,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40925_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40925"/>
-            <code code="925" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="925" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '925'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_27-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18449,7 +18290,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40926_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40926"/>
-            <code code="926" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="926" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '926'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _28_tekent_kruis_na-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18473,7 +18316,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40927_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40927"/>
-            <code code="927" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="927" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '927'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _29_reageert_op_toespreken-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18497,7 +18342,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40928_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40928"/>
-            <code code="928" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="928" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '928'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _30_lacht_terug-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18521,7 +18368,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40929_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40929"/>
-            <code code="929" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="929" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '929'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: lacht_eerste_keer_terug-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18546,7 +18395,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40930_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40930"/>
-            <code code="930" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="930" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '930'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _31_maakt_geluiden_terug-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18570,7 +18421,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40931_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40931"/>
-            <code code="931" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="931" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '931'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _32_maakt_gevarieerde_geluiden-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18594,7 +18447,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40932_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40932"/>
-            <code code="932" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="932" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '932'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _33_zegt_dadababa_of_gaga-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18618,7 +18473,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40933_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40933"/>
-            <code code="933" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="933" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '933'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _34_brabbelt_bij_zijn_spel-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18642,7 +18499,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40934_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40934"/>
-            <code code="934" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="934" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '934'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _35_reageert_op_mondeling_verzoek-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18666,7 +18525,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40935_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40935"/>
-            <code code="935" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="935" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '935'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _36_zwaait_dag_dag-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18690,7 +18551,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40936_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40936"/>
-            <code code="936" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="936" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '936'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _37_zegt_2_geluidswoorden_met_begrip-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18714,7 +18577,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40937_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40937"/>
-            <code code="937" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="937" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '937'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _38_begrijpt_enkele_dagelijks_gebruikte_zinnen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18738,7 +18603,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40938_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40938"/>
-            <code code="938" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="938" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '938'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _39_zegt_3_woorden-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18762,7 +18629,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40939_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40939"/>
-            <code code="939" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="939" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '939'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _40_begrijpt_spelopdrachtjes-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18786,7 +18655,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40940_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40940"/>
-            <code code="940" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="940" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '940'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _41_zegt_zinnen_van_2_woorden-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18810,7 +18681,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40941_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40941"/>
-            <code code="941" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="941" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '941'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _42_wijst_6_lichaamsdelen_aan_bij_pop-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18834,7 +18707,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40942_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40942"/>
-            <code code="942" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="942" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '942'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_42-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18858,7 +18733,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40943_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40943"/>
-            <code code="943" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="943" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '943'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _43_noemt_zichzelf_mij_en_ik-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18882,7 +18759,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40944_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40944"/>
-            <code code="944" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="944" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '944'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_43-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18906,7 +18785,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40945_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40945"/>
-            <code code="945" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="945" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '945'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _44_wijst_5_plaatjes_aan_in_boek-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18930,7 +18811,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40946_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40946"/>
-            <code code="946" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="946" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '946'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_44-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18954,7 +18837,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40947_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40947"/>
-            <code code="947" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="947" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '947'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _45_zegt_zinnen_van_3_of_meer_woorden-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -18978,7 +18863,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40948_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40948"/>
-            <code code="948" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="948" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '948'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _46_is_verstaanbaar_voor_bekenden-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19002,7 +18889,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40949_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40949"/>
-            <code code="949" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="949" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '949'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _47_praat_spontaan_over_gebeurtenissen_thuisspeelzaal-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19026,7 +18915,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40950_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40950"/>
-            <code code="950" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="950" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '950'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _48_stelt_vragen_naar_wie_wat_waar_hoe-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19050,7 +18941,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40951_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40951"/>
-            <code code="951" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="951" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '951'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _49_is_goed_verstaanbaar_voor_onderzoeker-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19074,7 +18967,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40952_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40952"/>
-            <code code="952" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="952" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '952'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_49-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19098,7 +18993,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40953_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40953"/>
-            <code code="953" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="953" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '953'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _50_stelt_vragen_naar_hoeveel_wanneer_waarom-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19122,7 +19019,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40954_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40954"/>
-            <code code="954" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="954" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '954'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _51_begrijpt_analogieen_en_tegenstellingen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19146,7 +19045,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40955_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40955"/>
-            <code code="955" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="955" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '955'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _52_beweegt_armen_evenveel_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19170,7 +19071,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40956_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40956"/>
-            <code code="956" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="956" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '956'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _52_beweegt_armen_evenveel_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19194,7 +19097,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40957_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40957"/>
-            <code code="957" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="957" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '957'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_52-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19218,7 +19123,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40958_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40958"/>
-            <code code="958" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="958" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '958'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _53_beweegt_benen_evenveel_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19242,7 +19149,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40959_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40959"/>
-            <code code="959" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="959" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '959'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _53_beweegt_benen_evenveel_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19266,7 +19175,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40960_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40960"/>
-            <code code="960" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="960" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '960'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_53-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19290,7 +19201,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40961_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40961"/>
-            <code code="961" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="961" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '961'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _54_blijft_hangen_bij_optillen_onder_de_oksels-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19314,7 +19227,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40962_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40962"/>
-            <code code="962" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="962" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '962'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _55_reacties_bij_optrekken_tot_zit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19338,7 +19253,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40963_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40963"/>
-            <code code="963" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="963" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '963'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_55-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19362,7 +19279,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40964_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40964"/>
-            <code code="964" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="964" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '964'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _56_heft_kin_even_van_onderlaag-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19386,7 +19305,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40965_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40965"/>
-            <code code="965" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="965" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '965'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_56-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19410,7 +19331,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40966_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40966"/>
-            <code code="966" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="966" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '966'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _57_heft_in_buikligging_hoofd_tot_45-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19434,7 +19357,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40967_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40967"/>
-            <code code="967" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="967" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '967'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_57-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19458,7 +19383,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40968_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40968"/>
-            <code code="968" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="968" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '968'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _58_kijkt_rond_met_90_geheven_hoofd-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19482,7 +19409,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40969_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40969"/>
-            <code code="969" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="969" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '969'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_58-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19506,7 +19435,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40970_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40970"/>
-            <code code="970" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="970" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '970'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _59_benen_gebogen_of_trappelen_bij_verticaal_zwaaien_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19530,7 +19461,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40971_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40971"/>
-            <code code="971" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="971" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '971'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _59_benen_gebogen_of_trappelen_bij_verticaal_zwaaien_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19554,7 +19487,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40972_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40972"/>
-            <code code="972" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="972" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '972'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_59-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19578,7 +19513,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40973_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40973"/>
-            <code code="973" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="973" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '973'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _60_rolt_zich_om_van_rug_naar_buik_en_omgekeerd-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19602,7 +19539,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40974_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40974"/>
-            <code code="974" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="974" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '974'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_60-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19626,7 +19565,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40975_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40975"/>
-            <code code="975" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="975" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '975'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _61_kan_hoofd_goed_ophouden_in_zit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19650,7 +19591,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40976_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40976"/>
-            <code code="976" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="976" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '976'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_61-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19674,7 +19617,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40977_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40977"/>
-            <code code="977" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="977" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '977'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _62_zit_op_billen_met_gestrekte_benen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19698,7 +19643,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40978_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40978"/>
-            <code code="978" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="978" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '978'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _63_zit_stabiel_los-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19722,7 +19669,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40979_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40979"/>
-            <code code="979" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="979" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '979'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_63-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19746,7 +19695,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40980_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40980"/>
-            <code code="980" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="980" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '980'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _64_kruipt_vooruit_buik_op_de_grond-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19770,7 +19721,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40981_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40981"/>
-            <code code="981" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="981" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '981'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_64-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19794,7 +19747,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40982_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40982"/>
-            <code code="982" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="982" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '982'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _66_kruipt_vooruit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19818,7 +19773,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40983_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40983"/>
-            <code code="983" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="983" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '983'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_66-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19842,7 +19799,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40984_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40984"/>
-            <code code="984" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="984" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '984'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _67_loopt_langs-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19866,7 +19825,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40985_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40985"/>
-            <code code="985" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="985" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '985'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_67-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19890,7 +19851,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40986_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40986"/>
-            <code code="986" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="986" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '986'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _68_loopt_los__loopt_goed_los__loopt_soepel-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19914,7 +19877,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40987_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40987"/>
-            <code code="987" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="987" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '987'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_68-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19938,7 +19903,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40988_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40988"/>
-            <code code="988" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="988" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '988'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: eerste_keer_los_lopen-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19963,7 +19930,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40989_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40989"/>
-            <code code="989" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="989" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '989'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _69_gooit_bal_zonder_om_te_vallen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -19987,7 +19956,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40990_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40990"/>
-            <code code="990" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="990" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '990'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_69-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20011,7 +19982,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40991_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40991"/>
-            <code code="991" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="991" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '991'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _70_raapt_vanuit_hurkzit_iets_op-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20035,7 +20008,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40992_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40992"/>
-            <code code="992" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="992" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '992'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_70-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20059,7 +20034,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40993_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40993"/>
-            <code code="993" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="993" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '993'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _71_schopt_bal_weg_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20083,7 +20060,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40994_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40994"/>
-            <code code="994" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="994" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '994'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _71_schopt_bal_weg_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20107,7 +20086,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40995_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40995"/>
-            <code code="995" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="995" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '995'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_71-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20131,7 +20112,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40996_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40996"/>
-            <code code="996" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="996" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '996'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _72_kan_in_zit_soepel_roteren-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20155,7 +20138,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40997_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40997"/>
-            <code code="997" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="997" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '997'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_72-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20179,7 +20164,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40998_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40998"/>
-            <code code="998" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="998" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '998'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _73_fietst_op_driewieler-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20203,7 +20190,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40999_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40999"/>
-            <code code="999" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="999" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '999'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _74_springt_met_beide_voeten_tegelijk-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20227,7 +20216,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41000_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41000"/>
-            <code code="1000" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1000" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1000'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_74-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20251,7 +20242,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41001_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41001"/>
-            <code code="1001" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1001" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1001'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _75_kan_minstens_5_seconden_op_een_been_staan_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20275,7 +20268,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41002_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41002"/>
-            <code code="1002" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1002" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1002'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _75_kan_minstens_5_seconden_op_een_been_staan_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20299,7 +20294,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41003_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41003"/>
-            <code code="1003" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1003" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1003'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_75-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20323,7 +20320,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41004_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41004"/>
-            <code code="1004" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1004" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1004'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_van_wiechen_onderzoek-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20347,7 +20346,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41005_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41005"/>
-            <code code="1005" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1005" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1005'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: observatie_bij_oefeningen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20371,7 +20372,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41006_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41006"/>
-            <code code="1006" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1006" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1006'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: scan_van_oefeningenblad-->
             <xsl:call-template name="makeEDValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20395,7 +20398,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41007_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41007"/>
-            <code code="1007" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1007" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1007'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _1_figuren_natekenen__kwantiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20419,7 +20424,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41008_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41008"/>
-            <code code="1008" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1008" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1008'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _2_lijntrekken__kwantiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20443,7 +20450,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41009_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41009"/>
-            <code code="1009" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1009" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1009'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _2_lijntrekken__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20467,7 +20476,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41010_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41010"/>
-            <code code="1010" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1010" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1010'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _3_stippen_zetten__kwantiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20491,7 +20502,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41011_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41011"/>
-            <code code="1011" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1011" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1011'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _3_pengreep__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20515,7 +20528,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41012_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41012"/>
-            <code code="1012" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1012" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1012'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _4_vingerduim_oppositie__kwantiteit_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20539,7 +20554,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41013_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41013"/>
-            <code code="1013" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1013" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1013'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _4_vingerduim_oppositie__kwantiteit_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20563,7 +20580,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41014_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41014"/>
-            <code code="1014" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1014" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1014'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _4_vingerduim_oppositie__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20587,7 +20606,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41015_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41015"/>
-            <code code="1015" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1015" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1015'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _5_oogbewegingen__kwantiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20611,7 +20632,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41016_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41016"/>
-            <code code="1016" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1016" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1016'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _5_oogbewegingen__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20635,7 +20658,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41017_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41017"/>
-            <code code="1017" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1017" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1017'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _6_topneus_proef__kwantiteit_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20659,7 +20684,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41018_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41018"/>
-            <code code="1018" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1018" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1018'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _6_topneus_proef__kwantiteit_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20683,7 +20710,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41019_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41019"/>
-            <code code="1019" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1019" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _7_diadochokinese__kwantiteit_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20707,7 +20736,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41020_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41020"/>
-            <code code="1020" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1020" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1020'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _7_diadochokinese__kwantiteit_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20731,7 +20762,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41021_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41021"/>
-            <code code="1021" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1021" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1021'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _7_diadochokinese__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20755,7 +20788,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41022_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41022"/>
-            <code code="1022" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1022" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1022'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _8_veter_strikken__kwantiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20779,7 +20814,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41023_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41023"/>
-            <code code="1023" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1023" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1023'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _9_een_been_staan__kwantiteit_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20803,7 +20840,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41024_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41024"/>
-            <code code="1024" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1024" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1024'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _9_een_been_staan__kwantiteit_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20827,7 +20866,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41025_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41025"/>
-            <code code="1025" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1025" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1025'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _9_een_been_staan__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20851,7 +20892,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41026_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41026"/>
-            <code code="1026" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1026" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1026'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _10_hielen_lopen__kwantiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20875,7 +20918,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41027_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41027"/>
-            <code code="1027" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1027" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1027'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _10_hielen_lopen__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20899,7 +20944,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41028_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41028"/>
-            <code code="1028" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1028" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1028'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _11_streeplopen__kwantiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20923,7 +20970,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41029_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41029"/>
-            <code code="1029" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1029" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1029'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _11_streeplopen__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20947,7 +20996,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41030_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41030"/>
-            <code code="1030" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1030" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1030'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _12_hinkelen__kwantiteit_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20971,7 +21022,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41031_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41031"/>
-            <code code="1031" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1031" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1031'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _12_hinkelen__kwantiteit_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -20995,7 +21048,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41032_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41032"/>
-            <code code="1032" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1032" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1032'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _12_hinkelen__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21019,7 +21074,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41033_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41033"/>
-            <code code="1033" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1033" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1033'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _13_springen__kwantiteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21043,7 +21100,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41034_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41034"/>
-            <code code="1034" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1034" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1034'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _13_springen__kwaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21067,7 +21126,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41035_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41035"/>
-            <code code="1035" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1035" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1035'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: is_er_sprake_van_fysieke_belemmeringen-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21091,7 +21152,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41036_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41036"/>
-            <code code="1036" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1036" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1036'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_fysieke_belemmeringen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21115,7 +21178,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41037_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41037"/>
-            <code code="1037" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1037" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1037'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: is_er_sprake_van_negatieve_kindfactoren-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21139,7 +21204,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41038_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41038"/>
-            <code code="1038" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1038" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1038'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_negatieve_kindfactoren-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21163,7 +21230,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41039_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41039"/>
-            <code code="1039" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1039" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1039'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: is_er_sprake_van_negatieve_omgevingsfactoren-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21187,7 +21256,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41040_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41040"/>
-            <code code="1040" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1040" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1040'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_negatieve_omgevingsfactoren-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21211,7 +21282,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41042_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41042"/>
-            <code code="1042" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1042" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1042'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: percentiel-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21235,7 +21308,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41045_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41045"/>
-            <code code="1045" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1045" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1045'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_bfmt-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21259,7 +21334,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41078_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41078"/>
-            <code code="1078" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1078" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1078'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _1_houdt_rekening_met_gevoelens_van_anderen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21283,7 +21360,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41079_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41079"/>
-            <code code="1079" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1079" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1079'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _2_is_rusteloos-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21307,7 +21386,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41080_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41080"/>
-            <code code="1080" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1080" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1080'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _3_klaagt_vaak_over_hoofdpijn-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21331,7 +21412,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41081_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41081"/>
-            <code code="1081" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1081" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1081'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _4_deelt_makkelijk_met_andere_kinderen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21355,7 +21438,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41082_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41082"/>
-            <code code="1082" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1082" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1082'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _5_heeft_vaak_driftbuien_of_woedeuitbarstingen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21379,7 +21464,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41083_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41083"/>
-            <code code="1083" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1083" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1083'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _6_is_nogal_op_zichzelf-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21403,7 +21490,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41084_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41084"/>
-            <code code="1084" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1084" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1084'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _7_is_doorgaans_gehoorzaam-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21427,7 +21516,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41085_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41085"/>
-            <code code="1085" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1085" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1085'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _8_heeft_veel_zorgen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21451,7 +21542,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41086_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41086"/>
-            <code code="1086" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1086" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1086'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _9_is_behulpzaam_als_iemand_zich_heeft_bezeerd-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21475,7 +21568,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41087_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41087"/>
-            <code code="1087" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1087" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1087'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _10_is_constant_aan_het_wiebelen_of_wriemelen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21499,7 +21594,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41088_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41088"/>
-            <code code="1088" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1088" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1088'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _11_heeft_minstens_een_goede_vriend_of_vriendin-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21523,7 +21620,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41089_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41089"/>
-            <code code="1089" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1089" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1089'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _12_vecht_vaak_met_andere_kinderen_of_pest_ze-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21547,7 +21646,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41090_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41090"/>
-            <code code="1090" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1090" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1090'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _13_is_vaak_ongelukkig-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21571,7 +21672,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41091_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41091"/>
-            <code code="1091" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1091" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1091'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _14_wordt_over_het_algemeen_aardig_gevonden_door_andere_kinderen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21595,7 +21698,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41092_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41092"/>
-            <code code="1092" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1092" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1092'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _15_is_gemakkelijk_afgeleid-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21619,7 +21724,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41093_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41093"/>
-            <code code="1093" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1093" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1093'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _16_is_zenuwachtig_of_zich_vastklampend_in_nieuwe_situaties-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21643,7 +21750,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41094_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41094"/>
-            <code code="1094" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1094" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1094'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _17_is_aardig_tegen_jongere_kinderen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21667,7 +21776,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41095_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41095"/>
-            <code code="1095" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1095" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1095'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _18_liegt_of_bedriegt_vaak-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21691,7 +21802,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41096_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41096"/>
-            <code code="1096" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1096" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1096'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _19_wordt_getreiterd_of_gepest_door_andere_kinderen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21715,7 +21828,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41097_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41097"/>
-            <code code="1097" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1097" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1097'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _20_biedt_vaak_vrijwillig_hulp_aan_anderen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21739,7 +21854,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41098_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41098"/>
-            <code code="1098" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1098" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1098'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _21_denkt_na_voor_iets_te_doen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21763,7 +21880,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41099_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41099"/>
-            <code code="1099" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1099" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1099'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _22_pikt_dingen_thuis-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21787,7 +21906,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41100_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41100"/>
-            <code code="1100" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1100" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1100'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _23_kan_beter_opschieten_met_volwassenen_dan_met_andere_kinderen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21811,7 +21932,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41101_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41101"/>
-            <code code="1101" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1101" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1101'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _24_is_voor_heel_veel_bang-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21835,7 +21958,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41102_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41102"/>
-            <code code="1102" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1102" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1102'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _25_maakt_opdrachten_af-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21859,7 +21984,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41103_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41103"/>
-            <code code="1103" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1103" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1103'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: heeft_u_opmerkingenq-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21883,7 +22010,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41104_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41104"/>
-            <code code="1104" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1104" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1104'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: denkt_u_over_het_geheel_genomen_dat_uw_kind_moeilijkheden_heeft_op_een_of_meer_van_de_volgende_gebieden_emoties_concentratie_gedrag_of_vermogen_om_niet_andere_mensen_op_te_schietenq-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21907,7 +22036,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41105_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41105"/>
-            <code code="1105" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1105" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1105'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: hoe_lang_bestaan_deze_moeilijkhedenq-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21931,7 +22062,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41106_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41106"/>
-            <code code="1106" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1106" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1106'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: maken_de_moeilijkheden_uw_kind_overstuur_of_van_slagq-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21955,7 +22088,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41107_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41107"/>
-            <code code="1107" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1107" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1107'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: belemmering_thuis-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -21979,7 +22114,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41108_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41108"/>
-            <code code="1108" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1108" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1108'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: belemmering_vriendschappen-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22003,7 +22140,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41109_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41109"/>
-            <code code="1109" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1109" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1109'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: belemmering_leren_in_de_klas-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22027,7 +22166,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41110_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41110"/>
-            <code code="1110" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1110" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1110'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: belemmering_activiteiten_in_de_vrije_tijd-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22051,7 +22192,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41111_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41111"/>
-            <code code="1111" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1111" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1111'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: belasten_de_moeilijkheden_u_of_het_gezin_als_geheelq-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22075,7 +22218,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41112_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41112"/>
-            <code code="1112" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1112" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1112'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: score_emotionele_problemen-->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22099,7 +22244,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41113_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41113"/>
-            <code code="1113" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1113" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1113'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: score_gedragsproblemen-->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22123,7 +22270,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41114_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41114"/>
-            <code code="1114" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1114" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1114'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: score_problemen_leeftijdsgenoten-->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22147,7 +22296,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41115_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41115"/>
-            <code code="1115" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1115" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1115'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: score_hyperactiviteit-->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22171,7 +22322,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41116_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41116"/>
-            <code code="1116" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1116" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1116'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: sdq_totaal_score-->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22195,7 +22348,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41117_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41117"/>
-            <code code="1117" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1117" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1117'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: score_prosociaal_gedrag-->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22219,7 +22374,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41167_20120801000000">
         <annotationObsEvent xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41167"/>
-            <code code="1167" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1167" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1167'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
@@ -22230,7 +22387,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41173_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41173"/>
-            <code code="1173" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1173" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1173'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _0_stoornis-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22254,7 +22413,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41174_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41174"/>
-            <code code="1174" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1174" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1174'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _1_hoorstoornis-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22278,7 +22439,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41175_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41175"/>
-            <code code="1175" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1175" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1175'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _2_stemstoornis-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22302,7 +22465,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41176_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41176"/>
-            <code code="1176" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1176" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1176'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _3_taalstoornis-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22326,7 +22491,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41177_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41177"/>
-            <code code="1177" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1177" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1177'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _5_articulatie-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22350,7 +22517,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41178_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41178"/>
-            <code code="1178" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1178" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1178'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _6_nasaliteit-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22374,7 +22543,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41179_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41179"/>
-            <code code="1179" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1179" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1179'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _7_stoornis_in_vloeiendheid-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22398,7 +22569,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41180_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41180"/>
-            <code code="1180" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1180" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1180'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _8_afwijkend_mondgedrag-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22422,7 +22595,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41181_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41181"/>
-            <code code="1181" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1181" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1181'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _9_overig-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22446,7 +22621,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41182_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41182"/>
-            <code code="1182" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1182" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1182'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: toelichting_aard_bijzonderheden_screening_logopedie-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22470,7 +22647,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41195_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41195"/>
-            <code code="1195" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1195" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1195'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: datum_aanmelding_vir-->
                 <xsl:call-template name="makeTSValue">
                     <xsl:with-param name="xsiType" select="''"/>
@@ -22507,7 +22686,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41196_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41196"/>
-            <code code="1196" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1196" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1196'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: datum_afmelding_vir-->
                 <xsl:call-template name="makeTSValue">
                     <xsl:with-param name="xsiType" select="''"/>
@@ -22544,7 +22725,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41203_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41203"/>
-            <code code="1203" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1203" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1203'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_500_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22568,7 +22751,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41204_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41204"/>
-            <code code="1204" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1204" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1204'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_500_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22592,7 +22777,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41205_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41205"/>
-            <code code="1205" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1205" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1205'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_1000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22616,7 +22803,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41206_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41206"/>
-            <code code="1206" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1206" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1206'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_1000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22640,7 +22829,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41207_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41207"/>
-            <code code="1207" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1207" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1207'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_2000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22664,7 +22855,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41208_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41208"/>
-            <code code="1208" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1208" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1208'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_2000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22688,7 +22881,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41209_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41209"/>
-            <code code="1209" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1209" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1209'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_3000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22712,7 +22907,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41210_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41210"/>
-            <code code="1210" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1210" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1210'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_3000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22736,7 +22933,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41211_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41211"/>
-            <code code="1211" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1211" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1211'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_4000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22760,7 +22959,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41212_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41212"/>
-            <code code="1212" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1212" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1212'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_4000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22784,7 +22985,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41213_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41213"/>
-            <code code="1213" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1213" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1213'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_6000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22808,7 +23011,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41214_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41214"/>
-            <code code="1214" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1214" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1214'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: testtoon_6000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22832,7 +23037,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41216_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41216"/>
-            <code code="1216" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1216" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1216'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_500_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22856,7 +23063,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41218_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41218"/>
-            <code code="1218" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1218" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1218'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_500_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22880,7 +23089,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41220_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41220"/>
-            <code code="1220" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1220" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1220'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_1000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22904,7 +23115,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41222_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41222"/>
-            <code code="1222" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1222" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1222'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_1000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22928,7 +23141,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41224_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41224"/>
-            <code code="1224" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1224" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1224'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_2000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22952,7 +23167,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41226_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41226"/>
-            <code code="1226" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1226" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1226'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_2000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -22976,7 +23193,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41228_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41228"/>
-            <code code="1228" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1228" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1228'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_3000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23000,7 +23219,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41230_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41230"/>
-            <code code="1230" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1230" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1230'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_3000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23024,7 +23245,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41232_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41232"/>
-            <code code="1232" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1232" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1232'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_4000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23048,7 +23271,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41234_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41234"/>
-            <code code="1234" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1234" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1234'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_4000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23072,7 +23297,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41236_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41236"/>
-            <code code="1236" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1236" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1236'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_6000_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23096,7 +23323,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41238_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41238"/>
-            <code code="1238" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1238" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1238'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: drempel_6000_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23120,7 +23349,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41239_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41239"/>
-            <code code="1239" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1239" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1239'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: uitslag_drempelonderzoek-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23144,7 +23375,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41240_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41240"/>
-            <code code="1240" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1240" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1240'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_3-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23168,7 +23401,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41241_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41241"/>
-            <code code="1241" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1241" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1241'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_4-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23192,7 +23427,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41242_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41242"/>
-            <code code="1242" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1242" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1242'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_5-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23216,7 +23453,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41243_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41243"/>
-            <code code="1243" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1243" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1243'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_6-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23240,7 +23479,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41244_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41244"/>
-            <code code="1244" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1244" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1244'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_7-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23264,7 +23505,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41245_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41245"/>
-            <code code="1245" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1245" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1245'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_8-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23288,7 +23531,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41246_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41246"/>
-            <code code="1246" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1246" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1246'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_9-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23312,7 +23557,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41247_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41247"/>
-            <code code="1247" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1247" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1247'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_14-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23336,7 +23583,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41248_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41248"/>
-            <code code="1248" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1248" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1248'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_16-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23360,7 +23609,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41249_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41249"/>
-            <code code="1249" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1249" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1249'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_18-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23384,7 +23635,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41250_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41250"/>
-            <code code="1250" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1250" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1250'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_19-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23408,7 +23661,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41251_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41251"/>
-            <code code="1251" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1251" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1251'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_21-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23432,7 +23687,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41252_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41252"/>
-            <code code="1252" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1252" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1252'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_22-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23456,7 +23713,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41253_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41253"/>
-            <code code="1253" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1253" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1253'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_24-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23480,7 +23739,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41254_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41254"/>
-            <code code="1254" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1254" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1254'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_25-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23504,7 +23765,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41255_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41255"/>
-            <code code="1255" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1255" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1255'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_26-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23528,7 +23791,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41256_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41256"/>
-            <code code="1256" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1256" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1256'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_28-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23552,7 +23817,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41257_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41257"/>
-            <code code="1257" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1257" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1257'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_29-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23576,7 +23843,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41258_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41258"/>
-            <code code="1258" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1258" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1258'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_30-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23600,7 +23869,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41259_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41259"/>
-            <code code="1259" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1259" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1259'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_31-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23624,7 +23895,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41260_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41260"/>
-            <code code="1260" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1260" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1260'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_32-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23648,7 +23921,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41261_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41261"/>
-            <code code="1261" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1261" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1261'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_33-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23672,7 +23947,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41262_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41262"/>
-            <code code="1262" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1262" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1262'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_34-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23696,7 +23973,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41263_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41263"/>
-            <code code="1263" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1263" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1263'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_35-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23720,7 +23999,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41264_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41264"/>
-            <code code="1264" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1264" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1264'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_36-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23744,7 +24025,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41265_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41265"/>
-            <code code="1265" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1265" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1265'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_37-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23768,7 +24051,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41266_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41266"/>
-            <code code="1266" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1266" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1266'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_38-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23792,7 +24077,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41267_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41267"/>
-            <code code="1267" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1267" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1267'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_39-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23816,7 +24103,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41268_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41268"/>
-            <code code="1268" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1268" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1268'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_40-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23840,7 +24129,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41269_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41269"/>
-            <code code="1269" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1269" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1269'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_41-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23864,7 +24155,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41270_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41270"/>
-            <code code="1270" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1270" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1270'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_45-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23888,7 +24181,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41271_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41271"/>
-            <code code="1271" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1271" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1271'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_46-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23912,7 +24207,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41272_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41272"/>
-            <code code="1272" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1272" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1272'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_47-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23936,7 +24233,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41273_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41273"/>
-            <code code="1273" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1273" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1273'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_48-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23960,7 +24259,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41274_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41274"/>
-            <code code="1274" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1274" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1274'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_50-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -23984,7 +24285,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41275_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41275"/>
-            <code code="1275" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1275" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1275'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_51-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24008,7 +24311,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41276_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41276"/>
-            <code code="1276" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1276" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1276'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_54-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24032,7 +24337,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41277_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41277"/>
-            <code code="1277" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1277" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1277'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_62-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24056,7 +24363,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41278_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41278"/>
-            <code code="1278" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1278" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1278'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: _65_trekt_zich_op_tot_staan-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24080,7 +24389,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41279_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41279"/>
-            <code code="1279" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1279" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1279'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_65-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24104,7 +24415,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41280_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41280"/>
-            <code code="1280" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1280" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1280'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: opmerking_bij_vwo_73-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24128,7 +24441,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41326_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41326"/>
-            <code code="1326" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1326" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1326'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: datum_melding_amk-->
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24163,7 +24478,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41327_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41327"/>
-            <code code="1327" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1327" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1327'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: datum_consultatie_amk-->
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24198,7 +24515,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41328_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41328"/>
-            <code code="1328" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1328" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1328'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_consultatie_amk-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24222,7 +24541,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41329_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41329"/>
-            <code code="1329" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1329" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1329'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: dialect-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24246,7 +24567,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41331_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41331"/>
-            <code code="1331" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1331" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1331'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: screeningsinstrument_ngs-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24270,7 +24593,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41337_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41337"/>
-            <code code="1337" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1337" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1337'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: vitamine_k-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24294,7 +24619,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41338_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41338"/>
-            <code code="1338" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1338" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1338'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: vitamine_d-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24318,7 +24645,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41339_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41339"/>
-            <code code="1339" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1339" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1339'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: toelichting_vitamine-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24342,7 +24671,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41345_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41345"/>
-            <code code="1345" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1345" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1345'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: datum_afname_spp-->
             <xsl:for-each select="../datum_afname_spp">
                 <xsl:call-template name="makeTSValue">
@@ -24402,7 +24733,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41346_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41346"/>
-            <code code="1346" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1346" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1346'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: conclusie_spp-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24426,7 +24759,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41379_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41379"/>
-            <code code="1379" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1379" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1379'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: oogonderzoek_uitgevoerd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24450,7 +24785,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41380_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41380"/>
-            <code code="1380" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1380" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1380'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_melding_amk-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24474,7 +24811,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41382_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41382"/>
-            <code code="1382" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1382" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1382'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: gebruikt_hand-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24498,7 +24837,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41384_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41384"/>
-            <code code="1384" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1384" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1384'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bedreigingen_nagevraagd-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24522,7 +24863,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41392_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41392"/>
-            <code code="1392" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1392" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1392'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_testis_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24546,7 +24889,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41393_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41393"/>
-            <code code="1393" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1393" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1393'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_scrotum_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24570,7 +24915,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41408_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41408"/>
-            <code code="1408" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1408" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1408'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_melding_vir-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24594,7 +24941,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41412_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41412"/>
-            <code code="1412" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1412" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1412'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: datum_opname_ziekenhuis-->
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24618,7 +24967,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41413_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41413"/>
-            <code code="1413" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1413" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1413'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: gescreend_in_nicu-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24642,7 +24993,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41414_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41414"/>
-            <code code="1414" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1414" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1414'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: risicoinschatting_vgv_op_dit_moment-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24666,7 +25019,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41415_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41415"/>
-            <code code="1415" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1415" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1415'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: verklaring_tegen_vgv_meegegeven-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24690,7 +25045,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41416_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41416"/>
-            <code code="1416" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1416" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1416'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_vgv-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24714,7 +25071,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41418_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41418"/>
-            <code code="1418" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1418" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1418'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: apktovkaart_5_meter_uitslag_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24738,7 +25097,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41419_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41419"/>
-            <code code="1419" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1419" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1419'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: apktovkaart_5_meter_uitslag_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24762,7 +25123,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41420_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41420"/>
-            <code code="1420" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1420" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1420'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: apktovkaart_4_meter_uitslag_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24786,7 +25149,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41421_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41421"/>
-            <code code="1421" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1421" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1421'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: apktovkaart_4_meter_uitslag_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24810,7 +25175,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41422_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41422"/>
-            <code code="1422" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1422" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1422'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_omgaan_met_broerzusleeftijdgenoten-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24834,7 +25201,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41425_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41425"/>
-            <code code="1425" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1425" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1425'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_hand_links-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24858,7 +25227,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41426_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41426"/>
-            <code code="1426" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1426" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1426'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_hand_rechts-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24882,7 +25253,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41433_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41433"/>
-            <code code="1433" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1433" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1433'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: diagnose_audiologisch_centrum_gehoor_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24906,7 +25279,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41434_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41434"/>
-            <code code="1434" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1434" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1434'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: diagnose_audiologisch_centrum_gehoor_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24930,7 +25305,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41435_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41435"/>
-            <code code="1435" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1435" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1435'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: interventie_audiologisch_centrum-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24954,7 +25331,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41436_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41436"/>
-            <code code="1436" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1436" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1436'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: toelichting_interventie_audiologisch_centrum-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -24978,7 +25357,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41437_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41437"/>
-            <code code="1437" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1437" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1437'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: bijzonderheden_sensibiliteit-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25002,7 +25383,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41438_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41438"/>
-            <code code="1438" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1438" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1438'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: proef_van_romberg-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25026,7 +25409,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41439_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41439"/>
-            <code code="1439" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1439" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1439'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: kruis_van_reitan-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25050,7 +25435,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41440_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41440"/>
-            <code code="1440" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1440" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1440'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: menstekening-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25074,7 +25461,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41446_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41446"/>
-            <code code="1446" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1446" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1446'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: toelichting_bijzonderheden_heupen-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25098,7 +25487,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41447_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41447"/>
-            <code code="1447" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1447" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1447'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: sdq_impactscore-->
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25122,7 +25513,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41485_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41485"/>
-            <code code="1485" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1485" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1485'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: middelomtrek_in_millimeters-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25146,7 +25539,7 @@
     <!-- obs Bloeddruk systolisch -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41486_20111206000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
-            <code code="271649006" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="271649006" codeSystem="2.16.840.1.113883.6.96" displayName="systolische bloeddruk"/>
             <!-- Item(s) :: bloeddruk_systolisch-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25170,7 +25563,7 @@
     <!-- obs Bloeddruk diastolisch -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41487_20111206000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
-            <code code="271650006" codeSystem="2.16.840.1.113883.6.96"/>
+            <code code="271650006" codeSystem="2.16.840.1.113883.6.96" displayName="diastolische bloeddruk"/>
             <!-- Item(s) :: bloeddruk_diastolisch-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25195,7 +25588,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41495_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41495"/>
-            <code code="1495" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1495" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1495'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: overall_risicoinschatting_spark-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25219,7 +25614,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41496_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41496"/>
-            <code code="1496" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1496" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1496'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: score_taalsignaleringsinstrument-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25243,7 +25640,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41499_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41499"/>
-            <code code="1499" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1499" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1499'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: zwemles-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25267,7 +25666,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41500_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41500"/>
-            <code code="1500" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
+            <code code="1500" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1500'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <!-- Item(s) :: schoolzwemmen-->
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>

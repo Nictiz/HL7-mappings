@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/Users/ahenket/Development/cloudforge_nictiz_art_decor/art_decor/branches/jgz-qual-20191129T222107/test_xslt/jgz-dob-fase-1-dossier-0-3.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<REPC_IN902120NL xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+                 xsi:schemaLocation="urn:hl7-org:v3 file:/Users/ahenket/Documents/Nictiz/AORTA/branches/Onderhoud_JGZ_v612/XML/schemas/REPC_IN902120NL.xsd">
+   <id extension="{$messageId}" root="{$messageIdRoot}"/>
+   <creationTime value="20200621130931"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="REPC_IN902120NL" root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="AL"/>
+   <attentionLine>
+      <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+      <value xsi:type="II"
+             root="2.16.840.1.113883.2.4.6.3"
+             extension="999904747"/>
+   </attentionLine>
+   <receiver>
+      <device>
+         <id extension="{$receiverId}" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="{$applicationId}" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess classCode="CACT" moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id root="2.16.528.1.1007.3.2" extension="091287345"/>
+               <Organization>
+                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <name>GGD Groningen</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <CareProvisionRequest>
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
+            <code code="CPHC"
+                  codeSystem="2.16.840.1.113883.5.4"
+                  displayName="certified public health and general preventive medicine care"/>
+            <statusCode code="active"/>
+            <author>
+               <time value="20200621"/>
+               <assignedEntity classCode="ASSIGNED">
+                  <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                  <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+               </assignedEntity>
+            </author>
+            <sequelTo>
+               <careProvisionEvent>
+                  <id root="2.16.528.1.1007.3.3.1111.999.2" extension="0tm3_dossier"/>
+                  <code code="CPHC"
+                        codeSystem="2.16.840.1.113883.5.4"
+                        displayName="certified public health and general preventive medicine care"/>
+                  <statusCode code="completed"/>
+                  <subject typeCode="SBJ">
+                     <patient classCode="PAT">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
+                        <id extension="999904747" root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="PHYS">
+                           <streetName>Knolweg</streetName>
+                           <houseNumber>1000</houseNumber>
+                           <postalCode>9999 XA</postalCode>
+                           <city>Stitswerd</city>
+                           <country>Nederland</country>
+                        </addr>
+                        <telecom use="HP" value="tel:050-7656633"/>
+                        <statusCode code="active"/>
+                        <patientPerson>
+                           <name use="OR">
+                              <given>Pieter</given>
+                              <prefix>van </prefix>
+                              <family>XXX_Viskanic</family>
+                           </name>
+                           <administrativeGenderCode xsi:type="CV"
+                                                     code="M"
+                                                     codeSystem="2.16.840.1.113883.5.1"
+                                                     displayName="Mannelijk"/>
+                           <birthTime value="20000103"/>
+                        </patientPerson>
+                     </patient>
+                  </subject>
+                  <author typeCode="AUT">
+                     <assignedEntity classCode="ASSIGNED">
+                        <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
+                        <id extension="12345678" root="2.16.528.1.1007.3.3"/>
+                     </assignedEntity>
+                  </author>
+                  <appendage typeCode="APND">
+                     <document classCode="DOC" moodCode="EVN">
+                        <code code="01"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.303"
+                              displayName="Integraal dossier JGZ"/>
+                        <text representation="B64">QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n                         ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpXLiBFdXJv                         cGUgU3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDMwMDAw                         DQpUWk9GRlNFVEZST006KzAyMDANClRaT0ZGU0VUVE86KzAxMDANClJSVUxFOkZSRVE9WUVBUkxZ                         O0lOVEVSVkFMPTE7QllEQVk9LTFTVTtCWU1PTlRIPTEwDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRB                         WUxJR0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOiswMTAwDQpUWk9G                         RlNFVFRPOiswMjAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPS0xU1U7QllN                         T05USD0zDQpFTkQ6REFZTElHSFQNCkVORDpWVElNRVpPTkUNCkJFR0lOOlZFVkVOVA0KT1JHQU5J                         WkVSO0NOPU1hcnRlbiBTbWl0czpNQUlMVE86c21pdHNAbmljdGl6Lm5sDQpBVFRFTkRFRTtST0xF                         PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPUFsZXhh                         bmRlciANCiBIZW5rZXQ6TUFJTFRPOmhlbmtldEBuaWN0aXoubmwNCkRFU0NSSVBUSU9OO0xBTkdV                         QUdFPWVuLVVTOkhvaSFcbg0KUlJVTEU6RlJFUT1EQUlMWTtDT1VOVD0xMDtJTlRFUlZBTD0xDQpV                         SUQ6MDQwMDAwMDA4MjAwRTAwMDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDEwNzUyNkExNzcwQ0Qz                         MDEwMDAwMDAwMDAwMDAwMDANCiAwMTAwMDAwMDA3RTFDNkQ0RTUxNzFENDQ5QjVDOTMxODM3MTQx                         QjcyNw0KU1VNTUFSWTtMQU5HVUFHRT1lbi1VUzpUZXN0DQpEVFNUQVJUO1RaSUQ9Vy4gRXVyb3Bl                         IFN0YW5kYXJkIFRpbWU6MjAxNzA4MDJUMDMzMDAwDQpEVEVORDtUWklEPVcuIEV1cm9wZSBTdGFu                         ZGFyZCBUaW1lOjIwMTcwODAyVDA0MDAwMA0KQ0xBU1M6UFVCTElDDQpQUklPUklUWTo1DQpEVFNU                         QU1QOjIwMTcwODAzVDE0NDMyNloNClRSQU5TUDpPUEFRVUUNClNUQVRVUzpDT05GSVJNRUQNClNF                         UVVFTkNFOjANCkxPQ0FUSU9OO0xBTkdVQUdFPWVuLVVTOg0KWC1NSUNST1NPRlQtQ0RPLUFQUFQt                         U0VRVUVOQ0U6MA0KWC1NSUNST1NPRlQtQ0RPLU9XTkVSQVBQVElEOjIwMzY1NjU5ODUNClgtTUlD                         Uk9TT0ZULUNETy1CVVNZU1RBVFVTOlRFTlRBVElWRQ0KWC1NSUNST1NPRlQtQ0RPLUlOVEVOREVE                         U1RBVFVTOkJVU1kNClgtTUlDUk9TT0ZULUNETy1BTExEQVlFVkVOVDpGQUxTRQ0KWC1NSUNST1NP                         RlQtQ0RPLUlNUE9SVEFOQ0U6MQ0KWC1NSUNST1NPRlQtQ0RPLUlOU1RUWVBFOjENClgtTUlDUk9T                         T0ZULURJU0FMTE9XLUNPVU5URVI6RkFMU0UNCkJFR0lOOlZBTEFSTQ0KREVTQ1JJUFRJT046UkVN                         SU5ERVINClRSSUdHRVI7UkVMQVRFRD1TVEFSVDotUFQxNU0NCkFDVElPTjpESVNQTEFZDQpFTkQ6                         VkFMQVJNDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=</text>
+                        <effectiveTime value="20160307"/>
+                     </document>
+                  </appendage>
+                  <subjectOf typeCode="SUBJ" contextConductionInd="false">
+                     <careStatus classCode="STC" moodCode="EVN">
+                        <code code="1197"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Status in zorg"/>
+                        <effectiveTime value="20000105"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.376"
+                                    displayName="Regulier"/>
+                        <author typeCode="AUT">
+                           <time xsi:type="IVL_TS">
+                              <low value="20000105"/>
+                           </time>
+                        </author>
+                     </careStatus>
+                  </subjectOf>
+                  <subjectOf typeCode="SUBJ" contextConductionInd="false">
+                     <careStatus classCode="STC" moodCode="EVN">
+                        <code code="1197"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Status in zorg"/>
+                        <effectiveTime value="20030929"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.376"
+                                    displayName="Regulier"/>
+                        <author typeCode="AUT">
+                           <time xsi:type="IVL_TS">
+                              <low value="20030929"/>
+                           </time>
+                        </author>
+                     </careStatus>
+                  </subjectOf>
+                  <subjectOf typeCode="SUBJ" contextConductionInd="false">
+                     <careStatus classCode="STC" moodCode="EVN">
+                        <code code="487"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Zorgbeëindiging"/>
+                        <effectiveTime value="20200621"/>
+                        <reasonCode code="01"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.82"
+                                    displayName="Overdracht naar een andere JGZ-organisatie"/>
+                        <author typeCode="AUT">
+                           <time xsi:type="IVL_TS">
+                              <high value="20200621"/>
+                           </time>
+                        </author>
+                     </careStatus>
+                  </subjectOf>
+               </careProvisionEvent>
+            </sequelTo>
+         </CareProvisionRequest>
+      </subject>
+   </ControlActProcess>
+</REPC_IN902120NL>
