@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="20">
-    <include href="../hl7/2_hl7_hl7_include.xsl"/>
+<stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
+    <import href="../hl7/2_hl7_hl7_include.xsl"/>
     
     <!-- TransmissionWrapper Initiating -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.100_20140715000000">
-        <id root="messageIdRoot" extension="messageIdExt" xmlns="urn:hl7-org:v3"/>
-        <creationTime xmlns="urn:hl7-org:v3"/>
+        <xsl:param name="interactionId" required="yes" as="xs:string"/>
+        <xsl:param name="patientId" select=".//r003_persoonsgegevens/bsn/@value" required="no" as="xs:string*"/>
+        
+        <id extension="{{$messageId}}" root="{{$messageIdRoot}}" xmlns="urn:hl7-org:v3"/>
+        <creationTime xmlns="urn:hl7-org:v3" value="{format-dateTime(current-dateTime(), '[Y0001][M01][D01][H01][m01][s01]')}"/>
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
-        <interactionId xmlns="urn:hl7-org:v3" root="{$oidHL7InteractionID}"/>
-        <profileId xmlns="urn:hl7-org:v3" root="{$oidAORTAProfileID}" extension="810"/>
+        <interactionId xmlns="urn:hl7-org:v3" extension="{$interactionId}" root="{$oidHL7InteractionID}"/>
+        <profileId xmlns="urn:hl7-org:v3" extension="810" root="{$oidAORTAProfileID}"/>
         <processingCode xmlns="urn:hl7-org:v3" code="P"/>
         <processingModeCode xmlns="urn:hl7-org:v3" code="T"/>
-        <acceptAckCode xmlns="urn:hl7-org:v3"/>
-        <receiver xmlns="urn:hl7-org:v3" typeCode="RCV">
-            <device>
-                <id root="{$oidAORTAApplicatieID}" extension="receiverId"/>
-            </device>
+        <acceptAckCode xmlns="urn:hl7-org:v3" code="AL"/>
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.120_20140715000000">
+            <with-param name="patientId" select="$patientId"/>
+        </xsl:call-template>
+        <receiver xmlns="urn:hl7-org:v3">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.110_20140715000000">
+                <xsl:with-param name="appId">{$receiverId}</xsl:with-param>
+            </xsl:call-template>
         </receiver>
-        <sender xmlns="urn:hl7-org:v3" typeCode="SND">
-            <device>
-                <id root="{$oidAORTAApplicatieID}" extension="senderId"/>
-            </device>
+        <sender xmlns="urn:hl7-org:v3">
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.110_20140715000000">
+                <xsl:with-param name="appId">{$applicationId}</xsl:with-param>
+            </xsl:call-template>
         </sender>
     </xsl:template>
     
     <!-- AORTA Application ID -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1008_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="{$oidAORTAApplicatieID}" extension=""/>
+        <xsl:param name="appId" required="yes" as="xs:string"/>
+        <id xmlns="urn:hl7-org:v3" extension="{$appId}" root="{$oidAORTAApplicatieID}"/>
     </xsl:template>
     
     <!-- Generic Transmission Checks -->
@@ -34,22 +41,28 @@
     
     <!-- UZI-nummer systemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1010_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="{$oidUZISystems}" extension=""/>
+        <xsl:if test="@value">
+            <id xmlns="urn:hl7-org:v3" extension="{@value}" root="{$oidUZISystems}"/>
+        </xsl:if>
     </xsl:template>
     
     <!-- UZI-register abonneenummer (URA) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1011_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="{$oidURAOrganizations}" extension=""/>
+        <xsl:if test="@value">
+            <id xmlns="urn:hl7-org:v3" extension="{@value}" root="{$oidURAOrganizations}"/>
+        </xsl:if>
     </xsl:template>
     
     <!-- SBV-Z systemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1018_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="{$oidSBVZSystems}" extension=""/>
+        <xsl:if test="@value">
+            <id xmlns="urn:hl7-org:v3" extension="{@value}" root="{$oidSBVZSystems}"/>
+        </xsl:if>
     </xsl:template>
     
     <!-- SBV-Z Organization ID -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1019_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="{$oidSBVZOrganization}" extension="4"/>
+        <id xmlns="urn:hl7-org:v3" extension="4" root="{$oidSBVZOrganization}"/>
     </xsl:template>
     
     <!-- Generic ControlActProcess Checks -->
@@ -57,27 +70,35 @@
     
     <!-- GBO/GBP -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1020_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.2.4.3.11.25" extension=""/>
+        <xsl:if test="@value">
+            <id xmlns="urn:hl7-org:v3" extension="{@value}" root="2.16.840.1.113883.2.4.3.11.25"/>
+        </xsl:if>
     </xsl:template>
     
     <!-- GBK Organization ID -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1021_20140715000000">
-        <id xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.2.4.3.11" extension="7"/>
+        <id xmlns="urn:hl7-org:v3" extension="7" root="2.16.840.1.113883.2.4.3.11"/>
     </xsl:template>
     
     <!-- TransmissionWrapper Device -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.110_20140715000000">
+        <xsl:param name="appId" required="yes" as="xs:string"/>
         <device xmlns="urn:hl7-org:v3">
-            <id root="{$oidAORTAApplicatieID}" extension=""/>
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1008_20140715000000">
+                <xsl:with-param name="appId" select="$appId"/>
+            </xsl:call-template>
         </device>
     </xsl:template>
     
     <!-- TransmissionWrapper AttentionLine -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.120_20140715000000">
-        <attentionLine xmlns="urn:hl7-org:v3">
-            <keyWordText/>
-            <value xsi:type="ANY"/>
-        </attentionLine>
+        <xsl:param name="patientId" required="no" as="xs:string*"/>
+        <xsl:if test="count($patientId) = 1">
+            <attentionLine xmlns="urn:hl7-org:v3">
+                <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
+                <value xsi:type="II" extension="{$patientId}" root="{$oidBurgerservicenummer}"/>
+            </attentionLine>
+        </xsl:if>
     </xsl:template>
     
     <!-- Assigned Device [universal] -->
@@ -88,13 +109,13 @@
                     <id root="{$oidURAOrganizations}"/>
                 </xsl:when>
                 <xsl:when test="sbv-z">
-                    <id root="{$oidSBVZOrganization}" extension="4"/>
+                    <id extension="4" root="{$oidSBVZOrganization}"/>
                 </xsl:when>
                 <xsl:when test="gbo">
                     <id root="2.16.840.1.113883.2.4.3.11.25"/>
                 </xsl:when>
                 <xsl:when test="gbk">
-                    <id root="2.16.840.1.113883.2.4.3.11" extension="7"/>
+                    <id extension="7" root="2.16.840.1.113883.2.4.3.11"/>
                 </xsl:when>
             </xsl:choose>
             <id/>
@@ -186,77 +207,12 @@
         </authorOrPerformer>
     </xsl:template>
     
-    <!-- Ontvangstbevestiging -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.1_20120801000000"/>
-    
-    <!-- TransmissionWrapper Initiating -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100_20120801000000">
-        <id xmlns="urn:hl7-org:v3"/>
-        <creationTime xmlns="urn:hl7-org:v3"/>
-        <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
-        <interactionId xmlns="urn:hl7-org:v3" root="{$oidHL7InteractionID}"/>
-        <profileId xmlns="urn:hl7-org:v3" root="{$oidAORTAProfileID}" extension="810"/>
-        <processingCode xmlns="urn:hl7-org:v3" code="P"/>
-        <processingModeCode xmlns="urn:hl7-org:v3" code="T"/>
-        <acceptAckCode xmlns="urn:hl7-org:v3"/>
-    </xsl:template>
-    
-    <!-- TransmissionWrapper Receiver not ZIM -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.1_20120801000000">
-        <receiver xmlns="urn:hl7-org:v3" typeCode="RCV">
-            <device>
-                <id root="{$oidAORTAApplicatieID}"/>
-                <name/>
-            </device>
-        </receiver>
-    </xsl:template>
-    
-    <!-- TransmissionWrapper Receiver ZIM -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.2_20120801000000">
-        <receiver xmlns="urn:hl7-org:v3" typeCode="RCV">
-            <device>
-                <id root="{$oidAORTAApplicatieID}"/>
-                <name/>
-            </device>
-        </receiver>
-    </xsl:template>
-    
-    <!-- TransmissionWrapper Sender not ZIM -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.3_20120801000000">
-        <sender xmlns="urn:hl7-org:v3" typeCode="SND">
-            <device>
-                <id root="{$oidAORTAApplicatieID}"/>
-                <name/>
-            </device>
-        </sender>
-    </xsl:template>
-    
-    <!-- TransmissionWrapper Sender ZIM -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.4_20120801000000">
-        <sender xmlns="urn:hl7-org:v3" typeCode="SND">
-            <device>
-                <id root="{$oidAORTAApplicatieID}"/>
-                <name/>
-            </device>
-        </sender>
-    </xsl:template>
-    
-    <!-- TransmissionWrapper Sender any AORTA XIS -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.100.5_20120801000000">
-        <sender xmlns="urn:hl7-org:v3" typeCode="SND">
-            <device>
-                <id root="{$oidAORTAApplicatieID}"/>
-                <name/>
-            </device>
-        </sender>
-    </xsl:template>
-    
     <!-- Versturen JGZ-dossieroverdrachtverzoek (payload) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10000_20120801000000">
         <CareProvisionRequest xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="RQO">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
             <!-- Item(s) :: dossiernummer-->
-            <xsl:for-each select="dossiernummer">
+            <xsl:for-each select="r002_dossierinformatie/dossiernummer">
                 <xsl:call-template name="makeIIValue">
                     <xsl:with-param name="xsiType" select="''"/>
                     <xsl:with-param name="elemName">id</xsl:with-param>
@@ -264,27 +220,30 @@
             </xsl:for-each>
             <code code="CPHC" codeSystem="2.16.840.1.113883.5.4" displayName="certified public health and general preventive medicine care"/>
             <statusCode code="active"/>
-            <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | groep_g085_uitvoerende_jgzorganisatie">
+            <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie">
                 <author typeCode="AUT">
                     <time/>
                     <!-- Template :: R_AssignedEntityNL [identified] -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
                 </author>
             </xsl:for-each>
-            <xsl:for-each select="r002_dossierinformatie">
-                <sequelTo typeCode="SEQL" contextConductionInd="true">
-                    <!-- Template :: Care Provision Dossier -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20120801000000"/>
-                </sequelTo>
-            </xsl:for-each>
+            <sequelTo typeCode="SEQL" contextConductionInd="true">
+                <!-- Template :: Care Provision Dossier -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20120801000000"/>
+            </sequelTo>
         </CareProvisionRequest>
     </xsl:template>
     
     <!-- Care Provision Dossier -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20120801000000">
         <careProvisionEvent xmlns="urn:hl7-org:v3">
-            <!-- Dossiernummer -->
-            <id root="{$gOIDBaseDossier}" extension="0tm3_dossier"/>
+            <!-- Item(s) :: dossiernummer-->
+            <xsl:for-each select="r002_dossierinformatie/dossiernummer">
+                <xsl:call-template name="makeIIValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">id</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
             <code codeSystem="2.16.840.1.113883.5.4" code="CPHC" displayName="certified public health and general preventive medicine care"/>
             <!-- Dossierstatus -->
             <statusCode code="{r002_dossierinformatie/dossier_status/@code}"/>
@@ -294,11 +253,8 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.131_20120801000000"/>
                 </subject>
             </xsl:for-each>
-            <!-- Huidige inhoudsverantwoordelijke GGD Groningen is van 14-okt-2010 (regulier in zorg gekomen) t/m 22-okt-2013 (zorgbeëindiging)  -->
-            <!-- Zie ook subjectOf/careStatus voor volgordelijkheid -->
-            <!-- Merk op dat hier alleen gebruik is gemaakt van element 603 Uitvoerende JGZ-organisatie ID. 
-                                        Het is ook mogelijk om element 708 Uitvoerende JGZ-professional ID mee te sturen. Zie implementatiehandleiding voor instructies -->
             <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp">
+                <xsl:sort select="*/startdatum_geldigheid_verantwoordelijke_jgzorganisatie/@value" order="descending"/>
                 <responsibleParty typeCode="RESP">
                     <xsl:for-each select="groep_g099_periode_geldigheid_verantwoordelijke_jgzorganisatie">
                         <time xsi:type="IVL_TS">
@@ -322,6 +278,7 @@
                 </responsibleParty>
             </xsl:for-each>
             <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie">
+                <xsl:sort select="*/startdatum_geldigheid_uitvoerende_jgzorganisatie/@value" order="descending"/>
                 <author typeCode="AUT">
                     <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
                         <time xsi:type="IVL_TS">
@@ -350,12 +307,13 @@
             </xsl:for-each>
             <!-- Toestemmingen -->
             <xsl:for-each select="
-                r050_zorggegevens/toestemming_aan_verpleegkundige_om_te_vaccineren |
-                r010_informatie_over_werkwijze_jgz/toestemming_overdracht_dossier_binnen_jgz |
-                r010_informatie_over_werkwijze_jgz/bezwaar_overdracht_dossier_binnen_jgz |
-                r010_informatie_over_werkwijze_jgz/toestemming_aanmelding_lsp |
-                r010_informatie_over_werkwijze_jgz/toestemming_verstrekking_informatie_aan_derden |
-                r010_informatie_over_werkwijze_jgz/bezwaar_wetenschappelijk_onderzoek">
+                    r050_zorggegevens/toestemming_aan_verpleegkundige_om_te_vaccineren |
+                    r010_informatie_over_werkwijze_jgz/groep_g011_toestemming_overdracht_dossier_binnen_jgz |
+                    r010_informatie_over_werkwijze_jgz/groep_g010_bezwaar_overdracht_dossier_binnen_jgz |
+                    r010_informatie_over_werkwijze_jgz/groep_g071_toestemming_aanmelding_lsp |
+                    r010_informatie_over_werkwijze_jgz/groep_g012_toestemming_info_aan_derden |
+                    r010_informatie_over_werkwijze_jgz/groep_g089_bezwaar_wetenschappelijk_onderzoek |
+                    r010_informatie_over_werkwijze_jgz/groep_g115_toestemming_gegevensuitwisseling_rvp">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10010_20120801000000"/>
             </xsl:for-each>
             <!-- Item(s) :: samenvatting_04-->
@@ -465,7 +423,7 @@
                         <time nullFlavor="UNK"/>
                         <assignedEntity classCode="ASSIGNED">
                             <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                            <id root="{$oidURAOrganizations}" extension="00001111"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                         </assignedEntity>
                     </author>
                 </careStatus>
@@ -480,7 +438,7 @@
                         <time nullFlavor="UNK"/>
                         <assignedEntity classCode="ASSIGNED">
                             <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                            <id root="{$oidURAOrganizations}" extension="00001111"/>
+                            <id extension="00001111" root="{$oidURAOrganizations}"/>
                         </assignedEntity>
                     </author>
                 </careStatus>
@@ -565,11 +523,15 @@
         <xsl:variable name="theCode" as="xs:string">
             <xsl:choose>
                 <xsl:when test="self::toestemming_aan_verpleegkundige_om_te_vaccineren">469</xsl:when>
-                <xsl:when test="self::toestemming_overdracht_dossier_binnen_jgz">1163</xsl:when>
-                <xsl:when test="self::bezwaar_overdracht_dossier_binnen_jgz">1395</xsl:when>
-                <xsl:when test="self::toestemming_aanmelding_lsp">1398</xsl:when>
-                <xsl:when test="self::toestemming_verstrekking_informatie_aan_derden">1165</xsl:when>
-                <xsl:when test="self::bezwaar_wetenschappelijk_onderzoek">1404</xsl:when>
+                <xsl:when test="toestemming_overdracht_dossier_binnen_jgz">1163</xsl:when>
+                <xsl:when test="bezwaar_overdracht_dossier_binnen_jgz">1395</xsl:when>
+                <xsl:when test="toestemming_aanmelding_lsp">1398</xsl:when>
+                <xsl:when test="toestemming_verstrekking_informatie_aan_derden">1165</xsl:when>
+                <xsl:when test="bezwaar_wetenschappelijk_onderzoek">1404</xsl:when>
+                <xsl:when test="toestemming_gegevensuitwisseling_rvp">1533</xsl:when>
+                <otherwise>
+                    <xsl:message>Onbekend type uit Rubriek 10: <xsl:value-of select="local-name()"/> in template_2.16.840.1.113883.2.4.6.10.100.10010_20120801000000</xsl:message>
+                </otherwise>
             </xsl:choose>
         </xsl:variable>
         
@@ -582,42 +544,43 @@
                     <!-- Item(s) :: datum_toestemming_aan_verpleegkundige_om_te_vaccineren-->
                     <xsl:for-each select="
                         self::toestemming_aan_verpleegkundige_om_te_vaccineren/../datum_toestemming_aan_verpleegkundige_om_te_vaccineren |
-                        self::toestemming_overdracht_dossier_binnen_jgz/../datum_toestemming_overdracht_dossier_binnen_jgz |
-                        self::bezwaar_overdracht_dossier_binnen_jgz/../datum_bezwaar_overdracht_dossier_binnen_jgz |
-                        self::toestemming_aanmelding_lsp/../datum_toestemming_aanmelding_lsp |
-                        self::toestemming_verstrekking_informatie_aan_derden/../datum_toestemming_verstrekking_informatie_aan_derden |
-                        self::bezwaar_wetenschappelijk_onderzoek/../datum_bezwaar_wetenschappelijk_onderzoek">
+                        datum_toestemming_overdracht_dossier_binnen_jgz |
+                        datum_bezwaar_overdracht_dossier_binnen_jgz |
+                        datum_toestemming_aanmelding_lsp |
+                        datum_toestemming_verstrekking_informatie_aan_derden |
+                        datum_bezwaar_wetenschappelijk_onderzoek |
+                        datum_toestemming_gegevensuitwisseling_rvp">
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">time</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:choose>
-                        <xsl:when
-                            test="
-                            self::toestemming_overdracht_dossier_binnen_jgz/../bron_toestemming_overdracht_dossier_binnen_jgz[@code = '01'] |
-                            self::bezwaar_overdracht_dossier_binnen_jgz/../bron_bezwaar_overdracht_dossier_binnen_jgz[@code = '01'] |
-                            self::toestemming_aanmelding_lsp/../bron_toestemming_aanmelding_lsp[@code = '01'] |
-                            self::toestemming_verstrekking_informatie_aan_derden/../bron_toestemming_verstrekking_informatie_aan_derden[@code = '01'] |
-                            self::bezwaar_wetenschappelijk_onderzoek/../bron_bezwaar_wetenschappelijk_onderzoek[@code = '01']">
+                        <xsl:when test="
+                            bron_toestemming_overdracht_dossier_binnen_jgz[@code = '01'] |
+                            bron_bezwaar_overdracht_dossier_binnen_jgz[@code = '01'] |
+                            bron_toestemming_aanmelding_lsp[@code = '01'] |
+                            bron_toestemming_verstrekking_informatie_aan_derden[@code = '01'] |
+                            bron_bezwaar_wetenschappelijk_onderzoek[@code = '01'] |
+                            bron_toestemming_gegevensuitwisseling_rvp[@code = '01']">
                             <patient1 classCode="PAT"/>
                         </xsl:when>
-                        <xsl:when
-                            test="
-                            self::toestemming_overdracht_dossier_binnen_jgz/../bron_toestemming_overdracht_dossier_binnen_jgz[@code = '02'] |
-                            self::bezwaar_overdracht_dossier_binnen_jgz/../bron_bezwaar_overdracht_dossier_binnen_jgz[@code = '02'] |
-                            self::toestemming_aanmelding_lsp/../bron_toestemming_aanmelding_lsp[@code = '02'] |
-                            self::toestemming_verstrekking_informatie_aan_derden/../bron_toestemming_verstrekking_informatie_aan_derden[@code = '02'] |
-                            self::bezwaar_wetenschappelijk_onderzoek/../bron_bezwaar_wetenschappelijk_onderzoek[@code = '02']">
+                        <xsl:when test="
+                            bron_toestemming_overdracht_dossier_binnen_jgz |
+                            bron_bezwaar_overdracht_dossier_binnen_jgz |
+                            bron_toestemming_aanmelding_lsp |
+                            bron_toestemming_verstrekking_informatie_aan_derden |
+                            bron_bezwaar_wetenschappelijk_onderzoek |
+                            bron_toestemming_gegevensuitwisseling_rvp">
                             <personalRelationship classCode="PRS">
                                 <!-- Item(s) :: bron_toestemming_overdracht_dossier_binnen_jgz bron_bezwaar_overdracht_dossier_binnen_jgz bron_toestemming_aanmelding_lsp bron_toestemming_verstrekking_informatie_aan_derden bron_bezwaar_wetenschappelijk_onderzoek-->
-                                <xsl:for-each
-                                    select="
-                                    self::toestemming_overdracht_dossier_binnen_jgz/../bron_toestemming_overdracht_dossier_binnen_jgz |
-                                    self::bezwaar_overdracht_dossier_binnen_jgz/../bron_bezwaar_overdracht_dossier_binnen_jgz |
-                                    self::toestemming_aanmelding_lsp/../bron_toestemming_aanmelding_lsp |
-                                    self::toestemming_verstrekking_informatie_aan_derden/../bron_toestemming_verstrekking_informatie_aan_derden |
-                                    self::bezwaar_wetenschappelijk_onderzoek/../bron_bezwaar_wetenschappelijk_onderzoek">
+                                <xsl:for-each select="
+                                    bron_toestemming_overdracht_dossier_binnen_jgz |
+                                    bron_bezwaar_overdracht_dossier_binnen_jgz |
+                                    bron_toestemming_aanmelding_lsp |
+                                    bron_toestemming_verstrekking_informatie_aan_derden |
+                                    bron_bezwaar_wetenschappelijk_onderzoek |
+                                    bron_toestemming_gegevensuitwisseling_rvp">
                                     <xsl:call-template name="makeCVValue">
                                         <xsl:with-param name="elemName">code</xsl:with-param>
                                     </xsl:call-template>
@@ -661,7 +624,7 @@
                     </xsl:choose>
                 </author>
                 <!-- Item(s) :: toelichting_verstrekking_informatie_aan_derden-->
-                <xsl:for-each select="self::toestemming_verstrekking_informatie_aan_derden/../toelichting_verstrekking_informatie_aan_derden">
+                <xsl:for-each select="toelichting_verstrekking_informatie_aan_derden">
                     <subjectOf typeCode="SUBJ">
                         <annotation>
                             <code code="1407" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -3034,7 +2997,7 @@
         <creationTime xmlns="urn:hl7-org:v3"/>
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
         <interactionId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.1.6"/>
-        <profileId xmlns="urn:hl7-org:v3" root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+        <profileId xmlns="urn:hl7-org:v3" extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
         <processingCode xmlns="urn:hl7-org:v3" code="P"/>
         <processingModeCode xmlns="urn:hl7-org:v3" code="T"/>
         <acceptAckCode xmlns="urn:hl7-org:v3" code="NE"/>
@@ -4168,7 +4131,7 @@
         <creationTime xmlns="urn:hl7-org:v3"/>
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
         <interactionId xmlns="urn:hl7-org:v3" root="{$oidHL7InteractionID}"/>
-        <profileId xmlns="urn:hl7-org:v3" root="{$oidAORTAProfileID}" extension="810"/>
+        <profileId xmlns="urn:hl7-org:v3" extension="810" root="{$oidAORTAProfileID}"/>
         <processingCode xmlns="urn:hl7-org:v3" code="P"/>
         <processingModeCode xmlns="urn:hl7-org:v3" code="T"/>
         <acceptAckCode xmlns="urn:hl7-org:v3" code="NE"/>
@@ -4199,7 +4162,7 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="{$oidUZISystems}" extension="091287345"/>
+                        <id extension="091287345" root="{$oidUZISystems}"/>
                         <Organization>
                             <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
@@ -4221,7 +4184,7 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="{$oidUZISystems}" extension="091287345"/>
+                        <id extension="091287345" root="{$oidUZISystems}"/>
                         <Organization>
                             <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
@@ -7686,25 +7649,50 @@
             <code code="R052" codeSystem="2.16.840.1.113883.2.4.4.40.391">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R052'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
             </code>
-            <xsl:for-each select="groep_g074_melding_vir">
+            <groep_g074_melding_verwijsindex_risicojongeren>
+                <aanmelder_uzi_verwijsindex_risicojongeren/>
+                <aanmelder_big_verwijsindex_risicojongeren/>
+                <aanmelder_agb_verwijsindex_risicojongeren/>
+                <aanmelder_naam_verwijsindex_risicojongeren/>
+                <datum_aanmelding_verwijsindex_risicojongeren/>
+                <datum_afmelding_verwijsindex_risicojongeren/>
+                <bijzonderheden_melding_verwijsindex_risicojongeren/>
+            </groep_g074_melding_verwijsindex_risicojongeren>
+            <groep_g075_melding_veilig_thuis>
+                <aanmelder_uzi_veilig_thuis/>
+                <aanmelder_big_veilig_thuis/>
+                <aanmelder_agb_veilig_thuis/>
+                <aanmelder_naam_veilig_thuis/>
+                <datum_melding_veilig_thuis/>
+                <bijzonderheden_melding_veilig_thuis/>
+            </groep_g075_melding_veilig_thuis>
+            <groep_g084_consultatie_veilig_thuis>
+                <uitvoerende_uzi_consultatie_veilig_thuis/>
+                <uitvoerende_big_consultatie_veilig_thuis/>
+                <uitvoerende_agb_consultatie_veilig_thuis/>
+                <uitvoerende_naam_consultatie_veilig_thuis/>
+                <datum_consultatie_veilig_thuis/>
+                <bijzonderheden_consultatie_veilig_thuis/>
+            </groep_g084_consultatie_veilig_thuis>
+            <xsl:for-each select="groep_g074_melding_verwijsindex_risicojongeren">
                 <component>
                     <groupCluster>
                         <code code="G074" codeSystem="2.16.840.1.113883.2.4.4.40.393">
                             <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G074'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
                         </code>
-                        <xsl:for-each select="datum_aanmelding_vir">
+                        <xsl:for-each select="datum_aanmelding_verwijsindex_risicojongeren">
                             <component>
                                 <!-- Template :: obs Afmelding VIR -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41195_20120801000000"/>
                             </component>
                         </xsl:for-each>
-                        <xsl:for-each select="datum_afmelding_vir">
+                        <xsl:for-each select="datum_afmelding_verwijsindex_risicojongeren">
                             <component>
                                 <!-- Template :: obs Afmelding VIR -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41196_20120801000000"/>
                             </component>
                         </xsl:for-each>
-                        <xsl:for-each select="bijzonderheden_melding_vir">
+                        <xsl:for-each select="bijzonderheden_melding_verwijsindex_risicojongeren">
                             <component>
                                 <!-- Template :: obs Bijzonderheden melding VIR -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41408_20120801000000"/>
@@ -7713,19 +7701,19 @@
                     </groupCluster>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="groep_g075_melding_amk">
+            <xsl:for-each select="groep_g075_melding_veilig_thuis">
                 <component>
                     <groupCluster>
                         <code code="G075" codeSystem="2.16.840.1.113883.2.4.4.40.393">
                             <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G075'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
                         </code>
-                        <xsl:for-each select="datum_melding_amk">
+                        <xsl:for-each select="datum_melding_veilig_thuis">
                             <component>
                                 <!-- Template :: obs Melding AMK -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41326_20120801000000"/>
                             </component>
                         </xsl:for-each>
-                        <xsl:for-each select="bijzonderheden_melding_amk">
+                        <xsl:for-each select="bijzonderheden_melding_veilig_thuis">
                             <component>
                                 <!-- Template :: obs Bijzonderheden melding AMK -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41380_20120801000000"/>
@@ -7734,19 +7722,19 @@
                     </groupCluster>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="groep_g084_consultatie_amk">
+            <xsl:for-each select="groep_g084_consultatie_veilig_thuis">
                 <component>
                     <groupCluster>
                         <code code="G084" codeSystem="2.16.840.1.113883.2.4.4.40.393">
                             <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G084'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
                         </code>
-                        <xsl:for-each select="datum_consultatie_amk">
+                        <xsl:for-each select="datum_consultatie_veilig_thuis">
                             <component>
                                 <!-- Template :: obs Consultatie AMK -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41327_20120801000000"/>
                             </component>
                         </xsl:for-each>
-                        <xsl:for-each select="bijzonderheden_consultatie_amk">
+                        <xsl:for-each select="bijzonderheden_consultatie_veilig_thuis">
                             <component>
                                 <!-- Template :: obs Bijzonderheden consultatie AMK -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41328_20120801000000"/>
@@ -9084,7 +9072,7 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="{$oidUZISystems}" extension="091287345"/>
+                        <id extension="091287345" root="{$oidUZISystems}"/>
                         <Organization>
                             <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
@@ -9915,7 +9903,7 @@
                         <group classCode="ORG" determinerCode="INSTANCE">
                             <!-- Item(s) :: woonverbandid woonverband_id_client-->
                             <xsl:for-each select="woonverband_id">
-                                <id root="{$gOIDBaseWoonverband}" extension="{@value}"/>
+                                <id extension="{@value}" root="{$gOIDBaseWoonverband}"/>
                             </xsl:for-each>
                             <!-- Item(s) :: gezinssamenstelling_woonverband-->
                             <xsl:for-each select="gezinssamenstelling_woonverband">
@@ -10194,7 +10182,7 @@
                             <xsl:for-each select="woonverband_id_ouderverzorger | woonverband_id_broerzus | woonverband_id_zoondochter">
                                 <asMember classCode="MBR">
                                     <group classCode="ORG" determinerCode="INSTANCE">
-                                        <id root="{$gOIDBaseWoonverband}" extension="{@value}"/>
+                                        <id extension="{@value}" root="{$gOIDBaseWoonverband}"/>
                                     </group>
                                 </asMember>
                             </xsl:for-each>
@@ -10938,7 +10926,7 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="{$oidUZISystems}" extension="091287345"/>
+                        <id extension="091287345" root="{$oidUZISystems}"/>
                         <Organization>
                             <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
@@ -11004,7 +10992,7 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="{$oidUZISystems}" extension="091287345"/>
+                        <id extension="091287345" root="{$oidUZISystems}"/>
                         <Organization>
                             <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
@@ -11026,7 +11014,7 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="{$oidUZISystems}" extension="091287345"/>
+                        <id extension="091287345" root="{$oidUZISystems}"/>
                         <Organization>
                             <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
@@ -11192,7 +11180,7 @@
             <authorOrPerformer typeCode="AUT">
                 <participant>
                     <AssignedDevice>
-                        <id root="{$oidUZISystems}" extension="091287345"/>
+                        <id extension="091287345" root="{$oidUZISystems}"/>
                         <Organization>
                             <id extension="00001111" root="{$oidURAOrganizations}"/>
                             <name>GGD Groningen</name>
@@ -11440,7 +11428,7 @@
             <creationTime/>
             <versionCode code="NICTIZEd2005-Okt"/>
             <interactionId root="2.16.840.1.113883.1.6"/>
-            <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+            <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
             <processingCode code="P"/>
             <processingModeCode code="T"/>
             <acceptAckCode/>
@@ -11696,7 +11684,7 @@
         <authorOrPerformer xmlns="urn:hl7-org:v3" typeCode="AUT">
             <participant>
                 <AssignedDevice>
-                    <id root="{$oidUZISystems}" extension="091287345"/>
+                    <id extension="091287345" root="{$oidUZISystems}"/>
                     <Organization>
                         <id extension="00001111" root="{$oidURAOrganizations}"/>
                         <name>GGD Groningen</name>
