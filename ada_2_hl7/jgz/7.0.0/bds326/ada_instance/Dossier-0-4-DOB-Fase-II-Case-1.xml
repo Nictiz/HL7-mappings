@@ -1,9 +1,9 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../projects/jgz-7.0.0/schemas/ada_versturen_jgzdossieroverdrachtverzoek_v02.xsd">
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_versturen_jgzdossieroverdrachtverzoek_v02.xsd">
     <meta status="new" created-by="alexander" last-update-by="alexander" creation-date="2016-08-01T14:14:12.865+02:00" last-update-date="2019-09-10T14:45:06.882+02:00"/>
     <data>
         <versturen_jgzdossieroverdrachtverzoek_v02 app="jgz-7.0.0" shortName="versturen_jgzdossieroverdrachtverzoek_v02" formName="versturen_jgzdossieroverdrachtverzoek_v02" transactionRef="2.16.840.1.113883.2.4.3.11.60.100.4.20" transactionEffectiveDate="2013-07-09T12:00:00" versionDate="2016-03-01T12:23:06" prefix="jgz-7.0.0-" language="nl-NL" title="Dossier 0-4 DOB Fase II Case 1" id="Dossier-0-4-DOB-Fase-II-Case-1">
             <r002_dossierinformatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.2" comment="">
-                <dossiernummer value="987654321" root="​2.16.840.1.113883.2.4.3.11.999.100.2.1" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.695"/>
+                <dossiernummer value="987654321" root="2.16.840.1.113883.2.4.3.11.999.100.2.1" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.695"/>
                 <dossier_status conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.696" value="5" code="active" codeSystem="2.16.840.1.113883.5.14" displayName="Actief"/>
             </r002_dossierinformatie>
             <r003_persoonsgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.3" comment="">
@@ -120,14 +120,14 @@
             </r050_zorggegevens>
             <r005_betrokken_jgzorganisaties conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.5" comment="">
                 <groep_g085_uitvoerende_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.85" comment="">
-                    <uitvoerende_jgzorganisatie_ura conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.603" value="00001111"/>
+                    <uitvoerende_jgzorganisatie_ura conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.603" value="00001111" root="2.16.528.1.1007.3.3"/>
                     <uitvoerende_jgzorganisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1506" value="GGD Hollands Midden"/>
                     <groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.98" comment="">
                         <startdatum_geldigheid_uitvoerende_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1457" value="2012-07-23" datatype="datetime"/>
                     </groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie>
                 </groep_g085_uitvoerende_jgzorganisatie>
                 <groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.91" comment="">
-                    <verantwoordelijke_jgzorganisatie_ura conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1441" value="00001111"/>
+                    <verantwoordelijke_jgzorganisatie_ura conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1441" value="00001111" root="2.16.528.1.1007.3.3"/>
                     <verantwoordelijke_jgzorganisatie_naam conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1507" value="GGD Hollands Midden"/>
                     <groep_g099_periode_geldigheid_verantwoordelijke_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.99" comment="">
                         <startdatum_geldigheid_verantwoordelijke_jgzorganisatie value="2012-07-23" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1459" datatype="datetime"/>
@@ -225,6 +225,17 @@
                     <bron_bezwaar_wetenschappelijk_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1405" value="7" code="PRN" codeSystem="2.16.840.1.113883.5.111" displayName="Ouder"/>
                     <datum_bezwaar_wetenschappelijk_onderzoek conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1406" value="2012-08-02" datatype="datetime"/>
                 </groep_g089_bezwaar_wetenschappelijk_onderzoek>
+                <groep_g115_toestemming_gegevensuitwisseling_rvp>
+                    <toestemming_gegevensuitwisseling_rvp value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1533"/>
+                    <toestemmingswijze_gegevensuitwisseling_rvp value="8" code="02" codeSystem="2.16.840.1.113883.2.4.4.40.423" displayName="Mondeling" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1541"/>
+                    <naam_bron_toestemming_gegevensuitwisseling_rvp value="Bea de Zwart-Wit" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1534"/>
+                    <bron_toestemming_gegevensuitwisseling_rvp conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1535" value="7" code="PRN" codeSystem="2.16.840.1.113883.5.111" displayName="Ouder"/>
+                    <datum_toestemming_gegevensuitwisseling_rvp conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1536"  value="2012-08-02"/>
+                    <naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1537" value="Graham"/>
+                    <jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1538" value="00001111" root="2.16.528.1.1007.3.3"/>
+                    <jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1539" value="12345678" root="2.16.840.1.113883.2.4.6.1"/>
+                    <jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1540" value="GGD Hollands Midden"/>
+                </groep_g115_toestemming_gegevensuitwisseling_rvp>
             </r010_informatie_over_werkwijze_jgz>
             <r009_externe_documenten conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.9" comment="">
                 <papieren_jgzdossier_aanwezig value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1167"/>
@@ -362,7 +373,7 @@
                 </groep_g081_zorgplan>
             </r048_zorgplan>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-1">
-                <activiteit_id conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377" value="1"/>
+                <activiteit_id conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377" value="1" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="3" code="35" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Neonatale gehoorscreening"/>
                 <datum_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" value="2012-07-27" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
@@ -371,7 +382,7 @@
                 <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="16" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="(Biologische of adoptief) Moeder"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-2">
-                <activiteit_id value="2" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
+                <activiteit_id value="2" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="4" code="02" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Huisbezoek 2 weken"/>
                 <datum_activiteit value="2012-08-02" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
@@ -380,7 +391,7 @@
                 <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="16" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="(Biologische of adoptief) Moeder"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-3">
-                <activiteit_id value="3" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
+                <activiteit_id value="3" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="5" code="03" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 4 weken"/>
                 <datum_activiteit value="2012-08-23" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
@@ -389,7 +400,7 @@
                 <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="16" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="(Biologische of adoptief) Moeder"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-4">
-                <activiteit_id value="4" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
+                <activiteit_id value="4" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="6" code="04" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 8 weken"/>
                 <datum_activiteit value="2012-09-24" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
@@ -398,7 +409,7 @@
                 <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="16" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="(Biologische of adoptief) Moeder"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-5">
-                <activiteit_id value="5" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
+                <activiteit_id value="5" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="7" code="05" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 3 maanden"/>
                 <datum_activiteit value="2012-10-23" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
@@ -407,7 +418,7 @@
                 <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="16" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="(Biologische of adoptief) Moeder"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-6">
-                <activiteit_id value="6" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
+                <activiteit_id value="6" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="8" code="06" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 4 maanden"/>
                 <datum_activiteit value="2012-11-23" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
@@ -416,14 +427,14 @@
                 <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="16" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="(Biologische of adoptief) Moeder"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-7">
-                <activiteit_id value="7" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
+                <activiteit_id value="7" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="9" code="07" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 6 maanden"/>
                 <datum_activiteit value="2013-01-23" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
                 <toelichting_niet_verschenen conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.495" value="6" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.309" displayName="Niet verschenen met bericht"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-8">
-                <activiteit_id value="8" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
+                <activiteit_id value="8" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="25" code="23" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment op verzoek"/>
                 <datum_activiteit value="2013-01-30" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
@@ -434,7 +445,7 @@
                 <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="16" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="(Biologische of adoptief) Moeder"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" id="activiteit-9">
-                <activiteit_id value="9" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
+                <activiteit_id value="9" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="12" code="10" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 11 maanden"/>
                 <datum_activiteit value="2013-06-24" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724" datatype="datetime"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>

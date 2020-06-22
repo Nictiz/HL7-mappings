@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" version="2.0">
     <xsl:import href="../../../2_hl7_jgz-include.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
+    
     <xsl:param name="schematron-ref" as="xs:boolean" select="true()"/>
     <!--<xsl:param name="schematronBaseDir">file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/</xsl:param>-->
     <xsl:param name="schematronBaseDir">../</xsl:param>
@@ -1149,33 +1150,15 @@
         <xd:desc/>
     </xd:doc>
     <xsl:template name="Message">
-        <xsl:if test="$schematron-ref">
+        <xsl:if test="$schematron-ref and //dossiernummer/@value = 'doss0-3-f1'">
             <!--<xsl:processing-instruction name="xml-model">href="file:/Users/ahenket/Documents/Nictiz/AORTA/branches/Onderhoud_JGZ_v612/XML/schematron_closed_warnings/jgz-versturenDossieroverdrachtbericht-02.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>-->
             <xsl:processing-instruction name="xml-model">href="file:/Users/ahenket/Development/cloudforge_nictiz_art_decor/art_decor/branches/jgz-qual-20191129T222107/test_xslt/jgz-dob-fase-1-dossier-0-3.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         </xsl:if>
         <REPC_IN902120NL xmlns="urn:hl7-org:v3" xsi:schemaLocation="urn:hl7-org:v3 file:/Users/ahenket/Documents/Nictiz/AORTA/branches/Onderhoud_JGZ_v612/XML/schemas/REPC_IN902120NL.xsd">
-            <id extension="{{$messageId}}" root="{{$messageIdRoot}}"/>
-            <creationTime value="{$gCREATIONDATETIME}"/>
-            <versionCode code="NICTIZEd2005-Okt"/>
-            <interactionId extension="REPC_IN902120NL" root="2.16.840.1.113883.1.6"/>
-            <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
-            <processingCode code="P"/>
-            <processingModeCode code="T"/>
-            <acceptAckCode code="AL"/>
-            <attentionLine>
-                <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
-                <value xsi:type="II" root="2.16.840.1.113883.2.4.6.3" extension="{$gPatientBSN}"/>
-            </attentionLine>
-            <receiver>
-                <device>
-                    <id extension="{{$receiverId}}" root="{$oidAORTAApplicatieID}"/>
-                </device>
-            </receiver>
-            <sender>
-                <device>
-                    <id extension="{{$applicationId}}" root="{$oidAORTAApplicatieID}"/>
-                </device>
-            </sender>
+            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.100_20140715000000">
+                <xsl:with-param name="interactionId">REPC_IN902120NL</xsl:with-param>
+                <xsl:with-param name="patientId" select=".//r003_persoonsgegevens/bsn/@value"/>
+            </xsl:call-template>
             <ControlActProcess classCode="CACT" moodCode="EVN">
                 <authorOrPerformer typeCode="AUT">
                     <participant>

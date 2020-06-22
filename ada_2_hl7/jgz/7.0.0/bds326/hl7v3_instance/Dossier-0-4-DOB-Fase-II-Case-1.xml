@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="file:/Users/ahenket/Development/cloudforge_nictiz_art_decor/art_decor/branches/jgz-qual-20191129T222107/test_xslt/jgz-dob-fase-1-dossier-0-3.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN902120NL xmlns="urn:hl7-org:v3"
                  xmlns:hl7="urn:hl7-org:v3"
                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -7,18 +6,18 @@
                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                  xsi:schemaLocation="urn:hl7-org:v3 file:/Users/ahenket/Documents/Nictiz/AORTA/branches/Onderhoud_JGZ_v612/XML/schemas/REPC_IN902120NL.xsd">
    <id extension="{$messageId}" root="{$messageIdRoot}"/>
-   <creationTime value="20200621184345"/>
+   <creationTime value="20200622103326"/>
    <versionCode code="NICTIZEd2005-Okt"/>
    <interactionId extension="REPC_IN902120NL" root="2.16.840.1.113883.1.6"/>
-   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
    <processingCode code="P"/>
    <processingModeCode code="T"/>
    <acceptAckCode code="AL"/>
    <attentionLine>
       <keyWordText code="PATID" codeSystem="2.16.840.1.113883.2.4.15.1">Patient.id</keyWordText>
       <value xsi:type="II"
-             root="2.16.840.1.113883.2.4.6.3"
-             extension="123456789"/>
+             extension="123456789"
+             root="2.16.840.1.113883.2.4.6.3"/>
    </attentionLine>
    <receiver>
       <device>
@@ -50,7 +49,7 @@
                   displayName="certified public health and general preventive medicine care"/>
             <statusCode code="active"/>
             <author>
-               <time value="20200621"/>
+               <time value="20200622"/>
                <assignedEntity classCode="ASSIGNED">
                   <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
                   <id root="2.16.528.1.1007.3.3" extension="00001111"/>
@@ -58,7 +57,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent>
-                  <id root="2.16.528.1.1007.3.3.1111.999.2" extension="0tm3_dossier"/>
+                  <id extension="987654321" root="2.16.840.1.113883.2.4.3.11.999.100.2.1"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
                         displayName="certified public health and general preventive medicine care"/>
@@ -156,10 +155,11 @@
                                     </effectiveTime>
                                     <performer typeCode="PRF">
                                        <assignedProvider classCode="ASSIGNED">
-                                          <id nullFlavor="NI"/>
+                                          <id extension="01018888" root="2.16.840.1.113883.2.4.6.1"/>
                                           <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                                              <id nullFlavor="NI"/>
                                              <code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060"/>
+                                             <name>Van Vliet, Het Zorgstation</name>
                                           </representedOrganization>
                                        </assignedProvider>
                                     </performer>
@@ -174,9 +174,23 @@
                                     </code>
                                     <performer typeCode="PRF">
                                        <assignedProvider classCode="ASSIGNED">
-                                          <id nullFlavor="NI"/>
+                                          <id extension="44444444" root="2.16.840.1.113883.2.4.6.1"/>
                                           <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                                             <id nullFlavor="NI"/>
+                                             <id extension="55555555" root="2.16.840.1.113883.2.4.6.1"/>
+                                             <name>Audiologisch centrum</name>
+                                             <contactParty classCode="CON">
+                                                <code nullFlavor="OTH">
+                                                   <originalText>Audioloog</originalText>
+                                                </code>
+                                                <telecom value="tel:088-8888888"/>
+                                                <telecom value="mailto:vanhetoor@audiologie.com"/>
+                                                <effectiveTime xsi:type="IVL_TS">
+                                                   <low value="20140623"/>
+                                                </effectiveTime>
+                                                <contactPerson classCode="PSN" determinerCode="INSTANCE">
+                                                   <name>Dhr van het Oor</name>
+                                                </contactPerson>
+                                             </contactParty>
                                           </representedOrganization>
                                        </assignedProvider>
                                     </performer>
@@ -195,7 +209,7 @@
                            </asCitizen>
                            <asMember classCode="MBR">
                               <group classCode="ORG" determinerCode="INSTANCE">
-                                 <id root="2.16.528.1.1007.3.3.1111.999.10" extension="9876543210"/>
+                                 <id extension="9876543210" root="2.16.528.1.1007.3.3.1111.999.10"/>
                                  <code xsi:type="CV"
                                        code="01"
                                        codeSystem="2.16.840.1.113883.2.4.4.40.262"
@@ -259,7 +273,7 @@
                                  </asEmployee>
                                  <asMember classCode="MBR">
                                     <group classCode="ORG" determinerCode="INSTANCE">
-                                       <id root="2.16.528.1.1007.3.3.1111.999.10" extension="987654310"/>
+                                       <id extension="987654310" root="2.16.528.1.1007.3.3.1111.999.10"/>
                                     </group>
                                  </asMember>
                               </relationshipHolder1>
@@ -290,7 +304,7 @@
                                  <birthTime value="20100628"/>
                                  <asMember classCode="MBR">
                                     <group classCode="ORG" determinerCode="INSTANCE">
-                                       <id root="2.16.528.1.1007.3.3.1111.999.10" extension="9876543210"/>
+                                       <id extension="9876543210" root="2.16.528.1.1007.3.3.1111.999.10"/>
                                     </group>
                                  </asMember>
                               </relationshipHolder1>
@@ -344,7 +358,7 @@
                      </document>
                   </appendage>
                   <authorization typeCode="AUTH" contextConductionInd="false">
-                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
                         <code code="469"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming aan verpleegkundige om te vaccineren"/>
@@ -357,6 +371,105 @@
                               </assignedPerson>
                            </assignedEntity1>
                         </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
+                        <code code="1163"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Toestemming overdracht dossier binnen JGZ"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
+                        <code code="1395"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Bezwaar overdracht dossier binnen JGZ"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
+                        <code code="1398"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Toestemming aanmelding LSP"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
+                        <code code="1404"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Bezwaar wetenschappelijk onderzoek"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <personalRelationship classCode="PRS">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                           </personalRelationship>
+                        </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
+                        <code code="1533"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Toestemming gegevensuitwisseling RVP"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <responsibleParty classCode="CON">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <agentPerson>
+                                 <name>Bea de Zwart-Wit</name>
+                              </agentPerson>
+                              <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                 <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                                 <id extension="12345678" root="2.16.840.1.113883.2.4.6.1"/>
+                              </representedOrganization>
+                           </responsibleParty>
+                        </author>
+                        <subjectOf typeCode="SUBJ">
+                           <annotation>
+                              <code code="1537-1541"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Toestemmingswijze mondeling + Naam JGZ-medewerker"/>
+                              <text>02||Graham</text>
+                           </annotation>
+                        </subjectOf>
                      </consentEvent>
                   </authorization>
                   <pertinentInformation>
@@ -480,7 +593,7 @@
                               <code code="91"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                     displayName="Roken tijdens de zwangerschap"/>
-                              <value xsi:type="BL" nullFlavor="2"/>
+                              <value xsi:type="BL" value="false"/>
                            </pregnancyObservations>
                         </component1>
                         <component1 typeCode="COMP">
@@ -488,7 +601,7 @@
                               <code code="92"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                     displayName="Alcohol gebruik tijdens de zwangerschap"/>
-                              <value xsi:type="BL" nullFlavor="2"/>
+                              <value xsi:type="BL" value="false"/>
                            </pregnancyObservations>
                         </component1>
                         <component1 typeCode="COMP">
@@ -496,7 +609,7 @@
                               <code code="93"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                     displayName="Drugsgebruik tijdens de zwangerschap"/>
-                              <value xsi:type="BL" nullFlavor="2"/>
+                              <value xsi:type="BL" value="false"/>
                            </pregnancyObservations>
                         </component1>
                         <component1 typeCode="COMP">
@@ -792,18 +905,18 @@
                   </component6>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="1" nullFlavor="UNC"/>
+                        <id extension="1" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="35"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Neonatale gehoorscreening"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20160928"/>
-                        <performer>
+                        <effectiveTime value="20120727"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -870,7 +983,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: A_HeelPrick [universal] -->
+                        <!-- r037_hielprik_pasgeborene -->
                         <component4>
                            <heelPrick classCode="SPECCOLLECT" moodCode="EVN" negationInd="true">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.133"/>
@@ -890,7 +1003,7 @@
                               </performer>
                            </heelPrick>
                         </component4>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="01"
@@ -898,7 +1011,7 @@
                                     displayName="Voeding"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="02"
@@ -914,7 +1027,7 @@
                               </component>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="06"
@@ -922,7 +1035,7 @@
                                     displayName="Slapen"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="08"
@@ -930,7 +1043,7 @@
                                     displayName="Veiligheid"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="09"
@@ -942,18 +1055,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="2" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="2" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="02"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Huisbezoek 2 weken"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20161005"/>
-                        <performer>
+                        <effectiveTime value="20120802"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -1609,18 +1722,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="3" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="3" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="03"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 4 weken"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20161019"/>
-                        <performer>
+                        <effectiveTime value="20120823"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="5555555555" root=""/>
+                              <id extension="5555555555" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Graham</name>
+                                 <name>Graham</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -2514,7 +2627,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="01"
@@ -2522,7 +2635,7 @@
                                     displayName="Voeding"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="06"
@@ -2530,7 +2643,7 @@
                                     displayName="Slapen"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="14"
@@ -2550,18 +2663,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="4" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="4" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="04"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 8 weken"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20161116"/>
-                        <performer>
+                        <effectiveTime value="20120924"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -2985,7 +3098,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -3042,7 +3155,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -3099,7 +3212,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="02"
@@ -3107,7 +3220,7 @@
                                     displayName="Vitamines"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="14"
@@ -3119,18 +3232,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="5" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="5" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="05"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 3 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20161221"/>
-                        <performer>
+                        <effectiveTime value="20121023"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="5555555555" root=""/>
+                              <id extension="5555555555" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Graham</name>
+                                 <name>Graham</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -4227,7 +4340,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -4284,7 +4397,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -4341,7 +4454,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="06"
@@ -4349,7 +4462,7 @@
                                     displayName="Slapen"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="22"
@@ -4369,18 +4482,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="6" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="6" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="06"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 4 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20170121"/>
-                        <performer>
+                        <effectiveTime value="20121123"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -4606,7 +4719,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -4663,7 +4776,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -4723,34 +4836,44 @@
                      </encounter>
                   </component7>
                   <component7>
-                     <encounter moodCode="EVN">
-                        <id extension="7" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                     <encounter moodCode="INT">
+                        <id extension="7" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="07"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 6 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20170321"/>
+                        <effectiveTime value="20130123"/>
+                        <subjectOf typeCode="SUBJ">
+                           <abortedEvent classCode="STC" moodCode="EVN">
+                              <code code="495"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Toelichting niet verschenen"/>
+                              <reasonCode code="01"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.309"
+                                          displayName="Niet verschenen met bericht"/>
+                           </abortedEvent>
+                        </subjectOf>
                      </encounter>
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="8" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="8" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="23"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment op verzoek"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20170721"/>
+                        <effectiveTime value="20130130"/>
                         <reasonCode xsi:type="CV"
                                     code="10"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Psychosociale/emotionele ontwikkeling"/>
-                        <performer>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="5555555555" root=""/>
+                              <id extension="5555555555" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Graham</name>
+                                 <name>Graham</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -4991,7 +5114,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="22"
@@ -5003,18 +5126,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="9" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="9" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="10"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 11 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20170821"/>
-                        <performer>
+                        <effectiveTime value="20130624"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -5144,7 +5267,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="true">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -5219,7 +5342,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -5276,7 +5399,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="12"
@@ -5294,12 +5417,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 14 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20171121"/>
-                        <performer>
+                        <effectiveTime value="20130923"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="6666666666" root=""/>
+                              <id extension="6666666666" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Pietersen</name>
+                                 <name>Pietersen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -6363,7 +6486,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -6420,7 +6543,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
@@ -6477,7 +6600,7 @@
                               </component>
                            </substanceAdministrationEvent>
                         </component3>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="01"
@@ -6485,7 +6608,7 @@
                                     displayName="Voeding"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="04"
@@ -6493,7 +6616,7 @@
                                     displayName="Ontlasten/plassen/zindelijkheid (enuresis)"/>
                            </advice>
                         </component5>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="12"
@@ -6519,12 +6642,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Groepsbijeenkomst (of groepsvoorlichting)"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20180321"/>
-                        <performer>
+                        <effectiveTime value="20131128"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="6666666666" root=""/>
+                              <id extension="6666666666" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Pieter</name>
+                                 <name>Pieter</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -6759,7 +6882,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="12"
@@ -6777,12 +6900,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 2 jaar"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20180921"/>
-                        <performer>
+                        <effectiveTime value="20140723"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="2222222222" root=""/>
+                              <id extension="2222222222" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">De Vries</name>
+                                 <name>De Vries</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -6936,7 +7059,7 @@
                                           <code code="1412"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                                 displayName="Datum opname ziekenhuis"/>
-                                          <value value="20140623"/>
+                                          <value xsi:type="TS" value="20140623"/>
                                        </observation>
                                     </component>
                                     <component>
@@ -7560,7 +7683,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="12"
@@ -7578,12 +7701,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 3 jaar"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20190921"/>
-                        <performer>
+                        <effectiveTime value="20150723"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="5555555555" root=""/>
+                              <id extension="5555555555" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Graham</name>
+                                 <name>Graham</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -8449,7 +8572,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: Activities component5 Advice -->
+                        <!-- groep_g042_voorlichting -->
                         <component5>
                            <advice classCode="INFRM" moodCode="EVN">
                               <code code="12"
@@ -8467,12 +8590,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 3,9 jaar"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20200621"/>
-                        <performer>
+                        <effectiveTime value="20160323"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -9266,7 +9389,7 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
+                        <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="false">
                               <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
