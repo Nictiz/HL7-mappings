@@ -392,10 +392,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Makes a HL7 code type element based on ada element with datatype code</xd:desc>
         <xd:param name="originalText">Optional to supply originalText with OTH code. Defaults to originalText attribute, if any</xd:param>
         <xd:param name="elemName">The HL7 xml element name. Defaults to code.</xd:param>
-        <xd:param name="codeMap">Array of map elements to be used to map input ADA codes to output HL7v3 codes if those differ. For codeMap expect one or more elements like this:
-            <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
-            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. 
-                If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
+        <xd:param name="codeMap">Array of map elements to be used to map input ADA codes to output HL7v3 codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
+            <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
     </xd:doc>
     <xsl:template name="makeCode">
@@ -795,7 +793,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
         <xsl:param name="root" select="@root"/>
-        <xsl:param name="nullFlavor">NI</xsl:param>
+        <xsl:param name="nullFlavor" select="(@nullFlavor, 'NI')[1]"/>
         <xsl:element name="{$elemName}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
