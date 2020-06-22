@@ -1150,7 +1150,7 @@
         <xd:desc/>
     </xd:doc>
     <xsl:template name="Message">
-        <xsl:if test="$schematron-ref">
+        <xsl:if test="$schematron-ref and //dossiernummer/@value = 'doss0-3-f1'">
             <!--<xsl:processing-instruction name="xml-model">href="file:/Users/ahenket/Documents/Nictiz/AORTA/branches/Onderhoud_JGZ_v612/XML/schematron_closed_warnings/jgz-versturenDossieroverdrachtbericht-02.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>-->
             <xsl:processing-instruction name="xml-model">href="file:/Users/ahenket/Development/cloudforge_nictiz_art_decor/art_decor/branches/jgz-qual-20191129T222107/test_xslt/jgz-dob-fase-1-dossier-0-3.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         </xsl:if>
