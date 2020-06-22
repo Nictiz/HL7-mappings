@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="file:/Users/ahenket/Development/cloudforge_nictiz_art_decor/art_decor/branches/jgz-qual-20191129T222107/test_xslt/jgz-dob-fase-1-dossier-0-3.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN902120NL xmlns="urn:hl7-org:v3"
                  xmlns:hl7="urn:hl7-org:v3"
                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -7,7 +6,7 @@
                  xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                  xsi:schemaLocation="urn:hl7-org:v3 file:/Users/ahenket/Documents/Nictiz/AORTA/branches/Onderhoud_JGZ_v612/XML/schemas/REPC_IN902120NL.xsd">
    <id extension="{$messageId}" root="{$messageIdRoot}"/>
-   <creationTime value="20200621222718"/>
+   <creationTime value="20200622082417"/>
    <versionCode code="NICTIZEd2005-Okt"/>
    <interactionId extension="REPC_IN902120NL" root="2.16.840.1.113883.1.6"/>
    <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
@@ -50,7 +49,7 @@
                   displayName="certified public health and general preventive medicine care"/>
             <statusCode code="active"/>
             <author>
-               <time value="20200621"/>
+               <time value="20200622"/>
                <assignedEntity classCode="ASSIGNED">
                   <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
                   <id root="2.16.528.1.1007.3.3" extension="00001111"/>
@@ -58,7 +57,7 @@
             </author>
             <sequelTo>
                <careProvisionEvent>
-                  <id extension="987654321" root="​2.16.840.1.113883.2.4.3.11.999.100.2.1"/>
+                  <id extension="987654321" root="2.16.840.1.113883.2.4.3.11.999.100.2.1"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
                         displayName="certified public health and general preventive medicine care"/>
@@ -156,10 +155,11 @@
                                     </effectiveTime>
                                     <performer typeCode="PRF">
                                        <assignedProvider classCode="ASSIGNED">
-                                          <id nullFlavor="NI"/>
+                                          <id extension="01018888" root="2.16.840.1.113883.2.4.6.1"/>
                                           <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                                              <id nullFlavor="NI"/>
                                              <code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060"/>
+                                             <name>Van Vliet, Het Zorgstation</name>
                                           </representedOrganization>
                                        </assignedProvider>
                                     </performer>
@@ -174,9 +174,23 @@
                                     </code>
                                     <performer typeCode="PRF">
                                        <assignedProvider classCode="ASSIGNED">
-                                          <id nullFlavor="NI"/>
+                                          <id extension="44444444" root="2.16.840.1.113883.2.4.6.1"/>
                                           <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                                             <id nullFlavor="NI"/>
+                                             <id extension="55555555" root="2.16.840.1.113883.2.4.6.1"/>
+                                             <name>Audiologisch centrum</name>
+                                             <contactParty classCode="CON">
+                                                <code nullFlavor="OTH">
+                                                   <originalText>Audioloog</originalText>
+                                                </code>
+                                                <telecom value="tel:088-8888888"/>
+                                                <telecom value="mailto:vanhetoor@audiologie.com"/>
+                                                <effectiveTime xsi:type="IVL_TS">
+                                                   <low value="20140623"/>
+                                                </effectiveTime>
+                                                <contactPerson classCode="PSN" determinerCode="INSTANCE">
+                                                   <name>Dhr van het Oor</name>
+                                                </contactPerson>
+                                             </contactParty>
                                           </representedOrganization>
                                        </assignedProvider>
                                     </performer>
@@ -344,7 +358,7 @@
                      </document>
                   </appendage>
                   <authorization typeCode="AUTH" contextConductionInd="false">
-                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
                         <code code="469"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming aan verpleegkundige om te vaccineren"/>
@@ -360,7 +374,7 @@
                      </consentEvent>
                   </authorization>
                   <authorization typeCode="AUTH" contextConductionInd="false">
-                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
                         <code code="1163"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming overdracht dossier binnen JGZ"/>
@@ -377,7 +391,7 @@
                      </consentEvent>
                   </authorization>
                   <authorization typeCode="AUTH" contextConductionInd="false">
-                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
                         <code code="1395"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Bezwaar overdracht dossier binnen JGZ"/>
@@ -394,7 +408,7 @@
                      </consentEvent>
                   </authorization>
                   <authorization typeCode="AUTH" contextConductionInd="false">
-                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
                         <code code="1398"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming aanmelding LSP"/>
@@ -411,7 +425,7 @@
                      </consentEvent>
                   </authorization>
                   <authorization typeCode="AUTH" contextConductionInd="false">
-                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
                         <code code="1404"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Bezwaar wetenschappelijk onderzoek"/>
@@ -425,6 +439,37 @@
                               <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
                            </personalRelationship>
                         </author>
+                     </consentEvent>
+                  </authorization>
+                  <authorization typeCode="AUTH" contextConductionInd="false">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
+                        <code code="1533"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                              displayName="Toestemming gegevensuitwisseling RVP"/>
+                        <author typeCode="AUT">
+                           <time value="20120802"/>
+                           <responsibleParty classCode="CON">
+                              <code xsi:type="CV"
+                                    code="PRN"
+                                    codeSystem="2.16.840.1.113883.5.111"
+                                    displayName="Ouder"/>
+                              <agentPerson>
+                                 <name>Bea de Zwart-Wit</name>
+                              </agentPerson>
+                              <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                 <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                                 <id extension="12345678" root="2.16.840.1.113883.2.4.6.1"/>
+                              </representedOrganization>
+                           </responsibleParty>
+                        </author>
+                        <subjectOf typeCode="SUBJ">
+                           <annotation>
+                              <code code="1537-1541"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Toestemmingswijze mondeling + Naam JGZ-medewerker"/>
+                              <text>02||Graham</text>
+                           </annotation>
+                        </subjectOf>
                      </consentEvent>
                   </authorization>
                   <pertinentInformation>
@@ -548,7 +593,7 @@
                               <code code="91"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                     displayName="Roken tijdens de zwangerschap"/>
-                              <value xsi:type="BL" nullFlavor="2"/>
+                              <value xsi:type="BL" value="false"/>
                            </pregnancyObservations>
                         </component1>
                         <component1 typeCode="COMP">
@@ -556,7 +601,7 @@
                               <code code="92"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                     displayName="Alcohol gebruik tijdens de zwangerschap"/>
-                              <value xsi:type="BL" nullFlavor="2"/>
+                              <value xsi:type="BL" value="false"/>
                            </pregnancyObservations>
                         </component1>
                         <component1 typeCode="COMP">
@@ -564,7 +609,7 @@
                               <code code="93"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                     displayName="Drugsgebruik tijdens de zwangerschap"/>
-                              <value xsi:type="BL" nullFlavor="2"/>
+                              <value xsi:type="BL" value="false"/>
                            </pregnancyObservations>
                         </component1>
                         <component1 typeCode="COMP">
@@ -860,18 +905,18 @@
                   </component6>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="1" nullFlavor="UNC"/>
+                        <id extension="1" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="35"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Neonatale gehoorscreening"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20160928"/>
-                        <performer>
+                        <effectiveTime value="20120727"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -1010,18 +1055,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="2" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="2" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="02"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Huisbezoek 2 weken"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20161005"/>
-                        <performer>
+                        <effectiveTime value="20120802"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -1677,18 +1722,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="3" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="3" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="03"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 4 weken"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20161019"/>
-                        <performer>
+                        <effectiveTime value="20120823"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="5555555555" root=""/>
+                              <id extension="5555555555" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Graham</name>
+                                 <name>Graham</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -2618,18 +2663,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="4" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="4" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="04"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 8 weken"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20161116"/>
-                        <performer>
+                        <effectiveTime value="20120924"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -3187,18 +3232,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="5" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="5" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="05"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 3 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20161221"/>
-                        <performer>
+                        <effectiveTime value="20121023"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="5555555555" root=""/>
+                              <id extension="5555555555" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Graham</name>
+                                 <name>Graham</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -4437,18 +4482,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="6" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="6" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="06"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 4 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20170121"/>
-                        <performer>
+                        <effectiveTime value="20121123"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -4792,33 +4837,33 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="7" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="7" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="07"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 6 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20170321"/>
+                        <effectiveTime value="20130123"/>
                      </encounter>
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="8" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="8" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="23"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment op verzoek"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20170721"/>
+                        <effectiveTime value="20130130"/>
                         <reasonCode xsi:type="CV"
                                     code="10"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Psychosociale/emotionele ontwikkeling"/>
-                        <performer>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="5555555555" root=""/>
+                              <id extension="5555555555" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Graham</name>
+                                 <name>Graham</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -5071,18 +5116,18 @@
                   </component7>
                   <component7>
                      <encounter moodCode="EVN">
-                        <id extension="9" root="​2.16.840.1.113883.2.4.3.11.999.100.​2.2"/>
+                        <id extension="9" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
                         <code xsi:type="CV"
                               code="10"
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 11 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20170821"/>
-                        <performer>
+                        <effectiveTime value="20130624"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -5362,12 +5407,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 14 maanden"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20171121"/>
-                        <performer>
+                        <effectiveTime value="20130923"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="6666666666" root=""/>
+                              <id extension="6666666666" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Pietersen</name>
+                                 <name>Pietersen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -6587,12 +6632,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Groepsbijeenkomst (of groepsvoorlichting)"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20180321"/>
-                        <performer>
+                        <effectiveTime value="20131128"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="6666666666" root=""/>
+                              <id extension="6666666666" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Pieter</name>
+                                 <name>Pieter</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -6845,12 +6890,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 2 jaar"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20180921"/>
-                        <performer>
+                        <effectiveTime value="20140723"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="2222222222" root=""/>
+                              <id extension="2222222222" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">De Vries</name>
+                                 <name>De Vries</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -7004,7 +7049,7 @@
                                           <code code="1412"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                                 displayName="Datum opname ziekenhuis"/>
-                                          <value value="20140623"/>
+                                          <value xsi:type="TS" value="20140623"/>
                                        </observation>
                                     </component>
                                     <component>
@@ -7646,12 +7691,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 3 jaar"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20190921"/>
-                        <performer>
+                        <effectiveTime value="20150723"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="5555555555" root=""/>
+                              <id extension="5555555555" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Graham</name>
+                                 <name>Graham</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
@@ -8535,12 +8580,12 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contactmoment 3,9 jaar"/>
                         <statusCode xsi:type="CS" code="completed"/>
-                        <effectiveTime value="20200621"/>
-                        <performer>
+                        <effectiveTime value="20160323"/>
+                        <performer typeCode="PRF">
                            <assignedEntity classCode="ASSIGNED">
-                              <id extension="4444444444" root=""/>
+                              <id extension="4444444444" root="2.16.528.1.1007.5.1"/>
                               <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                 <name xsi:type="PN">Jansen</name>
+                                 <name>Jansen</name>
                               </assignedPerson>
                            </assignedEntity>
                         </performer>
