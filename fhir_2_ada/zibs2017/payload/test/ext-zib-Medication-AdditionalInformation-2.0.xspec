@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../ext-zib-Medication-AdditionalInformation-2.0.xsl">
+    
+    <x:scenario label="ext-zib-Medication-AdditionalInformation-2.0">
+        <x:context mode="ext-zib-Medication-AdditionalInformation-2.0">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+                <valueCodeableConcept>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"/>
+                        <code value="1"/>
+                        <display value="Bewust hoge dosering"/>
+                    </coding>
+                </valueCodeableConcept>
+            </extension>
+        </x:context>
+        <x:expect label="'aanvullende_informatie' element">
+            <aanvullende_informatie code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050" displayName="Bewust hoge dosering"/>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>

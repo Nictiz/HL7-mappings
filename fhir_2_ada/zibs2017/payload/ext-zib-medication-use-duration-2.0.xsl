@@ -5,7 +5,10 @@
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:template match="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']" mode="ext-zib-MedicationUse-Duration-2.0">
+    <!--Uncomment imports for standalone use and testing.-->
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
+    
+    <xsl:template match="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration']" mode="ext-zib-medication-use-duration-2.0">
         <xsl:call-template name="Duration-to-hoeveelheid">
             <xsl:with-param name="in" select="f:valueDuration"/>
             <xsl:with-param name="adaElementName">gebruiksperiode</xsl:with-param>
