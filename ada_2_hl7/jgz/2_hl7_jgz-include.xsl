@@ -534,9 +534,23 @@
                 </otherwise>
             </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="theNegation" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="self::toestemming_aan_verpleegkundige_om_te_vaccineren"><xsl:value-of select="self::toestemming_aan_verpleegkundige_om_te_vaccineren/@value = 'false'"/></xsl:when>
+                <xsl:when test="toestemming_overdracht_dossier_binnen_jgz"><xsl:value-of select="toestemming_overdracht_dossier_binnen_jgz/@value = 'false'"/></xsl:when>
+                <xsl:when test="bezwaar_overdracht_dossier_binnen_jgz"><xsl:value-of select="bezwaar_overdracht_dossier_binnen_jgz/@value = 'true'"/></xsl:when>
+                <xsl:when test="toestemming_aanmelding_lsp"><xsl:value-of select="toestemming_aanmelding_lsp/@value = 'false'"/></xsl:when>
+                <xsl:when test="toestemming_verstrekking_informatie_aan_derden"><xsl:value-of select="toestemming_verstrekking_informatie_aan_derden/@value = 'false'"/></xsl:when>
+                <xsl:when test="bezwaar_wetenschappelijk_onderzoek"><xsl:value-of select="bezwaar_wetenschappelijk_onderzoek/@value = 'true'"/></xsl:when>
+                <xsl:when test="toestemming_gegevensuitwisseling_rvp"><xsl:value-of select="toestemming_gegevensuitwisseling_rvp/@value = 'false'"/></xsl:when>
+                <otherwise>
+                    <xsl:message>Onbekend type uit Rubriek 10: <xsl:value-of select="local-name()"/>. Weet niet of dit nu toestemming of bezwaar is in template_2.16.840.1.113883.2.4.6.10.100.10010_20120801000000</xsl:message>
+                </otherwise>
+            </xsl:choose>
+        </xsl:variable>
         
         <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
-            <consentEvent classCode="CONS" moodCode="EVN" negationInd="{(@code, @value)[1]}">
+            <consentEvent classCode="CONS" moodCode="EVN" negationInd="{$theNegation}">
                 <code code="{$theCode}" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                     <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = $theCode][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
                 </code>
@@ -563,15 +577,47 @@
                             bron_toestemming_verstrekking_informatie_aan_derden[@code = '01'] |
                             bron_bezwaar_wetenschappelijk_onderzoek[@code = '01'] |
                             bron_toestemming_gegevensuitwisseling_rvp[@code = '01']">
-                            <patient1 classCode="PAT"/>
+                            <patient1 classCode="PAT">
+                                <xsl:if test="naam_bron_toestemming_gegevensuitwisseling_rvp[@value]">
+                                    <patientPerson>
+                                        <xsl:for-each select="naam_bron_toestemming_gegevensuitwisseling_rvp">
+                                            <xsl:call-template name="makeONValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">name</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </patientPerson>
+                                </xsl:if>
+                                <xsl:if test="jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
+                                    <providerOrganization>
+                                        <xsl:for-each select="jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp">
+                                            <xsl:call-template name="makeII.NL.URAValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp">
+                                            <xsl:call-template name="makeII.NL.AGBValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="jgzorganisatie_name_toestemming_gegevensuitwisseling_rvp">
+                                            <xsl:call-template name="makeONValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">name</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                    </providerOrganization>
+                                </xsl:if>
+                            </patient1>
                         </xsl:when>
                         <xsl:when test="
                             bron_toestemming_overdracht_dossier_binnen_jgz |
                             bron_bezwaar_overdracht_dossier_binnen_jgz |
                             bron_toestemming_aanmelding_lsp |
                             bron_toestemming_verstrekking_informatie_aan_derden |
-                            bron_bezwaar_wetenschappelijk_onderzoek |
-                            bron_toestemming_gegevensuitwisseling_rvp">
+                            bron_bezwaar_wetenschappelijk_onderzoek">
                             <personalRelationship classCode="PRS">
                                 <!-- Item(s) :: bron_toestemming_overdracht_dossier_binnen_jgz bron_bezwaar_overdracht_dossier_binnen_jgz bron_toestemming_aanmelding_lsp bron_toestemming_verstrekking_informatie_aan_derden bron_bezwaar_wetenschappelijk_onderzoek-->
                                 <xsl:for-each select="
@@ -587,6 +633,55 @@
                                 </xsl:for-each>
                                 <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
                             </personalRelationship>
+                        </xsl:when>
+                        <xsl:when test="bron_toestemming_gegevensuitwisseling_rvp">
+                            <responsibleParty classCode="CON">
+                                <!-- Item(s) :: bron_toestemming_gegevensuitwisseling_rvp-->
+                                <xsl:for-each select="bron_toestemming_gegevensuitwisseling_rvp">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <xsl:choose>
+                                    <xsl:when test="naam_bron_toestemming_gegevensuitwisseling_rvp[@value] | jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
+                                        <xsl:if test="naam_bron_toestemming_gegevensuitwisseling_rvp[@value]">
+                                            <agentPerson>
+                                                <xsl:for-each select="naam_bron_toestemming_gegevensuitwisseling_rvp">
+                                                    <xsl:call-template name="makeONValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">name</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                            </agentPerson>
+                                        </xsl:if>
+                                        <xsl:if test="jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
+                                            <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                                <xsl:for-each select="jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp">
+                                                    <xsl:call-template name="makeII.NL.URAValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">id</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                                <xsl:for-each select="jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp">
+                                                    <xsl:call-template name="makeII.NL.AGBValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">id</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                                <xsl:for-each select="jgzorganisatie_name_toestemming_gegevensuitwisseling_rvp">
+                                                    <xsl:call-template name="makeONValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">name</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                            </representedOrganization>
+                                        </xsl:if>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </responsibleParty>
                         </xsl:when>
                         <xsl:when test="self::toestemming_aan_verpleegkundige_om_te_vaccineren">
                             <assignedEntity1 classCode="ASSIGNED">
@@ -636,6 +731,16 @@
                         </annotation>
                     </subjectOf>
                 </xsl:for-each>
+                <xsl:if test="toestemmingswijze_gegevensuitwisseling_rvp | naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp">
+                    <subjectOf typeCode="SUBJ">
+                        <annotation>
+                            <code code="1537-1541" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toestemmingswijze mondeling + Naam JGZ-medewerker"/>
+                            <text>
+                                <xsl:value-of select="concat(toestemmingswijze_gegevensuitwisseling_rvp/@code, '|', normalize-space(toestemmingswijze_gegevensuitwisseling_rvp/@originalText), '|', naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp/@value)"/>
+                            </text>
+                        </annotation>
+                    </subjectOf>
+                </xsl:if>
             </consentEvent>
         </authorization>
     </xsl:template>
@@ -723,7 +828,7 @@
                         <xsl:when test="afschrift_jgzdossier_verstrekt_aan[@code = '01']">
                             <patient classCode="PAT"/>
                         </xsl:when>
-                        <xsl:when test="afschrift_jgzdossier_verstrekt_aan[not(@code = '01')]">
+                        <xsl:when test="afschrift_jgzdossier_verstrekt_aan">
                             <personalRelationship classCode="PRS">
                                 <!-- Item(s) :: afschrift_jgzdossier_verstrekt_aan-->
                                 <xsl:for-each select="afschrift_jgzdossier_verstrekt_aan">
@@ -754,78 +859,11 @@
                     <xsl:otherwise>encounter</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:variable name="activiteitDate" as="xs:string">
-                <xsl:choose>
-                    <xsl:when test="$activiteitType = '35'">
-                        <xsl:value-of select="$gContactNeotaal"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '02'">
-                        <xsl:value-of select="$gContact2Weken"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '03'">
-                        <xsl:value-of select="$gContact4Weken"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '04'">
-                        <xsl:value-of select="$gContact8Weken"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '05'">
-                        <xsl:value-of select="$gContact3Maanden"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '06'">
-                        <xsl:value-of select="$gContact4Maanden"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '07'">
-                        <xsl:value-of select="$gContact6Maanden"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '08'">
-                        <xsl:value-of select="$gContact7.5Maanden"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '09'">
-                        <xsl:value-of select="$gContact9Maanden"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '10'">
-                        <xsl:value-of select="$gContact11Maanden"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '11'">
-                        <xsl:value-of select="$gContact14Maanden"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '12'">
-                        <xsl:value-of select="$gContact18Maanden"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '13'">
-                        <xsl:value-of select="$gContact2Jaar"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '14'">
-                        <xsl:value-of select="$gContact3Jaar"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '15'">
-                        <xsl:value-of select="$gContact3.9Jaar"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '16'">
-                        <xsl:value-of select="$gContactGroep2"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '17'">
-                        <xsl:value-of select="$gContactGroep7"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '19'">
-                        <xsl:value-of select="$gContactKlas2"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '23'">
-                        <xsl:value-of select="$gContactOpVerzoek"/>
-                    </xsl:when>
-                    <xsl:when test="$activiteitType = '26'">
-                        <xsl:value-of select="$gContactGroepsbijeenkomst"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:message>Onbekend activiteitype gevonden: <xsl:value-of select="$activiteitType"/></xsl:message>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
             <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v02/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
             <component7 xmlns="urn:hl7-org:v3">
                 <xsl:element name="{$activiteitElement}">
                     <xsl:choose>
-                        <xsl:when test="$activiteitElement = 'encounter' and not($activiteitStatus = 'completed')">
+                        <xsl:when test="$activiteitElement = 'encounter' and (not($activiteitStatus = 'completed') or toelichting_niet_verschenen)">
                             <xsl:attribute name="moodCode">INT</xsl:attribute>
                         </xsl:when>
                         <xsl:otherwise>
@@ -849,7 +887,12 @@
                             <xsl:with-param name="elemName">statusCode</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    <effectiveTime value="{$activiteitDate}"/>
+                    <!-- Item(s) :: datum_activiteit-->
+                    <xsl:for-each select="datum_activiteit">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
                     <!-- Item(s) :: indicatie_activiteit-->
                     <xsl:for-each select="indicatie_activiteit">
                         <xsl:call-template name="makeCVValue">
@@ -858,25 +901,7 @@
                     </xsl:for-each>
                     <!-- Item(s) :: uitvoerende_activiteit -->
                     <xsl:if test="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb | uitvoerende_activiteit_naam">
-                        <performer>
-                            <assignedEntity classCode="ASSIGNED">
-                                <xsl:for-each select="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb">
-                                    <id extension="{@value}" root="{@root}"/>
-                                </xsl:for-each>
-                                <xsl:if test="not(uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb)">
-                                    <id nullFlavor="NI"/>
-                                </xsl:if>
-                                <xsl:if test="uitvoerende_activiteit_naam">
-                                    <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                        <xsl:for-each select="uitvoerende_activiteit_naam">
-                                            <xsl:call-template name="makePNValue">
-                                                <xsl:with-param name="elemName">name</xsl:with-param>
-                                            </xsl:call-template>
-                                        </xsl:for-each>
-                                    </assignedPerson>
-                                </xsl:if>
-                            </assignedEntity>
-                        </performer>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000"/>
                     </xsl:if>
                     <xsl:for-each select="verzoeker_activiteit[not($activiteitStatus = 'completed')]">
                         <author typeCode="AUT">
@@ -1043,7 +1068,7 @@
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000"/>
                                 </pertinentInformation>
                             </xsl:when>
-                            <xsl:when test="self::r030_psychosociale_en_cognitieve_ontwikkeling">
+                            <xsl:when test="self::r030_psychosociaal_en_cognitief_functioneren">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000"/>
@@ -1103,7 +1128,7 @@
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000"/>
                                 </pertinentInformation>
                             </xsl:when>
-                            <xsl:when test="self::r045_sdq_712">
+                            <xsl:when test="self::r045_sdq">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000"/>
@@ -1119,27 +1144,45 @@
                     </xsl:for-each>
                     <!-- Element component3/A_Rijksvaccinatie -->
                     <xsl:for-each select="$activiteitActies[self::r041_rijksvaccinatieprogramma_en_andere_vaccinaties]/groep_g076_vaccinatie">
-                        <xsl:comment> Template :: A_Rijksvaccinatie [universal] </xsl:comment>
+                        <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                         <component3>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
                         </component3>
                     </xsl:for-each>
                     <!-- Element component4/A_HeelPrick -->
                     <xsl:for-each select="$activiteitActies[self::r037_hielprik_pasgeborene]">
-                        <xsl:comment> Template :: A_HeelPrick [universal] </xsl:comment>
+                        <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                         <component4>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000"/>
                         </component4>
                     </xsl:for-each>
                     <!-- Element component5/Advice -->
                     <xsl:for-each select="$activiteitActies[self::r036_voorlichting_advies_instructie_en_begeleiding]/groep_g042_voorlichting">
-                        <xsl:comment> Template :: Activities component5 Advice </xsl:comment>
+                        <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                         <component5>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000"/>
                         </component5>
                     </xsl:for-each>
-                    <xsl:for-each select="self::r047_conclusies_en_vervolgstappen">
-                        <xsl:comment> Template :: Activities component5 Advice </xsl:comment>
+                    <!-- Element subjectOf/abortedEvent -->
+                    <xsl:if test="toelichting_niet_verschenen">
+                        <subjectOf typeCode="SUBJ" xmlns="urn:hl7-org:v3">
+                            <abortedEvent classCode="STC" moodCode="EVN">
+                                <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '495'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
+                                <!-- Item(s) :: toelichting_niet_verschenen-->
+                                <xsl:for-each select="toelichting_niet_verschenen">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">reasonCode</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </abortedEvent>
+                        </subjectOf>
+                    </xsl:if>
+                    <!-- Element subjectOf/conclusion -->
+                    <xsl:for-each select="self::r047_conclusies_en_vervolgstappen/groep_g042_voorlichting">
+                        <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                         <subjectOf1>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
                         </subjectOf1>
@@ -1282,428 +1325,10 @@
                         <xsl:with-param name="elemName">reasonCode</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <performer typeCode="PRF">
-                    <assignedEntity classCode="ASSIGNED">
-                        <!-- Item(s) :: uitvoerende_activiteit_id-->
-                        <xsl:for-each select="uitvoerende_activiteit_id">
-                            <xsl:call-template name="makeII.NL.UZIValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">id</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                            <!-- Item(s) :: uitvoerende_activiteit_naam-->
-                            <xsl:for-each select="uitvoerende_activiteit_naam">
-                                <xsl:call-template name="makePNValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">name</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </assignedPerson>
-                    </assignedEntity>
-                </performer>
-                <consultant typeCode="CON">
-                    <assignedEntity classCode="ASSIGNED">
-                        <code nullFlavor="OTH">
-                            <!-- Item(s) :: contact_met-->
-                            <xsl:for-each select="contact_met">
-                                <xsl:call-template name="makeSTValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">originalText</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </code>
-                    </assignedEntity>
-                </consultant>
-                        <!-- Item(s) :: begeleider-->
-                <xsl:for-each select="begeleider">
-                    <escort typeCode="ESC">
-                        <responsibleParty classCode="ASSIGNED">
-                            <xsl:call-template name="makeCVValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">code</xsl:with-param>
-                            </xsl:call-template>
-                            <agentPerson nullFlavor="NI"/>
-                        </responsibleParty>
-                    </escort>
-                </xsl:for-each>
-                <xsl:if test="verzoeker_activiteit">
-                    <inFulfillmentOf typeCode="FLFS">
-                        <encounter classCode="ENC" moodCode="INT">
-                            <!-- Item(s) :: soort_activiteit-->
-                            <xsl:for-each select="soort_activiteit">
-                                <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">code</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <!-- Item(s) :: status_activiteit-->
-                            <xsl:for-each select="status_activiteit">
-                                <xsl:call-template name="makeCSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <xsl:for-each select="verzoeker_activiteit">
-                                <author typeCode="AUT">
-                                    <xsl:choose>
-                                        <xsl:when test="@code = '03'">
-                                            <patient classCode="PAT"/>
-                                        </xsl:when>
-                                        <xsl:when test="@code = '02'">
-                                            <personalRelationship classCode="PRS">
-                                                <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                                                <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                            </personalRelationship>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <assignedEntity1 classCode="ASSIGNED">
-                                                <xsl:call-template name="makeCVValue">
-                                                    <xsl:with-param name="xsiType" select="''"/>
-                                                    <xsl:with-param name="elemName">code</xsl:with-param>
-                                                </xsl:call-template>
-                                            </assignedEntity1>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </author>
-                            </xsl:for-each>
-                        </encounter>
-                    </inFulfillmentOf>
+                <!-- performer -->
+                <xsl:if test="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb | uitvoerende_activiteit_naam">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000"/>
                 </xsl:if>
-                <xsl:if test="r012_erfelijke_belasting_en_ouderkenmerken">
-                    <xsl:for-each select="r012_erfelijke_belasting_en_ouderkenmerken">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 12 Erfelijke belasting en ouderkenmerken -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r013_bedreigingen_uit_de_directe_omgeving">
-                    <xsl:for-each select="r013_bedreigingen_uit_de_directe_omgeving">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 13 Bedreigingen uit de directe omgeving -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r052_meldingen">
-                    <xsl:for-each select="r052_meldingen">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 52 Meldingen -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r019_terugkerende_anamnese">
-                    <xsl:for-each select="r019_terugkerende_anamnese">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 19 Terugkerende anamnese -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r020_algemene_indruk">
-                    <xsl:for-each select="r020_algemene_indruk">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 20 Algemene indruk -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r021_functioneren">
-                    <xsl:for-each select="r021_functioneren">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 21 Functioneren -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r022_huidhaarnagels">
-                    <xsl:for-each select="r022_huidhaarnagels">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 22 Huid/haar/nagels -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r023_hoofdhals">
-                    <xsl:for-each select="r023_hoofdhals">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 23 Hoofd/hals -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r024_romp">
-                    <xsl:for-each select="r024_romp">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 24 Romp -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r025_bewegingsapparaat">
-                    <xsl:for-each select="r025_bewegingsapparaat">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 25 Bewegingsapparaat -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r026_genitaliapuberteitsontwikkeling">
-                    <xsl:for-each select="r026_genitaliapuberteitsontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 26 Genitalia/puberteitsontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r027_groei">
-                    <xsl:for-each select="r027_groei">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 27 Groei -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r030_psychosociale_en_cognitieve_ontwikkeling">
-                    <xsl:for-each select="r030_psychosociale_en_cognitieve_ontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 30 Psychosociale en cognitieve ontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r031_neuromotorische_ontwikkeling">
-                    <xsl:for-each select="r031_neuromotorische_ontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 31 (Neuro)motorische ontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r032_spraak_en_taalontwikkeling">
-                    <xsl:for-each select="r032_spraak_en_taalontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 32 Spraak- en taalontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r034_inschatten_verhouding_draaglastdraagkracht">
-                    <xsl:for-each select="r034_inschatten_verhouding_draaglastdraagkracht">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 34 Inschatten verhouding draaglast-draagkracht -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r038_visus_en_oogonderzoek">
-                    <xsl:for-each select="r038_visus_en_oogonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 38 Visus- en oogonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r039_hartonderzoek">
-                    <xsl:for-each select="r039_hartonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 39 Hartonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r040_gehooronderzoek">
-                    <xsl:for-each select="r040_gehooronderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 40 Gehooronderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r042_van_wiechen_ontwikkelingsonderzoek">
-                    <xsl:for-each select="r042_van_wiechen_ontwikkelingsonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 42 Van Wiechen ontwikkelingsonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r043_bfmt">
-                    <xsl:for-each select="r043_bfmt">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 43 BFMT -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r054_screening_psychosociale_problemen">
-                    <xsl:for-each select="r054_screening_psychosociale_problemen">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 54 Screening psychosociale problemen -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r045_sdq_712">
-                    <xsl:for-each select="r045_sdq_712">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 45 SDQ 7-12 -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r049_screening_logopedie">
-                    <xsl:for-each select="r049_screening_logopedie">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 49 Screening logopedie -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                    <component1 typeCode="COMP">
-                        <!-- Template :: Activities component1 NonBDSData -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
-                    </component1>
-                </xsl:for-each>
-                <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                    <component2 typeCode="COMP">
-                        <!-- Template :: Activities component2 MetaData -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
-                    </component2>
-                </xsl:for-each>
-                <xsl:for-each select="groep_g076_vaccinatie">
-                    <component3 typeCode="COMP">
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
-                    </component3>
-                </xsl:for-each>
-                <xsl:for-each select="r037_hielprik_pasgeborene">
-                    <component4 typeCode="COMP">
-                        <!-- Template :: A_HeelPrick [universal] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000"/>
-                    </component4>
-                </xsl:for-each>
-                <xsl:for-each select="r036_voorlichting_advies_instructie_en_begeleiding/groep_g042_voorlichting">
-                    <component5 typeCode="COMP">
-                        <!-- Template :: Activities component5 Advice -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000"/>
-                    </component5>
-                </xsl:for-each>
-                <subjectOf typeCode="SUBJ">
-                    <abortedEvent classCode="STC" moodCode="EVN">
-                        <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '495'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-                        </code>
-                        <!-- Item(s) :: toelichting_niet_verschenen-->
-                        <xsl:for-each select="toelichting_niet_verschenen">
-                            <xsl:call-template name="makeCVValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                    </abortedEvent>
-                </subjectOf>
-                <xsl:for-each select="r047_conclusies_en_vervolgstappen">
-                    <subjectOf1 typeCode="SUBJ">
-                        <!-- Template :: Activities subjectOf1 Conclusie -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
-                    </subjectOf1>
-                </xsl:for-each>
-                <subjectOf2 typeCode="SUBJ">
-                    <annotation>
-                        <code/>
-                        <text/>
-                    </annotation>
-                </subjectOf2>
-            </encounter>
-        </xsl:for-each>
-    </xsl:template>
-    
-    <!-- Activiteit Contactmomentafspraak -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10021_20120801000000">
-        <xsl:for-each select="r018_activiteit">
-            <encounter xmlns="urn:hl7-org:v3" classCode="ENC" moodCode="INT">
-                <!-- Item(s) :: activiteit_id-->
-                <xsl:for-each select="activiteit_id">
-                    <xsl:call-template name="makeIIValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">id</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: soort_activiteit-->
-                <xsl:for-each select="soort_activiteit">
-                    <xsl:call-template name="makeCVValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">code</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: status_activiteit-->
-                <xsl:for-each select="status_activiteit">
-                    <xsl:call-template name="makeCSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: datum_activiteit-->
-                <xsl:for-each select="datum_activiteit">
-                    <xsl:call-template name="makeTSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: indicatie_activiteit-->
-                <xsl:for-each select="indicatie_activiteit">
-                    <xsl:call-template name="makeCVValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <performer typeCode="PRF">
-                    <assignedEntity classCode="ASSIGNED">
-                        <!-- Item(s) :: uitvoerende_activiteit_id-->
-                        <xsl:for-each select="uitvoerende_activiteit_id">
-                            <xsl:call-template name="makeII.NL.UZIValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">id</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                            <!-- Item(s) :: uitvoerende_activiteit_naam-->
-                            <xsl:for-each select="uitvoerende_activiteit_naam">
-                                <xsl:call-template name="makePNValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">name</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </assignedPerson>
-                    </assignedEntity>
-                </performer>
-                <xsl:for-each select="verzoeker_activiteit">
-                    <author typeCode="AUT">
-                        <xsl:choose>
-                            <xsl:when test="@code = '03'">
-                                <patient classCode="PAT"/>
-                            </xsl:when>
-                            <xsl:when test="@code = '02'">
-                                <personalRelationship classCode="PRS">
-                                    <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                </personalRelationship>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <assignedEntity1 classCode="ASSIGNED">
-                                    <xsl:call-template name="makeCVValue">
-                                        <xsl:with-param name="xsiType" select="''"/>
-                                        <xsl:with-param name="elemName">code</xsl:with-param>
-                                    </xsl:call-template>
-                                </assignedEntity1>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </author>
-                </xsl:for-each>
                 <consultant typeCode="CON">
                     <assignedEntity classCode="ASSIGNED">
                         <code nullFlavor="OTH">
@@ -1772,324 +1397,189 @@
                         </encounter>
                     </inFulfillmentOf>
                 </xsl:if>
-                <xsl:if test="r012_erfelijke_belasting_en_ouderkenmerken">
-                    <xsl:for-each select="r012_erfelijke_belasting_en_ouderkenmerken">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 12 Erfelijke belasting en ouderkenmerken -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r013_bedreigingen_uit_de_directe_omgeving">
-                    <xsl:for-each select="r013_bedreigingen_uit_de_directe_omgeving">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 13 Bedreigingen uit de directe omgeving -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r052_meldingen">
-                    <xsl:for-each select="r052_meldingen">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 52 Meldingen -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r019_terugkerende_anamnese">
-                    <xsl:for-each select="r019_terugkerende_anamnese">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 19 Terugkerende anamnese -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r020_algemene_indruk">
-                    <xsl:for-each select="r020_algemene_indruk">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 20 Algemene indruk -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r021_functioneren">
-                    <xsl:for-each select="r021_functioneren">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 21 Functioneren -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r022_huidhaarnagels">
-                    <xsl:for-each select="r022_huidhaarnagels">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 22 Huid/haar/nagels -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r023_hoofdhals">
-                    <xsl:for-each select="r023_hoofdhals">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 23 Hoofd/hals -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r024_romp">
-                    <xsl:for-each select="r024_romp">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 24 Romp -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r025_bewegingsapparaat">
-                    <xsl:for-each select="r025_bewegingsapparaat">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 25 Bewegingsapparaat -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r026_genitaliapuberteitsontwikkeling">
-                    <xsl:for-each select="r026_genitaliapuberteitsontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 26 Genitalia/puberteitsontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r027_groei">
-                    <xsl:for-each select="r027_groei">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 27 Groei -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r030_psychosociale_en_cognitieve_ontwikkeling">
-                    <xsl:for-each select="r030_psychosociale_en_cognitieve_ontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 30 Psychosociale en cognitieve ontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r031_neuromotorische_ontwikkeling">
-                    <xsl:for-each select="r031_neuromotorische_ontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 31 (Neuro)motorische ontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r032_spraak_en_taalontwikkeling">
-                    <xsl:for-each select="r032_spraak_en_taalontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 32 Spraak- en taalontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r034_inschatten_verhouding_draaglastdraagkracht">
-                    <xsl:for-each select="r034_inschatten_verhouding_draaglastdraagkracht">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 34 Inschatten verhouding draaglast-draagkracht -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r038_visus_en_oogonderzoek">
-                    <xsl:for-each select="r038_visus_en_oogonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 38 Visus- en oogonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r039_hartonderzoek">
-                    <xsl:for-each select="r039_hartonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 39 Hartonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r040_gehooronderzoek">
-                    <xsl:for-each select="r040_gehooronderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 40 Gehooronderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r042_van_wiechen_ontwikkelingsonderzoek">
-                    <xsl:for-each select="r042_van_wiechen_ontwikkelingsonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 42 Van Wiechen ontwikkelingsonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r043_bfmt">
-                    <xsl:for-each select="r043_bfmt">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 43 BFMT -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r054_screening_psychosociale_problemen">
-                    <xsl:for-each select="r054_screening_psychosociale_problemen">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 54 Screening psychosociale problemen -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r045_sdq_712">
-                    <xsl:for-each select="r045_sdq_712">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 45 SDQ 7-12 -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r049_screening_logopedie">
-                    <xsl:for-each select="r049_screening_logopedie">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 49 Screening logopedie -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                    <component1 typeCode="COMP">
-                        <!-- Template :: Activities component1 NonBDSData -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
-                    </component1>
+                <!-- Rubrieken, subjectOf1, component3, component4 -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20120801000000"/>
+            </encounter>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <!-- Activiteit Contactmomentafspraak -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10021_20120801000000">
+        <xsl:for-each select="r018_activiteit">
+            <encounter xmlns="urn:hl7-org:v3" classCode="ENC" moodCode="INT">
+                <!-- Item(s) :: activiteit_id-->
+                <xsl:for-each select="activiteit_id">
+                    <xsl:call-template name="makeIIValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">id</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                    <component2 typeCode="COMP">
-                        <!-- Template :: Activities component2 MetaData -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
-                    </component2>
+                <!-- Item(s) :: soort_activiteit-->
+                <xsl:for-each select="soort_activiteit">
+                    <xsl:call-template name="makeCVValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">code</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="groep_g076_vaccinatie">
-                    <component3 typeCode="COMP">
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
-                    </component3>
+                <!-- Item(s) :: status_activiteit-->
+                <xsl:for-each select="status_activiteit">
+                    <xsl:call-template name="makeCSValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="r037_hielprik_pasgeborene">
-                    <component4 typeCode="COMP">
-                        <!-- Template :: A_HeelPrick [universal] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000"/>
-                    </component4>
+                <!-- Item(s) :: datum_activiteit-->
+                <xsl:for-each select="datum_activiteit">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
-                <xsl:for-each select="r036_voorlichting_advies_instructie_en_begeleiding/groep_g042_voorlichting">
-                    <component5 typeCode="COMP">
-                        <!-- Template :: Activities component5 Advice -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000"/>
-                    </component5>
+                <!-- Item(s) :: indicatie_activiteit-->
+                <xsl:for-each select="indicatie_activiteit">
+                    <xsl:call-template name="makeCVValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">reasonCode</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
-                <subjectOf typeCode="SUBJ">
-                    <abortedEvent classCode="STC" moodCode="EVN">
-                        <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '495'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-                        </code>
-                        <!-- Item(s) :: toelichting_niet_verschenen-->
-                        <xsl:for-each select="toelichting_niet_verschenen">
-                            <xsl:call-template name="makeCVValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                    </abortedEvent>
-                </subjectOf>
-                <xsl:for-each select="r047_conclusies_en_vervolgstappen">
-                    <subjectOf1 typeCode="SUBJ">
-                        <!-- Template :: Activities subjectOf1 Conclusie -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
-                    </subjectOf1>
+                <!-- performer -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000"/>
+                <xsl:for-each select="verzoeker_activiteit">
+                    <author typeCode="AUT">
+                        <xsl:choose>
+                            <xsl:when test="@code = '03'">
+                                <patient classCode="PAT"/>
+                            </xsl:when>
+                            <xsl:when test="@code = '02'">
+                                <personalRelationship classCode="PRS">
+                                    <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
+                                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                                </personalRelationship>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <assignedEntity1 classCode="ASSIGNED">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                </assignedEntity1>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </author>
                 </xsl:for-each>
-                <subjectOf2 typeCode="SUBJ">
-                    <annotation>
-                        <code/>
-                        <text/>
-                    </annotation>
-                </subjectOf2>
+                <!-- Item(s) :: contact met -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10024_20120801000000"/>
+                <!-- Item(s) :: begeleider-->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10025_20120801000000"/>
+                <xsl:if test="verzoeker_activiteit">
+                    <inFulfillmentOf typeCode="FLFS">
+                        <encounter classCode="ENC" moodCode="INT">
+                            <!-- Item(s) :: soort_activiteit-->
+                            <xsl:for-each select="soort_activiteit">
+                                <xsl:call-template name="makeCVValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">code</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: status_activiteit-->
+                            <xsl:for-each select="status_activiteit">
+                                <xsl:call-template name="makeCSValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">statusCode</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <xsl:for-each select="verzoeker_activiteit">
+                                <author typeCode="AUT">
+                                    <xsl:choose>
+                                        <xsl:when test="@code = '03'">
+                                            <patient classCode="PAT"/>
+                                        </xsl:when>
+                                        <xsl:when test="@code = '02'">
+                                            <personalRelationship classCode="PRS">
+                                                <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
+                                                <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                                            </personalRelationship>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <assignedEntity1 classCode="ASSIGNED">
+                                                <xsl:call-template name="makeCVValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">code</xsl:with-param>
+                                                </xsl:call-template>
+                                            </assignedEntity1>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </author>
+                            </xsl:for-each>
+                        </encounter>
+                    </inFulfillmentOf>
+                </xsl:if>
+                <!-- Rubrieken, subjectOf1, component3, component4 -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20120801000000"/>
             </encounter>
         </xsl:for-each>
     </xsl:template>
     
     <!-- Activities performer (uitvoerende persoon) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000">
-        <performer xmlns="urn:hl7-org:v3" typeCode="PRF">
-            <assignedEntity classCode="ASSIGNED">
-                <!-- Item(s) :: uitvoerende_activiteit_id-->
-                <xsl:for-each select="uitvoerende_activiteit_id">
-                    <xsl:call-template name="makeII.NL.UZIValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">id</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                    <!-- Item(s) :: uitvoerende_activiteit_naam-->
-                    <xsl:for-each select="uitvoerende_activiteit_naam">
-                        <xsl:call-template name="makePNValue">
+        <xsl:if test="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb | uitvoerende_activiteit_naam">
+            <performer xmlns="urn:hl7-org:v3" typeCode="PRF">
+                <assignedEntity classCode="ASSIGNED">
+                    <!-- Item(s) :: uitvoerende_activiteit_uzi-->
+                    <xsl:for-each select="uitvoerende_activiteit_uzi">
+                        <xsl:call-template name="makeII.NL.UZIValue">
                             <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">name</xsl:with-param>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                </assignedPerson>
-            </assignedEntity>
-        </performer>
-    </xsl:template>
-    
-    <!-- Activities encounterINT author (Verzoeker activiteit) -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10023_20120801000000">
-        <xsl:for-each select="verzoeker_activiteit">
-            <author xmlns="urn:hl7-org:v3" typeCode="AUT">
-                <xsl:choose>
-                    <xsl:when test="@code = '03'">
-                        <patient classCode="PAT"/>
-                    </xsl:when>
-                    <xsl:when test="@code = '02'">
-                        <personalRelationship classCode="PRS">
-                            <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                            <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                        </personalRelationship>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <assignedEntity1 classCode="ASSIGNED">
-                            <xsl:call-template name="makeCVValue">
+                    <!-- Item(s) :: uitvoerende_activiteit_big-->
+                    <xsl:for-each select="uitvoerende_activiteit_big">
+                        <xsl:call-template name="makeII.NL.BIGValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <!-- Item(s) :: uitvoerende_activiteit_agb-->
+                    <xsl:for-each select="uitvoerende_activiteit_agb">
+                        <xsl:call-template name="makeII.NL.AGBValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:if test="not(uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb)">
+                        <id nullFlavor="NI"/>
+                    </xsl:if>
+                    <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                        <!-- Item(s) :: uitvoerende_activiteit_naam-->
+                        <xsl:for-each select="uitvoerende_activiteit_naam">
+                            <xsl:call-template name="makePNValue">
                                 <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">code</xsl:with-param>
+                                <xsl:with-param name="elemName">name</xsl:with-param>
                             </xsl:call-template>
-                        </assignedEntity1>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </author>
-        </xsl:for-each>
+                        </xsl:for-each>
+                    </assignedPerson>
+                </assignedEntity>
+            </performer>
+        </xsl:if>
     </xsl:template>
     
     <!-- Activities consultant (contact met) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10024_20120801000000">
-        <consultant xmlns="urn:hl7-org:v3" typeCode="CON">
-            <assignedEntity classCode="ASSIGNED">
-                <code nullFlavor="OTH">
-                    <!-- Item(s) :: contact_met-->
-                    <xsl:for-each select="contact_met">
-                        <xsl:call-template name="makeSTValue">
-                            <xsl:with-param name="xsiType" select="''"/>
-                            <xsl:with-param name="elemName">originalText</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                </code>
-            </assignedEntity>
-        </consultant>
+        <xsl:if test="contact_met">
+            <consultant xmlns="urn:hl7-org:v3" typeCode="CON">
+                <assignedEntity classCode="ASSIGNED">
+                    <code nullFlavor="OTH">
+                        <!-- Item(s) :: contact_met-->
+                        <xsl:for-each select="contact_met">
+                            <xsl:call-template name="makeSTValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">originalText</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </code>
+                </assignedEntity>
+            </consultant>
+        </xsl:if>
     </xsl:template>
     
     <!-- Activities escort (begeleider) -->
@@ -2105,626 +1595,6 @@
                     <agentPerson nullFlavor="NI"/>
                 </responsibleParty>
             </escort>
-        </xsl:for-each>
-    </xsl:template>
-    
-    <!-- Activiteit NonEncounterCareActivity (activiteit zonder contact) -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10026_20120801000000">
-        <xsl:for-each select="r018_activiteit">
-            <nonEncounterCareActivity xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="EVN">
-                <!-- Item(s) :: activiteit_id activiteit_id-->
-                <xsl:for-each select="activiteit_id | activiteit_id">
-                    <xsl:call-template name="makeIIValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">id</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: soort_activiteit-->
-                <xsl:for-each select="soort_activiteit">
-                    <xsl:call-template name="makeCVValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">code</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: status_activiteit-->
-                <xsl:for-each select="status_activiteit">
-                    <xsl:call-template name="makeCSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: datum_activiteit-->
-                <xsl:for-each select="datum_activiteit">
-                    <xsl:call-template name="makeTSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: indicatie_activiteit-->
-                <xsl:for-each select="indicatie_activiteit">
-                    <xsl:call-template name="makeCVValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <performer typeCode="PRF">
-                    <assignedEntity classCode="ASSIGNED">
-                        <!-- Item(s) :: uitvoerende_activiteit_id-->
-                        <xsl:for-each select="uitvoerende_activiteit_id">
-                            <xsl:call-template name="makeII.NL.UZIValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">id</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                            <!-- Item(s) :: uitvoerende_activiteit_naam-->
-                            <xsl:for-each select="uitvoerende_activiteit_naam">
-                                <xsl:call-template name="makePNValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">name</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </assignedPerson>
-                    </assignedEntity>
-                </performer>
-                <consultant typeCode="CON">
-                    <assignedEntity classCode="ASSIGNED">
-                        <code nullFlavor="OTH">
-                            <!-- Item(s) :: contact_met-->
-                            <xsl:for-each select="contact_met">
-                                <xsl:call-template name="makeSTValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">originalText</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </code>
-                    </assignedEntity>
-                </consultant>
-                <xsl:if test="r012_erfelijke_belasting_en_ouderkenmerken">
-                    <xsl:for-each select="r012_erfelijke_belasting_en_ouderkenmerken">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 12 Erfelijke belasting en ouderkenmerken -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r013_bedreigingen_uit_de_directe_omgeving">
-                    <xsl:for-each select="r013_bedreigingen_uit_de_directe_omgeving">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 13 Bedreigingen uit de directe omgeving -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r052_meldingen">
-                    <xsl:for-each select="r052_meldingen">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 52 Meldingen -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r019_terugkerende_anamnese">
-                    <xsl:for-each select="r019_terugkerende_anamnese">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 19 Terugkerende anamnese -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r020_algemene_indruk">
-                    <xsl:for-each select="r020_algemene_indruk">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 20 Algemene indruk -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r021_functioneren">
-                    <xsl:for-each select="r021_functioneren">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 21 Functioneren -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r022_huidhaarnagels">
-                    <xsl:for-each select="r022_huidhaarnagels">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 22 Huid/haar/nagels -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r023_hoofdhals">
-                    <xsl:for-each select="r023_hoofdhals">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 23 Hoofd/hals -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r024_romp">
-                    <xsl:for-each select="r024_romp">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 24 Romp -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r025_bewegingsapparaat">
-                    <xsl:for-each select="r025_bewegingsapparaat">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 25 Bewegingsapparaat -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r026_genitaliapuberteitsontwikkeling">
-                    <xsl:for-each select="r026_genitaliapuberteitsontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 26 Genitalia/puberteitsontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r027_groei">
-                    <xsl:for-each select="r027_groei">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 27 Groei -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r030_psychosociale_en_cognitieve_ontwikkeling">
-                    <xsl:for-each select="r030_psychosociale_en_cognitieve_ontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 30 Psychosociale en cognitieve ontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r031_neuromotorische_ontwikkeling">
-                    <xsl:for-each select="r031_neuromotorische_ontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 31 (Neuro)motorische ontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r032_spraak_en_taalontwikkeling">
-                    <xsl:for-each select="r032_spraak_en_taalontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 32 Spraak- en taalontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r034_inschatten_verhouding_draaglastdraagkracht">
-                    <xsl:for-each select="r034_inschatten_verhouding_draaglastdraagkracht">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 34 Inschatten verhouding draaglast-draagkracht -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r038_visus_en_oogonderzoek">
-                    <xsl:for-each select="r038_visus_en_oogonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 38 Visus- en oogonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r039_hartonderzoek">
-                    <xsl:for-each select="r039_hartonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 39 Hartonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r040_gehooronderzoek">
-                    <xsl:for-each select="r040_gehooronderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 40 Gehooronderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r042_van_wiechen_ontwikkelingsonderzoek">
-                    <xsl:for-each select="r042_van_wiechen_ontwikkelingsonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 42 Van Wiechen ontwikkelingsonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r043_bfmt">
-                    <xsl:for-each select="r043_bfmt">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 43 BFMT -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r054_screening_psychosociale_problemen">
-                    <xsl:for-each select="r054_screening_psychosociale_problemen">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 54 Screening psychosociale problemen -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r045_sdq_712">
-                    <xsl:for-each select="r045_sdq_712">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 45 SDQ 7-12 -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r049_screening_logopedie">
-                    <xsl:for-each select="r049_screening_logopedie">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 49 Screening logopedie -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                    <component1 typeCode="COMP">
-                        <!-- Template :: Activities component1 NonBDSData -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
-                    </component1>
-                </xsl:for-each>
-                <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                    <component2 typeCode="COMP">
-                        <!-- Template :: Activities component2 MetaData -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
-                    </component2>
-                </xsl:for-each>
-                <xsl:for-each select="groep_g076_vaccinatie">
-                    <component3 typeCode="COMP">
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
-                    </component3>
-                </xsl:for-each>
-                <xsl:for-each select="r037_hielprik_pasgeborene">
-                    <component4 typeCode="COMP">
-                        <!-- Template :: A_HeelPrick [universal] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000"/>
-                    </component4>
-                </xsl:for-each>
-                <xsl:for-each select="r036_voorlichting_advies_instructie_en_begeleiding/groep_g042_voorlichting">
-                    <component5 typeCode="COMP">
-                        <!-- Template :: Activities component5 Advice -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000"/>
-                    </component5>
-                </xsl:for-each>
-                <xsl:for-each select="r047_conclusies_en_vervolgstappen">
-                    <subjectOf1 typeCode="SUBJ">
-                        <!-- Template :: Activities subjectOf1 Conclusie -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
-                    </subjectOf1>
-                </xsl:for-each>
-                <subjectOf2 typeCode="SUBJ">
-                    <annotation>
-                        <code/>
-                        <text/>
-                    </annotation>
-                </subjectOf2>
-            </nonEncounterCareActivity>
-        </xsl:for-each>
-    </xsl:template>
-    
-    <!-- Activiteit RegistrationEvent (registratie/melding) -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10027_20120801000000">
-        <xsl:for-each select="r018_activiteit">
-            <registrationEvent xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="EVN">
-                <!-- Item(s) :: activiteit_id activiteit_id-->
-                <xsl:for-each select="activiteit_id | activiteit_id">
-                    <xsl:call-template name="makeIIValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">id</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: soort_activiteit-->
-                <xsl:for-each select="soort_activiteit">
-                    <xsl:call-template name="makeCVValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">code</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: status_activiteit-->
-                <xsl:for-each select="status_activiteit">
-                    <xsl:call-template name="makeCSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: datum_activiteit-->
-                <xsl:for-each select="datum_activiteit">
-                    <xsl:call-template name="makeTSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: indicatie_activiteit-->
-                <xsl:for-each select="indicatie_activiteit">
-                    <xsl:call-template name="makeCVValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <performer typeCode="PRF">
-                    <assignedEntity classCode="ASSIGNED">
-                        <!-- Item(s) :: uitvoerende_activiteit_id-->
-                        <xsl:for-each select="uitvoerende_activiteit_id">
-                            <xsl:call-template name="makeII.NL.UZIValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">id</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                            <!-- Item(s) :: uitvoerende_activiteit_naam-->
-                            <xsl:for-each select="uitvoerende_activiteit_naam">
-                                <xsl:call-template name="makePNValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">name</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </assignedPerson>
-                    </assignedEntity>
-                </performer>
-                <consultant typeCode="CON">
-                    <assignedEntity classCode="ASSIGNED">
-                        <code nullFlavor="OTH">
-                            <!-- Item(s) :: contact_met-->
-                            <xsl:for-each select="contact_met">
-                                <xsl:call-template name="makeSTValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">originalText</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </code>
-                    </assignedEntity>
-                </consultant>
-                <xsl:if test="r012_erfelijke_belasting_en_ouderkenmerken">
-                    <xsl:for-each select="r012_erfelijke_belasting_en_ouderkenmerken">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 12 Erfelijke belasting en ouderkenmerken -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r013_bedreigingen_uit_de_directe_omgeving">
-                    <xsl:for-each select="r013_bedreigingen_uit_de_directe_omgeving">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 13 Bedreigingen uit de directe omgeving -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r052_meldingen">
-                    <xsl:for-each select="r052_meldingen">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 52 Meldingen -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r019_terugkerende_anamnese">
-                    <xsl:for-each select="r019_terugkerende_anamnese">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 19 Terugkerende anamnese -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r020_algemene_indruk">
-                    <xsl:for-each select="r020_algemene_indruk">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 20 Algemene indruk -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r021_functioneren">
-                    <xsl:for-each select="r021_functioneren">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 21 Functioneren -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r022_huidhaarnagels">
-                    <xsl:for-each select="r022_huidhaarnagels">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 22 Huid/haar/nagels -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r023_hoofdhals">
-                    <xsl:for-each select="r023_hoofdhals">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 23 Hoofd/hals -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r024_romp">
-                    <xsl:for-each select="r024_romp">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 24 Romp -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r025_bewegingsapparaat">
-                    <xsl:for-each select="r025_bewegingsapparaat">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 25 Bewegingsapparaat -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r026_genitaliapuberteitsontwikkeling">
-                    <xsl:for-each select="r026_genitaliapuberteitsontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 26 Genitalia/puberteitsontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r027_groei">
-                    <xsl:for-each select="r027_groei">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 27 Groei -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r030_psychosociale_en_cognitieve_ontwikkeling">
-                    <xsl:for-each select="r030_psychosociale_en_cognitieve_ontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 30 Psychosociale en cognitieve ontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r031_neuromotorische_ontwikkeling">
-                    <xsl:for-each select="r031_neuromotorische_ontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 31 (Neuro)motorische ontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r032_spraak_en_taalontwikkeling">
-                    <xsl:for-each select="r032_spraak_en_taalontwikkeling">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 32 Spraak- en taalontwikkeling -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r034_inschatten_verhouding_draaglastdraagkracht">
-                    <xsl:for-each select="r034_inschatten_verhouding_draaglastdraagkracht">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 34 Inschatten verhouding draaglast-draagkracht -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r038_visus_en_oogonderzoek">
-                    <xsl:for-each select="r038_visus_en_oogonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 38 Visus- en oogonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r039_hartonderzoek">
-                    <xsl:for-each select="r039_hartonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 39 Hartonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r040_gehooronderzoek">
-                    <xsl:for-each select="r040_gehooronderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 40 Gehooronderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r042_van_wiechen_ontwikkelingsonderzoek">
-                    <xsl:for-each select="r042_van_wiechen_ontwikkelingsonderzoek">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 42 Van Wiechen ontwikkelingsonderzoek -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r043_bfmt">
-                    <xsl:for-each select="r043_bfmt">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 43 BFMT -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r054_screening_psychosociale_problemen">
-                    <xsl:for-each select="r054_screening_psychosociale_problemen">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 54 Screening psychosociale problemen -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r045_sdq_712">
-                    <xsl:for-each select="r045_sdq_712">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 45 SDQ 7-12 -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:if test="r049_screening_logopedie">
-                    <xsl:for-each select="r049_screening_logopedie">
-                        <pertinentInformation typeCode="PERT">
-                            <!-- Template :: Rubriek 49 Screening logopedie -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000"/>
-                        </pertinentInformation>
-                    </xsl:for-each>
-                </xsl:if>
-                <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                    <component1 typeCode="COMP">
-                        <!-- Template :: Activities component1 NonBDSData -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
-                    </component1>
-                </xsl:for-each>
-                <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                    <component2 typeCode="COMP">
-                        <!-- Template :: Activities component2 MetaData -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
-                    </component2>
-                </xsl:for-each>
-                <xsl:for-each select="groep_g076_vaccinatie">
-                    <component3 typeCode="COMP">
-                        <!-- Template :: A_Rijksvaccinatie [universal] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
-                    </component3>
-                </xsl:for-each>
-                <xsl:for-each select="r037_hielprik_pasgeborene">
-                    <component4 typeCode="COMP">
-                        <!-- Template :: A_HeelPrick [universal] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000"/>
-                    </component4>
-                </xsl:for-each>
-                <xsl:for-each select="r036_voorlichting_advies_instructie_en_begeleiding/groep_g042_voorlichting">
-                    <component5 typeCode="COMP">
-                        <!-- Template :: Activities component5 Advice -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000"/>
-                    </component5>
-                </xsl:for-each>
-                <xsl:for-each select="r047_conclusies_en_vervolgstappen">
-                    <subjectOf1 typeCode="SUBJ">
-                        <!-- Template :: Activities subjectOf1 Conclusie -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
-                    </subjectOf1>
-                </xsl:for-each>
-                <subjectOf2 typeCode="SUBJ">
-                    <annotation>
-                        <code/>
-                        <text/>
-                    </annotation>
-                </subjectOf2>
-            </registrationEvent>
         </xsl:for-each>
     </xsl:template>
     
@@ -2813,7 +1683,204 @@
     </xsl:template>
     
     <!-- Activities pertinentInformation RubricCluster -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20120801000000"/>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20120801000000">
+        <xsl:for-each select="r012_erfelijke_belasting_en_ouderkenmerken">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 12 Erfelijke belasting en ouderkenmerken -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r013_bedreigingen_uit_de_directe_omgeving">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 13 Bedreigingen uit de directe omgeving -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r052_meldingen">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 52 Meldingen -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r019_terugkerende_anamnese">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 19 Terugkerende anamnese -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r020_algemene_indruk">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 20 Algemene indruk -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r021_functioneren">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 21 Functioneren -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r022_huidhaarnagels">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 22 Huid/haar/nagels -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r023_hoofdhals">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 23 Hoofd/hals -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r024_romp">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 24 Romp -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r025_bewegingsapparaat">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 25 Bewegingsapparaat -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r026_genitaliapuberteitsontwikkeling">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 26 Genitalia/puberteitsontwikkeling -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r027_groei">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 27 Groei -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r030_psychosociaal_en_cognitief_functioneren">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 30 Psychosociale en cognitief functioneren -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r031_motorisch_functioneren">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 31 Motorisch functioneren -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r032_spraak_en_taalontwikkeling">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 32 Spraak- en taalontwikkeling -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r034_inschatten_verhouding_draaglastdraagkracht">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 34 Inschatten verhouding draaglast-draagkracht -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r038_visus_en_oogonderzoek">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 38 Visus- en oogonderzoek -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r039_hartonderzoek">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 39 Hartonderzoek -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r040_gehooronderzoek">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 40 Gehooronderzoek -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r042_van_wiechen_ontwikkelingsonderzoek">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 42 Van Wiechen ontwikkelingsonderzoek -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r043_bfmt">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 43 BFMT -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r054_screening_psychosociale_problemen">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 54 Screening psychosociale problemen -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r045_sdq">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 45 SDQ -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r049_screening_logopedie">
+            <pertinentInformation typeCode="PERT" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Rubriek 49 Screening logopedie -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000"/>
+            </pertinentInformation>
+        </xsl:for-each>
+        <xsl:for-each select="r051_nietgespecificeerde_gegevens/groep_g083_niet_gespecificeerde_gegevens">
+            <component1 typeCode="COMP" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Activities component1 NonBDSData -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+            </component1>
+        </xsl:for-each>
+        <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens/groep_g083_niet_gespecificeerde_gegevens">
+            <component2 typeCode="COMP" xmlns="urn:hl7-org:v3">
+                <!-\- Template :: Activities component2 MetaData -\->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+            </component2>
+        </xsl:for-each>-->
+        <xsl:for-each select="r041_rijksvaccinatieprogramma_en_andere_vaccinaties/groep_g076_vaccinatie">
+            <component3 typeCode="COMP" xmlns="urn:hl7-org:v3">
+                <!-- Template :: A_Rijksvaccinatie [universal] -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
+            </component3>
+        </xsl:for-each>
+        <xsl:for-each select="r037_hielprik_pasgeborene">
+            <component4 typeCode="COMP" xmlns="urn:hl7-org:v3">
+                <!-- Template :: A_HeelPrick [universal] -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000"/>
+            </component4>
+        </xsl:for-each>
+        <xsl:for-each select="r036_voorlichting_advies_instructie_en_begeleiding/groep_g042_voorlichting">
+            <component5 typeCode="COMP" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Activities component5 Advice -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000"/>
+            </component5>
+        </xsl:for-each>
+        <xsl:if test="toelichting_niet_verschenen">
+            <subjectOf typeCode="SUBJ" xmlns="urn:hl7-org:v3">
+                <abortedEvent classCode="STC" moodCode="EVN">
+                    <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '495'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                    </code>
+                    <!-- Item(s) :: toelichting_niet_verschenen-->
+                    <xsl:for-each select="toelichting_niet_verschenen">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">reasonCode</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </abortedEvent>
+            </subjectOf>
+        </xsl:if>
+        <xsl:for-each select="r047_conclusies_en_vervolgstappen">
+            <subjectOf1 typeCode="SUBJ" xmlns="urn:hl7-org:v3">
+                <!-- Template :: Activities subjectOf1 Conclusie -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
+            </subjectOf1>
+        </xsl:for-each>
+    </xsl:template>
     
     <!-- Activities subjectOf2 Annotation -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10034_20120801000000">
@@ -2856,139 +1923,137 @@
     
     <!-- Activities subjectOf1 Conclusie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000">
-        <xsl:for-each select="r047_conclusies_en_vervolgstappen">
-            <conclusion xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
-                <code code="482" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '482'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-                </code>
-                <!-- Item(s) :: conclusie-->
-                <xsl:for-each select="conclusie">
-                    <xsl:call-template name="makeSTValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">text</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <xsl:for-each select="extra_zorginterventie">
-                    <component typeCode="COMP">
-                        <xsl:for-each select="groep_g058_indicatie_en_interventie">
-                            <indication classCode="OBS" moodCode="EVN">
-                                <code code="485" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '485'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-                                </code>
-                                <!-- Item(s) :: indicatie-->
-                                <xsl:for-each select="indicatie">
-                                    <xsl:call-template name="makeCVValue">
-                                        <xsl:with-param name="elemName">value</xsl:with-param>
-                                    </xsl:call-template>
-                                </xsl:for-each>
-                                <!-- Item(s) :: interventie-->
-                                <xsl:for-each select="interventie">
-                                    <reasonOf typeCode="RSON">
-                                        <informIntent classCode="OBS" moodCode="EVN">
-                                            <xsl:call-template name="makeCVValue">
-                                                <xsl:with-param name="xsiType" select="''"/>
-                                                <xsl:with-param name="elemName">code</xsl:with-param>
-                                            </xsl:call-template>
-                                        </informIntent>
-                                    </reasonOf>
-                                </xsl:for-each>
-                                <!-- Item(s) :: interventie-->
-                                <xsl:for-each select="interventie">
-                                    <reasonOf typeCode="RSON">
-                                        <registrationIntent classCode="REG" moodCode="INT">
-                                            <xsl:call-template name="makeCVValue">
-                                                <xsl:with-param name="xsiType" select="''"/>
-                                                <xsl:with-param name="elemName">code</xsl:with-param>
-                                            </xsl:call-template>
-                                        </registrationIntent>
-                                    </reasonOf>
-                                </xsl:for-each>
-                                <!-- Item(s) :: interventie-->
-                                <xsl:for-each select="interventie">
-                                    <reasonOf typeCode="RSON">
-                                        <observationIntent classCode="OBS" moodCode="INT">
-                                            <xsl:call-template name="makeCVValue">
-                                                <xsl:with-param name="xsiType" select="''"/>
-                                                <xsl:with-param name="elemName">code</xsl:with-param>
-                                            </xsl:call-template>
-                                        </observationIntent>
-                                    </reasonOf>
-                                </xsl:for-each>
-                                <!-- Item(s) :: interventie-->
-                                <xsl:for-each select="interventie">
-                                    <reasonOf typeCode="RSON">
-                                        <referral classCode="PCPR" moodCode="RQO">
-                                            <xsl:call-template name="makeCVValue">
-                                                <xsl:with-param name="xsiType" select="''"/>
-                                                <xsl:with-param name="elemName">code</xsl:with-param>
-                                            </xsl:call-template>
-                                            <!-- Item(s) :: advies_en_verwijzing_naar-->
-                                            <xsl:for-each select="advies_en_verwijzing_naar">
-                                                <performer typeCode="PRF">
-                                                    <assignedEntity classCode="ASSIGNED">
-                                                        <xsl:call-template name="makeCVValue">
-                                                            <xsl:with-param name="xsiType" select="''"/>
-                                                            <xsl:with-param name="elemName">code</xsl:with-param>
-                                                        </xsl:call-template>
-                                                    </assignedEntity>
-                                                </performer>
-                                            </xsl:for-each>
-                                            <!-- Item(s) :: verwijsbrief-->
-                                            <xsl:for-each select="verwijsbrief">
-                                                <component typeCode="COMP">
-                                                    <additionalObservation classCode="OBS" moodCode="OBS">
-                                                        <code code="1494" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                                                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1494'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-                                                        </code>
-                                                        <xsl:call-template name="makeBLValue">
-                                                            <xsl:with-param name="elemName">value</xsl:with-param>
-                                                        </xsl:call-template>
-                                                    </additionalObservation>
-                                                </component>
-                                            </xsl:for-each>
-                                        </referral>
-                                    </reasonOf>
-                                </xsl:for-each>
-                                <xsl:for-each select="interventie">
-                                    <reasonOf typeCode="RSON">
-                                        <actIntent classCode="ACT" moodCode="INT">
-                                            <code code="7" codeSystem="2.16.840.1.113883.2.4.4.40.9"/>
-                                        </actIntent>
-                                    </reasonOf>
-                                </xsl:for-each>
-                                <!-- Item(s) :: interventie-->
-                                <xsl:for-each select="interventie">
-                                    <reasonOf typeCode="RSON">
-                                        <actIntent classCode="ACT" moodCode="INT">
-                                            <code nullFlavor="OTH">
-                                                <xsl:call-template name="makeSTValue">
-                                                    <xsl:with-param name="xsiType" select="''"/>
-                                                    <xsl:with-param name="elemName">originalText</xsl:with-param>
-                                                </xsl:call-template>
-                                            </code>
-                                        </actIntent>
-                                    </reasonOf>
-                                </xsl:for-each>
-                            </indication>
-                        </xsl:for-each>
-                    </component>
-                </xsl:for-each>
-                <!-- Item(s) :: notitieblad-->
-                <xsl:for-each select="notitieblad">
-                    <subjectOf typeCode="SUBJ">
-                        <annotation classCode="ACT" moodCode="EVN">
-                            <code code="493" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '493'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+        <conclusion xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+            <code code="482" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '482'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <!-- Item(s) :: conclusie-->
+            <xsl:for-each select="conclusie">
+                <xsl:call-template name="makeSTValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">text</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="extra_zorginterventie">
+                <component typeCode="COMP">
+                    <xsl:for-each select="groep_g058_indicatie_en_interventie">
+                        <indication classCode="OBS" moodCode="EVN">
+                            <code code="485" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '485'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
                             </code>
-                            <xsl:call-template name="makeSTValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">text</xsl:with-param>
-                            </xsl:call-template>
-                        </annotation>
-                    </subjectOf>
-                </xsl:for-each>
-            </conclusion>
-        </xsl:for-each>
+                            <!-- Item(s) :: indicatie-->
+                            <xsl:for-each select="indicatie">
+                                <xsl:call-template name="makeCVValue">
+                                    <xsl:with-param name="elemName">value</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: interventie-->
+                            <xsl:for-each select="interventie">
+                                <reasonOf typeCode="RSON">
+                                    <informIntent classCode="OBS" moodCode="EVN">
+                                        <xsl:call-template name="makeCVValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                        </xsl:call-template>
+                                    </informIntent>
+                                </reasonOf>
+                            </xsl:for-each>
+                            <!-- Item(s) :: interventie-->
+                            <xsl:for-each select="interventie">
+                                <reasonOf typeCode="RSON">
+                                    <registrationIntent classCode="REG" moodCode="INT">
+                                        <xsl:call-template name="makeCVValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                        </xsl:call-template>
+                                    </registrationIntent>
+                                </reasonOf>
+                            </xsl:for-each>
+                            <!-- Item(s) :: interventie-->
+                            <xsl:for-each select="interventie">
+                                <reasonOf typeCode="RSON">
+                                    <observationIntent classCode="OBS" moodCode="INT">
+                                        <xsl:call-template name="makeCVValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                        </xsl:call-template>
+                                    </observationIntent>
+                                </reasonOf>
+                            </xsl:for-each>
+                            <!-- Item(s) :: interventie-->
+                            <xsl:for-each select="interventie">
+                                <reasonOf typeCode="RSON">
+                                    <referral classCode="PCPR" moodCode="RQO">
+                                        <xsl:call-template name="makeCVValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                        </xsl:call-template>
+                                        <!-- Item(s) :: advies_en_verwijzing_naar-->
+                                        <xsl:for-each select="advies_en_verwijzing_naar">
+                                            <performer typeCode="PRF">
+                                                <assignedEntity classCode="ASSIGNED">
+                                                    <xsl:call-template name="makeCVValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </assignedEntity>
+                                            </performer>
+                                        </xsl:for-each>
+                                        <!-- Item(s) :: verwijsbrief-->
+                                        <xsl:for-each select="verwijsbrief">
+                                            <component typeCode="COMP">
+                                                <additionalObservation classCode="OBS" moodCode="OBS">
+                                                    <code code="1494" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1494'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                                    </code>
+                                                    <xsl:call-template name="makeBLValue">
+                                                        <xsl:with-param name="elemName">value</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </additionalObservation>
+                                            </component>
+                                        </xsl:for-each>
+                                    </referral>
+                                </reasonOf>
+                            </xsl:for-each>
+                            <xsl:for-each select="interventie">
+                                <reasonOf typeCode="RSON">
+                                    <actIntent classCode="ACT" moodCode="INT">
+                                        <code code="7" codeSystem="2.16.840.1.113883.2.4.4.40.9"/>
+                                    </actIntent>
+                                </reasonOf>
+                            </xsl:for-each>
+                            <!-- Item(s) :: interventie-->
+                            <xsl:for-each select="interventie">
+                                <reasonOf typeCode="RSON">
+                                    <actIntent classCode="ACT" moodCode="INT">
+                                        <code nullFlavor="OTH">
+                                            <xsl:call-template name="makeSTValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">originalText</xsl:with-param>
+                                            </xsl:call-template>
+                                        </code>
+                                    </actIntent>
+                                </reasonOf>
+                            </xsl:for-each>
+                        </indication>
+                    </xsl:for-each>
+                </component>
+            </xsl:for-each>
+            <!-- Item(s) :: notitieblad-->
+            <xsl:for-each select="notitieblad">
+                <subjectOf typeCode="SUBJ">
+                    <annotation classCode="ACT" moodCode="EVN">
+                        <code code="493" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '493'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeSTValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">text</xsl:with-param>
+                        </xsl:call-template>
+                    </annotation>
+                </subjectOf>
+            </xsl:for-each>
+        </conclusion>
     </xsl:template>
     
     <!-- TransmissionWrapper Accept Ack -->
@@ -3617,18 +2682,18 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10257_20120801000000">
         <xsl:for-each select="groep_g102_periode_geldigheid_contactpersoonhulpverlener">
             <effectiveTime xsi:type="IVL_TS" xmlns="urn:hl7-org:v3">
-                <xsl:if test="startdatum_geldigheid_contactpersoon_organisatiehulpverlener">
-                    <!-- Item(s) :: startdatum_geldigheid_contactpersoon_organisatiehulpverlener-->
-                    <xsl:for-each select="startdatum_geldigheid_contactpersoon_organisatiehulpverlener">
+                <xsl:if test="startdatum_geldigheid_contactpersoonhulpverlener">
+                    <!-- Item(s) :: startdatum_geldigheid_contactpersoonhulpverlener-->
+                    <xsl:for-each select="startdatum_geldigheid_contactpersoonhulpverlener">
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">low</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:if>
-                <xsl:if test="einddatum_geldigheid_contactpersoon_organisatiehulpverlener">
-                    <!-- Item(s) :: einddatum_geldigheid_contactpersoon_organisatiehulpverlener-->
-                    <xsl:for-each select="einddatum_geldigheid_contactpersoon_organisatiehulpverlener">
+                <xsl:if test="einddatum_geldigheid_contactpersoonhulpverlener">
+                    <!-- Item(s) :: einddatum_geldigheid_contactpersoonhulpverlener-->
+                    <xsl:for-each select="einddatum_geldigheid_contactpersoonhulpverlener">
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">high</xsl:with-param>
@@ -7649,31 +6714,6 @@
             <code code="R052" codeSystem="2.16.840.1.113883.2.4.4.40.391">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R052'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
             </code>
-            <groep_g074_melding_verwijsindex_risicojongeren>
-                <aanmelder_uzi_verwijsindex_risicojongeren/>
-                <aanmelder_big_verwijsindex_risicojongeren/>
-                <aanmelder_agb_verwijsindex_risicojongeren/>
-                <aanmelder_naam_verwijsindex_risicojongeren/>
-                <datum_aanmelding_verwijsindex_risicojongeren/>
-                <datum_afmelding_verwijsindex_risicojongeren/>
-                <bijzonderheden_melding_verwijsindex_risicojongeren/>
-            </groep_g074_melding_verwijsindex_risicojongeren>
-            <groep_g075_melding_veilig_thuis>
-                <aanmelder_uzi_veilig_thuis/>
-                <aanmelder_big_veilig_thuis/>
-                <aanmelder_agb_veilig_thuis/>
-                <aanmelder_naam_veilig_thuis/>
-                <datum_melding_veilig_thuis/>
-                <bijzonderheden_melding_veilig_thuis/>
-            </groep_g075_melding_veilig_thuis>
-            <groep_g084_consultatie_veilig_thuis>
-                <uitvoerende_uzi_consultatie_veilig_thuis/>
-                <uitvoerende_big_consultatie_veilig_thuis/>
-                <uitvoerende_agb_consultatie_veilig_thuis/>
-                <uitvoerende_naam_consultatie_veilig_thuis/>
-                <datum_consultatie_veilig_thuis/>
-                <bijzonderheden_consultatie_veilig_thuis/>
-            </groep_g084_consultatie_veilig_thuis>
             <xsl:for-each select="groep_g074_melding_verwijsindex_risicojongeren">
                 <component>
                     <groupCluster>
@@ -7682,19 +6722,19 @@
                         </code>
                         <xsl:for-each select="datum_aanmelding_verwijsindex_risicojongeren">
                             <component>
-                                <!-- Template :: obs Afmelding VIR -->
+                                <!-- Template :: obs Afmelding Verwijsindex risicojongeren -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41195_20120801000000"/>
                             </component>
                         </xsl:for-each>
                         <xsl:for-each select="datum_afmelding_verwijsindex_risicojongeren">
                             <component>
-                                <!-- Template :: obs Afmelding VIR -->
+                                <!-- Template :: obs Afmelding Verwijsindex risicojongeren -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41196_20120801000000"/>
                             </component>
                         </xsl:for-each>
                         <xsl:for-each select="bijzonderheden_melding_verwijsindex_risicojongeren">
                             <component>
-                                <!-- Template :: obs Bijzonderheden melding VIR -->
+                                <!-- Template :: obs Bijzonderheden melding Verwijsindex risicojongeren -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41408_20120801000000"/>
                             </component>
                         </xsl:for-each>
@@ -7709,13 +6749,13 @@
                         </code>
                         <xsl:for-each select="datum_melding_veilig_thuis">
                             <component>
-                                <!-- Template :: obs Melding AMK -->
+                                <!-- Template :: obs Melding Veilig Thuis -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41326_20120801000000"/>
                             </component>
                         </xsl:for-each>
                         <xsl:for-each select="bijzonderheden_melding_veilig_thuis">
                             <component>
-                                <!-- Template :: obs Bijzonderheden melding AMK -->
+                                <!-- Template :: obs Bijzonderheden melding Veilig Thuis -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41380_20120801000000"/>
                             </component>
                         </xsl:for-each>
@@ -7730,13 +6770,13 @@
                         </code>
                         <xsl:for-each select="datum_consultatie_veilig_thuis">
                             <component>
-                                <!-- Template :: obs Consultatie AMK -->
+                                <!-- Template :: obs Consultatie Veilig Thuis -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41327_20120801000000"/>
                             </component>
                         </xsl:for-each>
                         <xsl:for-each select="bijzonderheden_consultatie_veilig_thuis">
                             <component>
-                                <!-- Template :: obs Bijzonderheden consultatie AMK -->
+                                <!-- Template :: obs Bijzonderheden consultatie Veilig Thuis -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41328_20120801000000"/>
                             </component>
                         </xsl:for-each>
@@ -8804,7 +7844,7 @@
                         <code code="91" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                             <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '91'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
                         </code>
-                        <xsl:call-template name="makeBLValue">
+                        <xsl:call-template name="makeBLValue_From_W0141_JaNeeOnbekend">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
                     </pregnancyObservations>
@@ -8817,7 +7857,7 @@
                         <code code="92" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                             <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '92'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
                         </code>
-                        <xsl:call-template name="makeBLValue">
+                        <xsl:call-template name="makeBLValue_From_W0141_JaNeeOnbekend">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
                     </pregnancyObservations>
@@ -8830,7 +7870,7 @@
                         <code code="93" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                             <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '93'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
                         </code>
-                        <xsl:call-template name="makeBLValue">
+                        <xsl:call-template name="makeBLValue_From_W0141_JaNeeOnbekend">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
                         <!-- Item(s) :: type_drugsgebruik_tijdens_de_zwangerschap-->
@@ -9558,38 +8598,48 @@
                                 </xsl:for-each>
                                 <performer typeCode="PRF">
                                     <assignedProvider classCode="ASSIGNED">
-                                        <!-- Item(s) :: huisarts_id-->
-                                        <xsl:choose>
-                                            <xsl:when test="huisarts_id">
-                                                <xsl:for-each select="huisarts_id">
-                                                    <xsl:call-template name="makeIIValue">
-                                                        <xsl:with-param name="xsiType" select="''"/>
-                                                        <xsl:with-param name="elemName">id</xsl:with-param>
-                                                    </xsl:call-template>
-                                                </xsl:for-each>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <id nullFlavor="NI"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
+                                        <!-- Item(s) :: huisarts_uzi-->
+                                        <xsl:for-each select="huisarts_uzi">
+                                            <xsl:call-template name="makeII.NL.UZIValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="huisarts_big">
+                                            <xsl:call-template name="makeII.NL.BIGValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="huisarts_agb">
+                                            <xsl:call-template name="makeII.NL.AGBValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:if test="not(huisarts_uzi | huisarts_big | huisarts_agb)">
+                                            <id nullFlavor="NI"/>
+                                        </xsl:if>
                                         <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                                            <!-- Item(s) :: huisartsenpraktijk_id andere_betrokken_organisaties_id-->
-                                            <xsl:choose>
-                                                <xsl:when test="huisartsenpraktijk_id">
-                                                    <xsl:for-each select="huisartsenpraktijk_id">
-                                                        <xsl:call-template name="makeIIValue">
-                                                            <xsl:with-param name="xsiType" select="''"/>
-                                                            <xsl:with-param name="elemName">id</xsl:with-param>
-                                                        </xsl:call-template>
-                                                    </xsl:for-each>
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <id nullFlavor="NI"/>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
+                                            <!-- Item(s) :: huisartsenpraktijk_ura -->
+                                            <xsl:for-each select="huisartsenpraktijk_ura">
+                                                <xsl:call-template name="makeII.NL.URAValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                            <xsl:for-each select="huisartsenpraktijk_agb">
+                                                <xsl:call-template name="makeII.NL.AGBValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                            <xsl:if test="not(huisartsenpraktijkura | huisartsenpraktijk_agb)">
+                                                <id nullFlavor="NI"/>
+                                            </xsl:if>
                                             <code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060"/>
                                             <!-- Item(s) :: huisartshuisartsenpraktijk voor_of_buitenschoolse_voorziening andere_betrokken_organisatieshulpverleners-->
-                                            <xsl:for-each select="huisartshuisartsenpraktijk">
+                                            <xsl:for-each select="huisartshuisartsenpraktijk_naam">
                                                 <xsl:call-template name="makeONValue">
                                                     <xsl:with-param name="xsiType" select="''"/>
                                                     <xsl:with-param name="elemName">name</xsl:with-param>
@@ -9633,53 +8683,63 @@
                                 </xsl:for-each>
                                 <performer typeCode="PRF">
                                     <assignedProvider classCode="ASSIGNED">
-                                        <!-- Item(s) :: huisarts_id andere_betrokken_hulpverleners_id-->
-                                        <xsl:choose>
-                                            <xsl:when test="andere_betrokken_hulpverleners_id">
-                                                <xsl:for-each select="andere_betrokken_hulpverleners_id">
-                                                    <xsl:call-template name="makeIIValue">
-                                                        <xsl:with-param name="xsiType" select="''"/>
-                                                        <xsl:with-param name="elemName">id</xsl:with-param>
-                                                    </xsl:call-template>
-                                                </xsl:for-each>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <id nullFlavor="NI"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
+                                        <!-- Item(s) :: andere_betrokken_hulpverleners_uzi-->
+                                        <xsl:for-each select="andere_betrokken_hulpverlener_uzi">
+                                            <xsl:call-template name="makeII.NL.UZIValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="andere_betrokken_hulpverlener_big">
+                                            <xsl:call-template name="makeII.NL.BIGValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="andere_betrokken_hulpverlener_agb">
+                                            <xsl:call-template name="makeII.NL.AGBValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:if test="not(andere_betrokken_hulpverlener_uzi | andere_betrokken_hulpverlener_big | andere_betrokken_hulpverlener_agb)">
+                                            <id nullFlavor="NI"/>
+                                        </xsl:if>
                                         <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                                            <!-- Item(s) :: huisartsenpraktijk_id andere_betrokken_organisaties_id-->
-                                            <xsl:choose>
-                                                <xsl:when test="andere_betrokken_organisaties_id">
-                                                    <xsl:for-each select="andere_betrokken_organisaties_id">
-                                                        <xsl:call-template name="makeIIValue">
-                                                            <xsl:with-param name="xsiType" select="''"/>
-                                                            <xsl:with-param name="elemName">id</xsl:with-param>
-                                                        </xsl:call-template>
-                                                    </xsl:for-each>
-                                                </xsl:when>
-                                                <xsl:otherwise>
-                                                    <id nullFlavor="NI"/>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
+                                            <!-- Item(s) :: andere_betrokken_organisaties_ura-->
+                                            <xsl:for-each select="andere_betrokken_hulpverlenersorganisatie_ura">
+                                                <xsl:call-template name="makeII.NL.URAValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                            <xsl:for-each select="andere_betrokken_hulpverlenersorganisatie_agb">
+                                                <xsl:call-template name="makeII.NL.AGBValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
+                                            <xsl:if test="not(andere_betrokken_hulpverlenersorganisatie_ura | andere_betrokken_hulpverlenersorganisatie_agb)">
+                                                <id nullFlavor="NI"/>
+                                            </xsl:if>
                                             <!-- Item(s) :: huisartshuisartsenpraktijk voor_of_buitenschoolse_voorziening andere_betrokken_organisatieshulpverleners-->
-                                            <xsl:for-each select="andere_betrokken_organisatieshulpverleners">
+                                            <xsl:for-each select="andere_betrokken_organisatiehulpverlener_naam">
                                                 <xsl:call-template name="makeONValue">
                                                     <xsl:with-param name="xsiType" select="''"/>
                                                     <xsl:with-param name="elemName">name</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
-                                            <xsl:for-each select="groep_g005_contactpersoon_hulpverleners">
+                                            <xsl:for-each select="groep_g005_contactpersonenhulpverleners">
                                                 <contactParty classCode="CON">
                                                     <!-- Item(s) :: functie_contactpersoon_voor_of_buitenschoolse_voorziening functie_contactpersoon_organisatiehulpverlener-->
-                                                    <xsl:for-each select="functie_contactpersoon_organisatiehulpverlener">
+                                                    <xsl:for-each select="functie_contactpersoonhulpverlener">
                                                         <xsl:call-template name="makeCVValue">
                                                             <xsl:with-param name="xsiType" select="''"/>
                                                             <xsl:with-param name="elemName">code</xsl:with-param>
                                                         </xsl:call-template>
                                                     </xsl:for-each>
                                                     <!-- Item(s) :: telefoon_contactpersoon_voor_of_buitenschoolse_voorziening email_contactpersoon_voor_of_buitenschoolse_voorziening telefoon_contactpersoon_organisatiehulpverlener email_contactpersoon_organisatiehulpverlener-->
-                                                    <xsl:for-each select="telefoon_contactpersoon_organisatiehulpverlener">
+                                                    <xsl:for-each select="telefoon_contactpersoonhulpverlener">
                                                         <telecom>
                                                             <xsl:attribute name="value">
                                                                 <xsl:choose>
@@ -9693,7 +8753,7 @@
                                                             </xsl:attribute>
                                                         </telecom>
                                                     </xsl:for-each>
-                                                    <xsl:for-each select="email_contactpersoon_organisatiehulpverlener">
+                                                    <xsl:for-each select="email_contactpersoonhulpverlener">
                                                         <telecom>
                                                             <xsl:attribute name="value">
                                                                 <xsl:choose>
@@ -9707,20 +8767,20 @@
                                                             </xsl:attribute>
                                                         </telecom>
                                                     </xsl:for-each>
-                                                    <xsl:for-each select="groep_g102_periode_geldigheid_contactpersoonhulpverlener[startdatum_geldigheid_contactpersoon_organisatiehulpverlener | einddatum_geldigheid_contactpersoon_organisatiehulpverlener]">
+                                                    <xsl:for-each select="groep_g102_periode_geldigheid_contactpersoonhulpverlener[startdatum_geldigheid_contactpersoonhulpverlener | einddatum_geldigheid_contactpersoonhulpverlener]">
                                                         <effectiveTime xsi:type="IVL_TS">
-                                                            <xsl:if test="startdatum_geldigheid_contactpersoon_organisatiehulpverlener">
-                                                                <!-- Item(s) :: startdatum_geldigheid_contactpersoon_organisatiehulpverlener-->
-                                                                <xsl:for-each select="startdatum_geldigheid_contactpersoon_organisatiehulpverlener">
+                                                            <xsl:if test="startdatum_geldigheid_contactpersoonhulpverlener">
+                                                                <!-- Item(s) :: startdatum_geldigheid_contactpersoonhulpverlener-->
+                                                                <xsl:for-each select="startdatum_geldigheid_contactpersoonhulpverlener">
                                                                     <xsl:call-template name="makeTSValue">
                                                                         <xsl:with-param name="xsiType" select="''"/>
                                                                         <xsl:with-param name="elemName">low</xsl:with-param>
                                                                     </xsl:call-template>
                                                                 </xsl:for-each>
                                                             </xsl:if>
-                                                            <xsl:if test="einddatum_geldigheid_contactpersoon_organisatiehulpverlener">
-                                                                <!-- Item(s) :: einddatum_geldigheid_contactpersoon_organisatiehulpverlener-->
-                                                                <xsl:for-each select="einddatum_geldigheid_contactpersoon_organisatiehulpverlener">
+                                                            <xsl:if test="einddatum_geldigheid_contactpersoonhulpverlener">
+                                                                <!-- Item(s) :: einddatum_geldigheid_contactpersoonhulpverlener-->
+                                                                <xsl:for-each select="einddatum_geldigheid_contactpersoonhulpverlener">
                                                                     <xsl:call-template name="makeTSValue">
                                                                         <xsl:with-param name="xsiType" select="''"/>
                                                                         <xsl:with-param name="elemName">high</xsl:with-param>
@@ -9730,7 +8790,7 @@
                                                         </effectiveTime>
                                                     </xsl:for-each>
                                                     <!-- Item(s) :: contactpersoon_organisatiehulpverlener-->
-                                                    <xsl:for-each select="contactpersoon_organisatiehulpverlener">
+                                                    <xsl:for-each select="naam_contactpersoonhulpverlener">
                                                         <contactPerson classCode="PSN" determinerCode="INSTANCE">
                                                             <xsl:call-template name="makePNValue">
                                                                 <xsl:with-param name="xsiType" select="''"/>
@@ -11841,18 +10901,18 @@
                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
                 </personalRelationship>
             </subject>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -11867,18 +10927,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -11905,18 +10965,18 @@
                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
                 </personalRelationship>
             </subject>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -11931,18 +10991,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -11957,18 +11017,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -11984,18 +11044,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">d</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12010,18 +11070,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12036,18 +11096,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12062,18 +11122,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12088,18 +11148,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12114,18 +11174,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12140,18 +11200,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12166,18 +11226,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12192,18 +11252,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12218,18 +11278,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12251,18 +11311,18 @@
                     <xsl:with-param name="elemName">targetSiteCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12277,18 +11337,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12303,18 +11363,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12329,18 +11389,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12355,18 +11415,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12381,18 +11441,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12407,18 +11467,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12433,18 +11493,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12459,18 +11519,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12485,18 +11545,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12511,18 +11571,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12537,18 +11597,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12563,18 +11623,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12589,18 +11649,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12615,18 +11675,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12641,18 +11701,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12667,18 +11727,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12693,18 +11753,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12726,18 +11786,18 @@
                     <xsl:with-param name="elemName">targetSiteCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12759,18 +11819,18 @@
                     <xsl:with-param name="elemName">targetSiteCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12792,18 +11852,18 @@
                     <xsl:with-param name="elemName">targetSiteCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12825,18 +11885,18 @@
                     <xsl:with-param name="elemName">targetSiteCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12851,18 +11911,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12877,18 +11937,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12903,18 +11963,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12929,18 +11989,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12955,18 +12015,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -12981,18 +12041,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13007,18 +12067,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13041,18 +12101,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13075,18 +12135,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13109,18 +12169,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13143,18 +12203,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13169,18 +12229,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13196,18 +12256,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">mm</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13222,18 +12282,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13248,18 +12308,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13274,18 +12334,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13300,18 +12360,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13326,18 +12386,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13352,18 +12412,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13378,18 +12438,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13404,18 +12464,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13430,18 +12490,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13456,18 +12516,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13482,18 +12542,18 @@
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13515,18 +12575,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13548,18 +12608,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13581,18 +12641,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13607,18 +12667,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13633,18 +12693,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13659,18 +12719,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13685,18 +12745,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13711,18 +12771,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13737,18 +12797,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13763,18 +12823,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13789,18 +12849,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13815,18 +12875,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13841,18 +12901,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13867,18 +12927,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13893,18 +12953,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13919,18 +12979,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13945,18 +13005,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13971,18 +13031,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -13997,18 +13057,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14023,18 +13083,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14049,18 +13109,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14075,18 +13135,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14101,18 +13161,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14127,18 +13187,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14153,18 +13213,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14179,18 +13239,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14205,18 +13265,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14231,18 +13291,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14257,18 +13317,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14283,18 +13343,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14309,18 +13369,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14335,18 +13395,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14361,18 +13421,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14387,18 +13447,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14413,18 +13473,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14439,18 +13499,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14465,18 +13525,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14491,18 +13551,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14517,18 +13577,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14543,18 +13603,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14569,18 +13629,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14595,18 +13655,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14621,18 +13681,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14647,18 +13707,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14673,18 +13733,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14699,18 +13759,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14725,18 +13785,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14751,18 +13811,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14777,18 +13837,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14803,18 +13863,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14829,18 +13889,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14855,18 +13915,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14881,18 +13941,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14907,18 +13967,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14933,18 +13993,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14959,18 +14019,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -14985,18 +14045,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15011,18 +14071,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15037,18 +14097,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15063,18 +14123,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15089,18 +14149,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15115,18 +14175,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15141,18 +14201,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15167,18 +14227,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15193,18 +14253,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15219,18 +14279,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15245,18 +14305,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15271,18 +14331,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15297,18 +14357,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15323,18 +14383,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15349,18 +14409,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15375,18 +14435,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15401,18 +14461,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15427,18 +14487,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15453,18 +14513,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15479,18 +14539,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15505,18 +14565,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15531,18 +14591,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15557,18 +14617,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15583,18 +14643,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15609,18 +14669,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15635,18 +14695,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15661,18 +14721,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15687,18 +14747,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15713,18 +14773,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15739,18 +14799,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15765,18 +14825,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15791,18 +14851,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15817,18 +14877,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15843,18 +14903,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15870,18 +14930,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">mm</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15896,18 +14956,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15923,18 +14983,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">mm</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15949,18 +15009,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -15975,18 +15035,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16001,18 +15061,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16027,18 +15087,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16053,18 +15113,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16079,18 +15139,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16105,18 +15165,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16131,18 +15191,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16157,18 +15217,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16183,18 +15243,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16209,18 +15269,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16235,18 +15295,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16261,18 +15321,18 @@
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16287,18 +15347,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16313,18 +15373,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16346,18 +15406,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16372,18 +15432,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16398,18 +15458,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16424,18 +15484,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16450,18 +15510,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16476,18 +15536,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16502,18 +15562,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16528,18 +15588,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16554,18 +15614,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16580,18 +15640,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16606,18 +15666,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16632,18 +15692,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16658,18 +15718,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16684,18 +15744,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16710,18 +15770,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16736,18 +15796,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16762,18 +15822,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16788,18 +15848,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16814,18 +15874,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16847,18 +15907,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16880,18 +15940,18 @@
                     <xsl:with-param name="elemName">methodCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16906,18 +15966,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16932,18 +15992,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16958,18 +16018,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -16984,18 +16044,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17010,18 +16070,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17036,18 +16096,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17062,18 +16122,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17088,18 +16148,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17114,18 +16174,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17140,18 +16200,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17166,18 +16226,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17192,18 +16252,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17218,18 +16278,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17244,18 +16304,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17270,18 +16330,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17296,18 +16356,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17322,18 +16382,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17348,18 +16408,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17374,18 +16434,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17400,18 +16460,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17426,18 +16486,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17452,18 +16512,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17478,18 +16538,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17504,18 +16564,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17530,18 +16590,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17556,18 +16616,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17582,18 +16642,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17608,18 +16668,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17634,18 +16694,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17660,18 +16720,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17686,18 +16746,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17712,18 +16772,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17738,18 +16798,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17764,18 +16824,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17790,18 +16850,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17816,18 +16876,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17842,18 +16902,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17868,18 +16928,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17894,18 +16954,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17920,18 +16980,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17946,18 +17006,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17972,18 +17032,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -17998,18 +17058,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18024,18 +17084,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18050,18 +17110,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18076,18 +17136,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18102,18 +17162,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18128,18 +17188,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18154,18 +17214,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18180,18 +17240,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18206,18 +17266,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18232,18 +17292,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18258,18 +17318,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18291,18 +17351,18 @@
                     <xsl:with-param name="elemName">targetSiteCode</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18317,18 +17377,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18343,18 +17403,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18369,18 +17429,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18395,18 +17455,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18422,18 +17482,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">wk</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18448,18 +17508,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18474,18 +17534,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18500,18 +17560,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18526,18 +17586,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18552,18 +17612,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18578,18 +17638,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18604,18 +17664,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18630,18 +17690,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18656,18 +17716,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18682,18 +17742,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18708,18 +17768,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18734,18 +17794,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18760,18 +17820,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18786,18 +17846,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18812,18 +17872,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18838,18 +17898,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18864,18 +17924,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18890,18 +17950,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18916,18 +17976,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18942,18 +18002,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18968,18 +18028,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -18994,18 +18054,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19020,18 +18080,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19046,18 +18106,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19072,18 +18132,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19098,18 +18158,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19124,18 +18184,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19150,18 +18210,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19176,18 +18236,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19202,18 +18262,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19228,18 +18288,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19254,18 +18314,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19280,18 +18340,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19306,18 +18366,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19332,18 +18392,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19358,18 +18418,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19384,18 +18444,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19410,18 +18470,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19436,18 +18496,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19462,18 +18522,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19488,18 +18548,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19514,18 +18574,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19540,18 +18600,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19566,18 +18626,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19592,18 +18652,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19618,18 +18678,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19644,18 +18704,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19670,18 +18730,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19696,18 +18756,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19722,18 +18782,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19748,18 +18808,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19774,18 +18834,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19800,18 +18860,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19826,18 +18886,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19852,18 +18912,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19878,18 +18938,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19904,18 +18964,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19930,18 +18990,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19957,18 +19017,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">mo</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -19983,18 +19043,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20009,18 +19069,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20035,18 +19095,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20061,18 +19121,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20087,18 +19147,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20113,18 +19173,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20139,18 +19199,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20165,18 +19225,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20191,18 +19251,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20217,18 +19277,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20243,18 +19303,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20269,18 +19329,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20295,18 +19355,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20321,18 +19381,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20347,18 +19407,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20373,18 +19433,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20399,18 +19459,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20425,18 +19485,18 @@
             <xsl:call-template name="makeEDValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20451,18 +19511,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20477,18 +19537,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20503,18 +19563,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20529,18 +19589,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20555,18 +19615,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20581,18 +19641,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20607,18 +19667,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20633,18 +19693,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20659,18 +19719,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20685,18 +19745,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20711,18 +19771,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20737,18 +19797,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20763,18 +19823,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20789,18 +19849,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20815,18 +19875,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20841,18 +19901,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20867,18 +19927,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20893,18 +19953,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20919,18 +19979,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20945,18 +20005,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20971,18 +20031,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -20997,18 +20057,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21023,18 +20083,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21049,18 +20109,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21075,18 +20135,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21101,18 +20161,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21127,18 +20187,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21153,18 +20213,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21179,18 +20239,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21205,18 +20265,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21231,18 +20291,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21257,18 +20317,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21283,18 +20343,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21309,18 +20369,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21335,18 +20395,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21361,18 +20421,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21387,18 +20447,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21413,18 +20473,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21439,18 +20499,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21465,18 +20525,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21491,18 +20551,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21517,18 +20577,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21543,18 +20603,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21569,18 +20629,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21595,18 +20655,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21621,18 +20681,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21647,18 +20707,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21673,18 +20733,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21699,18 +20759,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21725,18 +20785,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21751,18 +20811,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21777,18 +20837,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21803,18 +20863,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21829,18 +20889,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21855,18 +20915,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21881,18 +20941,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21907,18 +20967,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21933,18 +20993,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21959,18 +21019,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -21985,18 +21045,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22011,18 +21071,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22037,18 +21097,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22063,18 +21123,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22089,18 +21149,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22115,18 +21175,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22141,18 +21201,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22167,18 +21227,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22193,18 +21253,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22219,18 +21279,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22245,18 +21305,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22271,18 +21331,18 @@
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22297,18 +21357,18 @@
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22323,18 +21383,18 @@
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22349,18 +21409,18 @@
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22375,18 +21435,18 @@
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22401,18 +21461,18 @@
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22440,18 +21500,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22466,18 +21526,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22492,18 +21552,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22518,18 +21578,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22544,18 +21604,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22570,18 +21630,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22596,18 +21656,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22622,18 +21682,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22648,18 +21708,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22674,96 +21734,126 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
-    <!-- obs Afmelding VIR -->
+    <!-- obs Afmelding Verwijsindex risicojongeren -->
+    <!--<groep_g074_melding_verwijsindex_risicojongeren>
+        <aanmelder_uzi_verwijsindex_risicojongeren/>
+        <aanmelder_big_verwijsindex_risicojongeren/>
+        <aanmelder_agb_verwijsindex_risicojongeren/>
+        <aanmelder_naam_verwijsindex_risicojongeren/>
+    </groep_g074_melding_verwijsindex_risicojongeren>-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41195_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41195"/>
             <code code="1195" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1195'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: datum_aanmelding_vir-->
-                <xsl:call-template name="makeTSValue">
-                    <xsl:with-param name="xsiType" select="''"/>
-                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                </xsl:call-template>
+            <!-- Item(s) :: datum_aanmelding_verwijsindex_risicojongeren-->
+            <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+            </xsl:call-template>
             <value value="true"/>
             <performer typeCode="PRF">
                 <assignedEntity classCode="ASSIGNED">
-                    <!-- Item(s) :: aanmelder_id_vir-->
-                    <xsl:for-each select="../aanmelder_id_vir">
+                    <!-- Item(s) :: aanmelder_uzi_verwijsindex_risicojongeren-->
+                    <xsl:for-each select="../aanmelder_uzi_verwijsindex_risicojongeren">
                         <xsl:call-template name="makeII.NL.UZIValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="../aanmelder_big_verwijsindex_risicojongeren">
+                        <xsl:call-template name="makeII.NL.BIGValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="../aanmelder_agb_verwijsindex_risicojongeren">
+                        <xsl:call-template name="makeII.NL.AGBValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">id</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </assignedEntity>
             </performer>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
-    <!-- obs Afmelding VIR -->
+    <!-- obs Afmelding Verwijsindex_risicojongeren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41196_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41196"/>
             <code code="1196" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1196'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: datum_afmelding_vir-->
-                <xsl:call-template name="makeTSValue">
-                    <xsl:with-param name="xsiType" select="''"/>
-                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                </xsl:call-template>
+            <!-- Item(s) :: datum_afmelding_verwijsindex_risicojongeren-->
+            <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="xsiType" select="''"/>
+                <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+            </xsl:call-template>
             <value value="true"/>
             <performer typeCode="PRF">
                 <assignedEntity classCode="ASSIGNED">
-                    <!-- Item(s) :: aanmelder_id_vir-->
-                    <xsl:for-each select="../aanmelder_id_vir">
+                    <!-- Item(s) :: aanmelder_uzi_verwijsindex_risicojongeren-->
+                    <xsl:for-each select="../aanmelder_uzi_verwijsindex_risicojongeren">
                         <xsl:call-template name="makeII.NL.UZIValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="../aanmelder_big_verwijsindex_risicojongeren">
+                        <xsl:call-template name="makeII.NL.BIGValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="../aanmelder_agb_verwijsindex_risicojongeren">
+                        <xsl:call-template name="makeII.NL.AGBValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">id</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </assignedEntity>
             </performer>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22778,18 +21868,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22804,18 +21894,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22830,18 +21920,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22856,18 +21946,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22882,18 +21972,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22908,18 +21998,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22934,18 +22024,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22960,18 +22050,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -22986,18 +22076,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23012,18 +22102,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23038,18 +22128,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23064,18 +22154,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23090,18 +22180,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23116,18 +22206,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23142,18 +22232,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23168,18 +22258,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23194,18 +22284,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23220,18 +22310,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23246,18 +22336,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23272,18 +22362,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23298,18 +22388,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23324,18 +22414,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23350,18 +22440,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23376,18 +22466,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23402,18 +22492,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23428,18 +22518,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23454,18 +22544,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23480,18 +22570,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23506,18 +22596,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23532,18 +22622,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23558,18 +22648,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23584,18 +22674,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23610,18 +22700,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23636,18 +22726,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23662,18 +22752,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23688,18 +22778,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23714,18 +22804,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23740,18 +22830,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23766,18 +22856,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23792,18 +22882,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23818,18 +22908,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23844,18 +22934,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23870,18 +22960,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23896,18 +22986,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23922,18 +23012,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23948,18 +23038,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -23974,18 +23064,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24000,18 +23090,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24026,18 +23116,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24052,18 +23142,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24078,18 +23168,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24104,18 +23194,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24130,18 +23220,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24156,18 +23246,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24182,18 +23272,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24208,18 +23298,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24234,18 +23324,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24260,18 +23350,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24286,18 +23376,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24312,18 +23402,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24338,18 +23428,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24364,18 +23454,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24390,18 +23480,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24416,18 +23506,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24442,18 +23532,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24468,118 +23558,156 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
-    <!-- obs Melding AMK -->
+    <!-- obs Melding Veilig Thuis -->
+    <!--<groep_g075_melding_veilig_thuis>
+        <aanmelder_uzi_veilig_thuis/>
+        <aanmelder_big_veilig_thuis/>
+        <aanmelder_agb_veilig_thuis/>
+        <aanmelder_naam_veilig_thuis/>
+        <datum_melding_veilig_thuis/>
+    </groep_g075_melding_veilig_thuis>-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41326_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41326"/>
             <code code="1326" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1326'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: datum_melding_amk-->
+            <!-- Item(s) :: datum_melding_veilig_thuis-->
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
             <performer typeCode="PRF">
                 <assignedEntity classCode="ASSIGNED">
-                    <!-- Item(s) :: aanmelder_id_melding_amk-->
-                    <xsl:for-each select="../aanmelder_id_melding_amk">
+                    <!-- Item(s) :: aanmelder_uzi_veilig_thuis-->
+                    <xsl:for-each select="../aanmelder_uzi_veilig_thuis">
                         <xsl:call-template name="makeII.NL.UZIValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="../aanmelder_big_veilig_thuis">
+                        <xsl:call-template name="makeII.NL.BIGValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="../aanmelder_agb_veilig_thuis">
+                        <xsl:call-template name="makeII.NL.AGBValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">id</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </assignedEntity>
             </performer>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
-    <!-- obs Consultatie AMK -->
+    <!-- obs Consultatie Veilig Thuis -->
+    <!--<groep_g084_consultatie_veilig_thuis>
+        <uitvoerende_uzi_consultatie_veilig_thuis/>
+        <uitvoerende_big_consultatie_veilig_thuis/>
+        <uitvoerende_agb_consultatie_veilig_thuis/>
+        <uitvoerende_naam_consultatie_veilig_thuis/>
+        <datum_consultatie_veilig_thuis/>
+    </groep_g084_consultatie_veilig_thuis>-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41327_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41327"/>
             <code code="1327" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1327'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: datum_consultatie_amk-->
+            <!-- Item(s) :: datum_consultatie_veilig_thuis-->
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
             <performer typeCode="PRF">
                 <assignedEntity classCode="ASSIGNED">
-                    <!-- Item(s) :: uitvoerende_id_consultatie_amk-->
-                    <xsl:for-each select="../uitvoerende_id_consultatie_amk">
+                    <!-- Item(s) :: aanmelder_uzi_veilig_thuis-->
+                    <xsl:for-each select="../uitvoerende_uzi_consultatie_veilig_thuis">
                         <xsl:call-template name="makeII.NL.UZIValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="../uitvoerende_big_consultatie_veilig_thuis">
+                        <xsl:call-template name="makeII.NL.BIGValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="../uitvoerende_agb_consultatie_veilig_thuis">
+                        <xsl:call-template name="makeII.NL.AGBValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">id</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </assignedEntity>
             </performer>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
-    <!-- obs Bijzonderheden consultatie AMK -->
+    <!-- obs Bijzonderheden consultatie Veilig Thuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41328_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41328"/>
             <code code="1328" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1328'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: bijzonderheden_consultatie_amk-->
+            <!-- Item(s) :: bijzonderheden_consultatie_veilig_thuis-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24594,18 +23722,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24620,18 +23748,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24646,18 +23774,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24672,18 +23800,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24698,18 +23826,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24760,18 +23888,18 @@
                     </xsl:for-each>
                 </serviceDeliveryLocation>
             </location>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24786,18 +23914,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24812,44 +23940,44 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
-    <!-- obs Bijzonderheden melding AMK -->
+    <!-- obs Bijzonderheden melding Veilig Thuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41380_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41380"/>
             <code code="1380" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1380'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: bijzonderheden_melding_amk-->
+            <!-- Item(s) :: bijzonderheden_melding_veilig_thuis-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24864,18 +23992,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24890,18 +24018,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24916,18 +24044,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24942,44 +24070,44 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
-    <!-- obs Bijzonderheden melding VIR -->
+    <!-- obs Bijzonderheden melding Verwijsindex risicojongeren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41408_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41408"/>
             <code code="1408" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1408'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: bijzonderheden_melding_vir-->
+            <!-- Item(s) :: bijzonderheden_melding_verwijsindex_risicojongeren-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -24992,20 +24120,21 @@
             </code>
             <!-- Item(s) :: datum_opname_ziekenhuis-->
             <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="xsiType">TS</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25020,18 +24149,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25046,18 +24175,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25072,18 +24201,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25098,18 +24227,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25124,18 +24253,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25150,18 +24279,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25176,18 +24305,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25202,18 +24331,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25228,18 +24357,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25254,18 +24383,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25280,18 +24409,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25306,18 +24435,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25332,18 +24461,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25358,18 +24487,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25384,18 +24513,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25410,18 +24539,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25436,18 +24565,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25462,18 +24591,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25488,18 +24617,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25514,18 +24643,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25540,18 +24669,18 @@
             <xsl:call-template name="makeINTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25567,18 +24696,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">mm</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25591,18 +24720,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">mm[Hg]</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25615,18 +24744,18 @@
                 <xsl:with-param name="elemName">value</xsl:with-param>
                 <xsl:with-param name="unit">mm[Hg]</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25641,18 +24770,18 @@
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25667,18 +24796,18 @@
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25693,18 +24822,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25719,18 +24848,18 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25745,18 +24874,18 @@
                 <xsl:with-param name="xsiType">CV</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25771,18 +24900,18 @@
                 <xsl:with-param name="xsiType">TS</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25797,18 +24926,18 @@
                 <xsl:with-param name="xsiType">BL</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
 
@@ -25823,18 +24952,18 @@
                 <xsl:with-param name="xsiType">BL</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25849,18 +24978,18 @@
                 <xsl:with-param name="xsiType">BL</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
         
@@ -25875,18 +25004,18 @@
                 <xsl:with-param name="xsiType">BL</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
     
@@ -25901,21 +25030,21 @@
                 <xsl:with-param name="xsiType">TS</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
     </xsl:template>
-        
+    
     <!--obs_Medicijngebruik_tijdens_zwangerschap-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41588_20191128000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -25927,18 +25056,41 @@
                 <xsl:with-param name="xsiType">CV</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
-                    <!-- Template :: Activities component1 NonBDSData -->
+                    <!-\- Template :: Activities component1 NonBDSData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
-                    <!-- Template :: Activities component2 MetaData -->
+                    <!-\- Template :: Activities component2 MetaData -\->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
                 </component2>
-            </xsl:for-each>
+            </xsl:for-each>-->
         </observation>
+    </xsl:template>
+    
+    <xsl:template name="makeBLValue_From_W0141_JaNeeOnbekend">
+        <xsl:param name="xsiType">BL</xsl:param>
+        <xsl:param name="elemName">value</xsl:param>
+        <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
+        
+        <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
+            <xsl:if test="string-length($xsiType) gt 0">
+                <xsl:attribute name="xsi:type" select="$xsiType"/>
+            </xsl:if>
+            <xsl:choose>
+                <when test=".[@code = '1'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.100.12.141']">
+                    <xsl:attribute name="value">true</xsl:attribute>
+                </when>
+                <when test=".[@code = '2'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.100.12.141']">
+                    <xsl:attribute name="value">false</xsl:attribute>
+                </when>
+                <when test=".[@code = '99'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.100.12.141']">
+                    <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
+                </when>
+            </xsl:choose>
+        </xsl:element>
     </xsl:template>
 </stylesheet>
