@@ -617,14 +617,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>make ENXP Value</xd:desc>
         <xd:param name="xsiType">Optional. The xsi:type to be outputted. Defaults to ENXP. However: is not used in this template.</xd:param>
         <xd:param name="elemName">Optional. The element name to be outputted. Defaults to value.</xd:param>
-        <xd:param name="qualifier">Optional. Not used in this template.</xd:param>
+        <xd:param name="qualifier">Optional. The qualifier string to add as attribute</xd:param>
     </xd:doc>
     <xsl:template name="makeENXPValue">
         <xsl:param name="xsiType" as="xs:string?">ENXP</xsl:param>
         <xsl:param name="elemName" as="xs:string?">value</xsl:param>
         <xsl:param name="qualifier" as="xs:string*"/>
         <xsl:element name="{$elemName}">
-            <!-- ENXP never occurs outside AD and never needs xsi:type -->
+            <xsl:if test="string-length($qualifier) gt 0">
+                <xsl:attribute name="qualifier" select="$qualifier"/>
+            </xsl:if>
+            <!-- ENXP never occurs outside EN/PN/ON and never needs xsi:type -->
             <xsl:value-of select="@value"/>
         </xsl:element>
     </xsl:template>
@@ -990,7 +993,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
             <xsl:copy-of select="@code"/>
             <xsl:copy-of select="@codeSystem"/>
-            <xsl:value-of select="@value"/>
+            <!-- Not always clear what the input looks like -->
+            <xsl:value-of select="(@displayName, @value)[1]"/>
         </xsl:element>
     </xsl:template>
 
