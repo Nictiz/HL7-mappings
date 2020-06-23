@@ -25,7 +25,7 @@
     <property name="project.license" value="GNU-LGPL"/>
     <property name="project.copyright" value="true"/>
     
-    <property name="build.dir" value="bds326"/>
+    <property name="build.dir" value="sturen_dossieroverdracht"/>
     <property name="project.source.dir" value="${build.dir}/../../../../../../cloudforge_nictiz_art_decor/art_decor/trunk/ada-data/projects/jgz-7.0.0"/>
     
     <target name="convert_ada_2_hl7v3">
@@ -37,9 +37,12 @@
         
         <property name="xsl.input" value="${build.dir}/ada_instance"/>
         <property name="xsl.output" value="${build.dir}/hl7v3_instance"/>
+        <property name="xsd.output" value="${build.dir}/hl7v3_schemas"/>
+        <property name="sch.output" value="${build.dir}/hl7v3_schematron_closed_warnings_svrl"/>
         
         <echo>Deleting previous results, if any</echo>
         <delete dir="${xsl.output}"/>
+        <delete dir="${xsl.output}_svrl"/>
         
         <sequential>
             <fileset id="inputfilesDossieroverdracht" dir="${xsl.input}" includes="Dossier*.xml"/>
@@ -92,6 +95,37 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>-->
+        </sequential>
+        <sequential>
+            <fileset id="outputfilesDossieroverdracht" dir="${xsl.output}" includes="Dossier*.xml"/>
+            <fileset id="checkfilesDossieroverdracht" dir="${xsl.output}_svrl" includes="Dossier*.xml"/>
+            
+            <echo/>
+            <echo>BDS 3.2.6 DOB XSD Check</echo>
+            <xmlvalidate failonerror="no" lenient="yes" warn="yes" classname="org.apache.xerces.parsers.SAXParser">
+                <attribute name="http://xml.org/sax/features/validation" value="true"/>
+                <attribute name="http://apache.org/xml/features/validation/schema"  value="true"/>
+                <attribute name="http://xml.org/sax/features/namespaces" value="true"/>
+                <fileset refid="outputfilesDossieroverdracht"/>
+            </xmlvalidate>
+            
+            <echo/>
+            <echo>BDS 3.2.6 DOB Schematron SVRL Check</echo>
+            <xslt force="true" style="${sch.output}/jgz-versturenDossieroverdrachtbericht-02.xsl" destdir="${xsl.output}_svrl" extension=".xml" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="outputfilesDossieroverdracht"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>BDS 3.2.6 DOB SVRL to HTML</echo>
+            <xslt force="true" style="${basedir}/../util/svrl2html.xsl" destdir="${xsl.output}_svrl" extension=".html" useImplicitFileset="false">
+                <!--<param name="allow-foreign" expression="true"/>-->
+                <fileset refid="checkfilesDossieroverdracht"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
         </sequential>
     </target>
     
