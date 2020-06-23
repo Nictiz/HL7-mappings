@@ -30,9 +30,12 @@
     <property name="project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\mp-mp907"/>
     <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\mp\9.0.7"/>
 
+    <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
+    <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
+
     <target name="setup" description="Setup subdirectories in ${build.dir}">
+        <!-- beschikbaarstellen_medicatiegegevens -->
         <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
         <!-- MA -->
         <antcall target="setup_sub">
             <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
@@ -63,15 +66,23 @@
         <delete dir="${dest.dir}"/>
 
         <!-- VV -->
-        <antcall target="setup_sub">
+        <antcall target="setup_sub_instances">
             <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
-            <param name="schema.string" value="*${usecase-mg}*"/>
             <param name="fileset.dir" value="ada_instance_VV"/>
             <param name="fileset.include" value="*VV*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
         </antcall>
 
-        <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
+        <!-- MedMij instances -->
+        <!-- TODO, also needs copying in refs dir, or get directly from production instances -->
+        <!--        <antcall target="setup_sub_instances">
+            <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="XXX*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
+        </antcall>-->
+
+        <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="build.dir" value="${build.dir}/${usecase-mo}"/>
             <param name="schema.string" value="*${usecase-mo}*"/>
@@ -107,7 +118,7 @@
         <delete>
             <fileset dir="${build.dir}/ada_schemas" includes="*.*"/>
         </delete>
-    
+
         <copy todir="${build.dir}/ada_schemas" failonerror="true">
             <fileset dir="${project.source.dir}/schemas">
                 <include name="${schema.string}"/>
@@ -124,7 +135,7 @@
         <delete>
             <fileset dir="${build.dir}/${fileset.dir}" includes="*.*"/>
         </delete>
-          <copy todir="${build.dir}/${fileset.dir}" failonerror="true">
+        <copy todir="${build.dir}/${fileset.dir}" failonerror="true">
             <fileset dir="${refs.dir}/ada_instance">
                 <include name="${fileset.include}"/>
             </fileset>
@@ -134,7 +145,7 @@
 
     <target name="convert_ada_2_fhir">
 
-        <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
+        <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="build.dir" value="${usecase-mg}"/>
             <param name="xsl.in" value="ada_instance_MA"/>
@@ -144,6 +155,12 @@
             <param name="build.dir" value="${usecase-mg}"/>
             <param name="xsl.in" value="ada_instance_VV"/>
             <param name="xsl.out" value="fhir_instance_VV"/>
+        </antcall>
+        <!-- MedMij stuff -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="build.dir" value="${usecase-mg}"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="fhir_instance"/>
         </antcall>
 
         <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
