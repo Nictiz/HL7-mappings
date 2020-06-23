@@ -8430,13 +8430,13 @@
                                                     <xsl:with-param name="elemName">id</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
-                                            <xsl:for-each select="huisartsenpraktijk_agb">
+                                            <xsl:for-each select="huisartspraktijk_agb">
                                                 <xsl:call-template name="makeII.NL.AGBValue">
                                                     <xsl:with-param name="xsiType" select="''"/>
                                                     <xsl:with-param name="elemName">id</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
-                                            <xsl:if test="not(huisartsenpraktijkura | huisartsenpraktijk_agb)">
+                                            <xsl:if test="not(huisartsenpraktijk_ura | huisartspraktijk_agb)">
                                                 <id nullFlavor="NI"/>
                                             </xsl:if>
                                             <code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060"/>
