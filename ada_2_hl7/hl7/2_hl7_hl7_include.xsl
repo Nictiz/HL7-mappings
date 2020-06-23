@@ -592,6 +592,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:element>
     </xsl:template>
+
     <xd:doc>
         <xd:desc>Make HL7 effectiveTime based on ada input element</xd:desc>
         <xd:param name="effectiveTime">ada input element with date(time), defaults to context element</xd:param>
@@ -613,6 +614,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:template>
+
     <xd:doc>
         <xd:desc>make ENXP Value</xd:desc>
         <xd:param name="xsiType">Optional. The xsi:type to be outputted. Defaults to ENXP. However: is not used in this template.</xd:param>
