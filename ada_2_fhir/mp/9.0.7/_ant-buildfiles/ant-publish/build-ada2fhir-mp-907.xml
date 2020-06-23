@@ -8,7 +8,7 @@
 -->
 <project basedir="../.." default="convert_ada_2_fhir" name="ada2fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <ant antfile="../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
-    <property name="xsl.saxon" value="${saxon.path}"/>
+     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
 
     <property name="echo.label.in" value="ADA"/>
@@ -156,23 +156,46 @@
             <param name="xsl.in" value="ada_instance_VV"/>
             <param name="xsl.out" value="fhir_instance_VV"/>
         </antcall>
-        <!-- MedMij stuff -->
+        <!-- MedMij stuff beschikbaarstellen_medicatiegegevens-->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="build.dir" value="${usecase-mg}"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-
-        <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
+        
+        <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="build.dir" value="${usecase-mo}"/>
             <param name="xsl.in" value="ada_instance_mp"/>
             <param name="xsl.out" value="fhir_instance_mp"/>
         </antcall>
-
-        <!--<antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="beschikbaarstellen_medicatieoverzicht"/>
-        </antcall>
+        
+        
+        <!-- MedMij stuff beschikbaarstellen_medicatiegegevens in separate bouwstenen, only the bundles -->
+        <property name="xsl_mp" value="${usecase-mg}/payload/${usecase-mg}_2_fhir.xsl"/>
+        
+        <property name="xsl.input" value="${usecase-mg}/ada_instance_bouwstenen"/>
+        <property name="xsl.output" value="${usecase-mg}/fhir_instance_bouwstenen"/>
+        
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.xml"/>
+        </delete>
+        
+        <sequential>
+            <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_mp}</echo>
+            <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputFiles"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+  
+        <!--
         <antcall target="convert_ada_2_fhir_sub">
             <param name="build.dir" value="beschikbaarstellen_verstrekkingenvertaling"/>
         </antcall>-->
@@ -192,12 +215,12 @@
         </delete>
 
         <sequential>
-            <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+            <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
 
             <echo/>
             <echo>${echo.label} ${xsl_mp_resources}</echo>
             <xslt force="true" style="${xsl_mp_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesMP"/>
+                <fileset refid="inputFiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
@@ -205,7 +228,7 @@
             <echo/>
             <echo>${echo.label} ${xsl_mp}</echo>
             <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesMP"/>
+                <fileset refid="inputFiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
