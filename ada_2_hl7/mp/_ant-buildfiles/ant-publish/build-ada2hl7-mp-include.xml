@@ -163,7 +163,9 @@
         <property name="xsl.output" value="${sub.build.dir}/${xsl.out}"/>
 
         <echo>Deleting previous results, if any</echo>
-        <delete dir="${xsl.output}"/>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.xml"/>            
+        </delete>
 
         <sequential>
             <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>

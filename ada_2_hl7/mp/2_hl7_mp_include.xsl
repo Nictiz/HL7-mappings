@@ -638,7 +638,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <effectiveTime>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9081_20160620234234">
                                     <xsl:with-param name="operator" select="'A'"/>
-                                    <xsl:with-param name="isFlexible" select="'true'"/>
+                                    <xsl:with-param name="isFlexible" select="(../is_flexibel/@value, 'true')[1]"/>
                                 </xsl:call-template>
                             </effectiveTime>
                         </xsl:for-each>
@@ -682,9 +682,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
 
                     <!-- Eenvoudig doseerschema met meer dan één toedientijd. -->
-                    <xsl:when test="not(./interval[.//(@value | @code)]) and count(./toedientijd[.//(@value | @code)]) > 1 and not(../toedieningsduur[.//(@value | @code)]) and not(./weekdag[.//(@value | @code)]) and not(./dagdeel[.//(@value | @code)])">
+                    <xsl:when test="not(interval[.//(@value | @code)]) and count(toedientijd[.//(@value | @code)]) > 1 and not(../toedieningsduur[.//(@value | @code)]) and not(./weekdag[.//(@value | @code)]) and not(./dagdeel[.//(@value | @code)])">
                         <effectiveTime operator="A" xsi:type="SXPR_TS">
-                            <xsl:for-each select="./toedientijd[.//(@value | @code)]">
+                            <xsl:for-each select="toedientijd[.//(@value | @code)]">
                                 <comp xsi:type="hl7nl:PIVL_TS">
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9081_20160620234234">
                                         <xsl:with-param name="operator">
@@ -698,7 +698,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:with-param>
-                                        <xsl:with-param name="isFlexible" select="'true'"/>
+                                        <xsl:with-param name="isFlexible" select="(../is_flexibel/@value, 'true')[1]"/>
                                     </xsl:call-template>
                                 </comp>
                             </xsl:for-each>
@@ -706,8 +706,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
 
                     <!-- Eenmalig gebruik. Of een aantal keer zonder verdere aanduiding wanneer -->
-                    <xsl:when test="./frequentie/aantal[.//(@value | @code)] and not(./frequentie/tijdseenheid[.//(@value | @code)]) and not(./interval[.//(@value | @code)])">
-                        <xsl:for-each select="./frequentie[.//(@value | @code)]">
+                    <xsl:when test="frequentie/aantal[.//(@value | @code)] and not(frequentie/tijdseenheid[.//(@value | @code)]) and not(interval[.//(@value | @code)])">
+                        <xsl:for-each select="frequentie[.//(@value | @code)]">
                             <effectiveTime>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9121_20160711104612"/>
                             </effectiveTime>
@@ -715,17 +715,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
 
                     <!-- Doseerschema per week op één weekdag. Met evt een toedientijd -->
-                    <xsl:when test="count(./weekdag[.//(@value | @code)]) = 1 and count(./toedientijd[.//(@value | @code)]) &lt;= 1 and not(./frequentie[tijdseenheid/@value != 'week'])">
+                    <xsl:when test="count(weekdag[.//(@value | @code)]) = 1 and count(toedientijd[.//(@value | @code)]) &lt;= 1 and not(./frequentie[tijdseenheid/@value != 'week'])">
                         <xsl:variable name="aantalPerWeek">
-                            <xsl:value-of select="./frequentie[tijdseenheid/@value = 'week'][1]/aantal/vaste_waarde/@value"/>
+                            <xsl:value-of select="frequentie[tijdseenheid/@value = 'week'][1]/aantal/vaste_waarde/@value"/>
                         </xsl:variable>
-                        <xsl:for-each select="./weekdag[.//(@value | @code)]">
+                        <xsl:for-each select="weekdag[.//(@value | @code)]">
                             <effectiveTime>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
                                     <xsl:with-param name="operator" select="'A'"/>
                                     <xsl:with-param name="toedientijd" select="../toedientijd"/>
                                     <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
-                                    <xsl:with-param name="weekdagCode" select="./@code"/>
+                                    <xsl:with-param name="weekdagCode" select="@code"/>
                                 </xsl:call-template>
                             </effectiveTime>
                         </xsl:for-each>
@@ -750,7 +750,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:variable name="effectiveTimeOperator">
                                             <!-- only the first comp has operator 'A', the rest has operator 'I' -->
                                             <xsl:choose>
-                                                <xsl:when test="not(./preceding-sibling::weekdag)">
+                                                <xsl:when test="not(preceding-sibling::weekdag)">
                                                     <xsl:value-of select="'A'"/>
                                                 </xsl:when>
                                                 <xsl:otherwise>
@@ -762,7 +762,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
                                                 <xsl:with-param name="operator" select="$effectiveTimeOperator"/>
                                                 <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
-                                                <xsl:with-param name="weekdagCode" select="./@code"/>
+                                                <xsl:with-param name="weekdagCode" select="@code"/>
                                             </xsl:call-template>
                                         </comp>
                                     </xsl:for-each>
@@ -773,7 +773,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:variable name="curToedientijd" select="."/>
                                         <!-- Voor de overzichtelijkheid van het resultaat zou het handiger zijn om eerst over weekdagen,
                                    en daarbinnen over toedientijden te itereren, omdat de <comp>'s dan chronologisch staan.
-                                   Maar omdat het aangeroepen template de weekdag als context verwacht, is 
+                                   Maar omdat het aangeroepen template de weekdag als context verwacht, is dat nu niet mogelijk
                               -->
                                         <xsl:for-each select="../weekdag[.//(@value | @code)]">
                                             <xsl:variable name="curWeekdag" select="."/>
@@ -793,7 +793,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <xsl:with-param name="operator" select="$effectiveTimeOperator"/>
                                                     <xsl:with-param name="toedientijd" select="$curToedientijd"/>
                                                     <xsl:with-param name="aantalPerWeek" select="$aantalPerWeek"/>
-                                                    <xsl:with-param name="weekdagCode" select="./@code"/>
+                                                    <xsl:with-param name="weekdagCode" select="@code"/>
                                                 </xsl:call-template>
                                             </comp>
                                         </xsl:for-each>
@@ -806,7 +806,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- Combinatie dagdeel en weekdag wordt (nog) niet ondersteund. -->
 
                     <!-- één of meerdere dagde(e)l(en) > -->
-                    <xsl:when test="not(./interval[.//(@value | @code)]) and not(./toedientijd[.//(@value | @code)]) and not(../toedieningsduur[.//(@value | @code)]) and not(weekdag[.//(@value | @code)]) and dagdeel[.//(@value | @code)]">
+                    <xsl:when test="not(interval[.//(@value | @code)]) and not(toedientijd[.//(@value | @code)]) and not(../toedieningsduur[.//(@value | @code)]) and not(weekdag[.//(@value | @code)]) and dagdeel[.//(@value | @code)]">
                         <xsl:choose>
                             <xsl:when test="count(dagdeel) = 1">
                                 <effectiveTime operator="A">
@@ -830,45 +830,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
                                 </effectiveTime>
                             </xsl:when>
-                            <!--<xsl:when test="./dagdeel/@code = '2546009'">
-                                <!-\-  's nachts -\->
-                                <effectiveTime>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9159_20160728135022">
-                                        <xsl:with-param name="operator" select="'A'"/>
-                                        <xsl:with-param name="frequentieTijdseenheid" select="./frequentie[aantal/vaste_waarde/@value = '1']/tijdseenheid[.//(@value | @code)]"/>
-                                    </xsl:call-template>
-                                </effectiveTime>
-                            </xsl:when>
-                            <xsl:when test="./dagdeel/@code = '73775008'">
-                                <!-\-  's morgens -\->
-                                <effectiveTime>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9156_20160728135021">
-                                        <xsl:with-param name="operator" select="'A'"/>
-                                        <xsl:with-param name="frequentieTijdseenheid" select="./frequentie[aantal/vaste_waarde/@value = '1']/tijdseenheid"/>
-                                    </xsl:call-template>
-                                </effectiveTime>
-                            </xsl:when>
-                            <xsl:when test="./dagdeel/@code = '255213009'">
-                                <!-\-  's middags -\->
-                                <effectiveTime>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9157_20160728135022">
-                                        <xsl:with-param name="operator" select="'A'"/>
-                                        <xsl:with-param name="frequentieTijdseenheid" select="./frequentie[aantal/vaste_waarde/@value = '1']/tijdseenheid"/>
-                                    </xsl:call-template>
-                                </effectiveTime>
-                            </xsl:when>
-                            <xsl:when test="./dagdeel/@code = '3157002'">
-                                <!-\-  's avonds -\->
-                                <effectiveTime>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9158_20160728135022">
-                                        <xsl:with-param name="operator" select="'A'"/>
-                                        <xsl:with-param name="frequentieTijdseenheid" select="./frequentie[aantal/vaste_waarde/@value = '1']/tijdseenheid"/>
-                                    </xsl:call-template>
-                                </effectiveTime>
-                            </xsl:when>-->
-                        </xsl:choose>
+                         </xsl:choose>
                     </xsl:when>
-
 
                 </xsl:choose>
             </xsl:otherwise>
@@ -1207,12 +1170,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>HL7NL PIVL_TS Vaste Tijd</xd:desc>
         <xd:param name="operator"/>
         <xd:param name="isFlexible"/>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9081_20160620234234">
-        <!-- HL7NL PIVL_TS Vaste Tijd -->
         <xsl:param name="operator"/>
         <xsl:param name="isFlexible"/>
         <xsl:attribute name="xsi:type" select="'hl7nl:PIVL_TS'"/>
@@ -2144,11 +2106,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>HL7NL PIVL_TS Weekdag</xd:desc>
-        <xd:param name="operator"/>
-        <xd:param name="toedientijd"/>
-        <xd:param name="aantalPerWeek"/>
-        <xd:param name="weekdagCode"/>
+        <xd:desc>HL7NL PIVL_TS Weekdag. Expected context is ada weekdag element</xd:desc>
+        <xd:param name="operator">The operator (for example A or I) for the PIVL</xd:param>
+        <xd:param name="toedientijd">The ada element with time to administer</xd:param>
+        <xd:param name="aantalPerWeek">The amount of weeks in between</xd:param>
+        <xd:param name="weekdagCode">The ada code for week day, which is in SNOMED</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123">
         <xsl:param name="operator"/>
@@ -2160,7 +2122,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="chooseOperatorAttrib">
             <xsl:with-param name="operator" select="$operator"/>
         </xsl:call-template>
-        <xsl:attribute name="isFlexible" select="'true'"/>
+        <xsl:choose>
+            <xsl:when test="../is_flexibel[@value]">
+                <xsl:attribute name="isFlexible" select="../is_flexibel/@value"/>
+            </xsl:when>
+            <xsl:when test="../is_flexibel[@nullFlavor]"/>
+            <xsl:otherwise>
+                <xsl:attribute name="isFlexible">true</xsl:attribute>
+            </xsl:otherwise>
+        </xsl:choose>
         <xsl:attribute name="alignment" select="'DW'"/>
         <xsl:variable name="date4DayOfWeek">
             <xsl:choose>
@@ -2396,7 +2366,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <xsl:attribute name="xsi:type">hl7nl:PIVL_TS</xsl:attribute>
             <xsl:attribute name="operator" select="$operator"/>
-            <xsl:attribute name="isFlexible" select="'true'"/>
+            <xsl:choose>
+                <xsl:when test="is_flexibel[@value]">
+                    <xsl:attribute name="isFlexible" select="is_flexibel/@value"/>
+                </xsl:when>
+                <xsl:when test="is_flexibel[@nullFlavor]"/>
+                <xsl:otherwise>
+                    <xsl:attribute name="isFlexible">true</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:for-each select="../toedieningsduur">
                 <hl7nl:phase>
                     <xsl:for-each select="$toedientijd">
