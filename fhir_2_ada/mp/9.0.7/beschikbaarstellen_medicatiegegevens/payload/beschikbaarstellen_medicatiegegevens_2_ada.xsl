@@ -57,7 +57,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:attribute name="value" select="f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']/f:valueIdentifier/f:value/@value"/>
                                 <xsl:attribute name="root" select="local:getOid(f:extension[@url='http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment']/f:valueIdentifier/f:system/@value)"/>
                             </identificatie>
-                            <xsl:apply-templates select="current-group()[self::f:MedicationRequest]" mode="zib-MedicationAgreement-2.2"/>
+                            <!-- medicatieafspraak -->
+                            <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value='16076005']" mode="zib-MedicationAgreement-2.2"/>
+                            <!-- verstrekkingsverzoek -->
+                            <!-- toedieningsafspraak -->
+                            <!-- verstrekking -->
+                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.0"/>
+                            <!-- medicatie_gebruik -->
                             <xsl:apply-templates select="current-group()[self::f:MedicationStatement]" mode="xxx"/>
                         </medicamenteuze_behandeling>
                     </xsl:for-each-group>
