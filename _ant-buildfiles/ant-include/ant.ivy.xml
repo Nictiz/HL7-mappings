@@ -37,6 +37,10 @@
         <ivy:dependencytree/>
     </target>
     
+    <target name="clean-imports" description="--> clean the ivy installed dependencies">
+        <delete dir="${imports.location}"/>
+    </target>
+    
     <target name="clean-ivy" description="--> clean the ivy installation">
         <delete dir="${ivy.jar.dir}"/>
     </target>
