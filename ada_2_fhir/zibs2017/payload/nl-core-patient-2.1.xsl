@@ -14,12 +14,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
+    <!--    <xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="_zib2017.xsl"/>
     <xsl:import href="nl-core-address-2.0.xsl"/>
     <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
     <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
-    
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xd:doc>
@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
     <xsl:template name="patientReference" match="patient" mode="doPatientReference-2.1" as="element()*">
-        <xsl:variable name="theIdentifier" select="identificatienummer[@value] | patient_identificatie_nummer[@value] | patient_identification_number[@value]"/>
+        <xsl:variable name="theIdentifier" select="(identificatienummer|patient_identificatie_nummer|patient_identification_number)[@value|@nullFlavor]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPatient(.)"/>
         <xsl:variable name="theGroupElement" select="$patients[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
@@ -109,6 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="generalPractitionerRef" as="element()*"/>
         <xsl:param name="managingOrganizationRef" as="element()*"/>
+
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <Patient>
@@ -119,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
                     </meta>
                     <!-- patient_identificatienummer  -->
-                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number)[@value]">
+                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number)[@value|@nullFlavor]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
@@ -129,7 +130,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- naamgegevens -->
                     <xsl:call-template name="nl-core-humanname-2.0">
                         <!-- in some datasets the name_information is unfortunately unnecessary nested in an extra group, hence the extra predicate -->
-                    <xsl:with-param name="in" select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])" as="element()*"/>
+                        <xsl:with-param name="in" select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])" as="element()*"/>
                     </xsl:call-template>
                     <!-- contactgegevens -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
@@ -182,7 +183,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
                     </xsl:call-template>
                     <!-- maritalStatus -->
-    
+
                     <!-- multipleBirth -->
                     <xsl:for-each select="meerling_indicator | multiple_birth_indicator">
                         <multipleBirthBoolean>
@@ -192,13 +193,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </multipleBirthBoolean>
                     </xsl:for-each>
                     <!-- photo -->
-    
+
                     <!-- contact -->
-    
+
                     <!-- animal -->
-    
+
                     <!-- communication -->
-    
+
                     <!-- generalPractitioner -->
                     <xsl:if test="$generalPractitionerRef">
                         <generalPractitioner>
@@ -220,7 +221,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- link -->
                 </Patient>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
@@ -247,13 +248,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="level" select="$logDEBUG"/>
                     <xsl:with-param name="msg">
                         <xsl:text>Found more then one token in QualificationTokens for bsn </xsl:text>
-                    <xsl:value-of select="$adaBsn"/>
+                        <xsl:value-of select="$adaBsn"/>
                         <xsl:text>. So we will not use either of those.</xsl:text>
                     </xsl:with-param>
                 </xsl:call-template>
-
             </xsl:when>
-        <xsl:otherwise>
+            <xsl:otherwise>
                 <!-- not found using bsn, let's try exact match on family name -->
                 <xsl:variable name="adaEigenAchternaam" select="upper-case(normalize-space($adaPatient//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])/geslachtsnaam/achternaam/@value))"/>
                 <xsl:variable name="tokenResourceId" select="($patientTokensXml//*[familyName/upper-case(normalize-space(text())) = $adaEigenAchternaam]/resourceId)"/>
