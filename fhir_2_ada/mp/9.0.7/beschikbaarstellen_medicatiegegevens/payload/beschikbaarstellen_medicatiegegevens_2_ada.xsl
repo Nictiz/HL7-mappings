@@ -62,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- verstrekkingsverzoek -->
                             <!-- toedieningsafspraak -->
                             <!-- verstrekking -->
-                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.0"/>
+                            <xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value='373784005']" mode="zib-Dispense-2.2"/>
                             <!-- medicatie_gebruik -->
                             <xsl:apply-templates select="current-group()[self::f:MedicationStatement]" mode="xxx"/>
                         </medicamenteuze_behandeling>
