@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="organizationReference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationReference-2.0">
         <xsl:variable name="theIdentifier" select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]"/>
+        <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/> 
