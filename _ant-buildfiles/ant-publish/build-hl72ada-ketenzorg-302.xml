@@ -7,7 +7,7 @@
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
 <project basedir="../../hl7_2_ada/ketenzorg/3.0.2" default="convert_hl7v3_2_ada" name="hl7v3_2_ada_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <ant antfile="../../..//_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <ant antfile="../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
     
@@ -32,6 +32,7 @@
         <property name="xsl_allergyintolerance" value="${build.dir}/payload/beschikbaarstellen_allergieintoleranties_2_ada.xsl"/>
         <property name="xsl_episodes" value="${build.dir}/payload/beschikbaarstellen_episodes_2_ada.xsl"/>
         <property name="xsl_contactverslagen" value="${build.dir}/payload/beschikbaarstellen_contactverslagen_2_ada.xsl"/>
+        <property name="xsl_diagnbepalingen" value="${build.dir}/payload/beschikbaarstellen_diagnostische_bepalingen_2_ada.xsl"/>
         <property name="xsl_labbepalingen" value="${build.dir}/payload/beschikbaarstellen_labbepalingen_2_ada.xsl"/>
         <property name="xsl_algemene_bepalingen" value="${build.dir}/payload/beschikbaarstellen_algemene_bepalingen_2_ada.xsl"/>
         <property name="xsl_alerts" value="${build.dir}/payload/beschikbaarstellen_alerts_2_ada.xsl"/>
@@ -48,6 +49,7 @@
             <fileset id="inputfilesAllergieIntoleranties" dir="${xsl.input}" includes="*allergieintoleranties*.xml"/>
             <fileset id="inputfilesEpisodes" dir="${xsl.input}" includes="*episodes*.xml"/>
             <fileset id="inputfilesContactverslagen" dir="${xsl.input}" includes="*contactverslag*.xml"/>
+            <fileset id="inputfilesDiagnBepalingen" dir="${xsl.input}" includes="*diagnostische_bepalingen*.xml"/>
             <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="*labbepalingen*.xml"/>
             <fileset id="inputfilesAlgemeneBepalingen" dir="${xsl.input}" includes="*algemene_bepalingen*.xml"/>
             <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="*alerts*.xml"/>
@@ -57,7 +59,6 @@
             <echo/>
             <echo>${echo.label} ${xsl_allergyintolerance}</echo>
             <xslt force="true" style="${xsl_allergyintolerance}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesAllergieIntoleranties"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -66,7 +67,6 @@
             <echo/>
             <echo>${echo.label} ${xsl_episodes}</echo>
             <xslt force="true" style="${xsl_episodes}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesEpisodes"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -76,6 +76,14 @@
             <echo>${echo.label} ${xsl_contactverslagen}</echo>
             <xslt force="true" style="${xsl_contactverslagen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesContactverslagen"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_diagnbepalingen}</echo>
+            <xslt force="true" style="${xsl_diagnbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesDiagnBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
@@ -91,7 +99,6 @@
             <echo/>
             <echo>${echo.label} ${xsl_algemene_bepalingen}</echo>
             <xslt force="true" style="${xsl_algemene_bepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesAlgemeneBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -100,7 +107,6 @@
             <echo/>
             <echo>${echo.label} ${xsl_alerts}</echo>
             <xslt force="true" style="${xsl_alerts}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesAlerts"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -109,7 +115,6 @@
             <echo/>
             <echo>${echo.label} ${xsl_encounters}</echo>
             <xslt force="true" style="${xsl_encounters}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesEncounters"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
@@ -118,7 +123,6 @@
             <echo/>
             <echo>${echo.label} ${xsl_medicationagreements}</echo>
             <xslt force="true" style="${xsl_medicationagreements}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <!--<param name="allow-foreign" expression="true"/>-->
                 <fileset refid="inputfilesMedicationAgreements"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>

@@ -46,6 +46,7 @@
         <property name="xsl_allergyintolerance" value="${build.dir}/payload/beschikbaarstellen_allergieintoleranties_2_fhir.xsl"/>
         <property name="xsl_episodes" value="${build.dir}/payload/beschikbaarstellen_episodes_2_fhir.xsl"/>
         <property name="xsl_contactverslagen" value="${build.dir}/payload/beschikbaarstellen_contactverslagen_2_fhir.xsl"/>
+        <property name="xsl_diagnbepalingen" value="${build.dir}/payload/beschikbaarstellen_diagnostische_bepalingen_2_fhir.xsl"/>
         <property name="xsl_labbepalingen" value="${build.dir}/payload/beschikbaarstellen_labbepalingen_2_fhir.xsl"/>
         <property name="xsl_algemene_bepalingen" value="${build.dir}/payload/beschikbaarstellen_algemene_bepalingen_2_fhir.xsl"/>
         <property name="xsl_alerts" value="${build.dir}/payload/beschikbaarstellen_alerts_2_fhir.xsl"/>
@@ -62,6 +63,7 @@
             <fileset id="inputfilesAllergieIntoleranties" dir="${xsl.input}" includes="*allergieintoleranties*.xml"/>
             <fileset id="inputfilesEpisodes" dir="${xsl.input}" includes="*episodes*.xml"/>
             <fileset id="inputfilesContactverslagen" dir="${xsl.input}" includes="*contactverslag*.xml"/>
+            <fileset id="inputfilesDiagnBepalingen" dir="${xsl.input}" includes="*diagnostische_bepalingen*.xml"/>
             <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="*labbepalingen*.xml"/>
             <fileset id="inputfilesAlgemeneBepalingen" dir="${xsl.input}" includes="*algemene_bepalingen*.xml"/>
             <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="*alerts*.xml"/>
@@ -95,6 +97,16 @@
                 <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
                 <param name="logLevel" expression="${logLevel}"/>
                 <fileset refid="inputfilesContactverslagen"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_diagnbepalingen}</echo>
+            <xslt force="true" style="${xsl_diagnbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <param name="mask-ids" expression="2.16.840.1.113883.2.4.6.3"/>
+                <param name="logLevel" expression="${logLevel}"/>
+                <fileset refid="inputfilesDiagnBepalingen"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
