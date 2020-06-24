@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../beschikbaarstellen_medicatiegegevens_2_ada.xsl">
+    
+    <x:import href="../../../../test/fhir_2_ada_mp_include.xspec"/>
+    
+    <x:scenario label="beschikbaarstellen_medicatiegegevens_2_ada">
+        
+        <x:scenario label="Scenario for testing template with match '/">
+            <x:context select="/">
+                <Bundle xmlns="http://hl7.org/fhir"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd"/>
+            </x:context>
+            <x:expect label="'adaxml'-element, containing 'meta', 'data' and 'data/beschikbaarstellen_medicatiegegevens'.">
+                <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+                    <meta status="new"
+                        created-by="generated"
+                        last-update-by="generated"
+                        creation-date="..."
+                        last-update-date="..."/>
+                    <data>
+                        <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                            shortName="beschikbaarstellen_medicatiegegevens"
+                            formName="uitwisselen_medicatiegegevens"
+                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                            transactionEffectiveDate="2016-03-23T16:32:43"
+                            prefix="mp-"
+                            language="nl-NL"
+                            title="Generated from HL7 FHIR medicatiegegevens 9.0.7 xml"
+                            id="DUMMY"/>
+                    </data>
+                </adaxml>
+            </x:expect>
+        </x:scenario>
+        
+    </x:scenario>
+</x:description>

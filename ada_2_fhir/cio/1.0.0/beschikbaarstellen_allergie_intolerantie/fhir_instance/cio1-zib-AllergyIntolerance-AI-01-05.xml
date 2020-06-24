@@ -1,0 +1,150 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="AI-01-05"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: <a href="Patient/XXX-TEST-D">Véronique V. Véronique XXX-TEST-D</a>. Id: AI_01_05 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Ingevoerd door: <a href="PractitionerRole/1111111210100">A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'</a>
+               </span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Dhr. werkt in de zorg en dient latexvrije handschoenen te dragen.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Latex (300916003 - SNOMED CT)">Latex</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>
+                     <a href="RelatedPerson/ABRAHAMB-M-H-BRAMPASVEER">Abraham B.M.H. Bram Pasveer</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -3500}</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>${DATE, T, D, -265}T14:30:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>${DATE, T, D, -265}T14:30:00+02:00 <span title="Matig (6736007 - SNOMED CT)">Matig</span>
+                           </div>
+                           <div>
+                              <span title="Jeuk (418363000 - SNOMED CT)">Jeuk</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="AI_01_05"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </verificationStatus>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="6736007"/>
+               <display value="matig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="300916003"/>
+         <display value="Latex"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -3500}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/1111111210100"/>
+            <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+         </valueReference>
+      </extension>
+      <display value="A.B. Comenius de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk 'de Test'"/>
+   </recorder>
+   <asserter>
+      <reference value="RelatedPerson/ABRAHAMB-M-H-BRAMPASVEER"/>
+      <display value="Abraham B.M.H. Bram Pasveer"/>
+   </asserter>
+   <lastOccurrence value="${DATE, T, D, -265}T14:30:00+02:00"/>
+   <note>
+      <text value="Dhr. werkt in de zorg en dient latexvrije handschoenen te dragen."/>
+   </note>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="418363000"/>
+            <display value="Jeuk"/>
+         </coding>
+      </manifestation>
+      <onset value="${DATE, T, D, -265}T14:30:00+02:00"/>
+      <severity value="moderate">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6736007"/>
+                  <display value="Matig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
+</AllergyIntolerance>

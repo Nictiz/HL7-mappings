@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../zib-dispense-2.0.xsl">
+    
+    <x:scenario label="zib-dispense-2.0">
+        <x:context mode="zib-Dispense-2.0">
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+                </meta>
+                <text/>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
+                    <valueDateTime value="2018-09-03T14:32:00+02:00"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                        <value value="MBH_513_2"/>
+                    </valueIdentifier>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                    <value value="MBH_513_2_MVE_1"/>
+                </identifier>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="373784005"/>
+                        <display value="Dispensing medication (procedure)"/>
+                    </coding>
+                    <text value="Medicatieverstrekking"/>
+                </category>
+                <medicationReference>
+                    <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.571148"/>
+                    <display value="FUROSEMIDE ACTAVIS TABLET 40MG"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:2b5cd5a3-b526-11ea-8547-020000000000"/>
+                    <display value="J. XXX_Amaya"/>
+                </subject>
+                <performer>
+                    <actor>
+                        <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                        <display value="Apotheek De Gulle Gaper"/>
+                    </actor>
+                </performer>
+                <authorizingPrescription>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                        <value value="MBH_513_2_VV_2"/>
+                    </identifier>
+                    <display value="Verstrekkingsverzoek met identificatie MBH_513_2_VV_2 in identificerend systeem 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1."/>
+                </authorizingPrescription>
+                <quantity>
+                    <value value="30"/>
+                    <unit value="stuk"/>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                    <code value="245"/>
+                </quantity>
+            </MedicationDispense>
+        </x:context>
+        <x:expect label="'verstrekking' element with all possible children">
+            <verstrekking>
+                <identificatie value="MBH_513_2_MVE_1" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                <datum nullFlavor="UNK"/>
+                <aanschrijfdatum value="2018-09-03T14:32:00"/>
+                <verstrekker>
+                    <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                    </zorgaanbieder>
+                </verstrekker>
+                <verstrekte_hoeveelheid>
+                    <aantal value="30"/>
+                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                </verstrekte_hoeveelheid>
+                <verstrekt_geneesmiddel>
+                    <product>
+                        <product_code code="571148" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="FUROSEMIDE ACTAVIS TABLET 40MG" codeSystemName="G-Standaard HPK"/>
+                        <product_code code="5967" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="FUROSEMIDE TABLET 40MG"/>
+                        <product_code code="16810" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="FUROSEMIDE TABLET 40MG"/>
+                    </product>
+                </verstrekt_geneesmiddel>
+                <!--<verbruiksduur/>
+                <afleverlocatie/>
+                <distributievorm/>
+                <aanvullende_informatie/>
+                <toelichting/>-->
+                <relatie_naar_verstrekkingsverzoek>
+                    <identificatie value="MBH_513_2_VV_2" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>

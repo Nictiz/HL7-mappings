@@ -15,7 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
-    <xsl:import href="../../../2_fhir_mp_include.xsl"/>
+    <xsl:import href="../../../2_fhir_mp90_include.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -36,6 +36,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->    
+    <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>    
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry , $products/f:entry , $locations/f:entry"/>
     </xsl:variable>
@@ -45,17 +47,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="medicatieoverzicht_90">
-            <xsl:with-param name="adaTransaction" select="//beschikbaarstellen_medicatieoverzicht"/>
+            <xsl:with-param name="adaTransaction" select="adaxml/data/beschikbaarstellen_medicatieoverzicht"/>
         </xsl:call-template>
     </xsl:template>
     <xd:doc>
         <xd:desc>Build a FHIR Bundle of type searchset.</xd:desc>
-        <xd:param name="mbh">ada medicamenteuze behandeling</xd:param>
-        <xd:param name="adaTransaction"/>
+          <xd:param name="adaTransaction">The ada transaction</xd:param>
     </xd:doc>
     <xsl:template name="medicatieoverzicht_90">
         <xsl:param name="adaTransaction" as="element()*"/>
-        <xsl:param name="mbh" as="element()*" select="$adaTransaction/medicamenteuze_behandeling"/>
         
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:copy-of select="$bouwstenen-907"/>
@@ -65,6 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+            <id value="{concat('MO-', nf:removeSpecialCharacters(($patients/f:entry/f:resource/f:Patient/f:name/f:family)[1]/@value))}"/>
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
             </meta>

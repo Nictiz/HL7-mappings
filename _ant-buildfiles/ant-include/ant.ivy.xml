@@ -12,7 +12,7 @@
         </fileset>
     </path>
     
-    <property name="ivy.install.version" value="2.4.0"/>
+    <property name="ivy.install.version" value="2.5.0"/>
     <property name="ivy.jar.dir" value="${basedir}/ivy"/>
     <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
     <property name="ivy.dep.file" value="${basedir}/ivy.xml"/>
@@ -20,7 +20,7 @@
     <target name="download-ivy" unless="offline">
         <mkdir dir="${ivy.jar.dir}"/>
         <echo message="installing ivy..."/>
-        <get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+        <get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
     </target>
     
     <target name="install-ivy" depends="download-ivy" description="--> install ivy">
@@ -35,6 +35,10 @@
         <ivy:resolve transitive="false"/>
         <ivy:retrieve type="jar,bundle" sync="true" pattern="${imports.location}/[artifact]-[revision].[ext]"/>
         <ivy:dependencytree/>
+    </target>
+    
+    <target name="clean-imports" description="--> clean the ivy installed dependencies">
+        <delete dir="${imports.location}"/>
     </target>
     
     <target name="clean-ivy" description="--> clean the ivy installation">

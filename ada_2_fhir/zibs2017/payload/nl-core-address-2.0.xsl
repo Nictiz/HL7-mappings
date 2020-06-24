@@ -9,27 +9,27 @@
             <xsl:variable name="lineItems" as="element()*">
                 <xsl:for-each select="straat/@value | street/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                        <valueString value="{.}"/>
+                        <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
                 <xsl:for-each select="huisnummer/@value | house_number/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                        <valueString value="{.}"/>
+                        <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
                 <xsl:for-each select="huisnummerletter/@value | huisnummertoevoeging/@value | house_number_letter/@value | house_number_addition/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
-                        <valueString value="{.}"/>
+                        <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
                 <xsl:for-each select="additionele_informatie/@value | additional_information/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
-                        <valueString value="{.}"/>
+                        <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
                 <xsl:for-each select="aanduiding_bij_nummer/@value | house_number_indication/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
-                        <valueString value="{.}"/>
+                        <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
             </xsl:variable>
@@ -39,12 +39,10 @@
                     <xsl:choose>
                         <!-- Postadres -->
                         <xsl:when test="@code = 'PST'">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                                <valueCode value="PST"/>
+                            </extension>
                             <!-- AWE, no use to be outputted for postal address, see https://simplifier.net/NictizSTU3-Zib2017/AdresSoortCodelijst-to-AddressUse -->
-                            <!--     <use>
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="PST"/>
-                                </extension>
-                            </use>-->
                             <type value="postal"/>
                         </xsl:when>
                         <!-- Officieel adres -->
@@ -52,20 +50,18 @@
                             <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
                                 <valueCode value="true"/>
                             </extension>
-                            <use value="home">
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="HP"/>
-                                </extension>
-                            </use>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                                <valueCode value="HP"/>
+                            </extension>
+                            <use value="home"/>
                             <type value="physical"/>
                         </xsl:when>
                         <!-- Woon-/verblijfadres -->
                         <xsl:when test="@code = 'PHYS'">
-                            <use value="home">
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="PHYS"/>
-                                </extension>
-                            </use>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                                <valueCode value="PHYS"/>
+                            </extension>
+                            <use value="home"/>
                             <type value="physical"/>
                         </xsl:when>
                         <!-- Tijdelijk adres -->
@@ -78,11 +74,10 @@
                         </xsl:when>
                         <!-- Vakantie adres -->
                         <xsl:when test="@code = 'HV'">
-                            <use value="temp">
-                                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
-                                    <valueCode value="HV"/>
-                                </extension>
-                            </use>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-AD-use">
+                                <valueCode value="HV"/>
+                            </extension>
+                            <use value="temp"/>
                         </xsl:when>
                     </xsl:choose>
                 </xsl:for-each>
@@ -93,16 +88,16 @@
                     </line>
                 </xsl:if>
                 <xsl:for-each select="woonplaats/@value | place_of_residence/@value">
-                    <city value="{.}"/>
+                    <city value="{normalize-space(.)}"/>
                 </xsl:for-each>
                 <xsl:for-each select="gemeente/@value | municipality/@value">
-                    <district value="{.}"/>
+                    <district value="{normalize-space(.)}"/>
                 </xsl:for-each>
                 <xsl:for-each select="postcode/@value">
-                    <postalCode value="{.}"/>
+                    <postalCode value="{translate(.,' ','')}"/>
                 </xsl:for-each>
                 <xsl:for-each select="land/@value | country/@value">
-                    <country value="{.}"/>
+                    <country value="{normalize-space(.)}"/>
                 </xsl:for-each>
             </address>
         </xsl:for-each>

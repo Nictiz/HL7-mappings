@@ -24,11 +24,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
     <xsl:param name="xsdAda" as="node()*" select="document('../ada_schemas/beschikbaarstellen_allergie_intolerantie_vertaling.xsd')"/>
-    <xsl:variable name="ada-formname">beschikbaarstellen_allergie_intolerantie_vertaling</xsl:variable>
-    <xsl:variable name="transaction-name" select="$ada-formname"/>
-    <xsl:variable name="xsdTransaction" select="nf:getADAComplexType($xsdAda, nf:getADAComplexTypeName($xsdAda, $transaction-name))"/>
-    <xsl:variable name="transaction-oid">2.16.840.1.113883.2.4.3.11.60.26.4.6</xsl:variable>
-    <xsl:variable name="transaction-effectiveDate" as="xs:dateTime">2019-08-28T13:33:41</xsl:variable>
+    
+    <!-- debug parameter whether to output the $transactionResult variable in a debug dir -->
+    <xsl:param name="debug" as="xs:boolean?" select="false()"/>
+    
+   <xsl:variable name="adaFormname">beschikbaarstellen_allergie_intolerantie_vertaling</xsl:variable>
+    <xsl:variable name="transactionName" select="$adaFormname"/>
+    <xsl:variable name="xsdTransaction" select="nf:getADAComplexType($xsdAda, nf:getADAComplexTypeName($xsdAda, $transactionName))"/>
+    <xsl:variable name="transactionOid">2.16.840.1.113883.2.4.3.11.60.26.4.6</xsl:variable>
+    <xsl:variable name="transactionEffectiveDate" as="xs:dateTime">2019-08-28T13:33:41</xsl:variable>
     <xsl:variable name="ica612Root" select="//hl7:REPC_IN000024NL"/>
 
     <!-- Variable to hold all information to create actual ada instance -->
@@ -41,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:comment>Generated from HL7v3 ica 6.12 xml with message id (<xsl:value-of select="./local-name()"/>/id) <xsl:value-of select="concat('root: ', ./hl7:id/@root, ' and extension: ', ./hl7:id/@extension)"/>.</xsl:comment>
             <xsl:text>
 </xsl:text>
-            <beschikbaarstellen_allergie_intolerantie_vertaling app="cio" shortName="{$transaction-name}" formName="{$ada-formname}" transactionRef="{$transaction-oid}" transactionEffectiveDate="{$transaction-effectiveDate}" prefix="cio-" language="nl-NL">
+            <beschikbaarstellen_allergie_intolerantie_vertaling app="cio" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="cio-" language="nl-NL">
                 <xsl:attribute name="title">Generated from HL7v3 potentiële contraindicaties 6.12 xml</xsl:attribute>
                 <xsl:attribute name="id" select="tokenize(base-uri(), '/')[last()]"/>
                 <xsl:copy-of select="$patients/patient_information/*[local-name() = $elmPatient]"/>
@@ -58,6 +62,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:if test="$ica612Root">
+            <xsl:if test="$debug">
+                <xsl:result-document href="{concat('../debug/', $ica612Root/hl7:id/@extension, '.xml')}">
+                    <xsl:copy-of select="$transactionResult"/>
+                </xsl:result-document>
+            </xsl:if>
             <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_allergie_intolerantie_vertaling.xsd">
                 <meta status="new" created-by="generated" last-update-by="generated">
                     <xsl:attribute name="creation-date" select="current-dateTime()"/>
@@ -66,7 +75,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <data>
                     <xsl:for-each select="$transactionResult/beschikbaarstellen_allergie_intolerantie_vertaling">
                         <xsl:copy>
-                            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
+                            <!-- attributen kopiëren -->
+                            <xsl:apply-templates select="@*" mode="adaOutput"/>
+                            <!-- patient is first element in dataset, output the HCIM first -->
+                            <xsl:apply-templates select="patient" mode="adaOutputHcim"/>
+                            <xsl:apply-templates select="node()" mode="adaOutput"/>
+                            <!-- output other HCIMs in the correct order -->
                             <!-- output healthprofessionals -->
                             <xsl:apply-templates select="
                                     //zibroot/informatiebron//zorgverlener[not(zorgverlener)][@id]
@@ -103,34 +117,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Other Conditions than intolerances are not part of this transaction and thus ignored  -->
 
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Do not copy elements with id, they follow later, exception for patient, first element in the transaction</xd:desc>
-    </xd:doc>
-    <xsl:template match="*[not(local-name() = $elmPatient)][@id]" mode="adaOutput">
-        <!-- this is the actual ada hcim do nothing here -->
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Copy template with specific mode adaOutputHcim, to output the Hcim's being referred to at the correct place in the transaction</xd:desc>
-    </xd:doc>
-    <xsl:template match="*[@id]" mode="adaOutputHcim">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
-        </xsl:copy>
-    </xsl:template>
-
-
-    <xd:doc>
-        <xd:desc>Copy template with specific mode adaOutput, to output the actual ada xml</xd:desc>
-    </xd:doc>
-    <xsl:template match="@* | node()" mode="adaOutput">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="adaOutput"/>
-        </xsl:copy>
-    </xsl:template>
-
-
-
 
 </xsl:stylesheet>

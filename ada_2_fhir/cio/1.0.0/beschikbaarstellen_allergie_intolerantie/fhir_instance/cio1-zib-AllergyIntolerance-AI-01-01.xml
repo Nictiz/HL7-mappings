@@ -1,0 +1,164 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="AI-01-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: <a href="Patient/XXX-TEST-D">Véronique V. Véronique XXX-TEST-D</a>. Id: AI_01_01 (urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Ingevoerd door: <a href="PractitionerRole/33333334301-002">M. Boot || Allergoloog (gesloten register)</a>
+               </span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Geldt alleen voor dit merk.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="PREDNISOLON CAPSULE 65MG FNA MR (1112821 - G-Standaard HPK)">PREDNISOLON CAPSULE 65MG FNA MR</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>
+                     <a href="PractitionerRole/33333334301-002">M. Boot || Allergoloog (gesloten register)</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, -50}</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>${DATE, T, D, -50}T17:45:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>${DATE, T, D, -50}T17:45:00+02:00 <span title="Ernstig (24484000 - SNOMED CT)">Ernstig</span>
+                           </div>
+                           <div>
+                              <span title="Toxische epidermale necrolyse (23067006 - SNOMED CT)">Toxische epidermale necrolyse</span>
+                           </div>
+                           <div>Blaren op grote delen van de huid</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.1"/>
+      <value value="AI_01_01"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </verificationStatus>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op geneesmiddel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24484000"/>
+               <display value="ernstig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+         <code value="1112821"/>
+         <display value="PREDNISOLON CAPSULE 65MG FNA MR"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/XXX-TEST-D"/>
+      <display value="Véronique V. Véronique XXX-TEST-D"/>
+   </patient>
+   <onsetDateTime value="${DATE, T, D, -50}"/>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/33333334301-002"/>
+            <display value="M. Boot || Allergoloog (gesloten register)"/>
+         </valueReference>
+      </extension>
+      <display value="M. Boot || Allergoloog (gesloten register)"/>
+   </recorder>
+   <asserter>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/33333334301-002"/>
+            <display value="M. Boot || Allergoloog (gesloten register)"/>
+         </valueReference>
+      </extension>
+      <display value="M. Boot || Allergoloog (gesloten register)"/>
+   </asserter>
+   <lastOccurrence value="${DATE, T, D, -50}T17:45:00+02:00"/>
+   <note>
+      <text value="Geldt alleen voor dit merk."/>
+   </note>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+            <code value="4170"/>
+            <display value="Prednisolon"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="23067006"/>
+            <display value="Toxische epidermale necrolyse"/>
+         </coding>
+      </manifestation>
+      <description value="Blaren op grote delen van de huid"/>
+      <onset value="${DATE, T, D, -50}T17:45:00+02:00"/>
+      <severity value="severe">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="24484000"/>
+                  <display value="Ernstig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
+</AllergyIntolerance>

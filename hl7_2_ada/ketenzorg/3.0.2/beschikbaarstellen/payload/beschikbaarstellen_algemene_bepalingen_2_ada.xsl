@@ -19,26 +19,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="../../../hl7_2_ada_ketenzorg_include.xsl"/>
-    
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="doGeneratedComment"/>
-        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerAlgemeneBepalingen]">
-            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_general_measurements_response.xsd">
-                <meta status="new" created-by="generated" last-update-by="generated">
-                    <xsl:attribute name="creation-date" select="current-dateTime()"/>
-                    <xsl:attribute name="last-update-date" select="current-dateTime()"/>
-                </meta>
-                <data>
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_general_measurements_response.xsd">
+            <meta status="new" created-by="generated" last-update-by="generated">
+                <xsl:attribute name="creation-date" select="current-dateTime()"/>
+                <xsl:attribute name="last-update-date" select="current-dateTime()"/>
+            </meta>
+            <data>
+                <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerAlgemeneBepalingen]">
                     <xsl:call-template name="BeschikbaarstellenAlgemeneBepalingen-ADA">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="author" select="(ancestor::hl7:ControlActProcess/hl7:authorOrPerformer//*[hl7:id])[1]"/>
                     </xsl:call-template>
-                </data>
-            </adaxml>
-        </xsl:for-each>
+                </xsl:for-each>
+            </data>
+        </adaxml>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="BeschikbaarstellenAlgemeneBepalingen-ADA">
         <xsl:param name="in" as="element()"/>
         <xsl:param name="author" as="element()?"/>
-        
+
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
         <general_measurements_response app="ketenzorg3.0" shortName="general_measurements_response" formName="general_measurements_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.517" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <!-- Bundle stuff -->
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="custodian" select="(hl7:participant[@typeCode = 'CST']/hl7:participantRole[hl7:scopingEntity], $author)[1]"/>
                 <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
-            
+
             <xsl:variable name="organizerComponents" select="$in//*[hl7:templateId/@root = $oidAlgemeneBepaling]"/>
             <xsl:for-each select="$organizerComponents">
                 <general_measurement>
@@ -102,12 +102,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>-->
                             </hcimroot>
                         </xsl:if>
-                        
+
                         <xsl:call-template name="handleCV">
                             <xsl:with-param name="in" select="hl7:code"/>
                             <xsl:with-param name="elemName">measurement_name</xsl:with-param>
                         </xsl:call-template>
-                        
+
                         <xsl:call-template name="handleANY">
                             <xsl:with-param name="in" select="hl7:value"/>
                             <xsl:with-param name="elemName">result_value</xsl:with-param>
@@ -117,24 +117,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <!-- other values not supported in Ketenzorg in input format -->
                             </xsl:with-param>
                         </xsl:call-template>
-                        
+
                         <xsl:for-each select="(hl7:effectiveTime[@value] | hl7:effectiveTime/hl7:low)[1]">
                             <xsl:call-template name="handleTS">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="elemName">result_date_time</xsl:with-param>
                             </xsl:call-template>
                         </xsl:for-each>
-                        
+
                         <xsl:call-template name="handlePQ">
                             <xsl:with-param name="in" select="hl7:referenceRange/hl7:observationRange/hl7:value/hl7:low"/>
                             <xsl:with-param name="elemName">reference_range_lower_limit</xsl:with-param>
                         </xsl:call-template>
-                        
+
                         <xsl:call-template name="handlePQ">
                             <xsl:with-param name="in" select="hl7:referenceRange/hl7:observationRange/hl7:value/hl7:high"/>
                             <xsl:with-param name="elemName">reference_range_upper_limit</xsl:with-param>
                         </xsl:call-template>
-                        
+
                         <xsl:call-template name="handleCV">
                             <xsl:with-param name="in" select="hl7:interpretationCode"/>
                             <xsl:with-param name="elemName">result_flags</xsl:with-param>
@@ -143,9 +143,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </general_measurement>
             </xsl:for-each>
         </general_measurements_response>
-        <xsl:comment>Input HL7 xml below</xsl:comment>
-        <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="in" select="./*"/>
-        </xsl:call-template>
     </xsl:template>
 </xsl:stylesheet>

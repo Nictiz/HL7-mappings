@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <xsl:import href="../../../2_fhir_ketenzorg_include.xsl"/>
     <xd:doc scope="stylesheet">
@@ -61,7 +61,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen encounter_note".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:message><xsl:text>Parameter dojournalentries: </xsl:text><xsl:value-of select="$dojournalentries"/></xsl:message>
+        <xsl:call-template name="util:logMessage">
+            <xsl:with-param name="level" select="$logDEBUG"/>
+            <xsl:with-param name="msg">
+                <xsl:text>Parameter dojournalentries: </xsl:text>
+                <xsl:value-of select="$dojournalentries"/>
+            </xsl:with-param>
+        </xsl:call-template>
         <xsl:call-template name="BundleOfEncounterReport"/>
     </xsl:template>
     <xd:doc>

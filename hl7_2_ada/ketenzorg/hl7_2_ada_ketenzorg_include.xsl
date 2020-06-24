@@ -105,6 +105,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
         
+        <xsl:variable name="otherMentions" select="//*[hl7:id[concat(@root, @extension) = $in/hl7:id/concat(@root, @extension)]]" as="element()*"/>
+        
         <xsl:element name="{$elmHealthProfessional}">
             <xsl:call-template name="handleII">
                 <xsl:with-param name="in" select="hl7:id"/>
@@ -112,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
             <!-- .// because we might be in a ControlActProcess/authorOrPerformer/participant/AssignedPerson/assignedPrincipalChoiceList/assignedPerson/name -->
             <xsl:call-template name="handleENtoNameInformation">
-                <xsl:with-param name="in" select=".//hl7:assignedPerson/hl7:name"/>
+                <xsl:with-param name="in" select="(.//hl7:assignedPerson[hl7:name], .//hl7:*[starts-with(local-name(), 'playing')][hl7:name], $otherMentions//hl7:assignedPerson[hl7:name], $otherMentions//hl7:*[starts-with(local-name(), 'playing')][hl7:name])[1]/hl7:name"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
             <xsl:call-template name="handleCV">
@@ -120,15 +122,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="elemName" select="$elmSpecialism"/>
             </xsl:call-template>
             <xsl:call-template name="handleADtoAddressInformation">
-                <xsl:with-param name="in" select="hl7:addr"/>
+                <xsl:with-param name="in" select="(.[hl7:addr], $otherMentions[hl7:addr])[1]/hl7:addr"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
             <xsl:call-template name="handleTELtoContactInformation">
-                <xsl:with-param name="in" select="hl7:telecom"/>
+                <xsl:with-param name="in" select="(.[hl7:telecom], $otherMentions[hl7:telecom])[1]/hl7:telecom"/>
                 <xsl:with-param name="language" select="$language"/>
             </xsl:call-template>
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.66.10.9002_20111219000000">
-                <xsl:with-param name="in" select="hl7:Organization | hl7:representedOrganization"/>
+                <xsl:with-param name="in" select="(.[hl7:Organization | hl7:representedOrganization | hl7:*[starts-with(local-name(), 'scoping')]], $otherMentions[hl7:Organization | hl7:representedOrganization | hl7:*[starts-with(local-name(), 'scoping')]])[1]/(hl7:Organization | hl7:representedOrganization | hl7:*[starts-with(local-name(), 'scoping')])"/>
             </xsl:call-template>
             <xsl:call-template name="typeCode_2_HealthProfessionalRole">
                 <xsl:with-param name="typeCode" select="$typeCode"/>

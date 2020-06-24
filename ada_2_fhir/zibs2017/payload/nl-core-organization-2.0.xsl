@@ -19,11 +19,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
     <xsl:variable name="organizations" as="element()*">
+        <xsl:variable name="healthProvider" select="//zorgaanbieder[not(zorgaanbieder)] | //healthcare_provider[not(healthcare_provider)]"/>
+        
         <!-- Zorgaanbieders -->
-        <xsl:for-each-group select="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+        <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
+        <!-- This causes two entries with an identical grouping-key, causing problems when attempting to retrieve references... -->
+        <!-- <xsl:for-each-group select="$healthProvider[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
             string-join(for $att in nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/(@root, @value)
             return
-            $att, '')">
+            $att, '')">-->
+            <xsl:for-each-group select="$healthProvider[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+                concat(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@root,
+                nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)/@value)">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -64,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/> 
+                <reference value="{nf:getFullUrlOrId(($theGroupElement/f:entry)[1])}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>
@@ -82,7 +89,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an Organization resource</xd:desc>
-        <xd:param name="uuid">If false and (zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:param name="uuid">
+            If false and (zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number) generate from that. 
+            Otherwise generate uuid from scratch. 
+            Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.
+        </xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Organization.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
@@ -105,9 +116,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="$uuid">
                         <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                     </xsl:when>
-                    <xsl:otherwise>
+                        <xsl:when test="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]">
+                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join((zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[1]/(@value | @root), ''))))"/>
+                    </xsl:when>
+                    <!-- AWE, in some rare cases this does not give a unique resource id -->
+                    <!--<xsl:otherwise>
                         <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
-                    </xsl:otherwise>
+                    </xsl:otherwise>-->
+                    <!-- so fall back on entryFullUrl instead -->
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                    </xsl:otherwise>                    
                 </xsl:choose>
             </xsl:if>
         </xsl:param>
@@ -137,44 +156,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$in">
-            <Organization>
-                <xsl:if test="$referById">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
-                </meta>
-                <xsl:for-each select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]">
-                    <identifier>
-                        <xsl:call-template name="id-to-Identifier">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </identifier>
-                </xsl:for-each>
-                <!-- type -->
-                <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
-                    <type>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </type>
-                </xsl:for-each>
-                <!-- name -->
-                <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value"/>
-                <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value"/>
-                <xsl:if test="$organizationName | $organizationLocation">
-                    <!-- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -->
-                    <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
-                </xsl:if>
-                <!-- contactgegevens -->
-                <xsl:call-template name="nl-core-contactpoint-1.0">
-                    <xsl:with-param name="in" select="contactgegevens | contact_information"/>
-                </xsl:call-template>
-                <!-- address -->
-                <xsl:call-template name="nl-core-address-2.0">
-                    <xsl:with-param name="in" select="adresgegevens | address_information"/>
-                </xsl:call-template>
-            </Organization>
+            <xsl:variable name="resource">
+                <Organization>
+                    <xsl:if test="$referById">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                    </meta>
+                    <xsl:for-each select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    <!-- type -->
+                    <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
+                        <type>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </type>
+                    </xsl:for-each>
+                    <!-- name -->
+                    <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value"/>
+                    <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value"/>
+                    <xsl:if test="$organizationName | $organizationLocation">
+                        <!-- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -->
+                        <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
+                    </xsl:if>
+                    <!-- contactgegevens -->
+                    <xsl:call-template name="nl-core-contactpoint-1.0">
+                        <xsl:with-param name="in" select="contactgegevens | contact_information"/>
+                    </xsl:call-template>
+                    <!-- address -->
+                    <xsl:call-template name="nl-core-address-2.0">
+                        <xsl:with-param name="in" select="adresgegevens | address_information"/>
+                    </xsl:call-template>
+                </Organization>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

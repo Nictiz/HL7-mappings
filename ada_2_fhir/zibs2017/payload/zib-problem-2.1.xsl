@@ -135,155 +135,250 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data]"/>
-            
-            <Condition>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
-                </meta>
-                
-                <!-- Clinical Status-->
-                <!-- probleem status -->
-                <clinicalStatus>
-                    <xsl:choose>
-                        <xsl:when test="(problem_status | probleem_status)/@code = '73425007'">
-                            <xsl:attribute name="value">inactive</xsl:attribute>
-                        </xsl:when>
-                        <xsl:when test="(problem_status | probleem_status)/@code = '55561003'">
-                            <xsl:attribute name="value">active</xsl:attribute>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <extension url="{$urlExtHL7DataAbsentReason}">
-                                <valueCode value="unknown"/>
-                            </extension>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </clinicalStatus>
-                <!-- Verification Status-->
-                <xsl:for-each select="(verification_status | verificatie_status)/@code">
-                    <verificationStatus>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test=". = '415684004'">provisional"</xsl:when>
-                                <xsl:when test=". = '410590009'">differential</xsl:when>
-                                <xsl:when test=". = '410605003'">confirmed</xsl:when>
-                                <xsl:when test=". = '410516002'">refuted</xsl:when>
-                                <xsl:when test=". = 'UNK'">unknown</xsl:when>
-                            </xsl:choose>
-                        </xsl:attribute>
-                    </verificationStatus>
-                </xsl:for-each>
-                
-                <!-- Problem Type (.category) -->
-                <xsl:for-each select="(problem_type | probleem_type)[.//(@value | @code)]">
-                    <category>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </category>
-                </xsl:for-each>
-                
-                <!-- Problem Name (.code) -->
-                <code>
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="problem_name | probleem_naam"/>
-                    </xsl:call-template>
-                </code>
-                
-                <!-- BodySite SHALL be present when laterality or anatomical location is present in the adaxml -->
-                <xsl:variable name="problemAnatomic" select="(problem_anatomical_location | probleem_anatomische_locatie)[@value | @code]"/>
-                <xsl:variable name="problemLateral" select="(problem_laterality | probleem_lateraliteit)[@value | @code]"/>
-                <xsl:if test="$problemAnatomic | $problemLateral">
-                    <bodySite>
-                        <!-- extensie toevoegen als lateraliteit aanwezig is -->
-                        <xsl:for-each select="$problemLateral">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
-                        </xsl:for-each>
-                        <!-- Codeableconcept toevoegen aan bodySite -->
-                        <xsl:for-each select="$problemAnatomic">
+            <xsl:variable name="resource">
+                <Condition>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+                    </meta>
+                    
+                    <!-- Clinical Status-->
+                    <!-- probleem status -->
+                    <clinicalStatus>
+                        <xsl:choose>
+                            <xsl:when test="(problem_status | probleem_status)/@code = '73425007'">
+                                <xsl:attribute name="value">inactive</xsl:attribute>
+                            </xsl:when>
+                            <xsl:when test="(problem_status | probleem_status)/@code = '55561003'">
+                                <xsl:attribute name="value">active</xsl:attribute>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </clinicalStatus>
+                    <!-- Verification Status-->
+                    <xsl:for-each select="(verification_status | verificatie_status)/@code">
+                        <verificationStatus>
+                            <xsl:attribute name="value">
+                                <xsl:choose>
+                                    <xsl:when test=". = '415684004'">provisional"</xsl:when>
+                                    <xsl:when test=". = '410590009'">differential</xsl:when>
+                                    <xsl:when test=". = '410605003'">confirmed</xsl:when>
+                                    <xsl:when test=". = '410516002'">refuted</xsl:when>
+                                    <xsl:when test=". = 'UNK'">unknown</xsl:when>
+                                </xsl:choose>
+                            </xsl:attribute>
+                        </verificationStatus>
+                    </xsl:for-each>
+                    
+                    <!-- Problem Type (.category) -->
+                    <xsl:for-each select="(problem_type | probleem_type)[.//(@value | @code)]">
+                        <category>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
+                        </category>
+                    </xsl:for-each>
+                    
+                    <!-- Problem Name (.code) -->
+                    <code>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="problem_name | probleem_naam"/>
+                        </xsl:call-template>
+                    </code>
+                    
+                    <!-- BodySite SHALL be present when laterality or anatomical location is present in the adaxml -->
+                    <xsl:variable name="problemAnatomic" select="(problem_anatomical_location | probleem_anatomische_locatie)[@value | @code]"/>
+                    <xsl:variable name="problemLateral" select="(problem_laterality | probleem_lateraliteit)[@value | @code]"/>
+                    <xsl:if test="$problemAnatomic | $problemLateral">
+                        <bodySite>
+                            <!-- extensie toevoegen als lateraliteit aanwezig is -->
+                            <xsl:for-each select="$problemLateral">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                                    <valueCodeableConcept>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </valueCodeableConcept>
+                                </extension>
+                            </xsl:for-each>
+                            <!-- Codeableconcept toevoegen aan bodySite -->
+                            <xsl:for-each select="$problemAnatomic">
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </bodySite>
+                    </xsl:if>
+                    
+                    <!-- The problem has as subject the patient -->
+                    <subject>
+                        <xsl:copy-of select="$patientRef[self::f:extension]"/>
+                        <xsl:copy-of select="$patientRef[self::f:reference]"/>
+                        <xsl:copy-of select="$patientRef[self::f:identifier]"/>
+                        <xsl:copy-of select="$patientRef[self::f:display]"/>
+                    </subject>
+                    
+                    <!-- OnsetPeriod -->
+                    <xsl:if test="(problem_start_date | probleem_begin_datum | problem_end_date | probleem_eind_datum)[@value]">
+                        <onsetPeriod>
+                            <!-- StartDateTime -->
+                            <xsl:if test="(problem_start_date | probleem_begin_datum)[@value]">
+                                <start>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string((problem_start_date | probleem_begin_datum)/@value)"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </start>
+                            </xsl:if>
+                            
+                            <!-- EndDateTime -->
+                            <xsl:if test="(problem_end_date | probleem_eind_datum)[@value]">
+                                <end>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string((problem_end_date | probleem_eind_datum)/@value)"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </end>
+                            </xsl:if>
+                        </onsetPeriod>
+                    </xsl:if>
+                    
+                    <!-- FUTURE IMPLEMENTATION, AN ISSUE HAS BEEN ENTERED TO CHANGE MAPPING OF START AND END DATE, BUT THIS IS STILL TO BE APPROVED-->
+                    <!-- <!-\- OnsetDatetime -\->
+                    <xsl:if test="(problem_start_date | probleem_start_datum)[@value | @code]">
+                        <onsetDateTime>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime"
+                                        select="xs:string((problem_start_date | probleem_start_datum)/@value)"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </onsetDateTime>
+                    </xsl:if>
+                    
+                    <!-\- AbatementDateTime -\->
+                    <xsl:if test="problem_end_date | probleem_eind_datum">
+                        <abatementDateTime>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime"
+                                        select="xs:string((problem_end_date | probleem_eind_datum)/@value)"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </abatementDateTime>
+                    </xsl:if>-->
+                    
+                    <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
+                    <!-- assertedDate -->
+                    <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
+                        <assertedDate>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </assertedDate>
+                    </xsl:for-each>
+                    
+                    <!-- Condition.asserter is Person who asserts this condition. For a complaint, this is the informant. 
+                        For a diagnosis this is normally the author. If we have an informant, let it prevail. If we have an author, use that as fallback -->
+                    <!-- >     NL-CM:0.0.2        Informatiebron via nl.zorg.part.basiselementen -->
+                    <xsl:variable name="zibrootInformant" select="(zibroot/informatiebron | hcimroot/information_source)/((patient_als_bron | patient_as_information_source)/patient | zorgverlener/zorgverlener | health_professional/health_professional | betrokkene_als_bron/contactpersoon | related_person_as_information_source/contact_person)"/>
+                    <xsl:variable name="adaInformant" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="$zibrootInformant/*">
+                                <xsl:sequence select="$zibrootInformant"/>
+                            </xsl:when>
+                            <xsl:when test="$zibrootInformant[not(@datatype) or @datatype = 'reference'][@value]">
+                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootInformant/@value]"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    
+                    <xsl:variable name="informantRef" as="element()*">
+                        <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">
+                            <xsl:call-template name="practitionerRoleReference">
+                                <xsl:with-param name="useExtension" select="true()"/>
+                                <xsl:with-param name="addDisplay" select="true()"/>
+                            </xsl:call-template>
                         </xsl:for-each>
-                    </bodySite>
-                </xsl:if>
-                
-                <!-- The problem has as subject the patient -->
-                <subject>
-                    <xsl:copy-of select="$patientRef[self::f:extension]"/>
-                    <xsl:copy-of select="$patientRef[self::f:reference]"/>
-                    <xsl:copy-of select="$patientRef[self::f:identifier]"/>
-                    <xsl:copy-of select="$patientRef[self::f:display]"/>
-                </subject>
-                
-                <!-- OnsetPeriod -->
-                <xsl:if test="(problem_start_date | probleem_begin_datum | problem_end_date | probleem_eind_datum)[@value]">
-                    <onsetPeriod>
-                        <!-- StartDateTime -->
-                        <xsl:if test="(problem_start_date | probleem_begin_datum)[@value]">
-                            <start>
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="(problem_start_date | probleem_begin_datum)/@value"/>
-                                    </xsl:call-template>
-                                </xsl:attribute>
-                            </start>
-                        </xsl:if>
-                        
-                        <!-- EndDateTime -->
-                        <xsl:if test="(problem_end_date | probleem_eind_datum)[@value]">
-                            <end>
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="(problem_end_date | probleem_eind_datum)/@value"/>
-                                    </xsl:call-template>
-                                </xsl:attribute>
-                            </end>
-                        </xsl:if>
-                    </onsetPeriod>
-                </xsl:if>
-                
-                <!-- FUTURE IMPLEMENTATION, AN ISSUE HAS BEEN ENTERED TO CHANGE MAPPING OF START AND END DATE, BUT THIS IS STILL TO BE APPROVED-->
-                <!-- <!-\- OnsetDatetime -\->
-                <xsl:if test="(problem_start_date | probleem_start_datum)[@value | @code]">
-                    <onsetDateTime>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime"
-                                    select="(problem_start_date | probleem_start_datum)/@value"/>
+                        <xsl:for-each select="$adaInformant[self::patient]">
+                            <xsl:sequence select="$patientRef"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaInformant[self::contactpersoon | self::contact_person]">
+                            <xsl:call-template name="relatedPersonReference"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <!-- >     NL-CM:0.0.7        Auteur via nl.zorg.part.basiselementen -->
+                    <!-- asserter -->
+                    <xsl:variable name="zibrootAuteur" select="zibroot/auteur/((patient_als_auteur | patient_as_author)/patient | zorgverlener_als_auteur/zorgverlener | health_professional_as_author/health_professional | betrokkene_als_auteur/contactpersoon | related_person_as_author/contact_person)"/>
+                    <xsl:variable name="adaAuteur" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="$zibrootAuteur/*">
+                                <xsl:sequence select="$zibrootAuteur"/>
+                            </xsl:when>
+                            <xsl:when test="$zibrootAuteur[not(@datatype) or @datatype = 'reference'][@value]">
+                                <xsl:sequence select="ancestor::data//(zorgverlener | health_professional | patient | contactpersoon | contact_person)[@id = $zibrootAuteur/@value]"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    
+                    <xsl:variable name="authorRef" as="element()*">
+                        <xsl:for-each select="$adaAuteur[self::zorgverlener | self::health_professional]">
+                            <xsl:call-template name="practitionerRoleReference">
+                                <xsl:with-param name="useExtension" select="true()"/>
+                                <xsl:with-param name="addDisplay" select="true()"/>
                             </xsl:call-template>
-                        </xsl:attribute>
-                    </onsetDateTime>
-                </xsl:if>
-                
-                <!-\- AbatementDateTime -\->
-                <xsl:if test="problem_end_date | probleem_eind_datum">
-                    <abatementDateTime>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime"
-                                    select="(problem_end_date | probleem_eind_datum)/@value"/>
-                            </xsl:call-template>
-                        </xsl:attribute>
-                    </abatementDateTime>
-                </xsl:if>-->
-                
-                <!-- Comment (.note) -->
-                <xsl:if test="(comment | toelichting)[@value]">
-                    <note>
-                        <text value="{(comment | toelichting)/@value}"/>
-                    </note>
-                </xsl:if>
-                
-            </Condition>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaAuteur[self::patient]">
+                            <xsl:sequence select="$patientRef"/>
+                        </xsl:for-each>
+                        <xsl:for-each select="$adaAuteur[self::contactpersoon | self::contact_person]">
+                            <xsl:call-template name="relatedPersonReference"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:choose>
+                        <xsl:when test="$informantRef">
+                            <asserter>
+                                <xsl:copy-of select="$informantRef[self::f:extension]"/>
+                                <xsl:copy-of select="$informantRef[self::f:reference]"/>
+                                <xsl:copy-of select="$informantRef[self::f:identifier]"/>
+                                <xsl:copy-of select="$informantRef[self::f:display]"/>
+                            </asserter>
+                        </xsl:when>
+                        <xsl:when test="$authorRef">
+                            <asserter>
+                                <xsl:copy-of select="$authorRef[self::f:extension]"/>
+                                <xsl:copy-of select="$authorRef[self::f:reference]"/>
+                                <xsl:copy-of select="$authorRef[self::f:identifier]"/>
+                                <xsl:copy-of select="$authorRef[self::f:display]"/>
+                            </asserter>
+                        </xsl:when>
+                    </xsl:choose>
+                    
+                    <!-- Comment (.note) -->
+                    <xsl:if test="(comment | toelichting)[@value]">
+                        <note>
+                            <text value="{(comment | toelichting)/@value}"/>
+                        </note>
+                    </xsl:if>
+                    
+                </Condition>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
