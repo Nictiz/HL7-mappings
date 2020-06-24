@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../zib-medicationuse-2.2.xsl"
+    xmlns:f="http://hl7.org/fhir">
+    
+    <x:scenario label="zib-medicationuse-2.2">
+        <x:scenario label="Full zib">
+            <x:context mode="zib-MedicationUse-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationStatement[1]">
+              <Bundle xmlns="http://hl7.org/fhir"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+               <type value="searchset"/>
+               <total value="1"/>
+               <entry>
+                  <fullUrl value="urn:uuid:09e20985-b54a-11ea-7883-020000000000"/>
+                  <resource>
+                     <MedicationStatement>
+                        <meta>
+                           <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+                        </meta>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+                           <valueReference>
+                              <reference value="urn:uuid:09e2099f-b54a-11ea-7883-020000000000"/>
+                              <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+                           </valueReference>
+                        </extension>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+                           <valueReference>
+                              <reference value="urn:uuid:09e2099f-b54a-11ea-7883-020000000000"/>
+                              <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
+                           </valueReference>
+                        </extension>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+                           <valueIdentifier>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                              <value value="MBH_513_2"/>
+                           </valueIdentifier>
+                        </extension>
+                        <identifier>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+                           <value value="MBH_513_2_MGB_1"/>
+                        </identifier>
+                        <status>
+                           <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                              <valueCode value="unknown"/>
+                           </extension>
+                        </status>
+                        <category>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                              <code value="6"/>
+                              <display value="Medicatiegebruik"/>
+                           </coding>
+                           <text value="Medicatiegebruik"/>
+                        </category>
+                        <medicationReference>
+                           <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+                           <display value="FUROSEMIDE TABLET 40MG"/>
+                        </medicationReference>
+                        <effectivePeriod>
+                           <start value="2018-09-01T00:00:00+02:00"/>
+                        </effectivePeriod>
+                        <dateAsserted value="2018-09-01T15:39:00+02:00"/>
+                        <informationSource>
+                           <reference value="urn:uuid:09e20357-b54a-11ea-7883-020000000000"/>
+                           <display value="J. XXX_Amaya"/>
+                        </informationSource>
+                        <subject>
+                           <reference value="urn:uuid:09e20357-b54a-11ea-7883-020000000000"/>
+                           <display value="J. XXX_Amaya"/>
+                        </subject>
+                        <derivedFrom>
+                           <identifier>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                              <value value="MBH_513_2_MA_1"/>
+                           </identifier>
+                           <display value="relatie naar medicatieafspraak"/>
+                        </derivedFrom>
+                        <taken value="y"/>
+                        <dosage>
+                           <sequence value="1"/>
+                           <text value="Vanaf 1 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+                           <timing>
+                              <repeat>
+                                 <frequency value="1"/>
+                                 <period value="1"/>
+                                 <periodUnit value="d"/>
+                              </repeat>
+                           </timing>
+                           <route>
+                              <coding>
+                                 <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                                 <code value="9"/>
+                                 <display value="Oraal"/>
+                              </coding>
+                           </route>
+                           <doseQuantity>
+                              <value value="1"/>
+                              <unit value="stuk"/>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                              <code value="245"/>
+                           </doseQuantity>
+                        </dosage>
+                     </MedicationStatement>
+                  </resource>
+                  <search>
+                     <mode value="match"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                  <resource>
+                     <Practitioner>
+                        <meta>
+                           <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+                        </meta>
+                        <text>
+                           <status value="generated"/>
+                           <div xmlns="http://www.w3.org/1999/xhtml">
+                              <div>Id 999001112 (UZI-NR-PERS), Hans van Doorn</div>
+                           </div>
+                        </text>
+                        <identifier>
+                           <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                           <value value="999001112"/>
+                        </identifier>
+                        <name>
+                           <family value="van Doorn">
+                              <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                 <valueString value="van"/>
+                              </extension>
+                              <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                 <valueString value="Doorn"/>
+                              </extension>
+                           </family>
+                           <given value="Hans">
+                              <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                 <valueCode value="BR"/>
+                              </extension>
+                           </given>
+                        </name>
+                     </Practitioner>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                  <resource>
+                     <Practitioner>
+                        <meta>
+                           <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+                        </meta>
+                        <text>
+                           <status value="generated"/>
+                           <div xmlns="http://www.w3.org/1999/xhtml">
+                              <div>Id 000001111 (UZI-NR-PERS), Peter van Pulver</div>
+                           </div>
+                        </text>
+                        <identifier>
+                           <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                           <value value="000001111"/>
+                        </identifier>
+                        <name>
+                           <family value="van Pulver">
+                              <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                 <valueString value="van"/>
+                              </extension>
+                              <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                 <valueString value="Pulver"/>
+                              </extension>
+                           </family>
+                           <given value="Peter">
+                              <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                 <valueCode value="BR"/>
+                              </extension>
+                           </given>
+                        </name>
+                     </Practitioner>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:oid:2.16.528.1.1007.3.3.99901111"/>
+                  <resource>
+                     <Organization>
+                        <meta>
+                           <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                        </meta>
+                        <text>
+                           <status value="generated"/>
+                           <div xmlns="http://www.w3.org/1999/xhtml">
+                              <table>
+                                 <caption>OrganisatieId: 99901111 (URA)</caption>
+                                 <tbody>
+                                    <tr>
+                                       <th>Naam</th>
+                                       <td>Ziekenhuis Stitswerd</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </text>
+                        <identifier>
+                           <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                           <value value="99901111"/>
+                        </identifier>
+                        <name value="Ziekenhuis Stitswerd"/>
+                     </Organization>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                  <resource>
+                     <Organization>
+                        <meta>
+                           <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                        </meta>
+                        <text>
+                           <status value="generated"/>
+                           <div xmlns="http://www.w3.org/1999/xhtml">
+                              <table>
+                                 <caption>OrganisatieId: 00001111 (URA)</caption>
+                                 <tbody>
+                                    <tr>
+                                       <th>Naam</th>
+                                       <td>Huisartsenpraktijk Pulver &amp; Partners</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </text>
+                        <identifier>
+                           <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                           <value value="00001111"/>
+                        </identifier>
+                        <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                     </Organization>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:uuid:09e2099f-b54a-11ea-7883-020000000000"/>
+                  <resource>
+                     <PractitionerRole>
+                        <meta>
+                           <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                        </meta>
+                        <text>
+                           <status value="generated"/>
+                           <div xmlns="http://www.w3.org/1999/xhtml">
+                              <table>
+                                 <caption>Zorgverlenerrol</caption>
+                                 <tbody>
+                                    <tr>
+                                       <th>Zorgverlener</th>
+                                       <td>
+                                          <div>Hans van Doorn</div>
+                                          <div>Ziekenhuis Stitswerd</div>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <th>Specialisme</th>
+                                       <td>
+                                          <span title="Medisch specialisten, inwendige geneeskunde (0313 - AGB-medisch specialisme)">Medisch specialisten, inwendige geneeskunde</span>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </text>
+                        <practitioner>
+                           <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                           <display value="Hans van Doorn"/>
+                        </practitioner>
+                        <organization>
+                           <reference value="urn:oid:2.16.528.1.1007.3.3.99901111"/>
+                           <display value="Ziekenhuis Stitswerd"/>
+                        </organization>
+                        <specialty>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                              <version value="2017-12-14T00:00:00"/>
+                              <code value="0313"/>
+                              <display value="Medisch specialisten, inwendige geneeskunde"/>
+                           </coding>
+                        </specialty>
+                     </PractitionerRole>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:uuid:09e1f949-b54a-11ea-7883-020000000000"/>
+                  <resource>
+                     <PractitionerRole>
+                        <meta>
+                           <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                        </meta>
+                        <text>
+                           <status value="generated"/>
+                           <div xmlns="http://www.w3.org/1999/xhtml">
+                              <table>
+                                 <caption>Zorgverlenerrol</caption>
+                                 <tbody>
+                                    <tr>
+                                       <th>Zorgverlener</th>
+                                       <td>
+                                          <div>Peter van Pulver</div>
+                                          <div>Huisartsenpraktijk Pulver &amp; Partners</div>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <th>Specialisme</th>
+                                       <td>
+                                          <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </text>
+                        <practitioner>
+                           <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+                           <display value="Peter van Pulver"/>
+                        </practitioner>
+                        <organization>
+                           <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+                           <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        </organization>
+                        <specialty>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                              <version value="2017-12-14T00:00:00"/>
+                              <code value="0100"/>
+                              <display value="Huisartsen, niet nader gespecificeerd"/>
+                           </coding>
+                        </specialty>
+                     </PractitionerRole>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+                  <resource>
+                     <Medication>
+                        <meta>
+                           <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                        </meta>
+                        <text>
+                           <status value="generated"/>
+                           <div xmlns="http://www.w3.org/1999/xhtml">
+                              <table>
+                                 <tbody>
+                                    <tr>
+                                       <th>Code</th>
+                                       <td>
+                                          <span title="FUROSEMIDE TABLET 40MG (5967 - G-Standaard PRK)">FUROSEMIDE TABLET 40MG</span>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </text>
+                        <code>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                              <code value="5967"/>
+                              <display value="FUROSEMIDE TABLET 40MG"/>
+                              <userSelected value="true"/>
+                           </coding>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                              <code value="16810"/>
+                              <display value="FUROSEMIDE TABLET 40MG"/>
+                           </coding>
+                           <text value="FUROSEMIDE TABLET 40MG"/>
+                        </code>
+                     </Medication>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.8.13806769"/>
+                  <resource>
+                     <Medication>
+                        <meta>
+                           <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                        </meta>
+                        <text>
+                           <status value="generated"/>
+                           <div xmlns="http://www.w3.org/1999/xhtml">
+                              <table>
+                                 <tbody>
+                                    <tr>
+                                       <th>Code</th>
+                                       <td>
+                                          <span title="TEMAZEPAM APOTEX TABLET 10MG (13806769 - G-Standaard ZI_nummer)">TEMAZEPAM APOTEX TABLET 10MG</span>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </text>
+                        <code>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.8"/>
+                              <code value="13806769"/>
+                              <display value="TEMAZEPAM APOTEX TABLET 10MG"/>
+                              <userSelected value="true"/>
+                           </coding>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                              <code value="677965"/>
+                              <display value="TEMAZEPAM APOTEX TABLET 10MG"/>
+                           </coding>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                              <code value="32956"/>
+                              <display value="TEMAZEPAM TABLET 10MG"/>
+                           </coding>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                              <code value="84190"/>
+                              <display value="TEMAZEPAM TABLET 10MG"/>
+                           </coding>
+                           <text value="TEMAZEPAM APOTEX TABLET 10MG"/>
+                        </code>
+                     </Medication>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.6009"/>
+                  <resource>
+                     <Medication>
+                        <meta>
+                           <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                        </meta>
+                        <code>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                              <code value="6009"/>
+                              <display value="METHOTREXAAT TABLET 2,5MG"/>
+                              <userSelected value="true"/>
+                           </coding>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                              <code value="42609"/>
+                              <display value="METHOTREXAAT TABLET 2,5MG"/>
+                           </coding>
+                           <text value="METHOTREXAAT TABLET 2,5MG"/>
+                        </code>
+                     </Medication>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+               <entry>
+                  <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.17205"/>
+                  <resource>
+                     <Medication>
+                        <meta>
+                           <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                        </meta>
+                        <code>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                              <code value="17205"/>
+                              <display value="FENETICILLINE CAPSULE 500MG"/>
+                              <userSelected value="true"/>
+                           </coding>
+                           <coding>
+                              <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                              <code value="41092"/>
+                              <display value="FENETICILLINE CAPSULE 500MG"/>
+                           </coding>
+                           <text value="FENETICILLINE CAPSULE 500MG"/>
+                        </code>
+                     </Medication>
+                  </resource>
+                  <search>
+                     <mode value="include"/>
+                  </search>
+               </entry>
+            </Bundle>
+            </x:context>
+            <x:expect label="...">
+                <medicatie_gebruik>
+                    <gebruiksperiode_start value="2018-09-01T00:00:00"/>
+                    <identificatie value="MBH_513_2_MGB_1"
+                        root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+                    <registratiedatum value="2018-09-01T15:39:00"/>
+                    <gebruik_indicator value="true"/>
+                    <gebruiks_product>
+                        <product>
+                            <product_code code="5967"
+                                codeSystem="2.16.840.1.113883.2.4.4.10"
+                                displayName="FUROSEMIDE TABLET 40MG"
+                                codeSystemName="G-Standaard PRK"/>
+                            <product_code
+                                code="16810"
+                                codeSystem="2.16.840.1.113883.2.4.4.1"
+                                codeSystemName="G-Standaard GPK"
+                                displayName="FUROSEMIDE TABLET 40MG"/>
+                        </product>
+                    </gebruiks_product>
+                    <gebruiksinstructie>
+                        <omschrijving value="Vanaf 1 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal"/>
+                        <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                            code="9"
+                            displayName="Oraal"
+                            codeSystemName="G-Standaard Toedieningswegen"/>
+                        <doseerinstructie>
+                            <volgnummer value="1"/>
+                            <dosering>
+                                <keerdosis>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <eenheid code="245"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        codeSystemName="G-Standaardthesaurus basiseenheden"
+                                        displayName="stuk"/>
+                                </keerdosis>
+                                <toedieningsschema>
+                                    <frequentie>
+                                        <aantal>
+                                            <vaste_waarde value="1"/>
+                                        </aantal>
+                                        <tijdseenheid value="1"
+                                            unit="dag"/>
+                                    </frequentie>
+                                </toedieningsschema>
+                            </dosering>
+                        </doseerinstructie>
+                    </gebruiksinstructie>
+                    <gerelateerde_afspraak>
+                        <identificatie_medicatieafspraak value="MBH_513_2_MA_1"
+                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    </gerelateerde_afspraak>
+                    <voorschrijver>
+                        <zorgverlener>
+                            <zorgverlener_identificatie_nummer value="999001112"
+                                root="2.16.528.1.1007.3.1"/>
+                            <naamgegevens>
+                                <naamgegevens>
+                                    <voornamen value="Hans"/>
+                                    <geslachtsnaam>
+                                        <voorvoegsels value="van "/>
+                                        <achternaam value="Doorn"/>
+                                    </geslachtsnaam>
+                                </naamgegevens>
+                            </naamgegevens>
+                            <specialisme
+                                value="21"
+                                code="0313"
+                                codeSystem="2.16.840.1.113883.2.4.6.7"
+                                codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                codeSystemVersion="2017-12-14T00:00:00"
+                                displayName="Medisch specialisten, inwendige geneeskunde"/>
+                            <zorgaanbieder>
+                                <zorgaanbieder_identificatie_nummer value="99901111"
+                                    root="2.16.528.1.1007.3.3"/>
+                                <organisatie_naam value="Ziekenhuis Stitswerd"/>
+                            </zorgaanbieder>
+                        </zorgverlener>
+                    </voorschrijver>
+                    <informant>
+                        <informant_is_patient value="true"/>
+                    </informant>
+                    <auteur>
+                        <auteur_is_zorgverlener>
+                            <zorgverlener>
+                                <zorgverlener_identificatie_nummer value="999001112"
+                                    root="2.16.528.1.1007.3.1"/>
+                                <zorgverlener_naam>
+                                    <naamgegevens>
+                                        <voornamen value="Hans"/>
+                                        <geslachtsnaam>
+                                            <voorvoegsels value="van "/>
+                                            <achternaam value="Doorn"/>
+                                        </geslachtsnaam>
+                                    </naamgegevens>
+                                </zorgverlener_naam>
+                                <specialisme
+                                    value="21"
+                                    code="0313"
+                                    codeSystem="2.16.840.1.113883.2.4.6.7"
+                                    codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                    codeSystemVersion="2017-12-14T00:00:00"
+                                    displayName="Medisch specialisten, inwendige geneeskunde"/>
+                                <zorgaanbieder>
+                                    <zorgaanbieder>
+                                        <zorgaanbieder_identificatie_nummer value="99901111"
+                                            root="2.16.528.1.1007.3.3"/>
+                                        <organisatie_naam value="Ziekenhuis Stitswerd"/>
+                                    </zorgaanbieder>
+                                </zorgaanbieder>
+                            </zorgverlener>
+                        </auteur_is_zorgverlener>
+                    </auteur>
+                </medicatie_gebruik>
+            </x:expect>
+        </x:scenario>
+        
+      
+      <!-- `scenario toevoegen voor dosage ipv dosageInstruction -->
+       
+       
+    
+    </x:scenario>
+    
+</x:description>

@@ -13,15 +13,15 @@
     
     <xsl:variable name="zib-Medication-RepeatPeriodCyclicalSchedule" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule'"/>
     
-    <xsl:template match="f:dosageInstruction" mode="zib-instructions-for-use-2.0">
+    <xsl:template match="f:dosageInstruction | f:dosage" mode="zib-instructions-for-use-2.0">
         <xsl:choose>
-            <xsl:when test="not(preceding-sibling::f:dosageInstruction)">
+            <xsl:when test="not(preceding-sibling::*[self::f:dosageInstruction or self::f:dosage])">
                 <gebruiksinstructie>
                     <xsl:apply-templates select="f:text" mode="#current"/>
                     <xsl:apply-templates select="f:route" mode="#current"/>
                     <xsl:apply-templates select="f:additionalInstruction" mode="#current"/>
                     <xsl:apply-templates select="parent::f:MedicationRequest/f:modifierExtension[@url=$zib-Medication-RepeatPeriodCyclicalSchedule]" mode="#current"/>
-                    <xsl:for-each select="(.|following-sibling::f:dosageInstruction)">
+                    <xsl:for-each select="(.|following-sibling::*[self::f:dosageInstruction or self::f:dosage])">
                         <xsl:if test="f:sequence|f:asNeededCodeableConcept|f:doseQuantity|f:doseRange|f:timing|f:asNeededCodeableConcept|f:maxDosePerPeriod|f:rateRatio|f:rateRange|f:rateQuantity">
                             <doseerinstructie>
                                 <xsl:apply-templates select="f:sequence" mode="#current"/>
