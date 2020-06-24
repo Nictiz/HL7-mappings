@@ -24,8 +24,15 @@
     </xsl:template>
     
     <xsl:template match="f:identifier" mode="nl-core-organization-2.0">
+        <xsl:param name="idUnderscore" select="false()" tunnel="yes"/>
+        <xsl:variable name="adaElementName">
+            <xsl:choose>
+                <xsl:when test="$idUnderscore=true()">zorgaanbieder_identificatie_nummer</xsl:when>
+                <xsl:otherwise>zorgaanbieder_identificatienummer</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:call-template name="Identifier-to-identificatie">
-            <xsl:with-param name="adaElementName" select="'zorgaanbieder_identificatienummer'"/>
+            <xsl:with-param name="adaElementName" select="$adaElementName"/>
         </xsl:call-template>
     </xsl:template>
     

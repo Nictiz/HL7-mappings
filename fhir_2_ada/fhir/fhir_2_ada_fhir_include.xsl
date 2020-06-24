@@ -282,6 +282,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template name="Identifier-to-identificatie" as="element()">
+        <xsl:param name="in" select="."/>
         <xsl:param name="adaElementName">identificatie</xsl:param>
         <xsl:element name="{$adaElementName}">
             <xsl:choose>
@@ -289,10 +290,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="nullFlavor" select="'MSK'"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:attribute name="value" select="f:value/@value"/>
+                    <xsl:attribute name="value" select="$in/f:value/@value"/>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:attribute name="root" select="local:getOid(f:system/@value)"/>
+            <xsl:attribute name="root" select="local:getOid($in/f:system/@value)"/>
         </xsl:element>
     </xsl:template>
     
@@ -555,6 +556,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Remove unhandled text nodes</xd:desc>
     </xd:doc>
     <xsl:template match="text()"/>
+    
+    <xd:doc>
+        <xd:desc>Remove unhandled nodes</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:*" mode="#all"/>
     
     <!--<xd:doc>
         <xd:desc>Identity transformation</xd:desc>
