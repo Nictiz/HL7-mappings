@@ -13,9 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="_zib2017.xsl"/>
+    <!--<xsl:import href="_zib2017.xsl"/>
     <xsl:import href="nl-core-patient-2.1.xsl"/>-->
-    
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -112,7 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </entry>
     </xsl:template>
 
-     <xd:doc>
+    <xd:doc>
         <xd:desc>Mapping of HCIM Body weight concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight">zib-BodyWeight</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
         <xd:param name="in">Node to consider in the creation of the Observation resource for Body weight</xd:param>
@@ -133,52 +133,71 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:for-each select="$in">
-            <Observation>
-                <xsl:if test="string-length($logicalId) gt 0">
-                    <id value="{$logicalId}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
-                </meta>
-                <status value="final"/>
-                <category>
-                    <coding>
-                        <system value="{local:getUri($oidFHIRObservationCategory)}"/>
-                        <code value="vital-signs"/>
-                        <display value="Vital Signs"/>
-                    </coding>
-                </category>
-                <code>
-                    <coding>
-                        <system value="http://loinc.org"/>
-                        <code value="29463-7"/>
-                        <display value="lichaamsgewicht"/>
-                    </coding>
-                </code>
-                <!-- patient reference -->
-                <subject>
-                    <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
-                </subject>
-                <xsl:for-each select="gewicht_datum_tijd[@value]">
-                    <effectiveDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(@value)}"/>
-                </xsl:for-each>
-                <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
-                <!-- https://bits.nictiz.nl/browse/MM-434 -->
-                <performer>
-                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                        <valueCode value="unknown"/>
-                    </extension>
-                    <display value="onbekend"/>
-                </performer>
-                <xsl:for-each select="gewicht_waarde[@value]">
-                    <valueQuantity>
-                        <xsl:call-template name="hoeveelheid-to-Quantity">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </valueQuantity>
-                </xsl:for-each>
-            </Observation>
-          </xsl:for-each>
+            <xsl:variable name="resource">
+                <Observation>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{$logicalId}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
+                    </meta>
+                    <status value="final"/>
+                    <category>
+                        <coding>
+                            <system value="{local:getUri($oidFHIRObservationCategory)}"/>
+                            <code value="vital-signs"/>
+                            <display value="Vital Signs"/>
+                        </coding>
+                    </category>
+                    <code>
+                        <coding>
+                            <system value="http://loinc.org"/>
+                            <code value="29463-7"/>
+                            <display value="lichaamsgewicht"/>
+                        </coding>
+                    </code>
+                    <!-- patient reference -->
+                    <subject>
+                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
+                    </subject>
+                    <!-- effectiveDateTime is required in the FHIR profile, so always output effectiveDateTime, data-absent-reason if no actual value -->
+                    <effectiveDateTime>
+                        <xsl:choose>
+                            <xsl:when test="gewicht_datum_tijd[@value]">
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string((gewicht_datum_tijd | weight_date_time)/@value)"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                                </xsl:when>
+                        <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </effectiveDateTime>
+                    <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
+                    <!-- https://bits.nictiz.nl/browse/MM-434 -->
+                    <performer>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <valueCode value="unknown"/>
+                        </extension>
+                        <display value="onbekend"/>
+                    </performer>
+                    <xsl:for-each select="gewicht_waarde[@value]">
+                        <valueQuantity>
+                            <xsl:call-template name="hoeveelheid-to-Quantity">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueQuantity>
+                    </xsl:for-each>
+                </Observation>
+            </xsl:variable>
+
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
+        </xsl:for-each>
     </xsl:template>
 
     <xd:doc>
@@ -196,7 +215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             format-date((gewicht_datum_tijd | weight_date_time)/@value, '[D01] [MN,*-3], [Y0001]')
                         else
                             (gewicht_datum_tijd | weight_date_time)/@value"/>
-            <xsl:value-of select="concat('Gewicht: ', (gewicht_waarde | weight_value)/@value, ' ', (gewicht_waarde | weight_value)/@unit,'. Datum/tijd gemeten: ', $datum-string)"/>
+            <xsl:value-of select="concat('Gewicht: ', (gewicht_waarde | weight_value)/@value, ' ', (gewicht_waarde | weight_value)/@unit, '. Datum/tijd gemeten: ', $datum-string)"/>
         </xsl:for-each>
     </xsl:function>
 

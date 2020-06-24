@@ -19,26 +19,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:include href="../../../hl7_2_ada_ketenzorg_include.xsl"/>
-    
+
     <xd:doc>
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="doGeneratedComment"/>
-        <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerEncounters]">
-            <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_encounters_response.xsd">
-                <meta status="new" created-by="generated" last-update-by="generated">
-                    <xsl:attribute name="creation-date" select="current-dateTime()"/>
-                    <xsl:attribute name="last-update-date" select="current-dateTime()"/>
-                </meta>
-                <data>
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_encounters_response.xsd">
+            <meta status="new" created-by="generated" last-update-by="generated">
+                <xsl:attribute name="creation-date" select="current-dateTime()"/>
+                <xsl:attribute name="last-update-date" select="current-dateTime()"/>
+            </meta>
+            <data>
+                <xsl:for-each select="//hl7:organizer[hl7:templateId/@root = $oidOrganizerEncounters]">
                     <xsl:call-template name="BeschikbaarstellenEncounters-ADA">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="author" select="(ancestor::hl7:ControlActProcess/hl7:authorOrPerformer//*[hl7:id])[1]"/>
                     </xsl:call-template>
-                </data>
-            </adaxml>
-        </xsl:for-each>
+                </xsl:for-each>
+            </data>
+        </adaxml>
     </xsl:template>
     <xd:doc>
         <xd:desc/>
@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="BeschikbaarstellenEncounters-ADA">
         <xsl:param name="in" as="element()"/>
         <xsl:param name="author" as="element()?"/>
-        
+
         <xsl:variable name="patient" select="$in/hl7:recordTarget/hl7:patientRole"/>
         <encounters_response app="ketenzorg3.0" shortName="encounters_response" formName="encounters_response" transactionRef="2.16.840.1.113883.2.4.3.11.60.66.4.532" transactionEffectiveDate="2018-04-13T00:00:00" versionDate="" prefix="kz-" language="en-US" title="Generated Through Conversion" id="{uuid:get-uuid($in)}">
             <!-- Bundle stuff -->
@@ -57,11 +57,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="custodian" select="(hl7:participant[@typeCode = 'CST']/hl7:participantRole[hl7:scopingEntity], $author)[1]"/>
                 <xsl:with-param name="patient" select="$patient"/>
             </xsl:call-template>
-            
+
             <xsl:variable name="organizerComponents" select="//*[hl7:templateId/@root = $oidEncounter]"/>
             <xsl:for-each select="$organizerComponents">
                 <encounter>
-                    <xsl:if test="hl7:id| hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
+                    <xsl:if test="hl7:id | hl7:author/hl7:assignedAuthor | hl7:participant[@typeCode = 'RESP']/hl7:participantRole">
                         <hcimroot>
                             <xsl:call-template name="handleII">
                                 <xsl:with-param name="in" select="hl7:id"/>
@@ -85,13 +85,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>-->
                         </hcimroot>
                     </xsl:if>
-                    
+
                     <!-- contact_type -->
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="in" select="hl7:code"/>
                         <xsl:with-param name="elemName">contact_type</xsl:with-param>
                     </xsl:call-template>
-                    
+
                     <!-- contact_with -->
                     <xsl:for-each select="hl7:performer/hl7:assignedEntity">
                         <contact_with>
@@ -102,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </contact_with>
                     </xsl:for-each>
-                    
+
                     <!-- start_date_time -->
                     <xsl:for-each select="hl7:effectiveTime/hl7:low">
                         <xsl:call-template name="handleTS">
@@ -110,7 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">start_date_time</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <!-- end_date_time -->
                     <xsl:for-each select="hl7:effectiveTime/hl7:high">
                         <xsl:call-template name="handleTS">
@@ -118,7 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="elemName">end_date_time</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
+
                     <!-- Do episode association -->
                     <xsl:variable name="episodes" select="hl7:entryRelationship[@typeCode = 'REFR']/hl7:act[hl7:code[@code = 'CONC'][@codeSystem = $oidHL7ActClass]]" as="element()*"/>
                     <xsl:if test="$episodes">
@@ -134,9 +134,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </encounter>
             </xsl:for-each>
         </encounters_response>
-        <xsl:comment>Input HL7 xml below</xsl:comment>
-        <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="in" select="./*"/>
-        </xsl:call-template>
     </xsl:template>
 </xsl:stylesheet>

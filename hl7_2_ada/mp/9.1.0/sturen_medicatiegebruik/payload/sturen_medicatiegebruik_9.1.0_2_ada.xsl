@@ -14,10 +14,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
+    <xsl:import href="../../../../zibs2017/payload/all-zibs.xsl"/>
     <xd:doc>
         <xd:desc>Dit is een conversie van MP 9.1.0 naar ADA 9.1 sturen medicatiegebruik</xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes"/>
+    <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
+    <xsl:param name="outputSchemaRef" as="xs:boolean" select="false()"/>
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:param name="schema" select="document('../ada_schemas/sturen_medicatiegebruik.xsd')"/>
 
@@ -49,7 +52,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="$medicatiegebruik-lijst/ancestor::*[hl7:ControlActProcess]"/>
         </xsl:call-template>
-        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegebruik.xsd">
+        <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <xsl:if test="$outputSchemaRef">
+                <xsl:attribute name="xsi:noNamespaceSchemaLocation">../ada_schemas/ada_sturen_medicatiegebruik.xsd</xsl:attribute>
+            </xsl:if>
             <meta status="new" created-by="generated" last-update-by="generated">
                 <xsl:attribute name="creation-date" select="current-dateTime()"/>
                 <xsl:attribute name="last-update-date" select="current-dateTime()"/>
@@ -102,9 +108,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </data>
         </adaxml>
-        <!--<xsl:comment>Input HL7 xml below</xsl:comment>
-		<xsl:call-template name="copyElementInComment">
-			<xsl:with-param name="in" select="./*"/>
-		</xsl:call-template>-->
     </xsl:template>
 </xsl:stylesheet>

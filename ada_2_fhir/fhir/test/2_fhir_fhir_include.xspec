@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:f="http://hl7.org/fhir"
+    xmlns:local="urn:fhir:stu3:functions"
+    stylesheet="../2_fhir_fhir_include.xsl">
+    
+    <x:scenario label="2_fhir_fhir_include">
+        <x:scenario label="function any-to-value" pending="">
+            <x:call template="any-to-value">
+                <x:param name="in" select="'no_value'"/>
+                <x:param name="elemName" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name boolean-to-boolean" pending="">
+            <x:call template="boolean-to-boolean">
+                <x:param name="in" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name string-to-string">
+            <x:scenario label="input @value with leading and trailing space">
+                <x:call template="string-to-string">
+                    <x:param name="in">
+                        <test value=" string "/>
+                    </x:param>
+                </x:call>
+                <x:expect label="@value without leading and trailing space" select="f:out/@*">
+                    <f:out value="string"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="input @otherAttribute">
+                <x:call template="string-to-string">
+                    <x:param name="in">
+                        <test otherAttribute=" string "/>
+                    </x:param>
+                    <x:param name="inAttributeName" select="'otherAttribute'"/>
+                </x:call>
+                <x:expect label="@value" select="f:out/@*">
+                    <f:out value="string"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="input empty @value">
+                <x:call template="string-to-string">
+                    <x:param name="in">
+                        <test value=""/>
+                    </x:param>
+                </x:call>
+                <x:expect label="@value" select="f:out/@*">
+                    <f:out value="&#160;"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="input no @value and @nullFlavor">
+                <x:call template="string-to-string">
+                    <x:param name="in">
+                        <test nullFlavor="OTH"/>
+                    </x:param>
+                </x:call>
+                <x:expect label="nullFlavor extension">
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                        <f:valueCode value="OTH"/>
+                    </f:extension>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="template name date-to-datetime" pending="">
+            <x:call template="date-to-datetime">
+                <x:param name="in" select="'no_value'"/>
+                <x:param name="inputDateT" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name blob-to-attachment" pending="">
+            <x:call template="blob-to-attachment">
+                <x:param name="in" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name code-to-code" pending="">
+            <x:call template="code-to-code">
+                <x:param name="in" select="'no_value'"/>
+                <x:param name="codeMap" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name code-to-CodeableConcept" pending="">
+            <x:call template="code-to-CodeableConcept">
+                <x:param name="in" select="'no_value'"/>
+                <x:param name="elementName" select="'no_value'"/>
+                <x:param name="userSelected" select="'no_value'"/>
+                <x:param name="treatNullFlavorAsCoding" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name code-to-Coding">
+            <x:scenario label="code input">
+                <x:call template="code-to-Coding">
+                    <x:param name="in">
+                        <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+                    </x:param>
+                </x:call>
+                <x:expect label="FHIR Coding">
+                    <f:system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                    <f:version value="2017-12-14T00:00:00"/>
+                    <f:code value="0100"/>
+                    <f:display value="Huisartsen, niet nader gespecificeerd"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="userSelected" pending="">
+                <x:call template="code-to-Coding">
+                    <x:param name="in" select="'no_value'"/>
+                    <x:param name="userSelected" select="'no_value'"/>
+                    <x:param name="treatNullFlavorAsCoding" select="'no_value'"/>
+                </x:call>
+                <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+            </x:scenario>
+            <x:scenario label="treatNullFlavorAsCoding" pending="">
+                <x:call template="code-to-Coding">
+                    <x:param name="in" select="'no_value'"/>
+                    <x:param name="userSelected" select="'no_value'"/>
+                    <x:param name="treatNullFlavorAsCoding" select="'no_value'"/>
+                </x:call>
+                <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="template name hoeveelheid-to-Duration" pending="">
+            <x:call template="hoeveelheid-to-Duration">
+                <x:param name="in" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name hoeveelheid-complex-to-Ratio" pending="">
+            <x:call template="hoeveelheid-complex-to-Ratio">
+                <x:param name="numerator" select="'no_value'"/>
+                <x:param name="denominator" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name hoeveelheid-to-Quantity" pending="">
+            <x:call template="hoeveelheid-to-Quantity">
+                <x:param name="in" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name hoeveelheid-complex-to-Quantity" pending="">
+            <x:call template="hoeveelheid-complex-to-Quantity">
+                <x:param name="waarde" select="'no_value'"/>
+                <x:param name="eenheid" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name id-to-Identifier">
+            <x:scenario label="@value and @root">
+                <x:call template="id-to-Identifier">
+                    <x:param name="in">
+                        <identificatienummer value="000000000" root="2.16.840.1.113883.2.4.6.3"/>
+                    </x:param>
+                </x:call>
+                <x:expect label="'system' and 'value'">
+                    <f:system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                    <f:value value="000000000"/>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="@nullFlavor='MSK' and @root">
+                <x:call template="id-to-Identifier">
+                    <x:param name="in">
+                        <identificatienummer nullFlavor="MSK" root="2.16.840.1.113883.2.4.6.3"/>
+                    </x:param>
+                </x:call>
+                <x:expect label="'system' and 'value' with data-absent-reason extension">
+                    <f:system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                    <f:value>
+                        <f:extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <f:valueCode value="masked"/>
+                        </f:extension>
+                    </f:value>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="other @nullFlavor and @root">
+                <x:call template="id-to-Identifier">
+                    <x:param name="in">
+                        <identificatienummer nullFlavor="OTH" root="2.16.840.1.113883.2.4.6.3"/>
+                    </x:param>
+                </x:call>
+                <x:expect label="'extension' HL7 nullFlavor">
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                        <f:valueCode value="OTH"/>
+                    </f:extension>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="other @nullFlavor, no @root">
+                <x:call template="id-to-Identifier">
+                    <x:param name="in">
+                        <identificatienummer nullFlavor="NI"/>
+                    </x:param>
+                </x:call>
+                <x:expect label="'extension' HL7 nullFlavor">
+                    <f:extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                        <f:valueCode value="NI"/>
+                    </f:extension>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+        
+        <x:scenario label="template name startend-to-Period" pending="">
+            <x:call template="startend-to-Period">
+                <x:param name="start" select="'no_value'"/>
+                <x:param name="end" select="'no_value'"/>
+                <x:param name="inputDateT" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name minmax-to-Range" pending="">
+            <x:call template="minmax-to-Range">
+                <x:param name="in" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name quotient-to-Ratio" pending="">
+            <x:call template="quotient-to-Ratio">
+                <x:param name="numeratorAantal" select="'no_value'"/>
+                <x:param name="numeratorEenheid" select="'no_value'"/>
+                <x:param name="denominator" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function convertTime_ADA_unit2UCUM_FHIR" pending="">
+            <x:call function="nf:convertTime_ADA_unit2UCUM_FHIR">
+                <x:param name="ADAtime" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function convert_ADA_unit2UCUM_FHIR" pending="">
+            <x:call function="nf:convert_ADA_unit2UCUM_FHIR">
+                <x:param name="ADAunit" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function getUri" pending="">
+            <x:call function="local:getUri">
+                <x:param name="oid" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function get-fhir-uuid" pending="">
+            <x:call function="nf:get-fhir-uuid">
+                <x:param name="in" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function get-uuid" pending="">
+            <x:call function="nf:get-uuid">
+                <x:param name="in" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function getUriFromAdaId" pending="">
+            <x:call function="nf:getUriFromAdaId">
+                <x:param name="adaIdentification" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function removeSpecialCharacters" pending="">
+            <x:call function="nf:removeSpecialCharacters">
+                <x:param name="in" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function getUriFromAdaCode" pending="">
+            <x:call function="nf:getUriFromAdaCode">
+                <x:param name="adaCode" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function try-complex-as-Quantity" pending="">
+            <x:call function="nf:try-complex-as-Quantity">
+                <x:param name="value_string" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name format2FHIRDate" pending="">
+            <x:call template="format2FHIRDate">
+                <x:param name="dateTime" select="'no_value'"/>
+                <x:param name="precision" select="'no_value'"/>
+                <x:param name="dateT" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template name NullFlavor-to-DataAbsentReason" pending="">
+            <x:call template="NullFlavor-to-DataAbsentReason">
+                <x:param name="in" select="'no_value'"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function getFullUrlOrId" pending="">
+            <x:call function="nf:getFullUrlOrId">
+                <x:param name="entry" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function getGroupingKeyDefault" pending="">
+            <x:call function="nf:getGroupingKeyDefault">
+                <x:param name="in" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function getValueAttrDefault" pending="">
+            <x:call function="nf:getValueAttrDefault">
+                <x:param name="in" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function getGroupingKeyPatient" pending="">
+            <x:call function="nf:getGroupingKeyPatient">
+                <x:param name="patient" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function ada-za-id" pending="">
+            <x:call function="nf:ada-za-id">
+                <x:param name="healthcareProviderIdentification" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function ada-zvl-id" pending="">
+            <x:call function="nf:ada-zvl-id">
+                <x:param name="healthProfessionalIdentification" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function ada-pat-id" pending="">
+            <x:call function="nf:ada-pat-id">
+                <x:param name="patientIdentification" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="function ada-resolve-reference" pending="">
+            <x:call function="nf:ada-resolve-reference">
+                <x:param name="adaElement" select="''"/>
+            </x:call>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+        
+        <x:scenario label="template with match '@* | node()' and mode 'ResultOutput'" pending="">
+            <x:context mode="ResultOutput"/>
+            <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+        </x:scenario>
+    </x:scenario>
+    
+    
+</x:description>

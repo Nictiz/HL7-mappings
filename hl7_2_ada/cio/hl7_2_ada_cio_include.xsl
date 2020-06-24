@@ -404,6 +404,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="hl7:statusCode[@code]">
                 <xsl:element name="{$elmAllergyIntoleranceAllergyStatus}">
                     <xsl:attribute name="code" select="@code"/>
+                    <xsl:attribute name="displayName" select="@code"/>
                     <xsl:attribute name="codeSystem" select="$oidHL7ActStatus"/>
                     <xsl:attribute name="codeSystemName" select="$oidMap[@oid = $oidHL7ActStatus]/@displayName"/>
                     <xsl:attribute name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmAllergyIntoleranceAllergyStatus)))"/>
@@ -620,6 +621,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
 
                     <xsl:choose>
+                        <!-- patient -->
                         <xsl:when test="hl7:patient">
                             <xsl:element name="{$elmZibrootInformationSourcePatient}">
                                 <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elmZibrootInformationSourcePatient))"/>
@@ -631,6 +633,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:element>
                             </xsl:element>
                         </xsl:when>
+                       <!-- health care professional -->
                         <xsl:when test="hl7:assignedPerson">
                             <xsl:for-each select="hl7:assignedPerson">
                                 <xsl:variable name="ref" select="generate-id(.)"/>
@@ -651,6 +654,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:element>
                             </xsl:for-each>
                         </xsl:when>
+                        <!-- contact person -->
                         <xsl:when test="hl7:responsibleParty">
                             <xsl:for-each select="hl7:responsibleParty">
                                 <xsl:variable name="ref" select="generate-id(.)"/>

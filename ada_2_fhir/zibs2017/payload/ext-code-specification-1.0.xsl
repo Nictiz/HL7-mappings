@@ -2,7 +2,7 @@
     <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xd:doc>
         <xd:desc>Template for shared extension http://nictiz.nl/fhir/StructureDefinition/code-specification</xd:desc>
-        <xd:param name="in">Optional. Ada element containing the additional information code element</xd:param>
+        <xd:param name="in">Optional, but no output without it. Ada element containing the additional information code element</xd:param>
     </xd:doc>
     <xsl:template name="ext-code-specification-1.0" match="*" as="element()?" mode="doExtCodeSpecification-1.0">
         <xsl:param name="in" as="element()?" select="."/>

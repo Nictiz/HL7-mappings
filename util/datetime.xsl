@@ -1,16 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:functx="http://www.functx.com" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
     <xd:doc>
-       <xd:desc>Contains some generic dateTime functions</xd:desc>
+        <xd:desc>Contains some generic dateTime functions</xd:desc>
     </xd:doc>
-   
+    <!-- Uncomment for testing... -->
+    <!--<xsl:output indent="yes" omit-xml-declaration="yes"/>
+    <xsl:template match="/" exclude-result-prefixes="#all">
+        <xsl:variable name="T" select="current-date()" as="xs:date"/>
+        <x T="{$T}">
+            <xsl:text>&#10;   </xsl:text>
+            <xsl:comment>just T</xsl:comment>
+            <x in="T"><xsl:value-of select="nf:calculate-t-date('T',$T)"/></x>
+            <x in="T-0D"><xsl:value-of select="nf:calculate-t-date('T-0D',$T)"/></x>
+            <xsl:comment>a date</xsl:comment>
+            <x in="2020-06-22"><xsl:value-of select="nf:calculate-t-date('2020-06-22',$T)"/></x>
+            <xsl:comment>year based</xsl:comment>
+            <x in="T-1Y{{12:34:56}}"><xsl:value-of select="nf:calculate-t-date('T-1Y{12:34:56}',$T)"/></x>
+            <x in="T-2Y{{12:34}}"><xsl:value-of select="nf:calculate-t-date('T-2Y{12:34}',$T)"/></x>
+            <x in="T-3Y{{12}}"><xsl:value-of select="nf:calculate-t-date('T-3Y{12}',$T)"/></x>
+            <x in="T-4Y"><xsl:value-of select="nf:calculate-t-date('T-4Y',$T)"/></x>
+            <xsl:comment>month based</xsl:comment>
+            <x in="T-1M{{12:34:56}}"><xsl:value-of select="nf:calculate-t-date('T-1M{12:34:56}',$T)"/></x>
+            <x in="T-2M{{12:34}}"><xsl:value-of select="nf:calculate-t-date('T-2M{12:34}',$T)"/></x>
+            <x in="T-3M{{12}}"><xsl:value-of select="nf:calculate-t-date('T-3M{12}',$T)"/></x>
+            <x in="T-4M"><xsl:value-of select="nf:calculate-t-date('T-4M',$T)"/></x>
+            <xsl:comment>day based</xsl:comment>
+            <x in="T-20D{{00:00:00}}"><xsl:value-of select="nf:calculate-t-date('T-20D{00:00:00}',$T)"/></x>
+            <x in="T-1D{{12:34:56}}"><xsl:value-of select="nf:calculate-t-date('T-1D{12:34:56}',$T)"/></x>
+            <x in="T-2D{{12:34}}"><xsl:value-of select="nf:calculate-t-date('T-2D{12:34}',$T)"/></x>
+            <x in="T-3D{{12}}"><xsl:value-of select="nf:calculate-t-date('T-3D{12}',$T)"/></x>
+            <x in="T-4D"><xsl:value-of select="nf:calculate-t-date('T-4D',$T)"/></x>
+            <xsl:comment>year/month based</xsl:comment>
+            <x in="T-1Y2M{{12:34:56}}"><xsl:value-of select="nf:calculate-t-date('T-1Y2M{12:34:56}',$T)"/></x>
+            <x in="T-2Y2M{{12:34}}"><xsl:value-of select="nf:calculate-t-date('T-2Y2M{12:34}',$T)"/></x>
+            <x in="T-3Y2M{{12}}"><xsl:value-of select="nf:calculate-t-date('T-3Y2M{12}',$T)"/></x>
+            <x in="T-4Y2M"><xsl:value-of select="nf:calculate-t-date('T-4Y2M',$T)"/></x>
+            <xsl:comment>year/day based</xsl:comment>
+            <x in="T-1Y2D{{12:34:56}}"><xsl:value-of select="nf:calculate-t-date('T-1Y2D{12:34:56}',$T)"/></x>
+            <x in="T-2Y2D{{12:34}}"><xsl:value-of select="nf:calculate-t-date('T-2Y2D{12:34}',$T)"/></x>
+            <x in="T-3Y2D{{12}}"><xsl:value-of select="nf:calculate-t-date('T-3Y2D{12}',$T)"/></x>
+            <x in="T-4Y2D"><xsl:value-of select="nf:calculate-t-date('T-3Y2D',$T)"/></x>
+            <xsl:comment>month/day based</xsl:comment>
+            <x in="T-1M2D{{12:34:56}}"><xsl:value-of select="nf:calculate-t-date('T-1M2D{12:34:56}',$T)"/></x>
+            <x in="T-2M2D{{12:34}}"><xsl:value-of select="nf:calculate-t-date('T-2M2D{12:34}',$T)"/></x>
+            <x in="T-3M2D{{12}}"><xsl:value-of select="nf:calculate-t-date('T-3M2D{12}',$T)"/></x>
+            <x in="T-4M2D"><xsl:value-of select="nf:calculate-t-date('T-3M2D',$T)"/></x>
+            <xsl:comment>year/month/day based</xsl:comment>
+            <x in="T-1Y2M{{12:34:56}}"><xsl:value-of select="nf:calculate-t-date('T-1Y2M2D{12:34:56}',$T)"/></x>
+            <x in="T-2Y2M{{12:34}}"><xsl:value-of select="nf:calculate-t-date('T-2Y2M2D{12:34}',$T)"/></x>
+            <x in="T-3Y2M{{12}}"><xsl:value-of select="nf:calculate-t-date('T-3Y2M2D{12}',$T)"/></x>
+            <x in="T-4Y2M2D"><xsl:value-of select="nf:calculate-t-date('T-5Y2M2D',$T)"/></x>
+            <xsl:comment>illegal time (just produces date and logs error)</xsl:comment>
+            <x in="T-1D{{24}}"><xsl:value-of select="nf:calculate-t-date('T-1D{25}',$T)"/></x>
+        </x>
+    </xsl:template>-->
+
     <xd:doc>
         <xd:desc>Takes input string. If it is a dateTime, it checks if it has a timezone. If it is a dateTime without timezone the appropriate Amsterdam timezone will be set. In all other cases, the input string is returned.</xd:desc>
         <xd:param name="in">ISO 8601 formatted dateTimeString with or without timezone "yyyy-mm-ddThh:mm:ss" or "yyyy-mm-ddThh:mm:ss[+/-]nn:nn"</xd:param>
     </xd:doc>
     <xsl:function name="nf:add-Amsterdam-timezone-to-dateTimeString" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
-        
+
         <xsl:choose>
             <xsl:when test="$in castable as xs:dateTime">
                 <xsl:value-of select="nf:add-Amsterdam-timezone(xs:dateTime($in))"/>
@@ -26,14 +77,14 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Add an Amsterdam timezone to an xs:dateTime without one. Return input unaltered otherwise.</xd:desc>
         <xd:param name="in">xs:dateTime with or without timezone</xd:param>
     </xd:doc>
     <xsl:function name="nf:add-Amsterdam-timezone" as="xs:dateTime">
         <xsl:param name="in" as="xs:dateTime"/>
-        
+
         <xsl:choose>
             <xsl:when test="empty(timezone-from-dateTime($in))">
                 <!-- Since 1996 DST starts last sunday of March 02:00 and ends last sunday of October at 03:00/02:00 (clock is set backwards) -->
@@ -60,7 +111,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Converts a T-12D{12:34:56} like string into a proper XML date or dateTime</xd:desc>
         <xd:param name="in">The input string to be converted</xd:param>
@@ -71,14 +122,26 @@
         <xsl:param name="inputDateT" as="xs:date?"/>
         
         <xsl:choose>
-            <xsl:when test="(string-length($in) gt 0) and exists($inputDateT)">
-                <xsl:variable name="sign" select="replace($in, 'T([+\-]).*', '$1')"/>
-                <xsl:variable name="amount" select="replace($in, 'T[+\-](\d+(\.\d+)?)[YMD].*', '$1')"/>
-                <xsl:variable name="yearMonthDay" select="replace($in, 'T[+\-]\d+(\.\d+)?([YMD]).*', '$2')"/>
-                <xsl:variable name="xsDurationString" select="replace($in, 'T[+\-](\d+(\.\d+)?)([YMD]).*', 'P$1$3')"/>
-                <xsl:variable name="timePart" select="replace($in, 'T[+\-]\d+(\.\d+)?[YMD](\{(.*)})?', '$3')"/>
-                <xsl:variable name="time">
+            <xsl:when test="starts-with($in, 'T') and $inputDateT castable as xs:date">
+                <xsl:variable name="sign" select="replace($in, 'T([+-])?.*', '$1')"/>
+                <xsl:variable name="amountYearMonth" as="xs:string?">
+                    <xsl:if test="matches($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}')">
+                        <xsl:value-of select="replace($in, 'T[+-]((\d+(\.\d+)?Y)?(\d+(\.\d+)?M)?).*', '$1')"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:variable name="amountDay" as="xs:string?">
+                    <xsl:if test="matches($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D).*')">
+                        <xsl:value-of select="replace($in, 'T[+-](\d+(\.\d+)?[YM]){0,2}(\d+(\.\d+)?D)?.*', '$3')"/>
+                    </xsl:if>
+                </xsl:variable>
+                
+                <xsl:variable name="timePart" select="if (matches($in, 'T[^\{]*\{([^\}]+)\}')) then replace($in, 'T[^\{]*\{([^\}]+)\}', '$1') else ()"/>
+                <xsl:variable name="time" as="xs:string?">
                     <xsl:choose>
+                        <xsl:when test="string-length($timePart) = 2">
+                            <!-- time given in hours, let's add 0 minutes/seconds -->
+                            <xsl:value-of select="concat($timePart, ':00:00')"/>
+                        </xsl:when>
                         <xsl:when test="string-length($timePart) = 5">
                             <!-- time given in minutes, let's add 0 seconds -->
                             <xsl:value-of select="concat($timePart, ':00')"/>
@@ -88,43 +151,49 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:variable name="newDate">
+                <xsl:variable name="calculatedYearMonth" as="xs:date">
                     <xsl:choose>
-                        <xsl:when test="$sign = '-'">
-                            <xsl:choose>
-                                <xsl:when test="$yearMonthDay = ('Y', 'M')">
-                                    <xsl:value-of select="xs:date($inputDateT) - xs:yearMonthDuration($xsDurationString)"/>
-                                </xsl:when>
-                                <xsl:when test="$yearMonthDay = 'D'">
-                                    <xsl:value-of select="xs:date($inputDateT) - xs:dayTimeDuration($xsDurationString)"/>
-                                </xsl:when>
-                            </xsl:choose>
+                        <xsl:when test="$sign = '+' and string-length($amountYearMonth) gt 0">
+                            <xsl:value-of select="$inputDateT + xs:yearMonthDuration(concat('P', $amountYearMonth))"/>
                         </xsl:when>
-                        <xsl:when test="$sign = '+'">
-                            <xsl:choose>
-                                <xsl:when test="$yearMonthDay = ('Y', 'M')">
-                                    <xsl:value-of select="xs:date($inputDateT) + xs:yearMonthDuration($xsDurationString)"/>
-                                </xsl:when>
-                                <xsl:when test="$yearMonthDay = 'D'">
-                                    <xsl:value-of select="xs:date($inputDateT) + xs:dayTimeDuration($xsDurationString)"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:variable name="newDateTime">
-                    <xsl:choose>
-                        <xsl:when test="string-length($time) gt 0">
-                            <xsl:value-of select="xs:dateTime(concat(format-date($newDate, '[Y0001]-[M01]-[D01]'), 'T', $time))"/>
+                        <xsl:when test="$sign = '-' and string-length($amountYearMonth) gt 0">
+                            <xsl:value-of select="$inputDateT - xs:yearMonthDuration(concat('P', $amountYearMonth))"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <!-- we get a timezone, which is the current timezone of the system which does not make sense -->
-                            <!-- so we strip the timezone -->
-                            <xsl:value-of select="substring($newDate,1, 10)"/>
+                            <xsl:copy-of select="$inputDateT"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:value-of select="nf:add-Amsterdam-timezone-to-dateTimeString($newDateTime)"/>
+                <xsl:variable name="calculatedDay" as="xs:date">
+                    <xsl:choose>
+                        <xsl:when test="$sign = '+' and string-length($amountDay) gt 0">
+                            <xsl:value-of select="$calculatedYearMonth + xs:dayTimeDuration(concat('P', $amountDay))"/>
+                        </xsl:when>
+                        <xsl:when test="$sign = '-' and string-length($amountDay) gt 0">
+                            <xsl:value-of select="$calculatedYearMonth - xs:dayTimeDuration(concat('P', $amountDay))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="$calculatedYearMonth"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                
+                <xsl:if test="string-length($time) gt 0 and not($time castable as xs:time)">
+                    <xsl:message>Variable dateTime "<xsl:value-of select="$in"/>" found with illegal time string "<xsl:value-of select="$timePart"/>"</xsl:message>
+                </xsl:if>
+                <xsl:variable name="calculatedDateTime">
+                    <xsl:choose>
+                        <xsl:when test="string-length($time) gt 0 and $time castable as xs:time">
+                            <xsl:value-of select="xs:dateTime(concat(format-date($calculatedDay, '[Y0001]-[M01]-[D01]'), 'T', $time))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- we sometimes get a timezone, which is the current timezone of the system which does not make sense -->
+                            <!-- so we strip the timezone -->
+                            <xsl:value-of select="format-date($calculatedDay, '[Y0001]-[M01]-[D01]')"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:value-of select="nf:add-Amsterdam-timezone-to-dateTimeString($calculatedDateTime)"/>
             </xsl:when>
             <xsl:otherwise>
                 <!-- we cannot calculate anything -->
@@ -132,9 +201,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    
-    
+
+
     <xd:doc>
         <xd:desc>Returns the xs:time from a xs:dateTime formatted string. Could include timezone.</xd:desc>
         <xd:param name="xs-datetime"/>
@@ -142,20 +210,20 @@
     </xd:doc>
     <xsl:function name="nf:getTime" as="xs:time?">
         <xsl:param name="xs-datetime" as="xs:string?"/>
-        
+
         <xsl:if test="substring-after($xs-datetime, 'T') castable as xs:time">
             <xsl:value-of select="xs:time(substring-after($xs-datetime, 'T'))"/>
         </xsl:if>
     </xsl:function>
-    
-    
+
+
     <xd:doc>
         <xd:desc>Returns day of week of a certain date as integer. Sunday = 0, Saturday = 6.</xd:desc>
         <xd:param name="date">xs:date for which the day of week needs to be returned</xd:param>
     </xd:doc>
     <xsl:function name="functx:day-of-week" as="xs:integer?">
         <xsl:param name="date" as="xs:date?"/>
-        
+
         <xsl:if test="not(empty($date))">
             <xsl:value-of select="xs:integer((xs:date($date) - xs:date('1901-01-06')) div xs:dayTimeDuration('P1D')) mod 7"/>
         </xsl:if>

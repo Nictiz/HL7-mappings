@@ -1,0 +1,398 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:bc2fbdef-a034-11ea-1709-020000000000"/>
+      <resource>
+         <Questionnaire>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/vl-Questionnaire"/>
+            </meta>
+            <url value="http://examplerepository.nl/intake-nieuwe-patient--20200327"/>
+            <version value="20200327"/>
+            <name value="intake-nieuwe-patient"/>
+            <title value="Intake nieuwe patiënt"/>
+            <status value="draft"/>
+            <experimental value="true"/>
+            <date value="2020-03-27"/>
+            <publisher value="Nictiz"/>
+            <purpose value="Deze vragenlijst is ontwikkeld voor test- en kwalificatiedoeleinden binnen de informatiestandaard MedMij Vragenlijsten."/>
+            <item>
+               <linkId value="introductie"/>
+               <text value="Met het beantwoorden van deze vragenlijst voorziet u ons van enkele basisgegevens die we opnemen in uw dossier."/>
+               <type value="display"/>
+            </item>
+            <item>
+               <linkId value="algemeen"/>
+               <text value="Algemene vragen"/>
+               <type value="group"/>
+               <item>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/maxDecimalPlaces">
+                     <valueInteger value="1"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-unit">
+                     <valueCoding>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="kg"/>
+                     </valueCoding>
+                  </extension>
+                  <linkId value="gewicht"/>
+                  <text value="Wat is uw gewicht in kg?"/>
+                  <type value="decimal"/>
+                  <required value="true"/>
+               </item>
+               <item>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/minLength">
+                     <valueInteger value="0"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-unit">
+                     <valueCoding>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="cm"/>
+                     </valueCoding>
+                  </extension>
+                  <linkId value="lengte"/>
+                  <text value="Wat is uw lengte in cm?"/>
+                  <type value="integer"/>
+                  <required value="true"/>
+               </item>
+               <item>
+                  <linkId value="roken"/>
+                  <text value="Rookt u?"/>
+                  <type value="boolean"/>
+               </item>
+               <item>
+                  <linkId value="ooitgerookt"/>
+                  <text value="U rookt niet meer, maar heeft u ooit gerookt?"/>
+                  <type value="boolean"/>
+                  <enableWhen>
+                     <question value="roken"/>
+                     <answerBoolean value="false"/>
+                  </enableWhen>
+               </item>
+               <item>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-unit">
+                     <valueCoding>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="a"/>
+                     </valueCoding>
+                  </extension>
+                  <linkId value="jarensindsroken"/>
+                  <text value="Hoe lang is het geleden dat u heeft gerookt (in jaren)?"/>
+                  <type value="decimal"/>
+                  <enableWhen>
+                     <question value="ooitgerookt"/>
+                     <answerBoolean value="true"/>
+                  </enableWhen>
+               </item>
+               <item>
+                  <linkId value="hoevaakroken"/>
+                  <text value="Hoe vaak rookt u?"/>
+                  <type value="choice"/>
+                  <enableWhen>
+                     <question value="roken"/>
+                     <answerBoolean value="true"/>
+                  </enableWhen>
+                  <option>
+                     <valueCoding>
+                        <code value="DAG"/>
+                        <display value="Dagelijks"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="BDA"/>
+                        <display value="Bijna dagelijks"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="PDW"/>
+                        <display value="Een paar dagen per week"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="WKD"/>
+                        <display value="Alleen in het weekend"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="AFT"/>
+                        <display value="Af en toe"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="ZEL"/>
+                        <display value="Zelden"/>
+                     </valueCoding>
+                  </option>
+               </item>
+               <item>
+                  <linkId value="drinken"/>
+                  <text value="Drinkt u alcohol?"/>
+                  <type value="boolean"/>
+               </item>
+               <item>
+                  <linkId value="hoevaakdrinken"/>
+                  <text value="Hoe vaak per week drinkt u alcohol?"/>
+                  <type value="choice"/>
+                  <enableWhen>
+                     <question value="drinken"/>
+                     <answerBoolean value="true"/>
+                  </enableWhen>
+                  <option>
+                     <valueCoding>
+                        <code value="DAG"/>
+                        <display value="Dagelijks"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="BDA"/>
+                        <display value="Bijna dagelijks"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="PDW"/>
+                        <display value="Een paar dagen per week"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="WKD"/>
+                        <display value="Alleen in het weekend"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="AFT"/>
+                        <display value="Af en toe"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="ZEL"/>
+                        <display value="Zelden"/>
+                     </valueCoding>
+                  </option>
+               </item>
+               <item>
+                  <linkId value="lichamelijkegezondheid"/>
+                  <text value="Hoe omschrijft u uw algemene lichamelijke gezondheid?"/>
+                  <type value="text"/>
+               </item>
+               <item>
+                  <linkId value="opstaan"/>
+                  <text value="Hoe laat staat u meestal op?"/>
+                  <type value="time"/>
+               </item>
+               <item>
+                  <linkId value="sport"/>
+                  <text value="Beoefent u een sport?"/>
+                  <type value="boolean"/>
+               </item>
+               <item>
+                  <linkId value="welkesport"/>
+                  <text value="Welke sport(en) beoefent u?"/>
+                  <type value="choice"/>
+                  <enableWhen>
+                     <question value="sport"/>
+                     <answerBoolean value="true"/>
+                  </enableWhen>
+                  <repeats value="true"/>
+                  <option>
+                     <valueCoding>
+                        <code value="VOE"/>
+                        <display value="Voetbal"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="TEN"/>
+                        <display value="Tennis"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="HOC"/>
+                        <display value="Hockey"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="VOL"/>
+                        <display value="Volleybal"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="BAS"/>
+                        <display value="Basketbal"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="ZWE"/>
+                        <display value="Zwemmen"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="YOG"/>
+                        <display value="Yoga"/>
+                     </valueCoding>
+                  </option>
+                  <option>
+                     <valueCoding>
+                        <code value="AND"/>
+                        <display value="Anders, namelijk"/>
+                     </valueCoding>
+                  </option>
+               </item>
+               <item>
+                  <linkId value="welkeanderesport"/>
+                  <text value="Anders, namelijk"/>
+                  <type value="string"/>
+                  <enableWhen>
+                     <question value="welkesport"/>
+                     <answerCoding>
+                        <code value="AND"/>
+                        <display value="Anders, namelijk"/>
+                     </answerCoding>
+                  </enableWhen>
+                  <repeats value="true"/>
+               </item>
+            </item>
+            <item>
+               <linkId value="voorgeschiedenis"/>
+               <text value="Voorgeschiedenis"/>
+               <type value="group"/>
+               <item>
+                  <linkId value="onderbehandeling"/>
+                  <text value="Bent u op dit moment onder behandeling van een specialist?"/>
+                  <type value="boolean"/>
+                  <required value="true"/>
+               </item>
+               <item>
+                  <linkId value="datumlaatstebehandeling"/>
+                  <text value="Wanneer was uw laatste contact met een specialist?"/>
+                  <type value="date"/>
+                  <enableWhen>
+                     <question value="onderbehandeling"/>
+                     <answerBoolean value="true"/>
+                  </enableWhen>
+               </item>
+               <item>
+                  <linkId value="geneesmiddelen"/>
+                  <text value="Gebruikt u geneesmiddelen?"/>
+                  <type value="boolean"/>
+                  <required value="true"/>
+               </item>
+            </item>
+            <item>
+               <linkId value="socialemedia"/>
+               <text value="Sociale media"/>
+               <type value="group"/>
+               <item>
+                  <linkId value="actiefsocialemedia"/>
+                  <text value="Bent u actief op sociale media?"/>
+                  <type value="display"/>
+               </item>
+               <item>
+                  <linkId value="facebook"/>
+                  <text value="Facebook"/>
+                  <type value="boolean"/>
+               </item>
+               <item>
+                  <linkId value="instagram"/>
+                  <text value="Instagram"/>
+                  <type value="boolean"/>
+               </item>
+               <item>
+                  <linkId value="linkedin"/>
+                  <text value="LinkedIn"/>
+                  <type value="boolean"/>
+               </item>
+               <item>
+                  <linkId value="anderplatform"/>
+                  <text value="Van een ander platform dat hier niet is genoemd?"/>
+                  <type value="boolean"/>
+               </item>
+               <item>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/minValue">
+                     <valueInteger value="1"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/maxValue">
+                     <valueInteger value="5"/>
+                  </extension>
+                  <linkId value="hoeveelandere"/>
+                  <text value="Hoeveel andere platforms zijn dit dan? (maximaal 5)"/>
+                  <type value="integer"/>
+                  <enableWhen>
+                     <question value="anderplatform"/>
+                     <answerBoolean value="true"/>
+                  </enableWhen>
+               </item>
+               <item>
+                  <linkId value="welkplatform"/>
+                  <text value="Welk of welke platforms zijn dit dan?"/>
+                  <type value="string"/>
+                  <enableWhen>
+                     <question value="anderplatform"/>
+                     <answerBoolean value="true"/>
+                  </enableWhen>
+               </item>
+            </item>
+            <item>
+               <linkId value="contactgegevens"/>
+               <text value="Contactgegevens"/>
+               <type value="group"/>
+               <item>
+                  <linkId value="uitlegcontact"/>
+                  <text value="Om u beter van dienst te kunnen zijn gebruiken we graag uw mobiele telefoonnummer en e-mailadres, bijvoorbeeld voor afspraakherinneringen en herhaalrecepten."/>
+                  <type value="display"/>
+               </item>
+               <item>
+                  <linkId value="mobiel"/>
+                  <text value="Wat is uw mobiele telefoonnummer?"/>
+                  <type value="string"/>
+               </item>
+               <item>
+                  <linkId value="mail"/>
+                  <text value="Wat is uw e-mailadres?"/>
+                  <type value="string"/>
+               </item>
+            </item>
+            <item>
+               <linkId value="belafspraak"/>
+               <type value="group"/>
+               <item>
+                  <linkId value="uitlegbelafspraak"/>
+                  <text value="Graag zouden we telefonisch contact met u opnemen om uw inschrijving te voltooien."/>
+                  <type value="display"/>
+               </item>
+               <item>
+                  <linkId value="toestemmingbelafspraak"/>
+                  <text value="Mogen we u telefonisch benaderen?"/>
+                  <type value="boolean"/>
+               </item>
+               <item>
+                  <linkId value="datumtijdbelafspraak"/>
+                  <text value="Als u voorkeur heeft voor een datum/tijd, dan kunt u deze hier opgeven."/>
+                  <type value="dateTime"/>
+                  <enableWhen>
+                     <question value="toestemmingbelafspraak"/>
+                     <answerBoolean value="true"/>
+                  </enableWhen>
+               </item>
+            </item>
+         </Questionnaire>
+      </resource>
+   </entry>
+</Bundle>

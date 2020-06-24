@@ -65,11 +65,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </beschikbaarstellen_medicatiegegevens>
                 </xsl:for-each>
             </data>
-        </adaxml>
-        <!--        <xsl:comment>Input HL7 xml below</xsl:comment>
-        <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="in" select="$dispense-list"/>
-        </xsl:call-template>
--->
+        </adaxml>   
     </xsl:template>
 </xsl:stylesheet>

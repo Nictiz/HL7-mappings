@@ -22,6 +22,52 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-04-28 -
+* Wrapped all xsl:message calls into util:logMessage that accepts a log level. If the requested logLevel for the message to emit is smaller than/equal the parameter logLevel, the message is emitted, otherwise it is not. Options:
+  * ALL, DEBUG, INFO, WARN, ERROR. FATAL, OFF where ALL shows all messages, DEBUG shows everything but ALL, INFO everything but ALL/DEBUG etc.
+  * default is INFO
+2020-04-20 -
+* HL7-123 Normalize-space() on Address, Name and Contact parts. FHIR does not allow leading or trailing spaces
+* HL7-123 NarrativeGenerator will use div instead of br tags to avoid conversion to JSON issues in some reference frameworks
+* NarrativeGenerator
+  * Replaced table.caption.div with equivalent span style="diplay: block;"
+  * Fixed separator usage when calling DoDT
+  * Fixed Observation.comment - used wrong datatype and would thus not be rendered
+  * Add support for Observation.specimen and Observation.issued
+  * Add support for Observation extension http://hl7.org/fhir/StructureDefinition/observation-eventTiming
+  * Add support for zib-NursingIntervention Procedure.usedReference extension http://nictiz.nl/fhir/StructureDefinition/extension-medicaldevice
+  * Add support for zib-NursingIntervention Procedure.extension http://hl7.org/fhir/StructureDefinition/goal-pertainsToGoal
+  * Add support for zib-NursingIntervention Procedure.extension http://nictiz.nl/fhir/StructureDefinition/zib-NursingIntervention-Requester
+  * Add support for zib-NursingIntervention Procedure.extension http://hl7.org/fhir/StructureDefinition/procedure-schedule
+  * Add support for zib-FamilySituationChild extension http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituationChild-RelatedPerson
+  * Add support for zib-FamilySituation extension http://nictiz.nl/fhir/StructureDefinition/zib-FamilySituation-LivingAtHomeIndicator
+  * Add support for Encounter.class and Encounter.serviceProvider
+  * Add support for Consent.consentingParty and .organization
+  * Add support for Consent.extension http://nictiz.nl/fhir/StructureDefinition/Comment
+  * Add support for Consent.extension http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective-Disorder
+  * Add support for RelatedPerson http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role
+  * Add support for Patient.active (only if false)
+  * Harmonized date handling. Now always emits dd mmm yyyy
+  
+2020-04-09 -
+* MM-1056 Improved display on codes in AllergyIntolerance.category and .criticality. The previous fix introduced an error which is now fixed
+2020-04-07 -
+* MM-1056 Improved display on codes in AllergyIntolerance.category and .criticality
+* MM-1057 Add Composition.type.display
+2020-03-30 - 
+* Add support for identifier on EpisodeOfCare, remove identifier from Flag. Path would not have data and if it did it would have been incorrect
+2020-03-18 - 1.3.3
+* MM-1018 Fixed trailing/leading spaces by adjusting the central datatype functions. This affects any mapping part that calls them
+* MM-1009 Fixed missing timezone on Bundle.entry.resource.period.start
+2020-03-17 - 1.3.2
+* MM-1009 Fixed missing Observation.subject on gp-JournalEntry
+* MM-1009 Fixed missing timezone when date stamp includes time
+2020-03-16 - 1.3.1
+* MM-992 Fixed missing Resource.meta.profile indicators on EncounterReport inclusions (gp-JournalEntry), Encounters (gp-Encounter) and Episodes (zib-Alert) - https://bits.nictiz.nl/browse/MM-992
+2020-03-13 - 1.3.0
+* All resources now contain narrative Resource.text. This is a FHIR SHOULD
+* Improved handling of CodeableConcept.display. Now normalizes space to avoid leading/trailing spaces.
+* Improved accuracy of display value on Practitioner reference
 2019-10-30 - 1.2.0
 * Large refactoring efforts have led to a more centralized approach for HCIM conversion to FHIR. Name, Address, ContactData, Patient and more now have a central place in the folder zib2017
 * (!!) There is a new XSL level parameter for masking of Burgerservicenummers (BSNs), as not all use cases require this. If you want to mask, please use paramater mask-ids with value 2.16.840.1.113883.2.4.6.3 rather than relyiing on the defaults

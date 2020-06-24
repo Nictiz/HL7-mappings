@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:f="http://hl7.org/fhir" stylesheet="../zib-pharmaceuticalproduct-2.0.xsl">
+    
+    <x:scenario label="zib-pharmaceuticalproduct-2.0">
+        <x:scenario label="match 'f:Medication' mode 'zib-PharmaceuticalProduct-2.0'">
+            <x:scenario label="full resource(should be broken up)">
+                <x:context mode="zib-PharmaceuticalProduct-2.0">
+                    <Medication xmlns="http://hl7.org/fhir">
+                        <meta>
+                            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                        </meta>
+                        <text/>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
+                            <valueString value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
+                        </extension>
+                        <code>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <valueCode value="OTH"/>
+                            </extension>
+                            <text value="Ureum 10% in eucerine cum aqua 100gr"/>
+                        </code>
+                        <ingredient>
+                            <itemCodeableConcept>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                                    <code value="15219127"/>
+                                    <display value="UREUM"/>
+                                </coding>
+                            </itemCodeableConcept>
+                            <amount>
+                                <numerator>
+                                    <value value="10"/>
+                                    <unit value="gram"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="215"/>
+                                </numerator>
+                                <denominator>
+                                    <value value="100"/>
+                                    <unit value="gram"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="215"/>
+                                </denominator>
+                            </amount>
+                        </ingredient>
+                        <ingredient>
+                            <itemCodeableConcept>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                                    <code value="14740877"/>
+                                    <display value="EUCERINE MET WATER FAGRON"/>
+                                </coding>
+                            </itemCodeableConcept>
+                            <amount>
+                                <numerator>
+                                    <value value="90"/>
+                                    <unit value="gram"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="215"/>
+                                </numerator>
+                                <denominator>
+                                    <value value="100"/>
+                                    <unit value="gram"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="215"/>
+                                </denominator>
+                            </amount>
+                        </ingredient>
+                    </Medication>
+                </x:context>
+                <x:expect label="'product' element with 'product_code' and 'product_specificatie' children">
+                    <product>
+                        <product_code
+                            code="OTH"
+                            codeSystem="2.16.840.1.113883.5.1008"
+                            codeSystemName="HL7 NullFlavor"
+                            displayName="overig"/>
+                        <product_specificatie>
+                            <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+                            <omschrijving value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
+                            <ingredient>
+                                <sterkte>
+                                    <hoeveelheid_ingredient>
+                                        <waarde value="10"/>
+                                        <eenheid code="215"
+                                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                            codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                                            displayName="gram"/>
+                                    </hoeveelheid_ingredient>
+                                    <hoeveelheid_product>
+                                        <waarde value="100"/>
+                                        <eenheid code="215"
+                                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                            codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                                            displayName="gram"/>
+                                    </hoeveelheid_product>
+                                </sterkte>
+                                <ingredient_code
+                                    code="15219127"
+                                    codeSystem="2.16.840.1.113883.2.4.4.7"
+                                    codeSystemName="G-Standaard HPK"
+                                    displayName="UREUM"/>
+                            </ingredient>
+                            <ingredient>
+                                <sterkte>
+                                    <hoeveelheid_ingredient>
+                                        <waarde value="90"/>
+                                        <eenheid code="215"
+                                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                            codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                                            displayName="gram"/>
+                                    </hoeveelheid_ingredient>
+                                    <hoeveelheid_product>
+                                        <waarde value="100"/>
+                                        <eenheid code="215"
+                                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                            codeSystemName="G-Standaard Bestand 902 Thesaurus 2"
+                                            displayName="gram"/>
+                                    </hoeveelheid_product>
+                                </sterkte>
+                                <ingredient_code
+                                    code="14740877"
+                                    codeSystem="2.16.840.1.113883.2.4.4.7"
+                                    codeSystemName="G-Standaard HPK"
+                                    displayName="EUCERINE MET WATER FAGRON"/>
+                            </ingredient>
+                        </product_specificatie>
+                    </product>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="f:code/f:text handling: f:code/f:coding/f:display present">
+                <x:context mode="zib-PharmaceuticalProduct-2.0">
+                    <Medication xmlns="http://hl7.org/fhir">
+                        <code>
+                            <coding>
+                                <display/>
+                            </coding>
+                            <text value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+                        </code>
+                    </Medication>
+                </x:context>
+                <x:expect label="Nothing happens with text value.">
+                    <product>
+                        <product_code/>
+                    </product>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="f:code/f:text handling: f:code/f:extension=nullFlavor and no f:extension, f:form, f:ingredient">
+                <x:context mode="zib-PharmaceuticalProduct-2.0">
+                    <Medication xmlns="http://hl7.org/fhir">
+                        <code>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <valueCode value="OTH"/>
+                            </extension>
+                            <text value="Ureum 10% in eucerine cum aqua 100gr"/>
+                        </code>
+                    </Medication>
+                </x:context>
+                <x:expect label="product_code/@originalText">
+                    <product>
+                        <product_code code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig" originalText="Ureum 10% in eucerine cum aqua 100gr"/>
+                    </product>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="f:code/f:text handling: no f:code/f:coding and f:extension, f:form, f:ingredient">
+                <x:context mode="zib-PharmaceuticalProduct-2.0">
+                    <Medication xmlns="http://hl7.org/fhir">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description"/>
+                        <code>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                                <valueCode value="OTH"/>
+                            </extension>
+                            <text value="Ureum 10% in eucerine cum aqua 100gr"/>
+                        </code>
+                        <form/>
+                        <ingredient/>
+                    </Medication>
+                </x:context>
+                <x:expect label="product_specificatie/product_naam">
+                    <product>
+                        <product_code code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig"/>
+                        <product_specificatie>
+                            <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+                            <omschrijving value=""/>
+                            <ingredient/>
+                        </product_specificatie>
+                    </product>
+                </x:expect>
+            </x:scenario>
+            <x:scenario label="f:code/f:text handling: really only f:code/f:text">
+                <x:context mode="zib-PharmaceuticalProduct-2.0">
+                    <Medication xmlns="http://hl7.org/fhir">
+                        <code>
+                            <text value="Ureum 10% in eucerine cum aqua 100gr"/>
+                        </code>
+                    </Medication>
+                </x:context>
+                <x:expect label="add nullFlavor OTH">
+                    <product>
+                        <product_code code="OTH" codeSystem="2.16.840.1.113883.5.1008" codeSystemName="HL7 NullFlavor" displayName="overig" originalText="Ureum 10% in eucerine cum aqua 100gr"/>
+                    </product>
+                </x:expect>
+            </x:scenario>
+        </x:scenario>
+    
+        <x:scenario label="match 'f:ingredient' mode 'zib-PharmaceuticalProduct-2.0">
+            <x:context mode="zib-PharmaceuticalProduct-2.0">
+                <ingredient xmlns="http://hl7.org/fhir">
+                    <itemCodeableConcept>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                            <code value="14740877"/>
+                            <display value="EUCERINE MET WATER FAGRON"/>
+                        </coding>
+                    </itemCodeableConcept>
+                    <amount>
+                        <numerator>
+                            <value value="90"/>
+                            <unit value="gram"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="215"/>
+                        </numerator>
+                        <denominator>
+                            <value value="100"/>
+                            <unit value="gram"/>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                            <code value="215"/>
+                        </denominator>
+                    </amount>
+                </ingredient>
+            </x:context>
+            <x:expect label="'ingredient' element">
+                <ingredient>
+                    <sterkte>...</sterkte>
+                    <ingredient_code
+                        code="14740877"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        codeSystemName="G-Standaard HPK"
+                        displayName="EUCERINE MET WATER FAGRON"/>
+                </ingredient>
+            </x:expect>
+        </x:scenario>
+   
+        <x:scenario label="match 'f:form' mode 'zib-PharmaceuticalProduct-2.0">
+            <x:context mode="zib-PharmaceuticalProduct-2.0">
+                <form xmlns="http://hl7.org/fhir">
+                    <coding/>
+                </form>
+            </x:context>
+            <x:expect label="'farmaceutische_vorm' element">
+                <farmaceutische_vorm/>
+            </x:expect>
+        </x:scenario>
+    
+        <x:scenario label="match 'f:code/f:text' mode 'zib-PharmaceuticalProduct-2.0">
+            <x:context mode="zib-PharmaceuticalProduct-2.0" select="f:code/f:text">
+                <code xmlns="http://hl7.org/fhir">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                        <valueCode value="OTH"/>
+                    </extension>
+                    <text value="Ureum 10% in eucerine cum aqua 100gr"/>
+                </code>
+            </x:context>
+            <x:expect label="'product_naam' element">
+                <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+            </x:expect>
+          </x:scenario>  
+    
+    </x:scenario>
+    
+
+   <!-- <x:scenario label="Scenario for testing template with match 'f:code' and mode 'zib-PharmaceuticalProduct-2.0'">
+        <x:context mode="zib-PharmaceuticalProduct-2.0"/>
+        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+    </x:scenario>
+
+    <x:scenario label="Scenario for testing template with match 'f:extension[@url ='http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description']' and mode 'zib-PharmaceuticalProduct-2.0'">
+        <x:context mode="zib-PharmaceuticalProduct-2.0"/>
+        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+    </x:scenario>
+
+    <x:scenario label="Scenario for testing template with match 'f:ingredient' and mode 'zib-PharmaceuticalProduct-2.0'">
+        <x:context mode="zib-PharmaceuticalProduct-2.0"/>
+        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+    </x:scenario>
+
+    <x:scenario label="Scenario for testing template with match 'f:Medication/f:ingredient/f:itemCodeableConcept' and mode 'zib-PharmaceuticalProduct-2.0'">
+        <x:context mode="zib-PharmaceuticalProduct-2.0"/>
+        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+    </x:scenario>
+
+    <x:scenario label="Scenario for testing template with match 'f:amount' and mode 'zib-PharmaceuticalProduct-2.0'">
+        <x:context mode="zib-PharmaceuticalProduct-2.0"/>
+        <x:expect label="Not yet implemented" select="'Not yet implemented'"/>
+    </x:scenario>-->
+</x:description>

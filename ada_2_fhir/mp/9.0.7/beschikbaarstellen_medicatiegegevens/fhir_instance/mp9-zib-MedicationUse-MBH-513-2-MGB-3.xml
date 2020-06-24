@@ -1,12 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <MedicationStatement xmlns="http://hl7.org/fhir">
    <id value="MBH-513-2-MGB-3"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
    </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationStatement. Subject: <a href="Patient/XXX-AMAYA">J. XXX_Amaya</a>. Id: MBH_513_2_MGB_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+               <span style="display: block;">Auteur: <a href="Organization/2a549898-b526-11ea-1541-020000000000">Ziekenhuis Stitswerd</a>
+               </span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_513_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>
+                     <a href="Medication/5967-2-16-840-1-113883-2-4-4-10">FUROSEMIDE TABLET 40MG</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Datum/tijd</th>
+                  <td>Vanaf 00:00:00, 3 september 2018</td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>21:39:00, 3 september 2018 - <a href="PractitionerRole/2a549904-b526-11ea-1541-020000000000">Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</a>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Ondersteunende informatie</th>
+                  <td>relatie naar medicatieafspraak (Id: MBH_513_2_MA_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Volgnummer: 1</div>
+                     <div>Tekst: Vanaf 3 sep 2018, tot nader order, 1 maal daags 1 stuk, oraal</div>
+                     <div>Timing: <div>eenmalig per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="Oraal (9 - G-Standaard thesaurus subtabel 0007)">Oraal</span>
+                     </div>
+                     <div>Dosering: 1 stuk</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie gebruikt</th>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
       <valueReference>
-         <reference value="Organization/ba7033b0-11d9-11ea-1402-020000000000"/>
+         <reference value="Organization/2a549898-b526-11ea-1541-020000000000"/>
          <display value="Ziekenhuis Stitswerd"/>
       </valueReference>
    </extension>
@@ -20,7 +71,11 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
       <value value="MBH_513_2_MGB_3"/>
    </identifier>
-   <status value="active"/>
+   <status>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </status>
    <category>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -40,11 +95,11 @@
    <informationSource>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
          <valueReference>
-            <reference value="PractitionerRole/ba70341c-11d9-11ea-1402-020000000000"/>
+            <reference value="PractitionerRole/2a549904-b526-11ea-1541-020000000000"/>
             <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
          </valueReference>
       </extension>
-      <reference value="Practitioner/000001111PETERVANPULVER"/>
+      <reference value="Practitioner/0000011112-16-528-1-1007-3-1"/>
       <display value="Peter van Pulver"/>
    </informationSource>
    <subject>

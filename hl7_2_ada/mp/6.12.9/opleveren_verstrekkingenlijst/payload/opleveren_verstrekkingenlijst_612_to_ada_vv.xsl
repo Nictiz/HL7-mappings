@@ -18,7 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Dit is een conversie van MP 6.12 naar ADA 9.0 verstrekkingenvertaling transactie -->
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:variable name="xsd-ada" select="document('../ada_schemas/beschikbaarstellen_verstrekkingenvertaling.xsd')"/>
-    <xsl:variable name="mbh-complexType" select="$xsd-ada//xs:schema/xs:complexType[@name = 'beschikbaarstellen_verstrekkingenvertaling_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
+    <xsl:variable name="mbh-complexType" select="$xsd-ada/xs:schema/xs:complexType[@name = 'beschikbaarstellen_verstrekkingenvertaling_type']//xs:element[@name = 'medicamenteuze_behandeling']/@type"/>
     <xsl:variable name="xsd-mbh" select="$xsd-ada/xs:schema/xs:complexType[@name = $mbh-complexType]"/>
     <xsl:variable name="transaction-name">beschikbaarstellen_verstrekkingenvertaling</xsl:variable>
     <xsl:variable name="transaction-oid">2.16.840.1.113883.2.4.3.11.60.20.77.4.102</xsl:variable>
@@ -77,11 +77,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </beschikbaarstellen_verstrekkingenvertaling>
                 </xsl:for-each>
             </data>
-        </adaxml>
-        <!--        <xsl:comment>Input HL7 xml below</xsl:comment>
-        <xsl:call-template name="copyElementInComment">
-            <xsl:with-param name="in" select="$dispense-list"/>
-        </xsl:call-template>
--->
+        </adaxml>    
     </xsl:template>
 </xsl:stylesheet>

@@ -1,0 +1,213 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:bcf2ce41-a034-11ea-1693-020000000000"/>
+      <resource>
+         <Task>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/QuestionnaireReferenceTask"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>TaakStatus: aangevraagd<span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Priority: routine</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="Questionnaire form definition Document (74468-0 - LOINC)">Questionnaire form definition Document</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Omschrijving</th>
+                           <td>De vragenlijst 'Intake nieuwe patiënt' is beschikbaar om in te vullen</td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>10:00:00, 25 mei 2020</td>
+                        </tr>
+                        <tr>
+                           <th>Wijzigingsdatum</th>
+                           <td>10:00:00, 25 mei 2020</td>
+                        </tr>
+                        <tr>
+                           <th>Verantwoordelijk eigenaar</th>
+                           <td>Jan Verkeulen</td>
+                        </tr>
+                        <tr>
+                           <th>Taak bedoeld voor</th>
+                           <td>Jan Verkeulen</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="requested"/>
+            <intent value="order"/>
+            <priority value="routine"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="74468-0"/>
+                  <display value="Questionnaire form definition Document"/>
+               </coding>
+            </code>
+            <description value="De vragenlijst 'Intake nieuwe patiënt' is beschikbaar om in te vullen"/>
+            <for>
+               <reference value="urn:uuid:bcf2bfcf-a034-11ea-1693-020000000000"/>
+               <display value="Jan Verkeulen"/>
+            </for>
+            <authoredOn value="2020-05-25T10:00:00+02:00"/>
+            <lastModified value="2020-05-25T10:00:00+02:00"/>
+            <owner>
+               <reference value="urn:uuid:bcf2bfcf-a034-11ea-1693-020000000000"/>
+               <display value="Jan Verkeulen"/>
+            </owner>
+         </Task>
+      </resource>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 000001111 (UZI-NR-PERS), Lijster (Frans)</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001111"/>
+            </identifier>
+            <name>
+               <family value="Lijster">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Lijster"/>
+                  </extension>
+               </family>
+               <given value="Frans">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>OrganisatieId: 00001111 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Gezondheidscentrum Quaestionario</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Gezondheidscentrum Quaestionario"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bcf2ce47-a034-11ea-1693-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol</caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Frans Lijster</div>
+                              <div>Gezondheidscentrum Quaestionario</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.528.1.1007.3.1.1111"/>
+               <display value="Frans Lijster"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:oid:2.16.528.1.1007.3.3.1111"/>
+               <display value="Gezondheidscentrum Quaestionario"/>
+            </organization>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bcf2bfcf-a034-11ea-1693-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="generated"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Jan Verkeulen, Man, 25 november 1975</div>
+               </div>
+            </text>
+            <name>
+               <family value="Verkeulen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Verkeulen"/>
+                  </extension>
+               </family>
+               <given value="Jan">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male"/>
+            <birthDate value="1975-11-25"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
