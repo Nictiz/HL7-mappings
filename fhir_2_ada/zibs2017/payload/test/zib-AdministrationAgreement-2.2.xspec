@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../zib-AdministrationAgreement-2.2.xsl">
+    
+    <x:scenario label="zib-AdministrationAgreement-2.2">
+        <x:context mode="zib-AdministrationAgreement-2.2">
+            <MedicationDispense xmlns="http://hl7.org/fhir">
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+                </meta>
+                <text/>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+                    <valueDateTime value="2018-09-03T12:25:00+02:00"/>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+                    <valuePeriod>
+                        <start value="2018-09-03T00:00:00+02:00"/>
+                    </valuePeriod>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+                    <valueDuration>
+                        <value value="1"/>
+                        <unit value="jaar"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="a"/>
+                    </valueDuration>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                        <value value="MBH_513_1"/>
+                    </valueIdentifier>
+                </extension>
+                <identifier>
+                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                    <value value="MBH_513_1_TA_1"/>
+                </identifier>
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="422037009"/>
+                        <display value="Provider medication administration instructions (procedure)"/>
+                    </coding>
+                    <text value="Toedieningsafspraak"/>
+                </category>
+                <medicationReference>
+                    <reference value="urn:oid:2.16.840.1.113883.2.4.4.7.1110837"/>
+                    <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                </medicationReference>
+                <subject>
+                    <reference value="urn:uuid:2b5cd5a3-b526-11ea-8547-020000000000"/>
+                    <display value="J. XXX_Amaya"/>
+                </subject>
+                <performer>
+                    <actor>
+                        <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                        <display value="Apotheek De Gulle Gaper"/>
+                    </actor>
+                </performer>
+                <authorizingPrescription>
+                    <identifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                        <value value="MBH_513_1_MA_2"/>
+                    </identifier>
+                    <display value="relatie naar medicatieafspraak: MBH_513_1_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                </authorizingPrescription>
+                <dosageInstruction>
+                    <sequence value="1"/>
+                    <text value="Vanaf 3 sep 2018, gedurende 1 jaar, 1 maal per dag 1 stuk, oraal"/>
+                    <timing>
+                        <repeat>
+                            <frequency value="1"/>
+                            <period value="1"/>
+                            <periodUnit value="d"/>
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                            <code value="9"/>
+                            <display value="Oraal"/>
+                        </coding>
+                    </route>
+                    <doseQuantity>
+                        <value value="1"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                    </doseQuantity>
+                </dosageInstruction>
+            </MedicationDispense>
+        </x:context>
+        <x:expect label="'toedieningsafspraak' element with children">
+            <toedieningsafspraak>
+                <gebruiksperiode_start value="2018-09-03T00:00:00"/>
+                <identificatie value="MBH_513_1_TA_1" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                <afspraakdatum value="2018-09-03T12:25:00"/>
+                <gebruiksperiode value="1" unit="jaar"/>
+                <verstrekker>
+                    <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                    </zorgaanbieder>
+                </verstrekker>
+                <geneesmiddel_bij_toedieningsafspraak>
+                    <product>
+                        <product_code code="1110837" codeSystem="2.16.840.1.113883.2.4.4.7" displayName="ASPIRINE PROTECT EC TABLET MSR 100MG" codeSystemName="G-Standaard HPK"/>
+                        <product_code code="49484" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+                        <product_code code="103039" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+                    </product>
+                </geneesmiddel_bij_toedieningsafspraak>
+                <gebruiksinstructie>
+                    <omschrijving value="Vanaf 3 sep 2018, gedurende 1 jaar, 1 maal per dag 1 stuk, oraal"/>
+                    <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" code="9" displayName="Oraal" codeSystemName="G-Standaard Toedieningswegen"/>
+                    <doseerinstructie>
+                        <volgnummer value="1"/>
+                        <dosering>
+                            <keerdosis>
+                                <aantal>
+                                    <vaste_waarde value="1"/>
+                                </aantal>
+                                <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaardthesaurus basiseenheden" displayName="stuk"/>
+                            </keerdosis>
+                            <toedieningsschema>
+                                <frequentie>
+                                    <aantal>
+                                        <vaste_waarde value="1"/>
+                                    </aantal>
+                                    <tijdseenheid unit="dag" value="1"/>
+                                </frequentie>
+                            </toedieningsschema>
+                        </dosering>
+                    </doseerinstructie>
+                </gebruiksinstructie>
+                <relatie_naar_medicatieafspraak>
+                    <identificatie value="MBH_513_1_MA_2" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>
