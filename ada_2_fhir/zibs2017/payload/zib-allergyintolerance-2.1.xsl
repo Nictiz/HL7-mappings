@@ -164,7 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- Conceptmap: https://simplifier.net/NictizSTU3-Zib2017/AllergieStatusCodelijst-to-allergy-status -->
                     <verificationStatus>
                         <xsl:choose>
-                            <xsl:when test="allergy_status[@code = 'nullified']">
+                            <xsl:when test="(allergie_status | allergy_status)[@code = 'nullified']">
                                 <xsl:attribute name="value">entered-in-error</xsl:attribute>
                             </xsl:when>
                             <xsl:otherwise>

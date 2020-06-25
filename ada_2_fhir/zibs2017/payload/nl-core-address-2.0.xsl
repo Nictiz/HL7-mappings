@@ -94,7 +94,7 @@
                     <district value="{normalize-space(.)}"/>
                 </xsl:for-each>
                 <xsl:for-each select="postcode/@value">
-                    <postalCode value="{normalize-space(.)}"/>
+                    <postalCode value="{translate(.,' ','')}"/>
                 </xsl:for-each>
                 <xsl:for-each select="land/@value | country/@value">
                     <country value="{normalize-space(.)}"/>

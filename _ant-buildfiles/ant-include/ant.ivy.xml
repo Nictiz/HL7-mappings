@@ -12,7 +12,7 @@
         </fileset>
     </path>
     
-    <property name="ivy.install.version" value="2.4.0"/>
+    <property name="ivy.install.version" value="2.5.0"/>
     <property name="ivy.jar.dir" value="${basedir}/ivy"/>
     <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
     <property name="ivy.dep.file" value="${basedir}/ivy.xml"/>
@@ -35,6 +35,10 @@
         <ivy:resolve transitive="false"/>
         <ivy:retrieve type="jar,bundle" sync="true" pattern="${imports.location}/[artifact]-[revision].[ext]"/>
         <ivy:dependencytree/>
+    </target>
+    
+    <target name="clean-imports" description="--> clean the ivy installed dependencies">
+        <delete dir="${imports.location}"/>
     </target>
     
     <target name="clean-ivy" description="--> clean the ivy installation">
