@@ -10,12 +10,18 @@
     <!--Uncomment imports for standalone use and testing.-->
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
+    <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
     <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>
     <xsl:import href="zib-instructions-for-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
+    <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
+    <xsl:import href="nl-core-practitioner-2.0.xsl"/>
+    <xsl:import href="nl-core-organization-2.0.xsl"/>
+    <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>
     
     <xsl:variable name="zib-Medication-PeriodOfUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
     <xsl:variable name="zib-AdministrationAgreement-AuthoredOn" select="'http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn'"/>
+    <xsl:variable name="zib-MedicationUse-Duration" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
     <xsl:variable name="zib-Medication-StopType" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType'"/>
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
     
@@ -29,7 +35,7 @@
             <!--afspraakdatum-->
             <xsl:apply-templates select="f:extension[@url=$zib-AdministrationAgreement-AuthoredOn]" mode="#current"/>
             <!--gebruiksperiode-->
-            <!--<xsl:apply-templates select="f:extension[@url=$" mode="#current"/>-->
+            <xsl:apply-templates select="f:extension[@url=$zib-MedicationUse-Duration]" mode="ext-zib-medication-use-duration-2.0"/>
             <!--geannuleerd_indicator-->
             <xsl:apply-templates select="f:status" mode="#current"/>
             <!--stoptype-->
