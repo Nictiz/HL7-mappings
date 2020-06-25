@@ -1,0 +1,385 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:wss="http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.0.xsd">
+    <SOAP-ENV:Body>
+        <MCCI_IN200101 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <id extension="114605" root="2.16.840.1.113883.2.4.6.6.1.1.33"/>
+            <creationTime value="20181127115825"/>
+            <versionCode code="NICTIZEd2005-Okt"/>
+            <interactionId extension="MCCI_IN200101" root="2.16.840.1.113883.1.6"/>
+            <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+            <transmissionQuantity value="3"/>
+            <acknowledgement typeCode="AA">
+                <targetTransmission>
+                    <id extension="34745ef4-6429-4142-8efc-99e4714e887e" root="2.16.528.1.1007.3.3.1234567.1"/>
+                </targetTransmission>
+            </acknowledgement>
+            <receiver>
+                <device>
+                    <id extension="4003" root="2.16.840.1.113883.2.4.6.6"/>
+                </device>
+            </receiver>
+            <sender>
+                <device>
+                    <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+                </device>
+            </sender>
+            <REPC_IN990101NL xmlns="urn:hl7-org:v3" xmlns:sd="urn:hl7-org:sdtc" xmlns:ph="urn:ihe:pharm:medication" xmlns:nl="urn:hl7-nl:v3">
+                <id extension="XIS-20190304-1353-49fb42f1-7c0a-4c69-8e7a-ae74cd2e3be6" root="2.16.840.1.113883.2.4.6.6.90000258.1"/>
+                <creationTime value="20190304155253"/>
+                <versionCode code="NICTIZEd2005-Okt"/>
+                <interactionId extension="REPC_IN990101NL" root="2.16.840.1.113883.1.6"/>
+                <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+                <processingCode code="P"/>
+                <processingModeCode code="T"/>
+                <acceptAckCode code="NE"/>
+                <acknowledgement typeCode="AA">
+                    <targetMessage>
+                        <id extension="5ef8b3f8-f2ac-4d08-9ee7-3ff07932934b" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+                    </targetMessage>
+                </acknowledgement>
+                <receiver>
+                    <device>
+                        <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+                    </device>
+                </receiver>
+                <sender>
+                    <device>
+                        <id extension="90000258" root="2.16.840.1.113883.2.4.6.6"/>
+                        <name>XIS LSP</name>
+                    </device>
+                </sender>
+                <ControlActProcess moodCode="EVN">
+                    <authorOrPerformer typeCode="AUT">
+                        <participant>
+                            <AssignedDevice>
+                                <id extension="900017472" root="2.16.528.1.1007.3.2"/>
+                                <Organization>
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                </Organization>
+                            </AssignedDevice>
+                        </participant>
+                    </authorOrPerformer>
+                    <subject>
+                        <organizer classCode="CLUSTER" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.14"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="General medicine Progress note"/>
+                            <statusCode code="completed"/>
+                            <recordTarget>
+                                <patientRole>
+                                    <id extension="999911624" root="2.16.840.1.113883.2.4.6.3"/>
+                                    <addr use="HP">
+                                        <streetName>Knolweg</streetName>
+                                        <houseNumber>1001</houseNumber>
+                                        <postalCode>9999 XX</postalCode>
+                                        <city>STITSWERD</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                    <patient>
+                                        <name>
+                                            <given qualifier="IN">E.</given>
+                                            <family qualifier="BR">XXX_Zegers</family>
+                                        </name>
+                                        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                                        <birthTime value="19640802"/>
+                                    </patient>
+                                </patientRole>
+                            </recordTarget>
+                            <participant typeCode="CST">
+                                <participantRole classCode="ASSIGNED">
+                                    <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                </participantRole>
+                            </participant>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                                    <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                                    <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="General medicine Progress note"/>
+                                    <statusCode code="completed"/>
+                                    <effectiveTime value="20190130164500"/>
+                                    <participant typeCode="RESP">
+                                        <participantRole classCode="ASSIGNED">
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                        </participantRole>
+                                    </participant>
+                                    <entryRelationship typeCode="REFR">
+                                        <encounter classCode="ENC" moodCode="EVN">
+                                            <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+                                        </encounter>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="REFR">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <id extension="1826" root="2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                                            <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                        </act>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="COMP">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.208"/>
+                                            <code code="61150-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Subjective Narrative"/>
+                                            <text>Gaat beter, nog wel af en toe benauwd/hoesten. Geen koorts, weinig slijm en geen PoB.</text>
+                                            <statusCode code="completed"/>
+                                        </act>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="COMP">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.209"/>
+                                            <code code="61149-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Objective Narrative"/>
+                                            <text>Longen VAG geen crep, piep, wel wat rhonchi. Percussie gb.</text>
+                                            <statusCode code="completed"/>
+                                        </act>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="COMP">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                            <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                            <text>COPD, beterend</text>
+                                            <statusCode code="completed"/>
+                                            <entryRelationship typeCode="REFR">
+                                                <observation classCode="OBS" moodCode="EVN">
+                                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                                    <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                                                    <code code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Diagnosis"/>
+                                                    <statusCode code="completed"/>
+                                                    <effectiveTime>
+                                                        <low value="20190130"/>
+                                                    </effectiveTime>
+                                                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="R95" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Emfyseem/COPD" xsi:type="CD"/>
+                                                </observation>
+                                            </entryRelationship>
+                                        </act>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="COMP">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                            <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment"/>
+                                            <text>Controle afspreken POH voor ketenzorg en blaastest, continueren flixotide, zn ventolin.</text>
+                                            <statusCode code="completed"/>
+                                        </act>
+                                    </entryRelationship>
+                                </act>
+                            </component>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                                    <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                                    <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="General medicine Progress note"/>
+                                    <statusCode code="completed"/>
+                                    <effectiveTime value="20190202170300"/>
+                                    <participant typeCode="RESP">
+                                        <participantRole classCode="ASSIGNED">
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                        </participantRole>
+                                    </participant>
+                                    <entryRelationship typeCode="REFR">
+                                        <encounter classCode="ENC" moodCode="EVN">
+                                            <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+                                        </encounter>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="REFR">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <id extension="1826" root="2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                                            <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                        </act>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="COMP">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.208"/>
+                                            <code code="61150-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Subjective Narrative"/>
+                                            <text>Gaat slechter. Medicatie slaat niet aan aldus pat. Koorts-. Hoest+++. Slijm geel. </text>
+                                            <statusCode code="completed"/>
+                                        </act>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="COMP">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.209"/>
+                                            <code code="61149-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Objective Narrative"/>
+                                            <text>Longen VAG crep+, piep iets, rhonchi+.  Percussie gb. </text>
+                                            <statusCode code="completed"/>
+                                        </act>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="COMP">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                            <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                            <text>COPD, exacerbatie</text>
+                                            <statusCode code="completed"/>
+                                            <entryRelationship typeCode="REFR">
+                                                <observation classCode="OBS" moodCode="EVN">
+                                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                                    <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                                                    <code code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Diagnosis"/>
+                                                    <statusCode code="completed"/>
+                                                    <effectiveTime>
+                                                        <low value="20190202"/>
+                                                    </effectiveTime>
+                                                    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="R95" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Emfyseem/COPD" xsi:type="CD"/>
+                                                </observation>
+                                            </entryRelationship>
+                                        </act>
+                                    </entryRelationship>
+                                    <entryRelationship typeCode="COMP">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                            <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment"/>
+                                            <text>AB starten, ventolin 3-4 dgs.</text>
+                                            <statusCode code="completed"/>
+                                        </act>
+                                    </entryRelationship>
+                                </act>
+                            </component>
+                        </organizer>
+                    </subject>
+                    <queryAck>
+                        <queryId extension="496ae972-1fc4-4523-ae7e-3b3fdd24c60d" root="2.16.840.1.113883.2.4.6.6.1.1.1"/>
+                        <queryResponseCode code="OK"/>
+                        <resultTotalQuantity value="1"/>
+                        <resultCurrentQuantity value="1"/>
+                        <resultRemainingQuantity value="0"/>
+                    </queryAck>
+                </ControlActProcess>
+            </REPC_IN990101NL>
+            <PRPA_IN900350NL xmlns="urn:hl7-org:v3" xmlns:sd="urn:hl7-org:sdtc" xmlns:ph="urn:ihe:pharm:medication" xmlns:nl="urn:hl7-nl:v3">
+                <id extension="XIS-20190305-1614-6183e8d7-22ed-4e3c-b3b6-2ea03ce4c08b" root="2.16.840.1.113883.2.4.6.6.90000258.1"/>
+                <creationTime value="20190305172326"/>
+                <versionCode code="NICTIZEd2005-Okt"/>
+                <interactionId extension="PRPA_IN900350NL" root="2.16.840.1.113883.1.6"/>
+                <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+                <processingCode code="P"/>
+                <processingModeCode code="T"/>
+                <acceptAckCode code="NE"/>
+                <acknowledgement typeCode="AA">
+                    <targetMessage>
+                        <id extension="983a51bf-3cb3-4fb0-bf3d-c6646e0cb43c" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+                    </targetMessage>
+                </acknowledgement>
+                <receiver>
+                    <device>
+                        <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+                    </device>
+                </receiver>
+                <sender>
+                    <device>
+                        <id extension="90000258" root="2.16.840.1.113883.2.4.6.6"/>
+                        <name>XIS LSP</name>
+                    </device>
+                </sender>
+                <ControlActProcess moodCode="EVN">
+                    <authorOrPerformer typeCode="AUT">
+                        <participant>
+                            <AssignedDevice>
+                                <id extension="900017472" root="2.16.528.1.1007.3.2"/>
+                                <Organization>
+                                    <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                    <name>Tést Zorginstelling 04</name>
+                                </Organization>
+                            </AssignedDevice>
+                        </participant>
+                    </authorOrPerformer>
+                    <subject>
+                        <organizer classCode="CLUSTER" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.10"/>
+                            <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of hospitalizations / History of outpatient visits"/>
+                            <statusCode code="completed"/>
+                            <recordTarget>
+                                <patientRole>
+                                    <id extension="999911624" root="2.16.840.1.113883.2.4.6.3"/>
+                                    <addr use="HP">
+                                        <streetName>Knolweg</streetName>
+                                        <houseNumber>1001</houseNumber>
+                                        <postalCode>9999 XX</postalCode>
+                                        <city>STITSWERD</city>
+                                        <country>Nederland</country>
+                                    </addr>
+                                    <patient>
+                                        <name>
+                                            <given qualifier="IN">E.</given>
+                                            <family qualifier="BR">XXX_Zegers</family>
+                                        </name>
+                                        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                                        <birthTime value="19640802"/>
+                                    </patient>
+                                </patientRole>
+                            </recordTarget>
+                            <participant typeCode="CST">
+                                <participantRole classCode="ASSIGNED">
+                                    <id extension="900013866" root="2.16.528.1.1007.3.1"/>
+                                </participantRole>
+                            </participant>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                                    <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+                                    <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" codeSystemName="Soort contact" codeSystemVersion="v7" displayName="consult"/>
+                                    <effectiveTime>
+                                        <low value="201902031645"/>
+                                        <high value="201902031651"/>
+                                    </effectiveTime>
+                                    <performer typeCode="PRF">
+                                        <assignedEntity>
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                            <assignedPerson>
+                                                <name>
+                                                    <family>XIS test</family>
+                                                </name>
+                                            </assignedPerson>
+                                            <representedOrganization>
+                                                <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                                <name>Tést Zorginstelling 02</name>
+                                            </representedOrganization>
+                                        </assignedEntity>
+                                    </performer>
+                                    <entryRelationship typeCode="REFR">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <id extension="1826" root="2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                                            <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                        </act>
+                                    </entryRelationship>
+                                </encounter>
+                            </component>
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                                    <id extension="996626" root="2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+                                    <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" codeSystemName="Soort contact" codeSystemVersion="v7" displayName="consult"/>
+                                    <effectiveTime>
+                                        <low value="201902061703"/>
+                                        <high value="201902061708"/>
+                                    </effectiveTime>
+                                    <performer typeCode="PRF">
+                                        <assignedEntity>
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                            <assignedPerson>
+                                                <name>
+                                                    <family>XIS test</family>
+                                                </name>
+                                            </assignedPerson>
+                                            <representedOrganization>
+                                                <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                                <name>Tést Zorginstelling 02</name>
+                                            </representedOrganization>
+                                        </assignedEntity>
+                                    </performer>
+                                    <entryRelationship typeCode="REFR">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <id extension="1826" root="2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                                            <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                        </act>
+                                    </entryRelationship>
+                                </encounter>
+                            </component>
+                        </organizer>
+                    </subject>
+                    <queryAck>
+                        <queryId extension="b0ecac46-20ee-4fbe-acf1-2a0b1c78a131" root="2.16.840.1.113883.2.4.6.6.1.1.1"/>
+                        <queryResponseCode code="OK"/>
+                        <resultTotalQuantity value="1"/>
+                        <resultCurrentQuantity value="1"/>
+                        <resultRemainingQuantity value="0"/>
+                    </queryAck>
+                </ControlActProcess>
+            </PRPA_IN900350NL>
+        </MCCI_IN200101>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
