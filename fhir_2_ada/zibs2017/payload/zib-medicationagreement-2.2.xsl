@@ -23,9 +23,9 @@
     
     <xsl:variable name="zib-MedicationAgreement" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement'"/>
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
-    <xsl:variable name="stoptype-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType'"/>
-    <xsl:variable name="periodofuse-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
-    <xsl:variable name="basedonagreementoruse-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'"/>
+    <xsl:variable name="zib-Medication-StopType" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType'"/>
+    <xsl:variable name="zib-Medication-PeriodOfUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
+    <xsl:variable name="zib-MedicationAgreement-BasedOnAgreementOrUse" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse'"/>
     <xsl:variable name="zib-MedicationUse-Duration" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
             
     <xd:doc>
@@ -33,13 +33,13 @@
     </xd:doc>
     <xsl:template match="f:MedicationRequest" mode="zib-MedicationAgreement-2.2"> 
         <medicatieafspraak>
-            <xsl:apply-templates select="f:extension[@url=$periodofuse-url]" mode="ext-zib-Medication-PeriodOfUse-2.0"/>
+            <xsl:apply-templates select="f:extension[@url=$zib-Medication-PeriodOfUse]" mode="ext-zib-Medication-PeriodOfUse-2.0"/>
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <xsl:apply-templates select="f:authoredOn" mode="#current"/>
             <xsl:apply-templates select="f:extension[@url=$zib-MedicationUse-Duration]" mode="ext-zib-medication-use-duration-2.0"/>
             <xsl:apply-templates select="f:status" mode="#current"/>
-            <xsl:apply-templates select="f:modifierExtension[@url=$stoptype-url]" mode="ext-zib-Medication-Stop-Type-2.0"/>
-            <xsl:apply-templates select="f:extension[@url=$basedonagreementoruse-url]" mode="#current"/>
+            <xsl:apply-templates select="f:modifierExtension[@url=$zib-Medication-StopType]" mode="ext-zib-Medication-Stop-Type-2.0"/>
+            <xsl:apply-templates select="f:extension[@url=$zib-MedicationAgreement-BasedOnAgreementOrUse]" mode="#current"/>
             <xsl:apply-templates select="f:context" mode="#current"/>
             <xsl:apply-templates select="f:requester" mode="#current"/>
             <!-- reden afspraak -->
@@ -137,7 +137,7 @@
         </reden_van_voorschrijven>
     </xsl:template>
     
-    <xsl:template match="f:extension[@url=$basedonagreementoruse-url]" mode="zib-MedicationAgreement-2.2">
+    <xsl:template match="f:extension[@url=$zib-MedicationAgreement-BasedOnAgreementOrUse]" mode="zib-MedicationAgreement-2.2">
         <relatie_naar_afspraak_of_gebruik>
             <xsl:choose>
                 <xsl:when test="f:valueReference/f:identifier">

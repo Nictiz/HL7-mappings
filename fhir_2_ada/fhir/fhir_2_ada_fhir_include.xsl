@@ -140,8 +140,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$in/f:value/@value">
                 <xsl:element name="{$adaElementName}">
-                    <xsl:attribute name="unit" select="$unit"/>
                     <xsl:attribute name="value" select="$in/f:value/@value"/>
+                    <xsl:attribute name="unit" select="$unit"/>
                 </xsl:element>
             </xsl:when>
             <!--<xsl:when test="$in[@nullFlavor]">

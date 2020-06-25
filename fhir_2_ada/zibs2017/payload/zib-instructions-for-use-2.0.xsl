@@ -122,16 +122,16 @@
                     </aantal>
                     <xsl:if test="f:period|f:periodUnit">
                         <tijdseenheid>
-                            <xsl:apply-templates select="f:periodUnit" mode="#current"/>
                             <xsl:apply-templates select="f:period" mode="#current"/>
+                            <xsl:apply-templates select="f:periodUnit" mode="#current"/>
                         </tijdseenheid>
                     </xsl:if>
                 </frequentie>
             </xsl:when>
             <xsl:when test="f:period|f:periodUnit">
                 <interval>
-                    <xsl:apply-templates select="f:periodUnit" mode="#current"/>
                     <xsl:apply-templates select="f:period" mode="#current"/>
+                    <xsl:apply-templates select="f:periodUnit" mode="#current"/>
                 </interval>
             </xsl:when>
         </xsl:choose>
