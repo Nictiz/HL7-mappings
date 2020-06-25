@@ -20,6 +20,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="_zib2017.xsl"/>-->
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     
+    <xsl:import href="zib-medicationuse-2.2.xsl"/>
+    <xsl:import href="zib-AdministrationAgreement-2.2.xsl"/>
+    <xsl:import href="zib-medicationagreement-2.2.xsl"/>
+    <xsl:import href="zib-dispense-2.2.xsl"/>
+    <xsl:import href="zib-DispenseRequest-2.2.xsl"/>
+    
     <!--<xsl:import href="ext-code-specification-1.0.xsl"/>-->
     <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>
     <!--<xsl:import href="ext-zib-medication-copy-indicator-2.0.xsl"/>
@@ -33,8 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="nl-core-organization-2.0.xsl"/>
     <xsl:import href="nl-core-humanname-2.0.xsl"/>
-    <xsl:import href="zib-medicationagreement-2.2.xsl"/>
-    <xsl:import href="zib-medicationuse-2.2.xsl"/>
+    
     <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
@@ -53,8 +58,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-\-<xsl:import href="zib-medicationagreement-3.0.xsl"/>-\->
     <!-\-<xsl:import href="zib-medicationuse-3.0.xsl"/>-\->-->
     <xsl:import href="zib-problem-2.1.xsl"/>
-    <xsl:import href="zib-AdministrationAgreement-2.2.xsl"/>
-    
-    <xsl:import href="zib-dispense-2.2.xsl"/>
     
 </xsl:stylesheet>

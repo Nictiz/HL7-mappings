@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+    xmlns:f="http://hl7.org/fhir"
+    stylesheet="../zib-DispenseRequest-2.2.xsl">
+    
+    <x:scenario label="zib-DispenseRequest-2.2">
+        <x:context mode="zib-DispenseRequest-2.2" select="f:Bundle/f:entry/f:resource/f:MedicationRequest">
+            <Bundle xmlns="http://hl7.org/fhir">
+                <entry>
+                    <fullUrl value="urn:uuid:2b5ce060-b526-11ea-8547-020000000000"/>
+                    <resource>
+                        <MedicationRequest>
+                            <meta>
+                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+                            </meta>
+                            <text/>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+                                <valueReference>
+                                    <identifier>
+                                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                        <value value="MBH_513_2_MA_2"/>
+                                    </identifier>
+                                    <display value="Relatie naar medicatieafspraak, id = MBH_513_2_MA_2 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                                </valueReference>
+                            </extension>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+                                <valueIdentifier>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                                    <value value="MBH_513_2"/>
+                                </valueIdentifier>
+                            </extension>
+                            <identifier>
+                                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                                <value value="MBH_513_2_VV_2"/>
+                            </identifier>
+                            <intent value="order"/>
+                            <category>
+                                <coding>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="52711000146108"/>
+                                    <display value="Request to dispense medication to patient (situation)"/>
+                                </coding>
+                                <text value="Verstrekkingsverzoek"/>
+                            </category>
+                            <medicationReference>
+                                <reference value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+                                <display value="FUROSEMIDE TABLET 40MG"/>
+                            </medicationReference>
+                            <subject>
+                                <reference value="urn:uuid:2b5cd5a3-b526-11ea-8547-020000000000"/>
+                                <display value="J. XXX_Amaya"/>
+                            </subject>
+                            <authoredOn value="2018-08-16T14:32:00+02:00"/>
+                            <requester>
+                                <agent>
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                        <valueReference>
+                                            <reference value="urn:uuid:2b5ce062-b526-11ea-8547-020000000000"/>
+                                            <display value="Hans van Doorn || Huisartsen, niet nader gespecificeerd || Ziekenhuis Stitswerd"/>
+                                        </valueReference>
+                                    </extension>
+                                    <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                                    <display value="Hans van Doorn"/>
+                                </agent>
+                            </requester>
+                            <note>
+                                <text value="Extra verstrekkingsverzoek omdat patiënt de medicatie is kwijt geraakt"/>
+                            </note>
+                            <dispenseRequest>
+                                <quantity>
+                                    <value value="30"/>
+                                    <unit value="stuk"/>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <code value="245"/>
+                                </quantity>
+                                <performer>
+                                    <reference value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                                    <display value="Apotheek De Gulle Gaper"/>
+                                </performer>
+                            </dispenseRequest>
+                        </MedicationRequest>
+                    </resource>
+                    <search>
+                        <mode value="match"/>
+                    </search>
+                </entry>
+            </Bundle>
+        </x:context>
+        <x:expect label="'verstrekkingsverzoek' element with children">
+            <verstrekkingsverzoek>
+                <identificatie value="MBH_513_2_VV_2" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                <datum value="2018-08-16T14:32:00"/>
+                <auteur>
+                    <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="999001112" root="2.16.528.1.1007.3.1"/>
+                        <naamgegevens>
+                            <naamgegevens>
+                                <voornamen value="Hans"/>
+                                <geslachtsnaam>
+                                    <voorvoegsels value="van "/>
+                                    <achternaam value="Doorn"/>
+                                </geslachtsnaam>
+                            </naamgegevens>
+                        </naamgegevens>
+                        <specialisme value="1" code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))" codeSystemVersion="2017-12-14T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                            <zorgaanbieder_identificatie_nummer value="99901111" root="2.16.528.1.1007.3.3"/>
+                            <organisatie_naam value="Ziekenhuis Stitswerd"/>
+                            <adresgegevens>
+                                <straat value="Dorpsstraat"/>
+                                <huisnummer value="1"/>
+                                <postcode value="1234AA"/>
+                                <woonplaats value="Ons Dorp"/>
+                                <adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+                            </adresgegevens>
+                        </zorgaanbieder>
+                    </zorgverlener>
+                </auteur>
+                <te_verstrekken_hoeveelheid>
+                    <aantal value="30"/>
+                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                </te_verstrekken_hoeveelheid>
+                <te_verstrekken_geneesmiddel>
+                    <product>
+                        <product_code code="5967" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="FUROSEMIDE TABLET 40MG" codeSystemName="G-Standaard PRK"/>
+                        <product_code code="16810" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="FUROSEMIDE TABLET 40MG"/>
+                    </product>
+                </te_verstrekken_geneesmiddel>
+                <beoogd_verstrekker>
+                    <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                    </zorgaanbieder>
+                </beoogd_verstrekker>
+                <toelichting value="Extra verstrekkingsverzoek omdat patiënt de medicatie is kwijt geraakt"/>
+                <relatie_naar_medicatieafspraak>
+                    <identificatie value="MBH_513_2_MA_2" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+        </x:expect>
+    </x:scenario>
+    
+</x:description>

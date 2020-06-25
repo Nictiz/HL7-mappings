@@ -34,7 +34,9 @@
     <xsl:template match="f:MedicationRequest" mode="zib-MedicationAgreement-2.2"> 
         <medicatieafspraak>
             <xsl:apply-templates select="f:extension[@url=$zib-Medication-PeriodOfUse]" mode="ext-zib-Medication-PeriodOfUse-2.0"/>
+            <!-- identificatie -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
+            <!-- afspraakdatum -->
             <xsl:apply-templates select="f:authoredOn" mode="#current"/>
             <xsl:apply-templates select="f:extension[@url=$zib-MedicationUse-Duration]" mode="ext-zib-medication-use-duration-2.0"/>
             <xsl:apply-templates select="f:status" mode="#current"/>
