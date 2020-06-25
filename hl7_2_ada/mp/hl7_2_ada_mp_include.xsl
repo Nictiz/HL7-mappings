@@ -1010,15 +1010,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                             </xsl:element>
                                             <xsl:for-each select="$doseSchema">
-                                                <xsl:variable name="elemName">toedientijd</xsl:variable>
                                                 <xsl:call-template name="handleTS">
                                                     <xsl:with-param name="in" select="hl7nl:phase/hl7nl:low"/>
-                                                    <xsl:with-param name="elemName" select="$elemName"/>
+                                                    <xsl:with-param name="elemName">toedientijd</xsl:with-param>
                                                     <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                                     <xsl:with-param name="vagueDate" select="true()"/>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                         </xsl:if>
+
                                         <!-- Cyclisch doseerschema. -->
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
@@ -1026,6 +1026,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
+
                                         <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:count]/hl7nl:count">
                                             <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragment//xs:element[@name = 'frequentie']/@type"/>
@@ -1061,6 +1062,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </aantal>
                                             </frequentie>
                                         </xsl:for-each>
+
                                         <!-- Doseerschema één keer per week op één weekdag. -->
                                         <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']">
                                             <xsl:for-each select="./hl7nl:period">
@@ -1084,6 +1086,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
+
                                         <!-- Complexer doseerschema met weekdag(en). -->
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'DW']">
                                             <xsl:comment>Complexer doseerschema met weekdag(en).</xsl:comment>
@@ -1184,7 +1187,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <!-- Eerst alle toedientijden -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/toedientijd">
                                                         <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedientijd']/@type"/>
-                                                        <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}" conceptId="{$schema//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                        <toedientijd value="{nf:formatHL72VagueAdaDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}" conceptId="{$schema//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
                                                     </xsl:for-each>
                                                     <!-- Daarna alle weekdagen -->
                                                     <xsl:variable name="elemName">is_flexibel</xsl:variable>
@@ -1223,6 +1226,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:for-each>
+
                                         <!-- Doseerschema met één dagdeel -->
                                         <xsl:for-each select="./hl7:effectiveTime[@alignment = 'HD']">
                                             <xsl:call-template name="mp9-dagdeel">
@@ -1231,6 +1235,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:with-param name="xsd-toedieningsschema" select="$schemaFragment"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
+
                                         <!-- Complexer doseerschema met meer dan één dagdeel. -->
                                         <xsl:variable name="doseSchema" select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp/@alignment = 'HD']/hl7:comp"/>
                                         <xsl:if test="$doseSchema">
@@ -1641,16 +1646,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <!--Doseerschema met meer dan één vast tijdstip.-->
                                         <xsl:variable name="doseSchema" select="hl7:effectiveTime[hl7:comp[not(@alignment)][hl7nl:period][hl7nl:phase[not(hl7nl:width)]]][not(hl7:comp/@alignment)][not(hl7:comp[not(hl7nl:period)])][not(hl7:comp[not(hl7nl:phase[not(hl7nl:width)])])]/hl7:comp"/>
                                         <xsl:if test="$doseSchema">
-                                            <xsl:for-each select="$doseSchema">
-                                                <!-- output the toedieningstijd -->
-                                                <xsl:variable name="elemName">toedientijd</xsl:variable>
-                                                <xsl:call-template name="handleTS">
-                                                    <xsl:with-param name="in" select="hl7nl:phase/hl7nl:low"/>
-                                                    <xsl:with-param name="elemName" select="$elemName"/>
-                                                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
-                                                    <xsl:with-param name="vagueDate" select="true()"/>
-                                                </xsl:call-template>
-                                            </xsl:for-each>
                                             <!-- is_flexibel -->
                                             <xsl:variable name="elemName">is_flexibel</xsl:variable>
                                             <xsl:element name="{$elemName}">
@@ -1670,15 +1665,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </xsl:choose>
                                                 <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                             </xsl:element>
+                                            <xsl:for-each select="$doseSchema">
+                                                <!-- output the toedieningstijd -->
+                                                <xsl:variable name="elemName">toedientijd</xsl:variable>
+                                                <xsl:call-template name="handleTS">
+                                                    <xsl:with-param name="in" select="hl7nl:phase/hl7nl:low"/>
+                                                    <xsl:with-param name="elemName" select="$elemName"/>
+                                                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
+                                                    <xsl:with-param name="vagueDate" select="true()"/>
+                                                </xsl:call-template>
+                                            </xsl:for-each>
                                         </xsl:if>
 
                                         <!-- Cyclisch doseerschema. -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
                                                 <xsl:with-param name="schema" select="$schema"/>
                                                 <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                             </xsl:call-template>
-                                            <!-- is_flexibel -->
+                                            <!-- is_flexibel, only one item in ada, take it from this administration frequency/interval within the cyclical schedule -->
                                             <xsl:variable name="elemName">is_flexibel</xsl:variable>
                                             <xsl:element name="{$elemName}">
                                                 <xsl:choose>
