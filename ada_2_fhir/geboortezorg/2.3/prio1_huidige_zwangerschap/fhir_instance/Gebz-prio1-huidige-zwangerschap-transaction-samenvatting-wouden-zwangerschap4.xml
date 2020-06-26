@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="samenvatting-wouden-zwangerschap4"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:05085614-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Composition>
+            <id value="samenvatting-zwangerschap4"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-TransactionComposition"/>
+            </meta>
+            <status value="final"/>
+            <type>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="15508-5"/>
+                  <display value="Labor and delivery records"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <author>
+               <reference value="Practitioner/"/>
+            </author>
+            <title value="Example prio1 huidige zwangerschap"/>
+            <section>
+               <entry>
+                  <reference value="Patient/SARAWOUDENVANDER"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/bloedgroep-vrouw-zwangerschap-4"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/rhesus-d-factor-vrouw-zwangerschap-4"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/rhesus-c-factor-zwangerschap-4"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/hb-zwangerschap-4"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/graviditeit-zwangerschap-4"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/pariteit-zwangerschap-4"/>
+               </entry>
+               <entry>
+                  <reference value="Observation/a-terme-datum-zwangerschap-4"/>
+               </entry>
+               <entry>
+                  <reference value="Practitioner/"/>
+               </entry>
+               <entry>
+                  <reference value="PractitionerRole/-Verloskundigenpraktijk-A"/>
+               </entry>
+               <entry>
+                  <reference value="Organization/Verloskundigenpraktijk-A"/>
+               </entry>
+               <entry>
+                  <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-4"/>
+               </entry>
+               <entry>
+                  <reference value="Condition/wouden-zwangerschap-4"/>
+               </entry>
+            </section>
+         </Composition>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Composition/samenvatting-zwangerschap4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:050851aa-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="SARAWOUDENVANDER"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999910413"/>
+            </identifier>
+            <name>
+               <family value="van der Wouden">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van der"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Wouden"/>
+                  </extension>
+               </family>
+               <given value="Sara">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Patient>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Patient/SARAWOUDENVANDER"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:0508539e-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="bloedgroep-vrouw-zwangerschap-4"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="883-9"/>
+                  <display value="ABO group [Type] in Blood"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="165743006"/>
+                  <display value="AB"/>
+               </coding>
+            </valueCodeableConcept>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/bloedgroep-vrouw-zwangerschap-4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:050853f8-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="rhesus-d-factor-vrouw-zwangerschap-4"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="1305-2"/>
+                  <display value="D Ag [Presence] in Blood"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="165747007"/>
+                  <display value="Rh D Positief"/>
+               </coding>
+            </valueCodeableConcept>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/rhesus-d-factor-vrouw-zwangerschap-4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:05085452-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="rhesus-c-factor-zwangerschap-4"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="1159-3"/>
+                  <display value="little c Ag [Presence] on Red Blood Cells"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="733119003"/>
+                  <display value="Rh c Negatief"/>
+               </coding>
+            </valueCodeableConcept>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/rhesus-c-factor-zwangerschap-4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:050854ac-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="hb-zwangerschap-4"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="718-7"/>
+                  <display value="Hemoglobin (Bld) [Mass/Vol]"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <effectiveDateTime value="2020-03-31"/>
+            <valueQuantity>
+               <value value="8.5"/>
+               <unit value="mmol/L"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mmol/L"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/hb-zwangerschap-4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:050854f2-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="graviditeit-zwangerschap-4"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Gravidity"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+               <valueReference>
+                  <reference value="Condition/wouden-zwangerschap-4"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="11996-6"/>
+                  <display value="Gravidity"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-4"/>
+            </context>
+            <valueQuantity>
+               <value value="4"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/graviditeit-zwangerschap-4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:050854fc-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="pariteit-zwangerschap-4"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-Parity"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+               <valueReference>
+                  <reference value="Condition/wouden-zwangerschap-4"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="11977-6"/>
+                  <display value="Parity"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-4"/>
+            </context>
+            <valueQuantity>
+               <value value="2"/>
+            </valueQuantity>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/pariteit-zwangerschap-4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:05085506-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Observation>
+            <id value="a-terme-datum-zwangerschap-4"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy-TermDate"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+               <valueReference>
+                  <reference value="Condition/wouden-zwangerschap-4"/>
+               </valueReference>
+            </extension>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="11778-8"/>
+                  <display value="Deliv date Clin est"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-4"/>
+            </context>
+            <valueDateTime value="2020-06-08"/>
+         </Observation>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Observation/a-terme-datum-zwangerschap-4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:05085524-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Practitioner/"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:050855d8-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="-Verloskundigenpraktijk-A"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <practitioner>
+               <reference value="Practitioner/"/>
+            </practitioner>
+            <organization>
+               <reference value="Organization/Verloskundigenpraktijk-A"/>
+            </organization>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="PractitionerRole/-Verloskundigenpraktijk-A"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:050855f6-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="Verloskundigenpraktijk-A"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <identifier>
+               <value value="1504"/>
+            </identifier>
+            <name value="Verloskundigenpraktijk A"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Organization/Verloskundigenpraktijk-A"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:05085600-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <EpisodeOfCare>
+            <id value="dossier-wouden-zwangerschap-4"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-episodeofcare"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-MaternalRecord"/>
+            </meta>
+            <status value="active"/>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="364320009"/>
+                  <display value="Pregnancy observable (observable entity)"/>
+               </coding>
+            </type>
+            <diagnosis>
+               <condition>
+                  <reference value="Condition/wouden-zwangerschap-4"/>
+               </condition>
+            </diagnosis>
+            <patient>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </patient>
+            <managingOrganization>
+               <reference value="Organization/Verloskundigenpraktijk-A"/>
+            </managingOrganization>
+         </EpisodeOfCare>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="EpisodeOfCare/dossier-wouden-zwangerschap-4"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:0508560a-abe6-11ea-1446-020000000000"/>
+      <resource>
+         <Condition>
+            <id value="wouden-zwangerschap-4"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Pregnancy"/>
+            </meta>
+            <clinicalStatus value="active"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="364320009"/>
+                  <display value="Pregnancy observable (observable entity)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="Patient/SARAWOUDENVANDER"/>
+               <display value="Sara Wouden van der"/>
+            </subject>
+            <context>
+               <reference value="EpisodeOfCare/dossier-wouden-zwangerschap-4"/>
+            </context>
+         </Condition>
+      </resource>
+      <request>
+         <method value="PUT"/>
+         <url value="Condition/wouden-zwangerschap-4"/>
+      </request>
+   </entry>
+</Bundle>
