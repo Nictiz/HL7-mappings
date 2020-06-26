@@ -22,6 +22,13 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-06-26 -
+* Add support for combined bundle containing both encounter reports and encounters
+2020-06-24 - 
+* Add support for combined bundle containing both lab results and/or general results
+* MM-1018 Improved trimming leading/trailing white spaces which FHIR does not appreciate
+* MM-1090 Fixed location of AD_use extension: now goes under Address directly instead of Address.use
+* Add support for Coding.version if available
 2020-04-28 -
 * Wrapped all xsl:message calls into util:logMessage that accepts a log level. If the requested logLevel for the message to emit is smaller than/equal the parameter logLevel, the message is emitted, otherwise it is not. Options:
   * ALL, DEBUG, INFO, WARN, ERROR. FATAL, OFF where ALL shows all messages, DEBUG shows everything but ALL, INFO everything but ALL/DEBUG etc.

@@ -167,17 +167,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xsl:variable name="theEncounters" as="element(f:entry)*">
         <!-- Contactmomenten -->
-        <xsl:for-each select="//*[bundle]/encounter">
-            <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])}"/>
-                <resource>
-                    <xsl:call-template name="gp-Encounter"/>
-                </resource>
-                <search>
-                    <mode value="{if ($matchResource = 'Encounter') then 'match' else 'include'}"/>
-                </search>
-            </entry>
-        </xsl:for-each>
+        <xsl:choose>
+            <xsl:when test="$matchResource = 'Composition'">
+                <xsl:variable name="referencedEncounters" as="xs:string*">
+                    <xsl:for-each select="//encounter_notes_response/encounter_note/encounter">
+                        <xsl:value-of select="nf:getUriFromAdaId(.)"/>
+                    </xsl:for-each>
+                </xsl:variable>
+                
+                <xsl:for-each select="//*[bundle]/encounter">
+                    <xsl:variable name="fullUrl" select="nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])"/>
+                    <xsl:if test="$referencedEncounters[. = $fullUrl]">
+                        <entry xmlns="http://hl7.org/fhir">
+                            <fullUrl value="{$fullUrl}"/>
+                            <resource>
+                                <xsl:call-template name="gp-Encounter"/>
+                            </resource>
+                            <search>
+                                <mode value="include"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="//*[bundle]/encounter">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])}"/>
+                        <resource>
+                            <xsl:call-template name="gp-Encounter"/>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:variable>
     
     <xd:doc>
