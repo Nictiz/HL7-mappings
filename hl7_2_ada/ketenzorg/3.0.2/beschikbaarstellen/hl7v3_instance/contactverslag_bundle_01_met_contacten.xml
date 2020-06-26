@@ -369,6 +369,39 @@
                                     </entryRelationship>
                                 </encounter>
                             </component>
+                            <!-- Extra contact waarnaar niet wordt verwezen in contactverslag... -->
+                            <component contextControlCode="OP" typeCode="COMP">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                                    <id extension="extra-contact-zonder-verwijzing" root="2.16.840.1.113883.2.4.6.6.90000258.4.10"/>
+                                    <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" codeSystemName="Soort contact" codeSystemVersion="v7" displayName="consult"/>
+                                    <effectiveTime>
+                                        <low value="201902061703"/>
+                                        <high value="201902061708"/>
+                                    </effectiveTime>
+                                    <performer typeCode="PRF">
+                                        <assignedEntity>
+                                            <id extension="900014718" root="2.16.528.1.1007.3.1"/>
+                                            <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                            <assignedPerson>
+                                                <name>
+                                                    <family>XIS test</family>
+                                                </name>
+                                            </assignedPerson>
+                                            <representedOrganization>
+                                                <id extension="90000381" root="2.16.528.1.1007.3.3"/>
+                                                <name>Tést Zorginstelling 02</name>
+                                            </representedOrganization>
+                                        </assignedEntity>
+                                    </performer>
+                                    <entryRelationship typeCode="REFR">
+                                        <act classCode="ACT" moodCode="EVN">
+                                            <id extension="1826" root="2.16.840.1.113883.2.4.6.6.90000258.4.6"/>
+                                            <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                        </act>
+                                    </entryRelationship>
+                                </encounter>
+                            </component>
                         </organizer>
                     </subject>
                     <queryAck>
