@@ -25,9 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <xd:doc>
-        <xd:desc>
-            Outputs the contents of zorgaanbieder
-        </xd:desc>
+        <xd:desc> Outputs the contents of zorgaanbieder </xd:desc>
         <xd:param name="schema"/>
         <xd:param name="schemaFragment"/>
     </xd:doc>
@@ -839,47 +837,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:variable name="xsd-toedieningsschema" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-dosering, 'toedieningsschema'))"/>
                                     <toedieningsschema>
                                         <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-toedieningsschema)"/>
-                                        <!-- eenvoudig doseerschema met alleen één frequentie -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][xs:string(@isFlexible) = 'true'][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
+                                        <!-- eenvoudig doseerschema met alleen één frequentie of X tot Y maal per T -->
+                                        <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][xs:string(@isFlexible) = 'true' or hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
                                                 <xsl:with-param name="schema" select="$xsd-ada"/>
                                                 <xsl:with-param name="schemaFragment" select="$xsd-toedieningsschema"/>
                                             </xsl:call-template>
-                                        </xsl:for-each>
-                                        <!-- X tot Y maal per T -->
-                                        <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange]">
-                                            <xsl:variable name="xsd-frequentie" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-toedieningsschema, 'frequentie'))"/>
-                                            <frequentie conceptId="{$xsd-frequentie/xs:attribute[@name='conceptId']/@fixed}">
-                                                <xsl:variable name="xsd-aantal" select="nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-frequentie, 'aantal'))"/>
-                                                <aantal conceptId="{nf:getADAComplexTypeConceptId($xsd-aantal)}">
-                                                    <xsl:variable name="xsd-complexType" select="$xsd-aantal//xs:element[@name = 'vaste_waarde']/@type"/>
-                                                    <xsl:call-template name="handleINT">
-                                                        <xsl:with-param name="in" select="hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange/hl7nl:low"/>
-                                                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-aantal, 'min')))"/>
-                                                        <xsl:with-param name="elemName">min</xsl:with-param>
-                                                    </xsl:call-template>
-                                                    <xsl:call-template name="handleINT">
-                                                        <xsl:with-param name="in" select="hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange/hl7nl:high"/>
-                                                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-aantal, 'max')))"/>
-                                                        <xsl:with-param name="elemName">max</xsl:with-param>
-                                                    </xsl:call-template>
-                                                </aantal>
-                                                <xsl:for-each select="hl7nl:frequency/hl7nl:denominator">
-                                                    <xsl:call-template name="handlePQ">
-                                                        <xsl:with-param name="in" as="element()">
-                                                            <xsl:element name="{name(.)}" namespace="urn:hl7-nl:v3">
-                                                                <xsl:copy-of select="@*"/>
-                                                                <xsl:if test="@unit[not(. = '1')]">
-                                                                    <xsl:attribute name="unit" select="nf:convertTime_UCUM2ADA_unit(./@unit)"/>
-                                                                </xsl:if>
-                                                                <xsl:copy-of select="node()"/>
-                                                            </xsl:element>
-                                                        </xsl:with-param>
-                                                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($xsd-ada, nf:getADAComplexTypeName($xsd-frequentie, 'tijdseenheid')))"/>
-                                                        <xsl:with-param name="elemName">tijdseenheid</xsl:with-param>
-                                                    </xsl:call-template>
-                                                </xsl:for-each>
-                                            </frequentie>
                                         </xsl:for-each>
                                         <!-- Eenvoudig doseerschema met alleen één interval.-->
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][(xs:string(@isFlexible) = 'false' or not(@isFlexible))][not(@alignment)][hl7nl:frequency[hl7nl:numerator/@value]]">
