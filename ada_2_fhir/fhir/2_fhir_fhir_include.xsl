@@ -149,7 +149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <!-- value attribute may not be empty in FHIR, but it really is empty, let's stick a nbsp in it ;-) -->
-                <xsl:attribute name="value" select="'&#160;'"/>                
+                <xsl:attribute name="value" select="'&#160;'"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
