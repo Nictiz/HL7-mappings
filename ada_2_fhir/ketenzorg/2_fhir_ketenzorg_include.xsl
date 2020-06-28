@@ -169,15 +169,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Contactmomenten -->
         <xsl:choose>
             <xsl:when test="$matchResource = 'Composition'">
-                <xsl:variable name="referencedEncounters" as="xs:string*">
+                <xsl:variable name="referencedEncounterIds" as="xs:string*">
                     <xsl:for-each select="//encounter_notes_response/encounter_note/encounter">
-                        <xsl:value-of select="nf:getUriFromAdaId(.)"/>
+                        <xsl:value-of select="concat(@value, '-', @root)"/>
                     </xsl:for-each>
                 </xsl:variable>
                 
                 <xsl:for-each select="//*[bundle]/encounter">
+                    <xsl:variable name="encounterIds" select="(hcimroot/identification_number | identifier)/concat(@value, '-', @root)" as="xs:string*"/>
                     <xsl:variable name="fullUrl" select="nf:getUriFromAdaId((hcimroot/identification_number | identifier)[1])"/>
-                    <xsl:if test="$referencedEncounters[. = $fullUrl]">
+                    <xsl:if test="$referencedEncounterIds[. = $encounterIds]">
                         <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{$fullUrl}"/>
                             <resource>
@@ -1075,21 +1076,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 <!-- We would love to tell you more about the encounter, but alas an id is all we have... -->
                 <xsl:for-each select="encounter">
-                    <xsl:variable name="theReference" select="nf:getUriFromAdaId(.)"/>
+                    <xsl:variable name="theValue" select="@value"/>
+                    <xsl:variable name="theRoot" select="local:getUri(@root)"/>
+                    <xsl:variable name="theReference" select="$theEncounters[f:resource/f:Encounter/f:identifier[f:system/@value = $theRoot][f:value/@value = $theValue]]" as="element(f:entry)*"/>
                     <encounter>
                         <xsl:choose>
-                            <xsl:when test="$theEncounters/f:fullUrl[@value = $theReference]">
-                                <reference value="{$theReference}"/>
-                            </xsl:when>
-                            <xsl:otherwise>
+                            <xsl:when test="empty($theReference)">
                                 <identifier>
                                     <xsl:call-template name="id-to-Identifier">
                                         <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
                                 </identifier>
+                                <display value="Contactmoment: {string-join((@value, @root), ' ')}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <reference value="{$theReference/f:fullUrl/@value}"/>
+                                <display value="Contactmoment: {string-join((@value, $theReference/f:resource/f:Encounter/(f:type/f:coding/f:display/@value, f:period/f:start/@value)), ' ')}"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </encounter>
                 </xsl:for-each>
                 <date>
