@@ -1,0 +1,1649 @@
+<MCCI_IN200101 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <id extension="758353" root="2.16.840.1.113883.2.4.6.6"/>
+    <creationTime value="20200626141502"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="MCCI_IN200101" root="2.16.840.1.113883.1.6"/>
+    <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
+    <transmissionQuantity value="2"/>
+    <acknowledgement typeCode="AA">
+        <targetTransmission>
+            <id extension="B33DCB8C-B3DF-4A3E-9A50-B6C1E1F7EA17" root="2.16.528.1.1007.3.3.4005.1"/>
+        </targetTransmission>
+    </acknowledgement>
+    <receiver>
+        <device>
+            <id extension="4005" root="2.16.840.1.113883.2.4.6.6"/>
+        </device>
+    </receiver>
+    <sender>
+        <device>
+            <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+        </device>
+    </sender>
+    <PRPA_IN900350NL xsi:schemaLocation="urn:hl7-org:v3 file:/C:/Publicaties/VZVZ/Ketenzorg/1.0.2/schemas_codeGen_flat/PRPA_IN900350NL.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <id extension="Parasoft-2682-8486-1096" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+        <creationTime value="20200626141501"/>
+        <versionCode code="NICTIZEd2005-Okt"/>
+        <interactionId extension="PRPA_IN900350NL" root="2.16.840.1.113883.1.6"/>
+        <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+        <processingCode code="P"/>
+        <processingModeCode code="T"/>
+        <acceptAckCode code="NE"/>
+        <acknowledgement typeCode="AA">
+            <targetMessage>
+                <id extension="758351" root="2.16.840.1.113883.2.4.6.6"/>
+            </targetMessage>
+        </acknowledgement>
+        <receiver>
+            <device classCode="DEV" determinerCode="INSTANCE">
+                <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+            </device>
+        </receiver>
+        <sender>
+            <device classCode="DEV" determinerCode="INSTANCE">
+                <id root="2.16.840.1.113883.2.4.6.6" extension="70001001"/>
+            </device>
+        </sender>
+        <ControlActProcess moodCode="EVN">
+            <authorOrPerformer typeCode="AUT">
+                <participant>
+                    <AssignedDevice>
+                        <id extension="900017439" root="2.16.528.1.1007.3.2"/>
+                        <id extension="70001001" root="2.16.840.1.113883.2.4.6.6"/>
+                        <Organization>
+                            <id extension="00002727" root="2.16.528.1.1007.3.3"/>
+                            <name>VZVZ Simulator</name>
+                        </Organization>
+                    </AssignedDevice>
+                </participant>
+            </authorOrPerformer>
+            <subject>
+                <organizer classCode="CLUSTER" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.10"/>
+                    <code code="46240-8" displayName="History of hospitalizations+History of outpatient visits" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                    <statusCode code="completed"/>
+                    <recordTarget typeCode="RCT" contextControlCode="OP">
+                        <patientRole>
+                            <id extension="900184590" root="2.16.840.1.113883.2.4.6.3"/>
+                            <addr>
+                                <streetName>Knolweg</streetName>
+                                <houseNumber>1003</houseNumber>
+                                <postalCode>9999 ZA</postalCode>
+                                <city>STITSWERD</city>
+                                <country>Nederland</country>
+                            </addr>
+                            <patient classCode="PSN" determinerCode="INSTANCE">
+                                <name>
+                                    <given qualifier="IN">J.</given>
+                                    <family qualifier="BR">XXX_Cevat</family>
+                                </name>
+                                <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                                <birthTime value="19851230"/>
+                            </patient>
+                        </patientRole>
+                    </recordTarget>
+                    <participant typeCode="CST">
+                        <participantRole classCode="ASSIGNED">
+                            <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                            <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                            <playingEntity classCode="PSN" determinerCode="INSTANCE">
+                                <name>
+                                    <family qualifier="BR">Huisarts 1</family>
+                                </name>
+                            </playingEntity>
+                            <scopingEntity classCode="ORG" determinerCode="INSTANCE">
+                                <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                <desc>Gezondheidscentrum Aesculaap</desc>
+                            </scopingEntity>
+                        </participantRole>
+                    </participant>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment13"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200616141501"/>
+                                <high value="20200616144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment17"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200611141501"/>
+                                <high value="20200611144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment12"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200507141501"/>
+                                <high value="20200507144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment16"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200502141501"/>
+                                <high value="20200502144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment15"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200427141501"/>
+                                <high value="20200427144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment14"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200407141501"/>
+                                <high value="20200407144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment11"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200328131501"/>
+                                <high value="20200328134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment07"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200323131501"/>
+                                <high value="20200323134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_D02" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment05"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200318131501"/>
+                                <high value="20200318134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment10"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200303131501"/>
+                                <high value="20200303134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment04"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200227131501"/>
+                                <high value="20200227134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment06"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200128131501"/>
+                                <high value="20200128134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmomentMMK"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200118131501"/>
+                                <high value="20200118134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R96" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment09"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200108131501"/>
+                                <high value="20200108134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_S74.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment08"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20200103131501"/>
+                                <high value="20200103134501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_S04" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment03"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20190702141501"/>
+                                <high value="20190702144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment02"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20190612141501"/>
+                                <high value="20190612144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                        </encounter>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.201"/>
+                            <id root="2.16.840.1.113883.2.4.3.111.19.1" extension="MedMijHG_contactmoment01"/>
+                            <code code="03" codeSystem="2.16.840.1.113883.2.4.4.30.14" displayName="consult" codeSystemVersion="v3"/>
+                            <effectiveTime>
+                                <low value="20190523141501"/>
+                                <high value="20190523144501"/>
+                            </effectiveTime>
+                            <performer typeCode="PRF">
+                                <assignedEntity>
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                    <assignedPerson>
+                                        <name>
+                                            <family qualifier="BR">Huisarts 1</family>
+                                        </name>
+                                    </assignedPerson>
+                                    <representedOrganization>
+                                        <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                        <name>Gezondheidscentrum Aesculaap</name>
+                                    </representedOrganization>
+                                </assignedEntity>
+                            </performer>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_K78" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                        </encounter>
+                    </component>
+                </organizer>
+            </subject>
+            <queryAck>
+                <queryId extension="76B61B99-F9C2-42D6-9922-4DFEC1519172" root="2.16.528.1.1007.3.3.4005.2"/>
+                <queryResponseCode code="OK"/>
+                <resultTotalQuantity value="1"/>
+                <resultCurrentQuantity value="1"/>
+                <resultRemainingQuantity value="0"/>
+            </queryAck>
+        </ControlActProcess>
+    </PRPA_IN900350NL>
+    <REPC_IN990101NL xsi:schemaLocation="urn:hl7-org:v3 file:/C:/Publicaties/VZVZ/Ketenzorg/1.0.2/schemas_codeGen_flat/REPC_IN990101NL.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <id extension="Parasoft-5945-1922-6221" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+        <creationTime value="20200626141502"/>
+        <versionCode code="NICTIZEd2005-Okt"/>
+        <interactionId extension="REPC_IN990101NL" root="2.16.840.1.113883.1.6"/>
+        <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+        <processingCode code="P"/>
+        <processingModeCode code="T"/>
+        <acceptAckCode code="NE"/>
+        <acknowledgement typeCode="AA">
+            <targetMessage>
+                <id extension="758352" root="2.16.840.1.113883.2.4.6.6"/>
+            </targetMessage>
+        </acknowledgement>
+        <receiver>
+            <device classCode="DEV" determinerCode="INSTANCE">
+                <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+            </device>
+        </receiver>
+        <sender>
+            <device classCode="DEV" determinerCode="INSTANCE">
+                <id root="2.16.840.1.113883.2.4.6.6" extension="70001001"/>
+            </device>
+        </sender>
+        <ControlActProcess moodCode="EVN">
+            <authorOrPerformer typeCode="AUT">
+                <participant>
+                    <AssignedDevice>
+                        <id extension="900017439" root="2.16.528.1.1007.3.2"/>
+                        <id extension="70001001" root="2.16.840.1.113883.2.4.6.6"/>
+                        <Organization>
+                            <id extension="00002727" root="2.16.528.1.1007.3.3"/>
+                            <name>VZVZ Simulator</name>
+                        </Organization>
+                    </AssignedDevice>
+                </participant>
+            </authorOrPerformer>
+            <subject>
+                <organizer classCode="CLUSTER" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.14"/>
+                    <code code="34900-1" displayName="General medicine Progress note" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                    <statusCode code="completed"/>
+                    <recordTarget typeCode="RCT" contextControlCode="OP">
+                        <patientRole>
+                            <id extension="900184590" root="2.16.840.1.113883.2.4.6.3"/>
+                            <addr>
+                                <streetName>Knolweg</streetName>
+                                <houseNumber>1003</houseNumber>
+                                <postalCode>9999 ZA</postalCode>
+                                <city>STITSWERD</city>
+                                <country>Nederland</country>
+                            </addr>
+                            <patient classCode="PSN" determinerCode="INSTANCE">
+                                <name>
+                                    <given qualifier="IN">J.</given>
+                                    <family qualifier="BR">XXX_Cevat</family>
+                                </name>
+                                <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" code="M"/>
+                                <birthTime value="19851230"/>
+                            </patient>
+                        </patientRole>
+                    </recordTarget>
+                    <participant typeCode="CST">
+                        <participantRole classCode="ASSIGNED">
+                            <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                            <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                            <playingEntity classCode="PSN" determinerCode="INSTANCE">
+                                <name>
+                                    <family qualifier="BR">Huisarts 1</family>
+                                </name>
+                            </playingEntity>
+                            <scopingEntity classCode="ORG" determinerCode="INSTANCE">
+                                <id root="2.16.528.1.1007.3.3" extension="00002727"/>
+                                <desc>Gezondheidscentrum Aesculaap</desc>
+                            </scopingEntity>
+                        </participantRole>
+                    </participant>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag13" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200616141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment13" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Keelpijn eci.</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag13_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200616141502"/>
+                                                <high value="20200617141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="R21.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Keelpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag17" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200611141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment17" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>HNP</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag17_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200611141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="L86.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="HNP (thoracaal/lumbaal)"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Nogmaals verwijzing Cesar</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag12" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200507141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment12" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Keelpijn eci.</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag12_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200507141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="R21.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Keelpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Bezoek brengen aan de tandarts, wellicht zit er daar iets.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag16" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200502141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment16" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>HNP</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag16_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200502141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="L86.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="HNP (thoracaal/lumbaal)"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Patiënt geïnformeerd, ziet het nog even aan.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag15" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200427141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment15" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>HNP</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag15_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200427141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="L86.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="HNP (thoracaal/lumbaal)"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Scan laten maken, afspraak gepland.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag14" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200407141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment14" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Lage rugpijn</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag14_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200407141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="L03" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="lage rugpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Cesar of Mensendieck. Verwijzing aangemaakt</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag11" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200328141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment11" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Keelpijn eci.</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag11_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200328141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="R21.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Keelpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Kweek van aanslag keel</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag07" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200323141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment07" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_D02" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Maag/duodenum problemen?</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag07_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200323141502"/>
+                                                <high value="20200324141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="D02" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Maagpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag05" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200318141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment05" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Maag/duodenum problemen?</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag05_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200318141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="L03" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="lage rugpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Cesar of Mensendieck.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag10" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200303141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment10" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Keelpijn eci.</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag10_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200303141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="R21.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Keelpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Afwachten, zn. Medicatie is nog beschikbaar</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag04" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200227141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment04" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_L86.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>lage rugpijn</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag04_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200227141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="L03" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="lage rugpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag06" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200128141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment06" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R21.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Keelpijn eci.</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag06_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200128141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="R21.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Keelpijn"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Afwachten, zn. Pcm, tijdens feest paracod.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslagMMK" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200118141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmomentMMK" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_R96" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>astma</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslagMMK_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200118141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="R96" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Astma"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Salbutamol half uur voor het sporten.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag09" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200108141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment09" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_S74.01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Mycose</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag09_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20200108141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="S74.01" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Tinea Pedis"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Heeft nog canesten via drogist; 2x daags gebruiken.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag08" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20200103141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment08" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_S04" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Onder mandibula re. glad weinig mobile zwelling, lijkt speekselkl. </text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Echo</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag03" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20190702141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment03" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Over paar weken RR thuis.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag02" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20190612141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment02" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Na vakantie nogmaals.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                    <component typeCode="COMP" contextControlCode="OP">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                            <id extension="MedMijHG_contactverslag01" root="2.16.528.1.1007.3.3.765332.1.12"/>
+                            <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" displayName="General medicine Progress note" codeSystemName="LOINC"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime value="20190523141502"/>
+                            <participant typeCode="RESP">
+                                <participantRole classCode="ASSIGNED">
+                                    <id root="2.16.528.1.1007.3.1" extension="900016431"/>
+                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111"/>
+                                </participantRole>
+                            </participant>
+                            <entryRelationship typeCode="REFR">
+                                <encounter classCode="ENC" moodCode="EVN">
+                                    <id extension="MedMijHG_contactmoment01" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                </encounter>
+                            </entryRelationship>
+                            <entryRelationship typeCode="REFR">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <id extension="MedMijHG_concern_K78" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                    <code code="CONC" codeSystem="2.16.840.1.113883.5.6" codeSystemName="HL7ActClass" displayName="Concern"/>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                    <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                    <text>Ritmestoornis</text>
+                                    <statusCode code="completed"/>
+                                    <entryRelationship typeCode="REFR">
+                                        <observation classCode="OBS" moodCode="EVN">
+                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                            <id extension="MedMijHG_contactverslag01_diagnose" root="2.16.840.1.113883.2.4.3.111.19.1"/>
+                                            <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                            <statusCode code="completed"/>
+                                            <effectiveTime>
+                                                <low value="20190523141502"/>
+                                            </effectiveTime>
+                                            <value xsi:type="CD" code="K78" codeSystem="2.16.840.1.113883.2.4.4.31.1" displayName="Boezemfibrilleren/-fladderen"/>
+                                        </observation>
+                                    </entryRelationship>
+                                </act>
+                            </entryRelationship>
+                            <entryRelationship typeCode="COMP">
+                                <act classCode="ACT" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                    <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                    <text>Naar SEH.</text>
+                                    <statusCode code="completed"/>
+                                </act>
+                            </entryRelationship>
+                        </act>
+                    </component>
+                </organizer>
+            </subject>
+            <queryAck>
+                <queryId extension="76B61B99-F9C2-42D6-9922-4DFEC1519172" root="2.16.528.1.1007.3.3.4005.2"/>
+                <queryResponseCode code="OK"/>
+                <resultTotalQuantity value="1"/>
+                <resultCurrentQuantity value="1"/>
+                <resultRemainingQuantity value="0"/>
+            </queryAck>
+        </ControlActProcess>
+    </REPC_IN990101NL>
+</MCCI_IN200101>
