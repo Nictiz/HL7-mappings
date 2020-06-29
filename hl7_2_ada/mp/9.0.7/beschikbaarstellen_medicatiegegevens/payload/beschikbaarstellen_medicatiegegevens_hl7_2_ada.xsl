@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="true()"/>
-    <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
+     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml -->
     <xsl:param name="schema" select="document('../ada_schemas/beschikbaarstellen_medicatiegegevens.xsd')"/>
 
     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'beschikbaarstellen_medicatiegegevens'))"/>

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?nictiz status="example"?>
-<?xml-model href="../schematron_closed_warnings/mp-MP90_mg.sch" type="application/xml" phase="#ALL" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:hl7-org:v3"
+           classCode="CLUSTER"
+           moodCode="EVN">
     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
     <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
     <statusCode nullFlavor="NI"/>
@@ -10,8 +15,8 @@
             <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
             <patient>
                 <name>
-                    <given>Joris</given>
-                    <family>Hansman</family>
+                    <given qualifier="BR">Joris</given>
+                    <family qualifier="BR">Hansman</family>
                 </name>
                 <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
                 <birthTime value="19840512"/>
@@ -241,7 +246,7 @@
                         <name>
                             <given qualifier="IN">J.</given>
                             <prefix qualifier="VV">van </prefix>
-                            <family>Beek</family>
+                            <family qualifier="BR">Beek</family>
                         </name>
                     </assignedPerson>
                     <representedOrganization>
@@ -483,7 +488,7 @@
                 <act classCode="ACT" moodCode="EVN">
                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
                     <code code="48767-8" displayName="Toelichting" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                    <text mediaType="text/plain">Tekstuele toelichting</text>
+                    <text>Tekstuele toelichting</text>
                 </act>
             </entryRelationship>
             <!-- Relatie naar Vertrekkingsverzoek -->
@@ -544,7 +549,7 @@
                         <name>
                             <given qualifier="IN">J.</given>
                             <prefix qualifier="VV">van </prefix>
-                            <family>Beek</family>
+                            <family qualifier="BR">Beek</family>
                         </name>
                     </assignedPerson>
                     <representedOrganization>

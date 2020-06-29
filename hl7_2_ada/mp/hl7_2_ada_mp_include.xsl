@@ -783,14 +783,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <!-- still can refactor with new generic functions -->
             <xsl:variable name="elemName">gebruiksinstructie</xsl:variable>
-            <xsl:variable name="schemaFragmentGI" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
+            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
             <xsl:element name="{$elemName}">
-                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragmentGI)"/>
+                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
 
                 <!-- omschrijving -->
                 <xsl:for-each select="hl7:text">
                     <omschrijving value="{./text()}">
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentGI, 'omschrijving')))"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'omschrijving')))"/>
                     </omschrijving>
                 </xsl:for-each>
                 <!-- toedieningsweg -->
@@ -798,7 +798,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="elemName">toedieningsweg</xsl:variable>
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentGI, $elemName)))"/>
+                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- aanvullende_instructie -->
@@ -806,7 +806,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="elemName">aanvullende_instructie</xsl:variable>
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentGI, $elemName)))"/>
+                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <xsl:variable name="hl7Doseerinstructie" select="hl7:entryRelationship[hl7:substanceAdministration/hl7:templateId/@root = ('2.16.840.1.113883.2.4.3.11.60.20.77.10.9309', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9149')]"/>
@@ -816,21 +816,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="elemName">herhaalperiode_cyclisch_schema</xsl:variable>
                     <xsl:call-template name="handlePQ">
                         <xsl:with-param name="elemName" select="$elemName"/>
-                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentGI, $elemName)))"/>
+                        <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- doseerinstructie -->
                 <xsl:for-each select="$hl7Doseerinstructie">
                     <xsl:variable name="elemName">doseerinstructie</xsl:variable>
-                    <xsl:variable name="schemaFragmentDI" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentGI, $elemName))"/>
+                    <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
                     <xsl:element name="{$elemName}">
-                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragmentDI)"/>
+                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
                         <!-- volgnummer -->
                         <xsl:for-each select="hl7:sequenceNumber">
                             <xsl:variable name="elemName">volgnummer</xsl:variable>
                             <xsl:call-template name="handleINT">
                                 <xsl:with-param name="elemName" select="$elemName"/>
-                                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentDI, $elemName)))"/>
+                                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                             </xsl:call-template>
                         </xsl:for-each>
                         <!-- doseerduur -->
@@ -842,7 +842,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:call-template name="mp9-duration">
                                         <xsl:with-param name="elemName" select="$elemName"/>
                                         <xsl:with-param name="schema" select="$schema"/>
-                                        <xsl:with-param name="schemaFragment" select="$schemaFragmentDI"/>
+                                        <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                     </xsl:call-template>
                                 </xsl:for-each>
                             </xsl:when>
@@ -852,7 +852,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:call-template name="mp9-duration">
                                         <xsl:with-param name="elemName" select="$elemName"/>
                                         <xsl:with-param name="schema" select="$schema"/>
-                                        <xsl:with-param name="schemaFragment" select="$schemaFragmentDI"/>
+                                        <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                     </xsl:call-template>
                                 </xsl:for-each>
                             </xsl:otherwise>
@@ -860,33 +860,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- dosering -->
                         <xsl:for-each select="hl7:substanceAdministration">
                             <xsl:variable name="elemName">dosering</xsl:variable>
-                            <xsl:variable name="schemaFragmentDO" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentDI, $elemName))"/>
+                            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
                             <xsl:element name="{$elemName}">
-                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragmentDO)"/>
+                                <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
                                 <!-- keerdosis -->
                                 <xsl:for-each select="hl7:doseQuantity">
                                     <xsl:variable name="elemName">keerdosis</xsl:variable>
-                                    <xsl:variable name="schemaFragmentKD" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentDO, $elemName))"/>
+                                    <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
                                     <xsl:element name="{$elemName}">
-                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragmentKD)"/>
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
                                         <!-- aantal -->
                                         <xsl:variable name="elemName">aantal</xsl:variable>
                                         <xsl:element name="{$elemName}">
-                                            <xsl:variable name="schemaFragmentAA" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentKD, $elemName))"/>
-                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragmentAA)"/>
+                                            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
+                                            <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
                                             <xsl:for-each select="hl7:low/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
                                                 <min value="{@value}">
-                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentAA, 'min')))"/>
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'min')))"/>
                                                 </min>
                                             </xsl:for-each>
                                             <xsl:for-each select="hl7:center/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
                                                 <vaste_waarde value="{@value}">
-                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentAA, 'vaste_waarde')))"/>
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'vaste_waarde')))"/>
                                                 </vaste_waarde>
                                             </xsl:for-each>
                                             <xsl:for-each select="hl7:high/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
                                                 <max value="{@value}">
-                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentAA, 'max')))"/>
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'max')))"/>
                                                 </max>
                                             </xsl:for-each>
                                         </xsl:element>
@@ -895,7 +895,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:call-template name="mp9-code-attribs">
                                                     <xsl:with-param name="current-hl7-code" select="."/>
                                                 </xsl:call-template>
-                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentKD, 'eenheid')))"/>
+                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'eenheid')))"/>
                                             </eenheid>
                                         </xsl:for-each>
                                     </xsl:element>
@@ -905,9 +905,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <!-- er moet een PIVL_TS zijn om een toedieningsschema te maken -->
                                 <xsl:if test=".//*[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')]">
                                     <xsl:variable name="elemName">toedieningsschema</xsl:variable>
-                                    <xsl:variable name="schemaFragmentTS" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentDO, $elemName))"/>
+                                    <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
                                     <xsl:element name="{$elemName}">
-                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragmentTS)"/>
+                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
 
                                         <!-- eenvoudig doseerschema met alleen één frequentie of X tot Y keer per dag -->
                                         <xsl:for-each select="hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][xs:string(@isFlexible) = 'true' or hl7nl:frequency/hl7nl:numerator/hl7nl:uncertainRange][not(@alignment)][hl7nl:frequency][not(hl7nl:phase)]">
@@ -923,7 +923,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </xsl:if>
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
                                                 <xsl:with-param name="schema" select="$schema"/>
-                                                <xsl:with-param name="schemaFragment" select="$schemaFragmentTS"/>
+                                                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
 
@@ -942,7 +942,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:for-each select="hl7nl:frequency/@nullFlavor">
                                                     <xsl:attribute name="nullFlavor" select="."/>
                                                 </xsl:for-each>
-                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentTS, $elemName)))"/>
+                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                             </xsl:element>
                                         </xsl:for-each>
 
@@ -958,13 +958,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
                                                     </xsl:otherwise>
                                                 </xsl:choose>
-                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentTS, $elemName)))"/>
+                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                             </xsl:element>
                                             <xsl:variable name="elemName">toedientijd</xsl:variable>
                                             <xsl:call-template name="handleTS">
                                                 <xsl:with-param name="in" select="hl7nl:phase/hl7nl:low"/>
                                                 <xsl:with-param name="elemName" select="$elemName"/>
-                                                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentTS, $elemName)))"/>
+                                                <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                                 <xsl:with-param name="vagueDate" select="true()"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
@@ -974,7 +974,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:comment>Doseerschema met toedieningsduur.</xsl:comment>
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
                                                 <xsl:with-param name="schema" select="$schema"/>
-                                                <xsl:with-param name="schemaFragment" select="$schemaFragmentTS"/>
+                                                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                             </xsl:call-template>
                                             <xsl:for-each select="hl7nl:phase/hl7nl:low">
                                                 <!-- output the toedieningstijd -->
@@ -982,7 +982,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:call-template name="handleTS">
                                                     <xsl:with-param name="in" select="."/>
                                                     <xsl:with-param name="elemName" select="$elemName"/>
-                                                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentTS, $elemName)))"/>
+                                                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                                     <xsl:with-param name="vagueDate" select="true()"/>
                                                 </xsl:call-template>
                                             </xsl:for-each>
@@ -1007,13 +1007,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
                                                     </xsl:otherwise>
                                                 </xsl:choose>
-                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentTS, $elemName)))"/>
+                                                <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                             </xsl:element>
                                             <xsl:for-each select="$doseSchema">
                                                 <xsl:call-template name="handleTS">
                                                     <xsl:with-param name="in" select="hl7nl:phase/hl7nl:low"/>
                                                     <xsl:with-param name="elemName">toedientijd</xsl:with-param>
-                                                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentTS, $elemName)))"/>
+                                                    <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                                     <xsl:with-param name="vagueDate" select="true()"/>
                                                 </xsl:call-template>
                                             </xsl:for-each>
@@ -1023,13 +1023,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'SXPR_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-org:v3')][hl7:comp[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3') and not(@alignment)][hl7nl:period][hl7nl:phase[hl7nl:width]]]/hl7:comp[hl7nl:frequency]">
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
                                                 <xsl:with-param name="schema" select="$schema"/>
-                                                <xsl:with-param name="schemaFragment" select="$schemaFragmentTS"/>
+                                                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
 
                                         <!-- Eenmalig gebruik of aantal keren gebruik zonder tijd. -->
                                         <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][hl7nl:count]/hl7nl:count">
-                                            <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragmentTS//xs:element[@name = 'frequentie']/@type"/>
+                                            <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragment//xs:element[@name = 'frequentie']/@type"/>
                                             <xsl:variable name="xsd-frequentie" select="$schema//xs:complexType[@name = $xsd-frequentie-complexType]"/>
                                             <frequentie conceptId="{$xsd-frequentie/xs:attribute[@name='conceptId']/@fixed}">
                                                 <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
@@ -1066,7 +1066,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <!-- Doseerschema één keer per week op één weekdag. -->
                                         <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']">
                                             <xsl:for-each select="./hl7nl:period">
-                                                <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragmentTS//xs:element[@name = 'frequentie']/@type"/>
+                                                <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragment//xs:element[@name = 'frequentie']/@type"/>
                                                 <xsl:variable name="xsd-frequentie" select="$schema//xs:complexType[@name = $xsd-frequentie-complexType]"/>
                                                 <frequentie conceptId="{$xsd-frequentie/xs:attribute[@name='conceptId']/@fixed}">
                                                     <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
@@ -1083,7 +1083,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9155_20160727135123_only_phase_low">
                                                 <xsl:with-param name="current_PIVL" select="."/>
                                                 <xsl:with-param name="schema" select="$schema"/>
-                                                <xsl:with-param name="schemaFragment" select="$schemaFragmentTS"/>
+                                                <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
 
@@ -1094,7 +1094,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:for-each select="./hl7:comp[xs:string(@isFlexible) = 'true' and hl7nl:frequency]">
                                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9162_20161110120339">
                                                     <xsl:with-param name="schema" select="$schema"/>
-                                                    <xsl:with-param name="schemaFragment" select="$schemaFragmentTS"/>
+                                                    <xsl:with-param name="schemaFragment" select="$schemaFragment"/>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                             <!-- Als niet alle weekdagen in deze dosering dezelfde toedientijden en period (frequentie van 1 maal per week of 1 maal per 2 weken) 
@@ -1171,7 +1171,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:when test="count($frequency-with-daytimes) = 1 and count($times-days-mp9-datamodel/times) = 1">
                                                     <!-- Frequentie wanneer anders dan 1 keer per week -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/frequentie">
-                                                        <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragmentTS//xs:element[@name = 'frequentie']/@type"/>
+                                                        <xsl:variable name="xsd-frequentie-complexType" select="$schemaFragment//xs:element[@name = 'frequentie']/@type"/>
                                                         <xsl:variable name="xsd-frequentie" select="$schema//xs:complexType[@name = $xsd-frequentie-complexType]"/>
                                                         <frequentie conceptId="{$xsd-frequentie/xs:attribute[@name='conceptId']/@fixed}">
                                                             <xsl:variable name="xsd-aantal-complexType" select="$xsd-frequentie//xs:element[@name = 'aantal']/@type"/>
@@ -1186,7 +1186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     </xsl:for-each>
                                                     <!-- Eerst alle toedientijden -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/toedientijd">
-                                                        <xsl:variable name="xsd-complexType" select="$schemaFragmentTS//xs:element[@name = 'toedientijd']/@type"/>
+                                                        <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedientijd']/@type"/>
                                                         <toedientijd value="{nf:formatHL72VagueAdaDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}" conceptId="{$schema//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
                                                     </xsl:for-each>
                                                     <!-- Daarna alle weekdagen -->
@@ -1204,12 +1204,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                                 <xsl:attribute name="nullFlavor">UNK</xsl:attribute>
                                                             </xsl:otherwise>
                                                         </xsl:choose>
-                                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentTS, $elemName)))"/>
+                                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                                     </xsl:element>
 
                                                     <!-- Daarna alle weekdagen -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/weekdag">
-                                                        <xsl:variable name="xsd-complexType" select="$schemaFragmentTS//xs:element[@name = 'weekdag']/@type"/>
+                                                        <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'weekdag']/@type"/>
                                                         <weekdag conceptId="{$schema//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}">
                                                             <xsl:call-template name="mp9-weekdag-attribs">
                                                                 <xsl:with-param name="day-of-week" select="./@value"/>
@@ -1232,7 +1232,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:call-template name="mp9-dagdeel">
                                                 <xsl:with-param name="PIVL_TS-HD" select="."/>
                                                 <xsl:with-param name="xsd-ada" select="$schema"/>
-                                                <xsl:with-param name="xsd-toedieningsschema" select="$schemaFragmentTS"/>
+                                                <xsl:with-param name="xsd-toedieningsschema" select="$schemaFragment"/>
                                             </xsl:call-template>
                                         </xsl:for-each>
 
@@ -1243,7 +1243,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 <xsl:call-template name="mp9-dagdeel">
                                                     <xsl:with-param name="PIVL_TS-HD" select="."/>
                                                     <xsl:with-param name="xsd-ada" select="$schema"/>
-                                                    <xsl:with-param name="xsd-toedieningsschema" select="$schemaFragmentTS"/>
+                                                    <xsl:with-param name="xsd-toedieningsschema" select="$schemaFragment"/>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                         </xsl:if>
@@ -1252,7 +1252,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                                 <!-- zo nodig -->
                                 <xsl:if test="(hl7:precondition/hl7:criterion/hl7:code | hl7:maxDoseQuantity)[.//(@code | @nullFlavor | @value | @unit)]">
-                                    <xsl:variable name="xsd-zo_nodig" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentDO, 'zo_nodig'))"/>
+                                    <xsl:variable name="xsd-zo_nodig" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'zo_nodig'))"/>
                                     <zo_nodig>
                                         <xsl:copy-of select="nf:getADAComplexTypeConceptId($xsd-zo_nodig)"/>
 
@@ -1271,22 +1271,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </criterium>
                                         </xsl:for-each>
                                         <xsl:for-each select="hl7:maxDoseQuantity[.//(@value | @unit)]">
-                                            <xsl:variable name="schemaFragmentMD" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($xsd-zo_nodig, 'maximale_dosering'))"/>
+                                            <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($xsd-zo_nodig, 'maximale_dosering'))"/>
                                             <maximale_dosering>
                                                 <aantal value="{hl7:numerator/@value}">
-                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentMD, 'aantal')))"/>
+                                                    <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'aantal')))"/>
                                                 </aantal>
                                                 <xsl:for-each select="(hl7:numerator/hl7:translation[@codeSystem = $oidGStandaardBST902THES2])[1]">
                                                     <eenheid>
                                                         <xsl:call-template name="mp9-code-attribs">
                                                             <xsl:with-param name="current-hl7-code" select="."/>
                                                         </xsl:call-template>
-                                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentMD, 'eenheid')))"/>
+                                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'eenheid')))"/>
                                                     </eenheid>
                                                 </xsl:for-each>
                                                 <xsl:for-each select="hl7:denominator[@value | @unit]">
                                                     <tijdseenheid value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(@unit)}">
-                                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentMD, 'tijdseenheid')))"/>
+                                                        <xsl:copy-of select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'tijdseenheid')))"/>
                                                     </tijdseenheid>
                                                 </xsl:for-each>
                                             </maximale_dosering>
@@ -1296,7 +1296,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                                 <!-- toedieningssnelheid -->
                                 <xsl:for-each select="./hl7:rateQuantity">
-                                    <xsl:variable name="xsd-toedieningssnelheid" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragmentDO, 'toedieningssnelheid'))"/>
+                                    <xsl:variable name="xsd-toedieningssnelheid" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, 'toedieningssnelheid'))"/>
                                     <xsl:variable name="ucum-rate-eenheden" select="./*/@unit"/>
                                     <xsl:variable name="ucum-rate-eenheid">
                                         <xsl:if test="
@@ -1362,12 +1362,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:for-each>
                                 <!-- Doseerschema met toedieningsduur. -->
                                 <xsl:for-each select="./hl7:effectiveTime[(local-name-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'PIVL_TS' and namespace-uri-from-QName(resolve-QName(xs:string(@xsi:type), .)) = 'urn:hl7-nl:v3')][not(@alignment)][not(hl7nl:period)]/hl7nl:phase/hl7nl:width">
-                                    <xsl:variable name="xsd-complexType" select="$schemaFragmentDO//xs:element[@name = 'toedieningsduur']/@type"/>
+                                    <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedieningsduur']/@type"/>
                                     <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282"/>
                                 </xsl:for-each>
                                 <!-- Doseerschema één keer per week op één weekdag met toedieningsduur -->
                                 <xsl:for-each select="./hl7:effectiveTime[@alignment = 'DW']/hl7nl:phase/hl7nl:width">
-                                    <xsl:variable name="xsd-complexType" select="$schemaFragmentDO//xs:element[@name = 'toedieningsduur']/@type"/>
+                                    <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedieningsduur']/@type"/>
                                     <toedieningsduur value="{./@value}" unit="{nf:convertTime_UCUM2ADA_unit(./@unit)}" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.3.23282"/>
 
                                 </xsl:for-each>
@@ -1884,7 +1884,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     <!-- Eerst alle toedientijden -->
                                                     <xsl:for-each select="$times-days-mp9-datamodel/times/toedientijd">
                                                         <xsl:variable name="xsd-complexType" select="$schemaFragment//xs:element[@name = 'toedientijd']/@type"/>
-                                                        <toedientijd value="{nf:formatHL72XMLDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}" conceptId="{$schema//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
+                                                        <toedientijd value="{nf:formatHL72VagueAdaDate(nf:appendDate2DateOrTime(concat('19700101',./@value)), nf:determine_date_precision(concat('19700101',./@value)))}" conceptId="{$schema//xs:complexType[@name = $xsd-complexType]/xs:attribute[@name='conceptId']/@fixed}"/>
                                                     </xsl:for-each>
                                                     <!-- is_flexibel -->
                                                     <xsl:variable name="elemName">is_flexibel</xsl:variable>

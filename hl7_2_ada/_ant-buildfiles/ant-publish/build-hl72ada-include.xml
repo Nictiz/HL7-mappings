@@ -42,7 +42,9 @@
         <echo/>
         <echo>Setup ${sub.build.dir} containing refreshed ada schemas (${schema.string})</echo>
         
-        <delete dir="${sub.build.dir}/ada_schemas"/>
+        <delete>
+            <fileset dir="${sub.build.dir}/ada_schemas" includes="*.xsd"/>
+        </delete>
 
         <copy todir="${sub.build.dir}/ada_schemas" failonerror="true">
             <fileset dir="${ada.project.source.dir}/schemas">
