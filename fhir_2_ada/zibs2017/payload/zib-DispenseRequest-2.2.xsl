@@ -8,8 +8,8 @@
     version="2.0">
     
     <!--Uncomment imports for standalone use and testing.-->
-    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
-    <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>-->
     
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
     <xsl:variable name="zib-Dispense-Location" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location'"/>
