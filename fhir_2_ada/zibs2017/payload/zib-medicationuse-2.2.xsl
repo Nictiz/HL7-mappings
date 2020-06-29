@@ -6,7 +6,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!--Uncomment imports for standalone use and testing.-->
-    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+<!--    <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="ext-zib-medication-period-of-use-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
@@ -31,22 +31,49 @@
         select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
     <xsl:variable name="zib-MedicationUse-Duration"
         select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
+    <xsl:variable name="asAgreedIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator'"/>
+    <xsl:variable name="copyIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
+    <xsl:variable name="reasonForChangeOrDiscontinuationOfUse-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>
 
     <xd:doc>
         <xd:desc>Template for converting f:MedicationStatement to MedicationUse</xd:desc>
     </xd:doc>
+    
+    <!-- Identificatie  -->
+    <!-- Registratiedatum -->
+    <!-- GebruiksIndicator -->
+    <!-- Volgens afspraak indicator -->
+    <!-- Stoptype -->
+    <!-- Gebruiksperiode -->
+    <!-- GebruiksProduct -->
+    <!-- Gebruiksinstructie -->
+    <!-- Geralateerde afspraak -->
+    <!-- Geralateerde verstrekking -->
+    <!-- Voorschrijver -->
+    <!-- Informant -->
+    <!-- Auteur -->
+    <!-- Reden gebruik -->
+    <!-- Reden wijzigen of stoppen gebruik -->
+    <!-- Kopie Indicator - LET OP kan ik niet vinden in voorbeelden of in schema - needs to move to an own xsl-->
+    <!-- Toelichting -->
+    
+    
     <xsl:template match="f:MedicationStatement" mode="zib-MedicationUse-2.2">
         <medicatie_gebruik>
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <xsl:apply-templates select="f:dateAsserted" mode="#current"/>
             <xsl:apply-templates select="f:taken" mode="#current"/>
+            <!-- Volgens afspraak indicator -->
+            <xsl:apply-templates select="f:extension[@url=$asAgreedIndicator-url]" mode="#current"/>
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
             <xsl:apply-templates select="f:dosage" mode="zib-instructions-for-use-2.0"/>
             <xsl:apply-templates select="f:informationSource" mode="#current"/>
             <!-- auteur -->
             <xsl:apply-templates select="f:extension[@url=$author-url]" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url=$reasonForChangeOrDiscontinuationOfUse-url]" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url=$copyIndicator-url]" mode="#current"/>
             <xsl:apply-templates select="f:note" mode="#current"/>
         </medicatie_gebruik>
     </xsl:template>
@@ -198,9 +225,34 @@
         </auteur>   
     </xsl:template>
 
+    <!-- Volgens afspraak indicator -->
+    <xsl:template match="f:extension[@url=$asAgreedIndicator-url]" mode="zib-MedicationUse-2.2">
+        <volgens_afspraak_indicator>
+            <xsl:attribute name="value" select="f:valueBoolean/@value"/>
+        </volgens_afspraak_indicator>
+    </xsl:template>
+    
+    <!-- Kopie Indicator -->
+    <xsl:template match="f:extension[@url=$copyIndicator-url]" mode="zib-MedicationUse-2.2">
+        <kopie_indicator>
+            <xsl:attribute name="value" select="f:valueBoolean/@value"/>
+        </kopie_indicator>
+    </xsl:template>
+    
+    <!-- Reden wijzigen of stoppen gebruik -->
+    <xsl:template match="f:extension[@url=$reasonForChangeOrDiscontinuationOfUse-url]" mode="zib-MedicationUse-2.2">         
+        
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="f:valueCodeableConcept"/>
+            <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_staken'"/>
+        </xsl:call-template>    
+    </xsl:template>
+    
     <!-- toelichting -->
     <xsl:template match="f:note" mode="zib-MedicationUse-2.2">
         <toelichting value="{f:text/@value}"/>
     </xsl:template>
+    
+    
 
 </xsl:stylesheet>

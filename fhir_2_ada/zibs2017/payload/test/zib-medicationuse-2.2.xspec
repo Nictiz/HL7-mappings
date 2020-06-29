@@ -23,11 +23,23 @@
                               <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                            </valueReference>
                         </extension>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse">
+                           <valueCodeableConcept>
+                              <coding>
+                                 <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                                 <code value="6"/>
+                                 <display value="Te sterk effect"/>
+                              </coding>
+                           </valueCodeableConcept>
+                        </extension>
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                            <valueReference>
                               <reference value="urn:uuid:09e2099f-b54a-11ea-7883-020000000000"/>
                               <display value="Hans van Doorn || Medisch specialisten, inwendige geneeskunde || Ziekenhuis Stitswerd"/>
                            </valueReference>
+                        </extension>
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator">
+                           <valueBoolean value="false"/>
                         </extension>
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
                            <valueIdentifier>
@@ -502,11 +514,12 @@
             </x:context>
             <x:expect label="'medicatie_gebruik' element with children">
                 <medicatie_gebruik>
-                    <gebruiksperiode_start value="2018-09-01T00:00:00"/>
+                   <gebruiksperiode_start value="2018-09-01T00:00:00" datatype="datetime"/>
                     <identificatie value="MBH_513_2_MGB_1"
                         root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-                    <registratiedatum value="2018-09-01T15:39:00"/>
+                   <registratiedatum value="2018-09-01T15:39:00" datatype="datetime"/>
                     <gebruik_indicator value="true"/>
+                    <volgens_afspraak_indicator value="false"/>
                     <gebruiks_product>
                         <product>
                             <product_code code="5967"
@@ -533,10 +546,11 @@
                                     <aantal>
                                         <vaste_waarde value="1"/>
                                     </aantal>
-                                    <eenheid code="245"
-                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                        codeSystemName="G-Standaardthesaurus basiseenheden"
-                                        displayName="stuk"/>
+                                    <eenheid 
+                                       code="245"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaardthesaurus basiseenheden"
+                                       displayName="stuk"/>
                                 </keerdosis>
                                 <toedieningsschema>
                                     <frequentie>
@@ -551,13 +565,15 @@
                         </doseerinstructie>
                     </gebruiksinstructie>
                     <gerelateerde_afspraak>
-                        <identificatie_medicatieafspraak value="MBH_513_2_MA_1"
-                            root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                        <identificatie_medicatieafspraak 
+                           value="MBH_513_2_MA_1"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                     </gerelateerde_afspraak>
                     <voorschrijver>
                         <zorgverlener>
-                            <zorgverlener_identificatie_nummer value="999001112"
-                                root="2.16.528.1.1007.3.1"/>
+                            <zorgverlener_identificatie_nummer 
+                               value="999001112"
+                               root="2.16.528.1.1007.3.1"/>
                             <naamgegevens>
                                 <naamgegevens>
                                     <voornamen value="Hans"/>
@@ -575,8 +591,9 @@
                                 codeSystemVersion="2017-12-14T00:00:00"
                                 displayName="Medisch specialisten, inwendige geneeskunde"/>
                             <zorgaanbieder>
-                                <zorgaanbieder_identificatie_nummer value="99901111"
-                                    root="2.16.528.1.1007.3.3"/>
+                                <zorgaanbieder_identificatie_nummer 
+                                   value="99901111"
+                                   root="2.16.528.1.1007.3.3"/>
                                 <organisatie_naam value="Ziekenhuis Stitswerd"/>
                             </zorgaanbieder>
                         </zorgverlener>
@@ -587,8 +604,9 @@
                     <auteur>
                         <auteur_is_zorgverlener>
                             <zorgverlener>
-                                <zorgverlener_identificatie_nummer value="999001112"
-                                    root="2.16.528.1.1007.3.1"/>
+                                <zorgverlener_identificatie_nummer 
+                                   value="999001112"
+                                   root="2.16.528.1.1007.3.1"/>
                                 <zorgverlener_naam>
                                     <naamgegevens>
                                         <voornamen value="Hans"/>
@@ -607,14 +625,19 @@
                                     displayName="Medisch specialisten, inwendige geneeskunde"/>
                                 <zorgaanbieder>
                                     <zorgaanbieder>
-                                        <zorgaanbieder_identificatie_nummer value="99901111"
-                                            root="2.16.528.1.1007.3.3"/>
+                                        <zorgaanbieder_identificatie_nummer 
+                                           value="99901111"
+                                           root="2.16.528.1.1007.3.3"/>
                                         <organisatie_naam value="Ziekenhuis Stitswerd"/>
                                     </zorgaanbieder>
                                 </zorgaanbieder>
                             </zorgverlener>
                         </auteur_is_zorgverlener>
                     </auteur>
+                   <reden_wijzigen_of_stoppen_gebruik 
+                      code="6" 
+                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" 
+                      displayName="Te sterk effect"/>
                 </medicatie_gebruik>
             </x:expect>
         </x:scenario>
