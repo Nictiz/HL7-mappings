@@ -81,8 +81,9 @@
         <verstrekker>
             <xsl:choose>
                 <xsl:when test="f:actor/f:extension[@url=$practitionerrole-reference]">
-                    <xsl:apply-templates select="f:actor/f:extension[@url=$practitionerrole-reference]/f:valueReference" mode="#current">
-                        <xsl:with-param name="idUnderscore" select="true()" tunnel="yes"/>
+                    <xsl:variable name="referenceValue" select="f:actor/f:extension[@url = $practitionerrole-reference]/f:valueReference/f:reference/@value"/>
+                    <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitionerRole">
+                        <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                     </xsl:apply-templates>
                 </xsl:when>
                 <xsl:otherwise>
@@ -94,7 +95,7 @@
                         </xsl:when>
                         <xsl:when test="$resource/local-name()='Organization'">
                             <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0">
-                                <xsl:with-param name="idUnderscore" select="true()" tunnel="yes"/>
+                                <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                             </xsl:apply-templates>
                         </xsl:when>
                     </xsl:choose>

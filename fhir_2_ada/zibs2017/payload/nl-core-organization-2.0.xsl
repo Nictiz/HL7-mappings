@@ -24,10 +24,10 @@
     </xsl:template>
     
     <xsl:template match="f:identifier" mode="nl-core-organization-2.0">
-        <xsl:param name="idUnderscore" select="false()" tunnel="yes"/>
+        <xsl:param name="organizationIdUnderscore" select="false()" tunnel="yes"/>
         <xsl:variable name="adaElementName">
             <xsl:choose>
-                <xsl:when test="$idUnderscore=true()">zorgaanbieder_identificatie_nummer</xsl:when>
+                <xsl:when test="$organizationIdUnderscore=true()">zorgaanbieder_identificatie_nummer</xsl:when>
                 <xsl:otherwise>zorgaanbieder_identificatienummer</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>

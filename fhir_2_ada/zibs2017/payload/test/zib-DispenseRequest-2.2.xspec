@@ -84,12 +84,225 @@
                         <mode value="match"/>
                     </search>
                 </entry>
+                <entry>
+                    <fullUrl value="urn:oid:2.16.528.1.1007.3.3.1236578"/>
+                    <resource>
+                        <Organization>
+                            <meta>
+                                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                            </meta>
+                            <text>
+                                <status value="generated"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <table>
+                                        <caption>OrganisatieId: 01236578 (URA)</caption>
+                                        <tbody>
+                                            <tr>
+                                                <th>Naam</th>
+                                                <td>Apotheek De Gulle Gaper</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </text>
+                            <identifier>
+                                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                                <value value="01236578"/>
+                            </identifier>
+                            <name value="Apotheek De Gulle Gaper"/>
+                        </Organization>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
+                <entry>
+                    <fullUrl value="urn:uuid:2b5ce062-b526-11ea-8547-020000000000"/>
+                    <resource>
+                        <PractitionerRole>
+                            <meta>
+                                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                            </meta>
+                            <text>
+                                <status value="generated"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <table>
+                                        <caption>Zorgverlenerrol</caption>
+                                        <tbody>
+                                            <tr>
+                                                <th>Zorgverlener</th>
+                                                <td>
+                                                    <div>Hans van Doorn</div>
+                                                    <div>Ziekenhuis Stitswerd</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Specialisme</th>
+                                                <td>
+                                                    <span title="Huisartsen, niet nader gespecificeerd (0100 - AGB-medisch specialisme)">Huisartsen, niet nader gespecificeerd</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </text>
+                            <practitioner>
+                                <reference value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                                <display value="Hans van Doorn"/>
+                            </practitioner>
+                            <organization>
+                                <reference value="urn:oid:2.16.528.1.1007.3.3.99901111"/>
+                                <display value="Ziekenhuis Stitswerd"/>
+                            </organization>
+                            <specialty>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                                    <version value="2017-12-14T00:00:00"/>
+                                    <code value="0100"/>
+                                    <display value="Huisartsen, niet nader gespecificeerd"/>
+                                </coding>
+                            </specialty>
+                        </PractitionerRole>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
+                <entry>
+                    <fullUrl value="urn:oid:2.16.528.1.1007.3.3.99901111"/>
+                    <resource>
+                        <Organization>
+                            <meta>
+                                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+                            </meta>
+                            <text>
+                                <status value="generated"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <table>
+                                        <caption>OrganisatieId: 99901111 (URA)</caption>
+                                        <tbody>
+                                            <tr>
+                                                <th>Naam</th>
+                                                <td>Ziekenhuis Stitswerd</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Adres</th>
+                                                <td>Dorpsstraat 1, 1234AA Ons Dorp (Werk)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </text>
+                            <identifier>
+                                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+                                <value value="99901111"/>
+                            </identifier>
+                            <name value="Ziekenhuis Stitswerd"/>
+                            <address>
+                                <use value="work"/>
+                                <line value="Dorpsstraat 1">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                                        <valueString value="Dorpsstraat"/>
+                                    </extension>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                                        <valueString value="1"/>
+                                    </extension>
+                                </line>
+                                <city value="Ons Dorp"/>
+                                <postalCode value="1234AA"/>
+                            </address>
+                        </Organization>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
+                <entry>
+                    <fullUrl value="urn:oid:2.16.528.1.1007.3.1.999001112"/>
+                    <resource>
+                        <Practitioner>
+                            <meta>
+                                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+                            </meta>
+                            <text>
+                                <status value="generated"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <div>Id 999001112 (UZI-NR-PERS), Hans van Doorn</div>
+                                </div>
+                            </text>
+                            <identifier>
+                                <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+                                <value value="999001112"/>
+                            </identifier>
+                            <name>
+                                <family value="van Doorn">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                                        <valueString value="van"/>
+                                    </extension>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                                        <valueString value="Doorn"/>
+                                    </extension>
+                                </family>
+                                <given value="Hans">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                                        <valueCode value="BR"/>
+                                    </extension>
+                                </given>
+                            </name>
+                        </Practitioner>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
+                <entry>
+                    <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.5967"/>
+                    <resource>
+                        <Medication>
+                            <meta>
+                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                            </meta>
+                            <text>
+                                <status value="generated"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <th>Code</th>
+                                                <td>
+                                                    <span title="FUROSEMIDE TABLET 40MG (5967 - G-Standaard PRK)">FUROSEMIDE TABLET 40MG</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </text>
+                            <code>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                                    <code value="5967"/>
+                                    <display value="FUROSEMIDE TABLET 40MG"/>
+                                    <userSelected value="true"/>
+                                </coding>
+                                <coding>
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                                    <code value="16810"/>
+                                    <display value="FUROSEMIDE TABLET 40MG"/>
+                                </coding>
+                                <text value="FUROSEMIDE TABLET 40MG"/>
+                            </code>
+                        </Medication>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
             </Bundle>
         </x:context>
         <x:expect label="'verstrekkingsverzoek' element with children">
             <verstrekkingsverzoek>
                 <identificatie value="MBH_513_2_VV_2" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-                <datum value="2018-08-16T14:32:00"/>
+                <datum value="2018-08-16T14:32:00+02:00"/>
                 <auteur>
                     <zorgverlener>
                         <zorgverlener_identificatie_nummer value="999001112" root="2.16.528.1.1007.3.1"/>
@@ -97,12 +310,12 @@
                             <naamgegevens>
                                 <voornamen value="Hans"/>
                                 <geslachtsnaam>
-                                    <voorvoegsels value="van "/>
+                                    <voorvoegsels value="van"/>
                                     <achternaam value="Doorn"/>
                                 </geslachtsnaam>
                             </naamgegevens>
                         </naamgegevens>
-                        <specialisme value="1" code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))" codeSystemVersion="2017-12-14T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <specialisme code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2017-12-14T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
                         <zorgaanbieder>
                             <zorgaanbieder_identificatie_nummer value="99901111" root="2.16.528.1.1007.3.3"/>
                             <organisatie_naam value="Ziekenhuis Stitswerd"/>
@@ -111,18 +324,18 @@
                                 <huisnummer value="1"/>
                                 <postcode value="1234AA"/>
                                 <woonplaats value="Ons Dorp"/>
-                                <adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+                                <adres_soort code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
                             </adresgegevens>
                         </zorgaanbieder>
                     </zorgverlener>
                 </auteur>
                 <te_verstrekken_hoeveelheid>
                     <aantal value="30"/>
-                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                    <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard Bestand 902 Thesaurus 2" displayName="stuk"/>
                 </te_verstrekken_hoeveelheid>
                 <te_verstrekken_geneesmiddel>
                     <product>
-                        <product_code code="5967" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="FUROSEMIDE TABLET 40MG" codeSystemName="G-Standaard PRK"/>
+                        <product_code code="5967" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="FUROSEMIDE TABLET 40MG" preferred="true"/>
                         <product_code code="16810" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="FUROSEMIDE TABLET 40MG"/>
                     </product>
                 </te_verstrekken_geneesmiddel>

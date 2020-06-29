@@ -96,7 +96,8 @@
         <voorschrijver>
             <xsl:choose>
                 <xsl:when test="f:agent/f:extension[@url=$practitionerrole-reference]">
-                    <xsl:apply-templates select="f:agent/f:extension[@url=$practitionerrole-reference]/f:valueReference" mode="#current"/>
+                    <xsl:variable name="referenceValue" select="f:agent/f:extension[@url = $practitionerrole-reference]/f:valueReference/f:reference/@value"/>
+                    <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitionerRole"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="referenceValue" select="f:agent/f:reference/@value"/>
@@ -114,11 +115,6 @@
                 </xsl:otherwise>
             </xsl:choose>
         </voorschrijver>
-    </xsl:template>
-    
-    <xsl:template match="f:extension[@url=$practitionerrole-reference]/f:valueReference" mode="zib-MedicationAgreement-2.2">
-        <xsl:variable name="referenceValue" select="f:reference/@value"/>
-        <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitionerRole"/>
     </xsl:template>
     
     <xd:doc>

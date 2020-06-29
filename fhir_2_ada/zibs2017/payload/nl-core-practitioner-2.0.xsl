@@ -29,8 +29,15 @@
     </xsl:template>
     
     <xsl:template match="f:identifier" mode="nl-core-practitioner-2.0">
+        <xsl:param name="practitionerIdUnderscore" select="false()" tunnel="yes"/>
+        <xsl:variable name="adaElementName">
+            <xsl:choose>
+                <xsl:when test="$practitionerIdUnderscore=true()">zorgverlener_identificatie_nummer</xsl:when>
+                <xsl:otherwise>zorgverlener_identificatienummer</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:call-template name="Identifier-to-identificatie">
-            <xsl:with-param name="adaElementName">zorgverlener_identificatienummer</xsl:with-param>
+            <xsl:with-param name="adaElementName" select="$adaElementName"/>
         </xsl:call-template>
     </xsl:template>
     

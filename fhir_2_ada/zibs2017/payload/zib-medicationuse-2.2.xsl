@@ -190,7 +190,7 @@
                 <xsl:when test="$resource/local-name()='Organization'">
                     <auteur_is_zorgverlener>
                         <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0">
-                            <xsl:with-param name="idUnderscore" select="true()" tunnel="yes"/>
+                            <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                         </xsl:apply-templates>
                     </auteur_is_zorgverlener>   
                 </xsl:when>

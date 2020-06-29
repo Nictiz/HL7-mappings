@@ -9,7 +9,13 @@
     
     <!--Uncomment imports for standalone use and testing.-->
     <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
-    <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>-->
+    <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>
+    <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
+    <xsl:import href="nl-core-practitioner-2.0.xsl"/>
+    <xsl:import href="nl-core-organization-2.0.xsl"/>
+    <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>
+    <xsl:import href="nl-core-address-2.0.xsl"/>
+    <xsl:import href="nl-core-humanname-2.0.xsl"/>-->
     
     <xsl:variable name="practitionerrole-reference" select="'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference'"/>
     <xsl:variable name="zib-Dispense-Location" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-Location'"/>
@@ -32,7 +38,7 @@
             <!--verbruiksperiode-->
             <xsl:apply-templates select="f:dispenseRequest/f:expectedSupplyDuration" mode="#current"/>
             <!--beoogd_verstrekker-->
-            <xsl:apply-templates select="f:performer" mode="#current"/>
+            <xsl:apply-templates select="f:dispenseRequest/f:performer" mode="#current"/>
             <!--afleverlocatie-->
             <xsl:apply-templates select="f:dispenseRequest/f:extension[@url = $zib-Dispense-Location]" mode="#current"/>
             <!--aanvullende_wensen-->
@@ -62,7 +68,11 @@
         <auteur>
             <xsl:choose>
                 <xsl:when test="f:extension[@url = $practitionerrole-reference]">
-                    <xsl:apply-templates select="f:extension[@url = $practitionerrole-reference]/f:valueReference" mode="#current"/>
+                    <xsl:variable name="referenceValue" select="f:extension[@url = $practitionerrole-reference]/f:valueReference/f:reference/@value"/>
+                    <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitionerRole">
+                        <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
+                        <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
+                    </xsl:apply-templates>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="referenceValue" select="f:reference/@value"/>
@@ -95,9 +105,9 @@
     
     <xsl:template match="f:medicationReference" mode="zib-DispenseRequest-2.2">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
-        <geneesmiddel_bij_toedieningsafspraak>
+        <te_verstrekken_geneesmiddel>
             <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:Medication" mode="zib-PharmaceuticalProduct-2.0"/>
-        </geneesmiddel_bij_toedieningsafspraak>        
+        </te_verstrekken_geneesmiddel>        
     </xsl:template>
     
     <xsl:template match="f:expectedSupplyDuration" mode="zib-DispenseRequest-2.2">
@@ -107,22 +117,18 @@
     <xsl:template match="f:performer" mode="zib-DispenseRequest-2.2">
         <beoogd_verstrekker>
             <xsl:choose>
-                <xsl:when test="f:actor/f:extension[@url = $practitionerrole-reference]">
-                    <xsl:apply-templates select="f:actor/f:extension[@url = $practitionerrole-reference]/f:valueReference" mode="#current">
-                        <xsl:with-param name="idUnderscore" select="true()" tunnel="yes"/>
-                    </xsl:apply-templates>
+                <xsl:when test="f:extension[@url = $practitionerrole-reference]">
+                    <xsl:apply-templates select="f:extension[@url = $practitionerrole-reference]/f:valueReference" mode="#current"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:variable name="referenceValue" select="f:actor/f:reference/@value"/>
+                    <xsl:variable name="referenceValue" select="f:reference/@value"/>
                     <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
                     <xsl:choose>
                         <xsl:when test="$resource/local-name()='Practitioner'">
                             <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0"/>
                         </xsl:when>
                         <xsl:when test="$resource/local-name()='Organization'">
-                            <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0">
-                                <xsl:with-param name="idUnderscore" select="true()" tunnel="yes"/>
-                            </xsl:apply-templates>
+                            <xsl:apply-templates select="$resource" mode="nl-core-organization-2.0"/>
                         </xsl:when>
                     </xsl:choose>
                     <!-- f:onBehalfOf? -->
@@ -143,7 +149,7 @@
     <xsl:template match="f:extension[@url = $zib-DispenseRequest-RelatedMedicationAgreement]" mode="zib-DispenseRequest-2.2">
         <relatie_naar_medicatieafspraak>
             <xsl:call-template name="Identifier-to-identificatie">
-                <xsl:with-param name="in" select="f:identifier"/>
+                <xsl:with-param name="in" select="f:valueReference/f:identifier"/>
             </xsl:call-template>
         </relatie_naar_medicatieafspraak>
     </xsl:template>
