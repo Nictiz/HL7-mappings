@@ -2419,15 +2419,13 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         </xsl:choose>
     </xsl:template>
 
-
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>HL7NL PIVL_TS Interval</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9079_20160620162955">
-        <!-- HL7NL PIVL_TS Interval -->
         <xsl:attribute name="xsi:type" select="'hl7nl:PIVL_TS'"/>
         <xsl:attribute name="operator" select="'A'"/>
-
+        
         <xsl:choose>
             <xsl:when test="../is_flexibel[@value]">
                 <xsl:attribute name="isFlexible" select="../is_flexibel/@value"/>
@@ -2437,18 +2435,18 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 <xsl:attribute name="isFlexible">false</xsl:attribute>
             </xsl:otherwise>
         </xsl:choose>
-
+        
         <hl7nl:frequency>
             <hl7nl:numerator xsi:type="hl7nl:INT">
-                <xsl:attribute name="value">
-                    <xsl:value-of select="./@value"/>
-                </xsl:attribute>
+                <!-- the numerator for interval is always 1 -->
+                <xsl:attribute name="value">1</xsl:attribute>
             </hl7nl:numerator>
             <hl7nl:denominator xsi:type="hl7nl:PQ">
                 <xsl:call-template name="makeTimeDenominatorAttribs"/>
             </hl7nl:denominator>
         </hl7nl:frequency>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>HL7NL PIVL_TS Frequency</xd:desc>
     </xd:doc>

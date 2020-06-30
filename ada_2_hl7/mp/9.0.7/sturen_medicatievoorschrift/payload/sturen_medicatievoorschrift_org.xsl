@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<xsl:for-each select="./verstrekkingsverzoek">
 					<component typeCode="COMP">
 						<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9257_20181206151013">
-							<xsl:with-param name="vv" select="."/>
+							<xsl:with-param name="in" select="."/>
 						</xsl:call-template>
 					</component>
 				</xsl:for-each>
