@@ -46,7 +46,7 @@
                     <xsl:with-param name="precision" select="'DAY'"/>
                 </xsl:call-template>
             </xsl:attribute>
-            <xsl:attribute name="datatype">datetime</xsl:attribute>
+            <!--<xsl:attribute name="datatype">datetime</xsl:attribute>-->
         </geboortedatum>
     </xsl:template>
     
