@@ -305,7 +305,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="MedicationUseEntry-2.2">
                 <xsl:with-param name="searchMode" select="$searchMode"/>
             </xsl:call-template>
-          </xsl:for-each>
+        </xsl:for-each>
     </xsl:variable>
 
     <xsl:variable name="bouwstenen-verstrekkingenvertaling" as="element(f:entry)*">
@@ -1798,86 +1798,90 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile-uri" as="xs:string">http://nictiz.nl/fhir/StructureDefinition/zib-Product</xsl:param>
         <xsl:param name="medication-id" as="xs:string?"/>
         <xsl:for-each select="$in">
-            <Medication xmlns="http://hl7.org/fhir">
-                <xsl:if test="string-length($medication-id) gt 0">
-                    <id value="{$medication-id}"/>
-                </xsl:if>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
-                </meta>
-                <xsl:for-each select="product_specificatie/omschrijving[@value]">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
-                        <valueString value="{replace(string-join(./@value, ''),'(^\s+)|(\s+$)','')}"/>
-                    </extension>
-                </xsl:for-each>
-                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
+            <xsl:variable name="resource">
+                <Medication xmlns="http://hl7.org/fhir">
+                    <xsl:if test="string-length($medication-id) gt 0">
+                        <id value="{$medication-id}"/>
+                    </xsl:if>
+                    <meta>
+                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                    </meta>
+                    <xsl:for-each select="product_specificatie/omschrijving[@value]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
+                            <valueString value="{replace(string-join(./@value, ''),'(^\s+)|(\s+$)','')}"/>
+                        </extension>
+                    </xsl:for-each>
+                    <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
 
-                <xsl:choose>
-                    <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
-                        <code>
-                            <xsl:for-each select="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
-                                <xsl:choose>
-                                    <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                            <xsl:with-param name="userSelected">true</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:for-each>
-                            <xsl:for-each select="$most-specific-product-code[@displayName]">
-                                <text value="{@displayName}"/>
-                            </xsl:for-each>
-                        </code>
-                    </xsl:when>
-                    <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor]">
-                        <code>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="product_code"/>
-                            </xsl:call-template>
-                            <xsl:if test="not(product_code[@originalText]) and product_specificatie/product_naam/@value">
-                                <text value="{product_specificatie/product_naam/@value}"/>
-                            </xsl:if>
-                        </code>
-                    </xsl:when>
-                    <xsl:when test="product_specificatie/product_naam[@value]">
-                        <code>
-                            <text value="{product_specificatie/product_naam/@value}"/>
-                        </code>
-                    </xsl:when>
-                </xsl:choose>
-                <xsl:for-each select="product_specificatie/farmaceutische_vorm[@code]">
-                    <form>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </form>
-                </xsl:for-each>
-                <xsl:for-each select="./product_specificatie/ingredient[.//(@value | @code)]">
-                    <ingredient>
-                        <xsl:for-each select="./ingredient_code[@code]">
-                            <itemCodeableConcept>
+                    <xsl:choose>
+                        <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
+                            <code>
+                                <xsl:for-each select="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
+                                    <xsl:choose>
+                                        <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
+                                            <xsl:call-template name="code-to-CodeableConcept">
+                                                <xsl:with-param name="in" select="."/>
+                                                <xsl:with-param name="userSelected">true</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:call-template name="code-to-CodeableConcept">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                                <xsl:for-each select="$most-specific-product-code[@displayName]">
+                                    <text value="{@displayName}"/>
+                                </xsl:for-each>
+                            </code>
+                        </xsl:when>
+                        <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor]">
+                            <code>
                                 <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="in" select="product_code"/>
                                 </xsl:call-template>
-                            </itemCodeableConcept>
-                        </xsl:for-each>
-                        <xsl:for-each select="./sterkte">
-                            <amount>
-                                <xsl:call-template name="hoeveelheid-complex-to-Ratio">
-                                    <xsl:with-param name="numerator" select="./hoeveelheid_ingredient"/>
-                                    <xsl:with-param name="denominator" select="./hoeveelheid_product"/>
-                                </xsl:call-template>
-                            </amount>
-                        </xsl:for-each>
-                    </ingredient>
-                </xsl:for-each>
-            </Medication>
+                                <xsl:if test="not(product_code[@originalText]) and product_specificatie/product_naam/@value">
+                                    <text value="{product_specificatie/product_naam/@value}"/>
+                                </xsl:if>
+                            </code>
+                        </xsl:when>
+                        <xsl:when test="product_specificatie/product_naam[@value]">
+                            <code>
+                                <text value="{product_specificatie/product_naam/@value}"/>
+                            </code>
+                        </xsl:when>
+                    </xsl:choose>
+                    <xsl:for-each select="product_specificatie/farmaceutische_vorm[@code]">
+                        <form>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </form>
+                    </xsl:for-each>
+                    <xsl:for-each select="./product_specificatie/ingredient[.//(@value | @code)]">
+                        <ingredient>
+                            <xsl:for-each select="./ingredient_code[@code]">
+                                <itemCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </itemCodeableConcept>
+                            </xsl:for-each>
+                            <xsl:for-each select="./sterkte">
+                                <amount>
+                                    <xsl:call-template name="hoeveelheid-complex-to-Ratio">
+                                        <xsl:with-param name="numerator" select="./hoeveelheid_ingredient"/>
+                                        <xsl:with-param name="denominator" select="./hoeveelheid_product"/>
+                                    </xsl:call-template>
+                                </amount>
+                            </xsl:for-each>
+                        </ingredient>
+                    </xsl:for-each>
+                </Medication>
+            </xsl:variable>
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
 
