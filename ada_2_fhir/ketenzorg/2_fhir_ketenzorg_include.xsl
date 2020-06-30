@@ -136,22 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Contactmomenten -->
         <xsl:copy-of select="$theEncounters"/>
         <!-- Episodes -->
-        <xsl:for-each select="//*[bundle]/episode">
-            <entry xmlns="http://hl7.org/fhir">
-                <fullUrl value="{nf:getUriFromAdaId(identifier)}"/>
-                <resource>
-                    <xsl:call-template name="nl-core-episodeofcare-2.0">
-                        <xsl:with-param name="episodeofcare" select="."/>
-                        <xsl:with-param name="episodeofcare-id" select="nf:removeSpecialCharacters(identifier/@value)"/>
-                        <xsl:with-param name="custodian" select="../bundle/custodian"/>
-                        <xsl:with-param name="author" select="../bundle/author"/>
-                    </xsl:call-template>
-                </resource>
-                <search>
-                    <mode value="{if ($matchResource = 'EpisodeOfCare') then 'match' else 'include'}"/>
-                </search>
-            </entry>
-        </xsl:for-each>
+        <xsl:copy-of select="$theEpisodes"/>
         <!-- Alerts -->
         <xsl:for-each select="//*[bundle]/alert">
             <entry xmlns="http://hl7.org/fhir">
@@ -165,6 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </entry>
         </xsl:for-each>
     </xsl:variable>
+    
     <xsl:variable name="theEncounters" as="element(f:entry)*">
         <!-- Contactmomenten -->
         <xsl:choose>
@@ -205,6 +191,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:variable>
+    
+    <xsl:variable name="theEpisodes" as="element(f:entry)*">
+        <xsl:for-each select="//*[bundle]/episode">
+            <entry xmlns="http://hl7.org/fhir">
+                <fullUrl value="{nf:getUriFromAdaId(identifier)}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-episodeofcare-2.0">
+                        <xsl:with-param name="episodeofcare" select="."/>
+                        <xsl:with-param name="episodeofcare-id" select="nf:removeSpecialCharacters(identifier/@value)"/>
+                        <xsl:with-param name="custodian" select="../bundle/custodian"/>
+                        <xsl:with-param name="author" select="../bundle/author"/>
+                    </xsl:call-template>
+                </resource>
+                <search>
+                    <mode value="{if ($matchResource = 'EpisodeOfCare') then 'match' else 'include'}"/>
+                </search>
+            </entry>
+        </xsl:for-each>
     </xsl:variable>
     
     <xd:doc>
@@ -540,9 +545,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="../bundle/subject/patient" mode="doPatientReference-2.1"/>
                     </subject>
                 </xsl:if>
-                <xsl:if test="contact_reason/episode">
-                    <!-- TODO: episodeOfCare can map to contact_reason/episode -->
-                </xsl:if>
+                <xsl:for-each select="contact_reason/episode">
+                    <xsl:variable name="theValue" select="@value"/>
+                    <xsl:variable name="theRoot" select="local:getUri(@root)"/>
+                    <xsl:variable name="theReference" select="$theEpisodes[f:resource/f:EpisodeOfCare/f:identifier[f:system/@value = $theRoot][f:value/@value = $theValue]]" as="element(f:entry)*"/>
+                    <episodeOfCare>
+                        <xsl:choose>
+                            <xsl:when test="empty($theReference)">
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </identifier>
+                                <display value="Episode: {string-join((@value, @root), ' ')}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <reference value="{$theReference/f:fullUrl/@value}"/>
+                                <display value="Episode: {string-join((@value, $theReference/f:resource/f:EpisodeOfCare/(f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/EpisodeOfCare-Title']/f:valueString/@value, f:period/f:start/@value)), ' ')}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </episodeOfCare>
+                </xsl:for-each>
                 <!-- The information model sees the details of the healthcare provider as a complete description, while FHIR wants a reference. And what's the role or the health professional in the bundle?
                     The sending GP of the Bundle does not need to be the same authoring GP for all contained in the Bundle. Hence we always pick the author 'closest' hierarchically to the object we need it on.
                     All Practitioner(Role) resources are generated and deduplicated in the variable by that name

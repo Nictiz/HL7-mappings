@@ -22,6 +22,8 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2020-06-30 - 
+* Add support for Encounter.episodeOfCare 
 2020-06-28 - 
 * Fixed support for combined bundle containing both encounter reports and encounters when encounter ids are not numeric
 2020-06-26 -
