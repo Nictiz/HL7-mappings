@@ -4,7 +4,6 @@ The 'simple dataset xml format' is based on ADA format, more information about A
 https://www.art-decor.org/mediawiki/index.php/ADA_Walkthrough 
 
 The xsd of the ada format is included in the folder "ada_schemas".
-A complete empty xml instance in the ada format is included in the folder "ada_new".
 
 The folder "payload" contains the stylesheet that does the conversion for the payload: "beschikbaarstellen_medicatieoverzicht_org.xsl"
 This xslt uses the "../../../2_hl7_mp_include.xsl" which in turn uses ../../../../hl7/hl7_include.xsl which is meant to be reused by other/different transactions.
