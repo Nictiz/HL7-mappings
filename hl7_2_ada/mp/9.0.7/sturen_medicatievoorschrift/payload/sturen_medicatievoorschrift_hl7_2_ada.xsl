@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="schema" select="document('../ada_schemas/sturen_medicatievoorschrift.xsd')"/>
     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, 'sturen_medicatievoorschrift'))"/>
    
-    <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>
+    <xsl:variable name="templateId-medicatieafspraak" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9233', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9241', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>
     <xsl:variable name="templateId-verstrekkingsverzoek" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9301', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9257'"/>
     <xsl:variable name="templateId-medicamenteuze-behandeling">2.16.840.1.113883.2.4.3.11.60.20.77.10.9084</xsl:variable>
     <xsl:variable name="templateId-lichaamsgewicht" select="'2.16.840.1.113883.2.4.3.11.60.7.10.28', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9123'"/>

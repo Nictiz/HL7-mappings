@@ -31,7 +31,7 @@
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="schema.string" value="*${usecase.mv}*"/>
-            <param name="fileset.dir" value="hl7_instance"/>
+            <param name="fileset.dir" value="cda_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
         </antcall>
@@ -65,6 +65,9 @@
         <antcall target="convert_hl7_2_ada"/>
         
         <!-- medicatievoorschrift -->
+        <!-- create the temporary hl7_instance_roundtrip, we only need the cda version -->
+        <mkdir dir="${build.dir}/${usecase.mv}/hl7_instance_roundtrip"/>
+        
         <!-- let's start the roundtrip, so ada 2 hl7 -->
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
@@ -79,6 +82,8 @@
             <param name="xsl.in" value="hl7_instance_roundtrip"/>
             <param name="xsl.out" value="cda_instance_roundtrip"/>
         </antcall>
+        <!-- clean up the hl7_instance_roundtrip, we only need the cda version -->
+        <delete dir="${build.dir}/${usecase.mv}/hl7_instance_roundtrip"/>
         
         <!-- let's start the roundtrip for beschikbaarstellen_medicatiegegevens, so ada 2 hl7 -->
         <antcall target="convert_hl7_2_ada_sub">
@@ -96,7 +101,7 @@
         <antcall target="convert_hl7_2_ada_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
             <param name="xsl.name" value="payload/${usecase.mv}_hl7_2_ada.xsl"/>
-            <param name="xsl.in" value="hl7_instance"/>
+            <param name="xsl.in" value="cda_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>     
 

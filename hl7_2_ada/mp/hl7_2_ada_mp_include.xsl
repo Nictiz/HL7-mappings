@@ -134,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$current-hl7-code">
             <xsl:choose>
                 <xsl:when test=".[@code]">
-                    <xsl:copy-of select="@code | @codeSystem | @codeSystemName | @codeSystemVersion| @displayName"/>
+                    <xsl:copy-of select="@code | @codeSystem | @codeSystemName | @codeSystemVersion | @displayName"/>
                 </xsl:when>
                 <xsl:when test=".[@nullFlavor]">
                     <xsl:attribute name="code" select="./@nullFlavor"/>
