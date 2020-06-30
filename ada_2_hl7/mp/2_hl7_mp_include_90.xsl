@@ -14,6 +14,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="2_hl7_mp_include.xsl"/>
+    
+    <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
 
     <xd:doc>
         <xd:desc> MP CDA Author Participation </xd:desc>
@@ -1980,8 +1982,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!--Doseerinstructie-->
             <xsl:for-each select="gebruiksinstructie/doseerinstructie[.//(@value | @code | @nullFlavor)]">
                 <xsl:choose>
-                    <!-- geen dosering: pauze periode of 'gebruik bekend' of iets dergelijks -->
                     <xsl:when test="not(./dosering[.//(@value | @code | @nullFlavor)])">
+                        <!-- geen dosering: pauze periode of 'gebruik bekend' of iets dergelijks -->
                         <entryRelationship typeCode="COMP">
                             <xsl:for-each select="volgnummer[.//(@value | @code)]">
                                 <sequenceNumber>

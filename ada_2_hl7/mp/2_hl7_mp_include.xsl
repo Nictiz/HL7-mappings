@@ -12,10 +12,10 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
     <xsl:import href="../../util/mp-functions.xsl"/>
-    <!--         <xsl:import href="../../util/datetime.xsl"/>-->
+    <xsl:import href="../../util/utilities.xsl"/>
 
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
@@ -108,11 +108,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Make the denominator attributes for a time in the denominator</xd:desc>
     </xd:doc>
     <xsl:template name="makeTimeDenominatorAttribs">
-        <xsl:attribute name="value" select="./@value"/>
-        <xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM(./@unit)"/>
+        <xsl:attribute name="value" select="@value"/>
+        <xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM(@unit)"/>
     </xsl:template>
 
     <xd:doc>
@@ -574,9 +574,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9076_20160619200644" match="toedieningsschema" mode="HandleCDAAdministrationSchedule">
-        <!-- MP CDA Toedienschema -->
         <xsl:if test="(../../../herhaalperiode_cyclisch_schema[.//(@value | @code)]) and (../toedieningsduur[.//(@value | @code)])">
-            <error>Herhaalperiode cyclisch schema in combinatie met toedienduur wordt niet ondersteund.</error>
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logERROR"/>
+                <xsl:with-param name="msg">Herhaalperiode cyclisch schema in combinatie met toedienduur wordt niet ondersteund.</xsl:with-param>
+                <!-- we don't terminate because free text instruction is still conveyed correctly -->
+                <xsl:with-param name="terminate" select="false()"/>
+            </xsl:call-template>
         </xsl:if>
         <xsl:choose>
             <!-- Cyclisch schema -->
@@ -624,7 +628,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
 
                     <!-- Eenvoudig doseerschema met alleen één interval. -->
-                    <xsl:when test="not(./frequentie/tijdseenheid[.//(@value | @code)]) and ./interval[.//(@value | @code)] and not(./toedientijd[.//(@value | @code)]) and not(../toedieningsduur[.//(@value | @code)]) and not(./weekdag[.//(@value | @code)]) and not(./dagdeel[.//(@value | @code)])">
+                    <xsl:when test="not(frequentie/tijdseenheid[.//(@value | @code)]) and interval[.//(@value | @code)] and not(toedientijd[.//(@value | @code)]) and not(../toedieningsduur[.//(@value | @code)]) and not(weekdag[.//(@value | @code)]) and not(dagdeel[.//(@value | @code)])">
                         <xsl:for-each select="./interval[.//(@value | @code)]">
                             <effectiveTime>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9079_20160620162955"/>
@@ -830,7 +834,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
                                 </effectiveTime>
                             </xsl:when>
-                         </xsl:choose>
+                        </xsl:choose>
                     </xsl:when>
 
                 </xsl:choose>
@@ -1120,10 +1124,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>HL7NL PIVL_TS Interval</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9079_20160620162955">
-        <!-- HL7NL PIVL_TS Interval -->
         <xsl:attribute name="xsi:type" select="'hl7nl:PIVL_TS'"/>
         <xsl:attribute name="operator" select="'A'"/>
 
@@ -1139,9 +1142,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <hl7nl:frequency>
             <hl7nl:numerator xsi:type="hl7nl:INT">
-                <xsl:attribute name="value">
-                    <xsl:value-of select="./@value"/>
-                </xsl:attribute>
+                <!-- the numerator for interval is always 1 -->
+                <xsl:attribute name="value">1</xsl:attribute>
             </hl7nl:numerator>
             <hl7nl:denominator xsi:type="hl7nl:PQ">
                 <xsl:call-template name="makeTimeDenominatorAttribs"/>

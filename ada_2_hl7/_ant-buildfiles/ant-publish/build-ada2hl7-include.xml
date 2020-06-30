@@ -7,6 +7,9 @@
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
 <project basedir="." name="build-ada2hl7-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <!-- this include build xml (build-ada2hl7-include.xml is included from an ant build file with basedir two dirs up, 
+        for convenience we place thie dependency here 
+        so it does not resolve directly from here, but it will resolve fine when run (included) from a build xml with basedir for example: mp/9.0.7 -->
     <ant antfile="../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
