@@ -58,7 +58,7 @@
     <target name="setup_sub_instances" description="Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.include})">
 
         <echo/>
-        <echo>Setup ${sub.build.dir}  containing refreshed hl7 instances (${fileset.include})</echo>
+        <echo>Setup ${sub.build.dir} containing refreshed hl7 instances (${fileset.include})</echo>
 
         <delete>
             <fileset dir="${sub.build.dir}/${fileset.dir}" includes="${fileset.include}"/>
@@ -70,5 +70,31 @@
         </copy>
 
     </target>
+    
+    <target name="convert_hl7_2_ada_sub">
+        
+        <property name="xsl.hl72ada" value="${sub.build.dir}/${xsl.name}"/>
+        
+        <property name="xsl.input" value="${sub.build.dir}/${xsl.in}"/>
+        <property name="xsl.output" value="${sub.build.dir}/${xsl.out}"/>
+        
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.xml"/>
+        </delete>
+        
+        <sequential>
+            <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl.hl72ada} input dir ${xsl.input}</echo>
+            <xslt force="true" style="${xsl.hl72ada}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMP"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+    </target>
+    
 
 </project>

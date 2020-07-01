@@ -324,9 +324,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="current-hl7-mar"/>
-        <xd:param name="hl7-pivl"/>
+        <xd:desc>Doseerinstructie met toedientijd(en) voor MP 6.12</xd:desc>
+        <xd:param name="current-hl7-mar">Het huidige HL7 element voor medicationAdministrationRequest</xd:param>
+        <xd:param name="hl7-pivl">Het HL7 element met PIVL_TS</xd:param>
         <xd:param name="xsd-ada"/>
         <xd:param name="xsd-gebruiksinstructie"/>
     </xd:doc>
@@ -352,8 +352,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="xsd-ada" select="$xsd-ada"/>
                         <xsl:with-param name="xsd-dosering" select="$xsd-dosering"/>
                     </xsl:call-template>
-                    <xsl:variable name="xsd-toedieningsschema-complexType" select="$xsd-dosering//xs:element[@name = 'toedieningsschema']/@type"/>
+
+                    <!-- toedieningsschema -->
                     <xsl:variable name="elmName">toedieningsschema</xsl:variable>
+                    <xsl:variable name="xsd-toedieningsschema-complexType" select="$xsd-dosering//xs:element[@name = $elmName]/@type"/>
                     <xsl:variable name="schemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($xsd-dosering, $elmName))"/>
                     <xsl:element name="{$elmName}">
                         <xsl:copy-of select="nf:getADAComplexTypeConceptId($schemaFragment)"/>
@@ -393,7 +395,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <!-- output the toedieningstijd -->
                                     <xsl:variable name="elemName">toedientijd</xsl:variable>
                                     <xsl:call-template name="handleTS">
-                                        <xsl:with-param name="in" select="hl7nl:phase/hl7:center"/>
+                                        <xsl:with-param name="in" select="hl7:phase/hl7:center"/>
                                         <xsl:with-param name="elemName" select="$elemName"/>
                                         <xsl:with-param name="conceptId" select="nf:getADAComplexTypeConceptId(nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName)))"/>
                                         <xsl:with-param name="vagueDate" select="true()"/>
