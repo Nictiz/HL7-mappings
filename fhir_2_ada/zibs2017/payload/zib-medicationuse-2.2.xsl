@@ -11,6 +11,7 @@
     <xsl:import href="ext-zib-medication-stop-type-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
     <xsl:import href="ext-zib-Medication-AdditionalInformation-2.0.xsl"/>
+    <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>
     <xsl:import href="zib-instructions-for-use-2.0.xsl"/>
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
@@ -31,49 +32,47 @@
         select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse'"/>
     <xsl:variable name="zib-MedicationUse-Duration"
         select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration'"/>
-    <xsl:variable name="asAgreedIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator'"/>
-    <xsl:variable name="copyIndicator-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
-    <xsl:variable name="reasonForChangeOrDiscontinuationOfUse-url" select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>
-
+    <xsl:variable name="asAgreedIndicator-url"  select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator'"/>
+    <xsl:variable name="copyIndicator-url" 
+        select="'http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator'"/>
+    <xsl:variable name="reasonForChangeOrDiscontinuationOfUse-url"  select="'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse'"/>
+    
     <xd:doc>
         <xd:desc>Template for converting f:MedicationStatement to MedicationUse</xd:desc>
     </xd:doc>
-    
-    <!-- Identificatie  -->
-    <!-- Registratiedatum -->
-    <!-- GebruiksIndicator -->
-    <!-- Volgens afspraak indicator -->
-    <!-- Stoptype -->
-    <!-- Gebruiksperiode -->
-    <!-- GebruiksProduct -->
-    <!-- Gebruiksinstructie -->
-    <!-- Geralateerde afspraak -->
-    <!-- Geralateerde verstrekking -->
-    <!-- Voorschrijver -->
-    <!-- Informant -->
-    <!-- Auteur -->
-    <!-- Reden gebruik -->
-    <!-- Reden wijzigen of stoppen gebruik -->
-    <!-- Kopie Indicator - LET OP kan ik niet vinden in voorbeelden of in schema - needs to move to an own xsl-->
-    <!-- Toelichting -->
-    
-    
     <xsl:template match="f:MedicationStatement" mode="zib-MedicationUse-2.2">
         <medicatie_gebruik>
+            <!-- Gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
+            <!-- Identificatie  -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
+            <!-- Registratiedatum -->
             <xsl:apply-templates select="f:dateAsserted" mode="#current"/>
+            <!-- GebruiksIndicator -->
             <xsl:apply-templates select="f:taken" mode="#current"/>
             <!-- Volgens afspraak indicator -->
             <xsl:apply-templates select="f:extension[@url=$asAgreedIndicator-url]" mode="#current"/>
+            <!-- Stoptype -->
+            <xsl:apply-templates select="f:status" mode="#current"/>
+            <!-- GebruiksProduct -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
             <xsl:apply-templates select="f:dosage" mode="zib-instructions-for-use-2.0"/>
+            <!-- Gerelateerde afspraak en Gerelateerde verstrekking -->
+            <xsl:apply-templates select="f:derivedFrom" mode="#current"/>
+            <!-- Voorschrijver -->
+            <xsl:apply-templates select="f:extension[@url=$prescriber-url]" mode="#current"/>
+            <!-- Informant -->
             <xsl:apply-templates select="f:informationSource" mode="#current"/>
             <!-- auteur -->
             <xsl:apply-templates select="f:extension[@url=$author-url]" mode="#current"/>
+            <!-- Reden gebruik --> 
+            <xsl:apply-templates select="f:reasonCode" mode="#current"/>
+            <!-- Reden wijzigen of stoppen gebruik -->
             <xsl:apply-templates select="f:extension[@url=$reasonForChangeOrDiscontinuationOfUse-url]" mode="#current"/>
+            <!-- Kopie Indicator - LET OP kan ik niet vinden in voorbeelden of in schema - needs to move to an own xsl-->
             <xsl:apply-templates select="f:extension[@url=$copyIndicator-url]" mode="#current"/>
+            <!-- Toelichting -->
             <xsl:apply-templates select="f:note" mode="#current"/>
         </medicatie_gebruik>
     </xsl:template>
@@ -164,7 +163,6 @@
     </xsl:template>
 
     <!-- informant -->
-    <!-- Niet alle references zitten in de Bundle -->
     <xsl:template match="f:informationSource" mode="zib-MedicationUse-2.2">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <xsl:variable name="referenceValuePractitionerRole"
@@ -193,6 +191,56 @@
         </informant>
     </xsl:template>
     
+    <!-- Gerelateerde afspraak en Gerelateerde verstrekking -->
+    <xsl:template match="f:derivedFrom" mode="zib-MedicationUse-2.2">
+        <xsl:choose>
+            <xsl:when test="f:reference">
+                <xsl:variable name="referenceValue" select="f:reference/@value"/>
+                <xsl:variable name="resource" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource"/>
+                <xsl:choose>
+                    <xsl:when
+                        test="$resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005' or $resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009' ">
+                        <gerelateerde_afspraak>
+                            <xsl:choose>
+                                <xsl:when test="$resource/f:MedicationRequest/f:category/f:coding/f:code/@value='16076005'">
+                                    <xsl:call-template name="Identifier-to-identificatie">
+                                        <xsl:with-param name="in" select="$resource/f:MedicationRequest/f:identifier"/>
+                                        <xsl:with-param name="adaElementName">identificatie_medicatieafspraak</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="$resource/f:MedicationDispense/f:category/f:coding/f:code/@value='422037009'">
+                                    <xsl:call-template name="Identifier-to-identificatie">
+                                        <xsl:with-param name="in" select="$resource/f:MedicationRequest/f:identifier"/>
+                                        <xsl:with-param name="adaElementName">identificatie_toedieningsafspraak</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:when>
+                            </xsl:choose>    
+                        </gerelateerde_afspraak>
+                    </xsl:when>
+                    <xsl:when
+                        test="$resource/f:MedicationDispense/f:category/f:coding/f:code/@value='373784005'">
+                        <gerelateerde_verstrekking>
+                            <xsl:call-template name="Identifier-to-identificatie">
+                                <xsl:with-param name="in" select="$resource/f:MedicationDispense/f:identifier"/>
+                                <xsl:with-param name="adaElementName">identificatie</xsl:with-param>
+                            </xsl:call-template>
+                        </gerelateerde_verstrekking>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:when>
+            
+          <!-- WRONG! NEED TO CHECK THIS. -->
+          <!--  <xsl:when test="f:identifier">
+                <gerelateerde_afspraak>
+                    <xsl:call-template name="Identifier-to-identificatie">
+                    <xsl:with-param name="adaElementName">identificatie_medicatieafspraak</xsl:with-param>
+                    </xsl:call-template>
+                </gerelateerde_afspraak>
+            </xsl:when>-->
+        </xsl:choose>
+        
+    </xsl:template>
+    
     <!-- Auteur -->
     <xsl:template match="f:extension[@url=$author-url]" mode="zib-MedicationUse-2.2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
@@ -206,12 +254,17 @@
                 </xsl:when>
                 <xsl:when test="$resource/local-name()='Practitioner'">
                     <auteur_is_zorgverlener>
-                        <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0"/>
+                        <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0">
+                            <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
+                        </xsl:apply-templates>
                     </auteur_is_zorgverlener>    
                 </xsl:when>
                 <xsl:when test="$resource/local-name()='PractitionerRole'">
                     <auteur_is_zorgverlener>
-                        <xsl:apply-templates select="$resource" mode="resolve-practitionerRole"/>
+                        <xsl:apply-templates select="$resource" mode="resolve-practitionerRole">
+                            <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
+                            <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
+                        </xsl:apply-templates>
                     </auteur_is_zorgverlener>    
                 </xsl:when>
                 <xsl:when test="$resource/local-name()='Organization'">
@@ -224,6 +277,27 @@
             </xsl:choose>            
         </auteur>   
     </xsl:template>
+    
+    <!-- Voorschrijver -->
+    <xsl:template match="f:extension[@url=$prescriber-url]" mode="zib-MedicationUse-2.2">
+        <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
+        <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:*)[1]"/>
+        <voorschrijver>
+            <xsl:choose>
+                <xsl:when test="$resource/local-name()='PractitionerRole'">
+                    <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$referenceValue]/f:resource/f:PractitionerRole" mode="resolve-practitionerRole">
+                        <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
+                        <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
+                    </xsl:apply-templates>
+                </xsl:when>
+                <xsl:when test="$resource/local-name()='Practitioner'">
+                    <xsl:apply-templates select="$resource" mode="nl-core-practitioner-2.0">
+                        <xsl:with-param name="practitionerIdUnderscore" select="true()" tunnel="yes"/>
+                    </xsl:apply-templates>
+                </xsl:when>
+            </xsl:choose>
+        </voorschrijver>
+    </xsl:template> 
 
     <!-- Volgens afspraak indicator -->
     <xsl:template match="f:extension[@url=$asAgreedIndicator-url]" mode="zib-MedicationUse-2.2">
@@ -239,13 +313,36 @@
         </kopie_indicator>
     </xsl:template>
     
+    <!-- Reden gebruik --> 
+    <xsl:template match="f:reasonCode" mode="zib-MedicationUse-2.2">
+        <reden_gebruik value="{f:text/@value}"/>
+    </xsl:template>
+    
+    
     <!-- Reden wijzigen of stoppen gebruik -->
     <xsl:template match="f:extension[@url=$reasonForChangeOrDiscontinuationOfUse-url]" mode="zib-MedicationUse-2.2">         
-        
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="f:valueCodeableConcept"/>
-            <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_staken'"/>
+            <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_stoppen_gebruik'"/>
         </xsl:call-template>    
+    </xsl:template>
+    
+    <!-- StopType -->
+    <xsl:template match="f:status" mode="zib-MedicationUse-2.2">
+        <xsl:choose>
+            <xsl:when test="@value='on-hold'">
+                <stoptype
+                    code="1"
+                    codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                    displayName="Onderbreking"/>
+            </xsl:when>
+            <xsl:when test="@value='stopped'">
+                <stoptype
+                    code="2"
+                    codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                    displayName="Definitief"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     
     <!-- toelichting -->
