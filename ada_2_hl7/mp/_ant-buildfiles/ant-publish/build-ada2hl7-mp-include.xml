@@ -34,6 +34,7 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mv}"/>
         </antcall>
         <!-- sturen_medicatievoorschrift POC Praktijktest -->
+        <mkdir dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest"/>
         <delete>
             <fileset dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" includes="*.xml"/>
         </delete>
@@ -52,6 +53,7 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
         <!-- beschikbaarstellen_medicatiegegevens VV -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_VV"/>
         <delete>
             <fileset dir="${build.dir}/${usecase.mg}/ada_instance_VV" includes="*VV*.xml"/>
         </delete>
@@ -61,6 +63,7 @@
             </fileset>
         </copy>
         <!-- beschikbaarstellen_medicatiegegevens POC Praktijktest -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest"/>
         <delete>
             <fileset dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" includes="*.xml"/>
         </delete>
@@ -70,6 +73,7 @@
             </fileset>
         </copy>
 
+        <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="schema.string" value="*${usecase.mo}*"/>
@@ -164,7 +168,7 @@
 
         <echo>Deleting previous results, if any</echo>
         <delete>
-            <fileset dir="${xsl.output}" includes="*.xml"/>            
+            <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
 
         <sequential>
