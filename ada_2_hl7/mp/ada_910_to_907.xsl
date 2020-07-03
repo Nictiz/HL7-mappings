@@ -28,7 +28,7 @@
     </xsl:template>
 
     <!-- Script om MP ada instances te converteren van 9.1.0 naar 9.0.7 -->
-    <xsl:template match="medicatieafspraak/afspraak_datum_tijd">
+    <xsl:template match="(medicatieafspraak | toedieningsafspraak)/afspraak_datum_tijd">
         <xsl:element name="afspraakdatum">
             <xsl:apply-templates select="@* | node()"/>
         </xsl:element>
@@ -90,6 +90,23 @@
     </xsl:template>
 
 
+
+
+    <!-- Kopieer verder alles 1-op-1 -->
+    <xsl:template match="gebruiksperiode_start[@conceptId='1.2.3.4.5.12345.20132.1']">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="conceptId">2.16.840.1.113883.2.4.3.11.999.77.11.1.20132.1</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
+    
+    <!-- Update concept id, if an old one has been left behind -->
+    <xsl:template match="gebruiksperiode_eind[@conceptId='1.2.3.4.5.12345.20132.2']">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="conceptId">2.16.840.1.113883.2.4.3.11.999.77.11.1.20132.2</xsl:attribute>
+        </xsl:copy>
+    </xsl:template>
 
 
     <!-- Kopieer verder alles 1-op-1 -->
