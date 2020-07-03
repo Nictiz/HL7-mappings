@@ -312,8 +312,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="theGroupElement" select="$zwangerschappen[group-key = $theGroupKey]" as="element()?"/>
             <xsl:variable name="resourceId" select="$theGroupElement/f:entry/f:resource/f:Condition/f:id/@value"/>
             <unieke-problem xmlns="">
-                <xsl:copy-of select="group-key"/>
-                <xsl:copy-of select="reference-display"/>
+                <xsl:copy-of select="$theGroupElement/group-key"/>
+                <xsl:copy-of select="$theGroupElement/reference-display"/>
                 <xsl:call-template name="pregnancyEntry">
                     <xsl:with-param name="adaPatient" select="$patient-ada"/>
                     <xsl:with-param name="fhirResourceId" select="$resourceId"/>

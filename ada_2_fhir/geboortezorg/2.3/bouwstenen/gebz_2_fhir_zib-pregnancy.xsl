@@ -111,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 <xsl:choose>
                     <xsl:when test="$parentElemName='prio1_vorige_zwangerschap'">
-                        <clinicalStatus value="finished"/>
+                        <clinicalStatus value="inactive"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <clinicalStatus value="active"/>        

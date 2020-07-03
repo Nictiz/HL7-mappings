@@ -1,0 +1,36 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="762b72fb-bc5f-11ea-1630-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-observation"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/bc-PregnancyObservation"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/Observation-focusSTU3">
+      <valueReference>
+         <reference value="Condition/762b72f8-bc5f-11ea-1630-020000000000"/>
+         <display value="Zwangerschap 3 wouden"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.13"/>
+         <code value="EindeZw"/>
+         <display value="Wijze einde zwangerschap"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/WOUDENVANDER"/>
+      <display value="Wouden van der"/>
+   </subject>
+   <context>
+      <reference value="EpisodeOfCare/762b72f8-bc5f-11ea-1630-020000000000"/>
+      <display value="Zwangerschap 3 wouden"/>
+   </context>
+   <valueCodeableConcept>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.13.46"/>
+         <code value="1"/>
+         <display value="Partus"/>
+      </coding>
+   </valueCodeableConcept>
+</Observation>
