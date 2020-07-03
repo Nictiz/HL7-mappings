@@ -58,7 +58,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaZorginstelling"/>
         <xsl:param name="adaZorgverlener"/>
         <xsl:param name="uuid" select="true()" as="xs:boolean"/>
-        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <!-- uuid obv ancestor anders dezelfde uuid als zwangerschap -->
+        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(ancestor::prio1_huidige_zwangerschap | ancestor::prio1_vorige_zwangerschap | ancestor::bevallingsgegevens_23)"/>
         <xsl:param name="fhirResourceId">
             <xsl:if test="$referById">
                 <xsl:choose>

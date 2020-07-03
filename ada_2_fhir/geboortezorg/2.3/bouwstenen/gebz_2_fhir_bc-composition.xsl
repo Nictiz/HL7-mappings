@@ -52,7 +52,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </subject>
             </xsl:for-each> 
             <!-- TODO: ophalen datum uit transactie -->
-            <!--<date value="2012-01-04T09:10:14Z"/> -->
+            <date value="{current-dateTime()}"/>
+            <!--<date value="2012-01-04T09:10:14Z"/>-->
             <xsl:for-each select="$adaZorgverlener">
                 <author> 
                     <xsl:call-template name="practitionerReference"/>

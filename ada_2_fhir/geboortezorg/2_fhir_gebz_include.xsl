@@ -332,6 +332,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="convertToADAlabtest"/>
             </xsl:variable>
             <xsl:variable name="elementName" select="name(.)"/>
+            <!-- need this later to create context element (ada context will be lost at that time) -->
+            <xsl:variable name="context">
+                <xsl:for-each select="(ancestor::prio1_huidige_zwangerschap | ancestor::prio1_vorige_zwangerschap | ancestor::bevallingsgegevens_23)/zwangerschap">
+                    <context xmlns="http://hl7.org/fhir">
+                        <xsl:apply-templates select="." mode="doMaternalRecordReference"/>  
+                    </context>
+                </xsl:for-each>                
+            </xsl:variable>
             <unieke-labobservation xmlns="">
                 <group-key xmlns="">
                     <xsl:value-of select="current-grouping-key()"/>
@@ -340,9 +348,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="concat(replace($elementName, '_', ' '),$vrouwId)"/>
                 </reference-display>
                 <xsl:for-each select="$labtest-ada">
-                    <xsl:call-template name="laboratoryResultObservationEntry">
-                        <xsl:with-param name="adaPatient" select="$patient-ada"/>
-                    </xsl:call-template>
+                    <xsl:variable name="labObservation">
+                        <xsl:call-template name="laboratoryResultObservationEntry">
+                            <xsl:with-param name="adaPatient" select="$patient-ada"/>
+                        </xsl:call-template>            
+                    </xsl:variable>
+                    <xsl:for-each select="$labObservation">
+                        <xsl:call-template name="transformLabObservation">
+                            <xsl:with-param name="context" select="$context"></xsl:with-param>
+                        </xsl:call-template>    
+                    </xsl:for-each>
                 </xsl:for-each>
             </unieke-labobservation>
         </xsl:for-each-group>
@@ -409,7 +424,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="//prio1_huidige_zwangerschap | //prio1_vorige_zwangerschap | //bevallingsgegevens_23">
             <xsl:call-template name="bc-composition">
                 <xsl:with-param name="logicalId">
-                    <xsl:value-of select="concat('samenvatting-zwangerschap', $pregnancyId)"/>
+                    <xsl:value-of select="concat('samenvatting-zwangerschap', $pregnancyId, '-', $vrouwId)"/>
                 </xsl:with-param>
                 <xsl:with-param name="adaPatient" select="$patient-ada"/>
                 <xsl:with-param name="adaZorgverlener" select="$zorgverlener-ada"/>
@@ -526,6 +541,49 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Helper template to add missing elements from core lab observation</xd:desc>/>
+    </xd:doc>
+    <xsl:template name="transformLabObservation" match="node() | @*" mode="doTransformLabObservation doTransformLabObservationElements">
+        <xsl:param name="context"/>
+        <xsl:copy>
+            <xsl:apply-templates select="node() | @*" mode="doTransformLabObservationElements">
+                <xsl:with-param name="context" select="$context"/>
+            </xsl:apply-templates>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Helper template to add missing category display in lab observation</xd:desc>
+    </xd:doc>
+    <xsl:template name="addCategoryDisplayLabObservation" match="f:category/f:coding/f:code" mode="doTransformLabObservationElements">
+        <xsl:choose>
+            <xsl:when test="@value=49581000146104 and not(following-sibling::display)">
+                <xsl:copy-of select="."></xsl:copy-of>
+                <display xmlns="http://hl7.org/fhir" value="Laboratory test finding (finding)"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="."></xsl:copy-of>
+            </xsl:otherwise>
+        </xsl:choose>   
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Helper template to add birthcare specific context to lab observation</xd:desc>
+    </xd:doc>
+    <xsl:template name="addContextObservation" match="f:subject" mode="doTransformLabObservationElements">
+        <xsl:param name="context"/>
+        <xsl:choose>
+            <xsl:when test="name(.)='subject' and not(following-sibling::context)">
+                <xsl:copy-of select="."/>
+                <xsl:copy-of select="$context"/>
+            </xsl:when>    
+            <xsl:otherwise>
+                <xsl:copy-of select="."/>
+            </xsl:otherwise>
+        </xsl:choose>   
     </xsl:template>
 
 </xsl:stylesheet>
