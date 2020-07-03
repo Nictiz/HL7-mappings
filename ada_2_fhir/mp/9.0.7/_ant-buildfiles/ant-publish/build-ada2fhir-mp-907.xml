@@ -6,234 +6,101 @@
         
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
-<project basedir="../.." default="convert_ada_2_fhir" name="ada2fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <ant antfile="../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
-     <property name="xsl.saxon" value="${saxon.path}"/>
-    <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
+<project basedir="." default="convert_ada_2_fhir_907" name="build-ada2fhir-mp-907" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property name="is.version" value="9.0.7"/>
+    <property name="is.version.short" value="907"/>
 
-    <property name="echo.label.in" value="ADA"/>
-    <property name="echo.label.out" value="FHIR"/>
-    <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
+    <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
 
-    <property name="project.title" value="${echo.label} for Medicatieproces 9.0.7"/>
-    <property name="project.version" value="1.0.0"/>
-    <property name="project.prefix" value="mp_9.0.7"/>
-    <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for Medicatieproces building blocks to valid ${echo.label.out} instances"/>
-    <property name="project.author" value="Nictiz"/>
-    <property name="project.website" value="http://www.nictiz.nl/"/>
-    <property name="project.status" value="beta"/>
-    <property name="project.license" value="GNU-LGPL"/>
-    <property name="project.copyright" value="true"/>
+    <target name="setup_907">
+        <!-- The generic MP stuff -->
+        <antcall target="setup"/>
 
-    <property name="build.dir" value="."/>
-    <property name="dummy.output.dir" value="dummy"/>
-    <property name="project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\mp-mp907"/>
-    <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\mp\9.0.7"/>
+        <!-- the MP specific stuff for version 9.0.7 -->
 
-    <property name="usecase-mg" value="beschikbaarstellen_medicatiegegevens"/>
-    <property name="usecase-mo" value="beschikbaarstellen_medicatieoverzicht"/>
-
-    <target name="setup" description="Setup subdirectories in ${build.dir}">
-        <!-- beschikbaarstellen_medicatiegegevens -->
-        <!-- copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <!-- MA -->
-        <antcall target="setup_sub">
-            <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
-            <param name="schema.string" value="*${usecase-mg}*"/>
-            <param name="fileset.dir" value="ada_instance_MA"/>
-            <param name="fileset.include" value="*MA*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
-        </antcall>
-
-        <!-- we need to do some preprocessing because Touchstone cannot filter on periodofuse -->
-        <property name="xsl.preprocess" value="${build.dir}/${usecase-mg}/payload/preprocess_ada_4_Touchstone.xsl"/>
-        <property name="ada.dir" value="${build.dir}/${usecase-mg}/ada_instance_MA"/>
-        <property name="dest.dir" value="${ada.dir}/temp"/>
-        <sequential>
-            <fileset id="inputfilesPreProcess" dir="${build.dir}/${usecase-mg}/ada_instance_MA" includes="mg-mgr-mg-MA-Scenarioset0*.xml"/>
-            <echo/>
-            <echo>${echo.label} ${xsl.preprocess}</echo>
-            <xslt force="true" style="${xsl.preprocess}" destdir="${dest.dir}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputfilesPreProcess"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
-
-        <copy todir="${ada.dir}" failonerror="true">
-            <fileset dir="${dest.dir}" includes="*.xml"/>
+        <!-- beschikbaarstellen_medicatiegegevens POC Praktijktest -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mg}/ada_instance_POCPraktijktest" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance_POCPraktijktest">
+                <include name="*.xml"/>
+            </fileset>
         </copy>
-        <delete dir="${dest.dir}"/>
 
-        <!-- VV -->
-        <antcall target="setup_sub_instances">
-            <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
-            <param name="fileset.dir" value="ada_instance_VV"/>
-            <param name="fileset.include" value="*VV*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
-        </antcall>
+        <!-- sturen_medicatievoorschrift POC Praktijktest -->
+        <!-- not yet applicable for ada 2 fhir, there is no fhir definition for medicatievoorschrift -->
+        <!--<mkdir dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mv}/ada_instance_POCPraktijktest" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase.mv}/ada_instance_POCPraktijktest">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>-->
 
-        <!-- MedMij instances -->
-        <!-- TODO, also needs copying in refs dir, or get directly from production instances -->
-        <!--        <antcall target="setup_sub_instances">
-            <param name="build.dir" value="${build.dir}/${usecase-mg}"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="XXX*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase-mg}"/>
-        </antcall>-->
+        <!-- let's convert too, now that we are here -->
+        <antcall target="convert_ada_2_fhir_907"/>
 
-        <!-- beschikbaarstellen_medicatieoverzicht -->
-        <antcall target="setup_sub">
-            <param name="build.dir" value="${build.dir}/${usecase-mo}"/>
-            <param name="schema.string" value="*${usecase-mo}*"/>
-            <param name="fileset.dir" value="ada_instance_mp"/>
-            <param name="fileset.include" value="*output*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase-mo}"/>
-        </antcall>
+    </target>
 
-        <!-- let's convert to fhir too while we're at it -->
+    <target name="convert_ada_2_fhir_907">
+        <!-- The generic MP stuff -->
+        <echo>convert_ada_2_fhir_907. The generic MP stuff for convert_ada_2_fhir</echo>
         <antcall target="convert_ada_2_fhir"/>
-
-    </target>
-
-    <target name="setup_sub" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project and refreshed ada production instances">
-        <mkdir dir="${build.dir}"/>
-
-        <antcall target="setup_sub_schemas">
-            <param name="build.dir" value="${build.dir}"/>
-            <param name="schema.string" value="${schema.string}"/>
-        </antcall>
-
-        <antcall target="setup_sub_instances">
-            <param name="build.dir" value="${build.dir}"/>
-            <param name="fileset.dir" value="${fileset.dir}"/>
-            <param name="fileset.include" value="${fileset.include}"/>
-            <param name="refs.dir" value="${refs.dir}"/>
-        </antcall>
-
-    </target>
-
-    <target name="setup_sub_schemas" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project">
-
-        <delete>
-            <fileset dir="${build.dir}/ada_schemas" includes="*.*"/>
-        </delete>
-
-        <copy todir="${build.dir}/ada_schemas" failonerror="true">
-            <fileset dir="${project.source.dir}/schemas">
-                <include name="${schema.string}"/>
-                <include name="ada_meta.xsd"/>
-            </fileset>
-        </copy>
-
-    </target>
-
-    <target name="setup_sub_instances" description="Setup ${build.dir} containing refreshed ada production instances">
-
-        <echo>Copying ADA instances from ${refs.dir}/ada_instance to ${build.dir}/${fileset.dir}</echo>
-
-        <delete>
-            <fileset dir="${build.dir}/${fileset.dir}" includes="*.*"/>
-        </delete>
-        <copy todir="${build.dir}/${fileset.dir}" failonerror="true">
-            <fileset dir="${refs.dir}/ada_instance">
-                <include name="${fileset.include}"/>
-            </fileset>
-        </copy>
-
-    </target>
-
-    <target name="convert_ada_2_fhir">
-
-        <!-- beschikbaarstellen_medicatiegegevens -->
+        
+        <!-- beschikbaarstellen_verstrekingenvertaling, not yet implemented in 9.1.0,
+        this call should be moved to generic function convert_ada_2_fhir after it has been implemented in 9.1.0-->
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase-mg}"/>
-            <param name="xsl.in" value="ada_instance_MA"/>
-            <param name="xsl.out" value="fhir_instance_MA"/>
-        </antcall>
-        <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase-mg}"/>
-            <param name="xsl.in" value="ada_instance_VV"/>
-            <param name="xsl.out" value="fhir_instance_VV"/>
-        </antcall>
-        <!-- MedMij stuff beschikbaarstellen_medicatiegegevens-->
-        <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase-mg}"/>
+            <param name="usecase" value="${usecase.vv}"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
         
-        <!-- beschikbaarstellen_medicatieoverzicht -->
+        <!-- the MP specific stuff for version 9.0.7 -->
+        <echo>the MP specific stuff for version 9.0.7</echo>
+        <echo/>
+        <echo>MedMij stuff beschikbaarstellen_medicatiegegevens</echo>
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase-mo}"/>
-            <param name="xsl.in" value="ada_instance_mp"/>
-            <param name="xsl.out" value="fhir_instance_mp"/>
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-        
-        
-        <!-- MedMij stuff beschikbaarstellen_medicatiegegevens in separate bouwstenen, only the bundles -->
-        <property name="xsl_mp" value="${usecase-mg}/payload/${usecase-mg}_2_fhir.xsl"/>
-        
-        <property name="xsl.input" value="${usecase-mg}/ada_instance_bouwstenen"/>
-        <property name="xsl.output" value="${usecase-mg}/fhir_instance_bouwstenen"/>
-        
+
+        <echo>convert_ada_2_fhir_907. MedMij stuff beschikbaarstellen_medicatiegegevens in separate bouwstenen, 
+            only the bundles, so don't use the convert_ada_2_fhir_sub</echo>
+        <property name="xsl.ada2fhir.bws" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
+
+        <property name="xsl.input.bws" value="${build.dir}/${usecase.mg}/ada_instance_bouwstenen"/>
+        <property name="xsl.output.bws" value="${build.dir}/${usecase.mg}/fhir_instance_bouwstenen"/>
+
         <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${xsl.output.bws}"/>
         <delete>
-            <fileset dir="${xsl.output}" includes="*.xml"/>
+            <fileset dir="${xsl.output.bws}" includes="*.xml"/>
         </delete>
-        
+
         <sequential>
-            <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
-            
+            <fileset id="inputFiles" dir="${xsl.input.bws}" includes="*.xml"/>
+
             <echo/>
-            <echo>${echo.label} ${xsl_mp}</echo>
-            <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <echo>${echo.label} with input files: ${xsl.input.bws}, converted with: ${xsl.ada2fhir.bws}</echo>
+            <xslt force="true" style="${xsl.ada2fhir.bws}" destdir="${xsl.output.bws}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputFiles"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
         
-  
-        <!--
+        <echo>convert_ada_2_fhir_907. MedMij stuff beschikbaarstellen_medicatiegegevens for POC Praktijktest</echo>
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="beschikbaarstellen_verstrekkingenvertaling"/>
-        </antcall>-->
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.in" value="ada_instance_POCPraktijktest"/>
+            <param name="xsl.out" value="fhir_instance_POCPraktijktest"/>
+        </antcall>
+
     </target>
-
-    <target name="convert_ada_2_fhir_sub">
-
-        <property name="xsl_mp" value="${build.dir}/payload/${build.dir}_2_fhir.xsl"/>
-        <property name="xsl_mp_resources" value="${build.dir}/payload/${build.dir}_2_fhir_resources.xsl"/>
-
-        <property name="xsl.input" value="${build.dir}/${xsl.in}"/>
-        <property name="xsl.output" value="${build.dir}/${xsl.out}"/>
-
-        <echo>Deleting previous results, if any</echo>
-        <delete>
-            <fileset dir="${xsl.output}" includes="*.*"/>
-        </delete>
-
-        <sequential>
-            <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
-
-            <echo/>
-            <echo>${echo.label} ${xsl_mp_resources}</echo>
-            <xslt force="true" style="${xsl_mp_resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputFiles"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-
-            <echo/>
-            <echo>${echo.label} ${xsl_mp}</echo>
-            <xslt force="true" style="${xsl_mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputFiles"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
-    </target>
-
 
 </project>
